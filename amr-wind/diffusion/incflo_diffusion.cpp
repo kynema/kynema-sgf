@@ -1,6 +1,7 @@
 #include "amr-wind/incflo.H"
 #include "amr-wind/diffusion/diffusion.H"
 #include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -231,7 +232,7 @@ void viscosity_to_uniform_space(
             b[0], [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 mu_arrs[nbx](i, j, k) =
                     mu_arrs[nbx](i, j, k) * detJ_arrs[nbx](i, j, k) /
-                    std::pow(fac_arrs[nbx](i, j, k, 0), 2.0_rt);
+                    amr_wind::utils::powi(fac_arrs[nbx](i, j, k, 0), 2);
             });
     }
     // beta accounted for mesh mapping (y-face) = J/fac^2 * mu
@@ -244,7 +245,7 @@ void viscosity_to_uniform_space(
             b[1], [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 mu_arrs[nbx](i, j, k) =
                     mu_arrs[nbx](i, j, k) * detJ_arrs[nbx](i, j, k) /
-                    std::pow(fac_arrs[nbx](i, j, k, 1), 2.0_rt);
+                    amr_wind::utils::powi(fac_arrs[nbx](i, j, k, 1), 2);
             });
     }
     // beta accounted for mesh mapping (z-face) = J/fac^2 * mu
@@ -257,7 +258,7 @@ void viscosity_to_uniform_space(
             b[2], [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 mu_arrs[nbx](i, j, k) =
                     mu_arrs[nbx](i, j, k) * detJ_arrs[nbx](i, j, k) /
-                    std::pow(fac_arrs[nbx](i, j, k, 2), 2.0_rt);
+                    amr_wind::utils::powi(fac_arrs[nbx](i, j, k, 2), 2);
             });
     }
     amrex::Gpu::streamSynchronize();

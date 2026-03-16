@@ -6,7 +6,7 @@
 #include "amr-wind/core/field_ops.H"
 #include "amr-wind/projection/nodal_projection_ops.H"
 #include "hydro_utils.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -290,9 +290,9 @@ void incflo::ApplyProjection(
                         mesh_mapping ? (fac_arrs[nbx](i, j, k, n)) : 1.0_rt;
                     amrex::Real det_j =
                         mesh_mapping ? (detJ_arrs[nbx](i, j, k)) : 1.0_rt;
-                    sig_arrs[nbx](i, j, k, n) = std::pow(fac_cc, -2.0_rt) *
-                                                det_j * scaling_factor /
-                                                rho_arrs[nbx](i, j, k);
+                    sig_arrs[nbx](i, j, k, n) =
+                        amr_wind::utils::powi(fac_cc, -2) * det_j *
+                        scaling_factor / rho_arrs[nbx](i, j, k);
                     if (is_anelastic) {
                         sig_arrs[nbx](i, j, k, n) *= ref_rho_arrs[nbx](i, j, k);
                     }

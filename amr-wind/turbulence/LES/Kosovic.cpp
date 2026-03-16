@@ -4,7 +4,7 @@
 #include "amr-wind/fvm/nonLinearSum.H"
 #include "amr-wind/fvm/strainrate.H"
 #include "amr-wind/fvm/divergence.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 #include "AMReX_MultiFab.H"
 #include "AMReX_ParmParse.H"
 #include "amr-wind/wind_energy/ABL.H"
@@ -144,7 +144,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                               ((k + 1) * dz) - height_arrs[nbx](i, j, k, 0), dz)
                         : (k + 1) * dz;
                 const amrex::Real ransL =
-                    std::pow(0.41_rt * wall_distance / phiM, 2.0_rt);
+                    utils::powi(0.41_rt * wall_distance / phiM, 2);
                 amrex::Real turnOff = std::exp(-x3 / locLESTurnOff);
                 amrex::Real viscosityScale =
                     (locSurfaceFactor *

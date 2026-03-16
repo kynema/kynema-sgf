@@ -5,7 +5,7 @@
 #include "AMReX_ParmParse.H"
 #include "AMReX_ParReduce.H"
 #include "amr-wind/utilities/trig_ops.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -17,18 +17,18 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
 UExact::operator()(const amrex::Real x, const amrex::Real y) const
 {
     return 8.0_rt *
-           (std::pow(x, 4.0_rt) - 2.0_rt * std::pow(x, 3.0_rt) +
-            std::pow(x, 2.0_rt)) *
-           (4.0_rt * std::pow(y, 3.0_rt) - 2.0_rt * y);
+           (utils::powi(x, 4) - 2.0_rt * utils::powi(x, 3) +
+            utils::powi(x, 2)) *
+           (4.0_rt * utils::powi(y, 3) - 2.0_rt * y);
 }
 
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
 VExact::operator()(const amrex::Real x, const amrex::Real y) const
 {
     return -8.0_rt *
-           (4.0_rt * std::pow(x, 3.0_rt) - 6.0_rt * std::pow(x, 2.0_rt) +
+           (4.0_rt * utils::powi(x, 3) - 6.0_rt * utils::powi(x, 2) +
             2.0_rt * x) *
-           (std::pow(y, 4.0_rt) - std::pow(y, 2.0_rt));
+           (utils::powi(y, 4) - utils::powi(y, 2));
 }
 
 } // namespace
@@ -81,30 +81,26 @@ void BurggrafFlow::initialize_fields(int level, const amrex::Geometry& geom)
             vel_arrs[nbx](i, j, k, 1) = v_exact(x, y);
             vel_arrs[nbx](i, j, k, 2) = 0.0_rt;
 
-            const amrex::Real f = std::pow(x, 4.0_rt) -
-                                  (2.0_rt * std::pow(x, 3.0_rt)) +
-                                  std::pow(x, 2.0_rt);
-            const amrex::Real f1 = (4.0_rt * std::pow(x, 3.0_rt)) -
-                                   (6.0_rt * std::pow(x, 2.0_rt)) +
-                                   (2.0_rt * x);
+            const amrex::Real f = utils::powi(x, 4) -
+                                  (2.0_rt * utils::powi(x, 3)) +
+                                  utils::powi(x, 2);
+            const amrex::Real f1 = (4.0_rt * utils::powi(x, 3)) -
+                                   (6.0_rt * utils::powi(x, 2)) + (2.0_rt * x);
             const amrex::Real f3 = (24.0_rt * x) - 12.0_rt;
-            const amrex::Real g = std::pow(y, 4.0_rt) - std::pow(y, 2.0_rt);
-            const amrex::Real g1 =
-                (4.0_rt * std::pow(y, 3.0_rt)) - (2.0_rt * y);
-            const amrex::Real g2 = (12.0_rt * std::pow(y, 2.0_rt)) - 2.0_rt;
+            const amrex::Real g = utils::powi(y, 4) - utils::powi(y, 2);
+            const amrex::Real g1 = (4.0_rt * utils::powi(y, 3)) - (2.0_rt * y);
+            const amrex::Real g2 = (12.0_rt * utils::powi(y, 2)) - 2.0_rt;
 
-            const amrex::Real F = (std::pow(x, 5.0_rt) / 5.0_rt) -
-                                  (std::pow(x, 4.0_rt) / 2.0_rt) +
-                                  (std::pow(x, 3.0_rt) / 3.0_rt);
-            const amrex::Real F1 = (-4.0_rt * std::pow(x, 6.0_rt)) +
-                                   (12.0_rt * std::pow(x, 5.0_rt)) -
-                                   (14.0_rt * std::pow(x, 4.0_rt)) +
-                                   (8.0_rt * std::pow(x, 3.0_rt)) -
-                                   (2.0_rt * std::pow(x, 2.0_rt));
+            const amrex::Real F = (utils::powi(x, 5) / 5.0_rt) -
+                                  (utils::powi(x, 4) / 2.0_rt) +
+                                  (utils::powi(x, 3) / 3.0_rt);
+            const amrex::Real F1 =
+                (-4.0_rt * utils::powi(x, 6)) + (12.0_rt * utils::powi(x, 5)) -
+                (14.0_rt * utils::powi(x, 4)) + (8.0_rt * utils::powi(x, 3)) -
+                (2.0_rt * utils::powi(x, 2));
             const amrex::Real F2 = f * f / 2.0_rt;
-            const amrex::Real G1 = (-24.0_rt * std::pow(y, 5.0_rt)) +
-                                   (8.0_rt * std::pow(y, 3.0_rt)) -
-                                   (4.0_rt * y);
+            const amrex::Real G1 = (-24.0_rt * utils::powi(y, 5)) +
+                                   (8.0_rt * utils::powi(y, 3)) - (4.0_rt * y);
 
             src_arrs[nbx](i, j, k, 0) = 0.0_rt;
             src_arrs[nbx](i, j, k, 1) =

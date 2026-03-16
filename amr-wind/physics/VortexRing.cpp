@@ -7,7 +7,7 @@
 #include "AMReX_MLMG.H"
 #include "AMReX_FillPatchUtil.H"
 #include "amr-wind/core/FieldRepo.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -27,8 +27,8 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real FatCore::operator()(
     const amrex::Real* /*unused*/,
     const amrex::Real* /*unused*/) const
 {
-    amrex::Real Rsq = std::pow(R, 2.0_rt);
-    const amrex::Real ssq = std::pow(z, 2.0_rt) + std::pow(r - R, 2.0_rt);
+    amrex::Real Rsq = utils::powi(R, 2);
+    const amrex::Real ssq = utils::powi(z, 2) + utils::powi(r - R, 2);
     if (ssq < Rsq) {
         return 0.54857674_rt * Gamma / Rsq * std::exp(-4 * ssq / (Rsq - ssq));
     }
@@ -62,17 +62,17 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real CollidingRings::operator()(
                    (perturbation_modes[i] * theta) - perturbation_phases_2[i]);
     }
     amrex::Real vortheta_1 =
-        -Gamma / (std::numbers::pi_v<amrex::Real> * std::pow(delta, 2.0_rt)) *
+        -Gamma / (std::numbers::pi_v<amrex::Real> * utils::powi(delta, 2)) *
         std::exp(
-            -(std::pow(z + (dz / 2.0_rt), 2.0_rt) +
-              std::pow(((r * (1.0_rt + dr1)) - R), 2.0_rt)) /
-            std::pow(delta, 2.0_rt));
+            -(utils::powi(z + (dz / 2.0_rt), 2) +
+              utils::powi(((r * (1.0_rt + dr1)) - R), 2)) /
+            utils::powi(delta, 2));
     amrex::Real vortheta_2 =
-        Gamma / (std::numbers::pi_v<amrex::Real> * std::pow(delta, 2.0_rt)) *
+        Gamma / (std::numbers::pi_v<amrex::Real> * utils::powi(delta, 2)) *
         std::exp(
-            -(std::pow(z - (dz / 2.0_rt), 2.0_rt) +
-              std::pow(((r * (1.0_rt + dr2)) - R), 2.0_rt)) /
-            std::pow(delta, 2.0_rt));
+            -(utils::powi(z - (dz / 2.0_rt), 2) +
+              utils::powi(((r * (1.0_rt + dr2)) - R), 2)) /
+            utils::powi(delta, 2));
     return vortheta_1 + vortheta_2;
 }
 
@@ -181,7 +181,7 @@ void VortexRing::initialize_velocity(const VortexRingType& vorticity_theta)
                 const amrex::Real y = problo[1] + (j * dx[1]);
                 const amrex::Real z = problo[2] + (k * dx[2]);
                 const amrex::Real r =
-                    std::sqrt(std::pow(x, 2.0_rt) + std::pow(y, 2.0_rt));
+                    std::sqrt(utils::powi(x, 2) + utils::powi(y, 2));
                 const amrex::Real theta = std::atan2(y, x);
                 const amrex::Real vortheta = vorticity_theta(
                     r, theta, z, R, Gamma, delta, dz, perturbation_amplitude,
