@@ -10,6 +10,9 @@
 #include "amr-wind/physics/udfs/TwoLayer.H"
 
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::udf {
 
@@ -43,7 +46,7 @@ void UDFImpl<T>::operator()(int level, const amrex::Geometry& geom)
     auto& mfab = m_field(level);
     const auto& geomData = geom.data();
 
-    const amrex::Real time = 0.0;
+    const amrex::Real time = 0.0_rt;
     const auto ncomp = m_field.num_comp();
     const auto& dop = m_op.device_instance();
     const auto& marrs = mfab.arrays();

@@ -1,11 +1,3 @@
-/** \file nc_interface.H
- *
- *  Interface to NetCDF library
- *
- *  Defines convenience wrappers to interact with a NetCDF file in a more
- *  OOP-like manner.
- */
-
 #ifndef NC_INTERFACE_H
 #define NC_INTERFACE_H
 
@@ -16,6 +8,9 @@
 
 #include "netcdf.h"
 #include "netcdf_par.h"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace ncutils {
 
@@ -65,20 +60,20 @@ struct NCVar
     std::vector<size_t> shape() const;
 
     //! Write out the entire variable
-    void put(const double* /*ptr*/) const;
+    void put(const amrex::Real* /*ptr*/) const;
     void put(const float* /*ptr*/) const;
     void put(const int* /*ptr*/) const;
 
     //! Write out a slice of data
     void
-    put(const double* /*dptr*/,
+    put(const amrex::Real* /*dptr*/,
         const std::vector<size_t>& /*start*/,
         const std::vector<size_t>& /*count*/) const;
 
     //! Write out a slice of data with with strides (see hyperslab definition in
     //! NetCDF)
     void
-    put(const double* /*dptr*/,
+    put(const amrex::Real* /*dptr*/,
         const std::vector<size_t>& /*start*/,
         const std::vector<size_t>& /*count*/,
         const std::vector<ptrdiff_t>& /*stride*/) const;
@@ -106,19 +101,19 @@ struct NCVar
         const std::vector<ptrdiff_t>& /*stride*/) const;
 
     //! Read the entire variable from file
-    void get(double* /*ptr*/) const;
+    void get(amrex::Real* /*ptr*/) const;
     void get(float* /*ptr*/) const;
     void get(int* /*ptr*/) const;
 
     //! Read a chunk of data from the file
     void
-    get(double* /*dptr*/,
+    get(amrex::Real* /*dptr*/,
         const std::vector<size_t>& /*start*/,
         const std::vector<size_t>& /*count*/) const;
 
     //! Read a chunk of data with strides
     void
-    get(double* /*dptr*/,
+    get(amrex::Real* /*dptr*/,
         const std::vector<size_t>& /*start*/,
         const std::vector<size_t>& /*count*/,
         const std::vector<ptrdiff_t>& /*stride*/) const;
@@ -148,14 +143,15 @@ struct NCVar
 
     bool has_attr(const std::string& name) const;
     void put_attr(const std::string& name, const std::string& value) const;
-    void
-    put_attr(const std::string& name, const std::vector<double>& value) const;
+    void put_attr(
+        const std::string& name, const std::vector<amrex::Real>& value) const;
     void
     put_attr(const std::string& name, const std::vector<float>& value) const;
     void put_attr(const std::string& name, const std::vector<int>& value) const;
 
     std::string get_attr(const std::string& name) const;
-    void get_attr(const std::string& name, std::vector<double>& value) const;
+    void
+    get_attr(const std::string& name, std::vector<amrex::Real>& value) const;
     void get_attr(const std::string& name, std::vector<float>& value) const;
     void get_attr(const std::string& name, std::vector<int>& value) const;
     void par_access(const int cmode) const;
@@ -247,14 +243,15 @@ public:
     }
 
     void put_attr(const std::string& name, const std::string& value) const;
-    void
-    put_attr(const std::string& name, const std::vector<double>& value) const;
+    void put_attr(
+        const std::string& name, const std::vector<amrex::Real>& value) const;
     void
     put_attr(const std::string& name, const std::vector<float>& value) const;
     void put_attr(const std::string& name, const std::vector<int>& value) const;
 
     std::string get_attr(const std::string& name) const;
-    void get_attr(const std::string& name, std::vector<double>& value) const;
+    void
+    get_attr(const std::string& name, std::vector<amrex::Real>& value) const;
     void get_attr(const std::string& name, std::vector<float>& value) const;
     void get_attr(const std::string& name, std::vector<int>& value) const;
 

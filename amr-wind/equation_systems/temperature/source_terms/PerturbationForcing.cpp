@@ -4,6 +4,9 @@
 #include "AMReX_ParmParse.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_Random.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::temperature {
 
@@ -47,7 +50,7 @@ void PerturbationForcing::operator()(
                         : nullptr;
         const auto& height_arr = has_terrain
                                      ? (*m_terrain_height)(lev).const_array(mfi)
-                                     : amrex::Array4<double>();
+                                     : amrex::Array4<amrex::Real>();
         const auto& geom = m_mesh.Geom(lev);
         const auto& dx = geom.CellSizeArray();
         const auto& prob_lo = geom.ProbLoArray();
@@ -56,19 +59,20 @@ void PerturbationForcing::operator()(
             bx, [=] AMREX_GPU_DEVICE(
                     int i, int j, int k, const amrex::RandomEngine& engine) {
                 const amrex::Real height_arr_cell =
-                    (has_terrain) ? height_arr(i, j, k, 0) : 0.0;
+                    (has_terrain) ? height_arr(i, j, k, 0) : 0.0_rt;
                 const amrex::Real blank_arr_cell =
-                    (has_terrain) ? blank_arr(i, j, k, 0) : 0.0;
-                const amrex::Real x = prob_lo[0] + (i + 0.5) * dx[0];
-                const amrex::Real y = prob_lo[1] + (j + 0.5) * dx[1];
-                const amrex::Real z = std::max(
-                    prob_lo[2] + (k + 0.5) * dx[2] - height_arr_cell,
-                    0.5 * dx[2]);
+                    (has_terrain) ? blank_arr(i, j, k, 0) : 0.0_rt;
+                const amrex::Real x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
+                const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
+                const amrex::Real z = amrex::max<amrex::Real>(
+                    prob_lo[2] + ((k + 0.5_rt) * dx[2]) - height_arr_cell,
+                    0.5_rt * dx[2]);
                 const amrex::RealVect point{x, y, z};
                 if (pert_box.contains(point)) {
                     const amrex::Real pert_cell =
                         amrex::RandomNormal(0, pert_amplitude, engine);
-                    src_term(i, j, k, 0) += (1.0 - blank_arr_cell) * pert_cell;
+                    src_term(i, j, k, 0) +=
+                        (1.0_rt - blank_arr_cell) * pert_cell;
                 }
             });
     }

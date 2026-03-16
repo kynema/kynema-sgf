@@ -47,41 +47,44 @@ public:
     void
     populate_netcdf_metadata(const ncutils::NCGroup& /*unused*/) const override;
     void output_netcdf_data(
-        const ncutils::NCGroup& /*unused*/,
-        const size_t /*unused*/) const override;
+        const ncutils::NCGroup& /*unused*/, size_t /*unused*/) const override;
 
     //! Name of this sampling object
-    std::string label() const override { return m_label; }
+    [[nodiscard]] std::string label() const override { return m_label; }
     std::string& label() override { return m_label; }
 
     //! Type of this sampling object
-    std::string sampletype() const override { return identifier(); }
+    [[nodiscard]] std::string sampletype() const override
+    {
+        return identifier();
+    }
 
     //! Unique identifier for this set of probe locations
-    int id() const override { return m_id; }
+    [[nodiscard]] int id() const override { return m_id; }
     int& id() override { return m_id; }
 
     //! Output functions for private variables
     //! Number of 2D grid points
-    int num_gridpoints() const { return m_npts; }
+    [[nodiscard]] int num_gridpoints() const { return m_npts; }
     //! Number of instances
-    int num_instances() const { return m_ninst; }
+    [[nodiscard]] int num_instances() const { return m_ninst; }
     //! Number of points, total
-    long num_points() const override
+    [[nodiscard]] long num_points() const override
     {
         return static_cast<long>(m_npts) * m_ninst;
     }
-    long num_output_points() const override
+    [[nodiscard]] long num_output_points() const override
     {
         return static_cast<long>(m_npts) * m_ninst;
     }
     //! Locations
-    amrex::Vector<amrex::Array<amrex::Real, 2>> grid_locations() const
+    [[nodiscard]] amrex::Vector<amrex::Array<amrex::Real, 2>>
+    grid_locations() const
     {
         return m_grid_locs;
     }
     //! Outputs (heights)
-    amrex::Vector<amrex::Real> heights() const { return m_out; }
+    [[nodiscard]] amrex::Vector<amrex::Real> heights() const { return m_out; }
 
 private:
     CFDSim& m_sim;

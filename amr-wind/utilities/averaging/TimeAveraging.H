@@ -11,6 +11,9 @@
 #include <memory>
 #include <string>
 #include <map>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -45,9 +48,9 @@ public:
      */
     virtual void operator()(
         const SimTime& time,
-        const amrex::Real filter_width,
-        const amrex::Real avg_time_interval,
-        const amrex::Real elapsed_time) = 0;
+        amrex::Real filter_width,
+        amrex::Real avg_time_interval,
+        amrex::Real elapsed_time) = 0;
 
     virtual const std::string& average_field_name() = 0;
 };
@@ -90,7 +93,7 @@ private:
     std::map<std::string, FieldTimeAverage*> m_registered;
 
     //! Time to start averaging the fields
-    amrex::Real m_start_time{0.0};
+    amrex::Real m_start_time{0.0_rt};
 
     //! Time to stop averaging the fields
     amrex::Real m_stop_time{std::numeric_limits<amrex::Real>::max()};

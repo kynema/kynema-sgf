@@ -48,7 +48,7 @@ void FixedGradientBC::operator()(Field& field, const FieldState /*rho_state*/)
             if (islow && (bx.smallEnd(idim) == domain.smallEnd(idim))) {
                 amrex::ParallelFor(
                     lower_boundary_faces(bx, idim),
-                    [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+                    [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         for (int n = 0; n < ncomp; ++n) {
                             bc_a(i, j, k, n) = bcvals[idx][n];
                         }
@@ -58,7 +58,7 @@ void FixedGradientBC::operator()(Field& field, const FieldState /*rho_state*/)
             if (ishigh && (bx.bigEnd(idim) == domain.bigEnd(idim))) {
                 amrex::ParallelFor(
                     amrex::bdryHi(bx, idim),
-                    [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+                    [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         for (int n = 0; n < ncomp; ++n) {
                             bc_a(i, j, k, n) = bcvals[idx][n];
                         }

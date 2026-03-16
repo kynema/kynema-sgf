@@ -1,6 +1,5 @@
-
+#include <numbers>
 #include "aw_test_utils/MeshTest.H"
-
 #include "amr-wind/utilities/sampling/Sampling.H"
 #include "amr-wind/utilities/sampling/SamplingContainer.H"
 #include "amr-wind/utilities/sampling/ProbeSampler.H"
@@ -12,6 +11,9 @@
 #include "AMReX_Vector.H"
 #include "amr-wind/core/vs/vector_space.H"
 #include "amr-wind/utilities/tensor_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -23,9 +25,9 @@ void init_field(amr_wind::Field& fld)
     const int nlevels = fld.repo().num_active_levels();
     const int ncomp = fld.num_comp();
 
-    amrex::Real offset = 0.0;
+    amrex::Real offset = 0.0_rt;
     if (fld.field_location() == amr_wind::FieldLoc::CELL) {
-        offset = 0.5;
+        offset = 0.5_rt;
     }
 
     for (int lev = 0; lev < nlevels; ++lev) {
@@ -35,10 +37,10 @@ void init_field(amr_wind::Field& fld)
 
         amrex::ParallelFor(
             fld(lev), fld.num_grow(), ncomp,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
-                const amrex::Real x = problo[0] + (i + offset) * dx[0];
-                const amrex::Real y = problo[1] + (j + offset) * dx[1];
-                const amrex::Real z = problo[2] + (k + offset) * dx[2];
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+                const amrex::Real x = problo[0] + ((i + offset) * dx[0]);
+                const amrex::Real y = problo[1] + ((j + offset) * dx[1]);
+                const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
                 farrs[nbx](i, j, k, n) = x + y + z;
             });
     }
@@ -55,7 +57,7 @@ void init_int_field(amr_wind::IntField& fld)
 
         amrex::ParallelFor(
             fld(lev), fld.num_grow(), ncomp,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 farrs[nbx](i, j, k, n) = i + j + k;
             });
     }
@@ -87,8 +89,8 @@ protected:
     void process_output() override
     {
         // Test buffer populate for GPU runs
-        std::vector<double> buf(
-            num_total_particles() * var_names().size(), 0.0);
+        std::vector<amrex::Real> buf(
+            num_total_particles() * var_names().size(), 0.0_rt);
         sampling_container().populate_buffer(buf);
 
         write_flag = true;
@@ -113,8 +115,8 @@ protected:
         }
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> problo{{0.0, 0.0, 0.0}};
-            amrex::Vector<amrex::Real> probhi{{128.0, 128.0, 128.0}};
+            amrex::Vector<amrex::Real> problo{{0.0_rt, 0.0_rt, 0.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{128.0_rt, 128.0_rt, 128.0_rt}};
 
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
@@ -130,14 +132,16 @@ void test_scontainer_impl(
     using IIx = amr_wind::sampling::IIx;
     using PType = amr_wind::sampling::SamplingContainer::ParticleType;
     // Create a line probe
-    amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> begin{{66.0, 66.0, 1.0}};
-    amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> end{{66.0, 66.0, 127.0}};
+    amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> begin{
+        {66.0_rt, 66.0_rt, 1.0_rt}};
+    amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> end{
+        {66.0_rt, 66.0_rt, 127.0_rt}};
 
     auto* pstruct = pvec.data();
     const int id_start = static_cast<int>(PType::NextID());
     const int proc_id = amrex::ParallelDescriptor::MyProc();
 
-    amrex::ParallelFor(npts, [=] AMREX_GPU_DEVICE(const int ip) noexcept {
+    amrex::ParallelFor(npts, [=] AMREX_GPU_DEVICE(const int ip) {
         auto& pp = pstruct[ip];
         pp.id() = id_start + ip;
         pp.cpu() = proc_id;
@@ -146,7 +150,7 @@ void test_scontainer_impl(
 
         const int dl = static_cast<int>(
             (end[2] - begin[2]) / static_cast<amrex::Real>(npts - 1));
-        const amrex::Real z = (ip + 0.5) * dl;
+        const amrex::Real z = (ip + 0.5_rt) * dl;
         pp.pos(2) = z;
 
         pp.idata(IIx::uid) = static_cast<int>(pp.id());
@@ -223,8 +227,10 @@ TEST_F(SamplingTest, sampling)
         amrex::ParmParse pp("sampling.line1");
         pp.add("type", std::string("LineSampler"));
         pp.add("num_points", 16);
-        pp.addarr("start", amrex::Vector<amrex::Real>{66.0, 66.0, 1.0});
-        pp.addarr("end", amrex::Vector<amrex::Real>{66.0, 66.0, 127.0});
+        pp.addarr(
+            "start", amrex::Vector<amrex::Real>{66.0_rt, 66.0_rt, 1.0_rt});
+        pp.addarr(
+            "end", amrex::Vector<amrex::Real>{66.0_rt, 66.0_rt, 127.0_rt});
     }
 
     SamplingImpl probes(sim(), "sampling");
@@ -263,22 +269,26 @@ TEST_F(SamplingTest, sampling_timing)
         amrex::ParmParse pp("sampling.line1");
         pp.add("type", std::string("LineSampler"));
         pp.add("num_points", 16);
-        pp.addarr("start", amrex::Vector<amrex::Real>{66.0, 66.0, 1.0});
-        pp.addarr("end", amrex::Vector<amrex::Real>{66.0, 66.0, 127.0});
+        pp.addarr(
+            "start", amrex::Vector<amrex::Real>{66.0_rt, 66.0_rt, 1.0_rt});
+        pp.addarr(
+            "end", amrex::Vector<amrex::Real>{66.0_rt, 66.0_rt, 127.0_rt});
     }
 
     SamplingImpl probes(sim(), "sampling");
     probes.initialize();
     if (probes.do_output_now(
-            sim().time().time_index(), sim().time().new_time(),
-            sim().time().delta_t(), 1.0)) {
+            sim().time().time_index(), sim().time().start_time_index(),
+            sim().time().new_time(), sim().time().start_time(),
+            sim().time().delta_t(), 1.0_rt)) {
         probes.output_actions();
     }
     EXPECT_FALSE(probes.write_flag);
     sim().time().new_timestep();
     if (probes.do_output_now(
-            sim().time().time_index(), sim().time().new_time(),
-            sim().time().delta_t(), 1.0)) {
+            sim().time().time_index(), sim().time().start_time_index(),
+            sim().time().new_time(), sim().time().start_time(),
+            sim().time().delta_t(), 1.0_rt)) {
         probes.output_actions();
     }
     EXPECT_TRUE(probes.write_flag);
@@ -288,7 +298,8 @@ TEST_F(SamplingTest, probe_sampler)
 {
     initialize_mesh();
 
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     std::string fname = "probes.txt";
     // Write file
     write_probe_sampler_file(fname);
@@ -296,8 +307,10 @@ TEST_F(SamplingTest, probe_sampler)
     {
         amrex::ParmParse pp("cloud");
         pp.add("probe_location_file", fname);
-        pp.addarr("offsets", amrex::Vector<double>{1.0, 2.5});
-        pp.addarr("offset_vector", amrex::Vector<double>{0.2, 0.5, 1.0});
+        pp.addarr("offsets", amrex::Vector<amrex::Real>{1.0_rt, 2.5_rt});
+        pp.addarr(
+            "offset_vector",
+            amrex::Vector<amrex::Real>{0.2_rt, 0.5_rt, 1.0_rt});
     }
 
     amr_wind::sampling::ProbeSampler cloud(sim());
@@ -306,11 +319,12 @@ TEST_F(SamplingTest, probe_sampler)
     cloud.sampling_locations(sample_locs);
 
     ASSERT_EQ(sample_locs.locations().size(), 3 * 2);
-    const amrex::Vector<amrex::Real> xprobe_golds{0.2, 60.2, 100.2,
-                                                  0.5, 60.5, 100.5};
-    const amrex::Vector<amrex::Real> yprobe_golds{0.5,  2.5,  8.5,
-                                                  1.25, 3.25, 9.25};
-    const amrex::Vector<amrex::Real> zprobe_golds{1.0, 4.0, 6.0, 2.5, 5.5, 7.5};
+    const amrex::Vector<amrex::Real> xprobe_golds{0.2_rt, 60.2_rt, 100.2_rt,
+                                                  0.5_rt, 60.5_rt, 100.5_rt};
+    const amrex::Vector<amrex::Real> yprobe_golds{0.5_rt,  2.5_rt,  8.5_rt,
+                                                  1.25_rt, 3.25_rt, 9.25_rt};
+    const amrex::Vector<amrex::Real> zprobe_golds{1.0_rt, 4.0_rt, 6.0_rt,
+                                                  2.5_rt, 5.5_rt, 7.5_rt};
     const auto& locs = sample_locs.locations();
     for (int n = 0; n < locs.size(); ++n) {
         EXPECT_NEAR(locs[n][0], xprobe_golds[n], tol);
@@ -337,12 +351,14 @@ TEST_F(SamplingTest, plane_sampler)
 
     {
         amrex::ParmParse pp("plane");
-        pp.addarr("axis1", amrex::Vector<double>{0.0, 1.0, 0.0});
-        pp.addarr("axis2", amrex::Vector<double>{0.0, 0.0, 1.0});
-        pp.addarr("origin", amrex::Vector<double>{1.0, 1.0, 1.0});
+        pp.addarr("axis1", amrex::Vector<amrex::Real>{0.0_rt, 1.0_rt, 0.0_rt});
+        pp.addarr("axis2", amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 1.0_rt});
+        pp.addarr("origin", amrex::Vector<amrex::Real>{1.0_rt, 1.0_rt, 1.0_rt});
         pp.addarr("num_points", amrex::Vector<int>{3, 3});
-        pp.addarr("offsets", amrex::Vector<double>{2.0, 10.0});
-        pp.addarr("offset_vector", amrex::Vector<double>{1.0, 0.0, 0.0});
+        pp.addarr("offsets", amrex::Vector<amrex::Real>{2.0_rt, 10.0_rt});
+        pp.addarr(
+            "offset_vector",
+            amrex::Vector<amrex::Real>{1.0_rt, 0.0_rt, 0.0_rt});
     }
 
     amr_wind::sampling::PlaneSampler plane(sim());
@@ -357,8 +373,8 @@ TEST_F(SamplingTest, volume_sampler)
 {
     initialize_mesh();
     amrex::ParmParse pp("volume");
-    pp.addarr("hi", amrex::Vector<double>{1.0, 1.0, 1.0});
-    pp.addarr("lo", amrex::Vector<double>{0.0, 0.0, 0.0});
+    pp.addarr("hi", amrex::Vector<amrex::Real>{1.0_rt, 1.0_rt, 1.0_rt});
+    pp.addarr("lo", amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 0.0_rt});
     pp.addarr("num_points", amrex::Vector<int>{3, 5, 5});
 
     amr_wind::sampling::VolumeSampler volume(sim());
@@ -377,16 +393,18 @@ TEST_F(SamplingTest, spinner_sampler)
     pp.add("mode", std::string("fixed"));
     pp.add("turbine", std::string("WTG01"));
     pp.add("hub_debug", false);
-    pp.add("inner_prism_theta0", 90.0);
-    pp.add("inner_prism_rotrate", 3.5);
-    pp.add("inner_prism_azimuth", 15.2);
-    pp.add("outer_prism_theta0", 90.0);
-    pp.add("outer_prism_rotrate", 6.5);
-    pp.add("outer_prism_azimuth", 15.2);
-    pp.addarr("lidar_center", amrex::Vector<amrex::Real>{630.0, 192.0, 120.0});
-    pp.add("scan_time", 2.0);
+    pp.add("inner_prism_theta0", 90.0_rt);
+    pp.add("inner_prism_rotrate", 3.5_rt);
+    pp.add("inner_prism_azimuth", 15.2_rt);
+    pp.add("outer_prism_theta0", 90.0_rt);
+    pp.add("outer_prism_rotrate", 6.5_rt);
+    pp.add("outer_prism_azimuth", 15.2_rt);
+    pp.addarr(
+        "lidar_center",
+        amrex::Vector<amrex::Real>{630.0_rt, 192.0_rt, 120.0_rt});
+    pp.add("scan_time", 2.0_rt);
     pp.add("num_samples", 984);
-    pp.add("beam_length", 270.0);
+    pp.add("beam_length", 270.0_rt);
     pp.add("beam_points", 432);
     pp.add("fixed_yaw", 0);
     pp.add("fixed_roll", 0);
@@ -406,22 +424,25 @@ TEST_F(SamplingTest, radar_sampler)
     amrex::ParmParse pp("radar");
 
     pp.add("num_points", 512);
-    pp.addarr("origin", amrex::Vector<amrex::Real>{1.0, 1.0, 1.0});
-    pp.add("sampling_frequency", 85.0);
-    pp.add("device_sampling_frequency", 30.0);
-    pp.add("radar_cone_angle", 0.25);
+    pp.addarr("origin", amrex::Vector<amrex::Real>{1.0_rt, 1.0_rt, 1.0_rt});
+    pp.add("sampling_frequency", 85.0_rt);
+    pp.add("device_sampling_frequency", 30.0_rt);
+    pp.add("radar_cone_angle", 0.25_rt);
     pp.add("radar_quadrature_type", std::string("truncated_normal_halfpower"));
     pp.add("radar_npts_azimuth", 5);
-    pp.add("radar_beam_length", 100.0);
-    pp.add("angular_speed", 30.0);
-    pp.add("sweep_angle", 145.0);
-    pp.add("reset_time", 0.0);
+    pp.add("radar_beam_length", 100.0_rt);
+    pp.add("angular_speed", 30.0_rt);
+    pp.add("sweep_angle", 145.0_rt);
+    pp.add("reset_time", 0.0_rt);
     pp.addarr(
         "elevation_angles",
-        amrex::Vector<amrex::Real>{0.0, 0.1, 0.2, 0.3, 0.4});
+        amrex::Vector<amrex::Real>{0.0_rt, 0.1_rt, 0.2_rt, 0.3_rt, 0.4_rt});
     pp.addarr(
-        "axis", amrex::Vector<amrex::Real>{0.707106781, 0.707106781, 0.0});
-    pp.addarr("vertical_unit_dir", amrex::Vector<amrex::Real>{0.0, 0.0, 1.0});
+        "axis",
+        amrex::Vector<amrex::Real>{0.707106781_rt, 0.707106781_rt, 0.0_rt});
+    pp.addarr(
+        "vertical_unit_dir",
+        amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 1.0_rt});
     pp.add("debug_print", false);
 
     amr_wind::sampling::RadarSampler radar(sim());
@@ -435,15 +456,15 @@ TEST_F(SamplingTest, radar_sampler)
 TEST_F(SamplingTest, sampling_utils)
 {
     namespace vs = amr_wind::vs;
-    double toler = 1.0e-10;
-    vs::Vector unitx{1.0, 0.0, 0.0};
-    vs::Vector unity{0.0, 1.0, 0.0};
-    vs::Vector unitz{0.0, 0.0, 1.0};
-    vs::Vector nunitx{-1.0, 0.0, 0.0};
-    vs::Vector ffn{-0.70710678, -0.70710678, 0.0};
-    vs::Vector ffnr{-0.70710678, 0.70710678, 0.0};
+    amrex::Real toler = std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt;
+    vs::Vector unitx{1.0_rt, 0.0_rt, 0.0_rt};
+    vs::Vector unity{0.0_rt, 1.0_rt, 0.0_rt};
+    vs::Vector unitz{0.0_rt, 0.0_rt, 1.0_rt};
+    vs::Vector nunitx{-1.0_rt, 0.0_rt, 0.0_rt};
+    vs::Vector ffn{-0.70710678_rt, -0.70710678_rt, 0.0_rt};
+    vs::Vector ffnr{-0.70710678_rt, 0.70710678_rt, 0.0_rt};
     vs::Vector result;
-    vs::Vector angles{0.0, 180.0, 0.0};
+    vs::Vector angles{0.0_rt, 180.0_rt, 0.0_rt};
 
     result = amr_wind::sampling::sampling_utils::reflect(unity, ffn);
     EXPECT_NEAR(result[0], ffnr[0], toler);
@@ -456,7 +477,7 @@ TEST_F(SamplingTest, sampling_utils)
     EXPECT_NEAR(result[2], nunitx[2], toler);
 
     result = amr_wind::sampling::sampling_utils::rotate_euler_vec(
-        unity, -90.0, unitx);
+        unity, -90.0_rt, unitx);
     EXPECT_NEAR(result[0], unitz[0], toler);
     EXPECT_NEAR(result[1], unitz[1], toler);
     EXPECT_NEAR(result[2], unitz[2], toler);
@@ -464,24 +485,25 @@ TEST_F(SamplingTest, sampling_utils)
 
 TEST_F(SamplingTest, quadrature)
 {
-    double toler = 1e-12;
+    amrex::Real toler = std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     namespace vs = amr_wind::vs;
     namespace su = amr_wind::sampling::sampling_utils;
     int ntheta = 5;
-    double gammav = 0.25 * M_PI / 180.0;
-    std::vector<double> weights = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-                                   0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-                                   0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-    vs::Vector sr{0.0, 0.0, 1.0};
+    amrex::Real gammav = 0.25_rt * std::numbers::pi_v<amrex::Real> / 180.0_rt;
+    std::vector<amrex::Real> weights = {
+        0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt,
+        0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt,
+        0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt};
+    vs::Vector sr{0.0_rt, 0.0_rt, 1.0_rt};
     std::vector<vs::Vector> rays = {sr, sr, sr, sr, sr, sr, sr, sr, sr, sr, sr,
                                     sr, sr, sr, sr, sr, sr, sr, sr, sr, sr};
 
     su::spherical_cap_truncated_normal(
         gammav, ntheta, su::NormalRule::HALFPOWER, rays, weights);
 
-    EXPECT_NEAR(weights[0], 1.1826123083219489e-05, toler);
-    EXPECT_NEAR(weights[10], 3.004263660003298e-06, toler);
-    EXPECT_NEAR(weights[20], 6.6402168628164281e-07, toler);
+    EXPECT_NEAR(weights[0], 1.1826123083219489e-05_rt, toler);
+    EXPECT_NEAR(weights[10], 3.004263660003298e-06_rt, toler);
+    EXPECT_NEAR(weights[20], 6.6402168628164281e-07_rt, toler);
 }
 
 } // namespace amr_wind_tests

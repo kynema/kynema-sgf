@@ -13,6 +13,9 @@
 #include "amr-wind/wind_energy/ABLStatsBase.H"
 #include "amr-wind/wind_energy/ABLModulatedPowerLaw.H"
 #include "amr-wind/wind_energy/ABLAnelastic.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 /**
  *  \defgroup wind Wind energy modeling
@@ -167,7 +170,7 @@ private:
     mutable pde::temperature::HurricaneTempForcing* m_hurricane_temp_forcing{
         nullptr};
     //! Default value set based on https://turbmodels.larc.nasa.gov/sst.html
-    amrex::Real m_init_sdr{25.0};
+    amrex::Real m_init_sdr{25.0_rt};
 
     //! Hybrid RANS-LES with Nalu-wind
     bool m_hybrid_rl{false};

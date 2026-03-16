@@ -1,4 +1,7 @@
 #include "amr-wind/overset/overset_ops_routines.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::overset_ops {
 
@@ -23,7 +26,7 @@ void iblank_to_mask(const IntField& iblank, IntField& maskf)
         const auto& marrs = mask.arrays();
         amrex::ParallelFor(
             ibl, ibl.n_grow,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 marrs[nbx](i, j, k) = amrex::max(ibarrs[nbx](i, j, k), 0);
             });
     }
@@ -39,7 +42,7 @@ void iblank_node_to_mask_vof(
     const IntField& iblank, const Field& voff, IntField& maskf)
 {
     const auto& nlevels = iblank.repo().mesh().finestLevel() + 1;
-    constexpr amrex::Real band_tol = 1e-4;
+    constexpr amrex::Real band_tol = 1.0e-4_rt;
 
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& ibl = iblank(lev);
@@ -51,7 +54,7 @@ void iblank_node_to_mask_vof(
         const auto& marrs = mask.arrays();
         amrex::ParallelFor(
             ibl, amrex::IntVect(0),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 // Default is masking all 0 and -1 iblanks
                 marrs[nbx](i, j, k) = amrex::max(ibarrs[nbx](i, j, k), 0);
                 // Check cells neighboring node for being near interface
@@ -105,7 +108,7 @@ void prepare_mask_cell_for_mac(FieldRepo& repo)
         const IntField& iblank = repo.get_int_field("iblank_cell");
         const Field& f_vof = repo.get_field("vof");
         const auto& nlevels = repo.mesh().finestLevel() + 1;
-        constexpr amrex::Real band_tol = 1e-4;
+        constexpr amrex::Real band_tol = 1.0e-4_rt;
 
         for (int lev = 0; lev < nlevels; ++lev) {
             const auto& ibl = iblank(lev);
@@ -117,7 +120,7 @@ void prepare_mask_cell_for_mac(FieldRepo& repo)
             const auto& marrs = mask.arrays();
             amrex::ParallelFor(
                 ibl, amrex::IntVect(0),
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     // Default is masking all 0 and -1 iblanks
                     marrs[nbx](i, j, k) = amrex::max(ibarrs[nbx](i, j, k), 0);
                     // Check cells neighboring node for being near interface
@@ -181,7 +184,7 @@ void replace_gradp(
     const auto iblank = mf_iblank.const_arrays();
     amrex::ParallelFor(
         mf_gp, mf_gp.n_grow,
-        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             if (iblank[nbx](i, j, k) <= 0) {
                 gp[nbx](i, j, k, 0) = gp0[nbx](i, j, k, 0);
                 gp[nbx](i, j, k, 1) = gp0[nbx](i, j, k, 1);
@@ -201,7 +204,7 @@ void apply_pressure_gradient(
     const auto& rho = mf_density.const_arrays();
     const auto& gp = mf_gp.const_arrays();
     amrex::ParallelFor(
-        mf_vel, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        mf_vel, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             const amrex::Real soverrho = scaling_factor / rho[nbx](i, j, k);
             vel[nbx](i, j, k, 0) -= gp[nbx](i, j, k, 0) * soverrho;
             vel[nbx](i, j, k, 1) -= gp[nbx](i, j, k, 1) * soverrho;

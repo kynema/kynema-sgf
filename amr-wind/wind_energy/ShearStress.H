@@ -1,7 +1,10 @@
-#ifndef ShearStress_H
-#define ShearStress_H
+#ifndef SHEARSTRESS_H
+#define SHEARSTRESS_H
 
 #include "amr-wind/wind_energy/MOData.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 /**
  *  \defgroup shear_stress Shear Stress Wall Models
@@ -66,13 +69,13 @@ struct ShearStressLocal
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
     calc_vel_x(amrex::Real u, amrex::Real wspd) const
     {
-        return u / amrex::max(wspd, small_vel) * utau2;
+        return u / amrex::max<amrex::Real>(wspd, small_vel) * utau2;
     };
 
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
     calc_vel_y(amrex::Real v, amrex::Real wspd) const
     {
-        return v / amrex::max(wspd, small_vel) * utau2;
+        return v / amrex::max<amrex::Real>(wspd, small_vel) * utau2;
     };
 
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
@@ -84,7 +87,7 @@ struct ShearStressLocal
     amrex::Real utau2;
     amrex::Real theta_surface;
     amrex::Real term1;
-    amrex::Real small_vel{1.0e-6};
+    amrex::Real small_vel{1.0e-6_rt};
 };
 
 struct ShearStressSchumann
@@ -160,7 +163,7 @@ struct ShearStressMoeng
     amrex::Real wspd_mean;
     amrex::Real theta_surface;
     amrex::Real theta_mean;
-    amrex::Real term1;
+    amrex::Real term1; // NOLINT(modernize-use-default-member-init)
 };
 
 struct ShearStressDonelan
@@ -176,14 +179,14 @@ struct ShearStressDonelan
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
     calc_vel_x(amrex::Real u, amrex::Real wspd) const
     {
-        amrex::Real Cd = 0.001;
-        const amrex::Real c = 7e-5;
-        if (wspd_mean <= 5.0) {
-            Cd = 0.001;
-        } else if (wspd_mean < 25.0 && wspd_mean > 5.0) {
-            Cd = 0.001 + c * (wspd_mean - 5.0);
+        amrex::Real Cd = 0.001_rt;
+        const amrex::Real c = 7.0e-5_rt;
+        if (wspd_mean <= 5.0_rt) {
+            Cd = 0.001_rt;
+        } else if (wspd_mean < 25.0_rt && wspd_mean > 5.0_rt) {
+            Cd = 0.001_rt + (c * (wspd_mean - 5.0_rt));
         } else {
-            Cd = 0.0024;
+            Cd = 0.0024_rt;
         }
 
         return Cd * u * wspd;
@@ -192,14 +195,14 @@ struct ShearStressDonelan
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
     calc_vel_y(amrex::Real v, amrex::Real wspd) const
     {
-        amrex::Real Cd = 0.001;
-        const amrex::Real c = 7e-5;
+        amrex::Real Cd = 0.001_rt;
+        const amrex::Real c = 7.0e-5_rt;
         if (wspd_mean <= 5) {
-            Cd = 0.001;
-        } else if (wspd_mean < 25.0 && wspd_mean > 5.0) {
-            Cd = 0.001 + c * (wspd_mean - 5);
+            Cd = 0.001_rt;
+        } else if (wspd_mean < 25.0_rt && wspd_mean > 5.0_rt) {
+            Cd = 0.001_rt + (c * (wspd_mean - 5.0_rt));
         } else {
-            Cd = 0.0024;
+            Cd = 0.0024_rt;
         }
 
         return Cd * v * wspd;
@@ -208,13 +211,13 @@ struct ShearStressDonelan
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
     calc_theta(amrex::Real /* wspd */, amrex::Real /* theta */) const
     {
-        amrex::Real flux = 0.0;
+        amrex::Real flux = 0.0_rt;
         switch (alg_type) {
         case amr_wind::MOData::ThetaCalcType::HEAT_FLUX:
             flux = temp_flux_surface;
             break;
         case amr_wind::MOData::ThetaCalcType::SURFACE_TEMPERATURE:
-            flux = 0.0012 * wspd_mean * (theta_surface - theta_mean);
+            flux = 0.0012_rt * wspd_mean * (theta_surface - theta_mean);
             break;
         }
         return flux;

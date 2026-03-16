@@ -4,6 +4,9 @@
 #include "amr-wind/core/FieldRepo.H"
 #include "amr-wind/equation_systems/icns/MomentumSource.H"
 #include "amr-wind/utilities/FieldPlaneAveraging.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::icns {
 
@@ -28,10 +31,10 @@ public:
     ~HurricaneForcing() override;
 
     void operator()(
-        const int lev,
+        int lev,
         const amrex::MFIter& mfi,
         const amrex::Box& bx,
-        const FieldState fstate,
+        FieldState fstate,
         const amrex::Array4<amrex::Real>& src_term) const override;
 
     void mean_velocity_init(const VelPlaneAveraging& /*vavg*/);
@@ -49,19 +52,19 @@ private:
     int m_axis{2};
 
     //! Gradient velocity
-    amrex::Real m_V{40.0}; // V=40 m/s is the default value
+    amrex::Real m_V{40.0_rt}; // V=40 m/s is the default value
 
     //! Gradient wind radial decay
-    amrex::Real m_dVdR{-0.0008};
+    amrex::Real m_dVdR{-0.0008_rt};
 
     //! Reference gradient wind zero height in metres
     amrex::Real m_Vzh{18000.};
 
     //! Eye-wall radial distance
-    amrex::Real m_R{40000.0}; // 40km is taken as the default value
+    amrex::Real m_R{40000.0_rt}; // 40km is taken as the default value
 
     //! Coriolis factor
-    amrex::Real m_coriolis_factor{0.0005};
+    amrex::Real m_coriolis_factor{0.0005_rt};
 };
 
 } // namespace amr_wind::pde::icns

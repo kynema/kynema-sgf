@@ -9,6 +9,9 @@
 #include "amr-wind/equation_systems/DiffusionOps.H"
 #include "amr-wind/equation_systems/icns/icns.H"
 #include "AMReX_MultiFabUtil.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde {
 
@@ -44,9 +47,9 @@ struct FieldRegOp<ICNS, Scheme>
             FieldFillPatchOps<FieldBCDirichlet>>(repo.mesh(), time);
         grad_p.template register_fill_patch_op<FieldFillPatchOps<FieldBCNoOp>>(
             repo.mesh(), time);
-        // pressure.template register_fill_patch_op<FieldFillConstScalar>(0.0);
-        // fixme this is only necessary since tioga does not fill in ghosts
-        // convert back later
+        // pressure.template
+        // register_fill_patch_op<FieldFillConstScalar>(0.0_rt); fixme this is
+        // only necessary since tioga does not fill in ghosts convert back later
         pressure
             .template register_fill_patch_op<FieldFillPatchOps<FieldBCNoOp>>(
                 repo.mesh(), time);
@@ -105,20 +108,20 @@ struct SrcTermOp<ICNS> : SrcTermOpBase<ICNS>
 
                 amrex::ParallelFor(
                     bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                        amrex::Real rhoinv = 1.0 / rho(i, j, k);
+                        amrex::Real rhoinv = 1.0_rt / rho(i, j, k);
                         amrex::Real fac_x =
-                            mesh_mapping ? (fac(i, j, k, 0)) : 1.0;
+                            mesh_mapping ? (fac(i, j, k, 0)) : 1.0_rt;
                         amrex::Real fac_y =
-                            mesh_mapping ? (fac(i, j, k, 1)) : 1.0;
+                            mesh_mapping ? (fac(i, j, k, 1)) : 1.0_rt;
                         amrex::Real fac_z =
-                            mesh_mapping ? (fac(i, j, k, 2)) : 1.0;
+                            mesh_mapping ? (fac(i, j, k, 2)) : 1.0_rt;
 
                         vf(i, j, k, 0) =
-                            -(1.0 / fac_x * gp(i, j, k, 0)) * rhoinv;
+                            -(1.0_rt / fac_x * gp(i, j, k, 0)) * rhoinv;
                         vf(i, j, k, 1) =
-                            -(1.0 / fac_y * gp(i, j, k, 1)) * rhoinv;
+                            -(1.0_rt / fac_y * gp(i, j, k, 1)) * rhoinv;
                         vf(i, j, k, 2) =
-                            -(1.0 / fac_z * gp(i, j, k, 2)) * rhoinv;
+                            -(1.0_rt / fac_z * gp(i, j, k, 2)) * rhoinv;
                     });
 
                 for (const auto& src : this->sources) {

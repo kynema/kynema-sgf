@@ -1,10 +1,14 @@
 #ifndef MULTIPHASE_H
 #define MULTIPHASE_H
 
+#include <cstdint>
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
 #include "amr-wind/core/IntField.H"
 #include "amr-wind/core/ScratchField.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 /** Multiphase physics
  *
@@ -18,7 +22,7 @@
  */
 namespace amr_wind {
 
-enum class InterfaceCapturingMethod {
+enum class InterfaceCapturingMethod : std::uint8_t {
     VOF, ///< Volume of fluid
     LS   ///< Levelset
 };
@@ -61,19 +65,25 @@ public:
 
     amrex::Real momentum_sum(int n);
 
-    InterfaceCapturingMethod interface_capturing_method() const;
+    [[nodiscard]] InterfaceCapturingMethod interface_capturing_method() const;
 
-    amrex::Real rho1() const { return m_rho1; }
+    [[nodiscard]] amrex::Real rho1() const { return m_rho1; }
 
-    amrex::Real rho2() const { return m_rho2; }
+    [[nodiscard]] amrex::Real rho2() const { return m_rho2; }
 
-    amrex::Vector<amrex::Real> gravity() const { return m_gravity; }
+    [[nodiscard]] amrex::Vector<amrex::Real> gravity() const
+    {
+        return m_gravity;
+    }
 
-    amrex::Real water_level() const { return m_water_level0; }
+    [[nodiscard]] amrex::Real water_level() const { return m_water_level0; }
 
-    bool perturb_pressure() const { return m_use_perturb_pressure; }
+    [[nodiscard]] bool perturb_pressure() const
+    {
+        return m_use_perturb_pressure;
+    }
 
-    bool reconstruct_true_pressure() const
+    [[nodiscard]] bool reconstruct_true_pressure() const
     {
         return m_reconstruct_true_pressure;
     }
@@ -91,10 +101,10 @@ private:
     Field* m_vof{nullptr};
 
     // Density value for Fluid 1
-    amrex::Real m_rho1{10.0};
+    amrex::Real m_rho1{10.0_rt};
 
     // Density value for Fluid 2
-    amrex::Real m_rho2{1.0};
+    amrex::Real m_rho2{1.0_rt};
 
     // Bools according to ICNS settings
     // Turning on perturbational density and pressure
@@ -105,9 +115,9 @@ private:
     bool m_init_p{false};
 
     // Info to create rho0
-    amrex::Real m_water_level0{0.0};
+    amrex::Real m_water_level0{0.0_rt};
     // Info to reconstruct true pressure
-    amrex::Vector<amrex::Real> m_gravity{0.0, 0.0, -9.81};
+    amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 
     // Multiphase model enum
     std::string m_interface_model{"vof"};
@@ -118,12 +128,12 @@ private:
     int m_verbose{0};
 
     // sum of volume fractions (for vof only)
-    amrex::Real m_total_volfrac{0.0};
+    amrex::Real m_total_volfrac{0.0_rt};
 
-    amrex::Real m_q0{0.0};
-    amrex::Real m_q1{0.0};
-    amrex::Real m_q2{0.0};
-    amrex::Real m_sumvof0{0.0};
+    amrex::Real m_q0{0.0_rt};
+    amrex::Real m_q1{0.0_rt};
+    amrex::Real m_q2{0.0_rt};
+    amrex::Real m_sumvof0{0.0_rt};
 };
 
 } // namespace amr_wind

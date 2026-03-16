@@ -22,7 +22,7 @@ void MMSForcing::operator()(
     const auto& mms_src = m_mms_vel_source(lev);
     const auto& mms_src_arr = mms_src.const_array(mfi);
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         src_term(i, j, k, 0) += mms_src_arr(i, j, k, 0);
         src_term(i, j, k, 1) += mms_src_arr(i, j, k, 1);
         src_term(i, j, k, 2) += mms_src_arr(i, j, k, 2);

@@ -4,13 +4,16 @@
 #include "amr-wind/wind_energy/actuator/turbine/turbine_types.H"
 #include "amr-wind/wind_energy/actuator/turbine/external/ExtTurbIface.H"
 #include "amr-wind/core/ExtSolver.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator {
 
 template <typename SolverTurbine, typename SolverData>
 struct TurbineExternalData : public TurbineBaseData
 {
-    amrex::Real density{1.0};
+    amrex::Real density{1.0_rt};
 
     SolverTurbine ext_data;
     ::ext_turb::ExtTurbIface<SolverTurbine, SolverData>* ext_ptr{nullptr};

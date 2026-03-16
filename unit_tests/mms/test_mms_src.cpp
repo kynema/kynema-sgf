@@ -6,6 +6,9 @@
 #include "amr-wind/physics/mms/MMSForcing.H"
 #include "amr-wind/equation_systems/icns/icns.H"
 #include "amr-wind/equation_systems/icns/icns_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -17,7 +20,8 @@ TEST_F(MMSMeshTest, mms_forcing)
 #if defined(AMREX_USE_HIP)
     GTEST_SKIP();
 #else
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     // Initialize parameters
     utils::populate_mms_params();
@@ -35,10 +39,10 @@ TEST_F(MMSMeshTest, mms_forcing)
     amr_wind::pde::icns::mms::MMSForcing mmsforcing(sim());
 
     const amrex::Array<amrex::Real, AMREX_SPACEDIM> min_golds = {
-        -2.1397143441391857, -2.5061563892200622, -2.6756003260809429};
+        -2.1397143441391857_rt, -2.5061563892200622_rt, -2.6756003260809429_rt};
     const amrex::Array<amrex::Real, AMREX_SPACEDIM> max_golds = {
-        2.0381534755116628, 2.2014865191023762, 2.4125363807493985};
-    src_term.setVal(0.0);
+        2.0381534755116628_rt, 2.2014865191023762_rt, 2.4125363807493985_rt};
+    src_term.setVal(0.0_rt);
 
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();

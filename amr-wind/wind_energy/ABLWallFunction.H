@@ -7,6 +7,9 @@
 #include "amr-wind/core/FieldBCOps.H"
 #include "amr-wind/wind_energy/MOData.H"
 #include "amr-wind/utilities/constants.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -25,11 +28,11 @@ public:
     ~ABLWallFunction() = default;
 
     MOData& mo() { return m_mo; }
-    const MOData& mo() const { return m_mo; }
+    [[nodiscard]] const MOData& mo() const { return m_mo; }
 
     //! Return the plane-averaged computed friction velocity at any given
     //! instance
-    amrex::Real utau() const { return m_mo.utau; }
+    [[nodiscard]] amrex::Real utau() const { return m_mo.utau; }
 
     //! Initialize the log-law height based on user inputs
     void init_log_law_height();
@@ -38,7 +41,7 @@ public:
     void update_umean(
         const VelPlaneAveragingFine& vpa, const FieldPlaneAveragingFine& tpa);
 
-    void update_tflux(const amrex::Real tflux);
+    void update_tflux(amrex::Real tflux);
 
 private:
     const CFDSim& m_sim;
@@ -51,7 +54,7 @@ private:
     int m_direction{2};   ///< Direction normal to wall
     bool m_use_fch{true}; ///< Use first cell height?
 
-    amrex::Vector<amrex::Real> m_gravity{0.0, 0.0, -9.81};
+    amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 
     //! Ability to read in a table of surface temperature versus time.
     std::string m_surf_temp_timetable;
@@ -60,14 +63,14 @@ private:
 
     bool m_tempflux{true};
     bool m_temp_table{false};
-    amrex::Real m_surf_temp_rate{0.0};
-    amrex::Real m_surf_temp_rate_tstart{0.0};
-    amrex::Real m_surf_temp_init{300.0};
+    amrex::Real m_surf_temp_rate{0.0_rt};
+    amrex::Real m_surf_temp_rate_tstart{0.0_rt};
+    amrex::Real m_surf_temp_init{300.0_rt};
 
     bool m_inflow_outflow{false};
-    amrex::Real m_wf_vmag{0.0};
-    amrex::Array<amrex::Real, 2> m_wf_vel{0.0, 0.0};
-    amrex::Real m_wf_theta{300.0};
+    amrex::Real m_wf_vmag{0.0_rt};
+    amrex::Array<amrex::Real, 2> m_wf_vel{0.0_rt, 0.0_rt};
+    amrex::Real m_wf_theta{300.0_rt};
 };
 
 /** Applies a shear-stress value at the domain boundary
@@ -80,11 +83,11 @@ class ABLVelWallFunc : public FieldBCIface
 public:
     ABLVelWallFunc(Field& velocity, const ABLWallFunction& wall_func);
 
-    void operator()(Field& velocity, const FieldState rho_state) override;
+    void operator()(Field& velocity, FieldState rho_state) override;
 
     template <typename ShearStress>
-    void wall_model(
-        Field& velocity, const FieldState rho_state, const ShearStress& tau);
+    void
+    wall_model(Field& velocity, FieldState rho_state, const ShearStress& tau);
 
 private:
     const ABLWallFunction& m_wall_func;
@@ -98,11 +101,11 @@ class ABLTempWallFunc : public FieldBCIface
 public:
     ABLTempWallFunc(Field& temperature, const ABLWallFunction& wall_fuc);
 
-    void operator()(Field& temperature, const FieldState rho_state) override;
+    void operator()(Field& temperature, FieldState rho_state) override;
 
     template <typename HeatFlux>
-    void wall_model(
-        Field& temperature, const FieldState rho_state, const HeatFlux& tau);
+    void
+    wall_model(Field& temperature, FieldState rho_state, const HeatFlux& tau);
 
 private:
     const ABLWallFunction& m_wall_func;

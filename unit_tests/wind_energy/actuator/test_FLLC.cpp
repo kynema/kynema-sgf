@@ -1,6 +1,9 @@
 #include "aw_test_utils/AmrexTest.H"
 #include "amr-wind/wind_energy/actuator/FLLC.H"
 #include "amr-wind/wind_energy/actuator/FLLCOp.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator {
 
@@ -24,7 +27,7 @@ TEST(TestFLLCData, data_initializes_with_cviews)
 
     data.nonuniform = false;
 
-    fllc_init(data, view, 1.0);
+    fllc_init(data, view, 1.0_rt);
 
     ASSERT_EQ(num_points, data.les_velocity.size());
     ASSERT_EQ(num_points, data.optimal_velocity.size());
@@ -51,14 +54,14 @@ TEST(TestFLLCData, data_initializes_with_cviews_nonuniform)
     view.vel_rel = ::amr_wind::utils::slice(dummy_vec, 0, num_points);
 
     data.nonuniform = true;
-    data.eps_dr = 1.1;
+    data.eps_dr = 1.1_rt;
 
     for (int ip = 0; ip < num_points; ++ip) {
         view.pos[ip] = {0, static_cast<amrex::Real>(ip), 0};
         view.chord[ip] = 1.;
     }
 
-    fllc_init(data, view, 1.0);
+    fllc_init(data, view, 1.0_rt);
 
     const int npts_r = static_cast<int>(data.nonuniform_r.size());
     const int npts_dr = static_cast<int>(data.nonuniform_dr.size());

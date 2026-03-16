@@ -5,6 +5,9 @@
 #include "amr-wind/transport_models/TransportModel.H"
 #include "amr-wind/equation_systems/icns/MomentumSource.H"
 #include "amr-wind/utilities/FieldPlaneAveraging.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::icns {
 
@@ -25,10 +28,10 @@ public:
     ~ABLMeanBoussinesq() override;
 
     void operator()(
-        const int lev,
+        int lev,
         const amrex::MFIter& mfi,
         const amrex::Box& bx,
-        const FieldState fstate,
+        FieldState fstate,
         const amrex::Array4<amrex::Real>& src_term) const override;
 
     void mean_temperature_init(const FieldPlaneAveraging& /*tavg*/);
@@ -38,7 +41,7 @@ public:
 private:
     const amrex::AmrCore& m_mesh;
 
-    amrex::Vector<amrex::Real> m_gravity{0.0, 0.0, -9.81};
+    amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 
     amrex::Gpu::DeviceVector<amrex::Real> m_theta_ht;
     amrex::Gpu::DeviceVector<amrex::Real> m_theta_vals;

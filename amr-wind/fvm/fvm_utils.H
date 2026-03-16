@@ -11,7 +11,7 @@ namespace amr_wind::fvm::impl {
 /** Apply a finite volume operator for a given field
  */
 template <typename FvmOp, typename FType>
-inline void apply(const FvmOp& fvmop, const FType& fld)
+AMREX_INLINE void apply(const FvmOp& fvmop, const FType& fld)
 {
     namespace stencil = amr_wind::fvm::stencil;
     const int nlevels = fld.repo().num_active_levels();

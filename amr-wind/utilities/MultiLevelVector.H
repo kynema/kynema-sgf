@@ -24,9 +24,10 @@ class MultiLevelVector
 public:
     MultiLevelVector(const FieldLoc floc = FieldLoc::CELL) : m_floc(floc) {};
 
-    void resize(const int axis, const amrex::Vector<amrex::Geometry>& geom);
+    void resize(int axis, const amrex::Vector<amrex::Geometry>& geom);
 
-    const amrex::Vector<amrex::Real>& host_data(const int lev) const
+    [[nodiscard]] const amrex::Vector<amrex::Real>&
+    host_data(const int lev) const
     {
         return m_data_h[lev];
     };
@@ -36,7 +37,7 @@ public:
         return m_data_h[lev];
     };
 
-    const amrex::Gpu::DeviceVector<amrex::Real>&
+    [[nodiscard]] const amrex::Gpu::DeviceVector<amrex::Real>&
     device_data(const int lev) const
     {
         return m_data_d[lev];
@@ -46,9 +47,9 @@ public:
 
     void copy_to_field(Field& fld);
 
-    int size() const { return static_cast<int>(m_data_h.size()); }
+    [[nodiscard]] int size() const { return static_cast<int>(m_data_h.size()); }
 
-    int ncells(const int lev) const
+    [[nodiscard]] int ncells(const int lev) const
     {
         return static_cast<int>(m_data_h[lev].size());
     }

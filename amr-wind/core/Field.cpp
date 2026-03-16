@@ -6,6 +6,9 @@
 #include "amr-wind/core/FieldBCOps.H"
 #include "amr-wind/core/SimTime.H"
 #include "amr-wind/boundary_conditions/BCInterface.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -22,7 +25,7 @@ FieldInfo::FieldInfo(
     , m_floc(floc)
     , m_bc_values(
           static_cast<long>(AMREX_SPACEDIM) * 2,
-          amrex::Vector<amrex::Real>(ncomp, 0.0))
+          amrex::Vector<amrex::Real>(ncomp, 0.0_rt))
     , m_bc_values_dview(static_cast<long>(ncomp) * AMREX_SPACEDIM * 2)
     , m_bcrec(ncomp)
     , m_bcrec_d(ncomp)
@@ -59,7 +62,7 @@ bool FieldInfo::bc_initialized()
     return ((!has_undefined) && (!has_bogus));
 }
 
-void FieldInfo::copy_bc_to_device() noexcept
+void FieldInfo::copy_bc_to_device()
 {
     if (!bc_initialized()) {
         amrex::Abort("Invalid BC type encountered");
@@ -127,19 +130,19 @@ const Field& Field::state(const FieldState fstate) const
     return *fstates[fint];
 }
 
-amrex::MultiFab& Field::operator()(int lev) noexcept
+amrex::MultiFab& Field::operator()(int lev)
 {
     BL_ASSERT(lev < m_repo.num_active_levels());
     return m_repo.get_multifab(m_id, lev);
 }
 
-const amrex::MultiFab& Field::operator()(int lev) const noexcept
+const amrex::MultiFab& Field::operator()(int lev) const
 {
     BL_ASSERT(lev < m_repo.num_active_levels());
     return m_repo.get_multifab(m_id, lev);
 }
 
-amrex::Vector<amrex::MultiFab*> Field::vec_ptrs() noexcept
+amrex::Vector<amrex::MultiFab*> Field::vec_ptrs()
 {
     const int nlevels = m_repo.num_active_levels();
     amrex::Vector<amrex::MultiFab*> ret;
@@ -150,7 +153,7 @@ amrex::Vector<amrex::MultiFab*> Field::vec_ptrs() noexcept
     return ret;
 }
 
-amrex::Vector<const amrex::MultiFab*> Field::vec_const_ptrs() const noexcept
+amrex::Vector<const amrex::MultiFab*> Field::vec_const_ptrs() const
 {
     const int nlevels = m_repo.num_active_levels();
     amrex::Vector<const amrex::MultiFab*> ret;
@@ -167,7 +170,7 @@ void Field::fillpatch(
     const int lev,
     const amrex::Real time,
     amrex::MultiFab& mfab,
-    const amrex::IntVect& nghost) noexcept
+    const amrex::IntVect& nghost)
 {
     BL_PROFILE("amr-wind::Field::fillpatch 2");
     BL_ASSERT(m_info->m_fillpatch_op);
@@ -181,7 +184,7 @@ void Field::fillpatch_from_coarse(
     const int lev,
     const amrex::Real time,
     amrex::MultiFab& mfab,
-    const amrex::IntVect& nghost) noexcept
+    const amrex::IntVect& nghost)
 {
     BL_PROFILE("amr-wind::Field::fillpatch_from_coarse");
     BL_ASSERT(m_info->m_fillpatch_op);
@@ -191,7 +194,7 @@ void Field::fillpatch_from_coarse(
     fop.fillpatch_from_coarse(lev, time, mfab, nghost, field_state());
 }
 
-void Field::fillpatch(const amrex::Real time, const amrex::IntVect ng) noexcept
+void Field::fillpatch(const amrex::Real time, const amrex::IntVect ng)
 {
     BL_PROFILE("amr-wind::Field::fillpatch");
     BL_ASSERT(m_info->m_fillpatch_op);
@@ -204,15 +207,12 @@ void Field::fillpatch(const amrex::Real time, const amrex::IntVect ng) noexcept
     }
 }
 
-void Field::fillpatch(const amrex::Real time) noexcept
-{
-    fillpatch(time, num_grow());
-}
+void Field::fillpatch(const amrex::Real time) { fillpatch(time, num_grow()); }
 
 void Field::fillpatch_sibling_fields(
     const amrex::Real time,
     const amrex::IntVect ng,
-    amrex::Array<Field*, AMREX_SPACEDIM>& fields) const noexcept
+    amrex::Array<Field*, AMREX_SPACEDIM>& fields) const
 {
     BL_PROFILE("amr-wind::Field::fillpatch array");
     BL_ASSERT(m_info->m_fillpatch_op);
@@ -225,7 +225,7 @@ void Field::fillpatch_sibling_fields(
             &((*fields[0])(lev)), &((*fields[1])(lev)), &((*fields[2])(lev)))};
         amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM> cfabs;
         if (lev > 0) {
-            for (int i = 0; i < static_cast<int>(fields.size()); i++) {
+            for (int i = 0; std::cmp_less(i, fields.size()); i++) {
                 cfabs[i] = &((*fields[i])(lev - 1));
             }
         }
@@ -240,7 +240,7 @@ void Field::fillphysbc(
     const int lev,
     const amrex::Real time,
     amrex::MultiFab& mfab,
-    const amrex::IntVect& ng) noexcept
+    const amrex::IntVect& ng)
 {
     BL_PROFILE("amr-wind::Field::fillphysbc");
     BL_ASSERT(m_info->m_fillpatch_op);
@@ -249,7 +249,7 @@ void Field::fillphysbc(
     fop.fillphysbc(lev, time, mfab, ng, field_state());
 }
 
-void Field::fillphysbc(const amrex::Real time, const amrex::IntVect ng) noexcept
+void Field::fillphysbc(const amrex::Real time, const amrex::IntVect ng)
 {
     BL_PROFILE("amr-wind::Field::fillphysbc");
     BL_ASSERT(m_info->m_fillpatch_op);
@@ -262,12 +262,9 @@ void Field::fillphysbc(const amrex::Real time, const amrex::IntVect ng) noexcept
     }
 }
 
-void Field::fillphysbc(const amrex::Real time) noexcept
-{
-    fillphysbc(time, num_grow());
-}
+void Field::fillphysbc(const amrex::Real time) { fillphysbc(time, num_grow()); }
 
-void Field::apply_bc_funcs(const FieldState rho_state) noexcept
+void Field::apply_bc_funcs(const FieldState rho_state)
 {
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
     for (const auto& func : m_info->m_bc_func) {
@@ -279,7 +276,7 @@ void Field::set_inflow(
     const int lev,
     const amrex::Real time,
     amrex::MultiFab& mfab,
-    const amrex::IntVect& ng) noexcept
+    const amrex::IntVect& ng)
 {
     BL_PROFILE("amr-wind::Field::set_inflow");
     BL_ASSERT(m_info->m_fillpatch_op);
@@ -291,7 +288,7 @@ void Field::set_inflow(
 void Field::set_inflow_sibling_fields(
     const int lev,
     const amrex::Real time,
-    const amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM> mfabs) noexcept
+    const amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM> mfabs)
 {
     BL_PROFILE("amr-wind::Field::set_inflow_sibling_fields");
     BL_ASSERT(m_info->m_fillpatch_op);
@@ -300,7 +297,7 @@ void Field::set_inflow_sibling_fields(
     fop.set_inflow_sibling_fields(lev, time, mfabs);
 }
 
-void Field::advance_states() noexcept
+void Field::advance_states()
 {
     BL_PROFILE("amr-wind::Field::advance_states");
     if (num_time_states() < 2) {
@@ -319,7 +316,7 @@ void Field::advance_states() noexcept
     }
 }
 
-void Field::copy_state(FieldState to_state, FieldState from_state) noexcept
+void Field::copy_state(FieldState to_state, FieldState from_state)
 {
     BL_PROFILE("amr-wind::Field::copy_state");
     auto& to_field = state(to_state);
@@ -331,7 +328,7 @@ void Field::copy_state(FieldState to_state, FieldState from_state) noexcept
     }
 }
 
-Field& Field::create_state(const FieldState fstate) noexcept
+Field& Field::create_state(const FieldState fstate)
 {
     const int sid = static_cast<int>(fstate);
     if (m_info->m_states[sid] == nullptr) {
@@ -341,7 +338,7 @@ Field& Field::create_state(const FieldState fstate) noexcept
     return state(fstate);
 }
 
-void Field::setVal(amrex::Real value) noexcept
+void Field::setVal(amrex::Real value)
 {
     BL_PROFILE("amr-wind::Field::setVal 1");
     for (int lev = 0; lev < m_repo.num_active_levels(); ++lev) {
@@ -349,8 +346,7 @@ void Field::setVal(amrex::Real value) noexcept
     }
 }
 
-void Field::setVal(
-    amrex::Real value, int start_comp, int num_comp, int nghost) noexcept
+void Field::setVal(amrex::Real value, int start_comp, int num_comp, int nghost)
 {
     BL_PROFILE("amr-wind::Field::setVal 2");
     for (int lev = 0; lev < m_repo.num_active_levels(); ++lev) {
@@ -358,8 +354,7 @@ void Field::setVal(
     }
 }
 
-void Field::setVal(
-    const amrex::Vector<amrex::Real>& values, int nghost) noexcept
+void Field::setVal(const amrex::Vector<amrex::Real>& values, int nghost)
 {
     BL_PROFILE("amr-wind::Field::setVal 3");
     AMREX_ASSERT(num_comp() == static_cast<int>(values.size()));
@@ -376,7 +371,7 @@ void Field::setVal(
 }
 
 void Field::set_default_fillpatch_bc(
-    const SimTime& time, amrex::BCType::mathematicalBndryTypes bctype) noexcept
+    const SimTime& time, amrex::BCType::mathematicalBndryTypes bctype)
 {
     if (!m_info->bc_initialized()) {
         BCFillPatchExtrap bc_op(*this, bctype);
@@ -389,14 +384,14 @@ void Field::set_default_fillpatch_bc(
     }
 }
 
-void Field::to_uniform_space() noexcept
+void Field::to_uniform_space()
 {
     if (m_info->m_ncomp < AMREX_SPACEDIM) {
         amrex::Abort("Trying to transform a non-vector field:" + m_name);
     }
     if (m_mesh_mapped) {
         amrex::Print() << "WARNING: Field already in uniform mesh space: "
-                       << m_name << std::endl;
+                       << m_name << '\n';
         return;
     }
 
@@ -410,7 +405,7 @@ void Field::to_uniform_space() noexcept
         const auto& field = operator()(lev).arrays();
         amrex::ParallelFor(
             mesh_fac(lev), num_grow(), operator()(lev).nComp(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 field[nbx](i, j, k, n) *=
                     detJ[nbx](i, j, k) / fac[nbx](i, j, k, n);
             });
@@ -419,14 +414,14 @@ void Field::to_uniform_space() noexcept
     m_mesh_mapped = true;
 }
 
-void Field::to_stretched_space() noexcept
+void Field::to_stretched_space()
 {
     if (m_info->m_ncomp < AMREX_SPACEDIM) {
         amrex::Abort("Trying to transform a non-vector field:" + m_name);
     }
     if (!m_mesh_mapped) {
         amrex::Print() << "WARNING: Field already in stretched mesh space: "
-                       << m_name << std::endl;
+                       << m_name << '\n';
         return;
     }
 
@@ -441,7 +436,7 @@ void Field::to_stretched_space() noexcept
         const auto& field = operator()(lev).arrays();
         amrex::ParallelFor(
             mesh_fac(lev), num_grow(), operator()(lev).nComp(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 field[nbx](i, j, k, n) *=
                     fac[nbx](i, j, k, n) / detJ[nbx](i, j, k);
             });

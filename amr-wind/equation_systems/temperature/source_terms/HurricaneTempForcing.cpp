@@ -8,6 +8,9 @@
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_Gpu.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::temperature {
 
@@ -51,9 +54,9 @@ void HurricaneTempForcing::operator()(
     const amrex::Real* heights_end = m_vel_ht.end();
     const amrex::Real* vals = m_vel_vals.data();
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         amrex::IntVect iv(i, j, k);
-        const amrex::Real ht = problo[idir] + (iv[idir] + 0.5) * dx[idir];
+        const amrex::Real ht = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
 
         /*const amrex::Real umean =
             vals[3 * il + 0] + ((vals[3 * ir + 0] - vals[3 * il + 0]) /

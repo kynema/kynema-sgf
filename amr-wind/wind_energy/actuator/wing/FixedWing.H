@@ -3,13 +3,16 @@
 
 #include "amr-wind/wind_energy/actuator/wing/ActuatorWing.H"
 #include "amr-wind/wind_energy/actuator/aero/AirfoilTable.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator {
 
 struct FixedWingData : public WingBaseData
 {
-    RealList span_locs{0.0, 1.0};
-    RealList chord_inp{1.0, 1.0};
+    RealList span_locs{0.0_rt, 1.0_rt};
+    RealList chord_inp{1.0_rt, 1.0_rt};
     std::string airfoil_file;
     std::string airfoil_type{"openfast"};
 

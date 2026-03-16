@@ -3,6 +3,9 @@
 
 #include "amr-wind/wind_energy/actuator/turbine/fast/TurbineFast.H"
 #include "amr-wind/wind_energy/actuator/turbine/external/turbine_external_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator::ops {
 
@@ -18,7 +21,7 @@ struct ReadInputsOp<TurbineFast, SrcTrait>
         pp.get("openfast_start_time", tf.start_time);
         pp.get("openfast_stop_time", tf.stop_time);
 
-        std::string sim_mode = (tf.start_time > 0.0) ? "restart" : "init";
+        std::string sim_mode = (tf.start_time > 0.0_rt) ? "restart" : "init";
         pp.query("openfast_sim_mode", sim_mode);
 
         if (sim_mode == "init") {
@@ -78,7 +81,7 @@ struct ReadInputsOp<TurbineFast, SrcTrait>
         // Do warnings or aborts depending on values
         const amrex::Real tiny = std::numeric_limits<amrex::Real>::epsilon();
         if (is_incflo) {
-            amrex::Real rho_incflo = 1.0;
+            amrex::Real rho_incflo = 1.0_rt;
             pp_incflo.query("density", rho_incflo);
             if (std::abs(rho_incflo - rho_tdef) > tiny) {
                 cft_incflo = true;
@@ -104,7 +107,7 @@ struct ReadInputsOp<TurbineFast, SrcTrait>
             }
         }
         if (is_cstdns) {
-            amrex::Real rho_cstdns = 1.0;
+            amrex::Real rho_cstdns = 1.0_rt;
             pp_cstdns.query("value", rho_cstdns);
             if (std::abs(rho_cstdns - rho_tdef) > tiny) {
                 cft_cstdns = true;
@@ -151,14 +154,14 @@ struct ReadInputsOp<TurbineFast, SrcTrait>
 };
 
 template <>
-inline void
-determine_influenced_procs<TurbineFast>(typename TurbineFast::DataType& data)
+void determine_influenced_procs<TurbineFast>(
+    typename TurbineFast::DataType& data)
 {
     external_determine_influenced_procs<TurbineFast::DataType>(data);
 }
 
 template <>
-inline void determine_root_proc<TurbineFast>(
+void determine_root_proc<TurbineFast>(
     typename TurbineFast::DataType& data, amrex::Vector<int>& act_proc_count)
 {
     external_determine_root_proc<
@@ -186,7 +189,7 @@ struct InitDataOp<TurbineFast, SrcTrait>
 
         // Set OpenFAST solver end time to be at least as long as the CFD time.
         // User can choose a longer duration in input file.
-        const amrex::Real stop1 = time.stop_time() > 0.0
+        const amrex::Real stop1 = time.stop_time() > 0.0_rt
                                       ? time.stop_time()
                                       : std::numeric_limits<amrex::Real>::max();
         const amrex::Real stop2 = time.stop_time_index() > -1
@@ -194,7 +197,7 @@ struct InitDataOp<TurbineFast, SrcTrait>
                                       : std::numeric_limits<amrex::Real>::max();
         const amrex::Real cfd_stop = amrex::min(stop1, stop2);
         const amrex::Real cfd_start = time.current_time();
-        const amrex::Real cfd_sim = cfd_stop - cfd_start - 1.0e-6;
+        const amrex::Real cfd_sim = cfd_stop - cfd_start - 1.0e-6_rt;
 
         // Ensure that the user specified stop_time is not shorter than CFD sim
         const auto& tf = data.meta().ext_data;

@@ -62,7 +62,7 @@ incflo.verbose  = 0
 
 diffusion.max_coarsening_level = 0
 
-mac_proj.mg_rtol = 1.0e-11
-mac_proj.mg_atol = 1.0e-11
+#mac_proj.mg_rtol = 1.0e-11
+#mac_proj.mg_atol = 1.0e-11
 mac_proj.do_semicoarsening = true
-nodal_proj.mg_atol = 1.0e-11
+#nodal_proj.mg_atol = 1.0e-11

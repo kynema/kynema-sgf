@@ -3,6 +3,9 @@
 #include "amr-wind/core/Field.H"
 #include "amr-wind/core/FieldRepo.H"
 #include "amr-wind/utilities/IOManager.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::averaging {
 
@@ -54,7 +57,7 @@ void ReynoldsStress::operator()(
     const amrex::Real filter =
         amrex::max(amrex::min(filter_width, elapsed_time), avg_time_interval);
     const amrex::Real factor =
-        amrex::max<amrex::Real>(filter - avg_time_interval, 0.0);
+        amrex::max<amrex::Real>(filter - avg_time_interval, 0.0_rt);
 
     const int ncomp = m_field.num_comp();
     const int nlevels = m_field.repo().num_active_levels();
@@ -71,7 +74,7 @@ void ReynoldsStress::operator()(
         const auto& restressarrs = rfab.arrays();
 
         amrex::ParallelFor(
-            ffab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            ffab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 // The tensor index
                 int mn = 0;
                 for (int n = 0; n < ncomp; ++n) {

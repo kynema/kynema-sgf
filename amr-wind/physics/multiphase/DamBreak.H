@@ -1,8 +1,11 @@
-#ifndef DamBreak_H
-#define DamBreak_H
+#ifndef DAMBREAK_H
+#define DAMBREAK_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 /** Multiphase Dam break physics
  *  \ingroup multiphase_physics
@@ -40,13 +43,13 @@ private:
     Field& m_density;
 
     //! Initial DamBreak location
-    amrex::Vector<amrex::Real> m_loc{0.0, 0.0, 0.0};
+    amrex::Vector<amrex::Real> m_loc{0.0_rt, 0.0_rt, 0.0_rt};
 
     //! dam width value
-    amrex::Real m_width{0.1};
+    amrex::Real m_width{0.1_rt};
 
     //! dam height value
-    amrex::Real m_height{0.25};
+    amrex::Real m_height{0.25_rt};
 };
 
 } // namespace amr_wind

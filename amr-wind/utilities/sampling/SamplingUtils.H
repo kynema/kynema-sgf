@@ -2,9 +2,13 @@
 #define SAMPLINGUTILS_H
 
 #include <string>
-#include "AMReX_Vector.H"
+#include <cstdint>
 #include "amr-wind/core/vs/vector_space.H"
 #include "amr-wind/utilities/tensor_ops.H"
+#include "AMReX_Vector.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::sampling::sampling_utils {
 
@@ -16,35 +20,35 @@ namespace amr_wind::sampling::sampling_utils {
 // void inject_turbulence_src_terms(
 //     const std::string& key, const amrex::Vector<std::string>& terms);
 
-enum class NormalRule { SIGMA1, SIGMA2, SIGMA3, HALFPOWER };
+enum class NormalRule : std::uint8_t { SIGMA1, SIGMA2, SIGMA3, HALFPOWER };
 
 vs::Vector reflect(vs::Vector line, vs::Vector vec);
-vs::Vector rotate_euler_vec(vs::Vector axis, double angle, vs::Vector vec);
+vs::Vector rotate_euler_vec(vs::Vector axis, amrex::Real angle, vs::Vector vec);
 vs::Vector
-rotate_euler_vector(vs::Vector& axis, double& angle, vs::Vector& vec);
+rotate_euler_vector(vs::Vector& axis, amrex::Real& angle, vs::Vector& vec);
 vs::Vector rotation(const vs::Vector& angles, const vs::Vector& data);
 vs::Vector canon_rotator(const vs::Vector& angles, const vs::Vector& data);
 vs::Tensor unit_projection_matrix(const vs::Vector& a);
 vs::Tensor rotation_matrix(vs::Vector dst, vs::Vector src);
 vs::Tensor skew_cross(vs::Vector a, vs::Vector b);
-vs::Tensor scale(vs::Tensor v, double a);
+vs::Tensor scale(vs::Tensor v, amrex::Real a);
 
 void spherical_cap_quadrature(
-    double gammav,
+    amrex::Real gammav,
     int ntheta,
-    std::vector<double> abscissae1D,
-    std::vector<double> weights1D,
+    std::vector<amrex::Real> abscissae1D,
+    std::vector<amrex::Real> weights1D,
     std::vector<vs::Vector>& rays,
-    std::vector<double>& weights);
+    std::vector<amrex::Real>& weights);
 
 void spherical_cap_truncated_normal(
-    double gammav,
+    amrex::Real gammav,
     int ntheta,
     NormalRule rule,
     std::vector<vs::Vector>& rays,
-    std::vector<double>& weights);
+    std::vector<amrex::Real>& weights);
 
-std::pair<std::vector<double>, std::vector<double>>
+std::pair<std::vector<amrex::Real>, std::vector<amrex::Real>>
 truncated_normal_rule(NormalRule rule);
 
 } // namespace amr_wind::sampling::sampling_utils

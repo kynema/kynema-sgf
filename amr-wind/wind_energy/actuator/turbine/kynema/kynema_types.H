@@ -1,10 +1,12 @@
 #ifndef KYNEMA_TYPES_H
 #define KYNEMA_TYPES_H
 
+#include <string>
 #include "amr-wind/wind_energy/actuator/turbine/kynema/kynema_wrapper.H"
 #include "amr-wind/wind_energy/actuator/turbine/external/external_base_types.H"
+#include "AMReX_REAL.H"
 
-#include <string>
+using namespace amrex::literals;
 
 namespace ext_turb {
 
@@ -142,7 +144,7 @@ struct KynemaTurbine : public ext_turb::ExternalTurbine
         interface->Turbine().hub_node.loads[2] =
             buffer_f[length_force(0) + length_force(1)];
         // Fluid velocity at hub is passed separately for the sake of controller
-        std::array<double, 3> hub_inflow{
+        std::array<amrex::Real, 3> hub_inflow{
             buffer_fv[0], buffer_fv[length_force(0)],
             buffer_fv[length_force(0) + length_force(1)]};
         interface->SetHubInflow(hub_inflow);
@@ -241,9 +243,12 @@ struct KynemaTurbine : public ext_turb::ExternalTurbine
 
     int num_vel_pts_blade() const override { return num_pts_blade; }
 
-    double fluid_density{1.};
-    double rotational_speed{0.};
-    double yaw{0.};
+    amrex::Real fluid_density{1.0_rt};
+    amrex::Real rotational_speed{0.0_rt};
+    amrex::Real generator_power{0.0_rt};
+    amrex::Real wind_speed{0.0_rt};
+    amrex::Real yaw{0.0_rt};
+    amrex::Real generator_efficiency{1.0_rt};
     int substep_counter{0};
 
     std::string controller_shared_lib_path{""};
@@ -269,11 +274,11 @@ struct KynemaSolverData
 {
     std::string output_dir{"kynema_velocity_data"};
 
-    double damping_factor{0.};
+    amrex::Real damping_factor{0.0_rt};
     int nl_iter_max{12};
-    double abs_err_tol{1e-7};
-    double rel_err_tol{1e-6};
-    amrex::Vector<amrex::Real> gravity{0.0, 0.0, -9.81};
+    amrex::Real abs_err_tol{1.0e-5_rt};
+    amrex::Real rel_err_tol{1.0e-4_rt};
+    amrex::Vector<amrex::Real> gravity{0.0_rt, 0.0_rt, -9.81_rt};
 };
 
 } // namespace ext_turb

@@ -3,8 +3,6 @@
 #include <AMReX_PlotFileUtil.H>
 #include <AMReX_MultiFabUtil.H>
 
-using namespace amrex;
-
 std::string getFileRoot(const std::string& infile)
 {
     const auto& tokens = Tokenize(infile, std::string("/"));
@@ -13,9 +11,9 @@ std::string getFileRoot(const std::string& infile)
 
 int main(int argc, char* argv[])
 {
-    Initialize(argc, argv);
+    amrex::Initialize(argc, argv);
     {
-        ParmParse pp;
+        amrex::ParmParse pp;
 
         // Open plotfile headers and create an amrData objects pointing into it
         // Reference file: (should be finer than the finest level of the
@@ -54,7 +52,7 @@ int main(int argc, char* argv[])
 
         int nComp, sComp;
         const auto& varNames = pf1.varNames();
-        Vector<std::string> varnames(1);
+        amrex::Vector<std::string> varnames(1);
         if (pp.countval("varname") != 0) {
             std::string varname;
             pp.get("varname", varname);
@@ -77,17 +75,17 @@ int main(int argc, char* argv[])
                            << std::endl;
         }
 
-        Vector<MultiFab*> data(Nlev);
+        amrex::Vector<amrex::MultiFab*> data(Nlev);
         int coordSys = pf1.coordSys();
         const auto problo = pf1.probLo();
         const auto probhi = pf1.probHi();
-        RealBox rb(problo, probhi);
-        Array<int, AMREX_SPACEDIM> is_per = {{0, 0, 1}};
-        Vector<int> levelSteps(Nlev);
-        Vector<IntVect> refRatio(Nlev - 1);
-        Vector<Geometry> geoms(Nlev);
-        Box fpd = pf1.probDomain(0);
-        Geometry fgeom(fpd, rb, coordSys, is_per);
+        amrex::RealBox rb(problo, probhi);
+        amrex::Array<int, AMREX_SPACEDIM> is_per = {{0, 0, 1}};
+        amrex::Vector<int> levelSteps(Nlev);
+        amrex::Vector<amrex::IntVect> refRatio(Nlev - 1);
+        amrex::Vector<amrex::Geometry> geoms(Nlev);
+        amrex::Box fpd = pf1.probDomain(0);
+        amrex::Geometry fgeom(fpd, rb, coordSys, is_per);
         auto mf1 = (nComp == 1 ? pf1.get(0, varnames[0]) : pf1.get(0));
         const auto& fba = mf1.boxArray();
         const auto& dm = mf1.DistributionMap();
@@ -103,27 +101,28 @@ int main(int argc, char* argv[])
                            << ") to level " << lev
                            << "; ratio from reference = " << r << std::endl;
 
-            Box cpd = Box(fpd).coarsen(r);
+            amrex::Box cpd = amrex::Box(fpd).coarsen(r);
             geoms[lev].define(cpd, rb, coordSys, is_per);
             levelSteps[lev] = pf1.levelStep(0);
             if (lev < finest_level) {
-                refRatio[lev] = IntVect(AMREX_D_DECL(ratio, ratio, ratio));
+                refRatio[lev] =
+                    amrex::IntVect(AMREX_D_DECL(ratio, ratio, ratio));
                 amrex::Print() << "refRatio[" << lev << "] = " << refRatio[lev]
                                << std::endl;
             }
 
-            BoxArray cba = BoxArray(fba).coarsen(r);
+            amrex::BoxArray cba = amrex::BoxArray(fba).coarsen(r);
             AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-                BoxArray(cba).refine(r) == fba,
+                amrex::BoxArray(cba).refine(r) == fba,
                 "BoxArray doesn't coarsen correctly");
 
-            data[lev] = new MultiFab(cba, dm, nComp, 0);
+            data[lev] = new amrex::MultiFab(cba, dm, nComp, 0);
             average_down(mf1, *data[lev], fgeom, geoms[lev], 0, nComp, r);
 
             auto mf2_lev =
                 (nComp == 1 ? pf2.get(lev, varnames[0]) : pf2.get(lev));
 
-            MultiFab mf_b;
+            amrex::MultiFab mf_b;
             mf_b.define(mf2_lev.boxArray(), mf2_lev.DistributionMap(), 1, 0);
             mf_b.ParallelCopy(*data[lev]);
 
@@ -193,6 +192,6 @@ int main(int argc, char* argv[])
         //}
         // WriteMultiLevelPlotfile(getFileRoot(plotFileName1)+"_crse",Nlev,dat,varnames,geoms,pf1.time(),levelSteps,refRatio);
     }
-    Finalize();
+    amrex::Finalize();
     return 0;
 }

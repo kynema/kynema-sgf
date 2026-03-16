@@ -28,11 +28,11 @@ public:
         }
     }
 
-    inline bool capture_stdout() const { return m_stdout; }
-    inline bool capture_stderr() const { return m_stderr; }
+    bool capture_stdout() const { return m_stdout; }
+    bool capture_stderr() const { return m_stderr; }
 
-    inline std::stringstream& stdout() { return m_cout; }
-    inline std::stringstream& stderr() { return m_cerr; }
+    std::stringstream& stdout() { return m_cout; }
+    std::stringstream& stderr() { return m_cerr; }
 
 protected:
     void redirect_io()

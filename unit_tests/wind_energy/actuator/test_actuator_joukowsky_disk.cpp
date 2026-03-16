@@ -6,6 +6,9 @@
 #include "amr-wind/wind_energy/actuator/ActuatorModel.H"
 #include "amr-wind/wind_energy/actuator/ActParser.H"
 #include "amr-wind/wind_energy/actuator/disk/Joukowsky_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 namespace {
@@ -34,8 +37,8 @@ protected:
         }
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> problo{{0.0, 0.0, 0.0}};
-            amrex::Vector<amrex::Real> probhi{{32.0, 32.0, 32.0}};
+            amrex::Vector<amrex::Real> problo{{0.0_rt, 0.0_rt, 0.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{32.0_rt, 32.0_rt, 32.0_rt}};
 
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
@@ -48,8 +51,8 @@ protected:
         sim().repo().declare_field("actuator_src_term", 3, 0);
         auto& vel = sim().repo().declare_field("velocity", 3, 3);
         auto& density = sim().repo().declare_field("density", 1, 3);
-        vel.setVal(10.0, 0, 1, 3);
-        density.setVal(1.0);
+        vel.setVal(10.0_rt, 0, 1, 3);
+        density.setVal(1.0_rt);
         amr_wind::actuator::ActuatorContainer::ParticleType::NextID(1U);
     }
 
@@ -67,13 +70,16 @@ protected:
         pp.add("num_blades", 3);
         pp.add("num_points_t", 3);
         pp.add("num_points_r", 3);
-        pp.add("epsilon", 1.0);
-        pp.add("density", 1.0);
-        pp.add("rotor_diameter", 10.0);
-        pp.addarr("disk_center", amrex::Vector<amrex::Real>{16.0, 16.0, 16.0});
-        pp.addarr("disk_normal", amrex::Vector<amrex::Real>{-1.0, 0.0, 0.0});
+        pp.add("epsilon", 1.0_rt);
+        pp.add("density", 1.0_rt);
+        pp.add("rotor_diameter", 10.0_rt);
+        pp.addarr(
+            "disk_center",
+            amrex::Vector<amrex::Real>{16.0_rt, 16.0_rt, 16.0_rt});
+        pp.addarr(
+            "disk_normal", amrex::Vector<amrex::Real>{-1.0_rt, 0.0_rt, 0.0_rt});
         pp.addarr("thrust_coeff", amrex::Vector<amrex::Real>{1});
-        pp.addarr("rpm", amrex::Vector<amrex::Real>{0.0});
+        pp.addarr("rpm", amrex::Vector<amrex::Real>{0.0_rt});
     }
 };
 
@@ -126,8 +132,8 @@ struct InitDataOp<::amr_wind_tests::Joukowsky, ActSrcDisk>
         for (int i = 0; i < 3; ++i) {
             ASSERT_FALSE(std::isnan(meta.coplanar_vec[i]));
         }
-        ASSERT_DOUBLE_EQ(meta.coplanar_vec[0], 0.0);
-        ASSERT_DOUBLE_EQ(meta.coplanar_vec[1], -1.0);
+        ASSERT_DOUBLE_EQ(meta.coplanar_vec[0], 0.0_rt);
+        ASSERT_DOUBLE_EQ(meta.coplanar_vec[1], -1.0_rt);
     }
 };
 
@@ -139,10 +145,22 @@ struct ComputeForceOp<::amr_wind_tests::Joukowsky, ActSrcDisk>
         const auto& meta = data.meta();
         const auto& grid = data.grid();
         for (int i = 0; i < meta.num_vel_pts; ++i) {
-            EXPECT_DOUBLE_EQ(10.0, grid.vel[i].x()) << ", " << i;
-            EXPECT_DOUBLE_EQ(0.0, grid.vel[i].y()) << ", " << i;
-            EXPECT_DOUBLE_EQ(0.0, grid.vel[i].z()) << ", " << i;
-            EXPECT_DOUBLE_EQ(1.0, grid.density[i]) << ", " << i;
+            EXPECT_NEAR(
+                10.0_rt, grid.vel[i].x(),
+                std::numeric_limits<amrex::Real>::epsilon() * 1.0e2_rt)
+                << ", " << i;
+            EXPECT_NEAR(
+                0.0_rt, grid.vel[i].y(),
+                std::numeric_limits<amrex::Real>::epsilon() * 1.0e2_rt)
+                << ", " << i;
+            EXPECT_NEAR(
+                0.0_rt, grid.vel[i].z(),
+                std::numeric_limits<amrex::Real>::epsilon() * 1.0e2_rt)
+                << ", " << i;
+            EXPECT_NEAR(
+                1.0_rt, grid.density[i],
+                std::numeric_limits<amrex::Real>::epsilon() * 1.0e2_rt)
+                << ", " << i;
         }
         ComputeForceOp<::amr_wind::actuator::Joukowsky, ActSrcDisk> actual_op;
         EXPECT_NO_FATAL_FAILURE(actual_op(data));
@@ -153,8 +171,10 @@ struct ComputeForceOp<::amr_wind_tests::Joukowsky, ActSrcDisk>
             }
             // only x direction is guaranteed to be negative
             // y and z forces will vary based on azimuthal angle
-            EXPECT_GE(0.0, grid.force[i][0]) << "i: " << i;
-            EXPECT_DOUBLE_EQ(1.0, grid.density[i]);
+            EXPECT_GE(0.0_rt, grid.force[i][0]) << "i: " << i;
+            EXPECT_NEAR(
+                1.0_rt, grid.density[i],
+                std::numeric_limits<amrex::Real>::epsilon() * 1.0e2_rt);
         }
     }
 };
@@ -162,9 +182,7 @@ struct ComputeForceOp<::amr_wind_tests::Joukowsky, ActSrcDisk>
 template <>
 struct ProcessOutputsOp<::amr_wind_tests::Joukowsky, ActSrcDisk>
 {
-    ProcessOutputsOp<::amr_wind_tests::Joukowsky, ActSrcDisk>(
-        ::amr_wind_tests::Joukowsky::DataType& /**/)
-    {}
+    ProcessOutputsOp(::amr_wind_tests::Joukowsky::DataType& /**/) {}
     void operator()(::amr_wind_tests::Joukowsky::DataType& /*data*/) {}
     void read_io_options(const utils::ActParser& /**/) {}
     void prepare_outputs(const std::string& /**/) {}

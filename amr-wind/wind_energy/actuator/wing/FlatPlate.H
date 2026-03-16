@@ -3,13 +3,16 @@
 
 #include "amr-wind/wind_energy/actuator/wing/ActuatorWing.H"
 #include "amr-wind/wind_energy/actuator/aero/AirfoilTable.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator {
 
 struct FlatPlateData : public WingBaseData
 {
-    amrex::Real chord_inp{1.0};
-    amrex::Real cd_factor{0.0};
+    amrex::Real chord_inp{1.0_rt};
+    amrex::Real cd_factor{0.0_rt};
 
     ThinAirfoil aflookup;
 };

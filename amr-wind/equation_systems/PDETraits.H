@@ -48,7 +48,7 @@ struct ScalarTransport
     // static constexpr bool has_diffusion = true;
 
     // Default value to initialize the BC array
-    // static constexpr amrex::Real default_bc_value = 0.0;
+    // static constexpr amrex::Real default_bc_value = 0.0_rt;
 
     // Does this scalar need an NPH state
     // static constexpr bool need_nph_state = true;

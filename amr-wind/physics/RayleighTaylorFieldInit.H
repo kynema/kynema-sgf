@@ -1,5 +1,5 @@
-#ifndef RayleighTaylorFIELDINIT_H
-#define RayleighTaylorFIELDINIT_H
+#ifndef RAYLEIGHTAYLORFIELDINIT_H
+#define RAYLEIGHTAYLORFIELDINIT_H
 
 #include "AMReX_Array.H"
 #include "AMReX_Array4.H"
@@ -8,6 +8,8 @@
 #include "AMReX_REAL.H"
 #include "AMReX_Vector.H"
 #include "AMReX_Gpu.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -28,9 +30,9 @@ public:
 
 private:
     //! density value for lower layer
-    amrex::Real m_rho_lo{0.5};
+    amrex::Real m_rho_lo{0.5_rt};
     //! density value for upper layer
-    amrex::Real m_rho_hi{2.0};
+    amrex::Real m_rho_hi{2.0_rt};
 };
 
 } // namespace amr_wind

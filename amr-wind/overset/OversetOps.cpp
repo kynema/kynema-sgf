@@ -8,6 +8,9 @@
 #include <hydro_NodalProjector.H>
 #include "amr-wind/wind_energy/ABL.H"
 #include "amr-wind/wind_energy/ABLBoundaryPlane.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -107,14 +110,14 @@ void OversetOps::update_gradp()
     // Velocity multifab is needed for proper initialization, but only the size
     // matters for the purpose of calculating gradp, the values do not matter
     int finest_level = m_sim_ptr->mesh().finestLevel();
-    Vector<MultiFab*> vel;
+    amrex::Vector<amrex::MultiFab*> vel;
     for (int lev = 0; lev <= finest_level; ++lev) {
         vel.push_back(&(velocity(lev)));
     }
     amr_wind::MLMGOptions options("nodal_proj");
     // Create nodal projector with unity scaling factor for simplicity
     nodal_projector = std::make_unique<Hydro::NodalProjector>(
-        vel, 1.0, m_sim_ptr->mesh().Geom(0, finest_level), options.lpinfo());
+        vel, 1.0_rt, m_sim_ptr->mesh().Geom(0, finest_level), options.lpinfo());
     // Set MLMG and NodalProjector options
     options(*nodal_projector);
     nodal_projector->setDomainBC(bclo, bchi);
@@ -128,7 +131,7 @@ void OversetOps::update_gradp()
         const auto& gp_proj_arrs = gradphi[lev]->const_arrays();
         amrex::ParallelFor(
             grad_p(lev), amrex::IntVect(0), AMREX_SPACEDIM,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 gp_lev_arrs[nbx](i, j, k, n) = gp_proj_arrs[nbx](i, j, k, n);
             });
     }
@@ -156,9 +159,9 @@ void OversetOps::parameter_output() const
         // Important parameters
         amrex::Print() << "\nOverset Coupling Parameters: \n"
                        << "---- Replace overset pres grad: "
-                       << m_replace_gradp_postsolve << std::endl;
+                       << m_replace_gradp_postsolve << '\n';
         amrex::Print() << "---- Perturbational pressure  : "
-                       << m_mphase->perturb_pressure() << std::endl
+                       << m_mphase->perturb_pressure() << '\n'
                        << "---- Reconstruct true pressure: "
                        << m_mphase->reconstruct_true_pressure() << std::endl;
         amrex::Print() << std::endl;

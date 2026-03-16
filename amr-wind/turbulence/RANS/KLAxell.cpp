@@ -5,8 +5,10 @@
 #include "amr-wind/fvm/strainrate.H"
 #include "amr-wind/turbulence/turb_utils.H"
 #include "amr-wind/equation_systems/tke/TKE.H"
-
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 namespace turbulence {
@@ -92,10 +94,10 @@ void KLAxell<Transport>::update_turbulent_viscosity(
     const auto& repo = mu_turb.repo();
     const auto& geom_vec = repo.mesh().Geom();
     const int nlevels = repo.num_active_levels();
-    const amrex::Real Rtc = -1.0;
-    const amrex::Real Rtmin = -3.0;
-    const amrex::Real lambda = 30.0;
-    const amrex::Real kappa = 0.41;
+    const amrex::Real Rtc = -1.0_rt;
+    const amrex::Real Rtmin = -3.0_rt;
+    const amrex::Real lambda = 30.0_rt;
+    const amrex::Real kappa = 0.41_rt;
     const amrex::Real surf_flux = m_surf_flux;
     const auto tiny = std::numeric_limits<amrex::Real>::epsilon();
     const amrex::Real lengthscale_switch = m_meso_sponge_start;
@@ -125,71 +127,77 @@ void KLAxell<Transport>::update_turbulent_viscosity(
             const auto& blank_arrs = (*m_terrain_blank)(lev).const_arrays();
             amrex::ParallelFor(
                 mu_turb(lev),
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     amrex::Real stratification =
-                        -(gradT_arrs[nbx](i, j, k, 0) * gravity[0] +
-                          gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
-                          gradT_arrs[nbx](i, j, k, 2) * gravity[2]) *
+                        -((gradT_arrs[nbx](i, j, k, 0) * gravity[0]) +
+                          (gradT_arrs[nbx](i, j, k, 1) * gravity[1]) +
+                          (gradT_arrs[nbx](i, j, k, 2) * gravity[2])) *
                         beta_arrs[nbx](i, j, k);
-                    const amrex::Real z = std::max(
-                        problo[2] + (k + 0.5) * dz - ht_arrs[nbx](i, j, k),
-                        0.5 * dz);
+                    const amrex::Real z = amrex::max<amrex::Real>(
+                        problo[2] + ((k + 0.5_rt) * dz) - ht_arrs[nbx](i, j, k),
+                        0.5_rt * dz);
                     const amrex::Real lscale_s =
                         (lambda * kappa * z) / (lambda + kappa * z);
                     const amrex::Real lscale_b =
-                        Cb_stable * std::sqrt(
-                                        tke_arrs[nbx](i, j, k) /
-                                        std::max(stratification, tiny));
+                        Cb_stable *
+                        std::sqrt(
+                            tke_arrs[nbx](i, j, k) /
+                            amrex::max<amrex::Real>(stratification, tiny));
                     amrex::Real epsilon =
-                        std::pow(Cmu, 3) *
-                        std::pow(tke_arrs[nbx](i, j, k), 1.5) /
+                        std::pow(Cmu, 3.0_rt) *
+                        std::pow(tke_arrs[nbx](i, j, k), 1.5_rt) /
                         (tlscale_arrs[nbx](i, j, k) + tiny);
                     amrex::Real Rt =
-                        std::pow(tke_arrs[nbx](i, j, k) / epsilon, 2) *
+                        std::pow(tke_arrs[nbx](i, j, k) / epsilon, 2.0_rt) *
                         stratification;
-                    Rt = (Rt > Rtc) ? Rt
-                                    : std::max(
-                                          Rt, Rt - std::pow(Rt - Rtc, 2) /
-                                                       (Rt + Rtmin - 2 * Rtc));
+                    Rt = (Rt > Rtc)
+                             ? Rt
+                             : amrex::max<amrex::Real>(
+                                   Rt, Rt - (std::pow(Rt - Rtc, 2.0_rt) /
+                                             (Rt + Rtmin - 2.0_rt * Rtc)));
                     tlscale_arrs[nbx](i, j, k) =
                         (stratification > 0)
                             ? std::sqrt(
-                                  std::pow(lscale_s * lscale_b, 2) /
-                                  (std::pow(lscale_s, 2) +
-                                   std::pow(lscale_b, 2)))
+                                  std::pow(lscale_s * lscale_b, 2.0_rt) /
+                                  (std::pow(lscale_s, 2.0_rt) +
+                                   std::pow(lscale_b, 2.0_rt)))
                             : lscale_s *
                                   std::sqrt(
-                                      1.0 - std::pow(Cmu, 6.0) *
-                                                std::pow(Cb_unstable, -2.0) *
-                                                Rt);
+                                      1.0_rt -
+                                      (std::pow(Cmu, 6.0_rt) *
+                                       std::pow(Cb_unstable, -2.0_rt) * Rt));
                     tlscale_arrs[nbx](i, j, k) =
                         (stratification > 0)
-                            ? std::min(
+                            ? amrex::min<amrex::Real>(
                                   tlscale_arrs[nbx](i, j, k),
                                   std::sqrt(
                                       Cmu * tke_arrs[nbx](i, j, k) /
                                       stratification))
                             : tlscale_arrs[nbx](i, j, k);
                     tlscale_arrs[nbx](i, j, k) =
-                        (std::abs(surf_flux) < 1e-5 && z <= lengthscale_switch)
+                        (std::abs(surf_flux) < 1.0e-5_rt &&
+                         z <= lengthscale_switch)
                             ? lscale_s
                             : tlscale_arrs[nbx](i, j, k);
-                    Rt = (std::abs(surf_flux) < 1e-5 && z <= lengthscale_switch)
-                             ? 0.0
+                    Rt = (std::abs(surf_flux) < 1.0e-5_rt &&
+                          z <= lengthscale_switch)
+                             ? 0.0_rt
                              : Rt;
                     const amrex::Real Cmu_Rt =
-                        (Cmu + 0.108 * Rt) /
-                        (1 + 0.308 * Rt + 0.00837 * std::pow(Rt, 2));
+                        (Cmu + 0.108_rt * Rt) /
+                        (1.0_rt + 0.308_rt * Rt +
+                         0.00837_rt * std::pow(Rt, 2.0_rt));
                     mu_arrs[nbx](i, j, k) = rho_arrs[nbx](i, j, k) * Cmu_Rt *
                                             tlscale_arrs[nbx](i, j, k) *
                                             std::sqrt(tke_arrs[nbx](i, j, k)) *
-                                            (1 - blank_arrs[nbx](i, j, k));
-                    const amrex::Real Cmu_prime_Rt = Cmu / (1 + 0.277 * Rt);
+                                            (1.0_rt - blank_arrs[nbx](i, j, k));
+                    const amrex::Real Cmu_prime_Rt =
+                        Cmu / (1.0_rt + 0.277_rt * Rt);
                     const amrex::Real muPrime =
                         rho_arrs[nbx](i, j, k) * Cmu_prime_Rt *
                         tlscale_arrs[nbx](i, j, k) *
                         std::sqrt(tke_arrs[nbx](i, j, k)) *
-                        (1 - blank_arrs[nbx](i, j, k));
+                        (1.0_rt - blank_arrs[nbx](i, j, k));
                     buoy_prod_arrs[nbx](i, j, k) = -muPrime * stratification;
                     shear_prod_arrs[nbx](i, j, k) *=
                         shear_prod_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
@@ -197,63 +205,69 @@ void KLAxell<Transport>::update_turbulent_viscosity(
         } else {
             amrex::ParallelFor(
                 mu_turb(lev),
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     amrex::Real stratification =
-                        -(gradT_arrs[nbx](i, j, k, 0) * gravity[0] +
-                          gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
-                          gradT_arrs[nbx](i, j, k, 2) * gravity[2]) *
+                        -((gradT_arrs[nbx](i, j, k, 0) * gravity[0]) +
+                          (gradT_arrs[nbx](i, j, k, 1) * gravity[1]) +
+                          (gradT_arrs[nbx](i, j, k, 2) * gravity[2])) *
                         beta_arrs[nbx](i, j, k);
-                    const amrex::Real z = problo[2] + (k + 0.5) * dz;
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dz);
                     const amrex::Real lscale_s =
                         (lambda * kappa * z) / (lambda + kappa * z);
                     const amrex::Real lscale_b =
-                        Cb_stable * std::sqrt(
-                                        tke_arrs[nbx](i, j, k) /
-                                        std::max(stratification, tiny));
+                        Cb_stable *
+                        std::sqrt(
+                            tke_arrs[nbx](i, j, k) /
+                            amrex::max<amrex::Real>(stratification, tiny));
                     amrex::Real epsilon =
-                        std::pow(Cmu, 3) *
-                        std::pow(tke_arrs[nbx](i, j, k), 1.5) /
+                        std::pow(Cmu, 3.0_rt) *
+                        std::pow(tke_arrs[nbx](i, j, k), 1.5_rt) /
                         (tlscale_arrs[nbx](i, j, k) + tiny);
                     amrex::Real Rt =
-                        std::pow(tke_arrs[nbx](i, j, k) / epsilon, 2) *
+                        std::pow(tke_arrs[nbx](i, j, k) / epsilon, 2.0_rt) *
                         stratification;
-                    Rt = (Rt > Rtc) ? Rt
-                                    : std::max(
-                                          Rt, Rt - std::pow(Rt - Rtc, 2) /
-                                                       (Rt + Rtmin - 2 * Rtc));
+                    Rt = (Rt > Rtc)
+                             ? Rt
+                             : amrex::max<amrex::Real>(
+                                   Rt, Rt - (std::pow(Rt - Rtc, 2.0_rt) /
+                                             (Rt + Rtmin - 2.0_rt * Rtc)));
                     tlscale_arrs[nbx](i, j, k) =
                         (stratification > 0)
                             ? std::sqrt(
-                                  std::pow(lscale_s * lscale_b, 2) /
-                                  (std::pow(lscale_s, 2) +
-                                   std::pow(lscale_b, 2)))
+                                  std::pow(lscale_s * lscale_b, 2.0_rt) /
+                                  (std::pow(lscale_s, 2.0_rt) +
+                                   std::pow(lscale_b, 2.0_rt)))
                             : lscale_s *
                                   std::sqrt(
-                                      1.0 - std::pow(Cmu, 6.0) *
-                                                std::pow(Cb_unstable, -2.0) *
-                                                Rt);
+                                      1.0_rt -
+                                      (std::pow(Cmu, 6.0_rt) *
+                                       std::pow(Cb_unstable, -2.0_rt) * Rt));
                     tlscale_arrs[nbx](i, j, k) =
                         (stratification > 0)
-                            ? std::min(
+                            ? amrex::min<amrex::Real>(
                                   tlscale_arrs[nbx](i, j, k),
                                   std::sqrt(
                                       Cmu * tke_arrs[nbx](i, j, k) /
                                       stratification))
                             : tlscale_arrs[nbx](i, j, k);
                     tlscale_arrs[nbx](i, j, k) =
-                        (std::abs(surf_flux) < 1e-5 && z <= lengthscale_switch)
+                        (std::abs(surf_flux) < 1.0e-5_rt &&
+                         z <= lengthscale_switch)
                             ? lscale_s
                             : tlscale_arrs[nbx](i, j, k);
-                    Rt = (std::abs(surf_flux) < 1e-5 && z <= lengthscale_switch)
-                             ? 0.0
+                    Rt = (std::abs(surf_flux) < 1.0e-5_rt &&
+                          z <= lengthscale_switch)
+                             ? 0.0_rt
                              : Rt;
                     const amrex::Real Cmu_Rt =
-                        (Cmu + 0.108 * Rt) /
-                        (1 + 0.308 * Rt + 0.00837 * std::pow(Rt, 2));
+                        (Cmu + 0.108_rt * Rt) /
+                        (1.0_rt + 0.308_rt * Rt +
+                         0.00837_rt * std::pow(Rt, 2.0_rt));
                     mu_arrs[nbx](i, j, k) = rho_arrs[nbx](i, j, k) * Cmu_Rt *
                                             tlscale_arrs[nbx](i, j, k) *
                                             std::sqrt(tke_arrs[nbx](i, j, k));
-                    const amrex::Real Cmu_prime_Rt = Cmu / (1 + 0.277 * Rt);
+                    const amrex::Real Cmu_prime_Rt =
+                        Cmu / (1.0_rt + 0.277_rt * Rt);
                     const amrex::Real muPrime =
                         rho_arrs[nbx](i, j, k) * Cmu_prime_Rt *
                         tlscale_arrs[nbx](i, j, k) *
@@ -292,30 +306,30 @@ void KLAxell<Transport>::update_alphaeff(Field& alphaeff)
         const auto& gradT_arrs = (*gradT)(lev).const_arrays();
         const auto& tlscale_arrs = (this->m_turb_lscale)(lev).arrays();
         const auto& beta_arrs = (*beta)(lev).const_arrays();
-        const amrex::Real Rtc = -1.0;
-        const amrex::Real Rtmin = -3.0;
+        const amrex::Real Rtc = -1.0_rt;
+        const amrex::Real Rtmin = -3.0_rt;
         amrex::ParallelFor(
-            mu_turb(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            mu_turb(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 amrex::Real stratification =
-                    -(gradT_arrs[nbx](i, j, k, 0) * gravity[0] +
-                      gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
-                      gradT_arrs[nbx](i, j, k, 2) * gravity[2]) *
+                    -((gradT_arrs[nbx](i, j, k, 0) * gravity[0]) +
+                      (gradT_arrs[nbx](i, j, k, 1) * gravity[1]) +
+                      (gradT_arrs[nbx](i, j, k, 2) * gravity[2])) *
                     beta_arrs[nbx](i, j, k);
-                amrex::Real epsilon = std::pow(Cmu, 3) *
-                                      std::pow(tke_arrs[nbx](i, j, k), 1.5) /
+                amrex::Real epsilon = std::pow(Cmu, 3.0_rt) *
+                                      std::pow(tke_arrs[nbx](i, j, k), 1.5_rt) /
                                       tlscale_arrs[nbx](i, j, k);
-                amrex::Real Rt = std::pow(tke_arrs[nbx](i, j, k) / epsilon, 2) *
-                                 stratification;
+                amrex::Real Rt =
+                    std::pow(tke_arrs[nbx](i, j, k) / epsilon, 2.0_rt) *
+                    stratification;
                 Rt = (Rt > Rtc) ? Rt
-                                : std::max(
-                                      Rt, Rt - std::pow(Rt - Rtc, 2) /
-                                                   (Rt + Rtmin - 2 * Rtc));
+                                : amrex::max<amrex::Real>(
+                                      Rt, Rt - (std::pow(Rt - Rtc, 2.0_rt) /
+                                                (Rt + Rtmin - 2.0_rt * Rtc)));
                 const amrex::Real prandtlRt =
-                    (1 + 0.193 * Rt) / (1 + 0.0302 * Rt);
+                    (1.0_rt + 0.193_rt * Rt) / (1.0_rt + 0.0302_rt * Rt);
                 alphaeff_arrs[nbx](i, j, k) =
                     lam_diff_arrs[nbx](i, j, k) +
-                    muturb_arrs[nbx](i, j, k) / prandtlRt;
+                    (muturb_arrs[nbx](i, j, k) / prandtlRt);
             });
     }
     amrex::Gpu::streamSynchronize();
@@ -327,14 +341,13 @@ template <typename Transport>
 void KLAxell<Transport>::update_scalar_diff(
     Field& deff, const std::string& name)
 {
-
     BL_PROFILE("amr-wind::" + this->identifier() + "::update_scalar_diff");
 
     if (name == pde::TKE::var_name()) {
         auto& mu_turb = this->mu_turb();
-        deff.setVal(0.0);
+        deff.setVal(0.0_rt);
         field_ops::saxpy(
-            deff, 2.0, mu_turb, 0, 0, deff.num_comp(), deff.num_grow());
+            deff, 2.0_rt, mu_turb, 0, 0, deff.num_comp(), deff.num_grow());
     } else {
         amrex::Abort(
             "KLAxell:update_scalar_diff not implemented for field " + name);
@@ -344,7 +357,6 @@ void KLAxell<Transport>::update_scalar_diff(
 template <typename Transport>
 void KLAxell<Transport>::post_advance_work()
 {
-
     BL_PROFILE("amr-wind::" + this->identifier() + "::post_advance_work");
 }
 

@@ -8,6 +8,8 @@
 #include "AMReX_MLLinOp.H"
 #include "AMReX_MLMG.H"
 
+using namespace amrex::literals;
+
 namespace Hydro {
 class NodalProjector;
 class MacProjector;
@@ -50,11 +52,19 @@ struct MLMGOptions
     // Linear operator options
     int max_order{2};
 
+#ifdef BL_USE_FLOAT
     //! Relative tolerance for convergence of MLMG solvers
-    amrex::Real rel_tol{1.0e-11};
+    amrex::Real rel_tol{std::numeric_limits<amrex::Real>::epsilon() * 1.0e2_rt};
 
     //! Absolute tolerance for convergence checks
-    amrex::Real abs_tol{1.0e-14};
+    amrex::Real abs_tol{std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt};
+#else
+    //! Relative tolerance for convergence of MLMG solvers
+    amrex::Real rel_tol{std::numeric_limits<amrex::Real>::epsilon() * 1.0e5_rt};
+
+    //! Absolute tolerance for convergence checks
+    amrex::Real abs_tol{std::numeric_limits<amrex::Real>::epsilon() * 1.0e2_rt};
+#endif
 
 private:
     void parse_options(const std::string& /*prefix*/);
@@ -73,11 +83,23 @@ private:
     //! Options of hypre interface
     std::string m_hypre_interface{"ij"};
 
+#ifdef BL_USE_FLOAT
     //! Relative tolerance for convergence of MLMG solvers
-    amrex::Real m_bottom_rel_tol{1.0e-4};
+    amrex::Real m_bottom_rel_tol{
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e3_rt};
 
     //! Absolute tolerance for convergence checks
-    amrex::Real m_bottom_abs_tol{1e-12};
+    amrex::Real m_bottom_abs_tol{
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e2_rt};
+#else
+    //! Relative tolerance for convergence of MLMG solvers
+    amrex::Real m_bottom_rel_tol{
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e12_rt};
+
+    //! Absolute tolerance for convergence checks
+    amrex::Real m_bottom_abs_tol{
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt};
+#endif
 
     /** Verbosity of the MLMG and Projector interfaces
      */

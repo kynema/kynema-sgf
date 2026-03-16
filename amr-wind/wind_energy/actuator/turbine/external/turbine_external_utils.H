@@ -1,16 +1,20 @@
 #ifndef TURBINE_EXTERNAL_UTILS_H
 #define TURBINE_EXTERNAL_UTILS_H
 
+#include <numbers>
 #include "amr-wind/wind_energy/actuator/turbine/turbine_utils.H"
 #include "amr-wind/wind_energy/actuator/actuator_ops.H"
 #include "amr-wind/wind_energy/actuator/actuator_utils.H"
 #include "amr-wind/wind_energy/actuator/FLLCOp.H"
 #include "amr-wind/utilities/IOManager.H"
 #include "amr-wind/wind_energy/actuator/turbine/external/TurbineExternal.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator::external {
 
-inline void swap_epsilon(vs::Vector& eps)
+void swap_epsilon(vs::Vector& eps)
 {
     const auto x = eps.x();
     const auto y = eps.y();
@@ -99,12 +103,13 @@ void init_epsilon(datatype& data)
     {
         const auto& cd = tdata.nacelle_cd;
         const auto& area = tdata.nacelle_area;
-        const auto eps = std::sqrt(2.0 / ::amr_wind::utils::pi() * cd * area);
+        const auto eps =
+            std::sqrt(2.0_rt / std::numbers::pi_v<amrex::Real> * cd * area);
 
         auto& nac_eps = data.grid().epsilon[0];
-        nac_eps.x() = amrex::max(eps, tdata.eps_min.x());
-        nac_eps.y() = amrex::max(eps, tdata.eps_min.y());
-        nac_eps.z() = amrex::max(eps, tdata.eps_min.z());
+        nac_eps.x() = amrex::max<amrex::Real>(eps, tdata.eps_min.x());
+        nac_eps.y() = amrex::max<amrex::Real>(eps, tdata.eps_min.y());
+        nac_eps.z() = amrex::max<amrex::Real>(eps, tdata.eps_min.z());
     }
 
     for (int ib = 0; ib < tdata.num_blades; ++ib) {
@@ -114,8 +119,8 @@ void init_epsilon(datatype& data)
             const auto eps_crd = tdata.eps_chord * cv.chord[i];
 
             for (int n = 0; n < AMREX_SPACEDIM; ++n) {
-                cv.epsilon[i][n] =
-                    amrex::max(tdata.eps_min[n], tdata.eps_inp[n], eps_crd[n]);
+                cv.epsilon[i][n] = amrex::max<amrex::Real>(
+                    tdata.eps_min[n], tdata.eps_inp[n], eps_crd[n]);
             }
         }
     }
@@ -123,7 +128,7 @@ void init_epsilon(datatype& data)
         auto& cv = tdata.tower;
         for (int i = 0; i < tdata.num_pts_tower; ++i) {
             for (int n = 0; n < AMREX_SPACEDIM; ++n) {
-                cv.epsilon[i][n] = amrex::max(
+                cv.epsilon[i][n] = amrex::max<amrex::Real>(
                     tdata.eps_min[n], tdata.eps_inp[n], tdata.eps_tower[n]);
             }
         }
@@ -148,14 +153,15 @@ void compute_nacelle_force(datatype& data)
     vs::Vector vel{
         ext_tdata.fluid_velocity(0)[0], ext_tdata.fluid_velocity(1)[0],
         ext_tdata.fluid_velocity(2)[0]};
-    amrex::Real correction = 0.0;
-    if (eps > 0.0) {
+    amrex::Real correction = 0.0_rt;
+    if (eps > 0.0_rt) {
         amrex::Real fac =
-            1.0 - (cd_area) / (2.0 * ::amr_wind::utils::two_pi() * eps * eps);
-        correction = 1.0 / fac;
+            1.0_rt -
+            (cd_area) / (2.0_rt * ::amr_wind::utils::two_pi() * eps * eps);
+        correction = 1.0_rt / fac;
     }
     amrex::Real coeff =
-        0.5 * rho * cd_area * vs::mag(vel) * correction * correction;
+        0.5_rt * rho * cd_area * vs::mag(vel) * correction * correction;
 
     for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
         ext_tdata.force(dir)[0] = static_cast<float>(coeff * vel[dir]);

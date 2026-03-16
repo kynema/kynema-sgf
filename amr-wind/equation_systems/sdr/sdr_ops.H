@@ -3,6 +3,9 @@
 
 #include "amr-wind/equation_systems/sdr/SDR.H"
 #include "amr-wind/core/field_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde {
 
@@ -41,7 +44,7 @@ struct PostSolveOp<SDR>
     }
 
     PDEFields& m_fields;
-    amrex::Real clip_value{1.0e-8};
+    amrex::Real clip_value{std::numeric_limits<float>::epsilon()};
 };
 
 template <typename Scheme>
@@ -95,13 +98,13 @@ struct DiffusionOp<SDR, Scheme> : public DiffSolverIface<typename SDR::MLDiffOp>
             diffusion::get_diffuse_scalar_bc(
                 this->m_pdefields.field, amrex::Orientation::high));
 
-        m_lhs_src_term.setVal(0.0);
+        m_lhs_src_term.setVal(0.0_rt);
     }
 
     //! Computes the diffusion term that goes in the RHS
     void compute_diff_term(const FieldState fstate)
     {
-        this->setup_operator(*this->m_applier, 0.0, -1.0, fstate);
+        this->setup_operator(*this->m_applier, 0.0_rt, -1.0_rt, fstate);
 
         auto tau_state =
             std::is_same_v<Scheme, fvm::Godunov> ? FieldState::New : fstate;
@@ -121,7 +124,7 @@ struct DiffusionOp<SDR, Scheme> : public DiffSolverIface<typename SDR::MLDiffOp>
         auto& density = m_density.state(fstate);
         auto lhs_total = repo.create_scratch_field(1, 1);
         field_ops::lincomb(
-            *lhs_total, 1.0, m_lhs_src_term, 0, 1.0, density, 0, 0, 1, 1);
+            *lhs_total, 1.0_rt, m_lhs_src_term, 0, 1.0_rt, density, 0, 0, 1, 1);
 
         for (int lev = 0; lev < nlevels; ++lev) {
             linop.setACoeffs(lev, (*lhs_total)(lev));

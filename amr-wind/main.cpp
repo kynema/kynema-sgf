@@ -1,13 +1,23 @@
 #include "amr-wind/incflo.H"
 #include "amr-wind/utilities/console_io.H"
-
 #include "AMReX_FileSystem.H"
+#include "AMReX_REAL.H"
+
 #ifdef AMR_WIND_USE_KYNEMA
 #include <Kokkos_Core.hpp>
 #endif
 
+using namespace amrex::literals;
+
 int main(int argc, char* argv[])
 {
+#if defined(_OPENMP) && !defined(AMREX_USE_OMP)
+    static_assert(
+        false,
+        "Error: OpenMP is enabled in the compiler but not through the build "
+        "system");
+#endif
+
 #ifdef AMREX_USE_MPI
     MPI_Init(&argc, &argv);
 #endif
@@ -25,11 +35,11 @@ int main(int argc, char* argv[])
             MPI_COMM_WORLD, "No input file provided. Exiting!!");
         return 1;
     }
-
     // Look for "-h" or "--help" flag and print usage
     for (auto i = 1; i < argc; i++) {
-        const std::string param(argv[i]);
-        if ((param == "--help") || (param == "-h")) {
+        char* user_arg = argv[i];
+        if ((std::strcmp(user_arg, "--help") == 0) ||
+            (std::strcmp(user_arg, "-h") == 0)) {
             amr_wind::io::print_banner(MPI_COMM_WORLD, std::cout);
             amr_wind::io::print_usage(MPI_COMM_WORLD, std::cout);
             return 0;
@@ -65,8 +75,9 @@ int main(int argc, char* argv[])
         BL_PROFILE("amr-wind::main()");
 
         // Start timing the program
-        amrex::Real start_time = amrex::ParallelDescriptor::second();
-        amrex::Print() << "Initializing AMR-Wind ..." << std::endl;
+        auto start_time =
+            static_cast<amrex::Real>(amrex::ParallelDescriptor::second());
+        amrex::Print() << "Initializing AMR-Wind ..." << '\n';
 
         // Default constructor. Note inheritance: incflo : AmrCore : AmrMesh.
         incflo my_incflo;
@@ -75,16 +86,17 @@ int main(int argc, char* argv[])
         my_incflo.InitData();
 
         // Time spent on initialization
-        amrex::Real init_time =
-            amrex::ParallelDescriptor::second() - start_time;
+        auto init_time = static_cast<amrex::Real>(
+            amrex::ParallelDescriptor::second() - start_time);
         amrex::Print() << "Initialization successful. Time elapsed = "
-                       << init_time << std::endl;
+                       << init_time << '\n';
 
         // Evolve system to final time
         my_incflo.Evolve();
 
         // Time spent in total
-        amrex::Real end_time = amrex::ParallelDescriptor::second() - start_time;
+        auto end_time = static_cast<amrex::Real>(
+            amrex::ParallelDescriptor::second() - start_time);
 
         amrex::ParallelDescriptor::ReduceRealMax(
             init_time, amrex::ParallelDescriptor::IOProcessorNumber());
@@ -92,10 +104,9 @@ int main(int argc, char* argv[])
             end_time, amrex::ParallelDescriptor::IOProcessorNumber());
 
         // Print timing results
-        amrex::Print() << "Time spent in InitData():    " << init_time
-                       << std::endl;
+        amrex::Print() << "Time spent in InitData():    " << init_time << '\n';
         amrex::Print() << "Time spent in Evolve():      "
-                       << end_time - init_time << std::endl;
+                       << end_time - init_time << '\n';
     }
     amrex::Finalize();
 #ifdef AMREX_USE_MPI

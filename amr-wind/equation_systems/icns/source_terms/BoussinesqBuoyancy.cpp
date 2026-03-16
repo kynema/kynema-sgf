@@ -39,7 +39,7 @@ void BoussinesqBuoyancy::operator()(
     amrex::FArrayBox ref_theta_fab(bx, 1, amrex::The_Async_Arena());
     amrex::Array4<amrex::Real> const& ref_theta_arr = ref_theta_fab.array();
     m_transport.ref_theta_impl(lev, mfi, bx, ref_theta_arr);
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real T = temp(i, j, k, 0);
         const amrex::Real T0 = ref_theta_arr(i, j, k);
         const amrex::Real fac = beta_arr(i, j, k) * (T0 - T);

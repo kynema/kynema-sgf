@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "aw_test_utils/MeshTest.H"
 #include "test_act_utils.H"
 
@@ -12,6 +14,9 @@
 #include "amr-wind/core/gpu_utils.H"
 #include "amr-wind/core/vs/vector_space.H"
 #include "amr-wind/utilities/trig_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 namespace {
@@ -31,8 +36,8 @@ protected:
         }
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> problo{{0.0, 0.0, 0.0}};
-            amrex::Vector<amrex::Real> probhi{{32.0, 32.0, 32.0}};
+            amrex::Vector<amrex::Real> problo{{0.0_rt, 0.0_rt, 0.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{32.0_rt, 32.0_rt, 32.0_rt}};
 
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
@@ -88,18 +93,17 @@ struct ReadInputsOp<::amr_wind_tests::FlatPlate, SrcTrait>
         pp.get_either("epsilon", wdata.eps_inp);
         pp.get("pitch", wdata.pitch);
 
-        amrex::Real max_eps =
-            *std::max_element(wdata.eps_inp.begin(), wdata.eps_inp.end());
-        amrex::Real search_radius = max_eps * 3.0;
+        amrex::Real max_eps = *std::ranges::max_element(wdata.eps_inp);
+        amrex::Real search_radius = max_eps * 3.0_rt;
         const auto& p1 = wdata.start;
         const auto& p2 = wdata.end;
         // clang-format off
         info.bound_box = amrex::RealBox(
-            amrex::min(p1.x(), p2.x()) - search_radius,
-            amrex::min(p1.y(), p2.y()) - search_radius,
-            amrex::min(p1.z(), p2.z()) - search_radius,
-            amrex::max(p1.x(), p2.x()) + search_radius,
-            amrex::max(p1.y(), p2.y()) + search_radius,
+            amrex::min<amrex::Real>(p1.x(), p2.x()) - search_radius,
+            amrex::min<amrex::Real>(p1.y(), p2.y()) - search_radius,
+            amrex::min<amrex::Real>(p1.z(), p2.z()) - search_radius,
+            amrex::max<amrex::Real>(p1.x(), p2.x()) + search_radius,
+            amrex::max<amrex::Real>(p1.y(), p2.y()) + search_radius,
             amrex::max(p1.z(), p2.z()) + search_radius
         );
         // clang-format on
@@ -125,10 +129,18 @@ struct InitDataOp<::amr_wind_tests::FlatPlate, SrcTrait>
                 (grid.orientation[0].x().unit() ^ vs::Vector::ihat()) &
                 vs::Vector::jhat());
             auto angle_gold = ::amr_wind::utils::radians(wdata.pitch);
-            EXPECT_NEAR(wing_len, 8.0, 1.0e-12);
-            EXPECT_NEAR(angle1, angle_gold, 1.0e-12);
-            EXPECT_NEAR(angle2, -angle_gold, 1.0e-12);
-            EXPECT_NEAR(vs::mag_sqr(grid.orientation[0]), 3.0, 1.0e-12);
+            EXPECT_NEAR(
+                wing_len, 8.0_rt,
+                std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
+            EXPECT_NEAR(
+                angle1, angle_gold,
+                std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
+            EXPECT_NEAR(
+                angle2, -angle_gold,
+                std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
+            EXPECT_NEAR(
+                vs::mag_sqr(grid.orientation[0]), 3.0_rt,
+                std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
         }
     }
 };
@@ -141,13 +153,15 @@ struct UpdateVelOp<::amr_wind_tests::FlatPlate, SrcTrait>
         const auto& grid = data.grid();
         const auto& pos = grid.vel_pos;
         const auto& vel = grid.vel;
-        amrex::Real rerr = 0.0;
+        amrex::Real rerr = 0.0_rt;
         for (int i = 0; i < grid.vel_pos.size(); ++i) {
             const amrex::Real val = pos[i].x() + pos[i].y() + pos[i].z();
             const vs::Vector vgold{val, val, val};
             rerr += vs::mag_sqr(vel[i] - vgold);
         }
-        EXPECT_NEAR(rerr, 0.0, 1.0e-12);
+        EXPECT_NEAR(
+            rerr, 0.0_rt,
+            std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
     }
 };
 
@@ -164,7 +178,7 @@ struct ComputeForceOp<::amr_wind_tests::FlatPlate, SrcTrait>
             // Effective velocity at the wing control point in local frame
             auto wvel = tmat & grid.vel[ip];
             // Set spanwise component to zero to get a pure 2D velocity
-            wvel.y() = 0.0;
+            wvel.y() = 0.0_rt;
 
             const auto vmag = vs::mag(wvel);
             const auto aoa = std::atan2(wvel.z(), wvel.x());
@@ -174,7 +188,7 @@ struct ComputeForceOp<::amr_wind_tests::FlatPlate, SrcTrait>
             const auto cd = cl * std::sin(aoa);
 
             // Assume unit chord
-            const auto qval = 0.5 * vmag * vmag * dx[ip];
+            const auto qval = 0.5_rt * vmag * vmag * dx[ip];
             const auto lift = qval * cl;
             const auto drag = qval * cd;
             // Determine unit vector parallel and perpendicular to velocity
@@ -215,10 +229,12 @@ TEST_F(ActFlatPlateTest, act_model_init)
     {
         amrex::ParmParse pp("Actuator.TestFlatPlateLine");
         pp.add("num_points", 11);
-        pp.addarr("start", amrex::Vector<amrex::Real>{16.0, 12.0, 16.0});
-        pp.addarr("end", amrex::Vector<amrex::Real>{16.0, 20.0, 16.0});
-        pp.addarr("epsilon", amrex::Vector<amrex::Real>{3.0, 3.0, 3.0});
-        pp.add("pitch", 6.0);
+        pp.addarr(
+            "start", amrex::Vector<amrex::Real>{16.0_rt, 12.0_rt, 16.0_rt});
+        pp.addarr("end", amrex::Vector<amrex::Real>{16.0_rt, 20.0_rt, 16.0_rt});
+        pp.addarr(
+            "epsilon", amrex::Vector<amrex::Real>{3.0_rt, 3.0_rt, 3.0_rt});
+        pp.add("pitch", 6.0_rt);
     }
 
     ::amr_wind::actuator::ActModel<FlatPlate> flat_plate(sim(), "F1", 0);
@@ -242,7 +258,7 @@ TEST_F(ActFlatPlateTest, actuator_init)
     initialize_mesh();
     auto& vel = sim().repo().declare_field("velocity", 3, 3);
     auto& density = sim().repo().declare_field("density", 1, 3);
-    density.setVal(1.0);
+    density.setVal(1.0_rt);
     init_field(vel);
     amr_wind::actuator::ActuatorContainer::ParticleType::NextID(1U);
 
@@ -255,15 +271,18 @@ TEST_F(ActFlatPlateTest, actuator_init)
     {
         amrex::ParmParse pp("Actuator.TestFlatPlateLine");
         pp.add("num_points", 11);
-        pp.addarr("epsilon", amrex::Vector<amrex::Real>{1.0, 1.0, 1.0});
-        pp.add("pitch", 6.0);
+        pp.addarr(
+            "epsilon", amrex::Vector<amrex::Real>{1.0_rt, 1.0_rt, 1.0_rt});
+        pp.add("pitch", 6.0_rt);
     }
     {
         for (int i = 0; i < 2; ++i) {
-            amrex::Real zloc = 8.0 + 16.0 * i;
+            amrex::Real zloc = 8.0_rt + (16.0_rt * i);
             amrex::ParmParse pp("Actuator." + actuators[i]);
-            pp.addarr("start", amrex::Vector<amrex::Real>{16.0, 12.0, zloc});
-            pp.addarr("end", amrex::Vector<amrex::Real>{16.0, 20.0, zloc});
+            pp.addarr(
+                "start", amrex::Vector<amrex::Real>{16.0_rt, 12.0_rt, zloc});
+            pp.addarr(
+                "end", amrex::Vector<amrex::Real>{16.0_rt, 20.0_rt, zloc});
         }
     }
 
@@ -277,8 +296,8 @@ TEST_F(ActFlatPlateTest, flat_plate_init)
     initialize_mesh();
     auto& vel = sim().repo().declare_field("velocity", 3, 3);
     auto& density = sim().repo().declare_field("density", 1, 3);
-    density.setVal(1.0);
-    vel.setVal(10.0, 0, 1, 3);
+    density.setVal(1.0_rt);
+    vel.setVal(10.0_rt, 0, 1, 3);
     amr_wind::actuator::ActuatorContainer::ParticleType::NextID(1U);
 
     amrex::Vector<std::string> actuators{"T1", "T2"};
@@ -290,15 +309,18 @@ TEST_F(ActFlatPlateTest, flat_plate_init)
     {
         amrex::ParmParse pp("Actuator.FlatPlateLine");
         pp.add("num_points", 11);
-        pp.addarr("epsilon", amrex::Vector<amrex::Real>{1.0, 1.0, 1.0});
-        pp.add("pitch", 6.0);
+        pp.addarr(
+            "epsilon", amrex::Vector<amrex::Real>{1.0_rt, 1.0_rt, 1.0_rt});
+        pp.add("pitch", 6.0_rt);
     }
     {
         for (int i = 0; i < 2; ++i) {
-            amrex::Real zloc = 8.0 + 16.0 * i;
+            amrex::Real zloc = 8.0_rt + (16.0_rt * i);
             amrex::ParmParse pp("Actuator." + actuators[i]);
-            pp.addarr("start", amrex::Vector<amrex::Real>{16.0, 12.0, zloc});
-            pp.addarr("end", amrex::Vector<amrex::Real>{16.0, 20.0, zloc});
+            pp.addarr(
+                "start", amrex::Vector<amrex::Real>{16.0_rt, 12.0_rt, zloc});
+            pp.addarr(
+                "end", amrex::Vector<amrex::Real>{16.0_rt, 20.0_rt, zloc});
         }
     }
 

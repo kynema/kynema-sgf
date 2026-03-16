@@ -40,6 +40,8 @@
 #include "AMReX_Orientation.H"
 #include "AMReX_Geometry.H"
 
+using namespace amrex::literals;
+
 namespace amr_wind::fvm::stencil {
 
 namespace impl {
@@ -57,7 +59,7 @@ namespace impl {
  *
  *  \return A box with a single layer of cells adjacent to the boundary or empty
  */
-inline amrex::Box
+AMREX_INLINE amrex::Box
 box_lo(const amrex::Box& bx, const amrex::Geometry& geom, const int idir)
 {
     if (geom.isPeriodic(idir)) {
@@ -88,7 +90,7 @@ box_lo(const amrex::Box& bx, const amrex::Geometry& geom, const int idir)
  *
  *  \return A box with a single layer of cells adjacent to the boundary or empty
  */
-inline amrex::Box
+AMREX_INLINE amrex::Box
 box_hi(const amrex::Box& bx, const amrex::Geometry& geom, const int idir)
 {
     if (geom.isPeriodic(idir)) {
@@ -112,9 +114,9 @@ box_hi(const amrex::Box& bx, const amrex::Geometry& geom, const int idir)
 struct StencilInterior
 {
     // First derivatives
-    static constexpr amrex::Real c00 = 0.5;
-    static constexpr amrex::Real c01 = 0.0;
-    static constexpr amrex::Real c02 = -0.5;
+    static constexpr amrex::Real c00 = 0.5_rt;
+    static constexpr amrex::Real c01 = 0.0_rt;
+    static constexpr amrex::Real c02 = -0.5_rt;
     static constexpr amrex::Real c10 = c00;
     static constexpr amrex::Real c11 = c01;
     static constexpr amrex::Real c12 = c02;
@@ -123,9 +125,9 @@ struct StencilInterior
     static constexpr amrex::Real c22 = c02;
 
     // Second derivatives
-    static constexpr amrex::Real s00 = 1.0;
-    static constexpr amrex::Real s01 = -2.0;
-    static constexpr amrex::Real s02 = 1.0;
+    static constexpr amrex::Real s00 = 1.0_rt;
+    static constexpr amrex::Real s01 = -2.0_rt;
+    static constexpr amrex::Real s02 = 1.0_rt;
     static constexpr amrex::Real s10 = s00;
     static constexpr amrex::Real s11 = s01;
     static constexpr amrex::Real s12 = s02;
@@ -134,9 +136,9 @@ struct StencilInterior
     static constexpr amrex::Real s22 = s02;
 
     // Filter
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.5;
-    static constexpr amrex::Real f02 = 0.25;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.5_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
     static constexpr amrex::Real f10 = f00;
     static constexpr amrex::Real f11 = f01;
     static constexpr amrex::Real f12 = f02;
@@ -156,32 +158,32 @@ struct StencilILO
     static constexpr int direction = 0;
     static constexpr int side = amrex::Orientation::Side::low;
 
-    static constexpr amrex::Real c00 = 1.0 / 3.0;
-    static constexpr amrex::Real c01 = 1.0;
-    static constexpr amrex::Real c02 = -4.0 / 3.0;
-    static constexpr amrex::Real c10 = 0.5;
-    static constexpr amrex::Real c11 = 0.0;
-    static constexpr amrex::Real c12 = -0.5;
+    static constexpr amrex::Real c00 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = 1.0_rt;
+    static constexpr amrex::Real c02 = -4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c10 = 0.5_rt;
+    static constexpr amrex::Real c11 = 0.0_rt;
+    static constexpr amrex::Real c12 = -0.5_rt;
     static constexpr amrex::Real c20 = c10;
     static constexpr amrex::Real c21 = c11;
     static constexpr amrex::Real c22 = c12;
 
-    static constexpr amrex::Real s00 = 4. / 3.; // axx
-    static constexpr amrex::Real s01 = -4;      // bxx
-    static constexpr amrex::Real s02 = 8. / 3.; // cxx
-    static constexpr amrex::Real s10 = 1;       // ayy
-    static constexpr amrex::Real s11 = -2;      // byy
-    static constexpr amrex::Real s12 = 1;       // cyy
-    static constexpr amrex::Real s20 = s10;     // azz
-    static constexpr amrex::Real s21 = s11;     // bzz
-    static constexpr amrex::Real s22 = s12;     // czz
+    static constexpr amrex::Real s00 = 4.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 8.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = 1.0_rt;          // ayy
+    static constexpr amrex::Real s11 = -2.0_rt;         // byy
+    static constexpr amrex::Real s12 = 1.0_rt;          // cyy
+    static constexpr amrex::Real s20 = s10;             // azz
+    static constexpr amrex::Real s21 = s11;             // bzz
+    static constexpr amrex::Real s22 = s12;             // czz
 
-    static constexpr amrex::Real f00 = 0.125;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.25;
-    static constexpr amrex::Real f10 = 0.25;
-    static constexpr amrex::Real f11 = 0.5;
-    static constexpr amrex::Real f12 = 0.25;
+    static constexpr amrex::Real f00 = 0.125_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
+    static constexpr amrex::Real f10 = 0.25_rt;
+    static constexpr amrex::Real f11 = 0.5_rt;
+    static constexpr amrex::Real f12 = 0.25_rt;
     static constexpr amrex::Real f20 = f10;
     static constexpr amrex::Real f21 = f11;
     static constexpr amrex::Real f22 = f12;
@@ -197,32 +199,32 @@ struct StencilJLO
     static constexpr int direction = 1;
     static constexpr int side = amrex::Orientation::Side::low;
 
-    static constexpr amrex::Real c00 = 0.5;
-    static constexpr amrex::Real c01 = 0.0;
-    static constexpr amrex::Real c02 = -0.5;
-    static constexpr amrex::Real c10 = 1.0 / 3.0;
-    static constexpr amrex::Real c11 = 1.0;
-    static constexpr amrex::Real c12 = -4.0 / 3.0;
+    static constexpr amrex::Real c00 = 0.5_rt;
+    static constexpr amrex::Real c01 = 0.0_rt;
+    static constexpr amrex::Real c02 = -0.5_rt;
+    static constexpr amrex::Real c10 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c11 = 1.0_rt;
+    static constexpr amrex::Real c12 = -4.0_rt / 3.0_rt;
     static constexpr amrex::Real c20 = c00;
     static constexpr amrex::Real c21 = c01;
     static constexpr amrex::Real c22 = c02;
 
-    static constexpr amrex::Real s00 = 1.0;     // axx
-    static constexpr amrex::Real s01 = -2.0;    // bxx
-    static constexpr amrex::Real s02 = 1.0;     // cxx
-    static constexpr amrex::Real s10 = 4. / 3.; // ayy
-    static constexpr amrex::Real s11 = -4.;     // byy
-    static constexpr amrex::Real s12 = 8. / 3.; // cyy
-    static constexpr amrex::Real s20 = s00;     // azz
-    static constexpr amrex::Real s21 = s01;     // bzz
-    static constexpr amrex::Real s22 = s02;     // czz
+    static constexpr amrex::Real s00 = 1.0_rt;          // axx
+    static constexpr amrex::Real s01 = -2.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 1.0_rt;          // cxx
+    static constexpr amrex::Real s10 = 4.0_rt / 3.0_rt; // ayy
+    static constexpr amrex::Real s11 = -4.0_rt;         // byy
+    static constexpr amrex::Real s12 = 8.0_rt / 3.0_rt; // cyy
+    static constexpr amrex::Real s20 = s00;             // azz
+    static constexpr amrex::Real s21 = s01;             // bzz
+    static constexpr amrex::Real s22 = s02;             // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.5;
-    static constexpr amrex::Real f02 = 0.25;
-    static constexpr amrex::Real f10 = 0.125;
-    static constexpr amrex::Real f11 = 0.625;
-    static constexpr amrex::Real f12 = 0.25;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.5_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
+    static constexpr amrex::Real f10 = 0.125_rt;
+    static constexpr amrex::Real f11 = 0.625_rt;
+    static constexpr amrex::Real f12 = 0.25_rt;
     static constexpr amrex::Real f20 = f00;
     static constexpr amrex::Real f21 = f01;
     static constexpr amrex::Real f22 = f02;
@@ -238,35 +240,35 @@ struct StencilKLO
     static constexpr int direction = 2;
     static constexpr int side = amrex::Orientation::Side::low;
 
-    static constexpr amrex::Real c00 = 0.5;
-    static constexpr amrex::Real c01 = 0.0;
-    static constexpr amrex::Real c02 = -0.5;
+    static constexpr amrex::Real c00 = 0.5_rt;
+    static constexpr amrex::Real c01 = 0.0_rt;
+    static constexpr amrex::Real c02 = -0.5_rt;
     static constexpr amrex::Real c10 = c00;
     static constexpr amrex::Real c11 = c01;
     static constexpr amrex::Real c12 = c02;
-    static constexpr amrex::Real c20 = 1.0 / 3.0;
-    static constexpr amrex::Real c21 = 1.0;
-    static constexpr amrex::Real c22 = -4.0 / 3.0;
+    static constexpr amrex::Real c20 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c21 = 1.0_rt;
+    static constexpr amrex::Real c22 = -4.0_rt / 3.0_rt;
 
-    static constexpr amrex::Real s00 = 1.0;     // axx
-    static constexpr amrex::Real s01 = -2.0;    // bxx
-    static constexpr amrex::Real s02 = 1.0;     // cxx
-    static constexpr amrex::Real s10 = s00;     // ayy
-    static constexpr amrex::Real s11 = s01;     // byy
-    static constexpr amrex::Real s12 = s02;     // cyy
-    static constexpr amrex::Real s20 = 4. / 3.; // azz
-    static constexpr amrex::Real s21 = -4.;     // bzz
-    static constexpr amrex::Real s22 = 8. / 3.; // czz
+    static constexpr amrex::Real s00 = 1.0_rt;          // axx
+    static constexpr amrex::Real s01 = -2.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 1.0_rt;          // cxx
+    static constexpr amrex::Real s10 = s00;             // ayy
+    static constexpr amrex::Real s11 = s01;             // byy
+    static constexpr amrex::Real s12 = s02;             // cyy
+    static constexpr amrex::Real s20 = 4.0_rt / 3.0_rt; // azz
+    static constexpr amrex::Real s21 = -4.0_rt;         // bzz
+    static constexpr amrex::Real s22 = 8.0_rt / 3.0_rt; // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.5;
-    static constexpr amrex::Real f02 = 0.25;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.5_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
     static constexpr amrex::Real f10 = f00;
     static constexpr amrex::Real f11 = f01;
     static constexpr amrex::Real f12 = f02;
-    static constexpr amrex::Real f20 = 0.125;
-    static constexpr amrex::Real f21 = 0.625;
-    static constexpr amrex::Real f22 = 0.25;
+    static constexpr amrex::Real f20 = 0.125_rt;
+    static constexpr amrex::Real f21 = 0.625_rt;
+    static constexpr amrex::Real f22 = 0.25_rt;
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -279,32 +281,32 @@ struct StencilIHI
     static constexpr int direction = 0;
     static constexpr int side = amrex::Orientation::Side::high;
 
-    static constexpr amrex::Real c00 = 4.0 / 3.0;
-    static constexpr amrex::Real c01 = -1.0;
-    static constexpr amrex::Real c02 = -1.0 / 3.0;
-    static constexpr amrex::Real c10 = 0.5;
-    static constexpr amrex::Real c11 = 0.0;
-    static constexpr amrex::Real c12 = -0.5;
+    static constexpr amrex::Real c00 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = -1.0_rt;
+    static constexpr amrex::Real c02 = -1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c10 = 0.5_rt;
+    static constexpr amrex::Real c11 = 0.0_rt;
+    static constexpr amrex::Real c12 = -0.5_rt;
     static constexpr amrex::Real c20 = c10;
     static constexpr amrex::Real c21 = c11;
     static constexpr amrex::Real c22 = c12;
 
-    static constexpr amrex::Real s00 = 8. / 3.; // axx
-    static constexpr amrex::Real s01 = -4.;     // bxx
-    static constexpr amrex::Real s02 = 4. / 3.; // cxx
-    static constexpr amrex::Real s10 = 1.;      // ayy
-    static constexpr amrex::Real s11 = -2.;     // byy
-    static constexpr amrex::Real s12 = 1.;      // cyy
-    static constexpr amrex::Real s20 = s10;     // azz
-    static constexpr amrex::Real s21 = s11;     // bzz
-    static constexpr amrex::Real s22 = s12;     // czz
+    static constexpr amrex::Real s00 = 8.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 4.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = 1.0_rt;          // ayy
+    static constexpr amrex::Real s11 = -2.0_rt;         // byy
+    static constexpr amrex::Real s12 = 1.0_rt;          // cyy
+    static constexpr amrex::Real s20 = s10;             // azz
+    static constexpr amrex::Real s21 = s11;             // bzz
+    static constexpr amrex::Real s22 = s12;             // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.125;
-    static constexpr amrex::Real f10 = 0.25;
-    static constexpr amrex::Real f11 = 0.5;
-    static constexpr amrex::Real f12 = 0.25;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.125_rt;
+    static constexpr amrex::Real f10 = 0.25_rt;
+    static constexpr amrex::Real f11 = 0.5_rt;
+    static constexpr amrex::Real f12 = 0.25_rt;
     static constexpr amrex::Real f20 = f10;
     static constexpr amrex::Real f21 = f11;
     static constexpr amrex::Real f22 = f12;
@@ -320,32 +322,32 @@ struct StencilJHI
     static constexpr int direction = 1;
     static constexpr int side = amrex::Orientation::Side::high;
 
-    static constexpr amrex::Real c00 = 0.5;
-    static constexpr amrex::Real c01 = 0.0;
-    static constexpr amrex::Real c02 = -0.5;
-    static constexpr amrex::Real c10 = 4.0 / 3.0;
-    static constexpr amrex::Real c11 = -1.0;
-    static constexpr amrex::Real c12 = -1.0 / 3.0;
+    static constexpr amrex::Real c00 = 0.5_rt;
+    static constexpr amrex::Real c01 = 0.0_rt;
+    static constexpr amrex::Real c02 = -0.5_rt;
+    static constexpr amrex::Real c10 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c11 = -1.0_rt;
+    static constexpr amrex::Real c12 = -1.0_rt / 3.0_rt;
     static constexpr amrex::Real c20 = c00;
     static constexpr amrex::Real c21 = c01;
     static constexpr amrex::Real c22 = c02;
 
-    static constexpr amrex::Real s00 = 1.0;     // axx
-    static constexpr amrex::Real s01 = -2.0;    // bxx
-    static constexpr amrex::Real s02 = 1.0;     // cxx
-    static constexpr amrex::Real s10 = 8. / 3.; // ayy
-    static constexpr amrex::Real s11 = -4.;     // byy
-    static constexpr amrex::Real s12 = 4. / 3.; // cyy
-    static constexpr amrex::Real s20 = s00;     // azz
-    static constexpr amrex::Real s21 = s01;     // bzz
-    static constexpr amrex::Real s22 = s02;     // czz
+    static constexpr amrex::Real s00 = 1.0_rt;          // axx
+    static constexpr amrex::Real s01 = -2.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 1.0_rt;          // cxx
+    static constexpr amrex::Real s10 = 8.0_rt / 3.0_rt; // ayy
+    static constexpr amrex::Real s11 = -4.0_rt;         // byy
+    static constexpr amrex::Real s12 = 4.0_rt / 3.0_rt; // cyy
+    static constexpr amrex::Real s20 = s00;             // azz
+    static constexpr amrex::Real s21 = s01;             // bzz
+    static constexpr amrex::Real s22 = s02;             // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.5;
-    static constexpr amrex::Real f02 = 0.25;
-    static constexpr amrex::Real f10 = 0.25;
-    static constexpr amrex::Real f11 = 0.625;
-    static constexpr amrex::Real f12 = 0.125;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.5_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
+    static constexpr amrex::Real f10 = 0.25_rt;
+    static constexpr amrex::Real f11 = 0.625_rt;
+    static constexpr amrex::Real f12 = 0.125_rt;
     static constexpr amrex::Real f20 = f00;
     static constexpr amrex::Real f21 = f01;
     static constexpr amrex::Real f22 = f02;
@@ -361,35 +363,35 @@ struct StencilKHI
     static constexpr int direction = 2;
     static constexpr int side = amrex::Orientation::Side::high;
 
-    static constexpr amrex::Real c00 = 0.5;
-    static constexpr amrex::Real c01 = 0.0;
-    static constexpr amrex::Real c02 = -0.5;
+    static constexpr amrex::Real c00 = 0.5_rt;
+    static constexpr amrex::Real c01 = 0.0_rt;
+    static constexpr amrex::Real c02 = -0.5_rt;
     static constexpr amrex::Real c10 = c00;
     static constexpr amrex::Real c11 = c01;
     static constexpr amrex::Real c12 = c02;
-    static constexpr amrex::Real c20 = 4.0 / 3.0;
-    static constexpr amrex::Real c21 = -1.0;
-    static constexpr amrex::Real c22 = -1.0 / 3.0;
+    static constexpr amrex::Real c20 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c21 = -1.0_rt;
+    static constexpr amrex::Real c22 = -1.0_rt / 3.0_rt;
 
-    static constexpr amrex::Real s00 = 1.0;     // axx
-    static constexpr amrex::Real s01 = -2.0;    // bxx
-    static constexpr amrex::Real s02 = 1.0;     // cxx
-    static constexpr amrex::Real s10 = s00;     // ayy
-    static constexpr amrex::Real s11 = s01;     // byy
-    static constexpr amrex::Real s12 = s02;     // cyy
-    static constexpr amrex::Real s20 = 8. / 3.; // azz
-    static constexpr amrex::Real s21 = -4.;     // bzz
-    static constexpr amrex::Real s22 = 4. / 3.; // czz
+    static constexpr amrex::Real s00 = 1.0_rt;          // axx
+    static constexpr amrex::Real s01 = -2.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 1.0_rt;          // cxx
+    static constexpr amrex::Real s10 = s00;             // ayy
+    static constexpr amrex::Real s11 = s01;             // byy
+    static constexpr amrex::Real s12 = s02;             // cyy
+    static constexpr amrex::Real s20 = 8.0_rt / 3.0_rt; // azz
+    static constexpr amrex::Real s21 = -4.0_rt;         // bzz
+    static constexpr amrex::Real s22 = 4.0_rt / 3.0_rt; // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.5;
-    static constexpr amrex::Real f02 = 0.25;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.5_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
     static constexpr amrex::Real f10 = f00;
     static constexpr amrex::Real f11 = f01;
     static constexpr amrex::Real f12 = f02;
-    static constexpr amrex::Real f20 = 0.25;
-    static constexpr amrex::Real f21 = 0.625;
-    static constexpr amrex::Real f22 = 0.125;
+    static constexpr amrex::Real f20 = 0.25_rt;
+    static constexpr amrex::Real f21 = 0.625_rt;
+    static constexpr amrex::Real f22 = 0.125_rt;
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -401,35 +403,35 @@ struct StencilIloJlo
 {
     static constexpr int direction = 10;
 
-    static constexpr amrex::Real c00 = 1.0 / 3;
-    static constexpr amrex::Real c01 = 1.0;
-    static constexpr amrex::Real c02 = -4.0 / 3;
+    static constexpr amrex::Real c00 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = 1.0_rt;
+    static constexpr amrex::Real c02 = -4.0_rt / 3.0_rt;
     static constexpr amrex::Real c10 = c00;
     static constexpr amrex::Real c11 = c01;
     static constexpr amrex::Real c12 = c02;
-    static constexpr amrex::Real c20 = 0.5;
-    static constexpr amrex::Real c21 = 0;
-    static constexpr amrex::Real c22 = -0.5;
+    static constexpr amrex::Real c20 = 0.5_rt;
+    static constexpr amrex::Real c21 = 0.0_rt;
+    static constexpr amrex::Real c22 = -0.5_rt;
 
-    static constexpr amrex::Real s00 = 4. / 3.; // axx
-    static constexpr amrex::Real s01 = -4;      // bxx
-    static constexpr amrex::Real s02 = 8. / 3.; // cxx
-    static constexpr amrex::Real s10 = s00;     // ayy
-    static constexpr amrex::Real s11 = s01;     // byy
-    static constexpr amrex::Real s12 = s02;     // cyy
-    static constexpr amrex::Real s20 = 1;       // azz
-    static constexpr amrex::Real s21 = -2;      // bzz
-    static constexpr amrex::Real s22 = 1;       // czz
+    static constexpr amrex::Real s00 = 4.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 8.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = s00;             // ayy
+    static constexpr amrex::Real s11 = s01;             // byy
+    static constexpr amrex::Real s12 = s02;             // cyy
+    static constexpr amrex::Real s20 = 1.0_rt;          // azz
+    static constexpr amrex::Real s21 = -2.0_rt;         // bzz
+    static constexpr amrex::Real s22 = 1.0_rt;          // czz
 
-    static constexpr amrex::Real f00 = 0.125;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.25;
+    static constexpr amrex::Real f00 = 0.125_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
     static constexpr amrex::Real f10 = f00;
     static constexpr amrex::Real f11 = f01;
     static constexpr amrex::Real f12 = f02;
-    static constexpr amrex::Real f20 = 0.25;
-    static constexpr amrex::Real f21 = 0.5;
-    static constexpr amrex::Real f22 = 0.25;
+    static constexpr amrex::Real f20 = 0.25_rt;
+    static constexpr amrex::Real f21 = 0.5_rt;
+    static constexpr amrex::Real f22 = 0.25_rt;
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -441,32 +443,32 @@ struct StencilJloKlo
 {
     static constexpr int direction = 11;
 
-    static constexpr amrex::Real c00 = 0.5;
-    static constexpr amrex::Real c01 = 0;
-    static constexpr amrex::Real c02 = -0.5;
-    static constexpr amrex::Real c10 = 1.0 / 3;
-    static constexpr amrex::Real c11 = 1.0;
-    static constexpr amrex::Real c12 = -4.0 / 3;
+    static constexpr amrex::Real c00 = 0.5_rt;
+    static constexpr amrex::Real c01 = 0.0_rt;
+    static constexpr amrex::Real c02 = -0.5_rt;
+    static constexpr amrex::Real c10 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c11 = 1.0_rt;
+    static constexpr amrex::Real c12 = -4.0_rt / 3.0_rt;
     static constexpr amrex::Real c20 = c10;
     static constexpr amrex::Real c21 = c11;
     static constexpr amrex::Real c22 = c12;
 
-    static constexpr amrex::Real s00 = 1;       // axx
-    static constexpr amrex::Real s01 = -2;      // bxx
-    static constexpr amrex::Real s02 = 1;       // cxx
-    static constexpr amrex::Real s10 = 4. / 3.; // ayy
-    static constexpr amrex::Real s11 = -4;      // byy
-    static constexpr amrex::Real s12 = 8. / 3.; // cyy
-    static constexpr amrex::Real s20 = s10;     // azz
-    static constexpr amrex::Real s21 = s11;     // bzz
-    static constexpr amrex::Real s22 = s12;     // czz
+    static constexpr amrex::Real s00 = 1.0_rt;          // axx
+    static constexpr amrex::Real s01 = -2.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 1.0_rt;          // cxx
+    static constexpr amrex::Real s10 = 4.0_rt / 3.0_rt; // ayy
+    static constexpr amrex::Real s11 = -4.0_rt;         // byy
+    static constexpr amrex::Real s12 = 8.0_rt / 3.0_rt; // cyy
+    static constexpr amrex::Real s20 = s10;             // azz
+    static constexpr amrex::Real s21 = s11;             // bzz
+    static constexpr amrex::Real s22 = s12;             // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.5;
-    static constexpr amrex::Real f02 = 0.25;
-    static constexpr amrex::Real f10 = 0.125;
-    static constexpr amrex::Real f11 = 0.625;
-    static constexpr amrex::Real f12 = 0.25;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.5_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
+    static constexpr amrex::Real f10 = 0.125_rt;
+    static constexpr amrex::Real f11 = 0.625_rt;
+    static constexpr amrex::Real f12 = 0.25_rt;
     static constexpr amrex::Real f20 = f10;
     static constexpr amrex::Real f21 = f11;
     static constexpr amrex::Real f22 = f12;
@@ -481,32 +483,32 @@ struct StencilIloKlo
 {
     static constexpr int direction = 12;
 
-    static constexpr amrex::Real c00 = 1.0 / 3;
-    static constexpr amrex::Real c01 = 1.0;
-    static constexpr amrex::Real c02 = -4.0 / 3;
-    static constexpr amrex::Real c10 = 0.5;
-    static constexpr amrex::Real c11 = 0;
-    static constexpr amrex::Real c12 = -0.5;
+    static constexpr amrex::Real c00 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = 1.0_rt;
+    static constexpr amrex::Real c02 = -4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c10 = 0.5_rt;
+    static constexpr amrex::Real c11 = 0.0_rt;
+    static constexpr amrex::Real c12 = -0.5_rt;
     static constexpr amrex::Real c20 = c00;
     static constexpr amrex::Real c21 = c01;
     static constexpr amrex::Real c22 = c02;
 
-    static constexpr amrex::Real s00 = 4. / 3.; // axx
-    static constexpr amrex::Real s01 = -4;      // bxx
-    static constexpr amrex::Real s02 = 8. / 3.; // cxx
-    static constexpr amrex::Real s10 = 1;       // ayy
-    static constexpr amrex::Real s11 = -2;      // byy
-    static constexpr amrex::Real s12 = 1;       // cyy
-    static constexpr amrex::Real s20 = s00;     // azz
-    static constexpr amrex::Real s21 = s01;     // bzz
-    static constexpr amrex::Real s22 = s02;     // czz
+    static constexpr amrex::Real s00 = 4.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 8.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = 1.0_rt;          // ayy
+    static constexpr amrex::Real s11 = -2.0_rt;         // byy
+    static constexpr amrex::Real s12 = 1.0_rt;          // cyy
+    static constexpr amrex::Real s20 = s00;             // azz
+    static constexpr amrex::Real s21 = s01;             // bzz
+    static constexpr amrex::Real s22 = s02;             // czz
 
-    static constexpr amrex::Real f00 = 0.125;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.25;
-    static constexpr amrex::Real f10 = 0.25;
-    static constexpr amrex::Real f11 = 0.5;
-    static constexpr amrex::Real f12 = 0.25;
+    static constexpr amrex::Real f00 = 0.125_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
+    static constexpr amrex::Real f10 = 0.25_rt;
+    static constexpr amrex::Real f11 = 0.5_rt;
+    static constexpr amrex::Real f12 = 0.25_rt;
     static constexpr amrex::Real f20 = f00;
     static constexpr amrex::Real f21 = f01;
     static constexpr amrex::Real f22 = f02;
@@ -521,35 +523,35 @@ struct StencilIhiJhi
 {
     static constexpr int direction = 13;
 
-    static constexpr amrex::Real c00 = 4.0 / 3;
-    static constexpr amrex::Real c01 = -1;
-    static constexpr amrex::Real c02 = -1 / 3.;
+    static constexpr amrex::Real c00 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = -1.0_rt;
+    static constexpr amrex::Real c02 = -1.0_rt / 3.0_rt;
     static constexpr amrex::Real c10 = c00;
     static constexpr amrex::Real c11 = c01;
     static constexpr amrex::Real c12 = c02;
-    static constexpr amrex::Real c20 = 0.5;
-    static constexpr amrex::Real c21 = 0.0;
-    static constexpr amrex::Real c22 = -0.5;
+    static constexpr amrex::Real c20 = 0.5_rt;
+    static constexpr amrex::Real c21 = 0.0_rt;
+    static constexpr amrex::Real c22 = -0.5_rt;
 
-    static constexpr amrex::Real s00 = 8. / 3.; // axx
-    static constexpr amrex::Real s01 = -4.;     // bxx
-    static constexpr amrex::Real s02 = 4. / 3.; // cxx
-    static constexpr amrex::Real s10 = s00;     // ayy
-    static constexpr amrex::Real s11 = s01;     // byy
-    static constexpr amrex::Real s12 = s02;     // cyy
-    static constexpr amrex::Real s20 = 1.;      // azz
-    static constexpr amrex::Real s21 = -2.;     // bzz
-    static constexpr amrex::Real s22 = 1.;      // czz
+    static constexpr amrex::Real s00 = 8.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 4.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = s00;             // ayy
+    static constexpr amrex::Real s11 = s01;             // byy
+    static constexpr amrex::Real s12 = s02;             // cyy
+    static constexpr amrex::Real s20 = 1.0_rt;          // azz
+    static constexpr amrex::Real s21 = -2.0_rt;         // bzz
+    static constexpr amrex::Real s22 = 1.0_rt;          // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.125;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.125_rt;
     static constexpr amrex::Real f10 = f00;
     static constexpr amrex::Real f11 = f01;
     static constexpr amrex::Real f12 = f02;
-    static constexpr amrex::Real f20 = 0.25;
-    static constexpr amrex::Real f21 = 0.5;
-    static constexpr amrex::Real f22 = 0.25;
+    static constexpr amrex::Real f20 = 0.25_rt;
+    static constexpr amrex::Real f21 = 0.5_rt;
+    static constexpr amrex::Real f22 = 0.25_rt;
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -561,32 +563,32 @@ struct StencilJhiKhi
 {
     static constexpr int direction = 14;
 
-    static constexpr amrex::Real c00 = 0.5;
-    static constexpr amrex::Real c01 = 0.0;
-    static constexpr amrex::Real c02 = -0.5;
-    static constexpr amrex::Real c10 = 4. / 3.;
-    static constexpr amrex::Real c11 = -1.;
-    static constexpr amrex::Real c12 = -1. / 3.;
+    static constexpr amrex::Real c00 = 0.5_rt;
+    static constexpr amrex::Real c01 = 0.0_rt;
+    static constexpr amrex::Real c02 = -0.5_rt;
+    static constexpr amrex::Real c10 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c11 = -1.0_rt;
+    static constexpr amrex::Real c12 = -1.0_rt / 3.0_rt;
     static constexpr amrex::Real c20 = c10;
     static constexpr amrex::Real c21 = c11;
     static constexpr amrex::Real c22 = c12;
 
-    static constexpr amrex::Real s00 = 1.0;     // axx
-    static constexpr amrex::Real s01 = -2.0;    // bxx
-    static constexpr amrex::Real s02 = 1.0;     // cxx
-    static constexpr amrex::Real s10 = 8. / 3.; // ayy
-    static constexpr amrex::Real s11 = -4.;     // byy
-    static constexpr amrex::Real s12 = 4. / 3.; // cyy
-    static constexpr amrex::Real s20 = s10;     // azz
-    static constexpr amrex::Real s21 = s11;     // bzz
-    static constexpr amrex::Real s22 = s12;     // czz
+    static constexpr amrex::Real s00 = 1.0_rt;          // axx
+    static constexpr amrex::Real s01 = -2.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 1.0_rt;          // cxx
+    static constexpr amrex::Real s10 = 8.0_rt / 3.0_rt; // ayy
+    static constexpr amrex::Real s11 = -4.0_rt;         // byy
+    static constexpr amrex::Real s12 = 4.0_rt / 3.0_rt; // cyy
+    static constexpr amrex::Real s20 = s10;             // azz
+    static constexpr amrex::Real s21 = s11;             // bzz
+    static constexpr amrex::Real s22 = s12;             // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.5;
-    static constexpr amrex::Real f02 = 0.25;
-    static constexpr amrex::Real f10 = 0.25;
-    static constexpr amrex::Real f11 = 0.625;
-    static constexpr amrex::Real f12 = 0.125;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.5_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
+    static constexpr amrex::Real f10 = 0.25_rt;
+    static constexpr amrex::Real f11 = 0.625_rt;
+    static constexpr amrex::Real f12 = 0.125_rt;
     static constexpr amrex::Real f20 = f10;
     static constexpr amrex::Real f21 = f11;
     static constexpr amrex::Real f22 = f12;
@@ -601,32 +603,32 @@ struct StencilIhiKhi
 {
     static constexpr int direction = 15;
 
-    static constexpr amrex::Real c00 = 4.0 / 3;
-    static constexpr amrex::Real c01 = -1;
-    static constexpr amrex::Real c02 = -1 / 3.;
-    static constexpr amrex::Real c10 = 0.5;
-    static constexpr amrex::Real c11 = 0.0;
-    static constexpr amrex::Real c12 = -0.5;
+    static constexpr amrex::Real c00 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = -1.0_rt;
+    static constexpr amrex::Real c02 = -1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c10 = 0.5_rt;
+    static constexpr amrex::Real c11 = 0.0_rt;
+    static constexpr amrex::Real c12 = -0.5_rt;
     static constexpr amrex::Real c20 = c00;
     static constexpr amrex::Real c21 = c01;
     static constexpr amrex::Real c22 = c02;
 
-    static constexpr amrex::Real s00 = 8. / 3.; // axx
-    static constexpr amrex::Real s01 = -4.;     // bxx
-    static constexpr amrex::Real s02 = 4. / 3.; // cxx
-    static constexpr amrex::Real s10 = 1.;      // ayy
-    static constexpr amrex::Real s11 = -2.;     // byy
-    static constexpr amrex::Real s12 = 1.;      // cyy
-    static constexpr amrex::Real s20 = s00;     // azz
-    static constexpr amrex::Real s21 = s01;     // bzz
-    static constexpr amrex::Real s22 = s02;     // czz
+    static constexpr amrex::Real s00 = 8.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 4.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = 1.0_rt;          // ayy
+    static constexpr amrex::Real s11 = -2.0_rt;         // byy
+    static constexpr amrex::Real s12 = 1.0_rt;          // cyy
+    static constexpr amrex::Real s20 = s00;             // azz
+    static constexpr amrex::Real s21 = s01;             // bzz
+    static constexpr amrex::Real s22 = s02;             // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.125;
-    static constexpr amrex::Real f10 = 0.25;
-    static constexpr amrex::Real f11 = 0.5;
-    static constexpr amrex::Real f12 = 0.25;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.125_rt;
+    static constexpr amrex::Real f10 = 0.25_rt;
+    static constexpr amrex::Real f11 = 0.5_rt;
+    static constexpr amrex::Real f12 = 0.25_rt;
     static constexpr amrex::Real f20 = f00;
     static constexpr amrex::Real f21 = f01;
     static constexpr amrex::Real f22 = f02;
@@ -641,35 +643,35 @@ struct StencilIloJhi
 {
     static constexpr int direction = 16;
 
-    static constexpr amrex::Real c00 = 1.0 / 3;
-    static constexpr amrex::Real c01 = 1.0;
-    static constexpr amrex::Real c02 = -4.0 / 3;
-    static constexpr amrex::Real c10 = 4. / 3;
-    static constexpr amrex::Real c11 = -1;
-    static constexpr amrex::Real c12 = -1. / 3;
-    static constexpr amrex::Real c20 = 0.5;
-    static constexpr amrex::Real c21 = 0;
-    static constexpr amrex::Real c22 = -0.5;
+    static constexpr amrex::Real c00 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = 1.0_rt;
+    static constexpr amrex::Real c02 = -4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c10 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c11 = -1.0_rt;
+    static constexpr amrex::Real c12 = -1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c20 = 0.5_rt;
+    static constexpr amrex::Real c21 = 0.0_rt;
+    static constexpr amrex::Real c22 = -0.5_rt;
 
-    static constexpr amrex::Real s00 = 4. / 3.; // axx
-    static constexpr amrex::Real s01 = -4;      // bxx
-    static constexpr amrex::Real s02 = 8. / 3.; // cxx
-    static constexpr amrex::Real s10 = 8. / 3.; // ayy
-    static constexpr amrex::Real s11 = -4.;     // byy
-    static constexpr amrex::Real s12 = 4. / 3.; // cyy
-    static constexpr amrex::Real s20 = 1;       // azz
-    static constexpr amrex::Real s21 = -2;      // bzz
-    static constexpr amrex::Real s22 = 1;       // czz
+    static constexpr amrex::Real s00 = 4.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 8.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = 8.0_rt / 3.0_rt; // ayy
+    static constexpr amrex::Real s11 = -4.0_rt;         // byy
+    static constexpr amrex::Real s12 = 4.0_rt / 3.0_rt; // cyy
+    static constexpr amrex::Real s20 = 1.0_rt;          // azz
+    static constexpr amrex::Real s21 = -2.0_rt;         // bzz
+    static constexpr amrex::Real s22 = 1.0_rt;          // czz
 
-    static constexpr amrex::Real f00 = 0.125;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.25;
-    static constexpr amrex::Real f10 = 0.25;
-    static constexpr amrex::Real f11 = 0.625;
-    static constexpr amrex::Real f12 = 0.125;
-    static constexpr amrex::Real f20 = 0.25;
-    static constexpr amrex::Real f21 = 0.5;
-    static constexpr amrex::Real f22 = 0.25;
+    static constexpr amrex::Real f00 = 0.125_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
+    static constexpr amrex::Real f10 = 0.25_rt;
+    static constexpr amrex::Real f11 = 0.625_rt;
+    static constexpr amrex::Real f12 = 0.125_rt;
+    static constexpr amrex::Real f20 = 0.25_rt;
+    static constexpr amrex::Real f21 = 0.5_rt;
+    static constexpr amrex::Real f22 = 0.25_rt;
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -681,35 +683,35 @@ struct StencilJloKhi
 {
     static constexpr int direction = 17;
 
-    static constexpr amrex::Real c00 = 0.5;
-    static constexpr amrex::Real c01 = 0;
-    static constexpr amrex::Real c02 = -0.5;
-    static constexpr amrex::Real c10 = 1.0 / 3;
-    static constexpr amrex::Real c11 = 1.0;
-    static constexpr amrex::Real c12 = -4.0 / 3;
-    static constexpr amrex::Real c20 = 4. / 3.;
-    static constexpr amrex::Real c21 = -1.;
-    static constexpr amrex::Real c22 = -1. / 3.;
+    static constexpr amrex::Real c00 = 0.5_rt;
+    static constexpr amrex::Real c01 = 0.0_rt;
+    static constexpr amrex::Real c02 = -0.5_rt;
+    static constexpr amrex::Real c10 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c11 = 1.0_rt;
+    static constexpr amrex::Real c12 = -4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c20 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c21 = -1.0_rt;
+    static constexpr amrex::Real c22 = -1.0_rt / 3.0_rt;
 
-    static constexpr amrex::Real s00 = 1;       // axx
-    static constexpr amrex::Real s01 = -2;      // bxx
-    static constexpr amrex::Real s02 = 1;       // cxx
-    static constexpr amrex::Real s10 = 4. / 3.; // ayy
-    static constexpr amrex::Real s11 = -4;      // byy
-    static constexpr amrex::Real s12 = 8. / 3.; // cyy
-    static constexpr amrex::Real s20 = 8. / 3.; // azz
-    static constexpr amrex::Real s21 = -4.;     // bzz
-    static constexpr amrex::Real s22 = 4. / 3.; // czz
+    static constexpr amrex::Real s00 = 1.0_rt;          // axx
+    static constexpr amrex::Real s01 = -2.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 1.0_rt;          // cxx
+    static constexpr amrex::Real s10 = 4.0_rt / 3.0_rt; // ayy
+    static constexpr amrex::Real s11 = -4.0_rt;         // byy
+    static constexpr amrex::Real s12 = 8.0_rt / 3.0_rt; // cyy
+    static constexpr amrex::Real s20 = 8.0_rt / 3.0_rt; // azz
+    static constexpr amrex::Real s21 = -4.0_rt;         // bzz
+    static constexpr amrex::Real s22 = 4.0_rt / 3.0_rt; // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.5;
-    static constexpr amrex::Real f02 = 0.25;
-    static constexpr amrex::Real f10 = 0.125;
-    static constexpr amrex::Real f11 = 0.625;
-    static constexpr amrex::Real f12 = 0.25;
-    static constexpr amrex::Real f20 = 0.25;
-    static constexpr amrex::Real f21 = 0.625;
-    static constexpr amrex::Real f22 = 0.125;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.5_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
+    static constexpr amrex::Real f10 = 0.125_rt;
+    static constexpr amrex::Real f11 = 0.625_rt;
+    static constexpr amrex::Real f12 = 0.25_rt;
+    static constexpr amrex::Real f20 = 0.25_rt;
+    static constexpr amrex::Real f21 = 0.625_rt;
+    static constexpr amrex::Real f22 = 0.125_rt;
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -721,35 +723,35 @@ struct StencilIloKhi
 {
     static constexpr int direction = 18;
 
-    static constexpr amrex::Real c00 = 1.0 / 3;
-    static constexpr amrex::Real c01 = 1.0;
-    static constexpr amrex::Real c02 = -4.0 / 3;
-    static constexpr amrex::Real c10 = 0.5;
-    static constexpr amrex::Real c11 = 0;
-    static constexpr amrex::Real c12 = -0.5;
-    static constexpr amrex::Real c20 = 4. / 3.;
-    static constexpr amrex::Real c21 = -1.;
-    static constexpr amrex::Real c22 = -1. / 3.;
+    static constexpr amrex::Real c00 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = 1.0_rt;
+    static constexpr amrex::Real c02 = -4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c10 = 0.5_rt;
+    static constexpr amrex::Real c11 = 0.0_rt;
+    static constexpr amrex::Real c12 = -0.5_rt;
+    static constexpr amrex::Real c20 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c21 = -1.0_rt;
+    static constexpr amrex::Real c22 = -1.0_rt / 3.0_rt;
 
-    static constexpr amrex::Real s00 = 4. / 3.; // axx
-    static constexpr amrex::Real s01 = -4;      // bxx
-    static constexpr amrex::Real s02 = 8. / 3.; // cxx
-    static constexpr amrex::Real s10 = 1;       // ayy
-    static constexpr amrex::Real s11 = -2;      // byy
-    static constexpr amrex::Real s12 = 1;       // cyy
-    static constexpr amrex::Real s20 = 8. / 3.; // azz
-    static constexpr amrex::Real s21 = -4.;     // bzz
-    static constexpr amrex::Real s22 = 4. / 3.; // czz
+    static constexpr amrex::Real s00 = 4.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 8.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = 1;               // ayy
+    static constexpr amrex::Real s11 = -2;              // byy
+    static constexpr amrex::Real s12 = 1;               // cyy
+    static constexpr amrex::Real s20 = 8.0_rt / 3.0_rt; // azz
+    static constexpr amrex::Real s21 = -4.0_rt;         // bzz
+    static constexpr amrex::Real s22 = 4.0_rt / 3.0_rt; // czz
 
-    static constexpr amrex::Real f00 = 0.125;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.25;
-    static constexpr amrex::Real f10 = 0.25;
-    static constexpr amrex::Real f11 = 0.5;
-    static constexpr amrex::Real f12 = 0.25;
-    static constexpr amrex::Real f20 = 0.25;
-    static constexpr amrex::Real f21 = 0.625;
-    static constexpr amrex::Real f22 = 0.125;
+    static constexpr amrex::Real f00 = 0.125_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
+    static constexpr amrex::Real f10 = 0.25_rt;
+    static constexpr amrex::Real f11 = 0.5_rt;
+    static constexpr amrex::Real f12 = 0.25_rt;
+    static constexpr amrex::Real f20 = 0.25_rt;
+    static constexpr amrex::Real f21 = 0.625_rt;
+    static constexpr amrex::Real f22 = 0.125_rt;
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -761,35 +763,35 @@ struct StencilIhiJlo
 {
     static constexpr int direction = 19;
 
-    static constexpr amrex::Real c00 = 4.0 / 3;
-    static constexpr amrex::Real c01 = -1;
-    static constexpr amrex::Real c02 = -1 / 3.;
-    static constexpr amrex::Real c10 = 1. / 3;
+    static constexpr amrex::Real c00 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = -1.0_rt;
+    static constexpr amrex::Real c02 = -1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c10 = 1.0_rt / 3.0_rt;
     static constexpr amrex::Real c11 = 1;
-    static constexpr amrex::Real c12 = -4. / 3.;
-    static constexpr amrex::Real c20 = 0.5;
-    static constexpr amrex::Real c21 = 0.0;
-    static constexpr amrex::Real c22 = -0.5;
+    static constexpr amrex::Real c12 = -4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c20 = 0.5_rt;
+    static constexpr amrex::Real c21 = 0.0_rt;
+    static constexpr amrex::Real c22 = -0.5_rt;
 
-    static constexpr amrex::Real s00 = 8. / 3.; // axx
-    static constexpr amrex::Real s01 = -4.;     // bxx
-    static constexpr amrex::Real s02 = 4. / 3.; // cxx
-    static constexpr amrex::Real s10 = 4. / 3.; // ayy
-    static constexpr amrex::Real s11 = -4.;     // byy
-    static constexpr amrex::Real s12 = 8. / 3.; // cyy
-    static constexpr amrex::Real s20 = 1.;      // azz
-    static constexpr amrex::Real s21 = -2.;     // bzz
-    static constexpr amrex::Real s22 = 1.;      // czz
+    static constexpr amrex::Real s00 = 8.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 4.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = 4.0_rt / 3.0_rt; // ayy
+    static constexpr amrex::Real s11 = -4.0_rt;         // byy
+    static constexpr amrex::Real s12 = 8.0_rt / 3.0_rt; // cyy
+    static constexpr amrex::Real s20 = 1.0_rt;          // azz
+    static constexpr amrex::Real s21 = -2.0_rt;         // bzz
+    static constexpr amrex::Real s22 = 1.0_rt;          // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.125;
-    static constexpr amrex::Real f10 = 0.125;
-    static constexpr amrex::Real f11 = 0.625;
-    static constexpr amrex::Real f12 = 0.25;
-    static constexpr amrex::Real f20 = 0.25;
-    static constexpr amrex::Real f21 = 0.5;
-    static constexpr amrex::Real f22 = 0.25;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.125_rt;
+    static constexpr amrex::Real f10 = 0.125_rt;
+    static constexpr amrex::Real f11 = 0.625_rt;
+    static constexpr amrex::Real f12 = 0.25_rt;
+    static constexpr amrex::Real f20 = 0.25_rt;
+    static constexpr amrex::Real f21 = 0.5_rt;
+    static constexpr amrex::Real f22 = 0.25_rt;
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -801,35 +803,35 @@ struct StencilJhiKlo
 {
     static constexpr int direction = 20;
 
-    static constexpr amrex::Real c00 = 0.5;
-    static constexpr amrex::Real c01 = 0.0;
-    static constexpr amrex::Real c02 = -0.5;
-    static constexpr amrex::Real c10 = 4. / 3.;
-    static constexpr amrex::Real c11 = -1.;
-    static constexpr amrex::Real c12 = -1. / 3.;
-    static constexpr amrex::Real c20 = 1. / 3.;
-    static constexpr amrex::Real c21 = 1.;
-    static constexpr amrex::Real c22 = -4. / 3.;
+    static constexpr amrex::Real c00 = 0.5_rt;
+    static constexpr amrex::Real c01 = 0.0_rt;
+    static constexpr amrex::Real c02 = -0.5_rt;
+    static constexpr amrex::Real c10 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c11 = -1.0_rt;
+    static constexpr amrex::Real c12 = -1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c20 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c21 = 1.0_rt;
+    static constexpr amrex::Real c22 = -4.0_rt / 3.0_rt;
 
-    static constexpr amrex::Real s00 = 1.0;     // axx
-    static constexpr amrex::Real s01 = -2.0;    // bxx
-    static constexpr amrex::Real s02 = 1.0;     // cxx
-    static constexpr amrex::Real s10 = 8. / 3.; // ayy
-    static constexpr amrex::Real s11 = -4.;     // byy
-    static constexpr amrex::Real s12 = 4. / 3.; // cyy
-    static constexpr amrex::Real s20 = 4. / 3.; // azz
-    static constexpr amrex::Real s21 = -4.;     // bzz
-    static constexpr amrex::Real s22 = 8. / 3.; // czz
+    static constexpr amrex::Real s00 = 1.0_rt;          // axx
+    static constexpr amrex::Real s01 = -2.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 1.0_rt;          // cxx
+    static constexpr amrex::Real s10 = 8.0_rt / 3.0_rt; // ayy
+    static constexpr amrex::Real s11 = -4.0_rt;         // byy
+    static constexpr amrex::Real s12 = 4.0_rt / 3.0_rt; // cyy
+    static constexpr amrex::Real s20 = 4.0_rt / 3.0_rt; // azz
+    static constexpr amrex::Real s21 = -4.0_rt;         // bzz
+    static constexpr amrex::Real s22 = 8.0_rt / 3.0_rt; // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.5;
-    static constexpr amrex::Real f02 = 0.25;
-    static constexpr amrex::Real f10 = 0.25;
-    static constexpr amrex::Real f11 = 0.625;
-    static constexpr amrex::Real f12 = 0.125;
-    static constexpr amrex::Real f20 = 0.125;
-    static constexpr amrex::Real f21 = 0.625;
-    static constexpr amrex::Real f22 = 0.25;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.5_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
+    static constexpr amrex::Real f10 = 0.25_rt;
+    static constexpr amrex::Real f11 = 0.625_rt;
+    static constexpr amrex::Real f12 = 0.125_rt;
+    static constexpr amrex::Real f20 = 0.125_rt;
+    static constexpr amrex::Real f21 = 0.625_rt;
+    static constexpr amrex::Real f22 = 0.25_rt;
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -841,35 +843,35 @@ struct StencilIhiKlo
 {
     static constexpr int direction = 21;
 
-    static constexpr amrex::Real c00 = 4.0 / 3.0;
-    static constexpr amrex::Real c01 = -1.0;
-    static constexpr amrex::Real c02 = -1.0 / 3.0;
-    static constexpr amrex::Real c10 = 0.5;
-    static constexpr amrex::Real c11 = 0.0;
-    static constexpr amrex::Real c12 = -0.5;
-    static constexpr amrex::Real c20 = 1. / 3.;
-    static constexpr amrex::Real c21 = 1.;
-    static constexpr amrex::Real c22 = -4. / 3.;
+    static constexpr amrex::Real c00 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = -1.0_rt;
+    static constexpr amrex::Real c02 = -1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c10 = 0.5_rt;
+    static constexpr amrex::Real c11 = 0.0_rt;
+    static constexpr amrex::Real c12 = -0.5_rt;
+    static constexpr amrex::Real c20 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c21 = 1.0_rt;
+    static constexpr amrex::Real c22 = -4.0_rt / 3.0_rt;
 
-    static constexpr amrex::Real s00 = 8. / 3.;   // axx
-    static constexpr amrex::Real s01 = -4.;       // bxx
-    static constexpr amrex::Real s02 = 4. / 3.;   // cxx
-    static constexpr amrex::Real s10 = 1.;        // ayy
-    static constexpr amrex::Real s11 = -2.;       // byy
-    static constexpr amrex::Real s12 = 1.;        // cyy
-    static constexpr amrex::Real s20 = 4.0 / 3.0; // azz
-    static constexpr amrex::Real s21 = -4.0;      // bzz
-    static constexpr amrex::Real s22 = 8.0 / 3.0; // czz
+    static constexpr amrex::Real s00 = 8.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 4.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = 1.0_rt;          // ayy
+    static constexpr amrex::Real s11 = -2.0_rt;         // byy
+    static constexpr amrex::Real s12 = 1.0_rt;          // cyy
+    static constexpr amrex::Real s20 = 4.0_rt / 3.0_rt; // azz
+    static constexpr amrex::Real s21 = -4.0_rt;         // bzz
+    static constexpr amrex::Real s22 = 8.0_rt / 3.0_rt; // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.125;
-    static constexpr amrex::Real f10 = 0.25;
-    static constexpr amrex::Real f11 = 0.5;
-    static constexpr amrex::Real f12 = 0.25;
-    static constexpr amrex::Real f20 = 0.125;
-    static constexpr amrex::Real f21 = 0.625;
-    static constexpr amrex::Real f22 = 0.25;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.125_rt;
+    static constexpr amrex::Real f10 = 0.25_rt;
+    static constexpr amrex::Real f11 = 0.5_rt;
+    static constexpr amrex::Real f12 = 0.25_rt;
+    static constexpr amrex::Real f20 = 0.125_rt;
+    static constexpr amrex::Real f21 = 0.625_rt;
+    static constexpr amrex::Real f22 = 0.25_rt;
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -881,9 +883,9 @@ struct StencilIloJloKlo
 {
     static constexpr int direction = 22;
 
-    static constexpr amrex::Real c00 = 1.0 / 3;
-    static constexpr amrex::Real c01 = 1.0;
-    static constexpr amrex::Real c02 = -4.0 / 3;
+    static constexpr amrex::Real c00 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = 1.0_rt;
+    static constexpr amrex::Real c02 = -4.0_rt / 3.0_rt;
     static constexpr amrex::Real c10 = c00;
     static constexpr amrex::Real c11 = c01;
     static constexpr amrex::Real c12 = c02;
@@ -891,19 +893,19 @@ struct StencilIloJloKlo
     static constexpr amrex::Real c21 = c01;
     static constexpr amrex::Real c22 = c02;
 
-    static constexpr amrex::Real s00 = 4. / 3.; // axx
-    static constexpr amrex::Real s01 = -4;      // bxx
-    static constexpr amrex::Real s02 = 8. / 3.; // cxx
-    static constexpr amrex::Real s10 = s00;     // ayy
-    static constexpr amrex::Real s11 = s01;     // byy
-    static constexpr amrex::Real s12 = s02;     // cyy
-    static constexpr amrex::Real s20 = s00;     // azz
-    static constexpr amrex::Real s21 = s01;     // bzz
-    static constexpr amrex::Real s22 = s02;     // czz
+    static constexpr amrex::Real s00 = 4.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 8.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = s00;             // ayy
+    static constexpr amrex::Real s11 = s01;             // byy
+    static constexpr amrex::Real s12 = s02;             // cyy
+    static constexpr amrex::Real s20 = s00;             // azz
+    static constexpr amrex::Real s21 = s01;             // bzz
+    static constexpr amrex::Real s22 = s02;             // czz
 
-    static constexpr amrex::Real f00 = 0.125;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.25;
+    static constexpr amrex::Real f00 = 0.125_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
     static constexpr amrex::Real f10 = f00;
     static constexpr amrex::Real f11 = f01;
     static constexpr amrex::Real f12 = f02;
@@ -922,32 +924,32 @@ struct StencilIloJhiKlo
 {
     static constexpr int direction = 23;
 
-    static constexpr amrex::Real c00 = 1.0 / 3;
-    static constexpr amrex::Real c01 = 1.0;
-    static constexpr amrex::Real c02 = -4.0 / 3;
-    static constexpr amrex::Real c10 = 4. / 3.;
-    static constexpr amrex::Real c11 = -1.;
-    static constexpr amrex::Real c12 = -1. / 3.;
+    static constexpr amrex::Real c00 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = 1.0_rt;
+    static constexpr amrex::Real c02 = -4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c10 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c11 = -1.0_rt;
+    static constexpr amrex::Real c12 = -1.0_rt / 3.0_rt;
     static constexpr amrex::Real c20 = c00;
     static constexpr amrex::Real c21 = c01;
     static constexpr amrex::Real c22 = c02;
 
-    static constexpr amrex::Real s00 = 4. / 3.; // axx
-    static constexpr amrex::Real s01 = -4;      // bxx
-    static constexpr amrex::Real s02 = 8. / 3.; // cxx
-    static constexpr amrex::Real s10 = 8. / 3.; // ayy
-    static constexpr amrex::Real s11 = -4.;     // byy
-    static constexpr amrex::Real s12 = 4. / 3.; // cyy
-    static constexpr amrex::Real s20 = s00;     // azz
-    static constexpr amrex::Real s21 = s01;     // bzz
-    static constexpr amrex::Real s22 = s02;     // czz
+    static constexpr amrex::Real s00 = 4.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 8.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = 8.0_rt / 3.0_rt; // ayy
+    static constexpr amrex::Real s11 = -4.0_rt;         // byy
+    static constexpr amrex::Real s12 = 4.0_rt / 3.0_rt; // cyy
+    static constexpr amrex::Real s20 = s00;             // azz
+    static constexpr amrex::Real s21 = s01;             // bzz
+    static constexpr amrex::Real s22 = s02;             // czz
 
-    static constexpr amrex::Real f00 = 0.125;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.25;
-    static constexpr amrex::Real f10 = 0.25;
-    static constexpr amrex::Real f11 = 0.625;
-    static constexpr amrex::Real f12 = 0.125;
+    static constexpr amrex::Real f00 = 0.125_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
+    static constexpr amrex::Real f10 = 0.25_rt;
+    static constexpr amrex::Real f11 = 0.625_rt;
+    static constexpr amrex::Real f12 = 0.125_rt;
     static constexpr amrex::Real f20 = f00;
     static constexpr amrex::Real f21 = f01;
     static constexpr amrex::Real f22 = f02;
@@ -963,32 +965,32 @@ struct StencilIhiJloKlo
 {
     static constexpr int direction = 24;
 
-    static constexpr amrex::Real c00 = 4. / 3.;
-    static constexpr amrex::Real c01 = -1;
-    static constexpr amrex::Real c02 = -1. / 3.;
-    static constexpr amrex::Real c10 = 1. / 3;
-    static constexpr amrex::Real c11 = 1;
-    static constexpr amrex::Real c12 = -4. / 3.;
+    static constexpr amrex::Real c00 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = -1.0_rt;
+    static constexpr amrex::Real c02 = -1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c10 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c11 = 1.0_rt;
+    static constexpr amrex::Real c12 = -4.0_rt / 3.0_rt;
     static constexpr amrex::Real c20 = c10;
     static constexpr amrex::Real c21 = c11;
     static constexpr amrex::Real c22 = c12;
 
-    static constexpr amrex::Real s00 = 8. / 3.; // axx
-    static constexpr amrex::Real s01 = -4.;     // bxx
-    static constexpr amrex::Real s02 = 4. / 3.; // cxx
-    static constexpr amrex::Real s10 = 4. / 3.; // ayy
-    static constexpr amrex::Real s11 = -4.;     // byy
-    static constexpr amrex::Real s12 = 8. / 3.; // cyy
-    static constexpr amrex::Real s20 = s10;     // azz
-    static constexpr amrex::Real s21 = s11;     // bzz
-    static constexpr amrex::Real s22 = s12;     // czz
+    static constexpr amrex::Real s00 = 8.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 4.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = 4.0_rt / 3.0_rt; // ayy
+    static constexpr amrex::Real s11 = -4.0_rt;         // byy
+    static constexpr amrex::Real s12 = 8.0_rt / 3.0_rt; // cyy
+    static constexpr amrex::Real s20 = s10;             // azz
+    static constexpr amrex::Real s21 = s11;             // bzz
+    static constexpr amrex::Real s22 = s12;             // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.125;
-    static constexpr amrex::Real f10 = 0.125;
-    static constexpr amrex::Real f11 = 0.625;
-    static constexpr amrex::Real f12 = 0.25;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.125_rt;
+    static constexpr amrex::Real f10 = 0.125_rt;
+    static constexpr amrex::Real f11 = 0.625_rt;
+    static constexpr amrex::Real f12 = 0.25_rt;
     static constexpr amrex::Real f20 = f10;
     static constexpr amrex::Real f21 = f11;
     static constexpr amrex::Real f22 = f12;
@@ -1004,35 +1006,35 @@ struct StencilIhiJhiKlo
 {
     static constexpr int direction = 25;
 
-    static constexpr amrex::Real c00 = 4. / 3.;
-    static constexpr amrex::Real c01 = -1;
-    static constexpr amrex::Real c02 = -1. / 3.;
-    static constexpr amrex::Real c10 = 4. / 3.;
-    static constexpr amrex::Real c11 = -1.;
-    static constexpr amrex::Real c12 = -1. / 3.;
-    static constexpr amrex::Real c20 = 1.0 / 3.0;
-    static constexpr amrex::Real c21 = 1.0;
-    static constexpr amrex::Real c22 = -4.0 / 3.;
+    static constexpr amrex::Real c00 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = -1.0_rt;
+    static constexpr amrex::Real c02 = -1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c10 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c11 = -1.0_rt;
+    static constexpr amrex::Real c12 = -1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c20 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c21 = 1.0_rt;
+    static constexpr amrex::Real c22 = -4.0_rt / 3.0_rt;
 
-    static constexpr amrex::Real s00 = 8. / 3.;   // axx
-    static constexpr amrex::Real s01 = -4.;       // bxx
-    static constexpr amrex::Real s02 = 4. / 3.;   // cxx
-    static constexpr amrex::Real s10 = 8. / 3.;   // ayy
-    static constexpr amrex::Real s11 = -4.;       // byy
-    static constexpr amrex::Real s12 = 4. / 3.;   // cyy
-    static constexpr amrex::Real s20 = 4.0 / 3.0; // azz
-    static constexpr amrex::Real s21 = -4.0;      // bzz
-    static constexpr amrex::Real s22 = 8.0 / 3.0; // czz
+    static constexpr amrex::Real s00 = 8.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 4.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = 8.0_rt / 3.0_rt; // ayy
+    static constexpr amrex::Real s11 = -4.0_rt;         // byy
+    static constexpr amrex::Real s12 = 4.0_rt / 3.0_rt; // cyy
+    static constexpr amrex::Real s20 = 4.0_rt / 3.0_rt; // azz
+    static constexpr amrex::Real s21 = -4.0_rt;         // bzz
+    static constexpr amrex::Real s22 = 8.0_rt / 3.0_rt; // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.125;
-    static constexpr amrex::Real f10 = 0.25;
-    static constexpr amrex::Real f11 = 0.625;
-    static constexpr amrex::Real f12 = 0.125;
-    static constexpr amrex::Real f20 = 0.125;
-    static constexpr amrex::Real f21 = 0.625;
-    static constexpr amrex::Real f22 = 0.25;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.125_rt;
+    static constexpr amrex::Real f10 = 0.25_rt;
+    static constexpr amrex::Real f11 = 0.625_rt;
+    static constexpr amrex::Real f12 = 0.125_rt;
+    static constexpr amrex::Real f20 = 0.125_rt;
+    static constexpr amrex::Real f21 = 0.625_rt;
+    static constexpr amrex::Real f22 = 0.25_rt;
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -1045,35 +1047,35 @@ struct StencilIloJloKhi
 {
     static constexpr int direction = 26;
 
-    static constexpr amrex::Real c00 = 1.0 / 3;
-    static constexpr amrex::Real c01 = 1.0;
-    static constexpr amrex::Real c02 = -4.0 / 3;
+    static constexpr amrex::Real c00 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = 1.0_rt;
+    static constexpr amrex::Real c02 = -4.0_rt / 3.0_rt;
     static constexpr amrex::Real c10 = c00;
     static constexpr amrex::Real c11 = c01;
     static constexpr amrex::Real c12 = c02;
-    static constexpr amrex::Real c20 = 4. / 3.;
-    static constexpr amrex::Real c21 = -1.;
-    static constexpr amrex::Real c22 = -1. / 3.;
+    static constexpr amrex::Real c20 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c21 = -1.0_rt;
+    static constexpr amrex::Real c22 = -1.0_rt / 3.0_rt;
 
-    static constexpr amrex::Real s00 = 4. / 3.; // axx
-    static constexpr amrex::Real s01 = -4;      // bxx
-    static constexpr amrex::Real s02 = 8. / 3.; // cxx
-    static constexpr amrex::Real s10 = s00;     // ayy
-    static constexpr amrex::Real s11 = s01;     // byy
-    static constexpr amrex::Real s12 = s02;     // cyy
-    static constexpr amrex::Real s20 = 8. / 3.; // azz
-    static constexpr amrex::Real s21 = -4.;     // bzz
-    static constexpr amrex::Real s22 = 4. / 3.; // czz
+    static constexpr amrex::Real s00 = 4.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 8.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = s00;             // ayy
+    static constexpr amrex::Real s11 = s01;             // byy
+    static constexpr amrex::Real s12 = s02;             // cyy
+    static constexpr amrex::Real s20 = 8.0_rt / 3.0_rt; // azz
+    static constexpr amrex::Real s21 = -4.0_rt;         // bzz
+    static constexpr amrex::Real s22 = 4.0_rt / 3.0_rt; // czz
 
-    static constexpr amrex::Real f00 = 0.125;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.25;
+    static constexpr amrex::Real f00 = 0.125_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
     static constexpr amrex::Real f10 = f00;
     static constexpr amrex::Real f11 = f01;
     static constexpr amrex::Real f12 = f02;
-    static constexpr amrex::Real f20 = 0.25;
-    static constexpr amrex::Real f21 = 0.625;
-    static constexpr amrex::Real f22 = 0.125;
+    static constexpr amrex::Real f20 = 0.25_rt;
+    static constexpr amrex::Real f21 = 0.625_rt;
+    static constexpr amrex::Real f22 = 0.125_rt;
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -1086,35 +1088,35 @@ struct StencilIloJhiKhi
 {
     static constexpr int direction = 27;
 
-    static constexpr amrex::Real c00 = 1.0 / 3;
-    static constexpr amrex::Real c01 = 1.0;
-    static constexpr amrex::Real c02 = -4.0 / 3;
-    static constexpr amrex::Real c10 = 4. / 3.;
-    static constexpr amrex::Real c11 = -1.;
-    static constexpr amrex::Real c12 = -1. / 3.;
-    static constexpr amrex::Real c20 = 4. / 3.;
-    static constexpr amrex::Real c21 = -1.;
-    static constexpr amrex::Real c22 = -1. / 3.;
+    static constexpr amrex::Real c00 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = 1.0_rt;
+    static constexpr amrex::Real c02 = -4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c10 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c11 = -1.0_rt;
+    static constexpr amrex::Real c12 = -1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c20 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c21 = -1.0_rt;
+    static constexpr amrex::Real c22 = -1.0_rt / 3.0_rt;
 
-    static constexpr amrex::Real s00 = 4. / 3.; // axx
-    static constexpr amrex::Real s01 = -4;      // bxx
-    static constexpr amrex::Real s02 = 8. / 3.; // cxx
-    static constexpr amrex::Real s10 = 8. / 3.; // ayy
-    static constexpr amrex::Real s11 = -4.;     // byy
-    static constexpr amrex::Real s12 = 4. / 3.; // cyy
-    static constexpr amrex::Real s20 = 8. / 3.; // azz
-    static constexpr amrex::Real s21 = -4.;     // bzz
-    static constexpr amrex::Real s22 = 4. / 3.; // czz
+    static constexpr amrex::Real s00 = 4.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 8.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = 8.0_rt / 3.0_rt; // ayy
+    static constexpr amrex::Real s11 = -4.0_rt;         // byy
+    static constexpr amrex::Real s12 = 4.0_rt / 3.0_rt; // cyy
+    static constexpr amrex::Real s20 = 8.0_rt / 3.0_rt; // azz
+    static constexpr amrex::Real s21 = -4.0_rt;         // bzz
+    static constexpr amrex::Real s22 = 4.0_rt / 3.0_rt; // czz
 
-    static constexpr amrex::Real f00 = 0.125;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.25;
-    static constexpr amrex::Real f10 = 0.25;
-    static constexpr amrex::Real f11 = 0.625;
-    static constexpr amrex::Real f12 = 0.125;
-    static constexpr amrex::Real f20 = 0.25;
-    static constexpr amrex::Real f21 = 0.625;
-    static constexpr amrex::Real f22 = 0.125;
+    static constexpr amrex::Real f00 = 0.125_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.25_rt;
+    static constexpr amrex::Real f10 = 0.25_rt;
+    static constexpr amrex::Real f11 = 0.625_rt;
+    static constexpr amrex::Real f12 = 0.125_rt;
+    static constexpr amrex::Real f20 = 0.25_rt;
+    static constexpr amrex::Real f21 = 0.625_rt;
+    static constexpr amrex::Real f22 = 0.125_rt;
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -1127,35 +1129,35 @@ struct StencilIhiJloKhi
 {
     static constexpr int direction = 28;
 
-    static constexpr amrex::Real c00 = 4. / 3.;
-    static constexpr amrex::Real c01 = -1;
-    static constexpr amrex::Real c02 = -1. / 3.;
-    static constexpr amrex::Real c10 = 1. / 3;
-    static constexpr amrex::Real c11 = 1;
-    static constexpr amrex::Real c12 = -4. / 3.;
-    static constexpr amrex::Real c20 = 4. / 3.;
-    static constexpr amrex::Real c21 = -1.;
-    static constexpr amrex::Real c22 = -1. / 3.;
+    static constexpr amrex::Real c00 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = -1.0_rt;
+    static constexpr amrex::Real c02 = -1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c10 = 1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c11 = 1.0_rt;
+    static constexpr amrex::Real c12 = -4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c20 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c21 = -1.0_rt;
+    static constexpr amrex::Real c22 = -1.0_rt / 3.0_rt;
 
-    static constexpr amrex::Real s00 = 8. / 3.; // axx
-    static constexpr amrex::Real s01 = -4.;     // bxx
-    static constexpr amrex::Real s02 = 4. / 3.; // cxx
-    static constexpr amrex::Real s10 = 4. / 3.; // ayy
-    static constexpr amrex::Real s11 = -4.;     // byy
-    static constexpr amrex::Real s12 = 8. / 3.; // cyy
-    static constexpr amrex::Real s20 = 8. / 3.; // azz
-    static constexpr amrex::Real s21 = -4.;     // bzz
-    static constexpr amrex::Real s22 = 4. / 3.; // czz
+    static constexpr amrex::Real s00 = 8.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 4.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = 4.0_rt / 3.0_rt; // ayy
+    static constexpr amrex::Real s11 = -4.0_rt;         // byy
+    static constexpr amrex::Real s12 = 8.0_rt / 3.0_rt; // cyy
+    static constexpr amrex::Real s20 = 8.0_rt / 3.0_rt; // azz
+    static constexpr amrex::Real s21 = -4.0_rt;         // bzz
+    static constexpr amrex::Real s22 = 4.0_rt / 3.0_rt; // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.125;
-    static constexpr amrex::Real f10 = 0.125;
-    static constexpr amrex::Real f11 = 0.625;
-    static constexpr amrex::Real f12 = 0.25;
-    static constexpr amrex::Real f20 = 0.25;
-    static constexpr amrex::Real f21 = 0.625;
-    static constexpr amrex::Real f22 = 0.125;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.125_rt;
+    static constexpr amrex::Real f10 = 0.125_rt;
+    static constexpr amrex::Real f11 = 0.625_rt;
+    static constexpr amrex::Real f12 = 0.25_rt;
+    static constexpr amrex::Real f20 = 0.25_rt;
+    static constexpr amrex::Real f21 = 0.625_rt;
+    static constexpr amrex::Real f22 = 0.125_rt;
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -1168,35 +1170,35 @@ struct StencilIhiJhiKhi
 {
     static constexpr int direction = 29;
 
-    static constexpr amrex::Real c00 = 4. / 3.;
-    static constexpr amrex::Real c01 = -1;
-    static constexpr amrex::Real c02 = -1. / 3.;
-    static constexpr amrex::Real c10 = 4. / 3.;
-    static constexpr amrex::Real c11 = -1.;
-    static constexpr amrex::Real c12 = -1. / 3.;
-    static constexpr amrex::Real c20 = 4. / 3.;
-    static constexpr amrex::Real c21 = -1.;
-    static constexpr amrex::Real c22 = -1. / 3.;
+    static constexpr amrex::Real c00 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c01 = -1.0_rt;
+    static constexpr amrex::Real c02 = -1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c10 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c11 = -1.0_rt;
+    static constexpr amrex::Real c12 = -1.0_rt / 3.0_rt;
+    static constexpr amrex::Real c20 = 4.0_rt / 3.0_rt;
+    static constexpr amrex::Real c21 = -1.0_rt;
+    static constexpr amrex::Real c22 = -1.0_rt / 3.0_rt;
 
-    static constexpr amrex::Real s00 = 8. / 3.; // axx
-    static constexpr amrex::Real s01 = -4.;     // bxx
-    static constexpr amrex::Real s02 = 4. / 3.; // cxx
-    static constexpr amrex::Real s10 = 8. / 3.; // ayy
-    static constexpr amrex::Real s11 = -4.;     // byy
-    static constexpr amrex::Real s12 = 4. / 3.; // cyy
-    static constexpr amrex::Real s20 = 8. / 3.; // azz
-    static constexpr amrex::Real s21 = -4.;     // bzz
-    static constexpr amrex::Real s22 = 4. / 3.; // czz
+    static constexpr amrex::Real s00 = 8.0_rt / 3.0_rt; // axx
+    static constexpr amrex::Real s01 = -4.0_rt;         // bxx
+    static constexpr amrex::Real s02 = 4.0_rt / 3.0_rt; // cxx
+    static constexpr amrex::Real s10 = 8.0_rt / 3.0_rt; // ayy
+    static constexpr amrex::Real s11 = -4.0_rt;         // byy
+    static constexpr amrex::Real s12 = 4.0_rt / 3.0_rt; // cyy
+    static constexpr amrex::Real s20 = 8.0_rt / 3.0_rt; // azz
+    static constexpr amrex::Real s21 = -4.0_rt;         // bzz
+    static constexpr amrex::Real s22 = 4.0_rt / 3.0_rt; // czz
 
-    static constexpr amrex::Real f00 = 0.25;
-    static constexpr amrex::Real f01 = 0.625;
-    static constexpr amrex::Real f02 = 0.125;
-    static constexpr amrex::Real f10 = 0.25;
-    static constexpr amrex::Real f11 = 0.625;
-    static constexpr amrex::Real f12 = 0.125;
-    static constexpr amrex::Real f20 = 0.25;
-    static constexpr amrex::Real f21 = 0.625;
-    static constexpr amrex::Real f22 = 0.125;
+    static constexpr amrex::Real f00 = 0.25_rt;
+    static constexpr amrex::Real f01 = 0.625_rt;
+    static constexpr amrex::Real f02 = 0.125_rt;
+    static constexpr amrex::Real f10 = 0.25_rt;
+    static constexpr amrex::Real f11 = 0.625_rt;
+    static constexpr amrex::Real f12 = 0.125_rt;
+    static constexpr amrex::Real f20 = 0.25_rt;
+    static constexpr amrex::Real f21 = 0.625_rt;
+    static constexpr amrex::Real f22 = 0.125_rt;
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {

@@ -4,6 +4,9 @@
 #include "amr-wind/equation_systems/tke/TKE.H"
 #include "amr-wind/wind_energy/ABLStats.H"
 #include "amr-wind/incflo.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -16,9 +19,11 @@ void init_field1(amr_wind::Field& fld)
         const auto& farrs = fld(lev).arrays();
         amrex::ParallelFor(
             fld(lev), amrex::IntVect(0),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 farrs[nbx](i, j, k) =
-                    std::sin(0.01 * i) + std::pow(k, 0.2) + std::cos(0.01 * j);
+                    std::sin(0.01_rt * i) +
+                    std::pow(static_cast<amrex::Real>(k), 0.2_rt) +
+                    std::cos(0.01_rt * j);
             });
     }
     amrex::Gpu::streamSynchronize();
@@ -47,7 +52,7 @@ amrex::Real test_new_tke(
         const auto& conv_arrs = conv_term(lev).const_arrays();
         amrex::ParallelFor(
             tkeold(lev), amrex::IntVect(0),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 tke_old_arrs[nbx](i, j, k) +=
                     dt *
                     (conv_arrs[nbx](i, j, k) + shear_prod_arrs[nbx](i, j, k) +
@@ -67,7 +72,7 @@ amrex::Real test_new_tke(
                 -> amrex::Real {
                 amrex::Real error = 0;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     error += std::abs(tke_arr(i, j, k) - tke_est(i, j, k));
                 });
 
@@ -83,9 +88,9 @@ void remove_nans(amr_wind::Field& field)
         const auto& farrs = field(lev).arrays();
         amrex::ParallelFor(
             field(lev), amrex::IntVect(0), field(lev).nComp(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 farrs[nbx](i, j, k, n) = std::isnan(farrs[nbx](i, j, k, n))
-                                             ? 0.0
+                                             ? 0.0_rt
                                              : farrs[nbx](i, j, k, n);
             });
     }
@@ -97,15 +102,16 @@ TEST_F(ABLMeshTest, stats_tke_diffusion)
 {
     // This test checks the implementation of the calc_diffusion routine to see
     // if it does what it is intended to do
-    constexpr double tol = 1.0e-12;
-    constexpr amrex::Real val_shear = 0.5;
-    constexpr amrex::Real val_buoy = 0.4;
-    constexpr amrex::Real val_dissip = 0.3;
-    constexpr amrex::Real val_conv = 0.2;
-    constexpr amrex::Real val_tke = 1.6;
-    constexpr amrex::Real val_tkeold = 1.0;
-    constexpr amrex::Real dt = 0.1;
-    constexpr amrex::Real expected_diff = (val_tke - val_tkeold) / dt -
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+    constexpr amrex::Real val_shear = 0.5_rt;
+    constexpr amrex::Real val_buoy = 0.4_rt;
+    constexpr amrex::Real val_dissip = 0.3_rt;
+    constexpr amrex::Real val_conv = 0.2_rt;
+    constexpr amrex::Real val_tke = 1.6_rt;
+    constexpr amrex::Real val_tkeold = 1.0_rt;
+    constexpr amrex::Real dt = 0.1_rt;
+    constexpr amrex::Real expected_diff = ((val_tke - val_tkeold) / dt) -
                                           val_conv - val_shear - val_buoy +
                                           val_dissip;
 
@@ -151,11 +157,12 @@ TEST_F(ABLMeshTest, stats_tke_diffusion)
 TEST_F(ABLMeshTest, stats_energy_budget)
 {
     // This test checks the assumptions behind the calc_diffusion routine
-    constexpr double tol = 1.0e-12;
-    constexpr amrex::Real dt = 0.1;
-    constexpr amrex::Real val_shear = 0.5;
-    constexpr amrex::Real val_buoy = 0.4;
-    constexpr amrex::Real val_tlscale = 0.3;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+    constexpr amrex::Real dt = 0.1_rt;
+    constexpr amrex::Real val_shear = 0.5_rt;
+    constexpr amrex::Real val_buoy = 0.4_rt;
+    constexpr amrex::Real val_tlscale = 0.3_rt;
 
     // Set up turbulence model and other input arguments
     {
@@ -172,7 +179,7 @@ TEST_F(ABLMeshTest, stats_energy_budget)
     }
     {
         amrex::ParmParse pp("transport");
-        pp.add("viscosity", (amrex::Real)1e-5);
+        pp.add("viscosity", 1.0e-5_rt);
     }
 
     // incflo.diffusion_type = 1
@@ -221,7 +228,7 @@ TEST_F(ABLMeshTest, stats_energy_budget)
     // Set up new and NPH density for the sake of src term
     auto& density_nph =
         sim().repo().get_field("density").state(amr_wind::FieldState::NPH);
-    density_nph.setVal(1.0);
+    density_nph.setVal(1.0_rt);
 
     // Setup mask_cell array to avoid errors in solve
     auto& mask_cell = sim().repo().declare_int_field("mask_cell", 1, 1);
@@ -240,7 +247,7 @@ TEST_F(ABLMeshTest, stats_energy_budget)
     tke_eqn.compute_source_term(amr_wind::FieldState::NPH);
     tke_eqn.compute_diffusion_term(amr_wind::FieldState::New);
     tke_eqn.compute_predictor_rhs(DiffusionType::Crank_Nicolson);
-    tke_eqn.solve(0.5 * dt);
+    tke_eqn.solve(0.5_rt * dt);
     tke_eqn.post_solve_actions();
 
     // Calculate diffusion term
@@ -252,7 +259,7 @@ TEST_F(ABLMeshTest, stats_energy_budget)
     const amrex::Real err_total = test_new_tke(
         tke, tke.state(amr_wind::FieldState::Old), tke_eqn.fields().conv_term,
         buoy, shear, dissip, *(diff), dt);
-    EXPECT_NEAR(err_total, 0.0, tol);
+    EXPECT_NEAR(err_total, 0.0_rt, tol);
 }
 
 } // namespace amr_wind_tests

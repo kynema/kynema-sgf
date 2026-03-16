@@ -62,7 +62,10 @@ public:
 
     void TearDown() override { amrex::Finalize(); }
 
-    bool has_managed_memory() const { return m_has_managed_memory; }
+    [[nodiscard]] bool has_managed_memory() const
+    {
+        return m_has_managed_memory;
+    }
 
 protected:
     int& m_argc;

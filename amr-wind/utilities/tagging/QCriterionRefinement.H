@@ -2,6 +2,9 @@
 #define QCRITERIONREFINEMENT_H
 
 #include "amr-wind/utilities/tagging/RefinementCriteria.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 class Field;
@@ -13,7 +16,7 @@ class Field;
  *  tagging.labels = qc1
  *  tagging/qc1.type = QCriterionRefinement
  *  # Tagging based on value
- *  tagging/qc1.values = 10.0 10.0
+ *  tagging/qc1.values = 10.0_rt 10.0_rt
 
  *  ```
  */

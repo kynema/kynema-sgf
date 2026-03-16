@@ -11,8 +11,6 @@
 #include <fstream>
 #include <ctime>
 
-using namespace amrex;
-
 enum format { csv, hdf5 };
 
 void main_main()
@@ -59,28 +57,28 @@ void main_main()
 
     // Load Plotfile
     time_req = clock();
-    PlotFileData pltfile(plotfile); // Takes care of invalid files
+    amrex::PlotFileData pltfile(plotfile); // Takes care of invalid files
 
     // Get Meta Data (See Notes 1.)
     int dim = pltfile.spaceDim();
     int levels = pltfile.finestLevel() + 1;
-    const Vector<std::string>& var_names = pltfile.varNames();
+    const amrex::Vector<std::string>& var_names = pltfile.varNames();
     amrex::Real time = pltfile.time();
     // Least finest level dimensions
     // For info on boxArray, see note 2.
-    const Long nboxes = pltfile.boxArray(0).size();
-    const Long ncells = pltfile.boxArray(0).numPts();
-    const Box prob_domain = pltfile.probDomain(0);
+    const amrex::Long nboxes = pltfile.boxArray(0).size();
+    const amrex::Long ncells = pltfile.boxArray(0).numPts();
+    const amrex::Box prob_domain = pltfile.probDomain(0);
     const auto ncells_domain = prob_domain.d_numPts();
-    Array<Real, AMREX_SPACEDIM> dx = pltfile.cellSize(0);
+    amrex::Array<amrex::Real, AMREX_SPACEDIM> dx = pltfile.cellSize(0);
     const auto dlo = amrex::lbound(prob_domain);
     const auto dhi = amrex::ubound(prob_domain);
-    IntVect lengths = prob_domain.length(); // hi + 1 for all dims.
+    amrex::IntVect lengths = prob_domain.length(); // hi + 1 for all dims.
     double phis_x = dx[0] * (dhi.x + 1);
     double phis_y = dx[1] * (dhi.y + 1);
     double phis_z = dx[2] * (dhi.z + 1);
-    Array<Real, AMREX_SPACEDIM> problo = pltfile.probLo();
-    Array<Real, AMREX_SPACEDIM> probhi = pltfile.probHi();
+    amrex::Array<amrex::Real, AMREX_SPACEDIM> problo = pltfile.probLo();
+    amrex::Array<amrex::Real, AMREX_SPACEDIM> probhi = pltfile.probHi();
     // Output Files
     amrex::Print() << "Time: " << time << std::endl
                    << "dx: " << dx << std::endl
@@ -118,19 +116,19 @@ void main_main()
             num_vars++;
         }
         output_stream << "\n";
-        const MultiFab& pltmf = pltfile.get(0);
+        const amrex::MultiFab& pltmf = pltfile.get(0);
 
         // Loop through MultiFab for data
-        for (MFIter mfi(pltmf); mfi.isValid(); ++mfi) {
+        for (amrex::MFIter mfi(pltmf); mfi.isValid(); ++mfi) {
             // Loop through MultiFab object.
-            const Box& bx = mfi.validbox();
+            const amrex::Box& bx = mfi.validbox();
 
             // Seems to be used for masking out non-current box data
 
             const auto& data = pltmf.array(mfi); // there is only one box
             // Parallelize the pulling of data
-            const Dim3 lo = amrex::lbound(bx);
-            const Dim3 hi = amrex::ubound(bx);
+            const amrex::Dim3 lo = amrex::lbound(bx);
+            const amrex::Dim3 hi = amrex::ubound(bx);
             for (int z = lo.z; z <= hi.z; ++z) {
                 for (int y = lo.y; y <= hi.y; ++y) {
                     // AMREX_PRAGMA_SIMD

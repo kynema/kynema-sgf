@@ -3,6 +3,9 @@
 
 #include "amr-wind/utilities/tagging/GeometryRefinement.H"
 #include "amr-wind/core/vs/vector_space.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::tagging {
 
@@ -27,14 +30,17 @@ public:
         const amrex::Box& /*bx*/,
         const amrex::Geometry& geom,
         const amrex::Array4<amrex::TagBox::TagType>& tags) const override;
-    const amrex::RealBox& bound_box() const override { return m_bound_box; };
+    [[nodiscard]] const amrex::RealBox& bound_box() const override
+    {
+        return m_bound_box;
+    };
 
 private:
     vs::Vector m_start;
     vs::Vector m_end;
 
     amrex::Real m_outer_radius;
-    amrex::Real m_inner_radius{0.0};
+    amrex::Real m_inner_radius{0.0_rt};
 
     amrex::RealBox m_bound_box;
 };

@@ -5,6 +5,9 @@
 #include "AnalyticalFunction.H"
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -34,13 +37,16 @@ void initialize_velocity(
     // it and it fills the ghosts with wall values
     amrex::ParallelFor(grow(bx, 1), [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real x = amrex::min(
-            amrex::max<amrex::Real>(problo[0] + (i + 0.5) * dx[0], problo[0]),
+            amrex::max<amrex::Real>(
+                problo[0] + ((i + 0.5_rt) * dx[0]), problo[0]),
             probhi[0]);
         const amrex::Real y = amrex::min(
-            amrex::max<amrex::Real>(problo[1] + (j + 0.5) * dx[1], problo[1]),
+            amrex::max<amrex::Real>(
+                problo[1] + ((j + 0.5_rt) * dx[1]), problo[1]),
             probhi[1]);
         const amrex::Real z = amrex::min(
-            amrex::max<amrex::Real>(problo[2] + (k + 0.5) * dx[2], problo[2]),
+            amrex::max<amrex::Real>(
+                problo[2] + ((k + 0.5_rt) * dx[2]), problo[2]),
             probhi[2]);
 
         vel_arr(i, j, k, 0) =
@@ -57,9 +63,9 @@ amrex::Real grad_test_impl(amr_wind::Field& vel, const int pdegree)
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
 
-    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.00123);
-    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.00213);
-    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.00346);
+    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.00123_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.00213_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.00346_rt);
 
     const auto& geom = vel.repo().mesh().Geom();
 
@@ -72,7 +78,7 @@ amrex::Real grad_test_impl(amr_wind::Field& vel, const int pdegree)
     auto grad_vel = amr_wind::fvm::gradient(vel);
 
     const int nlevels = vel.repo().num_active_levels();
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
 
     const amrex::Real* cu_ptr = cu.data();
     const amrex::Real* cv_ptr = cv.data();
@@ -88,12 +94,12 @@ amrex::Real grad_test_impl(amr_wind::Field& vel, const int pdegree)
             [=] AMREX_GPU_HOST_DEVICE(
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& gvel) -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
-                    const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                    const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                    const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
+                    const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                    const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
                     error += std::abs(
                         gvel(i, j, k, 0) - analytical_function::dphidx_eval(
@@ -138,9 +144,9 @@ amrex::Real laplacian_test_impl(amr_wind::Field& vel, const int pdegree)
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
 
-    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.00123);
-    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.00213);
-    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.00346);
+    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.00123_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.00213_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.00346_rt);
 
     const auto& geom = vel.repo().mesh().Geom();
 
@@ -153,7 +159,7 @@ amrex::Real laplacian_test_impl(amr_wind::Field& vel, const int pdegree)
     auto lap = amr_wind::fvm::laplacian(vel);
 
     const int nlevels = vel.repo().num_active_levels();
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
 
     const amrex::Real* cu_ptr = cu.data();
     const amrex::Real* cv_ptr = cv.data();
@@ -170,12 +176,12 @@ amrex::Real laplacian_test_impl(amr_wind::Field& vel, const int pdegree)
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& lap_arr)
                 -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
-                    const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                    const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                    const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
+                    const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                    const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
                     error += std::abs(
                         lap_arr(i, j, k) -
@@ -195,9 +201,9 @@ amrex::Real divergence_test_impl(amr_wind::Field& vel, const int pdegree)
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
 
-    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.00123);
-    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.00213);
-    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.00346);
+    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.00123_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.00213_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.00346_rt);
 
     const auto& geom = vel.repo().mesh().Geom();
 
@@ -210,7 +216,7 @@ amrex::Real divergence_test_impl(amr_wind::Field& vel, const int pdegree)
     auto div = amr_wind::fvm::divergence(vel);
 
     const int nlevels = vel.repo().num_active_levels();
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
 
     const amrex::Real* cu_ptr = cu.data();
     const amrex::Real* cv_ptr = cv.data();
@@ -227,12 +233,12 @@ amrex::Real divergence_test_impl(amr_wind::Field& vel, const int pdegree)
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& div_arr)
                 -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
-                    const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                    const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                    const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
+                    const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                    const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
                     error += std::abs(
                         div_arr(i, j, k) -
@@ -252,7 +258,8 @@ amrex::Real divergence_test_impl(amr_wind::Field& vel, const int pdegree)
 TEST_F(FvmOperatorsTest, gradient)
 {
 
-    constexpr double tol = 1.0e-10;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt;
 
     populate_parameters();
     {
@@ -272,13 +279,14 @@ TEST_F(FvmOperatorsTest, gradient)
 
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
 
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
 TEST_F(FvmOperatorsTest, laplacian)
 {
 
-    constexpr double tol = 1.0e-11;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e5_rt;
 
     populate_parameters();
     {
@@ -299,13 +307,14 @@ TEST_F(FvmOperatorsTest, laplacian)
 
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
 
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
 TEST_F(FvmOperatorsTest, divergence)
 {
 
-    constexpr double tol = 1.0e-11;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e5_rt;
 
     populate_parameters();
     {
@@ -326,7 +335,7 @@ TEST_F(FvmOperatorsTest, divergence)
 
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
 
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
 } // namespace amr_wind_tests

@@ -1,10 +1,8 @@
+#include <numbers>
 #include "abl_test_utils.H"
 #include "amr-wind/utilities/trig_ops.H"
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
-
-#include "AMReX_Gpu.H"
-#include "AMReX_Random.H"
 #include "amr-wind/equation_systems/icns/icns.H"
 #include "amr-wind/equation_systems/icns/icns_ops.H"
 #include "amr-wind/equation_systems/icns/MomentumSource.H"
@@ -16,8 +14,12 @@
 #include "amr-wind/equation_systems/icns/source_terms/DensityBuoyancy.H"
 #include "amr-wind/equation_systems/icns/source_terms/HurricaneForcing.H"
 #include "amr-wind/equation_systems/icns/source_terms/RayleighDamping.H"
-
 #include "amr-wind/equation_systems/temperature/source_terms/HurricaneTempForcing.H"
+#include "AMReX_Gpu.H"
+#include "AMReX_Random.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -30,19 +32,19 @@ amrex::Real get_val_at_height(
     const amrex::Real dz,
     const amrex::Real height)
 {
-    amrex::Real error_total = 0;
+    amrex::Real error_total = 0.0_rt;
 
     error_total += amrex::ReduceSum(
         field(lev), 0,
         [=] AMREX_GPU_HOST_DEVICE(
             amrex::Box const& bx,
             amrex::Array4<amrex::Real const> const& f_arr) -> amrex::Real {
-            amrex::Real error = 0;
+            amrex::Real error = 0.0_rt;
 
-            amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
-                const amrex::Real z = ploz + (0.5 + k) * dz;
+            amrex::Loop(bx, [=, &error](int i, int j, int k) {
+                const amrex::Real z = ploz + ((0.5_rt + k) * dz);
                 // Check if current cell is closest to desired height
-                if (std::abs(z - height) < 0.5 * dz) {
+                if (std::abs(z - height) < 0.5_rt * dz) {
                     // Add field value to output
                     error += f_arr(i, j, k, comp);
                 }
@@ -60,7 +62,8 @@ using ICNSFields =
 
 TEST_F(ABLMeshTest, abl_forcing)
 {
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     populate_parameters();
     initialize_mesh();
 
@@ -73,7 +76,7 @@ TEST_F(ABLMeshTest, abl_forcing)
 
     amr_wind::pde::icns::ABLForcing abl_forcing(sim());
 
-    src_term.setVal(0.0);
+    src_term.setVal(0.0_rt);
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
@@ -84,7 +87,7 @@ TEST_F(ABLMeshTest, abl_forcing)
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         const auto min_val = utils::field_min(src_term, i);
         const auto max_val = utils::field_max(src_term, i);
-        EXPECT_NEAR(min_val, 0.0, tol);
+        EXPECT_NEAR(min_val, 0.0_rt, tol);
         EXPECT_NEAR(min_val, max_val, tol);
     }
 
@@ -92,11 +95,11 @@ TEST_F(ABLMeshTest, abl_forcing)
     {
         auto& time = sim().time();
         time.new_timestep();
-        time.set_current_cfl(2.0, 0.0, 0.0);
-        EXPECT_NEAR(time.delta_t(), 0.1, tol);
+        time.set_current_cfl(2.0_rt, 0.0_rt, 0.0_rt);
+        EXPECT_NEAR(time.delta_t(), 0.1_rt, tol);
 
-        src_term.setVal(0.0);
-        abl_forcing.set_mean_velocities(10.0, 5.0);
+        src_term.setVal(0.0_rt);
+        abl_forcing.set_mean_velocities(10.0_rt, 5.0_rt);
         run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
             const auto& bx = mfi.tilebox();
             const auto& src_arr = src_term(lev).array(mfi);
@@ -104,11 +107,11 @@ TEST_F(ABLMeshTest, abl_forcing)
             abl_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
         });
 
-        // Targets are U = (20.0, 10.0, 0.0) set in initial conditions
-        // Means (set above) V = (10.0, 5.0, 0.0)
-        // delta_t (set above) dt = 0.1
+        // Targets are U = (20.0_rt, 10.0_rt, 0.0_rt) set in initial conditions
+        // Means (set above) V = (10.0_rt, 5.0_rt, 0.0_rt)
+        // delta_t (set above) dt = 0.1_rt
         const amrex::Array<amrex::Real, AMREX_SPACEDIM> golds{
-            {100.0, 50.0, 0.0}};
+            {100.0_rt, 50.0_rt, 0.0_rt}};
         for (int i = 0; i < AMREX_SPACEDIM; ++i) {
             const auto min_val = utils::field_min(src_term, i);
             const auto max_val = utils::field_max(src_term, i);
@@ -121,7 +124,8 @@ TEST_F(ABLMeshTest, abl_forcing)
 
 TEST_F(ABLMeshTest, body_force)
 {
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     populate_parameters();
     initialize_mesh();
 
@@ -133,7 +137,7 @@ TEST_F(ABLMeshTest, body_force)
 
     amr_wind::pde::icns::BodyForce body_force(sim());
 
-    src_term.setVal(0.0);
+    src_term.setVal(0.0_rt);
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
@@ -144,16 +148,16 @@ TEST_F(ABLMeshTest, body_force)
     const auto valx = utils::field_max(src_term, 0);
     const auto valy = utils::field_max(src_term, 1);
     const auto valz = utils::field_max(src_term, 2);
-    EXPECT_NEAR(valx, 1.0, tol);
-    EXPECT_NEAR(valy, 2.0, tol);
-    EXPECT_NEAR(valz, 3.0, tol);
+    EXPECT_NEAR(valx, 1.0_rt, tol);
+    EXPECT_NEAR(valy, 2.0_rt, tol);
+    EXPECT_NEAR(valz, 3.0_rt, tol);
 
     // Mimic source term at later timesteps
     {
         auto& time = sim().time();
         time.new_timestep();
-        time.current_time() = 0.05;
-        src_term.setVal(0.0);
+        time.current_time() = 0.05_rt;
+        src_term.setVal(0.0_rt);
 
         run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
             const auto& bx = mfi.tilebox();
@@ -164,11 +168,11 @@ TEST_F(ABLMeshTest, body_force)
 
         const amrex::Array<amrex::Real, AMREX_SPACEDIM> golds{
             {static_cast<amrex::Real>(
-                 1.0 * std::cos(0.5 * (0.05 + time.new_time()))),
+                 1.0_rt * std::cos(0.5_rt * (0.05_rt + time.new_time()))),
              static_cast<amrex::Real>(
-                 2.0 * std::cos(0.5 * (0.05 + time.new_time()))),
+                 2.0_rt * std::cos(0.5_rt * (0.05_rt + time.new_time()))),
              static_cast<amrex::Real>(
-                 3.0 * std::cos(0.5 * (0.05 + time.new_time())))}};
+                 3.0_rt * std::cos(0.5_rt * (0.05_rt + time.new_time())))}};
         const auto valx2 = utils::field_max(src_term, 0);
         const auto valy2 = utils::field_max(src_term, 1);
         const auto valz2 = utils::field_max(src_term, 2);
@@ -180,11 +184,12 @@ TEST_F(ABLMeshTest, body_force)
 
 TEST_F(ABLMeshTest, geostrophic_forcing)
 {
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     populate_parameters();
 
     amrex::ParmParse pp("CoriolisForcing");
-    pp.add("latitude", 54.0);
+    pp.add("latitude", 54.0_rt);
 
     initialize_mesh();
 
@@ -194,10 +199,10 @@ TEST_F(ABLMeshTest, geostrophic_forcing)
 
     auto& src_term = pde_mgr.icns().fields().src_term;
     auto& density = sim().repo().get_field("density");
-    density.setVal(1.0);
+    density.setVal(1.0_rt);
 
     amr_wind::pde::icns::GeostrophicForcing geostrophic_forcing(sim());
-    src_term.setVal(0.0);
+    src_term.setVal(0.0_rt);
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
@@ -206,9 +211,9 @@ TEST_F(ABLMeshTest, geostrophic_forcing)
     });
 
     constexpr amrex::Real corfac =
-        2.0 * amr_wind::utils::two_pi() / 86164.091 * 0.80901699437;
+        2.0_rt * amr_wind::utils::two_pi() / 86164.091_rt * 0.80901699437_rt;
     const amrex::Array<amrex::Real, AMREX_SPACEDIM> golds{
-        {-corfac * 6.0, corfac * 10.0, 0.0}};
+        {-corfac * 6.0_rt, corfac * 10.0_rt, 0.0_rt}};
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         const auto min_val = utils::field_min(src_term, i);
         const auto max_val = utils::field_max(src_term, i);
@@ -219,7 +224,8 @@ TEST_F(ABLMeshTest, geostrophic_forcing)
 
 TEST_F(ABLMeshTest, rayleigh_damping)
 {
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     populate_parameters();
     initialize_mesh();
 
@@ -229,12 +235,12 @@ TEST_F(ABLMeshTest, rayleigh_damping)
 
     auto& src_term = pde_mgr.icns().fields().src_term;
     auto& velocity = sim().repo().get_field("velocity");
-    velocity.setVal({{0.0, 0.0, 0.0}});
+    velocity.setVal({{0.0_rt, 0.0_rt, 0.0_rt}});
     auto& density = sim().repo().get_field("density");
-    density.setVal(1.0);
+    density.setVal(1.0_rt);
 
     amr_wind::pde::icns::RayleighDamping rayleigh_damping(sim());
-    src_term.setVal(0.0);
+    src_term.setVal(0.0_rt);
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
@@ -255,14 +261,22 @@ TEST_F(ABLMeshTest, rayleigh_damping)
     // 3: above bottom of graded damping zone
     // 4: below bottom of graded damping (no damping)
     const amrex::Array<amrex::Real, 5> test_heights{
-        phiz - 0.1, phiz - 50 + 0.5 * dz,
-        phiz - dz * (0.5 + std::ceil(50 / dz)),
-        phiz - dz * (-0.5 + std::ceil(250 / dz)), phiz - 250 - 0.5 * dz};
+        phiz - 0.1_rt, phiz - 50.0_rt + (0.5_rt * dz),
+        phiz - (dz * (0.5_rt + std::ceil(50.0_rt / dz))),
+        phiz - (dz * (-0.5_rt + std::ceil(250.0_rt / dz))),
+        phiz - 250.0_rt - (0.5_rt * dz)};
     // Expected values of coeff for each location
     const amrex::Array<amrex::Real, 5> golds{
-        1., 1.,
-        0.5 * std::cos(M_PI * (1000 - 50 - test_heights[2]) / 200) + 0.5,
-        0.5 * std::cos(M_PI * (1000 - 50 - test_heights[3]) / 200) + 0.5, 0.0};
+        1.0_rt, 1.0_rt,
+        (0.5_rt * std::cos(
+                      std::numbers::pi_v<amrex::Real> *
+                      (1000.0_rt - 50.0_rt - test_heights[2]) / 200.0_rt)) +
+            0.5_rt,
+        (0.5_rt * std::cos(
+                      std::numbers::pi_v<amrex::Real> *
+                      (1000.0_rt - 50.0_rt - test_heights[3]) / 200.0_rt)) +
+            0.5_rt,
+        0.0_rt};
 
     // Get damping values from src term
     amrex::Array<amrex::Real, 5> src_x_vals;
@@ -270,7 +284,7 @@ TEST_F(ABLMeshTest, rayleigh_damping)
     amrex::Array<amrex::Real, 5> src_z_vals;
     // Multiply to remove tau factor and divide by nx*ny cells because of
     // sum
-    const amrex::Real tau = 40.;
+    const amrex::Real tau = 40.0_rt;
     const int nx = 8;
     const int ny = 8;
     for (int n = 0; n < 5; ++n) {
@@ -289,31 +303,32 @@ TEST_F(ABLMeshTest, rayleigh_damping)
     // Reference velocity is (12, 1, -3)
     // Damping is turned off in the y direction
     for (int n = 0; n < 5; ++n) {
-        EXPECT_NEAR(src_x_vals[n], 12. * golds[n], tol);
-        EXPECT_NEAR(src_y_vals[n], 1. * golds[n] * 0., tol);
-        EXPECT_NEAR(src_z_vals[n], -3. * golds[n], tol);
+        EXPECT_NEAR(src_x_vals[n], 12.0_rt * golds[n], tol);
+        EXPECT_NEAR(src_y_vals[n], 1.0_rt * golds[n] * 0.0_rt, tol);
+        EXPECT_NEAR(src_z_vals[n], -3.0_rt * golds[n], tol);
     }
     // Check intermediate points against manual expectations (near 1, near
     // 0)
-    EXPECT_NEAR(src_x_vals[2], 12. * 1.0, 12. * 0.05);
-    EXPECT_NEAR(src_y_vals[2], 1. * 1.0 * 0.0, tol);
-    EXPECT_NEAR(src_z_vals[2], -3. * 1.0, 3. * 0.05);
-    EXPECT_NEAR(src_x_vals[3], 12. * 0.0, 12. * 0.005);
-    EXPECT_NEAR(src_y_vals[3], 1. * 0.0 * 0.0, tol);
-    EXPECT_NEAR(src_z_vals[3], -3. * 0.0, 3. * 0.005);
+    EXPECT_NEAR(src_x_vals[2], 12.0_rt * 1.0_rt, 12.0_rt * 0.05_rt);
+    EXPECT_NEAR(src_y_vals[2], 1.0_rt * 1.0_rt * 0.0_rt, tol);
+    EXPECT_NEAR(src_z_vals[2], -3.0_rt * 1.0_rt, 3.0_rt * 0.05_rt);
+    EXPECT_NEAR(src_x_vals[3], 12.0_rt * 0.0_rt, 12.0_rt * 0.005_rt);
+    EXPECT_NEAR(src_y_vals[3], 1.0_rt * 0.0_rt * 0.0_rt, tol);
+    EXPECT_NEAR(src_z_vals[3], -3.0_rt * 0.0_rt, 3.0_rt * 0.005_rt);
 }
 
 TEST_F(ABLMeshTest, hurricane_forcing)
 {
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     populate_parameters();
     {
         amrex::ParmParse pp("CoriolisForcing");
-        pp.add("latitude", 90.0);
+        pp.add("latitude", 90.0_rt);
     }
     {
         amrex::ParmParse pp("HurricaneTempForcing");
-        pp.add("radial_decay", 0.001);
+        pp.add("radial_decay", 0.001_rt);
     }
     initialize_mesh();
 
@@ -327,13 +342,13 @@ TEST_F(ABLMeshTest, hurricane_forcing)
     auto& src_term_temp = temp_eqn.fields().src_term;
 
     auto& velocity = sim().repo().get_field("velocity");
-    velocity.setVal({{0.0, 0.0, 0.0}});
+    velocity.setVal({{0.0_rt, 0.0_rt, 0.0_rt}});
     auto& density = sim().repo().get_field("density");
-    density.setVal(1.0);
+    density.setVal(1.0_rt);
 
     // Calculate Hurricane Forcing to the momentum equation
     amr_wind::pde::icns::HurricaneForcing hurricane_forcing(sim());
-    src_term_icns.setVal(0.0);
+    src_term_icns.setVal(0.0_rt);
     run_algorithm(src_term_icns, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term_icns(lev).array(mfi);
@@ -344,7 +359,7 @@ TEST_F(ABLMeshTest, hurricane_forcing)
     // Calculate Hurricane Forcing to the temperature equation
     amr_wind::pde::temperature::HurricaneTempForcing hurricane_temp_forcing(
         sim());
-    src_term_temp.setVal(0.0);
+    src_term_temp.setVal(0.0_rt);
     run_algorithm(src_term_temp, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term_temp(lev).array(mfi);
@@ -354,18 +369,20 @@ TEST_F(ABLMeshTest, hurricane_forcing)
     });
 
     // Test the momentum hurricane forcing
-    constexpr amrex::Real corfac = 2.0 * amr_wind::utils::two_pi() / 86400.0;
+    constexpr amrex::Real corfac =
+        2.0_rt * amr_wind::utils::two_pi() / 86400.0_rt;
     const amrex::Real dz = sim().mesh().Geom(0).CellSizeArray()[2];
-    const amrex::Real ratio_top = (18000. - (1000. - 0.5 * dz)) / 18000.;
-    const amrex::Real ratio_bottom = (18000. - 0.5 * dz) / 18000.;
+    const amrex::Real ratio_top =
+        (18000.0_rt - (1000.0_rt - 0.5_rt * dz)) / 18000.0_rt;
+    const amrex::Real ratio_bottom = (18000.0_rt - 0.5_rt * dz) / 18000.0_rt;
     const amrex::Array<amrex::Real, AMREX_SPACEDIM> golds_max{
-        {-corfac * 40.0 * ratio_top -
-             40.0 * ratio_top * 40.0 * ratio_top / 40000.0,
-         0.0, 0.0}};
+        {(-corfac * 40.0_rt * ratio_top) -
+             (40.0_rt * ratio_top * 40.0_rt * ratio_top / 40000.0_rt),
+         0.0_rt, 0.0_rt}};
     const amrex::Array<amrex::Real, AMREX_SPACEDIM> golds_min{
-        {-corfac * ratio_bottom * 40 -
-             ratio_bottom * 40.0 * ratio_bottom * 40.0 / 40000.0,
-         0.0, 0.0}};
+        {(-corfac * ratio_bottom * 40.0_rt) -
+             (ratio_bottom * 40.0_rt * ratio_bottom * 40.0_rt / 40000.0_rt),
+         0.0_rt, 0.0_rt}};
 
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         const auto max_val = utils::field_max(src_term_icns, i);
@@ -375,19 +392,22 @@ TEST_F(ABLMeshTest, hurricane_forcing)
     }
 
     // Test the temperature equation hurricane forcing
-    const amrex::Real gold = 0.0;
+    const amrex::Real gold = 0.0_rt;
     const auto max_val = utils::field_max(src_term_temp);
     EXPECT_NEAR(max_val, gold, tol);
 }
 
 TEST_F(ABLMeshTest, coriolis_const_vel)
 {
-    constexpr amrex::Real tol = 1.0e-12;
-    constexpr amrex::Real corfac = 2.0 * amr_wind::utils::two_pi() / 86164.091;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+    constexpr amrex::Real corfac =
+        2.0_rt * amr_wind::utils::two_pi() / 86164.091_rt;
     // Latitude is set to 45 degrees in the input file so sinphi = cosphi
-    const amrex::Real latfac = std::sin(amr_wind::utils::radians(45.0));
+    const amrex::Real latfac = std::sin(amr_wind::utils::radians(45.0_rt));
     // Initialize a random value for the velocity component
-    const amrex::Real vel_comp = 10.0 + 5.0 * (amrex::Random() - 0.5);
+    const amrex::Real vel_comp =
+        10.0_rt + (5.0_rt * (amrex::Random() - 0.5_rt));
 
     // Initialize parameters
     populate_parameters();
@@ -401,9 +421,9 @@ TEST_F(ABLMeshTest, coriolis_const_vel)
     // Velocity in x-direction test
     {
         const amrex::RealArray golds = {
-            0.0, -corfac * latfac * vel_comp, corfac * latfac * vel_comp};
-        vel.setVal(0.0);
-        src_term.setVal(0.0);
+            0.0_rt, -corfac * latfac * vel_comp, corfac * latfac * vel_comp};
+        vel.setVal(0.0_rt);
+        src_term.setVal(0.0_rt);
         vel.setVal(vel_comp, 0);
 
         run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
@@ -424,9 +444,10 @@ TEST_F(ABLMeshTest, coriolis_const_vel)
 
     // Velocity in y-direction test
     {
-        const amrex::RealArray golds = {corfac * latfac * vel_comp, 0.0, 0.0};
-        vel.setVal(0.0);
-        src_term.setVal(0.0);
+        const amrex::RealArray golds = {
+            corfac * latfac * vel_comp, 0.0_rt, 0.0_rt};
+        vel.setVal(0.0_rt);
+        src_term.setVal(0.0_rt);
         vel.setVal(vel_comp, 1);
 
         run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
@@ -451,7 +472,7 @@ namespace {
 void cor_height_init_vel_field(
     const amrex::Box& bx, const amrex::Array4<amrex::Real>& vel)
 {
-    // Set y velocity as a function of height with (dx = 1.0)
+    // Set y velocity as a function of height with (dx = 1.0_rt)
     amrex::ParallelFor(bx, [vel] AMREX_GPU_DEVICE(int i, int j, int k) {
         vel(i, j, k, 1) = static_cast<amrex::Real>(k);
     });
@@ -463,10 +484,12 @@ TEST_F(ABLMeshTest, coriolis_height_variation)
 {
     // ABL unit test mesh has 64 cells in z
     constexpr int kdim = 63;
-    constexpr amrex::Real tol = 1.0e-12;
-    constexpr amrex::Real corfac = 2.0 * amr_wind::utils::two_pi() / 86164.091;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+    constexpr amrex::Real corfac =
+        2.0_rt * amr_wind::utils::two_pi() / 86164.091_rt;
     // Latitude is set to 45 degrees in the input file so sinphi = cosphi
-    const amrex::Real latfac = std::sin(amr_wind::utils::radians(45.0));
+    const amrex::Real latfac = std::sin(amr_wind::utils::radians(45.0_rt));
 
     // Initialize parameters
     populate_parameters();
@@ -477,8 +500,8 @@ TEST_F(ABLMeshTest, coriolis_height_variation)
     auto& vel_src = fields.src_term;
     amr_wind::pde::icns::CoriolisForcing coriolis(sim());
 
-    velocity.setVal(0.0);
-    vel_src.setVal(0.0);
+    velocity.setVal(0.0_rt);
+    vel_src.setVal(0.0_rt);
 
     run_algorithm(velocity, [&](const int lev, const amrex::MFIter& mfi) {
         const auto bx = mfi.validbox();
@@ -488,13 +511,13 @@ TEST_F(ABLMeshTest, coriolis_height_variation)
         coriolis(lev, mfi, bx, amr_wind::FieldState::New, vel_src_arr);
     });
 
-    EXPECT_NEAR(utils::field_min(vel_src, 0), 0.0, tol);
+    EXPECT_NEAR(utils::field_min(vel_src, 0), 0.0_rt, tol);
     EXPECT_NEAR(utils::field_max(vel_src, 0), corfac * latfac * kdim, tol);
 
     for (int i = 1; i < AMREX_SPACEDIM; ++i) {
         const auto min_src = utils::field_min(vel_src, i);
         const auto max_src = utils::field_max(vel_src, i);
-        EXPECT_NEAR(min_src, 0.0, tol);
+        EXPECT_NEAR(min_src, 0.0_rt, tol);
         EXPECT_NEAR(min_src, max_src, tol);
     }
 }
@@ -504,19 +527,20 @@ namespace {
 void init_abl_temperature_field(
     int kdim, const amrex::Box& bx, const amrex::Array4<amrex::Real>& trac)
 {
-    // Set tracer as a function of height with (dx = 1.0)
-    const amrex::Real dz = 1000.0 / ((amrex::Real)kdim + 1);
+    // Set tracer as a function of height with (dx = 1.0_rt)
+    const amrex::Real dz = 1000.0_rt / (static_cast<amrex::Real>(kdim) + 1);
 
     amrex::ParallelFor(bx, [dz, trac] AMREX_GPU_DEVICE(int i, int j, int k) {
-        const amrex::Real z = (k + 0.5) * dz;
+        const amrex::Real z = (k + 0.5_rt) * dz;
 
         // potential temperature profile
-        if (z < 650.0) {
-            trac(i, j, k, 0) = 300.0;
-        } else if (z < 750.0) {
-            trac(i, j, k, 0) = 300.0 + (z - 650.0) / (750.0 - 650.0) * 8.0;
+        if (z < 650.0_rt) {
+            trac(i, j, k, 0) = 300.0_rt;
+        } else if (z < 750.0_rt) {
+            trac(i, j, k, 0) =
+                300.0_rt + ((z - 650.0_rt) / (750.0_rt - 650.0_rt) * 8.0_rt);
         } else {
-            trac(i, j, k, 0) = 308.0;
+            trac(i, j, k, 0) = 308.0_rt;
         }
     });
 }
@@ -526,7 +550,8 @@ void init_abl_temperature_field(
 TEST_F(ABLMeshTest, boussinesq)
 {
     constexpr int kdim = 7;
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     // Initialize parameters
     populate_parameters();
@@ -545,7 +570,7 @@ TEST_F(ABLMeshTest, boussinesq)
     auto& temperature =
         sim().repo().get_field("temperature", amr_wind::FieldState::Old);
 
-    src_term.setVal(0.0);
+    src_term.setVal(0.0_rt);
 
     run_algorithm(temperature, [&](const int lev, const amrex::MFIter& mfi) {
         const auto bx = mfi.validbox();
@@ -560,20 +585,22 @@ TEST_F(ABLMeshTest, boussinesq)
     for (int i = 0; i < 2; ++i) {
         const auto min_src = utils::field_min(src_term, i);
         const auto max_src = utils::field_max(src_term, i);
-        EXPECT_NEAR(min_src, 0.0, tol);
-        EXPECT_NEAR(max_src, 0.0, tol);
+        EXPECT_NEAR(min_src, 0.0_rt, tol);
+        EXPECT_NEAR(max_src, 0.0_rt, tol);
     }
 
     // f = beta * (T0 - T)*g
-    EXPECT_NEAR(utils::field_min(src_term, 2), 0.0, tol);
+    EXPECT_NEAR(utils::field_min(src_term, 2), 0.0_rt, tol);
     EXPECT_NEAR(
-        utils::field_max(src_term, 2), -9.81 * (300.0 - 308.0) / 300.0, tol);
+        utils::field_max(src_term, 2),
+        -9.81_rt * (300.0_rt - 308.0_rt) / 300.0_rt, tol);
 }
 
 TEST_F(ABLMeshTest, boussinesq_nph)
 {
     constexpr int kdim = 7;
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     // Initialize parameters
     populate_parameters();
@@ -592,7 +619,7 @@ TEST_F(ABLMeshTest, boussinesq_nph)
     auto& temperature =
         sim().repo().get_field("temperature", amr_wind::FieldState::NPH);
 
-    src_term.setVal(0.0);
+    src_term.setVal(0.0_rt);
 
     run_algorithm(temperature, [&](const int lev, const amrex::MFIter& mfi) {
         const auto bx = mfi.validbox();
@@ -607,14 +634,15 @@ TEST_F(ABLMeshTest, boussinesq_nph)
     for (int i = 0; i < 2; ++i) {
         const auto min_src = utils::field_min(src_term, i);
         const auto max_src = utils::field_max(src_term, i);
-        EXPECT_NEAR(min_src, 0.0, tol);
-        EXPECT_NEAR(max_src, 0.0, tol);
+        EXPECT_NEAR(min_src, 0.0_rt, tol);
+        EXPECT_NEAR(max_src, 0.0_rt, tol);
     }
 
     // f = beta * (T0 - T)*g
-    EXPECT_NEAR(utils::field_min(src_term, 2), 0.0, tol);
+    EXPECT_NEAR(utils::field_min(src_term, 2), 0.0_rt, tol);
     EXPECT_NEAR(
-        utils::field_max(src_term, 2), -9.81 * (300.0 - 308.0) / 300.0, tol);
+        utils::field_max(src_term, 2),
+        -9.81_rt * (300.0_rt - 308.0_rt) / 300.0_rt, tol);
 }
 
 namespace {
@@ -622,18 +650,18 @@ namespace {
 void init_density_field(
     int kdim, const amrex::Box& bx, const amrex::Array4<amrex::Real>& den)
 {
-    // Set density as a function of height with (dz = 1.0)
-    const amrex::Real dz = 1.0 / ((amrex::Real)kdim + 1);
+    // Set density as a function of height with (dz = 1.0_rt)
+    const amrex::Real dz = 1.0_rt / (static_cast<amrex::Real>(kdim) + 1);
 
     amrex::ParallelFor(bx, [dz, den] AMREX_GPU_DEVICE(int i, int j, int k) {
-        const amrex::Real z = (k + 0.5) * dz;
+        const amrex::Real z = (k + 0.5_rt) * dz;
 
-        if (z < 0.3) {
-            den(i, j, k) = 0.5;
-        } else if (z > 0.7) {
-            den(i, j, k) = 2.0;
+        if (z < 0.3_rt) {
+            den(i, j, k) = 0.5_rt;
+        } else if (z > 0.7_rt) {
+            den(i, j, k) = 2.0_rt;
         } else {
-            den(i, j, k) = 1.0;
+            den(i, j, k) = 1.0_rt;
         }
     });
 }
@@ -643,7 +671,8 @@ void init_density_field(
 TEST_F(ABLMeshTest, densitybuoyancy)
 {
     constexpr int kdim = 7;
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     // Initialize parameters
     populate_parameters();
@@ -661,8 +690,8 @@ TEST_F(ABLMeshTest, densitybuoyancy)
 
     amr_wind::pde::icns::DensityBuoyancy db(sim());
 
-    density.setVal(1.0);
-    src_term.setVal(0.0);
+    density.setVal(1.0_rt);
+    src_term.setVal(0.0_rt);
 
     run_algorithm(density, [&](const int lev, const amrex::MFIter& mfi) {
         const auto bx = mfi.validbox();
@@ -674,8 +703,8 @@ TEST_F(ABLMeshTest, densitybuoyancy)
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         const auto min_src = utils::field_min(src_term, i);
         const auto max_src = utils::field_max(src_term, i);
-        EXPECT_NEAR(min_src, 0.0, tol);
-        EXPECT_NEAR(max_src, 0.0, tol);
+        EXPECT_NEAR(min_src, 0.0_rt, tol);
+        EXPECT_NEAR(max_src, 0.0_rt, tol);
     }
 
     run_algorithm(density, [&](const int lev, const amrex::MFIter& mfi) {
@@ -690,13 +719,17 @@ TEST_F(ABLMeshTest, densitybuoyancy)
     for (int i = 0; i < 2; ++i) {
         const auto min_src = utils::field_min(src_term, i);
         const auto max_src = utils::field_max(src_term, i);
-        EXPECT_NEAR(min_src, 0.0, tol);
-        EXPECT_NEAR(max_src, 0.0, tol);
+        EXPECT_NEAR(min_src, 0.0_rt, tol);
+        EXPECT_NEAR(max_src, 0.0_rt, tol);
     }
 
     // f = g*(1-rho_0/rho)
-    EXPECT_NEAR(utils::field_min(src_term, 2), -9.81 * (1.0 - 1.0 / 2.0), tol);
-    EXPECT_NEAR(utils::field_max(src_term, 2), -9.81 * (1.0 - 1.0 / 0.5), tol);
+    EXPECT_NEAR(
+        utils::field_min(src_term, 2), -9.81_rt * (1.0_rt - 1.0_rt / 2.0_rt),
+        tol);
+    EXPECT_NEAR(
+        utils::field_max(src_term, 2), -9.81_rt * (1.0_rt - 1.0_rt / 0.5_rt),
+        tol);
 }
 
 } // namespace amr_wind_tests

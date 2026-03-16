@@ -9,6 +9,9 @@
 #include "AMReX_iMultiFab.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 namespace synth_turb {
@@ -23,8 +26,8 @@ struct LinearShearOp
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
     operator()(amrex::Real ht) const
     {
-        amrex::Real vel =
-            m_vstart + (m_vstop - m_vstart) * (ht - m_hmin) / (m_hmax - m_hmin);
+        amrex::Real vel = m_vstart + ((m_vstop - m_vstart) * (ht - m_hmin) /
+                                      (m_hmax - m_hmin));
         return amrex::max(m_vstart, amrex::min(vel, m_vstop));
     }
 };
@@ -39,14 +42,18 @@ public:
         amrex::Real vel_start,
         amrex::Real vel_stop,
         int shear_dir)
-        : MeanProfile(0.5 * (vel_start + vel_stop), shear_dir)
-        , m_op{h_min, h_max, vel_start, vel_stop}
+        : MeanProfile(0.5_rt * (vel_start + vel_stop), shear_dir)
+        , m_op{
+              .m_hmin = h_min,
+              .m_hmax = h_max,
+              .m_vstart = vel_start,
+              .m_vstop = vel_stop}
     {}
 
     ~LinearShearProfile() override = default;
 
     // cppcheck-suppress duplInheritedMember
-    LinearShearOp device_instance() const { return m_op; }
+    [[nodiscard]] LinearShearOp device_instance() const { return m_op; }
 
 private:
     LinearShearOp m_op;
@@ -66,7 +73,7 @@ struct PowerLawOp
     {
         const amrex::Real heff = height - m_hoffset;
         amrex::Real pfac =
-            (heff > 0.0) ? std::pow((heff / m_ref_height), m_alpha) : 0.0;
+            (heff > 0.0_rt) ? std::pow((heff / m_ref_height), m_alpha) : 0.0_rt;
         return m_ref_vel * amrex::min(amrex::max(pfac, m_umin), m_umax);
     }
 };
@@ -83,13 +90,19 @@ public:
         amrex::Real umin,
         amrex::Real umax)
         : MeanProfile(ref_vel, shear_dir)
-        , m_op{ref_vel, ref_height, alpha, h_offset, umin, umax}
+        , m_op{
+              .m_ref_vel = ref_vel,
+              .m_ref_height = ref_height,
+              .m_alpha = alpha,
+              .m_hoffset = h_offset,
+              .m_umin = umin,
+              .m_umax = umax}
     {}
 
     ~PowerLawProfile() override = default;
 
     // cppcheck-suppress duplInheritedMember
-    PowerLawOp device_instance() const { return m_op; }
+    [[nodiscard]] PowerLawOp device_instance() const { return m_op; }
 
 private:
     PowerLawOp m_op;
@@ -227,8 +240,8 @@ void get_lr_indices(
     int& il,
     int& ir)
 {
-    const amrex::Real xbox =
-        xin - std::floor(xin / turb_grid.box_len[dir]) * turb_grid.box_len[dir];
+    const amrex::Real xbox = xin - (std::floor(xin / turb_grid.box_len[dir]) *
+                                    turb_grid.box_len[dir]);
 
     il = static_cast<int>(std::floor(xbox / turb_grid.dx[dir]));
     ir = il + 1;
@@ -259,8 +272,8 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void get_lr_indices(
     amrex::Real& rxl,
     amrex::Real& rxr)
 {
-    const amrex::Real xbox =
-        xin - std::floor(xin / turb_grid.box_len[dir]) * turb_grid.box_len[dir];
+    const amrex::Real xbox = xin - (std::floor(xin / turb_grid.box_len[dir]) *
+                                    turb_grid.box_len[dir]);
 
     il = static_cast<int>(std::floor(xbox / turb_grid.dx[dir]));
     ir = il + 1;
@@ -268,9 +281,9 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void get_lr_indices(
         ir -= turb_grid.box_dims[dir];
     }
 
-    const amrex::Real xfrac = xbox - turb_grid.dx[dir] * il;
+    const amrex::Real xfrac = xbox - (turb_grid.dx[dir] * il);
     rxr = xfrac / turb_grid.dx[dir];
-    rxl = (1.0 - rxr);
+    rxl = (1.0_rt - rxr);
 }
 
 /** Determine if a given point (in local frame) is within the turbulence box
@@ -284,10 +297,10 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE bool find_point_in_box(
     const SynthTurbDeviceData& t_grid, const vs::Vector& pt, InterpWeights& wt)
 {
     // Get y and z w.r.t. the lower corner of the grid
-    const amrex::Real yy = pt[1] + t_grid.box_len[1] * 0.5;
-    const amrex::Real zz = pt[2] + t_grid.box_len[2] * 0.5;
+    const amrex::Real yy = pt[1] + (t_grid.box_len[1] * 0.5_rt);
+    const amrex::Real zz = pt[2] + (t_grid.box_len[2] * 0.5_rt);
     bool inBox =
-        ((yy >= 0.0) && (yy <= t_grid.box_len[1]) && (zz >= 0.0) &&
+        ((yy >= 0.0_rt) && (yy <= t_grid.box_len[1]) && (zz >= 0.0_rt) &&
          (zz <= t_grid.box_len[2]));
 
     if (inBox) {
@@ -307,42 +320,42 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE void interp_perturb_vel(
     const int nynz = t_grid.box_dims[1] * t_grid.box_dims[2];
     // Indices of the 2-D cell that contains the sampling point
     amrex::Array<int, 4> qidx = {
-        wt.jl * nz + wt.kl, wt.jr * nz + wt.kl, wt.jr * nz + wt.kr,
-        wt.jl * nz + wt.kr};
+        (wt.jl * nz) + wt.kl, (wt.jr * nz) + wt.kl, (wt.jr * nz) + wt.kr,
+        (wt.jl * nz) + wt.kr};
 
     vs::Vector vel_l, vel_r;
 
     // Left quad (t = t)
-    vel_l[0] = wt.yl * wt.zl * t_grid.uvel[qidx[0]] +
-               wt.yr * wt.zl * t_grid.uvel[qidx[1]] +
-               wt.yr * wt.zr * t_grid.uvel[qidx[2]] +
-               wt.yl * wt.zr * t_grid.uvel[qidx[3]];
-    vel_l[1] = wt.yl * wt.zl * t_grid.vvel[qidx[0]] +
-               wt.yr * wt.zl * t_grid.vvel[qidx[1]] +
-               wt.yr * wt.zr * t_grid.vvel[qidx[2]] +
-               wt.yl * wt.zr * t_grid.vvel[qidx[3]];
-    vel_l[2] = wt.yl * wt.zl * t_grid.wvel[qidx[0]] +
-               wt.yr * wt.zl * t_grid.wvel[qidx[1]] +
-               wt.yr * wt.zr * t_grid.wvel[qidx[2]] +
-               wt.yl * wt.zr * t_grid.wvel[qidx[3]];
+    vel_l[0] = (wt.yl * wt.zl * t_grid.uvel[qidx[0]]) +
+               (wt.yr * wt.zl * t_grid.uvel[qidx[1]]) +
+               (wt.yr * wt.zr * t_grid.uvel[qidx[2]]) +
+               (wt.yl * wt.zr * t_grid.uvel[qidx[3]]);
+    vel_l[1] = (wt.yl * wt.zl * t_grid.vvel[qidx[0]]) +
+               (wt.yr * wt.zl * t_grid.vvel[qidx[1]]) +
+               (wt.yr * wt.zr * t_grid.vvel[qidx[2]]) +
+               (wt.yl * wt.zr * t_grid.vvel[qidx[3]]);
+    vel_l[2] = (wt.yl * wt.zl * t_grid.wvel[qidx[0]]) +
+               (wt.yr * wt.zl * t_grid.wvel[qidx[1]]) +
+               (wt.yr * wt.zr * t_grid.wvel[qidx[2]]) +
+               (wt.yl * wt.zr * t_grid.wvel[qidx[3]]);
 
     for (int& i : qidx) {
         i += nynz;
     }
 
     // Right quad (t = t+delta_t)
-    vel_r[0] = wt.yl * wt.zl * t_grid.uvel[qidx[0]] +
-               wt.yr * wt.zl * t_grid.uvel[qidx[1]] +
-               wt.yr * wt.zr * t_grid.uvel[qidx[2]] +
-               wt.yl * wt.zr * t_grid.uvel[qidx[3]];
-    vel_r[1] = wt.yl * wt.zl * t_grid.vvel[qidx[0]] +
-               wt.yr * wt.zl * t_grid.vvel[qidx[1]] +
-               wt.yr * wt.zr * t_grid.vvel[qidx[2]] +
-               wt.yl * wt.zr * t_grid.vvel[qidx[3]];
-    vel_r[2] = wt.yl * wt.zl * t_grid.wvel[qidx[0]] +
-               wt.yr * wt.zl * t_grid.wvel[qidx[1]] +
-               wt.yr * wt.zr * t_grid.wvel[qidx[2]] +
-               wt.yl * wt.zr * t_grid.wvel[qidx[3]];
+    vel_r[0] = (wt.yl * wt.zl * t_grid.uvel[qidx[0]]) +
+               (wt.yr * wt.zl * t_grid.uvel[qidx[1]]) +
+               (wt.yr * wt.zr * t_grid.uvel[qidx[2]]) +
+               (wt.yl * wt.zr * t_grid.uvel[qidx[3]]);
+    vel_r[1] = (wt.yl * wt.zl * t_grid.vvel[qidx[0]]) +
+               (wt.yr * wt.zl * t_grid.vvel[qidx[1]]) +
+               (wt.yr * wt.zr * t_grid.vvel[qidx[2]]) +
+               (wt.yl * wt.zr * t_grid.vvel[qidx[3]]);
+    vel_r[2] = (wt.yl * wt.zl * t_grid.wvel[qidx[0]]) +
+               (wt.yr * wt.zl * t_grid.wvel[qidx[1]]) +
+               (wt.yr * wt.zr * t_grid.wvel[qidx[2]]) +
+               (wt.yl * wt.zr * t_grid.wvel[qidx[3]]);
 
     // Interpolation in time
     vel = wt.xl * vel_l + wt.xr * vel_r;
@@ -362,8 +375,6 @@ SyntheticTurbulence::SyntheticTurbulence(const CFDSim& sim)
     amrex::Abort(
         "SyntheticTurbulence: AMR-Wind was not built with NetCDF support.");
 #endif
-    const amrex::Real pi = std::acos(-1.0);
-
     amrex::ParmParse pp("SynthTurb");
 
     // NetCDF file containing the turbulence data
@@ -373,7 +384,7 @@ SyntheticTurbulence::SyntheticTurbulence(const CFDSim& sim)
     // Load position and orientation of the grid
     amrex::Real wind_direction{270.};
     pp.query("wind_direction", wind_direction);
-    amrex::Vector<amrex::Real> location{0.0, 0.0, 0.0};
+    amrex::Vector<amrex::Real> location{0.0_rt, 0.0_rt, 0.0_rt};
     pp.queryarr("grid_location", location);
 
     std::string mean_wind_type = "ConstValue";
@@ -437,7 +448,8 @@ SyntheticTurbulence::SyntheticTurbulence(const CFDSim& sim)
     m_mean_wind_type = mean_wind_type;
     // Smearing factors
     pp.get("gauss_smearing_factor", m_epsilon);
-    m_gauss_scaling = 1.0 / (m_epsilon * std::sqrt(pi));
+    m_gauss_scaling =
+        1.0_rt / (m_epsilon * std::sqrt(std::numbers::pi_v<amrex::Real>));
 
     // Time offsets if any...
     pp.query("time_offset", m_time_offset);
@@ -456,7 +468,7 @@ SyntheticTurbulence::SyntheticTurbulence(const CFDSim& sim)
     //
     // x-direction points to flow direction (convert from compass direction to
     // vector)
-    m_turb_grid.tr_mat = vs::zrot(270.0 - wind_direction);
+    m_turb_grid.tr_mat = vs::zrot(270.0_rt - wind_direction);
 
     amrex::Print() << "Synthetic turbulence forcing initialized \n"
                    << "  Turbulence file = " << m_turb_filename << "\n"
@@ -474,7 +486,7 @@ SyntheticTurbulence::SyntheticTurbulence(const CFDSim& sim)
                    << "  Mean wind profile: U = "
                    << m_wind_profile->reference_velocity()
                    << " m/s; Dir = " << wind_direction
-                   << " deg; type = " << mean_wind_type << std::endl;
+                   << " deg; type = " << mean_wind_type << '\n';
 }
 
 void SyntheticTurbulence::initialize_fields(
@@ -516,8 +528,8 @@ void SyntheticTurbulence::update()
 
     // Stop update if the current time is past the requested duration of the
     // injection of the synthetic turbulence and if this duration is positive
-    if (m_duration > 0.0 && cur_time > m_duration) {
-        const amrex::Vector<amrex::Real> zeros{0.0, 0.0, 0.0};
+    if (m_duration > 0.0_rt && cur_time > m_duration) {
+        const amrex::Vector<amrex::Real> zeros{0.0_rt, 0.0_rt, 0.0_rt};
         m_turb_force.setVal(zeros, m_turb_force.num_grow()[0]);
         return;
     }
@@ -579,7 +591,7 @@ void SyntheticTurbulence::update_impl(
 
         amrex::ParallelFor(
             m_turb_force(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 // Position vector in local turbulence grid frame
                 vs::Vector xyz_l;
                 // velocity in local frame
@@ -588,8 +600,9 @@ void SyntheticTurbulence::update_impl(
                 vs::Vector vel_g;
 
                 vs::Vector xyz_g{
-                    problo[0] + (i + 0.5) * dx, problo[1] + (j + 0.5) * dy,
-                    problo[2] + (k + 0.5) * dz};
+                    problo[0] + ((i + 0.5_rt) * dx),
+                    problo[1] + ((j + 0.5_rt) * dy),
+                    problo[2] + ((k + 0.5_rt) * dz)};
 
                 // Transform position vector from global inertial
                 // reference frame to local reference frame attached to
@@ -618,7 +631,7 @@ void SyntheticTurbulence::update_impl(
                     const amrex::Real v_mag = vs::mag(vel_g);
                     // (V_n + 1/2 v_n) in Eq. 10
                     const amrex::Real v_mag_total =
-                        (velfunc(xyz_g[sdir]) + 0.5 * v_mag);
+                        (velfunc(xyz_g[sdir]) + (0.5_rt * v_mag));
 
                     // Smearing factor (see Eq. 11). The normal direction to
                     // the grid is the x-axis of the local reference frame

@@ -4,6 +4,9 @@
 #include "amr-wind/physics/ForestDrag.H"
 #include "amr-wind/core/field_ops.H"
 #include "amr-wind/utilities/sampling/FieldNorms.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace {
 void write_forest(const std::string& fname)
@@ -37,7 +40,7 @@ protected:
 
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> probhi{{1024, 1024, 512}};
+            amrex::Vector<amrex::Real> probhi{{1024.0_rt, 1024.0_rt, 512.0_rt}};
             pp.addarr("prob_hi", probhi);
         }
     }
@@ -63,18 +66,18 @@ TEST_F(ForestTest, forest)
         forest_drag.initialize_fields(lev, geom);
     }
 
-    constexpr amrex::Real n_forests = 3.0;
+    constexpr amrex::Real n_forests = 3.0_rt;
     const auto& f_id = sim().repo().get_field("forest_id");
     const amrex::Real max_id = amr_wind::field_ops::global_max_magnitude(f_id);
     EXPECT_EQ(max_id, n_forests);
 
-    constexpr amrex::Real expected_max_drag = 0.050285714285714288;
+    constexpr amrex::Real expected_max_drag = 0.050285714285714288_rt;
     const auto& f_drag = sim().repo().get_field("forest_drag");
     const amrex::Real max_drag =
         amr_wind::field_ops::global_max_magnitude(f_drag);
     EXPECT_NEAR(max_drag, expected_max_drag, amr_wind::constants::TIGHT_TOL);
 
-    constexpr amrex::Real expected_norm_drag = 0.0030635155406915832;
+    constexpr amrex::Real expected_norm_drag = 0.0030635155406915832_rt;
     const auto norm_drag =
         amr_wind::field_norms::FieldNorms::get_norm(f_drag, 0, 1, 2, false);
     EXPECT_NEAR(norm_drag, expected_norm_drag, amr_wind::constants::TIGHT_TOL);

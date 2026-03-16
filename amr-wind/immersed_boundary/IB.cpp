@@ -5,8 +5,10 @@
 #include "amr-wind/core/MultiParser.H"
 #include "amr-wind/utilities/IOManager.H"
 #include "amr-wind/utilities/io_utils.H"
-
 #include <algorithm>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::ib {
 
@@ -57,7 +59,7 @@ void IB::pre_init_actions()
 void IB::post_init_actions()
 {
     BL_PROFILE("amr-wind::ib::IB::post_init_actions");
-    m_ib_levelset.setVal(1e30);
+    m_ib_levelset.setVal(1.0e30_rt);
 
     for (auto& ib : m_ibs) {
         ib->init_ib();

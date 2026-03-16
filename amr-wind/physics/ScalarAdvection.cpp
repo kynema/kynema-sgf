@@ -1,7 +1,11 @@
+#include <numbers>
 #include "amr-wind/physics/ScalarAdvection.H"
 #include "amr-wind/CFDSim.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_MultiFabUtil.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -18,12 +22,14 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real GaussianPulseFV::operator()(
     const amrex::Real /*unused*/,
     const amrex::Real /*unused*/) const
 {
-    amrex::Real val = 0.0;
-    if (std::abs(x - x0) < 6 * x_width) {
-        val = sqrt(utils::pi() / 2) * amplitude * x_width *
-              (std::erf((x - x0 + dx / 2) / (sqrt(2) * x_width)) -
-               std::erf((x - x0 - dx / 2) / (sqrt(2) * x_width))) /
-              dx;
+    amrex::Real val = 0.0_rt;
+    if (std::abs(x - x0) < 6.0_rt * x_width) {
+        val =
+            std::sqrt(std::numbers::pi_v<amrex::Real> / 2.0_rt) * amplitude *
+            x_width *
+            (std::erf((x - x0 + dx / 2.0_rt) / (std::sqrt(2.0_rt) * x_width)) -
+             std::erf((x - x0 - dx / 2.0_rt) / (std::sqrt(2.0_rt) * x_width))) /
+            dx;
     }
     return val;
 }
@@ -42,14 +48,17 @@ TwoDimGaussianPulseFV::operator()(
     const amrex::Real /*unused*/,
     const amrex::Real /*unused*/) const
 {
-    amrex::Real val = 0.0;
-    if (std::abs(x - x0) < 6 * x_width && std::abs(y - y0) < 6 * y_width) {
-        val = utils::pi() / 2 * amplitude * x_width * y_width *
-              (std::erf((x - x0 + dx / 2) / (sqrt(2) * x_width)) -
-               std::erf((x - x0 - dx / 2) / (sqrt(2) * x_width))) *
-              (std::erf((y - y0 + dy / 2) / (sqrt(2) * y_width)) -
-               std::erf((y - y0 - dy / 2) / (sqrt(2) * y_width))) /
-              dx / dy;
+    amrex::Real val = 0.0_rt;
+    if (std::abs(x - x0) < 6.0_rt * x_width &&
+        std::abs(y - y0) < 6.0_rt * y_width) {
+        val =
+            std::numbers::pi_v<amrex::Real> / 2.0_rt * amplitude * x_width *
+            y_width *
+            (std::erf((x - x0 + dx / 2.0_rt) / (std::sqrt(2.0_rt) * x_width)) -
+             std::erf((x - x0 - dx / 2.0_rt) / (std::sqrt(2.0_rt) * x_width))) *
+            (std::erf((y - y0 + dy / 2.0_rt) / (std::sqrt(2.0_rt) * y_width)) -
+             std::erf((y - y0 - dy / 2.0_rt) / (std::sqrt(2.0_rt) * y_width))) /
+            dx / dy;
     }
     return val;
 }
@@ -67,10 +76,11 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real SquarePulseFV::operator()(
     const amrex::Real /*unused*/,
     const amrex::Real /*unused*/) const
 {
-    amrex::Real val = 0.0;
-    if (std::abs(std::abs(x - x0) - x_width / 2) < dx / 2) {
-        val = amplitude * (x_width / 2 - std::abs(x - x0) + dx / 2) / dx;
-    } else if (std::abs(x - x0) < x_width / 2) {
+    amrex::Real val = 0.0_rt;
+    if (std::abs(std::abs(x - x0) - (x_width / 2.0_rt)) < dx / 2.0_rt) {
+        val = amplitude * (x_width / 2.0_rt - std::abs(x - x0) + dx / 2.0_rt) /
+              dx;
+    } else if (std::abs(x - x0) < x_width / 2.0_rt) {
         val = amplitude;
     }
     return val;
@@ -93,17 +103,17 @@ GaussianWavePacketFV::operator()(
     const GaussianWavePacket pointwise_function;
     // Gauss-Legendre quadrature
     const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> dx_i = {
-        AMREX_D_DECL(-0.7745966692, 0, 0.7745966692)};
+        AMREX_D_DECL(-0.7745966692_rt, 0.0_rt, 0.7745966692_rt)};
     const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> w_i = {
-        AMREX_D_DECL(0.5555555556, 0.8888888889, 0.5555555556)};
-    amrex::Real cell_integral = 0.0;
+        AMREX_D_DECL(0.5555555556_rt, 0.8888888889_rt, 0.5555555556_rt)};
+    amrex::Real cell_integral = 0.0_rt;
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         cell_integral =
-            cell_integral + w_i[i] * pointwise_function(
-                                         x + dx_i[i] * 0.5 * dx, x0, amplitude,
-                                         x_width, x_wavenumber);
+            cell_integral + (w_i[i] * pointwise_function(
+                                          x + (dx_i[i] * 0.5_rt * dx), x0,
+                                          amplitude, x_width, x_wavenumber));
     }
-    return cell_integral / 2;
+    return cell_integral / 2.0_rt;
 }
 
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real GaussianWavePacket::operator()(
@@ -113,10 +123,12 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real GaussianWavePacket::operator()(
     const amrex::Real x_width,
     const amrex::Real x_wavenumber) const
 {
-    amrex::Real val = 0.0;
-    if (std::abs(x - x0) < 6 * x_width) {
+    amrex::Real val = 0.0_rt;
+    if (std::abs(x - x0) < 6.0_rt * x_width) {
         val = amplitude * std::cos(x_wavenumber * x) *
-              std::exp(-std::pow(x - x0, 2) / (2 * std::pow(x_width, 2)));
+              std::exp(
+                  -std::pow(x - x0, 2.0_rt) /
+                  (2.0_rt * std::pow(x_width, 2.0_rt)));
     }
     return val;
 }
@@ -163,10 +175,10 @@ void ScalarAdvection::initialize_fields(
     const auto& vel_arrs = velocity.arrays();
 
     amrex::ParallelFor(
-        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             vel_arrs[nbx](i, j, k, 0) = u;
             vel_arrs[nbx](i, j, k, 1) = v;
-            vel_arrs[nbx](i, j, k, 2) = 0.0;
+            vel_arrs[nbx](i, j, k, 2) = 0.0_rt;
         });
     amrex::Gpu::streamSynchronize();
 }
@@ -219,14 +231,13 @@ void ScalarAdvection::initialize_scalar(const Shape& scalar_function)
             const auto& nbx = mfi.nodaltilebox();
             auto scalar_arr = scalar.array(mfi);
 
-            amrex::ParallelFor(
-                nbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                    const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                    const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                    scalar_arr(i, j, k, 0) = scalar_function(
-                        x, y, dx[0], dx[1], x0, y0, amplitude, x_width, y_width,
-                        x_wavenumber, y_wavenumber);
-                });
+            amrex::ParallelFor(nbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+                scalar_arr(i, j, k, 0) = scalar_function(
+                    x, y, dx[0], dx[1], x0, y0, amplitude, x_width, y_width,
+                    x_wavenumber, y_wavenumber);
+            });
         }
     }
 }
@@ -248,7 +259,7 @@ ScalarAdvection::compute_error(const Shape& scalar_function)
     const int nlevels = m_repo.num_active_levels();
     const amrex::Real total_vol = m_repo.mesh().Geom(0).ProbDomain().volume();
 
-    amrex::Vector<amrex::Real> err(nlevels + 1, 0.0);
+    amrex::Vector<amrex::Real> err(nlevels + 1, 0.0_rt);
 
     for (int level = 0; level < nlevels; ++level) {
         amrex::iMultiFab level_mask;
@@ -277,8 +288,8 @@ ScalarAdvection::compute_error(const Shape& scalar_function)
             amrex::TypeList<amrex::Real>{}, scalar, amrex::IntVect(0),
             [=] AMREX_GPU_DEVICE(int box_no, int i, int j, int k)
                 -> amrex::GpuTuple<amrex::Real> {
-                const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
+                const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
                 auto const& scalar_bx = scalar_arr[box_no];
                 auto const& mask_bx = mask_arr[box_no];
                 const amrex::Real s = scalar_bx(i, j, k, 0);
@@ -303,7 +314,7 @@ ScalarAdvection::compute_error(const Shape& scalar_function)
 void ScalarAdvection::post_advance_work()
 {
     const int nlevels = m_repo.num_active_levels();
-    amrex::Vector<amrex::Real> err(nlevels + 1, 0.0);
+    amrex::Vector<amrex::Real> err(nlevels + 1, 0.0_rt);
 
     if (m_shape == "gaussianpulse") {
         err = compute_error(GaussianPulseFV());
@@ -323,7 +334,7 @@ void ScalarAdvection::post_advance_work()
         for (auto i : err) {
             f << i << std::setw(m_w);
         }
-        f << std::endl;
+        f << '\n';
         f.close();
     }
 }

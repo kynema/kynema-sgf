@@ -25,7 +25,7 @@ public:
         const amrex::Geometry& geom,
         const amrex::Array4<amrex::TagBox::TagType>& tags) const = 0;
 
-    virtual const amrex::RealBox& bound_box() const = 0;
+    [[nodiscard]] virtual const amrex::RealBox& bound_box() const = 0;
 };
 
 } // namespace tagging

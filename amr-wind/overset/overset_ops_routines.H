@@ -1,5 +1,5 @@
-#ifndef OVERSET_OPS_ROUTINES_H_
-#define OVERSET_OPS_ROUTINES_H_
+#ifndef OVERSET_OPS_ROUTINES_H
+#define OVERSET_OPS_ROUTINES_H
 
 #include "AMReX_iMultiFab.H"
 #include "AMReX_MultiFab.H"
@@ -28,7 +28,7 @@ void apply_pressure_gradient(
     amrex::MultiFab& mf_vel,
     const amrex::MultiFab& mf_density,
     const amrex::MultiFab& mf_gp,
-    const amrex::Real scaling_factor);
+    amrex::Real scaling_factor);
 
 } // namespace amr_wind::overset_ops
 

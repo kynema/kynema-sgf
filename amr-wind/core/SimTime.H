@@ -8,6 +8,8 @@
 #include <algorithm>
 #include <cmath>
 
+using namespace amrex::literals;
+
 namespace {
 AMREX_FORCE_INLINE amrex::Real get_enforced_dt_for_output(
     const amrex::Real dt,
@@ -16,8 +18,9 @@ AMREX_FORCE_INLINE amrex::Real get_enforced_dt_for_output(
     const amrex::Real tol)
 {
     // Tolerance for being slightly under is relative to requested interval
-    return std::min(
-        dt, (std::floor(cur_time / interval + tol) + 1) * interval - cur_time);
+    return amrex::min<amrex::Real>(
+        dt, ((std::floor((cur_time / interval) + tol) + 1.0_rt) * interval) -
+                cur_time);
 }
 } // namespace
 
@@ -43,35 +46,33 @@ public:
 
     /** Return true if simulation should continue
      */
-    bool continue_simulation() const;
+    [[nodiscard]] bool continue_simulation() const;
 
     /** Return true if mesh refinement should be performed at this timestep
      */
-    bool do_regrid() const;
+    [[nodiscard]] bool do_regrid() const;
 
     /** Return true if plot files should be written at this timestep
      */
-    bool write_plot_file() const;
+    [[nodiscard]] bool write_plot_file() const;
 
     /** Return true if checkpoint files should be written at this timestep
      */
-    bool write_checkpoint() const;
+    [[nodiscard]] bool write_checkpoint() const;
 
     /** Return true if plot files should be written at this timestep
      */
-    bool write_last_plot_file() const;
+    [[nodiscard]] bool write_last_plot_file() const;
 
     /** Return true if checkpoint files should be written at this timestep
      */
-    bool write_last_checkpoint() const;
+    [[nodiscard]] bool write_last_checkpoint() const;
 
     /** Set current CFL and update timestep based on CFL components
      *
      */
     void set_current_cfl(
-        const amrex::Real conv_cfl,
-        const amrex::Real diff_cfl,
-        const amrex::Real src_cfl);
+        amrex::Real conv_cfl, amrex::Real diff_cfl, amrex::Real src_cfl);
 
     /** Use results of CFL and timestepping parameters to advance time to new,
      * output time information
@@ -174,92 +175,100 @@ public:
     void override_simulation_end_parameters()
     {
         m_stop_time_index = -1;
-        m_stop_time = -1.;
+        m_stop_time = -1.0_rt;
     }
 
     /** Return true if TinyProfiler output should be sent to the log file at
      * this timestep
      */
-    bool output_profiling_info() const;
+    [[nodiscard]] bool output_profiling_info() const;
 
 private:
     //! Timestep sizes
     amrex::Vector<amrex::Real> m_dt =
-        amrex::Vector<amrex::Real>(max_time_states, 0.0);
+        amrex::Vector<amrex::Real>(max_time_states, 0.0_rt);
 
     //! Current simulation time
-    amrex::Real m_cur_time{0.0};
+    amrex::Real m_cur_time{0.0_rt};
 
     //! Time where a new timestep will advance to
-    amrex::Real m_new_time{0.0};
+    amrex::Real m_new_time{0.0_rt};
 
     //! Starting simulation time (to track restart)
-    amrex::Real m_start_time{0.0};
+    amrex::Real m_start_time{0.0_rt};
 
     //! Max time for simulation
-    amrex::Real m_stop_time{-1.0};
+    amrex::Real m_stop_time{-1.0_rt};
 
     //! Delayed adaptive stepping
-    amrex::Real m_delay_time{-1.0};
+    amrex::Real m_delay_time{-1.0_rt};
 
     //! Maximum CFL constraint
-    amrex::Real m_max_cfl{1.0};
+    amrex::Real m_max_cfl{1.0_rt};
 
     //! Fixed delta_t indicated by user
-    amrex::Real m_fixed_dt{-1.0};
+    amrex::Real m_fixed_dt{-1.0_rt};
 
     //! Initial delta_t indicated by user
-    amrex::Real m_initial_dt{-1.0};
+    amrex::Real m_initial_dt{-1.0_rt};
 
     //! Maximum delta_t indicated by user
-    amrex::Real m_max_dt{-1.0};
+    amrex::Real m_max_dt{-1.0_rt};
 
     //! Minimum delta_t indicated by user
-    amrex::Real m_min_dt{-1.0};
+    amrex::Real m_min_dt{-1.0_rt};
 
     //! Current CFL
-    amrex::Real m_current_cfl{0.0};
+    amrex::Real m_current_cfl{0.0_rt};
 
     //! Current CFL categories
-    amrex::Real m_conv_cfl{0.0};
-    amrex::Real m_diff_cfl{0.0};
-    amrex::Real m_src_cfl{0.0};
+    amrex::Real m_conv_cfl{0.0_rt};
+    amrex::Real m_diff_cfl{0.0_rt};
+    amrex::Real m_src_cfl{0.0_rt};
 
     //! delta_t calculated using CFL constraint
-    amrex::Real m_dt_calc{0.0};
+    amrex::Real m_dt_calc{0.0_rt};
 
     //! Initial reduction in timestep size for startup
-    amrex::Real m_init_shrink{0.1};
+    amrex::Real m_init_shrink{0.1_rt};
 
     //! Maximum growth of dt between timesteps
-    amrex::Real m_dt_growth{0.1};
+    amrex::Real m_dt_growth{0.1_rt};
 
     //! Time interval for writing checkpoint/restart files
-    amrex::Real m_chkpt_t_interval{-1.0};
+    amrex::Real m_chkpt_t_interval{-1.0_rt};
 
     //! Time delay for checkpoint/restart output
-    amrex::Real m_chkpt_t_delay{0.0};
+    amrex::Real m_chkpt_t_delay{0.0_rt};
 
     //! Relative (to dt) tolerance for checkpoint time interval output
-    amrex::Real m_chkpt_t_tol{1e-8};
+    amrex::Real m_chkpt_t_tol{1.0e-2_rt};
 
     //! Relative (to chkpt_t_interval) tolerance for enforcing dt
-    amrex::Real m_force_chkpt_tol{1e-3};
+    amrex::Real m_force_chkpt_tol{1.0e-3_rt};
 
     //! Time interval for plot file output
-    amrex::Real m_plt_t_interval{-1.0};
+    amrex::Real m_plt_t_interval{-1.0_rt};
 
     //! Time delay for plot file output
-    amrex::Real m_plt_t_delay{0.0};
+    amrex::Real m_plt_t_delay{0.0_rt};
 
     //! Relative (to dt) tolerance for plot time interval output
-    amrex::Real m_plt_t_tol{1e-8};
+    amrex::Real m_plt_t_tol{1.0e-2_rt};
 
     //! Relative (to plt_t_interval) tolerance for enforcing dt
-    amrex::Real m_force_plt_tol{1e-3};
+    amrex::Real m_force_plt_tol{1.0e-3_rt};
 
     //! Smallest absolute tolerance for enforcing dt, considering all
-    amrex::Real m_force_dt_abs_tol{1e8};
+    //! tolerance criteria. This is simply a high initial value; the code
+    //! calculates the actual tolerance with min() operations
+    amrex::Real m_force_dt_abs_tol{1.0e8_rt};
+
+    //! Initial starting time for generating checkpoint files (time-based)
+    amrex::Real m_chkpt_start_time{0.0_rt};
+
+    //! Initial starting time for generating output files (time-based)
+    amrex::Real m_plt_start_time{0.0_rt};
 
     //! Counter for the number of timesteps since start of simulation
     int m_time_index{0};

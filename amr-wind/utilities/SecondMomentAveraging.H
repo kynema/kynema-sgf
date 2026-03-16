@@ -1,5 +1,5 @@
-#ifndef SecondMomentAveraging_H
-#define SecondMomentAveraging_H
+#ifndef SECONDMOMENTAVERAGING_H
+#define SECONDMOMENTAVERAGING_H
 
 #include <AMReX_AmrCore.H>
 #include "amr-wind/utilities/DirectionSelector.H"
@@ -32,14 +32,16 @@ public:
     void operator()();
 
     /** evaluate second moment at specific location for both components */
-    amrex::Real
+    [[nodiscard]] amrex::Real
     line_average_interpolated(amrex::Real x, int comp1, int comp2) const;
     /** evaluate second moment at specific location for each component */
-    amrex::Real line_average_interpolated(amrex::Real x, int comp) const;
+    [[nodiscard]] amrex::Real
+    line_average_interpolated(amrex::Real x, int comp) const;
     /** evaluate second moment at specific cell for both components */
-    amrex::Real line_average_cell(int ind, int comp1, int comp2) const;
+    [[nodiscard]] amrex::Real
+    line_average_cell(int ind, int comp1, int comp2) const;
     /** evaluate second moment at specific cell for each component */
-    amrex::Real line_average_cell(int ind, int comp) const;
+    [[nodiscard]] amrex::Real line_average_cell(int ind, int comp) const;
 
     const amrex::Vector<amrex::Real>& line_moment()
     {

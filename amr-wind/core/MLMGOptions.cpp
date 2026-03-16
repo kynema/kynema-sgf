@@ -26,6 +26,7 @@ void MLMGOptions::parse_options(const std::string& prefix)
     pp.query("con_grid_size", m_lpinfo.con_grid_size);
     pp.query("max_coarsening_level", m_lpinfo.max_coarsening_level);
     pp.query("max_semicoarsening_level", m_lpinfo.max_semicoarsening_level);
+    pp.query("deterministic", m_lpinfo.deterministic);
 
     // LinOp options
     pp.query("max_order", max_order);

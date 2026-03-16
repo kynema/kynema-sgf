@@ -3,6 +3,9 @@
 
 #include "amr-wind/wind_energy/actuator/turbine/kynema/TurbineKynema.H"
 #include "amr-wind/wind_energy/actuator/turbine/external/turbine_external_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator::ops {
 
@@ -51,14 +54,14 @@ struct ReadInputsOp<TurbineKynema, SrcTrait>
             const auto& wio_blade = wio["components"]["blade"];
             const auto& ref_axis = wio_blade["reference_axis"];
             const auto z_values =
-                ref_axis["z"]["values"].as<std::vector<double>>();
-            data.info().rotor_diameter = 2.0 * z_values[z_values.size() - 1];
+                ref_axis["z"]["values"].as<std::vector<amrex::Real>>();
+            data.info().rotor_diameter = 2.0_rt * z_values[z_values.size() - 1];
         }
         {
             const auto& wio_tower = wio["components"]["tower"];
             const auto& tower_ref_axis = wio_tower["reference_axis"];
             const auto z_values =
-                tower_ref_axis["z"]["values"].as<std::vector<double>>();
+                tower_ref_axis["z"]["values"].as<std::vector<amrex::Real>>();
             data.info().hub_height = z_values[z_values.size() - 1];
         }
 
@@ -69,7 +72,7 @@ struct ReadInputsOp<TurbineKynema, SrcTrait>
 
         tf.dt_ext = -1.;
         pp.query("dt", tf.dt_ext);
-        if (tf.dt_ext < 0.) {
+        if (tf.dt_ext < 0.0_rt) {
             tf.dt_ext = tf.dt_cfd;
         }
 
@@ -79,26 +82,37 @@ struct ReadInputsOp<TurbineKynema, SrcTrait>
         pp.query("rot_speed_radps", tf.rotational_speed);
         if (!pp.contains("rot_speed_radps")) {
             pp.query("rot_speed_rpm", tf.rotational_speed);
-            tf.rotational_speed *= 2.0 * M_PI / 60.;
+            tf.rotational_speed *=
+                2.0_rt * std::numbers::pi_v<amrex::Real> / 60.0_rt;
         }
+        // Initial generator speed
+        pp.query("generator_power_init", tf.generator_power);
+        // Initial wind speed
+        amrex::Vector<amrex::Real> vel_vec{tf.wind_speed, 0., 0.};
+        pp.queryarr("hub_wind_vector_init", vel_vec);
+        tf.wind_speed = std::sqrt(
+            vel_vec[0] * vel_vec[0] + vel_vec[1] * vel_vec[1] +
+            vel_vec[2] * vel_vec[2]);
         // Initial or constant nacelle yaw
         pp.query("yaw_rad", tf.yaw);
         if (!pp.contains("yaw_rad")) {
             pp.query("yaw_deg", tf.yaw);
-            tf.yaw *= M_PI / 180.;
+            tf.yaw *= std::numbers::pi_v<amrex::Real> / 180.0_rt;
         }
+        // Generator efficiency
+        pp.query("generator_efficiency", tf.generator_efficiency);
     }
 };
 
 template <>
-inline void determine_influenced_procs<TurbineKynema>(
+void determine_influenced_procs<TurbineKynema>(
     typename TurbineKynema::DataType& data)
 {
     external_determine_influenced_procs<TurbineKynema::DataType>(data);
 }
 
 template <>
-inline void determine_root_proc<TurbineKynema>(
+void determine_root_proc<TurbineKynema>(
     typename TurbineKynema::DataType& data, amrex::Vector<int>& act_proc_count)
 {
     external_determine_root_proc<

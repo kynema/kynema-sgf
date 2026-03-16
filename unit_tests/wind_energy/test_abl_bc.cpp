@@ -17,6 +17,9 @@
 #include "amr-wind/equation_systems/icns/source_terms/DensityBuoyancy.H"
 #include "amr-wind/equation_systems/icns/source_terms/HurricaneForcing.H"
 #include "amr-wind/equation_systems/icns/source_terms/RayleighDamping.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -34,7 +37,7 @@ get_val_at_kindex(amr_wind::Field& field, const int comp, const int kref)
             amrex::Array4<amrex::Real const> const& f_arr) -> amrex::Real {
             amrex::Real error = 0;
 
-            amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+            amrex::Loop(bx, [=, &error](int i, int j, int k) {
                 // Check if current cell is just above lower wall
                 if (k == kref) {
                     // Add field value to output
@@ -52,7 +55,7 @@ void init_velocity(amr_wind::Field& fld, amrex::Real vval, int dir)
     const int nlevels = fld.repo().num_active_levels();
 
     // Initialize entire field to 0
-    fld.setVal(0.0);
+    fld.setVal(0.0_rt);
 
     for (int lev = 0; lev < nlevels; ++lev) {
         fld(lev).setVal(vval, dir, 1);
@@ -65,12 +68,13 @@ using ICNSFields =
 
 TEST_F(ABLMeshTest, abl_local_wall_model)
 {
-    constexpr amrex::Real tol = 1.0e-12;
-    constexpr amrex::Real mu = 0.01;
-    constexpr amrex::Real vval = 5.0;
-    constexpr amrex::Real dt = 0.1;
-    constexpr amrex::Real kappa = 0.4;
-    constexpr amrex::Real z0 = 0.11;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+    constexpr amrex::Real mu = 0.01_rt;
+    constexpr amrex::Real vval = 5.0_rt;
+    constexpr amrex::Real dt = 0.1_rt;
+    constexpr amrex::Real kappa = 0.4_rt;
+    constexpr amrex::Real z0 = 0.11_rt;
     int dir = 0;
     populate_parameters();
     {
@@ -117,7 +121,7 @@ TEST_F(ABLMeshTest, abl_local_wall_model)
     init_velocity(velocity, vval, dir);
     // Specify density as unity
     auto& density = sim().repo().get_field("density");
-    density.setVal(1.0);
+    density.setVal(1.0_rt);
     // Perform post init for physics: turns on wall model
     for (auto& pp : sim().physics()) {
         pp->post_init_actions();
@@ -142,8 +146,8 @@ TEST_F(ABLMeshTest, abl_local_wall_model)
     // Zero source term and convection term to focus on diffusion
     auto& src = icns_eq.fields().src_term;
     auto& adv = icns_eq.fields().conv_term;
-    src.setVal(0.0);
-    adv.setVal(0.0);
+    src.setVal(0.0_rt);
+    adv.setVal(0.0_rt);
 
     // Calculate diffusion term
     icns_eq.compute_diffusion_term(amr_wind::FieldState::Old);
@@ -158,21 +162,22 @@ TEST_F(ABLMeshTest, abl_local_wall_model)
 
     // Calculate expected velocity after one step
     const amrex::Real dz = sim().mesh().Geom(0).CellSizeArray()[2];
-    const amrex::Real zref = 0.5 * dz;
+    const amrex::Real zref = 0.5_rt * dz;
     const amrex::Real utau = kappa * vval / (std::log(zref / z0));
-    const amrex::Real tau_wall = std::pow(utau, 2);
-    const amrex::Real vexpct = vval + dt * (0.0 - tau_wall) / dz;
+    const amrex::Real tau_wall = std::pow(utau, 2.0_rt);
+    const amrex::Real vexpct = vval + (dt * (0.0_rt - tau_wall) / dz);
     EXPECT_NEAR(vexpct, vbase, tol);
 }
 
 TEST_F(ABLMeshTest, abl_donelan_wall_model)
 {
-    constexpr amrex::Real tol = 1.0e-12;
-    constexpr amrex::Real mu = 0.01;
-    constexpr amrex::Real vval = 35.0;
-    constexpr amrex::Real dt = 0.1;
-    constexpr amrex::Real kappa = 0.4;
-    constexpr amrex::Real z0 = 0.11;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+    constexpr amrex::Real mu = 0.01_rt;
+    constexpr amrex::Real vval = 35.0_rt;
+    constexpr amrex::Real dt = 0.1_rt;
+    constexpr amrex::Real kappa = 0.4_rt;
+    constexpr amrex::Real z0 = 0.11_rt;
     int dir = 0;
     populate_parameters();
     {
@@ -219,7 +224,7 @@ TEST_F(ABLMeshTest, abl_donelan_wall_model)
     init_velocity(velocity, vval, dir);
     // Specify density as unity
     auto& density = sim().repo().get_field("density");
-    density.setVal(1.0);
+    density.setVal(1.0_rt);
     // Perform post init for physics: turns on wall model
     for (auto& pp : sim().physics()) {
         pp->post_init_actions();
@@ -244,8 +249,8 @@ TEST_F(ABLMeshTest, abl_donelan_wall_model)
     // Zero source term and convection term to focus on diffusion
     auto& src = icns_eq.fields().src_term;
     auto& adv = icns_eq.fields().conv_term;
-    src.setVal(0.0);
-    adv.setVal(0.0);
+    src.setVal(0.0_rt);
+    adv.setVal(0.0_rt);
 
     // Calculate diffusion term
     icns_eq.compute_diffusion_term(amr_wind::FieldState::Old);
@@ -260,8 +265,8 @@ TEST_F(ABLMeshTest, abl_donelan_wall_model)
 
     // Calculate expected velocity after one step
     const amrex::Real dz = sim().mesh().Geom(0).CellSizeArray()[2];
-    const amrex::Real tau_wall = 0.0024 * std::pow(vval, 2);
-    const amrex::Real vexpct = vval + dt * (0.0 - tau_wall) / dz;
+    const amrex::Real tau_wall = 0.0024_rt * std::pow(vval, 2.0_rt);
+    const amrex::Real vexpct = vval + (dt * (0.0_rt - tau_wall) / dz);
     EXPECT_NEAR(vexpct, vbase, tol);
 }
 

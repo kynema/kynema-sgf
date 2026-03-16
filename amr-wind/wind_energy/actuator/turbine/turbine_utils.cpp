@@ -2,6 +2,9 @@
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 #include "amr-wind/utilities/io_utils.H"
 #include "amr-wind/wind_energy/actuator/FLLC.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator::utils {
 
@@ -48,11 +51,11 @@ void read_inputs(
 
     // clang-format off
     const auto& bp = tinfo.base_pos;
-    const auto& rad = 0.5 * tinfo.rotor_diameter;
+    const auto& rad = 0.5_rt * tinfo.rotor_diameter;
     const auto& hh = tinfo.hub_height;
     tinfo.bound_box = amrex::RealBox(
-        bp.x() - 1.25 * rad, bp.y() - 1.25 * rad, bp.z() - 1.25 * rad,
-        bp.x() + 1.25 * rad, bp.y() + 1.25 * rad, bp.z() + 1.25 * rad + hh
+        bp.x() - (1.25_rt * rad), bp.y() - (1.25_rt * rad), bp.z() - (1.25_rt * rad),
+        bp.x() + (1.25_rt * rad), bp.y() + (1.25_rt * rad), bp.z() + (1.25_rt * rad) + hh
     );
     // clang-format on
 }
@@ -88,10 +91,11 @@ void prepare_netcdf_file(
     grp.put_attr("num_blades", std::vector<int>{meta.num_blades});
     grp.put_attr("num_points_blade", std::vector<int>{meta.num_pts_blade});
     grp.put_attr("num_points_tower", std::vector<int>{meta.num_pts_tower});
-    grp.put_attr("rotor_diameter", std::vector<double>{info.rotor_diameter});
-    grp.put_attr("hub_height", std::vector<double>{info.hub_height});
+    grp.put_attr(
+        "rotor_diameter", std::vector<amrex::Real>{info.rotor_diameter});
+    grp.put_attr("hub_height", std::vector<amrex::Real>{info.hub_height});
     // clang-format off
-    grp.put_attr("base_location", std::vector<double>{
+    grp.put_attr("base_location", std::vector<amrex::Real>{
             info.base_pos.x(), info.base_pos.y(), info.base_pos.z()});
     // clang-format on
 

@@ -6,6 +6,9 @@
 #include "amr-wind/equation_systems/PDEHelpers.H"
 #include "amr-wind/equation_systems/PDE.H"
 #include "amr-wind/equation_systems/temperature/TemperatureSource.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde {
 
@@ -35,7 +38,7 @@ struct Temperature : ScalarTransport
     static std::string pde_name() { return "Temperature"; }
     static std::string var_name() { return "temperature"; }
 
-    static constexpr amrex::Real default_bc_value = 0.0;
+    static constexpr amrex::Real default_bc_value = 0.0_rt;
 
     static constexpr int ndim = 1;
     static constexpr bool multiply_rho = true;

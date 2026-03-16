@@ -11,6 +11,9 @@
 #include "amr-wind/core/field_ops.H"
 #include "amr-wind/equation_systems/BCOps.H"
 #include "AMReX_MultiFabUtil.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 #ifdef AMR_WIND_USE_W2A
 namespace {
@@ -41,20 +44,20 @@ int evaluate_read_resize(
         // Sim time to go with recorded data
         wtime = new_ntime * wdt - wtinit;
         // If double reading is deemed necessary, check for convenience
-        if (double_data == 1 && std::abs(wtime - time) <= 1e-10) {
+        if (double_data == 1 && std::abs(wtime - time) <= 1.0e-10_rt) {
             // Reading can be done just once, w2a fields replace ow fields
             double_data = 2;
         }
     }
     // Check if reading must take place for other reasons
-    if (t_last < -1e-10) {
+    if (t_last < -1.0e-10_rt) {
         // Signifies initialization from scratch without waves or a restart
         read_flag = true;
         // Resizing needs to happen for the first time
         resize_flag = true;
 
         // Confirm that new time is not coincident with modes time step
-        if (std::abs(wtime - time) > 1e-10) {
+        if (std::abs(wtime - time) > 1.0e-10_rt) {
             // Data must be read before and after wtime
             double_data = 1;
         } else {
@@ -62,7 +65,7 @@ int evaluate_read_resize(
             double_data = 2;
         }
 
-    } else if (std::abs(t_last) < 1e-10) {
+    } else if (std::abs(t_last) < 1.0e-10_rt) {
         // Signifies initialization with waves
         read_flag = true;
         // Resizing needs to happen for the first time
@@ -183,8 +186,10 @@ void time_interpolate_wave_fields(
     const amrex::Real t_new,
     const amrex::Real t_future)
 {
-    const amrex::Real b = (t_new - t_old) / (t_future - t_old + 1e-16);
-    const amrex::Real a = 1. - b;
+    const amrex::Real b =
+        (t_new - t_old) /
+        (t_future - t_old + std::numeric_limits<amrex::Real>::epsilon());
+    const amrex::Real a = 1.0_rt - b;
     amr_wind::field_ops::lincomb(
         lvs_field, a, lvs_field, 0, b, future_lvs_field, 0, 0, 1,
         lvs_field.num_grow());
@@ -246,7 +251,7 @@ struct ReadInputsOp<W2AWaves>
         // Read user inputs to height vector
         int nheights = 0;
         int nh_above = 1;
-        amrex::Real dz0 = 0.;
+        amrex::Real dz0 = 0.0_rt;
         pp.get("number_interp_points_in_z", nheights);
         pp.get("interp_spacing_at_surface", dz0);
         pp.query("number_interp_above_surface", nh_above);
@@ -270,7 +275,7 @@ struct ReadInputsOp<W2AWaves>
                                         : wdata.r_rmodes.get_dtout();
 
         // Get initial time and timestep synced
-        if (wdata.t_winit > 0.0) {
+        if (wdata.t_winit > 0.0_rt) {
             // If initial time was specified
             // Get time index near requested time
             wdata.ntime =
@@ -294,10 +299,10 @@ struct ReadInputsOp<W2AWaves>
                        << std::endl;
 
         // Initialize variables to store modes
-        amrex::Real depth{0.0};
+        amrex::Real depth{0.0_rt};
         if (wdata.is_ocean) {
             int vsize = wdata.c_rmodes.get_vector_size();
-            double initval = 0.0;
+            amrex::Real initval = 0.0_rt;
             wdata.c_mX.resize(vsize, initval);
             wdata.c_mY.resize(vsize, initval);
             wdata.c_mZ.resize(vsize, initval);
@@ -316,8 +321,8 @@ struct ReadInputsOp<W2AWaves>
             // Get dimensional length
             wdata.dimL = wdata.c_rmodes.get_L();
             // Get nominal last timestep of data
-            wdata.n_wstop =
-                (int)((wdata.c_rmodes.get_Tstop() + 1e-8) / wdata.dt_modes);
+            wdata.n_wstop = static_cast<int>(
+                (wdata.c_rmodes.get_Tstop() + 1.0e-8_rt) / wdata.dt_modes);
 
             amrex::Print()
                 << "OceanWaves: Waves2AMR parameters from HOS-Ocean file: \n"
@@ -332,7 +337,7 @@ struct ReadInputsOp<W2AWaves>
         } else {
             int vsize = wdata.r_rmodes.get_vector_size();
             int vasize = wdata.r_rmodes.get_addl_vector_size();
-            double initval = 0.0;
+            amrex::Real initval = 0.0_rt;
             wdata.r_mX.resize(vsize, initval);
             wdata.r_mY.resize(vsize, initval);
             wdata.r_mZ.resize(vsize, initval);
@@ -354,8 +359,8 @@ struct ReadInputsOp<W2AWaves>
             // Get dimensional length
             wdata.dimL = wdata.r_rmodes.get_L();
             // Get nominal last timestep of data
-            wdata.n_wstop =
-                (int)((wdata.r_rmodes.get_Tstop() + 1e-8) / wdata.dt_modes);
+            wdata.n_wstop = static_cast<int>(
+                (wdata.r_rmodes.get_Tstop() + 1.0e-8_rt) / wdata.dt_modes);
 
             amrex::Print()
                 << "OceanWaves: Waves2AMR parameters from HOS-NWT file: \n"
@@ -380,7 +385,8 @@ struct ReadInputsOp<W2AWaves>
         }
 
         // Warning if depth does not correspond to simulation
-        if (std::abs(depth - (wdata.zsl - prob_lo_input[2])) > 1e-3 * depth) {
+        if (std::abs(depth - (wdata.zsl - prob_lo_input[2])) >
+            1.0e-3_rt * depth) {
             amrex::Print()
                 << "WARNING: Mismatch between water depths from AMR-Wind "
                    "domain and HOS data interpreted by Waves2AMR. \n   ^This "
@@ -445,12 +451,12 @@ struct ReadInputsOp<W2AWaves>
                 std::to_string(flag));
         }
 
-        amrex::Real z_double{0.};
+        amrex::Real z_double{0.0_rt};
         bool found_z_double{false};
         for (int n = 0; n < wdata.hvec.size() - 1; ++n) {
             const amrex::Real dz = wdata.hvec[n] - wdata.hvec[n + 1];
-            if (!found_z_double && dz >= 2.0 * dz0) {
-                z_double = 0.5 * (wdata.hvec[n] + wdata.hvec[n + 1]);
+            if (!found_z_double && dz >= 2.0_rt * dz0) {
+                z_double = 0.5_rt * (wdata.hvec[n] + wdata.hvec[n + 1]);
                 found_z_double = true;
             }
         }
@@ -520,7 +526,7 @@ struct ReadInputsOp<W2AWaves>
                 wdata.n0, wdata.n1, wdata.c_mFS, wdata.c_eta_mptr);
             wdata.sp_eta_vec.resize(
                 static_cast<size_t>(wdata.n0) * static_cast<size_t>(wdata.n1),
-                0.0);
+                0.0_rt);
             modes_hosgrid::populate_hos_eta(
                 wdata.c_rmodes, wdata.plan_vector, wdata.c_eta_mptr,
                 wdata.sp_eta_vec);
@@ -547,7 +553,7 @@ struct ReadInputsOp<W2AWaves>
                 wdata.n0, wdata.n1, wdata.r_mFS, wdata.r_eta_mptr);
             wdata.sp_eta_vec.resize(
                 static_cast<size_t>(wdata.n0) * static_cast<size_t>(wdata.n1),
-                0.0);
+                0.0_rt);
             modes_hosgrid::populate_hos_eta(
                 wdata.r_rmodes, wdata.plan_vector, wdata.r_eta_mptr,
                 wdata.sp_eta_vec);
@@ -623,8 +629,8 @@ struct InitDataOp<W2AWaves>
         const auto& probhi = geom.ProbHiArray();
         const auto& dx = geom.CellSizeArray();
 
-        // Set t_last to 0.0 to signify information read in
-        wdata.t_last = 0.0;
+        // Set t_last to 0.0_rt to signify information read in
+        wdata.t_last = 0.0_rt;
 
         // indvec is complete upon initialization (all heights every proc)
         amrex::Vector<int> indvec(wdata.hvec.size());
@@ -672,17 +678,18 @@ struct InitDataOp<W2AWaves>
 
         amrex::ParallelFor(
             velocity(level), amrex::IntVect(3),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
-                const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                const amrex::Real x = problo[0] + (i + 0.5_rt) * dx[0];
+                const amrex::Real y = problo[1] + (j + 0.5_rt) * dx[1];
+                const amrex::Real z = problo[2] + (k + 0.5_rt) * dx[2];
 
                 // Wave profile
                 const utils::WaveVec wave_sol{
                     ow_vel[nbx](i, j, k, 0), ow_vel[nbx](i, j, k, 1),
                     ow_vel[nbx](i, j, k, 2), ow_phi[nbx](i, j, k) + z};
                 // Quiescent profile
-                const utils::WaveVec quiescent{0.0, 0.0, 0.0, zero_sea_level};
+                const utils::WaveVec quiescent{
+                    0.0_rt, 0.0_rt, 0.0_rt, zero_sea_level};
 
                 // Specify initial state for each region of domain
                 const auto bulk = init_wave_field ? wave_sol : quiescent;
@@ -718,25 +725,26 @@ struct InitDataOp<W2AWaves>
 
         amrex::ParallelFor(
             velocity(level), amrex::IntVect(2),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
-                const amrex::Real eps = 2. * std::cbrt(dx[0] * dx[1] * dx[2]);
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                const amrex::Real eps =
+                    2.0_rt * std::cbrt(dx[0] * dx[1] * dx[2]);
                 const amrex::Real vof_local =
                     multiphase::levelset_to_vof(i, j, k, eps, phi_tmp[nbx]);
 
-                if (vof_local > 1. - constants::TIGHT_TOL) {
+                if (vof_local > 1.0_rt - constants::TIGHT_TOL) {
                     // Entire cell is liquid
                     vel[nbx](i, j, k, 0) = vel_tmp[nbx](i, j, k, 0);
                     vel[nbx](i, j, k, 1) = vel_tmp[nbx](i, j, k, 1);
                     vel[nbx](i, j, k, 2) = vel_tmp[nbx](i, j, k, 2);
-                } else if (vof_local > 1e-3) {
+                } else if (vof_local > 1.0e-3_rt) {
                     // Velocity of liquid becomes velocity of entire cell
                     // Interpolate using cell-centered values to liquid centroid
                     // Consider only z-direction to find centroid
-                    const amrex::Real z_cell = problo[2] + (k + 0.5) * dx[2];
+                    const amrex::Real z_cell = problo[2] + (k + 0.5_rt) * dx[2];
                     const amrex::Real z_cell_below = z_cell - dx[2];
-                    const amrex::Real z_cell_bottom = z_cell - 0.5 * dx[2];
+                    const amrex::Real z_cell_bottom = z_cell - 0.5_rt * dx[2];
                     const amrex::Real z_liq_center =
-                        z_cell_bottom + 0.5 * vof_local * dx[2];
+                        z_cell_bottom + 0.5_rt * vof_local * dx[2];
                     for (int n = 0; n < AMREX_SPACEDIM; ++n) {
                         vel[nbx](i, j, k, n) =
                             vel_tmp[nbx](i, j, k - 1, n) +
@@ -880,7 +888,7 @@ struct UpdateTargetFieldsOp<W2AWaves>
                     wdata.sp_eta_vec.resize(
                         static_cast<size_t>(wdata.n0) *
                             static_cast<size_t>(wdata.n1),
-                        0.0);
+                        0.0_rt);
                     wdata.sp_u_vec.resize(
                         static_cast<size_t>(wdata.n0 * wdata.n1) *
                         wdata.indvec.size());

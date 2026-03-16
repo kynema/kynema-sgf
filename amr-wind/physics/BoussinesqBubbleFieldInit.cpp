@@ -3,6 +3,9 @@
 #include "amr-wind/physics/BoussinesqBubbleFieldInit.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -36,19 +39,20 @@ void BoussinesqBubbleFieldInit::operator()(
     const amrex::Real zc = m_loc[2];
     const amrex::Real radius = m_tracer_radius;
 
-    amrex::ParallelFor(vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-        const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-        const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-        const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+    amrex::ParallelFor(vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+        const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+        const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+        const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
         density(i, j, k) = rho;
 
-        velocity(i, j, k, 0) = 0.0;
-        velocity(i, j, k, 1) = 0.0;
-        velocity(i, j, k, 2) = 0.0;
+        velocity(i, j, k, 0) = 0.0_rt;
+        velocity(i, j, k, 1) = 0.0_rt;
+        velocity(i, j, k, 2) = 0.0_rt;
 
         amrex::Real r = std::sqrt(
-            (x - xc) * (x - xc) + (y - yc) * (y - yc) + (z - zc) * (z - zc));
+            ((x - xc) * (x - xc)) + ((y - yc) * (y - yc)) +
+            ((z - zc) * (z - zc)));
 
         if (r < radius) {
             tracer(i, j, k, 0) = ti;

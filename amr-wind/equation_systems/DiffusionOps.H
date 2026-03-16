@@ -13,6 +13,9 @@
 #include "AMReX_MLMG.H"
 #include "AMReX_AmrCore.H"
 #include "AMReX_MultiFabUtil.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde {
 
@@ -31,8 +34,8 @@ class DiffSolverIface
 public:
     DiffSolverIface(
         PDEFields& fields,
-        const bool has_overset,
-        const bool mesh_mapping,
+        bool has_overset,
+        bool mesh_mapping,
         const std::string& prefix = "diffusion");
 
     virtual ~DiffSolverIface() = default;
@@ -41,11 +44,11 @@ public:
      *
      *  \param dt timestep size
      */
-    virtual void linsys_solve(const amrex::Real dt);
+    virtual void linsys_solve(amrex::Real dt);
 
     virtual void linsys_solve_impl();
 
-    virtual void set_acoeffs(LinOp& linop, const FieldState fstate);
+    virtual void set_acoeffs(LinOp& linop, FieldState fstate);
 
     template <typename L>
     void set_bcoeffs(
@@ -90,10 +93,7 @@ public:
 protected:
     //! Sets up the linear operator (e.g., setup BCs, etc.)
     virtual void setup_operator(
-        LinOp& linop,
-        const amrex::Real alpha,
-        const amrex::Real beta,
-        const FieldState fstate);
+        LinOp& linop, amrex::Real alpha, amrex::Real beta, FieldState fstate);
 
     virtual void setup_solver(amrex::MLMG& mlmg);
 
@@ -144,11 +144,10 @@ struct DiffusionOp<
     //! Computes the diffusion term that goes in the RHS
     void compute_diff_term(const FieldState fstate)
     {
-        this->setup_operator(*this->m_applier, 0.0, -1.0, fstate);
+        this->setup_operator(*this->m_applier, 0.0_rt, -1.0_rt, fstate);
 
-        auto tau_state = std::is_same<Scheme, fvm::Godunov>::value
-                             ? FieldState::New
-                             : fstate;
+        auto tau_state =
+            std::is_same_v<Scheme, fvm::Godunov> ? FieldState::New : fstate;
 
         amrex::MLMG mlmg(*this->m_applier);
         mlmg.apply(
@@ -167,9 +166,9 @@ struct DiffusionOp<
 
                 amrex::ParallelFor(
                     divtau(lev), divtau.num_grow(), divtau.num_comp(),
-                    [=] AMREX_GPU_DEVICE(
-                        int nbx, int i, int j, int k, int n) noexcept {
-                        const amrex::Real rhoinv = 1.0 / rho_arrs[nbx](i, j, k);
+                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+                        const amrex::Real rhoinv =
+                            1.0_rt / rho_arrs[nbx](i, j, k);
                         divtau_arrs[nbx](i, j, k, n) *= rhoinv;
                     });
             }

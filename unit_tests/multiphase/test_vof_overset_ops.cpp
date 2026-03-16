@@ -1,7 +1,12 @@
+#include <algorithm>
+
 #include "aw_test_utils/MeshTest.H"
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
 #include "amr-wind/overset/overset_ops_routines.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -21,8 +26,8 @@ protected:
         }
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> problo{{0.0, 0.0, 0.0}};
-            amrex::Vector<amrex::Real> probhi{{1.0, 1.0, 1.0}};
+            amrex::Vector<amrex::Real> problo{{0.0_rt, 0.0_rt, 0.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{1.0_rt, 1.0_rt, 1.0_rt}};
 
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
@@ -40,11 +45,11 @@ void init_vof_only(amr_wind::Field& vof)
         amrex::ParallelFor(
             grow(bx, 2), [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                 if (k > 3) {
-                    vof_arr(i, j, k) = 0.;
+                    vof_arr(i, j, k) = 0.0_rt;
                 } else if (k < 3) {
-                    vof_arr(i, j, k) = 1.0;
+                    vof_arr(i, j, k) = 1.0_rt;
                 } else {
-                    vof_arr(i, j, k) = 0.5;
+                    vof_arr(i, j, k) = 0.5_rt;
                 }
             });
     });
@@ -111,7 +116,7 @@ amrex::Real check_iblank_node_impl(amr_wind::IntField& mask_node)
                 amrex::Array4<int const> const& i_arr) -> amrex::Real {
                 amrex::Real error = 0;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     bool in_overset_x = (i >= 1 && i <= 6);
                     bool in_overset_y = (j >= 1 && j <= 6);
                     bool in_overset_z = (k >= 1 && k <= 7);
@@ -150,7 +155,7 @@ amrex::Real check_iblank_cell_impl(amr_wind::IntField& mask_cell)
                 amrex::Array4<int const> const& i_arr) -> amrex::Real {
                 amrex::Real error = 0;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     bool in_overset_x = (i >= 1 && i <= 6);
                     bool in_overset_y = (j >= 1 && j <= 6);
                     bool in_overset_z = (k >= 1 && k <= 6);
@@ -189,7 +194,7 @@ amrex::Real check_iblank_cell_default_impl(amr_wind::IntField& mask_cell)
                 amrex::Array4<int const> const& i_arr) -> amrex::Real {
                 amrex::Real error = 0;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     bool in_overset_x = (i >= 1 && i <= 6);
                     bool in_overset_y = (j >= 1 && j <= 6);
                     bool in_overset_z = (k >= 1 && k <= 6);
@@ -236,8 +241,12 @@ TEST_F(VOFOversetOps, projection_masks)
     amrex::Real error_cell = check_iblank_cell_impl(mask_cell);
     amrex::ParallelDescriptor::ReduceRealSum(error_node);
     amrex::ParallelDescriptor::ReduceRealSum(error_cell);
-    EXPECT_NEAR(error_node, 0.0, 1e-10);
-    EXPECT_NEAR(error_cell, 0.0, 1e-10);
+    EXPECT_NEAR(
+        error_node, 0.0_rt,
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt);
+    EXPECT_NEAR(
+        error_cell, 0.0_rt,
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt);
 
     // Change mask_cell to default (single-phase) approach
     amr_wind::overset_ops::revert_mask_cell_after_mac(repo);
@@ -245,7 +254,9 @@ TEST_F(VOFOversetOps, projection_masks)
     // Check against expectations
     error_cell = check_iblank_cell_default_impl(mask_cell);
     amrex::ParallelDescriptor::ReduceRealSum(error_cell);
-    EXPECT_NEAR(error_cell, 0.0, 1e-10);
+    EXPECT_NEAR(
+        error_cell, 0.0_rt,
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt);
 }
 
 } // namespace amr_wind_tests

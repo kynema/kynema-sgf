@@ -5,6 +5,9 @@
 #include <utility>
 #include "AMReX_ParmParse.H"
 #include "amr-wind/utilities/IOManager.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::kinetic_energy {
 
@@ -30,7 +33,7 @@ amrex::Real KineticEnergy::calculate_kinetic_energy()
     BL_PROFILE("amr-wind::KineticEnergy::calculate_kinetic_energy");
 
     // integrated total Kinetic Energy
-    amrex::Real Kinetic_energy = 0.0;
+    amrex::Real Kinetic_energy = 0.0_rt;
 
     const int finest_level = m_velocity.repo().num_active_levels() - 1;
     const auto& geom = m_velocity.repo().mesh().Geom();
@@ -61,16 +64,15 @@ amrex::Real KineticEnergy::calculate_kinetic_energy()
                 amrex::Array4<amrex::Real const> const& den_arr,
                 amrex::Array4<amrex::Real const> const& vel_arr,
                 amrex::Array4<int const> const& mask_arr) -> amrex::Real {
-                amrex::Real Kinetic_Energy_Fab = 0.0;
+                amrex::Real Kinetic_Energy_Fab = 0.0_rt;
 
-                amrex::Loop(
-                    bx, [=, &Kinetic_Energy_Fab](int i, int j, int k) noexcept {
-                        Kinetic_Energy_Fab +=
-                            cell_vol * mask_arr(i, j, k) * den_arr(i, j, k) *
-                            (vel_arr(i, j, k, 0) * vel_arr(i, j, k, 0) +
-                             vel_arr(i, j, k, 1) * vel_arr(i, j, k, 1) +
-                             vel_arr(i, j, k, 2) * vel_arr(i, j, k, 2));
-                    });
+                amrex::Loop(bx, [=, &Kinetic_Energy_Fab](int i, int j, int k) {
+                    Kinetic_Energy_Fab +=
+                        cell_vol * mask_arr(i, j, k) * den_arr(i, j, k) *
+                        (vel_arr(i, j, k, 0) * vel_arr(i, j, k, 0) +
+                         vel_arr(i, j, k, 1) * vel_arr(i, j, k, 1) +
+                         vel_arr(i, j, k, 2) * vel_arr(i, j, k, 2));
+                });
                 return Kinetic_Energy_Fab;
             });
     }
@@ -78,7 +80,7 @@ amrex::Real KineticEnergy::calculate_kinetic_energy()
     // total volume of grid on level 0
     const amrex::Real total_vol = geom[0].ProbDomain().volume();
 
-    Kinetic_energy *= 0.5 / total_vol;
+    Kinetic_energy *= 0.5_rt / total_vol;
 
     amrex::ParallelDescriptor::ReduceRealSum(Kinetic_energy);
 
@@ -106,7 +108,7 @@ void KineticEnergy::prepare_ascii_file()
 
     if (amrex::ParallelDescriptor::IOProcessor()) {
         std::ofstream f(m_out_fname.c_str());
-        f << "time_step time kinetic_energy" << std::endl;
+        f << "time_step time kinetic_energy" << '\n';
         f.close();
     }
 }
@@ -121,7 +123,7 @@ void KineticEnergy::write_ascii()
           << std::setprecision(m_precision) << std::setw(m_width)
           << m_sim.time().new_time();
         f << std::setw(m_width) << m_total_kinetic_energy;
-        f << std::endl;
+        f << '\n';
         f.close();
     }
 }

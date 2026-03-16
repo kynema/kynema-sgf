@@ -1,7 +1,6 @@
 #ifndef ABLMESOFORCINGTEMP_H
 #define ABLMESOFORCINGTEMP_H
 
-#include <AMReX_REAL.H>
 #include <memory>
 #include "amr-wind/core/FieldRepo.H"
 #include "amr-wind/equation_systems/temperature/TemperatureSource.H"
@@ -10,6 +9,7 @@
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 #include "amr-wind/wind_energy/ABLMesoscaleForcing.H"
 #include "amr-wind/wind_energy/ABLMesoscaleInput.H"
+#include "AMReX_REAL.H"
 
 namespace amr_wind::pde::temperature {
 
@@ -25,10 +25,10 @@ public:
     ~ABLMesoForcingTemp() override;
 
     void operator()(
-        const int lev,
+        int lev,
         const amrex::MFIter& mfi,
         const amrex::Box& bx,
-        const FieldState fstate,
+        FieldState fstate,
         const amrex::Array4<amrex::Real>& src_term) const override;
 
     void mean_temperature_init(const ABLMesoscaleInput& ncfile);

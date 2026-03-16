@@ -2,6 +2,9 @@
 #include "amr-wind/CFDSim.H"
 #include "AMReX_ParmParse.H"
 #include "amr-wind/utilities/trig_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -19,8 +22,6 @@ TaylorGreenVortex::TaylorGreenVortex(const CFDSim& sim)
 void TaylorGreenVortex::initialize_fields(
     int level, const amrex::Geometry& geom)
 {
-    using namespace utils;
-
     auto& velocity = m_velocity(level);
     auto& density = m_density(level);
 
@@ -36,18 +37,18 @@ void TaylorGreenVortex::initialize_fields(
     const auto& vel_arrs = velocity.arrays();
 
     amrex::ParallelFor(
-        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
-            const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-            const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-            const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+            const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+            const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+            const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
-            vel_arrs[nbx](i, j, k, 0) = std::sin(two_pi() * x / Lx) *
-                                        std::cos(two_pi() * y / Ly) *
-                                        cos(two_pi() * z / Lz);
-            vel_arrs[nbx](i, j, k, 1) = -std::cos(two_pi() * x / Lx) *
-                                        std::sin(two_pi() * y / Ly) *
-                                        cos(two_pi() * z / Lz);
-            vel_arrs[nbx](i, j, k, 2) = 0.0;
+            vel_arrs[nbx](i, j, k, 0) = std::sin(utils::two_pi() * x / Lx) *
+                                        std::cos(utils::two_pi() * y / Ly) *
+                                        std::cos(utils::two_pi() * z / Lz);
+            vel_arrs[nbx](i, j, k, 1) = -std::cos(utils::two_pi() * x / Lx) *
+                                        std::sin(utils::two_pi() * y / Ly) *
+                                        std::cos(utils::two_pi() * z / Lz);
+            vel_arrs[nbx](i, j, k, 2) = 0.0_rt;
         });
     amrex::Gpu::streamSynchronize();
 }

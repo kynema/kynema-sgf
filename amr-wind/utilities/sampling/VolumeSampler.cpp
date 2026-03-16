@@ -44,25 +44,25 @@ void VolumeSampler::check_bounds()
     for (int d = 0; d < AMREX_SPACEDIM; ++d) {
         if (m_lo[d] < (prob_lo[d] + bounds_tol)) {
             all_ok = false;
-            m_lo[d] = prob_lo[d] + 10 * bounds_tol;
+            m_lo[d] = prob_lo[d] + (10 * bounds_tol);
         }
         if (m_lo[d] > (prob_hi[d] - bounds_tol)) {
             all_ok = false;
-            m_lo[d] = prob_hi[d] - 10 * bounds_tol;
+            m_lo[d] = prob_hi[d] - (10 * bounds_tol);
         }
         if (m_hi[d] < (prob_lo[d] + bounds_tol)) {
             all_ok = false;
-            m_hi[d] = prob_lo[d] + 10 * bounds_tol;
+            m_hi[d] = prob_lo[d] + (10 * bounds_tol);
         }
         if (m_hi[d] > (prob_hi[d] - bounds_tol)) {
             all_ok = false;
-            m_hi[d] = prob_hi[d] - 10 * bounds_tol;
+            m_hi[d] = prob_hi[d] - (10 * bounds_tol);
         }
     }
     if (!all_ok) {
         amrex::Print() << "WARNING: VolumeSampler: Out of domain corner was "
                           "truncated to match domain"
-                       << std::endl;
+                       << '\n';
     }
 }
 
@@ -95,8 +95,8 @@ void VolumeSampler::sampling_locations(
         for (int j = 0; j < m_npts_dir[1]; ++j) {
             for (int i = 0; i < m_npts_dir[0]; ++i) {
                 const amrex::RealVect loc = {AMREX_D_DECL(
-                    m_lo[0] + dx[0] * i, m_lo[1] + dx[1] * j,
-                    m_lo[2] + dx[2] * k)};
+                    m_lo[0] + (dx[0] * i), m_lo[1] + (dx[1] * j),
+                    m_lo[2] + (dx[2] * k))};
                 if (utils::contains(box, loc, plo, dxinv)) {
                     sample_locs.push_back(loc, idx);
                 }

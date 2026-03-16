@@ -3,6 +3,9 @@
 
 #include "amr-wind/CFDSim.H"
 #include "amr-wind/utilities/PostProcessing.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::wave_energy {
 
@@ -18,7 +21,7 @@ namespace amr_wind::wave_energy {
  *  in z.
  *
  *  Integral definitions (not output)
- *  KE_i = 0.5 * (Integral over liquid phase) \\rho * u^2 dV
+ *  KE_i = 0.5_rt * (Integral over liquid phase) \\rho * u^2 dV
  *  PE_i = (Integral over liquid phase) \\rho * g * z_liq dV
  *  (offset for PE would be 1/2 * Lx * Ly * \\rho_liq * g * depth^2)
  *
@@ -67,8 +70,8 @@ private:
     virtual void write_ascii();
 
     //! store the total wave energy
-    amrex::Real m_wave_kinetic_energy{0.0};
-    amrex::Real m_wave_potential_energy{0.0};
+    amrex::Real m_wave_kinetic_energy{0.0_rt};
+    amrex::Real m_wave_potential_energy{0.0_rt};
 
     //! Reference to the CFD sim
     CFDSim& m_sim;
@@ -86,12 +89,12 @@ private:
     const Field& m_vof;
 
     //! gravity vector
-    amrex::Vector<amrex::Real> m_gravity{0.0, 0.0, -9.81};
+    amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 
     //! offset for potential energy calculation
-    amrex::Real m_pe_off = 0.0;
+    amrex::Real m_pe_off = 0.0_rt;
     //! volumetric scaling for each energy
-    amrex::Real m_escl = 1.0;
+    amrex::Real m_escl = 1.0_rt;
 
     //! filename for ASCII output
     std::string m_out_fname;

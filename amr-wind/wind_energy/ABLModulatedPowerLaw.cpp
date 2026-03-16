@@ -5,11 +5,13 @@
 #include "AMReX_ParmParse.H"
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 #include "amr-wind/utilities/index_operations.H"
-#include <AMReX_PlotFileUtil.H>
-
+#include "AMReX_PlotFileUtil.H"
 #include <sstream>
 #include <iostream>
 #include <string>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -34,13 +36,13 @@ ABLModulatedPowerLaw::ABLModulatedPowerLaw(CFDSim& sim)
     pp.query("wind_direction", m_wind_direction);
 
     const amrex::Real wind_speed = m_wind_speed;
-    const amrex::Real wind_direction = -m_wind_direction + 270.0;
+    const amrex::Real wind_direction = -m_wind_direction + 270.0_rt;
     const amrex::Real wind_direction_radian =
         amr_wind::utils::radians(wind_direction);
 
     m_uvec[0] = wind_speed * std::cos(wind_direction_radian);
     m_uvec[1] = wind_speed * std::sin(wind_direction_radian);
-    m_uvec[2] = 0.0;
+    m_uvec[2] = 0.0_rt;
 
     pp.query("start_time", m_start_time);
     pp.query("stop_time", m_stop_time);
@@ -84,13 +86,13 @@ void ABLModulatedPowerLaw::pre_advance_work()
         const amrex::Real wind_speed =
             m_sim.helics().m_inflow_wind_speed_to_amrwind;
         const amrex::Real wind_direction =
-            -m_sim.helics().m_inflow_wind_direction_to_amrwind + 270.0;
+            -m_sim.helics().m_inflow_wind_direction_to_amrwind + 270.0_rt;
         const amrex::Real wind_direction_radian =
             amr_wind::utils::radians(wind_direction);
 
         m_uvec[0] = wind_speed * std::cos(wind_direction_radian);
         m_uvec[1] = wind_speed * std::sin(wind_direction_radian);
-        m_uvec[2] = 0.0;
+        m_uvec[2] = 0.0_rt;
         return;
     }
 #endif
@@ -99,11 +101,11 @@ void ABLModulatedPowerLaw::pre_advance_work()
         m_time.current_time() < m_stop_time) {
         m_wind_direction -= m_degrees_per_sec * m_time.delta_t();
     }
-    const amrex::Real wind_direction = -m_wind_direction + 270.0;
+    const amrex::Real wind_direction = -m_wind_direction + 270.0_rt;
     const amrex::Real wind_direction_radian = utils::radians(wind_direction);
     m_uvec[0] = m_wind_speed * std::cos(wind_direction_radian);
     m_uvec[1] = m_wind_speed * std::sin(wind_direction_radian);
-    m_uvec[2] = 0.0;
+    m_uvec[2] = 0.0_rt;
 }
 
 void ABLModulatedPowerLaw::post_advance_work() {}
@@ -133,13 +135,14 @@ void ABLModulatedPowerLaw::set_velocity(
     const amrex::Real uref =
         vs::mag(vs::Vector{m_uvec[0], m_uvec[1], m_uvec[2]});
     const amrex::Real bulk_velocity = m_bulk_velocity;
-    const amrex::Real umin = 0.0;
+    const amrex::Real umin = 0.0_rt;
     const amrex::Real umax_factor = m_umax_factor;
     const amrex::Real zc = m_shearlayer_height;
-    const amrex::Real smear_coeff = 1.0 / m_shearlayer_smear_thickness;
-    const amrex::Real z2 = (fabs(shear_exp) > 0.0)
-                               ? zref * std::pow(umax_factor, 1.0 / shear_exp)
-                               : 0.0;
+    const amrex::Real smear_coeff = 1.0_rt / m_shearlayer_smear_thickness;
+    const amrex::Real z2 =
+        (std::abs(shear_exp) > 0.0_rt)
+            ? zref * std::pow(umax_factor, 1.0_rt / shear_exp)
+            : 0.0_rt;
     const amrex::Real vmax = (z2 < zref) ? uref : uref * umax_factor;
 
     const auto& geom = m_mesh.Geom(lev);
@@ -148,13 +151,14 @@ void ABLModulatedPowerLaw::set_velocity(
     const amrex::Real height = probhi[2] - problo[2];
     const auto& dx = geom.CellSizeArray();
 
-    const amrex::Real num1 = uref * std::pow(z2, shear_exp + 1.0) /
-                             (shear_exp + 1.0) / std::pow(zref, shear_exp);
+    const amrex::Real num1 = uref * std::pow(z2, shear_exp + 1.0_rt) /
+                             (shear_exp + 1.0_rt) / std::pow(zref, shear_exp);
     const amrex::Real num2 = vmax * (height - z2);
     const amrex::Real denom =
-        0.5 *
-        (log(cosh(-smear_coeff * (height - zc))) / smear_coeff -
-         log(cosh(-smear_coeff * (z2 - zc))) / smear_coeff + (height - z2));
+        0.5_rt *
+        (std::log(std::cosh(-smear_coeff * (height - zc))) / smear_coeff -
+         std::log(std::cosh(-smear_coeff * (z2 - zc))) / smear_coeff +
+         (height - z2));
 
     const amrex::Real upper_coeff =
         (bulk_velocity * height - num1 - num2) / denom;
@@ -188,26 +192,26 @@ void ABLModulatedPowerLaw::set_velocity(
             const auto& arr = mfab[mfi].array();
             const int numcomp = mfab.nComp();
 
-            amrex::ParallelFor(
-                bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                    const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+            amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
-                    const amrex::Real zeff = z - zoffset;
-                    amrex::Real pfac =
-                        (zeff > 0.0) ? std::pow((zeff / zref), shear_exp) : 0.0;
-                    pfac = amrex::min(amrex::max(pfac, umin), umax_factor);
-                    const amrex::Real tanhterm =
-                        0.5 * upper_coeff *
-                        (tanh(smear_coeff * (zeff - zc)) + 1.0) / uref;
+                const amrex::Real zeff = z - zoffset;
+                amrex::Real pfac = (zeff > 0.0_rt)
+                                       ? std::pow((zeff / zref), shear_exp)
+                                       : 0.0_rt;
+                pfac = amrex::min<amrex::Real>(
+                    amrex::max<amrex::Real>(pfac, umin), umax_factor);
+                const amrex::Real tanhterm =
+                    0.5_rt * upper_coeff *
+                    (std::tanh(smear_coeff * (zeff - zc)) + 1.0_rt) / uref;
 
-                    amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> vels = {
-                        AMREX_D_DECL(
-                            tvx * (pfac + tanhterm), tvy * (pfac + tanhterm),
-                            tvz)};
-                    for (int n = 0; n < numcomp; n++) {
-                        arr(i, j, k, dcomp + n) = vels[orig_comp + n];
-                    }
-                });
+                amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> vels = {
+                    AMREX_D_DECL(
+                        tvx * (pfac + tanhterm), tvy * (pfac + tanhterm), tvz)};
+                for (int n = 0; n < numcomp; n++) {
+                    arr(i, j, k, dcomp + n) = vels[orig_comp + n];
+                }
+            });
         }
     }
 }
@@ -267,17 +271,17 @@ void ABLModulatedPowerLaw::set_temperature(
             const auto& arr = mfab[mfi].array();
 
             amrex::ParallelForRNG(
-                bx, [=] AMREX_GPU_DEVICE(
-                        int i, int j, int k,
-                        const amrex::RandomEngine& engine) noexcept {
-                    const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+                bx,
+                [=] AMREX_GPU_DEVICE(
+                    int i, int j, int k, const amrex::RandomEngine& engine) {
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
                     amrex::Real theta = tv[0];
                     for (int iz = 0; iz < ntvals - 1; ++iz) {
                         if ((z > th[iz]) && (z <= th[iz + 1])) {
                             const amrex::Real slope =
                                 (tv[iz + 1] - tv[iz]) / (th[iz + 1] - th[iz]);
-                            theta = tv[iz] + (z - th[iz]) * slope;
+                            theta = tv[iz] + ((z - th[iz]) * slope);
                         }
                     }
                     arr(i, j, k) = theta;

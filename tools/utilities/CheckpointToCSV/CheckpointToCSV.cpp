@@ -11,8 +11,6 @@
 #include <fstream>
 #include <ctime>
 
-using namespace amrex;
-
 enum format { csv, hdf5 };
 
 void main_main()
@@ -25,7 +23,7 @@ void main_main()
     std::string format_str;
     std::string output_file;
     std::string addl_fname;
-    Vector<std::string> addl_fnames{};
+    amrex::Vector<std::string> addl_fnames{};
 
     // CLI handling: Collect parameters and help
     for (int i = 1; i <= nargs; i += 2) {
@@ -71,23 +69,24 @@ void main_main()
     // Get Meta Data (See Notes 1.)
     int dim = chkptfile.spaceDim();
     int levels = chkptfile.finestLevel() + 1;
-    const Vector<std::string>& var_names = chkptfile.varNamesComponents();
+    const amrex::Vector<std::string>& var_names =
+        chkptfile.varNamesComponents();
     amrex::Real time = chkptfile.time();
     // Least finest level dimensions
     // For info on boxArray, see note 2.
-    const Long nboxes = chkptfile.boxArray(0).size();
-    const Long ncells = chkptfile.boxArray(0).numPts();
-    const Box prob_domain = chkptfile.probDomain(0);
+    const amrex::Long nboxes = chkptfile.boxArray(0).size();
+    const amrex::Long ncells = chkptfile.boxArray(0).numPts();
+    const amrex::Box prob_domain = chkptfile.probDomain(0);
     const auto ncells_domain = prob_domain.d_numPts();
-    Array<Real, AMREX_SPACEDIM> dx = chkptfile.cellSize(0);
+    amrex::Array<amrex::Real, AMREX_SPACEDIM> dx = chkptfile.cellSize(0);
     const auto dlo = amrex::lbound(prob_domain);
     const auto dhi = amrex::ubound(prob_domain);
-    IntVect lengths = prob_domain.length(); // hi + 1 for all dims.
+    amrex::IntVect lengths = prob_domain.length(); // hi + 1 for all dims.
     double phis_x = dx[0] * (dhi.x + 1);
     double phis_y = dx[1] * (dhi.y + 1);
     double phis_z = dx[2] * (dhi.z + 1);
-    Array<Real, AMREX_SPACEDIM> problo = chkptfile.probLo();
-    Array<Real, AMREX_SPACEDIM> probhi = chkptfile.probHi();
+    amrex::Array<amrex::Real, AMREX_SPACEDIM> problo = chkptfile.probLo();
+    amrex::Array<amrex::Real, AMREX_SPACEDIM> probhi = chkptfile.probHi();
     // Output Files
     amrex::Print() << "Time: " << time << std::endl
                    << "dx: " << dx << std::endl
@@ -125,19 +124,19 @@ void main_main()
             num_vars++;
         }
         output_stream << "\n";
-        const MultiFab& chkptmf = chkptfile.get(0);
+        const amrex::MultiFab& chkptmf = chkptfile.get(0);
 
         // Loop through MultiFab for data
-        for (MFIter mfi(chkptmf); mfi.isValid(); ++mfi) {
+        for (amrex::MFIter mfi(chkptmf); mfi.isValid(); ++mfi) {
             // Loop through MultiFab object.
-            const Box& bx = mfi.validbox();
+            const amrex::Box& bx = mfi.validbox();
 
             // Seems to be used for masking out non-current box data
 
             const auto& data = chkptmf.array(mfi); // there is only one box
             // Parallelize the pulling of data
-            const Dim3 lo = amrex::lbound(bx);
-            const Dim3 hi = amrex::ubound(bx);
+            const amrex::Dim3 lo = amrex::lbound(bx);
+            const amrex::Dim3 hi = amrex::ubound(bx);
             for (int z = lo.z; z <= hi.z; ++z) {
                 for (int y = lo.y; y <= hi.y; ++y) {
                     // AMREX_PRAGMA_SIMD

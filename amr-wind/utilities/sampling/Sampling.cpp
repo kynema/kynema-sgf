@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <memory>
 #include <utility>
 
@@ -7,6 +8,9 @@
 #include "amr-wind/utilities/IOManager.H"
 
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::sampling {
 
@@ -62,7 +66,7 @@ void Sampling::initialize()
                    "or a derived "
                    "field and should be added to the int_fields/derived_fields "
                    "parameter"
-                << std::endl;
+                << '\n';
             continue;
         }
 
@@ -82,7 +86,7 @@ void Sampling::initialize()
                 << ". This is a mistake or the requested int_field is a "
                    "derived "
                    "field and should be added to the derived_fields parameter"
-                << std::endl;
+                << '\n';
             continue;
         }
 
@@ -124,7 +128,7 @@ void Sampling::initialize()
 #ifdef AMR_WIND_USE_NETCDF
     if (m_out_fmt == "netcdf") {
         prepare_netcdf_file();
-        m_sample_buf.assign(m_total_particles * m_var_names.size(), 0.0);
+        m_sample_buf.assign(m_total_particles * m_var_names.size(), 0.0_rt);
     }
 #endif
 
@@ -169,9 +173,8 @@ void Sampling::update_sampling_locations()
         updated_position.push_back(updated_pos);
     }
 
-    if (std::any_of(
-            updated_position.begin(), updated_position.end(),
-            [](const auto& v) { return v; })) {
+    if (std::ranges::any_of(
+            updated_position, [](const auto& v) { return v; })) {
         update_container();
     }
 }
@@ -264,10 +267,10 @@ void Sampling::convert_velocity_lineofsight()
         long scan_size =
             (obj->do_subsampling_interp()) ? sample_size / 2 : sample_size;
 
-        std::vector<std::vector<double>> temp_vel(
-            scan_size, std::vector<double>(AMREX_SPACEDIM));
-        std::vector<std::vector<double>> temp_vel_next(
-            scan_size, std::vector<double>(AMREX_SPACEDIM));
+        std::vector<std::vector<amrex::Real>> temp_vel(
+            scan_size, std::vector<amrex::Real>(AMREX_SPACEDIM));
+        std::vector<std::vector<amrex::Real>> temp_vel_next(
+            scan_size, std::vector<amrex::Real>(AMREX_SPACEDIM));
 
         if (obj->do_convert_velocity_los()) {
             for (int iv = 0; iv < AMREX_SPACEDIM; ++iv) {
@@ -313,16 +316,16 @@ void Sampling::create_output_buffer()
             long sample_size = obj->num_points();
             if (obj->do_data_modification()) {
                 // Run data through specific sampler's mod method
-                const std::vector<double> temp_sb_mod(
+                const std::vector<amrex::Real> temp_sb_mod(
                     &m_sample_buf[offset], &m_sample_buf[offset + sample_size]);
-                std::vector<double> mod_result =
+                std::vector<amrex::Real> mod_result =
                     obj->modify_sample_data(temp_sb_mod, m_var_names[iv]);
                 m_output_buf.insert(
                     m_output_buf.end(), mod_result.begin(), mod_result.end());
                 offset += sample_size;
             } else {
                 // Directly put m_sample_buf in m_output_buf
-                std::vector<double> temp_sb(
+                std::vector<amrex::Real> temp_sb(
                     &m_sample_buf[offset], &m_sample_buf[offset + sample_size]);
                 m_output_buf.insert(
                     m_output_buf.end(), temp_sb.begin(), temp_sb.end());
@@ -395,7 +398,7 @@ void Sampling::write_ascii()
     BL_PROFILE("amr-wind::Sampling::write_ascii");
     amrex::Print()
         << "WARNING: Sampling: ASCII output will negatively impact performance"
-        << std::endl;
+        << '\n';
 
     const std::string post_dir = m_sim.io_manager().post_processing_directory();
     const std::string sname =
@@ -428,12 +431,12 @@ void Sampling::write_info_file(const std::string& fname)
     }
 
     // YAML formatting
-    fh << "time: " << m_sim.time().new_time() << std::endl;
-    fh << "samplers:" << std::endl;
+    fh << "time: " << std::setprecision(6) << m_sim.time().new_time() << '\n';
+    fh << "samplers:" << '\n';
     for (int i = 0; i < m_samplers.size(); ++i) {
-        fh << " - index: " << i << std::endl;
-        fh << "   label: " << m_samplers[i]->label() << std::endl;
-        fh << "   type: " << m_samplers[i]->sampletype() << std::endl;
+        fh << " - index: " << i << '\n';
+        fh << "   label: " << m_samplers[i]->label() << '\n';
+        fh << "   type: " << m_samplers[i]->sampletype() << '\n';
     }
 
     fh.close();

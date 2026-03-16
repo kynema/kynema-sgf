@@ -3,6 +3,9 @@
 
 #include <string>
 #include "amr-wind/turbulence/TurbModelBase.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::turbulence {
 
@@ -29,8 +32,8 @@ protected:
     Field* m_tke{nullptr};
 
     //! Turbulence constant
-    amrex::Real m_Ce{0.1};
-    amrex::Real m_Ceps{0.93};
+    amrex::Real m_Ce{0.1_rt};
+    amrex::Real m_Ceps{0.93_rt};
 };
 
 /** 1-equation subgrid scale TKE turbulence model
@@ -53,11 +56,14 @@ public:
 
     ~OneEqKsgsM84() override;
 
-    std::string model_name() const override { return "OneEqKsgsM84"; }
+    [[nodiscard]] std::string model_name() const override
+    {
+        return "OneEqKsgsM84";
+    }
 
     //! Update the turbulent viscosity field
     void update_turbulent_viscosity(
-        const FieldState fstate, const DiffusionType /*unused*/) override;
+        FieldState fstate, DiffusionType /*unused*/) override;
 
     //! Do any post advance work
     void post_advance_work() override;
@@ -72,13 +78,13 @@ public:
     void parse_model_coeffs() override;
 
     //! Return turbulence model coefficients
-    TurbulenceModel::CoeffsDictType model_coeffs() const override;
+    [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 
 private:
     Field& m_temperature;
 
     //! Gravity vector (m/s^2)
-    amrex::Vector<amrex::Real> m_gravity{0.0, 0.0, -9.81};
+    amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 
     //! Hybrid RANS-LES with Nalu-wind
     bool m_hybrid_rl{false};
@@ -105,12 +111,14 @@ public:
 
     ~OneEqKsgsS94() override;
 
-    std::string model_name() const override { return "OneEqKsgsS94"; }
+    [[nodiscard]] std::string model_name() const override
+    {
+        return "OneEqKsgsS94";
+    }
 
     //! Update the turbulent viscosity field
     void update_turbulent_viscosity(
-        const FieldState fstate,
-        const DiffusionType diff_type /*unused*/) override;
+        FieldState fstate, DiffusionType diff_type /*unused*/) override;
 
     //! No post advance work for this model
     void post_advance_work() override {}
@@ -122,7 +130,7 @@ public:
     void parse_model_coeffs() override;
 
     //! Return turbulence model coefficients
-    TurbulenceModel::CoeffsDictType model_coeffs() const override;
+    [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 };
 
 } // namespace amr_wind::turbulence

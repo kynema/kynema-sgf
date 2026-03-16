@@ -1,3 +1,5 @@
+#include <utility>
+
 #include "amr-wind/wind_energy/ABLFillMPL.H"
 
 namespace amr_wind {
@@ -106,7 +108,7 @@ void ABLFillMPL::fillpatch_sibling_fields(
         FieldFillPatchOps<FieldBCDirichlet>::fillpatch_sibling_fields(
             lev, time, mfabs, ffabs, cfabs, nghost, lbcrec, lbcrec, fstate);
 
-        for (int i = 0; i < static_cast<int>(mfabs.size()); i++) {
+        for (int i = 0; std::cmp_less(i, mfabs.size()); i++) {
             m_abl_mpl.set_velocity(lev, time, m_field, *mfabs[i], 0, i);
         }
     }

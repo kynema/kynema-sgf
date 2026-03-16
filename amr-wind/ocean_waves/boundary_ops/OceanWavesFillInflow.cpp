@@ -1,3 +1,5 @@
+#include <utility>
+
 #include "amr-wind/ocean_waves/boundary_ops/OceanWavesFillInflow.H"
 #include "amr-wind/utilities/constants.H"
 
@@ -125,7 +127,7 @@ void OceanWavesFillInflow::fillpatch_sibling_fields(
         lev, time, mfabs, ffabs, cfabs, nghost, fp_bcrec, ph_bcrec, fstate);
 
     if (!boundary_data_unchanged) {
-        for (int i = 0; i < static_cast<int>(mfabs.size()); i++) {
+        for (int i = 0; std::cmp_less(i, mfabs.size()); i++) {
             m_ow_bndry.set_velocity(lev, time, m_field, *mfabs[i], 0, i);
         }
     }

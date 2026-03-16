@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
     - name: Clone
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
     - name: Check formatting
       uses: DoozyX/clang-format-lint-action@v0.20
       with:
@@ -59,7 +59,7 @@ jobs:
             openmp_flag: OpenMP
     steps:
     - name: Clone
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with: 
         submodules: true
     - name: Dependencies
@@ -75,12 +75,12 @@ jobs:
     - name: Install Ccache
       run: |
         if [ "${RUNNER_OS}" != "macOS" ]; then
-          wget https://github.com/ccache/ccache/releases/download/v4.8/ccache-4.8-linux-x86_64.tar.xz
-          tar xvf ccache-4.8-linux-x86_64.tar.xz
-          sudo cp -f ccache-4.8-linux-x86_64/ccache /usr/local/bin/
+          wget https://github.com/ccache/ccache/releases/download/v4.12.2/ccache-4.12.2-linux-x86_64.tar.xz
+          tar xvf ccache-4.12.2-linux-x86_64.tar.xz
+          sudo cp -f ccache-4.12.2-linux-x86_64/ccache /usr/local/bin/
         fi
     - name: Set Up Ccache
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ${{matrix.ccache_cache}}
         key: ccache-${{github.workflow}}-${{github.job}}-${{matrix.os}}-${{matrix.build_type}}-${{matrix.openmp_flag}}-git-${{github.sha}}
@@ -161,21 +161,86 @@ jobs:
         ls ${{matrix.ccache_cache}}
         du -hs ${{matrix.ccache_cache}}
     - name: Reference Test
-      id: ref-test
-      continue-on-error: true
       if: ${{matrix.build_type == 'Release' && github.event_name != 'push'}}
       working-directory: ${{runner.workspace}}/build-ci-${{matrix.build_type}}-${{matrix.openmp_flag}}-reference
       run: ctest ${{matrix.ctest_args}} -VV --output-on-failure
-    - name: Reference Test Warning
-      if: ${{matrix.build_type == 'Release' && github.event_name != 'push' && steps.ref-test.outcome != 'success'}}
-      run: echo "::error::Reference test failed"
+
+  CPU-SINGLE:
+    needs: Formatting
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Clone
+      uses: actions/checkout@v6
+      with: 
+        submodules: true
+    - name: Dependencies
+      run: sudo apt-get install -y libopenmpi-dev openmpi-bin libfftw3-dev
+    - name: Setup
+      run: |
+        mkdir -p ${{runner.workspace}}/golds-single
+        echo "NPROCS=$(nproc)" >> $GITHUB_ENV
+        echo "CCACHE_COMPRESS=1" >> $GITHUB_ENV
+        echo "CCACHE_COMPRESSLEVEL=10" >> $GITHUB_ENV
+        echo "CCACHE_LOGFILE=${{github.workspace}}/ccache.log.txt" >> $GITHUB_ENV
+        echo "CCACHE_MAXSIZE=100M" >> $GITHUB_ENV
+    - name: Install Ccache
+      run: |
+        wget https://github.com/ccache/ccache/releases/download/v4.8/ccache-4.8-linux-x86_64.tar.xz
+        tar xvf ccache-4.8-linux-x86_64.tar.xz
+        sudo cp -f ccache-4.8-linux-x86_64/ccache /usr/local/bin/
+    - name: Set Up Ccache
+      uses: actions/cache@v5
+      with:
+        path: ~/.cache/ccache
+        key: ccache-${{github.workflow}}-${{github.job}}-single-git-${{github.sha}}
+        restore-keys: |
+             ccache-${{github.workflow}}-${{github.job}}-single-git-
+    - name: Configure
+      run: |
+        cmake -B ${{runner.workspace}}/build-ci-single \
+          -DCMAKE_INSTALL_PREFIX:PATH=${{runner.workspace}}/install-single \
+          -DCMAKE_BUILD_TYPE:STRING=Release \
+          -DMPIEXEC_PREFLAGS:STRING=--oversubscribe \
+          -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
+          -DAMR_WIND_ENABLE_MPI:BOOL=ON \
+          -DAMR_WIND_PRECISION:BOOL=SINGLE \
+          -DAMR_WIND_ENABLE_TESTS:BOOL=ON \
+          -DAMR_WIND_TEST_WITH_FCOMPARE:BOOL=OFF \
+          -DAMR_WIND_ENABLE_W2A:BOOL=OFF \
+          -DCMAKE_CXX_COMPILER_LAUNCHER:STRING=ccache \
+          ${{github.workspace}}
+    - name: Build
+      run: |
+        echo "::add-matcher::.github/problem-matchers/gcc.json"
+        ccache -z
+        set -eu -o pipefail
+        cmake --build ${{runner.workspace}}/build-ci-single --parallel ${{env.NPROCS}} 2>&1 | \
+          tee -a ${{runner.workspace}}/build-ci-single/build-output.txt
+    - name: Ccache Report
+      run: |
+        ccache -s
+        ls ~/.cache/ccache
+        du -hs ~/.cache/ccache
+    - name: Build Report
+      working-directory: ${{runner.workspace}}/build-ci-single
+      run: |
+        echo "::add-matcher::.github/problem-matchers/gcc.json"
+        egrep "Warning:|Error:|warning:|error:" build-output.txt | egrep -v "submods" \
+          | egrep -v "ld: warning:" | egrep -v "lto-wrapper: warning:" | sort | uniq \
+          | awk 'BEGIN{i=0}{print $0}{i++}END{print "Warnings: "i}' > build-output-warnings.txt
+        cat build-output-warnings.txt
+        exit $(tail -n 1 build-output-warnings.txt | awk '{print $2}')
+    - name: Test
+      working-directory: ${{runner.workspace}}/build-ci-single
+      run: ctest -LE no_ci -VV --output-on-failure
+
   GPU-Nvidia:
     name: GPU-CUDA
     needs: Formatting
     runs-on: ubuntu-24.04
     steps:
       - name: Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
       - name: Setup
@@ -187,11 +252,11 @@ jobs:
           echo "CCACHE_MAXSIZE=300M" >> $GITHUB_ENV
       - name: Install Ccache
         run: |
-          wget https://github.com/ccache/ccache/releases/download/v4.8/ccache-4.8-linux-x86_64.tar.xz
-          tar xvf ccache-4.8-linux-x86_64.tar.xz
-          sudo cp -f ccache-4.8-linux-x86_64/ccache /usr/local/bin/
+          wget https://github.com/ccache/ccache/releases/download/v4.12.2/ccache-4.12.2-linux-x86_64.tar.xz
+          tar xvf ccache-4.12.2-linux-x86_64.tar.xz
+          sudo cp -f ccache-4.12.2-linux-x86_64/ccache /usr/local/bin/
       - name: Set Up Ccache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/ccache
           key: ccache-${{github.workflow}}-${{github.job}}-git-${{github.sha}}
@@ -232,7 +297,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
       - name: Setup
@@ -244,11 +309,11 @@ jobs:
           echo "CCACHE_MAXSIZE=100M" >> $GITHUB_ENV
       - name: Install Ccache
         run: |
-          wget https://github.com/ccache/ccache/releases/download/v4.8/ccache-4.8-linux-x86_64.tar.xz
-          tar xvf ccache-4.8-linux-x86_64.tar.xz
-          sudo cp -f ccache-4.8-linux-x86_64/ccache /usr/local/bin/
+          wget https://github.com/ccache/ccache/releases/download/v4.12.2/ccache-4.12.2-linux-x86_64.tar.xz
+          tar xvf ccache-4.12.2-linux-x86_64.tar.xz
+          sudo cp -f ccache-4.12.2-linux-x86_64/ccache /usr/local/bin/
       - name: Set Up Ccache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/ccache
           key: ccache-${{github.workflow}}-${{github.job}}-git-${{github.sha}}
@@ -297,7 +362,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
       - name: Setup
@@ -310,11 +375,11 @@ jobs:
           echo "CCACHE_DEPEND=1" >> $GITHUB_ENV
       - name: Install Ccache
         run: |
-          wget https://github.com/ccache/ccache/releases/download/v4.8/ccache-4.8-linux-x86_64.tar.xz
-          tar xvf ccache-4.8-linux-x86_64.tar.xz
-          sudo cp -f ccache-4.8-linux-x86_64/ccache /usr/local/bin/
+          wget https://github.com/ccache/ccache/releases/download/v4.12.2/ccache-4.12.2-linux-x86_64.tar.xz
+          tar xvf ccache-4.12.2-linux-x86_64.tar.xz
+          sudo cp -f ccache-4.12.2-linux-x86_64/ccache /usr/local/bin/
       - name: Set Up Ccache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/ccache
           key: ccache-${{github.workflow}}-${{github.job}}-git-${{github.sha}}
@@ -355,7 +420,7 @@ jobs:
 #    runs-on: macos-latest
 #    steps:
 #      - name: Clone
-#        uses: actions/checkout@v4
+#        uses: actions/checkout@v6
 #        with:
 #          submodules: true
 #      - name: Dependencies
@@ -388,7 +453,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
       - name: Setup
@@ -402,14 +467,14 @@ jobs:
           echo "CTCACHE_DIR=~/.cache/ctcache" >> $GITHUB_ENV
       - name: Install Ccache
         run: |
-          wget https://github.com/ccache/ccache/releases/download/v4.8/ccache-4.8-linux-x86_64.tar.xz
+          wget https://github.com/ccache/ccache/releases/download/v4.12.2/ccache-4.12.2-linux-x86_64.tar.xz
           sudo curl https://raw.githubusercontent.com/matus-chochlik/ctcache/7fd516e91c17779cbc6fc18bd119313d9532dd90/clang-tidy-cache -Lo /usr/bin/clang-tidy-cache
-          tar xvf ccache-4.8-linux-x86_64.tar.xz
-          sudo cp -f ccache-4.8-linux-x86_64/ccache /usr/local/bin/
+          tar xvf ccache-4.12.2-linux-x86_64.tar.xz
+          sudo cp -f ccache-4.12.2-linux-x86_64/ccache /usr/local/bin/
           sudo chmod +x /usr/bin/clang-tidy-cache
           mkdir -p ~/.cache/ctcache
       - name: Set Up Ccache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache
           key: ccache-${{github.workflow}}-${{github.job}}-git-${{github.sha}}
@@ -428,6 +493,7 @@ jobs:
           -DAMR_WIND_TEST_WITH_FCOMPARE:BOOL=OFF \
           -DAMR_WIND_ENABLE_MASA:BOOL=OFF \
           -DAMR_WIND_ENABLE_CLANG_TIDY:BOOL=ON \
+          -DCMAKE_CXX_COMPILER_LAUNCHER:STRING=ccache \
           ${{github.workspace}}
       - name: Check
         working-directory: ${{runner.workspace}}/build-clang-tidy
@@ -457,11 +523,11 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@v4
         with:
           languages: cpp
           queries: +security-and-quality
@@ -484,7 +550,7 @@ jobs:
         run: |
           cmake --build ${{runner.workspace}}/build-ci-codeql --parallel ${{env.NPROCS}}
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+        uses: github/codeql-action/analyze@v4
         with:
           category: "/language:cpp"
           upload: False
@@ -497,7 +563,7 @@ jobs:
           input: sarif-results/cpp.sarif
           output: sarif-results/cpp.sarif
       - name: Upload CodeQL sarif
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: sarif-results/cpp.sarif
   Lint-codespell:
@@ -505,11 +571,11 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: false
       - name: Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.10'
       - name: Dependencies
@@ -529,7 +595,7 @@ jobs:
           E4S_MACHINE: true
     steps:
       - name: Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
       - name: Test
@@ -539,7 +605,7 @@ jobs:
             spack env activate e4s-build && \
             cd ${EXAWIND_MANAGER}/environments/e4s-build && \
             ln -s ${GITHUB_WORKSPACE} amr-wind && \
-            spack develop --no-clone amr-wind@=main && \
+            spack develop --no-modify-concrete-specs --no-clone amr-wind@=main && \
             spack rm exawind && \
             spack add amr-wind@main && \
             spack concretize -f && \

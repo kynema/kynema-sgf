@@ -6,6 +6,9 @@
 #include "amr-wind/equation_systems/PDEHelpers.H"
 #include "amr-wind/equation_systems/PDE.H"
 #include "amr-wind/equation_systems/SourceTerm.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde {
 
@@ -26,8 +29,8 @@ struct VOF : ScalarTransport
     static constexpr bool has_diffusion = false;
     static constexpr bool need_nph_state = true;
 
-    static constexpr amrex::Real default_bc_value = 0.0;
-    static constexpr amrex::Real default_density_bc_value = 1.0;
+    static constexpr amrex::Real default_bc_value = 0.0_rt;
+    static constexpr amrex::Real default_density_bc_value = 1.0_rt;
 };
 
 } // namespace amr_wind::pde

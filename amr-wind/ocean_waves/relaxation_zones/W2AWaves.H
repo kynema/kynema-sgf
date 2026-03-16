@@ -6,6 +6,9 @@
 #include <complex>
 #ifdef AMR_WIND_USE_W2A
 #include "Waves2AMR.h"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 #endif
 
 namespace amr_wind::ocean_waves {
@@ -30,11 +33,11 @@ struct W2AWavesData : public RelaxZonesBaseData
     // Length to dimensionalize nondim data
     amrex::Real dimL{0.};
     // Timestep size of reference data
-    amrex::Real dt_modes{0.0};
+    amrex::Real dt_modes{0.0_rt};
 
     // Time (in HOS sim) to begin reading from
     // (this corresponds to t = 0 in AMR-Wind sim, functions as offset)
-    amrex::Real t_winit{-1.0};
+    amrex::Real t_winit{-1.0_rt};
     // Timestep (in HOS sim) of latest imported wave data
     int ntime{0};
     // Timestep (in HOS sim) of first imported wave data
@@ -46,13 +49,13 @@ struct W2AWavesData : public RelaxZonesBaseData
 
     // Time (in AMR-Wind sim) when ow arrays were last changed
     // (this is from the last timestep, goes with time-interpolated data)
-    amrex::Real t_last{-1.0};
+    amrex::Real t_last{-1.0_rt};
     // Time (in AMR-Wind sim) of latest imported wave data
-    amrex::Real t{0.0};
+    amrex::Real t{0.0_rt};
 
     // Vectors to store complex or real modes
-    std::vector<std::complex<double>> c_mX, c_mY, c_mZ, c_mFS;
-    std::vector<double> r_mX, r_mY, r_mZ, r_mFS, r_mAdd;
+    std::vector<std::complex<amrex::Real>> c_mX, c_mY, c_mZ, c_mFS;
+    std::vector<amrex::Real> r_mX, r_mY, r_mZ, r_mFS, r_mAdd;
 
 // Struct variables that have special types
 #ifdef AMR_WIND_USE_W2A
@@ -62,12 +65,12 @@ struct W2AWavesData : public RelaxZonesBaseData
     fftw_complex *c_eta_mptr = nullptr, *c_u_mptr = nullptr,
                  *c_v_mptr = nullptr, *c_w_mptr = nullptr;
     // FFTW pointers to store modes ready for ifft
-    double *r_eta_mptr = nullptr, *r_u_mptr = nullptr, *r_v_mptr = nullptr,
-           *r_w_mptr = nullptr, *au_mptr = nullptr, *av_mptr = nullptr,
-           *aw_mptr = nullptr, *plan_out = nullptr;
+    amrex::Real *r_eta_mptr = nullptr, *r_u_mptr = nullptr, *r_v_mptr = nullptr,
+                *r_w_mptr = nullptr, *au_mptr = nullptr, *av_mptr = nullptr,
+                *aw_mptr = nullptr, *plan_out = nullptr;
     // ReadModes objects
-    ReadModes<std::complex<double>> c_rmodes;
-    ReadModes<double> r_rmodes;
+    ReadModes<std::complex<amrex::Real>> c_rmodes;
+    ReadModes<amrex::Real> r_rmodes;
 #endif
 
     // Height vector (where velocity is sampled) stuff

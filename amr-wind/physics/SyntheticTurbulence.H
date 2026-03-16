@@ -1,5 +1,5 @@
-#ifndef SyntheticTurbulence_H
-#define SyntheticTurbulence_H
+#ifndef SYNTHETICTURBULENCE_H
+#define SYNTHETICTURBULENCE_H
 
 #include <string>
 #include <cmath>
@@ -9,6 +9,9 @@
 #include "amr-wind/core/Field.H"
 #include "amr-wind/core/vs/vector_space.H"
 #include "amr-wind/CFDSim.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -17,33 +20,33 @@ namespace synth_turb {
 struct MeanVelOp
 {
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
-    operator()(double /* height */) const
+    operator()(amrex::Real /* height */) const
     {
         return m_ref_vel;
     }
 
-    const double m_ref_vel;
+    const amrex::Real m_ref_vel;
 };
 
 class MeanProfile
 {
 public:
-    explicit MeanProfile(double ref_vel, int shear_dir = 2)
+    explicit MeanProfile(amrex::Real ref_vel, int shear_dir = 2)
         : m_op{ref_vel}, m_ref_vel(ref_vel), m_shear_dir(shear_dir)
     {}
 
     virtual ~MeanProfile() = default;
 
-    inline amrex::Real reference_velocity() const { return m_ref_vel; }
+    [[nodiscard]] amrex::Real reference_velocity() const { return m_ref_vel; }
 
-    inline int shear_dir() const { return m_shear_dir; }
+    [[nodiscard]] int shear_dir() const { return m_shear_dir; }
 
-    MeanVelOp device_instance() const { return m_op; }
+    [[nodiscard]] MeanVelOp device_instance() const { return m_op; }
 
 private:
     MeanVelOp m_op;
 
-    const double m_ref_vel;
+    const amrex::Real m_ref_vel;
     const int m_shear_dir;
 };
 
@@ -69,13 +72,13 @@ struct SynthTurbData
     vs::Tensor tr_mat;
 
     // Perturbation velocities (2, ny, nz)
-    amrex::Vector<double> uvel;
-    amrex::Vector<double> vvel;
-    amrex::Vector<double> wvel;
+    amrex::Vector<amrex::Real> uvel;
+    amrex::Vector<amrex::Real> vvel;
+    amrex::Vector<amrex::Real> wvel;
 
-    amrex::Gpu::DeviceVector<double> uvel_d;
-    amrex::Gpu::DeviceVector<double> vvel_d;
-    amrex::Gpu::DeviceVector<double> wvel_d;
+    amrex::Gpu::DeviceVector<amrex::Real> uvel_d;
+    amrex::Gpu::DeviceVector<amrex::Real> vvel_d;
+    amrex::Gpu::DeviceVector<amrex::Real> wvel_d;
 
     // Indices of the two planes stored in the data arrays
     int ileft;
@@ -101,9 +104,9 @@ struct SynthTurbDeviceData
     // coordinate system
     vs::Tensor tr_mat;
 
-    double* uvel;
-    double* vvel;
-    double* wvel;
+    amrex::Real* uvel;
+    amrex::Real* vvel;
+    amrex::Real* wvel;
 
     // Indices of the two planes stored in the data arrays
     int ileft;
@@ -197,7 +200,7 @@ private:
     amrex::Real m_epsilon;
     amrex::Real m_gauss_scaling;
 
-    amrex::Real m_time_offset{0.0};
+    amrex::Real m_time_offset{0.0_rt};
     // Duration of the synthetic turbulence injection. Unused if < 0
     amrex::Real m_duration{-1};
 

@@ -21,8 +21,6 @@ Intermittency::Intermittency(const CFDSim& sim)
 void Intermittency::initialize_fields(
     int level, const amrex::Geometry& /*geom*/)
 {
-    using namespace utils;
-
     auto& gamma = m_intermittency(level);
 
     gamma.setVal(m_gamma);

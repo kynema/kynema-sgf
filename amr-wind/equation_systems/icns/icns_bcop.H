@@ -4,6 +4,9 @@
 #include "amr-wind/equation_systems/icns/icns.H"
 #include "amr-wind/equation_systems/BCOps.H"
 #include "amr-wind/boundary_conditions/velocity_bcs.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde {
 
@@ -28,7 +31,7 @@ struct BCOp<ICNS>
             m_fields.field, m_fields.repo.mesh(), m_time, udfs);
 
         auto& density = m_fields.repo.get_field("density");
-        const amrex::Real density_default = 1.0;
+        const amrex::Real density_default = 1.0_rt;
         BCScalar bc_den(density);
         bc_den(density_default);
 

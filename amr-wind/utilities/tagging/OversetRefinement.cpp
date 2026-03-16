@@ -35,7 +35,7 @@ void OversetRefinement::operator()(
     const auto& tag_arrs = tags.arrays();
 
     amrex::ParallelFor(
-        ibfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        ibfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             const int axp =
                 std::abs(ibarrs[nbx](i + 1, j, k) - ibarrs[nbx](i, j, k));
             const int ayp =

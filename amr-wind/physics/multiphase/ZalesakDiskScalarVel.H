@@ -1,8 +1,11 @@
-#ifndef ZalesakDiskScalarVel_H
-#define ZalesakDiskScalarVel_H
+#ifndef ZALESAKDISKSCALARVEL_H
+#define ZALESAKDISKSCALARVEL_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 /** Multiphase Zalesak disk physics
  *  \ingroup multiphase_physics
@@ -63,19 +66,19 @@ private:
     Field& m_density;
 
     //! Initial ZalesakDiskScalarVel location
-    amrex::Vector<amrex::Real> m_loc{0.5, 0.72, 0.24};
+    amrex::Vector<amrex::Real> m_loc{0.5_rt, 0.72_rt, 0.24_rt};
 
     //! sphere radius value
-    amrex::Real m_radius{0.16};
+    amrex::Real m_radius{0.16_rt};
 
     //! slot half-width value
-    amrex::Real m_halfwidth{0.04};
+    amrex::Real m_halfwidth{0.04_rt};
 
     //! slot depth
-    amrex::Real m_depth{0.2};
+    amrex::Real m_depth{0.2_rt};
 
     //! prescribed velocity period
-    amrex::Real m_TT{6.0};
+    amrex::Real m_TT{6.0_rt};
 
     void output_error();
 

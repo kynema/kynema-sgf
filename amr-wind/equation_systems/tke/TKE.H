@@ -7,6 +7,9 @@
 #include "amr-wind/equation_systems/PDE.H"
 #include "amr-wind/core/field_ops.H"
 #include "amr-wind/equation_systems/tke/TKESource.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde {
 
@@ -37,7 +40,7 @@ struct TKE : ScalarTransport
     static std::string pde_name() { return "TKE"; }
     static std::string var_name() { return "tke"; }
 
-    static constexpr amrex::Real default_bc_value = 0.0;
+    static constexpr amrex::Real default_bc_value = 0.0_rt;
 
     static constexpr int ndim = 1;
     static constexpr bool multiply_rho = true;

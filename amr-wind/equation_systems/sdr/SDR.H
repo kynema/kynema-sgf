@@ -36,7 +36,7 @@ struct SDR : ScalarTransport
     static std::string pde_name() { return "SDR"; }
     static std::string var_name() { return "sdr"; }
 
-    static constexpr amrex::Real default_bc_value = 0.0;
+    static constexpr amrex::Real default_bc_value = 0.0_rt;
 
     static constexpr int ndim = 1;
     static constexpr bool multiply_rho = true;

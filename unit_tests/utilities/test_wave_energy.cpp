@@ -1,9 +1,9 @@
-
 #include <utility>
-
 #include "aw_test_utils/MeshTest.H"
-
 #include "amr-wind/utilities/sampling/WaveEnergy.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -17,7 +17,7 @@ void init_velocity(amr_wind::Field& fld)
         const auto& farrs = fld(lev).arrays();
         amrex::ParallelFor(
             fld(lev), amrex::IntVect(0),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 farrs[nbx](i, j, k, 0) = j;
                 farrs[nbx](i, j, k, 1) = k;
                 farrs[nbx](i, j, k, 2) = i;
@@ -36,18 +36,18 @@ void init_vof(amr_wind::Field& fld)
         // fully liquid and half liquid
         amrex::ParallelFor(
             fld(lev), amrex::IntVect(0),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 if (k < 2) {
-                    vof_arrs[nbx](i, j, k) = 1.0;
+                    vof_arrs[nbx](i, j, k) = 1.0_rt;
                 } else {
                     if (k == 2) {
                         if (i % 2 == 0) {
-                            vof_arrs[nbx](i, j, k) = 0.5;
+                            vof_arrs[nbx](i, j, k) = 0.5_rt;
                         } else {
-                            vof_arrs[nbx](i, j, k) = 1.0;
+                            vof_arrs[nbx](i, j, k) = 1.0_rt;
                         }
                     } else {
-                        vof_arrs[nbx](i, j, k) = 0.0;
+                        vof_arrs[nbx](i, j, k) = 0.0_rt;
                     }
                 }
             });
@@ -97,7 +97,7 @@ protected:
         }
         {
             amrex::ParmParse pp("incflo");
-            amrex::Vector<amrex::Real> gvec{{0.0, 0.0, m_g}};
+            amrex::Vector<amrex::Real> gvec{{0.0_rt, 0.0_rt, m_g}};
             pp.addarr("gravity", gvec);
             amrex::Vector<std::string> physics{"MultiPhase"};
             pp.addarr("physics", physics);
@@ -108,13 +108,14 @@ protected:
         }
     }
     // Parameters
-    const amrex::Vector<amrex::Real> m_problo{{0.0, 0.0, 0.0}};
-    const amrex::Vector<amrex::Real> m_probhi{{2.0, 2.0, 1.0}};
+    const amrex::Vector<amrex::Real> m_problo{{0.0_rt, 0.0_rt, 0.0_rt}};
+    const amrex::Vector<amrex::Real> m_probhi{{2.0_rt, 2.0_rt, 1.0_rt}};
     const int m_nx = 5;
-    const amrex::Real m_wlev = 0.25;
-    const amrex::Real m_g = -9;
-    const amrex::Real m_rho1 = 888;
-    const amrex::Real m_tol = 1e-12;
+    const amrex::Real m_wlev = 0.25_rt;
+    const amrex::Real m_g = -9.0_rt;
+    const amrex::Real m_rho1 = 888.0_rt;
+    const amrex::Real m_tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 };
 
 TEST_F(WaveEnergyTest, checkoutput)
@@ -139,26 +140,28 @@ TEST_F(WaveEnergyTest, checkoutput)
     tool.output_actions();
 
     // Get answers
-    amrex::Real ke = 0.0;
-    amrex::Real pe = 0.0;
+    amrex::Real ke = 0.0_rt;
+    amrex::Real pe = 0.0_rt;
     tool.wave_energy(ke, pe);
 
     // Check answers
-    const amrex::Real dx = 2.0 / (amrex::Real)m_nx;
-    const amrex::Real dz = 1.0 / (amrex::Real)m_nx;
+    const amrex::Real dx = 2.0_rt / static_cast<amrex::Real>(m_nx);
+    const amrex::Real dz = 1.0_rt / static_cast<amrex::Real>(m_nx);
     const amrex::Real cell_vol = dx * dx * dz;
     amrex::Real ke_ref =
-        0.5 * cell_vol / (m_wlev * 2.0 * 2.0) *
-        (4.0 * 5.0 * (1.0 + 4.0 + 9.0 + 16.0) + 25.0 +
-         0.5 * (4.0 * 15.0 + 5.0 * (4.0 + 16.0) +
-                3.0 * (1.0 + 4.0 + 9.0 + 16.0)) +
-         (4.0 * 10.0 + 5.0 * (1.0 + 9.0) + 2.0 * (1.0 + 4.0 + 9.0 + 16.0)));
+        0.5_rt * cell_vol / (m_wlev * 2.0_rt * 2.0_rt) *
+        (4.0_rt * 5.0_rt * (1.0_rt + 4.0_rt + 9.0_rt + 16.0_rt) + 25.0_rt +
+         0.5_rt * (4.0_rt * 15.0_rt + 5.0_rt * (4.0_rt + 16.0_rt) +
+                   3.0_rt * (1.0_rt + 4.0_rt + 9.0_rt + 16.0_rt)) +
+         (4.0_rt * 10.0_rt + 5.0_rt * (1.0_rt + 9.0_rt) +
+          2.0_rt * (1.0_rt + 4.0_rt + 9.0_rt + 16.0_rt)));
     EXPECT_NEAR(ke, ke_ref, m_tol);
     // Formula has been integrated in z, and uses exact interface locations
     amrex::Real pe_exact =
-        dx * dx * (-m_g) * 0.5 / (m_wlev * 2.0 * 2.0) *
-            (15.0 * std::pow(2.5 * dz, 2) + 10.0 * std::pow(3.0 * dz, 2)) +
-        0.5 * (-m_g) * m_wlev;
+        (dx * dx * (-m_g) * 0.5_rt / (m_wlev * 2.0_rt * 2.0_rt) *
+         (15.0_rt * std::pow(2.5_rt * dz, 2.0_rt) +
+          10.0_rt * std::pow(3.0_rt * dz, 2.0_rt))) +
+        (0.5_rt * (-m_g) * m_wlev);
     EXPECT_NEAR(pe, pe_exact, m_tol);
 }
 

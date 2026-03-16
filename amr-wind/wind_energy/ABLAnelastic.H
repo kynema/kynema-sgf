@@ -6,6 +6,9 @@
 #include "amr-wind/utilities/MultiLevelVector.H"
 #include "amr-wind/eos_models/EOSModel.H"
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -25,7 +28,7 @@ public:
     void post_init_actions();
     void post_regrid_actions();
     void initialize_data();
-    bool is_anelastic() const { return m_is_anelastic; }
+    [[nodiscard]] bool is_anelastic() const { return m_is_anelastic; }
 
 private:
     //! Function to calculate the hydrostatic density and pressure
@@ -35,11 +38,11 @@ private:
 
     bool m_is_anelastic{false};
 
-    amrex::Vector<amrex::Real> m_gravity{0.0, 0.0, -9.81};
+    amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 
-    amrex::Real m_reference_density_constant{1.0};
+    amrex::Real m_reference_density_constant{1.0_rt};
 
-    amrex::Real m_bottom_reference_pressure{1.0e5};
+    amrex::Real m_bottom_reference_pressure{1.0e5_rt};
 
     const int m_axis{2};
 

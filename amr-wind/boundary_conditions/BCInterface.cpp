@@ -3,6 +3,9 @@
 #include "amr-wind/boundary_conditions/FixedGradientBC.H"
 #include "amr-wind/boundary_conditions/MassInflowOutflowBC.H"
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -11,7 +14,7 @@ BCIface::BCIface(Field& field) : m_field(field) {}
 void BCIface::operator()(const amrex::Real value)
 {
     amrex::Print() << "Initializing boundary conditions for " << m_field.name()
-                   << std::endl;
+                   << '\n';
     set_default_value(value);
     read_bctype();
     set_bcrec();
@@ -20,7 +23,7 @@ void BCIface::operator()(const amrex::Real value)
     m_field.copy_bc_to_device();
 }
 
-inline void BCIface::set_default_value(const amrex::Real value)
+void BCIface::set_default_value(const amrex::Real value)
 {
     auto& bcval = m_field.bc_values();
     for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
@@ -279,7 +282,7 @@ void BCVelocity::read_values()
         pp.queryarr(fname, bcval[ori], 0, ndim);
         if (bct == BC::no_slip_wall) {
             // Set normal component to zero
-            bcval[ori][ori.coordDir()] = 0.0;
+            bcval[ori][ori.coordDir()] = 0.0_rt;
         }
     }
 }

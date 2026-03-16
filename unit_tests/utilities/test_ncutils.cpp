@@ -1,6 +1,9 @@
 #include "gtest/gtest.h"
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 #include "AMReX.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -35,7 +38,7 @@ TEST(NetCDFUtils, ncfile)
         ASSERT_EQ(vshp2[1], num_points);
     }
 
-    std::vector<double> fill_val(num_points, 2000.0);
+    std::vector<amrex::Real> fill_val(num_points, 2000.0_rt);
     std::vector<size_t> start{0, 0};
     std::vector<size_t> count{1, num_points};
 
@@ -63,8 +66,8 @@ TEST(NetCDFUtils, ncgroups)
     auto line1 = ncf.def_group("line1");
     line1.def_dim("ny", num_points);
     auto vel = line1.def_var("vel", NC_DOUBLE, {"nx", "ny"});
-    std::vector<double> fill_val(
-        static_cast<size_t>(num_points * num_points), 2000.0);
+    std::vector<amrex::Real> fill_val(
+        static_cast<size_t>(num_points * num_points), 2000.0_rt);
     vel.put(fill_val.data());
 
     ASSERT_EQ(ncf.num_groups(), 1);
@@ -98,13 +101,14 @@ TEST(NetCDFUtils, var_io)
     line1.put_attr("sampling_type", "LineSampler");
     line1.def_dim("nx", num_points);
     line1.def_dim("ny", num_points);
-    std::vector<double> fill_val(static_cast<size_t>(num_points * num_points));
+    std::vector<amrex::Real> fill_val(
+        static_cast<size_t>(num_points * num_points));
     ASSERT_EQ(line1.get_attr("sampling_type"), "LineSampler");
 
     int idx = 0;
     for (int i = 0; i < num_points; ++i) {
         for (int j = 0; j < num_points; ++j) {
-            fill_val[idx++] = static_cast<double>(i * num_points + j);
+            fill_val[idx++] = static_cast<amrex::Real>(i * num_points + j);
         }
     }
 
@@ -114,12 +118,14 @@ TEST(NetCDFUtils, var_io)
     ASSERT_EQ("m/s", vel.get_attr("units"));
 
     const size_t istart = num_points - 2;
-    const auto start_val = static_cast<double>(istart * num_points);
-    std::vector<double> buf(num_points);
+    const auto start_val = static_cast<amrex::Real>(istart * num_points);
+    std::vector<amrex::Real> buf(num_points);
     vel.get(buf.data(), {istart, 0}, {1, num_points});
 
     for (int i = 0; i < num_points; ++i) {
-        ASSERT_NEAR(buf[i], start_val + static_cast<double>(i), 1.0e-12);
+        ASSERT_NEAR(
+            buf[i], start_val + static_cast<amrex::Real>(i),
+            std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
     }
 
     // Test hyperslab
@@ -129,8 +135,8 @@ TEST(NetCDFUtils, var_io)
     for (int i = 0; i < num_points; ++i) {
         for (int j = 0; j < 2; ++j) {
             ASSERT_NEAR(
-                buf[idx++], static_cast<double>(num_points * i + 2 * j),
-                1.0e-12);
+                buf[idx++], static_cast<amrex::Real>(num_points * i + 2 * j),
+                std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
         }
     }
 }

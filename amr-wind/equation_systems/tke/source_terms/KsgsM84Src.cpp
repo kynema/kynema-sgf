@@ -3,6 +3,9 @@
 #include "amr-wind/equation_systems/tke/source_terms/KsgsM84Src.H"
 #include "amr-wind/CFDSim.H"
 #include "amr-wind/turbulence/TurbulenceModel.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::tke {
 
@@ -16,7 +19,7 @@ KsgsM84Src::KsgsM84Src(const CFDSim& sim)
     AMREX_ALWAYS_ASSERT(sim.turbulence_model().model_name() == "OneEqKsgsM84");
     auto coeffs = sim.turbulence_model().model_coeffs();
     m_Ceps = coeffs["Ceps"];
-    m_CepsGround = (3.9 / 0.93) * m_Ceps;
+    m_CepsGround = (3.9_rt / 0.93_rt) * m_Ceps;
 }
 
 KsgsM84Src::~KsgsM84Src() = default;
@@ -44,7 +47,7 @@ void KsgsM84Src::operator()(
     const amrex::Real dz = geom.CellSize()[2];
     const amrex::Real ds = std::cbrt(dx * dy * dz);
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         dissip_arr(i, j, k) = calc_dissip(
             calc_ceps_local(Ceps, tlscale_arr(i, j, k), ds), tke_arr(i, j, k),
             tlscale_arr(i, j, k));
@@ -60,7 +63,7 @@ void KsgsM84Src::operator()(
             amrex::Box blo = amrex::bdryLo(bx, dir, 1);
             if (blo.ok()) {
                 amrex::ParallelFor(
-                    blo, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+                    blo, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         // Remove previous dissipation term
                         src_term(i, j, k) += dissip_arr(i, j, k);
                         // Calculate new dissipation term
@@ -81,7 +84,7 @@ void KsgsM84Src::operator()(
             amrex::Abort("tke wall model is not supported on upper boundary");
             if (bhi.ok()) {
                 amrex::ParallelFor(
-                    bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+                    bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         // Remove previous dissipation term
                         src_term(i, j, k) += dissip_arr(i, j, k);
                         // Calculate new dissipation term

@@ -6,6 +6,9 @@
 #include "amr-wind/core/vs/vector_space.H"
 
 #include <algorithm>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 namespace {
@@ -39,8 +42,8 @@ protected:
         }
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> problo{{0.0, 0.0, 0.0}};
-            amrex::Vector<amrex::Real> probhi{{128.0, 128.0, 128.0}};
+            amrex::Vector<amrex::Real> problo{{0.0_rt, 0.0_rt, 0.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{128.0_rt, 128.0_rt, 128.0_rt}};
 
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
@@ -62,7 +65,7 @@ TEST_F(ActuatorTest, act_container)
     auto& vel = sim().repo().declare_field("velocity", 3, 3);
     auto& density = sim().repo().declare_field("density", 1, 3);
     init_field(vel);
-    density.setVal(1.0);
+    density.setVal(1.0_rt);
 
     // Number of turbines in an MPI rank
     const int num_turbines = 2;
@@ -82,12 +85,12 @@ TEST_F(ActuatorTest, act_container)
         const int lev = 0;
         int idx = 0;
         const amrex::Real dz = mesh().Geom(lev).CellSize(2);
-        const amrex::Real ypos = 32.0 * (iproc + 1);
+        const amrex::Real ypos = 32.0_rt * (iproc + 1);
         auto& pvec = data.position;
         for (int it = 0; it < num_turbines; ++it) {
-            const amrex::Real xpos = 32.0 * (it + 1);
+            const amrex::Real xpos = 32.0_rt * (it + 1);
             for (int ni = 0; ni < num_nodes; ++ni) {
-                const amrex::Real zpos = (ni + 0.5) * dz;
+                const amrex::Real zpos = (ni + 0.5_rt) * dz;
 
                 pvec[idx].x() = xpos;
                 pvec[idx].y() = ypos;
@@ -151,8 +154,9 @@ TEST_F(ActuatorTest, act_container)
     // Check the interpolated velocity field
     {
         namespace vs = amr_wind::vs;
-        constexpr amrex::Real rtol = 1.0e-12;
-        amrex::Real rerr = 0.0;
+        constexpr amrex::Real rtol =
+            std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+        amrex::Real rerr = 0.0_rt;
         const int npts = ac.num_actuator_points();
         const auto& pvec = data.position;
         const auto& vvec = data.velocity;
@@ -164,7 +168,7 @@ TEST_F(ActuatorTest, act_container)
             const vs::Vector vgold{vval, vval, vval};
             rerr += vs::mag_sqr(pvel - vgold);
         }
-        EXPECT_NEAR(rerr, 0.0, rtol);
+        EXPECT_NEAR(rerr, 0.0_rt, rtol);
     }
 }
 

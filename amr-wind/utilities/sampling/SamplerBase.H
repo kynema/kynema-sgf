@@ -5,6 +5,9 @@
 #include "amr-wind/core/Factory.H"
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 #include "amr-wind/utilities/constants.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -23,7 +26,7 @@ struct SampleLocType
         m_ids.push_back(id);
     }
 
-    const LocType& locations() const
+    [[nodiscard]] const LocType& locations() const
     {
         AMREX_ALWAYS_ASSERT(m_locations.size() == m_ids.size());
         return m_locations;
@@ -35,7 +38,7 @@ struct SampleLocType
         return m_locations;
     }
 
-    const IdType& ids() const
+    [[nodiscard]] const IdType& ids() const
     {
         AMREX_ALWAYS_ASSERT(m_locations.size() == m_ids.size());
         return m_ids;
@@ -62,23 +65,23 @@ public:
     ~SamplerBase() override = default;
 
     //! Name used to refer to this sampler (e.g., myline1)
-    virtual std::string label() const = 0;
+    [[nodiscard]] virtual std::string label() const = 0;
     virtual std::string& label() = 0;
 
     //! Class name of this sampler (e.g., LineSampler)
-    virtual std::string sampletype() const = 0;
+    [[nodiscard]] virtual std::string sampletype() const = 0;
 
     //! Unique numeric identifier used to track particles belonging to this
     //! instance
-    virtual int id() const = 0;
+    [[nodiscard]] virtual int id() const = 0;
     virtual int& id() = 0;
 
     //! Total number of probes that belong to this sampling instance
-    virtual long num_points() const = 0;
+    [[nodiscard]] virtual long num_points() const = 0;
 
     //! Total number of probes to be output
     //! Note: Same as num_points() for sampling without data reduction
-    virtual long num_output_points() const = 0;
+    [[nodiscard]] virtual long num_output_points() const = 0;
 
     //! Read inputs and perform initialization actions
     virtual void initialize(const std::string& key) = 0;
@@ -108,7 +111,7 @@ public:
 
     //! Run specific output for the sampler
     virtual bool output_netcdf_field(
-        const std::vector<double>& /*unused*/,
+        const std::vector<amrex::Real>& /*unused*/,
         ncutils::NCGroup& /*unused*/,
         const size_t /*unused*/)
     {
@@ -121,14 +124,15 @@ public:
     virtual bool do_subsampling_interp() { return false; }
 
     //! Sample buffer modification instructions
-    virtual std::vector<double> modify_sample_data(
-        const std::vector<double>& sampledata, const std::string& /*unused*/)
+    virtual std::vector<amrex::Real> modify_sample_data(
+        const std::vector<amrex::Real>& sampledata,
+        const std::string& /*unused*/)
     {
         return sampledata;
     }
 
     virtual void calc_lineofsight_velocity(
-        const std::vector<std::vector<double>>& /*unused*/,
+        const std::vector<std::vector<amrex::Real>>& /*unused*/,
         const int /*unused*/)
     {}
 

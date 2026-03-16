@@ -3,6 +3,9 @@
 #include "amr-wind/physics/RayleighTaylor.H"
 #include "amr-wind/physics/RayleighTaylorFieldInit.H"
 #include "amr-wind/CFDSim.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -22,7 +25,7 @@ void RayleighTaylor::initialize_fields(int level, const amrex::Geometry& geom)
     auto& velocity = m_velocity(level);
     auto& density = m_density(level);
 
-    velocity.setVal(0.0);
+    velocity.setVal(0.0_rt);
 
 #ifdef AMREX_USE_OMP
 #pragma omp parallel if (amrex::Gpu::notInLaunchRegion())

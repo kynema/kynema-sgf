@@ -2,6 +2,9 @@
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
 #include "amr-wind/equation_systems/vof/volume_fractions.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -21,8 +24,8 @@ protected:
         }
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> problo{{0.0, 0.0, 0.0}};
-            amrex::Vector<amrex::Real> probhi{{1.0, 1.0, 1.0}};
+            amrex::Vector<amrex::Real> problo{{0.0_rt, 0.0_rt, 0.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{1.0_rt, 1.0_rt, 1.0_rt}};
 
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
@@ -44,13 +47,13 @@ void initialize_volume_fractions(
         int jj = (dir != 1 ? j : 0);
         int kk = (dir != 2 ? k : 0);
         if (ii + jj + kk > 3) {
-            vof_arr(i, j, k) = 0.0;
+            vof_arr(i, j, k) = 0.0_rt;
         }
         if (ii + jj + kk == 3) {
-            vof_arr(i, j, k) = 0.5;
+            vof_arr(i, j, k) = 0.5_rt;
         }
         if (ii + jj + kk < 3) {
-            vof_arr(i, j, k) = 1.0;
+            vof_arr(i, j, k) = 1.0_rt;
         }
     });
 }
@@ -76,13 +79,13 @@ void initialize_volume_fractions_horizontal(
     amrex::ParallelFor(grow(bx, 1), [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         int ii = (dir == 0 ? i : (dir == 1 ? j : k));
         if (ii > 1) {
-            vof_arr(i, j, k) = 0.0;
+            vof_arr(i, j, k) = 0.0_rt;
         }
         if (ii == 1) {
             vof_arr(i, j, k) = vv;
         }
         if (ii < 1) {
-            vof_arr(i, j, k) = 1.0;
+            vof_arr(i, j, k) = 1.0_rt;
         }
     });
 }
@@ -100,9 +103,11 @@ void initialize_volume_fractions(
     const amrex::Box& bx, const amrex::Array4<amrex::Real>& vof_arr)
 {
     amrex::ParallelFor(grow(bx, 1), [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        vof_arr(i, j, k) = 0.13 * ((amrex::Real)i - 1.5) +
-                           0.04 * std::pow((amrex::Real)j - 1., 2) +
-                           0.01 * std::pow((amrex::Real)k - 2., 3) + 0.5;
+        vof_arr(i, j, k) =
+            (0.13_rt * (static_cast<amrex::Real>(i) - 1.5_rt)) +
+            (0.04_rt * std::pow(static_cast<amrex::Real>(j) - 1.0_rt, 2.0_rt)) +
+            (0.01_rt * std::pow(static_cast<amrex::Real>(k) - 2.0_rt, 3.0_rt)) +
+            0.5_rt;
     });
 }
 
@@ -157,13 +162,13 @@ void initialize_volume_fractions_iblank(
         int kkn = (dir == 2 ? k : 0);
         // Ordinary vof distribution
         if (iin + jjn + kkn > 2) {
-            vof_arr(i, j, k) = 0.0;
+            vof_arr(i, j, k) = 0.0_rt;
         }
         if (iin + jjn + kkn == 2) {
-            vof_arr(i, j, k) = 0.5;
+            vof_arr(i, j, k) = 0.5_rt;
         }
         if (iin + jjn + kkn < 2) {
-            vof_arr(i, j, k) = 1.0;
+            vof_arr(i, j, k) = 1.0_rt;
         }
         // iblank distribution
         iblk_arr(i, j, k) = 1;
@@ -172,10 +177,10 @@ void initialize_volume_fractions_iblank(
             iblk_arr(i, j, k) = -1;
             // Change vof where iblank = -1
             if (iin + jjn + kkn == 3) {
-                vof_arr(i, j, k) = 0.25;
+                vof_arr(i, j, k) = 0.25_rt;
             }
             if (iin + jjn + kkn == 1) {
-                vof_arr(i, j, k) = 0.75;
+                vof_arr(i, j, k) = 0.75_rt;
             }
         }
     });
@@ -194,7 +199,7 @@ void init_vof_iblank(
 
 amrex::Real normal_vector_test_impl(amr_wind::Field& vof, const int dir)
 {
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
 
     for (int lev = 0; lev < vof.repo().num_active_levels(); ++lev) {
 
@@ -204,9 +209,9 @@ amrex::Real normal_vector_test_impl(amr_wind::Field& vof, const int dir)
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& vof_arr)
                 -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     amrex::Real mx, my, mz;
                     amr_wind::multiphase::mixed_youngs_central_normal(
                         i, j, k, vof_arr, mx, my, mz);
@@ -217,9 +222,9 @@ amrex::Real normal_vector_test_impl(amr_wind::Field& vof, const int dir)
 
                     // Use L1 norm, check cells where slope is known
                     if (ii + jj + kk == 3) {
-                        error += std::abs(mx - (dir != 0 ? 0.5 : 0.0));
-                        error += std::abs(my - (dir != 1 ? 0.5 : 0.0));
-                        error += std::abs(mz - (dir != 2 ? 0.5 : 0.0));
+                        error += std::abs(mx - (dir != 0 ? 0.5_rt : 0.0_rt));
+                        error += std::abs(my - (dir != 1 ? 0.5_rt : 0.0_rt));
+                        error += std::abs(mz - (dir != 2 ? 0.5_rt : 0.0_rt));
                     }
                 });
 
@@ -232,7 +237,7 @@ amrex::Real normal_vector_test_impl(amr_wind::Field& vof, const int dir)
 amrex::Real normal_vector_neumann_test_impl(
     amr_wind::Field& vof, amr_wind::IntField& iblk_fld)
 {
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
 
     for (int lev = 0; lev < vof.repo().num_active_levels(); ++lev) {
 
@@ -242,9 +247,9 @@ amrex::Real normal_vector_neumann_test_impl(
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& vof_arr,
                 amrex::Array4<int const> const& iblank) -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     int ibdy =
                         (iblank(i, j, k) != iblank(i - 1, j, k)) ? -1 : 0;
                     int jbdy =
@@ -264,18 +269,19 @@ amrex::Real normal_vector_neumann_test_impl(
 
                     // Use L1 norm, check against non-neumann implementation
                     // Slope across overset boundary should be different
-                    constexpr amrex::Real slp_tol = 1e-8;
+                    constexpr amrex::Real slp_tol =
+                        std::numeric_limits<float>::epsilon() * 1.0e1_rt;
                     if (ibdy != 0) {
                         // x slope should be different
-                        error += std::abs(mx - mxn) > slp_tol ? 0. : 1.0;
+                        error += std::abs(mx - mxn) > slp_tol ? 0.0_rt : 1.0_rt;
                     }
                     if (jbdy != 0) {
                         // y slope should be different
-                        error += std::abs(my - myn) > slp_tol ? 0. : 1.0;
+                        error += std::abs(my - myn) > slp_tol ? 0.0_rt : 1.0_rt;
                     }
                     if (kbdy != 0) {
                         // z slope should be different
-                        error += std::abs(mz - mzn) > slp_tol ? 0. : 1.0;
+                        error += std::abs(mz - mzn) > slp_tol ? 0.0_rt : 1.0_rt;
                     }
                     // Slope should otherwise be the same
                     if (ibdy == 0 && jbdy == 0 && kbdy == 0) {
@@ -294,8 +300,8 @@ amrex::Real normal_vector_neumann_test_impl(
 amrex::Real normal_vector_neumann_test_impl(
     amr_wind::Field& vof, amr_wind::IntField& iblk_fld, const int& dir)
 {
-    const amrex::Real ref_m = 16.0 * (1.0 - 0.0);
-    amrex::Real error_total = 0.0;
+    const amrex::Real ref_m = 16.0_rt * (1.0_rt - 0.0_rt);
+    amrex::Real error_total = 0.0_rt;
 
     for (int lev = 0; lev < vof.repo().num_active_levels(); ++lev) {
 
@@ -305,9 +311,9 @@ amrex::Real normal_vector_neumann_test_impl(
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& vof_arr,
                 amrex::Array4<int const> const& iblank) -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     int ibdy =
                         (iblank(i, j, k) != iblank(i - 1, j, k)) ? -1 : 0;
                     int jbdy =
@@ -328,13 +334,13 @@ amrex::Real normal_vector_neumann_test_impl(
 
                         // Slope in non-normal directions should be 0
                         if (dir != 0) {
-                            error += std::abs(mxn - 0.);
+                            error += std::abs(mxn - 0.0_rt);
                         }
                         if (dir != 1) {
-                            error += std::abs(myn - 0.);
+                            error += std::abs(myn - 0.0_rt);
                         }
                         if (dir != 2) {
-                            error += std::abs(mzn - 0.);
+                            error += std::abs(mzn - 0.0_rt);
                         }
                         // Slope in normal direction, at center, should be same
                         if (dir == 0 && i == 2) {
@@ -357,7 +363,7 @@ amrex::Real normal_vector_neumann_test_impl(
 
 amrex::Real fit_plane_test_impl(amr_wind::Field& vof, const int dir)
 {
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
 
     for (int lev = 0; lev < vof.repo().num_active_levels(); ++lev) {
 
@@ -367,9 +373,9 @@ amrex::Real fit_plane_test_impl(amr_wind::Field& vof, const int dir)
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& vof_arr)
                 -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     int ii = (dir != 0 ? i : 0);
                     int jj = (dir != 1 ? j : 0);
                     int kk = (dir != 2 ? k : 0);
@@ -380,11 +386,11 @@ amrex::Real fit_plane_test_impl(amr_wind::Field& vof, const int dir)
                             i, j, k, vof_arr, mx, my, mz, alpha);
 
                         // Check slope
-                        error += std::abs(mx - (dir != 0 ? 0.5 : 0.0));
-                        error += std::abs(my - (dir != 1 ? 0.5 : 0.0));
-                        error += std::abs(mz - (dir != 2 ? 0.5 : 0.0));
+                        error += std::abs(mx - (dir != 0 ? 0.5_rt : 0.0_rt));
+                        error += std::abs(my - (dir != 1 ? 0.5_rt : 0.0_rt));
+                        error += std::abs(mz - (dir != 2 ? 0.5_rt : 0.0_rt));
                         // Check intercept
-                        error += std::abs(alpha - 0.5);
+                        error += std::abs(alpha - 0.5_rt);
                     }
                 });
 
@@ -397,7 +403,7 @@ amrex::Real fit_plane_test_impl(amr_wind::Field& vof, const int dir)
 amrex::Real fit_plane_test_impl_h(
     amr_wind::Field& vof, const amrex::Real vof_val, const int dir)
 {
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
     const amrex::Real vv = vof_val;
 
     for (int lev = 0; lev < vof.repo().num_active_levels(); ++lev) {
@@ -408,9 +414,9 @@ amrex::Real fit_plane_test_impl_h(
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& vof_arr)
                 -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     int ii = (dir == 0 ? i : (dir == 1 ? j : k));
                     // Check multiphase cells
                     if (ii == 1) {
@@ -419,9 +425,9 @@ amrex::Real fit_plane_test_impl_h(
                             i, j, k, vof_arr, mx, my, mz, alpha);
 
                         // Check slope
-                        error += std::abs(mx - (dir == 0 ? 1.0 : 0.0));
-                        error += std::abs(my - (dir == 1 ? 1.0 : 0.0));
-                        error += std::abs(mz - (dir == 2 ? 1.0 : 0.0));
+                        error += std::abs(mx - (dir == 0 ? 1.0_rt : 0.0_rt));
+                        error += std::abs(my - (dir == 1 ? 1.0_rt : 0.0_rt));
+                        error += std::abs(mz - (dir == 2 ? 1.0_rt : 0.0_rt));
                         // Check intercept
                         error += std::abs(alpha - vv);
                     }
@@ -451,23 +457,27 @@ TEST_F(VOFOpTest, volume_intercept)
         mz = mz / mm2;
         // Limit vof values to multiphase range
         vof = amrex::max<amrex::Real>(
-            1e-12, amrex::min<amrex::Real>(1.0 - 1e-12, vof));
+            std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt,
+            amrex::min<amrex::Real>(
+                1.0_rt -
+                    (std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt),
+                vof));
         // Get intercept value and check for nan
         amrex::Real alpha =
             amr_wind::multiphase::volume_intercept(mx, my, mz, vof);
         EXPECT_EQ(alpha, alpha);
 
         // Set one of the slope components to 0, then try again
-        auto idx = (int)std::floor(amrex::Random() * 3.0);
+        auto idx = (int)std::floor(amrex::Random() * 3.0_rt);
         switch (idx) {
         case 0:
-            mx = 0.0;
+            mx = 0.0_rt;
             break;
         case 1:
-            my = 0.0;
+            my = 0.0_rt;
             break;
         default:
-            mz = 0.0;
+            mz = 0.0_rt;
             break;
         }
         // Scale slope values, like in fit_plane
@@ -482,14 +492,15 @@ TEST_F(VOFOpTest, volume_intercept)
 
     // Check specific problem case
     amrex::Real alpha =
-        amr_wind::multiphase::volume_intercept(0.5, 0.5, 0.0, 0.5);
+        amr_wind::multiphase::volume_intercept(0.5_rt, 0.5_rt, 0.0_rt, 0.5_rt);
     EXPECT_EQ(alpha, alpha);
 }
 
 TEST_F(VOFOpTest, interface_normal)
 {
 
-    constexpr double tol = 1.0e-11;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e5_rt;
 
     populate_parameters();
     {
@@ -505,28 +516,29 @@ TEST_F(VOFOpTest, interface_normal)
     const int nghost = 3;
     auto& vof = repo.declare_field("vof", ncomp, nghost);
 
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
     // constant in x
     init_vof(vof, 0);
     error_total = normal_vector_test_impl(vof, 0);
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
     // constant in y
     init_vof(vof, 1);
     error_total = normal_vector_test_impl(vof, 1);
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
     // constant in z
     init_vof(vof, 2);
     error_total = normal_vector_test_impl(vof, 2);
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
 TEST_F(VOFOpTest, interface_plane)
 {
 
-    constexpr double tol = 1.0e-11;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e5_rt;
 
     populate_parameters();
     {
@@ -543,51 +555,56 @@ TEST_F(VOFOpTest, interface_plane)
     auto& vof = repo.declare_field("vof", ncomp, nghost);
 
     /* -- Diagonal plane, 2D orientation -- */
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
     // constant in x
     init_vof(vof, 0);
     error_total = fit_plane_test_impl(vof, 0);
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
     // constant in y
     init_vof(vof, 1);
     error_total = fit_plane_test_impl(vof, 1);
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
     // constant in z
     init_vof(vof, 2);
     error_total = fit_plane_test_impl(vof, 2);
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 
     /* -- "Horizontal" plane, 1D orientation -- */
     amrex::InitRandom(0);
     for (int n = 0; n < 20; ++n) {
         amrex::Real vof_val = amrex::Random();
         vof_val = amrex::max<amrex::Real>(
-            1e-12, amrex::min<amrex::Real>(1.0 - 1e-12, vof_val));
+            std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt,
+            amrex::min<amrex::Real>(
+                1.0_rt -
+                    (std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt),
+                vof_val));
         // in x
         init_vof_h(vof, vof_val, 0);
         error_total = fit_plane_test_impl_h(vof, vof_val, 0);
         amrex::ParallelDescriptor::ReduceRealSum(error_total);
-        EXPECT_NEAR(error_total, 0.0, tol);
+        EXPECT_NEAR(error_total, 0.0_rt, tol);
         // in y
         init_vof_h(vof, vof_val, 1);
         error_total = fit_plane_test_impl_h(vof, vof_val, 1);
         amrex::ParallelDescriptor::ReduceRealSum(error_total);
-        EXPECT_NEAR(error_total, 0.0, tol);
+        EXPECT_NEAR(error_total, 0.0_rt, tol);
         // in z
         init_vof_h(vof, vof_val, 2);
         error_total = fit_plane_test_impl_h(vof, vof_val, 2);
         amrex::ParallelDescriptor::ReduceRealSum(error_total);
-        EXPECT_NEAR(error_total, 0.0, tol);
+        EXPECT_NEAR(error_total, 0.0_rt, tol);
     }
 }
 
 TEST_F(VOFOpTest, interface_normal_neumann)
 {
 
-    constexpr double tol = 1.0e-11;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e5_rt;
 
     populate_parameters();
     {
@@ -605,42 +622,42 @@ TEST_F(VOFOpTest, interface_normal_neumann)
     auto& iblank = repo.declare_int_field("iblank", ncomp, 1);
 
     // Check agreement / disagreement with ordinary calculation
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
     // iblank constant in x, vof varies in every direction
     init_vof(vof);
     init_iblank(iblank, 0);
     error_total = normal_vector_neumann_test_impl(vof, iblank);
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
     // iblank constant in y, vof varies in every direction
     init_vof(vof);
     init_iblank(iblank, 1);
     error_total = normal_vector_neumann_test_impl(vof, iblank);
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
     // iblank constant in z, vof varies in every direction
     init_vof(vof);
     init_iblank(iblank, 2);
     error_total = normal_vector_neumann_test_impl(vof, iblank);
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 
     // Confirm that neumann gets 0 when it should
     // iblank varies in y and z, vof varies in x
     init_vof_iblank(vof, iblank, 0);
     error_total = normal_vector_neumann_test_impl(vof, iblank, 0);
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
     // iblank varies in x and z, vof varies in y
     init_vof_iblank(vof, iblank, 1);
     error_total = normal_vector_neumann_test_impl(vof, iblank, 1);
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
     // iblank varies in x and y, vof varies in z
     init_vof_iblank(vof, iblank, 2);
     error_total = normal_vector_neumann_test_impl(vof, iblank, 2);
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
 } // namespace amr_wind_tests

@@ -4,6 +4,9 @@
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_ParmParse.H"
 #include "amr-wind/utilities/trig_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -19,7 +22,7 @@ struct UExact
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real UExact::operator()(
     const amrex::Real v0, const amrex::Real a, const amrex::Real z) const
 {
-    return v0 * (1.0 - std::exp(-a * z) * std::cos(-a * z));
+    return v0 * (1.0_rt - std::exp(-a * z) * std::cos(-a * z));
 }
 
 struct VExact
@@ -55,24 +58,28 @@ EkmanSpiral::EkmanSpiral(const CFDSim& sim)
         amrex::ParmParse pp("CoriolisForcing");
         amrex::Real rot_time_period;
         pp.get("rotational_time_period", rot_time_period);
-        coriolis_factor = 2.0 * utils::two_pi() / rot_time_period;
+        coriolis_factor = 2.0_rt * utils::two_pi() / rot_time_period;
 
         amrex::Real latitude;
         pp.get("latitude", latitude);
         AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-            std::abs(latitude - 90.0) < 1.0e-15,
+            std::abs(latitude - 90.0_rt) <
+                std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt,
             "Ekman Spiral only works with geostrophic forcing which has to be "
             "at latitude 90 degrees");
     }
 
     {
         amrex::ParmParse pp("GeostrophicForcing");
-        amrex::Vector<amrex::Real> gwind{15.0, 0.0, 0.0};
+        amrex::Vector<amrex::Real> gwind{15.0_rt, 0.0_rt, 0.0_rt};
         pp.getarr("geostrophic_wind", gwind);
         m_vel = gwind[0];
 
         AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-            std::abs(gwind[1]) < 1.0e-15 && std::abs(gwind[2]) < 1.0e-15,
+            std::abs(gwind[1]) <
+                    std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt &&
+                std::abs(gwind[2]) <
+                    std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt,
             "Ekman Spiral only works for forcing in x-dir for now");
     }
 
@@ -82,13 +89,13 @@ EkmanSpiral::EkmanSpiral(const CFDSim& sim)
         pp.get("viscosity", Az);
     }
 
-    m_DE = std::sqrt(2.0 * Az / coriolis_factor);
+    m_DE = std::sqrt(2.0_rt * Az / coriolis_factor);
 
     if (amrex::ParallelDescriptor::IOProcessor()) {
         std::ofstream f;
         f.open(m_output_fname.c_str());
         f << std::setw(m_w) << "time" << std::setw(m_w) << "L2_u"
-          << std::setw(m_w) << "L2_v" << std::endl;
+          << std::setw(m_w) << "L2_v" << '\n';
         f.close();
     }
 }
@@ -98,14 +105,12 @@ EkmanSpiral::EkmanSpiral(const CFDSim& sim)
  */
 void EkmanSpiral::initialize_fields(int level, const amrex::Geometry& geom)
 {
-    using namespace utils;
-
     auto& velocity = m_velocity(level);
     auto& density = m_density(level);
 
     density.setVal(m_rho);
 
-    amrex::Real a = 1.0 / m_DE;
+    amrex::Real a = 1.0_rt / m_DE;
     amrex::Real v0 = m_vel;
 
     UExact u_exact;
@@ -116,11 +121,11 @@ void EkmanSpiral::initialize_fields(int level, const amrex::Geometry& geom)
     const auto& vel_arrs = velocity.arrays();
 
     amrex::ParallelFor(
-        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
-            const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+            const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
             vel_arrs[nbx](i, j, k, 0) = u_exact(v0, a, z);
             vel_arrs[nbx](i, j, k, 1) = v_exact(v0, a, z);
-            vel_arrs[nbx](i, j, k, 2) = 0.0;
+            vel_arrs[nbx](i, j, k, 2) = 0.0_rt;
         });
     amrex::Gpu::streamSynchronize();
 }
@@ -129,9 +134,9 @@ template <typename T>
 amrex::Real EkmanSpiral::compute_error(const Field& field)
 {
 
-    amrex::Real error = 0.0;
+    amrex::Real error = 0.0_rt;
     const auto v0 = m_vel;
-    const auto a = 1.0 / m_DE;
+    const auto a = 1.0_rt / m_DE;
 
     T f_exact;
     const auto comp = f_exact.m_comp;
@@ -162,10 +167,10 @@ amrex::Real EkmanSpiral::compute_error(const Field& field)
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& fld_arr,
                 amrex::Array4<int const> const& mask_arr) -> amrex::Real {
-                amrex::Real err_fab = 0.0;
+                amrex::Real err_fab = 0.0_rt;
 
-                amrex::Loop(bx, [=, &err_fab](int i, int j, int k) noexcept {
-                    const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+                amrex::Loop(bx, [=, &err_fab](int i, int j, int k) {
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
                     const amrex::Real u = fld_arr(i, j, k, comp);
                     const amrex::Real u_exact = f_exact(v0, a, z);
                     err_fab += cell_vol * mask_arr(i, j, k) * (u - u_exact) *
@@ -190,7 +195,7 @@ void EkmanSpiral::output_error()
         std::ofstream f;
         f.open(m_output_fname.c_str(), std::ios_base::app);
         f << std::setprecision(12) << std::setw(m_w) << m_time.new_time()
-          << std::setw(m_w) << u_err << std::setw(m_w) << v_err << std::endl;
+          << std::setw(m_w) << u_err << std::setw(m_w) << v_err << '\n';
         f.close();
     }
 }

@@ -6,6 +6,9 @@
 #include "AMReX_ParReduce.H"
 #include "amr-wind/utilities/trig_ops.H"
 #include "amr-wind/utilities/IOManager.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::forestdrag {
 
@@ -21,8 +24,8 @@ ForestDrag::ForestDrag(CFDSim& sim)
     m_sim.io_manager().register_output_var("forest_drag");
     m_sim.io_manager().register_output_var("forest_id");
 
-    m_forest_drag.setVal(0.0);
-    m_forest_id.setVal(-1.0);
+    m_forest_drag.setVal(0.0_rt);
+    m_forest_id.setVal(-1.0_rt);
     m_forest_id.set_default_fillpatch_bc(m_sim.time());
     m_forest_drag.set_default_fillpatch_bc(m_sim.time());
 }
@@ -41,8 +44,8 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
     const auto& prob_lo = geom.ProbLoArray();
     auto& drag = m_forest_drag(level);
     auto& fst_id = m_forest_id(level);
-    drag.setVal(0.0);
-    fst_id.setVal(-1.0);
+    drag.setVal(0.0_rt);
+    fst_id.setVal(-1.0_rt);
 #ifdef AMREX_USE_OMP
 #pragma omp parallel if (amrex::Gpu::notInLaunchRegion())
 #endif
@@ -55,16 +58,16 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 const auto& levelId = fst_id.array(mfi);
                 const auto* forests_ptr = d_forests.data();
                 amrex::ParallelFor(
-                    bxi, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                        const auto x = prob_lo[0] + (i + 0.5) * dx[0];
-                        const auto y = prob_lo[1] + (j + 0.5) * dx[1];
-                        const auto z = prob_lo[2] + (k + 0.5) * dx[2];
+                    bxi, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                        const auto x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
+                        const auto y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
+                        const auto z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
                         const auto& fst = forests_ptr[nf];
                         const auto radius = std::sqrt(
-                            (x - fst.m_x_forest) * (x - fst.m_x_forest) +
-                            (y - fst.m_y_forest) * (y - fst.m_y_forest));
+                            ((x - fst.m_x_forest) * (x - fst.m_x_forest)) +
+                            ((y - fst.m_y_forest) * (y - fst.m_y_forest)));
                         if (z <= fst.m_height_forest &&
-                            radius <= (0.5 * fst.m_diameter_forest)) {
+                            radius <= (0.5_rt * fst.m_diameter_forest)) {
                             const auto treelaimax = fst.lm();
                             levelId(i, j, k) = fst.m_id;
                             levelDrag(i, j, k) +=

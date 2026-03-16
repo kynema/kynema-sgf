@@ -28,11 +28,12 @@ void ForestForcing::operator()(
     }
     auto* const m_forest_drag = &this->m_sim.repo().get_field("forest_drag");
     const auto& forest_drag = (*m_forest_drag)(lev).const_array(mfi);
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real ux = vel(i, j, k, 0);
         const amrex::Real uy = vel(i, j, k, 1);
         const amrex::Real uz = vel(i, j, k, 2);
-        const amrex::Real windspeed = std::sqrt(ux * ux + uy * uy + uz * uz);
+        const amrex::Real windspeed =
+            std::sqrt((ux * ux) + (uy * uy) + (uz * uz));
         src_term(i, j, k, 0) -= forest_drag(i, j, k) * ux * windspeed;
         src_term(i, j, k, 1) -= forest_drag(i, j, k) * uy * windspeed;
         src_term(i, j, k, 2) -= forest_drag(i, j, k) * uz * windspeed;

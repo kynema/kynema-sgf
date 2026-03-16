@@ -2,6 +2,9 @@
 #define TURBINE_TYPES_H
 
 #include "amr-wind/wind_energy/actuator/actuator_types.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator {
 
@@ -13,10 +16,10 @@ struct TurbineInfo : public ActInfo
     vs::Vector base_pos;
 
     //! Rotor diameter for this turbine
-    amrex::Real rotor_diameter{0.0};
+    amrex::Real rotor_diameter{0.0_rt};
 
     //! Hub height of this turbine
-    amrex::Real hub_height{0.0};
+    amrex::Real hub_height{0.0_rt};
 
     TurbineInfo(const std::string& label_in, const int id_in)
         : ActInfo(label_in, id_in)
@@ -68,10 +71,10 @@ struct TurbineBaseData
     vs::Vector eps_tower;
 
     //! Drag coefficient for nacelle
-    amrex::Real nacelle_cd{0.0};
+    amrex::Real nacelle_cd{0.0_rt};
 
     //! Wetted surface area for nacelle
-    amrex::Real nacelle_area{0.0};
+    amrex::Real nacelle_area{0.0_rt};
 
     std::vector<ComponentView> blades;
     std::vector<FLLCData> fllc;

@@ -2,6 +2,9 @@
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
 #include "amr-wind/wind_energy/ABLFieldInit.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 namespace {} // namespace
@@ -40,14 +43,15 @@ TEST_F(ABLMeshTest, abl_initialization)
         });
 
     const int nlevels = mesh().num_levels();
-    const amrex::Real tol = 1.0e-12;
+    const amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     // Test temperature
     {
         const amrex::Real dz = mesh().Geom(0).CellSize(2);
-        const amrex::Real min_temp_gold = 300.0;
+        const amrex::Real min_temp_gold = 300.0_rt;
         const amrex::Real max_temp_gold =
-            308.75 - (308.75 - 308.0) / 250.0 * (0.5 * dz);
+            308.75_rt - ((308.75_rt - 308.0_rt) / 250.0_rt * (0.5_rt * dz));
         amrex::Real min_temp, max_temp;
         utils::field_minmax(nlevels, temperature, min_temp, max_temp);
         EXPECT_NEAR(min_temp, min_temp_gold, tol);
@@ -58,20 +62,20 @@ TEST_F(ABLMeshTest, abl_initialization)
     {
         amrex::Real min_rho, max_rho;
         utils::field_minmax(nlevels, density, min_rho, max_rho);
-        EXPECT_NEAR(min_rho, 1.0, tol);
-        EXPECT_NEAR(max_rho, 1.0, tol);
+        EXPECT_NEAR(min_rho, 1.0_rt, tol);
+        EXPECT_NEAR(max_rho, 1.0_rt, tol);
     }
 
     // Test velocity
     {
         amrex::Vector<amrex::Real> min_vel(3), max_vel(3);
         utils::field_minmax(nlevels, velocity, min_vel, max_vel);
-        EXPECT_NEAR(min_vel[0], 20.0, tol);
-        EXPECT_NEAR(min_vel[1], 10.0, tol);
-        EXPECT_NEAR(min_vel[2], 0.0, tol);
-        EXPECT_NEAR(max_vel[0], 20.0, tol);
-        EXPECT_NEAR(max_vel[1], 10.0, tol);
-        EXPECT_NEAR(max_vel[2], 0.0, tol);
+        EXPECT_NEAR(min_vel[0], 20.0_rt, tol);
+        EXPECT_NEAR(min_vel[1], 10.0_rt, tol);
+        EXPECT_NEAR(min_vel[2], 0.0_rt, tol);
+        EXPECT_NEAR(max_vel[0], 20.0_rt, tol);
+        EXPECT_NEAR(max_vel[1], 10.0_rt, tol);
+        EXPECT_NEAR(max_vel[2], 0.0_rt, tol);
     }
 }
 

@@ -5,6 +5,9 @@
 #include "AMReX_ParmParse.H"
 #include "amr-wind/utilities/trig_ops.H"
 #include "amr-wind/utilities/DirectionSelector.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::channel_flow {
 
@@ -52,15 +55,18 @@ ChannelFlow::ChannelFlow(CFDSim& sim)
                     pp.query("C1", m_C1);
                     {
                         amrex::ParmParse ppb("BodyForce");
-                        amrex::Vector<amrex::Real> body_force{0.0, 0.0, 0.0};
+                        amrex::Vector<amrex::Real> body_force{
+                            0.0_rt, 0.0_rt, 0.0_rt};
                         ppb.queryarr("magnitude", body_force);
                         m_dpdx = -body_force[0];
                         AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-                            std::abs(body_force[1]) < 1e-16,
+                            std::abs(body_force[1]) <
+                                std::numeric_limits<amrex::Real>::epsilon(),
                             "body force in y should be zero for this wall "
                             "function");
                         AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-                            std::abs(body_force[2]) < 1e-16,
+                            std::abs(body_force[2]) <
+                                std::numeric_limits<amrex::Real>::epsilon(),
                             "body force in z should be zero for this wall "
                             "function");
                     }
@@ -75,15 +81,15 @@ ChannelFlow::ChannelFlow(CFDSim& sim)
     {
         amrex::ParmParse pp("transport");
         pp.query("viscosity", m_mu);
-        // Assumes a boundary layer height of 1.0
-        m_utau = m_mu * m_re_tau / (m_rho * 1.0);
+        // Assumes a boundary layer height of 1.0_rt
+        m_utau = m_mu * m_re_tau / (m_rho * 1.0_rt);
         m_ytau = m_mu / (m_utau * m_rho);
     }
     if ((amrex::ParallelDescriptor::IOProcessor()) &&
         (m_laminar || m_analytical_smagorinsky_test)) {
         std::ofstream f;
         f.open(m_output_fname.c_str());
-        f << std::setw(m_w) << "time" << std::setw(m_w) << "L2_u" << std::endl;
+        f << std::setw(m_w) << "time" << std::setw(m_w) << "L2_u" << '\n';
         f.close();
     }
 
@@ -130,14 +136,14 @@ void ChannelFlow::initialize_fields(
     const auto perturb_vel = m_perturb_vel;
     const auto perturb_fac = m_perturb_fac;
     const auto perturb_amp = perturb_fac * m_utau;
-    const amrex::Real pi = M_PI;
+    const auto pi = std::numbers::pi_v<amrex::Real>;
     const auto& problo = geom.ProbLoArray();
     const auto& probhi = geom.ProbHiArray();
     const auto& dx = geom.CellSizeArray();
     const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> lengths{AMREX_D_DECL(
         probhi[0] - problo[0], probhi[1] - problo[1], probhi[2] - problo[2])};
-    const auto y_perturb = m_perturb_y_period * 2.0 * pi / lengths[1];
-    const auto z_perturb = m_perturb_z_period * 2.0 * pi / lengths[2];
+    const auto y_perturb = m_perturb_y_period * 2.0_rt * pi / lengths[1];
+    const auto z_perturb = m_perturb_z_period * 2.0_rt * pi / lengths[2];
 
     if (!m_laminar) {
         if (m_analytical_smagorinsky_test) {
@@ -151,21 +157,21 @@ void ChannelFlow::initialize_fields(
             const auto& vel_arrs = velocity.arrays();
 
             amrex::ParallelFor(
-                velocity,
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     const int n_ind = idxOp(i, j, k);
-                    amrex::Real h = problo[n_idx] + (n_ind + 0.5) * dx[n_idx];
-                    if (h > 1.0) {
-                        h = 2.0 - h;
+                    amrex::Real h =
+                        problo[n_idx] + ((n_ind + 0.5_rt) * dx[n_idx]);
+                    if (h > 1.0_rt) {
+                        h = 2.0_rt - h;
                     }
                     const amrex::Real ux = analytical_smagorinsky_profile(
                         h, Cs, dx[n_idx], rho, mu, dpdx, C0, C1);
                     vel_arrs[nbx](i, j, k, 0) =
                         ux + (perturb_vel
                                   ? perturb_fac * std::sin(z_perturb * h)
-                                  : 0.0);
-                    vel_arrs[nbx](i, j, k, 1) = 0.0;
-                    vel_arrs[nbx](i, j, k, 2) = 0.0;
+                                  : 0.0_rt);
+                    vel_arrs[nbx](i, j, k, 1) = 0.0_rt;
+                    vel_arrs[nbx](i, j, k, 2) = 0.0_rt;
                 });
             amrex::Gpu::streamSynchronize();
         } else {
@@ -183,22 +189,23 @@ void ChannelFlow::initialize_fields(
             const auto& wd_arrs = walldist.arrays();
 
             amrex::ParallelFor(
-                velocity,
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     const int n_ind = idxOp(i, j, k);
-                    amrex::Real h = problo[n_idx] + (n_ind + 0.5) * dx[n_idx];
-                    if (h > 1.0) {
-                        h = 2.0 - h;
+                    amrex::Real h =
+                        problo[n_idx] + ((n_ind + 0.5_rt) * dx[n_idx]);
+                    if (h > 1.0_rt) {
+                        h = 2.0_rt - h;
                     }
                     wd_arrs[nbx](i, j, k) = h;
                     const amrex::Real hp = h / y_tau;
                     vel_arrs[nbx](i, j, k, 0) =
-                        utau * (1. / kappa * std::log1p(kappa * hp) +
-                                7.8 * (1.0 - std::exp(-hp / 11.0) -
-                                       (hp / 11.0) * std::exp(-hp / 3.0)));
+                        utau *
+                        (1.0_rt / kappa * std::log1p(kappa * hp) +
+                         7.8_rt * (1.0_rt - std::exp(-hp / 11.0_rt) -
+                                   (hp / 11.0_rt) * std::exp(-hp / 3.0_rt)));
 
-                    const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                    const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+                    const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
                     const amrex::Real perty = z_perturb * perturb_amp *
                                               std::sin(y_perturb * y) *
                                               std::cos(z_perturb * z);
@@ -206,14 +213,14 @@ void ChannelFlow::initialize_fields(
                                               std::cos(y_perturb * y) *
                                               std::sin(z_perturb * z);
                     vel_arrs[nbx](i, j, k, 1) =
-                        0.0 + (perturb_vel ? perty : 0.0);
+                        0.0_rt + (perturb_vel ? perty : 0.0_rt);
                     vel_arrs[nbx](i, j, k, 2) =
-                        0.0 + (perturb_vel ? pertz : 0.0);
+                        0.0_rt + (perturb_vel ? pertz : 0.0_rt);
                 });
             amrex::Gpu::streamSynchronize();
         }
     } else {
-        velocity.setVal(0.0);
+        velocity.setVal(0.0_rt);
         velocity.setVal(
             m_mean_vel, m_mean_vel_dir, 1,
             velocity_field.num_grow()[m_mean_vel_dir]);
@@ -223,7 +230,7 @@ void ChannelFlow::initialize_fields(
 template <typename IndexSelector>
 amrex::Real ChannelFlow::compute_error(const IndexSelector& idxOp)
 {
-    amrex::Real error = 0.0;
+    amrex::Real error = 0.0_rt;
     const auto flow_dir = m_mean_vel_dir;
     const auto norm_dir = m_norm_dir;
     const auto mu = m_mu;
@@ -231,16 +238,16 @@ amrex::Real ChannelFlow::compute_error(const IndexSelector& idxOp)
 
     amrex::Real dpdx = 0;
     {
-        amrex::Vector<amrex::Real> body_force{0.0, 0.0, 0.0};
+        amrex::Vector<amrex::Real> body_force{0.0_rt, 0.0_rt, 0.0_rt};
         amrex::ParmParse pp("BodyForce");
         pp.queryarr("magnitude", body_force, 0, AMREX_SPACEDIM);
         dpdx = body_force[flow_dir];
     }
 
     const auto& problo = m_mesh.Geom(0).ProbLoArray();
-    amrex::Real ht = 0.0;
+    amrex::Real ht = 0.0_rt;
     {
-        amrex::Vector<amrex::Real> probhi_physical{0.0, 0.0, 0.0};
+        amrex::Vector<amrex::Real> probhi_physical{0.0_rt, 0.0_rt, 0.0_rt};
         amrex::ParmParse pp("geometry");
         if (pp.contains("prob_hi_physical")) {
             pp.getarr("prob_hi_physical", probhi_physical);
@@ -252,7 +259,7 @@ amrex::Real ChannelFlow::compute_error(const IndexSelector& idxOp)
         ht = probhi_physical[norm_dir] - problo[norm_dir];
         // For half channel, channel height is double the domain height
         if (m_half) {
-            ht *= 2.0;
+            ht *= 2.0_rt;
         }
     }
 
@@ -300,20 +307,20 @@ amrex::Real ChannelFlow::compute_error(const IndexSelector& idxOp)
                 auto const& vel_bx = vel_arr[box_no];
                 auto const& mask_bx = mask_arr[box_no];
 
-                amrex::Real y = mesh_mapping
-                                    ? (nu_cc[box_no](i, j, k, norm_dir))
-                                    : (prob_lo[norm_dir] +
-                                       (idxOp(i, j, k) + 0.5) * dx[norm_dir]);
+                amrex::Real y =
+                    mesh_mapping ? (nu_cc[box_no](i, j, k, norm_dir))
+                                 : (prob_lo[norm_dir] +
+                                    ((idxOp(i, j, k) + 0.5_rt) * dx[norm_dir]));
                 amrex::Real fac_x =
-                    mesh_mapping ? (fac_arr[box_no](i, j, k, 0)) : 1.0;
+                    mesh_mapping ? (fac_arr[box_no](i, j, k, 0)) : 1.0_rt;
                 amrex::Real fac_y =
-                    mesh_mapping ? (fac_arr[box_no](i, j, k, 1)) : 1.0;
+                    mesh_mapping ? (fac_arr[box_no](i, j, k, 1)) : 1.0_rt;
                 amrex::Real fac_z =
-                    mesh_mapping ? (fac_arr[box_no](i, j, k, 2)) : 1.0;
+                    mesh_mapping ? (fac_arr[box_no](i, j, k, 2)) : 1.0_rt;
 
                 const amrex::Real u = vel_bx(i, j, k, flow_dir);
                 const amrex::Real u_exact =
-                    1 / (2 * mu) * -dpdx * (y * y - y * ht);
+                    1.0_rt / (2.0_rt * mu) * -dpdx * (y * y - y * ht);
 
                 const amrex::Real cell_vol =
                     dx[0] * fac_x * dx[1] * fac_y * dx[2] * fac_z;
@@ -331,7 +338,7 @@ amrex::Real ChannelFlow::compute_error(const IndexSelector& idxOp)
 
 amrex::Real ChannelFlow::compute_analytical_smagorinsky_error()
 {
-    amrex::Real error = 0.0;
+    amrex::Real error = 0.0_rt;
     const auto mu = m_mu;
     auto coeffs = m_sim.turbulence_model().model_coeffs();
     const auto Cs = coeffs["Cs"];
@@ -373,9 +380,9 @@ amrex::Real ChannelFlow::compute_analytical_smagorinsky_error()
                 auto const& mask_bx = mask_arr[box_no];
 
                 const int n_idx = 2;
-                amrex::Real h = prob_lo[n_idx] + (k + 0.5) * dx[n_idx];
-                if (h > 1.0) {
-                    h = 2.0 - h;
+                amrex::Real h = prob_lo[n_idx] + ((k + 0.5_rt) * dx[n_idx]);
+                if (h > 1.0_rt) {
+                    h = 2.0_rt - h;
                 }
                 const amrex::Real u = vel_bx(i, j, k, 0);
                 const amrex::Real u_exact = analytical_smagorinsky_profile(
@@ -397,7 +404,7 @@ amrex::Real ChannelFlow::compute_analytical_smagorinsky_error()
 void ChannelFlow::output_error()
 {
     // analytical solution exists only for flow in streamwise direction
-    amrex::Real u_err = 0.0;
+    amrex::Real u_err = 0.0_rt;
     switch (m_norm_dir) {
     case 0:
         u_err = compute_error(XDir());
@@ -421,7 +428,7 @@ void ChannelFlow::output_error()
         std::ofstream f;
         f.open(m_output_fname.c_str(), std::ios_base::app);
         f << std::setprecision(12) << std::setw(m_w) << m_time.new_time()
-          << std::setw(m_w) << u_err << std::endl;
+          << std::setw(m_w) << u_err << '\n';
         f.close();
     }
 }
@@ -443,10 +450,11 @@ void ChannelFlow::post_init_actions()
         velocity.register_custom_bc<VelWallFunc>(m_wall_func);
 
         amrex::ParmParse pp("BodyForce");
-        amrex::Vector<amrex::Real> body_force{0.0, 0.0, 0.0};
+        amrex::Vector<amrex::Real> body_force{0.0_rt, 0.0_rt, 0.0_rt};
         pp.getarr("magnitude", body_force);
         AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-            std::abs(body_force[2]) < 1e-16,
+            std::abs(body_force[2]) <
+                std::numeric_limits<amrex::Real>::epsilon(),
             "body force in z should be zero if using a wall model");
     }
 }

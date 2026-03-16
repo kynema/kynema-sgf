@@ -2,9 +2,11 @@
 #define POSTPROCESSING_H
 
 #include <memory>
-
 #include "amr-wind/core/Factory.H"
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 /**
  *  \defgroup utilities Utilities
@@ -60,8 +62,12 @@ public:
         pp.query("output_time_interval", m_out_time_interval);
         pp.query("output_delay", m_out_delay);
         pp.query("output_time_delay", m_out_time_delay);
+        pp.query("output_from_restart", m_out_from_restart);
+        pp.query("output_start", m_out_start_index);
+        pp.query("output_start_time", m_out_start_time);
         pp.query("enforce_output_time_dt", m_enforce_dt);
         pp.query("enforce_output_time_dt_reltol", m_enforce_dt_tol);
+        pp.query("output_after_final_step", m_do_final_output);
 
         // Check for presence of arguments
         const bool has_interval = pp.contains("output_interval");
@@ -84,6 +90,16 @@ public:
             }
         }
 
+        if (m_out_from_restart &&
+            (pp.contains("output_start") || pp.contains("output_start_time"))) {
+            amrex::Abort(
+                "Conflict in output parameters. output_from_restart is true, "
+                "designating that output timing calculations consider the "
+                "restart time or time step, but the output_start or "
+                "output_start_time is specified, which manually overwrites the "
+                "stored restart time or time step.\n");
+        }
+
         // Because of default, interval is valid unless turned off;
         // time_interval is invalid unless turned on
         const bool has_valid_interval =
@@ -98,7 +114,7 @@ public:
                 "post_processing output timing parameters are specified, but "
                 "none are valid. Please specify an output_interval (or "
                 "output_frequency) greater than 0 or an output_time_interval "
-                "greater than 0.0, or rely on the default output_interval.");
+                "greater than 0.0_rt, or rely on the default output_interval.");
         }
 
         if (has_valid_interval_present && has_valid_time_int) {
@@ -123,50 +139,76 @@ public:
     }
 
     //! Determine if output will happen this time step
-    bool do_output_now(
+    [[nodiscard]] bool do_output_now(
         const int ntime,
+        const int ntime0_in,
         const amrex::Real time,
+        const amrex::Real time0_in,
         const amrex::Real dt,
         amrex::Real tol) const
     {
-
         // Choose smallest tolerance between incoming and local
-        tol = std::min(tol, m_out_time_tol * dt);
+        tol = amrex::min<amrex::Real>(tol, m_out_time_tol * dt);
+
+        // Should the restart time always be used
+        int ntime0 = m_out_from_restart ? ntime0_in : 0;
+        amrex::Real time0 = m_out_from_restart ? time0_in : 0_rt;
+        // Has the manual start been specified
+        ntime0 = m_out_start_index >= 0 ? m_out_start_index : ntime0;
+        time0 = m_out_start_time > -0.5_rt ? m_out_start_time : time0;
 
         const bool step_based =
-            (m_out_interval > 0) &&
-            ((ntime - m_out_delay >= 0) && (ntime % m_out_interval == 0));
+            (m_out_interval > 0) && ((ntime - m_out_delay >= 0) &&
+                                     ((ntime - ntime0) % m_out_interval == 0));
         const bool time_based =
-            (m_out_time_interval > 0.) &&
-            ((time + tol - m_out_time_delay >= 0.) &&
-             (time + tol -
-                  std::floor((time + tol) / m_out_time_interval) *
-                      m_out_time_interval <
+            (m_out_time_interval > 0.0_rt) &&
+            ((time + tol - m_out_time_delay >= 0.0_rt) &&
+             (time - time0 + tol -
+                  (std::floor((time - time0 + tol) / m_out_time_interval) *
+                   m_out_time_interval) <
               dt));
 
         return (step_based || time_based);
     }
 
-    amrex::Real output_time_interval() const { return m_out_time_interval; }
-    amrex::Real output_time_delay() const { return m_out_time_delay; }
-    amrex::Real enforce_dt_tolerance() const { return m_enforce_dt_tol; }
-    bool enforce_dt() const { return m_enforce_dt; }
+    [[nodiscard]] amrex::Real output_time_interval() const
+    {
+        return m_out_time_interval;
+    }
+    [[nodiscard]] amrex::Real output_time_delay() const
+    {
+        return m_out_time_delay;
+    }
+    [[nodiscard]] amrex::Real enforce_dt_tolerance() const
+    {
+        return m_enforce_dt_tol;
+    }
+    [[nodiscard]] bool enforce_dt() const { return m_enforce_dt; }
+    [[nodiscard]] bool do_final_output() const { return m_do_final_output; }
 
 protected:
     //! Time step interval for output
     int m_out_interval{10};
     //! Time interval for output
-    amrex::Real m_out_time_interval{-1.};
+    amrex::Real m_out_time_interval{-1.0_rt};
     //! Time step delay for output
     int m_out_delay{0};
     //! Time delay for output
-    amrex::Real m_out_time_delay{0.};
+    amrex::Real m_out_time_delay{0.0_rt};
+    //! Always consider restart time for calculating output
+    bool m_out_from_restart{false};
+    //! Time step start for calculating step interval (restarts)
+    int m_out_start_index{-1};
+    //! Time start for calculating time interval (restarts)
+    amrex::Real m_out_start_time{-1.0_rt};
     //! Relative (to dt) tolerance for time interval output
-    amrex::Real m_out_time_tol{1e-8};
+    amrex::Real m_out_time_tol{1.0e-2_rt};
     //! Relative (to m_out_time_interval) tolerance for enforcing dt
-    amrex::Real m_enforce_dt_tol{1e-3};
+    amrex::Real m_enforce_dt_tol{1.0e-3_rt};
     //! Flag for enforcing time step based on output time
     bool m_enforce_dt{false};
+    //! Flag for output at simulation end - off by default
+    bool m_do_final_output{false};
 };
 
 /** A collection of post-processing instances that are active during a

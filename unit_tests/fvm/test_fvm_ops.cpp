@@ -11,6 +11,9 @@
 #include "AnalyticalFunction.H"
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -40,13 +43,16 @@ void initialize_velocity(
     // it and it fills the ghosts with wall values
     amrex::ParallelFor(grow(bx, 1), [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real x = amrex::min(
-            amrex::max<amrex::Real>(problo[0] + (i + 0.5) * dx[0], problo[0]),
+            amrex::max<amrex::Real>(
+                problo[0] + ((i + 0.5_rt) * dx[0]), problo[0]),
             probhi[0]);
         const amrex::Real y = amrex::min(
-            amrex::max<amrex::Real>(problo[1] + (j + 0.5) * dx[1], problo[1]),
+            amrex::max<amrex::Real>(
+                problo[1] + ((j + 0.5_rt) * dx[1]), problo[1]),
             probhi[1]);
         const amrex::Real z = amrex::min(
-            amrex::max<amrex::Real>(problo[2] + (k + 0.5) * dx[2], problo[2]),
+            amrex::max<amrex::Real>(
+                problo[2] + ((k + 0.5_rt) * dx[2]), problo[2]),
             probhi[2]);
 
         vel_arr(i, j, k, 0) =
@@ -63,9 +69,9 @@ amrex::Real strainrate_test_impl(amr_wind::Field& vel, const int pdegree)
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
 
-    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.00123);
-    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.00213);
-    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.00346);
+    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.00123_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.00213_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.00346_rt);
 
     const auto& geom = vel.repo().mesh().Geom();
 
@@ -78,7 +84,7 @@ amrex::Real strainrate_test_impl(amr_wind::Field& vel, const int pdegree)
     auto str = amr_wind::fvm::strainrate(vel);
 
     const int nlevels = vel.repo().num_active_levels();
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
 
     const amrex::Real* cu_ptr = cu.data();
     const amrex::Real* cv_ptr = cv.data();
@@ -95,12 +101,12 @@ amrex::Real strainrate_test_impl(amr_wind::Field& vel, const int pdegree)
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& str_arr)
                 -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
-                    const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                    const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                    const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
+                    const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                    const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
                     error += std::abs(
                         str_arr(i, j, k) -
@@ -120,9 +126,9 @@ amrex::Real nonlinearsum_test_impl(amr_wind::Field& vel, const int pdegree)
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
 
-    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.000193);
-    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.000463);
-    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.000386);
+    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.000193_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.000463_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.000386_rt);
 
     const auto& geom = vel.repo().mesh().Geom();
 
@@ -135,7 +141,7 @@ amrex::Real nonlinearsum_test_impl(amr_wind::Field& vel, const int pdegree)
     auto nonlinearsum = amr_wind::fvm::nonlinearsum(vel);
 
     const int nlevels = vel.repo().num_active_levels();
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
 
     const amrex::Real* cu_ptr = cu.data();
     const amrex::Real* cv_ptr = cv.data();
@@ -152,12 +158,12 @@ amrex::Real nonlinearsum_test_impl(amr_wind::Field& vel, const int pdegree)
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& nonlinearsum_arr)
                 -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
-                    const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                    const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                    const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
+                    const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                    const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
                     error += std::abs(
                         nonlinearsum_arr(i, j, k, 0) -
@@ -208,9 +214,9 @@ amrex::Real vorticity_test_impl(amr_wind::Field& vel, const int pdegree)
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
 
-    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.000193);
-    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.000463);
-    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.000386);
+    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.000193_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.000463_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.000386_rt);
 
     const auto& geom = vel.repo().mesh().Geom();
 
@@ -223,7 +229,7 @@ amrex::Real vorticity_test_impl(amr_wind::Field& vel, const int pdegree)
     auto vorticity = amr_wind::fvm::vorticity(vel);
 
     const int nlevels = vel.repo().num_active_levels();
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
 
     const amrex::Real* cu_ptr = cu.data();
     const amrex::Real* cv_ptr = cv.data();
@@ -240,12 +246,12 @@ amrex::Real vorticity_test_impl(amr_wind::Field& vel, const int pdegree)
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& vort_arr)
                 -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
-                    const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                    const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                    const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
+                    const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                    const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
                     error += std::abs(
                         vort_arr(i, j, k, 0) -
@@ -272,9 +278,9 @@ amrex::Real vorticity_mag_test_impl(amr_wind::Field& vel, const int pdegree)
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
 
-    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.00123);
-    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.00213);
-    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.00346);
+    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.00123_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.00213_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.00346_rt);
 
     const auto& geom = vel.repo().mesh().Geom();
 
@@ -288,7 +294,7 @@ amrex::Real vorticity_mag_test_impl(amr_wind::Field& vel, const int pdegree)
     auto vorticity = amr_wind::fvm::vorticity(vel);
 
     const int nlevels = vel.repo().num_active_levels();
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
 
     const amrex::Real* cu_ptr = cu.data();
     const amrex::Real* cv_ptr = cv.data();
@@ -306,12 +312,12 @@ amrex::Real vorticity_mag_test_impl(amr_wind::Field& vel, const int pdegree)
                 amrex::Array4<amrex::Real const> const& vrt_arr,
                 amrex::Array4<amrex::Real const> const& vrt_mag_arr)
                 -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
-                    const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                    const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                    const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
+                    const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                    const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
                     error += std::abs(
                         vrt_mag_arr(i, j, k) -
@@ -319,9 +325,9 @@ amrex::Real vorticity_mag_test_impl(amr_wind::Field& vel, const int pdegree)
                             pdegree, cu_ptr, cv_ptr, cw_ptr, x, y, z));
 
                     const amrex::Real vortmag = std::sqrt(
-                        vrt_arr(i, j, k, 0) * vrt_arr(i, j, k, 0) +
-                        vrt_arr(i, j, k, 1) * vrt_arr(i, j, k, 1) +
-                        vrt_arr(i, j, k, 2) * vrt_arr(i, j, k, 2));
+                        (vrt_arr(i, j, k, 0) * vrt_arr(i, j, k, 0)) +
+                        (vrt_arr(i, j, k, 1) * vrt_arr(i, j, k, 1)) +
+                        (vrt_arr(i, j, k, 2) * vrt_arr(i, j, k, 2)));
 
                     error += std::abs(vrt_mag_arr(i, j, k) - vortmag);
                 });
@@ -337,9 +343,9 @@ amrex::Real q_criterion_test_impl(amr_wind::Field& vel, const int pdegree)
 {
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
-    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.00123);
-    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.00213);
-    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.00346);
+    amrex::Gpu::DeviceVector<amrex::Real> cu(ncoeff, 0.00123_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cv(ncoeff, 0.00213_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> cw(ncoeff, 0.00346_rt);
 
     const auto& geom = vel.repo().mesh().Geom();
 
@@ -352,7 +358,7 @@ amrex::Real q_criterion_test_impl(amr_wind::Field& vel, const int pdegree)
     auto qcrit = amr_wind::fvm::q_criterion(vel);
 
     const int nlevels = vel.repo().num_active_levels();
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
 
     const amrex::Real* cu_ptr = cu.data();
     const amrex::Real* cv_ptr = cv.data();
@@ -369,12 +375,12 @@ amrex::Real q_criterion_test_impl(amr_wind::Field& vel, const int pdegree)
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& qcrit_arr)
                 -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
-                    const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                    const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                    const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
+                    const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                    const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
                     error += std::abs(
                         qcrit_arr(i, j, k) -
@@ -393,8 +399,8 @@ amrex::Real q_criterion_test_impl(amr_wind::Field& vel, const int pdegree)
 
 TEST_F(FvmOpTest, nonlinearsum)
 {
-
-    constexpr double tol = 1.0e-9;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e7_rt;
 
     populate_parameters();
     {
@@ -415,13 +421,14 @@ TEST_F(FvmOpTest, nonlinearsum)
 
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
 
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
 TEST_F(FvmOpTest, strainrate)
 {
 
-    constexpr double tol = 1.0e-11;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e5_rt;
 
     populate_parameters();
     {
@@ -442,13 +449,14 @@ TEST_F(FvmOpTest, strainrate)
 
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
 
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
 TEST_F(FvmOpTest, vorticity)
 {
 
-    constexpr double tol = 1.0e-11;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e5_rt;
 
     populate_parameters();
     {
@@ -469,13 +477,14 @@ TEST_F(FvmOpTest, vorticity)
 
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
 
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
 TEST_F(FvmOpTest, vorticity_mag)
 {
 
-    constexpr double tol = 1.0e-11;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e5_rt;
 
     populate_parameters();
     {
@@ -496,13 +505,13 @@ TEST_F(FvmOpTest, vorticity_mag)
 
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
 
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
 TEST_F(FvmOpTest, q_criterion)
 {
-
-    constexpr double tol = 1.0e-9;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e7_rt;
 
     populate_parameters();
     {
@@ -523,7 +532,7 @@ TEST_F(FvmOpTest, q_criterion)
 
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
 
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
 } // namespace amr_wind_tests

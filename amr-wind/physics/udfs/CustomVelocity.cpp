@@ -5,6 +5,9 @@
 #include "amr-wind/equation_systems/icns/icns.H"
 
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::udf {
 
@@ -19,7 +22,7 @@ CustomVelocity::CustomVelocity(const Field& fld)
     const int ncomp = fld.num_comp();
     amrex::ParmParse pp("CustomVelocity");
     pp.query("foo", m_op.foo);
-    amrex::Vector<amrex::Real> vel(0.0, ncomp);
+    amrex::Vector<amrex::Real> vel(ncomp, 0.0_rt);
     pp.getarr("velocity", vel);
     AMREX_ALWAYS_ASSERT(vel.size() == ncomp);
     for (int i = 0; i < ncomp; ++i) {

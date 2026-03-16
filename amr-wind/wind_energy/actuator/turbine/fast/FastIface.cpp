@@ -12,6 +12,9 @@
 
 #include <algorithm>
 #include <cmath>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 using namespace exw_fast;
 
@@ -19,7 +22,7 @@ namespace ext_turb {
 namespace {
 
 template <typename FType, class... Args>
-inline void fast_func(const FType&& func, Args... args)
+void fast_func(const FType&& func, Args... args)
 {
     int ierr = ErrID_None;
     amrex::Array<char, fast_strlen()> err_msg;
@@ -30,7 +33,7 @@ inline void fast_func(const FType&& func, Args... args)
     }
 }
 
-inline void copy_filename(const std::string& inp, char* out)
+void copy_filename(const std::string& inp, char* out)
 {
     const int str_len = static_cast<int>(inp.size());
     if (str_len >= fast_strlen()) {
@@ -38,7 +41,7 @@ inline void copy_filename(const std::string& inp, char* out)
             "FastIface: Filename greater than maximum allowable length: " +
             inp);
     }
-    const int len = std::min(fast_strlen() - 1, str_len);
+    const int len = amrex::min(fast_strlen() - 1, str_len);
     std::copy(inp.data(), inp.data() + len, out);
     out[len] = '\0';
 }
@@ -74,22 +77,22 @@ void ExtTurbIface<FastTurbine, FastSolverData>::parse_inputs(
 
     // Set OpenFAST end time to be at least as long as the CFD time. User
     // can choose a longer duration in input file.
-    const amrex::Real stop1 = time.stop_time() > 0.0
+    const amrex::Real stop1 = time.stop_time() > 0.0_rt
                                   ? time.stop_time()
                                   : std::numeric_limits<amrex::Real>::max();
     const amrex::Real stop2 = time.stop_time_index() > 0
                                   ? time.stop_time_index() * time.delta_t()
                                   : std::numeric_limits<amrex::Real>::max();
-    const amrex::Real cfd_stop = amrex::min(stop1, stop2);
+    const amrex::Real cfd_stop = amrex::min<amrex::Real>(stop1, stop2);
     m_stop_time = cfd_stop;
 
     pp.query("start_time", m_start_time);
     pp.query("stop_time", m_stop_time);
 
     // Ensure that the user specified m_stop_time is not shorter than CFD sim
-    AMREX_ALWAYS_ASSERT(m_stop_time > (cfd_stop - 1.0e-6));
+    AMREX_ALWAYS_ASSERT(m_stop_time > (cfd_stop - 1.0e-6_rt));
 
-    if (m_start_time > 0.0) {
+    if (m_start_time > 0.0_rt) {
         m_sim_mode = ::ext_turb::SimMode::replay;
 
         std::string sim_mode{"replay"};
@@ -211,7 +214,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::write_velocity_data(
     const size_t nt = ncf.dim(nt_name).len();
     const auto npts = static_cast<size_t>(fi.from_cfd.u_Len);
 
-    const double time = fi.time_index * fi.dt_ext;
+    const amrex::Real time = fi.time_index * fi.dt_ext;
     ncf.var("time").put(&time, {nt}, {1});
     const auto& uu = fi.from_cfd;
     ncf.var("uvel").put(uu.u, {nt, 0}, {1, npts});
@@ -332,9 +335,10 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_init_turbine(
     AMREX_ALWAYS_ASSERT(fi.num_substeps > 0);
     // Check that the time step sizes are consistent and FAST advances at an
     // integral multiple of CFD timestep
-    double dt_err =
-        fi.dt_cfd / (static_cast<double>(fi.num_substeps) * fi.dt_ext) - 1.0;
-    if (dt_err > 1.0e-12) {
+    amrex::Real dt_err =
+        fi.dt_cfd / (static_cast<amrex::Real>(fi.num_substeps) * fi.dt_ext) -
+        1.0_rt;
+    if (dt_err > 1.0e-12_rt) {
         amrex::Abort(
             "FastIFace: OpenFAST timestep is not an integral "
             "multiple of CFD timestep");
@@ -442,9 +446,10 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_restart_turbine(
     AMREX_ALWAYS_ASSERT(fi.num_substeps > 0);
     // Check that the time step sizes are consistent and FAST advances at an
     // integral multiple of CFD timestep
-    double dt_err =
-        fi.dt_cfd / (static_cast<double>(fi.num_substeps) * fi.dt_ext) - 1.0;
-    if (dt_err > 1.0e-4) {
+    amrex::Real dt_err =
+        fi.dt_cfd / (static_cast<amrex::Real>(fi.num_substeps) * fi.dt_ext) -
+        1.0_rt;
+    if (dt_err > 1.0e-4_rt) {
         amrex::Abort(
             "FastIFace: OpenFAST timestep is not an integral "
             "multiple of CFD timestep");

@@ -5,6 +5,9 @@
 #include "amr-wind/immersed_boundary/IBOps.H"
 #include "amr-wind/immersed_boundary/IB.H"
 #include "amr-wind/immersed_boundary/bluff_body/bluff_body_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::ib::ops {
 
@@ -25,7 +28,9 @@ struct ReadInputsOp<Box>
         pp.get("height", wdata.height);
 
         amrex::Real search_radius =
-            2.0 * std::max(wdata.length, std::max(wdata.width, wdata.height));
+            2.0_rt * amrex::max<amrex::Real>(
+                         wdata.length,
+                         amrex::max<amrex::Real>(wdata.width, wdata.height));
 
         // clang-format off
         const auto& origin=wdata.center_loc;
@@ -71,39 +76,46 @@ struct InitDataOp<Box>
                 const amrex::Real w = wdata.width;
                 const amrex::Real h = wdata.height;
                 amrex::ParallelFor(
-                    bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                        const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                        const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                        const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+                    bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                        const amrex::Real x =
+                            problo[0] + ((i + 0.5_rt) * dx[0]);
+                        const amrex::Real y =
+                            problo[1] + ((j + 0.5_rt) * dx[1]);
+                        const amrex::Real z =
+                            problo[2] + ((k + 0.5_rt) * dx[2]);
 
                         amrex::Real phi_loc = 0;
-                        if ((std::abs(x - x0) <= 0.5 * l) &&
-                            (std::abs(y - y0) <= 0.5 * w) &&
-                            (std::abs(z - z0) <= 0.5 * h)) {
-                            phi_loc = std::max(
-                                std::abs(x - x0) - 0.5 * l,
-                                std::max(
-                                    std::abs(y - y0) - 0.5 * w,
-                                    std::abs(z - z0) - 0.5 * h));
+                        if ((std::abs(x - x0) <= 0.5_rt * l) &&
+                            (std::abs(y - y0) <= 0.5_rt * w) &&
+                            (std::abs(z - z0) <= 0.5_rt * h)) {
+                            phi_loc = amrex::max<amrex::Real>(
+                                std::abs(x - x0) - (0.5_rt * l),
+                                amrex::max<amrex::Real>(
+                                    std::abs(y - y0) - (0.5_rt * w),
+                                    std::abs(z - z0) - (0.5_rt * h)));
                         } else {
-                            phi_loc = std::min(
-                                std::abs(std::abs(x - x0) - 0.5 * l),
-                                std::min(
-                                    std::abs(std::abs(y - y0) - 0.5 * w),
-                                    std::abs(std::abs(z - z0) - 0.5 * h)));
+                            phi_loc = amrex::min<amrex::Real>(
+                                std::abs(std::abs(x - x0) - (0.5_rt * l)),
+                                amrex::min<amrex::Real>(
+                                    std::abs(std::abs(y - y0) - (0.5_rt * w)),
+                                    std::abs(std::abs(z - z0) - (0.5_rt * h))));
                         }
-                        phi(i, j, k) = std::min(phi_loc, phi(i, j, k));
+                        phi(i, j, k) =
+                            amrex::min<amrex::Real>(phi_loc, phi(i, j, k));
                     });
                 const auto& nbx = mfi.nodaltilebox();
                 amrex::ParallelFor(
-                    nbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                        const amrex::Real x = problo[0] + i * dx[0];
-                        const amrex::Real y = problo[1] + j * dx[1];
-                        const amrex::Real z = problo[2] + k * dx[2];
+                    nbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                        const amrex::Real x = problo[0] + (i * dx[0]);
+                        const amrex::Real y = problo[1] + (j * dx[1]);
+                        const amrex::Real z = problo[2] + (k * dx[2]);
 
-                        if ((std::abs(x - x0) <= 0.5 * l + 0.5 * dx[0]) &&
-                            (std::abs(y - y0) <= 0.5 * w + 0.5 * dx[1]) &&
-                            (std::abs(z - z0) <= 0.5 * h + 0.5 * dx[2])) {
+                        if ((std::abs(x - x0) <=
+                             (0.5_rt * l) + (0.5_rt * dx[0])) &&
+                            (std::abs(y - y0) <=
+                             (0.5_rt * w) + (0.5_rt * dx[1])) &&
+                            (std::abs(z - z0) <=
+                             (0.5_rt * h) + (0.5_rt * dx[2]))) {
                             epsilon_node(i, j, k) = 0;
                         }
                     });

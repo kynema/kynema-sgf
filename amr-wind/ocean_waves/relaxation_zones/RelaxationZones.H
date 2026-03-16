@@ -5,6 +5,9 @@
 #include "amr-wind/core/vs/vector_space.H"
 
 #include <string>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::ocean_waves {
 
@@ -14,22 +17,22 @@ namespace amr_wind::ocean_waves {
  */
 struct RelaxZonesBaseData
 {
-    amrex::Real zsl{0.0};
+    amrex::Real zsl{0.0_rt};
 
-    amrex::Real water_depth{0.5};
+    amrex::Real water_depth{0.5_rt};
 
     // Gravitational constant - wave types that use gravity store value here
     amrex::Real g;
 
     // Wave generation/absorption parameters
-    amrex::Real gen_length{4.0};
+    amrex::Real gen_length{4.0_rt};
 
-    amrex::Real beach_length{8.0};
-    amrex::Real beach_length_factor{1.0};
+    amrex::Real beach_length{8.0_rt};
+    amrex::Real beach_length_factor{1.0_rt};
 
-    amrex::Real zone_length_y{0.0};
+    amrex::Real zone_length_y{0.0_rt};
 
-    amrex::Real current{0.0};
+    amrex::Real current{0.0_rt};
 
     bool init_wave_field{false};
 

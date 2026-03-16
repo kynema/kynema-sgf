@@ -1,4 +1,7 @@
 #include "mms_test_utils.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests::utils {
 void populate_mms_params()
@@ -13,7 +16,7 @@ void populate_mms_params()
     // transport
     {
         amrex::ParmParse pp("transport");
-        pp.add("viscosity", 1.0);
+        pp.add("viscosity", 1.0_rt);
     }
 
     // MMS Forcing
@@ -30,7 +33,7 @@ void populate_mms_params()
         amrex::Vector<std::string> physics{"MMS"};
         pp.addarr("physics", physics);
 
-        amrex::Vector<amrex::Real> grav{{0.0, 0.0, 0.0}};
+        amrex::Vector<amrex::Real> grav{{0.0_rt, 0.0_rt, 0.0_rt}};
         pp.addarr("gravity", grav);
     }
 
@@ -43,17 +46,19 @@ void populate_mms_params()
     {
         amrex::ParmParse pp("geometry");
         amrex::Vector<amrex::Real> problo{
-            {-3.14159265358979323, -3.14159265358979323, -3.14159265358979323}};
+            {-3.14159265358979323_rt, -3.14159265358979323_rt,
+             -3.14159265358979323_rt}};
         amrex::Vector<amrex::Real> probhi{
-            {3.14159265358979323, 3.14159265358979323, 3.14159265358979323}};
+            {3.14159265358979323_rt, 3.14159265358979323_rt,
+             3.14159265358979323_rt}};
 
         pp.addarr("prob_lo", problo);
         pp.addarr("prob_hi", probhi);
     }
     {
         amrex::ParmParse pp("time");
-        pp.add("stop_time", 2.0);
-        pp.add("fixed_dt", 0.05);
+        pp.add("stop_time", 2.0_rt);
+        pp.add("fixed_dt", 0.05_rt);
     }
 }
 } // namespace amr_wind_tests::utils

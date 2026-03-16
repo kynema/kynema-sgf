@@ -48,6 +48,9 @@ ABL.perturb_velocity = false
 #ABL.kappa = .41
 #ABL.surface_roughness_z0 = 0.01
 
+mac_proj.bottom_atol = 1e-14
+nodal_proj.bottom_atol = 1e-14
+
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
 #        ADAPTIVE MESH REFINEMENT       #
 #.......................................#

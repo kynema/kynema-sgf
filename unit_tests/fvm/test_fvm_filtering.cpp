@@ -4,6 +4,9 @@
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -29,13 +32,16 @@ void initialize_scalar(
     // corrects it and it fills the ghosts with wall values
     amrex::ParallelFor(grow(bx, 1), [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real x = amrex::min(
-            amrex::max<amrex::Real>(problo[0] + (i + 0.5) * dx[0], problo[0]),
+            amrex::max<amrex::Real>(
+                problo[0] + ((i + 0.5_rt) * dx[0]), problo[0]),
             probhi[0]);
         const amrex::Real y = amrex::min(
-            amrex::max<amrex::Real>(problo[1] + (j + 0.5) * dx[1], problo[1]),
+            amrex::max<amrex::Real>(
+                problo[1] + ((j + 0.5_rt) * dx[1]), problo[1]),
             probhi[1]);
         const amrex::Real z = amrex::min(
-            amrex::max<amrex::Real>(problo[2] + (k + 0.5) * dx[2], problo[2]),
+            amrex::max<amrex::Real>(
+                problo[2] + ((k + 0.5_rt) * dx[2]), problo[2]),
             probhi[2]);
 
         scalar_arr(i, j, k) =
@@ -47,7 +53,7 @@ amrex::Real filtering_test_impl(amr_wind::Field& scalar, const int pdegree)
 {
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
 
-    amrex::Gpu::DeviceVector<amrex::Real> coeff(ncoeff, 0.00123);
+    amrex::Gpu::DeviceVector<amrex::Real> coeff(ncoeff, 0.00123_rt);
 
     const auto& geom = scalar.repo().mesh().Geom();
 
@@ -60,7 +66,7 @@ amrex::Real filtering_test_impl(amr_wind::Field& scalar, const int pdegree)
     auto filtered_scalar = amr_wind::fvm::filter(scalar);
 
     const int nlevels = scalar.repo().num_active_levels();
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
     const amrex::Real* coeff_ptr = coeff.data();
 
     for (int lev = 0; lev < nlevels; ++lev) {
@@ -74,12 +80,12 @@ amrex::Real filtering_test_impl(amr_wind::Field& scalar, const int pdegree)
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& filter_arr)
                 -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
-                    const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                    const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                    const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
+                    const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                    const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
                     error += std::abs(
                         filter_arr(i, j, k) -
@@ -99,7 +105,8 @@ amrex::Real filtering_test_impl(amr_wind::Field& scalar, const int pdegree)
 TEST_F(FvmOpTestFiltering, filter)
 {
 
-    constexpr double tol = 1.0e-11;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e5_rt;
 
     populate_parameters();
     {
@@ -119,7 +126,7 @@ TEST_F(FvmOpTestFiltering, filter)
 
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
 
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
 } // namespace amr_wind_tests

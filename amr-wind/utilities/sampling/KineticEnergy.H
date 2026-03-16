@@ -3,6 +3,9 @@
 
 #include "amr-wind/CFDSim.H"
 #include "amr-wind/utilities/PostProcessing.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::kinetic_energy {
 
@@ -45,7 +48,7 @@ private:
     void write_ascii();
 
     //! store the total kinetic energy
-    amrex::Real m_total_kinetic_energy{0.0};
+    amrex::Real m_total_kinetic_energy{0.0_rt};
 
     //! Reference to the CFD sim
     CFDSim& m_sim;

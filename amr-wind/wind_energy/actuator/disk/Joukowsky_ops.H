@@ -1,16 +1,21 @@
-#ifndef Joukowsky_OPS_H_
-#define Joukowsky_OPS_H_
+#ifndef JOUKOWSKY_OPS_H
+#define JOUKOWSKY_OPS_H
+
+#include <algorithm>
 
 #include "amr-wind/wind_energy/actuator/disk/Joukowsky.H"
 #include "amr-wind/wind_energy/actuator/disk/disk_ops.H"
 #include "amr-wind/utilities/linear_interpolation.H"
 #include "amr-wind/utilities/trig_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator::ops {
 
 namespace joukowsky {
 void parse_and_gather_params(const utils::ActParser& pp, JoukowskyData& data);
-inline void
+AMREX_INLINE void
 set_current_angular_velocity(JoukowskyData& data, const amrex::Real uInfSqr)
 {
     const amrex::Real uInfMag = std::sqrt(uInfSqr);
@@ -28,7 +33,7 @@ void write_netcdf(
     const JoukowskyData& data,
     const ActInfo& info,
     const ActGrid& /*unused*/,
-    const amrex::Real time);
+    amrex::Real time);
 
 void update_disk_points(Joukowsky::DataType& data);
 
@@ -61,13 +66,13 @@ struct UpdatePosOp<Joukowsky, ActSrcDisk>
 
         const amrex::Real turbine_direction =
             -data.sim().helics().m_turbine_yaw_to_amrwind[data.info().id] +
-            90.0;
+            90.0_rt;
         const amrex::Real turbine_direction_radian =
             amr_wind::utils::radians(turbine_direction);
 
         meta.normal_vec[0] = std::cos(turbine_direction_radian);
         meta.normal_vec[1] = std::sin(turbine_direction_radian);
-        meta.normal_vec[2] = 0.0;
+        meta.normal_vec[2] = 0.0_rt;
 
         meta.sample_vec[0] = meta.normal_vec[0];
         meta.sample_vec[1] = meta.normal_vec[1];
@@ -91,15 +96,15 @@ struct InitDataOp<Joukowsky, ActSrcDisk>
         meta.f_normal.resize(meta.num_vel_pts_r);
         meta.f_theta.resize(meta.num_force_pts);
 
-        std::fill(meta.tip_correction.begin(), meta.tip_correction.end(), 1.0);
+        std::ranges::fill(meta.tip_correction, 1.0_rt);
 
         if (meta.use_root_correction) {
-            const amrex::Real dx = 1.0 / meta.num_vel_pts_r;
+            const amrex::Real dx = 1.0_rt / meta.num_vel_pts_r;
 
             const auto a = meta.root_correction_coefficient;
             const auto b = meta.root_correction_exponent;
 
-            const auto delta = std::max(
+            const auto delta = amrex::max<amrex::Real>(
                 meta.vortex_core_size / meta.radius(),
                 vs::DTraits<amrex::Real>::eps());
 
@@ -107,11 +112,10 @@ struct InitDataOp<Joukowsky, ActSrcDisk>
 
             for (int i = 0; i < meta.root_correction.size(); ++i) {
                 meta.root_correction[i] =
-                    1.0 - std::exp(-a * std::pow((i + 0.5) * factor, b));
+                    1.0_rt - std::exp(-a * std::pow((i + 0.5_rt) * factor, b));
             }
         } else {
-            std::fill(
-                meta.root_correction.begin(), meta.root_correction.end(), 1.0);
+            std::ranges::fill(meta.root_correction, 1.0_rt);
         }
 
         joukowsky::update_disk_points(data);
@@ -142,10 +146,11 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
         auto& grid = data.grid();
         auto& ddata = data.meta();
         const amrex::Real machine_eps = vs::DTraits<amrex::Real>::eps();
-        ddata.disk_force *= 0.0;
+        ddata.disk_force *= 0.0_rt;
 
         const amrex::Real uInfSqr = base::compute_reference_velocity_sqr(ddata);
-        const amrex::Real U_ref = std::max(std::sqrt(uInfSqr), machine_eps);
+        const amrex::Real U_ref =
+            amrex::max<amrex::Real>(std::sqrt(uInfSqr), machine_eps);
         base::set_thrust_coefficient(ddata, uInfSqr);
         joukowsky::set_current_angular_velocity(ddata, uInfSqr);
 
@@ -166,24 +171,24 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
         if (ddata.use_tip_correction) {
             auto& f = ddata.tip_correction;
             for (int i = 0; i < f.size(); ++i) {
-                const auto x = (i + 0.5) * dx;
-                f[i] = 2.0 / M_PI *
+                const auto x = (i + 0.5_rt) * dx;
+                f[i] = 2.0_rt / std::numbers::pi_v<amrex::Real> *
                        std::acos(
                            std::exp(
-                               -0.5 * ddata.num_blades *
-                               std::sqrt(1.0 + lambda_2) * (1.0 - x)));
+                               -0.5_rt * ddata.num_blades *
+                               std::sqrt(1.0_rt + lambda_2) * (1.0_rt - x)));
             }
         }
 
         // Compute the solid body term S0 (Sorensen 2022, eq. 27)
-        amrex::Real S0 = 0.0;
+        amrex::Real S0 = 0.0_rt;
         const amrex::Real alpha1 = ddata.S0_alpha1;
         const amrex::Real alpha2 = ddata.S0_alpha2;
 
-        if (ddata.Ct_rated > 0.0) {
+        if (ddata.Ct_rated > 0.0_rt) {
             if (Ct < ddata.Ct_rated) {
                 S0 = alpha1 *
-                     std::pow((ddata.Ct_rated - Ct) / ddata.Ct_rated, 3.0);
+                     std::pow((ddata.Ct_rated - Ct) / ddata.Ct_rated, 3.0_rt);
             } else {
                 S0 = alpha2 * (ddata.Ct_rated - Ct) / ddata.Ct_rated;
             }
@@ -191,43 +196,43 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
 
         // step 1: compute Ct, a1 and a2 coefficients (eq 16)
         // a3, a4, a5 coefficients are from Sorensen, 2022
-        amrex::Real a1 = 0.0;
-        amrex::Real a2 = 0.0;
-        amrex::Real a3 = 0.0;
-        amrex::Real a4 = 0.0;
-        amrex::Real a5 = 0.0;
+        amrex::Real a1 = 0.0_rt;
+        amrex::Real a2 = 0.0_rt;
+        amrex::Real a3 = 0.0_rt;
+        amrex::Real a4 = 0.0_rt;
+        amrex::Real a5 = 0.0_rt;
 
         for (int ip = 0; ip < ddata.num_vel_pts_r; ip++) {
             const amrex::Real x =
-                amrex::max<amrex::Real>((ip + 0.5) * dx, machine_eps);
+                amrex::max<amrex::Real>((ip + 0.5_rt) * dx, machine_eps);
 
-            a1 += std::pow(ddata.tip_correction[ip], 2.0) *
-                  std::pow(ddata.root_correction[ip], 2.0) / x * dx;
+            a1 += std::pow(ddata.tip_correction[ip], 2.0_rt) *
+                  std::pow(ddata.root_correction[ip], 2.0_rt) / x * dx;
 
             a2 += ddata.tip_correction[ip] * ddata.root_correction[ip] * x * dx;
 
-            a3 += std::pow(ddata.tip_correction[ip], 2.0) *
-                  std::pow(ddata.root_correction[ip], 2.0) * x * dx;
+            a3 += std::pow(ddata.tip_correction[ip], 2.0_rt) *
+                  std::pow(ddata.root_correction[ip], 2.0_rt) * x * dx;
 
             a4 += ddata.tip_correction[ip] * ddata.root_correction[ip] *
-                  std::pow(x, 3.0) * dx;
+                  std::pow(x, 3.0_rt) * dx;
 
-            a5 += std::pow(ddata.tip_correction[ip], 2.0) *
-                  std::pow(ddata.root_correction[ip], 2.0) * std::pow(x, 3.0) *
-                  dx;
+            a5 += std::pow(ddata.tip_correction[ip], 2.0_rt) *
+                  std::pow(ddata.root_correction[ip], 2.0_rt) *
+                  std::pow(x, 3.0_rt) * dx;
         }
 
         // step 2: determine the circulation (q0) from a1, a2 and Ct
         //         (eq. 18, Sorensen, 2022)
 
-        //      sqrt[(a2*L+a3*S0)^2+a1*(0.5*Ct-2*a4*L*S0-a5*S0^2)]-(a2*L+a3*S0)
+        //      sqrt[(a2*L+a3*S0)^2+a1*(0.5_rt*Ct-2*a4*L*S0-a5*S0^2)]-(a2*L+a3*S0)
         // q0 = --------------------------------------------------------------
         //                            a1
 
-        const amrex::Real term1 = std::pow(a2 * lambda + a3 * S0, 2.0);
+        const amrex::Real term1 = std::pow((a2 * lambda) + (a3 * S0), 2.0_rt);
         const amrex::Real term2 =
-            a1 * (0.5 * Ct - 2.0 * a4 * lambda * S0 - a5 * S0 * S0);
-        const amrex::Real term3 = a2 * lambda + a3 * S0;
+            a1 * (0.5_rt * Ct - 2.0_rt * a4 * lambda * S0 - a5 * S0 * S0);
+        const amrex::Real term3 = (a2 * lambda) + (a3 * S0);
 
         const amrex::Real numerator = std::sqrt(term1 + term2) - term3;
 
@@ -242,7 +247,7 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
         VecSlice disk_velocity = ::amr_wind::utils::slice(
             grid.vel, ddata.num_force_pts, ddata.num_force_pts);
 
-        amrex::Real moment = 0.0;
+        amrex::Real moment = 0.0_rt;
 
         int ip = 0;
 
@@ -254,11 +259,11 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
             const amrex::Real& g = ddata.root_correction[i];
 
             const amrex::Real x =
-                amrex::max<amrex::Real>((i + 0.5) * dx, machine_eps);
+                amrex::max<amrex::Real>((i + 0.5_rt) * dx, machine_eps);
 
             const amrex::Real f_z =
                 (q0 / x + S0 * x) * g * F *
-                (lambda * x + 0.5 * (q0 / x + S0 * x) * g * F);
+                (lambda * x + 0.5_rt * (q0 / x + S0 * x) * g * F);
 
             ddata.f_normal[i] = f_z;
 
@@ -289,8 +294,8 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
                 const amrex::Real f_awc =
                     ddata.awc_amplitude *
                     std::cos(
-                        ddata.awc_angular_frequency * current_time -
-                        ddata.awc_azimuthal_mode * theta_angle +
+                        (ddata.awc_angular_frequency * current_time) -
+                        (ddata.awc_azimuthal_mode * theta_angle) +
                         ddata.awc_clocking_angle);
 
                 grid.force[ip] = ((1 + f_awc) * f_z * ddata.normal_vec +
@@ -303,8 +308,8 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
 
         // equation 20
         const amrex::Real eq_20_denominator = amrex::max<amrex::Real>(
-            0.5 * M_PI * ddata.density * std::pow(ddata.radius(), 2) *
-                std::pow(U_ref, 3),
+            0.5_rt * std::numbers::pi_v<amrex::Real> * ddata.density *
+                std::pow(ddata.radius(), 2.0_rt) * std::pow(U_ref, 3.0_rt),
             machine_eps);
 
         ddata.current_power =
@@ -329,7 +334,7 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
             data.sim()
                 .helics()
                 .m_turbine_wind_direction_to_controller[data.info().id] =
-                270.0 - amr_wind::utils::degrees(turbine_angle);
+                270.0_rt - amr_wind::utils::degrees(turbine_angle);
         }
 #endif
     }
@@ -383,4 +388,4 @@ public:
 
 } // namespace amr_wind::actuator::ops
 
-#endif /* Joukowsky_OPS_H_ */
+#endif /* Joukowsky_OPS_H */

@@ -5,6 +5,9 @@
 #include "AMReX_ParmParse.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_Random.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::icns {
 
@@ -81,14 +84,15 @@ void VelocityFreeAtmosphereForcing::operator()(
                       : nullptr;
     const auto& terrain_height = (has_terrain)
                                      ? (*m_terrain_height)(lev).const_array(mfi)
-                                     : amrex::Array4<double>();
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+                                     : amrex::Array4<amrex::Real>();
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real cell_terrain_height =
-            (has_terrain) ? terrain_height(i, j, k) : 0.0;
-        const amrex::Real z = std::max(
-            prob_lo[2] + (k + 0.5) * dx[2] - cell_terrain_height, 0.5 * dx[2]);
-        const amrex::Real zi =
-            std::max((z - sponge_start) / (prob_hi[2] - sponge_start), 0.0);
+            (has_terrain) ? terrain_height(i, j, k) : 0.0_rt;
+        const amrex::Real z = amrex::max<amrex::Real>(
+            prob_lo[2] + ((k + 0.5_rt) * dx[2]) - cell_terrain_height,
+            0.5_rt * dx[2]);
+        const amrex::Real zi = amrex::max<amrex::Real>(
+            (z - sponge_start) / (prob_hi[2] - sponge_start), 0.0_rt);
         amrex::Real ref_windx = velocity(i, j, k, 0);
         amrex::Real ref_windy = velocity(i, j, k, 1);
         amrex::Real ref_windz = velocity(i, j, k, 2);
@@ -107,11 +111,11 @@ void VelocityFreeAtmosphereForcing::operator()(
                                     : velocity(i, j, k, 2);
         }
         src_term(i, j, k, 0) -=
-            1.0 / meso_timescale * (velocity(i, j, k, 0) - ref_windx);
+            1.0_rt / meso_timescale * (velocity(i, j, k, 0) - ref_windx);
         src_term(i, j, k, 1) -=
-            1.0 / meso_timescale * (velocity(i, j, k, 1) - ref_windy);
+            1.0_rt / meso_timescale * (velocity(i, j, k, 1) - ref_windy);
         src_term(i, j, k, 2) -=
-            1.0 / meso_timescale * (velocity(i, j, k, 2) - ref_windz);
+            1.0_rt / meso_timescale * (velocity(i, j, k, 2) - ref_windz);
     });
 }
 

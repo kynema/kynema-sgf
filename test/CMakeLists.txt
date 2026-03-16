@@ -48,7 +48,7 @@ macro(setup_test)
     file(MAKE_DIRECTORY ${CURRENT_TEST_BINARY_DIR})
     file(GLOB TEST_FILES "${CURRENT_TEST_SOURCE_DIR}/*")
     file(COPY ${TEST_FILES} DESTINATION "${CURRENT_TEST_BINARY_DIR}/")
-    set(RUNTIME_OPTIONS "time.max_step=10 io.plot_file=plt time.plot_interval=10 amrex.the_arena_is_managed=0 amrex.abort_on_out_of_gpu_memory=1")
+    set(RUNTIME_OPTIONS "time.max_step=10 io.plot_file=plt time.plot_interval=10 amrex.the_arena_is_managed=0 amrex.abort_on_out_of_gpu_memory=1 amrex.the_arena_init_size=0")
     if((NOT AMR_WIND_TEST_WITH_FCOMPARE) AND (NOT AMR_WIND_SAVE_GOLDS)) #Avoid all I/O otherwise
       set(RUNTIME_OPTIONS "${RUNTIME_OPTIONS} time.plot_interval=-1 time.checkpoint_interval=-1")
     endif()
@@ -77,7 +77,7 @@ macro(setup_test)
       set(SAVE_GOLDS_COMMAND "&& cp -R ${PLOT_TEST} ${SAVED_GOLDS_DIRECTORY}/${TEST_NAME}/")
     endif()
     if(AMR_WIND_TEST_WITH_FCOMPARE AND (NOT "${TEST_NAME}" MATCHES "hdf5$"))
-      set(FCOMPARE_COMMAND "&& CUDA_LAUNCH_BLOCKING=1 ${FCOMPARE_EXE} ${FCOMPARE_TOLERANCE} ${PLOT_GOLD} ${PLOT_TEST}")
+      set(FCOMPARE_COMMAND "&& CUDA_LAUNCH_BLOCKING=1 ${MPI_COMMANDS} ${FCOMPARE_EXE} ${MPIEXEC_POSTFLAGS} ${FCOMPARE_TOLERANCE} ${PLOT_GOLD} ${PLOT_TEST}")
     endif()
 endmacro(setup_test)
 
@@ -91,7 +91,8 @@ function(add_test_r TEST_NAME)
                          PROCESSORS ${TEST_NP}
                          WORKING_DIRECTORY "${CURRENT_TEST_BINARY_DIR}/"
                          LABELS "regression"
-                         ATTACHED_FILES "${CURRENT_TEST_BINARY_DIR}/${TEST_NAME}.log")
+                         ATTACHED_FILES "${CURRENT_TEST_BINARY_DIR}/${TEST_NAME}.log"
+                         ATTACHED_FILES_ON_FAIL "${CURRENT_TEST_BINARY_DIR}/Backtrace.0")
 endfunction(add_test_r)
 
 # Regression tests excluded from CI
@@ -199,6 +200,7 @@ add_test_re(abl_ksgsm84_godunov)
 add_test_re(abl_mol_cn)
 add_test_re(abl_mol_explicit)
 add_test_re(abl_sampling)
+add_test_re(abl_subvolume)
 add_test_re(abl_stable)
 add_test_re(abl_stable_different_roughness)
 add_test_re(abl_unstable)
@@ -254,9 +256,6 @@ add_test_re(vortex_patch_scalar_vel)
 add_test_re(zalesak_disk_scalar_vel)
 add_test_re(rain_drop)
 add_test_re(inertial_drop)
-add_test_re(ow_linear)
-add_test_re(ow_linear_init_waves)
-add_test_re(ow_stokes)
 add_test_re(ow_current_wing)
 add_test_re(ow_current_bathymetry)
 add_test_re(scalar_advection_uniform)
@@ -271,8 +270,6 @@ add_test_re(vortex_dipole_wall_collision)
 add_test_re(vortex_dipole_inout_refine)
 add_test_re(burggraf_flow)
 add_test_re(abl_godunov_rayleigh_damping)
-add_test_re(rankine)
-add_test_re(rankine-sym)
 add_test_re(terrain_box)
 add_test_re(terrain_box_amr)
 add_test_re(forest_drag)
@@ -289,6 +286,14 @@ add_test_re(abl_specifiedmol_neutral)
 add_test_re(abl_specifiedmol_stable)
 add_test_re(abl_specifiedmol_unstable)
 add_test_re(udf_refinement)
+
+if("${AMR_WIND_PRECISION}" STREQUAL "DOUBLE")
+  add_test_re(rankine)
+  add_test_re(rankine-sym)
+  add_test_re(ow_linear)
+  add_test_re(ow_linear_init_waves)
+  add_test_re(ow_stokes)
+endif()
 
 if(AMR_WIND_ENABLE_NETCDF)
   add_test_re(abl_bndry_output)
@@ -354,7 +359,7 @@ if(AMR_WIND_ENABLE_OPENFAST AND AMR_WIND_OPENFAST_VERSION VERSION_LESS "4")
   file(MAKE_DIRECTORY ${ACT_UNIFORM_ALM_TEST_BINARY_DIR})
   if(NOT EXISTS "${RTEST_ACT_UNIFORM_ALM_TEST_BINARY_DIR}")
     execute_process(
-      COMMAND bash -c "${GIT_EXECUTABLE} clone -n --depth=1 --filter=tree:0 git@github.com:OpenFAST/r-test.git"
+      COMMAND bash -c "${GIT_EXECUTABLE} clone -n --depth=1 --filter=tree:0 https://github.com/OpenFAST/r-test.git"
       WORKING_DIRECTORY
       "${ACT_UNIFORM_ALM_TEST_BINARY_DIR}"
       COMMAND_ERROR_IS_FATAL ANY)

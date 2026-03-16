@@ -7,6 +7,9 @@
 #include "amr-wind/equation_systems/PDEOps.H"
 #include "amr-wind/equation_systems/CompRHSOps.H"
 #include "amr-wind/equation_systems/DiffusionOps.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde {
 
@@ -100,7 +103,7 @@ public:
 
     //! Return the object holding the fields necessary for solving this PDE
     PDEFields& fields() override { return m_fields; }
-    const PDEFields& fields() const override { return m_fields; }
+    [[nodiscard]] const PDEFields& fields() const override { return m_fields; }
 
     void compute_source_term(const FieldState fstate) override
     {
@@ -139,7 +142,7 @@ public:
             "amr-wind::" + this->identifier() + "::pre_advection_actions");
         m_adv_op->preadvect(
             fstate, m_time.delta_t(),
-            0.5 * (m_time.current_time() + m_time.new_time()));
+            0.5_rt * (m_time.current_time() + m_time.new_time()));
     }
 
     void compute_predictor_rhs(const DiffusionType difftype) override

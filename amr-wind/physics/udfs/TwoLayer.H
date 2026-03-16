@@ -3,6 +3,9 @@
 
 #include "AMReX_Geometry.H"
 #include "AMReX_Gpu.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -15,13 +18,13 @@ struct TwoLayer
     struct DeviceOp
     {
         // velocities of the top and bottom layer respectively
-        amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> top_vel = {0.0};
-        amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> bottom_vel = {0.0};
-        amrex::Real z_part{0.5}; // z-coordinate that divides top and bottom
-        amrex::Real init_perturb{1.0}; // initial perturbation for testing
+        amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> top_vel = {0.0_rt};
+        amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> bottom_vel = {0.0_rt};
+        amrex::Real z_part{0.5_rt}; // z-coordinate that divides top and bottom
+        amrex::Real init_perturb{1.0_rt}; // initial perturbation for testing
 
         AMREX_GPU_DEVICE
-        inline void operator()(
+        void operator()(
             const amrex::IntVect& iv,
             amrex::Array4<amrex::Real> const& field,
             amrex::GeometryData const& geom,
@@ -33,16 +36,16 @@ struct TwoLayer
         {
             const auto* problo = geom.ProbLo();
             const auto* dx = geom.CellSize();
-            const auto z = problo[2] + (iv[2] + 0.5) * dx[2];
+            const auto z = problo[2] + ((iv[2] + 0.5_rt) * dx[2]);
 
             amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> vel;
             if (z >= z_part) {
-                vel = {top_vel[0], top_vel[1], 0.0};
+                vel = {top_vel[0], top_vel[1], 0.0_rt};
             } else {
-                vel = {bottom_vel[0], bottom_vel[1], 0.0};
+                vel = {bottom_vel[0], bottom_vel[1], 0.0_rt};
             }
 
-            if (time == 0.0) {
+            if (time == 0.0_rt) {
                 vel[0] *= init_perturb;
                 vel[1] *= init_perturb;
             }
@@ -56,7 +59,7 @@ struct TwoLayer
 
     explicit TwoLayer(const Field& fld);
 
-    DeviceType device_instance() const { return m_op; }
+    [[nodiscard]] DeviceType device_instance() const { return m_op; }
 
     DeviceOp m_op;
 };

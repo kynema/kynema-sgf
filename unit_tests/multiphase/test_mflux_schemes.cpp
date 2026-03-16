@@ -1,6 +1,8 @@
-
 #include "aw_test_utils/MeshTest.H"
 #include "hydro_godunov_ppm.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -67,7 +69,7 @@ void get_output_upwind(
     amrex::Real& Ip)
 {
     const int nlevels = fld.repo().num_active_levels();
-    amrex::Gpu::DeviceVector<amrex::Real> dout(2, 0.0);
+    amrex::Gpu::DeviceVector<amrex::Real> dout(2, 0.0_rt);
     auto* dout_ptr = dout.data();
     const auto* pbc = fld.bcrec_device().data();
 
@@ -113,7 +115,7 @@ void get_output_minmod(
     amrex::Real& Ip)
 {
     const int nlevels = fld.repo().num_active_levels();
-    amrex::Gpu::DeviceVector<amrex::Real> dout(2, 0.0);
+    amrex::Gpu::DeviceVector<amrex::Real> dout(2, 0.0_rt);
     auto* dout_ptr = dout.data();
     const auto* pbc = fld.bcrec_device().data();
 
@@ -130,8 +132,8 @@ void get_output_minmod(
         amrex::ParallelFor(
             fld(lev), amrex::IntVect(0),
             [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
-                amrex::Real im_tmp = 0.0;
-                amrex::Real ip_tmp = 0.0;
+                amrex::Real im_tmp = 0.0_rt;
+                amrex::Real ip_tmp = 0.0_rt;
                 if (dir == 0) {
                     PPM::PredictStateOnXFace(
                         i, j, k, 0, dt, dx[0], im_tmp, ip_tmp, farrs[nbx],
@@ -183,10 +185,11 @@ protected:
         }
     }
     // Parameters
-    const amrex::Vector<amrex::Real> m_problo{{0.0, -1.0, 0.0}};
-    const amrex::Vector<amrex::Real> m_probhi{{2.0, +1.0, 2.0}};
+    const amrex::Vector<amrex::Real> m_problo{{0.0_rt, -1.0_rt, 0.0_rt}};
+    const amrex::Vector<amrex::Real> m_probhi{{2.0_rt, +1.0_rt, 2.0_rt}};
     const int m_nx = 5;
-    const amrex::Real m_tol = 1e-12;
+    const amrex::Real m_tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 };
 
 TEST_F(MFluxSchemeTest, upwind)
@@ -195,15 +198,15 @@ TEST_F(MFluxSchemeTest, upwind)
     auto& repo = sim().repo();
 
     // Initialize variables to be reused
-    amrex::Real Im = 0.0;
-    amrex::Real Ip = 0.0;
+    amrex::Real Im = 0.0_rt;
+    amrex::Real Ip = 0.0_rt;
 
     // Initialize field variable
     auto& sc = repo.declare_field("scalar", 1, 2);
 
     // Parameters to be referenced during test
-    amrex::Real adv_vel = 1.2;
-    amrex::Real dt = 0.25;
+    amrex::Real adv_vel = 1.2_rt;
+    amrex::Real dt = 0.25_rt;
 
     // Initialize mac velocity
     repo.declare_face_normal_field({"umac", "vmac", "wmac"}, 1, 1, 1);
@@ -216,7 +219,7 @@ TEST_F(MFluxSchemeTest, upwind)
 
     /* -- Constant field portion of test -- */
     // Set up field
-    amrex::Real sc_cst = 1.5;
+    amrex::Real sc_cst = 1.5_rt;
     init_scalar_uniform(sc, sc_cst);
     // Compute interpolated quantities at each face
     int i = m_nx / 2;
@@ -262,12 +265,12 @@ TEST_F(MFluxSchemeTest, minmod)
     auto& repo = sim().repo();
 
     // Parameters to be referenced during test
-    amrex::Real adv_vel = 1.2;
-    amrex::Real dt = 0.25;
+    amrex::Real adv_vel = 1.2_rt;
+    amrex::Real dt = 0.25_rt;
 
     // Initialize variables to be reused
-    amrex::Real Im = 0.0;
-    amrex::Real Ip = 0.0;
+    amrex::Real Im = 0.0_rt;
+    amrex::Real Ip = 0.0_rt;
 
     // Initialize field variable
     auto& sc = repo.declare_field("scalar", 1, 2);
@@ -283,7 +286,7 @@ TEST_F(MFluxSchemeTest, minmod)
 
     /* -- Constant field portion of test -- */
     // Set up field
-    amrex::Real sc_cst = 1.5;
+    amrex::Real sc_cst = 1.5_rt;
     init_scalar_uniform(sc, sc_cst);
     // Compute interpolated quantities at each face
     int i = m_nx / 2;
@@ -298,9 +301,12 @@ TEST_F(MFluxSchemeTest, minmod)
     // Values for checking
     auto ir = (amrex::Real)i;
     amrex::Real dx = sc.repo().mesh().Geom(0).CellSizeArray()[0];
-    amrex::Real slp = (std::pow(ir, 2) - std::pow(ir - 1.0, 2)) / dx;
-    amrex::Real val_p = std::pow(ir, 2) - slp * 0.5 * (dt * adv_vel - dx);
-    amrex::Real val_n = std::pow(ir, 2) + slp * 0.5 * (dt * adv_vel - dx);
+    amrex::Real slp =
+        (std::pow(ir, 2.0_rt) - std::pow(ir - 1.0_rt, 2.0_rt)) / dx;
+    amrex::Real val_p =
+        std::pow(ir, 2.0_rt) - (slp * 0.5_rt * (dt * adv_vel - dx));
+    amrex::Real val_n =
+        std::pow(ir, 2.0_rt) + (slp * 0.5_rt * (dt * adv_vel - dx));
     // Set up field (x)
     init_scalar_increasing(sc, 0);
     // Compute interpolated quantities at each face
@@ -336,12 +342,12 @@ TEST_F(MFluxSchemeTest, minmodbdy)
     auto& repo = sim().repo();
 
     // Parameters to be referenced during test
-    amrex::Real adv_vel = 1.2;
-    amrex::Real dt = 0.25;
+    amrex::Real adv_vel = 1.2_rt;
+    amrex::Real dt = 0.25_rt;
 
     // Initialize variables to be reused
-    amrex::Real Im = 0.0;
-    amrex::Real Ip = 0.0;
+    amrex::Real Im = 0.0_rt;
+    amrex::Real Ip = 0.0_rt;
 
     // Initialize field variable
     auto& sc = repo.declare_field("scalar", 1, 2);
@@ -369,8 +375,10 @@ TEST_F(MFluxSchemeTest, minmodbdy)
         // Values for checking
         auto ir = (amrex::Real)i;
         amrex::Real dx = sc.repo().mesh().Geom(0).CellSizeArray()[0];
-        amrex::Real slp = (std::pow(ir, 2) - std::pow(ir - 1.0, 2)) / dx;
-        amrex::Real val_n = std::pow(ir, 2) + slp * 0.5 * (dt * adv_vel - dx);
+        amrex::Real slp =
+            (std::pow(ir, 2.0_rt) - std::pow(ir - 1.0_rt, 2.0_rt)) / dx;
+        amrex::Real val_n =
+            std::pow(ir, 2.0_rt) + (slp * 0.5_rt * (dt * adv_vel - dx));
         // Set up field
         init_scalar_increasing(sc, 0);
         // Compute interpolated quantities at each face
@@ -384,10 +392,12 @@ TEST_F(MFluxSchemeTest, minmodbdy)
         int j = m_nx - 1;
         int k = m_nx / 2;
         // Values for checking
-        auto ir = (amrex::Real)j;
+        auto ir = static_cast<amrex::Real>(j);
         amrex::Real dx = sc.repo().mesh().Geom(0).CellSizeArray()[0];
-        amrex::Real slp = (std::pow(ir + 1.0, 2) - std::pow(ir, 2)) / dx;
-        amrex::Real val_p = std::pow(ir, 2) - slp * 0.5 * (dt * adv_vel - dx);
+        amrex::Real slp =
+            (std::pow(ir + 1.0_rt, 2.0_rt) - std::pow(ir, 2.0_rt)) / dx;
+        amrex::Real val_p =
+            std::pow(ir, 2.0_rt) - (slp * 0.5_rt * (dt * adv_vel - dx));
         // Set up field
         init_scalar_increasing(sc, 1);
         // Compute interpolated quantities at each face

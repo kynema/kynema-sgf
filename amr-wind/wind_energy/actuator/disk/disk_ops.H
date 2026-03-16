@@ -1,10 +1,13 @@
-#ifndef DISK_OPS_H_
-#define DISK_OPS_H_
+#ifndef DISK_OPS_H
+#define DISK_OPS_H
 
 #include "amr-wind/wind_energy/actuator/disk/ActuatorDisk.H"
 #include "amr-wind/wind_energy/actuator/actuator_ops.H"
 #include "amr-wind/utilities/tensor_ops.H"
 #include "amr-wind/utilities/linear_interpolation.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator {
 namespace disk {
@@ -20,7 +23,7 @@ void write_netcdf(
     const DiskBaseData& data,
     const ActInfo& info,
     const ActGrid& /*unused*/,
-    const amrex::Real time);
+    amrex::Real time);
 } // namespace disk
 
 namespace ops {
@@ -29,12 +32,11 @@ namespace base {
 class AreaComputer
 {
 public:
-    AreaComputer(
-        const amrex::Real radius, const int num_r, const int num_theta);
+    AreaComputer(amrex::Real radius, int num_r, int num_theta);
 
-    amrex::Real area_section(const int iRadius) const;
+    [[nodiscard]] amrex::Real area_section(int iRadius) const;
 
-    amrex::Real weight(const int iRadius) const;
+    [[nodiscard]] amrex::Real weight(int iRadius) const;
 
 private:
     const amrex::Real m_area;
@@ -100,8 +102,8 @@ void compute_disk_points(
     const DiskBaseData& meta,
     VecList& points,
     const vs::Vector& cylAxis,
-    const int offset,
-    const double dOffset);
+    int offset,
+    amrex::Real dOffset);
 
 template <typename T>
 void parse_and_gather_params(const utils::ActParser& pp, T& metaData)
@@ -111,7 +113,7 @@ void parse_and_gather_params(const utils::ActParser& pp, T& metaData)
     optional_parameters(metaData, pp);
 }
 
-inline amrex::Real compute_reference_velocity_sqr(DiskBaseData& data)
+AMREX_INLINE amrex::Real compute_reference_velocity_sqr(DiskBaseData& data)
 {
     const auto& normal = data.normal_vec;
     // only use velocity components normal to disk
@@ -123,7 +125,7 @@ inline amrex::Real compute_reference_velocity_sqr(DiskBaseData& data)
 
 // we use a setter function since we want to cache this variable for netcdf
 // output
-inline void
+AMREX_INLINE void
 set_thrust_coefficient(DiskBaseData& data, const amrex::Real& uInfSqr)
 {
     const amrex::Real uInfMag = std::sqrt(uInfSqr);
@@ -143,9 +145,9 @@ struct UpdateVelOp<
     {
         auto& meta = data.meta();
         const auto& grid = data.grid();
-        meta.reference_velocity = {0.0, 0.0, 0.0};
-        meta.mean_disk_velocity = {0.0, 0.0, 0.0};
-        meta.density = 0.0;
+        meta.reference_velocity = {0.0_rt, 0.0_rt, 0.0_rt};
+        meta.mean_disk_velocity = {0.0_rt, 0.0_rt, 0.0_rt};
+        meta.density = 0.0_rt;
         auto& refVel = meta.reference_velocity;
         auto& diskVel = meta.mean_disk_velocity;
         auto& density = meta.density;
@@ -158,9 +160,9 @@ struct UpdateVelOp<
         for (int i = 0; i < num_r; i++) {
             const auto weight = area.weight(i);
             for (int j = 0; j < num_t; ++j) {
-                density += grid.density[j + i * num_t] * weight;
-                refVel = refVel + grid.vel[j + i * num_t] * weight;
-                diskVel = diskVel + grid.vel[j + i * num_t + np] * weight;
+                density += grid.density[j + (i * num_t)] * weight;
+                refVel = refVel + (grid.vel[j + (i * num_t)] * weight);
+                diskVel = diskVel + (grid.vel[j + (i * num_t) + np] * weight);
             }
         }
     }
@@ -177,4 +179,4 @@ struct UpdatePosOp<
 } // namespace ops
 } // namespace amr_wind::actuator
 
-#endif /* DISK_OPS_H_ */
+#endif /* DISK_OPS_H */

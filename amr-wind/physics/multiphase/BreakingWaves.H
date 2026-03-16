@@ -3,6 +3,9 @@
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/SimTime.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 /**
  *  \defgroup breaking_waves Breaking Waves modeling
@@ -54,21 +57,21 @@ private:
     Field& m_density;
 
     //! initial tke value
-    amrex::Real m_tke0{0.000001};
+    amrex::Real m_tke0{0.000001_rt};
 
     //! initial sdr value
-    amrex::Real m_sdr0{1.0};
+    amrex::Real m_sdr0{1.0_rt};
 
     //! Initial free surface amplitude magnitude
-    amrex::Real m_amplitude{0.1};
+    amrex::Real m_amplitude{0.1_rt};
 
-    amrex::Real m_air_vel_shear_rate{0.1};
+    amrex::Real m_air_vel_shear_rate{0.1_rt};
 
     //! Initial free surface wavelength
-    amrex::Real m_wavelength{2.0};
+    amrex::Real m_wavelength{2.0_rt};
 
     //! Initial zero-level free-surface water depth
-    amrex::Real m_waterlevel{0.0};
+    amrex::Real m_waterlevel{0.0_rt};
 
     bool m_laminar{false};
 };

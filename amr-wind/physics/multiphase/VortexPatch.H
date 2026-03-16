@@ -1,8 +1,11 @@
-#ifndef VortexPatch_H
-#define VortexPatch_H
+#ifndef VORTEXPATCH_H
+#define VORTEXPATCH_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 /** Multiphase vortex patch physics
  *  \ingroup multiphase_physics
@@ -43,13 +46,13 @@ private:
     Field& m_density;
 
     //! Initial VortexPatch location
-    amrex::Vector<amrex::Real> m_loc{0.35, 0.35, 0.35};
+    amrex::Vector<amrex::Real> m_loc{0.35_rt, 0.35_rt, 0.35_rt};
 
     //! vortex patch radius value
-    amrex::Real m_radius{0.15};
+    amrex::Real m_radius{0.15_rt};
 
     //! prescribed velocity period
-    amrex::Real m_TT{3.0};
+    amrex::Real m_TT{3.0_rt};
 };
 
 } // namespace amr_wind

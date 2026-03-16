@@ -3,6 +3,9 @@
 
 #include "amr-wind/CFDSim.H"
 #include "amr-wind/utilities/PostProcessing.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::enstrophy {
 
@@ -45,7 +48,7 @@ private:
     void write_ascii();
 
     //! store the total enstrophy
-    amrex::Real m_total_enstrophy{0.0};
+    amrex::Real m_total_enstrophy{0.0_rt};
 
     //! Reference to the CFD sim
     CFDSim& m_sim;

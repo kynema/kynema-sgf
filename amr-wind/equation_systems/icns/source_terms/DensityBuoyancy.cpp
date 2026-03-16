@@ -8,6 +8,9 @@
 #include "amr-wind/core/FieldUtils.H"
 
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::icns {
 
@@ -16,7 +19,7 @@ namespace amr_wind::pde::icns {
  *  Reads in the following parameters from `incflo` namespace:
  *
  *  - `gravity` acceleration due to gravity (m/s)
- *  - `reference density` Optional, default = `1.0`
+ *  - `reference density` Optional, default = `1.0_rt`
  */
 DensityBuoyancy::DensityBuoyancy(const CFDSim& sim)
     : m_density(sim.repo().get_field("density"))
@@ -54,8 +57,8 @@ void DensityBuoyancy::operator()(
     FieldState den_state = field_impl::phi_state(fstate);
     const auto& density = m_density.state(den_state)(lev).const_array(mfi);
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-        const amrex::Real fac = 1.0 - density_0 / density(i, j, k);
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+        const amrex::Real fac = 1.0_rt - (density_0 / density(i, j, k));
 
         vel_forces(i, j, k, 0) += gravity[0] * fac;
         vel_forces(i, j, k, 1) += gravity[1] * fac;

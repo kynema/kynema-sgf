@@ -32,7 +32,7 @@ struct AmrDualArray
     }
 
     //! Return the size of the arrays
-    size_t size() const { return d_view.size(); }
+    [[nodiscard]] size_t size() const { return d_view.size(); }
 
     //! Copy data from host to device
     void copy_to_device()

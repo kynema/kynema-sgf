@@ -2,10 +2,14 @@
 #define EXTERNAL_BASE_TYPES_H
 
 #include <string>
+#include <cstdint>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace ext_turb {
 
-enum class SimMode : int {
+enum class SimMode : std::uint8_t {
     init = 0, ///< Clean start
     replay,   ///< Replay using velocities stored in file
     restart   ///< Restart using external checkpoint files
@@ -43,7 +47,7 @@ struct ExternalTurbine
 
     amrex::Array<float, 3> hub_rot_vel;
 
-    amrex::Array<double, 9> hub_orient;
+    amrex::Array<amrex::Real, 9> hub_orient;
 
     SimMode sim_mode{SimMode::init};
 
@@ -64,16 +68,16 @@ struct ExternalTurbine
     bool is_solution0{true};
 
     //! Start time for this turbine
-    double start_time{0.0};
+    amrex::Real start_time{0.0_rt};
 
     //! End time for this turbine
-    double stop_time{-1.0};
+    amrex::Real stop_time{-1.0_rt};
 
     //! Timestep for CFD
-    double dt_cfd;
+    amrex::Real dt_cfd;
 
     //! Timestep for external turbine solver
-    double dt_ext;
+    amrex::Real dt_ext;
 
     //! Number of sub-steps of external solver per CFD timestep
     int num_substeps;

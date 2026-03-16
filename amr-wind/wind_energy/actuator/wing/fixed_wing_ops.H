@@ -1,10 +1,15 @@
 #ifndef FIXED_WING_OPS_H
 #define FIXED_WING_OPS_H
 
+#include <algorithm>
+
 #include "amr-wind/wind_energy/actuator/wing/FixedWing.H"
 #include "amr-wind/wind_energy/actuator/actuator_ops.H"
 #include "amr-wind/wind_energy/actuator/wing/wing_ops.H"
 #include "amr-wind/utilities/linear_interpolation.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator::ops {
 
@@ -97,14 +102,11 @@ struct ReadInputsOp<FixedWing, ActSrcLine>
 
         AMREX_ALWAYS_ASSERT(wdata.span_locs.size() == wdata.chord_inp.size());
 
-        amrex::Real max_chord =
-            *std::max_element(wdata.chord_inp.begin(), wdata.chord_inp.end());
-        amrex::Real max_eps =
-            *std::max_element(wdata.eps_inp.begin(), wdata.eps_inp.end());
-        amrex::Real max_epsc = *std::max_element(
-            wdata.epsilon_chord.begin(), wdata.epsilon_chord.end());
+        amrex::Real max_chord = *std::ranges::max_element(wdata.chord_inp);
+        amrex::Real max_eps = *std::ranges::max_element(wdata.eps_inp);
+        amrex::Real max_epsc = *std::ranges::max_element(wdata.epsilon_chord);
         amrex::Real search_radius =
-            amrex::max(max_eps, max_epsc) * max_chord * 3.0;
+            amrex::max(max_eps, max_epsc) * max_chord * 3.0_rt;
         const auto& p1 = wdata.start;
         const auto& p2 = wdata.end;
         // Bounding box quantities used for all motion types
@@ -124,7 +126,8 @@ struct ReadInputsOp<FixedWing, ActSrcLine>
             std::string sdir;
             auto per = data.sim().mesh().Geom()[0].periodicity();
             if (std::abs(wspan.x()) >=
-                std::max(std::abs(wspan.y()), std::abs(wspan.z()))) {
+                amrex::max<amrex::Real>(
+                    std::abs(wspan.y()), std::abs(wspan.z()))) {
                 minpx = data.sim().mesh().Geom(0).ProbLoArray()[0];
                 maxpx = data.sim().mesh().Geom(0).ProbHiArray()[0];
                 warn_per = !per.isPeriodic(0);
@@ -156,7 +159,7 @@ struct ReadInputsOp<FixedWing, ActSrcLine>
                 maxpy + search_radius, maxpz + search_radius);
         } else if (amrex::toLower(wdata.motion_type) == "linear") {
             // Extend bounding box in case of velocity
-            constexpr amrex::Real tiny = 1e-8;
+            constexpr amrex::Real tiny = std::numeric_limits<float>::epsilon();
             // If velocity is present, assume wing can travel entire domain
             const bool up_ = wdata.vel_tr.x() > tiny;
             const amrex::Real up_ext =
@@ -223,13 +226,14 @@ struct InitDataOp<FixedWing, ActSrcLine>
             for (int i = 0; i < npts; ++i) {
                 for (int n = 0; n < AMREX_SPACEDIM; ++n) {
                     const auto eps = meta.epsilon_chord[n] * meta.chord[i];
-                    grid.epsilon[i][n] = amrex::max(meta.eps_inp[n], eps);
+                    grid.epsilon[i][n] =
+                        amrex::max<amrex::Real>(meta.eps_inp[n], eps);
                 }
             }
             // Copy Gaussian flags to grid struct if 2D
             if (meta.gauss_2D) {
                 // Local coords are chord, span, thickness internally
-                grid.dcoord_flags = vs::Vector(1.0, 0.0, 1.0);
+                grid.dcoord_flags = vs::Vector(1.0_rt, 0.0_rt, 1.0_rt);
             }
         }
 
@@ -239,7 +243,8 @@ struct InitDataOp<FixedWing, ActSrcLine>
 };
 
 template <>
-inline const AirfoilTable& airfoil_lookup<FixedWing>(FixedWing::DataType& data)
+AMREX_INLINE const AirfoilTable&
+airfoil_lookup<FixedWing>(FixedWing::DataType& data)
 {
     return *data.meta().aflookup;
 }

@@ -1,16 +1,20 @@
 #include "aw_test_utils/AmrexTest.H"
 #include "amr-wind/core/vs/vector_space.H"
 #include "amr-wind/utilities/trig_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
 namespace {
-constexpr double tol = 1.0e-12;
+constexpr amrex::Real tol =
+    std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
 void test_vector_create_impl()
 {
     namespace vs = amr_wind::vs;
-    amrex::Gpu::DeviceScalar<double> ds(0.0);
+    amrex::Gpu::DeviceScalar<amrex::Real> ds(0.0_rt);
     auto* ddata = ds.dataPtr();
     amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int /*unused*/) {
         auto gv1 = vs::Vector::ihat();
@@ -21,30 +25,30 @@ void test_vector_create_impl()
         ddata[0] = vs::mag((gv3 - gv4));
     });
 
-    EXPECT_NEAR(ds.dataValue(), 0.0, tol);
+    EXPECT_NEAR(ds.dataValue(), 0.0_rt, tol);
 }
 
 void test_tensor_create_impl()
 {
     namespace vs = amr_wind::vs;
-    amrex::Gpu::DeviceScalar<double> ds(0.0);
+    amrex::Gpu::DeviceScalar<amrex::Real> ds(0.0_rt);
     auto* ddata = ds.dataPtr();
     amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int /*unused*/) {
-        auto t1 = vs::yrot(90.0);
-        auto t2 = vs::zrot(90.0);
+        auto t1 = vs::yrot(90.0_rt);
+        auto t2 = vs::zrot(90.0_rt);
         auto t3 = t2 & t1;
-        auto qrot = vs::quaternion(vs::Vector::one(), 120.0);
+        auto qrot = vs::quaternion(vs::Vector::one(), 120.0_rt);
 
         ddata[0] = vs::mag((t3 - qrot));
     });
 
-    EXPECT_NEAR(ds.dataValue(), 0.0, tol);
+    EXPECT_NEAR(ds.dataValue(), 0.0_rt, tol);
 }
 
 void test_rotations_impl()
 {
     namespace vs = amr_wind::vs;
-    const amrex::Real angle = 45.0;
+    const amrex::Real angle = 45.0_rt;
     const auto ang = amr_wind::utils::radians(angle);
     const auto cval = std::cos(ang);
     const auto sval = std::sin(ang);
@@ -59,32 +63,33 @@ void test_rotations_impl()
 
 #define CHECK_ON_GPU(expr1, expr2)                                             \
     {                                                                          \
-        amrex::Gpu::DeviceScalar<double> ds(1.0e16);                           \
+        amrex::Gpu::DeviceScalar<amrex::Real> ds(                              \
+            std::numeric_limits<amrex::Real>::epsilon());                      \
         auto* dv = ds.dataPtr();                                               \
         amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int) {                      \
             auto v1 = expr1;                                                   \
             auto v2 = expr2;                                                   \
             dv[0] = vs::mag((v1 - v2));                                        \
         });                                                                    \
-        EXPECT_NEAR(ds.dataValue(), 0.0, tol)                                  \
-            << "LHS = " #expr1 "\nRHS = " #expr2 << std::endl;                 \
+        EXPECT_NEAR(ds.dataValue(), 0.0_rt, tol)                               \
+            << "LHS = " #expr1 "\nRHS = " #expr2 << '\n';                      \
     }
 
     CHECK_ON_GPU((xrot & ivec), ivec);
-    CHECK_ON_GPU((xrot & jvec), (vs::Vector{0.0, cval, -sval}));
-    CHECK_ON_GPU((xrot & kvec), (vs::Vector{0.0, sval, cval}));
+    CHECK_ON_GPU((xrot & jvec), (vs::Vector{0.0_rt, cval, -sval}));
+    CHECK_ON_GPU((xrot & kvec), (vs::Vector{0.0_rt, sval, cval}));
 
     CHECK_ON_GPU((yrot & jvec), jvec);
-    CHECK_ON_GPU((yrot & ivec), (vs::Vector{cval, 0.0, sval}));
-    CHECK_ON_GPU((yrot & kvec), (vs::Vector{-sval, 0.0, cval}));
+    CHECK_ON_GPU((yrot & ivec), (vs::Vector{cval, 0.0_rt, sval}));
+    CHECK_ON_GPU((yrot & kvec), (vs::Vector{-sval, 0.0_rt, cval}));
 
     CHECK_ON_GPU((zrot & kvec), kvec);
-    CHECK_ON_GPU((zrot & ivec), (vs::Vector{cval, -sval, 0.0}));
-    CHECK_ON_GPU((zrot & jvec), (vs::Vector{sval, cval, 0.0}));
+    CHECK_ON_GPU((zrot & ivec), (vs::Vector{cval, -sval, 0.0_rt}));
+    CHECK_ON_GPU((zrot & jvec), (vs::Vector{sval, cval, 0.0_rt}));
 
     CHECK_ON_GPU((kvec & zrot), kvec);
-    CHECK_ON_GPU((ivec & zrot), (vs::Vector{cval, sval, 0.0}));
-    CHECK_ON_GPU((jvec & zrot), (vs::Vector{-sval, cval, 0.0}));
+    CHECK_ON_GPU((ivec & zrot), (vs::Vector{cval, sval, 0.0_rt}));
+    CHECK_ON_GPU((jvec & zrot), (vs::Vector{-sval, cval, 0.0_rt}));
 
 #undef CHECK_ON_GPU
 }
@@ -94,7 +99,8 @@ void test_device_capture_impl()
     namespace vs = amr_wind::vs;
     auto v1 = vs::Vector::ihat();
     auto vexpected = vs::Vector::khat();
-    amrex::Gpu::DeviceScalar<double> ds(1.0e16);
+    amrex::Gpu::DeviceScalar<amrex::Real> ds(
+        std::numeric_limits<amrex::Real>::epsilon());
     auto* dv = ds.dataPtr();
 
     amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int /*unused*/) {
@@ -103,7 +109,7 @@ void test_device_capture_impl()
 
         dv[0] = vs::mag((vout - vexpected));
     });
-    EXPECT_NEAR(ds.dataValue(), 0.0, tol);
+    EXPECT_NEAR(ds.dataValue(), 0.0_rt, tol);
 }
 
 void test_device_lists_impl()
@@ -130,7 +136,7 @@ void test_device_lists_impl()
         hvectors.begin());
 
     for (int i = 0; i < 3; ++i) {
-        EXPECT_NEAR(vs::mag(htrue[i] - hvectors[i]), 0.0, tol);
+        EXPECT_NEAR(vs::mag(htrue[i] - hvectors[i]), 0.0_rt, tol);
     }
 }
 
@@ -173,13 +179,15 @@ TEST(VectorSpace, device_lists) { test_device_lists_impl(); }
 TEST(VectorSpace, vector_ops)
 {
     namespace vs = amr_wind::vs;
-    const vs::Vector v1{10.0, 20.0, 0.0};
-    const vs::Vector v2{1.0, 2.0, 0.0};
+    const vs::Vector v1{10.0_rt, 20.0_rt, 0.0_rt};
+    const vs::Vector v2{1.0_rt, 2.0_rt, 0.0_rt};
     const auto v21 = vs::mag_sqr(v2.unit());
 
-    EXPECT_NEAR((v1 & v2), 50.0 * v21, tol);
-    EXPECT_NEAR((v1 & vs::Vector::khat()), 0.0, tol);
-    EXPECT_NEAR(vs::mag_sqr((v1 + v2) - vs::Vector{11.0, 22.0, 0.0}), 0.0, tol);
+    EXPECT_NEAR((v1 & v2), 50.0_rt * v21, tol);
+    EXPECT_NEAR((v1 & vs::Vector::khat()), 0.0_rt, tol);
+    EXPECT_NEAR(
+        vs::mag_sqr((v1 + v2) - vs::Vector{11.0_rt, 22.0_rt, 0.0_rt}), 0.0_rt,
+        tol);
 }
 
 } // namespace amr_wind_tests

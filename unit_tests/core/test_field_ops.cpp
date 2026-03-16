@@ -1,5 +1,8 @@
 #include "aw_test_utils/MeshTest.H"
 #include "amr-wind/core/field_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -23,12 +26,11 @@ public:
             const auto& problo = geom[lev].ProbLoArray();
             const auto& farrs = field(lev).arrays();
             amrex::ParallelFor(
-                field(lev),
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
-                    const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                    const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                    const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
-                    farrs[nbx](i, j, k) = 1.0 - (x + y + z);
+                field(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                    const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                    const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
+                    farrs[nbx](i, j, k) = 1.0_rt - (x + y + z);
                 });
         }
         amrex::Gpu::streamSynchronize();
@@ -47,7 +49,9 @@ TEST_F(FieldOpsTest, compute_max_magnitude)
 
     amrex::Real global_maximum =
         amr_wind::field_ops::global_max_magnitude(field);
-    EXPECT_NEAR(global_maximum, 21.5, 1.0e-12);
+    EXPECT_NEAR(
+        global_maximum, 21.5_rt,
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
 }
 
 } // namespace amr_wind_tests

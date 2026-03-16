@@ -3,6 +3,9 @@
 
 #include "amr-wind/equation_systems/icns/MomentumSource.H"
 #include "amr-wind/core/SimTime.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::icns {
 
@@ -19,10 +22,10 @@ public:
     ~GeostrophicForcing() override;
 
     void operator()(
-        const int lev,
+        int lev,
         const amrex::MFIter& mfi,
         const amrex::Box& bx,
-        const FieldState fstate,
+        FieldState fstate,
         const amrex::Array4<amrex::Real>& src_term) const override;
 
 private:
@@ -51,10 +54,10 @@ private:
     int m_n_band{2};
 
     //! Target velocity
-    amrex::Vector<amrex::Real> m_target_vel{0.0, 0.0, 0.0};
+    amrex::Vector<amrex::Real> m_target_vel{0.0_rt, 0.0_rt, 0.0_rt};
 
     //! Forcing source term (pressure gradient)
-    amrex::Vector<amrex::Real> m_g_forcing{0.0, 0.0, 0.0};
+    amrex::Vector<amrex::Real> m_g_forcing{0.0_rt, 0.0_rt, 0.0_rt};
 
     bool m_is_horizontal{false};
 

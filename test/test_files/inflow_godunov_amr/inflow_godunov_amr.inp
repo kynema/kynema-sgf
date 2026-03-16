@@ -44,8 +44,8 @@ amrex.throw_exception = 1
 amrex.signal_handling = 0
 
 nodal_proj.verbose = 2
-nodal_proj.mg_rtol = 1.0e-12
-nodal_proj.mg_atol = 1.0e-10
+#nodal_proj.mg_rtol = 1.0e-12
+#nodal_proj.mg_atol = 1.0e-10
 
 # Mesh Refinement
 amr.n_cell            = 64 64 4 # Grid cells at coarsest AMRlevel

@@ -40,7 +40,7 @@ struct ActuatorCloud
     //! Total number of turbines located on this MPI rank
     int num_objects;
 
-    explicit ActuatorCloud(const int nobjects);
+    explicit ActuatorCloud(int nobjects);
 };
 
 //! Number or real entries in Array of Structs (AOS)
@@ -66,7 +66,7 @@ class ActuatorContainer
 public:
     friend class Actuator;
 
-    explicit ActuatorContainer(amrex::AmrCore& mesh, const int num_objects);
+    explicit ActuatorContainer(amrex::AmrCore& mesh, int num_objects);
 
     void post_regrid_actions();
 
@@ -89,7 +89,7 @@ public:
 
     void populate_field_buffers();
 
-    void initialize_particles(const int total_pts);
+    void initialize_particles(int total_pts);
 
 protected:
     void compute_local_coordinates();

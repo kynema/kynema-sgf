@@ -19,11 +19,11 @@ public:
 
     ~DerivedQty() override = default;
 
-    virtual std::string name() const = 0;
+    [[nodiscard]] virtual std::string name() const = 0;
 
-    virtual int num_comp() const = 0;
+    [[nodiscard]] virtual int num_comp() const = 0;
 
-    virtual void operator()(ScratchField& fld, const int scomp = 0) const = 0;
+    virtual void operator()(ScratchField& fld, int scomp = 0) const = 0;
 
     virtual void var_names(amrex::Vector<std::string>& /*plt_var_names*/);
 };
@@ -37,7 +37,7 @@ public:
     explicit DerivedQtyMgr(const FieldRepo& repo);
     ~DerivedQtyMgr() = default;
 
-    void operator()(ScratchField& fld, const int scomp = 0) const;
+    void operator()(ScratchField& fld, int scomp = 0) const;
 
     void create(const amrex::Vector<std::string>& keys);
 
@@ -45,13 +45,12 @@ public:
     DerivedQty& create(const std::string& key);
 
     //! Return the total number of components across all derived quantities
-    int num_comp() const noexcept;
+    [[nodiscard]] int num_comp() const;
 
-    bool contains(const std::string& key) const noexcept;
+    [[nodiscard]] bool contains(const std::string& key) const;
 
     //! Populate a vector of variable names (for output)
-    void
-    var_names(amrex::Vector<std::string>& /*plt_var_names*/) const noexcept;
+    void var_names(amrex::Vector<std::string>& /*plt_var_names*/) const;
 
     void filter(const std::set<std::string>& /*erase*/);
 

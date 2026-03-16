@@ -336,7 +336,7 @@ void TiogaInterface::amr_to_tioga_mesh()
                 ad.ihigh.h_view[ioff + i] = hi[i];
                 ad.dims.h_view[ioff + i] = (hi[i] - lo[i]) + 1;
 
-                ad.xlo.h_view[ioff + i] = problo[i] + lo[i] * dx[i];
+                ad.xlo.h_view[ioff + i] = problo[i] + (lo[i] * dx[i]);
                 ad.dx.h_view[ioff + i] = dx[i];
             }
 

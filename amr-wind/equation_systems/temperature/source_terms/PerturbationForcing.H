@@ -5,6 +5,9 @@
 #include "amr-wind/core/SimTime.H"
 #include "amr-wind/CFDSim.H"
 #include "amr-wind/transport_models/TransportModel.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::temperature {
 
@@ -19,10 +22,10 @@ public:
     ~PerturbationForcing() override;
 
     void operator()(
-        const int lev,
+        int lev,
         const amrex::MFIter& mfi,
         const amrex::Box& bx,
-        const FieldState /*fstate*/,
+        FieldState /*fstate*/,
         const amrex::Array4<amrex::Real>& src_term) const override;
 
 private:
@@ -33,7 +36,7 @@ private:
     amrex::Vector<amrex::Real> m_end;
     int m_time_index{100};
     int m_start_level{0};
-    amrex::Real m_pert_amplitude{1.0};
+    amrex::Real m_pert_amplitude{1.0_rt};
 };
 
 } // namespace amr_wind::pde::temperature

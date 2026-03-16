@@ -1,5 +1,8 @@
 #include "aw_test_utils/MeshTest.H"
 #include "amr-wind/equation_systems/icns/icns_advection.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -28,7 +31,7 @@ protected:
         const amrex::Real rho0 = mco.rho0();
         EXPECT_EQ(rho0, m_rho_0);
     }
-    const amrex::Real m_rho_0 = 2.0;
+    const amrex::Real m_rho_0 = 2.0_rt;
 };
 
 TEST_F(ICNSConstDensTest, nonunity) { testing_density(); }

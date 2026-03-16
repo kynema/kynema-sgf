@@ -1,12 +1,13 @@
+#include <algorithm>
 #include "amr-wind/wind_energy/actuator/ActuatorContainer.H"
 #include "amr-wind/wind_energy/actuator/Actuator.H"
 #include "amr-wind/core/gpu_utils.H"
 #include "amr-wind/core/Field.H"
-
 #include "AMReX_Scan.H"
+#include "AMReX_Print.H"
+#include "AMReX_REAL.H"
 
-#include <AMReX_Print.H>
-#include <algorithm>
+using namespace amrex::literals;
 
 namespace amr_wind::actuator {
 
@@ -61,6 +62,7 @@ void ActuatorContainer::initialize_container()
             amrex::ParallelDescriptor::Communicator());
         AMREX_ALWAYS_ASSERT(local_total_pts == total_pts);
 #else
+        pts_per_proc.resize(nproc);
         pts_per_proc[0] = total_pts;
 #endif
         m_proc_offsets[0] = 0;
@@ -89,7 +91,8 @@ void ActuatorContainer::initialize_particles(const int total_pts)
     // from 1.
     ParticleType::NextID(1U);
     const auto id_start = ParticleType::NextID();
-    AMREX_ALWAYS_ASSERT(id_start == 1U);
+    AMREX_ALWAYS_ASSERT(
+        id_start == 1U); // NOLINT(modernize-use-integer-sign-comparison)
     const int iproc = amrex::ParallelDescriptor::MyProc();
 
     // Flag indicating if a tile was found where all particles were deposited.
@@ -106,14 +109,13 @@ void ActuatorContainer::initialize_particles(const int total_pts)
             ptile.resize(total_pts);
             auto* pstruct = ptile.GetArrayOfStructs()().data();
 
-            amrex::ParallelFor(
-                total_pts, [=] AMREX_GPU_DEVICE(const int ip) noexcept {
-                    auto& pp = pstruct[ip];
+            amrex::ParallelFor(total_pts, [=] AMREX_GPU_DEVICE(const int ip) {
+                auto& pp = pstruct[ip];
 
-                    pp.id() = id_start + ip;
-                    pp.cpu() = iproc;
-                    pp.idata(0) = ip;
-                });
+                pp.id() = id_start + ip;
+                pp.cpu() = iproc;
+                pp.idata(0) = ip;
+            });
             assigned = true;
         }
     }
@@ -132,7 +134,7 @@ void ActuatorContainer::reset_container()
             const int np = pti.numParticles();
             auto* pstruct = pti.GetArrayOfStructs()().data();
 
-            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) noexcept {
+            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) {
                 auto& pp = pstruct[ip];
                 pp.id() = -1;
             });
@@ -170,7 +172,7 @@ void ActuatorContainer::update_positions()
             const int np = pti.numParticles();
             auto* pstruct = pti.GetArrayOfStructs()().data();
 
-            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) noexcept {
+            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) {
                 auto& pp = pstruct[ip];
                 const auto idx = pp.idata(0);
 
@@ -230,7 +232,7 @@ void ActuatorContainer::populate_field_buffers()
         m_proc_offsets.back() * static_cast<size_t>(NumPStructReal);
 
     amrex::Vector<amrex::Real> buff_host(num_buff_entries);
-    amrex::Gpu::DeviceVector<amrex::Real> buff_device(num_buff_entries, 0.0);
+    amrex::Gpu::DeviceVector<amrex::Real> buff_device(num_buff_entries, 0.0_rt);
 
     auto* buffer_pointer = buff_device.data();
     auto* offsets = m_proc_offsets_device.data();
@@ -242,13 +244,13 @@ void ActuatorContainer::populate_field_buffers()
             const int np = pti.numParticles();
             auto* pstruct = pti.GetArrayOfStructs()().data();
 
-            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) noexcept {
+            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) {
                 auto& pp = pstruct[ip];
                 const auto iproc = pp.cpu();
                 const auto idx = offsets[iproc] + pp.idata(0);
 
                 for (int n = 0; n < NumPStructReal; ++n) {
-                    buffer_pointer[idx * NumPStructReal + n] = pp.rdata(n);
+                    buffer_pointer[(idx * NumPStructReal) + n] = pp.rdata(n);
                 }
             });
         }
@@ -270,10 +272,10 @@ void ActuatorContainer::populate_field_buffers()
         const int ioff = m_proc_offsets[amrex::ParallelDescriptor::MyProc()];
         for (int i = 0; i < npts; ++i) {
             for (int j = 0; j < AMREX_SPACEDIM; ++j) {
-                vel_arr[i][j] = buff_host[(ioff + i) * NumPStructReal + j];
+                vel_arr[i][j] = buff_host[((ioff + i) * NumPStructReal) + j];
             }
             den_arr[i] =
-                buff_host[(ioff + i) * NumPStructReal + AMREX_SPACEDIM];
+                buff_host[((ioff + i) * NumPStructReal) + AMREX_SPACEDIM];
         }
     }
 }
@@ -303,15 +305,15 @@ void ActuatorContainer::interpolate_fields(
             const auto varr = vel(lev).const_array(pti);
             const auto darr = density(lev).const_array(pti);
 
-            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) noexcept {
+            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) {
                 auto& pp = pstruct[ip];
                 // Determine offsets within the containing cell
                 const amrex::Real x =
-                    (pp.pos(0) - plo[0] - 0.5 * dx[0]) * dxi[0];
+                    (pp.pos(0) - plo[0] - 0.5_rt * dx[0]) * dxi[0];
                 const amrex::Real y =
-                    (pp.pos(1) - plo[1] - 0.5 * dx[1]) * dxi[1];
+                    (pp.pos(1) - plo[1] - 0.5_rt * dx[1]) * dxi[1];
                 const amrex::Real z =
-                    (pp.pos(2) - plo[2] - 0.5 * dx[2]) * dxi[2];
+                    (pp.pos(2) - plo[2] - 0.5_rt * dx[2]) * dxi[2];
 
                 // Index of the low corner
                 const int i = static_cast<int>(std::floor(x));
@@ -323,23 +325,23 @@ void ActuatorContainer::interpolate_fields(
                 const amrex::Real wy_hi = (y - j);
                 const amrex::Real wz_hi = (z - k);
 
-                const amrex::Real wx_lo = 1.0 - wx_hi;
-                const amrex::Real wy_lo = 1.0 - wy_hi;
-                const amrex::Real wz_lo = 1.0 - wz_hi;
+                const amrex::Real wx_lo = 1.0_rt - wx_hi;
+                const amrex::Real wy_lo = 1.0_rt - wy_hi;
+                const amrex::Real wz_lo = 1.0_rt - wz_hi;
 
                 const int iproc = pp.cpu();
 
                 // velocity
                 for (int ic = 0; ic < AMREX_SPACEDIM; ++ic) {
                     pp.rdata(ic) =
-                        wx_lo * wy_lo * wz_lo * varr(i, j, k, ic) +
-                        wx_lo * wy_lo * wz_hi * varr(i, j, k + 1, ic) +
-                        wx_lo * wy_hi * wz_lo * varr(i, j + 1, k, ic) +
-                        wx_lo * wy_hi * wz_hi * varr(i, j + 1, k + 1, ic) +
-                        wx_hi * wy_lo * wz_lo * varr(i + 1, j, k, ic) +
-                        wx_hi * wy_lo * wz_hi * varr(i + 1, j, k + 1, ic) +
-                        wx_hi * wy_hi * wz_lo * varr(i + 1, j + 1, k, ic) +
-                        wx_hi * wy_hi * wz_hi * varr(i + 1, j + 1, k + 1, ic);
+                        (wx_lo * wy_lo * wz_lo * varr(i, j, k, ic)) +
+                        (wx_lo * wy_lo * wz_hi * varr(i, j, k + 1, ic)) +
+                        (wx_lo * wy_hi * wz_lo * varr(i, j + 1, k, ic)) +
+                        (wx_lo * wy_hi * wz_hi * varr(i, j + 1, k + 1, ic)) +
+                        (wx_hi * wy_lo * wz_lo * varr(i + 1, j, k, ic)) +
+                        (wx_hi * wy_lo * wz_hi * varr(i + 1, j, k + 1, ic)) +
+                        (wx_hi * wy_hi * wz_lo * varr(i + 1, j + 1, k, ic)) +
+                        (wx_hi * wy_hi * wz_hi * varr(i + 1, j + 1, k + 1, ic));
 
                     // Reset position vectors so that the particles return back
                     // to the MPI ranks with the turbines upon redistribution
@@ -348,14 +350,14 @@ void ActuatorContainer::interpolate_fields(
 
                 // density
                 pp.rdata(AMREX_SPACEDIM) =
-                    wx_lo * wy_lo * wz_lo * darr(i, j, k) +
-                    wx_lo * wy_lo * wz_hi * darr(i, j, k + 1) +
-                    wx_lo * wy_hi * wz_lo * darr(i, j + 1, k) +
-                    wx_lo * wy_hi * wz_hi * darr(i, j + 1, k + 1) +
-                    wx_hi * wy_lo * wz_lo * darr(i + 1, j, k) +
-                    wx_hi * wy_lo * wz_hi * darr(i + 1, j, k + 1) +
-                    wx_hi * wy_hi * wz_lo * darr(i + 1, j + 1, k) +
-                    wx_hi * wy_hi * wz_hi * darr(i + 1, j + 1, k + 1);
+                    (wx_lo * wy_lo * wz_lo * darr(i, j, k)) +
+                    (wx_lo * wy_lo * wz_hi * darr(i, j, k + 1)) +
+                    (wx_lo * wy_hi * wz_lo * darr(i, j + 1, k)) +
+                    (wx_lo * wy_hi * wz_hi * darr(i, j + 1, k + 1)) +
+                    (wx_hi * wy_lo * wz_lo * darr(i + 1, j, k)) +
+                    (wx_hi * wy_lo * wz_hi * darr(i + 1, j, k + 1)) +
+                    (wx_hi * wy_hi * wz_lo * darr(i + 1, j + 1, k)) +
+                    (wx_hi * wy_hi * wz_hi * darr(i + 1, j + 1, k + 1));
             });
         }
     }
@@ -398,9 +400,12 @@ void ActuatorContainer::compute_local_coordinates()
             const int* lo = bx.loVect();
 
             auto& pvec = m_proc_pos[iproc];
-            pvec.x() = geom.ProbLo()[0] + (lo[0] + 0.5) * geom.CellSize()[0];
-            pvec.y() = geom.ProbLo()[1] + (lo[1] + 0.5) * geom.CellSize()[1];
-            pvec.z() = geom.ProbLo()[2] + (lo[2] + 0.5) * geom.CellSize()[2];
+            pvec.x() =
+                geom.ProbLo()[0] + ((lo[0] + 0.5_rt) * geom.CellSize()[0]);
+            pvec.y() =
+                geom.ProbLo()[1] + ((lo[1] + 0.5_rt) * geom.CellSize()[1]);
+            pvec.z() =
+                geom.ProbLo()[2] + ((lo[2] + 0.5_rt) * geom.CellSize()[2]);
 
             // Indicate that we have found a point and it is safe to exit the
             // loop

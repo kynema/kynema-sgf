@@ -8,8 +8,9 @@
 #include "amr-wind/utilities/console_io.H"
 #include "amr-wind/utilities/PostProcessing.H"
 #include "AMReX_MultiFabUtil.H"
+#include "AMReX_REAL.H"
 
-using namespace amrex;
+using namespace amrex::literals;
 
 void incflo::pre_advance_stage1()
 {
@@ -88,7 +89,7 @@ void incflo::advance(const int fixed_point_iteration)
 //        divtau _old = div( eta ( (grad u) + (grad u)^T ) ) / rho^n
 //        rhs = u + dt * ( conv + divtau_old )
 //     else
-//        divtau_old  = 0.0
+//        divtau_old  = 0.0_rt
 //        rhs = u + dt * conv
 //
 //     eta     = eta at new_time
@@ -181,7 +182,7 @@ void incflo::ApplyPredictor(
 {
     BL_PROFILE("amr-wind::incflo::ApplyPredictor");
     // We use the new time value for things computed on the "*" state
-    Real new_time = m_time.new_time();
+    amrex::Real new_time = m_time.new_time();
 
     if (m_verbose > 2) {
         PrintMaxValues("before predictor step");
@@ -205,8 +206,8 @@ void incflo::ApplyPredictor(
         icns().fields().field.fillpatch(m_time.current_time());
         // Get n + 1/2 velocity
         amr_wind::field_ops::lincomb(
-            icns().fields().field.state(amr_wind::FieldState::NPH), 0.5,
-            icns().fields().field.state(amr_wind::FieldState::Old), 0, 0.5,
+            icns().fields().field.state(amr_wind::FieldState::NPH), 0.5_rt,
+            icns().fields().field.state(amr_wind::FieldState::Old), 0, 0.5_rt,
             icns().fields().field, 0, 0, icns().fields().field.num_comp(),
             icns().fields().field.num_grow());
     }
@@ -280,7 +281,7 @@ void incflo::ApplyPredictor(
             icns().fields().src_term, density_old, 0, 0, 1, AMREX_SPACEDIM, 0);
 
         const int nghost_force = 1;
-        IntVect ng(nghost_force);
+        amrex::IntVect ng(nghost_force);
         icns().fields().src_term.fillpatch(m_time.current_time(), ng);
 
         for (auto& eqn : scalar_eqns()) {
@@ -320,7 +321,7 @@ void incflo::ApplyPredictor(
         if (m_diff_type != DiffusionType::Explicit) {
             amrex::Real dt_diff = (m_diff_type == DiffusionType::Implicit)
                                       ? m_time.delta_t()
-                                      : 0.5 * m_time.delta_t();
+                                      : 0.5_rt * m_time.delta_t();
 
             // Solve diffusion eqn. and update of the scalar field
             eqn->solve(dt_diff);
@@ -334,15 +335,16 @@ void incflo::ApplyPredictor(
                 eqn->fields().diff_term.state(amr_wind::FieldState::New);
             amr_wind::field_ops::copy(*diff_old, diff_new, 0, 0, 1, 0);
             eqn->compute_diffusion_term(amr_wind::FieldState::New);
-            amr_wind::field_ops::saxpy(diff_new, -1.0, *diff_old, 0, 0, 1, 0);
+            amr_wind::field_ops::saxpy(
+                diff_new, -1.0_rt, *diff_old, 0, 0, 1, 0);
             eqn->improve_explicit_diffusion(m_time.delta_t());
         }
         eqn->post_solve_actions();
 
         // Update scalar at n+1/2
         amr_wind::field_ops::lincomb(
-            field.state(amr_wind::FieldState::NPH), 0.5,
-            field.state(amr_wind::FieldState::Old), 0, 0.5, field, 0, 0,
+            field.state(amr_wind::FieldState::NPH), 0.5_rt,
+            field.state(amr_wind::FieldState::Old), 0, 0.5_rt, field, 0, 0,
             field.num_comp(), 1);
     }
 
@@ -373,9 +375,9 @@ void incflo::ApplyPredictor(
     // *************************************************************************************
     if (m_diff_type == DiffusionType::Crank_Nicolson ||
         m_diff_type == DiffusionType::Implicit) {
-        Real dt_diff = (m_diff_type == DiffusionType::Implicit)
-                           ? m_time.delta_t()
-                           : 0.5 * m_time.delta_t();
+        amrex::Real dt_diff = (m_diff_type == DiffusionType::Implicit)
+                                  ? m_time.delta_t()
+                                  : 0.5_rt * m_time.delta_t();
         icns().solve(dt_diff);
     } else if (m_diff_type == DiffusionType::Explicit && m_use_godunov) {
         // explicit RK2
@@ -386,7 +388,7 @@ void incflo::ApplyPredictor(
         amr_wind::field_ops::copy(*diff_old, diff_new, 0, 0, AMREX_SPACEDIM, 0);
         icns().compute_diffusion_term(amr_wind::FieldState::New);
         amr_wind::field_ops::saxpy(
-            diff_new, -1.0, *diff_old, 0, 0, AMREX_SPACEDIM, 0);
+            diff_new, -1.0_rt, *diff_old, 0, 0, AMREX_SPACEDIM, 0);
         icns().improve_explicit_diffusion(m_time.delta_t());
     }
     icns().post_solve_actions();
@@ -416,7 +418,7 @@ void incflo::ApplyPredictor(
             "vel_diff", AMREX_SPACEDIM, 1, amr_wind::FieldLoc::CELL);
         // lincomb to get old np1
         amr_wind::field_ops::lincomb(
-            (*vel_np1_old), -1.0,
+            (*vel_np1_old), -1.0_rt,
             icns().fields().field.state(amr_wind::FieldState::Old), 0, 2,
             icns().fields().field.state(amr_wind::FieldState::NPH), 0, 0,
             icns().fields().field.num_comp(), 1);
@@ -439,13 +441,13 @@ void incflo::ApplyPredictor(
 //      eta     = viscosity
 //      divtau  = div( eta ( (grad u) + (grad u)^T ) ) / rho
 //
-//      conv_u  = 0.5 (conv_u + conv_u_pred)
-//      conv_r  = 0.5 (conv_r + conv_r_pred)
-//      conv_t  = 0.5 (conv_t + conv_t_pred)
+//      conv_u  = 0.5_rt (conv_u + conv_u_pred)
+//      conv_r  = 0.5_rt (conv_r + conv_r_pred)
+//      conv_t  = 0.5_rt (conv_t + conv_t_pred)
 //      if (m_diff_type == DiffusionType::Explicit)
 //         divtau  = divtau at new_time using (*) state
 //      else
-//         divtau  = 0.0
+//         divtau  = 0.0_rt
 //      eta     = eta at new_time
 //
 //     rhs = u + dt * ( conv + divtau )
@@ -507,7 +509,7 @@ void incflo::ApplyPredictor(
  *  \f{align}
  *  \kappa = \begin{cases}
  *  0 & \text{Explicit} \\
- *  0.5 & \text{Crank-Nicolson} \\
+ *  0.5_rt & \text{Crank-Nicolson} \\
  *  1 & \text{Implicit}
  *  \end{cases}
  *  \f}
@@ -520,7 +522,7 @@ void incflo::ApplyCorrector()
     BL_PROFILE("amr-wind::incflo::ApplyCorrector");
 
     // We use the new time value for things computed on the "*" state
-    Real new_time = m_time.new_time();
+    amrex::Real new_time = m_time.new_time();
 
     if (m_verbose > 2) {
         PrintMaxValues("before corrector step");
@@ -591,7 +593,7 @@ void incflo::ApplyCorrector()
         if (m_diff_type != DiffusionType::Explicit) {
             amrex::Real dt_diff = (m_diff_type == DiffusionType::Implicit)
                                       ? m_time.delta_t()
-                                      : 0.5 * m_time.delta_t();
+                                      : 0.5_rt * m_time.delta_t();
 
             // Solve diffusion eqn. and update of the scalar field
             eqn->solve(dt_diff);
@@ -600,8 +602,8 @@ void incflo::ApplyCorrector()
 
         // Update scalar at n+1/2
         amr_wind::field_ops::lincomb(
-            field.state(amr_wind::FieldState::NPH), 0.5,
-            field.state(amr_wind::FieldState::Old), 0, 0.5, field, 0, 0,
+            field.state(amr_wind::FieldState::NPH), 0.5_rt,
+            field.state(amr_wind::FieldState::Old), 0, 0.5_rt, field, 0, 0,
             field.num_comp(), 1);
     }
 
@@ -625,9 +627,9 @@ void incflo::ApplyCorrector()
 
     if (m_diff_type == DiffusionType::Crank_Nicolson ||
         m_diff_type == DiffusionType::Implicit) {
-        Real dt_diff = (m_diff_type == DiffusionType::Implicit)
-                           ? m_time.delta_t()
-                           : 0.5 * m_time.delta_t();
+        amrex::Real dt_diff = (m_diff_type == DiffusionType::Implicit)
+                                  ? m_time.delta_t()
+                                  : 0.5_rt * m_time.delta_t();
         icns().solve(dt_diff);
     }
     icns().post_solve_actions();
@@ -700,7 +702,7 @@ void incflo::ApplyPrescribeStep()
 
     if (m_use_godunov) {
         const int nghost_force = 1;
-        IntVect ng(nghost_force);
+        amrex::IntVect ng(nghost_force);
         for (auto& eqn : scalar_eqns()) {
             eqn->fields().src_term.fillpatch(m_time.current_time(), ng);
         }
@@ -735,7 +737,7 @@ void incflo::ApplyPrescribeStep()
         if (m_diff_type != DiffusionType::Explicit) {
             amrex::Real dt_diff = (m_diff_type == DiffusionType::Implicit)
                                       ? m_time.delta_t()
-                                      : 0.5 * m_time.delta_t();
+                                      : 0.5_rt * m_time.delta_t();
 
             // Solve diffusion eqn. and update of the scalar field
             eqn->solve(dt_diff);
@@ -745,8 +747,8 @@ void incflo::ApplyPrescribeStep()
 
         // Update scalar at n+1/2
         amr_wind::field_ops::lincomb(
-            field.state(amr_wind::FieldState::NPH), 0.5,
-            field.state(amr_wind::FieldState::Old), 0, 0.5, field, 0, 0,
+            field.state(amr_wind::FieldState::NPH), 0.5_rt,
+            field.state(amr_wind::FieldState::Old), 0, 0.5_rt, field, 0, 0,
             field.num_comp(), 1);
     }
 

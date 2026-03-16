@@ -26,7 +26,7 @@ public:
         const amrex::Box& vbx,
         const amrex::Geometry& geom,
         const amrex::Array4<amrex::Real>& velocity,
-        const int lev) const;
+        int lev) const;
 
 private:
     //! Input file with initial condition (from Machine Learning)

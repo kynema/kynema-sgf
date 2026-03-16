@@ -1,8 +1,11 @@
-#ifndef TaylorGreenVortex_H
-#define TaylorGreenVortex_H
+#ifndef TAYLORGREENVORTEX_H
+#define TAYLORGREENVORTEX_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -34,7 +37,7 @@ private:
     Field& m_density;
 
     //! initial density value
-    amrex::Real m_rho{1.0};
+    amrex::Real m_rho{1.0_rt};
 };
 
 } // namespace amr_wind

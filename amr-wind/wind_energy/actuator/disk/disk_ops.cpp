@@ -1,6 +1,10 @@
 #include "amr-wind/wind_energy/actuator/disk/disk_ops.H"
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 #include "amr-wind/utilities/io_utils.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
+
 namespace amr_wind::actuator {
 namespace disk {
 void prepare_netcdf_file(
@@ -10,7 +14,7 @@ void prepare_netcdf_file(
     const ActGrid& grid)
 {
 #ifdef AMR_WIND_USE_NETCDF
-    using dvec = std::vector<double>;
+    using dvec = std::vector<amrex::Real>;
     // Only root process handles I/O
     if (info.root_proc != amrex::ParallelDescriptor::MyProc()) {
         return;
@@ -100,14 +104,17 @@ namespace ops::base {
 
 AreaComputer::AreaComputer(
     const amrex::Real radius, const int num_r, const int num_theta)
-    : m_area(M_PI * radius * radius)
-    , m_geometry_factor(radius * radius / num_r / num_r * M_PI / num_theta)
+    : m_area(std::numbers::pi_v<amrex::Real> * radius * radius)
+    , m_geometry_factor(
+          radius * radius / num_r / num_r * std::numbers::pi_v<amrex::Real> /
+          num_theta)
 {}
 
 amrex::Real AreaComputer::area_section(const int iRadius) const
 {
     return m_geometry_factor *
-           (std::pow(iRadius + 1, 2) - std::pow(iRadius, 2));
+           (std::pow(iRadius + 1.0_rt, 2.0_rt) -
+            std::pow(static_cast<amrex::Real>(iRadius), 2.0_rt));
 }
 
 amrex::Real AreaComputer::weight(const int iRadius) const
@@ -146,7 +153,7 @@ void collect_parse_conflicts(
     std::ostringstream& ss)
 {
     if (pp.contains(p1) && pp.contains(p2)) {
-        ss << "ActuatorDisk Conflict: " << p1 << " and " << p2 << std::endl;
+        ss << "ActuatorDisk Conflict: " << p1 << " and " << p2 << '\n';
     }
 }
 
@@ -158,7 +165,7 @@ void collect_parse_dependencies_one_way(
 {
     if (pp.contains(dependent) && !pp.contains(independent)) {
         ss << "ActuatorDisk Dependency Missing: " << independent
-           << " required with " << dependent << std::endl;
+           << " required with " << dependent << '\n';
     }
 }
 
@@ -259,7 +266,7 @@ void optional_parameters(DiskBaseData& meta, const utils::ActParser& pp)
     pp.queryarr("wind_speed", meta.table_velocity);
     if (meta.thrust_coeff.size() == 1) {
         meta.current_ct = meta.thrust_coeff[0];
-        meta.table_velocity = {1.0};
+        meta.table_velocity = {1.0_rt};
     }
 }
 
@@ -293,7 +300,7 @@ std::ostringstream check_for_parse_conflicts(const utils::ActParser& pp)
             error_collector << "ActuatorDisk Dependency Missing: wind_speed is "
                                "required when "
                                "there is more than 1 entry for thrust_coeff"
-                            << std::endl;
+                            << '\n';
         }
     }
 
@@ -304,7 +311,7 @@ std::ostringstream check_for_parse_conflicts(const utils::ActParser& pp)
             error_collector << "ActuatorDisk Conflict: wind_speed and "
                                "thrust_coeff must have the same number of "
                                "values"
-                            << std::endl;
+                            << '\n';
         }
     }
 
@@ -348,15 +355,19 @@ amrex::RealBox compute_bounding_box(const DiskBaseData& meta)
     const auto& cVec = meta.coplanar_vec;
 
     const auto& cc = meta.center;
-    const amrex::Real nl = meta.epsilon * 3.0; // length scale in normal dir
-    const amrex::Real dl =
-        meta.diameter * 0.5 + meta.dr * 2.0; // length scale in plane of disk
+    const amrex::Real nl = meta.epsilon * 3.0_rt; // length scale in normal dir
+    const amrex::Real dl = (meta.diameter * 0.5_rt) +
+                           (meta.dr * 2.0_rt); // length scale in plane of disk
     const auto dvec = norm * nl + cVec * dl + vs::Vector::khat() * dl;
     const auto p1 = cc - dvec; // front
     const auto p2 = cc + dvec; // back
-    return {amrex::min(p1.x(), p2.x()), amrex::min(p1.y(), p2.y()),
-            amrex::min(p1.z(), p2.z()), amrex::max(p1.x(), p2.x()),
-            amrex::max(p1.y(), p2.y()), amrex::max(p1.z(), p2.z())};
+    return {
+        amrex::min<amrex::Real>(p1.x(), p2.x()),
+        amrex::min<amrex::Real>(p1.y(), p2.y()),
+        amrex::min<amrex::Real>(p1.z(), p2.z()),
+        amrex::max<amrex::Real>(p1.x(), p2.x()),
+        amrex::max<amrex::Real>(p1.y(), p2.y()),
+        amrex::max<amrex::Real>(p1.z(), p2.z())};
 }
 
 void compute_disk_points(
@@ -364,7 +375,7 @@ void compute_disk_points(
     VecList& points,
     const vs::Vector& cylAxis,
     const int offset,
-    const double dOffset)
+    const amrex::Real dOffset)
 {
     const auto& cc = meta.center;
     // we define points as if the disk faces the standard cyindrical coordinates
@@ -376,14 +387,14 @@ void compute_disk_points(
 
     const vs::VectorT<int> nvp = {meta.num_vel_pts_r, meta.num_vel_pts_t, 1};
 
-    const amrex::Real dr = meta.diameter * 0.5 / nvp.x();
+    const amrex::Real dr = meta.diameter * 0.5_rt / nvp.x();
     const amrex::Real dt = ::amr_wind::utils::two_pi() / nvp.y();
     const amrex::Real du = dOffset * meta.diameter;
 
     //  if there is only 1 velocity point in r then we want to sample along the
     //  normal axis, else we want to sample at cell centers like the force
     //  points
-    const amrex::Real index_shift = nvp.x() == 1 ? 0.0 : 0.5;
+    const amrex::Real index_shift = nvp.x() == 1 ? 0.0_rt : 0.5_rt;
 
     int ip = offset;
     for (int i = 0; i < nvp.x(); i++) {

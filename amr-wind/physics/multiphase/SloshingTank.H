@@ -1,8 +1,11 @@
-#ifndef SloshingTank_H
-#define SloshingTank_H
+#ifndef SLOSHINGTANK_H
+#define SLOSHINGTANK_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 /** Multiphase Sloshing Tank 3D physics
  *  \ingroup multiphase_physics
@@ -38,20 +41,20 @@ private:
     Field& m_pressure;
 
     //! Initial free surface amplitude magnitude
-    amrex::Real m_amplitude{0.1};
+    amrex::Real m_amplitude{0.1_rt};
 
     //! Peak enhancement factor
-    amrex::Real m_kappa{0.25};
+    amrex::Real m_kappa{0.25_rt};
 
     //! Initial zero-level free-surface water depth
-    amrex::Real m_waterlevel{0.0};
+    amrex::Real m_waterlevel{0.0_rt};
 
     bool m_init_p{false};
 
     //! Stuff to get from MultiPhase physics
     amrex::Real m_rho1{1000.};
     amrex::Real m_rho2{1.};
-    amrex::Vector<amrex::Real> m_gravity{0.0, 0.0, -9.81};
+    amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 };
 
 } // namespace amr_wind

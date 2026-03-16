@@ -6,11 +6,14 @@ namespace exw_fast {
 #ifdef AMR_WIND_USE_OPENFAST
 extern "C" {
 #include "FAST_Library.h"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 }
 
 extern void exw_fast_output_redirect(char*);
 
-inline constexpr int fast_strlen() { return INTERFACE_STRING_LENGTH; }
+constexpr int fast_strlen() { return INTERFACE_STRING_LENGTH; }
 
 #else
 
@@ -20,24 +23,23 @@ inline constexpr int fast_strlen() { return INTERFACE_STRING_LENGTH; }
 #define ErrID_Severe 3
 #define ErrID_Fatal 4
 
-inline constexpr int fast_strlen() { return 1025; }
+constexpr int fast_strlen() { return 1025; }
 
-inline void exw_fast_output_redirect(char* /*unused*/) {}
+void exw_fast_output_redirect(char* /*unused*/) {}
 
-inline void
-FAST_AllocateTurbines(int* /*unused*/, int* /*unused*/, char* /*unused*/)
+void FAST_AllocateTurbines(int* /*unused*/, int* /*unused*/, char* /*unused*/)
 {}
-inline void FAST_DeallocateTurbines(int* /*unused*/, char* /*unused*/) {}
+void FAST_DeallocateTurbines(int* /*unused*/, char* /*unused*/) {}
 
-inline void FAST_CreateCheckpoint(
+void FAST_CreateCheckpoint(
     int* /*unused*/, char* /*unused*/, int* /*unused*/, char* /*unused*/)
 {}
 
-inline void FAST_HubPosition(
+void FAST_HubPosition(
     int* /*unused*/,
     float* /*unused*/,
     float* /*unused*/,
-    double* /*unused*/,
+    amrex::Real* /*unused*/,
     int* /*unused*/,
     char* /*unused*/)
 {}
@@ -49,15 +51,13 @@ struct ExtInfw_InputType_t
 struct ExtInfw_OutputType_t
 {};
 
-inline void
-FAST_CFD_Solution0(int* /*unused*/, int* /*unused*/, char* /*unused*/)
-{}
+void FAST_CFD_Solution0(int* /*unused*/, int* /*unused*/, char* /*unused*/) {}
 
-inline void FAST_CFD_Step(int* /*unused*/, int* /*unused*/, char* /*unused*/) {}
+void FAST_CFD_Step(int* /*unused*/, int* /*unused*/, char* /*unused*/) {}
 
-inline void FAST_ExtInfw_Init(
+void FAST_ExtInfw_Init(
     int* /*unused*/,
-    double* /*unused*/,
+    amrex::Real* /*unused*/,
     const char* /*unused*/,
     int* /*unused*/,
     const char* /*unused*/,
@@ -65,7 +65,7 @@ inline void FAST_ExtInfw_Init(
     int* /*unused*/,
     float* /*unused*/,
     int* /*unused*/,
-    double* /*unused*/,
+    amrex::Real* /*unused*/,
     int* /*unused*/,
     int* /*unused*/,
     int* /*unused*/,
@@ -77,11 +77,11 @@ inline void FAST_ExtInfw_Init(
     char* /*unused*/)
 {}
 
-inline void FAST_ExtInfw_Restart(
+void FAST_ExtInfw_Restart(
     int* /*unused*/,
     char* /*unused*/,
     int* /*unused*/,
-    double* /*unused*/,
+    amrex::Real* /*unused*/,
     int* /*unused*/,
     int* /*unused*/,
     int* /*unused*/,
@@ -103,16 +103,13 @@ struct SC_DX_InputType
 struct SC_DX_OutputType
 {};
 
-inline void
-FAST_OpFM_Solution0(int* /*unused*/, int* /*unused*/, char* /*unused*/)
-{}
+void FAST_OpFM_Solution0(int* /*unused*/, int* /*unused*/, char* /*unused*/) {}
 
-inline void FAST_OpFM_Step(int* /*unused*/, int* /*unused*/, char* /*unused*/)
-{}
+void FAST_OpFM_Step(int* /*unused*/, int* /*unused*/, char* /*unused*/) {}
 
-inline void FAST_OpFM_Init(
+void FAST_OpFM_Init(
     int* /*unused*/,
-    double* /*unused*/,
+    amrex::Real* /*unused*/,
     const char* /*unused*/,
     int* /*unused*/,
     int* /*unused*/,
@@ -124,7 +121,7 @@ inline void FAST_OpFM_Init(
     int* /*unused*/,
     float* /*unused*/,
     int* /*unused*/,
-    double* /*unused*/,
+    amrex::Real* /*unused*/,
     int* /*unused*/,
     int* /*unused*/,
     int* /*unused*/,
@@ -136,11 +133,11 @@ inline void FAST_OpFM_Init(
     char* /*unused*/)
 {}
 
-inline void FAST_OpFM_Restart(
+void FAST_OpFM_Restart(
     int* /*unused*/,
     char* /*unused*/,
     int* /*unused*/,
-    double* /*unused*/,
+    amrex::Real* /*unused*/,
     int* /*unused*/,
     int* /*unused*/,
     int* /*unused*/,

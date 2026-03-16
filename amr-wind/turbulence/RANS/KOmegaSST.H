@@ -3,6 +3,9 @@
 
 #include <string>
 #include "amr-wind/turbulence/TurbModelBase.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::turbulence {
 
@@ -42,11 +45,14 @@ public:
 
     ~KOmegaSST() override;
 
-    std::string model_name() const override { return "KOmegaSST"; }
+    [[nodiscard]] std::string model_name() const override
+    {
+        return "KOmegaSST";
+    }
 
     //! Update the turbulent viscosity field
     void update_turbulent_viscosity(
-        const FieldState fstate, const DiffusionType diff_type) override;
+        FieldState fstate, DiffusionType diff_type) override;
 
     //! No post advance work for this model
     void post_advance_work() override {}
@@ -58,7 +64,7 @@ public:
     void parse_model_coeffs() override;
 
     //! Return turbulence model coefficients
-    TurbulenceModel::CoeffsDictType model_coeffs() const override;
+    [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 
 protected:
     Field& m_vel;
@@ -76,24 +82,24 @@ protected:
     Field* m_sdr;
 
     //! Turbulence constants
-    amrex::Real m_beta_star{0.09};
-    amrex::Real m_alpha1{0.5555555555555556};
-    amrex::Real m_alpha2{0.44};
-    amrex::Real m_beta1{0.075};
-    amrex::Real m_beta2{0.0828};
-    amrex::Real m_sigma_k1{0.85};
-    amrex::Real m_sigma_k2{1.0};
-    amrex::Real m_sigma_omega1{0.5};
-    amrex::Real m_sigma_omega2{0.856};
-    amrex::Real m_a1{0.31};
-    amrex::Real m_tke_amb{0.0};
-    amrex::Real m_sdr_amb{0.0};
+    amrex::Real m_beta_star{0.09_rt};
+    amrex::Real m_alpha1{0.5555555555555556_rt};
+    amrex::Real m_alpha2{0.44_rt};
+    amrex::Real m_beta1{0.075_rt};
+    amrex::Real m_beta2{0.0828_rt};
+    amrex::Real m_sigma_k1{0.85_rt};
+    amrex::Real m_sigma_k2{1.0_rt};
+    amrex::Real m_sigma_omega1{0.5_rt};
+    amrex::Real m_sigma_omega2{0.856_rt};
+    amrex::Real m_a1{0.31_rt};
+    amrex::Real m_tke_amb{0.0_rt};
+    amrex::Real m_sdr_amb{0.0_rt};
 
     //! Buoyancy modified constants
     bool m_include_buoyancy{false};
-    amrex::Real m_buoyancy_factor = 0.0;
-    amrex::Real m_sigma_t{0.85};
-    amrex::Vector<amrex::Real> m_gravity{0.0, 0.0, -9.81};
+    amrex::Real m_buoyancy_factor = 0.0_rt;
+    amrex::Real m_sigma_t{0.85_rt};
+    amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 };
 
 } // namespace amr_wind::turbulence

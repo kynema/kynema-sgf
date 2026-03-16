@@ -5,6 +5,9 @@
 #include "AMReX_ParmParse.H"
 #include "AMReX_ParReduce.H"
 #include "amr-wind/utilities/trig_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::burggraf {
 
@@ -13,15 +16,19 @@ namespace {
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
 UExact::operator()(const amrex::Real x, const amrex::Real y) const
 {
-    return 8 * (std::pow(x, 4) - 2 * std::pow(x, 3) + std::pow(x, 2)) *
-           (4 * std::pow(y, 3) - 2 * y);
+    return 8.0_rt *
+           (std::pow(x, 4.0_rt) - 2.0_rt * std::pow(x, 3.0_rt) +
+            std::pow(x, 2.0_rt)) *
+           (4.0_rt * std::pow(y, 3.0_rt) - 2.0_rt * y);
 }
 
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
 VExact::operator()(const amrex::Real x, const amrex::Real y) const
 {
-    return -8 * (4 * std::pow(x, 3) - 6 * std::pow(x, 2) + 2 * x) *
-           (std::pow(y, 4) - std::pow(y, 2));
+    return -8.0_rt *
+           (4.0_rt * std::pow(x, 3.0_rt) - 6.0_rt * std::pow(x, 2.0_rt) +
+            2.0_rt * x) *
+           (std::pow(y, 4.0_rt) - std::pow(y, 2.0_rt));
 }
 
 } // namespace
@@ -38,15 +45,13 @@ BurggrafFlow::BurggrafFlow(const CFDSim& sim)
         std::ofstream f;
         f.open(m_output_fname.c_str());
         f << std::setw(m_w) << "time" << std::setw(m_w) << "L2_u"
-          << std::setw(m_w) << "L2_v" << std::setw(m_w) << "L2_w" << std::endl;
+          << std::setw(m_w) << "L2_v" << std::setw(m_w) << "L2_w" << '\n';
         f.close();
     }
 }
 
 void BurggrafFlow::initialize_fields(int level, const amrex::Geometry& geom)
 {
-    using namespace utils;
-
     const auto& dx = geom.CellSizeArray();
     const auto& prob_lo = geom.ProbLoArray();
 
@@ -67,38 +72,45 @@ void BurggrafFlow::initialize_fields(int level, const amrex::Geometry& geom)
     const auto& src_arrs = source.arrays();
 
     amrex::ParallelFor(
-        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             // compute the source term
-            const amrex::Real x = prob_lo[0] + (i + 0.5) * dx[0];
-            const amrex::Real y = prob_lo[1] + (j + 0.5) * dx[1];
+            const amrex::Real x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
+            const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
 
             vel_arrs[nbx](i, j, k, 0) = u_exact(x, y);
             vel_arrs[nbx](i, j, k, 1) = v_exact(x, y);
-            vel_arrs[nbx](i, j, k, 2) = 0.0;
+            vel_arrs[nbx](i, j, k, 2) = 0.0_rt;
 
-            const amrex::Real f =
-                std::pow(x, 4) - 2 * std::pow(x, 3) + std::pow(x, 2);
-            const amrex::Real f1 =
-                4 * std::pow(x, 3) - 6 * std::pow(x, 2) + 2 * x;
-            const amrex::Real f3 = 24 * x - 12;
-            const amrex::Real g = std::pow(y, 4) - std::pow(y, 2);
-            const amrex::Real g1 = 4 * std::pow(y, 3) - 2 * y;
-            const amrex::Real g2 = 12 * std::pow(y, 2) - 2;
+            const amrex::Real f = std::pow(x, 4.0_rt) -
+                                  (2.0_rt * std::pow(x, 3.0_rt)) +
+                                  std::pow(x, 2.0_rt);
+            const amrex::Real f1 = (4.0_rt * std::pow(x, 3.0_rt)) -
+                                   (6.0_rt * std::pow(x, 2.0_rt)) +
+                                   (2.0_rt * x);
+            const amrex::Real f3 = (24.0_rt * x) - 12.0_rt;
+            const amrex::Real g = std::pow(y, 4.0_rt) - std::pow(y, 2.0_rt);
+            const amrex::Real g1 =
+                (4.0_rt * std::pow(y, 3.0_rt)) - (2.0_rt * y);
+            const amrex::Real g2 = (12.0_rt * std::pow(y, 2.0_rt)) - 2.0_rt;
 
-            const amrex::Real F =
-                std::pow(x, 5) / 5 - std::pow(x, 4) / 2 + std::pow(x, 3) / 3;
-            const amrex::Real F1 = -4 * std::pow(x, 6) + 12 * std::pow(x, 5) -
-                                   14 * std::pow(x, 4) + 8 * std::pow(x, 3) -
-                                   2 * std::pow(x, 2);
-            const amrex::Real F2 = f * f / 2;
-            const amrex::Real G1 =
-                -24 * std::pow(y, 5) + 8 * std::pow(y, 3) - 4 * y;
+            const amrex::Real F = (std::pow(x, 5.0_rt) / 5.0_rt) -
+                                  (std::pow(x, 4.0_rt) / 2.0_rt) +
+                                  (std::pow(x, 3.0_rt) / 3.0_rt);
+            const amrex::Real F1 = (-4.0_rt * std::pow(x, 6.0_rt)) +
+                                   (12.0_rt * std::pow(x, 5.0_rt)) -
+                                   (14.0_rt * std::pow(x, 4.0_rt)) +
+                                   (8.0_rt * std::pow(x, 3.0_rt)) -
+                                   (2.0_rt * std::pow(x, 2.0_rt));
+            const amrex::Real F2 = f * f / 2.0_rt;
+            const amrex::Real G1 = (-24.0_rt * std::pow(y, 5.0_rt)) +
+                                   (8.0_rt * std::pow(y, 3.0_rt)) -
+                                   (4.0_rt * y);
 
-            src_arrs[nbx](i, j, k, 0) = 0.0;
+            src_arrs[nbx](i, j, k, 0) = 0.0_rt;
             src_arrs[nbx](i, j, k, 1) =
-                (8 / Re * (24 * F + 2 * f1 * g2 + f3 * g) +
-                 64 * (F2 * G1 - g * g1 * F1));
-            src_arrs[nbx](i, j, k, 2) = 0.0;
+                ((8.0_rt / Re * (24.0_rt * F + 2.0_rt * f1 * g2 + f3 * g)) +
+                 (64.0_rt * (F2 * G1 - g * g1 * F1)));
+            src_arrs[nbx](i, j, k, 2) = 0.0_rt;
         });
     amrex::Gpu::streamSynchronize();
 }
@@ -106,7 +118,7 @@ void BurggrafFlow::initialize_fields(int level, const amrex::Geometry& geom)
 template <typename T>
 amrex::Real BurggrafFlow::compute_error(const Field& field)
 {
-    amrex::Real error = 0.0;
+    amrex::Real error = 0.0_rt;
     T f_exact;
     const auto comp = f_exact.m_comp;
 
@@ -140,8 +152,8 @@ amrex::Real BurggrafFlow::compute_error(const Field& field)
                 auto const& fld_bx = fld_arr[box_no];
                 auto const& mask_bx = mask_arr[box_no];
 
-                amrex::Real x = prob_lo[0] + (i + 0.5) * dx[0];
-                amrex::Real y = prob_lo[1] + (j + 0.5) * dx[1];
+                amrex::Real x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
+                amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
                 const amrex::Real u = fld_bx(i, j, k, comp);
                 const amrex::Real u_exact = f_exact(x, y);
                 const amrex::Real cell_vol = dx[0] * dx[1] * dx[2];
@@ -168,7 +180,7 @@ void BurggrafFlow::output_error()
         std::ofstream f;
         f.open(m_output_fname.c_str(), std::ios_base::app);
         f << std::setprecision(12) << m_time.new_time() << std::setw(m_w)
-          << std::setw(m_w) << u_err << std::setw(m_w) << v_err << std::endl;
+          << std::setw(m_w) << u_err << std::setw(m_w) << v_err << '\n';
         f.close();
     }
 }

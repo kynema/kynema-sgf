@@ -6,6 +6,9 @@
 #include "amr-wind/CFDSim.H"
 #include "AMReX_Gpu.H"
 #include <AMReX_BndryRegister.H>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -24,28 +27,26 @@ public:
     void post_init_actions();
 
     void set_velocity(
-        const int lev,
-        const amrex::Real time,
+        int lev,
+        amrex::Real time,
         const Field& fld,
         amrex::MultiFab& mfab,
-        const int dcomp = 0,
-        const int orig_comp = 0) const;
+        int dcomp = 0,
+        int orig_comp = 0) const;
 
-    void set_vof(
-        const int lev,
-        const amrex::Real time,
-        const Field& fld,
-        amrex::MultiFab& mfab) const;
+    void
+    set_vof(int lev, amrex::Real time, const Field& fld, amrex::MultiFab& mfab)
+        const;
 
     void set_density(
-        const int lev,
-        const amrex::Real time,
+        int lev,
+        amrex::Real time,
         const Field& fld,
         amrex::MultiFab& mfab) const;
 
     void set_inflow_sibling_velocity(
-        const int lev,
-        const amrex::Real time,
+        int lev,
+        amrex::Real time,
         const Field& fld,
         amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM> mfabs) const;
 
@@ -54,7 +55,10 @@ public:
         m_bndry_time = time;
     }
 
-    amrex::Real get_boundary_data_time() const { return m_bndry_time; }
+    [[nodiscard]] amrex::Real get_boundary_data_time() const
+    {
+        return m_bndry_time;
+    }
 
 private:
     const amr_wind::SimTime& m_time;
@@ -74,10 +78,10 @@ private:
     bool m_terrain_exists{false};
 
     // Store time corresponding to current boundary data
-    amrex::Real m_bndry_time{0.0};
+    amrex::Real m_bndry_time{0.0_rt};
 
     // Will only remain negative if not needed
-    amrex::Real m_rho1{-1.0};
+    amrex::Real m_rho1{-1.0_rt};
 };
 
 } // namespace amr_wind

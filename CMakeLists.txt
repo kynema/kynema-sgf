@@ -52,7 +52,7 @@ option(AMR_WIND_ENABLE_W2A "Enable Waves2AMR library" OFF)
 option(AMR_WIND_ENABLE_FFT "Enable FFT solver for MAC projection" OFF)
 
 #Options for C++
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -62,9 +62,9 @@ endif()
 
 if(AMR_WIND_ENABLE_CUDA)
   enable_language(CUDA)
-  if(CMAKE_CUDA_COMPILER_VERSION VERSION_LESS "10.0")
+  if(CMAKE_CUDA_COMPILER_VERSION VERSION_LESS "12.0")
     message(FATAL_ERROR "Your nvcc version is ${CMAKE_CUDA_COMPILER_VERSION} which is unsupported."
-      "Please use CUDA toolkit version 10.0 or newer.")
+      "Please use CUDA toolkit version 12.0 or newer.")
   endif()
 endif()
 
@@ -85,7 +85,14 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
   message(WARNING "Disabling FPE trapping for tests when using AppleClang.")
 endif()
 
+if(AMR_WIND_ENABLE_KYNEMA AND (NOT AMR_WIND_ENABLE_MPI))
+  message(FATAL_ERROR "Enabling Kyenma currently requires MPI to be enabled.")
+endif()
+
 if(AMR_WIND_ENABLE_OPENFAST)
+  if(NOT AMR_WIND_ENABLE_MPI)
+    message(FATAL_ERROR "Enabling OpenFAST currently requires MPI to be enabled.")
+  endif()
   enable_language(Fortran)
 endif()
 
@@ -94,7 +101,7 @@ init_amrex()
 init_amrex_hydro()
 
 ########################## Waves2AMR ##################################
-if (AMR_WIND_ENABLE_W2A)
+if(AMR_WIND_ENABLE_W2A)
   init_waves2amr()
 endif()
 
@@ -125,7 +132,7 @@ endif()
 
 include(set_compile_flags)
 
-if (AMR_WIND_ENABLE_W2A)
+if(AMR_WIND_ENABLE_W2A)
   target_compile_definitions(${amr_wind_lib_name} PUBLIC AMR_WIND_USE_W2A)
   target_link_libraries(${amr_wind_lib_name} PUBLIC Waves2AMR::Waves2AMR)
 endif()
@@ -137,7 +144,7 @@ if(AMR_WIND_ENABLE_NETCDF)
   target_link_libraries_system(${amr_wind_lib_name} PUBLIC NetCDF::NetCDF)
 endif()
 
-if (AMR_WIND_ENABLE_UMPIRE)
+if(AMR_WIND_ENABLE_UMPIRE)
   set(CMAKE_PREFIX_PATH ${UMPIRE_DIR} ${CMAKE_PREFIX_PATH})
   find_package(Umpire REQUIRED)
   target_include_directories(${amr_wind_lib_name} SYSTEM ${UMPIRE_INCLUDE_DIRS})

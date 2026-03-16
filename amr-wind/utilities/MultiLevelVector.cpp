@@ -39,8 +39,7 @@ void MultiLevelVector::copy_to_field(Field& fld)
         const auto* d_ptr = m_data_d[lev].data();
         const int axis = m_axis;
         amrex::ParallelFor(
-            fld(lev), ngs,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            fld(lev), ngs, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const int idx = (axis == 0) ? i : ((axis == 1) ? j : k);
                 farrs[nbx](i, j, k, 0) = d_ptr[idx];
             });

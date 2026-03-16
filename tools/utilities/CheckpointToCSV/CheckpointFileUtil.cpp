@@ -8,8 +8,6 @@
 #include <fstream>
 #include <iomanip>
 
-using namespace amrex;
-
 namespace {
 void GotoNextLine(std::istream& is)
 {
@@ -19,7 +17,8 @@ void GotoNextLine(std::istream& is)
 } // namespace
 
 CheckpointFileDataImpl::CheckpointFileDataImpl(
-    std::string const& chkptfile_name, Vector<std::string> addl_field_names)
+    std::string const& chkptfile_name,
+    amrex::Vector<std::string> addl_field_names)
     : m_chkptfile_name(chkptfile_name)
 {
     // Add field names from input
@@ -36,8 +35,8 @@ CheckpointFileDataImpl::CheckpointFileDataImpl(
 
     // Header
     std::string File(chkptfile_name + "/Header");
-    Vector<char> fileCharPtr;
-    ParallelDescriptor::ReadAndBcastFile(File, fileCharPtr);
+    amrex::Vector<char> fileCharPtr;
+    amrex::ParallelDescriptor::ReadAndBcastFile(File, fileCharPtr);
     std::istringstream is(
         std::string(fileCharPtr.dataPtr()), std::istringstream::in);
 
@@ -75,7 +74,7 @@ CheckpointFileDataImpl::CheckpointFileDataImpl(
         std::istringstream lis(line);
         int i = 0;
         while (lis >> word) {
-            m_prob_lo[i++] = std::stod(word);
+            m_prob_lo[i++] = static_cast<amrex::Real>(std::stod(word));
         }
     }
 
@@ -85,7 +84,7 @@ CheckpointFileDataImpl::CheckpointFileDataImpl(
         std::istringstream lis(line);
         int i = 0;
         while (lis >> word) {
-            m_prob_hi[i++] = std::stod(word);
+            m_prob_hi[i++] = static_cast<amrex::Real>(std::stod(word));
         }
     }
 
@@ -96,7 +95,8 @@ CheckpointFileDataImpl::CheckpointFileDataImpl(
     m_ngrow.resize(m_nlevels);
     m_prob_domain.resize(m_nlevels);
     m_cell_size.resize(
-        m_nlevels, Array<Real, AMREX_SPACEDIM>{{AMREX_D_DECL(1., 1., 1.)}});
+        m_nlevels,
+        amrex::Array<amrex::Real, AMREX_SPACEDIM>{{AMREX_D_DECL(1., 1., 1.)}});
     for (int lev = 0; lev <= m_finest_level; ++lev) {
         // read in level 'lev' BoxArray from Header
         m_ba[lev].readFrom(is);
@@ -104,7 +104,7 @@ CheckpointFileDataImpl::CheckpointFileDataImpl(
         // get minimal box from box array for prob domain
         m_prob_domain[lev] = m_ba[lev].minimalBox();
         // make distribution map
-        m_dmap[lev].define(m_ba[lev], ParallelDescriptor::NProcs());
+        m_dmap[lev].define(m_ba[lev], amrex::ParallelDescriptor::NProcs());
         // ngrow is set to 0, don't know how to find it properly
         m_ngrow[lev] = {0, 0, 0};
     }
@@ -143,16 +143,16 @@ void CheckpointFileDataImpl::syncDistributionMap(
     }
 }
 
-MultiFab CheckpointFileDataImpl::get(int level) noexcept
+amrex::MultiFab CheckpointFileDataImpl::get(int level) noexcept
 {
     const std::string level_prefix{"Level_"};
-    MultiFab mf(m_ba[level], m_dmap[level], m_ncomp, m_ngrow[level]);
+    amrex::MultiFab mf(m_ba[level], m_dmap[level], m_ncomp, m_ngrow[level]);
 
     // Do checkpoint reading, which is a field at a time
     for (int lev = 0; lev < m_nlevels; ++lev) {
         int icomp = 0;
         for (int nf = 0; nf < m_nfields; ++nf) {
-            MultiFab tmp_mfab(
+            amrex::MultiFab tmp_mfab(
                 m_ba[level], m_dmap[level], m_var_ncomp[nf], m_ngrow[level]);
 
             // Read current field into temporary fab

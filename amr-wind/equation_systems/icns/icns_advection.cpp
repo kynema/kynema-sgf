@@ -1,15 +1,16 @@
-#include <AMReX.H>
 #include <memory>
-
+#include "AMReX.H"
 #include "amr-wind/equation_systems/icns/icns_advection.H"
 #include "amr-wind/core/MLMGOptions.H"
 #include "amr-wind/utilities/console_io.H"
 #include "amr-wind/wind_energy/ABL.H"
 #include "amr-wind/ocean_waves/OceanWaves.H"
 #include "amr-wind/overset/overset_ops_routines.H"
-
 #include "AMReX_MultiFabUtil.H"
 #include "hydro_MacProjector.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde {
 
@@ -18,7 +19,7 @@ namespace {
 amrex::Array<amrex::LinOpBCType, AMREX_SPACEDIM> get_projection_bc(
     amrex::Orientation::Side side,
     amrex::GpuArray<BC, AMREX_SPACEDIM * 2> bctype,
-    amrex::Vector<amrex::Geometry> geom) noexcept
+    amrex::Vector<amrex::Geometry> geom)
 {
 
     amrex::Array<amrex::LinOpBCType, AMREX_SPACEDIM> r;
@@ -65,8 +66,7 @@ MacProjOp::MacProjOp(
 }
 
 void MacProjOp::enforce_inout_solvability(
-    const amrex::Vector<amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>>&
-        a_umac) noexcept
+    const amrex::Vector<amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>>& a_umac)
 {
     auto& velocity = m_repo.get_field("velocity");
     amrex::BCRec const* bc_type = velocity.bcrec().data();
@@ -75,7 +75,7 @@ void MacProjOp::enforce_inout_solvability(
     HydroUtils::enforceInOutSolvability(a_umac, bc_type, geom);
 }
 
-void MacProjOp::init_projector(const MacProjOp::FaceFabPtrVec& beta) noexcept
+void MacProjOp::init_projector(const MacProjOp::FaceFabPtrVec& beta)
 {
     // Prepare masking for projection
     if (m_has_overset) {
@@ -104,7 +104,7 @@ void MacProjOp::init_projector(const MacProjOp::FaceFabPtrVec& beta) noexcept
     m_need_init = false;
 }
 
-void MacProjOp::init_projector(const amrex::Real beta) noexcept
+void MacProjOp::init_projector(const amrex::Real beta)
 {
     // Prepare masking for projection
     if (m_has_overset) {
@@ -216,7 +216,7 @@ void MacProjOp::operator()(const FieldState fstate, const amrex::Real dt)
     amrex::Vector<amrex::Array<amrex::MultiFab*, ICNS::ndim>> mac_vec(
         m_repo.num_active_levels());
 
-    amrex::Real factor = m_has_overset ? 0.5 * dt : 1.0;
+    amrex::Real factor = m_has_overset ? 0.5_rt * dt : 1.0_rt;
 
     std::unique_ptr<ScratchField> ref_rho_xf, ref_rho_yf, ref_rho_zf;
     if (m_is_anelastic) {
@@ -381,7 +381,7 @@ void MacProjOp::mac_proj_to_uniform_space(
     amr_wind::Field& w_mac,
     amrex::Array<amrex::MultiFab*, ICNS::ndim>& rho_face,
     amrex::Real ovst_fac,
-    int lev) noexcept
+    int lev)
 {
     const auto& mesh_fac_xf =
         repo.get_mesh_mapping_field(amr_wind::FieldLoc::XFACE);
@@ -406,13 +406,12 @@ void MacProjOp::mac_proj_to_uniform_space(
         const auto& detJ_arrs = mesh_detJ_xf(lev).const_arrays();
 
         amrex::ParallelFor(
-            *(rho_face[0]),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            *(rho_face[0]), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 u_arrs[nbx](i, j, k) *=
                     detJ_arrs[nbx](i, j, k) / fac_arrs[nbx](i, j, k, 0);
                 rho_arrs[nbx](i, j, k) =
                     ovst_fac * detJ_arrs[nbx](i, j, k) /
-                    std::pow(fac_arrs[nbx](i, j, k, 0), 2) /
+                    std::pow(fac_arrs[nbx](i, j, k, 0), 2.0_rt) /
                     rho_arrs[nbx](i, j, k);
             });
     }
@@ -425,13 +424,12 @@ void MacProjOp::mac_proj_to_uniform_space(
         const auto& detJ_arrs = mesh_detJ_yf(lev).const_arrays();
 
         amrex::ParallelFor(
-            *(rho_face[1]),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            *(rho_face[1]), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 v_arrs[nbx](i, j, k) *=
                     detJ_arrs[nbx](i, j, k) / fac_arrs[nbx](i, j, k, 1);
                 rho_arrs[nbx](i, j, k) =
                     ovst_fac * detJ_arrs[nbx](i, j, k) /
-                    std::pow(fac_arrs[nbx](i, j, k, 1), 2) /
+                    std::pow(fac_arrs[nbx](i, j, k, 1), 2.0_rt) /
                     rho_arrs[nbx](i, j, k);
             });
     }
@@ -444,13 +442,12 @@ void MacProjOp::mac_proj_to_uniform_space(
         const auto& detJ_arrs = mesh_detJ_zf(lev).const_arrays();
 
         amrex::ParallelFor(
-            *(rho_face[2]),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            *(rho_face[2]), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 w_arrs[nbx](i, j, k) *=
                     detJ_arrs[nbx](i, j, k) / fac_arrs[nbx](i, j, k, 2);
                 rho_arrs[nbx](i, j, k) =
                     ovst_fac * detJ_arrs[nbx](i, j, k) /
-                    std::pow(fac_arrs[nbx](i, j, k, 2), 2) /
+                    std::pow(fac_arrs[nbx](i, j, k, 2), 2.0_rt) /
                     rho_arrs[nbx](i, j, k);
             });
     }

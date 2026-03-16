@@ -98,6 +98,7 @@ documentation provided here might not work with older releases.
    inputs_MLMG.rst
    inputs_post_processing.rst
    inputs_Sampling.rst
+   inputs_Subvolume.rst
    inputs_Averaging.rst
    inputs_KineticEnergy.rst
    inputs_Enstrophy.rst

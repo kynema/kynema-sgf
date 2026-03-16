@@ -37,43 +37,36 @@ struct Divergence
             return;
         }
 
-        amrex::ParallelFor(
-            bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                for (int icomp = 0; icomp < ncomp; icomp++) {
-                    amrex::Real cp1 = Stencil::c00;
-                    amrex::Real c = Stencil::c01;
-                    amrex::Real cm1 = Stencil::c02;
-                    divphi_arr(i, j, k, icomp) =
-                        (cp1 *
-                             phi_arr(i + 1, j, k, icomp * AMREX_SPACEDIM + 0) +
-                         c * phi_arr(i, j, k, icomp * AMREX_SPACEDIM + 0) +
-                         cm1 *
-                             phi_arr(i - 1, j, k, icomp * AMREX_SPACEDIM + 0)) *
-                        idx[0];
+        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+            for (int icomp = 0; icomp < ncomp; icomp++) {
+                amrex::Real cp1 = Stencil::c00;
+                amrex::Real c = Stencil::c01;
+                amrex::Real cm1 = Stencil::c02;
+                divphi_arr(i, j, k, icomp) =
+                    (cp1 * phi_arr(i + 1, j, k, (icomp * AMREX_SPACEDIM) + 0) +
+                     c * phi_arr(i, j, k, (icomp * AMREX_SPACEDIM) + 0) +
+                     cm1 * phi_arr(i - 1, j, k, (icomp * AMREX_SPACEDIM) + 0)) *
+                    idx[0];
 
-                    cp1 = Stencil::c10;
-                    c = Stencil::c11;
-                    cm1 = Stencil::c12;
-                    divphi_arr(i, j, k, icomp) +=
-                        (cp1 *
-                             phi_arr(i, j + 1, k, icomp * AMREX_SPACEDIM + 1) +
-                         c * phi_arr(i, j, k, icomp * AMREX_SPACEDIM + 1) +
-                         cm1 *
-                             phi_arr(i, j - 1, k, icomp * AMREX_SPACEDIM + 1)) *
-                        idx[1];
+                cp1 = Stencil::c10;
+                c = Stencil::c11;
+                cm1 = Stencil::c12;
+                divphi_arr(i, j, k, icomp) +=
+                    (cp1 * phi_arr(i, j + 1, k, (icomp * AMREX_SPACEDIM) + 1) +
+                     c * phi_arr(i, j, k, (icomp * AMREX_SPACEDIM) + 1) +
+                     cm1 * phi_arr(i, j - 1, k, (icomp * AMREX_SPACEDIM) + 1)) *
+                    idx[1];
 
-                    cp1 = Stencil::c20;
-                    c = Stencil::c21;
-                    cm1 = Stencil::c22;
-                    divphi_arr(i, j, k, icomp) +=
-                        (cp1 *
-                             phi_arr(i, j, k + 1, icomp * AMREX_SPACEDIM + 2) +
-                         c * phi_arr(i, j, k, icomp * AMREX_SPACEDIM + 2) +
-                         cm1 *
-                             phi_arr(i, j, k - 1, icomp * AMREX_SPACEDIM + 2)) *
-                        idx[2];
-                }
-            });
+                cp1 = Stencil::c20;
+                c = Stencil::c21;
+                cm1 = Stencil::c22;
+                divphi_arr(i, j, k, icomp) +=
+                    (cp1 * phi_arr(i, j, k + 1, (icomp * AMREX_SPACEDIM) + 2) +
+                     c * phi_arr(i, j, k, (icomp * AMREX_SPACEDIM) + 2) +
+                     cm1 * phi_arr(i, j, k - 1, (icomp * AMREX_SPACEDIM) + 2)) *
+                    idx[2];
+            }
+        });
     }
 
     FTypeOut& m_divphi;
@@ -84,7 +77,7 @@ struct Divergence
  *  \ingroup fvm
  */
 template <typename FTypeIn, typename FTypeOut>
-inline void divergence(FTypeOut& divphi, const FTypeIn& phi)
+void divergence(FTypeOut& divphi, const FTypeIn& phi)
 {
     BL_PROFILE("amr-wind::fvm::divergence");
     Divergence<FTypeIn, FTypeOut> grad(divphi, phi);
@@ -95,7 +88,7 @@ inline void divergence(FTypeOut& divphi, const FTypeIn& phi)
  *  \ingroup fvm
  */
 template <typename FType>
-inline std::unique_ptr<ScratchField> divergence(const FType& phi)
+std::unique_ptr<ScratchField> divergence(const FType& phi)
 {
     AMREX_ALWAYS_ASSERT(phi.num_comp() >= AMREX_SPACEDIM);
     AMREX_ALWAYS_ASSERT(phi.num_comp() % AMREX_SPACEDIM == 0);

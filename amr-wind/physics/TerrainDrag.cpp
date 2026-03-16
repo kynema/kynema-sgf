@@ -8,6 +8,9 @@
 #include "amr-wind/utilities/IOManager.H"
 #include "amr-wind/utilities/io_utils.H"
 #include "amr-wind/utilities/linear_interpolation.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::terraindrag {
 
@@ -41,8 +44,8 @@ TerrainDrag::TerrainDrag(CFDSim& sim)
     m_sim.io_manager().register_io_var("terrainz0");
     m_sim.io_manager().register_io_var("terrain_height");
 
-    m_terrain_blank.setVal(0.0);
-    m_terrain_drag.setVal(0.0);
+    m_terrain_blank.setVal(0);
+    m_terrain_drag.setVal(0);
     m_terrainz0.set_default_fillpatch_bc(m_sim.time());
     m_terrain_height.set_default_fillpatch_bc(m_sim.time());
 }
@@ -120,10 +123,10 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
     auto levelheight = terrain_height.arrays();
     amrex::ParallelFor(
         blanking, m_terrain_blank.num_grow(),
-        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
-            const amrex::Real x = prob_lo[0] + (i + 0.5) * dx[0];
-            const amrex::Real y = prob_lo[1] + (j + 0.5) * dx[1];
-            const amrex::Real z = prob_lo[2] + (k + 0.5) * dx[2];
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+            const amrex::Real x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
+            const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
+            const amrex::Real z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
             const amrex::Real terrainHt = interp::bilinear(
                 xterrain_ptr, xterrain_ptr + xterrain_size, yterrain_ptr,
                 yterrain_ptr + yterrain_size, zterrain_ptr, x, y);
@@ -131,7 +134,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 static_cast<int>((z <= terrainHt) && (z > prob_lo[2]));
             levelheight[nbx](i, j, k, 0) = terrainHt;
 
-            amrex::Real roughz0 = 0.1;
+            amrex::Real roughz0 = 0.1_rt;
             if (xrough_size > 0) {
                 roughz0 = interp::bilinear(
                     xrough_ptr, xrough_ptr + xrough_size, yrough_ptr,
@@ -141,7 +144,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
         });
     amrex::Gpu::streamSynchronize();
     amrex::ParallelFor(
-        blanking, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        blanking, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             if ((levelBlanking[nbx](i, j, k, 0) == 0) && (k > 0) &&
                 (levelBlanking[nbx](i, j, k - 1, 0) == 1)) {
                 levelDrag[nbx](i, j, k, 0) = 1;
@@ -186,7 +189,7 @@ void TerrainDrag::convert_waves_to_terrain_fields()
 {
     const int nlevels = m_sim.repo().num_active_levels();
     // Uniform, low roughness for waves
-    m_terrainz0.setVal(1e-4);
+    m_terrainz0.setVal(1.0e-4_rt);
     for (int level = 0; level < nlevels; ++level) {
         const auto geom = m_sim.repo().mesh().Geom(level);
         const auto& dx = geom.CellSizeArray();
@@ -207,16 +210,16 @@ void TerrainDrag::convert_waves_to_terrain_fields()
         // Get terrain blanking from ocean waves fields
         amrex::ParallelFor(
             blanking, m_terrain_blank.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
-                const amrex::Real z = prob_lo[2] + (k + 0.5) * dx[2];
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                const amrex::Real z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
                 levelBlanking[nbx](i, j, k, 0) = static_cast<int>(
-                    (wave_vol_frac[nbx](i, j, k) >= 0.5) && (z > prob_lo[2]));
+                    (wave_vol_frac[nbx](i, j, k) >= 0.5_rt) &&
+                    (z > prob_lo[2]));
                 levelHeight[nbx](i, j, k, 0) =
                     -negative_wave_elevation[nbx](i, j, k);
             });
         amrex::ParallelFor(
-            blanking,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            blanking, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 if ((levelBlanking[nbx](i, j, k, 0) == 0) && (k > 0) &&
                     (levelBlanking[nbx](i, j, k - 1, 0) == 1)) {
                     levelDrag[nbx](i, j, k, 0) = 1;

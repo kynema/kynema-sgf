@@ -14,7 +14,7 @@ CustomScalar::CustomScalar(const Field& fld)
     // This capability can be activated with the following in the input file:
     // xlo.type = "mass_inflow"
     // xlo.temperature.inflow_type = CustomScalar
-    // CustomScalar.foo = 1.0
+    // CustomScalar.foo = 1.0_rt
 
     amrex::ParmParse pp("CustomScalar");
     pp.query("foo", m_op.foo);

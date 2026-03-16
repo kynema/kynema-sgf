@@ -1,15 +1,16 @@
 #include "aw_test_utils/MeshTest.H"
 #include "aw_test_utils/iter_tools.H"
-
 #include "AMReX_Box.H"
 #include "AMReX_BoxArray.H"
 #include "AMReX_BoxList.H"
 #include "AMReX_Geometry.H"
 #include "AMReX_RealBox.H"
 #include "AMReX_Vector.H"
-
 #include "amr-wind/utilities/FieldPlaneAveraging.H"
 #include "amr-wind/utilities/trig_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -21,8 +22,9 @@ public:
 
 TEST_F(PlaneAveragingTest, test_constant)
 {
-    constexpr double tol = 1.0e-12;
-    constexpr amrex::Real u0 = 2.3, v0 = 3.5, w0 = 5.6, t0 = 3.2;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+    constexpr amrex::Real u0 = 2.3_rt, v0 = 3.5_rt, w0 = 5.6_rt, t0 = 3.2_rt;
 
     populate_parameters();
     initialize_mesh();
@@ -53,7 +55,7 @@ TEST_F(PlaneAveragingTest, test_constant)
         amr_wind::VelPlaneAveraging pa(sim(), dir);
         pa();
 
-        amrex::Real z = 0.5 * (problo[dir] + probhi[dir]);
+        amrex::Real z = 0.5_rt * (problo[dir] + probhi[dir]);
 
         amrex::Real u = pa.line_average_interpolated(z, 0);
         amrex::Real v = pa.line_average_interpolated(z, 1);
@@ -74,15 +76,13 @@ void add_linear(
     const amrex::Box& bx,
     const amrex::Array4<amrex::Real>& velocity)
 {
-    auto xlo = geom.ProbLoArray();
-    auto dx = geom.CellSizeArray();
+    const auto xlo = geom.ProbLoArray();
+    const auto dx = geom.CellSizeArray();
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::GpuArray<amrex::Real, 3> x = {
-
-            xlo[0] + (i + 0.5) * dx[0], xlo[1] + (j + 0.5) * dx[1],
-            xlo[2] + (k + 0.5) * dx[2]};
-
+            xlo[0] + ((i + 0.5_rt) * dx[0]), xlo[1] + ((j + 0.5_rt) * dx[1]),
+            xlo[2] + ((k + 0.5_rt) * dx[2])};
         velocity(i, j, k, 0) += a[0] * x[dir];
         velocity(i, j, k, 1) += a[1] * x[dir];
         velocity(i, j, k, 2) += a[2] * x[dir];
@@ -94,10 +94,12 @@ void add_linear(
 TEST_F(PlaneAveragingTest, test_linear)
 {
 
-    constexpr double tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
-    amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> u0 = {{1.0, 3.5, 5.6}};
-    amrex::Real t0 = 3.2;
+    amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> u0 = {
+        {1.0_rt, 3.5_rt, 5.6_rt}};
+    amrex::Real t0 = 3.2_rt;
 
     populate_parameters();
     initialize_mesh();
@@ -138,14 +140,14 @@ TEST_F(PlaneAveragingTest, test_linear)
     const amrex::Real L = probhi[dir] - problo[dir];
     const amrex::Real dx = L / ((amrex::Real)n);
     const amrex::Real hchLo =
-        problo[dir] + 0.5 * mesh().Geom(0).CellSizeArray()[dir];
+        problo[dir] + (0.5_rt * mesh().Geom(0).CellSizeArray()[dir]);
     const amrex::Real hchHi =
-        probhi[dir] - 0.5 * mesh().Geom(0).CellSizeArray()[dir];
+        probhi[dir] - (0.5_rt * mesh().Geom(0).CellSizeArray()[dir]);
 
     // test along a line at n equidistant points
     for (int i = 0; i < n; ++i) {
 
-        const amrex::Real x = problo[dir] + i * dx;
+        const amrex::Real x = problo[dir] + (i * dx);
 
         const amrex::Array<amrex::Real, 3> u = {
             pa.line_average_interpolated(x, 0),
@@ -169,7 +171,7 @@ TEST_F(PlaneAveragingTest, test_linear)
 
         // test each velocity field u = u0 + u0*x
         for (int j = 0; j < 3; ++j) {
-            EXPECT_NEAR(u0[j] * (xtest + 1.0), u[j], tol);
+            EXPECT_NEAR(u0[j] * (xtest + 1.0_rt), u[j], tol);
         }
     }
 }
@@ -186,17 +188,17 @@ void add_periodic(
     auto xlo = geom.ProbLoArray();
     auto dx = geom.CellSizeArray();
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::GpuArray<amrex::Real, 3> x = {
-            xlo[0] + (i + 0.5) * dx[0], xlo[1] + (j + 0.5) * dx[1],
-            xlo[2] + (k + 0.5) * dx[2]};
+            xlo[0] + ((i + 0.5_rt) * dx[0]), xlo[1] + ((j + 0.5_rt) * dx[1]),
+            xlo[2] + ((k + 0.5_rt) * dx[2])};
 
         for (int d = 0; d < 3; ++d) {
             if (d != dir) {
                 velocity(i, j, k, 0) += std::cos(a[d] * x[d]);
                 velocity(i, j, k, 1) += std::sin(a[d] * x[d]);
                 velocity(i, j, k, 2) +=
-                    std::sin(a[d] * x[d]) * cos(a[d] * x[d]);
+                    std::sin(a[d] * x[d]) * std::cos(a[d] * x[d]);
             }
         }
     });
@@ -207,8 +209,9 @@ void add_periodic(
 void PlaneAveragingTest::test_dir(int dir)
 {
 
-    constexpr double tol = 1.0e-12;
-    constexpr amrex::Real u0 = 2.3, v0 = 3.5, w0 = 5.6, t0 = 3.2;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+    constexpr amrex::Real u0 = 2.3_rt, v0 = 3.5_rt, w0 = 5.6_rt, t0 = 3.2_rt;
 
     populate_parameters();
     initialize_mesh();
@@ -251,7 +254,7 @@ void PlaneAveragingTest::test_dir(int dir)
     amr_wind::VelPlaneAveraging pa(sim(), dir);
     pa();
 
-    amrex::Real x = 0.5 * (problo[dir] + probhi[dir]);
+    amrex::Real x = 0.5_rt * (problo[dir] + probhi[dir]);
     amrex::Real u = pa.line_average_interpolated(x, 0);
     amrex::Real v = pa.line_average_interpolated(x, 1);
     amrex::Real w = pa.line_average_interpolated(x, 2);

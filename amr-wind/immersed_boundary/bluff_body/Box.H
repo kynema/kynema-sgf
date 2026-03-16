@@ -7,10 +7,10 @@ namespace amr_wind::ib {
 
 struct BoxData : public BluffBodyBaseData
 {
-    vs::Vector center_loc{0.0, 0.0, 0.0};
-    amrex::Real length{0.1};
-    amrex::Real width{0.1};
-    amrex::Real height{0.1};
+    vs::Vector center_loc{0.0_rt, 0.0_rt, 0.0_rt};
+    amrex::Real length{0.1_rt};
+    amrex::Real width{0.1_rt};
+    amrex::Real height{0.1_rt};
 };
 
 struct Box : public BluffBodyType

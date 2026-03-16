@@ -11,6 +11,9 @@
 #include "amr-wind/utilities/FieldPlaneAveraging.H"
 #include "amr-wind/utilities/SecondMomentAveraging.H"
 #include "amr-wind/utilities/trig_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -22,8 +25,9 @@ public:
 
 TEST_F(SecondMomentAveragingTest, test_constant)
 {
-    constexpr double tol = 1.0e-12;
-    constexpr amrex::Real u0 = 2.3, v0 = 3.5, w0 = 5.6;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+    constexpr amrex::Real u0 = 2.3_rt, v0 = 3.5_rt, w0 = 5.6_rt;
 
     populate_parameters();
     initialize_mesh();
@@ -50,10 +54,10 @@ TEST_F(SecondMomentAveragingTest, test_constant)
         amr_wind::SecondMomentAveraging uu(pa, pa);
         uu();
 
-        amrex::Real x = 0.5 * (problo[dir] + probhi[dir]);
+        amrex::Real x = 0.5_rt * (problo[dir] + probhi[dir]);
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                EXPECT_NEAR(uu.line_average_interpolated(x, i, j), 0.0, tol);
+                EXPECT_NEAR(uu.line_average_interpolated(x, i, j), 0.0_rt, tol);
             }
         }
     }
@@ -71,12 +75,10 @@ void add_linear(
     auto xlo = geom.ProbLoArray();
     auto dx = geom.CellSizeArray();
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::GpuArray<amrex::Real, 3> x = {
-
-            xlo[0] + (i + 0.5) * dx[0], xlo[1] + (j + 0.5) * dx[1],
-            xlo[2] + (k + 0.5) * dx[2]};
-
+            xlo[0] + ((i + 0.5_rt) * dx[0]), xlo[1] + ((j + 0.5_rt) * dx[1]),
+            xlo[2] + ((k + 0.5_rt) * dx[2])};
         velocity(i, j, k, 0) += a[0] * x[dir];
         velocity(i, j, k, 1) += a[1] * x[dir];
         velocity(i, j, k, 2) += a[2] * x[dir];
@@ -88,9 +90,11 @@ void add_linear(
 TEST_F(SecondMomentAveragingTest, test_linear)
 {
 
-    constexpr double tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
-    amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> u0 = {{1.0, 3.5, 5.6}};
+    amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> u0 = {
+        {1.0_rt, 3.5_rt, 5.6_rt}};
 
     populate_parameters();
     initialize_mesh();
@@ -125,14 +129,14 @@ TEST_F(SecondMomentAveragingTest, test_linear)
     const amrex::Real L = probhi[dir] - problo[dir];
     const amrex::Real dx = L / ((amrex::Real)n);
     const amrex::Real hchLo =
-        problo[dir] + 0.5 * mesh().Geom(0).CellSizeArray()[dir];
+        problo[dir] + (0.5_rt * mesh().Geom(0).CellSizeArray()[dir]);
     const amrex::Real hchHi =
-        probhi[dir] - 0.5 * mesh().Geom(0).CellSizeArray()[dir];
+        probhi[dir] - (0.5_rt * mesh().Geom(0).CellSizeArray()[dir]);
 
     // test along a line at n equidistant points
     for (int i = 0; i < n; ++i) {
 
-        const amrex::Real x = problo[dir] + i * dx;
+        const amrex::Real x = problo[dir] + (i * dx);
 
         const amrex::Array<amrex::Real, 3> u = {
             pa.line_average_interpolated(x, 0),
@@ -156,11 +160,11 @@ TEST_F(SecondMomentAveragingTest, test_linear)
 
         // test each velocity field u = u0 + u0*x
         for (int j = 0; j < 3; ++j) {
-            EXPECT_NEAR(u0[j] * (xtest + 1.0), u[j], tol);
+            EXPECT_NEAR(u0[j] * (xtest + 1.0_rt), u[j], tol);
         }
         // this test seems kind of silly
         for (int j = 0; j < 9; ++j) {
-            EXPECT_NEAR(0.0, uu.line_average_interpolated(x, j), tol);
+            EXPECT_NEAR(0.0_rt, uu.line_average_interpolated(x, j), tol);
         }
     }
 }
@@ -176,16 +180,15 @@ void add_periodic(
     auto xlo = geom.ProbLoArray();
     auto dx = geom.CellSizeArray();
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::GpuArray<amrex::Real, 3> x = {
-
-            xlo[0] + (i + 0.5) * dx[0], xlo[1] + (j + 0.5) * dx[1],
-            xlo[2] + (k + 0.5) * dx[2]};
-
+            xlo[0] + ((i + 0.5_rt) * dx[0]), xlo[1] + ((j + 0.5_rt) * dx[1]),
+            xlo[2] + ((k + 0.5_rt) * dx[2])};
         for (int d = 0; d < 3; ++d) {
             velocity(i, j, k, 0) += std::cos(a[d] * x[d]);
             velocity(i, j, k, 1) += std::sin(a[d] * x[d]);
-            velocity(i, j, k, 2) += std::sin(a[d] * x[d]) * cos(a[d] * x[d]);
+            velocity(i, j, k, 2) +=
+                std::sin(a[d] * x[d]) * std::cos(a[d] * x[d]);
         }
     });
 }
@@ -195,8 +198,9 @@ void add_periodic(
 void SecondMomentAveragingTest::test_dir(int dir)
 {
 
-    constexpr double tol = 1.0e-12;
-    constexpr amrex::Real u0 = 2.3, v0 = 3.5, w0 = 5.6;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+    constexpr amrex::Real u0 = 2.3_rt, v0 = 3.5_rt, w0 = 5.6_rt;
 
     populate_parameters();
     initialize_mesh();
@@ -234,18 +238,19 @@ void SecondMomentAveragingTest::test_dir(int dir)
     amr_wind::SecondMomentAveraging uu(pa, pa);
     uu();
 
-    amrex::Real x = (0.5 + .01 * amrex::Random()) * (problo[dir] + probhi[dir]);
+    amrex::Real x =
+        (0.5_rt + 0.01_rt * amrex::Random()) * (problo[dir] + probhi[dir]);
 
     // used symbolic tool to find this
-    EXPECT_NEAR(1.0, uu.line_average_interpolated(x, 0, 0), tol);
-    EXPECT_NEAR(0.0, uu.line_average_interpolated(x, 0, 1), tol);
-    EXPECT_NEAR(0.0, uu.line_average_interpolated(x, 0, 2), tol);
-    EXPECT_NEAR(0.0, uu.line_average_interpolated(x, 1, 0), tol);
-    EXPECT_NEAR(1.0, uu.line_average_interpolated(x, 1, 1), tol);
-    EXPECT_NEAR(0.0, uu.line_average_interpolated(x, 1, 2), tol);
-    EXPECT_NEAR(0.0, uu.line_average_interpolated(x, 2, 0), tol);
-    EXPECT_NEAR(0.0, uu.line_average_interpolated(x, 2, 1), tol);
-    EXPECT_NEAR(0.25, uu.line_average_interpolated(x, 2, 2), tol);
+    EXPECT_NEAR(1.0_rt, uu.line_average_interpolated(x, 0, 0), tol);
+    EXPECT_NEAR(0.0_rt, uu.line_average_interpolated(x, 0, 1), tol);
+    EXPECT_NEAR(0.0_rt, uu.line_average_interpolated(x, 0, 2), tol);
+    EXPECT_NEAR(0.0_rt, uu.line_average_interpolated(x, 1, 0), tol);
+    EXPECT_NEAR(1.0_rt, uu.line_average_interpolated(x, 1, 1), tol);
+    EXPECT_NEAR(0.0_rt, uu.line_average_interpolated(x, 1, 2), tol);
+    EXPECT_NEAR(0.0_rt, uu.line_average_interpolated(x, 2, 0), tol);
+    EXPECT_NEAR(0.0_rt, uu.line_average_interpolated(x, 2, 1), tol);
+    EXPECT_NEAR(0.25_rt, uu.line_average_interpolated(x, 2, 2), tol);
 
     // fixme need a better non-trivial unit test...
 }

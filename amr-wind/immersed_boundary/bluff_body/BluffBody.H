@@ -5,6 +5,9 @@
 #include "amr-wind/core/vs/vector_space.H"
 
 #include <string>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::ib {
 
@@ -20,10 +23,10 @@ struct BluffBodyBaseData
 
     bool has_wall_model{false};
 
-    amrex::Vector<amrex::Real> vel_bc{0.0, 0.0, 0.0};
+    amrex::Vector<amrex::Real> vel_bc{0.0_rt, 0.0_rt, 0.0_rt};
 
     //! Total integrated forces on the immersed body
-    amrex::Vector<amrex::Real> frc{0.0, 0.0, 0.0};
+    amrex::Vector<amrex::Real> frc{0.0_rt, 0.0_rt, 0.0_rt};
 };
 
 struct BluffBodyType : public IBType

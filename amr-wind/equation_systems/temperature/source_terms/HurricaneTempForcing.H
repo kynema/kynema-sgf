@@ -4,6 +4,9 @@
 #include "amr-wind/core/FieldRepo.H"
 #include "amr-wind/equation_systems/temperature/TemperatureSource.H"
 #include "amr-wind/utilities/FieldPlaneAveraging.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::temperature {
 
@@ -19,10 +22,10 @@ public:
     ~HurricaneTempForcing() override;
 
     void operator()(
-        const int lev,
+        int lev,
         const amrex::MFIter& /*mfi*/,
         const amrex::Box& bx,
-        const FieldState /*fstate*/,
+        FieldState /*fstate*/,
         const amrex::Array4<amrex::Real>& src_term) const override;
 
     void mean_velocity_init(const VelPlaneAveraging& /*vavg*/);
@@ -40,7 +43,7 @@ private:
     int m_axis{2};
 
     //! Temperature radial decay
-    amrex::Real m_dTdR{0.001};
+    amrex::Real m_dTdR{0.001_rt};
 
     //! Zero Temperature height
     amrex::Real m_dTzh{18000.};

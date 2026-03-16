@@ -2,6 +2,9 @@
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 #include "amr-wind/utilities/io_utils.H"
 #include "amr-wind/wind_energy/actuator/disk/disk_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator::ops::joukowsky {
 void check_for_parse_conflicts(const utils::ActParser& pp)
@@ -22,7 +25,7 @@ void optional_parameters(JoukowskyData& meta, const utils::ActParser& pp)
         pp.get("vortex_core_size", meta.vortex_core_size);
     } else {
         // Default to 20% of radius
-        meta.vortex_core_size = 0.1 * meta.diameter;
+        meta.vortex_core_size = 0.1_rt * meta.diameter;
     }
     pp.query("root_correction_exponent", meta.root_correction_exponent);
     pp.query("root_correction_coefficient", meta.root_correction_coefficient);
@@ -43,8 +46,8 @@ void required_parameters(JoukowskyData& meta, const utils::ActParser& pp)
     pp.get("num_points_r", meta.num_vel_pts_r);
     pp.getarr("rpm", meta.angular_velocity);
     // Convert from rpm to rad/s
-    for (double& i : meta.angular_velocity) {
-        i *= M_PI / 30.0;
+    for (amrex::Real& i : meta.angular_velocity) {
+        i *= std::numbers::pi_v<amrex::Real> / 30.0_rt;
     }
 }
 
@@ -56,7 +59,7 @@ void parse_and_gather_params(const utils::ActParser& pp, JoukowskyData& data)
     ops::base::final_checks(data);
     data.num_force_pts = data.num_vel_pts_r * data.num_vel_pts_t;
     data.num_vel_pts = data.num_force_pts * 2;
-    data.dr = 0.5 * data.diameter / data.num_vel_pts_r;
+    data.dr = 0.5_rt * data.diameter / data.num_vel_pts_r;
 }
 
 void update_disk_points(Joukowsky::DataType& data)
@@ -87,7 +90,7 @@ void prepare_netcdf_file(
     const ActGrid& grid)
 {
 #ifdef AMR_WIND_USE_NETCDF
-    using dvec = std::vector<double>;
+    using dvec = std::vector<amrex::Real>;
     // Only root process handles I/O
     if (info.root_proc != amrex::ParallelDescriptor::MyProc()) {
         return;

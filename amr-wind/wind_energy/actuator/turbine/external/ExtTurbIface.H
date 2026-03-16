@@ -1,10 +1,13 @@
 #ifndef EXTTURBIFACE_H
 #define EXTTURBIFACE_H
 
-#include "amr-wind/core/ExtSolver.H"
-#include "amr-wind/wind_energy/actuator/turbine/external/external_base_types.H"
 #include <map>
 #include <vector>
+#include "amr-wind/core/ExtSolver.H"
+#include "amr-wind/wind_energy/actuator/turbine/external/external_base_types.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace ncutils {
 class NCFile;
@@ -76,9 +79,9 @@ protected:
 
     std::vector<SolverTurbine*> m_turbine_data;
 
-    double m_dt_cfd{0.0};
-    double m_start_time{0.0};
-    double m_stop_time{-1.0};
+    amrex::Real m_dt_cfd{0.0_rt};
+    amrex::Real m_start_time{0.0_rt};
+    amrex::Real m_stop_time{-1.0_rt};
     ::ext_turb::SimMode m_sim_mode{::ext_turb::SimMode::init};
 
     SolverData m_solver_data;
@@ -150,7 +153,8 @@ void ExtTurbIface<SolverTurbine, SolverData>::advance_turbine(
         // Default is off, unless a turbine model reads, populates stop_time
         const auto& tmax = fi.stop_time;
         const auto& telapsed = (fi.time_index + fi.num_substeps) * fi.dt_ext;
-        if (telapsed > (tmax + 1.0e-8) && fi.stop_time > 0.) {
+        if (telapsed > (tmax + std::numeric_limits<float>::epsilon()) &&
+            fi.stop_time > 0.0_rt) {
             // clang-format off
             amrex::OutStream()
                 << "\nWARNING: ExtTurbIface:\n"

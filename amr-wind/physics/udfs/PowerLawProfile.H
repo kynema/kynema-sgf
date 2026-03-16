@@ -3,6 +3,9 @@
 
 #include "AMReX_Geometry.H"
 #include "AMReX_Gpu.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -15,16 +18,16 @@ struct PowerLawProfile
     struct DeviceOp
     {
         int idir{2};
-        amrex::Real zoffset{0.0};
+        amrex::Real zoffset{0.0_rt};
         amrex::Real zref;
         amrex::Real uref;
         amrex::Real shear_exp;
-        amrex::Real umin{0.0};
-        amrex::Real umax{100.0};
+        amrex::Real umin{0.0_rt};
+        amrex::Real umax{100.0_rt};
         amrex::RealArray uvec;
 
         AMREX_GPU_DEVICE
-        inline void operator()(
+        void operator()(
             const amrex::IntVect& iv,
             amrex::Array4<amrex::Real> const& field,
             amrex::GeometryData const& geom,
@@ -36,11 +39,11 @@ struct PowerLawProfile
         {
             const auto* problo = geom.ProbLo();
             const auto* dx = geom.CellSize();
-            const auto zco = problo[idir] + (iv[idir] + 0.5) * dx[idir];
+            const auto zco = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
 
             const amrex::Real zeff = zco - zoffset;
             amrex::Real pfac =
-                (zeff > 0.0) ? std::pow((zeff / zref), shear_exp) : 0.0;
+                (zeff > 0.0_rt) ? std::pow((zeff / zref), shear_exp) : 0.0_rt;
             pfac = amrex::min(amrex::max(pfac, umin), umax);
 
             field(iv[0], iv[1], iv[2], dcomp + comp) =
@@ -54,7 +57,7 @@ struct PowerLawProfile
 
     explicit PowerLawProfile(const Field& fld);
 
-    DeviceType device_instance() const { return m_op; }
+    [[nodiscard]] DeviceType device_instance() const { return m_op; }
 
     DeviceOp m_op;
 

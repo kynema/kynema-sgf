@@ -9,6 +9,9 @@
 #include "amr-wind/utilities/diagnostics.H"
 
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde {
 
@@ -38,7 +41,7 @@ PDEMgr::PDEMgr(CFDSim& sim) : m_sim(sim)
             << "WARNING: Anelastic implies variable density. Setting "
                "contant_density to false. Add incflo.constant_density=false to "
                "your input file to remove this warning."
-            << std::endl;
+            << '\n';
         m_constant_density = false;
     }
 
@@ -60,7 +63,7 @@ PDEBase& PDEMgr::register_transport_pde(const std::string& pde_name)
 
     if (contains(name)) {
         amrex::Print() << "WARNING: Multiple requests to register PDE: "
-                       << pde_name << std::endl;
+                       << pde_name << '\n';
         return operator()(name);
     }
 
@@ -94,7 +97,7 @@ void PDEMgr::prepare_boundaries()
 {
     // If state variables exist at NPH, fill their boundary cells
     const auto nph_time =
-        0.5 * (m_sim.time().current_time() + m_sim.time().new_time());
+        0.5_rt * (m_sim.time().current_time() + m_sim.time().new_time());
     if (m_constant_density &&
         m_sim.repo().field_exists("density", FieldState::NPH)) {
         auto& nph_field =
@@ -148,7 +151,7 @@ void PDEMgr::density_check()
 {
     std::string advice(
         "\nCheck the initial bulk density and the inflow BC density values in "
-        "the input file. When not specified, the default density is 1.0.");
+        "the input file. When not specified, the default density is 1.0_rt.");
     std::string advice2(
         "\nIf this simulation begins from a restart file, confirm that the "
         "previous density is compatible with the parameters in the input "
@@ -158,14 +161,14 @@ void PDEMgr::density_check()
         "that vof and density BCs are the same (if Neumann type) or compatible "
         "(if Dirichlet type).");
     if (m_sim.repo().field_exists("vof")) {
-        amrex::Real rho_l_max{1.0}, rho_l_min{1.0};
-        amrex::Real rho_g_max{1.0}, rho_g_min{1.0};
+        amrex::Real rho_l_max{1.0_rt}, rho_l_min{1.0_rt};
+        amrex::Real rho_g_max{1.0_rt}, rho_g_min{1.0_rt};
         const bool liquid_found = diagnostics::get_field_extrema(
             rho_l_max, rho_l_min, m_sim.repo().get_field("density"),
-            m_sim.repo().get_field("vof"), 1.0, 0, 1, 1);
+            m_sim.repo().get_field("vof"), 1.0_rt, 0, 1, 1);
         const bool gas_found = diagnostics::get_field_extrema(
             rho_g_max, rho_g_min, m_sim.repo().get_field("density"),
-            m_sim.repo().get_field("vof"), 0.0, 0, 1, 1);
+            m_sim.repo().get_field("vof"), 0.0_rt, 0, 1, 1);
         if (liquid_found &&
             std::abs(rho_l_max - rho_l_min) > constants::LOOSE_TOL) {
             amrex::Abort(
@@ -197,7 +200,7 @@ void PDEMgr::density_check()
                    "check.\n";
         }
     } else if (m_constant_density) {
-        amrex::Real rho_max{1.0}, rho_min{1.0};
+        amrex::Real rho_max{1.0_rt}, rho_min{1.0_rt};
         diagnostics::get_field_extrema(
             rho_max, rho_min, m_sim.repo().get_field("density"), 0, 1, 1);
         if (std::abs(rho_max - rho_min) > constants::LOOSE_TOL) {

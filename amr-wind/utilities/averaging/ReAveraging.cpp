@@ -3,6 +3,9 @@
 #include "amr-wind/core/Field.H"
 #include "amr-wind/core/FieldRepo.H"
 #include "amr-wind/utilities/IOManager.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::averaging {
 
@@ -40,7 +43,7 @@ void ReAveraging::operator()(
     const amrex::Real filter =
         amrex::max(amrex::min(filter_width, elapsed_time), avg_time_interval);
     const amrex::Real factor =
-        amrex::max<amrex::Real>(filter - avg_time_interval, 0.0);
+        amrex::max<amrex::Real>(filter - avg_time_interval, 0.0_rt);
 
     const int ncomp = m_field.num_comp();
     const int nlevels = m_field.repo().num_active_levels();
@@ -52,7 +55,7 @@ void ReAveraging::operator()(
         const auto& avgarrs = afab.arrays();
 
         amrex::ParallelFor(
-            ffab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            ffab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 for (int n = 0; n < ncomp; ++n) {
                     const amrex::Real fval = fldarrs[nbx](i, j, k, n);
                     const amrex::Real aval = avgarrs[nbx](i, j, k, n);

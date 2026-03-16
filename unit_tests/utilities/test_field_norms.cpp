@@ -2,6 +2,9 @@
 #include "amr-wind/utilities/IOManager.H"
 #include "amr-wind/utilities/sampling/FieldNorms.H"
 #include "amr-wind/utilities/tagging/FieldRefinement.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -19,12 +22,12 @@ void init_velocity(
     for (int lev = 0; lev < nlevels; ++lev) {
 
         // Apply a factor to the base level values
-        const amrex::Real fac = (lev == 0) ? lev0_fac : 1.0;
+        const amrex::Real fac = (lev == 0) ? lev0_fac : 1.0_rt;
         const auto& farrs = vel_fld(lev).arrays();
 
         amrex::ParallelFor(
             vel_fld(lev), vel_fld.num_grow(), vel_fld.num_comp(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 // Mix positive and negative as check on L2 norm
                 farrs[nbx](i, j, k, n) =
                     fac * (i % 2 == 0 ? vels[n] : -vels[n]);
@@ -48,10 +51,10 @@ void init_velocity(
 
         amrex::ParallelFor(
             vel_fld(lev), vel_fld.num_grow(), vel_fld.num_comp(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 // Mix positive and negative as check on L2 norm
                 farrs[nbx](i, j, k, n) =
-                    (i % 2 == 0 ? 1. - var_f : 1. + var_f) * vels[n];
+                    (i % 2 == 0 ? 1.0_rt - var_f : 1.0_rt + var_f) * vels[n];
             });
     }
     amrex::Gpu::streamSynchronize();
@@ -66,7 +69,7 @@ public:
     FNRefinemesh() : m_mesh_refiner(new amr_wind::RefineCriteriaManager(m_sim))
     {}
     void init_refiner() { m_mesh_refiner->initialize(); }
-    void remesh() { regrid(0, 0.0); }
+    void remesh() { regrid(0, 0.0_rt); }
 
 protected:
     void MakeNewLevelFromScratch(
@@ -132,7 +135,7 @@ protected:
     // No file output during test
     void prepare_ascii_file() override {}
     void write_ascii() override {}
-    const amrex::Real m_tol = 1e-8;
+    const amrex::Real m_tol = std::numeric_limits<float>::epsilon() * 1.0e1_rt;
 };
 
 void FieldNormsImpl::check_output(
@@ -166,7 +169,7 @@ void FieldNormsImpl::check_output4(amrex::Real check_val)
     // Loop through norm values and check them
     const amrex::Real tol = amr_wind::constants::TIGHT_TOL;
     for (int n = 0; n < 4; ++n) {
-        EXPECT_NEAR(field_norms()[n], check_val, tol * check_val * 0.1);
+        EXPECT_NEAR(field_norms()[n], check_val, tol * check_val * 0.1_rt);
     }
 }
 
@@ -222,15 +225,15 @@ protected:
     static void setup_tagging_box()
     {
         amrex::ParmParse ppt1("tagging.t1");
-        amrex::Vector<amrex::Real> blo = {3.0, 3.0, 3.0};
-        amrex::Vector<amrex::Real> bhi = {30.0, 30.0, 30.0};
+        amrex::Vector<amrex::Real> blo = {3.0_rt, 3.0_rt, 3.0_rt};
+        amrex::Vector<amrex::Real> bhi = {30.0_rt, 30.0_rt, 30.0_rt};
         ppt1.addarr("box_lo", blo);
         ppt1.addarr("box_hi", bhi);
     }
     // Parameters to reuse
-    const amrex::Vector<amrex::Real> m_problo{{0.0, 0.0, -4.0}};
-    const amrex::Vector<amrex::Real> m_probhi{{128.0, 128.0, 124.0}};
-    const amrex::Real m_fref_val = 0.5;
+    const amrex::Vector<amrex::Real> m_problo{{0.0_rt, 0.0_rt, -4.0_rt}};
+    const amrex::Vector<amrex::Real> m_probhi{{128.0_rt, 128.0_rt, 124.0_rt}};
+    const amrex::Real m_fref_val = 0.5_rt;
     const std::string m_fname = "flag";
     const int m_ifref_val = 1;
     const std::string m_ifname = "iflag";
@@ -241,13 +244,14 @@ protected:
     // Number of cells on base level
     const int m_ncell0 = m_nx * m_ny * m_nz;
     // Cell volume on base level
-    const amrex::Real m_cv0 = (128.0 / m_nx) * (128.0 / m_ny) * (128.0 / m_nz);
+    const amrex::Real m_cv0 =
+        (128.0_rt / m_nx) * (128.0_rt / m_ny) * (128.0_rt / m_nz);
     // Total domain volume
-    const amrex::Real m_dv = 128. * 128. * 128.;
+    const amrex::Real m_dv = 128.0_rt * 128.0_rt * 128.0_rt;
     // Velocity component values
-    const amrex::Real m_u = 0.9;
-    const amrex::Real m_v = 1.3;
-    const amrex::Real m_w = 2.7;
+    const amrex::Real m_u = 0.9_rt;
+    const amrex::Real m_v = 1.3_rt;
+    const amrex::Real m_w = 2.7_rt;
 };
 
 TEST_F(FieldNormsTest, levelmask_on)
@@ -262,7 +266,7 @@ TEST_F(FieldNormsTest, levelmask_on)
     // Create mesh and initialize
     reset_prob_domain();
     auto rmesh = FNRefinemesh();
-    rmesh.initialize_mesh(0.0);
+    rmesh.initialize_mesh(0.0_rt);
 
     // Repo and fields
     auto& repo = rmesh.field_repo();
@@ -270,14 +274,14 @@ TEST_F(FieldNormsTest, levelmask_on)
     auto& flag = repo.declare_field(m_fname, 1, 2);
 
     // Set up scalar for determining refinement - all fine level
-    flag.setVal(2.0 * m_fref_val);
+    flag.setVal(2.0_rt * m_fref_val);
 
     // Initialize mesh refiner and remesh
     rmesh.init_refiner();
     rmesh.remesh();
 
     // Initialize velocity distribution and access sim
-    const amrex::Real lev0_fac = 1.5;
+    const amrex::Real lev0_fac = 1.5_rt;
     init_velocity(velocity, m_u, m_v, m_w, lev0_fac);
     auto& rsim = rmesh.sim();
 
@@ -294,15 +298,15 @@ TEST_F(FieldNormsTest, levelmask_on)
     // Only highest level will be counted
     // sqrt(number of cells * cell volume * cell value * cell value)
     amrex::Real unorm =
-        std::sqrt((m_ncell0 * 8.) * (m_cv0 / 8.) * m_u * m_u / m_dv);
+        std::sqrt((m_ncell0 * 8.0_rt) * (m_cv0 / 8.0_rt) * m_u * m_u / m_dv);
     amrex::Real vnorm =
-        std::sqrt((m_ncell0 * 8.) * (m_cv0 / 8.) * m_v * m_v / m_dv);
+        std::sqrt((m_ncell0 * 8.0_rt) * (m_cv0 / 8.0_rt) * m_v * m_v / m_dv);
     amrex::Real wnorm =
-        std::sqrt((m_ncell0 * 8.) * (m_cv0 / 8.) * m_w * m_w / m_dv);
+        std::sqrt((m_ncell0 * 8.0_rt) * (m_cv0 / 8.0_rt) * m_w * m_w / m_dv);
     tool.check_output(unorm, vnorm, wnorm);
 
     // Change scalar for determining refinement - no fine level
-    flag.setVal(0.0);
+    flag.setVal(0);
 
     // Regrid
     rmesh.remesh();
@@ -332,7 +336,7 @@ TEST_F(FieldNormsTest, levelmask_on_with_box)
     // Create mesh and initialize
     reset_prob_domain();
     auto rmesh = FNRefinemesh();
-    rmesh.initialize_mesh(0.0);
+    rmesh.initialize_mesh(0.0_rt);
 
     // Repo and fields
     auto& repo = rmesh.field_repo();
@@ -340,14 +344,14 @@ TEST_F(FieldNormsTest, levelmask_on_with_box)
     auto& flag = repo.declare_field(m_fname, 1, 2);
 
     // Set up scalar for determining refinement - all fine level
-    flag.setVal(2.0 * m_fref_val);
+    flag.setVal(2.0_rt * m_fref_val);
 
     // Initialize mesh refiner and remesh
     rmesh.init_refiner();
     rmesh.remesh();
 
     // Initialize velocity distribution and access sim
-    const amrex::Real lev0_fac = 1.5;
+    const amrex::Real lev0_fac = 1.5_rt;
     init_velocity(velocity, m_u, m_v, m_w, lev0_fac);
     auto& rsim = rmesh.sim();
 
@@ -362,10 +366,10 @@ TEST_F(FieldNormsTest, levelmask_on_with_box)
     tool.initialize();
     tool.output_actions();
     tool.check_output(
-        1.342655804506534, 1.9393917176204616, 4.0279674135195087);
+        1.342655804506534_rt, 1.9393917176204616_rt, 4.0279674135195087_rt);
 
     // Change scalar for determining refinement - no fine level
-    flag.setVal(0.0);
+    flag.setVal(0);
 
     // Regrid
     rmesh.remesh();
@@ -373,7 +377,7 @@ TEST_F(FieldNormsTest, levelmask_on_with_box)
     // Check result on new mesh
     tool.output_actions();
     tool.check_output(
-        1.3500000000000343, 1.9499999999999589, 4.0500000000000043);
+        1.3500000000000343_rt, 1.9499999999999589_rt, 4.0500000000000043_rt);
 }
 
 // Not sure why this option would be used, but it is available
@@ -389,7 +393,7 @@ TEST_F(FieldNormsTest, levelmask_off)
     // Create mesh and initialize
     reset_prob_domain();
     auto rmesh = FNRefinemesh();
-    rmesh.initialize_mesh(0.0);
+    rmesh.initialize_mesh(0.0_rt);
 
     // Repo and fields
     auto& repo = rmesh.field_repo();
@@ -397,14 +401,14 @@ TEST_F(FieldNormsTest, levelmask_off)
     auto& flag = repo.declare_field(m_fname, 1, 2);
 
     // Set up scalar for determining refinement - all fine level
-    flag.setVal(2.0 * m_fref_val);
+    flag.setVal(2 * m_fref_val);
 
     // Initialize mesh refiner and remesh
     rmesh.init_refiner();
     rmesh.remesh();
 
     // Initialize velocity distribution and access sim
-    const amrex::Real lev0_fac = 1.5;
+    const amrex::Real lev0_fac = 1.5_rt;
     init_velocity(velocity, m_u, m_v, m_w, lev0_fac);
     auto& rsim = rmesh.sim();
 
@@ -420,21 +424,21 @@ TEST_F(FieldNormsTest, levelmask_off)
     tool.output_actions();
     // Both levels will be counted
     amrex::Real unorm = std::sqrt(
-        ((m_ncell0 * 8.) * (m_cv0 / 8.) * m_u * m_u +
+        ((m_ncell0 * 8.0_rt) * (m_cv0 / 8.0_rt) * m_u * m_u +
          m_ncell0 * m_cv0 * lev0_fac * lev0_fac * m_u * m_u) /
         m_dv);
     amrex::Real vnorm = std::sqrt(
-        ((m_ncell0 * 8.) * (m_cv0 / 8.) * m_v * m_v +
+        ((m_ncell0 * 8.0_rt) * (m_cv0 / 8.0_rt) * m_v * m_v +
          m_ncell0 * m_cv0 * lev0_fac * lev0_fac * m_v * m_v) /
         m_dv);
     amrex::Real wnorm = std::sqrt(
-        ((m_ncell0 * 8.) * (m_cv0 / 8.) * m_w * m_w +
+        ((m_ncell0 * 8.0_rt) * (m_cv0 / 8.0_rt) * m_w * m_w +
          m_ncell0 * m_cv0 * lev0_fac * lev0_fac * m_w * m_w) /
         m_dv);
     tool.check_output(unorm, vnorm, wnorm);
 
     // Change scalar for determining refinement - no fine level
-    flag.setVal(0.0);
+    flag.setVal(0);
 
     // Regrid
     rmesh.remesh();
@@ -463,7 +467,7 @@ TEST_F(FieldNormsTest, levelmask_on_int_refinement)
     // Create mesh and initialize
     reset_prob_domain();
     auto rmesh = FNRefinemesh();
-    rmesh.initialize_mesh(0.0);
+    rmesh.initialize_mesh(0.0_rt);
 
     // Repo and fields
     auto& repo = rmesh.field_repo();
@@ -478,7 +482,7 @@ TEST_F(FieldNormsTest, levelmask_on_int_refinement)
     rmesh.remesh();
 
     // Initialize velocity distribution and access sim
-    const amrex::Real lev0_fac = 1.5;
+    const amrex::Real lev0_fac = 1.5_rt;
     init_velocity(velocity, m_u, m_v, m_w, lev0_fac);
     auto& rsim = rmesh.sim();
 
@@ -495,15 +499,15 @@ TEST_F(FieldNormsTest, levelmask_on_int_refinement)
     // Only highest level will be counted
     // sqrt(number of cells * cell volume * cell value * cell value)
     amrex::Real unorm =
-        std::sqrt((m_ncell0 * 8.) * (m_cv0 / 8.) * m_u * m_u / m_dv);
+        std::sqrt((m_ncell0 * 8.0_rt) * (m_cv0 / 8.0_rt) * m_u * m_u / m_dv);
     amrex::Real vnorm =
-        std::sqrt((m_ncell0 * 8.) * (m_cv0 / 8.) * m_v * m_v / m_dv);
+        std::sqrt((m_ncell0 * 8.0_rt) * (m_cv0 / 8.0_rt) * m_v * m_v / m_dv);
     amrex::Real wnorm =
-        std::sqrt((m_ncell0 * 8.) * (m_cv0 / 8.) * m_w * m_w / m_dv);
+        std::sqrt((m_ncell0 * 8.0_rt) * (m_cv0 / 8.0_rt) * m_w * m_w / m_dv);
     tool.check_output(unorm, vnorm, wnorm);
 
     // Change scalar for determining refinement - no fine level
-    flag.setVal(0.0);
+    flag.setVal(0);
 
     // Regrid
     rmesh.remesh();
@@ -532,7 +536,7 @@ TEST_F(FieldNormsTest, levelmask_not_cc)
     // Create mesh and initialize
     reset_prob_domain();
     auto rmesh = FNRefinemesh();
-    rmesh.initialize_mesh(0.0);
+    rmesh.initialize_mesh(0.0_rt);
 
     // Repo and fields
     auto& repo = rmesh.field_repo();
@@ -543,14 +547,14 @@ TEST_F(FieldNormsTest, levelmask_not_cc)
     auto& flag = repo.declare_field(m_fname, 1, 1);
 
     // Set up scalar for determining refinement - all fine level
-    flag.setVal(2.0 * m_fref_val);
+    flag.setVal(2 * m_fref_val);
 
     // Initialize mesh refiner and remesh
     rmesh.init_refiner();
     rmesh.remesh();
 
     // Initialize pressure distribution and access sim
-    const amrex::Real fval = 10000.3;
+    const amrex::Real fval = 10000.3_rt;
     pressure.setVal(fval);
     u_mac.setVal(fval);
     v_mac.setVal(fval);
@@ -574,7 +578,7 @@ TEST_F(FieldNormsTest, levelmask_not_cc)
     tool.check_output4(fval);
 
     // Turn off refinements
-    flag.setVal(0.0);
+    flag.setVal(0);
     rmesh.remesh();
 
     // Check again
@@ -594,14 +598,14 @@ TEST_F(FieldNormsTest, norm_types)
     // Create mesh and initialize
     reset_prob_domain();
     auto rmesh = FNRefinemesh();
-    rmesh.initialize_mesh(0.0);
+    rmesh.initialize_mesh(0.0_rt);
 
     // Repo and fields
     auto& repo = rmesh.field_repo();
     auto& velocity = repo.declare_field("velocity", 3, 2);
 
     // Initialize velocity distribution and access sim
-    const amrex::Real factor = 0.1;
+    const amrex::Real factor = 0.1_rt;
     init_velocity(factor, velocity, m_u, m_v, m_w);
     auto& rsim = rmesh.sim();
 
@@ -619,7 +623,8 @@ TEST_F(FieldNormsTest, norm_types)
     tool_l2.output_actions();
 
     const amrex::Real l2_factor = std::sqrt(
-        0.5 * ((1. - factor) * (1. - factor) + (1. + factor) * (1. + factor)));
+        0.5_rt * ((1.0_rt - factor) * (1.0_rt - factor) +
+                  (1.0_rt + factor) * (1.0_rt + factor)));
     amrex::Real unorm = m_u * l2_factor;
     amrex::Real vnorm = m_v * l2_factor;
     amrex::Real wnorm = m_w * l2_factor;
@@ -630,7 +635,8 @@ TEST_F(FieldNormsTest, norm_types)
     tool_l1.initialize();
     tool_l1.output_actions();
 
-    const amrex::Real l1_factor = 0.5 * ((1. - factor) + (1. + factor));
+    const amrex::Real l1_factor =
+        0.5_rt * ((1.0_rt - factor) + (1.0_rt + factor));
     unorm = m_u * l1_factor;
     vnorm = m_v * l1_factor;
     wnorm = m_w * l1_factor;
@@ -641,7 +647,7 @@ TEST_F(FieldNormsTest, norm_types)
     tool_linf.initialize();
     tool_linf.output_actions();
 
-    const amrex::Real linf_factor = (1. + factor);
+    const amrex::Real linf_factor = (1.0_rt + factor);
     unorm = m_u * linf_factor;
     vnorm = m_v * linf_factor;
     wnorm = m_w * linf_factor;
@@ -660,14 +666,14 @@ TEST_F(FieldNormsTest, norm_vector_magnitude)
     // Create mesh and initialize
     reset_prob_domain();
     auto rmesh = FNRefinemesh();
-    rmesh.initialize_mesh(0.0);
+    rmesh.initialize_mesh(0.0_rt);
 
     // Repo and fields
     auto& repo = rmesh.field_repo();
     auto& velocity = repo.declare_field("velocity", 3, 2);
 
     // Initialize velocity distribution and access sim
-    const amrex::Real factor = 0.1;
+    const amrex::Real factor = 0.1_rt;
     init_velocity(factor, velocity, m_u, m_v, m_w);
     auto& rsim = rmesh.sim();
 
@@ -686,8 +692,9 @@ TEST_F(FieldNormsTest, norm_vector_magnitude)
     tool_l2.output_actions();
 
     const amrex::Real l2_factor = std::sqrt(
-        0.5 * ((1. - factor) * (1. - factor) + (1. + factor) * (1. + factor)));
-    const amrex::Real vmag = std::sqrt(m_u * m_u + m_v * m_v + m_w * m_w);
+        0.5_rt * ((1.0_rt - factor) * (1.0_rt - factor) +
+                  (1.0_rt + factor) * (1.0_rt + factor)));
+    const amrex::Real vmag = std::sqrt((m_u * m_u) + (m_v * m_v) + (m_w * m_w));
     amrex::Real vmag_norm = vmag * l2_factor;
     tool_l2.check_output(vmag_norm);
 
@@ -696,7 +703,8 @@ TEST_F(FieldNormsTest, norm_vector_magnitude)
     tool_l1.initialize();
     tool_l1.output_actions();
 
-    const amrex::Real l1_factor = 0.5 * ((1. - factor) + (1. + factor));
+    const amrex::Real l1_factor =
+        0.5_rt * ((1.0_rt - factor) + (1.0_rt + factor));
     vmag_norm = vmag * l1_factor;
     tool_l1.check_output(vmag_norm);
 
@@ -705,7 +713,7 @@ TEST_F(FieldNormsTest, norm_vector_magnitude)
     tool_linf.initialize();
     tool_linf.output_actions();
 
-    const amrex::Real linf_factor = (1. + factor);
+    const amrex::Real linf_factor = (1.0_rt + factor);
     vmag_norm = vmag * linf_factor;
     tool_linf.check_output(vmag_norm);
 }

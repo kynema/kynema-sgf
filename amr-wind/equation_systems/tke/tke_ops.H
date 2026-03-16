@@ -3,6 +3,9 @@
 
 #include "amr-wind/equation_systems/tke/TKE.H"
 #include "amr-wind/core/field_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde {
 
@@ -44,11 +47,11 @@ struct PostSolveOp<TKE>
         for (int lev = 0; lev < nlevels; ++lev) {
             const auto& field_arrs = field(lev).arrays();
             amrex::ParallelFor(
-                field(lev),
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
-                    field_arrs[nbx](i, j, k) = (field_arrs[nbx](i, j, k) < 0.0)
-                                                   ? clip_value
-                                                   : field_arrs[nbx](i, j, k);
+                field(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                    field_arrs[nbx](i, j, k) =
+                        (field_arrs[nbx](i, j, k) < 0.0_rt)
+                            ? clip_value
+                            : field_arrs[nbx](i, j, k);
                 });
             const bool has_terrain = repo.int_field_exists("terrain_blank");
             if (has_terrain) {
@@ -56,8 +59,8 @@ struct PostSolveOp<TKE>
                     repo.get_int_field("terrain_blank");
                 const auto& blank_arrs = m_terrain_blank(lev).arrays();
                 amrex::ParallelFor(
-                    field(lev), [=] AMREX_GPU_DEVICE(
-                                    int nbx, int i, int j, int k) noexcept {
+                    field(lev),
+                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                         field_arrs[nbx](i, j, k) =
                             (blank_arrs[nbx](i, j, k) == 1)
                                 ? clip_value
@@ -70,7 +73,7 @@ struct PostSolveOp<TKE>
     }
 
     PDEFields& m_fields;
-    amrex::Real m_clip_value{1.0e-8};
+    amrex::Real m_clip_value{std::numeric_limits<float>::epsilon()};
 };
 
 template <typename Scheme>
@@ -87,11 +90,11 @@ struct FieldRegOp<TKE, Scheme>
             m_itype = FieldInterpolator::PiecewiseConstant;
             amrex::Print()
                 << "using PiecewiseConstant interpolation for TKE fillpatch"
-                << std::endl;
+                << '\n';
         } else {
             amrex::Print() << "using default CellConsLinear interpolation for "
                               "TKE fillpatch"
-                           << std::endl;
+                           << '\n';
         }
     }
 
@@ -142,17 +145,16 @@ struct DiffusionOp<TKE, Scheme> : public DiffSolverIface<typename TKE::MLDiffOp>
             diffusion::get_diffuse_scalar_bc(
                 this->m_pdefields.field, amrex::Orientation::high));
 
-        m_lhs_src_term.setVal(0.0);
+        m_lhs_src_term.setVal(0.0_rt);
     }
 
     //! Computes the diffusion term that goes in the RHS
     void compute_diff_term(const FieldState fstate)
     {
-        this->setup_operator(*this->m_applier, 0.0, -1.0, fstate);
+        this->setup_operator(*this->m_applier, 0.0_rt, -1.0_rt, fstate);
 
-        auto tau_state = std::is_same<Scheme, fvm::Godunov>::value
-                             ? FieldState::New
-                             : fstate;
+        auto tau_state =
+            std::is_same_v<Scheme, fvm::Godunov> ? FieldState::New : fstate;
         amrex::MLMG mlmg(*this->m_applier);
         mlmg.apply(
             this->m_pdefields.diff_term.state(tau_state).vec_ptrs(),
@@ -169,7 +171,7 @@ struct DiffusionOp<TKE, Scheme> : public DiffSolverIface<typename TKE::MLDiffOp>
         auto& density = m_density.state(fstate);
         auto lhs_total = repo.create_scratch_field(1, 1);
         field_ops::lincomb(
-            *lhs_total, 1.0, m_lhs_src_term, 0, 1.0, density, 0, 0, 1, 1);
+            *lhs_total, 1.0_rt, m_lhs_src_term, 0, 1.0_rt, density, 0, 0, 1, 1);
 
         for (int lev = 0; lev < nlevels; ++lev) {
             linop.setACoeffs(lev, (*lhs_total)(lev));

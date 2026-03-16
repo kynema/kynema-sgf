@@ -1,5 +1,8 @@
 #include "amr-wind/wind_energy/actuator/FLLC.H"
 #include "amr-wind/utilities/linear_interpolation.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator {
 
@@ -38,10 +41,11 @@ void fllc_init(
 
     // Central difference
     for (int i = 1; i < npts - 1; ++i) {
-        data.dr[i] = vs::mag(view.pos[i + 1] - view.pos[i - 1]) / 2.;
+        data.dr[i] = vs::mag(view.pos[i + 1] - view.pos[i - 1]) / 2.0_rt;
     }
-    data.dr[0] = vs::mag(view.pos[1] - view.pos[0]) / 2.;
-    data.dr[npts - 1] = vs::mag(view.pos[npts - 1] - view.pos[npts - 2]) / 2.;
+    data.dr[0] = vs::mag(view.pos[1] - view.pos[0]) / 2.0_rt;
+    data.dr[npts - 1] =
+        vs::mag(view.pos[npts - 1] - view.pos[npts - 2]) / 2.0_rt;
 
     //
     //  The following code is used to create a non-uniform distribution of
@@ -73,13 +77,14 @@ void fllc_init(
 
             // This will ensure that the spacing will always meet the
             // requirement eps/dr
-            dr = std::min(dr1, dr2);
+            dr = amrex::min<amrex::Real>(dr1, dr2);
             AMREX_ALWAYS_ASSERT(
                 dr > std::numeric_limits<amrex::Real>::epsilon());
 
             // Append value to the array
             // Ensure that the value is smaller than the tip
-            data.nonuniform_r.push_back(std::min(r_ + dr, data.r.back()));
+            data.nonuniform_r.push_back(
+                amrex::min<amrex::Real>(r_ + dr, data.r.back()));
         }
 
         int npts_n = static_cast<int>(data.nonuniform_r.size());
@@ -92,14 +97,14 @@ void fllc_init(
         for (int i = 1; i < npts_n - 1; ++i) {
             data.nonuniform_dr[i] =
                 std::abs(data.nonuniform_r[i + 1] - data.nonuniform_r[i - 1]) /
-                2.;
+                2.0_rt;
         }
         data.nonuniform_dr[0] =
-            std::abs(data.nonuniform_r[1] - data.nonuniform_r[0]) / 2.;
+            std::abs(data.nonuniform_r[1] - data.nonuniform_r[0]) / 2.0_rt;
         data.nonuniform_dr[npts_n - 1] =
             std::abs(
                 data.nonuniform_r[npts_n - 1] - data.nonuniform_r[npts_n - 2]) /
-            2.;
+            2.0_rt;
     }
 
     data.initialized = true;

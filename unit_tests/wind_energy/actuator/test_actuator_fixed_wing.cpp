@@ -6,6 +6,9 @@
 #include "amr-wind/wind_energy/actuator/ActuatorModel.H"
 #include "amr-wind/wind_energy/actuator/ActParser.H"
 #include "amr-wind/wind_energy/actuator/wing/fixed_wing_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 namespace {
@@ -33,12 +36,12 @@ protected:
         }
         {
             amrex::ParmParse pp("time");
-            pp.add("fixed_dt", 0.2);
+            pp.add("fixed_dt", 0.2_rt);
         }
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> problo{{-16.0, -16.0, -16.0}};
-            amrex::Vector<amrex::Real> probhi{{16.0, 16.0, 16.0}};
+            amrex::Vector<amrex::Real> problo{{-16.0_rt, -16.0_rt, -16.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{16.0_rt, 16.0_rt, 16.0_rt}};
 
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
@@ -51,8 +54,8 @@ protected:
         sim().repo().declare_field("actuator_src_term", 3, 0);
         auto& vel = sim().repo().declare_field("velocity", 3, 3);
         auto& density = sim().repo().declare_field("density", 1, 3);
-        vel.setVal(10.0, 0, 1, 3);
-        density.setVal(1.0);
+        vel.setVal(10.0_rt, 0, 1, 3);
+        density.setVal(1.0_rt);
         amr_wind::actuator::ActuatorContainer::ParticleType::NextID(1U);
     }
 
@@ -63,17 +66,19 @@ protected:
         pp_a.add("type", (std::string) "TestFixedWingLine");
         amrex::ParmParse pp("Actuator.TestFixedWingLine");
         pp.add("num_points", 21);
-        pp.add("epsilon", 1.0);
-        pp.add("pitch", 4.0);
+        pp.add("epsilon", 1.0_rt);
+        pp.add("pitch", 4.0_rt);
         pp.add("airfoil_table", m_afname);
         pp.add("airfoil_type", (std::string) "openfast");
         pp.add("motion_type", (std::string) "linear");
-        pp.addarr("velocity", amrex::Vector<amrex::Real>{1.0, 0.5, 0.7});
-        pp.addarr("span_locs", amrex::Vector<amrex::Real>{0.0, 1.0});
-        pp.addarr("chord", amrex::Vector<amrex::Real>{2.0, 2.0});
+        pp.addarr(
+            "velocity", amrex::Vector<amrex::Real>{1.0_rt, 0.5_rt, 0.7_rt});
+        pp.addarr("span_locs", amrex::Vector<amrex::Real>{0.0_rt, 1.0_rt});
+        pp.addarr("chord", amrex::Vector<amrex::Real>{2.0_rt, 2.0_rt});
         amrex::ParmParse pp_f("Actuator.F1");
-        pp_f.addarr("start", amrex::Vector<amrex::Real>{0.0, -4.0, 0.0});
-        pp_f.addarr("end", amrex::Vector<amrex::Real>{0.0, 4.0, 0.0});
+        pp_f.addarr(
+            "start", amrex::Vector<amrex::Real>{0.0_rt, -4.0_rt, 0.0_rt});
+        pp_f.addarr("end", amrex::Vector<amrex::Real>{0.0_rt, 4.0_rt, 0.0_rt});
     }
 
     void pitching_wing_2d_setup()
@@ -85,14 +90,16 @@ protected:
         pp.add("num_points", 2);
         pp.add("airfoil_table", m_afname);
         pp.add("airfoil_type", (std::string) "openfast");
-        pp.addarr("epsilon", amrex::Vector<amrex::Real>{1.0, 2.0, 1.0});
-        pp.addarr("span_locs", amrex::Vector<amrex::Real>{0.0, 1.0});
-        pp.addarr("chord", amrex::Vector<amrex::Real>{2.0, 2.0});
+        pp.addarr(
+            "epsilon", amrex::Vector<amrex::Real>{1.0_rt, 2.0_rt, 1.0_rt});
+        pp.addarr("span_locs", amrex::Vector<amrex::Real>{0.0_rt, 1.0_rt});
+        pp.addarr("chord", amrex::Vector<amrex::Real>{2.0_rt, 2.0_rt});
         amrex::ParmParse pp_f("Actuator.F1");
         pp_f.add("pitch_timetable", m_ptname);
         pp_f.add("disable_spanwise_gaussian", true);
-        pp_f.addarr("start", amrex::Vector<amrex::Real>{0.0, -4.0, 0.0});
-        pp_f.addarr("end", amrex::Vector<amrex::Real>{0.0, 4.0, 0.0});
+        pp_f.addarr(
+            "start", amrex::Vector<amrex::Real>{0.0_rt, -4.0_rt, 0.0_rt});
+        pp_f.addarr("end", amrex::Vector<amrex::Real>{0.0_rt, 4.0_rt, 0.0_rt});
     }
 
     const std::string m_afname = "airfoil.txt";
@@ -102,22 +109,22 @@ protected:
 std::stringstream generate_openfast_airfoil()
 {
     std::stringstream ss;
-    ss << "!........................................ " << std::endl;
-    ss << "! Table of aerodynamics coefficients " << std::endl;
+    ss << "!........................................ " << '\n';
+    ss << "! Table of aerodynamics coefficients " << '\n';
     ss << "        6   NumAlf            ! Number of data lines in the "
           "following table "
-       << std::endl;
-    ss << "!    Alpha      Cl      Cd        Cm  " << std::endl;
-    ss << "!    (deg)      (-)     (-)       (-) " << std::endl;
-    ss << "   -180.00    0.000   0.0407   0.0000 " << std::endl;
-    ss << "   -175.00    0.223   0.0507   0.0937 " << std::endl;
-    ss << "   -170.00    0.405   0.1055   0.1702 " << std::endl;
-    ss << "   -160.00    0.658   0.2982   0.2819 " << std::endl;
-    ss << "   -155.00    0.733   0.4121   0.3213 " << std::endl;
-    ss << "   -150.00    0.778   0.5308   0.3520 " << std::endl;
-    ss << "   -145.00    0.795   0.6503   0.3754 " << std::endl;
-    ss << "   -140.00    0.787   0.7672   0.3926 " << std::endl;
-    ss << "   -135.00    0.757   0.8785   0.4046 " << std::endl;
+       << '\n';
+    ss << "!    Alpha      Cl      Cd        Cm  " << '\n';
+    ss << "!    (deg)      (-)     (-)       (-) " << '\n';
+    ss << "   -180.00    0.000   0.0407   0.0000 " << '\n';
+    ss << "   -175.00    0.223   0.0507   0.0937 " << '\n';
+    ss << "   -170.00    0.405   0.1055   0.1702 " << '\n';
+    ss << "   -160.00    0.658   0.2982   0.2819 " << '\n';
+    ss << "   -155.00    0.733   0.4121   0.3213 " << '\n';
+    ss << "   -150.00    0.778   0.5308   0.3520 " << '\n';
+    ss << "   -145.00    0.795   0.6503   0.3754 " << '\n';
+    ss << "   -140.00    0.787   0.7672   0.3926 " << '\n';
+    ss << "   -135.00    0.757   0.8785   0.4046 " << '\n';
 
     return ss;
 }
@@ -157,13 +164,13 @@ struct ReadInputsOp<::amr_wind_tests::FixedWing, ActSrcLine>
         // Do checks for each case
         if (meta.pitch_timetable_file.empty()) {
             // Linear motion case
-            EXPECT_DOUBLE_EQ(meta.vel_tr.x(), 1.0);
-            EXPECT_DOUBLE_EQ(meta.vel_tr.y(), 0.5);
-            EXPECT_DOUBLE_EQ(meta.vel_tr.z(), 0.7);
+            EXPECT_DOUBLE_EQ(meta.vel_tr.x(), 1.0_rt);
+            EXPECT_DOUBLE_EQ(meta.vel_tr.y(), 0.5_rt);
+            EXPECT_DOUBLE_EQ(meta.vel_tr.z(), 0.7_rt);
         } else {
             // Pitching wing 2D case
-            EXPECT_DOUBLE_EQ(meta.pitch_table[0], 0.0);
-            EXPECT_DOUBLE_EQ(meta.pitch_table[1], 90.0);
+            EXPECT_DOUBLE_EQ(meta.pitch_table[0], 0.0_rt);
+            EXPECT_DOUBLE_EQ(meta.pitch_table[1], 90.0_rt);
         }
     }
 };
@@ -183,7 +190,8 @@ struct ComputeForceOp<::amr_wind_tests::FixedWing, ActSrcLine>
 {
     void operator()(::amr_wind_tests::FixedWing::DataType& data)
     {
-        constexpr amrex::Real tol = 1.0e-15;
+        constexpr amrex::Real tol =
+            std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt;
         const auto& meta = data.meta();
         const auto& grid = data.grid();
         ComputeForceOp<::amr_wind::actuator::FixedWing, ActSrcLine> actual_op;
@@ -192,29 +200,29 @@ struct ComputeForceOp<::amr_wind_tests::FixedWing, ActSrcLine>
         // Do checks for each case
         if (meta.pitch_timetable_file.empty()) {
             // Check position (using mid point)
-            if (!(time > 0.0)) {
-                EXPECT_NEAR(grid.pos[10].x(), 1.0 * 0.0, tol);
-                EXPECT_NEAR(grid.pos[10].y(), 0.5 * 0.0, tol);
-                EXPECT_NEAR(grid.pos[10].z(), 0.7 * 0.0, tol);
+            if (!(time > 0.0_rt)) {
+                EXPECT_NEAR(grid.pos[10].x(), 1.0_rt * 0.0_rt, tol);
+                EXPECT_NEAR(grid.pos[10].y(), 0.5_rt * 0.0_rt, tol);
+                EXPECT_NEAR(grid.pos[10].z(), 0.7_rt * 0.0_rt, tol);
             } else {
-                EXPECT_NEAR(grid.pos[10].x(), 1.0 * 0.2, tol);
-                EXPECT_NEAR(grid.pos[10].y(), 0.5 * 0.2, tol);
-                EXPECT_NEAR(grid.pos[10].z(), 0.7 * 0.2, tol);
+                EXPECT_NEAR(grid.pos[10].x(), 1.0_rt * 0.2_rt, tol);
+                EXPECT_NEAR(grid.pos[10].y(), 0.5_rt * 0.2_rt, tol);
+                EXPECT_NEAR(grid.pos[10].z(), 0.7_rt * 0.2_rt, tol);
             }
         } else {
             // Check pitch
-            if (!(time > 0.0)) {
-                EXPECT_NEAR(meta.pitch, 0.0, tol);
+            if (!(time > 0.0_rt)) {
+                EXPECT_NEAR(meta.pitch, 0.0_rt, tol);
             } else {
-                EXPECT_NEAR(meta.pitch, 90.0, tol);
+                EXPECT_NEAR(meta.pitch, 90.0_rt, tol);
             }
             // const auto dummy = grid.orientation;
             // Check rotation of epsilon
             amrex::Real angle;
-            if (!(time > 0.0)) {
-                angle = 0.0;
+            if (!(time > 0.0_rt)) {
+                angle = 0.0_rt;
             } else {
-                angle = 90.0;
+                angle = 90.0_rt;
             }
             const auto ref_mat = vs::quaternion(meta.end - meta.start, angle);
             for (int n = 0; n < 9; ++n) {
@@ -222,7 +230,7 @@ struct ComputeForceOp<::amr_wind_tests::FixedWing, ActSrcLine>
                 EXPECT_NEAR(grid.orientation[1][n], ref_mat[n], tol);
             }
             // Check 2D nature of force
-            EXPECT_NEAR(grid.dcoord_flags[1], 0.0, tol);
+            EXPECT_NEAR(grid.dcoord_flags[1], 0.0_rt, tol);
         }
     }
 };
@@ -230,13 +238,11 @@ struct ComputeForceOp<::amr_wind_tests::FixedWing, ActSrcLine>
 template <>
 struct ProcessOutputsOp<::amr_wind_tests::FixedWing, ActSrcLine>
 {
-    ProcessOutputsOp<::amr_wind_tests::FixedWing, ActSrcLine>(
-        ::amr_wind_tests::FixedWing::DataType& /**/)
-    {}
-    void operator()(::amr_wind_tests::FixedWing::DataType& /*data*/) {}
+    ProcessOutputsOp(::amr_wind_tests::FixedWing::DataType& /**/) {}
+    void operator()(::amr_wind_tests::FixedWing::DataType& /**/) {}
     void read_io_options(const utils::ActParser& /**/) {}
     void prepare_outputs(const std::string& /**/) {}
-    void write_outputs() {};
+    void write_outputs() {}
 };
 
 } // namespace ops

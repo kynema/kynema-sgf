@@ -3,6 +3,9 @@
 
 #include "AMReX.H"
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -55,7 +58,7 @@ void FieldRefinement::initialize(const std::string& key)
     }
 
     {
-        const int fcount = std::min(
+        const int fcount = amrex::min(
             static_cast<int>(field_err.size()),
             static_cast<int>(m_field_error.size()));
         for (int i = 0; i < fcount; ++i) {
@@ -64,7 +67,7 @@ void FieldRefinement::initialize(const std::string& key)
         m_max_lev_field = fcount - 1;
     }
     {
-        const int fcount = std::min(
+        const int fcount = amrex::min(
             static_cast<int>(grad_err.size()),
             static_cast<int>(m_grad_error.size()));
         for (int i = 0; i < fcount; ++i) {

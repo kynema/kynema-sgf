@@ -3,6 +3,9 @@
 #include "amr-wind/core/vs/vector_space.H"
 #include "amr-wind/wind_energy/actuator/actuator_utils.H"
 #include <cmath>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace act = ::amr_wind::actuator::utils;
 namespace vs = ::amr_wind::vs;
@@ -19,9 +22,9 @@ TEST(CylindricalTransformation, distances_on_z_aligned_circle)
     const vs::Vector origin{0, 0, 0};
 
     auto d = act::delta_pnts_cyl(origin, normal, p1, p2);
-    EXPECT_DOUBLE_EQ(1.0, d[0]);
+    EXPECT_DOUBLE_EQ(1.0_rt, d[0]);
     EXPECT_DOUBLE_EQ(utils::half_pi(), d[1]);
-    EXPECT_DOUBLE_EQ(1.0, d[2]);
+    EXPECT_DOUBLE_EQ(1.0_rt, d[2]);
 }
 
 TEST(CylindricalTransformation, returns_correct_radius_when_origin_is_a_point)
@@ -32,9 +35,9 @@ TEST(CylindricalTransformation, returns_correct_radius_when_origin_is_a_point)
     const vs::Vector p1(origin);
 
     auto d = act::delta_pnts_cyl(origin, normal, p1, p2);
-    EXPECT_DOUBLE_EQ(1.0, d[0]);
+    EXPECT_DOUBLE_EQ(1.0_rt, d[0]);
     // theta will be ill defined
-    EXPECT_DOUBLE_EQ(0.0, d[2]);
+    EXPECT_DOUBLE_EQ(0.0_rt, d[2]);
 }
 
 TEST(CylindricalTransformation, distances_on_shifted_circle)
@@ -45,9 +48,9 @@ TEST(CylindricalTransformation, distances_on_shifted_circle)
     const vs::Vector origin{1, 1, 1};
 
     auto d = act::delta_pnts_cyl(origin, normal, p1, p2);
-    EXPECT_DOUBLE_EQ(1.0, d[0]);
+    EXPECT_DOUBLE_EQ(1.0_rt, d[0]);
     EXPECT_DOUBLE_EQ(utils::half_pi(), d[1]);
-    EXPECT_DOUBLE_EQ(1.0, d[2]);
+    EXPECT_DOUBLE_EQ(1.0_rt, d[2]);
 }
 
 vs::Vector rotation(const vs::Vector& angles, const vs::Vector& data)
@@ -70,10 +73,10 @@ TEST(CylindricalTransformation, distances_on_rotated_circle)
     auto np2 = rotation(angles, p2);
 
     auto d = act::delta_pnts_cyl(origin, newNormal, np1, np2);
-    EXPECT_DOUBLE_EQ(1.0, d[0]);
+    EXPECT_DOUBLE_EQ(1.0_rt, d[0]);
     EXPECT_DOUBLE_EQ(utils::half_pi(), d[1])
         << "angle in degress: " << utils::degrees(d[1]);
-    EXPECT_DOUBLE_EQ(1.0, d[2]);
+    EXPECT_NEAR(1.0_rt, d[2], std::numeric_limits<float>::epsilon() * 1.0e1_rt);
 }
 
 TEST(CylindricalTransformation, distances_on_rotated_shifted_circle)
@@ -94,10 +97,14 @@ TEST(CylindricalTransformation, distances_on_rotated_shifted_circle)
     auto np2 = rotation(angles, p2) + origin;
 
     auto d = act::delta_pnts_cyl(origin, newNormal, np1, np2);
-    EXPECT_DOUBLE_EQ(1.0, d[0]);
-    EXPECT_DOUBLE_EQ(utils::half_pi(), d[1])
+    EXPECT_NEAR(
+        1.0_rt, d[0], std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
+    EXPECT_NEAR(
+        utils::half_pi(), d[1],
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt)
         << "angle in degress: " << utils::degrees(d[1]);
-    EXPECT_DOUBLE_EQ(1.0, d[2]);
+    EXPECT_NEAR(
+        1.0_rt, d[2], std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
 }
 
 } // namespace

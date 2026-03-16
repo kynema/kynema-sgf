@@ -6,6 +6,9 @@
 #include "amr-wind/utilities/constants.H"
 #include "amr-wind/physics/multiphase/MultiPhase.H"
 #include "amr-wind/equation_systems/icns/icns_advection.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -25,8 +28,8 @@ protected:
         }
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> problo{{0.0, -0.25, -1}};
-            amrex::Vector<amrex::Real> probhi{{8.0, 0.25, 1}};
+            amrex::Vector<amrex::Real> problo{{0.0_rt, -0.25_rt, -1}};
+            amrex::Vector<amrex::Real> probhi{{8.0_rt, 0.25_rt, 1}};
 
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
@@ -70,10 +73,11 @@ void initialize_relaxation_zone_field(
     amrex::Real gen_length)
 {
     amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        const amrex::Real x = xlo + (i + 0.5) * dx;
-        amrex::Real xtilde = std::max(std::min(1. - x / gen_length, 1.0), 0.0);
+        const amrex::Real x = xlo + ((i + 0.5_rt) * dx);
+        amrex::Real xtilde = amrex::max<amrex::Real>(
+            amrex::min<amrex::Real>(1.0_rt - (x / gen_length), 1.0_rt), 0.0_rt);
         theor_farr(i, j, k) =
-            std::expm1(std::pow(xtilde, 3.5)) / std::expm1(1.0);
+            std::expm1(std::pow(xtilde, 3.5_rt)) / std::expm1(1.0_rt);
     });
 }
 
@@ -105,17 +109,18 @@ void apply_relaxation_zone_field(
 
         amrex::ParallelFor(
             comp(lev), amrex::IntVect(2),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
-                const amrex::Real x = amrex::min(
-                    amrex::max(problo[0] + (i + 0.5) * dx[0], problo[0]),
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                const amrex::Real x = amrex::min<amrex::Real>(
+                    amrex::max<amrex::Real>(
+                        problo[0] + ((i + 0.5_rt) * dx[0]), problo[0]),
                     probhi[0]);
                 if (x <= problo[0] + gen_length) {
                     const amrex::Real Gamma =
                         amr_wind::ocean_waves::utils::gamma_generate(
                             x - problo[0], gen_length);
                     comp_arrs[nbx](i, j, k) =
-                        targ_arrs[nbx](i, j, k) * (1. - Gamma) +
-                        comp_arrs[nbx](i, j, k) * Gamma;
+                        (targ_arrs[nbx](i, j, k) * (1.0_rt - Gamma)) +
+                        (comp_arrs[nbx](i, j, k) * Gamma);
                 }
             });
     }
@@ -124,7 +129,7 @@ void apply_relaxation_zone_field(
 
 amrex::Real field_error(amr_wind::Field& comp, amr_wind::Field& targ, int ncomp)
 {
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
     int nc = ncomp;
 
     for (int lev = 0; lev < comp.repo().num_active_levels(); ++lev) {
@@ -135,13 +140,12 @@ amrex::Real field_error(amr_wind::Field& comp, amr_wind::Field& targ, int ncomp)
                 amrex::Array4<amrex::Real const> const& comp_arr,
                 amrex::Array4<amrex::Real const> const& targ_arr)
                 -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(
-                    bx, nc, [=, &error](int i, int j, int k, int n) noexcept {
-                        error += std::abs(
-                            comp_arr(i, j, k, n) - targ_arr(i, j, k, n));
-                    });
+                amrex::Loop(bx, nc, [=, &error](int i, int j, int k, int n) {
+                    error +=
+                        std::abs(comp_arr(i, j, k, n) - targ_arr(i, j, k, n));
+                });
 
                 return error;
             });
@@ -158,7 +162,7 @@ amrex::Real field_error(amr_wind::Field& comp, amr_wind::Field& targ)
 amrex::Real gas_velocity_error(
     amr_wind::Field& vel, amr_wind::Field& vof, amrex::Real gas_vel)
 {
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
     const amrex::Real gvel = gas_vel;
     const int nc = 3;
 
@@ -170,15 +174,16 @@ amrex::Real gas_velocity_error(
                 amrex::Array4<amrex::Real const> const& vel_arr,
                 amrex::Array4<amrex::Real const> const& vof_arr)
                 -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(
-                    bx, nc, [=, &error](int i, int j, int k, int n) noexcept {
-                        error +=
-                            (vof_arr(i, j, k) < 1e-12
-                                 ? std::abs(vel_arr(i, j, k, n) - gvel)
-                                 : 0.0);
-                    });
+                amrex::Loop(bx, nc, [=, &error](int i, int j, int k, int n) {
+                    error +=
+                        (vof_arr(i, j, k) <
+                                 std::numeric_limits<amrex::Real>::epsilon() *
+                                     1.0e4_rt
+                             ? std::abs(vel_arr(i, j, k, n) - gvel)
+                             : 0.0_rt);
+                });
 
                 return error;
             });
@@ -198,7 +203,7 @@ void make_target_velocity(
         const auto& ow_vof_arrs = ow_vof(lev).const_arrays();
         amrex::ParallelFor(
             ow_vof(lev), amrex::IntVect(2), velocity.num_comp(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 if (ow_vof_arrs[nbx](i, j, k) <=
                     amr_wind::constants::TIGHT_TOL) {
                     ow_vel_arrs[nbx](i, j, k, n) = vel_arrs[nbx](i, j, k, n);
@@ -215,10 +220,10 @@ void make_target_density(
         const auto& ow_vof_arrs = ow_vof(lev).arrays();
         amrex::ParallelFor(
             ow_vof(lev), amrex::IntVect(2),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 ow_vof_arrs[nbx](i, j, k) =
-                    rho1 * ow_vof_arrs[nbx](i, j, k) +
-                    rho2 * (1.0 - ow_vof_arrs[nbx](i, j, k));
+                    (rho1 * ow_vof_arrs[nbx](i, j, k)) +
+                    (rho2 * (1.0_rt - ow_vof_arrs[nbx](i, j, k)));
             });
     }
     amrex::Gpu::streamSynchronize();
@@ -226,7 +231,7 @@ void make_target_density(
 
 amrex::Real bdy_error(amr_wind::Field& comp, amr_wind::Field& targ, int ncomp)
 {
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
     int nc = ncomp;
 
     for (int lev = 0; lev < comp.repo().num_active_levels(); ++lev) {
@@ -237,16 +242,15 @@ amrex::Real bdy_error(amr_wind::Field& comp, amr_wind::Field& targ, int ncomp)
                 amrex::Array4<amrex::Real const> const& comp_arr,
                 amrex::Array4<amrex::Real const> const& targ_arr)
                 -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(
-                    bx, nc, [=, &error](int i, int j, int k, int n) noexcept {
-                        if (i == 0) {
-                            error += std::abs(
-                                comp_arr(i - 1, j, k, n) -
-                                targ_arr(i - 1, j, k, n));
-                        }
-                    });
+                amrex::Loop(bx, nc, [=, &error](int i, int j, int k, int n) {
+                    if (i == 0) {
+                        error += std::abs(
+                            comp_arr(i - 1, j, k, n) -
+                            targ_arr(i - 1, j, k, n));
+                    }
+                });
 
                 return error;
             });
@@ -262,7 +266,7 @@ amrex::Real bdy_error(amr_wind::Field& comp, amr_wind::Field& targ)
 
 amrex::Real uface_bdy_error(amr_wind::Field& comp, amr_wind::Field& targ)
 {
-    amrex::Real error_total = 0.0;
+    amrex::Real error_total = 0.0_rt;
 
     for (int lev = 0; lev < comp.repo().num_active_levels(); ++lev) {
         error_total += amrex::ReduceSum(
@@ -272,9 +276,9 @@ amrex::Real uface_bdy_error(amr_wind::Field& comp, amr_wind::Field& targ)
                 amrex::Array4<amrex::Real const> const& comp_arr,
                 amrex::Array4<amrex::Real const> const& targ_arr)
                 -> amrex::Real {
-                amrex::Real error = 0.0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     if (i == 0) {
                         error += std::abs(
                             comp_arr(i, j, k, 0) - targ_arr(i - 1, j, k, 0));
@@ -292,7 +296,8 @@ amrex::Real uface_bdy_error(amr_wind::Field& comp, amr_wind::Field& targ)
 
 TEST_F(OceanWavesOpTest, relaxation_zone)
 {
-    constexpr double tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     populate_parameters();
     {
@@ -306,23 +311,23 @@ TEST_F(OceanWavesOpTest, relaxation_zone)
     auto& repo = sim().repo();
     const int ncomp = 1;
     const int nghost = 3;
-    amrex::Real gen_length = 4.0;
+    amrex::Real gen_length = 4.0_rt;
     auto& comp_field = repo.declare_field("comp_field", ncomp, nghost);
     auto& target_field = repo.declare_field("target_field", ncomp, nghost);
     auto& theoretical_field =
         repo.declare_field("theoretical_field", ncomp, nghost);
-    comp_field.setVal(0.0);
-    target_field.setVal(1.0);
+    comp_field.setVal(0.0_rt);
+    target_field.setVal(1.0_rt);
     init_relaxation_field(theoretical_field, gen_length);
     apply_relaxation_zone_field(comp_field, target_field, gen_length);
     amrex::Real error_total = field_error(comp_field, theoretical_field);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
 TEST_F(OceanWavesOpTest, gas_phase)
 {
-
-    constexpr double tol = 1.0e-3;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e8_rt;
 
     populate_parameters();
     {
@@ -331,16 +336,16 @@ TEST_F(OceanWavesOpTest, gas_phase)
         pp.add("label", (std::string) "lin_ow");
         amrex::ParmParse ppow("OceanWaves.lin_ow");
         ppow.add("type", (std::string) "LinearWaves");
-        ppow.add("wave_height", 0.05);
-        ppow.add("wave_length", 1.0);
-        ppow.add("water_depth", 1.0);
+        ppow.add("wave_height", 0.05_rt);
+        ppow.add("wave_length", 1.0_rt);
+        ppow.add("water_depth", 1.0_rt);
         // Wave generation and numerical beach
-        ppow.add("relax_zone_gen_length", 2.0);
-        ppow.add("numerical_beach_length", 4.0);
+        ppow.add("relax_zone_gen_length", 2.0_rt);
+        ppow.add("numerical_beach_length", 4.0_rt);
     }
     {
         amrex::ParmParse pp("time");
-        pp.add("fixed_dt", 0.1);
+        pp.add("fixed_dt", 0.1_rt);
     }
 
     initialize_mesh();
@@ -362,7 +367,7 @@ TEST_F(OceanWavesOpTest, gas_phase)
 
     // Modify velocity field
     auto& velocity = repo.get_field("velocity");
-    const amrex::Real gas_vel = 1.0;
+    const amrex::Real gas_vel = 1.0_rt;
     velocity.setVal(gas_vel);
 
     // Do post-init step, which modifies velocity and vof fields
@@ -373,14 +378,13 @@ TEST_F(OceanWavesOpTest, gas_phase)
 
     // Check velocity field to confirm not modified
     amrex::Real error_total = gas_velocity_error(velocity, vof, gas_vel);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
 TEST_F(OceanWavesOpTest, boundary_fill)
 {
-
-    constexpr double tol = 1.0e-3;
-    const amrex::Vector<amrex::Real> gas_vel{{1.0, 0.0, 0.0}};
+    constexpr amrex::Real tol = 1.0e-3_rt;
+    const amrex::Vector<amrex::Real> gas_vel{{1.0_rt, 0.0_rt, 0.0_rt}};
 
     populate_parameters();
     {
@@ -389,24 +393,24 @@ TEST_F(OceanWavesOpTest, boundary_fill)
         pp.add("label", (std::string) "lin_ow");
         amrex::ParmParse ppow("OceanWaves.lin_ow");
         ppow.add("type", (std::string) "LinearWaves");
-        ppow.add("wave_height", 0.05);
-        ppow.add("wave_length", 1.0);
-        ppow.add("water_depth", 1.0);
+        ppow.add("wave_height", 0.05_rt);
+        ppow.add("wave_length", 1.0_rt);
+        ppow.add("water_depth", 1.0_rt);
         // Wave generation and numerical beach
-        ppow.add("relax_zone_gen_length", 2.0);
-        ppow.add("numerical_beach_length", 4.0);
+        ppow.add("relax_zone_gen_length", 2.0_rt);
+        ppow.add("numerical_beach_length", 4.0_rt);
     }
     {
         amrex::ParmParse pp("time");
-        pp.add("fixed_dt", 0.1);
+        pp.add("fixed_dt", 0.1_rt);
     }
     {
         // Boundary conditions
         amrex::ParmParse ppxlo("xlo");
         ppxlo.add("type", (std::string) "wave_generation");
         ppxlo.addarr("velocity", gas_vel);
-        ppxlo.add("vof", 0.0);
-        ppxlo.add("density", 1.0);
+        ppxlo.add("vof", 0.0_rt);
+        ppxlo.add("density", 1.0_rt);
     }
 
     initialize_mesh();
@@ -442,20 +446,20 @@ TEST_F(OceanWavesOpTest, boundary_fill)
 
     // Check velocity field to confirm not modified
     amrex::Real error_total = bdy_error(vof, ow_vof);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
     make_target_velocity(ow_velocity, velocity, ow_vof);
     error_total = bdy_error(velocity, ow_velocity);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
     make_target_density(ow_vof, rho1, rho2);
     error_total = bdy_error(density, ow_vof);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
 TEST_F(OceanWavesOpTest, set_inflow_sibling)
 {
 
-    constexpr double tol = 1.0e-3;
-    const amrex::Vector<amrex::Real> gas_vel{{1.0, 0.0, 0.0}};
+    constexpr amrex::Real tol = 1.0e-3_rt;
+    const amrex::Vector<amrex::Real> gas_vel{{1.0_rt, 0.0_rt, 0.0_rt}};
 
     populate_parameters();
     {
@@ -464,24 +468,24 @@ TEST_F(OceanWavesOpTest, set_inflow_sibling)
         pp.add("label", (std::string) "lin_ow");
         amrex::ParmParse ppow("OceanWaves.lin_ow");
         ppow.add("type", (std::string) "LinearWaves");
-        ppow.add("wave_height", 0.05);
-        ppow.add("wave_length", 1.0);
-        ppow.add("water_depth", 1.0);
+        ppow.add("wave_height", 0.05_rt);
+        ppow.add("wave_length", 1.0_rt);
+        ppow.add("water_depth", 1.0_rt);
         // Wave generation and numerical beach
-        ppow.add("relax_zone_gen_length", 2.0);
-        ppow.add("numerical_beach_length", 4.0);
+        ppow.add("relax_zone_gen_length", 2.0_rt);
+        ppow.add("numerical_beach_length", 4.0_rt);
     }
     {
         amrex::ParmParse pp("time");
-        pp.add("fixed_dt", 0.1);
+        pp.add("fixed_dt", 0.1_rt);
     }
     {
         // Boundary conditions
         amrex::ParmParse ppxlo("xlo");
         ppxlo.add("type", (std::string) "wave_generation");
         ppxlo.addarr("velocity", gas_vel);
-        ppxlo.add("vof", 0.0);
-        ppxlo.add("density", 1.0);
+        ppxlo.add("vof", 0.0_rt);
+        ppxlo.add("density", 1.0_rt);
     }
 
     initialize_mesh();
@@ -508,12 +512,12 @@ TEST_F(OceanWavesOpTest, set_inflow_sibling)
     // Get MAC velocity in x
     auto& u_mac = repo.get_field("u_mac");
     // Set to 0 as a starting point
-    u_mac.setVal(0.0);
+    u_mac.setVal(0.0_rt);
     // Initialize MAC projection operator
     auto mco = amr_wind::pde::MacProjOp(
         sim().repo(), sim().physics_manager(), false, false, false, false);
     // Populate boundary using set inflow
-    mco.set_inflow_velocity(0.0);
+    mco.set_inflow_velocity(0.0_rt);
 
     // Get fields for comparison
     auto& ow_vof = repo.get_field("ow_vof");
@@ -522,7 +526,7 @@ TEST_F(OceanWavesOpTest, set_inflow_sibling)
     // Check velocity field to confirm not modified
     make_target_velocity(ow_velocity, velocity, ow_vof);
     const amrex::Real error_total = uface_bdy_error(u_mac, ow_velocity);
-    EXPECT_NEAR(error_total, 0.0, tol);
+    EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
 } // namespace amr_wind_tests

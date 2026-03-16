@@ -7,6 +7,9 @@
 #include "amr-wind/utilities/IOManager.H"
 
 #include <algorithm>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::ocean_waves {
 
@@ -89,7 +92,7 @@ void OceanWaves::pre_advance_work()
     BL_PROFILE("amr-wind::ocean_waves::OceanWaves::pre_advance_work");
     // Update ow values for advection boundaries
     const amrex::Real adv_bdy_time =
-        0.5 * (m_sim.time().current_time() + m_sim.time().new_time());
+        0.5_rt * (m_sim.time().current_time() + m_sim.time().new_time());
     m_owm->update_target_fields(adv_bdy_time);
     m_ow_bndry->record_boundary_data_time(adv_bdy_time);
 }

@@ -1,5 +1,5 @@
-#ifndef RayleighTaylor_H
-#define RayleighTaylor_H
+#ifndef RAYLEIGHTAYLOR_H
+#define RAYLEIGHTAYLOR_H
 
 #include <memory>
 

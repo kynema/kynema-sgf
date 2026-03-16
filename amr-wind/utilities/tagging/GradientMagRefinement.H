@@ -2,6 +2,9 @@
 #define GRADIENTMAGREFINEMENT_H
 
 #include "amr-wind/utilities/tagging/RefinementCriteria.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 class Field;
@@ -14,7 +17,7 @@ class Field;
  *  tagging/t1.type = GradientMagRefinement
  *  tagging/t1.field_name = density
  *  # Tagging based on field's gradient magnitude value
- *  # tagging/t1.values = 10.0 10.0
+ *  # tagging/t1.values = 10.0_rt 10.0_rt
  *  ```
  */
 class GradientMagRefinement

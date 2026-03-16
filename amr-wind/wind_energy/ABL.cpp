@@ -16,6 +16,9 @@
 #include "AMReX_ParmParse.H"
 #include "AMReX_MultiFab.H"
 #include "AMReX_Print.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -102,7 +105,7 @@ void ABL::initialize_fields(int level, const amrex::Geometry& geom)
     if (m_field_init->add_temperature_perturbations()) {
         m_field_init->perturb_temperature(level, geom, *m_temperature);
     } else {
-        temp.setVal(0.0);
+        temp.setVal(0.0_rt);
     }
 
     bool interp_fine_levels = false;
@@ -126,7 +129,7 @@ void ABL::initialize_fields(int level, const amrex::Geometry& geom)
 
     if (interp_fine_levels) {
         // Fill the finer levels using coarse data
-        m_velocity.fillpatch_from_coarse(level, 0.0, velocity, 0);
+        m_velocity.fillpatch_from_coarse(level, 0.0_rt, velocity, 0);
     }
 
     if (m_sim.repo().field_exists("tke")) {
@@ -189,7 +192,7 @@ void ABL::pre_advance_work()
             const amrex::Real wind_speed =
                 m_sim.helics().m_inflow_wind_speed_to_amrwind;
             const amrex::Real wind_direction =
-                -m_sim.helics().m_inflow_wind_direction_to_amrwind + 270.0;
+                -m_sim.helics().m_inflow_wind_direction_to_amrwind + 270.0_rt;
             const amrex::Real wind_direction_radian =
                 amr_wind::utils::radians(wind_direction);
             const amrex::Real tvx =
@@ -227,7 +230,7 @@ void ABL::pre_advance_work()
                 m_stats->theta_profile_fine(), m_meso_file);
         }
         amrex::Print() << "Current surface temperature flux: " << interpTflux
-                       << " K-m/s" << std::endl;
+                       << " K-m/s" << '\n';
         m_abl_wall_func.update_tflux(interpTflux);
     }
 

@@ -6,6 +6,9 @@
 #include "AMReX_ParmParse.H"
 #include "amr-wind/utilities/IOManager.H"
 #include "amr-wind/fvm/vorticity_mag.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::enstrophy {
 
@@ -31,7 +34,7 @@ amrex::Real Enstrophy::calculate_enstrophy()
     BL_PROFILE("amr-wind::Enstrophy::calculate_enstrophy");
 
     // integrated total Enstrophy
-    amrex::Real total_enstrophy = 0.0;
+    amrex::Real total_enstrophy = 0.0_rt;
 
     const int finest_level = m_velocity.repo().num_active_levels() - 1;
     const auto& geom = m_velocity.repo().mesh().Geom();
@@ -64,14 +67,13 @@ amrex::Real Enstrophy::calculate_enstrophy()
                 amrex::Array4<amrex::Real const> const& den_arr,
                 amrex::Array4<amrex::Real const> const& vort_arr,
                 amrex::Array4<int const> const& mask_arr) -> amrex::Real {
-                amrex::Real enstrophy_fab = 0.0;
+                amrex::Real enstrophy_fab = 0.0_rt;
 
-                amrex::Loop(
-                    bx, [=, &enstrophy_fab](int i, int j, int k) noexcept {
-                        enstrophy_fab +=
-                            cell_vol * mask_arr(i, j, k) * den_arr(i, j, k) *
-                            (vort_arr(i, j, k) * vort_arr(i, j, k));
-                    });
+                amrex::Loop(bx, [=, &enstrophy_fab](int i, int j, int k) {
+                    enstrophy_fab += cell_vol * mask_arr(i, j, k) *
+                                     den_arr(i, j, k) *
+                                     (vort_arr(i, j, k) * vort_arr(i, j, k));
+                });
                 return enstrophy_fab;
             });
     }
@@ -79,7 +81,7 @@ amrex::Real Enstrophy::calculate_enstrophy()
     // total volume of grid on level 0
     const amrex::Real total_vol = geom[0].ProbDomain().volume();
 
-    total_enstrophy *= 0.5 / total_vol;
+    total_enstrophy *= 0.5_rt / total_vol;
 
     amrex::ParallelDescriptor::ReduceRealSum(total_enstrophy);
 
@@ -105,7 +107,7 @@ void Enstrophy::prepare_ascii_file()
 
     if (amrex::ParallelDescriptor::IOProcessor()) {
         std::ofstream f(m_out_fname.c_str());
-        f << "time_step time enstrophy" << std::endl;
+        f << "time_step time enstrophy" << '\n';
         f.close();
     }
 }
@@ -120,7 +122,7 @@ void Enstrophy::write_ascii()
           << std::setprecision(m_precision) << std::setw(m_width)
           << m_sim.time().new_time();
         f << std::setw(m_width) << m_total_enstrophy;
-        f << std::endl;
+        f << '\n';
         f.close();
     }
 }

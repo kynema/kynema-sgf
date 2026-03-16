@@ -18,6 +18,9 @@
 
 #ifdef AMR_WIND_USE_HDF5
 #include "AMReX_PlotFileUtilHDF5.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 #endif
 
 namespace amr_wind {
@@ -75,7 +78,7 @@ void IOManager::initialize_io()
     // also added the variable explicitly in the input file)
     if (m_output_default_vars) {
         for (const auto& name : m_pltvars_default) {
-            if (skip_outputs.find(name) == skip_outputs.end()) {
+            if (!skip_outputs.contains(name)) {
                 outputs.insert(name);
             }
         }
@@ -85,7 +88,7 @@ void IOManager::initialize_io()
         }
     }
 
-    amrex::Print() << "Initializing I/O manager" << std::endl;
+    amrex::Print() << "Initializing I/O manager" << '\n';
 
     // Process output variables information
     auto& repo = m_sim.repo();
@@ -98,7 +101,7 @@ void IOManager::initialize_io()
             ioutils::add_var_names(m_plt_var_names, fld.name(), fld.num_comp());
         } else {
             amrex::Print() << "  Invalid output variable requested: " << fname
-                           << std::endl;
+                           << '\n';
         }
     }
 
@@ -110,7 +113,7 @@ void IOManager::initialize_io()
             ioutils::add_var_names(m_plt_var_names, fld.name(), fld.num_comp());
         } else {
             amrex::Print() << "  Invalid output variable requested: " << fname
-                           << std::endl;
+                           << '\n';
         }
     }
 
@@ -164,7 +167,7 @@ void IOManager::write_plot_file()
         amrex::Concatenate(m_plt_prefix, m_sim.time().time_index());
     const auto& mesh = m_sim.mesh();
     amrex::Print() << "Writing plot file       " << plt_filename << " at time "
-                   << m_sim.time().new_time() << std::endl;
+                   << m_sim.time().new_time() << '\n';
 #ifdef AMR_WIND_USE_HDF5
     if (m_output_hdf5_plotfile) {
         amrex::WriteMultiLevelPlotfileHDF5SingleDset(
@@ -194,11 +197,11 @@ void IOManager::write_checkpoint_file(const int start_level, int end_level)
         amrex::Concatenate(m_chk_prefix, m_sim.time().time_index());
 
     amrex::Print() << "Writing checkpoint file " << chkname << " at time "
-                   << m_sim.time().new_time() << std::endl;
+                   << m_sim.time().new_time() << '\n';
     const auto& mesh = m_sim.mesh();
     // Modify end_level if need be
     end_level = (end_level == -1) ? mesh.finestLevel() : end_level;
-    end_level = std::max(end_level, start_level);
+    end_level = amrex::max(end_level, start_level);
 
     amrex::PreBuildDirectorHierarchy(
         chkname, level_prefix, end_level + 1 - start_level, true);
@@ -280,7 +283,7 @@ void IOManager::read_checkpoint_fields(
                     }
                 }
 
-                mfab.setBndry(0.0);
+                mfab.setBndry(0.0_rt);
             }
         }
     }
@@ -290,12 +293,12 @@ void IOManager::read_checkpoint_fields(
         amrex::Print() << "\nWARNING: The following fields were missing in the "
                           "restart file for one or more levels. Please check "
                           "your restart file and inputs."
-                       << std::endl
-                       << "Missing checkpoint fields: " << std::endl;
+                       << '\n'
+                       << "Missing checkpoint fields: " << '\n';
         for (const auto& ff : missing) {
-            amrex::Print() << "  - " << ff << std::endl;
+            amrex::Print() << "  - " << ff << '\n';
         }
-        amrex::Print() << std::endl;
+        amrex::Print() << '\n';
         if (!m_allow_missing_restart_fields) {
             amrex::Abort("Missing fields in restart file.");
         }
@@ -367,7 +370,7 @@ void IOManager::write_info_file(const std::string& path)
 
     amr_wind::io::print_banner(amrex::ParallelContext::CommunicatorSub(), fh);
 
-    fh << dash_line << "Grid information: " << std::endl;
+    fh << dash_line << "Grid information: " << '\n';
     const auto& mesh = m_sim.mesh();
     for (int lev = 0; lev < m_sim.mesh().finestLevel() + 1; ++lev) {
         fh << "  Level: " << lev << "\n"
@@ -380,7 +383,7 @@ void IOManager::write_info_file(const std::string& path)
         fh << "\n";
     }
 
-    fh << dash_line << "Input file parameters: " << std::endl;
+    fh << dash_line << "Input file parameters: " << '\n';
     amrex::ParmParse::dumpTable(fh, true);
     fh.close();
 }

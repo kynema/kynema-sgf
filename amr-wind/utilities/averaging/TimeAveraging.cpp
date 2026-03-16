@@ -31,7 +31,7 @@ void TimeAveraging::pre_init_actions()
         pp.query("averaging_window", m_filter);
     }
 
-    amrex::Print() << "TimeAveraging: Initializing " << m_label << std::endl;
+    amrex::Print() << "TimeAveraging: Initializing " << m_label << '\n';
 
     for (const auto& lbl : labels) {
         //! Fields to be averaged
@@ -46,7 +46,7 @@ void TimeAveraging::pre_init_actions()
         pp1.get("averaging_type", avg_type);
 
         amrex::Print() << "    - initializing average labeled " << lbl
-                       << ", type " << avg_type << std::endl;
+                       << ", type " << avg_type << '\n';
 
         for (const auto& fname : fnames) {
             const std::string key = fname + "_" + avg_type;
@@ -98,7 +98,7 @@ void TimeAveraging::post_advance_work()
     const auto t_tol = amr_wind::constants::LOOSE_TOL * cur_dt;
     const bool do_phase_avg =
         (m_time_interval < 0. ||
-         (cur_time - m_start_time + t_tol) / m_time_interval -
+         ((cur_time - m_start_time + t_tol) / m_time_interval) -
                  std::floor(
                      (cur_time - m_start_time + t_tol) / m_time_interval) <
              cur_dt / m_time_interval);

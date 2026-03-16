@@ -9,6 +9,9 @@
 #include "amr-wind/equation_systems/DiffusionOps.H"
 #include "amr-wind/equation_systems/icns/icns.H"
 #include "amr-wind/utilities/console_io.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde {
 
@@ -34,11 +37,10 @@ public:
     template <typename Scheme>
     void compute_diff_term(const FieldState fstate)
     {
-        this->setup_operator(*this->m_applier, 0.0, -1.0, fstate);
+        this->setup_operator(*this->m_applier, 0.0_rt, -1.0_rt, fstate);
 
-        auto tau_state = std::is_same<Scheme, fvm::Godunov>::value
-                             ? FieldState::New
-                             : fstate;
+        auto tau_state =
+            std::is_same_v<Scheme, fvm::Godunov> ? FieldState::New : fstate;
         auto& divtau = this->m_pdefields.diff_term.state(tau_state);
 
         amrex::MLMG mlmg(*this->m_applier);
@@ -115,9 +117,8 @@ public:
     template <typename Scheme>
     void compute_diff_term(const FieldState fstate)
     {
-        auto tau_state = std::is_same<Scheme, fvm::Godunov>::value
-                             ? FieldState::New
-                             : fstate;
+        auto tau_state =
+            std::is_same_v<Scheme, fvm::Godunov> ? FieldState::New : fstate;
         const auto& repo = m_pdefields.repo;
         const int nlevels = repo.num_active_levels();
         const auto& geom = repo.mesh().Geom();
@@ -134,8 +135,8 @@ public:
                                  1, m_density.num_grow()[0], FieldLoc::CELL)
                            : nullptr;
 
-        const amrex::Real alpha = 0.0;
-        const amrex::Real beta = -1.0;
+        const amrex::Real alpha = 0.0_rt;
+        const amrex::Real beta = -1.0_rt;
         m_applier_scalar->setScalars(alpha, beta);
 
         for (int lev = 0; lev < nlevels; ++lev) {
@@ -143,7 +144,7 @@ public:
 
             // A coeffs
             if (m_mesh_mapping) {
-                (*rho_times_detJ)(lev).setVal(0.0);
+                (*rho_times_detJ)(lev).setVal(0.0_rt);
                 amrex::MultiFab::AddProduct(
                     (*rho_times_detJ)(lev), density(lev), 0, (*mesh_detJ)(lev),
                     0, 0, 1, m_density.num_grow()[0]);
@@ -170,9 +171,9 @@ public:
                 const auto& rho_arrs = density(lev).const_arrays();
 
                 amrex::ParallelFor(
-                    divtau(lev), [=] AMREX_GPU_DEVICE(
-                                     int nbx, int i, int j, int k) noexcept {
-                        amrex::Real rhoinv = 1.0 / rho_arrs[nbx](i, j, k);
+                    divtau(lev),
+                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                        amrex::Real rhoinv = 1.0_rt / rho_arrs[nbx](i, j, k);
                         divtau_arrs[nbx](i, j, k, 0) *= rhoinv;
                         divtau_arrs[nbx](i, j, k, 1) *= rhoinv;
                         divtau_arrs[nbx](i, j, k, 2) *= rhoinv;
@@ -201,7 +202,7 @@ public:
                                  1, m_density.num_grow()[0], FieldLoc::CELL)
                            : nullptr;
 
-        const amrex::Real alpha = 1.0;
+        const amrex::Real alpha = 1.0_rt;
         const amrex::Real beta = dt;
         m_solver_scalar->setScalars(alpha, beta);
 
@@ -210,7 +211,7 @@ public:
 
             // A coeffs
             if (m_mesh_mapping) {
-                (*rho_times_detJ)(lev).setVal(0.0);
+                (*rho_times_detJ)(lev).setVal(0.0_rt);
                 amrex::MultiFab::AddProduct(
                     (*rho_times_detJ)(lev), density(lev), 0, (*mesh_detJ)(lev),
                     0, 0, 1, m_density.num_grow()[0]);
@@ -238,8 +239,7 @@ public:
 
             amrex::ParallelFor(
                 rhs, amrex::IntVect(0), ndim,
-                [=] AMREX_GPU_DEVICE(
-                    int nbx, int i, int j, int k, int n) noexcept {
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                     rhs_arrs[nbx](i, j, k, n) =
                         rho_arrs[nbx](i, j, k) * fld_arrs[nbx](i, j, k, n);
                 });
@@ -323,9 +323,8 @@ public:
     template <typename Scheme>
     void compute_diff_term(const FieldState fstate)
     {
-        auto tau_state = std::is_same<Scheme, fvm::Godunov>::value
-                             ? FieldState::New
-                             : fstate;
+        auto tau_state =
+            std::is_same_v<Scheme, fvm::Godunov> ? FieldState::New : fstate;
         const auto& repo = m_pdefields.repo;
         const int nlevels = repo.num_active_levels();
         const auto& geom = repo.mesh().Geom();
@@ -342,8 +341,8 @@ public:
                                  1, m_density.num_grow()[0], FieldLoc::CELL)
                            : nullptr;
 
-        const amrex::Real alpha = 0.0;
-        const amrex::Real beta = -1.0;
+        const amrex::Real alpha = 0.0_rt;
+        const amrex::Real beta = -1.0_rt;
 
         for (int i = 0; i < AMREX_SPACEDIM; ++i) {
             m_applier_scalar[i]->setScalars(alpha, beta);
@@ -354,7 +353,7 @@ public:
                     lev, &m_pdefields.field.subview(i)(lev));
 
                 if (m_mesh_mapping) {
-                    (*rho_times_detJ)(lev).setVal(0.0);
+                    (*rho_times_detJ)(lev).setVal(0.0_rt);
                     amrex::MultiFab::AddProduct(
                         (*rho_times_detJ)(lev), density(lev), 0,
                         (*mesh_detJ)(lev), 0, 0, 1, m_density.num_grow()[0]);
@@ -393,9 +392,9 @@ public:
                 const auto& rho_arrs = density(lev).const_arrays();
 
                 amrex::ParallelFor(
-                    divtau(lev), [=] AMREX_GPU_DEVICE(
-                                     int nbx, int i, int j, int k) noexcept {
-                        amrex::Real rhoinv = 1.0 / rho_arrs[nbx](i, j, k);
+                    divtau(lev),
+                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                        amrex::Real rhoinv = 1.0_rt / rho_arrs[nbx](i, j, k);
                         divtau_arrs[nbx](i, j, k, 0) *= rhoinv;
                         divtau_arrs[nbx](i, j, k, 1) *= rhoinv;
                         divtau_arrs[nbx](i, j, k, 2) *= rhoinv;
@@ -425,7 +424,7 @@ public:
                                  1, m_density.num_grow()[0], FieldLoc::CELL)
                            : nullptr;
 
-        const amrex::Real alpha = 1.0;
+        const amrex::Real alpha = 1.0_rt;
         const amrex::Real beta = dt;
 
         for (int i = 0; i < AMREX_SPACEDIM; ++i) {
@@ -434,7 +433,7 @@ public:
             for (int lev = 0; lev < nlevels; ++lev) {
 
                 if (m_mesh_mapping) {
-                    (*rho_times_detJ)(lev).setVal(0.0);
+                    (*rho_times_detJ)(lev).setVal(0.0_rt);
                     amrex::MultiFab::AddProduct(
                         (*rho_times_detJ)(lev), density(lev), 0,
                         (*mesh_detJ)(lev), 0, 0, 1, m_density.num_grow()[0]);
@@ -472,8 +471,7 @@ public:
 
             amrex::ParallelFor(
                 rhs, amrex::IntVect(0), ndim,
-                [=] AMREX_GPU_DEVICE(
-                    int nbx, int i, int j, int k, int n) noexcept {
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                     rhs_arrs[nbx](i, j, k, n) =
                         rho_arrs[nbx](i, j, k) * fld_arrs[nbx](i, j, k, n);
                 });

@@ -1,5 +1,8 @@
 #include "aw_test_utils/AmrexTest.H"
 #include "amr-wind/incflo.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -15,7 +18,7 @@ void init_density(amr_wind::Field& density, const int k_thresh = -3)
         amrex::ParallelFor(
             density(lev), density.num_grow(),
             [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
-                darrs[nbx](i, j, k) = (k > k_thresh) ? k + 4 : 0.0;
+                darrs[nbx](i, j, k) = (k > k_thresh) ? k + 4 : 0.0_rt;
             });
     }
     amrex::Gpu::streamSynchronize();
@@ -23,7 +26,7 @@ void init_density(amr_wind::Field& density, const int k_thresh = -3)
 
 amrex::Real get_fgz_sum(amr_wind::Field& src_term)
 {
-    amrex::Real Fgz_sum = 0.0;
+    amrex::Real Fgz_sum = 0.0_rt;
 
     for (int lev = 0; lev < src_term.repo().num_active_levels(); ++lev) {
         Fgz_sum += amrex::ReduceSum(
@@ -31,12 +34,11 @@ amrex::Real get_fgz_sum(amr_wind::Field& src_term)
             [=] AMREX_GPU_HOST_DEVICE(
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& Fg_arr) -> amrex::Real {
-                amrex::Real Fgz_sum_fab = 0.0;
+                amrex::Real Fgz_sum_fab = 0.0_rt;
 
-                amrex::Loop(
-                    bx, [=, &Fgz_sum_fab](int i, int j, int k) noexcept {
-                        Fgz_sum_fab += Fg_arr(i, j, k, 2);
-                    });
+                amrex::Loop(bx, [=, &Fgz_sum_fab](int i, int j, int k) {
+                    Fgz_sum_fab += Fg_arr(i, j, k, 2);
+                });
 
                 return Fgz_sum_fab;
             });
@@ -69,18 +71,19 @@ void fgtest_kernel(
     // Set density field
     init_density(density);
     // Set old density to unity, avoid NaN
-    density.state(amr_wind::FieldState::Old).setVal(1.0);
+    density.state(amr_wind::FieldState::Old).setVal(1.0_rt);
     // Set zero velocity
-    velocity.setVal(0.0);
+    velocity.setVal(0.0_rt);
     // Set zero pressure gradient
-    grad_p.setVal(0.0);
+    grad_p.setVal(0.0_rt);
 
     // Calculate forcing terms
     my_incflo.icns().compute_source_term(fstate);
 
     // Check forcing average value
     const amrex::Real Fz_avg = get_fgz_sum(Fg_field) / ncells;
-    EXPECT_NEAR(Fz_ref, Fz_avg, 1e-8);
+    EXPECT_NEAR(
+        Fz_ref, Fz_avg, std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
 }
 
 } // namespace
@@ -99,8 +102,8 @@ protected:
         }
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> problo{{0.0, 0.0, 0.0}};
-            amrex::Vector<amrex::Real> probhi{{1.0, 1.0, 1.0}};
+            amrex::Vector<amrex::Real> problo{{0.0_rt, 0.0_rt, 0.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{1.0_rt, 1.0_rt, 1.0_rt}};
 
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
@@ -119,8 +122,8 @@ protected:
         }
     }
 
-    const amrex::Real m_rho_0 = 2.0;
-    const amrex::Real m_Fg = -9.81;
+    const amrex::Real m_rho_0 = 2.0_rt;
+    const amrex::Real m_Fg = -9.81_rt;
     const int m_nx = 2;
     const int m_ny = 2;
     const int m_nz = 16;
@@ -137,11 +140,11 @@ TEST_F(GravityForcingTest, full_term_u)
     // Modify gravity to make sure it works
     {
         amrex::ParmParse pp("incflo");
-        amrex::Vector<amrex::Real> grav{0.0, 0.0, -5.0};
+        amrex::Vector<amrex::Real> grav{0.0_rt, 0.0_rt, -5.0_rt};
         pp.addarr("gravity", grav);
     }
     // Expected average gravity term
-    amrex::Real Fg = -5.0;
+    amrex::Real Fg = -5.0_rt;
     // Test with ordinary gravity term (rho not included)
     fgtest_kernel(Fg, m_nx * m_ny * m_nz, m_nz, amr_wind::FieldState::Old);
 }
@@ -157,12 +160,12 @@ TEST_F(GravityForcingTest, full_term_rhou)
     // Modify gravity to make sure it works
     {
         amrex::ParmParse pp("incflo");
-        amrex::Vector<amrex::Real> grav{0.0, 0.0, -5.0};
+        amrex::Vector<amrex::Real> grav{0.0_rt, 0.0_rt, -5.0_rt};
         pp.addarr("gravity", grav);
     }
     // Expected average gravity term
-    amrex::Real Fg = -5.0;
-    amrex::Real fac = 0.0;
+    amrex::Real Fg = -5.0_rt;
+    amrex::Real fac = 0.0_rt;
     for (int k = 0; k < m_nz; ++k) {
         fac += k + 4;
     }
@@ -173,8 +176,8 @@ TEST_F(GravityForcingTest, full_term_rhou)
 
 TEST_F(GravityForcingTest, perturb_const)
 {
-    const amrex::Real rho_ref = 0.5;
-    const amrex::Real gz = -9.81;
+    const amrex::Real rho_ref = 0.5_rt;
+    const amrex::Real gz = -9.81_rt;
     // High-level setup
     populate_parameters();
     {
@@ -187,14 +190,14 @@ TEST_F(GravityForcingTest, perturb_const)
         pp.add("density", rho_ref);
     }
     // Expected average gravity term
-    amrex::Real Fg = (1.0 - rho_ref) * gz / 1.0;
+    amrex::Real Fg = (1.0_rt - rho_ref) * gz / 1.0_rt;
     // Test with ordinary gravity term (rho not multiplied)
     fgtest_kernel(Fg, m_nx * m_ny * m_nz, m_nz, amr_wind::FieldState::Old);
 }
 
 TEST_F(GravityForcingTest, perturb_field)
 {
-    const amrex::Real gz = -9.81;
+    const amrex::Real gz = -9.81_rt;
     // High-level setup
     populate_parameters();
     {
@@ -203,9 +206,9 @@ TEST_F(GravityForcingTest, perturb_field)
     }
     // Expected average gravity term
     amrex::Real Fg = gz;
-    amrex::Real fac = 0.0;
+    amrex::Real fac = 0.0_rt;
     for (int k = 0; k < m_nz; ++k) {
-        fac += (k > m_nz / 2) ? 0.0 : k + 4;
+        fac += (k > m_nz / 2.0_rt) ? 0.0_rt : k + 4.0_rt;
     }
     Fg *= fac / m_nz;
     // Test with ordinary gravity term (rho included)

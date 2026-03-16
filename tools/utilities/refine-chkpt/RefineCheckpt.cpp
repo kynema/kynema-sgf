@@ -42,9 +42,11 @@ void RefineCheckpt::read_chkpt_file()
 void RefineCheckpt::refine_chkpt_file()
 {
     amrex::Print() << "Uniformly refining mesh" << std::endl;
-    amrex::Real rstart = amrex::ParallelDescriptor::second();
+    amrex::Real rstart =
+        static_cast<amrex::Real>(amrex::ParallelDescriptor::second());
     regrid(0, sim().time().current_time());
-    amrex::Real rend = amrex::ParallelDescriptor::second();
+    amrex::Real rend =
+        static_cast<amrex::Real>(amrex::ParallelDescriptor::second());
     amrex::Print() << "Refinement time elapsed: " << (rend - rstart)
                    << std::endl;
     if (amrex::ParallelDescriptor::IOProcessor()) {

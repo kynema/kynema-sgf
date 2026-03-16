@@ -1,8 +1,11 @@
-#ifndef RainDrop_H
-#define RainDrop_H
+#ifndef RAINDROP_H
+#define RAINDROP_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 /** Multiphase falling raindrop physics
  *  \ingroup multiphase_physics
@@ -42,13 +45,13 @@ private:
     CFDSim& m_sim;
 
     //! Initial Rain Drop location
-    amrex::Vector<amrex::Real> m_loc{0.006, 0.006, 0.006};
+    amrex::Vector<amrex::Real> m_loc{0.006_rt, 0.006_rt, 0.006_rt};
 
     //! Initial Rain Drop velocity
-    amrex::Vector<amrex::Real> m_vel{0.0, 0.0, 0.0};
+    amrex::Vector<amrex::Real> m_vel{0.0_rt, 0.0_rt, 0.0_rt};
 
     //! Raindrop radius value
-    amrex::Real m_radius{0.003};
+    amrex::Real m_radius{0.003_rt};
 };
 
 } // namespace amr_wind

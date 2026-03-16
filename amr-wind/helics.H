@@ -9,6 +9,9 @@
 #include "helics/cpp98/CombinationFederate.hpp"
 #include "helics/cpp98/helics.hpp"
 #include "helics/cpp98/Federate.hpp"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 #endif
 
 namespace amr_wind {
@@ -20,17 +23,17 @@ public:
     ~HelicsStorage();
 
     void pre_advance_work();
-    bool is_activated() const { return m_helics_activated; }
+    [[nodiscard]] bool is_activated() const { return m_helics_activated; }
 
 #ifdef AMR_WIND_USE_HELICS
-    HelicsTime m_currenttime = 0.0;
+    HelicsTime m_currenttime = 0.0_rt;
     std::string m_fedinitstring = "--federates=1";
 #endif
 
     int m_num_turbines{1};
 
-    double m_inflow_wind_speed_to_amrwind{8.0};
-    double m_inflow_wind_direction_to_amrwind{270.0};
+    amrex::Real m_inflow_wind_speed_to_amrwind{8.0_rt};
+    amrex::Real m_inflow_wind_direction_to_amrwind{270.0_rt};
 
     amrex::Vector<amrex::Real> m_turbine_power_to_controller;
     amrex::Vector<amrex::Real> m_turbine_wind_direction_to_controller;

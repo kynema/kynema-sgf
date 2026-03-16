@@ -83,17 +83,17 @@ zlo.type                                    = "wall_model"
 # MLMG
 mac_proj.num_pre_smooth                          = 8
 mac_proj.num_post_smooth                         = 8
-mac_proj.mg_rtol                         = 1.0e-4
-mac_proj.mg_atol                         = 1.0e-8
+#mac_proj.mg_rtol                         = 1.0e-4
+#mac_proj.mg_atol                         = 1.0e-8
 mac_proj.maxiter                         = 360
-diffusion.mg_rtol                        = 1e-6
-diffusion.mg_atol                        = 1e-8
-temperature_diffusion.mg_rtol            = 1e-6
-temperature_diffusion.mg_rtol            = 1e-8
+#diffusion.mg_rtol                        = 1e-6
+#diffusion.mg_atol                        = 1e-8
+#temperature_diffusion.mg_rtol            = 1e-6
+#temperature_diffusion.mg_rtol            = 1e-8
 nodal_proj.num_pre_smooth                        = 8
 nodal_proj.num_post_smooth                       = 8
-nodal_proj.mg_rtol                       = 1.0e-4
-nodal_proj.mg_atol                       = 1.0e-8
+#nodal_proj.mg_rtol                       = 1.0e-4
+#nodal_proj.mg_atol                       = 1.0e-8
 nodal_proj.maxiter                       = 360
 # Postprocessing
 incflo.post_processing = averaging

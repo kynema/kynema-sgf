@@ -25,7 +25,7 @@ void ActuatorForcing::operator()(
 {
     const auto varr = m_act_src(lev).const_array(mfi);
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         src_term(i, j, k, 0) += varr(i, j, k, 0);
         src_term(i, j, k, 1) += varr(i, j, k, 1);
         src_term(i, j, k, 2) += varr(i, j, k, 2);

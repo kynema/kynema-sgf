@@ -2,10 +2,13 @@
 #define VOF_MOMENTUM_FLUX_H
 
 #include "amr-wind/equation_systems/vof/volume_fractions.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::multiphase {
 
-static inline void hybrid_fluxes(
+static AMREX_INLINE void hybrid_fluxes(
     const FieldRepo& repo,
     const int ncomp,
     const amrex::Gpu::DeviceVector<int>& iconserv,
@@ -85,7 +88,7 @@ static inline void hybrid_fluxes(
         amrex::MultiFab frho(
             src_term(lev).boxArray(), src_term(lev).DistributionMap(), 1,
             fvm::Godunov::nghost_src);
-        frho.setVal(0.0);
+        frho.setVal(0.0_rt);
 
         // Set up temporary arrays for NPH at boundaries
         amrex::MultiFab q_nph(
@@ -135,7 +138,7 @@ static inline void hybrid_fluxes(
             // Temporary divu
             amrex::FArrayBox divufab(
                 amrex::grow(bx, 1), 1, amrex::The_Async_Arena());
-            divufab.setVal<amrex::RunOn::Device>(0.0);
+            divufab.setVal<amrex::RunOn::Device>(0.0_rt);
             const auto& divu = divufab.array();
 
             // Compute momentum flux quantities (multiplied by face velocity)
@@ -158,38 +161,37 @@ static inline void hybrid_fluxes(
             // Where interface is present, replace current momentum flux
             // quantities with those from mflux_scheme
             auto volfrac = vof(lev).const_array(mfi);
-            amrex::ParallelFor(
-                bxg1, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                    bool vf_i = multiphase::interface_band(i, j, k, volfrac);
-                    // Fluxes in each direction, check with flag too
-                    if (xbx.contains(i, j, k)) {
-                        bool vf_nb =
-                            multiphase::interface_band(i - 1, j, k, volfrac);
-                        if (vf_i || vf_nb) {
-                            for (int n = 0; n < ncomp; ++n) {
-                                F_x(i, j, k, n) = Fw_x(i, j, k, n);
-                            }
+            amrex::ParallelFor(bxg1, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                bool vf_i = multiphase::interface_band(i, j, k, volfrac);
+                // Fluxes in each direction, check with flag too
+                if (xbx.contains(i, j, k)) {
+                    bool vf_nb =
+                        multiphase::interface_band(i - 1, j, k, volfrac);
+                    if (vf_i || vf_nb) {
+                        for (int n = 0; n < ncomp; ++n) {
+                            F_x(i, j, k, n) = Fw_x(i, j, k, n);
                         }
                     }
-                    if (ybx.contains(i, j, k)) {
-                        bool vf_nb =
-                            multiphase::interface_band(i, j - 1, k, volfrac);
-                        if (vf_i || vf_nb) {
-                            for (int n = 0; n < ncomp; ++n) {
-                                F_y(i, j, k, n) = Fw_y(i, j, k, n);
-                            }
+                }
+                if (ybx.contains(i, j, k)) {
+                    bool vf_nb =
+                        multiphase::interface_band(i, j - 1, k, volfrac);
+                    if (vf_i || vf_nb) {
+                        for (int n = 0; n < ncomp; ++n) {
+                            F_y(i, j, k, n) = Fw_y(i, j, k, n);
                         }
                     }
-                    if (zbx.contains(i, j, k)) {
-                        bool vf_nb =
-                            multiphase::interface_band(i, j, k - 1, volfrac);
-                        if (vf_i || vf_nb) {
-                            for (int n = 0; n < ncomp; ++n) {
-                                F_z(i, j, k, n) = Fw_z(i, j, k, n);
-                            }
+                }
+                if (zbx.contains(i, j, k)) {
+                    bool vf_nb =
+                        multiphase::interface_band(i, j, k - 1, volfrac);
+                    if (vf_i || vf_nb) {
+                        for (int n = 0; n < ncomp; ++n) {
+                            F_z(i, j, k, n) = Fw_z(i, j, k, n);
                         }
                     }
-                });
+                }
+            });
 
             // Compute density flux quantities (not multiplied by face velocity)
             HydroUtils::ComputeFluxesOnBoxFromState(
@@ -210,41 +212,40 @@ static inline void hybrid_fluxes(
             // When interface is present, divide by interpolated density to get
             // Favre-averaged flux value. Multiply all fluxes with advected
             // face density to create mass-consistent fluxes
-            amrex::ParallelFor(
-                bxg1, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                    bool vf_i = multiphase::interface_band(i, j, k, volfrac);
-                    // Fluxes in each direction, check with flag too
-                    if (xbx.contains(i, j, k)) {
-                        bool vf_nb =
-                            multiphase::interface_band(i - 1, j, k, volfrac);
-                        for (int n = 0; n < ncomp; ++n) {
-                            if (vf_i || vf_nb) {
-                                F_x(i, j, k, n) /= Fw_x(i, j, k, 0);
-                            }
-                            F_x(i, j, k, n) *= ar_x(i, j, k);
+            amrex::ParallelFor(bxg1, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                bool vf_i = multiphase::interface_band(i, j, k, volfrac);
+                // Fluxes in each direction, check with flag too
+                if (xbx.contains(i, j, k)) {
+                    bool vf_nb =
+                        multiphase::interface_band(i - 1, j, k, volfrac);
+                    for (int n = 0; n < ncomp; ++n) {
+                        if (vf_i || vf_nb) {
+                            F_x(i, j, k, n) /= Fw_x(i, j, k, 0);
                         }
+                        F_x(i, j, k, n) *= ar_x(i, j, k);
                     }
-                    if (ybx.contains(i, j, k)) {
-                        bool vf_nb =
-                            multiphase::interface_band(i, j - 1, k, volfrac);
-                        for (int n = 0; n < ncomp; ++n) {
-                            if (vf_i || vf_nb) {
-                                F_y(i, j, k, n) /= Fw_y(i, j, k, 0);
-                            }
-                            F_y(i, j, k, n) *= ar_y(i, j, k);
+                }
+                if (ybx.contains(i, j, k)) {
+                    bool vf_nb =
+                        multiphase::interface_band(i, j - 1, k, volfrac);
+                    for (int n = 0; n < ncomp; ++n) {
+                        if (vf_i || vf_nb) {
+                            F_y(i, j, k, n) /= Fw_y(i, j, k, 0);
                         }
+                        F_y(i, j, k, n) *= ar_y(i, j, k);
                     }
-                    if (zbx.contains(i, j, k)) {
-                        bool vf_nb =
-                            multiphase::interface_band(i, j, k - 1, volfrac);
-                        for (int n = 0; n < ncomp; ++n) {
-                            if (vf_i || vf_nb) {
-                                F_z(i, j, k, n) /= Fw_z(i, j, k, 0);
-                            }
-                            F_z(i, j, k, n) *= ar_z(i, j, k);
+                }
+                if (zbx.contains(i, j, k)) {
+                    bool vf_nb =
+                        multiphase::interface_band(i, j, k - 1, volfrac);
+                    for (int n = 0; n < ncomp; ++n) {
+                        if (vf_i || vf_nb) {
+                            F_z(i, j, k, n) /= Fw_z(i, j, k, 0);
                         }
+                        F_z(i, j, k, n) *= ar_z(i, j, k);
                     }
-                });
+                }
+            });
         }
     }
 }

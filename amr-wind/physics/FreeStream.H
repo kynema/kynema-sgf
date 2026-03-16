@@ -1,5 +1,5 @@
-#ifndef FreeStream_H
-#define FreeStream_H
+#ifndef FREESTREAM_H
+#define FREESTREAM_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"

@@ -2,6 +2,9 @@
 #define CONSTANTMAP_H
 
 #include "amr-wind/core/MeshMap.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::const_map {
 
@@ -31,7 +34,7 @@ public:
 
 private:
     //! Factor to scale the mesh by
-    amrex::Vector<amrex::Real> m_fac{1.0, 1.0, 1.0};
+    amrex::Vector<amrex::Real> m_fac{1.0_rt, 1.0_rt, 1.0_rt};
 };
 
 } // namespace amr_wind::const_map

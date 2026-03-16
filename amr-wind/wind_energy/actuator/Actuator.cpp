@@ -1,3 +1,5 @@
+#include <algorithm>
+#include <memory>
 #include "amr-wind/wind_energy/actuator/Actuator.H"
 #include "amr-wind/wind_energy/actuator/ActParser.H"
 #include "amr-wind/wind_energy/actuator/ActuatorContainer.H"
@@ -5,9 +7,9 @@
 #include "amr-wind/core/FieldRepo.H"
 #include "amr-wind/utilities/io_utils.H"
 #include "amr-wind/utilities/IOManager.H"
+#include "AMReX_REAL.H"
 
-#include <algorithm>
-#include <memory>
+using namespace amrex::literals;
 
 namespace amr_wind::actuator {
 
@@ -36,22 +38,22 @@ void Actuator::pre_init_actions()
             << "WARNING: There are many turbines in this case. Please ensure "
                "you have consolidated common turbine options under a common "
                "prefix. For example, the following: "
-            << std::endl;
+            << '\n';
         amrex::Print() << "  Actuator.Turb1.type            = UniformCtDisk"
-                       << std::endl;
+                       << '\n';
         amrex::Print() << "  Actuator.Turb1.epsilon         = 5.0 5.0 5.0"
-                       << std::endl;
+                       << '\n';
         amrex::Print() << "  Actuator.Turb2.type            = UniformCtDisk"
-                       << std::endl;
+                       << '\n';
         amrex::Print() << "  Actuator.Turb2.epsilon         = 5.0 5.0 5.0"
-                       << std::endl;
-        amrex::Print() << "becomes: " << std::endl;
+                       << '\n';
+        amrex::Print() << "becomes: " << '\n';
         amrex::Print() << "  Actuator.UniformCtDisk.epsilon = 5.0 5.0 5.0"
-                       << std::endl;
+                       << '\n';
         amrex::Print() << "  Actuator.Turb1.type            = UniformCtDisk"
-                       << std::endl;
+                       << '\n';
         amrex::Print() << "  Actuator.Turb2.type            = UniformCtDisk"
-                       << std::endl;
+                       << '\n';
     }
 
     int cnt_turbfast = 0;
@@ -121,9 +123,10 @@ void Actuator::post_regrid_actions()
 {
     BL_PROFILE("amr-wind::actuator::Actuator::post_regrid_actions");
 
-    const bool compute_root_proc = std::any_of(
-        m_actuators.begin(), m_actuators.end(),
-        [](const auto& act) { return act->info().root_proc == -1; });
+    const bool compute_root_proc =
+        std::ranges::any_of(m_actuators, [](const auto& act) {
+            return act->info().root_proc == -1;
+        });
     if (compute_root_proc) {
         amrex::Vector<int> act_proc_count(
             amrex::ParallelDescriptor::NProcs(), 0);
@@ -284,7 +287,7 @@ void Actuator::compute_forces()
 void Actuator::compute_source_term()
 {
     BL_PROFILE("amr-wind::actuator::Actuator::compute_source_term");
-    m_act_source.setVal(0.0);
+    m_act_source.setVal(0.0_rt);
     const int nlevels = m_sim.repo().num_active_levels();
 
     for (int lev = 0; lev < nlevels; ++lev) {

@@ -4,6 +4,9 @@
 #include "amr-wind/turbulence/TurbModel.H"
 #include "amr-wind/utilities/IOManager.H"
 #include "amr-wind/core/field_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::turbulence {
 
@@ -12,72 +15,66 @@ namespace turb_base_impl {
 // For transport model with constant properties implement specializations that
 // avoid creation of an intermediate scratch buffer.
 
-template <
-    typename Transport,
-    std::enable_if_t<Transport::constant_properties>* = nullptr>
-inline void visc_update(Field& evisc, Field& tvisc, Transport& transport)
+template <typename Transport>
+void visc_update(Field& evisc, Field& tvisc, Transport& transport)
+    requires Transport::constant_properties
 {
     evisc.setVal(transport.viscosity());
     field_ops::saxpy(
-        evisc, 1.0, tvisc, 0, 0, evisc.num_comp(), evisc.num_grow());
+        evisc, 1.0_rt, tvisc, 0, 0, evisc.num_comp(), evisc.num_grow());
 }
 
-template <
-    typename Transport,
-    std::enable_if_t<Transport::constant_properties>* = nullptr>
-inline void alpha_update(Field& evisc, Field& tvisc, Transport& transport)
+template <typename Transport>
+void alpha_update(Field& evisc, Field& tvisc, Transport& transport)
+    requires Transport::constant_properties
 {
     evisc.setVal(transport.thermal_diffusivity());
     field_ops::saxpy(
-        evisc, 1.0 / transport.turbulent_prandtl(), tvisc, 0, 0,
+        evisc, 1.0_rt / transport.turbulent_prandtl(), tvisc, 0, 0,
         evisc.num_comp(), evisc.num_grow());
 }
 
-template <
-    typename Transport,
-    std::enable_if_t<Transport::constant_properties>* = nullptr>
-inline void scal_diff_update(
+template <typename Transport>
+void scal_diff_update(
     Field& evisc, Field& tvisc, Transport& transport, const std::string& name)
+    requires Transport::constant_properties
 {
     evisc.setVal(transport.viscosity() / transport.laminar_schmidt(name));
     field_ops::saxpy(
-        evisc, 1.0 / transport.turbulent_schmidt(name), tvisc, 0, 0,
+        evisc, 1.0_rt / transport.turbulent_schmidt(name), tvisc, 0, 0,
         evisc.num_comp(), evisc.num_grow());
 }
 
-template <
-    typename Transport,
-    std::enable_if_t<!Transport::constant_properties>* = nullptr>
-inline void visc_update(Field& evisc, Field& tvisc, Transport& transport)
+template <typename Transport>
+void visc_update(Field& evisc, Field& tvisc, Transport& transport)
+    requires(!Transport::constant_properties)
 {
     auto lam_mu = transport.mu();
     field_ops::lincomb(
-        evisc, 1.0, *lam_mu, 0, 1.0, tvisc, 0, 0, evisc.num_comp(),
+        evisc, 1.0_rt, *lam_mu, 0, 1.0_rt, tvisc, 0, 0, evisc.num_comp(),
         evisc.num_grow());
 }
 
-template <
-    typename Transport,
-    std::enable_if_t<!Transport::constant_properties>* = nullptr>
-inline void alpha_update(Field& evisc, Field& tvisc, Transport& transport)
+template <typename Transport>
+void alpha_update(Field& evisc, Field& tvisc, Transport& transport)
+    requires(!Transport::constant_properties)
 {
     auto lam_alpha = transport.alpha();
     field_ops::lincomb(
-        evisc, 1.0, *lam_alpha, 0, 1.0 / transport.turbulent_prandtl(), tvisc,
-        0, 0, evisc.num_comp(), evisc.num_grow());
+        evisc, 1.0_rt, *lam_alpha, 0, 1.0_rt / transport.turbulent_prandtl(),
+        tvisc, 0, 0, evisc.num_comp(), evisc.num_grow());
 }
 
-template <
-    typename Transport,
-    std::enable_if_t<!Transport::constant_properties>* = nullptr>
-inline void scal_diff_update(
+template <typename Transport>
+void scal_diff_update(
     Field& evisc, Field& tvisc, Transport& transport, const std::string& name)
+    requires(!Transport::constant_properties)
 {
     auto lam_mu = transport.mu();
     field_ops::lincomb(
-        evisc, 1.0 / transport.laminar_schmidt(name), *lam_mu, 0,
-        1.0 / transport.turbulent_schmidt(name), tvisc, 0, 0, evisc.num_comp(),
-        evisc.num_grow());
+        evisc, 1.0_rt / transport.laminar_schmidt(name), *lam_mu, 0,
+        1.0_rt / transport.turbulent_schmidt(name), tvisc, 0, 0,
+        evisc.num_comp(), evisc.num_grow());
 }
 
 } // namespace turb_base_impl

@@ -1,8 +1,11 @@
-#ifndef Intermittency_H
-#define Intermittency_H
+#ifndef INTERMITTENCY_H
+#define INTERMITTENCY_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -31,7 +34,7 @@ private:
     Field& m_intermittency;
 
     //! initial intermittency value
-    amrex::Real m_gamma{1.0};
+    amrex::Real m_gamma{1.0_rt};
 };
 
 } // namespace amr_wind

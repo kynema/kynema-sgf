@@ -5,6 +5,9 @@
 #include "AMReX_Gpu.H"
 #include "AMReX_ParmParse.H"
 #include "amr-wind/utilities/ncutils/nc_interface.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -59,9 +62,9 @@ bool ABLFieldInitFile::operator()(
         // Working vector to read data onto host
         const auto dlen = count[0] * count[1] * count[2];
         // Vector to store the 3d data into a single array and set size
-        amrex::Gpu::DeviceVector<amrex::Real> uvel_d(dlen, 0.0);
-        amrex::Gpu::DeviceVector<amrex::Real> vvel_d(dlen, 0.0);
-        amrex::Gpu::DeviceVector<amrex::Real> wvel_d(dlen, 0.0);
+        amrex::Gpu::DeviceVector<amrex::Real> uvel_d(dlen, 0.0_rt);
+        amrex::Gpu::DeviceVector<amrex::Real> vvel_d(dlen, 0.0_rt);
+        amrex::Gpu::DeviceVector<amrex::Real> wvel_d(dlen, 0.0_rt);
 
         // Open the netcdf input file
         // This file should have the same dimensions as the simulation
@@ -77,7 +80,7 @@ bool ABLFieldInitFile::operator()(
             auto wvel = ncf.var("wvel");
 
             // Read the velocity components u, v, w and copy to device
-            amrex::Vector<double> tmp(dlen, 0.0);
+            amrex::Vector<amrex::Real> tmp(dlen, 0.0_rt);
             uvel.get(tmp.data(), start, count);
             amrex::Gpu::copy(
                 amrex::Gpu::hostToDevice, tmp.begin(), tmp.end(),
@@ -105,15 +108,14 @@ bool ABLFieldInitFile::operator()(
         const auto ct2 = count[2];
 
         // Amrex parallel for to assign the velocity at each point
-        amrex::ParallelFor(
-            vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                // The counter to go from 3d to 1d vector
-                auto idx = (i - i0) * ct2 * ct1 + (j - j0) * ct2 + (k - k0);
-                // Pass values from temporary array to the velocity field
-                velocity(i, j, k, 0) = uvel_dptr[idx];
-                velocity(i, j, k, 1) = vvel_dptr[idx];
-                velocity(i, j, k, 2) = wvel_dptr[idx];
-            });
+        amrex::ParallelFor(vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+            // The counter to go from 3d to 1d vector
+            auto idx = (i - i0) * ct2 * ct1 + (j - j0) * ct2 + (k - k0);
+            // Pass values from temporary array to the velocity field
+            velocity(i, j, k, 0) = uvel_dptr[idx];
+            velocity(i, j, k, 1) = vvel_dptr[idx];
+            velocity(i, j, k, 2) = wvel_dptr[idx];
+        });
         // Populated directly, do not fill from another level
         return false;
     } // Skip level and interpolate data from already loaded coarse levels

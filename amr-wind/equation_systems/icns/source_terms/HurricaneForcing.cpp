@@ -8,6 +8,9 @@
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_Gpu.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::icns {
 
@@ -20,14 +23,14 @@ HurricaneForcing::HurricaneForcing(const CFDSim& sim) : m_mesh(sim.mesh())
     {
         // Read the rotational time period (in seconds)
         amrex::ParmParse pp("CoriolisForcing");
-        amrex::Real rot_time_period = 86400.0;
+        amrex::Real rot_time_period = 86400.0_rt;
         pp.query("rotational_time_period", rot_time_period);
-        amrex::Real latitude = 90.0;
+        amrex::Real latitude = 90.0_rt;
         pp.query("latitude", latitude);
-        m_coriolis_factor = (2.0 * utils::two_pi() / rot_time_period) *
+        m_coriolis_factor = (2.0_rt * utils::two_pi() / rot_time_period) *
                             std::sin(utils::radians(latitude));
         amrex::Print() << "Geostrophic forcing: Coriolis factor = "
-                       << m_coriolis_factor << std::endl;
+                       << m_coriolis_factor << '\n';
     }
 
     {
@@ -68,9 +71,9 @@ void HurricaneForcing::operator()(
     const amrex::Real* heights_end = m_vel_ht.end();
     const amrex::Real* vals = m_vel_vals.data();
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         amrex::IntVect iv(i, j, k);
-        const amrex::Real ht = problo[idir] + (iv[idir] + 0.5) * dx[idir];
+        const amrex::Real ht = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
 
         const amrex::Real umean =
             amr_wind::interp::linear(heights, heights_end, vals, ht, 3, 0);
@@ -82,12 +85,12 @@ void HurricaneForcing::operator()(
         const amrex::Real dVdR_z = dVdR * (Vzh - ht) / Vzh;
         // Compute the LES terms as presented in George Bryan's paper
         const amrex::Real M1LES =
-            umean * umean / R + vmean * V_z / R - (f * V_z + V_z * V_z / R);
-        const amrex::Real M2LES = -umean * dVdR_z - umean * V_z / R;
+            (umean * umean / R) + (vmean * V_z / R) - (f * V_z + V_z * V_z / R);
+        const amrex::Real M2LES = (-umean * dVdR_z) - (umean * V_z / R);
 
         src_term(i, j, k, 0) += M1LES;
         src_term(i, j, k, 1) += M2LES;
-        src_term(i, j, k, 2) += 0.0;
+        src_term(i, j, k, 2) += 0.0_rt;
     });
 }
 

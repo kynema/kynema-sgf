@@ -5,6 +5,9 @@
 #include "amr-wind/core/SimTime.H"
 #include "amr-wind/utilities/trig_ops.H"
 #include "amr-wind/utilities/linear_interpolation.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::icns {
 
@@ -23,26 +26,26 @@ public:
     ~ABLForcing() override;
 
     void operator()(
-        const int lev,
+        int lev,
         const amrex::MFIter& mfi,
         const amrex::Box& bx,
-        const FieldState fstate,
+        FieldState fstate,
         const amrex::Array4<amrex::Real>& src_term) const override;
 
-    inline void set_target_velocities(amrex::Real ux, amrex::Real uy)
+    void set_target_velocities(amrex::Real ux, amrex::Real uy)
     {
         m_target_vel[0] = ux;
         m_target_vel[1] = uy;
     }
 
-    inline void set_mean_velocities(amrex::Real ux, amrex::Real uy)
+    void set_mean_velocities(amrex::Real ux, amrex::Real uy)
     {
         m_mean_vel[0] = ux;
         m_mean_vel[1] = uy;
 
         const auto& current_time = m_time.current_time();
         const auto& new_time = m_time.new_time();
-        const auto& nph_time = 0.5 * (current_time + new_time);
+        const auto& nph_time = 0.5_rt * (current_time + new_time);
         const auto& dt = m_time.delta_t();
         const auto& t_step = m_time.time_index();
 
@@ -53,7 +56,8 @@ public:
             const amrex::Real new_spd = ::amr_wind::interp::linear(
                 m_time_table, m_speed_table, new_time);
             const amrex::Real new_dir = ::amr_wind::interp::linear_angle(
-                m_time_table, m_direction_table, new_time, 2.0 * M_PI);
+                m_time_table, m_direction_table, new_time,
+                2.0_rt * std::numbers::pi_v<amrex::Real>);
 
             m_target_vel[0] = new_spd * std::cos(new_dir);
             m_target_vel[1] = new_spd * std::sin(new_dir);
@@ -71,13 +75,16 @@ public:
             outfile.open(m_force_timetable, std::ios::out | std::ios::app);
             outfile << std::setprecision(17) << nph_time << "\t"
                     << m_abl_forcing[0] << "\t" << m_abl_forcing[1] << "\t"
-                    << 0.0 << std::endl;
+                    << 0.0_rt << '\n';
         }
     }
 
-    amrex::RealArray abl_forcing() const { return m_abl_forcing; }
+    [[nodiscard]] amrex::RealArray abl_forcing() const { return m_abl_forcing; }
 
-    amrex::Real forcing_height() const { return m_forcing_height; }
+    [[nodiscard]] amrex::Real forcing_height() const
+    {
+        return m_forcing_height;
+    }
 
 private:
     const SimTime& m_time;
@@ -90,7 +97,7 @@ private:
     int m_n_band{2};
 
     //! ABL forcing terms
-    amrex::RealArray m_abl_forcing{0.0};
+    amrex::RealArray m_abl_forcing{0.0_rt};
 
     //! File name for velocity forcing time table
     std::string m_vel_timetable;
@@ -102,7 +109,7 @@ private:
     //! Output frequency for forces
     int m_force_outfreq{1};
     //! Output start time for force
-    amrex::Real m_force_outstart{0.0};
+    amrex::Real m_force_outstart{0.0_rt};
 
     //! Velocity forcing time table
     amrex::Vector<amrex::Real> m_time_table;
@@ -114,10 +121,10 @@ private:
     amrex::Vector<amrex::Real> m_direction_table;
 
     //! Target velocity
-    amrex::Vector<amrex::Real> m_target_vel{0.0, 0.0, 0.0};
+    amrex::Vector<amrex::Real> m_target_vel{0.0_rt, 0.0_rt, 0.0_rt};
 
     //! Current mean vel
-    amrex::RealArray m_mean_vel{0.0};
+    amrex::RealArray m_mean_vel{0.0_rt};
 
     //! Height at which the velocities are forcing
     amrex::Real m_forcing_height;

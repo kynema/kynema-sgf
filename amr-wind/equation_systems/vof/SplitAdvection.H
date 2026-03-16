@@ -1,5 +1,5 @@
-#ifndef SplitAdvection_H
-#define SplitAdvection_H
+#ifndef SPLITADVECTION_H
+#define SPLITADVECTION_H
 
 #include "amr-wind/core/FieldRepo.H"
 
@@ -23,9 +23,9 @@ void split_advection_step(
     bool rm_debris);
 
 void split_compute_fluxes(
-    const int lev,
+    int lev,
     amrex::Box const& bx,
-    const int isweep,
+    int isweep,
     amrex::Array4<amrex::Real const> const& volfrac,
     amrex::Array4<amrex::Real const> const& umac,
     amrex::Array4<amrex::Real const> const& vmac,
@@ -39,7 +39,7 @@ void split_compute_fluxes(
     amrex::GpuArray<BC, AMREX_SPACEDIM * 2> BCs,
     amrex::Real* p,
     amrex::Vector<amrex::Geometry> geom,
-    const amrex::Real dt);
+    amrex::Real dt);
 
 void split_compute_sum(
     int lev,
@@ -65,18 +65,18 @@ void debris_loop(
     amrex::Box const& bx, amrex::Array4<amrex::Real> const& volfrac);
 
 void sweep_fluxes(
-    const int dir,
+    int dir,
     amrex::Box const& bx,
-    const amrex::Real dtdx,
+    amrex::Real dtdx,
     amrex::Array4<amrex::Real const> const& vel_mac,
     amrex::Array4<amrex::Real const> const& volfrac,
     amrex::Array4<amrex::Real> const& vofL,
     amrex::Array4<amrex::Real> const& vofR);
 
 void sweep_balance(
-    const int dir,
-    const amrex::Real dt,
-    const amrex::Real dxi,
+    int dir,
+    amrex::Real dt,
+    amrex::Real dxi,
     amrex::Box const& bx,
     amrex::Array4<amrex::Real const> const& vel_mac,
     amrex::Array4<amrex::Real> const& volfrac,

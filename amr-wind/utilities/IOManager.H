@@ -45,8 +45,7 @@ public:
     void write_plot_file();
 
     //! Write all necessary fields for restart
-    void
-    write_checkpoint_file(const int start_level = 0, const int end_level = -1);
+    void write_checkpoint_file(int start_level = 0, int end_level = -1);
 
     //! Read all necessary fields for a restart
     void read_checkpoint_fields(
@@ -82,11 +81,14 @@ public:
     //! Name of the checkpoint file to be read during a restart
     const std::string& restart_file() { return m_restart_file; }
 
-    bool is_restart() const { return !m_restart_file.empty(); }
+    [[nodiscard]] bool is_restart() const { return !m_restart_file.empty(); }
 
-    const amrex::Vector<Field*>& plot_fields() const { return m_plt_fields; }
+    [[nodiscard]] const amrex::Vector<Field*>& plot_fields() const
+    {
+        return m_plt_fields;
+    }
 
-    const amrex::Vector<Field*>& checkpoint_fields() const
+    [[nodiscard]] const amrex::Vector<Field*>& checkpoint_fields() const
     {
         return m_chk_fields;
     }
@@ -102,9 +104,7 @@ public:
 
 private:
     void write_header(
-        const std::string& /*chkname*/,
-        const int start_level,
-        const int end_level);
+        const std::string& /*chkname*/, int start_level, int end_level);
 
     void write_info_file(const std::string& /*path*/);
 

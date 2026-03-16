@@ -3,6 +3,9 @@
 
 #include "AMReX.H"
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -24,7 +27,7 @@ void GradientMagRefinement::initialize(const std::string& key)
     }
     m_field = &(m_sim.repo().get_field(fname));
 
-    amrex::Vector<double> gradmag_value;
+    amrex::Vector<amrex::Real> gradmag_value;
     pp.queryarr("values", gradmag_value);
 
     if ((gradmag_value.empty())) {
@@ -32,7 +35,7 @@ void GradientMagRefinement::initialize(const std::string& key)
     }
 
     {
-        const int fcount = std::min(
+        const int fcount = amrex::min(
             static_cast<int>(gradmag_value.size()),
             static_cast<int>(m_gradmag_value.size()));
         for (int i = 0; i < fcount; ++i) {
@@ -58,20 +61,20 @@ void GradientMagRefinement::operator()(
     const auto gradmag_val = m_gradmag_value[level];
 
     amrex::ParallelFor(
-        mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             // TODO: ignoring wall stencils for now
 
             const auto gx =
-                0.5 * (farrs[nbx](i + 1, j, k) - farrs[nbx](i - 1, j, k)) *
+                0.5_rt * (farrs[nbx](i + 1, j, k) - farrs[nbx](i - 1, j, k)) *
                 idx[0];
             const auto gy =
-                0.5 * (farrs[nbx](i, j + 1, k) - farrs[nbx](i, j - 1, k)) *
+                0.5_rt * (farrs[nbx](i, j + 1, k) - farrs[nbx](i, j - 1, k)) *
                 idx[1];
             const auto gz =
-                0.5 * (farrs[nbx](i, j, k + 1) - farrs[nbx](i, j, k - 1)) *
+                0.5_rt * (farrs[nbx](i, j, k + 1) - farrs[nbx](i, j, k - 1)) *
                 idx[2];
 
-            const auto grad_mag = sqrt(gx * gx + gy * gy + gz * gz);
+            const auto grad_mag = sqrt((gx * gx) + (gy * gy) + (gz * gz));
             if (grad_mag > gradmag_val) {
                 tag_arrs[nbx](i, j, k) = amrex::TagBox::SET;
             }

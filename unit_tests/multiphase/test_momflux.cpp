@@ -3,6 +3,9 @@
 #include "aw_test_utils/test_utils.H"
 #include "amr-wind/equation_systems/vof/vof.H"
 #include "amr-wind/physics/multiphase/MultiPhase.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -21,7 +24,7 @@ void init_field3(
         const auto& farrs = fld(lev).arrays();
         amrex::ParallelFor(
             fld(lev), fld.num_grow(), fld.num_comp(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 farrs[nbx](i, j, k, n) = ins[n];
             });
     }
@@ -37,9 +40,9 @@ void initialize_volume_fractions(
     amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const int icheck = (dir == 0) ? i : ((dir == 1) ? j : k);
         if (icheck > 0) {
-            vof_arr(i, j, k) = 0.0;
+            vof_arr(i, j, k) = 0.0_rt;
         } else {
-            vof_arr(i, j, k) = 1.0;
+            vof_arr(i, j, k) = 1.0_rt;
         }
     });
     // Left half is liquid, right half is gas
@@ -65,7 +68,7 @@ void get_accuracy(
     amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const int icheck = (dir == 0) ? i : ((dir == 1) ? j : k);
         // x is face location
-        const amrex::Real x = problo[dir] + icheck * dx[dir];
+        const amrex::Real x = problo[dir] + (icheck * dx[dir]);
         // Check that MAC velocity is as expected, unchanged
         err_arr(i, j, k, 0) = std::abs(um(i, j, k) - varr[0]);
         err_arr(i, j, k, 1) = std::abs(vm(i, j, k) - varr[1]);
@@ -76,17 +79,18 @@ void get_accuracy(
         err_arr(i, j, k, 5) = std::abs(vel(i, j, k, 2) - varr[2]);
 
         // Test volume fractions at faces
-        if (x == 0.5) {
+        if (x == 0.5_rt) {
             // Center face (coming from left cell)
-            amrex::Real advvof = 1.0;
-            amrex::Real advrho = rho1 * advvof + rho2 * (1.0 - advvof);
+            amrex::Real advvof = 1.0_rt;
+            amrex::Real advrho = (rho1 * advvof) + (rho2 * (1.0_rt - advvof));
             err_arr(i, j, k, 6) = std::abs(rf(i, j, k) - advrho);
         } else {
-            if (x == 0.0) {
+            if (x == 0.0_rt) {
                 // Left face (coming from right cell, periodic
                 // BC)
-                amrex::Real advvof = 0.0;
-                amrex::Real advrho = rho1 * advvof + rho2 * (1.0 - advvof);
+                amrex::Real advvof = 0.0_rt;
+                amrex::Real advrho =
+                    (rho1 * advvof) + (rho2 * (1.0_rt - advvof));
                 err_arr(i, j, k, 6) = std::abs(rf(i, j, k) - advrho);
             }
         }
@@ -95,13 +99,14 @@ void get_accuracy(
         if (icheck == 0) {
             // Left cell (gas entering, liquid leaving)
             err_arr(i, j, k, 7) = std::abs(
-                dqdt(i, j, k, dir) - vel_val * vel_val * (rho2 - rho1) / 0.5);
+                dqdt(i, j, k, dir) -
+                (vel_val * vel_val * (rho2 - rho1) / 0.5_rt));
         } else {
             if (icheck == 1) {
                 // Right cell (liquid entering, gas leaving)
                 err_arr(i, j, k, 7) = std::abs(
                     dqdt(i, j, k, dir) -
-                    vel_val * vel_val * (rho1 - rho2) / 0.5);
+                    (vel_val * vel_val * (rho1 - rho2) / 0.5_rt));
             }
         }
     });
@@ -125,8 +130,8 @@ protected:
         }
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> problo{{0.0, 0.0, 0.0}};
-            amrex::Vector<amrex::Real> probhi{{1.0, 1.0, 1.0}};
+            amrex::Vector<amrex::Real> problo{{0.0_rt, 0.0_rt, 0.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{1.0_rt, 1.0_rt, 1.0_rt}};
 
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
@@ -150,14 +155,15 @@ protected:
         {
             amrex::ParmParse pp("transport");
             pp.add("model", (std::string) "TwoPhaseTransport");
-            pp.add("viscosity_fluid1", (amrex::Real)0.0);
-            pp.add("viscosity_fluid2", (amrex::Real)0.0);
+            pp.add("viscosity_fluid1", (amrex::Real)0.0_rt);
+            pp.add("viscosity_fluid2", (amrex::Real)0.0_rt);
         }
     }
 
     void testing_coorddir(const int dir)
     {
-        constexpr double tol = 1.0e-15;
+        constexpr amrex::Real tol =
+            std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt;
 
         populate_parameters();
         {
@@ -192,7 +198,7 @@ protected:
             initialize_volume_fractions(dir, bx, vof_arr);
         });
         // Populate boundary cells
-        vof.fillpatch(0.0);
+        vof.fillpatch(0.0_rt);
         // Sync density field with vof
         auto& mphase = sim().physics_manager().get<amr_wind::MultiPhase>();
         mphase.set_density_via_vof();
@@ -215,7 +221,7 @@ protected:
 
         // Zero unused momentum terms: src (pressure)
         auto& grad_p = repo.get_field("gp");
-        grad_p.setVal(0.0);
+        grad_p.setVal(0.0_rt);
 
         // Setup mask_cell array to avoid errors in solve
         auto& mask_cell = repo.declare_int_field("mask_cell", 1, 1);
@@ -245,7 +251,7 @@ protected:
         auto& error_fld = *error_ptr;
         // Initialize at 0
         for (int lev = 0; lev < repo.num_active_levels(); ++lev) {
-            error_fld(lev).setVal(0.0);
+            error_fld(lev).setVal(0.0_rt);
         }
 
         const auto& geom = repo.mesh().Geom();
@@ -267,14 +273,14 @@ protected:
         });
 
         // Label 0's with variable names so gtest output is decipherable
-        constexpr amrex::Real umac_check = 0.0;
-        constexpr amrex::Real vmac_check = 0.0;
-        constexpr amrex::Real wmac_check = 0.0;
-        constexpr amrex::Real u_check = 0.0;
-        constexpr amrex::Real v_check = 0.0;
-        constexpr amrex::Real w_check = 0.0;
-        constexpr amrex::Real advrho_check = 0.0;
-        constexpr amrex::Real dqdt_check = 0.0;
+        constexpr amrex::Real umac_check = 0.0_rt;
+        constexpr amrex::Real vmac_check = 0.0_rt;
+        constexpr amrex::Real wmac_check = 0.0_rt;
+        constexpr amrex::Real u_check = 0.0_rt;
+        constexpr amrex::Real v_check = 0.0_rt;
+        constexpr amrex::Real w_check = 0.0_rt;
+        constexpr amrex::Real advrho_check = 0.0_rt;
+        constexpr amrex::Real dqdt_check = 0.0_rt;
 
         // Check error in each mfab
         for (int lev = 0; lev < repo.num_active_levels(); ++lev) {
@@ -290,10 +296,10 @@ protected:
         }
     }
 
-    const amrex::Real m_rho1 = 1000.0;
-    const amrex::Real m_rho2 = 1.0;
-    const amrex::Real m_vel = 5.0;
-    const amrex::Real m_dt = 0.45 * 0.5 / m_vel; // first number is CFL
+    const amrex::Real m_rho1 = 1000.0_rt;
+    const amrex::Real m_rho2 = 1.0_rt;
+    const amrex::Real m_vel = 5.0_rt;
+    const amrex::Real m_dt = 0.45_rt * 0.5_rt / m_vel; // first number is CFL
 };
 
 TEST_F(MassMomFluxOpTest, fluxfaceX) { testing_coorddir(0); }

@@ -5,6 +5,9 @@
 #include "amr-wind/wind_energy/actuator/turbine/fast/turbine_fast_ops.H"
 #include "amr-wind/wind_energy/actuator/ActParser.H"
 #include "amr-wind/wind_energy/actuator/Actuator.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 #define AW_ENABLE_OPENFAST_UTEST 0
 
@@ -28,8 +31,8 @@ protected:
         }
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> problo{{0.0, 0.0, 0.0}};
-            amrex::Vector<amrex::Real> probhi{{128.0, 128.0, 256.0}};
+            amrex::Vector<amrex::Real> problo{{0.0_rt, 0.0_rt, 0.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{128.0_rt, 128.0_rt, 256.0_rt}};
 
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
@@ -41,23 +44,26 @@ protected:
         {
             amrex::ParmParse pp("Actuator.TurbineFast" + T::identifier());
             pp.addarr(
-                "base_position", amrex::Vector<amrex::Real>{64.0, 64.0, 0.0});
-            pp.add("rotor_diameter", 126.0);
-            pp.add("hub_height", 90.0);
+                "base_position",
+                amrex::Vector<amrex::Real>{64.0_rt, 64.0_rt, 0.0_rt});
+            pp.add("rotor_diameter", 126.0_rt);
+            pp.add("hub_height", 90.0_rt);
             pp.add("num_points_blade", 5);
             pp.add("num_points_tower", 5);
-            pp.addarr("epsilon", amrex::Vector<amrex::Real>{3.0, 3.0, 3.0});
             pp.addarr(
-                "epsilon_chord", amrex::Vector<amrex::Real>{3.0, 3.0, 3.0});
+                "epsilon", amrex::Vector<amrex::Real>{3.0_rt, 3.0_rt, 3.0_rt});
+            pp.addarr(
+                "epsilon_chord",
+                amrex::Vector<amrex::Real>{3.0_rt, 3.0_rt, 3.0_rt});
 
-            pp.add("density", 1.0);
+            pp.add("density", 1.0_rt);
 
             pp.add("openfast_input_file", std::string("fast_inp/nrel5mw.fst"));
-            pp.add("openfast_start_time", 0.0);
-            pp.add("openfast_stop_time", 0.625);
+            pp.add("openfast_start_time", 0.0_rt);
+            pp.add("openfast_stop_time", 0.625_rt);
 
-            pp.add("nacelle_drag_coeff", 1.0);
-            pp.add("nacelle_area", 100.0);
+            pp.add("nacelle_drag_coeff", 1.0_rt);
+            pp.add("nacelle_area", 100.0_rt);
         }
     }
 };
@@ -128,7 +134,7 @@ TYPED_TEST(ActTurbineFastTest, fast_turbine)
 {
     MeshTest::initialize_mesh();
     auto& vel = MeshTest::sim().repo().declare_field("velocity", 3, 3);
-    vel.setVal(10.0, 0, 1, 3);
+    vel.setVal(10.0_rt, 0, 1, 3);
 
     {
         amrex::ParmParse pp("Actuator");

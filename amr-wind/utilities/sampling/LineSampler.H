@@ -50,21 +50,24 @@ public:
     populate_netcdf_metadata(const ncutils::NCGroup& /*unused*/) const override;
 
     //! Name of this sampling object
-    std::string label() const override { return m_label; }
+    [[nodiscard]] std::string label() const override { return m_label; }
     std::string& label() override { return m_label; }
 
     //! Type of this sampling object
-    std::string sampletype() const override { return identifier(); }
+    [[nodiscard]] std::string sampletype() const override
+    {
+        return identifier();
+    }
 
     //! Unique identifier for this set of probe locations
-    int id() const override { return m_id; }
+    [[nodiscard]] int id() const override { return m_id; }
     int& id() override { return m_id; }
 
     //! Number of probe locations along the line
-    long num_points() const override { return m_npts; }
+    [[nodiscard]] long num_points() const override { return m_npts; }
 
     //! Number of output probe locations (after data reduction etc.)
-    long num_output_points() const override { return m_npts; }
+    [[nodiscard]] long num_output_points() const override { return m_npts; }
 
 protected:
     const CFDSim& m_sim;

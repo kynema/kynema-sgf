@@ -4,10 +4,13 @@
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
 #include "amr-wind/CFDSim.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::mms {
 
-using FuncDef = double (*)(double, double, double);
+using FuncDef = amrex::Real (*)(amrex::Real, amrex::Real, amrex::Real);
 
 /** Method of manufactured solutions physics
  *  \ingroup physics
@@ -48,9 +51,9 @@ private:
     const std::string m_output_fname = "mms.log";
 
     std::unordered_map<std::string, amrex::Real> m_params_map = {
-        {"a", 1.05},   {"b", 2.15},    {"c", -3.2},    {"d", 10.1},
-        {"beta", 2.2}, {"gamma", 2.4}, {"delta", 2.0}, {"kx", 1.0},
-        {"ky", 1.0},   {"kz", 1.0},    {"nu", 1.0}};
+        {"a", 1.05_rt},   {"b", 2.15_rt},    {"c", -3.2_rt},    {"d", 10.1_rt},
+        {"beta", 2.2_rt}, {"gamma", 2.4_rt}, {"delta", 2.0_rt}, {"kx", 1.0_rt},
+        {"ky", 1.0_rt},   {"kz", 1.0_rt},    {"nu", 1.0_rt}};
 };
 } // namespace amr_wind::mms
 

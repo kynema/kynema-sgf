@@ -1,5 +1,8 @@
 #include "aw_test_utils/MeshTest.H"
 #include "amr-wind/incflo.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -50,7 +53,7 @@ void init_ref_p(
 
 amrex::Real get_pbottom(amr_wind::Field& pressure)
 {
-    amrex::Real pb_sum = 0.0;
+    amrex::Real pb_sum = 0.0_rt;
 
     for (int lev = 0; lev < pressure.repo().num_active_levels(); ++lev) {
         pb_sum += amrex::ReduceSum(
@@ -58,12 +61,11 @@ amrex::Real get_pbottom(amr_wind::Field& pressure)
             [=] AMREX_GPU_HOST_DEVICE(
                 amrex::Box const& nbx,
                 amrex::Array4<amrex::Real const> const& p_arr) -> amrex::Real {
-                amrex::Real pb_sum_fab = 0.0;
+                amrex::Real pb_sum_fab = 0.0_rt;
 
-                amrex::Loop(
-                    nbx, [=, &pb_sum_fab](int i, int j, int k) noexcept {
-                        pb_sum_fab += (k == 0) ? p_arr(i, j, k) : 0.0;
-                    });
+                amrex::Loop(nbx, [=, &pb_sum_fab](int i, int j, int k) {
+                    pb_sum_fab += (k == 0) ? p_arr(i, j, k) : 0.0_rt;
+                });
 
                 return pb_sum_fab;
             });
@@ -77,7 +79,7 @@ void ptest_kernel(
     const amrex::Real w_0,
     const amrex::Real p_0,
     const int nbottom,
-    const amrex::Real Fg = 0.0)
+    const amrex::Real Fg = 0.0_rt)
 {
     incflo my_incflo;
     my_incflo.init_mesh();
@@ -87,13 +89,13 @@ void ptest_kernel(
     // Set uniform density
     density.setVal(rho_0);
     // Zero pressure gradient
-    gp.setVal(0.0);
+    gp.setVal(0.0_rt);
     // Set velocity as it would be with gravity forcing
-    velocity.setVal(0.0);
+    velocity.setVal(0.0_rt);
     init_vel_z(velocity, w_0);
 
     // If requested, form reference_pressure field
-    if (Fg != 0.0) {
+    if (Fg != 0.0_rt) {
         // Pressure has 3 ghost points
         auto& p_ref_field = my_incflo.sim().repo().declare_nd_field(
             "reference_pressure", 1, 3, 1);
@@ -102,15 +104,16 @@ void ptest_kernel(
 
     // Time is set to non-zero: not testing initialization
     // Delta t is set to non-zero for result to work
-    const amrex::Real time = 1.0;
-    const amrex::Real dt = 1.0;
+    const amrex::Real time = 1.0_rt;
+    const amrex::Real dt = 1.0_rt;
     // Apply projection
     my_incflo.ApplyProjection((density).vec_const_ptrs(), time, dt, false);
     // Get result
     auto& p = my_incflo.sim().repo().get_field("p");
     // Check result
     const amrex::Real pbottom = get_pbottom(p) / nbottom;
-    EXPECT_NEAR(p_0, pbottom, 1e-8);
+    EXPECT_NEAR(
+        p_0, pbottom, std::numeric_limits<amrex::Real>::epsilon() * 1.0e8_rt);
 }
 
 } // namespace
@@ -131,8 +134,8 @@ protected:
         }
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> problo{{0.0, 0.0, 0.0}};
-            amrex::Vector<amrex::Real> probhi{{1.0, 1.0, 1.0}};
+            amrex::Vector<amrex::Real> problo{{0.0_rt, 0.0_rt, 0.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{1.0_rt, 1.0_rt, 1.0_rt}};
 
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
@@ -160,8 +163,8 @@ protected:
         ppzhi.add("type", (std::string) "pressure_outflow");
     }
 
-    const amrex::Real m_rho_0 = 1.0;
-    const amrex::Real m_Fg = -9.81;
+    const amrex::Real m_rho_0 = 1.0_rt;
+    const amrex::Real m_Fg = -9.81_rt;
     const int m_nx = 2;
     const int m_ny = 2;
     const int m_nz = 16;
@@ -173,7 +176,7 @@ TEST_F(ProjPerturb, dynamic_only)
     populate_parameters();
     initialize_mesh();
     // Test with gravity term omitted
-    ptest_kernel(m_rho_0, 0.0, 0.0, (m_nx + 1) * (m_ny + 1));
+    ptest_kernel(m_rho_0, 0.0_rt, 0.0_rt, (m_nx + 1) * (m_ny + 1));
 }
 
 TEST_F(ProjPerturb, full_pressure)
@@ -196,7 +199,7 @@ TEST_F(ProjPerturb, full_p_perturb)
     }
 
     // Test with gravity term omitted, then added as reference pressure
-    ptest_kernel(m_rho_0, 0.0, -m_Fg, (m_nx + 1) * (m_ny + 1), m_Fg);
+    ptest_kernel(m_rho_0, 0.0_rt, -m_Fg, (m_nx + 1) * (m_ny + 1), m_Fg);
 }
 
 } // namespace amr_wind_tests

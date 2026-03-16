@@ -3,6 +3,9 @@
 #include "aw_test_utils/test_utils.H"
 #include "amr-wind/equation_systems/vof/vof.H"
 #include "amr-wind/physics/multiphase/MultiPhase.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -11,7 +14,7 @@ void initialize_volume_fractions(
     const amrex::Box& bx, const amrex::Array4<amrex::Real>& vof_arr)
 {
     amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        vof_arr(i, j, k) = 1.0 - 0.1 * (i + j + k);
+        vof_arr(i, j, k) = 1.0_rt - (0.1_rt * (i + j + k));
     });
 }
 
@@ -22,8 +25,8 @@ void get_accuracy_vofsol(
     const int vof_distr,
     const amrex::Real vof_bdyval,
     const amr_wind::Field& vof,
-    const amrex::Real wt1 = 1.0,
-    const amrex::Real wt2 = 0.)
+    const amrex::Real wt1 = 1.0_rt,
+    const amrex::Real wt2 = 0.0_rt)
 {
     /* -- Check VOF boundary values from fillpatch -- */
 #ifdef AMREX_USE_OMP
@@ -60,17 +63,17 @@ void get_accuracy_vofsol(
                     amrex::Real ref_val = vof_bdyval; // case 0
                     if (vof_distr == 1) {
                         // hoextrap
-                        ref_val = 1.0 - 0.1 * (i + j + k);
+                        ref_val = 1.0_rt - (0.1_rt * (i + j + k));
                     } else if (vof_distr == 2) {
                         // foextrap
-                        const int ii = std::max(0, std::min(1, i));
-                        const int jj = std::max(0, std::min(1, j));
-                        const int kk = std::max(0, std::min(1, k));
-                        ref_val = 1.0 - 0.1 * (ii + jj + kk);
+                        const int ii = amrex::max(0, amrex::min(1, i));
+                        const int jj = amrex::max(0, amrex::min(1, j));
+                        const int kk = amrex::max(0, amrex::min(1, k));
+                        ref_val = 1.0_rt - (0.1_rt * (ii + jj + kk));
                     }
                     // Check against reference value
                     const amrex::Real wt_ref =
-                        wt1 * ref_val + wt2 * (1.0 - ref_val);
+                        (wt1 * ref_val) + (wt2 * (1.0_rt - ref_val));
                     err_arr(i, j, k, 0) = std::abs(vof_arr(i, j, k) - wt_ref);
                 }
             }
@@ -135,11 +138,12 @@ void get_accuracy_advalpha(
                         k = 0 + off;
                     }
                     // Check whether flux is nonzero
-                    constexpr amrex::Real advvof = 0.0;
+                    constexpr amrex::Real advvof = 0.0_rt;
                     const amrex::Real advrho =
-                        rho1 * advvof + rho2 * (1.0 - advvof);
+                        (rho1 * advvof) + (rho2 * (1.0_rt - advvof));
                     if (nonzero_flux) {
-                        err_arr(i, j, k, 0) = af(i, j, k) > 0.0 ? 0.0 : 1.0;
+                        err_arr(i, j, k, 0) =
+                            af(i, j, k) > 0.0_rt ? 0.0_rt : 1.0_rt;
                     } else {
                         err_arr(i, j, k, 0) = std::abs(af(i, j, k) - advrho);
                     }
@@ -166,8 +170,8 @@ protected:
         }
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> problo{{0.0, 0.0, 0.0}};
-            amrex::Vector<amrex::Real> probhi{{1.0, 1.0, 1.0}};
+            amrex::Vector<amrex::Real> problo{{0.0_rt, 0.0_rt, 0.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{1.0_rt, 1.0_rt, 1.0_rt}};
 
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
@@ -239,9 +243,10 @@ protected:
                 pp.add("vof", m_vof_bdyval);
                 pp.add("density", m_rho1);
                 // Specify other quantities to avoid errors, not actually used
-                pp.add("levelset", 0.0);
+                pp.add("levelset", 0.0_rt);
                 pp.addarr(
-                    "velocity", amrex::Vector<amrex::Real>{0.0, 0.0, 0.0});
+                    "velocity",
+                    amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 0.0_rt});
             }
         }
         {
@@ -250,9 +255,10 @@ protected:
             if (option == 1) {
                 pp.add("vof", m_vof_bdyval);
                 pp.add("density", m_rho1);
-                pp.add("levelset", 0.0);
+                pp.add("levelset", 0.0_rt);
                 pp.addarr(
-                    "velocity", amrex::Vector<amrex::Real>{0.0, 0.0, 0.0});
+                    "velocity",
+                    amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 0.0_rt});
             }
         }
         {
@@ -293,7 +299,7 @@ protected:
         });
 
         // Populate boundary cells
-        vof.fillpatch(0.0);
+        vof.fillpatch(0.0_rt);
 
         // Base level
         int lev = 0;
@@ -302,13 +308,13 @@ protected:
         auto error_ptr = repo.create_scratch_field(1, 1);
         auto& error_fld = *error_ptr;
         // Initialize at 0
-        error_fld(lev).setVal(0.0);
+        error_fld(lev).setVal(0.0_rt);
 
         // Compute error
         get_accuracy_vofsol(error_fld, lev, dir, vof_distr, m_vof_bdyval, vof);
 
         // Check error from first part
-        constexpr amrex::Real refval_check = 0.0;
+        constexpr amrex::Real refval_check = 0.0_rt;
         const amrex::Real vof_distr_err = error_fld(lev).max(0, 1);
         EXPECT_NEAR(vof_distr_err, refval_check, tol);
 
@@ -316,10 +322,10 @@ protected:
         auto& density = repo.get_field("density");
         auto& multiphase = sim().physics_manager().get<amr_wind::MultiPhase>();
         multiphase.set_density_via_vof();
-        density.fillpatch(0.);
+        density.fillpatch(0.0_rt);
 
         // Compute error of density field and check
-        error_fld(lev).setVal(0.0);
+        error_fld(lev).setVal(0.0_rt);
         get_accuracy_density(
             error_fld, lev, dir, vof_distr, m_vof_bdyval, density, m_rho1,
             m_rho2);
@@ -329,15 +335,15 @@ protected:
         // Test positive and negative velocity
         for (int sign = -1; sign < 2; sign += 2) {
             // Reset error for each sign value
-            error_fld(lev).setVal(0.0);
+            error_fld(lev).setVal(0.0_rt);
 
             // Get mac velocity fields and set values based on dir
             auto& umac = repo.get_field("u_mac");
             auto& vmac = repo.get_field("v_mac");
             auto& wmac = repo.get_field("w_mac");
-            umac.setVal(dir == 0 ? m_vel * sign : 0.0);
-            vmac.setVal(dir == 1 ? m_vel * sign : 0.0);
-            wmac.setVal(dir == 2 ? m_vel * sign : 0.0);
+            umac.setVal(dir == 0 ? m_vel * sign : 0.0_rt);
+            vmac.setVal(dir == 1 ? m_vel * sign : 0.0_rt);
+            wmac.setVal(dir == 2 ? m_vel * sign : 0.0_rt);
 
             // Perform VOF solve
             // Advance states (new -> old)
@@ -359,18 +365,19 @@ protected:
                 advalpha_f);
 
             // Check error from second part for this value of sign
-            constexpr amrex::Real flux_check = 0.0;
+            constexpr amrex::Real flux_check = 0.0_rt;
             EXPECT_NEAR(error_fld(lev).max(0, 1), flux_check, tol);
         }
     }
-    const amrex::Real m_rho1 = 1000.0;
-    const amrex::Real m_rho2 = 1.0;
-    const amrex::Real m_vel = 5.0;
-    const amrex::Real m_vof_bdyval = 1.0;
-    const amrex::Real m_dt = 0.45 * 0.5 / m_vel; // first number is CFL
+    const amrex::Real m_rho1 = 1000.0_rt;
+    const amrex::Real m_rho2 = 1.0_rt;
+    const amrex::Real m_vel = 5.0_rt;
+    const amrex::Real m_vof_bdyval = 1.0_rt;
+    const amrex::Real m_dt = 0.45_rt * 0.5_rt / m_vel; // first number is CFL
 };
 
-constexpr double tol1 = 1.0e-15;
+constexpr amrex::Real tol1 =
+    std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt;
 
 TEST_F(VOFBCTest, dirichletX) { testing_bc_coorddir(1, 0, tol1); }
 TEST_F(VOFBCTest, slipwallY) { testing_bc_coorddir(2, 1, tol1); }

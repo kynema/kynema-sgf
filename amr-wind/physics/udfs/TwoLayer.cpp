@@ -5,21 +5,24 @@
 #include "amr-wind/equation_systems/icns/icns.H"
 
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::udf {
 
 TwoLayer::TwoLayer(const Field& fld)
 {
     // For a 2-layer flow with a top and a bottom layer
-    // divided at a specific z-coordinate (default: 0.5)
-    // and an optional initial perturbation (default: 1.0)
+    // divided at a specific z-coordinate (default: 0.5_rt)
+    // and an optional initial perturbation (default: 1.0_rt)
 
     {
         const int ncomp = fld.num_comp();
         amrex::ParmParse pp("TwoLayer");
 
-        amrex::Vector<amrex::Real> top_vel(0.0, ncomp);
-        amrex::Vector<amrex::Real> bottom_vel(0.0, ncomp);
+        amrex::Vector<amrex::Real> top_vel(ncomp, 0.0_rt);
+        amrex::Vector<amrex::Real> bottom_vel(ncomp, 0.0_rt);
         pp.getarr("top_vel", top_vel);
         pp.getarr("bottom_vel", bottom_vel);
 

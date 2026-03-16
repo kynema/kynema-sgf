@@ -1,8 +1,8 @@
-#ifndef HEIGHT_FUNCTIONS_H_
-#define HEIGHT_FUNCTIONS_H_
+#ifndef HEIGHT_FUNCTIONS_H
+#define HEIGHT_FUNCTIONS_H
 
-#include <AMReX_FArrayBox.H>
 #include <cmath>
+#include "AMReX_FArrayBox.H"
 
 namespace amr_wind {
 namespace multiphase {}

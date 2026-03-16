@@ -1,10 +1,14 @@
-#ifndef UNIFORM_CT_OPS_H_
-#define UNIFORM_CT_OPS_H_
+#ifndef UNIFORM_CT_OPS_H
+#define UNIFORM_CT_OPS_H
 
+#include <numbers>
 #include "amr-wind/wind_energy/actuator/disk/disk_ops.H"
 #include "amr-wind/wind_energy/actuator/disk/UniformCt.H"
 #include "amr-wind/utilities/linear_interpolation.H"
 #include "amr-wind/utilities/trig_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 namespace amr_wind::actuator::ops {
 namespace uniformct {
 
@@ -36,7 +40,7 @@ struct UpdatePosOp<UniformCt, ActSrcDisk>
 
         const amrex::Real wind_direction =
             -data.sim().helics().m_turbine_yaw_to_amrwind[data.info().id] +
-            90.0;
+            90.0_rt;
         const amrex::Real wind_direction_radian =
             amr_wind::utils::radians(wind_direction);
 
@@ -44,7 +48,7 @@ struct UpdatePosOp<UniformCt, ActSrcDisk>
 
         meta.normal_vec[0] = std::cos(wind_direction_radian);
         meta.normal_vec[1] = std::sin(wind_direction_radian);
-        meta.normal_vec[2] = 0.0;
+        meta.normal_vec[2] = 0.0_rt;
 
         meta.sample_vec[0] = meta.normal_vec[0];
         meta.sample_vec[1] = meta.normal_vec[1];
@@ -76,14 +80,16 @@ struct ComputeForceOp<UniformCt, ActSrcDisk>
 
         const int npts = ddata.num_force_pts;
         const amrex::Real rho = ddata.density;
-        const amrex::Real aeroPressure = 0.5 * uInfSqr * rho * ddata.current_ct;
+        const amrex::Real aeroPressure =
+            0.5_rt * uInfSqr * rho * ddata.current_ct;
         const amrex::Real dr = ddata.dr;
 
         for (int ip = 0; ip < npts; ++ip) {
-            const amrex::Real r = (ip + 0.5) * dr;
-            const amrex::Real rp = r + dr * 0.5;
-            const amrex::Real rm = r - dr * 0.5;
-            const amrex::Real a = ::amr_wind::utils::pi() * (rp * rp - rm * rm);
+            const amrex::Real r = (ip + 0.5_rt) * dr;
+            const amrex::Real rp = r + (dr * 0.5_rt);
+            const amrex::Real rm = r - (dr * 0.5_rt);
+            const amrex::Real a =
+                std::numbers::pi_v<amrex::Real> * (rp * rp - rm * rm);
             // disk force should always point in direction of the normal
             grid.force[ip] = (aeroPressure * a) * normal;
         }
@@ -94,11 +100,11 @@ struct ComputeForceOp<UniformCt, ActSrcDisk>
             const amrex::Real ct = ddata.current_ct;
             std::cout << "turbine" << data.info().id << " thrust: " << ct
                       << std::endl;
-            const amrex::Real cp = 0.5 * (ct + ct * std::sqrt(1.0 - ct));
-            const amrex::Real area =
-                amr_wind::utils::pi() * 0.25 * ddata.diameter * ddata.diameter;
+            const amrex::Real cp = 0.5_rt * (ct + ct * std::sqrt(1.0_rt - ct));
+            const amrex::Real area = std::numbers::pi_v<amrex::Real> * 0.25_rt *
+                                     ddata.diameter * ddata.diameter;
             const amrex::Real power =
-                cp * 0.5 * rho * std::pow(uInfSqr, 1.5) * area;
+                cp * 0.5_rt * rho * std::pow(uInfSqr, 1.5_rt) * area;
 
             data.sim().helics().m_turbine_power_to_controller[data.info().id] =
                 power;
@@ -107,7 +113,7 @@ struct ComputeForceOp<UniformCt, ActSrcDisk>
             data.sim()
                 .helics()
                 .m_turbine_wind_direction_to_controller[data.info().id] =
-                -amr_wind::utils::degrees(turbine_angle) + 270.0;
+                -amr_wind::utils::degrees(turbine_angle) + 270.0_rt;
         }
 #endif
     }
@@ -168,4 +174,4 @@ public:
 };
 } // namespace amr_wind::actuator::ops
 
-#endif /* UNIFORM_CT_OPS_H_ */
+#endif /* UNIFORM_CT_OPS_H */

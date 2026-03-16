@@ -25,7 +25,8 @@ turbines as actuator disks and actuator line models.
    **type:** String, mandatory
 
    This string identifies the type of actuator to use. The ones currently
-   supported are: ``UniformCtDisk``, ``JoukowskyDisk``, ``TurbineFastLine``, ``TurbineFastDisk``, and
+   supported are: ``UniformCtDisk``, ``JoukowskyDisk``, ``TurbineFastLine``,
+   ``TurbineFastDisk``, ``TurbineKynemaLine``, and
    ``FixedWingLine``.
 
 It is recommended to group common parameters across actuators using the ``Actuator.[type].[param]``. For example::
@@ -394,6 +395,188 @@ Example for ``TurbineFastLine``::
    **type:** String, required
 
    This is the name of the openfast input file with all the turbine information.
+
+TurbineKynemaLine
+"""""""""""""""""
+
+This actuator type requires an AMR-Wind build with Kynema coupling
+enabled. This is a similar coupling to OpenFAST, but Kynema
+acts as the turbine solver in this instance. Some turbine quantities
+that the OpenFAST interface needs from the AMR-Wind input file
+are instead found directly by the code within the Kynema input file,
+whereas other quantities that OpenFAST has stored within its inputs
+need to be directly supplied through the AMR-Wind input file for Kynema,
+especially for initialization.
+
+Example for ``TurbineKynemaLine``::
+
+   incflo.physics = FreeStream Actuator
+   Actuator.labels = WTG01
+   Actuator.type = TurbineKynemaLine
+   ## Turbine discretization parameters
+   Actuator.TurbineKynemaLine.num_struct_nodes_blade = 6
+   Actuator.TurbineKynemaLine.num_points_blade = 64
+   Actuator.TurbineKynemaLine.num_points_tower = 0 # not enabled yet
+   ## Turbine setup
+   Actuator.TurbineKynemaLine.rot_speed_rpm    = 12.1
+   Actuator.TurbineKynemaLine.yaw_deg = 30
+   Actuator.WTG01.kynema_input_file = NREL-15MW-aero.yaml
+   Actuator.WTG01.base_position = 5.0191 0. -89.56256
+   ## Turbine - flow coupling parameters
+   Actuator.TurbineKynemaLine.epsilon = 10.0 10.0 10.0
+   Actuator.TurbineKynemaLine.epsilon_chord = 0.25 0.25 0.25
+   Actuator.TurbineKynemaLine.fllc = 0
+   Actuator.TurbineKynemaLine.nacelle_drag_coeff = 0.0
+   Actuator.TurbineKynemaLine.nacelle_area = 0.0
+   Actuator.TurbineKynemaLine.density = 1.225
+   ## Turbine controller parameters and initial state
+   Actuator.TurbineKynemaLine.controller_shared_library_path = /path/to/libdiscon.so # or libdiscon.dylib
+   Actuator.TurbineKynemaLine.generator_power_init = 5e6
+   Actuator.TurbineKynemaLine.hub_wind_vector_init = 9.8726896031426 5.7 0.0
+   Actuator.TurbineKynemaLine.generator_efficiency = 0.944
+   ## Turbine solver numerical parameters
+   Actuator.TurbineKynemaLine.dt = 0.01
+   Kynema.abs_err_tol = 1e-6
+
+   Actuator.TurbineKynemaLine.output_frequency = 10
+
+   ICNS.source_terms = ActuatorForcing
+
+.. input_param:: Actuator.TurbineKynemaLine.num_struct_nodes_blade
+
+   **type:** Int, required
+
+   This is the number of structural nodes for Kynema to use when modeling each turbine blade.
+
+.. input_param:: Actuator.TurbineKynemaLine.num_points_blade
+
+   **type:** Int, required
+
+   This is the number of aerodynamic sections for Kynema to use when modeling each turbine blade.
+   This will correspond to the number of force points and velocity points on each blade in AMR-Wind.
+   This must be the same number as provided in the Kynema input file.
+
+.. input_param:: Actuator.TurbineKynemaLine.num_points_tower
+
+   **type:** Int, required
+
+   This is the number of aerodynamic sections for Kynema to use when modeling the tower.
+   This feature is still under development, so this argument must be set to 0.
+
+.. input_param:: Actuator.TurbineKynemaLine.rot_speed_rpm
+
+   **type:** Real, optional, default = 0
+
+   This is the initial rotational speed of the turbine in RPM. This parameter can
+   alternatively be set in radians per second using the input parameter
+   :input_param:`Actuator.TurbineKynemaLine.rot_speed_radps`.
+
+.. input_param:: Actuator.TurbineKynemaLine.rot_speed_radps
+
+   **type:** Real, optional, default = 0
+
+   This is the initial rotational speed of the turbine in radians per second.
+   If this argument is present,
+   :input_param:`Actuator.TurbineKynemaLine.rot_speed_rpm` will be ignored.
+
+.. input_param:: Actuator.TurbineKynemaLine.yaw_deg
+
+   **type:** Real, optional, default = 0
+
+   This is the initial yaw angle of the turbine in degrees, counterclockwise
+   from the -x direction. This parameter can alternatively be set in radians
+   using the input parameter :input_param:`Actuator.TurbineKynemaLine.yaw_rad`.
+
+.. input_param:: Actuator.TurbineKynemaLine.yaw_rad
+
+   **type:** Real, optional, default = 0
+
+   This is the initial yaw angle of the turbine in radians. If this argument is
+   present, :input_param:`Actuator.TurbineKynemaLine.yaw_deg` will be ignored.
+
+.. input_param:: Actuator.TurbineKynemaLine.kynema_input_file
+
+   **type:** String, required
+
+   This is the input file used to initialize the Kynema turbine model. It
+   conforms to the WindIO format. A pre-processing tool is provided in the
+   Kynema repository to change the number of aerodynamic sections per blade,
+   if needed, as well as to address some format edge cases.
+
+.. input_param:: Actuator.TurbineKynemaLine.controller_shared_library_path
+
+   **type:** String, optional, default = empty
+
+   This is the path to the controller shared library (typically ROSCO).
+   If this parameter is not provided, no controller will be created in
+   the turbine model, and the controller-related input parameters will not be used.
+
+.. input_param:: Actuator.TurbineKynemaLine.generator_power_init
+
+   **type:** Real, optional, default = 0
+
+   Power of the generator at the start of the simulation.
+
+.. input_param:: Actuator.TurbineKynemaLine.hub_wind_vector_init
+
+   **type:** Vector<Real>, optional, default = 0 0 0
+
+   This is the initial wind vector that the turbine hub is exposed to.
+   It does not have to be the actual wind there at initialization; this
+   number is converted to a wind speed that is used as the controller's
+   initial guess.
+
+.. input_param:: Actuator.TurbineKynemaLine.generator_efficiency
+
+   **type:** Real, optional, default = 1
+
+   This is the efficiency of the generator. If not populated,
+   the efficiency is assumed to be 1, i.e., 100%.
+
+.. input_param:: Actuator.TurbineKynemaLine.dt
+
+   **type:** Real, optional, default = same as AMR-Wind dt
+
+   This is the time step size chosen for the Kynema turbine model. It must
+   be a factor of the AMR-Wind time step so that Kynema can take an integer
+   number of sub-steps for each AMR-Wind time step. If not populated, the Kynema time
+   step size will be the same as the flow solver time step, and, due to the
+   robustness of Kynema, this is typically fine.
+
+.. input_param:: Actuator.TurbineKynemaLine.output_frequency
+
+   **type:** Int, optional, default = 10
+
+   This is how often, in time steps, to output actuator data from AMR-Wind.
+   Note, this does not govern how often Kynema outputs turbine data. Kynema
+   automatically outputs data every AMR-Wind time step.
+
+.. input_param:: Kynema.abs_err_tol
+
+   **type:** Real, optional, default = 1e-5
+
+   This turbine solver parameter is not turbine-specific; rather, it informs the
+   solution parameters of Kynema overall. This, in particular, sets the absolute
+   tolerance of the Kynema solver.
+
+.. input_param:: Kynema.rel_err_tol
+
+   **type:** Real, optional, default = 1e-4
+
+   This parameter sets the relative tolerance of the Kynema solver.
+
+.. input_param:: Kynema.max_nonlinear_iterations
+
+   **type:** Int, optional, default = 12
+
+   This parameter sets the maximum number of nonlinear iterations for the Kynema solver.
+
+.. input_param:: Kynema.damping_factor
+
+   **type:** Real, optional, default = 0
+
+   This parameter sets the numerical damping (time-based) of the Kynema solver.
+   Counterintuitively, full damping corresponds to 0 and no damping corresponds to 1.
 
 Active Wake Control with Joukowsky Disk
 """""""""""""""""""""""""""""""""""""""

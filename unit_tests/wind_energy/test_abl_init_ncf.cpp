@@ -3,6 +3,9 @@
 #include "aw_test_utils/test_utils.H"
 #include "amr-wind/wind_energy/ABLFieldInitFile.H"
 #include "amr-wind/utilities/ncutils/nc_interface.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 namespace {
@@ -21,9 +24,12 @@ void write_ncf()
     // Populate std vectors
     const std::vector<size_t> start{0, 0, 0};
     const std::vector<size_t> count{8, 8, 64};
-    const std::vector<double> fill_u(static_cast<size_t>(8 * 8 * 64), 0.0);
-    const std::vector<double> fill_v(static_cast<size_t>(8 * 8 * 64), 20.0);
-    const std::vector<double> fill_w(static_cast<size_t>(8 * 8 * 64), 10.0);
+    const std::vector<amrex::Real> fill_u(
+        static_cast<size_t>(8 * 8 * 64), 0.0_rt);
+    const std::vector<amrex::Real> fill_v(
+        static_cast<size_t>(8 * 8 * 64), 20.0_rt);
+    const std::vector<amrex::Real> fill_w(
+        static_cast<size_t>(8 * 8 * 64), 10.0_rt);
     // Populate NetCDF vectors
     uvel.put(fill_u.data(), start, count);
     vvel.put(fill_v.data(), start, count);
@@ -61,18 +67,19 @@ TEST_F(ABLMeshTest, abl_init_netcdf)
         });
 
     const int nlevels = mesh().num_levels();
-    const amrex::Real tol = 1.0e-12;
+    const amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     // Test velocity
     {
         amrex::Vector<amrex::Real> min_vel(3), max_vel(3);
         utils::field_minmax(nlevels, velocity, min_vel, max_vel);
-        EXPECT_NEAR(min_vel[0], 0.0, tol);
-        EXPECT_NEAR(min_vel[1], 20.0, tol);
-        EXPECT_NEAR(min_vel[2], 10.0, tol);
-        EXPECT_NEAR(max_vel[0], 0.0, tol);
-        EXPECT_NEAR(max_vel[1], 20.0, tol);
-        EXPECT_NEAR(max_vel[2], 10.0, tol);
+        EXPECT_NEAR(min_vel[0], 0.0_rt, tol);
+        EXPECT_NEAR(min_vel[1], 20.0_rt, tol);
+        EXPECT_NEAR(min_vel[2], 10.0_rt, tol);
+        EXPECT_NEAR(max_vel[0], 0.0_rt, tol);
+        EXPECT_NEAR(max_vel[1], 20.0_rt, tol);
+        EXPECT_NEAR(max_vel[2], 10.0_rt, tol);
     }
 }
 
@@ -143,21 +150,22 @@ TEST_F(ABLMeshTest, abl_init_netcdf_multilevel)
 
         // Fill the finer levels using coarse data
         if (interp_fine_levels) {
-            velocityf.fillpatch_from_coarse(lev, 0.0, velocityf(lev), 0);
+            velocityf.fillpatch_from_coarse(lev, 0.0_rt, velocityf(lev), 0);
         }
     }
 
     // Test velocity
     {
-        const amrex::Real tol = 1.0e-12;
+        const amrex::Real tol =
+            std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
         amrex::Vector<amrex::Real> min_vel(3), max_vel(3);
         utils::field_minmax(nlevels, velocity, min_vel, max_vel);
-        EXPECT_NEAR(min_vel[0], 0.0, tol);
-        EXPECT_NEAR(min_vel[1], 20.0, tol);
-        EXPECT_NEAR(min_vel[2], 10.0, tol);
-        EXPECT_NEAR(max_vel[0], 0.0, tol);
-        EXPECT_NEAR(max_vel[1], 20.0, tol);
-        EXPECT_NEAR(max_vel[2], 10.0, tol);
+        EXPECT_NEAR(min_vel[0], 0.0_rt, tol);
+        EXPECT_NEAR(min_vel[1], 20.0_rt, tol);
+        EXPECT_NEAR(min_vel[2], 10.0_rt, tol);
+        EXPECT_NEAR(max_vel[0], 0.0_rt, tol);
+        EXPECT_NEAR(max_vel[1], 20.0_rt, tol);
+        EXPECT_NEAR(max_vel[2], 10.0_rt, tol);
     }
 }
 

@@ -1,7 +1,7 @@
+#include <numbers>
 #include "aw_test_utils/MeshTest.H"
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
-
 #include "amr-wind/wind_energy/ABL.H"
 #include "amr-wind/equation_systems/icns/icns.H"
 #include "amr-wind/equation_systems/icns/icns_ops.H"
@@ -10,6 +10,9 @@
 #include "amr-wind/equation_systems/icns/source_terms/ABLForcing.H"
 #include "amr-wind/equation_systems/icns/source_terms/GeostrophicForcing.H"
 #include "amr-wind/equation_systems/icns/source_terms/CoriolisForcing.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace {
 void write_target_velocity_file(const std::string& fname)
@@ -64,20 +67,22 @@ protected:
 
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> probhi{{120.0, 120.0, 1000.0}};
+            amrex::Vector<amrex::Real> probhi{{120.0_rt, 120.0_rt, 1000.0_rt}};
             pp.addarr("prob_hi", probhi);
         }
 
         // Parameters for initializing ABL case
         {
             amrex::ParmParse pp("ABL");
-            amrex::Vector<amrex::Real> theights{{0.0, 650.0, 750.0, 1000.0}};
-            amrex::Vector<amrex::Real> tvalues{{300.0, 300.0, 308.0, 308.75}};
+            amrex::Vector<amrex::Real> theights{
+                {0.0_rt, 650.0_rt, 750.0_rt, 1000.0_rt}};
+            amrex::Vector<amrex::Real> tvalues{
+                {300.0_rt, 300.0_rt, 308.0_rt, 308.75_rt}};
             pp.addarr("temperature_heights", theights);
             pp.addarr("temperature_values", tvalues);
-            pp.add("perturb_ref_height", 50.0);
-            pp.add("kappa", 0.41);
-            pp.add("surface_roughness_z0", 0.1);
+            pp.add("perturb_ref_height", 50.0_rt);
+            pp.add("kappa", 0.41_rt);
+            pp.add("surface_roughness_z0", 0.1_rt);
         }
 
         {
@@ -85,30 +90,31 @@ protected:
             amrex::ParmParse pp("incflo");
             amrex::Vector<std::string> phystr{"ABL"};
             pp.addarr("physics", phystr);
-            pp.add("density", 1.0);
+            pp.add("density", 1.0_rt);
         }
 
         // Timestep size
         {
             amrex::ParmParse pp("time");
-            pp.add("fixed_dt", 0.1);
+            pp.add("fixed_dt", 0.1_rt);
         }
 
         // Transport
         {
             amrex::ParmParse pp("transport");
-            pp.add("reference_temperature", 300.0);
+            pp.add("reference_temperature", 300.0_rt);
         }
     }
     std::string m_tvel_fname = "target_velocities.txt";
     std::string m_forces_fname = "abl_forces.txt";
-    amrex::Real m_dt{0.1};
+    amrex::Real m_dt{0.1_rt};
     int m_nsteps = 5;
 };
 
 TEST_F(ABLSrcTimeTableTest, abl)
 {
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     // Write target wind file
     write_target_velocity_file(m_tvel_fname);
@@ -118,7 +124,7 @@ TEST_F(ABLSrcTimeTableTest, abl)
     // ABL Forcing
     {
         amrex::ParmParse pp("ABLForcing");
-        pp.add("abl_forcing_height", 90.0);
+        pp.add("abl_forcing_height", 90.0_rt);
         pp.add("velocity_timetable", m_tvel_fname);
     }
     initialize_mesh();
@@ -130,7 +136,7 @@ TEST_F(ABLSrcTimeTableTest, abl)
 
     // Get icns source term, which will be tested
     auto& src_term = pde_mgr.icns().fields().src_term;
-    src_term.setVal(0.0);
+    src_term.setVal(0.0_rt);
     // Source term object for ABLForcing
     amr_wind::pde::icns::ABLForcing abl_forcing(sim());
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
@@ -141,7 +147,7 @@ TEST_F(ABLSrcTimeTableTest, abl)
     });
 
     // Initial velocity should be the same as target velocity, so force is 0
-    amrex::Vector<amrex::Real> target_force = {0.0, 0.0, 0.0};
+    amrex::Vector<amrex::Real> target_force = {0.0_rt, 0.0_rt, 0.0_rt};
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         const auto min_val = utils::field_min(src_term, i);
         const auto max_val = utils::field_max(src_term, i);
@@ -150,14 +156,14 @@ TEST_F(ABLSrcTimeTableTest, abl)
     }
 
     // Change mean velocity and recalculate
-    const amrex::Vector<amrex::Real> init_vel{8.0, 0.0, 0.0};
-    const amrex::Vector<amrex::Real> new_vel{5.0, 3.0, 0.0};
+    const amrex::Vector<amrex::Real> init_vel{8.0_rt, 0.0_rt, 0.0_rt};
+    const amrex::Vector<amrex::Real> new_vel{5.0_rt, 3.0_rt, 0.0_rt};
     // This function actually calculates the forcing terms, applied later
     // This function also is the one that writes forces to file
     abl_forcing.set_mean_velocities(new_vel[0], new_vel[1]);
     // Doing this through ABL physics is complicated and would require
     // calc_averages in ABLStats, then pre_advance_work in ABL physics
-    src_term.setVal(0.0);
+    src_term.setVal(0.0_rt);
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
@@ -183,7 +189,7 @@ TEST_F(ABLSrcTimeTableTest, abl)
     // Go back to original mean values on mesh
     abl_forcing.set_mean_velocities(init_vel[0], init_vel[1]);
     // Recalculate forcing and check
-    src_term.setVal(0.0);
+    src_term.setVal(0.0_rt);
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
@@ -191,8 +197,16 @@ TEST_F(ABLSrcTimeTableTest, abl)
         abl_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
     });
     // Velocity at hub height is 8 at 0deg and target is 8 at 2.5deg
-    target_force[0] = (8.0 * std::cos(M_PI / 180.0 * 2.5) - init_vel[0]) / m_dt;
-    target_force[1] = (8.0 * std::sin(M_PI / 180.0 * 2.5) - init_vel[1]) / m_dt;
+    target_force[0] =
+        (8.0_rt *
+             std::cos(std::numbers::pi_v<amrex::Real> / 180.0_rt * 2.5_rt) -
+         init_vel[0]) /
+        m_dt;
+    target_force[1] =
+        (8.0_rt *
+             std::sin(std::numbers::pi_v<amrex::Real> / 180.0_rt * 2.5_rt) -
+         init_vel[1]) /
+        m_dt;
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         const auto min_val = utils::field_min(src_term, i);
         const auto max_val = utils::field_max(src_term, i);
@@ -215,8 +229,8 @@ TEST_F(ABLSrcTimeTableTest, abl)
 
 TEST_F(ABLSrcTimeTableTest, bodyforce)
 {
-
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     // Write bodyforce file
     write_body_force_file(m_forces_fname);
@@ -232,7 +246,8 @@ TEST_F(ABLSrcTimeTableTest, bodyforce)
     // Velocity
     {
         amrex::ParmParse pp("incflo");
-        pp.addarr("velocity", amrex::Vector<amrex::Real>{8.0, 0.0, 0.0});
+        pp.addarr(
+            "velocity", amrex::Vector<amrex::Real>{8.0_rt, 0.0_rt, 0.0_rt});
     }
     initialize_mesh();
 
@@ -243,7 +258,7 @@ TEST_F(ABLSrcTimeTableTest, bodyforce)
 
     // Get icns source term, which will be tested
     auto& src_term = pde_mgr.icns().fields().src_term;
-    src_term.setVal(0.0);
+    src_term.setVal(0.0_rt);
     // Source term object for BodyForce
     amr_wind::pde::icns::BodyForce body_forcing(sim());
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
@@ -254,7 +269,7 @@ TEST_F(ABLSrcTimeTableTest, bodyforce)
     });
 
     // Force is 0 initially
-    amrex::Vector<amrex::Real> target_force = {0.0, 0.0, 0.0};
+    amrex::Vector<amrex::Real> target_force = {0.0_rt, 0.0_rt, 0.0_rt};
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         const auto min_val = utils::field_min(src_term, i);
         const auto max_val = utils::field_max(src_term, i);
@@ -262,7 +277,7 @@ TEST_F(ABLSrcTimeTableTest, bodyforce)
         EXPECT_NEAR(min_val, max_val, tol);
     }
 
-    amrex::Vector<amrex::Real> angles{0.0, 2.5, 5.0, 8.5};
+    amrex::Vector<amrex::Real> angles{0.0_rt, 2.5_rt, 5.0_rt, 8.5_rt};
 
     // Loop through timesteps to check force outputs
     for (int n = 0; n < m_nsteps - 1; ++n) {
@@ -270,7 +285,7 @@ TEST_F(ABLSrcTimeTableTest, bodyforce)
         sim().time().new_timestep();
         sim().time().advance_time();
         // Recalculate forcing and check
-        src_term.setVal(0.0);
+        src_term.setVal(0.0_rt);
         run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
             const auto& bx = mfi.tilebox();
             const auto& src_arr = src_term(lev).array(mfi);
@@ -278,11 +293,17 @@ TEST_F(ABLSrcTimeTableTest, bodyforce)
             body_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
         });
         // Forces correspond to ABL Forcing from other test
-        const amrex::Vector<amrex::Real> init_vel{8.0, 0.0, 0.0};
-        target_force[0] =
-            (8.0 * std::cos(M_PI / 180.0 * angles[n]) - init_vel[0]) / m_dt;
-        target_force[1] =
-            (8.0 * std::sin(M_PI / 180.0 * angles[n]) - init_vel[1]) / m_dt;
+        const amrex::Vector<amrex::Real> init_vel{8.0_rt, 0.0_rt, 0.0_rt};
+        target_force[0] = (8.0_rt * std::cos(
+                                        std::numbers::pi_v<amrex::Real> /
+                                        180.0_rt * angles[n]) -
+                           init_vel[0]) /
+                          m_dt;
+        target_force[1] = (8.0_rt * std::sin(
+                                        std::numbers::pi_v<amrex::Real> /
+                                        180.0_rt * angles[n]) -
+                           init_vel[1]) /
+                          m_dt;
         for (int i = 0; i < AMREX_SPACEDIM; ++i) {
             const auto min_val = utils::field_min(src_term, i);
             const auto max_val = utils::field_max(src_term, i);
@@ -306,10 +327,12 @@ TEST_F(ABLSrcTimeTableTest, bodyforce)
 
 TEST_F(ABLSrcTimeTableTest, geostrophic)
 {
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     // Default Coriolis parameters
     const amrex::Real cf =
-        2.0 * (2.0 * M_PI / 86164.091) * std::sin(M_PI / 180.0 * 90.0);
+        2.0_rt * (2.0_rt * std::numbers::pi_v<amrex::Real> / 86164.091_rt) *
+        std::sin(std::numbers::pi_v<amrex::Real> / 180.0_rt * 90.0_rt);
 
     // Write target wind file
     write_target_velocity_file(m_tvel_fname);
@@ -324,12 +347,13 @@ TEST_F(ABLSrcTimeTableTest, geostrophic)
     // Coriolis Forcing (for parameters)
     {
         amrex::ParmParse pp("CoriolisForcing");
-        pp.add("latitude", 90.);
+        pp.add("latitude", 90.0_rt);
     }
     // Velocity
     {
         amrex::ParmParse pp("incflo");
-        pp.addarr("velocity", amrex::Vector<amrex::Real>{8.0, 0.0, 0.0});
+        pp.addarr(
+            "velocity", amrex::Vector<amrex::Real>{8.0_rt, 0.0_rt, 0.0_rt});
     }
     initialize_mesh();
 
@@ -340,7 +364,7 @@ TEST_F(ABLSrcTimeTableTest, geostrophic)
 
     // Get icns source term, which will be tested
     auto& src_term = pde_mgr.icns().fields().src_term;
-    src_term.setVal(0.0);
+    src_term.setVal(0.0_rt);
     // Source term object for geostrophic forcing
     amr_wind::pde::icns::GeostrophicForcing gstr_forcing(sim());
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
@@ -351,9 +375,9 @@ TEST_F(ABLSrcTimeTableTest, geostrophic)
     });
 
     // Initial velocity should be the same as target velocity
-    const amrex::Vector<amrex::Real> init_vel{8.0, 0.0, 0.0};
+    const amrex::Vector<amrex::Real> init_vel{8.0_rt, 0.0_rt, 0.0_rt};
     amrex::Vector<amrex::Real> target_force = {
-        -cf * init_vel[1], cf * init_vel[0], 0.0};
+        -cf * init_vel[1], cf * init_vel[0], 0.0_rt};
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         const auto min_val = utils::field_min(src_term, i);
         const auto max_val = utils::field_max(src_term, i);
@@ -368,7 +392,7 @@ TEST_F(ABLSrcTimeTableTest, geostrophic)
     sim().time().advance_time();
 
     // Recalculate forcing and check
-    src_term.setVal(0.0);
+    src_term.setVal(0.0_rt);
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
@@ -377,8 +401,9 @@ TEST_F(ABLSrcTimeTableTest, geostrophic)
     });
     // New target velocity is 8 at 1.25deg (nph velocity)
     const amrex::Vector<amrex::Real> targ_vel{
-        8.0 * std::cos(M_PI / 180.0 * 1.25),
-        8.0 * std::sin(M_PI / 180.0 * 1.25), 0.0};
+        8.0_rt * std::cos(std::numbers::pi_v<amrex::Real> / 180.0_rt * 1.25_rt),
+        8.0_rt * std::sin(std::numbers::pi_v<amrex::Real> / 180.0_rt * 1.25_rt),
+        0.0_rt};
     target_force[0] = -cf * targ_vel[1];
     target_force[1] = cf * targ_vel[0];
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {

@@ -7,6 +7,9 @@
 #include "AMReX_BC_TYPES.H"
 
 #include <utility>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 /**
  *  \defgroup field_bc Boundary conditions management
@@ -46,7 +49,7 @@ public:
     virtual ~BCIface() = default;
 
     //! Operator that performs init actions and syncs the BC data to device
-    virtual void operator()(const amrex::Real value = 0.0);
+    virtual void operator()(amrex::Real value = 0.0_rt);
 
     //! User-defined functions for Dirichlet-type boundaries
     amrex::Array<const std::string, 3> get_dirichlet_udfs();
@@ -65,11 +68,10 @@ protected:
     virtual void set_bcfuncs();
 
     //! Set default BC values for the field
-    inline void set_default_value(const amrex::Real value);
+    void set_default_value(amrex::Real value);
 
     //! Set AMReX mathematical boundary types for the lower boundaries
-    inline void
-    set_bcrec_lo(int dir, amrex::BCType::mathematicalBndryTypes bcrec)
+    void set_bcrec_lo(int dir, amrex::BCType::mathematicalBndryTypes bcrec)
     {
         auto& fbcrec = m_field.bcrec();
         for (int i = 0; i < m_field.num_comp(); ++i) {
@@ -78,8 +80,7 @@ protected:
     }
 
     //! Set AMReX mathematical boundary types for the upper boundaries
-    inline void
-    set_bcrec_hi(int dir, amrex::BCType::mathematicalBndryTypes bcrec)
+    void set_bcrec_hi(int dir, amrex::BCType::mathematicalBndryTypes bcrec)
     {
         auto& fbcrec = m_field.bcrec();
         for (int i = 0; i < m_field.num_comp(); ++i) {

@@ -10,7 +10,7 @@
 
 namespace amr_wind {
 
-void IntScratchField::setVal(int value) noexcept
+void IntScratchField::setVal(int value)
 {
     BL_PROFILE("amr-wind::IntScratchField::setVal 1");
     for (int lev = 0; lev < m_repo.num_active_levels(); ++lev) {

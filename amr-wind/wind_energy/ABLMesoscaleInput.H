@@ -16,27 +16,46 @@ public:
 
     ~ABLMesoscaleInput() = default;
 
-    const amrex::Vector<amrex::Real>& meso_heights() const { return m_height; }
+    [[nodiscard]] const amrex::Vector<amrex::Real>& meso_heights() const
+    {
+        return m_height;
+    }
 
-    const amrex::Vector<amrex::Real>& meso_times() const { return m_time; }
+    [[nodiscard]] const amrex::Vector<amrex::Real>& meso_times() const
+    {
+        return m_time;
+    }
 
-    const amrex::Vector<amrex::Real>& meso_u() const { return m_u; }
+    [[nodiscard]] const amrex::Vector<amrex::Real>& meso_u() const
+    {
+        return m_u;
+    }
 
-    const amrex::Vector<amrex::Real>& meso_v() const { return m_v; }
+    [[nodiscard]] const amrex::Vector<amrex::Real>& meso_v() const
+    {
+        return m_v;
+    }
 
-    const amrex::Vector<amrex::Real>& meso_temp() const { return m_temp; }
+    [[nodiscard]] const amrex::Vector<amrex::Real>& meso_temp() const
+    {
+        return m_temp;
+    }
 
-    const amrex::Vector<amrex::Real>& meso_tflux() const { return m_tflux; }
+    [[nodiscard]] const amrex::Vector<amrex::Real>& meso_tflux() const
+    {
+        return m_tflux;
+    }
 
-    const amrex::Vector<amrex::Real>& meso_transition_height() const
+    [[nodiscard]] const amrex::Vector<amrex::Real>&
+    meso_transition_height() const
     {
         return m_transition_height;
     }
 
-    bool is_tendency_forcing() const { return m_abl_tendency; }
+    [[nodiscard]] bool is_tendency_forcing() const { return m_abl_tendency; }
 
-    int nheights() const { return m_nheight; }
-    int times() const { return m_ntime; }
+    [[nodiscard]] int nheights() const { return m_nheight; }
+    [[nodiscard]] int times() const { return m_ntime; }
 
 private:
     std::string m_filename;

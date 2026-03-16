@@ -4,6 +4,9 @@
 #include "AMReX_iMultiFab.H"
 #include "AMReX_MultiFabUtil.H"
 #include "masa.h"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::mms {
 
@@ -65,12 +68,12 @@ void MMS::initialize_fields(int level, const amrex::Geometry& geom)
         const auto& vel = h_velocity.array(mfi);
         const auto& den = h_density.array(mfi);
 
-        amrex::LoopOnCpu(vbx, [=](int i, int j, int k) noexcept {
-            const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-            const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-            const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+        amrex::LoopOnCpu(vbx, [=](int i, int j, int k) {
+            const amrex::Real x = problo[0] + (i + 0.5_rt) * dx[0];
+            const amrex::Real y = problo[1] + (j + 0.5_rt) * dx[1];
+            const amrex::Real z = problo[2] + (k + 0.5_rt) * dx[2];
 
-            den(i, j, k) = 1.0;
+            den(i, j, k) = 1.0_rt;
             vel(i, j, k, 0) = masa_eval_3d_exact_u(x, y, z);
             vel(i, j, k, 1) = masa_eval_3d_exact_v(x, y, z);
             vel(i, j, k, 2) = masa_eval_3d_exact_w(x, y, z);
@@ -84,7 +87,7 @@ void MMS::initialize_fields(int level, const amrex::Geometry& geom)
  */
 void MMS::fill_src()
 {
-    m_mms_vel_source.setVal(0.0);
+    m_mms_vel_source.setVal(0.0_rt);
 
     const int nlevels = m_repo.num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
@@ -103,10 +106,10 @@ void MMS::fill_src()
             const auto& bx = mfi.tilebox();
             const auto& mms_src = h_mms_src_term.array(mfi);
 
-            amrex::LoopOnCpu(bx, [=](int i, int j, int k) noexcept {
-                const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+            amrex::LoopOnCpu(bx, [=](int i, int j, int k) {
+                const amrex::Real x = problo[0] + (i + 0.5_rt) * dx[0];
+                const amrex::Real y = problo[1] + (j + 0.5_rt) * dx[1];
+                const amrex::Real z = problo[2] + (k + 0.5_rt) * dx[2];
 
                 mms_src(i, j, k, 0) = masa_eval_3d_source_u(x, y, z);
                 mms_src(i, j, k, 1) = masa_eval_3d_source_v(x, y, z);
@@ -124,7 +127,7 @@ void MMS::post_regrid_actions() { fill_src(); }
 amrex::Real
 MMS::compute_error(const int comp, const Field& field, amr_wind::mms::FuncDef f)
 {
-    amrex::Real error = 0.0;
+    amrex::Real error = 0.0_rt;
 
     const int nlevels = m_repo.num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
@@ -160,11 +163,11 @@ MMS::compute_error(const int comp, const Field& field, amr_wind::mms::FuncDef f)
             const auto& field_arr = h_fld.array(mfi);
             const auto& mask_arr = h_level_mask.array(mfi);
 
-            amrex::Real err_fab = 0.0;
-            amrex::LoopOnCpu(vbx, [=, &err_fab](int i, int j, int k) noexcept {
-                const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-                const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+            amrex::Real err_fab = 0.0_rt;
+            amrex::LoopOnCpu(vbx, [=, &err_fab](int i, int j, int k) {
+                const amrex::Real x = problo[0] + (i + 0.5_rt) * dx[0];
+                const amrex::Real y = problo[1] + (j + 0.5_rt) * dx[1];
+                const amrex::Real z = problo[2] + (k + 0.5_rt) * dx[2];
                 const amrex::Real u = field_arr(i, j, k, comp);
                 const amrex::Real u_exact = f(x, y, z);
                 err_fab += cell_vol * mask_arr(i, j, k) * (u - u_exact) *

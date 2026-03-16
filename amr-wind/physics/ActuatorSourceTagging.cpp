@@ -1,6 +1,9 @@
 #include "amr-wind/CFDSim.H"
 #include "amr-wind/physics/ActuatorSourceTagging.H"
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -16,7 +19,7 @@ ActuatorSourceTagging::ActuatorSourceTagging(CFDSim& sim) : m_repo(sim.repo())
 void ActuatorSourceTagging::initialize_fields(
     int level, const amrex::Geometry& /*geom*/)
 {
-    (*m_tracer)(level).setVal(0.0);
+    (*m_tracer)(level).setVal(0.0_rt);
 }
 
 void ActuatorSourceTagging::post_init_actions()
@@ -41,7 +44,7 @@ void ActuatorSourceTagging::post_advance_work()
         amrex::Print()
             << "Warning ActuatorSourceTagging activated but neither actuators "
                "or overset are being used"
-            << std::endl;
+            << '\n';
         return;
     }
 
@@ -53,15 +56,15 @@ void ActuatorSourceTagging::post_advance_work()
             const auto& src_arrs = (*m_act_src)(lev).const_arrays();
             amrex::ParallelFor(
                 (*m_tracer)(lev), m_act_src->num_grow(),
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     const auto src = src_arrs[nbx];
                     const amrex::Real srcmag = std::sqrt(
-                        src(i, j, k, 0) * src(i, j, k, 0) +
-                        src(i, j, k, 1) * src(i, j, k, 1) +
-                        src(i, j, k, 2) * src(i, j, k, 2));
+                        (src(i, j, k, 0) * src(i, j, k, 0)) +
+                        (src(i, j, k, 1) * src(i, j, k, 1)) +
+                        (src(i, j, k, 2) * src(i, j, k, 2)));
 
                     if (srcmag > src_threshold) {
-                        tracer_arrs[nbx](i, j, k) = 1.0;
+                        tracer_arrs[nbx](i, j, k) = 1.0_rt;
                     }
                 });
         }
@@ -72,10 +75,10 @@ void ActuatorSourceTagging::post_advance_work()
             const bool tag_hole = m_tag_hole;
             amrex::ParallelFor(
                 (*m_tracer)(lev), m_iblank->num_grow(),
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     const auto ib = iblank_arrs[nbx](i, j, k);
                     if ((tag_fringe && (ib == -1)) || (tag_hole && (ib == 0))) {
-                        tracer_arrs[nbx](i, j, k) = 1.0;
+                        tracer_arrs[nbx](i, j, k) = 1.0_rt;
                     }
                 });
         }

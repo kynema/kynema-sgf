@@ -11,6 +11,8 @@
 #include "AMReX_MultiFab.H"
 #include "AMReX_ParmParse.H"
 
+using namespace amrex::literals;
+
 namespace amr_wind {
 namespace turbulence {
 
@@ -61,12 +63,12 @@ void AMD<Transport>::update_turbulent_viscosity(
     fvm::gradient(*gradT, temp);
     m_pa_temp(); // compute the current plane average
     const auto& tpa_deriv = m_pa_temp.line_deriv();
-    amrex::Vector<amrex::Real> tpa_coord(tpa_deriv.size(), 0.0);
+    amrex::Vector<amrex::Real> tpa_coord(tpa_deriv.size(), 0.0_rt);
     for (int i = 0; i < m_pa_temp.ncell_line(); ++i) {
-        tpa_coord[i] = m_pa_temp.xlo() + (0.5 + i) * m_pa_temp.dx();
+        tpa_coord[i] = m_pa_temp.xlo() + ((0.5_rt + i) * m_pa_temp.dx());
     }
-    amrex::Gpu::DeviceVector<amrex::Real> tpa_deriv_d(tpa_deriv.size(), 0.0);
-    amrex::Gpu::DeviceVector<amrex::Real> tpa_coord_d(tpa_coord.size(), 0.0);
+    amrex::Gpu::DeviceVector<amrex::Real> tpa_deriv_d(tpa_deriv.size(), 0.0_rt);
+    amrex::Gpu::DeviceVector<amrex::Real> tpa_coord_d(tpa_coord.size(), 0.0_rt);
     amrex::Gpu::copy(
         amrex::Gpu::hostToDevice, tpa_coord.begin(), tpa_coord.end(),
         tpa_coord_d.begin());
@@ -93,8 +95,7 @@ void AMD<Transport>::update_turbulent_viscosity(
         const auto& mu_arrs = mu_turb(lev).arrays();
         const auto& mu_turb_lev = mu_turb(lev);
         amrex::ParallelFor(
-            mu_turb_lev,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            mu_turb_lev, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 auto mu_arr = mu_arrs[nbx];
                 const auto rho_arr = rho_arrs[nbx];
                 const auto gradVel_arr = gradVel_arrs[nbx];
@@ -138,8 +139,7 @@ void AMD<Transport>::update_alphaeff(Field& alphaeff)
         const auto& rho_arrs = m_rho(lev).const_arrays();
         const auto& alpha_arrs = alphaeff(lev).arrays();
         amrex::ParallelFor(
-            alphaeff(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            alphaeff(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real rho = rho_arrs[nbx](i, j, k);
                 alpha_arrs[nbx](i, j, k) =
                     rho * amd_thermal_diff(

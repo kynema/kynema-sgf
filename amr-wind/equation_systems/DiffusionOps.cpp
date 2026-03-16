@@ -2,6 +2,9 @@
 #include "amr-wind/utilities/console_io.H"
 
 #include "AMReX_MLTensorOp.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde {
 
@@ -86,7 +89,7 @@ void DiffSolverIface<LinOp>::set_acoeffs(LinOp& linop, const FieldState fstate)
 
     for (int lev = 0; lev < nlevels; ++lev) {
         if (m_mesh_mapping) {
-            (*rho_times_detJ)(lev).setVal(0.0);
+            (*rho_times_detJ)(lev).setVal(0.0_rt);
             amrex::MultiFab::AddProduct(
                 (*rho_times_detJ)(lev), density(lev), 0, (*mesh_detJ)(lev), 0,
                 0, 1, m_density.num_grow()[0]);
@@ -130,7 +133,7 @@ void DiffSolverIface<LinOp>::linsys_solve_impl()
 
         amrex::ParallelFor(
             rhs, amrex::IntVect(0), ndim,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 rhs_arrs[nbx](i, j, k, n) =
                     rho_arrs[nbx](i, j, k) * fld_arrs[nbx](i, j, k, n);
             });
@@ -151,7 +154,7 @@ template <typename LinOp>
 void DiffSolverIface<LinOp>::linsys_solve(const amrex::Real dt)
 {
     FieldState fstate = FieldState::New;
-    this->setup_operator(*this->m_solver, 1.0, dt, fstate);
+    this->setup_operator(*this->m_solver, 1.0_rt, dt, fstate);
     this->linsys_solve_impl();
 }
 

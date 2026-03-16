@@ -2,6 +2,9 @@
 #define CHANNELFLOWMAP_H
 
 #include "amr-wind/core/MeshMap.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::channel_map {
 
@@ -31,9 +34,9 @@ public:
 
 private:
     //! User input parameters
-    amrex::Vector<amrex::Real> m_beta{0.0, 3.0, 0.0};
+    amrex::Vector<amrex::Real> m_beta{0.0_rt, 3.0_rt, 0.0_rt};
 
-    amrex::Real m_eps{1e-11};
+    amrex::Real m_eps{std::numeric_limits<amrex::Real>::epsilon() * 1.0e5_rt};
 };
 
 } // namespace amr_wind::channel_map

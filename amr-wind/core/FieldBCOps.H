@@ -33,7 +33,7 @@ class FieldBCIface
 public:
     virtual ~FieldBCIface() = default;
 
-    virtual void operator()(Field& field, const FieldState rho_state) = 0;
+    virtual void operator()(Field& field, FieldState rho_state) = 0;
 };
 
 /** A no-op BC
@@ -65,7 +65,7 @@ struct FieldBCNoOp
     {}
 
     AMREX_GPU_DEVICE
-    inline void set_inflow(
+    void set_inflow(
         const amrex::IntVect& /*unused*/,
         amrex::Array4<amrex::Real> const& /*unused*/,
         amrex::GeometryData const& /*unused*/,
@@ -90,10 +90,11 @@ struct ConstDirichlet
     {}
 
     AMREX_GPU_HOST
+    // NOLINTNEXTLINE(modernize-use-nodiscard)
     DeviceType device_instance() const { return *this; }
 
     AMREX_GPU_DEVICE
-    inline void operator()(
+    void operator()(
         const amrex::IntVect& iv,
         amrex::Array4<amrex::Real> const& field,
         amrex::GeometryData const& /*unused*/,
@@ -145,7 +146,7 @@ struct DirichletOp
     {}
 
     AMREX_GPU_DEVICE
-    inline void operator()(
+    void operator()(
         const amrex::IntVect& iv,
         amrex::Array4<amrex::Real> const& field,
         const int dcomp,
@@ -195,7 +196,7 @@ struct DirichletOp
     }
 
     AMREX_GPU_DEVICE
-    inline void set_inflow(
+    void set_inflow(
         const amrex::IntVect& iv,
         amrex::Array4<amrex::Real> const& field,
         amrex::GeometryData const& geom,
@@ -215,7 +216,7 @@ struct FieldBCDirichlet
 
     explicit FieldBCDirichlet(const Field& fld) : m_field(fld) {}
 
-    inline FunctorType operator()(const int face_dir = -1) const
+    FunctorType operator()(const int face_dir = -1) const
     {
         return FunctorType(m_field, face_dir);
     }
@@ -239,7 +240,7 @@ struct BCOpCreator
         : m_field(fld), m_inflow_op(inflow_op), m_wall_op(wall_op)
     {}
 
-    inline FunctorType operator()(const int face_dir = -1) const
+    FunctorType operator()(const int face_dir = -1) const
     {
         return FunctorType{
             m_field, m_inflow_op.device_instance(), m_wall_op.device_instance(),

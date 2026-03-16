@@ -1,10 +1,13 @@
-#ifndef ACTSRCLINEOP_H_
-#define ACTSRCLINEOP_H_
+#ifndef ACTSRCLINEOP_H
+#define ACTSRCLINEOP_H
 
+#include "AMReX_REAL.H"
 #include "amr-wind/wind_energy/actuator/actuator_types.H"
 #include "amr-wind/wind_energy/actuator/actuator_ops.H"
 #include "amr-wind/wind_energy/actuator/actuator_utils.H"
 #include "amr-wind/core/FieldRepo.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator::ops {
 
@@ -35,8 +38,8 @@ public:
 
     void setup_op() { copy_to_device(); }
 
-    void operator()(
-        const int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom);
+    void
+    operator()(int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom);
 };
 
 template <typename ActTrait>
@@ -113,18 +116,18 @@ void ActSrcOp<ActTrait, ActSrcLine>::operator()(
 
     const auto dcoord_flags = m_data.grid().dcoord_flags;
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const vs::Vector cc{
-            problo[0] + (i + 0.5) * dx[0],
-            problo[1] + (j + 0.5) * dx[1],
-            problo[2] + (k + 0.5) * dx[2],
+            problo[0] + ((i + 0.5_rt) * dx[0]),
+            problo[1] + ((j + 0.5_rt) * dx[1]),
+            problo[2] + ((k + 0.5_rt) * dx[2]),
         };
 
-        amrex::RealArray src_force = {0.0};
+        amrex::RealArray src_force = {0.0_rt};
         for (int ip = 0; ip < npts; ++ip) {
             // Put force at n+1/2 location for Godunov
-            constexpr amrex::Real wt = 0.5;
-            const auto pos_ip = wt * pos[ip] + (1.0 - wt) * opos[ip];
+            constexpr amrex::Real wt = 0.5_rt;
+            const auto pos_ip = wt * pos[ip] + (1.0_rt - wt) * opos[ip];
             const auto dist = cc - pos_ip;
             // Convert to local (chord, span, thickness) coords
             const auto dist_local_3D = tmat[ip] & dist;
@@ -145,4 +148,4 @@ void ActSrcOp<ActTrait, ActSrcLine>::operator()(
 }
 } // namespace amr_wind::actuator::ops
 
-#endif /* ACTSRCLINEOP_H_ */
+#endif /* ACTSRCLINEOP_H */

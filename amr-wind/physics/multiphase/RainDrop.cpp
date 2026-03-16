@@ -1,7 +1,11 @@
+#include <numbers>
 #include "amr-wind/physics/multiphase/RainDrop.H"
 #include "amr-wind/physics/multiphase/MultiPhase.H"
 #include "amr-wind/CFDSim.H"
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -34,16 +38,16 @@ void RainDrop::initialize_fields(int level, const amrex::Geometry& geom)
     const amrex::Real radius = m_radius;
     const auto& phi_arrs = levelset.arrays();
     amrex::ParallelFor(
-        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
-            const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-            const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-            const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+            const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+            const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+            const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
             // Calculate level-set
             phi_arrs[nbx](i, j, k) =
                 radius - std::sqrt(
-                             (x - xc) * (x - xc) + (y - yc) * (y - yc) +
-                             (z - zc) * (z - zc));
+                             ((x - xc) * (x - xc)) + ((y - yc) * (y - yc)) +
+                             ((z - zc) * (z - zc)));
         });
     amrex::Gpu::streamSynchronize();
 
@@ -62,7 +66,7 @@ void RainDrop::initialize_fields(int level, const amrex::Geometry& geom)
     // Use density to calculate mixed velocity in multiphase cells
     const amrex::Real rhol = mphase.rho1();
     const amrex::Real rhog = mphase.rho2();
-    const amrex::Real eps = std::cbrt(2. * dx[0] * dx[1] * dx[2]);
+    const amrex::Real eps = std::cbrt(2.0_rt * dx[0] * dx[1] * dx[2]);
     amrex::Gpu::DeviceVector<amrex::Real> dvel(AMREX_SPACEDIM);
     amrex::Gpu::copy(
         amrex::Gpu::hostToDevice, m_vel.begin(), m_vel.end(), dvel.begin());
@@ -70,7 +74,7 @@ void RainDrop::initialize_fields(int level, const amrex::Geometry& geom)
     const auto& vel_arrs = velocity.arrays();
     const auto& work_arrs = work_ptr->arrays();
     amrex::ParallelFor(
-        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             // Calculate mass-weighted velocity (gas vel is 0)
             amrex::Real vof;
             if (yes_vof) {
@@ -79,17 +83,19 @@ void RainDrop::initialize_fields(int level, const amrex::Geometry& geom)
             } else {
                 // Work array here is phi
                 if (work_arrs[nbx](i, j, k) > eps) {
-                    vof = 1.0;
+                    vof = 1.0_rt;
                 } else if (work_arrs[nbx](i, j, k) < -eps) {
-                    vof = 0.;
+                    vof = 0.0_rt;
                 } else {
-                    vof = 0.5 *
-                          (1.0 + work_arrs[nbx](i, j, k) / eps +
-                           1.0 / M_PI *
-                               std::sin(work_arrs[nbx](i, j, k) * M_PI / eps));
+                    vof = 0.5_rt *
+                          (1.0_rt + work_arrs[nbx](i, j, k) / eps +
+                           1.0_rt / std::numbers::pi_v<amrex::Real> *
+                               std::sin(
+                                   work_arrs[nbx](i, j, k) *
+                                   std::numbers::pi_v<amrex::Real> / eps));
                 }
             }
-            const amrex::Real dens = (1.0 - vof) * rhog + vof * rhol;
+            const amrex::Real dens = ((1.0_rt - vof) * rhog) + (vof * rhol);
             vel_arrs[nbx](i, j, k, 0) = vof * rhol * vptr[0] / dens;
             vel_arrs[nbx](i, j, k, 1) = vof * rhol * vptr[1] / dens;
             vel_arrs[nbx](i, j, k, 2) = vof * rhol * vptr[2] / dens;

@@ -1,3 +1,6 @@
+#ifndef AIRFOILTABLEI_H
+#define AIRFOILTABLEI_H
+
 #include "amr-wind/wind_energy/actuator/aero/AirfoilTable.H"
 
 #include <string>
@@ -54,3 +57,4 @@ AirfoilLoader::load_openfast_airfoil(IStream& affile)
 }
 
 } // namespace amr_wind::actuator
+#endif

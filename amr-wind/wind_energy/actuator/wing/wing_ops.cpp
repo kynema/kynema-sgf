@@ -2,8 +2,10 @@
 #include "amr-wind/wind_energy/actuator/ActParser.H"
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 #include "amr-wind/utilities/io_utils.H"
-
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator::wing {
 
@@ -21,7 +23,7 @@ void init_data_structures(WingBaseData& wdata, ActGrid& grid)
     vs::Vector eps{epsin.x(), epsin.z(), epsin.y()};
 
     // Equal spacing along span
-    auto dx = (1.0 / static_cast<amrex::Real>(npts - 1)) * wspan;
+    auto dx = (1.0_rt / static_cast<amrex::Real>(npts - 1)) * wspan;
 
     for (int i = 0; i < npts; ++i) {
         grid.pos[i] = wdata.start + static_cast<amrex::Real>(i) * dx;
@@ -37,13 +39,13 @@ void init_data_structures(WingBaseData& wdata, ActGrid& grid)
     // Assign length of actuator segments
     wdata.dx.assign(npts, vs::mag(dx));
     // The first and last segments have half width
-    wdata.dx.front() *= 0.5;
-    wdata.dx.back() *= 0.5;
+    wdata.dx.front() *= 0.5_rt;
+    wdata.dx.back() *= 0.5_rt;
 
     wdata.vel_rel.assign(npts, vs::Vector::zero());
-    wdata.aoa.assign(npts, 0.0);
-    wdata.cl.assign(npts, 0.0);
-    wdata.cd.assign(npts, 0.0);
+    wdata.aoa.assign(npts, 0.0_rt);
+    wdata.cl.assign(npts, 0.0_rt);
+    wdata.cd.assign(npts, 0.0_rt);
 }
 
 void prepare_netcdf_file(
@@ -73,7 +75,7 @@ void prepare_netcdf_file(
     auto grp = ncf.def_group(info.label);
     // clang-format off
     grp.put_attr("epsilon",
-        std::vector<double>{meta.eps_inp.x(),
+        std::vector<amrex::Real>{meta.eps_inp.x(),
                          meta.eps_inp.y(), meta.eps_inp.z()});
     // clang-format on
     grp.def_dim(np_name, meta.num_pts);
@@ -170,7 +172,7 @@ void new_wing_position_velocity(
 {
     // Get displacement of points from n to n+1
     // Also, if translation velocity changes, update it
-    vs::Vector disp{0.0, 0.0, 0.0};
+    vs::Vector disp{0.0_rt, 0.0_rt, 0.0_rt};
     // Do nothing for "none"
     if (amrex::toLower(motion) == "linear") {
         // Use velocity to get displacement
@@ -180,16 +182,28 @@ void new_wing_position_velocity(
         // Velocity is unchanged
     } else if (amrex::toLower(motion) == "sine") {
         // Calculate displacement using sine
-        disp.x() = svec.x() * (std::sin(2.0 * M_PI * tnp1 / period) -
-                               std::sin(2.0 * M_PI * tn / period));
-        disp.y() = svec.y() * (std::sin(2.0 * M_PI * tnp1 / period) -
-                               std::sin(2.0 * M_PI * tn / period));
-        disp.z() = svec.z() * (std::sin(2.0 * M_PI * tnp1 / period) -
-                               std::sin(2.0 * M_PI * tn / period));
+        disp.x() =
+            svec.x() *
+            (std::sin(
+                 2.0_rt * std::numbers::pi_v<amrex::Real> * tnp1 / period) -
+             std::sin(2.0_rt * std::numbers::pi_v<amrex::Real> * tn / period));
+        disp.y() =
+            svec.y() *
+            (std::sin(
+                 2.0_rt * std::numbers::pi_v<amrex::Real> * tnp1 / period) -
+             std::sin(2.0_rt * std::numbers::pi_v<amrex::Real> * tn / period));
+        disp.z() =
+            svec.z() *
+            (std::sin(
+                 2.0_rt * std::numbers::pi_v<amrex::Real> * tnp1 / period) -
+             std::sin(2.0_rt * std::numbers::pi_v<amrex::Real> * tn / period));
         // The translational velocity over the time step is disp/dt
-        vtr.x() = disp.x() / (tnp1 - tn + 1e-20);
-        vtr.y() = disp.y() / (tnp1 - tn + 1e-20);
-        vtr.z() = disp.z() / (tnp1 - tn + 1e-20);
+        vtr.x() = disp.x() /
+                  (tnp1 - tn + std::numeric_limits<amrex::Real>::epsilon());
+        vtr.y() = disp.y() /
+                  (tnp1 - tn + std::numeric_limits<amrex::Real>::epsilon());
+        vtr.z() = disp.z() /
+                  (tnp1 - tn + std::numeric_limits<amrex::Real>::epsilon());
         // The tiny number in the denominator is important for initialization
     }
     for (int ip = 0; ip < npts; ++ip) {

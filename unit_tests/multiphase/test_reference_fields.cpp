@@ -1,5 +1,8 @@
 #include "aw_test_utils/MeshTest.H"
 #include "amr-wind/physics/multiphase/hydrostatic_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 namespace {
@@ -11,7 +14,7 @@ amrex::Real density_test_impl(
     const amrex::Real rho2,
     const amrex::Real wlev)
 {
-    amrex::Real error_total = 0;
+    amrex::Real error_total = 0.0_rt;
 
     for (int lev = 0; lev < rho0.repo().num_active_levels(); ++lev) {
 
@@ -24,14 +27,14 @@ amrex::Real density_test_impl(
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& rho0_arr)
                 -> amrex::Real {
-                amrex::Real error = 0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
-                    const amrex::Real zbtm = problo[2] + k * dx[2];
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
+                    const amrex::Real zbtm = problo[2] + (k * dx[2]);
                     amrex::Real vof = (wlev - zbtm) / dx[2];
-                    vof = amrex::max(vof, 0.0);
-                    vof = amrex::min(vof, 1.0);
-                    amrex::Real dens = vof * rho1 + (1.0 - vof) * rho2;
+                    vof = amrex::max<amrex::Real>(vof, 0.0_rt);
+                    vof = amrex::min<amrex::Real>(vof, 1.0_rt);
+                    amrex::Real dens = (vof * rho1) + ((1.0_rt - vof) * rho2);
                     error += std::abs(rho0_arr(i, j, k) - dens);
                 });
 
@@ -59,25 +62,27 @@ amrex::Real pressure_test_impl(
         const auto& probhi = geom[lev].ProbHiArray();
 
         const amrex::Real ht_max = probhi[2] - problo[2];
-        const amrex::Real ht_min = 0.0;
+        const amrex::Real ht_min = 0.0_rt;
 
         error_total += amrex::ReduceSum(
             p0(lev), ngrow,
             [=] AMREX_GPU_HOST_DEVICE(
                 amrex::Box const& nbx,
                 amrex::Array4<amrex::Real const> const& p0_arr) -> amrex::Real {
-                amrex::Real error = 0;
+                amrex::Real error = 0.0_rt;
 
-                amrex::Loop(nbx, [=, &error](int i, int j, int k) noexcept {
-                    const amrex::Real znode = problo[2] + k * dx[2];
+                amrex::Loop(nbx, [=, &error](int i, int j, int k) {
+                    const amrex::Real znode = problo[2] + (k * dx[2]);
                     amrex::Real ht_g = probhi[2] - wlev;
                     amrex::Real ht_l = wlev - problo[2];
                     // Limit by location
-                    ht_g = amrex::min(ht_g, probhi[2] - znode);
-                    ht_l = amrex::min(ht_l, wlev - znode);
+                    ht_g = amrex::min<amrex::Real>(ht_g, probhi[2] - znode);
+                    ht_l = amrex::min<amrex::Real>(ht_l, wlev - znode);
                     // Limit by bounds
-                    ht_g = amrex::min(amrex::max(ht_g, ht_min), ht_max);
-                    ht_l = amrex::min(amrex::max(ht_l, ht_min), ht_max);
+                    ht_g = amrex::min<amrex::Real>(
+                        amrex::max<amrex::Real>(ht_g, ht_min), ht_max);
+                    ht_l = amrex::min<amrex::Real>(
+                        amrex::max<amrex::Real>(ht_l, ht_min), ht_max);
                     // Integrated (-rho*g*z)
                     const amrex::Real irhogz =
                         -gz * (rho1 * ht_l + rho2 * ht_g);
@@ -108,18 +113,18 @@ protected:
         }
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> problo{{-1.0, -1.0, -1.0}};
-            amrex::Vector<amrex::Real> probhi{{1.0, 1.0, 1.0}};
+            amrex::Vector<amrex::Real> problo{{-1.0_rt, -1.0_rt, -1.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{1.0_rt, 1.0_rt, 1.0_rt}};
 
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
         }
     }
 
-    const amrex::Real m_rho1 = 1000.0;
-    const amrex::Real m_rho2 = 1.0;
-    const amrex::Real m_wlev = 0.5;
-    const amrex::Real m_gz = -9.81;
+    const amrex::Real m_rho1 = 1000.0_rt;
+    const amrex::Real m_rho2 = 1.0_rt;
+    const amrex::Real m_wlev = 0.5_rt;
+    const amrex::Real m_gz = -9.81_rt;
     const int m_nx = 16;
 };
 
@@ -138,7 +143,8 @@ TEST_F(MultiPhaseHydroStatic, reference_density)
     amrex::Real error_total =
         density_test_impl(rho0, sim().mesh().Geom(), m_rho1, m_rho2, m_wlev);
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
-    EXPECT_NEAR(error_total, 0.0, 1e-8);
+    EXPECT_NEAR(
+        error_total, 0.0_rt, std::numeric_limits<float>::epsilon() * 1.0e1_rt);
 }
 
 TEST_F(MultiPhaseHydroStatic, reference_pressure)
@@ -156,7 +162,8 @@ TEST_F(MultiPhaseHydroStatic, reference_pressure)
     amrex::Real error_total = pressure_test_impl(
         p0, sim().mesh().Geom(), m_rho1, m_rho2, m_wlev, m_gz, nghost);
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
-    EXPECT_NEAR(error_total, 0.0, 1e-8);
+    EXPECT_NEAR(
+        error_total, 0.0_rt, std::numeric_limits<float>::epsilon() * 1.0e1_rt);
 }
 
 } // namespace amr_wind_tests

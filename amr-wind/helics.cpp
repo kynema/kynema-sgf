@@ -8,6 +8,9 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 #ifdef AMR_WIND_USE_HELICS
 using namespace helicscpp;
@@ -16,13 +19,15 @@ using namespace helicscpp;
 void tokenize(
     const std::string& s,
     const std::string& del,
-    std::list<double>& return_list)
+    std::list<amrex::Real>& return_list)
 {
 
     int start = 0;
     int end = static_cast<int>(s.find(del));
 
-    return_list.push_front(atof(s.substr(start + 1, end - start).c_str()));
+    return_list.push_front(
+        static_cast<amrex::Real>(
+            atof(s.substr(start + 1, end - start).c_str())));
     while (end > 0) {
 
         start = end + static_cast<int>(del.size());
@@ -31,7 +36,9 @@ void tokenize(
         if (end == -1) {
             end = -2;
         }
-        return_list.push_front(atof(s.substr(start, end - start).c_str()));
+        return_list.push_front(
+            static_cast<amrex::Real>(
+                atof(s.substr(start, end - start).c_str())));
     }
 }
 
@@ -69,7 +76,7 @@ HelicsStorage::HelicsStorage(CFDSim& sim) : m_sim(sim)
         m_vfed = std::make_unique<helicscpp::CombinationFederate>(
             "Test receiver Federate", *m_fi);
 
-        m_vfed->setProperty(HELICS_PROPERTY_TIME_DELTA, 1.0);
+        m_vfed->setProperty(HELICS_PROPERTY_TIME_DELTA, 1.0_rt);
         //  Subscribe to PI SENDER's publication
         m_vfed->registerSubscription("control", "string");
         //  Register the publication
@@ -92,9 +99,9 @@ HelicsStorage::HelicsStorage(CFDSim& sim) : m_sim(sim)
         m_num_turbines = actuators.size();
     }
 
-    m_turbine_power_to_controller.resize(m_num_turbines, 0.0);
-    m_turbine_wind_direction_to_controller.resize(m_num_turbines, 0.0);
-    m_turbine_yaw_to_amrwind.resize(m_num_turbines, 270.0);
+    m_turbine_power_to_controller.resize(m_num_turbines, 0.0_rt);
+    m_turbine_wind_direction_to_controller.resize(m_num_turbines, 0.0_rt);
+    m_turbine_yaw_to_amrwind.resize(m_num_turbines, 270.0_rt);
 
 #endif
 }
@@ -122,7 +129,7 @@ void HelicsStorage::recv_messages_from_controller()
 {
 
     amrex::Print() << "recv message from controller at time: "
-                   << m_sim.time().current_time() << std::endl;
+                   << m_sim.time().current_time() << '\n';
 
 #ifdef AMR_WIND_USE_HELICS
     // receive wind direction and speed from controller (1 + 1)
@@ -146,7 +153,7 @@ void HelicsStorage::recv_messages_from_controller()
             // // Unpack the values from the control center using a string
             // stream
 
-            std::list<double> return_list;
+            std::list<amrex::Real> return_list;
             const std::string comma = ",";
             tokenize(charFromControlCenter.str(), comma, return_list);
 
@@ -183,13 +190,13 @@ void HelicsStorage::recv_messages_from_controller()
 
         int pubCount = m_vfed->getPublicationCount();
 
-        amrex::Real wind_speed = 123.0;
-        amrex::Real wind_direction = 456.0;
+        amrex::Real wind_speed = 123.0_rt;
+        amrex::Real wind_direction = 456.0_rt;
 
         auto& phy_mgr = m_sim.physics_manager();
         if (phy_mgr.contains("ABL")) {
             auto& abl = phy_mgr.get<amr_wind::ABL>();
-            const amrex::Real height = 90.0;
+            const amrex::Real height = 90.0_rt;
             wind_speed = abl.abl_statistics()
                              .vel_profile()
                              .line_hvelmag_average_interpolated(height);
@@ -200,7 +207,8 @@ void HelicsStorage::recv_messages_from_controller()
                 abl.abl_statistics().vel_profile().line_average_interpolated(
                     height, 1);
             const amrex::Real turbine_angle = std::atan2(vely, velx);
-            wind_direction = -amr_wind::utils::degrees(turbine_angle) + 270.0;
+            wind_direction =
+                -amr_wind::utils::degrees(turbine_angle) + 270.0_rt;
         }
 
         amrex::Print() << "pub count: " << pubCount << std::endl;

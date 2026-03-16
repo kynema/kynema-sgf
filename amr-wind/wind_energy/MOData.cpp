@@ -1,5 +1,8 @@
 #include <limits>
 #include "amr-wind/wind_energy/MOData.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -20,9 +23,10 @@ amrex::Real MOData::calc_psi_m(
     if (zeta > 0) {
         return -gamma_m * zeta;
     }
-    const amrex::Real x = std::sqrt(std::sqrt(1 - beta_m * zeta));
-    return 2.0 * std::log(0.5 * (1.0 + x)) + log(0.5 * (1 + x * x)) -
-           2.0 * std::atan(x) + utils::half_pi();
+    const amrex::Real x = std::sqrt(std::sqrt(1.0_rt - (beta_m * zeta)));
+    return (2.0_rt * std::log(0.5_rt * (1.0_rt + x))) +
+           std::log(0.5_rt * (1.0_rt + x * x)) - (2.0_rt * std::atan(x)) +
+           utils::half_pi();
 }
 
 amrex::Real MOData::calc_psi_m(amrex::Real zeta) const
@@ -36,8 +40,8 @@ amrex::Real MOData::calc_psi_h(
     if (zeta > 0) {
         return -gamma_h * zeta;
     }
-    const amrex::Real x = std::sqrt(1 - beta_h * zeta);
-    return 2.0 * std::log(0.5 * (1 + x));
+    const amrex::Real x = std::sqrt(1 - (beta_h * zeta));
+    return 2.0_rt * std::log(0.5_rt * (1 + x));
 }
 
 amrex::Real MOData::calc_psi_h(amrex::Real zeta) const
@@ -47,13 +51,13 @@ amrex::Real MOData::calc_psi_h(amrex::Real zeta) const
 
 void MOData::update_fluxes(int max_iters)
 {
-    constexpr amrex::Real eps = 1.0e-16;
-    amrex::Real zeta = 0.0;
-    amrex::Real utau_iter = 0.0;
+    constexpr amrex::Real eps = std::numeric_limits<amrex::Real>::epsilon();
+    amrex::Real zeta = 0.0_rt;
+    amrex::Real utau_iter = 0.0_rt;
 
     // Initialize variables
-    amrex::Real psi_m = 0.0;
-    amrex::Real psi_h = 0.0;
+    amrex::Real psi_m = 0.0_rt;
+    amrex::Real psi_h = 0.0_rt;
     utau = kappa * vmag_mean / (std::log(zref / z0));
 
     int iter = 0;
@@ -61,8 +65,8 @@ void MOData::update_fluxes(int max_iters)
         utau_iter = utau;
         switch (alg_type) {
         case ThetaCalcType::HEAT_FLUX:
-            surf_temp = surf_temp_flux * (std::log(zref / z0t) - psi_h) /
-                            (utau * kappa) +
+            surf_temp = (surf_temp_flux * (std::log(zref / z0t) - psi_h) /
+                         (utau * kappa)) +
                         theta_mean;
             break;
 
@@ -80,13 +84,13 @@ void MOData::update_fluxes(int max_iters)
         } else {
             // Neutral conditions
             obukhov_len = std::numeric_limits<amrex::Real>::max();
-            zeta = 0.0;
+            zeta = 0.0_rt;
         }
         psi_m = calc_psi_m(zeta);
         psi_h = calc_psi_h(zeta);
         utau = kappa * vmag_mean / (std::log(zref / z0) - psi_m);
         ++iter;
-    } while ((std::abs(utau_iter - utau) > 1e-5) && iter <= max_iters);
+    } while ((std::abs(utau_iter - utau) > 1.0e-5_rt) && iter <= max_iters);
 
     if (iter >= max_iters) {
         amrex::Print()
@@ -94,8 +98,7 @@ void MOData::update_fluxes(int max_iters)
             << max_iters << " iterations\nObuhov length = " << obukhov_len
             << " zeta = " << zeta << "\npsi_m = " << psi_m
             << " psi_h = " << psi_h << "\nutau = " << utau
-            << " Tsurf = " << surf_temp << " q = " << surf_temp_flux
-            << std::endl;
+            << " Tsurf = " << surf_temp << " q = " << surf_temp_flux << '\n';
     }
 }
 

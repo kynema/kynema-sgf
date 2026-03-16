@@ -1,10 +1,14 @@
 #ifndef RADARSAMPLER_H
 #define RADARSAMPLER_H
 
+#include <cstdint>
 #include "amr-wind/utilities/sampling/SamplerBase.H"
 #include "amr-wind/utilities/sampling/SamplingUtils.H"
 #include "amr-wind/utilities/sampling/LineSampler.H"
 #include "amr-wind/core/vs/vector_space.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::sampling {
 
@@ -33,18 +37,23 @@ public:
      */
     void initialize(const std::string& key) override;
 
-    enum class phase { FORWARD, FORWARD_PAUSE, REVERSE, REVERSE_PAUSE };
+    enum class phase : std::uint8_t {
+        FORWARD,
+        FORWARD_PAUSE,
+        REVERSE,
+        REVERSE_PAUSE
+    };
 
     //! Check and fix the bounds of the sampler so the probes are in the domain
     void check_bounds() override;
 
     void new_cone();
 
-    double total_sweep_time() const;
-    double periodic_time();
-    int sweep_count() const;
-    phase determine_operation_phase() const;
-    double determine_current_sweep_angle() const;
+    [[nodiscard]] amrex::Real total_sweep_time() const;
+    amrex::Real periodic_time();
+    [[nodiscard]] int sweep_count() const;
+    [[nodiscard]] phase determine_operation_phase() const;
+    [[nodiscard]] amrex::Real determine_current_sweep_angle() const;
 
     //! Populate and return a vector of probe locations to be sampled
     void sampling_locations(SampleLocType& /*sample_locs**/) const override;
@@ -69,57 +78,65 @@ public:
     void
     populate_netcdf_metadata(const ncutils::NCGroup& /*unused*/) const override;
     void output_netcdf_data(
-        const ncutils::NCGroup& /*unused*/,
-        const size_t /*unused*/) const override;
+        const ncutils::NCGroup& /*unused*/, size_t /*unused*/) const override;
 
     bool output_netcdf_field(
-        const std::vector<double>& output_buffer,
+        const std::vector<amrex::Real>& output_buffer,
         ncutils::NCGroup& grp,
-        const size_t nt) override;
+        size_t nt) override;
 
     //! Name of this sampling object
-    std::string label() const override { return m_label; }
+    [[nodiscard]] std::string label() const override { return m_label; }
     std::string& label() override { return m_label; }
 
     //! Type of this sampling object
-    std::string sampletype() const override { return identifier(); }
+    [[nodiscard]] std::string sampletype() const override
+    {
+        return identifier();
+    }
 
     //! Unique identifier for this set of probe locations
-    int id() const override { return m_id; }
+    [[nodiscard]] int id() const override { return m_id; }
     int& id() override { return m_id; }
 
     //! Number of sampling container locations in a timestep
-    long num_points() const override
+    [[nodiscard]] long num_points() const override
     {
         return m_interp_steps * m_ntotal *
                (m_npts + m_ntheta * m_npts * (m_nphi - 1));
     }
 
     //! Number of probe locations to output
-    long num_output_points() const override { return m_ntotal * m_npts; }
+    [[nodiscard]] long num_output_points() const override
+    {
+        return m_ntotal * m_npts;
+    }
 
     //! Number of sampling container locations per interp step
-    long num_points_scan() const
+    [[nodiscard]] long num_points_scan() const
     {
         return m_ntotal * (m_npts + m_ntheta * m_npts * (m_nphi - 1));
     }
 
     //! Number of probe locations on Radar axis
-    long num_points_axis() const { return m_npts; }
+    [[nodiscard]] long num_points_axis() const { return m_npts; }
 
     //! Number of probe locations in a cone
-    long num_points_cone() const
+    [[nodiscard]] long num_points_cone() const
     {
-        return m_npts + m_ntheta * m_npts * (m_nphi - 1);
+        return m_npts + (m_ntheta * m_npts * (m_nphi - 1));
     }
 
     //! Number of probe locations in a spherical cap
-    long num_points_quad() const { return 1 + m_ntheta * (m_nphi - 1); }
+    [[nodiscard]] long num_points_quad() const
+    {
+        return 1 + (m_ntheta * (m_nphi - 1));
+    }
 
     static void line_average(
-        const std::vector<double>& weights,
-        const std::vector<double>& values,
-        std::vector<double>& reduced,
+        const std::vector<amrex::Real>& weights,
+        const std::vector<amrex::Real>& values,
+        std::vector<amrex::Real>& reduced,
         long offset);
 
     //! Run data modification for specific sampler
@@ -128,13 +145,13 @@ public:
     bool do_subsampling_interp() override { return true; }
 
     //! Modify sample buffer after sampling happens
-    std::vector<double> modify_sample_data(
-        const std::vector<double>& sample_data,
+    std::vector<amrex::Real> modify_sample_data(
+        const std::vector<amrex::Real>& sample_data,
         const std::string& /*unused*/) override;
 
     void calc_lineofsight_velocity(
-        const std::vector<std::vector<double>>& /*velocity_raw*/,
-        const int /*interp_idx*/) override;
+        const std::vector<std::vector<amrex::Real>>& /*velocity_raw*/,
+        int /*interp_idx*/) override;
 
 protected:
     const CFDSim& m_sim;
@@ -142,7 +159,7 @@ protected:
     std::string m_label;
     int m_id{-1};
 
-    amrex::Real m_radtodeg{180.0 / M_PI};
+    amrex::Real m_radtodeg{180.0_rt / std::numbers::pi_v<amrex::Real>};
 
     amrex::Vector<amrex::Real> m_start;
     amrex::Vector<amrex::Real> m_end;
@@ -155,12 +172,12 @@ protected:
     LosRotType m_los_proj;
     LosUnitType m_los_unit;
 
-    std::vector<double> m_los_velocity;
-    std::vector<double> m_los_velocity_next;
-    std::vector<double> m_los_velocity_prior;
-    std::vector<double> m_los_velocity_interp;
+    std::vector<amrex::Real> m_los_velocity;
+    std::vector<amrex::Real> m_los_velocity_next;
+    std::vector<amrex::Real> m_los_velocity_prior;
+    std::vector<amrex::Real> m_los_velocity_interp;
 
-    std::vector<double> m_weights;
+    std::vector<amrex::Real> m_weights;
     std::vector<vs::Vector> m_rays;
 
     amrex::Real m_sample_freq;       // Simulation sample rate
@@ -200,7 +217,7 @@ protected:
     long m_num_points_prior;
     long m_num_output_points_prior;
 
-    amrex::Real m_fill_val{-99999.99};
+    amrex::Real m_fill_val{-99999.99_rt};
 };
 
 } // namespace amr_wind::sampling

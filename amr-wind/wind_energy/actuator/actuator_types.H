@@ -9,6 +9,9 @@
 
 #include <set>
 #include <utility>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -94,7 +97,7 @@ struct ActGrid
     RealList density;
 
     //! Switch for turning off distance components in Gaussian calculation
-    vs::Vector dcoord_flags{1.0, 1.0, 1.0};
+    vs::Vector dcoord_flags{1.0_rt, 1.0_rt, 1.0_rt};
 
     /** Helper method to resize the data arrays defined on the grid
      *
@@ -115,7 +118,7 @@ struct ActGrid
     /** Convenience function to resize both force/velocity data to same
      * locations
      */
-    inline void resize(int num_pts) { resize(num_pts, num_pts); }
+    void resize(int num_pts) { resize(num_pts, num_pts); }
 };
 
 /** Slice of actutator data for components (tower, blade, etc)
@@ -209,16 +212,25 @@ public:
     {}
 
     CFDSim& sim() { return m_sim; }
-    const CFDSim& sim() const { return m_sim; }
+    [[nodiscard]] const CFDSim& sim() const { return m_sim; }
 
     typename ActTrait::InfoType& info() { return m_info; }
-    const typename ActTrait::InfoType& info() const { return m_info; }
+    [[nodiscard]] const typename ActTrait::InfoType& info() const
+    {
+        return m_info;
+    }
 
     typename ActTrait::GridType& grid() { return m_grid; }
-    const typename ActTrait::GridType& grid() const { return m_grid; }
+    [[nodiscard]] const typename ActTrait::GridType& grid() const
+    {
+        return m_grid;
+    }
 
     typename ActTrait::MetaType& meta() { return m_meta; }
-    const typename ActTrait::MetaType& meta() const { return m_meta; }
+    [[nodiscard]] const typename ActTrait::MetaType& meta() const
+    {
+        return m_meta;
+    }
 };
 
 } // namespace actuator

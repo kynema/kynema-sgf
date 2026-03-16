@@ -2,9 +2,13 @@
 #define SAMPLINGCONTAINER_H
 
 #include <memory>
+#include <cstdint>
 
 #include "AMReX_AmrParticles.H"
 #include "amr-wind/utilities/DerivedQuantity.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -24,7 +28,7 @@ static constexpr int SNArrayInt = 0;
  */
 struct IIx
 {
-    enum Indices {
+    enum Indices : std::uint8_t {
         uid = 0, ///< Unique identifier for this particle
         sid,     ///< Identifier of the set this particle belongs to
         nid      ///< Index within the set for this particle
@@ -75,8 +79,7 @@ public:
 
     /** Define the container and allocate memory for runtime components
      */
-    void setup_container(
-        const int num_real_components, const int num_int_components = 0);
+    void setup_container(int num_real_components, int num_int_components = 0);
 
     /** Create particle information for all the sampling locations
      */
@@ -109,12 +112,10 @@ public:
 
     //! Perform derived field interpolation to sampling locations
     void interpolate_derived_fields(
-        const DerivedQtyMgr& derived_mgr,
-        const FieldRepo& repo,
-        const int scomp);
+        const DerivedQtyMgr& derived_mgr, const FieldRepo& repo, int scomp);
 
     //! Populate the buffer with data for all the particles
-    void populate_buffer(std::vector<double>& buf);
+    void populate_buffer(std::vector<amrex::Real>& buf);
 
     long num_sampling_particles() const { return m_total_particles; }
 
@@ -149,7 +150,7 @@ public:
         auto* pstruct = pvec.data();
         auto* parr = pavec.data();
 
-        amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(int ip) noexcept {
+        amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(int ip) {
             auto& p = pstruct[ip];
             // Determine offsets within the containing cell
             const amrex::Real x =
@@ -169,18 +170,18 @@ public:
             const amrex::Real wy_hi = (y - j);
             const amrex::Real wz_hi = (z - k);
 
-            const amrex::Real wx_lo = 1.0 - wx_hi;
-            const amrex::Real wy_lo = 1.0 - wy_hi;
-            const amrex::Real wz_lo = 1.0 - wz_hi;
+            const amrex::Real wx_lo = 1.0_rt - wx_hi;
+            const amrex::Real wy_lo = 1.0_rt - wy_hi;
+            const amrex::Real wz_lo = 1.0_rt - wz_hi;
 
-            parr[ip] = wx_lo * wy_lo * wz_lo * farr(i, j, k, ic) +
-                       wx_lo * wy_lo * wz_hi * farr(i, j, k + 1, ic) +
-                       wx_lo * wy_hi * wz_lo * farr(i, j + 1, k, ic) +
-                       wx_lo * wy_hi * wz_hi * farr(i, j + 1, k + 1, ic) +
-                       wx_hi * wy_lo * wz_lo * farr(i + 1, j, k, ic) +
-                       wx_hi * wy_lo * wz_hi * farr(i + 1, j, k + 1, ic) +
-                       wx_hi * wy_hi * wz_lo * farr(i + 1, j + 1, k, ic) +
-                       wx_hi * wy_hi * wz_hi * farr(i + 1, j + 1, k + 1, ic);
+            parr[ip] = (wx_lo * wy_lo * wz_lo * farr(i, j, k, ic)) +
+                       (wx_lo * wy_lo * wz_hi * farr(i, j, k + 1, ic)) +
+                       (wx_lo * wy_hi * wz_lo * farr(i, j + 1, k, ic)) +
+                       (wx_lo * wy_hi * wz_hi * farr(i, j + 1, k + 1, ic)) +
+                       (wx_hi * wy_lo * wz_lo * farr(i + 1, j, k, ic)) +
+                       (wx_hi * wy_lo * wz_hi * farr(i + 1, j, k + 1, ic)) +
+                       (wx_hi * wy_hi * wz_lo * farr(i + 1, j + 1, k, ic)) +
+                       (wx_hi * wy_hi * wz_hi * farr(i + 1, j + 1, k + 1, ic));
         });
     }
 
@@ -208,35 +209,35 @@ private:
             switch (floc) {
             case FieldLoc::NODE: {
                 amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> offset{
-                    0.0, 0.0, 0.0};
+                    0.0_rt, 0.0_rt, 0.0_rt};
                 sample_field(np, ic, pvec, parr, farr, plo, dxi, dx, offset);
                 break;
             }
 
             case FieldLoc::CELL: {
                 amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> offset{
-                    0.5, 0.5, 0.5};
+                    0.5_rt, 0.5_rt, 0.5_rt};
                 sample_field(np, ic, pvec, parr, farr, plo, dxi, dx, offset);
                 break;
             }
 
             case FieldLoc::XFACE: {
                 amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> offset{
-                    0.0, 0.5, 0.5};
+                    0.0_rt, 0.5_rt, 0.5_rt};
                 sample_field(np, ic, pvec, parr, farr, plo, dxi, dx, offset);
                 break;
             }
 
             case FieldLoc::YFACE: {
                 amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> offset{
-                    0.5, 0.0, 0.5};
+                    0.5_rt, 0.0_rt, 0.5_rt};
                 sample_field(np, ic, pvec, parr, farr, plo, dxi, dx, offset);
                 break;
             }
 
             case FieldLoc::ZFACE: {
                 amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> offset{
-                    0.5, 0.5, 0.0};
+                    0.5_rt, 0.5_rt, 0.0_rt};
                 sample_field(np, ic, pvec, parr, farr, plo, dxi, dx, offset);
                 break;
             }

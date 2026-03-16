@@ -1,18 +1,21 @@
 #ifndef ABLBOUNDARYPLANE_H
 #define ABLBOUNDARYPLANE_H
 
+#include <cstdint>
 #include "amr-wind/core/Field.H"
 #include "amr-wind/CFDSim.H"
-#include "AMReX_Gpu.H"
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 #include "amr-wind/utilities/io_utils.H"
-#include <AMReX_BndryRegister.H>
-
 #include "amr-wind/wind_energy/ABLReadERFFunction.H"
+#include "AMReX_Gpu.H"
+#include "AMReX_BndryRegister.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 class MultiBlockContainer;
 namespace amr_wind {
 
-enum struct io_mode { output, input, undefined };
+enum struct io_mode : std::uint8_t { output, input, undefined };
 
 struct BufferData
 {
@@ -34,14 +37,12 @@ class InletData
 public:
     InletData() = default;
 
-    void resize(const int /*size*/);
+    void resize(int /*size*/);
 
-    void define_plane(const amrex::Orientation /*ori*/);
+    void define_plane(amrex::Orientation /*ori*/);
 
     void define_level_data(
-        const amrex::Orientation /*ori*/,
-        const amrex::Box& /*bx*/,
-        const size_t /*nc*/);
+        amrex::Orientation /*ori*/, const amrex::Box& /*bx*/, size_t /*nc*/);
 
 #ifdef AMR_WIND_USE_NETCDF
     void read_data(
@@ -54,17 +55,17 @@ public:
 #endif
 
     void read_data_native(
-        const amrex::OrientationIter oit,
+        amrex::OrientationIter oit,
         amrex::BndryRegister& bndry_n,
         amrex::BndryRegister& bndry_np1,
-        const int lev,
+        int lev,
         const Field* /*fld*/,
-        const amrex::Real time,
+        amrex::Real time,
         const amrex::Vector<amrex::Real>& /*times*/);
 
-    void interpolate(const amrex::Real /*time*/);
-    bool is_populated(amrex::Orientation /*ori*/) const;
-    const amrex::FArrayBox&
+    void interpolate(amrex::Real /*time*/);
+    [[nodiscard]] bool is_populated(amrex::Orientation /*ori*/) const;
+    [[nodiscard]] const amrex::FArrayBox&
     interpolate_data(const amrex::Orientation ori, const int lev) const
     {
         return (*m_data_interp[ori])[lev];
@@ -72,16 +73,19 @@ public:
 
     int& component(const int id) { return m_components[id]; }
 
-    int component(const int id) const { return m_components.at(id); }
+    [[nodiscard]] int component(const int id) const
+    {
+        return m_components.at(id);
+    }
 
-    int nlevels(const amrex::Orientation ori) const
+    [[nodiscard]] int nlevels(const amrex::Orientation ori) const
     {
         return static_cast<int>((*m_data_interp[ori]).size());
     }
 
-    amrex::Real tn() const { return m_tn; }
-    amrex::Real tnp1() const { return m_tnp1; }
-    amrex::Real tinterp() const { return m_tinterp; }
+    [[nodiscard]] amrex::Real tn() const { return m_tn; }
+    [[nodiscard]] amrex::Real tnp1() const { return m_tnp1; }
+    [[nodiscard]] amrex::Real tinterp() const { return m_tinterp; }
 
 private:
     amrex::Vector<std::unique_ptr<PlaneVector>> m_data_n;
@@ -89,13 +93,13 @@ private:
     amrex::Vector<std::unique_ptr<PlaneVector>> m_data_interp;
 
     //! Time for plane at n
-    amrex::Real m_tn{-1.0};
+    amrex::Real m_tn{-1.0_rt};
 
     //! Time for plane at n + 1
-    amrex::Real m_tnp1{-1.0};
+    amrex::Real m_tnp1{-1.0_rt};
 
     //! Time for plane at interpolation
-    amrex::Real m_tinterp{-1.0};
+    amrex::Real m_tinterp{-1.0_rt};
 
     //! Map of `{variableId : component}`
     std::unordered_map<int, int> m_components;
@@ -135,18 +139,18 @@ public:
 
     void read_header();
 
-    amrex::Vector<amrex::BoxArray> read_bndry_native_boxarrays(
+    [[nodiscard]] amrex::Vector<amrex::BoxArray> read_bndry_native_boxarrays(
         const std::string& chkname, const Field& field) const;
 
-    void read_file(const bool /* nph_target_time*/);
+    void read_file(bool /* nph_target_time*/);
 
     void populate_data(
-        const int /*lev*/,
-        const amrex::Real /*time*/,
+        int /*lev*/,
+        amrex::Real /*time*/,
         Field& /*fld*/,
         amrex::MultiFab& /*mfab*/,
-        const int dcomp = 0,
-        const int orig_comp = 0) const;
+        int dcomp = 0,
+        int orig_comp = 0) const;
 
 #ifdef AMR_WIND_USE_NETCDF
     static void impl_buffer_field(
@@ -159,19 +163,21 @@ public:
         amrex::Gpu::ManagedVector<amrex::Real>& /*buffer*/);
 #endif
 
-    bool is_initialized() const { return m_is_initialized; }
+    [[nodiscard]] bool is_initialized() const { return m_is_initialized; }
 
-    bool box_intersects_boundary(
+    [[nodiscard]] bool box_intersects_boundary(
         const amrex::Box& /*bx*/,
-        const int /*lev*/,
-        const amrex::Orientation /*ori*/) const;
+        int /*lev*/,
+        amrex::Orientation /*ori*/) const;
 
-    bool is_data_newer_than(const amrex::Real time) const
+    [[nodiscard]] bool is_data_newer_than(const amrex::Real time) const
     {
-        return (m_in_data.tinterp() - time > 1e-12);
+        return (
+            m_in_data.tinterp() - time >
+            std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
     }
 
-    io_mode mode() const { return m_io_mode; }
+    [[nodiscard]] io_mode mode() const { return m_io_mode; }
 
     MultiBlockContainer* mbc()
     {
@@ -202,7 +208,7 @@ private:
         const int /*lev*/,
         const Field* /*fld*/);
 #endif
-    int boundary_native_file_levels() const;
+    [[nodiscard]] int boundary_native_file_levels() const;
 
     std::string m_title{"ABL boundary planes"};
 
@@ -217,7 +223,7 @@ private:
     amrex::Vector<std::string> m_planes;
 
     //! Start outputting after this time
-    amrex::Real m_out_start_time{0.0};
+    amrex::Real m_out_start_time{0.0_rt};
 
 #ifdef AMR_WIND_USE_NETCDF
     //! NetCDF time output counter

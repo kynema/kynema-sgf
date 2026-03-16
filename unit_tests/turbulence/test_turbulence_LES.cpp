@@ -1,7 +1,11 @@
+#include <numbers>
 #include "gtest/gtest.h"
 #include "aw_test_utils/MeshTest.H"
 #include "amr-wind/turbulence/TurbulenceModel.H"
 #include "aw_test_utils/test_utils.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -12,9 +16,9 @@ void init_field3(amr_wind::Field& fld, amrex::Real srate)
     const auto& mesh = fld.repo().mesh();
     const int nlevels = fld.repo().num_active_levels();
 
-    amrex::Real offset = 0.0;
+    amrex::Real offset = 0.0_rt;
     if (fld.field_location() == amr_wind::FieldLoc::CELL) {
-        offset = 0.5;
+        offset = 0.5_rt;
     }
 
     for (int lev = 0; lev < nlevels; ++lev) {
@@ -24,10 +28,10 @@ void init_field3(amr_wind::Field& fld, amrex::Real srate)
 
         amrex::ParallelFor(
             fld(lev), fld.num_grow(), fld.num_comp(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 const amrex::IntVect iv(i, j, k);
-                const amrex::Real xc = problo[n] + (iv[n] + offset) * dx[n];
-                farrs[nbx](i, j, k, n) = xc / sqrt(6.0) * srate;
+                const amrex::Real xc = problo[n] + ((iv[n] + offset) * dx[n]);
+                farrs[nbx](i, j, k, n) = xc / std::sqrt(6.0_rt) * srate;
             });
     }
     amrex::Gpu::streamSynchronize();
@@ -38,9 +42,9 @@ void init_field_amd(amr_wind::Field& fld, amrex::Real scale)
     const auto& mesh = fld.repo().mesh();
     const int nlevels = fld.repo().num_active_levels();
 
-    amrex::Real offset = 0.0;
+    amrex::Real offset = 0.0_rt;
     if (fld.field_location() == amr_wind::FieldLoc::CELL) {
-        offset = 0.5;
+        offset = 0.5_rt;
     }
 
     for (int lev = 0; lev < nlevels; ++lev) {
@@ -50,14 +54,14 @@ void init_field_amd(amr_wind::Field& fld, amrex::Real scale)
 
         amrex::ParallelFor(
             fld(lev), fld.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
-                const amrex::Real x = problo[0] + (i + offset) * dx[0];
-                const amrex::Real y = problo[1] + (j + offset) * dx[1];
-                const amrex::Real z = problo[2] + (k + offset) * dx[2];
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                const amrex::Real x = problo[0] + ((i + offset) * dx[0]);
+                const amrex::Real y = problo[1] + ((j + offset) * dx[1]);
+                const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
 
-                farrs[nbx](i, j, k, 0) = 1 * x / sqrt(6.0) * scale;
-                farrs[nbx](i, j, k, 1) = -2 * y / sqrt(6.0) * scale;
-                farrs[nbx](i, j, k, 2) = -1 * z / sqrt(6.0) * scale;
+                farrs[nbx](i, j, k, 0) = 1 * x / std::sqrt(6.0_rt) * scale;
+                farrs[nbx](i, j, k, 1) = -2 * y / std::sqrt(6.0_rt) * scale;
+                farrs[nbx](i, j, k, 2) = -1 * z / std::sqrt(6.0_rt) * scale;
             });
     }
     amrex::Gpu::streamSynchronize();
@@ -68,9 +72,9 @@ void init_field_incomp(amr_wind::Field& fld, amrex::Real scale)
     const auto& mesh = fld.repo().mesh();
     const int nlevels = fld.repo().num_active_levels();
 
-    amrex::Real offset = 0.0;
+    amrex::Real offset = 0.0_rt;
     if (fld.field_location() == amr_wind::FieldLoc::CELL) {
-        offset = 0.5;
+        offset = 0.5_rt;
     }
 
     for (int lev = 0; lev < nlevels; ++lev) {
@@ -80,14 +84,14 @@ void init_field_incomp(amr_wind::Field& fld, amrex::Real scale)
 
         amrex::ParallelFor(
             fld(lev), fld.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
-                const amrex::Real x = problo[0] + (i + offset) * dx[0];
-                const amrex::Real y = problo[1] + (j + offset) * dx[1];
-                const amrex::Real z = problo[2] + (k + offset) * dx[2];
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                const amrex::Real x = problo[0] + ((i + offset) * dx[0]);
+                const amrex::Real y = problo[1] + ((j + offset) * dx[1]);
+                const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
 
-                farrs[nbx](i, j, k, 0) = 1 * x * scale;
-                farrs[nbx](i, j, k, 1) = -2 * y * scale;
-                farrs[nbx](i, j, k, 2) = 1 * z * scale;
+                farrs[nbx](i, j, k, 0) = 1.0_rt * x * scale;
+                farrs[nbx](i, j, k, 1) = -2.0_rt * y * scale;
+                farrs[nbx](i, j, k, 2) = 1.0_rt * z * scale;
             });
     }
     amrex::Gpu::streamSynchronize();
@@ -98,9 +102,9 @@ void init_field1(amr_wind::Field& fld, amrex::Real tgrad)
     const auto& mesh = fld.repo().mesh();
     const int nlevels = fld.repo().num_active_levels();
 
-    amrex::Real offset = 0.0;
+    amrex::Real offset = 0.0_rt;
     if (fld.field_location() == amr_wind::FieldLoc::CELL) {
-        offset = 0.5;
+        offset = 0.5_rt;
     }
 
     for (int lev = 0; lev < nlevels; ++lev) {
@@ -110,8 +114,8 @@ void init_field1(amr_wind::Field& fld, amrex::Real tgrad)
 
         amrex::ParallelFor(
             fld(lev), fld.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
-                const amrex::Real z = problo[2] + (k + offset) * dx[2];
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
 
                 farrs[nbx](i, j, k, 0) = z * tgrad;
             });
@@ -136,23 +140,23 @@ protected:
         }
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> problo{{0.0, 0.0, 0.0}};
-            amrex::Vector<amrex::Real> probhi{{10.0, 10.0, 10.0}};
+            amrex::Vector<amrex::Real> problo{{0.0_rt, 0.0_rt, 0.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{10.0_rt, 10.0_rt, 10.0_rt}};
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
         }
     }
 
-    const amrex::Real m_dx = 10.0 / 10.0;
-    const amrex::Real m_dy = 10.0 / 20.0;
-    const amrex::Real m_dz = 10.0 / 30.0;
+    const amrex::Real m_dx = 10.0_rt / 10.0_rt;
+    const amrex::Real m_dy = 10.0_rt / 20.0_rt;
+    const amrex::Real m_dz = 10.0_rt / 30.0_rt;
 };
 
 TEST_F(TurbLESTest, test_smag_setup_calc)
 {
     // Parser inputs for turbulence model
-    const amrex::Real Cs = 0.16;
-    const amrex::Real visc = 1e-5;
+    const amrex::Real Cs = 0.16_rt;
+    const amrex::Real visc = 1.0e-5_rt;
     {
         amrex::ParmParse pp("turbulence");
         pp.add("model", (std::string) "Smagorinsky");
@@ -188,8 +192,8 @@ TEST_F(TurbLESTest, test_smag_setup_calc)
     }
 
     // Constants for fields
-    const amrex::Real srate = 0.5;
-    const amrex::Real rho0 = 1.2;
+    const amrex::Real srate = 0.5_rt;
+    const amrex::Real rho0 = 1.2_rt;
 
     // Set up velocity field with constant strainrate
     auto& vel = sim().repo().get_field("velocity");
@@ -206,10 +210,11 @@ TEST_F(TurbLESTest, test_smag_setup_calc)
     // Check values of turbulent viscosity
     auto min_val = utils::field_min(muturb);
     auto max_val = utils::field_max(muturb);
-    const amrex::Real tol = 1e-12;
-    const amrex::Real smag_answer = rho0 * std::pow(Cs, 2) *
-                                    std::pow(std::cbrt(m_dx * m_dy * m_dz), 2) *
-                                    srate;
+    const amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+    const amrex::Real smag_answer =
+        rho0 * std::pow(Cs, 2.0_rt) *
+        std::pow(std::cbrt(m_dx * m_dy * m_dz), 2.0_rt) * srate;
     EXPECT_NEAR(min_val, smag_answer, tol);
     EXPECT_NEAR(max_val, smag_answer, tol);
 
@@ -218,8 +223,8 @@ TEST_F(TurbLESTest, test_smag_setup_calc)
     tmodel.update_mueff(mueff);
     min_val = utils::field_min(mueff);
     max_val = utils::field_max(mueff);
-    EXPECT_NEAR(min_val, smag_answer + 1e-5, tol);
-    EXPECT_NEAR(max_val, smag_answer + 1e-5, tol);
+    EXPECT_NEAR(min_val, smag_answer + 1.0e-5_rt, tol);
+    EXPECT_NEAR(max_val, smag_answer + 1.0e-5_rt, tol);
 
     // Check that this effective viscosity is what gets to icns diffusion
     auto visc_name = pde_mgr.icns().fields().mueff.name();
@@ -229,11 +234,11 @@ TEST_F(TurbLESTest, test_smag_setup_calc)
 TEST_F(TurbLESTest, test_1eqKsgs_setup_calc)
 {
     // Parser inputs for turbulence model
-    const amrex::Real Ceps = 0.11;
-    const amrex::Real Ce = 0.99;
-    const amrex::Real Tref = 263.5;
-    const amrex::Real gravz = 10.0;
-    const amrex::Real rho0 = 1.2;
+    const amrex::Real Ceps = 0.11_rt;
+    const amrex::Real Ce = 0.99_rt;
+    const amrex::Real Tref = 263.5_rt;
+    const amrex::Real gravz = 10.0_rt;
+    const amrex::Real rho0 = 1.2_rt;
     {
         amrex::ParmParse pp("turbulence");
         pp.add("model", (std::string) "OneEqKsgsM84");
@@ -248,17 +253,17 @@ TEST_F(TurbLESTest, test_1eqKsgs_setup_calc)
         amrex::Vector<std::string> physics{"ABL"};
         pp.addarr("physics", physics);
         pp.add("density", rho0);
-        amrex::Vector<amrex::Real> vvec{8.0, 0.0, 0.0};
+        amrex::Vector<amrex::Real> vvec{8.0_rt, 0.0_rt, 0.0_rt};
         pp.addarr("velocity", vvec);
-        amrex::Vector<amrex::Real> gvec{0.0, 0.0, -gravz};
+        amrex::Vector<amrex::Real> gvec{0.0_rt, 0.0_rt, -gravz};
         pp.addarr("gravity", gvec);
     }
     {
         amrex::ParmParse pp("ABL");
-        pp.add("surface_temp_rate", -0.25);
-        amrex::Vector<amrex::Real> t_hts{0.0, 100.0, 400.0};
+        pp.add("surface_temp_rate", -0.25_rt);
+        amrex::Vector<amrex::Real> t_hts{0.0_rt, 100.0_rt, 400.0_rt};
         pp.addarr("temperature_heights", t_hts);
-        amrex::Vector<amrex::Real> t_vals{265.0, 265.0, 268.0};
+        amrex::Vector<amrex::Real> t_vals{265.0_rt, 265.0_rt, 268.0_rt};
         pp.addarr("temperature_values", t_vals);
     }
     // Transport
@@ -294,10 +299,10 @@ TEST_F(TurbLESTest, test_1eqKsgs_setup_calc)
     }
 
     // Constants for fields
-    const amrex::Real srate = 20.0;
-    const amrex::Real Tgz = 2.0;
-    const amrex::Real tlscale_val = 1.1;
-    const amrex::Real tke_val = 0.1;
+    const amrex::Real srate = 20.0_rt;
+    const amrex::Real Tgz = 2.0_rt;
+    const amrex::Real tlscale_val = 1.1_rt;
+    const amrex::Real tke_val = 0.1_rt;
     // Set up velocity field with constant strainrate
     auto& vel = sim().repo().get_field("velocity");
     init_field3(vel, srate);
@@ -321,13 +326,14 @@ TEST_F(TurbLESTest, test_1eqKsgs_setup_calc)
     // Check values of turbulent viscosity
     const auto min_val = utils::field_min(muturb);
     const auto max_val = utils::field_max(muturb);
-    const amrex::Real tol = 1e-12;
+    const amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     const amrex::Real ksgs_answer =
         rho0 * Ce *
         amrex::min<amrex::Real>(
             std::cbrt(m_dx * m_dy * m_dz),
-            0.76 * sqrt(tke_val / (Tgz * gravz) * Tref)) *
-        sqrt(tke_val);
+            0.76_rt * std::sqrt(tke_val / (Tgz * gravz) * Tref)) *
+        std::sqrt(tke_val);
     EXPECT_NEAR(min_val, ksgs_answer, tol);
     EXPECT_NEAR(max_val, ksgs_answer, tol);
 }
@@ -335,10 +341,10 @@ TEST_F(TurbLESTest, test_1eqKsgs_setup_calc)
 TEST_F(TurbLESTest, test_AMD_setup_calc)
 {
     // Parser inputs for turbulence model
-    const amrex::Real C = 0.3;
-    const amrex::Real Tref = 200;
-    const amrex::Real gravz = 10.0;
-    const amrex::Real rho0 = 1.0;
+    const amrex::Real C = 0.3_rt;
+    const amrex::Real Tref = 200.0_rt;
+    const amrex::Real gravz = 10.0_rt;
+    const amrex::Real rho0 = 1.0_rt;
     {
         amrex::ParmParse pp("turbulence");
         pp.add("model", (std::string) "AMD");
@@ -352,16 +358,16 @@ TEST_F(TurbLESTest, test_AMD_setup_calc)
         amrex::Vector<std::string> physics{"ABL"};
         pp.addarr("physics", physics);
         pp.add("density", rho0);
-        amrex::Vector<amrex::Real> vvec{8.0, 0.0, 0.0};
+        amrex::Vector<amrex::Real> vvec{8.0_rt, 0.0_rt, 0.0_rt};
         pp.addarr("velocity", vvec);
-        amrex::Vector<amrex::Real> gvec{0.0, 0.0, -gravz};
+        amrex::Vector<amrex::Real> gvec{0.0_rt, 0.0_rt, -gravz};
         pp.addarr("gravity", gvec);
     }
     {
         amrex::ParmParse pp("ABL");
-        amrex::Vector<amrex::Real> t_hts{0.0, 100.0, 400.0};
+        amrex::Vector<amrex::Real> t_hts{0.0_rt, 100.0_rt, 400.0_rt};
         pp.addarr("temperature_heights", t_hts);
-        amrex::Vector<amrex::Real> t_vals{200.0, 200.0, 200.0};
+        amrex::Vector<amrex::Real> t_vals{200.0_rt, 200.0_rt, 200.0_rt};
         pp.addarr("temperature_values", t_vals);
     }
     // Transport
@@ -392,8 +398,8 @@ TEST_F(TurbLESTest, test_AMD_setup_calc)
     }
 
     // Constants for fields
-    const amrex::Real scale = 1.50;
-    const amrex::Real Tgz = 20.0;
+    const amrex::Real scale = 1.50_rt;
+    const amrex::Real Tgz = 20.0_rt;
     // Set up velocity field with constant strainrate
     auto& vel = sim().repo().get_field("velocity");
     init_field_amd(vel, scale);
@@ -412,13 +418,14 @@ TEST_F(TurbLESTest, test_AMD_setup_calc)
     // Check values of turbulent viscosity
     const auto min_val = utils::field_min(muturb);
     const auto max_val = utils::field_max(muturb);
-    const amrex::Real tol = 1e-12;
+    const amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     const amrex::Real amd_answer =
         C *
-        (-1.0 * std::pow(scale / sqrt(6), 3) *
-         (m_dx * m_dx - 8 * m_dy * m_dy - m_dz * m_dz)) /
-        (1 * scale * scale);
+        (-1.0_rt * std::pow(scale / std::sqrt(6.0_rt), 3.0_rt) *
+         (m_dx * m_dx - 8.0_rt * m_dy * m_dy - m_dz * m_dz)) /
+        (1.0_rt * scale * scale);
     EXPECT_NEAR(min_val, amd_answer, tol);
     EXPECT_NEAR(max_val, amd_answer, tol);
 
@@ -427,7 +434,8 @@ TEST_F(TurbLESTest, test_AMD_setup_calc)
     tmodel.update_alphaeff(alphaeff);
     const auto ae_min_val = utils::field_min(alphaeff);
     const auto ae_max_val = utils::field_max(alphaeff);
-    const amrex::Real amd_ae_answer = C * m_dz * m_dz * scale * 1.0 / sqrt(6);
+    const amrex::Real amd_ae_answer =
+        C * m_dz * m_dz * scale * 1.0_rt / std::sqrt(6.0_rt);
     EXPECT_NEAR(ae_min_val, amd_ae_answer, tol);
     EXPECT_NEAR(ae_max_val, amd_ae_answer, tol);
 }
@@ -435,8 +443,8 @@ TEST_F(TurbLESTest, test_AMD_setup_calc)
 TEST_F(TurbLESTest, test_AMDNoTherm_setup_calc)
 {
     // Parser inputs for turbulence model
-    const amrex::Real C = 0.3;
-    const amrex::Real rho0 = 1.0;
+    const amrex::Real C = 0.3_rt;
+    const amrex::Real rho0 = 1.0_rt;
     {
         amrex::ParmParse pp("turbulence");
         pp.add("model", (std::string) "AMDNoTherm");
@@ -448,7 +456,7 @@ TEST_F(TurbLESTest, test_AMDNoTherm_setup_calc)
     {
         amrex::ParmParse pp("incflo");
         pp.add("density", rho0);
-        amrex::Vector<amrex::Real> vvec{8.0, 0.0, 0.0};
+        amrex::Vector<amrex::Real> vvec{8.0_rt, 0.0_rt, 0.0_rt};
         pp.addarr("velocity", vvec);
     }
 
@@ -474,7 +482,7 @@ TEST_F(TurbLESTest, test_AMDNoTherm_setup_calc)
     }
 
     // Constants for fields
-    const amrex::Real scale = 2.0;
+    const amrex::Real scale = 2.0_rt;
     // Set up velocity field with constant strainrate
     auto& vel = sim().repo().get_field("velocity");
     init_field_incomp(vel, scale);
@@ -490,20 +498,25 @@ TEST_F(TurbLESTest, test_AMDNoTherm_setup_calc)
     // Check values of turbulent viscosity
     const auto min_val = utils::field_min(muturb);
     const auto max_val = utils::field_max(muturb);
-    const amrex::Real tol = 1e-12;
+    const amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     const amrex::Real amd_answer =
-        -C * std::pow(scale, 3) *
-        (m_dx * m_dx - 8 * m_dy * m_dy + m_dz * m_dz) / (6 * scale * scale);
+        -C * std::pow(scale, 3.0_rt) *
+        (m_dx * m_dx - 8.0_rt * m_dy * m_dy + m_dz * m_dz) /
+        (6 * scale * scale);
     EXPECT_NEAR(min_val, amd_answer, tol);
     EXPECT_NEAR(max_val, amd_answer, tol);
 }
 TEST_F(TurbLESTest, test_kosovic_setup_calc)
 {
     // Parser inputs for turbulence model
-    const amrex::Real Cb = 0.36;
-    const amrex::Real visc = 1e-5;
-    const amrex::Real kosovic_Cs = std::sqrt(8 * (1 + Cb) / (27 * M_PI * M_PI));
+    const amrex::Real Cb = 0.36_rt;
+    const amrex::Real visc = 1.0e-5_rt;
+    const amrex::Real kosovic_Cs = std::sqrt(
+        8.0_rt * (1.0_rt + Cb) /
+        (27.0_rt * std::numbers::pi_v<amrex::Real> *
+         std::numbers::pi_v<amrex::Real>));
     {
         amrex::ParmParse pp("turbulence");
         pp.add("model", (std::string) "Kosovic");
@@ -539,8 +552,8 @@ TEST_F(TurbLESTest, test_kosovic_setup_calc)
     }
 
     // Constants for fields
-    const amrex::Real srate = 0.5;
-    const amrex::Real rho0 = 1.2;
+    const amrex::Real srate = 0.5_rt;
+    const amrex::Real rho0 = 1.2_rt;
 
     // Set up velocity field with constant strainrate
     auto& vel = sim().repo().get_field("velocity");
@@ -557,10 +570,11 @@ TEST_F(TurbLESTest, test_kosovic_setup_calc)
     // Check values of turbulent viscosity
     auto min_val = utils::field_min(muturb);
     auto max_val = utils::field_max(muturb);
-    const amrex::Real tol = 1e-12;
+    const amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     const amrex::Real kosovic_answer =
-        rho0 * std::pow(kosovic_Cs, 2) *
-        std::pow(std::cbrt(m_dx * m_dy * m_dz), 2) * srate;
+        rho0 * std::pow(kosovic_Cs, 2.0_rt) *
+        std::pow(std::cbrt(m_dx * m_dy * m_dz), 2.0_rt) * srate;
     EXPECT_NEAR(min_val, kosovic_answer, tol);
     EXPECT_NEAR(max_val, kosovic_answer, tol);
 
@@ -569,8 +583,8 @@ TEST_F(TurbLESTest, test_kosovic_setup_calc)
     tmodel.update_mueff(mueff);
     min_val = utils::field_min(mueff);
     max_val = utils::field_max(mueff);
-    EXPECT_NEAR(min_val, kosovic_answer + 1e-5, tol);
-    EXPECT_NEAR(max_val, kosovic_answer + 1e-5, tol);
+    EXPECT_NEAR(min_val, kosovic_answer + 1.0e-5_rt, tol);
+    EXPECT_NEAR(max_val, kosovic_answer + 1.0e-5_rt, tol);
 
     // Check that this effective viscosity is what gets to icns diffusion
     auto visc_name = pde_mgr.icns().fields().mueff.name();

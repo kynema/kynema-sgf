@@ -84,13 +84,19 @@ public:
     {}
 
     CFDSim& sim() { return m_sim; }
-    const CFDSim& sim() const { return m_sim; }
+    [[nodiscard]] const CFDSim& sim() const { return m_sim; }
 
     typename IBTrait::InfoType& info() { return m_info; }
-    const typename IBTrait::InfoType& info() const { return m_info; }
+    [[nodiscard]] const typename IBTrait::InfoType& info() const
+    {
+        return m_info;
+    }
 
     typename IBTrait::MetaType& meta() { return m_meta; }
-    const typename IBTrait::MetaType& meta() const { return m_meta; }
+    [[nodiscard]] const typename IBTrait::MetaType& meta() const
+    {
+        return m_meta;
+    }
 };
 
 } // namespace ib

@@ -1,3 +1,5 @@
+#include <utility>
+
 #include "amr-wind/wind_energy/ABLFillInflow.H"
 
 namespace amr_wind {
@@ -104,7 +106,7 @@ void ABLFillInflow::fillpatch_sibling_fields(
         lev, time, mfabs, ffabs, cfabs, nghost, fp_bcrec, ph_bcrec, fstate);
 
     if (!plane_data_unchanged) {
-        for (int i = 0; i < static_cast<int>(mfabs.size()); i++) {
+        for (int i = 0; std::cmp_less(i, mfabs.size()); i++) {
             m_bndry_plane.populate_data(lev, time, m_field, *mfabs[i], 0, i);
         }
     }

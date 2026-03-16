@@ -2,6 +2,9 @@
 #define KSGSM84SRC_H
 
 #include "amr-wind/equation_systems/tke/TKESource.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::tke {
 
@@ -18,15 +21,15 @@ public:
     ~KsgsM84Src() override;
 
     void operator()(
-        const int lev,
+        int lev,
         const amrex::MFIter& mfi,
         const amrex::Box& bx,
-        const FieldState fstate,
+        FieldState fstate,
         const amrex::Array4<amrex::Real>& src_term) const override;
 
 private:
-    amrex::Real m_Ceps{0.93};
-    amrex::Real m_CepsGround{3.9};
+    amrex::Real m_Ceps{0.93_rt};
+    amrex::Real m_CepsGround{3.9_rt};
 
     Field& m_turb_lscale;
     Field& m_shear_prod;
@@ -38,7 +41,7 @@ private:
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_ceps_local(
     const amrex::Real Ceps, const amrex::Real tlscale, const amrex::Real ds)
 {
-    return (Ceps / 0.93) * (0.19 + (0.74 * tlscale / ds));
+    return (Ceps / 0.93_rt) * (0.19_rt + (0.74_rt * tlscale / ds));
 }
 
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_dissip(

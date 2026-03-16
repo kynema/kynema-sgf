@@ -1,8 +1,11 @@
 #ifndef FIELDREFINEMENT_H
 #define FIELDREFINEMENT_H
 
+#include "AMReX_REAL.H"
 #include "amr-wind/CFDSim.H"
 #include "amr-wind/utilities/tagging/RefinementCriteria.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 class CFDSim;
@@ -17,10 +20,10 @@ class IntField;
  *  tagging/t1.type = FieldRefinement
  *  tagging/t1.field_name = density
  *  # Tagging based on field value
- *  # tagging/t1.field_error = 10.0 10.0
+ *  # tagging/t1.field_error = 10.0_rt 10.0_rt
 
  *  # Tagging based on local gradient
- *  tagging/t1.grad_error = 0.1 0.1 0.1
+ *  tagging/t1.grad_error = 0.1_rt 0.1_rt 0.1_rt
  *  ```
  */
 class FieldRefinement : public RefinementCriteria::Register<FieldRefinement>
@@ -35,11 +38,9 @@ public:
     //! Read input file and initialize boxarray used to refine each level
     void initialize(const std::string& key) override;
 
-    void operator()(
-        const int level,
-        amrex::TagBoxArray& tags,
-        const amrex::Real time,
-        const int ngrow) override;
+    void
+    operator()(int level, amrex::TagBoxArray& tags, amrex::Real time, int ngrow)
+        override;
 
     template <typename MF>
     void tag(const int level, amrex::TagBoxArray& tags, const MF& mfab)
@@ -56,12 +57,11 @@ public:
         if (tag_field) {
             const auto fld_err = m_field_error[level];
             amrex::ParallelFor(
-                mfab,
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     const amrex::RealVect coord = {AMREX_D_DECL(
-                        prob_lo[0] + (i + 0.5) * dx[0],
-                        prob_lo[1] + (j + 0.5) * dx[1],
-                        prob_lo[2] + (k + 0.5) * dx[2])};
+                        prob_lo[0] + ((i + 0.5_rt) * dx[0]),
+                        prob_lo[1] + ((j + 0.5_rt) * dx[1]),
+                        prob_lo[2] + ((k + 0.5_rt) * dx[2]))};
 
                     if ((farrs[nbx](i, j, k) > fld_err) &&
                         (tagging_box.contains(coord))) {
@@ -73,12 +73,11 @@ public:
         if (tag_grad) {
             const auto gerr = m_grad_error[level];
             amrex::ParallelFor(
-                mfab,
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     const amrex::RealVect coord = {AMREX_D_DECL(
-                        prob_lo[0] + (i + 0.5) * dx[0],
-                        prob_lo[1] + (j + 0.5) * dx[1],
-                        prob_lo[2] + (k + 0.5) * dx[2])};
+                        prob_lo[0] + ((i + 0.5_rt) * dx[0]),
+                        prob_lo[1] + ((j + 0.5_rt) * dx[1]),
+                        prob_lo[2] + ((k + 0.5_rt) * dx[2]))};
                     const auto axp =
                         std::abs(farrs[nbx](i + 1, j, k) - farrs[nbx](i, j, k));
                     const auto ayp =
@@ -91,10 +90,10 @@ public:
                         std::abs(farrs[nbx](i, j - 1, k) - farrs[nbx](i, j, k));
                     const auto azm =
                         std::abs(farrs[nbx](i, j, k - 1) - farrs[nbx](i, j, k));
-                    const auto ax = amrex::max(axp, axm);
-                    const auto ay = amrex::max(ayp, aym);
-                    const auto az = amrex::max(azp, azm);
-                    if ((amrex::max(ax, ay, az) >= gerr) &&
+                    const auto ax = amrex::max<amrex::Real>(axp, axm);
+                    const auto ay = amrex::max<amrex::Real>(ayp, aym);
+                    const auto az = amrex::max<amrex::Real>(azp, azm);
+                    if ((amrex::max<amrex::Real>(ax, ay, az) >= gerr) &&
                         (tagging_box.contains(coord))) {
                         tag_arrs[nbx](i, j, k) = amrex::TagBox::SET;
                     }

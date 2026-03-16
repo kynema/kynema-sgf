@@ -1,9 +1,12 @@
-#ifndef EkmanSpiral_H
-#define EkmanSpiral_H
+#ifndef EKMANSPIRAL_H
+#define EKMANSPIRAL_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
 #include "amr-wind/CFDSim.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -42,11 +45,11 @@ private:
     void output_error();
 
     //! initial density value
-    amrex::Real m_rho{1.0};
+    amrex::Real m_rho{1.0_rt};
     //! Ekman depth
-    amrex::Real m_DE{0.0};
+    amrex::Real m_DE{0.0_rt};
     //! velocity magnitude x-direction only
-    amrex::Real m_vel{15.0};
+    amrex::Real m_vel{15.0_rt};
 
     //! output precision
     const int m_w{18};

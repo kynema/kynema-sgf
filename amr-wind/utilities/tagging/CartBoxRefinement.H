@@ -38,7 +38,7 @@ public:
     void read_inputs(const amrex::AmrCore& /*mesh*/, std::istream& /*ifh*/);
 
     //! Vector of boxarrays that define refinement zones at each level
-    const amrex::Vector<amrex::BoxArray>& boxarray_vec() const
+    [[nodiscard]] const amrex::Vector<amrex::BoxArray>& boxarray_vec() const
     {
         return m_boxarrays;
     }

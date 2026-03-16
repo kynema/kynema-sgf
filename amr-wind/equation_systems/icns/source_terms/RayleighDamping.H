@@ -3,6 +3,9 @@
 
 #include "amr-wind/equation_systems/icns/MomentumSource.H"
 #include "amr-wind/core/SimTime.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::icns {
 
@@ -23,10 +26,10 @@ public:
     ~RayleighDamping() override;
 
     void operator()(
-        const int lev,
+        int lev,
         const amrex::MFIter& mfi,
         const amrex::Box& bx,
-        const FieldState fstate,
+        FieldState fstate,
         const amrex::Array4<amrex::Real>& src_term) const override;
 
 private:
@@ -35,7 +38,7 @@ private:
     const Field& m_velocity;
 
     //! Reference velocity defined as an input
-    amrex::Vector<amrex::Real> m_ref_vel{15.0, 0.0, 0.0};
+    amrex::Vector<amrex::Real> m_ref_vel{15.0_rt, 0.0_rt, 0.0_rt};
 
     //! Full length of the damping layer
     amrex::Real m_dRD{500.};
@@ -44,7 +47,7 @@ private:
     amrex::Real m_dFull{300.};
 
     //! Time scale defined by the user
-    amrex::Real m_tau{5.0};
+    amrex::Real m_tau{5.0_rt};
 
     //! Which coordinate directions are forced
     amrex::Vector<int> m_fcoord{1, 1, 1};

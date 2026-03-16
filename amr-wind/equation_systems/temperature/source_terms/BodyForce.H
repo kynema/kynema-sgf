@@ -1,12 +1,13 @@
-#ifndef BODYFORCE_H
-#define BODYFORCE_H
+#ifndef BODYFORCE2_H
+#define BODYFORCE2_H
+// This must be BODYFORCE2_H because another BODYFORCE_H exists
 
+#include <cstddef>
 #include "amr-wind/equation_systems/temperature/TemperatureSource.H"
 #include "amr-wind/core/SimTime.H"
-#include <AMReX_GpuContainers.H>
-#include <AMReX_REAL.H>
-#include <AMReX_Vector.H>
-#include <cstddef>
+#include "AMReX_GpuContainers.H"
+#include "AMReX_REAL.H"
+#include "AMReX_Vector.H"
 
 namespace amr_wind::pde::temperature {
 
@@ -21,10 +22,10 @@ public:
     ~BodyForce() override;
 
     void operator()(
-        const int lev,
+        int lev,
         const amrex::MFIter& /*mfi*/,
         const amrex::Box& bx,
-        const FieldState /*fstate*/,
+        FieldState /*fstate*/,
         const amrex::Array4<amrex::Real>& src_term) const override;
 
     void read_bforce_profile(const std::string& filename);

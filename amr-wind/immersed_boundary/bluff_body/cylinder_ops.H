@@ -5,6 +5,9 @@
 #include "amr-wind/immersed_boundary/IBOps.H"
 #include "amr-wind/immersed_boundary/IB.H"
 #include "amr-wind/immersed_boundary/bluff_body/bluff_body_ops.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::ib::ops {
 
@@ -24,7 +27,7 @@ struct ReadInputsOp<Cylinder>
         pp.get("radius", wdata.radius);
         pp.get("height", wdata.height);
 
-        amrex::Real search_radius = 2.0 * wdata.radius;
+        amrex::Real search_radius = 2.0_rt * wdata.radius;
         // clang-format off
        const auto& origin=wdata.center_loc;
         info.bound_box = amrex::RealBox(
@@ -66,27 +69,30 @@ struct InitDataOp<Cylinder>
                 const amrex::Real R = wdata.radius;
                 const auto& bx = mfi.growntilebox();
                 amrex::ParallelFor(
-                    bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                        const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-                        const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
+                    bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                        const amrex::Real x =
+                            problo[0] + ((i + 0.5_rt) * dx[0]);
+                        const amrex::Real y =
+                            problo[1] + ((j + 0.5_rt) * dx[1]);
                         const amrex::Real phi_glob = phi(i, j, k);
                         const amrex::Real r = std::sqrt(
-                            (x - x0) * (x - x0) + (y - y0) * (y - y0));
+                            ((x - x0) * (x - x0)) + ((y - y0) * (y - y0)));
 
                         const amrex::Real phi_loc = r - R;
 
-                        phi(i, j, k) = std::min(phi_loc, phi_glob);
+                        phi(i, j, k) =
+                            amrex::min<amrex::Real>(phi_loc, phi_glob);
                     });
 
                 const auto& nbx = mfi.nodaltilebox();
                 const auto& epsilon_node = mask_node(lev).array(mfi);
                 amrex::ParallelFor(
-                    nbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                        const amrex::Real x = problo[0] + i * dx[0];
-                        const amrex::Real y = problo[1] + j * dx[1];
+                    nbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                        const amrex::Real x = problo[0] + (i * dx[0]);
+                        const amrex::Real y = problo[1] + (j * dx[1]);
 
                         const amrex::Real r = std::sqrt(
-                            (x - x0) * (x - x0) + (y - y0) * (y - y0));
+                            ((x - x0) * (x - x0)) + ((y - y0) * (y - y0)));
 
                         if (r <= R) {
                             epsilon_node(i, j, k) = 0;

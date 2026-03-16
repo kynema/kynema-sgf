@@ -18,7 +18,6 @@ CoarsenCheckpt::CoarsenCheckpt() : incflo() {}
 
 void CoarsenCheckpt::run_utility()
 {
-
     amrex::Print() << "Reading checkpoint file and adding base coarse level"
                    << std::endl;
     coarsen_chkpt_file();
@@ -116,7 +115,7 @@ void CoarsenCheckpt::read_chkpt_add_baselevel()
         std::istringstream lis(line);
         int i = 0;
         while (lis >> word) {
-            prob_lo[i++] = std::stod(word);
+            prob_lo[i++] = static_cast<amrex::Real>(std::stod(word));
         }
     }
 
@@ -126,7 +125,7 @@ void CoarsenCheckpt::read_chkpt_add_baselevel()
         std::istringstream lis(line);
         int i = 0;
         while (lis >> word) {
-            prob_hi[i++] = std::stod(word);
+            prob_hi[i++] = static_cast<amrex::Real>(std::stod(word));
         }
     }
 

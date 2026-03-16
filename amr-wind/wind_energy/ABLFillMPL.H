@@ -27,38 +27,38 @@ public:
     ~ABLFillMPL() override;
 
     void fillpatch(
-        const int lev,
-        const amrex::Real time,
+        int lev,
+        amrex::Real time,
         amrex::MultiFab& mfab,
         const amrex::IntVect& nghost,
-        const FieldState fstate = FieldState::New) override;
+        FieldState fstate = FieldState::New) override;
 
     void fillpatch_sibling_fields(
-        const int lev,
-        const amrex::Real time,
+        int lev,
+        amrex::Real time,
         amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>& mfabs,
         amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>& ffabs,
         amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>& cfabs,
         const amrex::IntVect& nghost,
         const amrex::Vector<amrex::BCRec>& bcrec,
         const amrex::Vector<amrex::BCRec>& /* unused */,
-        const FieldState fstate = FieldState::New) override;
+        FieldState fstate = FieldState::New) override;
 
     //! Implementation that handles filling patches from a coarse to fine level
     void fillpatch_from_coarse(
-        const int lev,
-        const amrex::Real time,
+        int lev,
+        amrex::Real time,
         amrex::MultiFab& mfab,
         const amrex::IntVect& nghost,
-        const FieldState fstate = FieldState::New) override;
+        FieldState fstate = FieldState::New) override;
 
     //! Implementation that handles filling physical boundary conditions
     void fillphysbc(
-        const int lev,
-        const amrex::Real time,
+        int lev,
+        amrex::Real time,
         amrex::MultiFab& mfab,
         const amrex::IntVect& nghost,
-        const FieldState fstate = FieldState::New) override;
+        FieldState fstate = FieldState::New) override;
 
 protected:
     const ABLModulatedPowerLaw& m_abl_mpl;

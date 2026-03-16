@@ -6,7 +6,7 @@
 namespace amr_wind::gpu {
 
 template <typename T>
-inline amrex::Gpu::DeviceVector<T> device_view(const amrex::Vector<T>& hview)
+amrex::Gpu::DeviceVector<T> device_view(const amrex::Vector<T>& hview)
 {
     amrex::Gpu::DeviceVector<T> dview(hview.size());
     amrex::Gpu::copy(

@@ -3,6 +3,9 @@
 
 #include "amr-wind/CFDSim.H"
 #include "amr-wind/physics/multiphase/MultiPhase.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 

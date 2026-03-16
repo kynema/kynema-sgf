@@ -1,9 +1,11 @@
 #include "amr-wind/equation_systems/icns/source_terms/RayleighDamping.H"
 #include "amr-wind/CFDSim.H"
 #include "amr-wind/utilities/trig_ops.H"
-
 #include "AMReX_ParmParse.H"
 #include "AMReX_Gpu.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::icns {
 
@@ -56,16 +58,19 @@ void RayleighDamping::operator()(
     const amrex::Real fy = m_fcoord[1];
     const amrex::Real fz = m_fcoord[2];
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-        amrex::Real coeff = 0.0;
-        const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+        amrex::Real coeff = 0.0_rt;
+        const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
         if (probhi[2] - z > dRD + dFull) {
-            coeff = 0.0;
+            coeff = 0.0_rt;
         } else if (probhi[2] - z > dFull) {
-            coeff = 0.5 * std::cos(M_PI * (probhi[2] - dFull - z) / dRD) + 0.5;
+            coeff = (0.5_rt * std::cos(
+                                  std::numbers::pi_v<amrex::Real> *
+                                  (probhi[2] - dFull - z) / dRD)) +
+                    0.5_rt;
         } else {
-            coeff = 1.0;
+            coeff = 1.0_rt;
         }
         src_term(i, j, k, 0) +=
             fx * coeff * (ref_vel[0] - vel(i, j, k, 0)) / tau;

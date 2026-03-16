@@ -1,7 +1,12 @@
 
+#include <algorithm>
+
 #include "amr-wind/utilities/sampling/SamplingContainer.H"
 #include "amr-wind/utilities/sampling/SamplerBase.H"
 #include "amr-wind/core/Field.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::sampling {
 
@@ -78,7 +83,7 @@ void SamplingContainer::initialize_particles(
         int offset = 0;
         for (int iprobe = 0; iprobe < nprobes; iprobe++) {
             const auto& probe = samplers[iprobe];
-            auto sample_locs = vec_sample_locs[iprobe];
+            const auto& sample_locs = vec_sample_locs[iprobe];
             const auto& locs = sample_locs.locations();
             const int npts = static_cast<int>(locs.size());
             if (npts == 0) {
@@ -104,37 +109,35 @@ void SamplingContainer::initialize_particles(
             ParticleType::NextID(nextid + npts);
 
             auto* pstruct = ptile.GetArrayOfStructs()().data();
-            amrex::ParallelFor(
-                npts, [=] AMREX_GPU_DEVICE(const int ip) noexcept {
-                    const amrex::RealVect loc(AMREX_D_DECL(
-                        p_dlocs[ip][0], p_dlocs[ip][1], p_dlocs[ip][2]));
+            amrex::ParallelFor(npts, [=] AMREX_GPU_DEVICE(const int ip) {
+                const amrex::RealVect loc(AMREX_D_DECL(
+                    p_dlocs[ip][0], p_dlocs[ip][1], p_dlocs[ip][2]));
 #ifdef AMREX_DEBUG
-                    const amrex::IntVect div(AMREX_D_DECL(
-                        static_cast<int>(
-                            amrex::Math::floor((loc[0] - plo[0]) * dxinv[0])),
-                        static_cast<int>(
-                            amrex::Math::floor((loc[1] - plo[1]) * dxinv[1])),
-                        static_cast<int>(
-                            amrex::Math::floor((loc[2] - plo[2]) * dxinv[2]))));
-                    AMREX_ASSERT(box.contains(div));
+                const amrex::IntVect div(AMREX_D_DECL(
+                    static_cast<int>(
+                        amrex::Math::floor((loc[0] - plo[0]) * dxinv[0])),
+                    static_cast<int>(
+                        amrex::Math::floor((loc[1] - plo[1]) * dxinv[1])),
+                    static_cast<int>(
+                        amrex::Math::floor((loc[2] - plo[2]) * dxinv[2]))));
+                AMREX_ASSERT(box.contains(div));
 #endif
-                    auto& pp = pstruct[offset + ip];
-                    pp.id() = nextid + ip;
-                    pp.cpu() = iproc;
-                    for (int idim = 0; idim < AMREX_SPACEDIM; ++idim) {
-                        pp.pos(idim) = loc[idim];
-                    }
-                    pp.idata(IIx::uid) =
-                        static_cast<int>(p_dids[ip] + uid_offset);
-                    pp.idata(IIx::sid) = probe_id;
-                    pp.idata(IIx::nid) = static_cast<int>(p_dids[ip]);
-                });
+                auto& pp = pstruct[offset + ip];
+                pp.id() = nextid + ip;
+                pp.cpu() = iproc;
+                for (int idim = 0; idim < AMREX_SPACEDIM; ++idim) {
+                    pp.pos(idim) = loc[idim];
+                }
+                pp.idata(IIx::uid) = static_cast<int>(p_dids[ip] + uid_offset);
+                pp.idata(IIx::sid) = probe_id;
+                pp.idata(IIx::nid) = static_cast<int>(p_dids[ip]);
+            });
             offset += npts;
         }
     }
     // Skip this check if there is a DTUSpinnerSampler (may have out of domain
     // particles)
-    if (std::all_of(samplers.cbegin(), samplers.cend(), [](const auto& probe) {
+    if (std::ranges::all_of(samplers, [](const auto& probe) {
             return probe->sampletype() != "DTUSpinnerSampler";
         })) {
         AMREX_ALWAYS_ASSERT(m_total_particles == TotalNumberOfParticles(false));
@@ -161,11 +164,11 @@ void SamplingContainer::interpolate_derived_fields(
     }
 }
 
-void SamplingContainer::populate_buffer(std::vector<double>& buf)
+void SamplingContainer::populate_buffer(std::vector<amrex::Real>& buf)
 {
     BL_PROFILE("amr-wind::SamplingContainer::populate_buffer");
 
-    amrex::Gpu::DeviceVector<double> dbuf(buf.size(), 0.0);
+    amrex::Gpu::DeviceVector<amrex::Real> dbuf(buf.size(), 0.0_rt);
     auto* dbuf_ptr = dbuf.data();
     const int nlevels = m_mesh.finestLevel() + 1;
     for (int lev = 0; lev < nlevels; ++lev) {
@@ -176,13 +179,12 @@ void SamplingContainer::populate_buffer(std::vector<double>& buf)
                 auto* pstruct = pti.GetArrayOfStructs()().data();
                 auto* parr = pti.GetStructOfArrays().GetRealData(fid).data();
 
-                amrex::ParallelFor(
-                    np, [=] AMREX_GPU_DEVICE(const int ip) noexcept {
-                        auto& pp = pstruct[ip];
-                        const int pidx = pp.idata(IIx::uid);
-                        const long ii = offset + pidx;
-                        dbuf_ptr[ii] = parr[ip];
-                    });
+                amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) {
+                    auto& pp = pstruct[ip];
+                    const int pidx = pp.idata(IIx::uid);
+                    const long ii = offset + pidx;
+                    dbuf_ptr[ii] = parr[ip];
+                });
             }
         }
     }

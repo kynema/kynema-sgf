@@ -5,15 +5,17 @@
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_Gpu.H"
-#include <AMReX_GpuContainers.H>
-#include <AMReX_IntVect.H>
-#include <AMReX_REAL.H>
-#include <AMReX_Utility.H>
-#include <AMReX_Vector.H>
+#include "AMReX_GpuContainers.H"
+#include "AMReX_IntVect.H"
+#include "AMReX_REAL.H"
+#include "AMReX_Utility.H"
+#include "AMReX_Vector.H"
 #include <cstddef>
 #include <fstream>
 #include <ios>
 #include <string>
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::temperature {
 
@@ -80,15 +82,14 @@ void BodyForce::operator()(
 
     if (m_type == "height_varying" || m_type == "height-varying") {
 
-        amrex::ParallelFor(
-            bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                amrex::IntVect iv(i, j, k);
-                const amrex::Real ht = problo[2] + (iv[2] + 0.5) * dx[2];
-                const amrex::Real ftheta = amr_wind::interp::linear(
-                    force_ht, force_ht_end, force_theta, ht);
+        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+            amrex::IntVect iv(i, j, k);
+            const amrex::Real ht = problo[2] + ((iv[2] + 0.5_rt) * dx[2]);
+            const amrex::Real ftheta = amr_wind::interp::linear(
+                force_ht, force_ht_end, force_theta, ht);
 
-                src_term(i, j, k, 0) += ftheta;
-            });
+            src_term(i, j, k, 0) += ftheta;
+        });
     }
 }
 

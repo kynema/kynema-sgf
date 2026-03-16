@@ -2,6 +2,9 @@
 
 #include "MeshTest.H"
 #include "pp_utils.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -20,7 +23,7 @@ void MeshTest::initialize_mesh()
     }
     create_mesh_instance();
 
-    m_mesh->initialize_mesh(0.0);
+    m_mesh->initialize_mesh(0.0_rt);
 }
 
 void MeshTest::reset_prob_domain()

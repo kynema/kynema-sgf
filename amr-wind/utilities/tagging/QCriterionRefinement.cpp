@@ -1,8 +1,10 @@
 #include "amr-wind/utilities/tagging/QCriterionRefinement.H"
 #include "amr-wind/CFDSim.H"
-
 #include "AMReX.H"
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind {
 
@@ -22,7 +24,7 @@ void QCriterionRefinement::initialize(const std::string& key)
     }
     m_vel = &(m_sim.repo().get_field(fname));
 
-    amrex::Vector<double> qc_value;
+    amrex::Vector<amrex::Real> qc_value;
     amrex::ParmParse pp(key);
 
     pp.queryarr("values", qc_value);
@@ -33,7 +35,7 @@ void QCriterionRefinement::initialize(const std::string& key)
     }
 
     {
-        const int fcount = std::min(
+        const int fcount = amrex::min(
             static_cast<int>(qc_value.size()),
             static_cast<int>(m_qc_value.size()));
         for (int i = 0; i < fcount; ++i) {
@@ -66,57 +68,63 @@ void QCriterionRefinement::operator()(
     const auto qc_val = m_qc_value[level];
 
     amrex::ParallelFor(
-        mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             // TODO: ignoring wall stencils for now
-            const auto ux = 0.5 *
+            const auto ux = 0.5_rt *
                             (vel_arrs[nbx](i + 1, j, k, 0) -
                              vel_arrs[nbx](i - 1, j, k, 0)) *
                             idx[0];
-            const auto vx = 0.5 *
+            const auto vx = 0.5_rt *
                             (vel_arrs[nbx](i + 1, j, k, 1) -
                              vel_arrs[nbx](i - 1, j, k, 1)) *
                             idx[0];
-            const auto wx = 0.5 *
+            const auto wx = 0.5_rt *
                             (vel_arrs[nbx](i + 1, j, k, 2) -
                              vel_arrs[nbx](i - 1, j, k, 2)) *
                             idx[0];
 
-            const auto uy = 0.5 *
+            const auto uy = 0.5_rt *
                             (vel_arrs[nbx](i, j + 1, k, 0) -
                              vel_arrs[nbx](i, j - 1, k, 0)) *
                             idx[1];
-            const auto vy = 0.5 *
+            const auto vy = 0.5_rt *
                             (vel_arrs[nbx](i, j + 1, k, 1) -
                              vel_arrs[nbx](i, j - 1, k, 1)) *
                             idx[1];
-            const auto wy = 0.5 *
+            const auto wy = 0.5_rt *
                             (vel_arrs[nbx](i, j + 1, k, 2) -
                              vel_arrs[nbx](i, j - 1, k, 2)) *
                             idx[1];
 
-            const auto uz = 0.5 *
+            const auto uz = 0.5_rt *
                             (vel_arrs[nbx](i, j, k + 1, 0) -
                              vel_arrs[nbx](i, j, k - 1, 0)) *
                             idx[2];
-            const auto vz = 0.5 *
+            const auto vz = 0.5_rt *
                             (vel_arrs[nbx](i, j, k + 1, 1) -
                              vel_arrs[nbx](i, j, k - 1, 1)) *
                             idx[2];
-            const auto wz = 0.5 *
+            const auto wz = 0.5_rt *
                             (vel_arrs[nbx](i, j, k + 1, 2) -
                              vel_arrs[nbx](i, j, k - 1, 2)) *
                             idx[2];
 
-            const auto S2 =
-                ux * ux + vy * vy + wz * wz + 0.5 * std::pow(uy + vx, 2) +
-                0.5 * std::pow(vz + wy, 2) + 0.5 * std::pow(wx + uz, 2);
+            const auto S2 = (ux * ux) + (vy * vy) + (wz * wz) +
+                            (0.5_rt * std::pow(uy + vx, 2.0_rt)) +
+                            (0.5_rt * std::pow(vz + wy, 2.0_rt)) +
+                            (0.5_rt * std::pow(wx + uz, 2.0_rt));
 
-            const auto W2 = 0.5 * std::pow(uy - vx, 2) +
-                            0.5 * std::pow(vz - wy, 2) +
-                            0.5 * std::pow(wx - uz, 2);
+            const auto W2 = (0.5_rt * std::pow(uy - vx, 2.0_rt)) +
+                            (0.5_rt * std::pow(vz - wy, 2.0_rt)) +
+                            (0.5_rt * std::pow(wx - uz, 2.0_rt));
 
-            const auto qc = 0.5 * (W2 - S2);
-            const auto qc_nondim = 0.5 * (W2 / amrex::max(S2, 1.0e-12) - 1.0);
+            const auto qc = 0.5_rt * (W2 - S2);
+            const auto qc_nondim =
+                0.5_rt *
+                (W2 / amrex::max<amrex::Real>(
+                          S2, std::numeric_limits<amrex::Real>::epsilon() *
+                                  1.0e4_rt) -
+                 1.0_rt);
 
             if ((nondim && qc_nondim > qc_val) ||
                 (!nondim && std::abs(qc) > qc_val)) {

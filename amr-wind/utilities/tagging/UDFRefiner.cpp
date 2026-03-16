@@ -1,5 +1,8 @@
 #include "amr-wind/utilities/tagging/UDFRefiner.H"
 #include "AMReX_ParmParse.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::tagging {
 
@@ -34,10 +37,10 @@ void UDFRefiner::operator()(
     const auto time = m_sim.time().current_time();
     auto udf_func = m_parser.compile<AMREX_SPACEDIM + 1>();
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-        const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-        const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-        const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+        const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+        const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+        const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
         const auto val = udf_func(time, x, y, z);
         if (static_cast<bool>(val)) {
             tag(i, j, k) = amrex::TagBox::SET;

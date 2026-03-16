@@ -5,6 +5,9 @@
 #include "amr-wind/core/vs/vector_space.H"
 
 #include <string>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::actuator {
 
@@ -26,7 +29,7 @@ struct WingBaseData
     vs::Vector end;
 
     //! The normal vector perpendicular to the span
-    vs::Vector blade_x{1.0, 0, 0};
+    vs::Vector blade_x{1.0_rt, 0, 0};
 
     //! Gaussian smearing factor input by user
     vs::Vector eps_inp;
@@ -35,7 +38,7 @@ struct WingBaseData
     vs::Vector epsilon_chord;
 
     //! Pitch angle for the wing
-    amrex::Real pitch{0.0};
+    amrex::Real pitch{0.0_rt};
 
     //! Switch for turning on 2D Gaussian (off in spanwise)
     bool gauss_2D{false};
@@ -47,7 +50,7 @@ struct WingBaseData
     amrex::Vector<int> force_coord_flags{1, 1, 1};
 
     //! User-specified velocity magnitude, only active when nonnegative
-    amrex::Real prescribed_uinf{-1.0};
+    amrex::Real prescribed_uinf{-1.0_rt};
 
     //! File name for pitch actuation table
     std::string pitch_timetable_file;
@@ -62,14 +65,14 @@ struct WingBaseData
     VecList vel_rel;
 
     //! Translational velocity
-    vs::Vector vel_tr{0.0, 0.0, 0.0};
+    vs::Vector vel_tr{0.0_rt, 0.0_rt, 0.0_rt};
 
     //! Wing motion type
     std::string motion_type{"none"};
 
     //! Parameters for sine motions
-    vs::Vector s_vector{0.0, 0.0, 0.0};
-    amrex::Real s_period{0.0};
+    vs::Vector s_vector{0.0_rt, 0.0_rt, 0.0_rt};
+    amrex::Real s_period{0.0_rt};
 
     //! Filtered Lifting Line Correction data
     std::unique_ptr<FLLCData> fllc;
@@ -93,10 +96,10 @@ struct WingBaseData
     RealList chord;
 
     //! Total integrated lift over the wing
-    amrex::Real lift{0.0};
+    amrex::Real lift{0.0_rt};
 
     //! Total integrated drag over the wing
-    amrex::Real drag{0.0};
+    amrex::Real drag{0.0_rt};
 };
 
 struct WingType : public ActuatorType

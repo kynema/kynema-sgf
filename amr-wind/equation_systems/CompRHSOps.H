@@ -4,6 +4,9 @@
 #include "amr-wind/incflo_enums.H"
 #include "amr-wind/equation_systems/PDEOps.H"
 #include "amr-wind/equation_systems/SchemeTraits.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde {
 
@@ -29,18 +32,18 @@ struct ComputeRHSOp
     void predictor_rhs(
         const DiffusionType difftype, const amrex::Real dt, bool mesh_mapping)
     {
-        amrex::Real factor = 0.0;
+        amrex::Real factor = 0.0_rt;
         switch (difftype) {
         case DiffusionType::Explicit:
-            factor = 1.0;
+            factor = 1.0_rt;
             break;
 
         case DiffusionType::Crank_Nicolson:
-            factor = 0.5;
+            factor = 0.5_rt;
             break;
 
         case DiffusionType::Implicit:
-            factor = 0.0;
+            factor = 0.0_rt;
             break;
 
         default:
@@ -49,9 +52,8 @@ struct ComputeRHSOp
 
         // Field states for diffusion and advection terms. In Godunov scheme
         // these terms only have one state.
-        auto fstate = std::is_same<Scheme, fvm::Godunov>::value
-                          ? FieldState::New
-                          : FieldState::Old;
+        auto fstate = std::is_same_v<Scheme, fvm::Godunov> ? FieldState::New
+                                                           : FieldState::Old;
 
         const int nlevels = fields.repo.num_active_levels();
 
@@ -93,19 +95,19 @@ struct ComputeRHSOp
                 // in solver
                 amrex::ParallelFor(
                     field(lev), amrex::IntVect(0), PDE::ndim,
-                    [=] AMREX_GPU_DEVICE(
-                        int nbx, int i, int j, int k, int n) noexcept {
+                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                         amrex::Real det_j =
-                            mesh_mapping ? (detJ_arrs[nbx](i, j, k)) : 1.0;
+                            mesh_mapping ? (detJ_arrs[nbx](i, j, k)) : 1.0_rt;
 
                         fld_arrs[nbx](i, j, k, n) =
-                            rho_o_arrs[nbx](i, j, k) * det_j *
-                                fld_o_arrs[nbx](i, j, k, n) +
-                            static_cast<amrex::Real>(imask_arrs[nbx](i, j, k)) *
-                                dt *
-                                (ddt_o_arrs[nbx](i, j, k, n) +
-                                 det_j * src_arrs[nbx](i, j, k, n) +
-                                 factor * diff_arrs[nbx](i, j, k, n));
+                            (rho_o_arrs[nbx](i, j, k) * det_j *
+                             fld_o_arrs[nbx](i, j, k, n)) +
+                            (static_cast<amrex::Real>(
+                                 imask_arrs[nbx](i, j, k)) *
+                             dt *
+                             (ddt_o_arrs[nbx](i, j, k, n) +
+                              det_j * src_arrs[nbx](i, j, k, n) +
+                              factor * diff_arrs[nbx](i, j, k, n)));
 
                         fld_arrs[nbx](i, j, k, n) /= rho_arrs[nbx](i, j, k);
 
@@ -116,18 +118,18 @@ struct ComputeRHSOp
             } else {
                 amrex::ParallelFor(
                     field(lev), amrex::IntVect(0), PDE::ndim,
-                    [=] AMREX_GPU_DEVICE(
-                        int nbx, int i, int j, int k, int n) noexcept {
+                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                         amrex::Real det_j =
-                            mesh_mapping ? (detJ_arrs[nbx](i, j, k)) : 1.0;
+                            mesh_mapping ? (detJ_arrs[nbx](i, j, k)) : 1.0_rt;
 
                         fld_arrs[nbx](i, j, k, n) =
-                            det_j * fld_o_arrs[nbx](i, j, k, n) +
-                            static_cast<amrex::Real>(imask_arrs[nbx](i, j, k)) *
-                                dt *
-                                (ddt_o_arrs[nbx](i, j, k, n) +
-                                 det_j * src_arrs[nbx](i, j, k, n) +
-                                 factor * diff_arrs[nbx](i, j, k, n));
+                            (det_j * fld_o_arrs[nbx](i, j, k, n)) +
+                            (static_cast<amrex::Real>(
+                                 imask_arrs[nbx](i, j, k)) *
+                             dt *
+                             (ddt_o_arrs[nbx](i, j, k, n) +
+                              det_j * src_arrs[nbx](i, j, k, n) +
+                              factor * diff_arrs[nbx](i, j, k, n)));
 
                         if (difftype == DiffusionType::Explicit) {
                             fld_arrs[nbx](i, j, k, n) /= det_j;
@@ -147,22 +149,22 @@ struct ComputeRHSOp
     void corrector_rhs(
         const DiffusionType difftype, const amrex::Real dt, bool mesh_mapping)
     {
-        amrex::Real ofac = 0.0;
-        amrex::Real nfac = 0.0;
+        amrex::Real ofac = 0.0_rt;
+        amrex::Real nfac = 0.0_rt;
         switch (difftype) {
         case DiffusionType::Explicit:
-            ofac = 0.5;
-            nfac = 0.5;
+            ofac = 0.5_rt;
+            nfac = 0.5_rt;
             break;
 
         case DiffusionType::Crank_Nicolson:
-            ofac = 0.5;
-            nfac = 0.0;
+            ofac = 0.5_rt;
+            nfac = 0.0_rt;
             break;
 
         case DiffusionType::Implicit:
-            ofac = 0.0;
-            nfac = 0.0;
+            ofac = 0.0_rt;
+            nfac = 0.0_rt;
             break;
 
         default:
@@ -213,21 +215,21 @@ struct ComputeRHSOp
                 // in solver
                 amrex::ParallelFor(
                     field(lev), amrex::IntVect(0), PDE::ndim,
-                    [=] AMREX_GPU_DEVICE(
-                        int nbx, int i, int j, int k, int n) noexcept {
+                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                         amrex::Real det_j =
-                            mesh_mapping ? (detJ_arrs[nbx](i, j, k)) : 1.0;
+                            mesh_mapping ? (detJ_arrs[nbx](i, j, k)) : 1.0_rt;
 
                         fld_arrs[nbx](i, j, k, n) =
-                            rho_o_arrs[nbx](i, j, k) * det_j *
-                                fld_o_arrs[nbx](i, j, k, n) +
-                            static_cast<amrex::Real>(imask_arrs[nbx](i, j, k)) *
-                                dt *
-                                (0.5 * (ddt_o_arrs[nbx](i, j, k, n) +
+                            (rho_o_arrs[nbx](i, j, k) * det_j *
+                             fld_o_arrs[nbx](i, j, k, n)) +
+                            (static_cast<amrex::Real>(
+                                 imask_arrs[nbx](i, j, k)) *
+                             dt *
+                             (0.5_rt * (ddt_o_arrs[nbx](i, j, k, n) +
                                         ddt_arrs[nbx](i, j, k, n)) +
-                                 ofac * diff_o_arrs[nbx](i, j, k, n) +
-                                 nfac * diff_arrs[nbx](i, j, k, n) +
-                                 det_j * src_arrs[nbx](i, j, k, n));
+                              ofac * diff_o_arrs[nbx](i, j, k, n) +
+                              nfac * diff_arrs[nbx](i, j, k, n) +
+                              det_j * src_arrs[nbx](i, j, k, n)));
 
                         fld_arrs[nbx](i, j, k, n) /= rho_arrs[nbx](i, j, k);
 
@@ -238,20 +240,20 @@ struct ComputeRHSOp
             } else {
                 amrex::ParallelFor(
                     field(lev), amrex::IntVect(0), PDE::ndim,
-                    [=] AMREX_GPU_DEVICE(
-                        int nbx, int i, int j, int k, int n) noexcept {
+                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                         amrex::Real det_j =
-                            mesh_mapping ? (detJ_arrs[nbx](i, j, k)) : 1.0;
+                            mesh_mapping ? (detJ_arrs[nbx](i, j, k)) : 1.0_rt;
 
                         fld_arrs[nbx](i, j, k, n) =
-                            det_j * fld_o_arrs[nbx](i, j, k, n) +
-                            static_cast<amrex::Real>(imask_arrs[nbx](i, j, k)) *
-                                dt *
-                                (0.5 * (ddt_o_arrs[nbx](i, j, k, n) +
+                            (det_j * fld_o_arrs[nbx](i, j, k, n)) +
+                            (static_cast<amrex::Real>(
+                                 imask_arrs[nbx](i, j, k)) *
+                             dt *
+                             (0.5_rt * (ddt_o_arrs[nbx](i, j, k, n) +
                                         ddt_arrs[nbx](i, j, k, n)) +
-                                 ofac * diff_o_arrs[nbx](i, j, k, n) +
-                                 nfac * diff_arrs[nbx](i, j, k, n) +
-                                 det_j * src_arrs[nbx](i, j, k, n));
+                              ofac * diff_o_arrs[nbx](i, j, k, n) +
+                              nfac * diff_arrs[nbx](i, j, k, n) +
+                              det_j * src_arrs[nbx](i, j, k, n)));
 
                         if (difftype == DiffusionType::Explicit) {
                             fld_arrs[nbx](i, j, k, n) /= det_j;
@@ -285,10 +287,9 @@ struct ComputeRHSOp
 
             amrex::ParallelFor(
                 dof(lev), amrex::IntVect(0), dof.num_comp(),
-                [=] AMREX_GPU_DEVICE(
-                    int nbx, int i, int j, int k, int n) noexcept {
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                     auto factor =
-                        0.5 * dt * (amrex::Real)mask_arrs[nbx](i, j, k);
+                        0.5_rt * dt * (amrex::Real)mask_arrs[nbx](i, j, k);
                     if (PDE::multiply_rho) {
                         factor /= rho_arrs[nbx](i, j, k);
                     }

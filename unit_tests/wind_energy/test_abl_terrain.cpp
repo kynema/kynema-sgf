@@ -2,6 +2,9 @@
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
 #include "amr-wind/physics/TerrainDrag.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace {
 void write_terrain(const std::string& fname)
@@ -53,7 +56,7 @@ protected:
 
         {
             amrex::ParmParse pp("geometry");
-            amrex::Vector<amrex::Real> probhi{{1024, 1024, 512}};
+            amrex::Vector<amrex::Real> probhi{{1024.0_rt, 1024.0_rt, 512.0_rt}};
             pp.addarr("prob_hi", probhi);
         }
     }

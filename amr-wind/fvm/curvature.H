@@ -2,6 +2,9 @@
 #define CURVATURE_H
 
 #include "amr-wind/fvm/fvm_utils.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::fvm {
 
@@ -34,7 +37,7 @@ struct Curvature
 
         amrex::ParallelFor(
             bx, m_phi.num_comp(),
-            [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
                 amrex::Real cp1, c, cm1;
                 amrex::Real sp1, s, sm1;
 
@@ -117,12 +120,13 @@ struct Curvature
                     (cp1 * phiz_ip1 + c * phiz + cm1 * phiz_im1) * idx[0];
 
                 curphi(i, j, k, n) =
-                    -(phix * phix * phiyy - 2. * phix * phiy * phixy +
-                      phiy * phiy * phixx + phix * phix * phizz -
-                      2. * phix * phiz * phixz + phiz * phiz * phixx +
-                      phiy * phiy * phizz - 2. * phiy * phiz * phiyz +
-                      phiz * phiz * phiyy) /
-                    std::pow(phix * phix + phiy * phiy + phiz * phiz, 1.5);
+                    -((phix * phix * phiyy) - (2.0_rt * phix * phiy * phixy) +
+                      (phiy * phiy * phixx) + (phix * phix * phizz) -
+                      (2.0_rt * phix * phiz * phixz) + (phiz * phiz * phixx) +
+                      (phiy * phiy * phizz) - (2.0_rt * phiy * phiz * phiyz) +
+                      (phiz * phiz * phiyy)) /
+                    std::pow(
+                        (phix * phix) + (phiy * phiy) + (phiz * phiz), 1.5_rt);
             });
     }
 
@@ -134,7 +138,7 @@ struct Curvature
  *  \ingroup fvm
  */
 template <typename FTypeIn, typename FTypeOut>
-inline void curvature(FTypeOut& curphi, const FTypeIn& phi)
+void curvature(FTypeOut& curphi, const FTypeIn& phi)
 {
     BL_PROFILE("amr-wind::fvm::curvature");
     Curvature<FTypeIn, FTypeOut> cur(curphi, phi);
@@ -145,7 +149,7 @@ inline void curvature(FTypeOut& curphi, const FTypeIn& phi)
  *  \ingroup fvm
  */
 template <typename FType>
-inline std::unique_ptr<ScratchField> curvature(const FType& phi)
+std::unique_ptr<ScratchField> curvature(const FType& phi)
 {
     const std::string gname = phi.name() + "_curvature";
     auto curphi = phi.repo().create_scratch_field(gname, phi.num_comp());

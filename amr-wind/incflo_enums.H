@@ -1,9 +1,16 @@
 #ifndef INCFLO_ENUMS_H
 #define INCFLO_ENUMS_H
 
-enum struct DiffusionType { Invalid, Explicit, Crank_Nicolson, Implicit };
+#include <cstdint>
 
-enum struct BC {
+enum struct DiffusionType : std::uint8_t {
+    Invalid,
+    Explicit,
+    Crank_Nicolson,
+    Implicit
+};
+
+enum struct BC : std::uint8_t {
     pressure_outflow,
     mass_inflow,
     mass_inflow_outflow,

@@ -5,6 +5,9 @@
 
 #include "masa.h"
 #include "amr-wind/physics/mms/MMS.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -16,12 +19,12 @@ void perturb_vel_field(
     const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>& problo)
 {
     amrex::ParallelFor(
-        bx, [vel, dx, problo] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-            const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
-            const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
-            const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+        bx, [vel, dx, problo] AMREX_GPU_DEVICE(int i, int j, int k) {
+            const amrex::Real x = problo[0] + (i + 0.5_rt) * dx[0];
+            const amrex::Real y = problo[1] + (j + 0.5_rt) * dx[1];
+            const amrex::Real z = problo[2] + (k + 0.5_rt) * dx[2];
             vel(i, j, k, 0) += std::sin(amr_wind::utils::two_pi() * x);
-            vel(i, j, k, 1) += std::sin(amr_wind::utils::two_pi() * 2.0 * y);
+            vel(i, j, k, 1) += std::sin(amr_wind::utils::two_pi() * 2.0_rt * y);
             vel(i, j, k, 2) += std::cos(amr_wind::utils::two_pi() * z);
         });
 }
@@ -67,10 +70,11 @@ TEST_F(MMSMeshTest, mms_error)
     const amrex::Real w_mms_err =
         mms.compute_error(2, velocityf, masa_eval_3d_exact_w);
 
-    const amrex::Real tol = 1.0e-12;
+    const amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     amrex::Array<amrex::Real, AMREX_SPACEDIM> golds = {
-        0.67158428586284569, 0.6978702996158761, 0.74092816587175314};
+        0.67158428586284569_rt, 0.6978702996158761_rt, 0.74092816587175314_rt};
     EXPECT_NEAR(u_mms_err, golds[0], tol);
     EXPECT_NEAR(v_mms_err, golds[1], tol);
     EXPECT_NEAR(w_mms_err, golds[2], tol);

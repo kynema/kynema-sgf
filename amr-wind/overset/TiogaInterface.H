@@ -22,7 +22,7 @@ struct AMROversetInfo
      *  \param nglobal Total number of patches
      *  \param nlocal  Number of patches on the current MPI rank
      */
-    AMROversetInfo(const int nglobal, const int nlocal);
+    AMROversetInfo(int nglobal, int nlocal);
 
     // Arrays of size ngrids_global
     AType<int> level;

@@ -1,10 +1,10 @@
-#include <AMReX_Config.H>
 #include <cmath>
 
 #include "amr-wind/fvm/gradient.H"
 #include "amr-wind/turbulence/LES/AMDNoTherm.H"
 #include "amr-wind/turbulence/TurbModelDefs.H"
 
+#include "AMReX_Config.H"
 #include "AMReX_REAL.H"
 #include "AMReX_MultiFab.H"
 #include "AMReX_ParmParse.H"
@@ -54,8 +54,7 @@ void AMDNoTherm<Transport>::update_turbulent_viscosity(
         const auto& mu_arrs = mu_turb(lev).arrays();
         const auto& rho_arrs = den(lev).const_arrays();
         amrex::ParallelFor(
-            mu_turb(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            mu_turb(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real rho = rho_arrs[nbx](i, j, k);
                 mu_arrs[nbx](i, j, k) =
                     rho *

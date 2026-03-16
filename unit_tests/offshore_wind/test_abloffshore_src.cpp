@@ -1,18 +1,20 @@
+#include <numbers>
 #include "abloffshore_test_utils.H"
 #include "amr-wind/utilities/trig_ops.H"
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
-
 #include "AMReX_Gpu.H"
 #include "AMReX_Random.H"
+#include "AMReX_REAL.H"
 #include "amr-wind/equation_systems/icns/icns.H"
 #include "amr-wind/equation_systems/icns/icns_ops.H"
 #include "amr-wind/equation_systems/icns/MomentumSource.H"
 #include "amr-wind/equation_systems/icns/source_terms/ABLForcing.H"
 #include "amr-wind/equation_systems/icns/source_terms/GeostrophicForcing.H"
 #include "amr-wind/equation_systems/icns/source_terms/BoussinesqBuoyancy.H"
-
 #include "amr-wind/physics/multiphase/MultiPhase.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
@@ -34,10 +36,10 @@ amrex::Real get_val_at_height(
             amrex::Array4<amrex::Real const> const& f_arr) -> amrex::Real {
             amrex::Real error = 0;
 
-            amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
-                const amrex::Real z = ploz + (0.5 + k) * dz;
+            amrex::Loop(bx, [=, &error](int i, int j, int k) {
+                const amrex::Real z = ploz + ((0.5_rt + k) * dz);
                 // Check if current cell is closest to desired height
-                if (z - height < 0.5 * dz && z - height >= -0.5 * dz) {
+                if (z - height < 0.5_rt * dz && z - height >= -0.5_rt * dz) {
                     // Add field value to output
                     error += f_arr(i, j, k, comp);
                 }
@@ -58,15 +60,16 @@ void init_abl_temperature_field(
     const auto& plo = geom.ProbLoArray();
 
     amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        const amrex::Real z = plo[2] + (k + 0.5) * dx[2];
+        const amrex::Real z = plo[2] + ((k + 0.5_rt) * dx[2]);
 
         // potential temperature profile
         if (z < bottom) {
-            trac(i, j, k, 0) = 300.0;
-        } else if (z < 250.0) {
-            trac(i, j, k, 0) = 300.0 + (z - bottom) / (250.0 - bottom) * 8.0;
+            trac(i, j, k, 0) = 300.0_rt;
+        } else if (z < 250.0_rt) {
+            trac(i, j, k, 0) =
+                300.0_rt + ((z - bottom) / (250.0_rt - bottom) * 8.0_rt);
         } else {
-            trac(i, j, k, 0) = 308.0;
+            trac(i, j, k, 0) = 308.0_rt;
         }
     });
 }
@@ -80,14 +83,14 @@ void init_vof_field(
     const auto& plo = geom.ProbLoArray();
 
     amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        const amrex::Real z_btm = plo[2] + k * dx[2];
-        const amrex::Real z_top = plo[2] + (k + 1) * dx[2];
+        const amrex::Real z_btm = plo[2] + (k * dx[2]);
+        const amrex::Real z_top = plo[2] + ((k + 1) * dx[2]);
 
         // vof profile for flat interface
         if (z_btm >= wlev) {
-            vof(i, j, k) = 0.0;
+            vof(i, j, k) = 0.0_rt;
         } else if (z_top <= wlev) {
-            vof(i, j, k) = 1.0;
+            vof(i, j, k) = 1.0_rt;
         } else {
             vof(i, j, k) = (wlev - z_btm) / (z_top - z_btm);
         }
@@ -100,7 +103,8 @@ using ICNSFields =
 
 TEST_F(ABLOffshoreMeshTest, abl_forcing)
 {
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     populate_parameters();
     initialize_mesh();
 
@@ -116,16 +120,16 @@ TEST_F(ABLOffshoreMeshTest, abl_forcing)
 
     amr_wind::pde::icns::ABLForcing abl_forcing(sim());
 
-    src_term.setVal(0.0);
+    src_term.setVal(0.0_rt);
     // Mimic source term at later timesteps
     {
         auto& time = sim().time();
         time.new_timestep();
-        time.set_current_cfl(2.0, 0.0, 0.0);
-        EXPECT_NEAR(time.delta_t(), 0.1, tol);
+        time.set_current_cfl(2.0_rt, 0.0_rt, 0.0_rt);
+        EXPECT_NEAR(time.delta_t(), 0.1_rt, tol);
 
-        src_term.setVal(0.0);
-        abl_forcing.set_mean_velocities(10.0, 5.0);
+        src_term.setVal(0.0_rt);
+        abl_forcing.set_mean_velocities(10.0_rt, 5.0_rt);
         auto& volume_fraction = sim().repo().get_field("vof");
         auto waterlev = mphase.water_level();
         auto& geom = sim().mesh().Geom();
@@ -139,18 +143,18 @@ TEST_F(ABLOffshoreMeshTest, abl_forcing)
             abl_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
         });
 
-        // Targets are U = (20.0, 10.0, 0.0) set in initial conditions
-        // Means (set above) V = (10.0, 5.0, 0.0)
-        // delta_t (set above) dt = 0.1
+        // Targets are U = (20.0_rt, 10.0_rt, 0.0_rt) set in initial conditions
+        // Means (set above) V = (10.0_rt, 5.0_rt, 0.0_rt)
+        // delta_t (set above) dt = 0.1_rt
         const amrex::Array<amrex::Real, AMREX_SPACEDIM> golds{
-            {100.0, 50.0, 0.0}};
+            {100.0_rt, 50.0_rt, 0.0_rt}};
         for (int i = 0; i < AMREX_SPACEDIM; ++i) {
             const auto min_val = utils::field_min(src_term, i);
             const auto max_val = utils::field_max(src_term, i);
             // Ensure that the source term value is present
             EXPECT_NEAR(max_val, golds[i], tol);
             // Ensure that the source term is turned off somewhere
-            EXPECT_NEAR(min_val, 0.0, tol);
+            EXPECT_NEAR(min_val, 0.0_rt, tol);
         }
 
         // Check that values are turned off in off region
@@ -159,18 +163,20 @@ TEST_F(ABLOffshoreMeshTest, abl_forcing)
         const amrex::Real dz = geom[0].CellSize(2);
         const amrex::Real ploz = geom[0].ProbLo(2);
         // Forcing limit parameters from abloffshore_test_utils
-        const amrex::Real ht0 = 10.0;
-        const amrex::Real ht1 = 30.0;
+        const amrex::Real ht0 = 10.0_rt;
+        const amrex::Real ht1 = 30.0_rt;
         const amrex::Array<amrex::Real, 5> test_heights{
-            waterlev - dz, waterlev + 0.5 * ht0, waterlev + 2.0 * dz,
-            std::floor((waterlev + ht0 + ht1 - dz) / dz) * dz + 0.5 * dz,
+            waterlev - dz, waterlev + (0.5_rt * ht0), waterlev + (2.0_rt * dz),
+            (std::floor((waterlev + ht0 + ht1 - dz) / dz) * dz) + (0.5_rt * dz),
             waterlev + ht0 + ht1 + dz};
         // Expected values of coeff for each location
         const amrex::Array<amrex::Real, 5> coeff_golds{
-            0., 0., 0.,
-            -0.5 * std::cos(M_PI * (test_heights[3] - waterlev - ht0) / ht1) +
-                0.5,
-            1.0};
+            0.0_rt, 0.0_rt, 0.0_rt,
+            (-0.5_rt * std::cos(
+                           std::numbers::pi_v<amrex::Real> *
+                           (test_heights[3] - waterlev - ht0) / ht1)) +
+                0.5_rt,
+            1.0_rt};
 
         // Get values from src term
         amrex::Array<amrex::Real, 5> src_x_vals;
@@ -202,11 +208,12 @@ TEST_F(ABLOffshoreMeshTest, abl_forcing)
 
 TEST_F(ABLOffshoreMeshTest, geostrophic_forcing)
 {
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     populate_parameters();
 
     amrex::ParmParse pp("CoriolisForcing");
-    pp.add("latitude", 54.0);
+    pp.add("latitude", 54.0_rt);
 
     initialize_mesh();
 
@@ -219,10 +226,10 @@ TEST_F(ABLOffshoreMeshTest, geostrophic_forcing)
 
     auto& src_term = pde_mgr.icns().fields().src_term;
     auto& density = sim().repo().get_field("density");
-    density.setVal(1.0);
+    density.setVal(1.0_rt);
 
     amr_wind::pde::icns::GeostrophicForcing geostrophic_forcing(sim());
-    src_term.setVal(0.0);
+    src_term.setVal(0.0_rt);
     auto& volume_fraction = sim().repo().get_field("vof");
     auto waterlev = mphase.water_level();
     auto& geom = sim().mesh().Geom();
@@ -236,16 +243,18 @@ TEST_F(ABLOffshoreMeshTest, geostrophic_forcing)
     });
 
     constexpr amrex::Real corfac =
-        2.0 * amr_wind::utils::two_pi() / 86164.091 * 0.80901699437;
+        2.0_rt * amr_wind::utils::two_pi() / 86164.091_rt * 0.80901699437_rt;
     const amrex::Array<amrex::Real, AMREX_SPACEDIM> golds{
-        {-corfac * 6.0, corfac * 10.0, 0.0}};
+        {-corfac * 6.0_rt, corfac * 10.0_rt, 0.0_rt}};
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         const auto min_val = utils::field_min(src_term, i);
         const auto max_val = utils::field_max(src_term, i);
         EXPECT_NEAR(
-            std::max(std::abs(max_val), std::abs(min_val)), std::abs(golds[i]),
-            tol);
-        EXPECT_NEAR(std::min(std::abs(max_val), std::abs(min_val)), 0.0, tol);
+            amrex::max<amrex::Real>(std::abs(max_val), std::abs(min_val)),
+            std::abs(golds[i]), tol);
+        EXPECT_NEAR(
+            amrex::min<amrex::Real>(std::abs(max_val), std::abs(min_val)),
+            0.0_rt, tol);
     }
 
     // Check that values are turned off in off region
@@ -254,17 +263,20 @@ TEST_F(ABLOffshoreMeshTest, geostrophic_forcing)
     const amrex::Real dz = geom[0].CellSize(2);
     const amrex::Real ploz = geom[0].ProbLo(2);
     // Forcing limit parameters from abloffshore_test_utils
-    const amrex::Real ht0 = 10.0;
-    const amrex::Real ht1 = 30.0;
+    const amrex::Real ht0 = 10.0_rt;
+    const amrex::Real ht1 = 30.0_rt;
     const amrex::Array<amrex::Real, 5> test_heights{
-        waterlev - dz, waterlev + 0.5 * ht0, waterlev + 2.0 * dz,
-        std::floor((waterlev + ht0 + ht1 - dz) / dz) * dz + 0.5 * dz,
+        waterlev - dz, waterlev + (0.5_rt * ht0), waterlev + (2.0_rt * dz),
+        (std::floor((waterlev + ht0 + ht1 - dz) / dz) * dz) + (0.5_rt * dz),
         waterlev + ht0 + ht1 + dz};
     // Expected values of coeff for each location
     const amrex::Array<amrex::Real, 5> coeff_golds{
-        0., 0., 0.,
-        -0.5 * std::cos(M_PI * (test_heights[3] - waterlev - ht0) / ht1) + 0.5,
-        1.0};
+        0.0_rt, 0.0_rt, 0.0_rt,
+        (-0.5_rt * std::cos(
+                       std::numbers::pi_v<amrex::Real> *
+                       (test_heights[3] - waterlev - ht0) / ht1)) +
+            0.5_rt,
+        1.0_rt};
 
     // Get values from src term
     amrex::Array<amrex::Real, 5> src_x_vals;
@@ -295,7 +307,8 @@ TEST_F(ABLOffshoreMeshTest, geostrophic_forcing)
 
 TEST_F(ABLOffshoreMeshTest, boussinesq)
 {
-    constexpr amrex::Real tol = 1.0e-12;
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     // Initialize parameters
     populate_parameters();
@@ -316,7 +329,7 @@ TEST_F(ABLOffshoreMeshTest, boussinesq)
         sim().repo().get_field("temperature", amr_wind::FieldState::Old);
     auto& volume_fraction = sim().repo().get_field("vof");
 
-    src_term.setVal(0.0);
+    src_term.setVal(0.0_rt);
     auto& geom = sim().mesh().Geom();
     auto waterlev =
         sim().physics_manager().get<amr_wind::MultiPhase>().water_level();
@@ -341,14 +354,15 @@ TEST_F(ABLOffshoreMeshTest, boussinesq)
     for (int i = 0; i < 2; ++i) {
         const auto min_src = utils::field_min(src_term, i);
         const auto max_src = utils::field_max(src_term, i);
-        EXPECT_NEAR(min_src, 0.0, tol);
-        EXPECT_NEAR(max_src, 0.0, tol);
+        EXPECT_NEAR(min_src, 0.0_rt, tol);
+        EXPECT_NEAR(max_src, 0.0_rt, tol);
     }
 
     // f = beta * (T0 - T)*g
-    EXPECT_NEAR(utils::field_min(src_term, 2), 0.0, tol);
+    EXPECT_NEAR(utils::field_min(src_term, 2), 0.0_rt, tol);
     EXPECT_NEAR(
-        utils::field_max(src_term, 2), -9.81 * (300.0 - 308.0) / 300.0, tol);
+        utils::field_max(src_term, 2),
+        -9.81_rt * (300.0_rt - 308.0_rt) / 300.0_rt, tol);
 
     // Check that the value is 0 below the interface but above btm_temp_ht
     const amrex::Real dz = geom[0].CellSize(2);
@@ -358,10 +372,10 @@ TEST_F(ABLOffshoreMeshTest, boussinesq)
     const int ny = 8;
     amrex::Real src_z_val =
         get_val_at_height(
-            src_term, 0, 0, ploz, dz, 0.5 * (waterlev + btm_temp_ht)) /
+            src_term, 0, 0, ploz, dz, 0.5_rt * (waterlev + btm_temp_ht)) /
         nx / ny;
     // Check src value against expectations
-    EXPECT_NEAR(src_z_val, 0.0, tol);
+    EXPECT_NEAR(src_z_val, 0.0_rt, tol);
 }
 
 } // namespace amr_wind_tests

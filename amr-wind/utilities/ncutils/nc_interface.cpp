@@ -3,6 +3,9 @@
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 
 #include "AMReX.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 #define abort_func amrex::Abort
 
@@ -64,7 +67,7 @@ std::vector<size_t> NCVar::shape() const
     return vshape;
 }
 
-void NCVar::put(const double* ptr) const
+void NCVar::put(const amrex::Real* ptr) const
 {
     check_nc_error(nc_put_var_double(ncid, varid, ptr));
 }
@@ -80,7 +83,7 @@ void NCVar::put(const int* ptr) const
 }
 
 void NCVar::put(
-    const double* dptr,
+    const amrex::Real* dptr,
     const std::vector<size_t>& start,
     const std::vector<size_t>& count) const
 {
@@ -89,7 +92,7 @@ void NCVar::put(
 }
 
 void NCVar::put(
-    const double* dptr,
+    const amrex::Real* dptr,
     const std::vector<size_t>& start,
     const std::vector<size_t>& count,
     const std::vector<ptrdiff_t>& stride) const
@@ -136,7 +139,7 @@ void NCVar::put(
         ncid, varid, start.data(), count.data(), stride.data(), dptr));
 }
 
-void NCVar::get(double* ptr) const
+void NCVar::get(amrex::Real* ptr) const
 {
     check_nc_error(nc_get_var_double(ncid, varid, ptr));
 }
@@ -152,7 +155,7 @@ void NCVar::get(int* ptr) const
 }
 
 void NCVar::get(
-    double* dptr,
+    amrex::Real* dptr,
     const std::vector<size_t>& start,
     const std::vector<size_t>& count) const
 {
@@ -161,7 +164,7 @@ void NCVar::get(
 }
 
 void NCVar::get(
-    double* dptr,
+    amrex::Real* dptr,
     const std::vector<size_t>& start,
     const std::vector<size_t>& count,
     const std::vector<ptrdiff_t>& stride) const
@@ -223,7 +226,7 @@ void NCVar::put_attr(const std::string& name, const std::string& value) const
 }
 
 void NCVar::put_attr(
-    const std::string& name, const std::vector<double>& value) const
+    const std::string& name, const std::vector<amrex::Real>& value) const
 {
     check_nc_error(nc_put_att_double(
         ncid, varid, name.data(), NC_DOUBLE, value.size(), value.data()));
@@ -253,7 +256,8 @@ std::string NCVar::get_attr(const std::string& name) const
     return std::string{aval.begin(), aval.end()};
 }
 
-void NCVar::get_attr(const std::string& name, std::vector<double>& values) const
+void NCVar::get_attr(
+    const std::string& name, std::vector<amrex::Real>& values) const
 {
     size_t lenp;
     check_nc_error(nc_inq_attlen(ncid, varid, name.data(), &lenp));
@@ -424,7 +428,7 @@ void NCGroup::put_attr(const std::string& name, const std::string& value) const
 }
 
 void NCGroup::put_attr(
-    const std::string& name, const std::vector<double>& value) const
+    const std::string& name, const std::vector<amrex::Real>& value) const
 {
     check_nc_error(nc_put_att_double(
         ncid, NC_GLOBAL, name.data(), NC_DOUBLE, value.size(), value.data()));
@@ -455,7 +459,7 @@ std::string NCGroup::get_attr(const std::string& name) const
 }
 
 void NCGroup::get_attr(
-    const std::string& name, std::vector<double>& values) const
+    const std::string& name, std::vector<amrex::Real>& values) const
 {
     size_t lenp;
     check_nc_error(nc_inq_attlen(ncid, NC_GLOBAL, name.data(), &lenp));

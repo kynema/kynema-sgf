@@ -5,6 +5,9 @@
 #include "amr-wind/wind_energy/actuator/turbine/external/external_base_types.H"
 
 #include <string>
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace ext_turb {
 
@@ -98,8 +101,8 @@ struct FastSolverData
 #endif
 
     int m_num_sc_inputs_glob{0};
-    float m_init_sc_inputs_glob{0.0};
-    float m_init_sc_inputs_turbine{0.0};
+    float m_init_sc_inputs_glob{0.0_rt};
+    float m_init_sc_inputs_turbine{0.0_rt};
 };
 
 } // namespace ext_turb
