@@ -91,7 +91,8 @@ function(add_test_r TEST_NAME)
                          PROCESSORS ${TEST_NP}
                          WORKING_DIRECTORY "${CURRENT_TEST_BINARY_DIR}/"
                          LABELS "regression"
-                         ATTACHED_FILES "${CURRENT_TEST_BINARY_DIR}/${TEST_NAME}.log")
+                         ATTACHED_FILES "${CURRENT_TEST_BINARY_DIR}/${TEST_NAME}.log"
+                         ATTACHED_FILES_ON_FAIL "${CURRENT_TEST_BINARY_DIR}/Backtrace.0")
 endfunction(add_test_r)
 
 # Regression tests excluded from CI
