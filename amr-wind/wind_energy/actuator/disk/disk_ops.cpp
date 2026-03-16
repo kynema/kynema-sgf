@@ -1,7 +1,7 @@
 #include "amr-wind/wind_energy/actuator/disk/disk_ops.H"
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 #include "amr-wind/utilities/io_utils.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -113,8 +113,8 @@ AreaComputer::AreaComputer(
 amrex::Real AreaComputer::area_section(const int iRadius) const
 {
     return m_geometry_factor *
-           (std::pow(iRadius + 1.0_rt, 2.0_rt) -
-            std::pow(static_cast<amrex::Real>(iRadius), 2.0_rt));
+           (amr_wind::utils::powi(iRadius + 1.0_rt, 2) -
+            amr_wind::utils::powi(static_cast<amrex::Real>(iRadius), 2));
 }
 
 amrex::Real AreaComputer::weight(const int iRadius) const

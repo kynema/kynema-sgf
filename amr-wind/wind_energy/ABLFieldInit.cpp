@@ -9,7 +9,7 @@
 #include "AMReX_ParmParse.H"
 #include "amr-wind/utilities/linear_interpolation.H"
 #include "amr-wind/utilities/io_utils.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -458,7 +458,7 @@ void ABLFieldInit::init_tke(
                 if (z < tke_cutoff_height) {
                     tke_arrs[nbx](i, j, k) =
                         tke_init_factor *
-                        std::pow(1.0_rt - (z / tke_cutoff_height), 3.0_rt);
+                        utils::powi(1.0_rt - (z / tke_cutoff_height), 3);
                 } else {
                     tke_arrs[nbx](i, j, k) = tiny;
                 }

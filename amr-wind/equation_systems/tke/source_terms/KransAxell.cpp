@@ -6,7 +6,7 @@
 #include "amr-wind/wind_energy/MOData.H"
 #include "amr-wind/utilities/linear_interpolation.H"
 #include "amr-wind/utilities/constants.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 namespace amr_wind::pde::tke {
@@ -130,7 +130,7 @@ void KransAxell::operator()(
             const amrex::Real hf = std::abs(gravity[2]) / T0 * heat_flux;
             const amrex::Real rans_b = std::pow(
                 amrex::max<amrex::Real>(hf, 0.0_rt) * kappa * z /
-                    std::pow(Cmu, 3.0_rt),
+                    utils::powi(Cmu, 3),
                 (2.0_rt / 3.0_rt));
             bcforcing =
                 (ustar * ustar / (Cmu * Cmu) + rans_b - tke_arr(i, j, k)) / dt;
@@ -146,7 +146,7 @@ void KransAxell::operator()(
         }
         const amrex::Real sponge_forcing =
             1.0_rt / dt * (tke_arr(i, j, k) - ref_tke);
-        dissip_arr(i, j, k) = std::pow(Cmu, 3.0_rt) *
+        dissip_arr(i, j, k) = utils::powi(Cmu, 3) *
                               std::pow(tke_arr(i, j, k), 1.5_rt) /
                               (tlscale_arr(i, j, k) + amr_wind::constants::EPS);
         src_term(i, j, k) += shear_prod_arr(i, j, k) + buoy_prod_arr(i, j, k) -
@@ -184,7 +184,7 @@ void KransAxell::operator()(
             const amrex::Real hf = std::abs(gravity[2]) / T0 * heat_flux;
             const amrex::Real rans_b = std::pow(
                 amrex::max<amrex::Real>(hf, 0.0_rt) * kappa * z /
-                    std::pow(Cmu, 3.0_rt),
+                    utils::powi(Cmu, 3),
                 (2.0_rt / 3.0_rt));
             terrainforcing =
                 (ustar * ustar / (Cmu * Cmu) + rans_b - tke_arr(i, j, k)) / dt;

@@ -3,7 +3,7 @@
 
 #include "AMReX.H"
 #include "AMReX_ParmParse.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -95,8 +95,8 @@ void VorticityMagRefinement::operator()(
                             idx[2];
 
             const auto vort = sqrt(
-                std::pow(uy - vx, 2) + std::pow(vz - wy, 2) +
-                std::pow(wx - uz, 2));
+                utils::powi(uy - vx, 2) + utils::powi(vz - wy, 2) +
+                utils::powi(wx - uz, 2));
 
             if (vort > vort_val) {
                 tag_arrs[nbx](i, j, k) = amrex::TagBox::SET;

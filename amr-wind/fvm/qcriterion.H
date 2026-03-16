@@ -80,15 +80,15 @@ struct Qcriterion
                   cm1 * phi(i, j, k - 1, 2)) *
                  idx[2];
 
-            const amrex::Real S2 = std::pow(ux, 2.0_rt) + std::pow(vy, 2.0_rt) +
-                                   std::pow(wz, 2.0_rt) +
-                                   (0.5_rt * std::pow(uy + vx, 2.0_rt)) +
-                                   (0.5_rt * std::pow(vz + wy, 2.0_rt)) +
-                                   (0.5_rt * std::pow(wx + uz, 2.0_rt));
+            const amrex::Real S2 = utils::powi(ux, 2) + utils::powi(vy, 2) +
+                                   utils::powi(wz, 2) +
+                                   (0.5_rt * utils::powi(uy + vx, 2)) +
+                                   (0.5_rt * utils::powi(vz + wy, 2)) +
+                                   (0.5_rt * utils::powi(wx + uz, 2));
 
-            const amrex::Real W2 = (0.5_rt * std::pow(uy - vx, 2.0_rt)) +
-                                   (0.5_rt * std::pow(vz - wy, 2.0_rt)) +
-                                   (0.5_rt * std::pow(wx - uz, 2.0_rt));
+            const amrex::Real W2 = (0.5_rt * utils::powi(uy - vx, 2)) +
+                                   (0.5_rt * utils::powi(vz - wy, 2)) +
+                                   (0.5_rt * utils::powi(wx - uz, 2));
             if (nondim) {
                 qcritphi(i, j, k) =
                     0.5_rt *

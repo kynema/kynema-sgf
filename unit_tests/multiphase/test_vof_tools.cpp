@@ -8,7 +8,7 @@
 #include "amr-wind/equation_systems/vof/vof_hybridsolver_ops.H"
 #include "amr-wind/equation_systems/vof/vof.H"
 #include "amr-wind/equation_systems/SchemeTraits.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -58,9 +58,9 @@ void initialize_levelset(
         } else if (s == 1) {
             // Parabola
             lvs_arr(i, j, k) =
-                (1.9_rt * dx) +
-                (0.1_rt * dx *
-                 std::pow(static_cast<amrex::Real>(j) - 0.3_rt, 2.0_rt));
+                (1.9_rt * dx) + (0.1_rt * dx *
+                                 amr_wind::utils::powi(
+                                     static_cast<amrex::Real>(j) - 0.3_rt, 2));
         } else if (s == 2) {
             // Cosine profile
             lvs_arr(i, j, k) =

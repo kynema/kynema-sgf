@@ -48,8 +48,13 @@ jobs:
             ctest_args: -LE no_ci
             ccache_size: 100M
           - build_type: Debug
+            openmp_flag: NoOpenMP
+            ctest_args: -LE no_ci
+            ccache_size: 200M
+          - build_type: Debug
+            openmp_flag: OpenMP
             ctest_args: -L unit
-            ccache_size: 250M
+            ccache_size: 200M
         exclude:
           - os: macos-latest
             build_type: Debug

@@ -3,6 +3,7 @@
 
 #include "amr-wind/core/FieldRepo.H"
 #include "amr-wind/fvm/stencils.H"
+#include "amr-wind/utilities/math_ops.H"
 
 #include "AMReX_MFIter.H"
 

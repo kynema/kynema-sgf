@@ -5,11 +5,10 @@
 #include "amr-wind/core/FieldUtils.H"
 #include "amr-wind/utilities/index_operations.H"
 #include "amr-wind/utilities/linear_interpolation.H"
+#include "amr-wind/utilities/math_ops.H"
 #include "AMReX_ParmParse.H"
-#include "AMReX_Gpu.H"
 #include "AMReX_Print.H"
 #include "AMReX_GpuContainers.H"
-#include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
@@ -175,13 +174,9 @@ void ABLMesoForcingMom::mean_velocity_heights(
 
             for (int ih = 0; ih < m_nht; ih++) {
                 ezP_U[i] = ezP_U[i] + (error_U[ih] * m_W[i] *
-                                       std::pow(
-                                           m_zht[ih] * m_scaleFact,
-                                           static_cast<amrex::Real>(i)));
+                                       utils::powi(m_zht[ih] * m_scaleFact, i));
                 ezP_V[i] = ezP_V[i] + (error_V[ih] * m_W[i] *
-                                       std::pow(
-                                           m_zht[ih] * m_scaleFact,
-                                           static_cast<amrex::Real>(i)));
+                                       utils::powi(m_zht[ih] * m_scaleFact, i));
             }
         }
 
@@ -208,14 +203,12 @@ void ABLMesoForcingMom::mean_velocity_heights(
             error_U[ih] = 0.0_rt;
             error_V[ih] = 0.0_rt;
             for (int j = 0; j < 4; j++) {
-                error_U[ih] = error_U[ih] + (m_poly_coeff_U[j] *
-                                             std::pow(
-                                                 m_zht[ih] * m_scaleFact,
-                                                 static_cast<amrex::Real>(j)));
-                error_V[ih] = error_V[ih] + (m_poly_coeff_V[j] *
-                                             std::pow(
-                                                 m_zht[ih] * m_scaleFact,
-                                                 static_cast<amrex::Real>(j)));
+                error_U[ih] =
+                    error_U[ih] + (m_poly_coeff_U[j] *
+                                   utils::powi(m_zht[ih] * m_scaleFact, j));
+                error_V[ih] =
+                    error_V[ih] + (m_poly_coeff_V[j] *
+                                   utils::powi(m_zht[ih] * m_scaleFact, j));
             }
 
             if (m_debug) {

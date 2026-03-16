@@ -2,7 +2,7 @@
 #include "aw_test_utils/MeshTest.H"
 #include "amr-wind/turbulence/TurbulenceModel.H"
 #include "aw_test_utils/test_utils.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -411,7 +411,7 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_wallmodel_failnofillpatch)
     const amrex::Real vmag_ref = std::sqrt(2.0_rt * uref * uref);
     const amrex::Real utau = kappa * vmag_ref / (std::log(zref / z0));
     const amrex::Real uz_wm =
-        uref / vmag_ref * std::pow(utau, 2.0_rt) * m_rho0 / m_mu;
+        uref / vmag_ref * amr_wind::utils::powi(utau, 2) * m_rho0 / m_mu;
 
     // Velocity gradient with wallmodel value included as dirichlet
     const amrex::Real uz_wmdirichlet =
