@@ -14,7 +14,7 @@ time.cfl              =   0.95         # CFL factor
 #            INPUT AND OUTPUT           #
 #.......................................#
 time.plot_interval            =  10       # Steps between plot files
-time.checkpoint_interval      =  5       # Steps between checkpoint files
+time.checkpoint_interval      =  3       # Steps between checkpoint files
 
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
 #               PHYSICS                 #
