@@ -163,7 +163,7 @@ void OversetOps::parameter_output() const
         amrex::Print() << "---- Perturbational pressure  : "
                        << m_mphase->perturb_pressure() << '\n'
                        << "---- Reconstruct true pressure: "
-                       << m_mphase->reconstruct_true_pressure() << '\n\n';
+                       << m_mphase->reconstruct_true_pressure() << "\n\n";
     }
 }
 
