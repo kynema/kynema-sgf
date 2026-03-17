@@ -242,7 +242,7 @@ private:
     amrex::Real m_chkpt_t_delay{0.0_rt};
 
     //! Relative (to dt) tolerance for checkpoint time interval output
-    amrex::Real m_chkpt_t_tol{std::numeric_limits<float>::epsilon() * 1.0e1_rt};
+    amrex::Real m_chkpt_t_tol{1.0e-2_rt};
 
     //! Relative (to chkpt_t_interval) tolerance for enforcing dt
     amrex::Real m_force_chkpt_tol{1.0e-3_rt};
@@ -254,12 +254,14 @@ private:
     amrex::Real m_plt_t_delay{0.0_rt};
 
     //! Relative (to dt) tolerance for plot time interval output
-    amrex::Real m_plt_t_tol{std::numeric_limits<float>::epsilon() * 1.0e1_rt};
+    amrex::Real m_plt_t_tol{1.0e-2_rt};
 
     //! Relative (to plt_t_interval) tolerance for enforcing dt
     amrex::Real m_force_plt_tol{1.0e-3_rt};
 
     //! Smallest absolute tolerance for enforcing dt, considering all
+    //! tolerance criteria. This is simply a high initial value; the code
+    //! calculates the actual tolerance with min() operations
     amrex::Real m_force_dt_abs_tol{1.0e8_rt};
 
     //! Initial starting time for generating checkpoint files (time-based)

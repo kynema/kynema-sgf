@@ -4,7 +4,7 @@ Section: Post-processing
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 This section controls post-processing routines supported within
-AMR-wind, which include Sampling, Reynolds Averaging (ReAveraging),
+AMR-wind, which include Sampling, Subvolume, Reynolds Averaging (ReAveraging),
 ReynoldsStress, TimeAveraging, Enstrophy, FieldNorms, KineticEnergy, and WaveEnergy.
 
 Note that while the input parameters use the keyword ``postproc``, the
@@ -81,3 +81,42 @@ of the output timing parameters.
    When :input_param:`postproc.enforce_output_time_dt` is true, a tolerance is needed to determine when
    it is necessary to shrink the time step size. This tolerance is relative to the output time interval.
    In most cases, this parameter need not be modified, but it can be changed by the user.
+
+.. input_param:: postproc.output_from_restart
+
+   **type:** Boolean, optional, default = false
+
+   By default, outputs will take place when the total time or time step matches up with
+   the specified time or time step interval. However, when restarting a simulation, 
+   activating this option allows the relative time to be used, considering the time or time step
+   when the current simulation began. This option is not compatible with specifying
+   :input_param:`postproc.output_start` or :input_param:`postproc.output_start_time` directly.
+
+.. input_param:: postproc.output_start
+
+   **type:** Integer, optional
+
+   When :input_param:`postproc.output_interval` is active, outputs will take place when the difference
+   between the current time step and the initial time step matches up with the specified interval.
+   By default, the initial time step used in this calculation is 0. This input argument
+   allows the user to override the default behavior by manually specifying
+   the initial time step to consider.
+
+.. input_param:: postproc.output_start_time
+
+   **type:** Real number, optional
+
+   When :input_param:`postproc.output_time_interval` is active, outputs will take place when the difference
+   between the current time and the initial time matches up with the specified time interval.
+   By default, the initial time used in this calculation is 0. This input argument
+   allows the user to override the default behavior by manually specifying
+   the initial time to consider.
+
+.. input_param:: postproc.output_after_final_step
+
+   **type:** Boolean, optional, default = false
+
+   Similar to checkpoint and plot files, the code can write post-processing
+   outputs at the conclusion of a simulation, i.e., after its final step. 
+   However, unlike checkpoint and plot files, this behavior is off by default.
+   To turn on the final output, the user must specify this input as true.

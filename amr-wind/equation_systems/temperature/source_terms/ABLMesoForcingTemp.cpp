@@ -5,10 +5,9 @@
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 #include "amr-wind/utilities/index_operations.H"
 #include "amr-wind/utilities/linear_interpolation.H"
+#include "amr-wind/utilities/math_ops.H"
 #include "AMReX_ParmParse.H"
-#include "AMReX_Gpu.H"
 #include "AMReX_Print.H"
-#include <AMReX_REAL.H>
 #include <memory>
 
 using namespace amrex::literals;
@@ -166,9 +165,7 @@ amrex::Real ABLMesoForcingTemp::mean_temperature_heights(
 
             for (int ih = 0; ih < m_nht; ih++) {
                 ezP_T[i] = ezP_T[i] + (error_T[ih] * m_W[ih] *
-                                       std::pow(
-                                           m_zht[ih] * m_scaleFact,
-                                           static_cast<amrex::Real>(i)));
+                                       utils::powi(m_zht[ih] * m_scaleFact, i));
             }
         }
 
@@ -189,10 +186,9 @@ amrex::Real ABLMesoForcingTemp::mean_temperature_heights(
             error_T_direct[ih] = error_T[ih];
             error_T[ih] = 0.0_rt;
             for (int j = 0; j < 4; j++) {
-                error_T[ih] = error_T[ih] + (m_poly_coeff_theta[j] *
-                                             std::pow(
-                                                 m_zht[ih] * m_scaleFact,
-                                                 static_cast<amrex::Real>(j)));
+                error_T[ih] =
+                    error_T[ih] + (m_poly_coeff_theta[j] *
+                                   utils::powi(m_zht[ih] * m_scaleFact, j));
             }
 
             if (m_debug) {

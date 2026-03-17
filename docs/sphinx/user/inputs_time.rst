@@ -214,7 +214,7 @@ This section also addresses the time-dependent nature of checkpoint files, plot 
 
 .. input_param:: time.plot_time_interval_reltol
 
-   **type:** Real number, optional, default = 1e-8
+   **type:** Real number, optional, default = 1e-2
 
    When :input_param:`time.plot_time_interval` is greater than zero, the implementation 
    compares the current simulation time to the specified time interval in order to output
@@ -242,7 +242,7 @@ This section also addresses the time-dependent nature of checkpoint files, plot 
 
 .. input_param:: time.checkpoint_time_interval_reltol
 
-   **type:** Real number, optional, default = 1e-8
+   **type:** Real number, optional, default = 1e-2
 
    This parameter is active when :input_param:`time.checkpoint_time_interval` is greater than zero,
    and it exists for the same reason as :input_param:`time.plot_time_interval_reltol`.

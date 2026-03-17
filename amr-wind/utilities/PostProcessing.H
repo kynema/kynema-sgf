@@ -62,8 +62,12 @@ public:
         pp.query("output_time_interval", m_out_time_interval);
         pp.query("output_delay", m_out_delay);
         pp.query("output_time_delay", m_out_time_delay);
+        pp.query("output_from_restart", m_out_from_restart);
+        pp.query("output_start", m_out_start_index);
+        pp.query("output_start_time", m_out_start_time);
         pp.query("enforce_output_time_dt", m_enforce_dt);
         pp.query("enforce_output_time_dt_reltol", m_enforce_dt_tol);
+        pp.query("output_after_final_step", m_do_final_output);
 
         // Check for presence of arguments
         const bool has_interval = pp.contains("output_interval");
@@ -84,6 +88,16 @@ public:
                        "the new input argument of output_interval is "
                        "preferred.\n";
             }
+        }
+
+        if (m_out_from_restart &&
+            (pp.contains("output_start") || pp.contains("output_start_time"))) {
+            amrex::Abort(
+                "Conflict in output parameters. output_from_restart is true, "
+                "designating that output timing calculations consider the "
+                "restart time or time step, but the output_start or "
+                "output_start_time is specified, which manually overwrites the "
+                "stored restart time or time step.\n");
         }
 
         // Because of default, interval is valid unless turned off;
@@ -127,21 +141,30 @@ public:
     //! Determine if output will happen this time step
     [[nodiscard]] bool do_output_now(
         const int ntime,
+        const int ntime0_in,
         const amrex::Real time,
+        const amrex::Real time0_in,
         const amrex::Real dt,
         amrex::Real tol) const
     {
         // Choose smallest tolerance between incoming and local
         tol = amrex::min<amrex::Real>(tol, m_out_time_tol * dt);
 
+        // Should the restart time always be used
+        int ntime0 = m_out_from_restart ? ntime0_in : 0;
+        amrex::Real time0 = m_out_from_restart ? time0_in : 0_rt;
+        // Has the manual start been specified
+        ntime0 = m_out_start_index >= 0 ? m_out_start_index : ntime0;
+        time0 = m_out_start_time > -0.5_rt ? m_out_start_time : time0;
+
         const bool step_based =
-            (m_out_interval > 0) &&
-            ((ntime - m_out_delay >= 0) && (ntime % m_out_interval == 0));
+            (m_out_interval > 0) && ((ntime - m_out_delay >= 0) &&
+                                     ((ntime - ntime0) % m_out_interval == 0));
         const bool time_based =
             (m_out_time_interval > 0.0_rt) &&
             ((time + tol - m_out_time_delay >= 0.0_rt) &&
-             (time + tol -
-                  (std::floor((time + tol) / m_out_time_interval) *
+             (time - time0 + tol -
+                  (std::floor((time - time0 + tol) / m_out_time_interval) *
                    m_out_time_interval) <
               dt));
 
@@ -161,6 +184,7 @@ public:
         return m_enforce_dt_tol;
     }
     [[nodiscard]] bool enforce_dt() const { return m_enforce_dt; }
+    [[nodiscard]] bool do_final_output() const { return m_do_final_output; }
 
 protected:
     //! Time step interval for output
@@ -171,13 +195,20 @@ protected:
     int m_out_delay{0};
     //! Time delay for output
     amrex::Real m_out_time_delay{0.0_rt};
+    //! Always consider restart time for calculating output
+    bool m_out_from_restart{false};
+    //! Time step start for calculating step interval (restarts)
+    int m_out_start_index{-1};
+    //! Time start for calculating time interval (restarts)
+    amrex::Real m_out_start_time{-1.0_rt};
     //! Relative (to dt) tolerance for time interval output
-    amrex::Real m_out_time_tol{
-        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt};
+    amrex::Real m_out_time_tol{1.0e-2_rt};
     //! Relative (to m_out_time_interval) tolerance for enforcing dt
     amrex::Real m_enforce_dt_tol{1.0e-3_rt};
     //! Flag for enforcing time step based on output time
     bool m_enforce_dt{false};
+    //! Flag for output at simulation end - off by default
+    bool m_do_final_output{false};
 };
 
 /** A collection of post-processing instances that are active during a

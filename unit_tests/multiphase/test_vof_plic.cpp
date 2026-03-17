@@ -2,7 +2,7 @@
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
 #include "amr-wind/equation_systems/vof/volume_fractions.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -105,8 +105,10 @@ void initialize_volume_fractions(
     amrex::ParallelFor(grow(bx, 1), [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         vof_arr(i, j, k) =
             (0.13_rt * (static_cast<amrex::Real>(i) - 1.5_rt)) +
-            (0.04_rt * std::pow(static_cast<amrex::Real>(j) - 1.0_rt, 2.0_rt)) +
-            (0.01_rt * std::pow(static_cast<amrex::Real>(k) - 2.0_rt, 3.0_rt)) +
+            (0.04_rt *
+             amr_wind::utils::powi(static_cast<amrex::Real>(j) - 1.0_rt, 2)) +
+            (0.01_rt *
+             amr_wind::utils::powi(static_cast<amrex::Real>(k) - 2.0_rt, 3)) +
             0.5_rt;
     });
 }

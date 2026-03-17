@@ -278,14 +278,16 @@ TEST_F(SamplingTest, sampling_timing)
     SamplingImpl probes(sim(), "sampling");
     probes.initialize();
     if (probes.do_output_now(
-            sim().time().time_index(), sim().time().new_time(),
+            sim().time().time_index(), sim().time().start_time_index(),
+            sim().time().new_time(), sim().time().start_time(),
             sim().time().delta_t(), 1.0_rt)) {
         probes.output_actions();
     }
     EXPECT_FALSE(probes.write_flag);
     sim().time().new_timestep();
     if (probes.do_output_now(
-            sim().time().time_index(), sim().time().new_time(),
+            sim().time().time_index(), sim().time().start_time_index(),
+            sim().time().new_time(), sim().time().start_time(),
             sim().time().delta_t(), 1.0_rt)) {
         probes.output_actions();
     }

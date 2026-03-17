@@ -2,7 +2,7 @@
 #include "amr-wind/CFDSim.H"
 #include "AMReX.H"
 #include "AMReX_ParmParse.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -110,13 +110,13 @@ void QCriterionRefinement::operator()(
                             idx[2];
 
             const auto S2 = (ux * ux) + (vy * vy) + (wz * wz) +
-                            (0.5_rt * std::pow(uy + vx, 2.0_rt)) +
-                            (0.5_rt * std::pow(vz + wy, 2.0_rt)) +
-                            (0.5_rt * std::pow(wx + uz, 2.0_rt));
+                            (0.5_rt * utils::powi(uy + vx, 2)) +
+                            (0.5_rt * utils::powi(vz + wy, 2)) +
+                            (0.5_rt * utils::powi(wx + uz, 2));
 
-            const auto W2 = (0.5_rt * std::pow(uy - vx, 2.0_rt)) +
-                            (0.5_rt * std::pow(vz - wy, 2.0_rt)) +
-                            (0.5_rt * std::pow(wx - uz, 2.0_rt));
+            const auto W2 = (0.5_rt * utils::powi(uy - vx, 2)) +
+                            (0.5_rt * utils::powi(vz - wy, 2)) +
+                            (0.5_rt * utils::powi(wx - uz, 2));
 
             const auto qc = 0.5_rt * (W2 - S2);
             const auto qc_nondim =

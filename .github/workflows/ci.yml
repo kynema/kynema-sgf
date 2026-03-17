@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
     - name: Clone
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
     - name: Check formatting
       uses: DoozyX/clang-format-lint-action@v0.20
       with:
@@ -48,8 +48,13 @@ jobs:
             ctest_args: -LE no_ci
             ccache_size: 100M
           - build_type: Debug
+            openmp_flag: NoOpenMP
+            ctest_args: -LE no_ci
+            ccache_size: 200M
+          - build_type: Debug
+            openmp_flag: OpenMP
             ctest_args: -L unit
-            ccache_size: 250M
+            ccache_size: 200M
         exclude:
           - os: macos-latest
             build_type: Debug
@@ -59,7 +64,7 @@ jobs:
             openmp_flag: OpenMP
     steps:
     - name: Clone
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with: 
         submodules: true
     - name: Dependencies
@@ -80,7 +85,7 @@ jobs:
           sudo cp -f ccache-4.12.2-linux-x86_64/ccache /usr/local/bin/
         fi
     - name: Set Up Ccache
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ${{matrix.ccache_cache}}
         key: ccache-${{github.workflow}}-${{github.job}}-${{matrix.os}}-${{matrix.build_type}}-${{matrix.openmp_flag}}-git-${{github.sha}}
@@ -161,21 +166,16 @@ jobs:
         ls ${{matrix.ccache_cache}}
         du -hs ${{matrix.ccache_cache}}
     - name: Reference Test
-      id: ref-test
-      continue-on-error: true
       if: ${{matrix.build_type == 'Release' && github.event_name != 'push'}}
       working-directory: ${{runner.workspace}}/build-ci-${{matrix.build_type}}-${{matrix.openmp_flag}}-reference
       run: ctest ${{matrix.ctest_args}} -VV --output-on-failure
-    - name: Reference Test Warning
-      if: ${{matrix.build_type == 'Release' && github.event_name != 'push' && steps.ref-test.outcome != 'success'}}
-      run: echo "::error::Reference test failed"
 
   CPU-SINGLE:
     needs: Formatting
     runs-on: ubuntu-24.04
     steps:
     - name: Clone
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with: 
         submodules: true
     - name: Dependencies
@@ -194,7 +194,7 @@ jobs:
         tar xvf ccache-4.8-linux-x86_64.tar.xz
         sudo cp -f ccache-4.8-linux-x86_64/ccache /usr/local/bin/
     - name: Set Up Ccache
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ~/.cache/ccache
         key: ccache-${{github.workflow}}-${{github.job}}-single-git-${{github.sha}}
@@ -245,7 +245,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
       - name: Setup
@@ -261,7 +261,7 @@ jobs:
           tar xvf ccache-4.12.2-linux-x86_64.tar.xz
           sudo cp -f ccache-4.12.2-linux-x86_64/ccache /usr/local/bin/
       - name: Set Up Ccache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/ccache
           key: ccache-${{github.workflow}}-${{github.job}}-git-${{github.sha}}
@@ -302,7 +302,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
       - name: Setup
@@ -318,7 +318,7 @@ jobs:
           tar xvf ccache-4.12.2-linux-x86_64.tar.xz
           sudo cp -f ccache-4.12.2-linux-x86_64/ccache /usr/local/bin/
       - name: Set Up Ccache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/ccache
           key: ccache-${{github.workflow}}-${{github.job}}-git-${{github.sha}}
@@ -367,7 +367,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
       - name: Setup
@@ -384,7 +384,7 @@ jobs:
           tar xvf ccache-4.12.2-linux-x86_64.tar.xz
           sudo cp -f ccache-4.12.2-linux-x86_64/ccache /usr/local/bin/
       - name: Set Up Ccache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/ccache
           key: ccache-${{github.workflow}}-${{github.job}}-git-${{github.sha}}
@@ -425,7 +425,7 @@ jobs:
 #    runs-on: macos-latest
 #    steps:
 #      - name: Clone
-#        uses: actions/checkout@v4
+#        uses: actions/checkout@v6
 #        with:
 #          submodules: true
 #      - name: Dependencies
@@ -458,7 +458,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
       - name: Setup
@@ -479,7 +479,7 @@ jobs:
           sudo chmod +x /usr/bin/clang-tidy-cache
           mkdir -p ~/.cache/ctcache
       - name: Set Up Ccache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache
           key: ccache-${{github.workflow}}-${{github.job}}-git-${{github.sha}}
@@ -528,11 +528,11 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@v4
         with:
           languages: cpp
           queries: +security-and-quality
@@ -555,7 +555,7 @@ jobs:
         run: |
           cmake --build ${{runner.workspace}}/build-ci-codeql --parallel ${{env.NPROCS}}
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+        uses: github/codeql-action/analyze@v4
         with:
           category: "/language:cpp"
           upload: False
@@ -568,7 +568,7 @@ jobs:
           input: sarif-results/cpp.sarif
           output: sarif-results/cpp.sarif
       - name: Upload CodeQL sarif
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: sarif-results/cpp.sarif
   Lint-codespell:
@@ -576,11 +576,11 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: false
       - name: Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.10'
       - name: Dependencies
@@ -600,7 +600,7 @@ jobs:
           E4S_MACHINE: true
     steps:
       - name: Clone
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
       - name: Test

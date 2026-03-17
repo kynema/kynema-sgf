@@ -3,7 +3,7 @@
 #include "amr-wind/mesh_mapping_models/ChannelFlowMap.H"
 
 #include "AMReX_ParmParse.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -21,10 +21,10 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real eval_fac(
                ? 1.0_rt
                : (beta *
                   (1.0_rt -
-                   std::pow(
+                   utils::powi(
                        std::tanh(
                            beta * (1.0_rt - 2.0_rt * (x - prob_lo) / len)),
-                       2.0_rt)) /
+                       2)) /
                   std::tanh(beta));
 }
 

@@ -122,7 +122,7 @@ as initial conditions and discretization options.
 
    When present, this parameter contains list of sections to be read with
    specific post-postprocessing actions. Currently, the code supports
-   :ref:`Sampling <inputs_sampling>`, :ref:`KineticEnergy <inputs_ke>`,
+   :ref:`Sampling <inputs_sampling>`, :ref:`Subvolume <inputs_subvolume>`, :ref:`KineticEnergy <inputs_ke>`,
    :ref:`Enstrophy <inputs_enst>` and :ref:`Averaging <inputs_averaging>`.
    Post-processing routines have a shared set of output parameters,
    which are detailed :ref:`here <inputs_post_processing>`.

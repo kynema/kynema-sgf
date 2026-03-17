@@ -2,7 +2,7 @@
 #include "amr-wind/utilities/linear_interpolation.H"
 #include "AMReX_Print.H"
 #include "AMReX_ParmParse.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 // WORKAROUND
 #include <fstream>
@@ -159,9 +159,8 @@ void ABLMesoscaleForcing::indirect_forcing_init()
             for (int iht = 0; iht < m_nht; iht++) {
                 zTz(irow, icol) =
                     zTz(irow, icol) +
-                    (m_W[iht] * std::pow(
-                                    m_zht[iht] * m_scaleFact,
-                                    static_cast<amrex::Real>(icol + irow)));
+                    (m_W[iht] *
+                     utils::powi(m_zht[iht] * m_scaleFact, (icol + irow)));
             }
             // amrex::Print()<< "Z^T W Z ["<<irow<<","<<icol<<"] : " <<
             // zTz(irow,icol) << std::endl;
