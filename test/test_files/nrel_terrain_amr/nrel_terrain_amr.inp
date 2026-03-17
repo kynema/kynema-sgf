@@ -91,7 +91,7 @@ nodal_proj.num_post_smooth                       = 8
 #temperature_diffusion.mg_atol                    = 1.0e-14
 nodal_proj.maxiter                       = 360
 #io
-io.restart_file                          = "../nrel_precursor/chk00005"
+io.restart_file                          = "../nrel_precursor/chk00003"
 
 tagging.labels = g1
 tagging.g1.type = GeometryRefinement

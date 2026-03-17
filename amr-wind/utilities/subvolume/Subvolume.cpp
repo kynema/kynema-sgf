@@ -171,19 +171,31 @@ void Subvolume::output_actions()
         amrex::DistributionMapping dm(ba);
         amrex::MultiFab mf_sv(ba, dm, n_out, 0);
 
+        amrex::MultiFab mf_all_samelev(
+            m_sim.mesh().boxArray(lev), m_sim.mesh().DistributionMap(lev),
+            n_out, 0);
+
         int icomp = 0;
         for (auto* fld : m_fields) {
-            mf_sv.ParallelCopy((*fld)(lev), 0, icomp, fld->num_comp(), 0, 0);
-        }
-        for (auto* fld : m_int_fields) {
-            mf_sv.ParallelCopy(
-                amrex::ToMultiFab((*fld)(lev)), 0, icomp, fld->num_comp(), 0,
-                0);
+            amrex::MultiFab::Copy(
+                mf_all_samelev, (*fld)(lev), 0, icomp, fld->num_comp(), 0);
             icomp += fld->num_comp();
         }
-        if (m_ndcomp > 0) {
-            mf_sv.ParallelCopy((*scr_ptr)(lev), 0, icomp, m_ndcomp, 0, 0);
+
+        for (auto* fld : m_int_fields) {
+            amrex::MultiFab::Copy(
+                mf_all_samelev, amrex::ToMultiFab((*fld)(lev)), 0, icomp,
+                fld->num_comp(), 0);
+            icomp += fld->num_comp();
         }
+
+        // Contribute derived quantities to mf_all_samelev
+        if (m_ndcomp > 0) {
+            amrex::MultiFab::Copy(
+                mf_all_samelev, (*scr_ptr)(lev), 0, icomp, m_ndcomp, 0);
+        }
+
+        mf_sv.ParallelCopy(mf_all_samelev, 0, 0, n_out, 0, 0);
 
         std::string sv_label = name + "_" + sv->label();
         std::string subvol_filename =

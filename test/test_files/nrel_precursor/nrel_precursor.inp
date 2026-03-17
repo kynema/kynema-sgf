@@ -13,7 +13,7 @@ time.initial_dt                          = 0.1
 time.fixed_dt                    = 0.1
 time.cfl                         = 0.9
 time.plot_interval                       = 5
-time.checkpoint_interval                         = 5
+time.checkpoint_interval                         = 3
 io.int_outputs = terrain_blank terrain_drag
 # incflo
 incflo.physics                   = ABL
