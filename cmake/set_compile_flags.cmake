@@ -22,7 +22,7 @@ target_compile_options(
   $<$<COMPILE_LANGUAGE:CXX>:${AMR_WIND_CXX_FLAGS}>)
 
 # Building on CUDA requires additional considerations
-if (AMR_WIND_ENABLE_CUDA)
+if (AMR_WIND_ENABLE_CUDA AND AMR_WIND_ENABLE_CUDA_RDC)
   set_target_properties(
     ${amr_wind_lib_name} PROPERTIES
     CUDA_SEPARABLE_COMPILATION ON)
