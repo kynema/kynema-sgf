@@ -32,6 +32,7 @@ transport.reference_temperature = 300.0
 turbulence.model = Smagorinsky
 Smagorinsky_coeffs.Cs = 0.135
 
+incflo.initial_iterations = 0
 
 incflo.physics = ABL
 ICNS.source_terms = BoussinesqBuoyancy CoriolisForcing ABLForcing
@@ -49,8 +50,7 @@ ABL.surface_roughness_z0 = 0.15
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
 #        ADAPTIVE MESH REFINEMENT       #
 #.......................................#
-# amr.n_cell              = 48 48 48    # Grid cells at coarsest AMRlevel
-amr.n_cell              = 128 128 128    # Grid cells at coarsest AMRlevel
+amr.n_cell              = 48 48 48    # Grid cells at coarsest AMRlevel
 amr.max_level           = 1           # Max AMR level in hierarchy
 amr.max_grid_size       = 8
 amr.n_error_buf         = 0
@@ -79,6 +79,6 @@ tagging.udf.type = GeometryRefinement
 tagging.udf.shapes = udf0
 tagging.udf.level  = 0
 tagging.udf.udf0.type = udf
-tagging.udf.udf0.udf = "x0 = 500.0; y0 = 500.0; z0 = 500.0; r1 = 200.0; r2 = 250.0; xp = x - x0; yp = y - y0; zp = z - z0; d2 = (xp^2 + yp^2 + zp^2); if((r1**2 <= d2) and (d2 <= r2^2), 1.0, 0.0)"
+tagging.udf.udf0.udf = "x0 = 500.0; y0 = 500.0; z0 = 500.0; r1 = 250.0; r2 = 300.0; xp = x - x0; yp = y - y0; zp = z - z0; d2 = (xp^2 + yp^2 + zp^2); if((r1**2 <= d2) and (d2 <= r2^2), 1.0, 0.0)"
 tagging.udf.udf0.box_lo = 0.0 0.0 0.0
 tagging.udf.udf0.box_hi = 1000.0 1000.0 500.0

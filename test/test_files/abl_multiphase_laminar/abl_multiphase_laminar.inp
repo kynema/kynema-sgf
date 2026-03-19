@@ -85,7 +85,7 @@ OceanWaves.Wave1.relax_zone_out_length=40.0
 ABL.bndry_file = "bndry_files"
 ABL.bndry_io_mode = 0
 ABL.bndry_planes = xlo
-ABL.bndry_output_start_time = 0.2
+ABL.bndry_output_start_time = 0.15
 ABL.bndry_var_names = velocity temperature vof density
 ABL.bndry_output_format = native
 

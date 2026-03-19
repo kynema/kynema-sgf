@@ -49,7 +49,7 @@ ABL.surface_roughness_z0 = 0.01
 ABL.bndry_file = "bndry_files"
 ABL.bndry_io_mode = 0
 ABL.bndry_planes = ylo xlo
-ABL.bndry_output_start_time = 2.0
+ABL.bndry_output_start_time = 1.5
 ABL.bndry_var_names = velocity temperature
 ABL.bndry_output_format = native
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
