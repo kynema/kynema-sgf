@@ -334,20 +334,27 @@ void build_turbine(
           {0., 0., 0., hub_inertia[4], hub_inertia[5], hub_inertia[2]}}});
 }
 
-int build_aero(
-    kynema::interfaces::TurbineInterfaceBuilder& builder, const YAML::Node wio)
+amrex::Vector<int> build_aero(
+    kynema::interfaces::TurbineInterfaceBuilder& builder,
+    const YAML::Node wio,
+    const bool do_tower_aero)
 {
     //--------------------------------------------------------------------------
     // Build Aerodynamics
     //--------------------------------------------------------------------------
 
+    auto airfoil_blade_map = std::vector{0UL, 0UL, 0UL};
+    if (do_tower_aero) {
+        airfoil_blade_map.emplace_back(1UL);
+    }
+
     auto& aero_builder = builder.Aerodynamics()
                              .EnableAero()
-                             .SetNumberOfAirfoils(1UL)
-                             .SetAirfoilToBladeMap(std::array{0UL, 0UL, 0UL});
+                             .SetNumberOfAirfoils(do_tower_aero ? 2UL : 1UL)
+                             .SetAirfoilToBladeMap(airfoil_blade_map);
 
     const auto& airfoil_io = wio["airfoils"];
-    auto aero_sections =
+    auto blade_aero_sections =
         std::vector<kynema::interfaces::components::AerodynamicSection>{};
     auto id = 0UL;
     for (const auto& af : airfoil_io) {
@@ -370,15 +377,44 @@ int build_aero(
                             .as<std::vector<amrex::Real>>();
         const auto cm = af["polars"][0]["re_sets"][0]["cm"]["values"]
                             .as<std::vector<amrex::Real>>();
-        aero_sections.emplace_back(
+        blade_aero_sections.emplace_back(
             id, s, chord, section_offset_x, section_offset_y,
             aerodynamic_center, twist, aoa, cl, cd, cm);
         ++id;
     }
 
-    aero_builder.SetAirfoilSections(0UL, aero_sections);
+    aero_builder.SetAirfoilSections(0UL, blade_aero_sections);
 
-    return (int)aero_sections.size();
+    // Tower airfoil sections (simple circular cylinder)
+    auto tower_aero_sections =
+        std::vector<kynema::interfaces::components::AerodynamicSection>{};
+    if (do_tower_aero) {
+        const auto& tower_os = wio["components"]["tower"]["outer_shape"];
+        const auto aoa = std::vector<double>{-180., 180.};
+        const auto cl = std::vector<double>{0., 0.};
+        const auto cm = std::vector<double>{0., 0.};
+        const auto twist = 0.0;
+        const auto section_offset_x = 0.0;
+        const auto section_offset_y = 0.0;
+        const auto aerodynamic_center = 0.5;
+        id = 0UL;
+        for (const auto& chord :
+             tower_os["outer_diameter"]["values"].as<std::vector<double>>()) {
+            const auto s = tower_os["outer_diameter"]["grid"]
+                               .as<std::vector<double>>()[id];
+            const auto cd =
+                tower_os["cd"]["values"].as<std::vector<double>>()[id];
+            tower_aero_sections.emplace_back(
+                id, s, chord, section_offset_x, section_offset_y,
+                aerodynamic_center, twist, aoa, cl, std::vector<double>{cd, cd},
+                cm);
+            ++id;
+        }
+        aero_builder.SetAirfoilSections(1UL, tower_aero_sections);
+    }
+
+    return amrex::Vector<int>{
+        (int)blade_aero_sections.size(), (int)tower_aero_sections.size()};
 }
 
 void build_controller(
@@ -684,19 +720,27 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::ext_init_turbine(
         fi.rotational_speed, fi.generator_power, fi.wind_speed, fi.yaw,
         fi.generator_efficiency);
 
-    auto n_aero_sections = exw_kynema::build_aero(builder, wio);
+    auto n_aero_sections =
+        exw_kynema::build_aero(builder, wio, (fi.num_pts_tower != 0));
 
-    if (n_aero_sections != fi.num_pts_blade) {
+    if (n_aero_sections[0] != fi.num_pts_blade) {
         amrex::Abort(
             "KynemaIface: number of points per blade (from AMR-Wind input "
-            "file) does not match number of aerodynamic sections per blade "
-            "(from Kynema input file).");
+            "file: " +
+            std::to_string(fi.num_pts_blade) +
+            ") does not match number of aerodynamic sections per blade (from "
+            "Kynema input file: " +
+            std::to_string(n_aero_sections[0]) + ").");
     }
 
-    if (fi.num_pts_tower != 0) {
+    if (n_aero_sections[1] != fi.num_pts_tower) {
         amrex::Abort(
-            "KynemaIface: aerodynamic tower points not yet supported; number "
-            "of tower points in input file must be 0.");
+            "KynemaIface: number of tower points (from AMR-Wind input "
+            "file: " +
+            std::to_string(fi.num_pts_tower) +
+            ") does not match number of aerodynamic tower sections (from "
+            "Kynema input file: " +
+            std::to_string(n_aero_sections[1]) + ").");
     }
 
     if (fi.controller_input_file.size() > 0) {
