@@ -67,7 +67,7 @@ struct KynemaTurbine : public ext_turb::ExternalTurbine
         buffer_sv[2 * length_force(0)] =
             interface->Turbine().hub_node.velocity[2];
 
-        // Get blade information
+        // Get blade and tower information
         int idx = 0;
         for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
             // Skip hub node
