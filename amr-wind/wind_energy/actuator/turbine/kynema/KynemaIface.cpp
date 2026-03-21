@@ -7,6 +7,7 @@
 #include "amr-wind/core/SimTime.H"
 #include "amr-wind/utilities/io_utils.H"
 #include "amr-wind/utilities/ncutils/nc_interface.H"
+#include "amr-wind/utilities/linear_interpolation.H"
 
 #include "AMReX.H"
 #include "AMReX_ParmParse.H"
@@ -397,13 +398,21 @@ amrex::Vector<int> build_aero(
         const auto section_offset_x = 0.0;
         const auto section_offset_y = 0.0;
         const auto aerodynamic_center = 0.5;
+        auto cd_vec = tower_os["cd"]["values"].as<std::vector<double>>();
+        auto s_cd = tower_os["cd"]["grid"].as<std::vector<double>>();
+        if (tower_os.size() != tower_os["outer_diameter"]["values"]
+                                   .as<std::vector<double>>()
+                                   .size()) {
+            amrex::Print() << "WARNING: number of tower aero sections does not "
+                              "match number of cd tower data. Linearly "
+                              "interpolating cd to tower aero sections.\n";
+        }
         id = 0UL;
         for (const auto& chord :
              tower_os["outer_diameter"]["values"].as<std::vector<double>>()) {
             const auto s = tower_os["outer_diameter"]["grid"]
                                .as<std::vector<double>>()[id];
-            const auto cd =
-                tower_os["cd"]["values"].as<std::vector<double>>()[id];
+            const auto cd = ::amr_wind::interp::linear(s_cd, cd_vec, s);
             tower_aero_sections.emplace_back(
                 id, s, chord, section_offset_x, section_offset_y,
                 aerodynamic_center, twist, aoa, cl, std::vector<double>{cd, cd},
