@@ -72,8 +72,6 @@ struct KynemaTurbine : public ext_turb::ExternalTurbine
         for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
             // Skip hub node
             ++idx;
-            // Fluid velocity (fv) is not populated here, it comes from the
-            // CFD solver. Need to add step to pass it from buffer to Kynema
             for (int n = 1; n < length_force(0); ++n) {
                 if (dir == 0) {
                     buffer_cf[n] = (float)interface->Aerodynamics()
