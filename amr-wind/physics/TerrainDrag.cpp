@@ -142,7 +142,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
     auto levelz0 = terrainz0.arrays();
     auto levelheight = terrain_height.arrays();
     auto levelDamping = damping.arrays();
-    //!
+    
     amrex::ParallelFor(
         blanking, m_terrain_blank.num_grow(),
         [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
@@ -175,7 +175,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
             }
         });
     amrex::Gpu::streamSynchronize();
-    //!
+
     // Lateral East
     const amrex::Real horizontal_tau = m_horizontal_tau;
     const amrex::Real horizontal_abl_height = m_horizontal_abl_height;

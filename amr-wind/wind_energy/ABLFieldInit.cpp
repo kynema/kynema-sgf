@@ -256,9 +256,9 @@ void ABLFieldInit::operator()(
         const amrex::Real* vv = m_prof_v_d.data();
         const bool terrain_aligned_profile = m_terrain_aligned_profile;
         amrex::ParallelFor(vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-            amrex::Real x = problo[0] + ((i + 0.5_rt)) * dx[0];
-            amrex::Real y = problo[1] + ((j + 0.5_rt)) * dx[1];
-            amrex::Real z = problo[2] + ((k + 0.5_rt)) * dx[2];
+            amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+            amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+            amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
             const amrex::Real terrainHt =
                 terrain_aligned_profile
                     ? interp::bilinear(
