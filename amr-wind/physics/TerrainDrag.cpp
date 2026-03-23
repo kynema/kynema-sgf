@@ -214,7 +214,8 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 horizontal_coeff_east = 1.0_rt;
             } else {
                 const amrex::Real term = std::sin(
-                    M_PI * 0.5_rt * (x - damping_east_start) /
+                    std::numbers::pi_v<amrex::Real> * 0.5_rt *
+                    (x - damping_east_start) /
                     (damping_east_end - damping_east_start));
                 horizontal_coeff_east = term * term;
             }
@@ -224,7 +225,8 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 horizontal_coeff_west = 1.0_rt;
             } else {
                 const amrex::Real term = std::sin(
-                    M_PI * 0.5_rt * (x - damping_west_start) /
+                    std::numbers::pi_v<amrex::Real> * 0.5_rt *
+                    (x - damping_west_start) /
                     (damping_west_end - damping_west_start));
                 horizontal_coeff_west = term * term;
             }
@@ -234,7 +236,8 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 horizontal_coeff_north = 1.0_rt;
             } else {
                 const amrex::Real term = std::sin(
-                    M_PI * 0.5_rt * (y - damping_north_start) /
+                    std::numbers::pi_v<amrex::Real> * 0.5_rt *
+                    (y - damping_north_start) /
                     (damping_north_end - damping_north_start));
                 horizontal_coeff_north = term * term;
             }
@@ -244,7 +247,8 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 horizontal_coeff_south = 1.0_rt;
             } else {
                 const amrex::Real term = std::sin(
-                    M_PI * 0.5_rt * (y - damping_south_start) /
+                    std::numbers::pi_v<amrex::Real> * 0.5_rt *
+                    (y - damping_south_start) /
                     (damping_south_end - damping_south_start));
                 horizontal_coeff_south = term * term;
             }
@@ -254,7 +258,8 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 vertical_coeff = 1.0_rt;
             } else {
                 const amrex::Real term = std::sin(
-                    M_PI * 0.5_rt * (z - horizontal_abl_height) /
+                    std::numbers::pi_v<amrex::Real> * 0.5_rt *
+                    (z - horizontal_abl_height) /
                     (z_sloped - horizontal_abl_height));
                 vertical_coeff = term * term;
             }
@@ -269,7 +274,8 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 vertical_coeff = 1.0_rt;
             } else {
                 const amrex::Real term = std::sin(
-                    M_PI * 0.5_rt * (z - vertical_slope) /
+                    std::numbers::pi_v<amrex::Real> * 0.5_rt *
+                    (z - vertical_slope) /
                     (vertical_full - vertical_slope + 1e-15_rt));
                 vertical_coeff = term * term;
             }

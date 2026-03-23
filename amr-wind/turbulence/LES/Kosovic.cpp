@@ -35,11 +35,11 @@ Kosovic<Transport>::Kosovic(CFDSim& sim)
     m_C2 = m_C1;
     pp.query("surfaceRANS", m_surfaceRANS);
     if (m_surfaceRANS) {
-        m_surfaceFactor = 1;
+        m_surfaceFactor = 1.0_rt;
         pp.query("switchLoc", m_switchLoc);
         pp.query("surfaceRANSExp", m_surfaceRANSExp);
     } else {
-        m_surfaceFactor = 0;
+        m_surfaceFactor = 0.0_rt;
     }
     pp.query("writeTerms", m_writeTerms);
     if (m_writeTerms) {
@@ -69,7 +69,8 @@ void Kosovic<Transport>::update_turbulent_viscosity(
     const auto& den = m_rho.state(fstate);
     auto gradT = (this->m_sim.repo()).create_scratch_field(3, 0);
     fvm::gradient(*gradT, m_theta.state(fstate));
-    const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> gravity{0, 0, -9.81};
+    const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> gravity{
+        0.0_rt, 0.0_rt, -9.81_rt};
     const auto& geom_vec = repo.mesh().Geom();
     const amrex::Real Cs_sqr = this->m_Cs * this->m_Cs;
     const bool has_terrain =
@@ -128,8 +129,8 @@ void Kosovic<Transport>::update_turbulent_viscosity(
         const amrex::Real non_neutral_neighbour =
             (m_wall_het_model == "mol")
                 ? MOData::calc_psi_m(
-                      1.5 * dz / monin_obukhov_length, m_beta_m, m_gamma_m)
-                : 0.0;
+                      1.5_rt * dz / monin_obukhov_length, m_beta_m, m_gamma_m)
+                : 0.0_rt;
         const amrex::Real T0 = m_ref_temp;
         amrex::ParallelFor(
             mu_turb(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
@@ -159,19 +160,21 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                      (std::pow(1.0_rt - fmu, locSurfaceRANSExp) * smag_factor +
                       std::pow(fmu, locSurfaceRANSExp) * ransL)) +
                     ((1.0_rt - locSurfaceFactor) * smag_factor);
-                const amrex::Real blankTerrain =
-                    (has_terrain) ? 1 - blank_arrs[nbx](i, j, k, 0) : 1.0;
+                const amrex::Real blankTerrain = static_cast<amrex::Real>(
+                    (has_terrain) ? 1 - blank_arrs[nbx](i, j, k, 0) : 1);
                 amrex::Real mut = mu_arrs[nbx](i, j, k);
                 amrex::Real stratification =
                     -(gradT_arrs[nbx](i, j, k, 0) * gravity[0] +
                       gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
                       gradT_arrs[nbx](i, j, k, 2) * gravity[2]) /
                     T0;
-                amrex::Real non_linear_coeff = 1.0;
-                if (stratification > 1e-10) {
+                amrex::Real non_linear_coeff = 1.0_rt;
+                if (stratification > 1e-10_rt) {
                     stratification = std::sqrt(
-                        std::max(1e-10, mut * mut - 3.0 * stratification));
-                    non_linear_coeff = (stratification < 1e-10) ? 0 : 1;
+                        std::max(
+                            1e-10_rt, mut * mut - 3.0_rt * stratification));
+                    non_linear_coeff =
+                        (stratification < 1e-10_rt) ? 0.0_rt : 1.0_rt;
                 } else {
                     stratification = mut;
                 }
@@ -206,10 +209,10 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                     (drag * mut_loglaw);
                 amrex::Real stressScale =
                     locSurfaceFactor *
-                        (std::pow(1 - fmu, locSurfaceRANSExp) * smag_factor *
-                             0.25 * locC1 +
+                        (std::pow(1.0_rt - fmu, locSurfaceRANSExp) *
+                             smag_factor * 0.25_rt * locC1 +
                          std::pow(fmu, locSurfaceRANSExp) * ransL) +
-                    (1 - locSurfaceFactor) * smag_factor * 0.25 * locC1;
+                    (1.0_rt - locSurfaceFactor) * smag_factor * 0.25_rt * locC1;
                 divNij_arrs[nbx](i, j, k, 0) *= rho * stressScale * turnOff *
                                                 blankTerrain * non_linear_coeff;
                 divNij_arrs[nbx](i, j, k, 1) *= rho * stressScale * turnOff *

@@ -443,7 +443,7 @@ void ABLFieldInit::init_tke(
                               xterrain_ptr, xterrain_ptr + xterrain_size,
                               yterrain_ptr, yterrain_ptr + yterrain_size,
                               zterrain_ptr, x, y)
-                        : 0.0;
+                        : 0.0_rt;
                 z = std::max(0.1_rt, z - terrainHt);
                 const amrex::Real tke_prof =
                     (nwvals > 0)

@@ -35,12 +35,12 @@ private:
     Field& m_buoy_prod;
     Field& m_dissip;
     Field& m_tke;
-    amrex::Real m_Cmu{0.556};
-    amrex::Real m_heat_flux{0.0};
-    amrex::Real m_z0{0.1};
-    amrex::Real m_kappa{0.41};
-    amrex::Real m_meso_start{600};
-    amrex::Vector<amrex::Real> m_gravity{0.0, 0.0, -9.81};
+    amrex::Real m_Cmu{0.556_rt};
+    amrex::Real m_heat_flux{0.0_rt};
+    amrex::Real m_z0{0.1_rt};
+    amrex::Real m_kappa{0.41_rt};
+    amrex::Real m_meso_start{600.0_rt};
+    amrex::Vector<amrex::Real> m_gravity{0.0, 0.0, -9.81_rt};
     const SimTime& m_time;
     const CFDSim& m_sim;
     const amrex::AmrCore& m_mesh;
@@ -56,19 +56,19 @@ private:
     //! Reference temperature
     std::unique_ptr<ScratchField> m_ref_theta;
     bool m_horizontal_sponge{false};
-    amrex::Real m_sponge_strength{1.0};
-    amrex::Real m_sponge_distance_west{-1000};
-    amrex::Real m_sponge_distance_east{1000};
-    amrex::Real m_sponge_distance_south{-1000};
-    amrex::Real m_sponge_distance_north{1000};
+    amrex::Real m_sponge_strength{1.0_rt};
+    amrex::Real m_sponge_distance_west{-1000.0_rt};
+    amrex::Real m_sponge_distance_east{1000.0_rt};
+    amrex::Real m_sponge_distance_south{-1000.0_rt};
+    amrex::Real m_sponge_distance_north{1000.0_rt};
     int m_sponge_west{0};
     int m_sponge_east{1};
     int m_sponge_south{0};
     int m_sponge_north{1};
     std::string m_wall_het_model{"none"};
     amrex::Real m_monin_obukhov_length{constants::LARGE_NUM};
-    amrex::Real m_gamma_m{5.0};
-    amrex::Real m_beta_m{16.0};
+    amrex::Real m_gamma_m{5.0_rt};
+    amrex::Real m_beta_m{16.0_rt};
 };
 
 } // namespace amr_wind::pde::tke

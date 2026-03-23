@@ -114,10 +114,10 @@ void KransAxell::operator()(
     const auto* tke_values_d = m_tke_values_d.data();
     const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> gravity{
         m_gravity[0], m_gravity[1], m_gravity[2]};
-    amrex::Real psi_m = 0.0;
+    amrex::Real psi_m = 0.0_rt;
     if (m_wall_het_model == "mol") {
         psi_m = MOData::calc_psi_m(
-            1.5 * dx[2] / m_monin_obukhov_length, m_beta_m, m_gamma_m);
+            1.5_rt * dx[2] / m_monin_obukhov_length, m_beta_m, m_gamma_m);
     }
     amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         amrex::Real bcforcing = 0;
@@ -127,7 +127,7 @@ void KransAxell::operator()(
             const amrex::Real uy = vel(i, j, k + 1, 1);
             const amrex::Real m = std::sqrt(ux * ux + uy * uy);
             const amrex::Real ustar =
-                m * kappa / (std::log(3 * z / z0) - psi_m);
+                m * kappa / (std::log(3.0_rt * z / z0) - psi_m);
             const amrex::Real T0 = ref_theta_arr(i, j, k);
             const amrex::Real hf = std::abs(gravity[2]) / T0 * heat_flux;
             const amrex::Real rans_b =
@@ -155,7 +155,7 @@ void KransAxell::operator()(
             (1 - static_cast<int>(has_terrain)) * (sponge_forcing - bcforcing);
     });
     if (has_terrain) {
-        const amrex::Real z0_min = 1e-4;
+        const amrex::Real z0_min = 1e-4_rt;
         const auto* const m_terrain_blank =
             &this->m_sim.repo().get_int_field("terrain_blank");
         const auto* const m_terrain_drag =
