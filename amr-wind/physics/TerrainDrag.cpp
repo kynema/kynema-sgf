@@ -199,62 +199,62 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
     const amrex::Real damping_south_end = prob_lo[1] + m_damp_south_full;
     amrex::ParallelFor(
         damping, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
-            amrex::Real horizontal_coeff_east = 0.0;
-            amrex::Real horizontal_coeff_north = 0.0;
-            amrex::Real horizontal_coeff_west = 0.0;
-            amrex::Real horizontal_coeff_south = 0.0;
-            amrex::Real vertical_coeff = 0;
-            const amrex::Real x = prob_lo[0] + (i + 0.5) * dx[0];
-            const amrex::Real y = prob_lo[1] + (j + 0.5) * dx[1];
-            const amrex::Real z = prob_lo[2] + (k + 0.5) * dx[2];
-            levelDamping[nbx](i, j, k, 0) = 0.0;
+            amrex::Real horizontal_coeff_east = 0.0_rt;
+            amrex::Real horizontal_coeff_north = 0.0_rt;
+            amrex::Real horizontal_coeff_west = 0.0_rt;
+            amrex::Real horizontal_coeff_south = 0.0_rt;
+            amrex::Real vertical_coeff = 0.0_rt;
+            const amrex::Real x = prob_lo[0] + (i + 0.5_rt) * dx[0];
+            const amrex::Real y = prob_lo[1] + (j + 0.5_rt) * dx[1];
+            const amrex::Real z = prob_lo[2] + (k + 0.5_rt) * dx[2];
+            levelDamping[nbx](i, j, k, 0) = 0.0_rt;
             if (x < damping_east_start) {
-                horizontal_coeff_east = 0.0;
+                horizontal_coeff_east = 0.0_rt;
             } else if (x >= damping_east_end) {
-                horizontal_coeff_east = 1.0;
+                horizontal_coeff_east = 1.0_rt;
             } else {
                 const amrex::Real term = std::sin(
-                    M_PI * 0.5 * (x - damping_east_start) /
+                    M_PI * 0.5_rt * (x - damping_east_start) /
                     (damping_east_end - damping_east_start));
                 horizontal_coeff_east = term * term;
             }
             if (x > damping_west_start) {
-                horizontal_coeff_west = 0.0;
+                horizontal_coeff_west = 0.0_rt;
             } else if (x <= damping_west_end) {
-                horizontal_coeff_west = 1.0;
+                horizontal_coeff_west = 1.0_rt;
             } else {
                 const amrex::Real term = std::sin(
-                    M_PI * 0.5 * (x - damping_west_start) /
+                    M_PI * 0.5_rt * (x - damping_west_start) /
                     (damping_west_end - damping_west_start));
                 horizontal_coeff_west = term * term;
             }
             if (y < damping_north_start) {
-                horizontal_coeff_north = 0.0;
+                horizontal_coeff_north = 0.0_rt;
             } else if (y >= damping_north_end) {
-                horizontal_coeff_north = 1.0;
+                horizontal_coeff_north = 1.0_rt;
             } else {
                 const amrex::Real term = std::sin(
-                    M_PI * 0.5 * (y - damping_north_start) /
+                    M_PI * 0.5_rt * (y - damping_north_start) /
                     (damping_north_end - damping_north_start));
                 horizontal_coeff_north = term * term;
             }
             if (y > damping_south_start) {
-                horizontal_coeff_south = 0.0;
+                horizontal_coeff_south = 0.0_rt;
             } else if (y <= damping_south_end) {
-                horizontal_coeff_south = 1.0;
+                horizontal_coeff_south = 1.0_rt;
             } else {
                 const amrex::Real term = std::sin(
-                    M_PI * 0.5 * (y - damping_south_start) /
+                    M_PI * 0.5_rt * (y - damping_south_start) /
                     (damping_south_end - damping_south_start));
                 horizontal_coeff_south = term * term;
             }
             if (z <= horizontal_abl_height) {
-                vertical_coeff = 0.0;
+                vertical_coeff = 0.0_rt;
             } else if (z > z_sloped) {
-                vertical_coeff = 1.0;
+                vertical_coeff = 1.0_rt;
             } else {
                 const amrex::Real term = std::sin(
-                    M_PI * 0.5 * (z - horizontal_abl_height) /
+                    M_PI * 0.5_rt * (z - horizontal_abl_height) /
                     (z_sloped - horizontal_abl_height));
                 vertical_coeff = term * term;
             }
@@ -264,17 +264,18 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                  horizontal_coeff_west + horizontal_coeff_south);
             //! Add the full vertical
             if (z <= vertical_slope) {
-                vertical_coeff = 0.0;
+                vertical_coeff = 0.0_rt;
             } else if (z > vertical_full) {
-                vertical_coeff = 1.0;
+                vertical_coeff = 1.0_rt;
             } else {
                 const amrex::Real term = std::sin(
-                    M_PI * 0.5 * (z - vertical_slope) /
-                    (vertical_full - vertical_slope + 1e-15));
+                    M_PI * 0.5_rt * (z - vertical_slope) /
+                    (vertical_full - vertical_slope + 1e-15_rt));
                 vertical_coeff = term * term;
             }
             levelDamping[nbx](i, j, k, 0) =
-                std::min(vertical_coeff + levelDamping[nbx](i, j, k, 0), 1.0) /
+                std::min<amrex::Real>(
+                    vertical_coeff + levelDamping[nbx](i, j, k, 0), 1.0_rt) /
                 horizontal_tau;
         });
 }

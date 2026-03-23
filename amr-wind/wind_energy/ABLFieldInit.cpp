@@ -265,7 +265,7 @@ void ABLFieldInit::operator()(
                           xterrain_ptr, xterrain_ptr + xterrain_size,
                           yterrain_ptr, yterrain_ptr + yterrain_size,
                           zterrain_ptr, x, y)
-                    : 0.0;
+                    : 0.0_rt;
             z = std::max(0.1_rt, z - terrainHt);
             density(i, j, k) = rho_init;
             const amrex::Real theta =
@@ -444,7 +444,7 @@ void ABLFieldInit::init_tke(
                               yterrain_ptr, yterrain_ptr + yterrain_size,
                               zterrain_ptr, x, y)
                         : 0.0;
-                z = std::max(0.1, z - terrainHt);
+                z = std::max(0.1_rt, z - terrainHt);
                 const amrex::Real tke_prof =
                     (nwvals > 0)
                         ? interp::linear(windh, windh + nwvals, tke_data, z)
