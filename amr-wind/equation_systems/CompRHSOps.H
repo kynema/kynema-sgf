@@ -95,8 +95,7 @@ struct ComputeRHSOp
                 // in solver
                 amrex::ParallelFor(
                     field(lev), amrex::IntVect(0), PDE::ndim,
-                    [=] AMREX_GPU_DEVICE(
-                        int nbx, int i, int j, int k, int n) noexcept {
+                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                         amrex::Real det_j =
                             mesh_mapping ? (detJ_arrs[nbx](i, j, k)) : 1.0_rt;
 
@@ -119,8 +118,7 @@ struct ComputeRHSOp
             } else {
                 amrex::ParallelFor(
                     field(lev), amrex::IntVect(0), PDE::ndim,
-                    [=] AMREX_GPU_DEVICE(
-                        int nbx, int i, int j, int k, int n) noexcept {
+                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                         amrex::Real det_j =
                             mesh_mapping ? (detJ_arrs[nbx](i, j, k)) : 1.0_rt;
 
@@ -217,8 +215,7 @@ struct ComputeRHSOp
                 // in solver
                 amrex::ParallelFor(
                     field(lev), amrex::IntVect(0), PDE::ndim,
-                    [=] AMREX_GPU_DEVICE(
-                        int nbx, int i, int j, int k, int n) noexcept {
+                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                         amrex::Real det_j =
                             mesh_mapping ? (detJ_arrs[nbx](i, j, k)) : 1.0_rt;
 
@@ -243,8 +240,7 @@ struct ComputeRHSOp
             } else {
                 amrex::ParallelFor(
                     field(lev), amrex::IntVect(0), PDE::ndim,
-                    [=] AMREX_GPU_DEVICE(
-                        int nbx, int i, int j, int k, int n) noexcept {
+                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                         amrex::Real det_j =
                             mesh_mapping ? (detJ_arrs[nbx](i, j, k)) : 1.0_rt;
 
@@ -291,8 +287,7 @@ struct ComputeRHSOp
 
             amrex::ParallelFor(
                 dof(lev), amrex::IntVect(0), dof.num_comp(),
-                [=] AMREX_GPU_DEVICE(
-                    int nbx, int i, int j, int k, int n) noexcept {
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                     auto factor =
                         0.5_rt * dt * (amrex::Real)mask_arrs[nbx](i, j, k);
                     if (PDE::multiply_rho) {

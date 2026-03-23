@@ -1,5 +1,5 @@
-#ifndef FieldPlaneAveraging_H
-#define FieldPlaneAveraging_H
+#ifndef FIELDPLANEAVERAGING_H
+#define FIELDPLANEAVERAGING_H
 
 #include "amr-wind/utilities/DirectionSelector.H"
 #include "amr-wind/CFDSim.H"
@@ -47,16 +47,19 @@ public:
     virtual void operator()();
 
     /** evaluate line average at specific location for any average component */
-    amrex::Real line_average_interpolated(amrex::Real x, int comp) const;
+    [[nodiscard]] amrex::Real
+    line_average_interpolated(amrex::Real x, int comp) const;
     /** evaluate line average at specific cell for any average component */
-    amrex::Real line_average_cell(int ind, int comp) const;
+    [[nodiscard]] amrex::Real line_average_cell(int ind, int comp) const;
 
     /** evaluate line average derivative at specific location for any average
         component */
-    amrex::Real line_derivative_interpolated(amrex::Real x, int comp) const;
+    [[nodiscard]] amrex::Real
+    line_derivative_interpolated(amrex::Real x, int comp) const;
     /** evaluate derivative of a line average at specific cell for any component
      */
-    amrex::Real line_derivative_of_average_cell(int ind, int comp) const;
+    [[nodiscard]] amrex::Real
+    line_derivative_of_average_cell(int ind, int comp) const;
 
     void output_line_average_ascii(
         const std::string& filename, int step, amrex::Real time);
@@ -65,31 +68,34 @@ public:
     /** change precision of text file output */
     void set_precision(int p) { m_precision = p; };
 
-    amrex::Real dx() const { return m_dx; };
-    amrex::Real xlo() const { return m_xlo; };
+    [[nodiscard]] amrex::Real dx() const { return m_dx; };
+    [[nodiscard]] amrex::Real xlo() const { return m_xlo; };
 
-    int axis() const { return m_axis; };
-    int level() const { return m_level; };
-    int ncomp() const { return m_ncomp; };
-    int ncell_plane() const { return m_ncell_plane; };
-    int ncell_line() const { return m_ncell_line; };
-    int last_updated_index() const { return m_last_updated_index; };
+    [[nodiscard]] int axis() const { return m_axis; };
+    [[nodiscard]] int level() const { return m_level; };
+    [[nodiscard]] int ncomp() const { return m_ncomp; };
+    [[nodiscard]] int ncell_plane() const { return m_ncell_plane; };
+    [[nodiscard]] int ncell_line() const { return m_ncell_line; };
+    [[nodiscard]] int last_updated_index() const
+    {
+        return m_last_updated_index;
+    };
 
-    const amrex::Vector<amrex::Real>& line_average() const
+    [[nodiscard]] const amrex::Vector<amrex::Real>& line_average() const
     {
         return m_line_average;
     };
-    const amrex::Vector<amrex::Real>& line_deriv() const
+    [[nodiscard]] const amrex::Vector<amrex::Real>& line_deriv() const
     {
         return m_line_deriv;
     };
     void line_average(int comp, amrex::Vector<amrex::Real>& l_vec);
-    const amrex::Vector<amrex::Real>& line_centroids() const
+    [[nodiscard]] const amrex::Vector<amrex::Real>& line_centroids() const
     {
         return m_line_xcentroid;
     };
 
-    const FType& field() const { return m_field; };
+    [[nodiscard]] const FType& field() const { return m_field; };
 
 protected:
     int m_ncomp; /** number of average components */
@@ -157,8 +163,8 @@ public: // public for GPU
     template <typename IndexSelector>
     void compute_hvelmag_averages(
         const IndexSelector& idx_op,
-        const int h1_idx,
-        const int h2_idx,
+        int h1_idx,
+        int h2_idx,
         const amrex::MultiFab& mfab);
 
     /** return vector containing horizontal velocity magnitude average */
@@ -169,19 +175,22 @@ public: // public for GPU
 
     /** evaluate line haverage at specific location for horizontal velocity
      * magnitude */
-    amrex::Real line_hvelmag_average_interpolated(amrex::Real x) const;
+    [[nodiscard]] amrex::Real
+    line_hvelmag_average_interpolated(amrex::Real x) const;
     /** evaluate line average at specific cell for horizontal velocity magnitude
      */
-    amrex::Real line_hvelmag_average_cell(int ind) const;
+    [[nodiscard]] amrex::Real line_hvelmag_average_cell(int ind) const;
 
     /** compute derivatives of horizontal velocity magnitude */
     void compute_line_hvelmag_derivatives();
     /** evaluate line average derivative at specific location for horizontal
        velocity magnitude */
-    amrex::Real line_hvelmag_derivative_interpolated(amrex::Real x) const;
+    [[nodiscard]] amrex::Real
+    line_hvelmag_derivative_interpolated(amrex::Real x) const;
     /** evaluate derivative of a line average at specific cell horizontal
        velocity magnitude */
-    amrex::Real line_hvelmag_derivative_of_average_cell(int ind) const;
+    [[nodiscard]] amrex::Real
+    line_hvelmag_derivative_of_average_cell(int ind) const;
 
     void output_line_average_ascii(
         const std::string& filename, int step, amrex::Real time);

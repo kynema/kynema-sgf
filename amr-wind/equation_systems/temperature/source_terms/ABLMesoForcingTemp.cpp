@@ -5,10 +5,9 @@
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 #include "amr-wind/utilities/index_operations.H"
 #include "amr-wind/utilities/linear_interpolation.H"
+#include "amr-wind/utilities/math_ops.H"
 #include "AMReX_ParmParse.H"
-#include "AMReX_Gpu.H"
 #include "AMReX_Print.H"
-#include <AMReX_REAL.H>
 #include <memory>
 
 using namespace amrex::literals;
@@ -152,7 +151,7 @@ amrex::Real ABLMesoForcingTemp::mean_temperature_heights(
                 ncfile->meso_times(), ncfile->meso_transition_height(),
                 currtime);
             amrex::Print() << "current transition height = "
-                           << m_transition_height << std::endl;
+                           << m_transition_height << '\n';
 
             set_transition_weighting();
             indirect_forcing_init();
@@ -166,9 +165,7 @@ amrex::Real ABLMesoForcingTemp::mean_temperature_heights(
 
             for (int ih = 0; ih < m_nht; ih++) {
                 ezP_T[i] = ezP_T[i] + (error_T[ih] * m_W[ih] *
-                                       std::pow(
-                                           m_zht[ih] * m_scaleFact,
-                                           static_cast<amrex::Real>(i)));
+                                       utils::powi(m_zht[ih] * m_scaleFact, i));
             }
         }
 
@@ -182,22 +179,21 @@ amrex::Real ABLMesoForcingTemp::mean_temperature_heights(
 
         if (m_debug) {
             amrex::Print() << "direct vs indirect temperature error profile"
-                           << std::endl;
+                           << '\n';
         }
         amrex::Vector<amrex::Real> error_T_direct(m_nht);
         for (int ih = 0; ih < m_nht; ih++) {
             error_T_direct[ih] = error_T[ih];
             error_T[ih] = 0.0_rt;
             for (int j = 0; j < 4; j++) {
-                error_T[ih] = error_T[ih] + (m_poly_coeff_theta[j] *
-                                             std::pow(
-                                                 m_zht[ih] * m_scaleFact,
-                                                 static_cast<amrex::Real>(j)));
+                error_T[ih] =
+                    error_T[ih] + (m_poly_coeff_theta[j] *
+                                   utils::powi(m_zht[ih] * m_scaleFact, j));
             }
 
             if (m_debug) {
                 amrex::Print() << m_zht[ih] << " " << error_T_direct[ih] << " "
-                               << error_T[ih] << std::endl;
+                               << error_T[ih] << '\n';
             }
         }
 
@@ -206,8 +202,7 @@ amrex::Real ABLMesoForcingTemp::mean_temperature_heights(
 
             if (m_debug) {
                 for (int ih = 0; ih < m_nht; ih++) {
-                    amrex::Print()
-                        << m_zht[ih] << " " << error_T[ih] << std::endl;
+                    amrex::Print() << m_zht[ih] << " " << error_T[ih] << '\n';
                 }
             }
         }
@@ -218,7 +213,7 @@ amrex::Real ABLMesoForcingTemp::mean_temperature_heights(
 
         if (m_debug) {
             for (int ih = 0; ih < m_nht; ih++) {
-                amrex::Print() << m_zht[ih] << " " << error_T[ih] << std::endl;
+                amrex::Print() << m_zht[ih] << " " << error_T[ih] << '\n';
             }
         }
     }
@@ -260,7 +255,7 @@ void ABLMesoForcingTemp::operator()(
 
     const int idir = (int)m_axis;
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         amrex::IntVect iv(i, j, k);
         const amrex::Real ht = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
         const amrex::Real theta_err = amr_wind::interp::linear(

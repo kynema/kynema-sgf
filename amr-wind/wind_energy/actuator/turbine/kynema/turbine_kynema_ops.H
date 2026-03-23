@@ -105,14 +105,14 @@ struct ReadInputsOp<TurbineKynema, SrcTrait>
 };
 
 template <>
-inline void determine_influenced_procs<TurbineKynema>(
+void determine_influenced_procs<TurbineKynema>(
     typename TurbineKynema::DataType& data)
 {
     external_determine_influenced_procs<TurbineKynema::DataType>(data);
 }
 
 template <>
-inline void determine_root_proc<TurbineKynema>(
+void determine_root_proc<TurbineKynema>(
     typename TurbineKynema::DataType& data, amrex::Vector<int>& act_proc_count)
 {
     external_determine_root_proc<

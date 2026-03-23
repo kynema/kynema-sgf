@@ -5,7 +5,7 @@
 #include "AMReX_ParmParse.H"
 #include "amr-wind/fvm/gradient.H"
 #include "amr-wind/core/field_ops.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -62,7 +62,7 @@ void ZalesakDisk::initialize_fields(int level, const amrex::Geometry& geom)
 
     amrex::ParallelFor(
         levelset, amrex::IntVect(1),
-        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
             const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
             const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
@@ -99,10 +99,9 @@ void ZalesakDisk::initialize_fields(int level, const amrex::Geometry& geom)
             const amrex::Real reduced_radius =
                 std::sqrt((radius * radius) - (hwidth * hwidth));
             const amrex::Real r_2D =
-                std::sqrt(std::pow(y - yc, 2.0_rt) + std::pow(z - zc, 2.0_rt));
+                std::sqrt(utils::powi(y - yc, 2) + utils::powi(z - zc, 2));
             const amrex::Real sd_r = -std::sqrt(
-                std::pow(r_2D - reduced_radius, 2.0_rt) +
-                std::pow(sd_x, 2.0_rt));
+                utils::powi(r_2D - reduced_radius, 2) + utils::powi(sd_x, 2));
 
             const bool in_slot_x_ymin =
                 y - yc > radius - depth && std::abs(x - xc) < hwidth;
@@ -164,7 +163,7 @@ void ZalesakDisk::pre_advance_work()
         const auto& wf_arrs = w_mac.arrays();
         amrex::ParallelFor(
             m_velocity(lev), amrex::IntVect(1),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
                 const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
 
@@ -197,7 +196,7 @@ void ZalesakDisk::post_advance_work()
         const auto& vel_arrs = m_velocity(lev).arrays();
         amrex::ParallelFor(
             m_velocity(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
                 const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
 

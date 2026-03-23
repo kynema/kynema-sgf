@@ -12,32 +12,20 @@ struct DTraits
 template <>
 struct DTraits<int>
 {
-    static constexpr int zero() noexcept { return 0; }
-    static constexpr int one() noexcept { return 1; }
-    static constexpr int max() noexcept
-    {
-        return std::numeric_limits<int>::max();
-    }
-    static constexpr int min() noexcept
-    {
-        return std::numeric_limits<int>::min();
-    }
+    static constexpr int zero() { return 0; }
+    static constexpr int one() { return 1; }
+    static constexpr int max() { return std::numeric_limits<int>::max(); }
+    static constexpr int min() { return std::numeric_limits<int>::min(); }
 };
 
 template <>
 struct DTraits<double>
 {
-    static constexpr double zero() noexcept { return 0.0; }
-    static constexpr double one() noexcept { return 1.0; }
-    static constexpr double max() noexcept
-    {
-        return std::numeric_limits<double>::max();
-    }
-    static constexpr double min() noexcept
-    {
-        return std::numeric_limits<double>::min();
-    }
-    static constexpr double eps() noexcept
+    static constexpr double zero() { return 0.0; }
+    static constexpr double one() { return 1.0; }
+    static constexpr double max() { return std::numeric_limits<double>::max(); }
+    static constexpr double min() { return std::numeric_limits<double>::min(); }
+    static constexpr double eps()
     {
         return std::numeric_limits<double>::epsilon();
     }
@@ -46,17 +34,11 @@ struct DTraits<double>
 template <>
 struct DTraits<float>
 {
-    static constexpr float zero() noexcept { return 0.0F; }
-    static constexpr float one() noexcept { return 1.0F; }
-    static constexpr float max() noexcept
-    {
-        return std::numeric_limits<float>::max();
-    }
-    static constexpr float min() noexcept
-    {
-        return std::numeric_limits<float>::min();
-    }
-    static constexpr float eps() noexcept
+    static constexpr float zero() { return 0.0F; }
+    static constexpr float one() { return 1.0F; }
+    static constexpr float max() { return std::numeric_limits<float>::max(); }
+    static constexpr float min() { return std::numeric_limits<float>::min(); }
+    static constexpr float eps()
     {
         return std::numeric_limits<float>::epsilon();
     }

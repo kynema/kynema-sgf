@@ -1,5 +1,5 @@
-#ifndef ChannelFlow_H
-#define ChannelFlow_H
+#ifndef CHANNELFLOW_H
+#define CHANNELFLOW_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
@@ -57,7 +57,7 @@ public:
         int level,
         const amrex::Geometry& geom,
         const IndexSelector& idxOp,
-        const int n_idx);
+        int n_idx);
 
     template <typename IndexSelector>
     amrex::Real compute_error(const IndexSelector& idxOp);

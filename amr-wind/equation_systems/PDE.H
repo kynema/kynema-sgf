@@ -103,7 +103,7 @@ public:
 
     //! Return the object holding the fields necessary for solving this PDE
     PDEFields& fields() override { return m_fields; }
-    const PDEFields& fields() const override { return m_fields; }
+    [[nodiscard]] const PDEFields& fields() const override { return m_fields; }
 
     void compute_source_term(const FieldState fstate) override
     {

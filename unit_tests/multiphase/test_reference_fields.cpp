@@ -29,7 +29,7 @@ amrex::Real density_test_impl(
                 -> amrex::Real {
                 amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     const amrex::Real zbtm = problo[2] + (k * dx[2]);
                     amrex::Real vof = (wlev - zbtm) / dx[2];
                     vof = amrex::max<amrex::Real>(vof, 0.0_rt);
@@ -71,7 +71,7 @@ amrex::Real pressure_test_impl(
                 amrex::Array4<amrex::Real const> const& p0_arr) -> amrex::Real {
                 amrex::Real error = 0.0_rt;
 
-                amrex::Loop(nbx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(nbx, [=, &error](int i, int j, int k) {
                     const amrex::Real znode = problo[2] + (k * dx[2]);
                     amrex::Real ht_g = probhi[2] - wlev;
                     amrex::Real ht_l = wlev - problo[2];

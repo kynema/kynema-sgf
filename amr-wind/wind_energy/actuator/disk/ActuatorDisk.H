@@ -1,5 +1,5 @@
-#ifndef ACTUATORDISK_H_
-#define ACTUATORDISK_H_
+#ifndef ACTUATORDISK_H
+#define ACTUATORDISK_H
 
 #include "amr-wind/wind_energy/actuator/disk/disk_types.H"
 #include "amr-wind/core/vs/vector_space.H"
@@ -39,4 +39,4 @@ struct DiskBaseData
 
 } // namespace amr_wind::actuator
 
-#endif /* ACTUATORDISK_H_ */
+#endif /* ACTUATORDISK_H */

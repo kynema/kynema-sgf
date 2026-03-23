@@ -1,5 +1,5 @@
-#ifndef SPLIT_ADVECTION_H_
-#define SPLIT_ADVECTION_H_
+#ifndef SPLIT_ADVECTION_H
+#define SPLIT_ADVECTION_H
 
 #include <cmath>
 #include "amr-wind/equation_systems/vof/volume_fractions.H"

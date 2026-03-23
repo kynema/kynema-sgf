@@ -62,7 +62,7 @@ void GravityForcing::operator()(
     const bool ipt = m_use_perturb_pressure;
     const amrex::Real mr0c = m_rho0_const;
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real factor =
             (!ipt ? 1.0_rt
                   : 1.0_rt -

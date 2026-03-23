@@ -1,5 +1,5 @@
-#ifndef ABLMESOFORCINGMOM
-#define ABLMESOFORCINGMOM
+#ifndef ABLMESOFORCINGMOM_H
+#define ABLMESOFORCINGMOM_H
 
 #include <memory>
 #include "AMReX_REAL.H"
@@ -32,10 +32,10 @@ public:
     ~ABLMesoForcingMom() override;
 
     void operator()(
-        const int lev,
+        int lev,
         const amrex::MFIter& mfi,
         const amrex::Box& bx,
-        const FieldState fstate,
+        FieldState fstate,
         const amrex::Array4<amrex::Real>& src_term) const override;
 
     void mean_velocity_init(const ABLMesoscaleInput& ncfile);

@@ -38,7 +38,7 @@ void RainDrop::initialize_fields(int level, const amrex::Geometry& geom)
     const amrex::Real radius = m_radius;
     const auto& phi_arrs = levelset.arrays();
     amrex::ParallelFor(
-        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
             const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
             const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
@@ -74,7 +74,7 @@ void RainDrop::initialize_fields(int level, const amrex::Geometry& geom)
     const auto& vel_arrs = velocity.arrays();
     const auto& work_arrs = work_ptr->arrays();
     amrex::ParallelFor(
-        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             // Calculate mass-weighted velocity (gas vel is 0)
             amrex::Real vof;
             if (yes_vof) {

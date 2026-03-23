@@ -23,7 +23,7 @@ public:
     ~HelicsStorage();
 
     void pre_advance_work();
-    bool is_activated() const { return m_helics_activated; }
+    [[nodiscard]] bool is_activated() const { return m_helics_activated; }
 
 #ifdef AMR_WIND_USE_HELICS
     HelicsTime m_currenttime = 0.0_rt;

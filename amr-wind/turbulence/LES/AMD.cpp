@@ -95,8 +95,7 @@ void AMD<Transport>::update_turbulent_viscosity(
         const auto& mu_arrs = mu_turb(lev).arrays();
         const auto& mu_turb_lev = mu_turb(lev);
         amrex::ParallelFor(
-            mu_turb_lev,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            mu_turb_lev, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 auto mu_arr = mu_arrs[nbx];
                 const auto rho_arr = rho_arrs[nbx];
                 const auto gradVel_arr = gradVel_arrs[nbx];
@@ -140,8 +139,7 @@ void AMD<Transport>::update_alphaeff(Field& alphaeff)
         const auto& rho_arrs = m_rho(lev).const_arrays();
         const auto& alpha_arrs = alphaeff(lev).arrays();
         amrex::ParallelFor(
-            alphaeff(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            alphaeff(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real rho = rho_arrs[nbx](i, j, k);
                 alpha_arrs[nbx](i, j, k) =
                     rho * amd_thermal_diff(

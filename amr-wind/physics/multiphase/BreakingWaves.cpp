@@ -78,7 +78,7 @@ void BreakingWaves::initialize_fields(int level, const amrex::Geometry& geom)
 
     amrex::ParallelFor(
         levelset, m_levelset.num_grow(),
-        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
             const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
             const amrex::Real kappa =

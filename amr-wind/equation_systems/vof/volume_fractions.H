@@ -1,5 +1,5 @@
-#ifndef VOLUME_FRACTIONS_H_
-#define VOLUME_FRACTIONS_H_
+#ifndef VOLUME_FRACTIONS_H
+#define VOLUME_FRACTIONS_H
 
 #include <AMReX_FArrayBox.H>
 #include <algorithm>
@@ -28,7 +28,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void youngs_finite_difference_normal(
     amrex::Array4<amrex::Real const> const& volfrac,
     amrex::Real& mx,
     amrex::Real& my,
-    amrex::Real& mz) noexcept
+    amrex::Real& mz)
 {
     amrex::Real mm1 =
         volfrac(i - 1, j - 1, k - 1) + volfrac(i - 1, j - 1, k + 1) +
@@ -80,7 +80,7 @@ youngs_finite_difference_normal_neumann(
     amrex::Array4<amrex::Real const> const& volfrac,
     amrex::Real& mx,
     amrex::Real& my,
-    amrex::Real& mz) noexcept
+    amrex::Real& mz)
 {
     // Do neumann condition via indices
     const int im1 = ibdy == -1 ? i : i - 1;
@@ -134,7 +134,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void mixed_youngs_central_normal(
     amrex::Array4<amrex::Real const> const& volfrac,
     amrex::Real& mx,
     amrex::Real& my,
-    amrex::Real& mz) noexcept
+    amrex::Real& mz)
 {
     amrex::Array2D<amrex::Real, 0, AMREX_SPACEDIM + 1, 0, AMREX_SPACEDIM> m;
     // write the plane as: sgn(mx) X =  my Y +  mz Z + alpha
@@ -276,7 +276,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real volume_intercept(
     const amrex::Real b1,
     const amrex::Real b2,
     const amrex::Real b3,
-    const amrex::Real volF) noexcept
+    const amrex::Real volF)
 {
     amrex::Real const_tiny = std::numeric_limits<amrex::Real>::epsilon();
     // (1) "order coefficients: m1<m2<m3"
@@ -368,7 +368,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real cut_volume(
     const amrex::Real m3,
     const amrex::Real alpha,
     const amrex::Real r0,
-    const amrex::Real dr0) noexcept
+    const amrex::Real dr0)
 {
     const amrex::Real const_tiny = std::numeric_limits<amrex::Real>::epsilon();
     amrex::Real al;
@@ -504,7 +504,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool interface_band(
     const int k,
     amrex::Array4<amrex::Real const> const& volfrac,
     const int n_band = 1,
-    const amrex::Real tiny = constants::TIGHT_TOL) noexcept
+    const amrex::Real tiny = constants::TIGHT_TOL)
 {
     // n_band must be <= number of vof ghost cells (3)
 
@@ -532,7 +532,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real levelset_to_vof(
     const int j,
     const int k,
     const amrex::Real eps,
-    amrex::Array4<amrex::Real const> const& phi) noexcept
+    amrex::Array4<amrex::Real const> const& phi)
 {
     amrex::Real mx, my, mz;
     youngs_finite_difference_normal(i, j, k, phi, mx, my, mz);

@@ -86,7 +86,7 @@ void ProbeSampler::check_bounds()
     if (!all_ok) {
         amrex::Print() << "WARNING: ProbeSampler: Out of domain probe was "
                           "truncated to match domain"
-                       << std::endl;
+                       << '\n';
     }
 }
 

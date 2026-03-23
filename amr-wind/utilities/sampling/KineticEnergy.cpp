@@ -66,14 +66,13 @@ amrex::Real KineticEnergy::calculate_kinetic_energy()
                 amrex::Array4<int const> const& mask_arr) -> amrex::Real {
                 amrex::Real Kinetic_Energy_Fab = 0.0_rt;
 
-                amrex::Loop(
-                    bx, [=, &Kinetic_Energy_Fab](int i, int j, int k) noexcept {
-                        Kinetic_Energy_Fab +=
-                            cell_vol * mask_arr(i, j, k) * den_arr(i, j, k) *
-                            (vel_arr(i, j, k, 0) * vel_arr(i, j, k, 0) +
-                             vel_arr(i, j, k, 1) * vel_arr(i, j, k, 1) +
-                             vel_arr(i, j, k, 2) * vel_arr(i, j, k, 2));
-                    });
+                amrex::Loop(bx, [=, &Kinetic_Energy_Fab](int i, int j, int k) {
+                    Kinetic_Energy_Fab +=
+                        cell_vol * mask_arr(i, j, k) * den_arr(i, j, k) *
+                        (vel_arr(i, j, k, 0) * vel_arr(i, j, k, 0) +
+                         vel_arr(i, j, k, 1) * vel_arr(i, j, k, 1) +
+                         vel_arr(i, j, k, 2) * vel_arr(i, j, k, 2));
+                });
                 return Kinetic_Energy_Fab;
             });
     }
@@ -109,7 +108,7 @@ void KineticEnergy::prepare_ascii_file()
 
     if (amrex::ParallelDescriptor::IOProcessor()) {
         std::ofstream f(m_out_fname.c_str());
-        f << "time_step time kinetic_energy" << std::endl;
+        f << "time_step time kinetic_energy" << '\n';
         f.close();
     }
 }
@@ -124,7 +123,7 @@ void KineticEnergy::write_ascii()
           << std::setprecision(m_precision) << std::setw(m_width)
           << m_sim.time().new_time();
         f << std::setw(m_width) << m_total_kinetic_energy;
-        f << std::endl;
+        f << '\n';
         f.close();
     }
 }

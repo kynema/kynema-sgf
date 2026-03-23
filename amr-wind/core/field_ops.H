@@ -36,8 +36,8 @@ namespace amr_wind::field_ops {
  *  \param [in] nghost Number of ghost cells to be updated
  */
 template <typename T1, typename T2>
-inline void
-add(T1& dst,
+void add(
+    T1& dst,
     const T2& src,
     int srccomp,
     int dstcomp,
@@ -64,8 +64,8 @@ add(T1& dst,
  *  \param [in] nghost Number of ghost cells to be updated
  */
 template <typename T1, typename T2>
-inline void
-add(T1& dst, const T2& src, int srccomp, int dstcomp, int numcomp, int nghost)
+void add(
+    T1& dst, const T2& src, int srccomp, int dstcomp, int numcomp, int nghost)
 {
     add(dst, src, srccomp, dstcomp, numcomp, amrex::IntVect(nghost));
 }
@@ -84,7 +84,7 @@ add(T1& dst, const T2& src, int srccomp, int dstcomp, int numcomp, int nghost)
  *  \param [in] nghost Number of ghost cells to be updated
  */
 template <typename T1, typename T2>
-inline void divide(
+void divide(
     T1& dst,
     const T2& src,
     const int srccomp,
@@ -127,7 +127,7 @@ inline void divide(
  *  \param [in] nghost Number of ghost cells to be updated
  */
 template <typename T1, typename T2>
-inline void divide(
+void divide(
     T1& dst,
     const T2& src,
     const int srccomp,
@@ -154,7 +154,7 @@ inline void divide(
  *  \param [in] nghost Number of ghost cells to be updated
  */
 template <typename T1, typename T2>
-inline void copy(
+void copy(
     T1& dst,
     const T2& src,
     const int srccomp,
@@ -182,8 +182,8 @@ inline void copy(
  *  \param [in] nghost Number of ghost cells to be updated
  */
 template <typename T1, typename T2>
-inline void
-copy(T1& dst, const T2& src, int srccomp, int dstcomp, int numcomp, int nghost)
+void copy(
+    T1& dst, const T2& src, int srccomp, int dstcomp, int numcomp, int nghost)
 {
     copy(dst, src, srccomp, dstcomp, numcomp, amrex::IntVect(nghost));
 }
@@ -202,7 +202,7 @@ copy(T1& dst, const T2& src, int srccomp, int dstcomp, int numcomp, int nghost)
  *  \param [in] nghost Number of ghost cells to be updated
  */
 template <typename T1, typename T2>
-inline void saxpy(
+void saxpy(
     T1& dst,
     const amrex::Real a,
     const T2& src,
@@ -232,7 +232,7 @@ inline void saxpy(
  *  \param [in] nghost Number of ghost cells to be updated
  */
 template <typename T1, typename T2>
-inline void saxpy(
+void saxpy(
     T1& dst,
     const amrex::Real a,
     const T2& src,
@@ -258,7 +258,7 @@ inline void saxpy(
  *  \param [in] nghost Number of ghost cells to be updated
  */
 template <typename T1, typename T2>
-inline void xpay(
+void xpay(
     T1& dst,
     const amrex::Real a,
     const T2& src,
@@ -288,7 +288,7 @@ inline void xpay(
  *  \param [in] nghost Number of ghost cells to be updated
  */
 template <typename T1, typename T2>
-inline void xpay(
+void xpay(
     T1& dst,
     const amrex::Real a,
     const T2& src,
@@ -317,7 +317,7 @@ inline void xpay(
  *  \param [in] nghost Number of ghost cells to be updated
  */
 template <typename T1, typename T2, typename T3>
-inline void lincomb(
+void lincomb(
     T1& dst,
     const amrex::Real a,
     const T2& x,
@@ -354,7 +354,7 @@ inline void lincomb(
  *  \param [in] nghost Number of ghost cells to be updated
  */
 template <typename T1, typename T2, typename T3>
-inline void lincomb(
+void lincomb(
     T1& dst,
     const amrex::Real a,
     const T2& x,
@@ -379,16 +379,14 @@ inline void lincomb(
  * \param [in] icomp Component to set the minimum bound
  */
 template <typename FType>
-inline void
-lower_bound(FType& field, const amrex::Real min_value, const int icomp = 0)
+void lower_bound(FType& field, const amrex::Real min_value, const int icomp = 0)
 {
     const auto& repo = field.repo();
     const int nlevels = repo.num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& farrs = field(lev).arrays();
         amrex::ParallelFor(
-            field(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            field(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 farrs[nbx](i, j, k, icomp) =
                     amrex::max(min_value, farrs[nbx](i, j, k, icomp));
             });
@@ -402,7 +400,7 @@ lower_bound(FType& field, const amrex::Real min_value, const int icomp = 0)
  * \param [in] field Field for global maximum magnitude
  */
 template <typename FType>
-inline amrex::Real global_max_magnitude(FType& field)
+amrex::Real global_max_magnitude(FType& field)
 {
     const auto& repo = field.repo();
     const auto ncomp = field.num_comp();
@@ -418,7 +416,7 @@ inline amrex::Real global_max_magnitude(FType& field)
                 amrex::Array4<amrex::Real const> const& field_arr)
                 -> amrex::Real {
                 amrex::Real mx = 0.0_rt;
-                amrex::Loop(b, [=, &mx](int i, int j, int k) noexcept {
+                amrex::Loop(b, [=, &mx](int i, int j, int k) {
                     amrex::Real mag = 0.0_rt;
                     for (int icomp = 0; icomp < ncomp; ++icomp) {
                         mag = mag + (field_arr(i, j, k, icomp) *
@@ -442,7 +440,7 @@ inline amrex::Real global_max_magnitude(FType& field)
  * \param [in] field Field that needs to be normalized
  */
 template <typename FType>
-inline void normalize(FType& field)
+void normalize(FType& field)
 {
     const amrex::Real eps =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
@@ -453,8 +451,7 @@ inline void normalize(FType& field)
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& farrs = field(lev).arrays();
         amrex::ParallelFor(
-            field(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            field(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 auto farr = farrs[nbx];
                 // Compute magnitude
                 amrex::Real mag = 0.0_rt;

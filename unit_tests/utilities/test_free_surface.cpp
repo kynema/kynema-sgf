@@ -24,7 +24,7 @@ void init_vof(amr_wind::Field& vof_fld, amrex::Real water_level)
 
         amrex::ParallelFor(
             vof_fld(lev), vof_fld.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
                 const amrex::Real local_vof = amrex::min<amrex::Real>(
                     1.0_rt,
@@ -56,7 +56,7 @@ void init_vof_multival(
 
         amrex::ParallelFor(
             vof_fld(lev), vof_fld.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
                 amrex::Real local_vof;
                 // Above wl1
@@ -106,7 +106,7 @@ void init_vof_slope(
 
         amrex::ParallelFor(
             vof_fld(lev), vof_fld.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real x = problo[0] + ((i + offset) * dx[0]);
                 const amrex::Real y = problo[1] + ((j + offset) * dx[1]);
                 const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
@@ -141,7 +141,7 @@ void init_vof_diffuse(amr_wind::Field& vof_fld, amrex::Real water_level)
 
         amrex::ParallelFor(
             vof_fld(lev), vof_fld.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
                 const amrex::Real local_vof = amrex::min<amrex::Real>(
                     1.0_rt, amrex::max<amrex::Real>(
@@ -169,7 +169,7 @@ void init_vof_outliers(
 
         amrex::ParallelFor(
             vof_fld(lev), vof_fld.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
                 if (std::abs(water_level - z) < 0.5_rt * dx[2]) {
                     farrs[nbx](i, j, k) =
@@ -271,15 +271,15 @@ int FreeSurfaceImpl::check_output(
     int icheck = 0;
     for (int n = 0; n < npts_tot; ++n) {
         if (op == "=") {
-            EXPECT_EQ(out[cidx * npts_tot + n], check_val);
+            EXPECT_EQ(out[(cidx * npts_tot) + n], check_val);
             ++icheck;
         } else {
             if (op == "<") {
-                EXPECT_LT(out[cidx * npts_tot + n], check_val);
+                EXPECT_LT(out[(cidx * npts_tot) + n], check_val);
                 ++icheck;
             } else {
                 if (op == "~") {
-                    EXPECT_NEAR(out[cidx * npts_tot + n], check_val, m_tol);
+                    EXPECT_NEAR(out[(cidx * npts_tot) + n], check_val, m_tol);
                     ++icheck;
                 }
             }

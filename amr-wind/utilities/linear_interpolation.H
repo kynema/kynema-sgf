@@ -9,7 +9,7 @@ using namespace amrex::literals;
 
 namespace amr_wind::interp {
 
-enum class Limits : int {
+enum class Limits : int { // NOLINT(performance-enum-size)
     LOWLIM = -2,
     UPLIM = -1,
     VALID = 0,
@@ -140,7 +140,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE
 }
 
 template <typename C1, typename C2>
-inline typename C2::value_type linear(
+typename C2::value_type linear(
     const C1& xinp,
     const C2& yinp,
     const typename C1::value_type& xout,
@@ -153,7 +153,7 @@ inline typename C2::value_type linear(
 }
 
 template <typename C1, typename C2>
-inline void linear_monotonic(
+void linear_monotonic(
     const C1& xinp,
     const C2& yinp,
     const C1& xout,
@@ -190,7 +190,7 @@ inline void linear_monotonic(
 }
 
 template <typename C1, typename C2>
-inline void linear(
+void linear(
     const C1& xinp,
     const C2& yinp,
     const C1& xout,
@@ -244,7 +244,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE
 }
 
 template <typename C1, typename C2>
-inline typename C2::value_type linear_angle(
+typename C2::value_type linear_angle(
     const C1& xinp,
     const C2& yinp,
     const typename C1::value_type& xout,
@@ -256,7 +256,7 @@ inline typename C2::value_type linear_angle(
 }
 
 template <typename C1, typename C2>
-inline void linear_angle(
+void linear_angle(
     const C1& xinp,
     const C2& yinp,
     const C1& xout,
@@ -336,7 +336,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE
 }
 
 template <typename C1, typename C2>
-inline typename C2::value_type bilinear(
+typename C2::value_type bilinear(
     const C1& xinp,
     const C1& yinp,
     const C2& zinp,

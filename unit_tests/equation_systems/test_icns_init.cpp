@@ -39,9 +39,9 @@ protected:
         }
         // Create the "input file"
         std::stringstream ss;
-        ss << "1 // Number of levels" << std::endl;
-        ss << "1 // Number of boxes at this level" << std::endl;
-        ss << "0.8 0.5 0.5 0.9 0.5 0.5" << std::endl;
+        ss << "1 // Number of levels" << '\n';
+        ss << "1 // Number of boxes at this level" << '\n';
+        ss << "0.8 0.5 0.5 0.9 0.5 0.5" << '\n';
 
         create_mesh_instance<RefineMesh>();
         std::unique_ptr<amr_wind::CartBoxRefinement> box_refine(

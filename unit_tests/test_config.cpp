@@ -27,7 +27,7 @@ TEST(Configuration, Build)
         amr_wind::version::amr_wind_git_sha + dirty_tag;
     const char* amrex_git = amrex::buildInfoGetGitHash(2);
     amrex::Print() << "AMR-Wind SHA = " << awind_git_sha
-                   << "\nAMReX    SHA = " << amrex_git << std::endl;
+                   << "\nAMReX    SHA = " << amrex_git << '\n';
 }
 
 TEST(Configuration, MPI)
@@ -41,7 +41,7 @@ TEST(Configuration, MPI)
     MPI_Get_library_version(mpi_lib_ver.begin(), &len);
     amrex::Print() << mpi_lib_ver.begin() << std::endl;
 #else
-    amrex::Print() << "AMR-Wind not built with MPI support." << std::endl;
+    amrex::Print() << "AMR-Wind not built with MPI support." << '\n';
     GTEST_SKIP();
 #endif
 }
@@ -82,7 +82,7 @@ TEST(Configuration, GPU)
     // clang-format on
     amrex::OutStream() << ss.str();
 #else
-    amrex::Print() << "AMR-Wind not built with GPU support" << std::endl;
+    amrex::Print() << "AMR-Wind not built with GPU support" << '\n';
     GTEST_SKIP();
 #endif
 }

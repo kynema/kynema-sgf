@@ -192,28 +192,26 @@ void ABLModulatedPowerLaw::set_velocity(
             const auto& arr = mfab[mfi].array();
             const int numcomp = mfab.nComp();
 
-            amrex::ParallelFor(
-                bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
+            amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
-                    const amrex::Real zeff = z - zoffset;
-                    amrex::Real pfac = (zeff > 0.0_rt)
-                                           ? std::pow((zeff / zref), shear_exp)
-                                           : 0.0_rt;
-                    pfac = amrex::min<amrex::Real>(
-                        amrex::max<amrex::Real>(pfac, umin), umax_factor);
-                    const amrex::Real tanhterm =
-                        0.5_rt * upper_coeff *
-                        (std::tanh(smear_coeff * (zeff - zc)) + 1.0_rt) / uref;
+                const amrex::Real zeff = z - zoffset;
+                amrex::Real pfac = (zeff > 0.0_rt)
+                                       ? std::pow((zeff / zref), shear_exp)
+                                       : 0.0_rt;
+                pfac = amrex::min<amrex::Real>(
+                    amrex::max<amrex::Real>(pfac, umin), umax_factor);
+                const amrex::Real tanhterm =
+                    0.5_rt * upper_coeff *
+                    (std::tanh(smear_coeff * (zeff - zc)) + 1.0_rt) / uref;
 
-                    amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> vels = {
-                        AMREX_D_DECL(
-                            tvx * (pfac + tanhterm), tvy * (pfac + tanhterm),
-                            tvz)};
-                    for (int n = 0; n < numcomp; n++) {
-                        arr(i, j, k, dcomp + n) = vels[orig_comp + n];
-                    }
-                });
+                amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> vels = {
+                    AMREX_D_DECL(
+                        tvx * (pfac + tanhterm), tvy * (pfac + tanhterm), tvz)};
+                for (int n = 0; n < numcomp; n++) {
+                    arr(i, j, k, dcomp + n) = vels[orig_comp + n];
+                }
+            });
         }
     }
 }
@@ -273,9 +271,9 @@ void ABLModulatedPowerLaw::set_temperature(
             const auto& arr = mfab[mfi].array();
 
             amrex::ParallelForRNG(
-                bx, [=] AMREX_GPU_DEVICE(
-                        int i, int j, int k,
-                        const amrex::RandomEngine& engine) noexcept {
+                bx,
+                [=] AMREX_GPU_DEVICE(
+                    int i, int j, int k, const amrex::RandomEngine& engine) {
                     const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
                     amrex::Real theta = tv[0];

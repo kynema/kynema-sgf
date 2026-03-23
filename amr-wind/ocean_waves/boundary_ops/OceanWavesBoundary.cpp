@@ -118,23 +118,21 @@ void OceanWavesBoundary::set_velocity(
                     ? (*m_terrain_blank_ptr)(lev).const_array(mfi)
                     : amrex::Array4<int const>();
 
-            amrex::ParallelFor(
-                bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                    const amrex::IntVect iv{i, j, k};
-                    for (int n = 0; n < numcomp; n++) {
-                        if (targ_vof(iv) > constants::TIGHT_TOL) {
-                            arr(iv, dcomp + n) = targ_arr(iv, orig_comp + n);
-                        }
-                        if (terrain_and_vof_exist) {
-                            // Terrain-blanked adjacent cell means 0 velocity
-                            if (terrain_blank_flags(
-                                    iv + shift_to_cc + shift_to_interior) ==
-                                1) {
-                                arr(iv, dcomp + n) = 0.0_rt;
-                            }
+            amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                const amrex::IntVect iv{i, j, k};
+                for (int n = 0; n < numcomp; n++) {
+                    if (targ_vof(iv) > constants::TIGHT_TOL) {
+                        arr(iv, dcomp + n) = targ_arr(iv, orig_comp + n);
+                    }
+                    if (terrain_and_vof_exist) {
+                        // Terrain-blanked adjacent cell means 0 velocity
+                        if (terrain_blank_flags(
+                                iv + shift_to_cc + shift_to_interior) == 1) {
+                            arr(iv, dcomp + n) = 0.0_rt;
                         }
                     }
-                });
+                }
+            });
         }
     }
 }
@@ -180,10 +178,9 @@ void OceanWavesBoundary::set_vof(
             const auto& targ_arr = m_ow_vof(lev).const_array(mfi);
             const auto& arr = mfab[mfi].array();
 
-            amrex::ParallelFor(
-                bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                    arr(i, j, k) = targ_arr(i, j, k);
-                });
+            amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                arr(i, j, k) = targ_arr(i, j, k);
+            });
         }
     }
 }
@@ -230,13 +227,11 @@ void OceanWavesBoundary::set_density(
             const auto& targ_vof = m_ow_vof(lev).const_array(mfi);
             const auto& arr = mfab[mfi].array();
 
-            amrex::ParallelFor(
-                bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                    // Assume density is correct for gas phase only
-                    arr(i, j, k) =
-                        (targ_vof(i, j, k) * rho1) +
-                        ((1.0_rt - targ_vof(i, j, k)) * arr(i, j, k));
-                });
+            amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                // Assume density is correct for gas phase only
+                arr(i, j, k) = (targ_vof(i, j, k) * rho1) +
+                               ((1.0_rt - targ_vof(i, j, k)) * arr(i, j, k));
+            });
         }
     }
 }
@@ -309,7 +304,7 @@ void OceanWavesBoundary::set_inflow_sibling_velocity(
 
                 amrex::ParallelFor(
                     bx, [=] AMREX_GPU_DEVICE(
-                            const int i, const int j, const int k) noexcept {
+                            const int i, const int j, const int k) {
                         amrex::IntVect cc_iv = {i, j, k};
                         cc_iv += shift_to_cc;
 

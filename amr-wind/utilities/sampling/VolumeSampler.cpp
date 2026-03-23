@@ -62,7 +62,7 @@ void VolumeSampler::check_bounds()
     if (!all_ok) {
         amrex::Print() << "WARNING: VolumeSampler: Out of domain corner was "
                           "truncated to match domain"
-                       << std::endl;
+                       << '\n';
     }
 }
 

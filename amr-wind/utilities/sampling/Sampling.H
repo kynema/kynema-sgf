@@ -76,7 +76,7 @@ public:
     void create_output_buffer();
     void convert_velocity_lineofsight();
 
-    int num_total_particles() const
+    [[nodiscard]] int num_total_particles() const
     {
         return static_cast<int>(m_total_particles);
     }
@@ -91,7 +91,10 @@ public:
     }
 #endif
 
-    const amrex::Vector<std::string>& var_names() const { return m_var_names; }
+    [[nodiscard]] const amrex::Vector<std::string>& var_names() const
+    {
+        return m_var_names;
+    }
 
 protected:
     //! Update the container by re-initializing the particles

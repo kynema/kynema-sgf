@@ -145,7 +145,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
     //!
     amrex::ParallelFor(
         blanking, m_terrain_blank.num_grow(),
-        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             const amrex::Real x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
             const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
             const amrex::Real z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
@@ -166,7 +166,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
         });
     amrex::Gpu::streamSynchronize();
     amrex::ParallelFor(
-        blanking, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        blanking, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             if ((levelBlanking[nbx](i, j, k, 0) == 0) && (k > 0) &&
                 (levelBlanking[nbx](i, j, k - 1, 0) == 1)) {
                 levelDrag[nbx](i, j, k, 0) = 1;
@@ -334,7 +334,7 @@ void TerrainDrag::convert_waves_to_terrain_fields()
         // Get terrain blanking from ocean waves fields
         amrex::ParallelFor(
             blanking, m_terrain_blank.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
                 levelBlanking[nbx](i, j, k, 0) = static_cast<int>(
                     (wave_vol_frac[nbx](i, j, k) >= 0.5_rt) &&
@@ -343,8 +343,7 @@ void TerrainDrag::convert_waves_to_terrain_fields()
                     -negative_wave_elevation[nbx](i, j, k);
             });
         amrex::ParallelFor(
-            blanking,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            blanking, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 if ((levelBlanking[nbx](i, j, k, 0) == 0) && (k > 0) &&
                     (levelBlanking[nbx](i, j, k - 1, 0) == 1)) {
                     levelDrag[nbx](i, j, k, 0) = 1;

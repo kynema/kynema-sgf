@@ -1,5 +1,5 @@
-#ifndef LogLaw_H
-#define LogLaw_H
+#ifndef LOGLAW_H
+#define LOGLAW_H
 
 #include "AMReX_AmrCore.H"
 #include "AMReX.H"

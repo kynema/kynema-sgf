@@ -36,10 +36,9 @@ amrex::Real get_fgz_sum(amr_wind::Field& src_term)
                 amrex::Array4<amrex::Real const> const& Fg_arr) -> amrex::Real {
                 amrex::Real Fgz_sum_fab = 0.0_rt;
 
-                amrex::Loop(
-                    bx, [=, &Fgz_sum_fab](int i, int j, int k) noexcept {
-                        Fgz_sum_fab += Fg_arr(i, j, k, 2);
-                    });
+                amrex::Loop(bx, [=, &Fgz_sum_fab](int i, int j, int k) {
+                    Fgz_sum_fab += Fg_arr(i, j, k, 2);
+                });
 
                 return Fgz_sum_fab;
             });

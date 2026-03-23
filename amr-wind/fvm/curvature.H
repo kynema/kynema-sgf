@@ -37,7 +37,7 @@ struct Curvature
 
         amrex::ParallelFor(
             bx, m_phi.num_comp(),
-            [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
                 amrex::Real cp1, c, cm1;
                 amrex::Real sp1, s, sm1;
 
@@ -138,7 +138,7 @@ struct Curvature
  *  \ingroup fvm
  */
 template <typename FTypeIn, typename FTypeOut>
-inline void curvature(FTypeOut& curphi, const FTypeIn& phi)
+void curvature(FTypeOut& curphi, const FTypeIn& phi)
 {
     BL_PROFILE("amr-wind::fvm::curvature");
     Curvature<FTypeIn, FTypeOut> cur(curphi, phi);
@@ -149,7 +149,7 @@ inline void curvature(FTypeOut& curphi, const FTypeIn& phi)
  *  \ingroup fvm
  */
 template <typename FType>
-inline std::unique_ptr<ScratchField> curvature(const FType& phi)
+std::unique_ptr<ScratchField> curvature(const FType& phi)
 {
     const std::string gname = phi.name() + "_curvature";
     auto curphi = phi.repo().create_scratch_field(gname, phi.num_comp());

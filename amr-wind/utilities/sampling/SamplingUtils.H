@@ -2,9 +2,10 @@
 #define SAMPLINGUTILS_H
 
 #include <string>
-#include "AMReX_Vector.H"
+#include <cstdint>
 #include "amr-wind/core/vs/vector_space.H"
 #include "amr-wind/utilities/tensor_ops.H"
+#include "AMReX_Vector.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -19,7 +20,7 @@ namespace amr_wind::sampling::sampling_utils {
 // void inject_turbulence_src_terms(
 //     const std::string& key, const amrex::Vector<std::string>& terms);
 
-enum class NormalRule { SIGMA1, SIGMA2, SIGMA3, HALFPOWER };
+enum class NormalRule : std::uint8_t { SIGMA1, SIGMA2, SIGMA3, HALFPOWER };
 
 vs::Vector reflect(vs::Vector line, vs::Vector vec);
 vs::Vector rotate_euler_vec(vs::Vector axis, amrex::Real angle, vs::Vector vec);

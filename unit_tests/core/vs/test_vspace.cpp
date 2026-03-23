@@ -63,7 +63,8 @@ void test_rotations_impl()
 
 #define CHECK_ON_GPU(expr1, expr2)                                             \
     {                                                                          \
-        amrex::Gpu::DeviceScalar<amrex::Real> ds(1.0e16_rt);                   \
+        amrex::Gpu::DeviceScalar<amrex::Real> ds(                              \
+            std::numeric_limits<amrex::Real>::epsilon());                      \
         auto* dv = ds.dataPtr();                                               \
         amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int) {                      \
             auto v1 = expr1;                                                   \
@@ -71,7 +72,7 @@ void test_rotations_impl()
             dv[0] = vs::mag((v1 - v2));                                        \
         });                                                                    \
         EXPECT_NEAR(ds.dataValue(), 0.0_rt, tol)                               \
-            << "LHS = " #expr1 "\nRHS = " #expr2 << std::endl;                 \
+            << "LHS = " #expr1 "\nRHS = " #expr2 << '\n';                      \
     }
 
     CHECK_ON_GPU((xrot & ivec), ivec);
@@ -98,7 +99,8 @@ void test_device_capture_impl()
     namespace vs = amr_wind::vs;
     auto v1 = vs::Vector::ihat();
     auto vexpected = vs::Vector::khat();
-    amrex::Gpu::DeviceScalar<amrex::Real> ds(1.0e16_rt);
+    amrex::Gpu::DeviceScalar<amrex::Real> ds(
+        std::numeric_limits<amrex::Real>::epsilon());
     auto* dv = ds.dataPtr();
 
     amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int /*unused*/) {

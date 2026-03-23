@@ -43,7 +43,7 @@ struct TensorT
         const VectorT<T>& x,
         const VectorT<T>& y,
         const VectorT<T>& z,
-        const bool transpose = false);
+        bool transpose = false);
 
     ~TensorT() = default;
     TensorT(const TensorT&) = default;
@@ -53,8 +53,7 @@ struct TensorT
     TensorT& operator=(TensorT&&) & = default;
     TensorT& operator=(TensorT&&) && = delete;
 
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static constexpr TensorT<T>
-    zero() noexcept
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static constexpr TensorT<T> zero()
     {
         return TensorT<T>{Traits::zero(), Traits::zero(), Traits::zero(),
                           Traits::zero(), Traits::zero(), Traits::zero(),
@@ -62,100 +61,73 @@ struct TensorT
     }
 
     AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static constexpr TensorT<T>
-    identity() noexcept
+    identity()
     {
         return TensorT{Traits::one(),  Traits::zero(), Traits::zero(),
                        Traits::zero(), Traits::one(),  Traits::zero(),
                        Traits::zero(), Traits::zero(), Traits::one()};
     }
 
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void rows(
-        const VectorT<T>& x, const VectorT<T>& y, const VectorT<T>& z) noexcept;
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void cols(
-        const VectorT<T>& x, const VectorT<T>& y, const VectorT<T>& z) noexcept;
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void
+    rows(const VectorT<T>& x, const VectorT<T>& y, const VectorT<T>& z);
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void
+    cols(const VectorT<T>& x, const VectorT<T>& y, const VectorT<T>& z);
 
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> x() const noexcept;
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> y() const noexcept;
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> z() const noexcept;
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> x() const;
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> y() const;
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> z() const;
 
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> cx() const noexcept;
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> cy() const noexcept;
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> cz() const noexcept;
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> cx() const;
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> cy() const;
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> cz() const;
 
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& xx() & noexcept
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& xx() & { return vv[0]; }
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& xy() & { return vv[1]; }
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& xz() & { return vv[2]; }
+
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& yx() & { return vv[3]; }
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& yy() & { return vv[4]; }
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& yz() & { return vv[5]; }
+
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& zx() & { return vv[6]; }
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& zy() & { return vv[7]; }
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& zz() & { return vv[8]; }
+
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& xx() const&
     {
         return vv[0];
     }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& xy() & noexcept
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& xy() const&
     {
         return vv[1];
     }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& xz() & noexcept
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& xz() const&
     {
         return vv[2];
     }
 
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& yx() & noexcept
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& yx() const&
     {
         return vv[3];
     }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& yy() & noexcept
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& yy() const&
     {
         return vv[4];
     }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& yz() & noexcept
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& yz() const&
     {
         return vv[5];
     }
 
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& zx() & noexcept
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& zx() const&
     {
         return vv[6];
     }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& zy() & noexcept
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& zy() const&
     {
         return vv[7];
     }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& zz() & noexcept
-    {
-        return vv[8];
-    }
-
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& xx() const& noexcept
-    {
-        return vv[0];
-    }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& xy() const& noexcept
-    {
-        return vv[1];
-    }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& xz() const& noexcept
-    {
-        return vv[2];
-    }
-
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& yx() const& noexcept
-    {
-        return vv[3];
-    }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& yy() const& noexcept
-    {
-        return vv[4];
-    }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& yz() const& noexcept
-    {
-        return vv[5];
-    }
-
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& zx() const& noexcept
-    {
-        return vv[6];
-    }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& zy() const& noexcept
-    {
-        return vv[7];
-    }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& zz() const& noexcept
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& zz() const&
     {
         return vv[8];
     }
@@ -170,20 +142,17 @@ struct TensorT
         return vv[pos];
     }
 
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T* data() noexcept
-    {
-        return vv.data();
-    }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T* data() const noexcept
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T* data() { return vv.data(); }
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T* data() const
     {
         return vv.data();
     }
 
-    iterator begin() noexcept { return vv.begin(); }
-    iterator end() noexcept { return vv.end(); }
-    const_iterator cbegin() const noexcept { return vv.cbegin(); }
-    const_iterator cend() const noexcept { return vv.cend(); }
-    size_type size() const noexcept { return ncomp; }
+    iterator begin() { return vv.begin(); }
+    iterator end() { return vv.end(); }
+    [[nodiscard]] const_iterator cbegin() const { return vv.cbegin(); }
+    [[nodiscard]] const_iterator cend() const { return vv.cend(); }
+    [[nodiscard]] size_type size() const { return ncomp; }
 };
 
 using Tensor = TensorT<amrex::Real>;

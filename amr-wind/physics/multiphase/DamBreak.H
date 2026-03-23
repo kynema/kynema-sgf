@@ -1,5 +1,5 @@
-#ifndef DamBreak_H
-#define DamBreak_H
+#ifndef DAMBREAK_H
+#define DAMBREAK_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"

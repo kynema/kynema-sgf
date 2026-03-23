@@ -12,7 +12,7 @@ class LogLawTest : public MeshTest
 {
 protected:
     void populate_parameters() override { MeshTest::populate_parameters(); }
-    amrex::Real log_law_actual(const amrex::Real utau) const
+    [[nodiscard]] amrex::Real log_law_actual(const amrex::Real utau) const
     {
         return utau * (std::log(m_zref * utau / m_nu) / 0.384_rt + 4.27_rt);
     }

@@ -21,9 +21,9 @@ class WallFunction
 public:
     explicit WallFunction(CFDSim& sim);
 
-    amrex::Real utau() const { return m_log_law.utau_mean; }
-    LogLaw log_law() const { return m_log_law; }
-    MOSD mosd() const { return m_mosd; }
+    [[nodiscard]] amrex::Real utau() const { return m_log_law.utau_mean; }
+    [[nodiscard]] LogLaw log_law() const { return m_log_law; }
+    [[nodiscard]] MOSD mosd() const { return m_mosd; }
 
     //! Update the mean velocity at a given timestep
     void update_umean();
@@ -55,16 +55,14 @@ class VelWallFunc : public FieldBCIface
 public:
     VelWallFunc(Field& velocity, WallFunction& wall_func);
 
-    void operator()(Field& velocity, const FieldState rho_state) override;
+    void operator()(Field& velocity, FieldState rho_state) override;
 
-    static void wall_model(
-        Field& velocity, const FieldState rho_state, const amrex::Real utau);
+    static void
+    wall_model(Field& velocity, FieldState rho_state, amrex::Real utau);
 
     template <typename ShearStressSimple>
     static void wall_model(
-        Field& velocity,
-        const FieldState rho_state,
-        const ShearStressSimple& tau);
+        Field& velocity, FieldState rho_state, const ShearStressSimple& tau);
 
 private:
     WallFunction& m_wall_func;

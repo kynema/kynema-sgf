@@ -10,7 +10,7 @@ namespace amr_wind::field_impl {
 /** Convert amr_wind::FieldLoc to index type for use with AMReX objects.
  *  \ingroup field_ops
  */
-inline amrex::IndexType index_type(const FieldLoc floc)
+AMREX_INLINE amrex::IndexType index_type(const FieldLoc floc)
 {
     switch (floc) {
     case FieldLoc::CELL:
@@ -37,7 +37,7 @@ inline amrex::IndexType index_type(const FieldLoc floc)
  *  this state in the field repository.
  *  \ingroup field_ops
  */
-inline std::string
+AMREX_INLINE std::string
 field_name_with_state(const std::string& fname, const FieldState fstate)
 {
     switch (fstate) {
@@ -70,7 +70,7 @@ field_name_with_state(const std::string& fname, const FieldState fstate)
  *. \return True if the field is not a reserved field name
  *  \ingroup field_ops
  */
-inline bool is_valid_field_name(const std::string& name)
+AMREX_INLINE bool is_valid_field_name(const std::string& name)
 {
     // Else make sure that our guard is not in the last 8 characters
     auto found = name.rfind("__FS_");
@@ -81,7 +81,7 @@ inline bool is_valid_field_name(const std::string& name)
  *  amr_wind::FieldInterpolator
  *  \ingroup field_ops
  */
-inline amrex::Interpolater*
+AMREX_INLINE amrex::Interpolater*
 get_interpolation_operator(const FieldInterpolator itype)
 {
     switch (itype) {
@@ -107,12 +107,12 @@ get_interpolation_operator(const FieldInterpolator itype)
     return &amrex::cell_cons_interp;
 }
 
-inline FieldState dof_state(const FieldState fstate)
+AMREX_INLINE FieldState dof_state(const FieldState fstate)
 {
     return (fstate == FieldState::New) ? FieldState::New : FieldState::Old;
 }
 
-inline FieldState phi_state(const FieldState fstate)
+AMREX_INLINE FieldState phi_state(const FieldState fstate)
 {
     return (fstate == FieldState::Old) ? FieldState::Old : FieldState::NPH;
 }

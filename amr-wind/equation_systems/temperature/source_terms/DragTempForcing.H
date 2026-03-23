@@ -21,10 +21,10 @@ public:
     ~DragTempForcing() override;
 
     void operator()(
-        const int lev,
+        int lev,
         const amrex::MFIter& mfi,
         const amrex::Box& bx,
-        const FieldState /*fstate*/,
+        FieldState /*fstate*/,
         const amrex::Array4<amrex::Real>& src_term) const override;
 
 private:

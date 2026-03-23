@@ -1,5 +1,5 @@
-#ifndef ACTSRCLINEOP_H_
-#define ACTSRCLINEOP_H_
+#ifndef ACTSRCLINEOP_H
+#define ACTSRCLINEOP_H
 
 #include "AMReX_REAL.H"
 #include "amr-wind/wind_energy/actuator/actuator_types.H"
@@ -38,8 +38,8 @@ public:
 
     void setup_op() { copy_to_device(); }
 
-    void operator()(
-        const int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom);
+    void
+    operator()(int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom);
 };
 
 template <typename ActTrait>
@@ -116,7 +116,7 @@ void ActSrcOp<ActTrait, ActSrcLine>::operator()(
 
     const auto dcoord_flags = m_data.grid().dcoord_flags;
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const vs::Vector cc{
             problo[0] + ((i + 0.5_rt) * dx[0]),
             problo[1] + ((j + 0.5_rt) * dx[1]),
@@ -148,4 +148,4 @@ void ActSrcOp<ActTrait, ActSrcLine>::operator()(
 }
 } // namespace amr_wind::actuator::ops
 
-#endif /* ACTSRCLINEOP_H_ */
+#endif /* ACTSRCLINEOP_H */

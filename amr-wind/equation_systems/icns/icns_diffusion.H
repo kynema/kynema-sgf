@@ -171,8 +171,8 @@ public:
                 const auto& rho_arrs = density(lev).const_arrays();
 
                 amrex::ParallelFor(
-                    divtau(lev), [=] AMREX_GPU_DEVICE(
-                                     int nbx, int i, int j, int k) noexcept {
+                    divtau(lev),
+                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                         amrex::Real rhoinv = 1.0_rt / rho_arrs[nbx](i, j, k);
                         divtau_arrs[nbx](i, j, k, 0) *= rhoinv;
                         divtau_arrs[nbx](i, j, k, 1) *= rhoinv;
@@ -239,8 +239,7 @@ public:
 
             amrex::ParallelFor(
                 rhs, amrex::IntVect(0), ndim,
-                [=] AMREX_GPU_DEVICE(
-                    int nbx, int i, int j, int k, int n) noexcept {
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                     rhs_arrs[nbx](i, j, k, n) =
                         rho_arrs[nbx](i, j, k) * fld_arrs[nbx](i, j, k, n);
                 });
@@ -393,8 +392,8 @@ public:
                 const auto& rho_arrs = density(lev).const_arrays();
 
                 amrex::ParallelFor(
-                    divtau(lev), [=] AMREX_GPU_DEVICE(
-                                     int nbx, int i, int j, int k) noexcept {
+                    divtau(lev),
+                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                         amrex::Real rhoinv = 1.0_rt / rho_arrs[nbx](i, j, k);
                         divtau_arrs[nbx](i, j, k, 0) *= rhoinv;
                         divtau_arrs[nbx](i, j, k, 1) *= rhoinv;
@@ -472,8 +471,7 @@ public:
 
             amrex::ParallelFor(
                 rhs, amrex::IntVect(0), ndim,
-                [=] AMREX_GPU_DEVICE(
-                    int nbx, int i, int j, int k, int n) noexcept {
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                     rhs_arrs[nbx](i, j, k, n) =
                         rho_arrs[nbx](i, j, k) * fld_arrs[nbx](i, j, k, n);
                 });

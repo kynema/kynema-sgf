@@ -81,6 +81,9 @@ void ABLStats::initialize()
     } else if (m_normal_dir == 2) {
         m_ncells_h1 = dhi.x - dlo.x + 1;
         m_ncells_h2 = dhi.y - dlo.y + 1;
+    } else {
+        amrex::Abort("m_normal_dir is not 0, 1, or 2");
+        exit(1); // to help the static analyzer
     }
     m_dn = geom.CellSize()[m_normal_dir];
 
@@ -129,8 +132,7 @@ void ABLStats::calc_sfs_stress_avgs(
         const auto& sfs_arrs = sfs_stress(lev).arrays();
         const auto& t_sfs_arrs = t_sfs_stress(lev).arrays();
         amrex::ParallelFor(
-            m_mueff(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            m_mueff(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 sfs_arrs[nbx](i, j, k, 0) =
                     -mueff_arrs[nbx](i, j, k) * (gradVel_arrs[nbx](i, j, k, 1) +
                                                  gradVel_arrs[nbx](i, j, k, 3));
@@ -197,8 +199,7 @@ void ABLStats::calc_tke_diffusion(
         const auto& conv_arrs = conv_term(lev).const_arrays();
 
         amrex::ParallelFor(
-            diffusion(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            diffusion(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 diffusion_arrs[nbx](i, j, k) =
                     ((tke_arrs[nbx](i, j, k) - tke_old_arrs[nbx](i, j, k)) /
                      dt) -
@@ -442,7 +443,7 @@ void ABLStats::write_ascii()
             << L << ", "
             << m_zi << ", "
             << abl_forcing[0] << ", "
-            << abl_forcing[1] << std::endl;
+            << abl_forcing[1] << '\n';
     // clang-format on
     outfile.close();
 }
@@ -451,7 +452,7 @@ void ABLStats::prepare_ascii_file()
 {
     BL_PROFILE("amr-wind::ABLStats::prepare_ascii_file");
     amrex::Print() << "WARNING: ABLStats: ASCII output will impact performance"
-                   << std::endl;
+                   << '\n';
 
     // Only I/O processor handles this file I/O
     if (!amrex::ParallelDescriptor::IOProcessor()) {
@@ -468,7 +469,7 @@ void ABLStats::prepare_ascii_file()
     outfile.open(m_ascii_file_name.c_str(), std::ios_base::out);
     outfile << "Time,   Q, Tsurf, ustar,   wstar,   L,   zi, abl_forcing_x, "
                "abl_forcing_y"
-            << std::endl;
+            << '\n';
     outfile.close();
 }
 

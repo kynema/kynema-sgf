@@ -1,6 +1,7 @@
 #ifndef ABLSTATSBASE_H
 #define ABLSTATSBASE_H
 
+#include <cstdint>
 #include "amr-wind/core/Factory.H"
 #include "amr-wind/CFDSim.H"
 #include "amr-wind/wind_energy/ABLWallFunction.H"
@@ -14,7 +15,7 @@ namespace pde::temperature {
 class ABLMesoForcingTemp;
 }
 
-enum class ABLStatsMode : int {
+enum class ABLStatsMode : std::uint8_t {
     computed = 0, ///! Computed using planar averages
     prescribed    ///! Prescribed as user inputs
 };
@@ -30,15 +31,17 @@ public:
     ~ABLStatsBase() override = default;
 
     //! Flag indicating ABL simulation mode
-    virtual ABLStatsMode abl_mode() const = 0;
+    [[nodiscard]] virtual ABLStatsMode abl_mode() const = 0;
 
     //! Interpolating object for vertical velocity profile
-    virtual const VelPlaneAveraging& vel_profile_coarse() const = 0;
-    virtual const VelPlaneAveragingFine& vel_profile() const = 0;
+    [[nodiscard]] virtual const VelPlaneAveraging&
+    vel_profile_coarse() const = 0;
+    [[nodiscard]] virtual const VelPlaneAveragingFine& vel_profile() const = 0;
 
     //! Interpolating object for vertical temperature profile
-    virtual const FieldPlaneAveraging& theta_profile() const = 0;
-    virtual const FieldPlaneAveragingFine& theta_profile_fine() const = 0;
+    [[nodiscard]] virtual const FieldPlaneAveraging& theta_profile() const = 0;
+    [[nodiscard]] virtual const FieldPlaneAveragingFine&
+    theta_profile_fine() const = 0;
 
     //! Perform initialization actions after the mesh has been created
     virtual void post_init_actions() = 0;

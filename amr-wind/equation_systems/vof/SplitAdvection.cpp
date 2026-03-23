@@ -136,36 +136,33 @@ void multiphase::split_compute_fluxes(
     const auto domhi = amrex::ubound(domain);
 
     amrex::Array4<amrex::Real> vofL = makeArray4(p, bxg1, 1);
-    p += vofL.size(); // NOLINT: Value not read warning
+    p += vofL.size();
     amrex::Array4<amrex::Real> vofR = makeArray4(p, bxg1, 1);
 
     if (isweep % 3 == 0) {
         sweep_fluxes(2, bx, dtdz, wmac, volfrac, vofL, vofR);
         amrex::Box const& zbx = amrex::surroundingNodes(bx, 2);
-        amrex::ParallelFor(
-            zbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                fluxes_bc_save(
-                    i, j, k, 2, dt * wmac(i, j, k), fz, vofL, vofR, aaz, BCs,
-                    domlo.z, domhi.z);
-            });
+        amrex::ParallelFor(zbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+            fluxes_bc_save(
+                i, j, k, 2, dt * wmac(i, j, k), fz, vofL, vofR, aaz, BCs,
+                domlo.z, domhi.z);
+        });
     } else if (isweep % 3 == 1) {
         sweep_fluxes(1, bx, dtdy, vmac, volfrac, vofL, vofR);
         amrex::Box const& ybx = amrex::surroundingNodes(bx, 1);
-        amrex::ParallelFor(
-            ybx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                fluxes_bc_save(
-                    i, j, k, 1, dt * vmac(i, j, k), fy, vofL, vofR, aay, BCs,
-                    domlo.y, domhi.y);
-            });
+        amrex::ParallelFor(ybx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+            fluxes_bc_save(
+                i, j, k, 1, dt * vmac(i, j, k), fy, vofL, vofR, aay, BCs,
+                domlo.y, domhi.y);
+        });
     } else {
         sweep_fluxes(0, bx, dtdx, umac, volfrac, vofL, vofR);
         amrex::Box const& xbx = amrex::surroundingNodes(bx, 0);
-        amrex::ParallelFor(
-            xbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                fluxes_bc_save(
-                    i, j, k, 0, dt * umac(i, j, k), fx, vofL, vofR, aax, BCs,
-                    domlo.x, domhi.x);
-            });
+        amrex::ParallelFor(xbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+            fluxes_bc_save(
+                i, j, k, 0, dt * umac(i, j, k), fx, vofL, vofR, aax, BCs,
+                domlo.x, domhi.x);
+        });
     }
 }
 
@@ -202,7 +199,7 @@ void multiphase::cmask_loop(
     amrex::Array4<amrex::Real> const& volfrac,
     amrex::Array4<amrex::Real> const& fluxC)
 {
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         multiphase::c_mask(i, j, k, volfrac, fluxC);
     });
 }
@@ -211,7 +208,7 @@ void multiphase::debris_loop(
     amrex::Box const& bx, amrex::Array4<amrex::Real> const& volfrac)
 {
     // Remove VOF debris
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         multiphase::remove_vof_debris(i, j, k, volfrac);
     });
 }
@@ -234,13 +231,12 @@ void multiphase::sweep_fluxes(
     int jj = (dir == 1) ? 1 : 0;
     int kk = (dir == 2) ? 1 : 0;
 
-    amrex::ParallelFor(
-        bxg1, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-            amrex::Real velL = vel_mac(i, j, k);
-            amrex::Real velR = vel_mac(i + ii, j + jj, k + kk);
-            multiphase::eulerian_implicit(
-                i, j, k, dir, dtdx, velL, velR, volfrac, vofL, vofR);
-        });
+    amrex::ParallelFor(bxg1, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+        amrex::Real velL = vel_mac(i, j, k);
+        amrex::Real velR = vel_mac(i + ii, j + jj, k + kk);
+        multiphase::eulerian_implicit(
+            i, j, k, dir, dtdx, velL, velR, volfrac, vofL, vofR);
+    });
 }
 
 void multiphase::sweep_balance(
@@ -260,7 +256,7 @@ void multiphase::sweep_balance(
     int jj = (dir == 1) ? 1 : 0;
     int kk = (dir == 2) ? 1 : 0;
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         amrex::Real velL = vel_mac(i, j, k) * dt * dxi;
         amrex::Real velR = vel_mac(i + ii, j + jj, k + kk) * dt * dxi;
         multiphase::balance_eulerian_fluxes(

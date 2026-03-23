@@ -31,7 +31,7 @@ void TimeAveraging::pre_init_actions()
         pp.query("averaging_window", m_filter);
     }
 
-    amrex::Print() << "TimeAveraging: Initializing " << m_label << std::endl;
+    amrex::Print() << "TimeAveraging: Initializing " << m_label << '\n';
 
     for (const auto& lbl : labels) {
         //! Fields to be averaged
@@ -46,7 +46,7 @@ void TimeAveraging::pre_init_actions()
         pp1.get("averaging_type", avg_type);
 
         amrex::Print() << "    - initializing average labeled " << lbl
-                       << ", type " << avg_type << std::endl;
+                       << ", type " << avg_type << '\n';
 
         for (const auto& fname : fnames) {
             const std::string key = fname + "_" + avg_type;

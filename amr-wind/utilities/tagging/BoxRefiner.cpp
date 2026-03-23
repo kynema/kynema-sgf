@@ -11,7 +11,7 @@ namespace amr_wind::tagging {
 namespace {
 
 //! Utility function to parse inputs and return a vector instance
-inline vs::Vector parse_vector(amrex::ParmParse& pp, const std::string& key)
+vs::Vector parse_vector(amrex::ParmParse& pp, const std::string& key)
 {
     amrex::Vector<amrex::Real> tmp;
     pp.getarr(key, tmp);
@@ -24,7 +24,7 @@ inline vs::Vector parse_vector(amrex::ParmParse& pp, const std::string& key)
  *
  *  \return Position vectors of the 8 vertices that make up the box
  */
-inline amrex::Vector<vs::Vector> compute_hex_corners(
+amrex::Vector<vs::Vector> compute_hex_corners(
     const vs::Vector& origin,
     const vs::Vector& x,
     const vs::Vector& y,
@@ -49,7 +49,7 @@ inline amrex::Vector<vs::Vector> compute_hex_corners(
  *  \param hex_nodes Coordinates of the 8 vertices that make up the box
  *  \return Face normals for the six faces that make up the hexahedral box
  */
-inline amrex::Vector<vs::Vector>
+amrex::Vector<vs::Vector>
 compute_face_normals(const amrex::Vector<vs::Vector>& hex_nodes)
 {
     amrex::Vector<vs::Vector> face_normals(6);
@@ -142,7 +142,7 @@ void BoxRefiner::operator()(
     const auto& problo = geom.ProbLoArray();
     const auto& dx = geom.CellSizeArray();
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
         const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
         const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);

@@ -16,7 +16,7 @@ namespace turb_base_impl {
 // avoid creation of an intermediate scratch buffer.
 
 template <typename Transport>
-inline void visc_update(Field& evisc, Field& tvisc, Transport& transport)
+void visc_update(Field& evisc, Field& tvisc, Transport& transport)
     requires Transport::constant_properties
 {
     evisc.setVal(transport.viscosity());
@@ -25,7 +25,7 @@ inline void visc_update(Field& evisc, Field& tvisc, Transport& transport)
 }
 
 template <typename Transport>
-inline void alpha_update(Field& evisc, Field& tvisc, Transport& transport)
+void alpha_update(Field& evisc, Field& tvisc, Transport& transport)
     requires Transport::constant_properties
 {
     evisc.setVal(transport.thermal_diffusivity());
@@ -35,7 +35,7 @@ inline void alpha_update(Field& evisc, Field& tvisc, Transport& transport)
 }
 
 template <typename Transport>
-inline void scal_diff_update(
+void scal_diff_update(
     Field& evisc, Field& tvisc, Transport& transport, const std::string& name)
     requires Transport::constant_properties
 {
@@ -46,7 +46,7 @@ inline void scal_diff_update(
 }
 
 template <typename Transport>
-inline void visc_update(Field& evisc, Field& tvisc, Transport& transport)
+void visc_update(Field& evisc, Field& tvisc, Transport& transport)
     requires(!Transport::constant_properties)
 {
     auto lam_mu = transport.mu();
@@ -56,7 +56,7 @@ inline void visc_update(Field& evisc, Field& tvisc, Transport& transport)
 }
 
 template <typename Transport>
-inline void alpha_update(Field& evisc, Field& tvisc, Transport& transport)
+void alpha_update(Field& evisc, Field& tvisc, Transport& transport)
     requires(!Transport::constant_properties)
 {
     auto lam_alpha = transport.alpha();
@@ -66,7 +66,7 @@ inline void alpha_update(Field& evisc, Field& tvisc, Transport& transport)
 }
 
 template <typename Transport>
-inline void scal_diff_update(
+void scal_diff_update(
     Field& evisc, Field& tvisc, Transport& transport, const std::string& name)
     requires(!Transport::constant_properties)
 {

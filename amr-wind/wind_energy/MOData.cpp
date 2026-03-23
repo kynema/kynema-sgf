@@ -98,8 +98,7 @@ void MOData::update_fluxes(int max_iters)
             << max_iters << " iterations\nObuhov length = " << obukhov_len
             << " zeta = " << zeta << "\npsi_m = " << psi_m
             << " psi_h = " << psi_h << "\nutau = " << utau
-            << " Tsurf = " << surf_temp << " q = " << surf_temp_flux
-            << std::endl;
+            << " Tsurf = " << surf_temp << " q = " << surf_temp_flux << '\n';
     }
 }
 

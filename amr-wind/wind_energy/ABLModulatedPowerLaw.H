@@ -32,20 +32,20 @@ public:
     void post_advance_work();
 
     void set_velocity(
-        const int lev,
-        const amrex::Real time,
+        int lev,
+        amrex::Real time,
         const Field& fld,
         amrex::MultiFab& mfab,
-        const int dcomp = 0,
-        const int orig_comp = 0) const;
+        int dcomp = 0,
+        int orig_comp = 0) const;
 
     void set_temperature(
-        const int lev,
-        const amrex::Real time,
+        int lev,
+        amrex::Real time,
         const Field& fld,
         amrex::MultiFab& mfab) const;
 
-    bool is_active() const { return m_activate_mpl; }
+    [[nodiscard]] bool is_active() const { return m_activate_mpl; }
 
 private:
     const CFDSim& m_sim;

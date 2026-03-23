@@ -52,12 +52,12 @@ TEST_F(NestRefineTest, box_refine)
     setup_refinement_inputs();
     // Create the "input file"
     std::stringstream ss;
-    ss << "1 // Number of levels" << std::endl;
-    ss << "4 // Number of boxes at this level" << std::endl;
-    ss << "-10.0 -75.0 0.0 15.0 -65.0 20.0" << std::endl;
-    ss << "-10.0 -55.0 0.0 15.0 -45.0 20.0" << std::endl;
-    ss << "-10.0  25.0 0.0 15.0  35.0 20.0" << std::endl;
-    ss << "-10.0  65.0 0.0 15.0  75.0 20.0" << std::endl;
+    ss << "1 // Number of levels" << '\n';
+    ss << "4 // Number of boxes at this level" << '\n';
+    ss << "-10.0 -75.0 0.0 15.0 -65.0 20.0" << '\n';
+    ss << "-10.0 -55.0 0.0 15.0 -45.0 20.0" << '\n';
+    ss << "-10.0  25.0 0.0 15.0  35.0 20.0" << '\n';
+    ss << "-10.0  65.0 0.0 15.0  75.0 20.0" << '\n';
 
     create_mesh_instance<RefineMesh>();
     auto& ref_vec = mesh<RefineMesh>()->refine_criteria_vec();
@@ -88,13 +88,13 @@ TEST_F(NestRefineTest, level_warning)
 
     // Create the "input file"
     std::stringstream ss;
-    ss << "2 // Number of levels" << std::endl;
-    ss << "2 // Number of boxes at this level" << std::endl;
-    ss << "-10.0 -75.0 0.0 15.0 -65.0 20.0" << std::endl;
-    ss << "-10.0 -55.0 0.0 15.0 -45.0 20.0" << std::endl;
-    ss << "2 // Number of boxes at this level" << std::endl;
-    ss << "-10.0  25.0 0.0 15.0  35.0 20.0" << std::endl;
-    ss << "-10.0  65.0 0.0 15.0  75.0 20.0" << std::endl;
+    ss << "2 // Number of levels" << '\n';
+    ss << "2 // Number of boxes at this level" << '\n';
+    ss << "-10.0 -75.0 0.0 15.0 -65.0 20.0" << '\n';
+    ss << "-10.0 -55.0 0.0 15.0 -45.0 20.0" << '\n';
+    ss << "2 // Number of boxes at this level" << '\n';
+    ss << "-10.0  25.0 0.0 15.0  35.0 20.0" << '\n';
+    ss << "-10.0  65.0 0.0 15.0  75.0 20.0" << '\n';
 
     {
         CaptureOutput io;
@@ -119,9 +119,9 @@ TEST_F(NestRefineTest, bbox_limits)
 
     // Create the "input file"
     std::stringstream ss;
-    ss << "1 // Number of levels" << std::endl;
-    ss << "1 // Number of boxes at this level" << std::endl;
-    ss << "-60.0 -200.0 -10.0 35.0 200.0 60.0" << std::endl;
+    ss << "1 // Number of levels" << '\n';
+    ss << "1 // Number of boxes at this level" << '\n';
+    ss << "-60.0 -200.0 -10.0 35.0 200.0 60.0" << '\n';
 
     create_mesh_instance<RefineMesh>();
     std::unique_ptr<amr_wind::CartBoxRefinement> box_refine(

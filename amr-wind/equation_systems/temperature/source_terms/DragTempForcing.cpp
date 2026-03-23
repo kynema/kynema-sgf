@@ -87,7 +87,7 @@ void DragTempForcing::operator()(
     const auto tiny = std::numeric_limits<amrex::Real>::epsilon();
     const amrex::Real cd_max = 10.0_rt;
     const amrex::Real T0 = m_soil_temperature;
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real z0 =
             amrex::max<amrex::Real>(terrainz0(i, j, k), z0_min);
         const amrex::Real ux1 = vel(i, j, k, 0);

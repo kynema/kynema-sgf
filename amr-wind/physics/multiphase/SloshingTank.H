@@ -1,5 +1,5 @@
-#ifndef SloshingTank_H
-#define SloshingTank_H
+#ifndef SLOSHINGTANK_H
+#define SLOSHINGTANK_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"

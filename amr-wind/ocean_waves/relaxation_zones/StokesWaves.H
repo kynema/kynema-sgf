@@ -1,5 +1,5 @@
-#ifndef STOKES_WAVES_H
-#define STOKES_WAVES_H
+#ifndef STOKESWAVES_H
+#define STOKESWAVES_H
 
 #include "amr-wind/ocean_waves/relaxation_zones/RelaxationZones.H"
 #include "AMReX_REAL.H"

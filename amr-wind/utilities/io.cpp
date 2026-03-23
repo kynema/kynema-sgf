@@ -14,8 +14,7 @@ void incflo::ReadCheckpointFile()
     BL_PROFILE("amr-wind::incflo::ReadCheckpointFile()");
 
     const std::string& restart_file = m_sim.io_manager().restart_file();
-    amrex::Print() << "Restarting from checkpoint " << restart_file
-                   << std::endl;
+    amrex::Print() << "Restarting from checkpoint " << restart_file << '\n';
 
     amrex::RealArray prob_lo = {0.0_rt};
     amrex::RealArray prob_hi = {0.0_rt};
@@ -106,7 +105,7 @@ void incflo::ReadCheckpointFile()
 
     amrex::IntVect rep(1, 1, 1);
     for (int d = 0; d < AMREX_SPACEDIM; d++) {
-        AMREX_ALWAYS_ASSERT(prob_hi[d] > prob_lo[d]); // NOLINT
+        AMREX_ALWAYS_ASSERT(prob_hi[d] > prob_lo[d]);
 
         const amrex::Real domain_ratio =
             (prob_hi_input[d] - prob_lo_input[d]) / (prob_hi[d] - prob_lo[d]);
@@ -126,7 +125,7 @@ void incflo::ReadCheckpointFile()
     bool replicate = (rep != amrex::IntVect::TheUnitVector());
 
     if (replicate) {
-        amrex::Print() << "replicating restart file: " << rep << std::endl;
+        amrex::Print() << "replicating restart file: " << rep << '\n';
     }
 
     // Set up problem domain
@@ -154,8 +153,8 @@ void incflo::ReadCheckpointFile()
 
     if (replicate) {
         amrex::Print() << " OLD BA had " << ba_inp[lev0].size() << " GRIDS "
-                       << std::endl;
-        amrex::Print() << " OLD Domain" << orig_domain << std::endl;
+                       << '\n';
+        amrex::Print() << " OLD Domain" << orig_domain << '\n';
     }
 
     for (int lev = 0; lev <= finest_level; ++lev) {
@@ -198,8 +197,8 @@ void incflo::ReadCheckpointFile()
             }
 
             amrex::Print() << " NEW BA had " << ba_rep.size() << " GRIDS "
-                           << std::endl;
-            amrex::Print() << " NEW Domain" << ba_rep.minimalBox() << std::endl;
+                           << '\n';
+            amrex::Print() << " NEW Domain" << ba_rep.minimalBox() << '\n';
         }
 
         // Create distribution mapping

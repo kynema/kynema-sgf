@@ -27,7 +27,7 @@ void init_velocity(
 
         amrex::ParallelFor(
             vel_fld(lev), vel_fld.num_grow(), vel_fld.num_comp(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 // Mix positive and negative as check on L2 norm
                 farrs[nbx](i, j, k, n) =
                     fac * (i % 2 == 0 ? vels[n] : -vels[n]);
@@ -51,7 +51,7 @@ void init_velocity(
 
         amrex::ParallelFor(
             vel_fld(lev), vel_fld.num_grow(), vel_fld.num_comp(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 // Mix positive and negative as check on L2 norm
                 farrs[nbx](i, j, k, n) =
                     (i % 2 == 0 ? 1.0_rt - var_f : 1.0_rt + var_f) * vels[n];

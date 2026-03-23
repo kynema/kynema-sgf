@@ -1,5 +1,5 @@
-#ifndef RainDrop_H
-#define RainDrop_H
+#ifndef RAINDROP_H
+#define RAINDROP_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"

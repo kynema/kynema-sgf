@@ -22,7 +22,6 @@ FPlaneAveraging<FType>::FPlaneAveraging(
     auto geom = m_field.repo().mesh().Geom();
     // level=0 is default, could later make this an input.
     // Might only makes sense for fully covered levels
-
     m_xlo = geom[m_level].ProbLo(m_axis);
     m_dx = geom[m_level].CellSize(m_axis);
 
@@ -74,13 +73,13 @@ void FPlaneAveraging<FType>::output_line_average_ascii(
     if (step == 1) {
         // make new file
         outfile.open(filename.c_str(), std::ios_base::out);
-        outfile << "#ncell,ncomp" << std::endl;
-        outfile << m_ncell_line << ", " << m_ncomp + 3 << std::endl;
+        outfile << "#ncell,ncomp" << '\n';
+        outfile << m_ncell_line << ", " << m_ncomp + 3 << '\n';
         outfile << "#step,time,z";
         for (int i = 0; i < m_ncomp; ++i) {
             outfile << ",<" + m_field.name() + std::to_string(i) + ">";
         }
-        outfile << std::endl;
+        outfile << '\n';
     } else {
         // append file
         outfile.open(filename.c_str(), std::ios_base::out | std::ios_base::app);
@@ -93,7 +92,7 @@ void FPlaneAveraging<FType>::output_line_average_ascii(
             outfile << ", " << std::scientific
                     << m_line_average[(m_ncomp * i) + n];
         }
-        outfile << std::endl;
+        outfile << '\n';
     }
 }
 
@@ -286,8 +285,7 @@ void FPlaneAveraging<FType>::compute_averages(
         amrex::ParallelFor(
             amrex::Gpu::KernelInfo().setReduction(true), pbx,
             [=] AMREX_GPU_DEVICE(
-                int p_i, int p_j, int p_k,
-                amrex::Gpu::Handler const& handler) noexcept {
+                int p_i, int p_j, int p_k, amrex::Gpu::Handler const& handler) {
                 // Loop over the direction perpendicular to the plane.
                 // This reduces the atomic pressure on the destination arrays.
 
@@ -323,6 +321,7 @@ void FPlaneAveraging<FType>::compute_averages(
 template class FPlaneAveraging<Field>;
 template class FPlaneAveraging<ScratchField>;
 
+// NOLINTBEGIN(clang-analyzer-security.ArrayBound)
 VelPlaneAveraging::VelPlaneAveraging(CFDSim& sim, int axis_in)
     : FieldPlaneAveraging(
           sim.repo().get_field("velocity"), sim.time(), axis_in, true)
@@ -332,6 +331,7 @@ VelPlaneAveraging::VelPlaneAveraging(CFDSim& sim, int axis_in)
         m_line_hvelmag_deriv.resize(m_ncell_line, 0.0_rt);
     }
 }
+// NOLINTEND(clang-analyzer-security.ArrayBound)
 
 void VelPlaneAveraging::operator()()
 {
@@ -392,8 +392,7 @@ void VelPlaneAveraging::compute_hvelmag_averages(
         amrex::ParallelFor(
             amrex::Gpu::KernelInfo().setReduction(true), pbx,
             [=] AMREX_GPU_DEVICE(
-                int p_i, int p_j, int p_k,
-                amrex::Gpu::Handler const& handler) noexcept {
+                int p_i, int p_j, int p_k, amrex::Gpu::Handler const& handler) {
                 // Loop over the direction perpendicular to the plane.
                 // This reduces the atomic pressure on the destination arrays.
 
@@ -513,14 +512,14 @@ void VelPlaneAveraging::output_line_average_ascii(
     if (step == 1) {
         // make new file
         outfile.open(filename.c_str(), std::ios_base::out);
-        outfile << "#ncell,ncomp" << std::endl;
-        outfile << m_ncell_line << ", " << m_ncomp + 4 << std::endl;
+        outfile << "#ncell,ncomp" << '\n';
+        outfile << m_ncell_line << ", " << m_ncomp + 4 << '\n';
         outfile << "#step,time,z";
         for (int i = 0; i < m_ncomp; ++i) {
             outfile << ",<" + m_field.name() + std::to_string(i) + ">";
         }
         outfile << ", <hvelmag>";
-        outfile << std::endl;
+        outfile << '\n';
     } else {
         // append file
         outfile.open(filename.c_str(), std::ios_base::out | std::ios_base::app);
@@ -534,7 +533,7 @@ void VelPlaneAveraging::output_line_average_ascii(
                     << m_line_average[(m_ncomp * i) + n];
         }
         outfile << ", " << std::scientific << m_line_hvelmag_average[i];
-        outfile << std::endl;
+        outfile << '\n';
     }
 }
 

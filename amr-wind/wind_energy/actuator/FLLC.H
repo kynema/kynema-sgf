@@ -1,6 +1,7 @@
-#ifndef FLLC
-#define FLLC
+#ifndef FLLC_H
+#define FLLC_H
 
+#include <cstdint>
 #include "amr-wind/wind_energy/actuator/actuator_types.H"
 #include "amr-wind/wind_energy/actuator/ActParser.H"
 #include "AMReX_REAL.H"
@@ -9,7 +10,7 @@ using namespace amrex::literals;
 
 namespace amr_wind::actuator {
 
-enum class FLLCType { ConstantChord, VariableChord };
+enum class FLLCType : std::uint8_t { ConstantChord, VariableChord };
 
 static std::map<std::string, FLLCType> FLLCTypeMap{
     {"constant_chord", FLLCType::ConstantChord},
@@ -67,7 +68,7 @@ void fllc_parse(const utils::ActParser& pp, FLLCData& data);
  * \param eps_chord epsilon chord
  */
 void fllc_init(
-    FLLCData& data, const ComponentView& view, const amrex::Real eps_chord);
+    FLLCData& data, const ComponentView& view, amrex::Real eps_chord);
 
 } // namespace amr_wind::actuator
 

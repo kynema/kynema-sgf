@@ -28,9 +28,9 @@ public:
      */
     void operator()(
         const SimTime& /*time*/,
-        const amrex::Real /*filter_width*/,
-        const amrex::Real /*avg_time_interval*/,
-        const amrex::Real /*elapsed_time*/) override;
+        amrex::Real /*filter_width*/,
+        amrex::Real /*avg_time_interval*/,
+        amrex::Real /*elapsed_time*/) override;
 
     const std::string& average_field_name() override;
 

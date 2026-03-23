@@ -1,5 +1,5 @@
-#ifndef ConvectingTaylorVortex_H
-#define ConvectingTaylorVortex_H
+#ifndef CONVECTINGTAYLORVORTEX_H
+#define CONVECTINGTAYLORVORTEX_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
@@ -14,72 +14,72 @@ namespace {
 struct UExact
 {
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real operator()(
-        const amrex::Real /*u0*/,
-        const amrex::Real /*v0*/,
-        const amrex::Real /*omega*/,
-        const amrex::Real /*x*/,
-        const amrex::Real /*y*/,
-        const amrex::Real /*t*/) const;
+        amrex::Real /*u0*/,
+        amrex::Real /*v0*/,
+        amrex::Real /*omega*/,
+        amrex::Real /*x*/,
+        amrex::Real /*y*/,
+        amrex::Real /*t*/) const;
     const int m_comp{0};
 };
 
 struct VExact
 {
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real operator()(
-        const amrex::Real /*u0*/,
-        const amrex::Real /*v0*/,
-        const amrex::Real /*omega*/,
-        const amrex::Real /*x*/,
-        const amrex::Real /*y*/,
-        const amrex::Real /*t*/) const;
+        amrex::Real /*u0*/,
+        amrex::Real /*v0*/,
+        amrex::Real /*omega*/,
+        amrex::Real /*x*/,
+        amrex::Real /*y*/,
+        amrex::Real /*t*/) const;
     const int m_comp{1};
 };
 
 struct WExact
 {
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real operator()(
-        const amrex::Real /*unused*/,
-        const amrex::Real /*unused*/,
-        const amrex::Real /*unused*/,
-        const amrex::Real /*unused*/,
-        const amrex::Real /*unused*/,
-        const amrex::Real /*unused*/) const;
+        amrex::Real /*unused*/,
+        amrex::Real /*unused*/,
+        amrex::Real /*unused*/,
+        amrex::Real /*unused*/,
+        amrex::Real /*unused*/,
+        amrex::Real /*unused*/) const;
     const int m_comp{2};
 };
 
 struct GpxExact
 {
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real operator()(
-        const amrex::Real /*u0*/,
-        const amrex::Real /*unused*/,
-        const amrex::Real /*omega*/,
-        const amrex::Real /*x*/,
-        const amrex::Real /*unused*/,
-        const amrex::Real /*t*/) const;
+        amrex::Real /*u0*/,
+        amrex::Real /*unused*/,
+        amrex::Real /*omega*/,
+        amrex::Real /*x*/,
+        amrex::Real /*unused*/,
+        amrex::Real /*t*/) const;
     const int m_comp{0};
 };
 
 struct GpyExact
 {
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real operator()(
-        const amrex::Real /*unused*/,
-        const amrex::Real /*v0*/,
-        const amrex::Real /*omega*/,
-        const amrex::Real /*unused*/,
-        const amrex::Real /*y*/,
-        const amrex::Real /*t*/) const;
+        amrex::Real /*unused*/,
+        amrex::Real /*v0*/,
+        amrex::Real /*omega*/,
+        amrex::Real /*unused*/,
+        amrex::Real /*y*/,
+        amrex::Real /*t*/) const;
     const int m_comp{1};
 };
 
 struct GpzExact
 {
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real operator()(
-        const amrex::Real /*unused*/,
-        const amrex::Real /*unused*/,
-        const amrex::Real /*unused*/,
-        const amrex::Real /*unused*/,
-        const amrex::Real /*unused*/,
-        const amrex::Real /*unused*/) const;
+        amrex::Real /*unused*/,
+        amrex::Real /*unused*/,
+        amrex::Real /*unused*/,
+        amrex::Real /*unused*/,
+        amrex::Real /*unused*/,
+        amrex::Real /*unused*/) const;
     const int m_comp{2};
 };
 
@@ -110,11 +110,11 @@ public:
 
     void post_advance_work() override;
 
-    amrex::Real get_u0() const { return m_u0; }
+    [[nodiscard]] amrex::Real get_u0() const { return m_u0; }
 
-    amrex::Real get_v0() const { return m_v0; }
+    [[nodiscard]] amrex::Real get_v0() const { return m_v0; }
 
-    amrex::Real get_omega() const { return m_omega; }
+    [[nodiscard]] amrex::Real get_omega() const { return m_omega; }
 
 private:
     const amr_wind::SimTime& m_time;

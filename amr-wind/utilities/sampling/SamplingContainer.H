@@ -2,6 +2,7 @@
 #define SAMPLINGCONTAINER_H
 
 #include <memory>
+#include <cstdint>
 
 #include "AMReX_AmrParticles.H"
 #include "amr-wind/utilities/DerivedQuantity.H"
@@ -27,7 +28,7 @@ static constexpr int SNArrayInt = 0;
  */
 struct IIx
 {
-    enum Indices {
+    enum Indices : std::uint8_t {
         uid = 0, ///< Unique identifier for this particle
         sid,     ///< Identifier of the set this particle belongs to
         nid      ///< Index within the set for this particle
@@ -78,8 +79,7 @@ public:
 
     /** Define the container and allocate memory for runtime components
      */
-    void setup_container(
-        const int num_real_components, const int num_int_components = 0);
+    void setup_container(int num_real_components, int num_int_components = 0);
 
     /** Create particle information for all the sampling locations
      */
@@ -112,9 +112,7 @@ public:
 
     //! Perform derived field interpolation to sampling locations
     void interpolate_derived_fields(
-        const DerivedQtyMgr& derived_mgr,
-        const FieldRepo& repo,
-        const int scomp);
+        const DerivedQtyMgr& derived_mgr, const FieldRepo& repo, int scomp);
 
     //! Populate the buffer with data for all the particles
     void populate_buffer(std::vector<amrex::Real>& buf);
@@ -152,7 +150,7 @@ public:
         auto* pstruct = pvec.data();
         auto* parr = pavec.data();
 
-        amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(int ip) noexcept {
+        amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(int ip) {
             auto& p = pstruct[ip];
             // Determine offsets within the containing cell
             const amrex::Real x =

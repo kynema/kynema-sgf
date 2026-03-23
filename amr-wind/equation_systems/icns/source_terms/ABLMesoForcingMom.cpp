@@ -5,11 +5,10 @@
 #include "amr-wind/core/FieldUtils.H"
 #include "amr-wind/utilities/index_operations.H"
 #include "amr-wind/utilities/linear_interpolation.H"
+#include "amr-wind/utilities/math_ops.H"
 #include "AMReX_ParmParse.H"
-#include "AMReX_Gpu.H"
 #include "AMReX_Print.H"
 #include "AMReX_GpuContainers.H"
-#include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
@@ -159,7 +158,7 @@ void ABLMesoForcingMom::mean_velocity_heights(
             m_transition_height = amr_wind::interp::linear(
                 meso_times, ncfile->meso_transition_height(), currtime);
             amrex::Print() << "current transition height = "
-                           << m_transition_height << std::endl;
+                           << m_transition_height << '\n';
 
             set_transition_weighting();
             indirect_forcing_init();
@@ -175,13 +174,9 @@ void ABLMesoForcingMom::mean_velocity_heights(
 
             for (int ih = 0; ih < m_nht; ih++) {
                 ezP_U[i] = ezP_U[i] + (error_U[ih] * m_W[i] *
-                                       std::pow(
-                                           m_zht[ih] * m_scaleFact,
-                                           static_cast<amrex::Real>(i)));
+                                       utils::powi(m_zht[ih] * m_scaleFact, i));
                 ezP_V[i] = ezP_V[i] + (error_V[ih] * m_W[i] *
-                                       std::pow(
-                                           m_zht[ih] * m_scaleFact,
-                                           static_cast<amrex::Real>(i)));
+                                       utils::powi(m_zht[ih] * m_scaleFact, i));
             }
         }
 
@@ -198,7 +193,7 @@ void ABLMesoForcingMom::mean_velocity_heights(
 
         if (m_debug) {
             amrex::Print() << "direct vs indirect velocity error profile"
-                           << std::endl;
+                           << '\n';
         }
         amrex::Vector<amrex::Real> error_U_direct(m_nht);
         amrex::Vector<amrex::Real> error_V_direct(m_nht);
@@ -208,20 +203,18 @@ void ABLMesoForcingMom::mean_velocity_heights(
             error_U[ih] = 0.0_rt;
             error_V[ih] = 0.0_rt;
             for (int j = 0; j < 4; j++) {
-                error_U[ih] = error_U[ih] + (m_poly_coeff_U[j] *
-                                             std::pow(
-                                                 m_zht[ih] * m_scaleFact,
-                                                 static_cast<amrex::Real>(j)));
-                error_V[ih] = error_V[ih] + (m_poly_coeff_V[j] *
-                                             std::pow(
-                                                 m_zht[ih] * m_scaleFact,
-                                                 static_cast<amrex::Real>(j)));
+                error_U[ih] =
+                    error_U[ih] + (m_poly_coeff_U[j] *
+                                   utils::powi(m_zht[ih] * m_scaleFact, j));
+                error_V[ih] =
+                    error_V[ih] + (m_poly_coeff_V[j] *
+                                   utils::powi(m_zht[ih] * m_scaleFact, j));
             }
 
             if (m_debug) {
                 amrex::Print() << m_zht[ih] << " " << error_U_direct[ih] << " "
                                << error_U[ih] << " " << error_V_direct[ih]
-                               << " " << error_V[ih] << std::endl;
+                               << " " << error_V[ih] << '\n';
             }
         }
 
@@ -232,7 +225,7 @@ void ABLMesoForcingMom::mean_velocity_heights(
             if (m_debug) {
                 for (int ih = 0; ih < m_nht; ih++) {
                     amrex::Print() << m_zht[ih] << " " << error_U[ih] << " "
-                                   << error_V[ih] << std::endl;
+                                   << error_V[ih] << '\n';
                 }
             }
         }
@@ -245,7 +238,7 @@ void ABLMesoForcingMom::mean_velocity_heights(
         if (m_debug) {
             for (int ih = 0; ih < m_nht; ih++) {
                 amrex::Print() << m_zht[ih] << " " << error_U[ih] << " "
-                               << error_V[ih] << std::endl;
+                               << error_V[ih] << '\n';
             }
         }
     }
@@ -291,7 +284,7 @@ void ABLMesoForcingMom::operator()(
     const amrex::Real* v_error_val = m_error_meso_avg_V.data();
     const int idir = (int)m_axis;
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         amrex::IntVect iv(i, j, k);
         const amrex::Real ht = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
         const amrex::Real u_err = amr_wind::interp::linear(

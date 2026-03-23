@@ -41,9 +41,7 @@ public:
     static std::string identifier() { return "precursor"; }
 
     ABLStats(
-        CFDSim& /*sim*/,
-        const ABLWallFunction& /*abl_wall_func*/,
-        const int dir);
+        CFDSim& /*sim*/, const ABLWallFunction& /*abl_wall_func*/, int dir);
 
     ~ABLStats() override;
 
@@ -112,7 +110,7 @@ public:
         const Field& buoy_prod,
         const Field& shear_prod,
         const Field& dissipation,
-        const amrex::Real dt);
+        amrex::Real dt);
 
 protected:
     //! Read user inputs and create the necessary files

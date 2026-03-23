@@ -5,7 +5,7 @@
 #include "amr-wind/fvm/strainrate.H"
 #include "amr-wind/fvm/divergence.H"
 #include "amr-wind/fvm/gradient.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 #include "AMReX_MultiFab.H"
 #include "AMReX_ParmParse.H"
 #include "amr-wind/wind_energy/ABL.H"
@@ -132,8 +132,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                 : 0.0;
         const amrex::Real T0 = m_ref_temp;
         amrex::ParallelFor(
-            mu_turb(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            mu_turb(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real rho = rho_arrs[nbx](i, j, k);
                 amrex::Real x3 = problo[2] + ((k + 0.5_rt) * dz);
                 x3 = (has_terrain)
@@ -153,7 +152,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                               ((k + 1) * dz) - height_arrs[nbx](i, j, k, 0), dz)
                         : (k + 1) * dz;
                 const amrex::Real ransL =
-                    std::pow(0.41_rt * wall_distance / phiM, 2.0_rt);
+                    utils::powi(0.41_rt * wall_distance / phiM, 2);
                 amrex::Real turnOff = std::exp(-x3 / locLESTurnOff);
                 amrex::Real viscosityScale =
                     (locSurfaceFactor *
@@ -239,8 +238,7 @@ void Kosovic<Transport>::update_alphaeff(Field& alphaeff)
         const auto& alphaeff_arrs = alphaeff(lev).arrays();
         const auto& lam_diff_arrs = (*lam_alpha)(lev).const_arrays();
         amrex::ParallelFor(
-            mu_turb(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            mu_turb(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 alphaeff_arrs[nbx](i, j, k) =
                     lam_diff_arrs[nbx](i, j, k) +
                     (muCoeff * muturb_arrs[nbx](i, j, k));

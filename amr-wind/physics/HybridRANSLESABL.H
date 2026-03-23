@@ -1,5 +1,5 @@
-#ifndef HybridRANSLESABL_H
-#define HybridRANSLESABL_H
+#ifndef HYBRIDRANSLESABL_H
+#define HYBRIDRANSLESABL_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"

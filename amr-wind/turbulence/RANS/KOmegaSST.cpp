@@ -134,8 +134,7 @@ void KOmegaSST<Transport>::update_turbulent_viscosity(
         const auto& buoy_arrs = (this->m_buoy_term(lev)).arrays();
 
         amrex::ParallelFor(
-            mu_turb(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            mu_turb(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 amrex::Real gko =
                     ((gradK_arrs[nbx](i, j, k, 0) *
                       gradOmega_arrs[nbx](i, j, k, 0)) +
@@ -305,8 +304,7 @@ void KOmegaSST<Transport>::update_scalar_diff(
             const auto& f1_arrs = (this->m_f1)(lev).const_arrays();
             const auto& deff_arrs = deff(lev).arrays();
             amrex::ParallelFor(
-                deff(lev),
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                deff(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     deff_arrs[nbx](i, j, k) =
                         lam_mu_arrs[nbx](i, j, k) +
                         ((f1_arrs[nbx](i, j, k) * (sigma_k1 - sigma_k2) +
@@ -326,8 +324,7 @@ void KOmegaSST<Transport>::update_scalar_diff(
             const auto& f1_arrs = (this->m_f1)(lev).const_arrays();
             const auto& deff_arrs = deff(lev).arrays();
             amrex::ParallelFor(
-                deff(lev),
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                deff(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     deff_arrs[nbx](i, j, k) =
                         lam_mu_arrs[nbx](i, j, k) +
                         ((f1_arrs[nbx](i, j, k) *

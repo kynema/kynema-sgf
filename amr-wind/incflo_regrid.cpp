@@ -12,8 +12,7 @@ void incflo::MakeNewLevelFromCoarse(
     BL_PROFILE("amr-wind::incflo::MakeNewLevelFromCoarse()");
 
     if (m_verbose > 0) {
-        amrex::Print() << "Making new level " << lev << " from coarse"
-                       << std::endl;
+        amrex::Print() << "Making new level " << lev << " from coarse" << '\n';
     }
 
     m_repo.make_new_level_from_coarse(lev, time, ba, dm);
@@ -31,7 +30,7 @@ void incflo::RemakeLevel(
     BL_PROFILE("amr-wind::incflo::RemakeLevel()");
 
     if (m_verbose > 0) {
-        amrex::Print() << "Remaking level " << lev << std::endl;
+        amrex::Print() << "Remaking level " << lev << '\n';
     }
 
     m_repo.remake_level(lev, time, ba, dm);

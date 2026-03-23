@@ -13,7 +13,7 @@ class MOSDTest : public MeshTest
 protected:
     void populate_parameters() override { MeshTest::populate_parameters(); }
 
-    amrex::Real get_u_loglaw(const amrex::Real utau) const
+    [[nodiscard]] amrex::Real get_u_loglaw(const amrex::Real utau) const
     {
         return utau *
                (1.0_rt / 0.4_rt * std::log(m_zref * utau / m_nu) + 5.0_rt);

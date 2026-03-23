@@ -1,5 +1,5 @@
-#ifndef TaylorGreenVortex_H
-#define TaylorGreenVortex_H
+#ifndef TAYLORGREENVORTEX_H
+#define TAYLORGREENVORTEX_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"

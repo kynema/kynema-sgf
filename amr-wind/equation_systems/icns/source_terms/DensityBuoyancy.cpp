@@ -57,7 +57,7 @@ void DensityBuoyancy::operator()(
     FieldState den_state = field_impl::phi_state(fstate);
     const auto& density = m_density.state(den_state)(lev).const_array(mfi);
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real fac = 1.0_rt - (density_0 / density(i, j, k));
 
         vel_forces(i, j, k, 0) += gravity[0] * fac;

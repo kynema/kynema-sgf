@@ -1,5 +1,5 @@
-#ifndef UNIFORM_CT_OPS_H_
-#define UNIFORM_CT_OPS_H_
+#ifndef UNIFORM_CT_OPS_H
+#define UNIFORM_CT_OPS_H
 
 #include <numbers>
 #include "amr-wind/wind_energy/actuator/disk/disk_ops.H"
@@ -174,4 +174,4 @@ public:
 };
 } // namespace amr_wind::actuator::ops
 
-#endif /* UNIFORM_CT_OPS_H_ */
+#endif /* UNIFORM_CT_OPS_H */

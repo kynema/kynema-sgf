@@ -2,7 +2,7 @@
 #include "aw_test_utils/MeshTest.H"
 #include "amr-wind/turbulence/TurbulenceModel.H"
 #include "aw_test_utils/test_utils.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -26,7 +26,7 @@ amrex::Real get_val_at_kindex(
             amrex::Array4<amrex::Real const> const& div_arr) -> amrex::Real {
             amrex::Real error = 0;
 
-            amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+            amrex::Loop(bx, [=, &error](int i, int j, int k) {
                 // Check if current cell is just above lower wall
                 if (k == kref) {
                     // Add field value to output
@@ -57,7 +57,7 @@ void init_field3(amr_wind::Field& fld, amrex::Real srate)
 
         amrex::ParallelFor(
             fld(lev), fld.num_grow(), fld.num_comp(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
                 farrs[nbx](i, j, k, n) = (z / 2.0_rt * srate) + 2.0_rt;
             });
@@ -82,7 +82,7 @@ void init_field1(amr_wind::Field& fld, amrex::Real tgrad)
 
         amrex::ParallelFor(
             fld(lev), fld.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
 
                 farrs[nbx](i, j, k, 0) = z * tgrad;
@@ -411,7 +411,7 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_wallmodel_failnofillpatch)
     const amrex::Real vmag_ref = std::sqrt(2.0_rt * uref * uref);
     const amrex::Real utau = kappa * vmag_ref / (std::log(zref / z0));
     const amrex::Real uz_wm =
-        uref / vmag_ref * std::pow(utau, 2.0_rt) * m_rho0 / m_mu;
+        uref / vmag_ref * amr_wind::utils::powi(utau, 2) * m_rho0 / m_mu;
 
     // Velocity gradient with wallmodel value included as dirichlet
     const amrex::Real uz_wmdirichlet =

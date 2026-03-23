@@ -59,7 +59,7 @@ struct AdvectionOp<
             godunov_scheme = godunov::scheme::PPM_NOLIM;
             amrex::Print() << "WARNING: Using advection type ppm_nolim is not "
                               "recommended. Prefer using weno_z."
-                           << std::endl;
+                           << '\n';
         } else if (amrex::toLower(godunov_type) == "bds") {
             godunov_scheme = godunov::scheme::BDS;
             advection_type = "BDS";
@@ -175,8 +175,7 @@ struct AdvectionOp<
 
                     amrex::ParallelFor(
                         rhotrac_box, PDE::ndim,
-                        [=] AMREX_GPU_DEVICE(
-                            int i, int j, int k, int n) noexcept {
+                        [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
                             rhotrac(i, j, k, n) =
                                 rho_arr(i, j, k) * tra_arr(i, j, k, n);
                             rhotrac_nph(i, j, k, n) =

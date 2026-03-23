@@ -58,7 +58,7 @@ void VortexPatch::initialize_fields(int level, const amrex::Geometry& geom)
     const amrex::Real eps = std::cbrt(2.0_rt * dx[0] * dx[1] * dx[2]);
 
     amrex::ParallelFor(
-        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
             const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
             const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
@@ -141,7 +141,7 @@ void VortexPatch::pre_advance_work()
         const auto& wf_arrs = w_mac.arrays();
         amrex::ParallelFor(
             m_velocity(lev), amrex::IntVect(1),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
                 const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
                 const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
@@ -189,7 +189,7 @@ void VortexPatch::post_advance_work()
         const auto& vel_arrs = m_velocity(lev).arrays();
         amrex::ParallelFor(
             m_velocity(lev), amrex::IntVect(1),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
                 const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
                 const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);

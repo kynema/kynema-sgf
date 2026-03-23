@@ -1,5 +1,5 @@
-#ifndef UNIFORMCT_H_
-#define UNIFORMCT_H_
+#ifndef UNIFORMCT_H
+#define UNIFORMCT_H
 
 #include "amr-wind/wind_energy/actuator/disk/ActuatorDisk.H"
 
@@ -20,4 +20,4 @@ struct UniformCt : public DiskType
 
 } // namespace amr_wind::actuator
 
-#endif /* UNIFORMCT_H_ */
+#endif /* UNIFORMCT_H */

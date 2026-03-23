@@ -10,7 +10,7 @@
 #include "amr-wind/equation_systems/tke/TKE.H"
 #include "amr-wind/equation_systems/sdr/SDR.H"
 #include "AMReX_ParmParse.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -150,8 +150,7 @@ void KOmegaSSTIDDES<Transport>::update_turbulent_viscosity(
         const auto& sdr_lhs_arrs = sdr_lhs(lev).arrays();
 
         amrex::ParallelFor(
-            mu_turb(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            mu_turb(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 amrex::Real gko =
                     ((gradK_arrs[nbx](i, j, k, 0) *
                       gradOmega_arrs[nbx](i, j, k, 0)) +
@@ -210,9 +209,8 @@ void KOmegaSSTIDDES<Transport>::update_turbulent_viscosity(
                 const amrex::Real rdl = lam_mu_arrs[nbx](i, j, k) / denom;
                 const amrex::Real rdt = mu_arrs[nbx](i, j, k) / denom;
                 const amrex::Real fl =
-                    std::tanh(std::pow(Cl * Cl * rdl, 10.0_rt));
-                const amrex::Real ft =
-                    std::tanh(std::pow(Ct * Ct * rdt, 3.0_rt));
+                    std::tanh(utils::powi(Cl * Cl * rdl, 10));
+                const amrex::Real ft = std::tanh(utils::powi(Ct * Ct * rdt, 3));
                 const amrex::Real fe1 =
                     (alpha < 0) ? 2.0_rt * std::exp(-9.0_rt * alpha * alpha)
                                 : 2.0_rt * std::exp(-11.09_rt * alpha * alpha);

@@ -40,10 +40,13 @@ public:
      *  pushes the field to device.
      */
     void perturb_temperature(
-        const int lev, const amrex::Geometry& geom, Field& temperature) const;
+        int lev, const amrex::Geometry& geom, Field& temperature) const;
 
     //! Flag indicating whether temperature field needs perturbations
-    bool add_temperature_perturbations() const { return m_perturb_theta; }
+    [[nodiscard]] bool add_temperature_perturbations() const
+    {
+        return m_perturb_theta;
+    }
 
     //! Initialize TKE field
     void init_tke(const amrex::Geometry& geom, amrex::MultiFab& tke) const;

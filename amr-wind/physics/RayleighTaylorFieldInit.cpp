@@ -32,7 +32,7 @@ void RayleighTaylorFieldInit::operator()(
     const amrex::Real splity = 0.5_rt * (problo[1] + probhi[1]);
     const amrex::Real L_x = probhi[0] - problo[0];
 
-    amrex::ParallelFor(vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
         const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
         const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);

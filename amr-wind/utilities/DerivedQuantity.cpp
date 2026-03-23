@@ -1,6 +1,5 @@
-#include <string>
 #include <algorithm>
-
+#include <string>
 #include "amr-wind/utilities/DerivedQuantity.H"
 #include "amr-wind/utilities/io_utils.H"
 #include "AMReX_REAL.H"
@@ -10,10 +9,13 @@ using namespace amrex::literals;
 namespace amr_wind {
 namespace {
 
-inline std::string strip_spaces(const std::string& inp)
+std::string strip_spaces(const std::string& inp)
 {
     std::string str(inp);
-    str.erase(std::remove(str.begin(), str.end(), ' '), str.end());
+    str.erase(
+        std::remove( // NOLINT(modernize-use-ranges)
+            str.begin(), str.end(), ' '),
+        str.end());
     return str;
 }
 
@@ -96,7 +98,7 @@ void DerivedQtyMgr::operator()(ScratchField& fld, const int scomp) const
     fld.fillpatch(0.0_rt);
 }
 
-int DerivedQtyMgr::num_comp() const noexcept
+int DerivedQtyMgr::num_comp() const
 {
     return std::accumulate(
         m_derived_vec.begin(), m_derived_vec.end(), 0,
@@ -105,14 +107,13 @@ int DerivedQtyMgr::num_comp() const noexcept
         });
 }
 
-bool DerivedQtyMgr::contains(const std::string& key) const noexcept
+bool DerivedQtyMgr::contains(const std::string& key) const
 {
     auto it = m_obj_map.find(key);
     return (it != m_obj_map.end());
 }
 
-void DerivedQtyMgr::var_names(
-    amrex::Vector<std::string>& plt_var_names) const noexcept
+void DerivedQtyMgr::var_names(amrex::Vector<std::string>& plt_var_names) const
 {
     for (const auto& qty : m_derived_vec) {
         qty->var_names(plt_var_names);
@@ -131,9 +132,8 @@ void DerivedQtyMgr::filter(const std::set<std::string>& erase)
     amrex::Vector<decltype(m_obj_map)::key_type> keys_to_erase;
     for (int i = 0; i < m_derived_vec.size(); i++) {
         if (erase.contains(m_derived_vec[i]->name())) {
-            auto it = std::find_if(
-                m_obj_map.begin(), m_obj_map.end(),
-                [&i](auto&& p) { return p.second == i; });
+            auto it = std::ranges::find_if(
+                m_obj_map, [&i](auto&& p) { return p.second == i; });
             keys_to_erase.emplace_back(it->first);
         }
     }
@@ -143,7 +143,7 @@ void DerivedQtyMgr::filter(const std::set<std::string>& erase)
 
     // then erase from the derived vec
     m_derived_vec.erase(
-        std::remove_if(
+        std::remove_if( //NOLINT(modernize-use-ranges)
             m_derived_vec.begin(), m_derived_vec.end(),
             [=](const auto& qty) {
                 return erase.find(qty->name()) != erase.end();

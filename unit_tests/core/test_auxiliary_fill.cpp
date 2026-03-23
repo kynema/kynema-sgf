@@ -46,7 +46,7 @@ void auxiliary_fill_boundary(
                 const auto& idx = indices(lev).array(mfi);
                 amrex::ParallelFor(
                     bx, ncomp,
-                    [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) noexcept {
+                    [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
                         dest(i, j, k, n) =
                             static_cast<amrex::Real>(comp + n + 1);
                         idx(i + shift_to_cc[0], j + shift_to_cc[1],
@@ -81,7 +81,7 @@ amrex::Real get_field_err(
             amrex::Array4<int const> const& i_arr) -> amrex::Real {
             amrex::Real error = 0;
 
-            amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+            amrex::Loop(bx, [=, &error](int i, int j, int k) {
                 // Do indices manually to check against box operations in code
                 if (ncomp == 1) {
                     // Checking a MAC velocity

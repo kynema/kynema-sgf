@@ -1,5 +1,5 @@
-#ifndef ACTSRCDISKOP_H_
-#define ACTSRCDISKOP_H_
+#ifndef ACTSRCDISKOP_H
+#define ACTSRCDISKOP_H
 #include "amr-wind/wind_energy/actuator/actuator_ops.H"
 #include "amr-wind/wind_energy/actuator/actuator_utils.H"
 #include "amr-wind/core/FieldRepo.H"
@@ -47,8 +47,8 @@ public:
 
     void setup_op() { copy_to_device(); }
 
-    void operator()(
-        const int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom);
+    void
+    operator()(int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom);
 };
 
 template <typename ActTrait>
@@ -94,4 +94,4 @@ void ActSrcOp<
 
 } // namespace amr_wind::actuator::ops
 
-#endif /* ACTSRCDISKOP_H_ */
+#endif /* ACTSRCDISKOP_H */

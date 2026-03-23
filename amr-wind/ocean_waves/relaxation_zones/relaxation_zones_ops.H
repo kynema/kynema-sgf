@@ -43,7 +43,7 @@ void write_netcdf(
     const std::string& /*ncfile*/,
     const RelaxZonesBaseData& /*meta*/,
     const OceanWavesInfo& /*info*/,
-    const amrex::Real /*time*/);
+    amrex::Real /*time*/);
 
 } // namespace relaxation_zones
 

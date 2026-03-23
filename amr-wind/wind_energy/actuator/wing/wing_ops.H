@@ -30,19 +30,19 @@ void write_netcdf(
     const WingBaseData& /*meta*/,
     const ActInfo& /*info*/,
     const ActGrid& /*grid*/,
-    const amrex::Real /*time*/);
+    amrex::Real /*time*/);
 
-void refresh_wing_position(VecList& vpoints, VecList fpoints, const int npts);
+void refresh_wing_position(VecList& vpoints, VecList fpoints, int npts);
 
 void new_wing_position_velocity(
     VecList& points,
     vs::Vector& vtr,
-    const int npts,
-    const amrex::Real tn,
-    const amrex::Real tnp1,
+    int npts,
+    amrex::Real tn,
+    amrex::Real tnp1,
     const std::string& motion,
-    const amrex::Real period,
-    const vs::Vector svec);
+    amrex::Real period,
+    vs::Vector svec);
 
 template <typename T>
 ComponentView make_component_view(typename T::DataType& data)

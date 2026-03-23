@@ -68,7 +68,7 @@ void MMS::initialize_fields(int level, const amrex::Geometry& geom)
         const auto& vel = h_velocity.array(mfi);
         const auto& den = h_density.array(mfi);
 
-        amrex::LoopOnCpu(vbx, [=](int i, int j, int k) noexcept {
+        amrex::LoopOnCpu(vbx, [=](int i, int j, int k) {
             const amrex::Real x = problo[0] + (i + 0.5_rt) * dx[0];
             const amrex::Real y = problo[1] + (j + 0.5_rt) * dx[1];
             const amrex::Real z = problo[2] + (k + 0.5_rt) * dx[2];
@@ -106,7 +106,7 @@ void MMS::fill_src()
             const auto& bx = mfi.tilebox();
             const auto& mms_src = h_mms_src_term.array(mfi);
 
-            amrex::LoopOnCpu(bx, [=](int i, int j, int k) noexcept {
+            amrex::LoopOnCpu(bx, [=](int i, int j, int k) {
                 const amrex::Real x = problo[0] + (i + 0.5_rt) * dx[0];
                 const amrex::Real y = problo[1] + (j + 0.5_rt) * dx[1];
                 const amrex::Real z = problo[2] + (k + 0.5_rt) * dx[2];
@@ -164,7 +164,7 @@ MMS::compute_error(const int comp, const Field& field, amr_wind::mms::FuncDef f)
             const auto& mask_arr = h_level_mask.array(mfi);
 
             amrex::Real err_fab = 0.0_rt;
-            amrex::LoopOnCpu(vbx, [=, &err_fab](int i, int j, int k) noexcept {
+            amrex::LoopOnCpu(vbx, [=, &err_fab](int i, int j, int k) {
                 const amrex::Real x = problo[0] + (i + 0.5_rt) * dx[0];
                 const amrex::Real y = problo[1] + (j + 0.5_rt) * dx[1];
                 const amrex::Real z = problo[2] + (k + 0.5_rt) * dx[2];

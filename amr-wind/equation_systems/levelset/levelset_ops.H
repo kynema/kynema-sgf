@@ -73,8 +73,7 @@ struct ComputeRHSOp<Levelset, Scheme>
             const auto& ddt_o_arrs = conv_term(lev).const_arrays();
 
             amrex::ParallelFor(
-                field(lev),
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                field(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     phi_arrs[nbx](i, j, k) = phi_o_arrs[nbx](i, j, k) +
                                              (dt * ddt_o_arrs[nbx](i, j, k));
                     // Defer n+1/2 update to the time-stepping algorithm
@@ -103,8 +102,7 @@ struct ComputeRHSOp<Levelset, Scheme>
             const auto ddt_o_arrs = conv_term_old(lev).const_arrays();
 
             amrex::ParallelFor(
-                field(lev),
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                field(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     phi_arrs[nbx](i, j, k) =
                         phi_o_arrs[nbx](i, j, k) +
                         (dt * 0.5_rt *

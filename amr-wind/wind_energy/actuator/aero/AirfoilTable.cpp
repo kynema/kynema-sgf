@@ -1,6 +1,5 @@
 #include "amr-wind/wind_energy/actuator/aero/AirfoilTable.H"
 #include "amr-wind/utilities/linear_interpolation.H"
-
 #include <fstream>
 #include <algorithm>
 
@@ -43,9 +42,9 @@ void ThinAirfoil::operator()(
 
 void AirfoilTable::convert_aoa_to_radians()
 {
-    std::transform(
-        m_aoa.begin(), m_aoa.end(), m_aoa.begin(),
-        [](amrex::Real aoa_in) { return utils::radians(aoa_in); });
+    std::ranges::transform(m_aoa, m_aoa.begin(), [](amrex::Real aoa_in) {
+        return utils::radians(aoa_in);
+    });
 }
 
 std::unique_ptr<AirfoilTable>

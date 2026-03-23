@@ -2,13 +2,14 @@
 #define EXTERNAL_BASE_TYPES_H
 
 #include <string>
+#include <cstdint>
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
 namespace ext_turb {
 
-enum class SimMode : int {
+enum class SimMode : std::uint8_t {
     init = 0, ///< Clean start
     replay,   ///< Replay using velocities stored in file
     restart   ///< Restart using external checkpoint files

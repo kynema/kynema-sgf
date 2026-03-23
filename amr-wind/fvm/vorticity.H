@@ -32,46 +32,45 @@ struct Vorticity
             return;
         }
 
-        amrex::ParallelFor(
-            bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                amrex::Real cp1, c, cm1, uy, uz, vx, vz, wx, wy;
-                cp1 = Stencil::c00;
-                c = Stencil::c01;
-                cm1 = Stencil::c02;
+        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+            amrex::Real cp1, c, cm1, uy, uz, vx, vz, wx, wy;
+            cp1 = Stencil::c00;
+            c = Stencil::c01;
+            cm1 = Stencil::c02;
 
-                vx = (cp1 * phi(i + 1, j, k, 1) + c * phi(i, j, k, 1) +
-                      cm1 * phi(i - 1, j, k, 1)) *
-                     idx[0];
-                wx = (cp1 * phi(i + 1, j, k, 2) + c * phi(i, j, k, 2) +
-                      cm1 * phi(i - 1, j, k, 2)) *
-                     idx[0];
+            vx = (cp1 * phi(i + 1, j, k, 1) + c * phi(i, j, k, 1) +
+                  cm1 * phi(i - 1, j, k, 1)) *
+                 idx[0];
+            wx = (cp1 * phi(i + 1, j, k, 2) + c * phi(i, j, k, 2) +
+                  cm1 * phi(i - 1, j, k, 2)) *
+                 idx[0];
 
-                cp1 = Stencil::c10;
-                c = Stencil::c11;
-                cm1 = Stencil::c12;
+            cp1 = Stencil::c10;
+            c = Stencil::c11;
+            cm1 = Stencil::c12;
 
-                uy = (cp1 * phi(i, j + 1, k, 0) + c * phi(i, j, k, 0) +
-                      cm1 * phi(i, j - 1, k, 0)) *
-                     idx[1];
-                wy = (cp1 * phi(i, j + 1, k, 2) + c * phi(i, j, k, 2) +
-                      cm1 * phi(i, j - 1, k, 2)) *
-                     idx[1];
+            uy = (cp1 * phi(i, j + 1, k, 0) + c * phi(i, j, k, 0) +
+                  cm1 * phi(i, j - 1, k, 0)) *
+                 idx[1];
+            wy = (cp1 * phi(i, j + 1, k, 2) + c * phi(i, j, k, 2) +
+                  cm1 * phi(i, j - 1, k, 2)) *
+                 idx[1];
 
-                cp1 = Stencil::c20;
-                c = Stencil::c21;
-                cm1 = Stencil::c22;
+            cp1 = Stencil::c20;
+            c = Stencil::c21;
+            cm1 = Stencil::c22;
 
-                uz = (cp1 * phi(i, j, k + 1, 0) + c * phi(i, j, k, 0) +
-                      cm1 * phi(i, j, k - 1, 0)) *
-                     idx[2];
-                vz = (cp1 * phi(i, j, k + 1, 1) + c * phi(i, j, k, 1) +
-                      cm1 * phi(i, j, k - 1, 1)) *
-                     idx[2];
+            uz = (cp1 * phi(i, j, k + 1, 0) + c * phi(i, j, k, 0) +
+                  cm1 * phi(i, j, k - 1, 0)) *
+                 idx[2];
+            vz = (cp1 * phi(i, j, k + 1, 1) + c * phi(i, j, k, 1) +
+                  cm1 * phi(i, j, k - 1, 1)) *
+                 idx[2];
 
-                vort(i, j, k, 0) = wy - vz;
-                vort(i, j, k, 1) = uz - wx;
-                vort(i, j, k, 2) = vx - uy;
-            });
+            vort(i, j, k, 0) = wy - vz;
+            vort(i, j, k, 1) = uz - wx;
+            vort(i, j, k, 2) = vx - uy;
+        });
     }
 
     FTypeOut& m_vort;
@@ -85,7 +84,7 @@ struct Vorticity
  *  \param phi [in] The velocity vector field
  */
 template <typename FTypeIn, typename FTypeOut>
-inline void vorticity(FTypeOut& vortphi, const FTypeIn& phi)
+void vorticity(FTypeOut& vortphi, const FTypeIn& phi)
 {
     BL_PROFILE("amr-wind::fvm::vorticity");
     Vorticity<FTypeIn, FTypeOut> vort(vortphi, phi);
@@ -98,7 +97,7 @@ inline void vorticity(FTypeOut& vortphi, const FTypeIn& phi)
  *  \param phi [in] The velocity vector field
  */
 template <typename FType>
-inline std::unique_ptr<ScratchField> vorticity(const FType& phi)
+std::unique_ptr<ScratchField> vorticity(const FType& phi)
 {
     const std::string gname = phi.name() + "_vorticity";
     auto vortphi = phi.repo().create_scratch_field(gname, AMREX_SPACEDIM);

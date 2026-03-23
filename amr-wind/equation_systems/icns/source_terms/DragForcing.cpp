@@ -242,22 +242,23 @@ void DragForcing::operator()(
     const amrex::Real non_neutral_cell =
         (m_wall_het_model == "mol")
             ? MOData::calc_psi_m(
-                  0.5 * dx[2] / m_monin_obukhov_length, m_beta_m, m_gamma_m)
-            : 0.0;
+                  0.5_rt * dx[2] / m_monin_obukhov_length, m_beta_m, m_gamma_m)
+            : 0.0_rt;
     const int nwvals = static_cast<int>(m_wind_heights.size());
     const amrex::Real* windh = m_windht_d.data();
     const amrex::Real* uu = m_prof_u_d.data();
     const amrex::Real* vv = m_prof_v_d.data();
     const amrex::Real* ww = m_prof_w_d.data();
     amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-        const amrex::Real x = prob_lo[0] + (i + 0.5) * dx[0];
-        const amrex::Real y = prob_lo[1] + (j + 0.5) * dx[1];
+        const amrex::Real x = prob_lo[0] + (i + 0.5_rt) * dx[0];
+        const amrex::Real y = prob_lo[1] + (j + 0.5_rt) * dx[1];
         const amrex::Real z = amrex::max<amrex::Real>(
-            prob_lo[2] + (k + 0.5) * dx[2] - terrain_height(i, j, k), 0.1);
-        amrex::Real xstart_damping = 0;
-        amrex::Real ystart_damping = 0;
-        amrex::Real xend_damping = 0;
-        amrex::Real yend_damping = 0;
+            prob_lo[2] + (k + 0.5_rt) * dx[2] - terrain_height(i, j, k),
+            0.1_rt);
+        amrex::Real xstart_damping = 0.0_rt;
+        amrex::Real ystart_damping = 0.0_rt;
+        amrex::Real xend_damping = 0.0_rt;
+        amrex::Real yend_damping = 0.0_rt;
         amrex::Real xi_end = (x - start_east) / (prob_hi[0] - start_east);
         amrex::Real xi_start = (start_west - x) / (start_west - prob_lo[0]);
         xi_start = sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);

@@ -41,7 +41,7 @@ PDEMgr::PDEMgr(CFDSim& sim) : m_sim(sim)
             << "WARNING: Anelastic implies variable density. Setting "
                "contant_density to false. Add incflo.constant_density=false to "
                "your input file to remove this warning."
-            << std::endl;
+            << '\n';
         m_constant_density = false;
     }
 
@@ -63,7 +63,7 @@ PDEBase& PDEMgr::register_transport_pde(const std::string& pde_name)
 
     if (contains(name)) {
         amrex::Print() << "WARNING: Multiple requests to register PDE: "
-                       << pde_name << std::endl;
+                       << pde_name << '\n';
         return operator()(name);
     }
 

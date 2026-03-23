@@ -94,30 +94,30 @@ struct VectorT
         return VectorT<T>(*this).normalize();
     }
 
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& x() & noexcept { return vv[0]; }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& y() & noexcept { return vv[1]; }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& z() & noexcept { return vv[2]; }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& x() const& noexcept
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& x() & { return vv[0]; }
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& y() & { return vv[1]; }
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& z() & { return vv[2]; }
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& x() const&
     {
         return vv[0];
     }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& y() const& noexcept
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& y() const&
     {
         return vv[1];
     }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& z() const& noexcept
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T& z() const&
     {
         return vv[2];
     }
 
     AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> operator-() const;
 
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> operator*=(const T val);
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> operator*=(T val);
 
     AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T>
     operator*=(const VectorT<T>& valvec);
 
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> operator/=(const T val);
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> operator/=(T val);
 
     AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T& operator[](size_type pos) &
     {
@@ -129,20 +129,17 @@ struct VectorT
         return vv[pos];
     }
 
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T* data() noexcept
-    {
-        return vv.data();
-    }
-    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T* data() const noexcept
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T* data() { return vv.data(); }
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T* data() const
     {
         return vv.data();
     }
 
-    iterator begin() noexcept { return vv.begin(); }
-    iterator end() noexcept { return vv.end(); }
-    const_iterator cbegin() const noexcept { return vv.cbegin(); }
-    const_iterator cend() const noexcept { return vv.cend(); }
-    size_type size() const noexcept { return ncomp; }
+    iterator begin() { return vv.begin(); }
+    iterator end() { return vv.end(); }
+    [[nodiscard]] const_iterator cbegin() const { return vv.cbegin(); }
+    [[nodiscard]] const_iterator cend() const { return vv.cend(); }
+    [[nodiscard]] size_type size() const { return ncomp; }
 };
 
 using Vector = VectorT<amrex::Real>;

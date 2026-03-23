@@ -54,7 +54,7 @@ public:
 
     //! Return the object that holds references to fields for this PDE system
     virtual PDEFields& fields() = 0;
-    virtual const PDEFields& fields() const = 0;
+    [[nodiscard]] virtual const PDEFields& fields() const = 0;
 
     //! Perform initialization actions for a PDE after the mesh is generated
     virtual void initialize() = 0;
@@ -63,19 +63,19 @@ public:
     virtual void post_regrid_actions() = 0;
 
     //! Compute the source (forcing) terms for this PDE
-    virtual void compute_source_term(const FieldState fstate) = 0;
+    virtual void compute_source_term(FieldState fstate) = 0;
 
     //! Compute the effective dynamic viscosity for this PDE
-    virtual void compute_mueff(const FieldState fstate) = 0;
+    virtual void compute_mueff(FieldState fstate) = 0;
 
     //! Compute the diffusion term used in the RHS of the PDE system
-    virtual void compute_diffusion_term(const FieldState fstate) = 0;
+    virtual void compute_diffusion_term(FieldState fstate) = 0;
 
     //! Perform necessary steps to prepare for advection calculations
-    virtual void pre_advection_actions(const FieldState fstate) = 0;
+    virtual void pre_advection_actions(FieldState fstate) = 0;
 
     //! Compute the time derivative and advective term for the PDE system
-    virtual void compute_advection_term(const FieldState fstate) = 0;
+    virtual void compute_advection_term(FieldState fstate) = 0;
 
     /** Combine the source, diffusion, and advection term to obtain RHS
      *
@@ -83,7 +83,7 @@ public:
      *  term is treated implicitly, with Crank-Nicolson scheme, or explicitly.
      *  The predictor step only uses the "old" states for RHS computation.
      */
-    virtual void compute_predictor_rhs(const DiffusionType difftype) = 0;
+    virtual void compute_predictor_rhs(DiffusionType difftype) = 0;
 
     /** Combine the source, diffusion, and advection term to obtain RHS
      *
@@ -92,15 +92,15 @@ public:
      *  The corrector step uses both "old" state as well as the updated "new"
      *  state from predictor step to compute the RHS term.
      */
-    virtual void compute_corrector_rhs(const DiffusionType difftype) = 0;
+    virtual void compute_corrector_rhs(DiffusionType difftype) = 0;
 
     //! Solve the diffusion linear system and update the field
-    virtual void solve(const amrex::Real dt) = 0;
+    virtual void solve(amrex::Real dt) = 0;
 
     //! Perform post-processing actions after a system solve
     virtual void post_solve_actions() = 0;
 
-    virtual void improve_explicit_diffusion(const amrex::Real dt) = 0;
+    virtual void improve_explicit_diffusion(amrex::Real dt) = 0;
 
     //! Base class identifier used for factory registration interface
     static std::string base_identifier() { return "PDESystem"; }
@@ -122,7 +122,7 @@ public:
 
     //! Return the incompressible Navier-Stokes instance
     PDEBase& icns() { return *m_icns; }
-    const PDEBase& icns() const { return *m_icns; }
+    [[nodiscard]] const PDEBase& icns() const { return *m_icns; }
 
     //! Create the incompressible Navier-Stokes instance and return its
     //! reference
@@ -145,7 +145,7 @@ public:
 
     //! Call fillpatch operator on state variables for all registered PDEs
     void fillpatch_state_fields(
-        const amrex::Real time, const FieldState fstate = FieldState::New);
+        amrex::Real time, FieldState fstate = FieldState::New);
 
     /** Return the vector containing all registered PDE instances
      *
@@ -153,16 +153,16 @@ public:
      *  separately for algorithmic reasons.
      */
     TypeVector& scalar_eqns() { return m_obj_vec; }
-    const TypeVector& scalar_eqns() const { return m_obj_vec; }
+    [[nodiscard]] const TypeVector& scalar_eqns() const { return m_obj_vec; }
 
     //! Query if a PDE has already been registered
-    bool has_pde(const std::string& pde_name) const;
+    [[nodiscard]] bool has_pde(const std::string& pde_name) const;
 
-    int num_ghost_state() const;
+    [[nodiscard]] int num_ghost_state() const;
 
-    bool constant_density() const { return m_constant_density; }
+    [[nodiscard]] bool constant_density() const { return m_constant_density; }
 
-    std::string scheme() const { return m_scheme; }
+    [[nodiscard]] std::string scheme() const { return m_scheme; }
 
 private:
     //! Instance of the CFD simulation controller

@@ -30,7 +30,10 @@ public:
         const amrex::Box& /*bx*/,
         const amrex::Geometry& geom,
         const amrex::Array4<amrex::TagBox::TagType>& tags) const override;
-    const amrex::RealBox& bound_box() const override { return m_bound_box; };
+    [[nodiscard]] const amrex::RealBox& bound_box() const override
+    {
+        return m_bound_box;
+    };
 
 private:
     vs::Vector m_start;

@@ -59,7 +59,7 @@ namespace impl {
  *
  *  \return A box with a single layer of cells adjacent to the boundary or empty
  */
-inline amrex::Box
+AMREX_INLINE amrex::Box
 box_lo(const amrex::Box& bx, const amrex::Geometry& geom, const int idir)
 {
     if (geom.isPeriodic(idir)) {
@@ -90,7 +90,7 @@ box_lo(const amrex::Box& bx, const amrex::Geometry& geom, const int idir)
  *
  *  \return A box with a single layer of cells adjacent to the boundary or empty
  */
-inline amrex::Box
+AMREX_INLINE amrex::Box
 box_hi(const amrex::Box& bx, const amrex::Geometry& geom, const int idir)
 {
     if (geom.isPeriodic(idir)) {

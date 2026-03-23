@@ -19,7 +19,7 @@ void init_field1(amr_wind::Field& fld)
         const auto& farrs = fld(lev).arrays();
         amrex::ParallelFor(
             fld(lev), amrex::IntVect(0),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 farrs[nbx](i, j, k) =
                     std::sin(0.01_rt * i) +
                     std::pow(static_cast<amrex::Real>(k), 0.2_rt) +
@@ -52,7 +52,7 @@ amrex::Real test_new_tke(
         const auto& conv_arrs = conv_term(lev).const_arrays();
         amrex::ParallelFor(
             tkeold(lev), amrex::IntVect(0),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 tke_old_arrs[nbx](i, j, k) +=
                     dt *
                     (conv_arrs[nbx](i, j, k) + shear_prod_arrs[nbx](i, j, k) +
@@ -72,7 +72,7 @@ amrex::Real test_new_tke(
                 -> amrex::Real {
                 amrex::Real error = 0;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     error += std::abs(tke_arr(i, j, k) - tke_est(i, j, k));
                 });
 
@@ -88,7 +88,7 @@ void remove_nans(amr_wind::Field& field)
         const auto& farrs = field(lev).arrays();
         amrex::ParallelFor(
             field(lev), amrex::IntVect(0), field(lev).nComp(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 farrs[nbx](i, j, k, n) = std::isnan(farrs[nbx](i, j, k, n))
                                              ? 0.0_rt
                                              : farrs[nbx](i, j, k, n);

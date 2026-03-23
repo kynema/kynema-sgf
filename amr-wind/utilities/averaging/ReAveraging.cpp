@@ -55,7 +55,7 @@ void ReAveraging::operator()(
         const auto& avgarrs = afab.arrays();
 
         amrex::ParallelFor(
-            ffab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            ffab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 for (int n = 0; n < ncomp; ++n) {
                     const amrex::Real fval = fldarrs[nbx](i, j, k, n);
                     const amrex::Real aval = avgarrs[nbx](i, j, k, n);

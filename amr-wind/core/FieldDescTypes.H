@@ -1,6 +1,8 @@
 #ifndef FIELDDESCTYPES_H
 #define FIELDDESCTYPES_H
 
+#include <cstdint>
+
 namespace amr_wind {
 
 /** Possible time states for a given Field instance
@@ -11,7 +13,7 @@ namespace amr_wind {
  *  indicates the latest solution and `New` indicates the solution at the next
  *  timestep the solution will advance to.
  */
-enum class FieldState : int {
+enum class FieldState : std::uint8_t {
     NP1 = 0,   ///< Latest state, also aliased to `New`
     N = 1,     ///< Previous state, also aliased to `Old`
     NM1 = 2,   ///< State at `(n - 1)` th timestep
@@ -24,7 +26,7 @@ enum class FieldState : int {
 /** Possible locations for a field in a structured mesh
  *  \ingroup fields
  */
-enum class FieldLoc : int {
+enum class FieldLoc : std::uint8_t {
     CELL,  ///< Cell-centered (default)
     NODE,  ///< Node-centered (e.g., for pressure)
     XFACE, ///< Face-centered in x-direction (e.g., face normal velocity)
@@ -34,7 +36,7 @@ enum class FieldLoc : int {
 
 //! Coarse-to-fine field interpolation options
 //! \ingroup fields
-enum class FieldInterpolator : int {
+enum class FieldInterpolator : std::uint8_t {
     PiecewiseConstant, ///< Constant across cell
     CellConsLinear,    ///< Linear interpolation
     NodeBilinear,      ///< Bilinear nodal interpolation

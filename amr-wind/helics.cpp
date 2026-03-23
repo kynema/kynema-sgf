@@ -129,7 +129,7 @@ void HelicsStorage::recv_messages_from_controller()
 {
 
     amrex::Print() << "recv message from controller at time: "
-                   << m_sim.time().current_time() << std::endl;
+                   << m_sim.time().current_time() << '\n';
 
 #ifdef AMR_WIND_USE_HELICS
     // receive wind direction and speed from controller (1 + 1)

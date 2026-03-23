@@ -44,7 +44,7 @@ void read_ops(datatype& data, const utils::ActParser& pp)
 }
 
 template <typename datatype>
-inline void external_determine_influenced_procs(datatype& data)
+void external_determine_influenced_procs(datatype& data)
 {
     auto& info = data.info();
     info.procs =
@@ -63,8 +63,8 @@ inline void external_determine_influenced_procs(datatype& data)
 }
 
 template <typename datatype, typename SolverTurbine, typename SolverData>
-inline void
-external_determine_root_proc(datatype& data, amrex::Vector<int>& act_proc_count)
+void external_determine_root_proc(
+    datatype& data, amrex::Vector<int>& act_proc_count)
 {
     namespace utils = ::amr_wind::actuator::utils;
     auto& info = data.info();

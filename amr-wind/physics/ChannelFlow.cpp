@@ -89,7 +89,7 @@ ChannelFlow::ChannelFlow(CFDSim& sim)
         (m_laminar || m_analytical_smagorinsky_test)) {
         std::ofstream f;
         f.open(m_output_fname.c_str());
-        f << std::setw(m_w) << "time" << std::setw(m_w) << "L2_u" << std::endl;
+        f << std::setw(m_w) << "time" << std::setw(m_w) << "L2_u" << '\n';
         f.close();
     }
 
@@ -157,8 +157,7 @@ void ChannelFlow::initialize_fields(
             const auto& vel_arrs = velocity.arrays();
 
             amrex::ParallelFor(
-                velocity,
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     const int n_ind = idxOp(i, j, k);
                     amrex::Real h =
                         problo[n_idx] + ((n_ind + 0.5_rt) * dx[n_idx]);
@@ -190,8 +189,7 @@ void ChannelFlow::initialize_fields(
             const auto& wd_arrs = walldist.arrays();
 
             amrex::ParallelFor(
-                velocity,
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     const int n_ind = idxOp(i, j, k);
                     amrex::Real h =
                         problo[n_idx] + ((n_ind + 0.5_rt) * dx[n_idx]);
@@ -430,7 +428,7 @@ void ChannelFlow::output_error()
         std::ofstream f;
         f.open(m_output_fname.c_str(), std::ios_base::app);
         f << std::setprecision(12) << std::setw(m_w) << m_time.new_time()
-          << std::setw(m_w) << u_err << std::endl;
+          << std::setw(m_w) << u_err << '\n';
         f.close();
     }
 }

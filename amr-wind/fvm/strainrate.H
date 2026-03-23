@@ -35,58 +35,55 @@ struct StrainRate
             return;
         }
 
-        amrex::ParallelFor(
-            bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                amrex::Real cp1, c, cm1, ux, uy, uz, vx, vy, vz, wx, wy, wz;
-                cp1 = Stencil::c00;
-                c = Stencil::c01;
-                cm1 = Stencil::c02;
+        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+            amrex::Real cp1, c, cm1, ux, uy, uz, vx, vy, vz, wx, wy, wz;
+            cp1 = Stencil::c00;
+            c = Stencil::c01;
+            cm1 = Stencil::c02;
 
-                ux = (cp1 * phi(i + 1, j, k, 0) + c * phi(i, j, k, 0) +
-                      cm1 * phi(i - 1, j, k, 0)) *
-                     idx[0];
-                vx = (cp1 * phi(i + 1, j, k, 1) + c * phi(i, j, k, 1) +
-                      cm1 * phi(i - 1, j, k, 1)) *
-                     idx[0];
-                wx = (cp1 * phi(i + 1, j, k, 2) + c * phi(i, j, k, 2) +
-                      cm1 * phi(i - 1, j, k, 2)) *
-                     idx[0];
+            ux = (cp1 * phi(i + 1, j, k, 0) + c * phi(i, j, k, 0) +
+                  cm1 * phi(i - 1, j, k, 0)) *
+                 idx[0];
+            vx = (cp1 * phi(i + 1, j, k, 1) + c * phi(i, j, k, 1) +
+                  cm1 * phi(i - 1, j, k, 1)) *
+                 idx[0];
+            wx = (cp1 * phi(i + 1, j, k, 2) + c * phi(i, j, k, 2) +
+                  cm1 * phi(i - 1, j, k, 2)) *
+                 idx[0];
 
-                cp1 = Stencil::c10;
-                c = Stencil::c11;
-                cm1 = Stencil::c12;
+            cp1 = Stencil::c10;
+            c = Stencil::c11;
+            cm1 = Stencil::c12;
 
-                uy = (cp1 * phi(i, j + 1, k, 0) + c * phi(i, j, k, 0) +
-                      cm1 * phi(i, j - 1, k, 0)) *
-                     idx[1];
-                vy = (cp1 * phi(i, j + 1, k, 1) + c * phi(i, j, k, 1) +
-                      cm1 * phi(i, j - 1, k, 1)) *
-                     idx[1];
-                wy = (cp1 * phi(i, j + 1, k, 2) + c * phi(i, j, k, 2) +
-                      cm1 * phi(i, j - 1, k, 2)) *
-                     idx[1];
+            uy = (cp1 * phi(i, j + 1, k, 0) + c * phi(i, j, k, 0) +
+                  cm1 * phi(i, j - 1, k, 0)) *
+                 idx[1];
+            vy = (cp1 * phi(i, j + 1, k, 1) + c * phi(i, j, k, 1) +
+                  cm1 * phi(i, j - 1, k, 1)) *
+                 idx[1];
+            wy = (cp1 * phi(i, j + 1, k, 2) + c * phi(i, j, k, 2) +
+                  cm1 * phi(i, j - 1, k, 2)) *
+                 idx[1];
 
-                cp1 = Stencil::c20;
-                c = Stencil::c21;
-                cm1 = Stencil::c22;
+            cp1 = Stencil::c20;
+            c = Stencil::c21;
+            cm1 = Stencil::c22;
 
-                uz = (cp1 * phi(i, j, k + 1, 0) + c * phi(i, j, k, 0) +
-                      cm1 * phi(i, j, k - 1, 0)) *
-                     idx[2];
-                vz = (cp1 * phi(i, j, k + 1, 1) + c * phi(i, j, k, 1) +
-                      cm1 * phi(i, j, k - 1, 1)) *
-                     idx[2];
-                wz = (cp1 * phi(i, j, k + 1, 2) + c * phi(i, j, k, 2) +
-                      cm1 * phi(i, j, k - 1, 2)) *
-                     idx[2];
+            uz = (cp1 * phi(i, j, k + 1, 0) + c * phi(i, j, k, 0) +
+                  cm1 * phi(i, j, k - 1, 0)) *
+                 idx[2];
+            vz = (cp1 * phi(i, j, k + 1, 1) + c * phi(i, j, k, 1) +
+                  cm1 * phi(i, j, k - 1, 1)) *
+                 idx[2];
+            wz = (cp1 * phi(i, j, k + 1, 2) + c * phi(i, j, k, 2) +
+                  cm1 * phi(i, j, k - 1, 2)) *
+                 idx[2];
 
-                strphi(i, j, k) = std::sqrt(
-                    (2.0_rt * std::pow(ux, 2.0_rt)) +
-                    (2.0_rt * std::pow(vy, 2.0_rt)) +
-                    (2.0_rt * std::pow(wz, 2.0_rt)) +
-                    std::pow(uy + vx, 2.0_rt) + std::pow(vz + wy, 2.0_rt) +
-                    std::pow(wx + uz, 2.0_rt));
-            });
+            strphi(i, j, k) = std::sqrt(
+                (2.0_rt * utils::powi(ux, 2)) + (2.0_rt * utils::powi(vy, 2)) +
+                (2.0_rt * utils::powi(wz, 2)) + utils::powi(uy + vx, 2) +
+                utils::powi(vz + wy, 2) + utils::powi(wx + uz, 2));
+        });
     }
 
     FTypeOut& m_strphi;
@@ -100,7 +97,7 @@ struct StrainRate
  *  \param phi [in] The velocity vector field
  */
 template <typename FTypeIn, typename FTypeOut>
-inline void strainrate(FTypeOut& strphi, const FTypeIn& phi)
+void strainrate(FTypeOut& strphi, const FTypeIn& phi)
 {
     BL_PROFILE("amr-wind::fvm::strainrate");
     StrainRate<FTypeIn, FTypeOut> str(strphi, phi);
@@ -113,7 +110,7 @@ inline void strainrate(FTypeOut& strphi, const FTypeIn& phi)
  *  \param phi [in] The velocity vector field
  */
 template <typename FType>
-inline std::unique_ptr<ScratchField> strainrate(const FType& phi)
+std::unique_ptr<ScratchField> strainrate(const FType& phi)
 {
     const std::string gname = phi.name() + "_strainrate";
     auto strphi = phi.repo().create_scratch_field(gname, 1);

@@ -1,6 +1,8 @@
 #ifndef FLAT_PLATE_OPS_H
 #define FLAT_PLATE_OPS_H
 
+#include <algorithm>
+
 #include "amr-wind/wind_energy/actuator/wing/FlatPlate.H"
 #include "amr-wind/wind_energy/actuator/actuator_ops.H"
 #include "amr-wind/wind_energy/actuator/wing/wing_ops.H"
@@ -34,8 +36,7 @@ struct ReadInputsOp<FlatPlate, ActSrcLine>
         pp.query("chord", wdata.chord_inp);
         pp.query("cd_factor", wdata.cd_factor);
 
-        amrex::Real max_eps =
-            *std::max_element(wdata.eps_inp.begin(), wdata.eps_inp.end());
+        amrex::Real max_eps = *std::ranges::max_element(wdata.eps_inp);
         amrex::Real search_radius = max_eps * wdata.chord_inp * 3.0_rt;
         const auto& p1 = wdata.start;
         const auto& p2 = wdata.end;
@@ -68,7 +69,7 @@ struct InitDataOp<FlatPlate, ActSrcLine>
 };
 
 template <>
-inline const ThinAirfoil& airfoil_lookup<FlatPlate>(FlatPlate::DataType& data)
+const ThinAirfoil& airfoil_lookup<FlatPlate>(FlatPlate::DataType& data)
 {
     return data.meta().aflookup;
 }

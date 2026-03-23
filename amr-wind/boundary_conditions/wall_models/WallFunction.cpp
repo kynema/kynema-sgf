@@ -71,7 +71,7 @@ VelWallFunc::VelWallFunc(Field& /*unused*/, WallFunction& wall_func)
         m_wall_shear_stress_type == "schumann" ||
         m_wall_shear_stress_type == "mosd") {
         amrex::Print() << "Shear Stress model: " << m_wall_shear_stress_type
-                       << std::endl;
+                       << '\n';
     } else {
         amrex::Abort("Shear Stress wall model input mistake");
     }
@@ -126,7 +126,7 @@ void VelWallFunc::wall_model(
                 velocity.bc_type()[zlo] == BC::wall_model) {
                 amrex::ParallelFor(
                     amrex::bdryLo(bx, idim),
-                    [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+                    [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         const amrex::Real mu = eta(i, j, k);
                         const amrex::Real uu =
                             vold_arr(i, j, k + idx_offset, 0);
@@ -212,7 +212,7 @@ void VelWallFunc::wall_model(
                 velocity.bc_type()[zhi] == BC::wall_model) {
                 amrex::ParallelFor(
                     amrex::bdryHi(bx, idim),
-                    [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+                    [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         const amrex::Real mu = eta(i, j, k - 1);
                         const amrex::Real uu =
                             vold_arr(i, j, k - 1 - idx_offset, 0);
@@ -278,7 +278,7 @@ void VelWallFunc::wall_model(
                 velocity.bc_type()[zlo] == BC::wall_model) {
                 amrex::ParallelFor(
                     amrex::bdryLo(bx, idim),
-                    [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+                    [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         const amrex::Real mu = eta(i, j, k);
 
                         // Dirichlet BC
@@ -294,7 +294,7 @@ void VelWallFunc::wall_model(
                 velocity.bc_type()[zhi] == BC::wall_model) {
                 amrex::ParallelFor(
                     amrex::bdryHi(bx, idim),
-                    [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+                    [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         const amrex::Real mu = eta(i, j, k - 1);
 
                         // Dirichlet BC

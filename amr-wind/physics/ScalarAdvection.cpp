@@ -3,7 +3,7 @@
 #include "amr-wind/CFDSim.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_MultiFabUtil.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -127,8 +127,7 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real GaussianWavePacket::operator()(
     if (std::abs(x - x0) < 6.0_rt * x_width) {
         val = amplitude * std::cos(x_wavenumber * x) *
               std::exp(
-                  -std::pow(x - x0, 2.0_rt) /
-                  (2.0_rt * std::pow(x_width, 2.0_rt)));
+                  -utils::powi(x - x0, 2) / (2.0_rt * utils::powi(x_width, 2)));
     }
     return val;
 }
@@ -175,7 +174,7 @@ void ScalarAdvection::initialize_fields(
     const auto& vel_arrs = velocity.arrays();
 
     amrex::ParallelFor(
-        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             vel_arrs[nbx](i, j, k, 0) = u;
             vel_arrs[nbx](i, j, k, 1) = v;
             vel_arrs[nbx](i, j, k, 2) = 0.0_rt;
@@ -231,14 +230,13 @@ void ScalarAdvection::initialize_scalar(const Shape& scalar_function)
             const auto& nbx = mfi.nodaltilebox();
             auto scalar_arr = scalar.array(mfi);
 
-            amrex::ParallelFor(
-                nbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                    const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
-                    const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
-                    scalar_arr(i, j, k, 0) = scalar_function(
-                        x, y, dx[0], dx[1], x0, y0, amplitude, x_width, y_width,
-                        x_wavenumber, y_wavenumber);
-                });
+            amrex::ParallelFor(nbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+                scalar_arr(i, j, k, 0) = scalar_function(
+                    x, y, dx[0], dx[1], x0, y0, amplitude, x_width, y_width,
+                    x_wavenumber, y_wavenumber);
+            });
         }
     }
 }
@@ -335,7 +333,7 @@ void ScalarAdvection::post_advance_work()
         for (auto i : err) {
             f << i << std::setw(m_w);
         }
-        f << std::endl;
+        f << '\n';
         f.close();
     }
 }

@@ -66,7 +66,7 @@ void CylinderRefiner::operator()(
     const auto& problo = geom.ProbLoArray();
     const auto& dx = geom.CellSizeArray();
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
         const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
         const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);

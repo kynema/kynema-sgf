@@ -29,7 +29,7 @@ void SynthTurbForcing::operator()(
     const amrex::Array4<amrex::Real>& src_term) const
 {
     const auto& turb_force_arr = m_turb_force(lev).array(mfi);
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         src_term(i, j, k, 0) += turb_force_arr(i, j, k, 0);
         src_term(i, j, k, 1) += turb_force_arr(i, j, k, 1);
         src_term(i, j, k, 2) += turb_force_arr(i, j, k, 2);

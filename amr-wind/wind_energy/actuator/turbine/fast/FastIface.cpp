@@ -22,7 +22,7 @@ namespace ext_turb {
 namespace {
 
 template <typename FType, class... Args>
-inline void fast_func(const FType&& func, Args... args)
+void fast_func(const FType&& func, Args... args)
 {
     int ierr = ErrID_None;
     amrex::Array<char, fast_strlen()> err_msg;
@@ -33,7 +33,7 @@ inline void fast_func(const FType&& func, Args... args)
     }
 }
 
-inline void copy_filename(const std::string& inp, char* out)
+void copy_filename(const std::string& inp, char* out)
 {
     const int str_len = static_cast<int>(inp.size());
     if (str_len >= fast_strlen()) {

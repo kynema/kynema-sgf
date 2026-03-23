@@ -28,11 +28,11 @@ public:
     ~ABLWallFunction() = default;
 
     MOData& mo() { return m_mo; }
-    const MOData& mo() const { return m_mo; }
+    [[nodiscard]] const MOData& mo() const { return m_mo; }
 
     //! Return the plane-averaged computed friction velocity at any given
     //! instance
-    amrex::Real utau() const { return m_mo.utau; }
+    [[nodiscard]] amrex::Real utau() const { return m_mo.utau; }
 
     //! Initialize the log-law height based on user inputs
     void init_log_law_height();
@@ -41,7 +41,7 @@ public:
     void update_umean(
         const VelPlaneAveragingFine& vpa, const FieldPlaneAveragingFine& tpa);
 
-    void update_tflux(const amrex::Real tflux);
+    void update_tflux(amrex::Real tflux);
 
 private:
     const CFDSim& m_sim;
@@ -83,11 +83,11 @@ class ABLVelWallFunc : public FieldBCIface
 public:
     ABLVelWallFunc(Field& velocity, const ABLWallFunction& wall_func);
 
-    void operator()(Field& velocity, const FieldState rho_state) override;
+    void operator()(Field& velocity, FieldState rho_state) override;
 
     template <typename ShearStress>
-    void wall_model(
-        Field& velocity, const FieldState rho_state, const ShearStress& tau);
+    void
+    wall_model(Field& velocity, FieldState rho_state, const ShearStress& tau);
 
 private:
     const ABLWallFunction& m_wall_func;
@@ -101,11 +101,11 @@ class ABLTempWallFunc : public FieldBCIface
 public:
     ABLTempWallFunc(Field& temperature, const ABLWallFunction& wall_fuc);
 
-    void operator()(Field& temperature, const FieldState rho_state) override;
+    void operator()(Field& temperature, FieldState rho_state) override;
 
     template <typename HeatFlux>
-    void wall_model(
-        Field& temperature, const FieldState rho_state, const HeatFlux& tau);
+    void
+    wall_model(Field& temperature, FieldState rho_state, const HeatFlux& tau);
 
 private:
     const ABLWallFunction& m_wall_func;

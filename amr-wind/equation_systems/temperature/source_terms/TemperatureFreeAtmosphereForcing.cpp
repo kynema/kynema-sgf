@@ -71,14 +71,14 @@ void TemperatureFreeAtmosphereForcing::operator()(
                       : nullptr;
     const auto& terrain_height = (has_terrain)
                                      ? (*m_terrain_height)(lev).const_array(mfi)
-                                     : amrex::Array4<double>();
+                                     : amrex::Array4<amrex::Real>();
     auto* const m_terrain_blank =
         (has_terrain) ? &this->m_sim.repo().get_int_field("terrain_blank")
                       : nullptr;
     const auto& terrain_blank = (has_terrain)
                                     ? (*m_terrain_blank)(lev).const_array(mfi)
                                     : amrex::Array4<int>();
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real cell_terrain_height =
             (has_terrain) ? terrain_height(i, j, k) : 0.0;
         const amrex::Real cell_blanking =
@@ -107,42 +107,38 @@ void TemperatureFreeAtmosphereForcing::operator()(
         const int sponge_west = m_sponge_west;
         const int sponge_south = m_sponge_south;
         const int sponge_north = m_sponge_north;
-        amrex::ParallelFor(
-            bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                const amrex::Real x = prob_lo[0] + (i + 0.5) * dx[0];
-                const amrex::Real y = prob_lo[1] + (j + 0.5) * dx[1];
-                const amrex::Real z = prob_lo[2] + (k + 0.5) * dx[2];
-                amrex::Real xstart_damping = 0;
-                amrex::Real ystart_damping = 0;
-                amrex::Real xend_damping = 0;
-                amrex::Real yend_damping = 0;
-                amrex::Real xi_end =
-                    (x - start_east) / (prob_hi[0] - start_east);
-                amrex::Real xi_start =
-                    (start_west - x) / (start_west - prob_lo[0]);
-                xi_start = sponge_west * std::max(xi_start, 0.0);
-                xi_end = sponge_east * std::max(xi_end, 0.0);
-                xstart_damping =
-                    sponge_west * sponge_strength * xi_start * xi_start;
-                xend_damping = sponge_east * sponge_strength * xi_end * xi_end;
-                amrex::Real yi_end =
-                    (y - start_north) / (prob_hi[1] - start_north);
-                amrex::Real yi_start =
-                    (start_south - y) / (start_south - prob_lo[1]);
-                yi_start = sponge_south * std::max(yi_start, 0.0);
-                yi_end = sponge_north * std::max(yi_end, 0.0);
-                ystart_damping = sponge_strength * yi_start * yi_start;
-                yend_damping = sponge_strength * yi_end * yi_end;
-                const amrex::Real ref_temp =
-                    (vsize > 0) ? interp::linear(
-                                      theta_heights_d, theta_heights_d + vsize,
-                                      theta_values_d, z)
-                                : temperature(i, j, k);
-                src_term(i, j, k, 0) -=
-                    (xstart_damping + xend_damping + ystart_damping +
-                     yend_damping) *
-                    (temperature(i, j, k) - sponge_density * ref_temp);
-            });
+        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+            const amrex::Real x = prob_lo[0] + (i + 0.5_rt) * dx[0];
+            const amrex::Real y = prob_lo[1] + (j + 0.5_rt) * dx[1];
+            const amrex::Real z = prob_lo[2] + (k + 0.5_rt) * dx[2];
+            amrex::Real xstart_damping = 0.0_rt;
+            amrex::Real ystart_damping = 0.0_rt;
+            amrex::Real xend_damping = 0.0_rt;
+            amrex::Real yend_damping = 0.0_rt;
+            amrex::Real xi_end = (x - start_east) / (prob_hi[0] - start_east);
+            amrex::Real xi_start = (start_west - x) / (start_west - prob_lo[0]);
+            xi_start = sponge_west * std::max(xi_start, 0.0_rt);
+            xi_end = sponge_east * std::max(xi_end, 0.0_rt);
+            xstart_damping =
+                sponge_west * sponge_strength * xi_start * xi_start;
+            xend_damping = sponge_east * sponge_strength * xi_end * xi_end;
+            amrex::Real yi_end = (y - start_north) / (prob_hi[1] - start_north);
+            amrex::Real yi_start =
+                (start_south - y) / (start_south - prob_lo[1]);
+            yi_start = sponge_south * std::max(yi_start, 0.0_rt);
+            yi_end = sponge_north * std::max(yi_end, 0.0_rt);
+            ystart_damping = sponge_strength * yi_start * yi_start;
+            yend_damping = sponge_strength * yi_end * yi_end;
+            const amrex::Real ref_temp =
+                (vsize > 0) ? interp::linear(
+                                  theta_heights_d, theta_heights_d + vsize,
+                                  theta_values_d, z)
+                            : temperature(i, j, k);
+            src_term(i, j, k, 0) -=
+                (xstart_damping + xend_damping + ystart_damping +
+                 yend_damping) *
+                (temperature(i, j, k) - sponge_density * ref_temp);
+        });
     }
 }
 

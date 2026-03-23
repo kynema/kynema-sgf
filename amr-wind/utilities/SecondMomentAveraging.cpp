@@ -27,10 +27,10 @@ void SecondMomentAveraging::output_line_average_ascii(
 
         // make new file
         outfile.open(filename.c_str(), std::ios_base::out);
-        outfile << "#ncell,ncomp" << std::endl;
+        outfile << "#ncell,ncomp" << '\n';
 
         outfile << m_plane_average1.ncell_line() << ", " << m_num_moments + 3
-                << std::endl;
+                << '\n';
         outfile << "#step,time,z";
 
         for (int m = 0; m < m_plane_average1.ncomp(); ++m) {
@@ -42,7 +42,7 @@ void SecondMomentAveraging::output_line_average_ascii(
             }
         }
 
-        outfile << std::endl;
+        outfile << '\n';
 
     } else {
         // append file
@@ -63,7 +63,7 @@ void SecondMomentAveraging::output_line_average_ascii(
             }
         }
 
-        outfile << std::endl;
+        outfile << '\n';
     }
 }
 
@@ -167,8 +167,7 @@ void SecondMomentAveraging::compute_average(
         amrex::ParallelFor(
             amrex::Gpu::KernelInfo().setReduction(true), pbx,
             [=] AMREX_GPU_DEVICE(
-                int p_i, int p_j, int p_k,
-                amrex::Gpu::Handler const& handler) noexcept {
+                int p_i, int p_j, int p_k, amrex::Gpu::Handler const& handler) {
                 // Loop over the direction perpendicular to the plane.
                 // This reduces the atomic pressure on the destination arrays.
 

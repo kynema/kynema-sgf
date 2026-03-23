@@ -82,15 +82,14 @@ void BodyForce::operator()(
 
     if (m_type == "height_varying" || m_type == "height-varying") {
 
-        amrex::ParallelFor(
-            bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                amrex::IntVect iv(i, j, k);
-                const amrex::Real ht = problo[2] + ((iv[2] + 0.5_rt) * dx[2]);
-                const amrex::Real ftheta = amr_wind::interp::linear(
-                    force_ht, force_ht_end, force_theta, ht);
+        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+            amrex::IntVect iv(i, j, k);
+            const amrex::Real ht = problo[2] + ((iv[2] + 0.5_rt) * dx[2]);
+            const amrex::Real ftheta = amr_wind::interp::linear(
+                force_ht, force_ht_end, force_theta, ht);
 
-                src_term(i, j, k, 0) += ftheta;
-            });
+            src_term(i, j, k, 0) += ftheta;
+        });
     }
 }
 

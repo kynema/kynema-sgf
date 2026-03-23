@@ -121,35 +121,33 @@ amrex::Real FieldNorms::get_norm(
                             ? amrex::surroundingNodes(bx, node_dir)
                             : (it_sum > 1 ? amrex::surroundingNodes(bx) : bx);
 
-                    amrex::Loop(
-                        fbx, [=, &nrm_fab](int i, int j, int k) noexcept {
-                            const amrex::IntVect iv{i, j, k};
-                            amrex::IntVect iv_cc = iv;
-                            // adjust volume for different data locations
-                            amrex::Real data_vol = cell_vol;
-                            for (int nn = 0; nn < AMREX_SPACEDIM; ++nn) {
-                                const bool at_node_dir =
-                                    index_type[nn] == 1 &&
-                                    (iv[nn] == fbx.bigEnd(nn) ||
-                                     iv[nn] == fbx.smallEnd(nn));
-                                data_vol *= at_node_dir ? 0.5_rt : 1.0_rt;
-                                // limit mask array indices to cell-centered
-                                iv_cc[nn] = amrex::min(
-                                    bx.bigEnd(nn),
-                                    amrex::max(bx.smallEnd(nn), iv_cc[nn]));
-                            }
-                            amrex::Real fval =
-                                std::abs(field_arr(i, j, k, comp));
-                            // Calculate magnitude if requested
-                            for (int n = 1; n < ncomp; ++n) {
-                                fval *= fval;
-                                fval += field_arr(i, j, k, n) *
-                                        field_arr(i, j, k, n);
-                                fval = std::sqrt(fval);
-                            }
-                            fval *= norm_type == 2 ? fval : 1.0_rt;
-                            nrm_fab += data_vol * fval * mask_arr(iv_cc);
-                        });
+                    amrex::Loop(fbx, [=, &nrm_fab](int i, int j, int k) {
+                        const amrex::IntVect iv{i, j, k};
+                        amrex::IntVect iv_cc = iv;
+                        // adjust volume for different data locations
+                        amrex::Real data_vol = cell_vol;
+                        for (int nn = 0; nn < AMREX_SPACEDIM; ++nn) {
+                            const bool at_node_dir =
+                                index_type[nn] == 1 &&
+                                (iv[nn] == fbx.bigEnd(nn) ||
+                                 iv[nn] == fbx.smallEnd(nn));
+                            data_vol *= at_node_dir ? 0.5_rt : 1.0_rt;
+                            // limit mask array indices to cell-centered
+                            iv_cc[nn] = amrex::min(
+                                bx.bigEnd(nn),
+                                amrex::max(bx.smallEnd(nn), iv_cc[nn]));
+                        }
+                        amrex::Real fval = std::abs(field_arr(i, j, k, comp));
+                        // Calculate magnitude if requested
+                        for (int n = 1; n < ncomp; ++n) {
+                            fval *= fval;
+                            fval +=
+                                field_arr(i, j, k, n) * field_arr(i, j, k, n);
+                            fval = std::sqrt(fval);
+                        }
+                        fval *= norm_type == 2 ? fval : 1.0_rt;
+                        nrm_fab += data_vol * fval * mask_arr(iv_cc);
+                    });
                     return nrm_fab;
                 });
         } else {
@@ -163,23 +161,20 @@ amrex::Real FieldNorms::get_norm(
                     -> amrex::Real {
                     amrex::Real nrm_fab = 0.0_rt;
 
-                    amrex::Loop(
-                        bx, [=, &nrm_fab](int i, int j, int k) noexcept {
-                            amrex::Real fval =
-                                std::abs(field_arr(i, j, k, comp));
-                            // Calculate magnitude if requested
-                            for (int n = 1; n < ncomp; ++n) {
-                                fval *= fval;
-                                fval += field_arr(i, j, k, n) *
-                                        field_arr(i, j, k, n);
-                                fval = std::sqrt(fval);
-                            }
-                            if (std::abs(mask_arr(i, j, k) - 1.0_rt) <
-                                constants::TIGHT_TOL) {
-                                nrm_fab =
-                                    amrex::max<amrex::Real>(nrm_fab, fval);
-                            }
-                        });
+                    amrex::Loop(bx, [=, &nrm_fab](int i, int j, int k) {
+                        amrex::Real fval = std::abs(field_arr(i, j, k, comp));
+                        // Calculate magnitude if requested
+                        for (int n = 1; n < ncomp; ++n) {
+                            fval *= fval;
+                            fval +=
+                                field_arr(i, j, k, n) * field_arr(i, j, k, n);
+                            fval = std::sqrt(fval);
+                        }
+                        if (std::abs(mask_arr(i, j, k) - 1.0_rt) <
+                            constants::TIGHT_TOL) {
+                            nrm_fab = amrex::max<amrex::Real>(nrm_fab, fval);
+                        }
+                    });
                     return nrm_fab;
                 });
             nrm = amrex::max(nrm_lev, nrm);
@@ -240,7 +235,7 @@ void FieldNorms::prepare_ascii_file()
         for (const auto& m_var_name : m_var_names) {
             f << ' ' << m_var_name;
         }
-        f << std::endl;
+        f << '\n';
         f.close();
     }
 }
@@ -257,7 +252,7 @@ void FieldNorms::write_ascii()
         for (amrex::Real m_fnorm : m_fnorms) {
             f << std::setw(m_width) << m_fnorm;
         }
-        f << std::endl;
+        f << '\n';
         f.close();
     }
 }

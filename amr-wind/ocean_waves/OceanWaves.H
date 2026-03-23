@@ -49,7 +49,10 @@ public:
 
     void post_advance_work() override;
 
-    const OceanWavesBoundary& ow_bndry() const { return *m_ow_bndry; }
+    [[nodiscard]] const OceanWavesBoundary& ow_bndry() const
+    {
+        return *m_ow_bndry;
+    }
 
 protected:
     virtual void prepare_outputs();

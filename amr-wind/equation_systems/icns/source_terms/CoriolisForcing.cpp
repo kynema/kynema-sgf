@@ -77,7 +77,7 @@ void CoriolisForcing::operator()(
 
     amrex::Real fac = (m_is_horizontal) ? 0. : 1.;
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real ue = (east[0] * vel(i, j, k, 0)) +
                                (east[1] * vel(i, j, k, 1)) +
                                (east[2] * vel(i, j, k, 2));

@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <memory>
 #include <utility>
 
@@ -65,7 +66,7 @@ void Sampling::initialize()
                    "or a derived "
                    "field and should be added to the int_fields/derived_fields "
                    "parameter"
-                << std::endl;
+                << '\n';
             continue;
         }
 
@@ -85,7 +86,7 @@ void Sampling::initialize()
                 << ". This is a mistake or the requested int_field is a "
                    "derived "
                    "field and should be added to the derived_fields parameter"
-                << std::endl;
+                << '\n';
             continue;
         }
 
@@ -172,9 +173,8 @@ void Sampling::update_sampling_locations()
         updated_position.push_back(updated_pos);
     }
 
-    if (std::any_of(
-            updated_position.begin(), updated_position.end(),
-            [](const auto& v) { return v; })) {
+    if (std::ranges::any_of(
+            updated_position, [](const auto& v) { return v; })) {
         update_container();
     }
 }
@@ -398,7 +398,7 @@ void Sampling::write_ascii()
     BL_PROFILE("amr-wind::Sampling::write_ascii");
     amrex::Print()
         << "WARNING: Sampling: ASCII output will negatively impact performance"
-        << std::endl;
+        << '\n';
 
     const std::string post_dir = m_sim.io_manager().post_processing_directory();
     const std::string sname =
@@ -431,13 +431,12 @@ void Sampling::write_info_file(const std::string& fname)
     }
 
     // YAML formatting
-    fh << "time: " << std::setprecision(6) << m_sim.time().new_time()
-       << std::endl;
-    fh << "samplers:" << std::endl;
+    fh << "time: " << std::setprecision(6) << m_sim.time().new_time() << '\n';
+    fh << "samplers:" << '\n';
     for (int i = 0; i < m_samplers.size(); ++i) {
-        fh << " - index: " << i << std::endl;
-        fh << "   label: " << m_samplers[i]->label() << std::endl;
-        fh << "   type: " << m_samplers[i]->sampletype() << std::endl;
+        fh << " - index: " << i << '\n';
+        fh << "   label: " << m_samplers[i]->label() << '\n';
+        fh << "   type: " << m_samplers[i]->sampletype() << '\n';
     }
 
     fh.close();

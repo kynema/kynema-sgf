@@ -49,8 +49,8 @@ public:
      *  and corrector steps.
      *  \param diff_type diffusion solve type
      */
-    virtual void update_turbulent_viscosity(
-        const FieldState fstate, const DiffusionType diff_type) = 0;
+    virtual void
+    update_turbulent_viscosity(FieldState fstate, DiffusionType diff_type) = 0;
 
     //! Do any post advance actions for the turbulence model
     virtual void post_advance_work() = 0;
@@ -62,7 +62,7 @@ public:
     virtual void register_alphaeff_field(Field& alphaeff) = 0;
 
     //! String representation of this turbulence model for I/O
-    virtual std::string model_name() const = 0;
+    [[nodiscard]] virtual std::string model_name() const = 0;
 
     //! Return the dynamic viscosity (laminar) field
     virtual std::unique_ptr<ScratchField> mu() = 0;
@@ -87,7 +87,7 @@ public:
     virtual Field& alphaeff() = 0;
 
     //! Flag indicating whether the model is turbulent
-    virtual bool is_turbulent() const { return true; }
+    [[nodiscard]] virtual bool is_turbulent() const { return true; }
 
     //! Interface to update effective viscosity
     //!
@@ -104,7 +104,7 @@ public:
     virtual void parse_model_coeffs() = 0;
 
     //! Return model coefficients dictionary
-    virtual CoeffsDictType model_coeffs() const = 0;
+    [[nodiscard]] virtual CoeffsDictType model_coeffs() const = 0;
 };
 
 } // namespace turbulence

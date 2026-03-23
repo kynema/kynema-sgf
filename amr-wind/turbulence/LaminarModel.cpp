@@ -15,7 +15,7 @@ namespace {
 // laminar field to effective field for non-constant transport properties.
 
 template <typename Transport>
-inline void laminar_visc_update(
+void laminar_visc_update(
     Field& evisc, Laminar<Transport>& /*unused*/, const Transport& transport)
     requires Transport::constant_properties
 {
@@ -23,7 +23,7 @@ inline void laminar_visc_update(
 }
 
 template <typename Transport>
-inline void laminar_visc_update(
+void laminar_visc_update(
     Field& evisc, Laminar<Transport>& lam, const Transport& /*unused*/)
     requires(!Transport::constant_properties)
 {
@@ -31,7 +31,7 @@ inline void laminar_visc_update(
 }
 
 template <typename Transport>
-inline void laminar_alpha_update(
+void laminar_alpha_update(
     Field& evisc, Laminar<Transport>& /*unused*/, const Transport& transport)
     requires Transport::constant_properties
 {
@@ -39,7 +39,7 @@ inline void laminar_alpha_update(
 }
 
 template <typename Transport>
-inline void laminar_alpha_update(
+void laminar_alpha_update(
     Field& evisc, Laminar<Transport>& lam, const Transport& /*unused*/)
     requires(!Transport::constant_properties)
 {
@@ -48,7 +48,7 @@ inline void laminar_alpha_update(
 }
 
 template <typename Transport>
-inline void laminar_scal_diff_update(
+void laminar_scal_diff_update(
     Field& evisc,
     Laminar<Transport>& /*unused*/,
     const Transport& transport,
@@ -59,7 +59,7 @@ inline void laminar_scal_diff_update(
 }
 
 template <typename Transport>
-inline void laminar_scal_diff_update(
+void laminar_scal_diff_update(
     Field& evisc,
     Laminar<Transport>& lam,
     const Transport& /*unused*/,

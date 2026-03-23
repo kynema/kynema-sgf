@@ -28,7 +28,7 @@ public:
     void post_init_actions();
     void post_regrid_actions();
     void initialize_data();
-    bool is_anelastic() const { return m_is_anelastic; }
+    [[nodiscard]] bool is_anelastic() const { return m_is_anelastic; }
 
 private:
     //! Function to calculate the hydrostatic density and pressure

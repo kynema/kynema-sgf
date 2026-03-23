@@ -61,7 +61,7 @@ void GradientMagRefinement::operator()(
     const auto gradmag_val = m_gradmag_value[level];
 
     amrex::ParallelFor(
-        mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             // TODO: ignoring wall stencils for now
 
             const auto gx =

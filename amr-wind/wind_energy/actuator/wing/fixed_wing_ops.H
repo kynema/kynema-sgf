@@ -1,6 +1,8 @@
 #ifndef FIXED_WING_OPS_H
 #define FIXED_WING_OPS_H
 
+#include <algorithm>
+
 #include "amr-wind/wind_energy/actuator/wing/FixedWing.H"
 #include "amr-wind/wind_energy/actuator/actuator_ops.H"
 #include "amr-wind/wind_energy/actuator/wing/wing_ops.H"
@@ -100,12 +102,9 @@ struct ReadInputsOp<FixedWing, ActSrcLine>
 
         AMREX_ALWAYS_ASSERT(wdata.span_locs.size() == wdata.chord_inp.size());
 
-        amrex::Real max_chord =
-            *std::max_element(wdata.chord_inp.begin(), wdata.chord_inp.end());
-        amrex::Real max_eps =
-            *std::max_element(wdata.eps_inp.begin(), wdata.eps_inp.end());
-        amrex::Real max_epsc = *std::max_element(
-            wdata.epsilon_chord.begin(), wdata.epsilon_chord.end());
+        amrex::Real max_chord = *std::ranges::max_element(wdata.chord_inp);
+        amrex::Real max_eps = *std::ranges::max_element(wdata.eps_inp);
+        amrex::Real max_epsc = *std::ranges::max_element(wdata.epsilon_chord);
         amrex::Real search_radius =
             amrex::max(max_eps, max_epsc) * max_chord * 3.0_rt;
         const auto& p1 = wdata.start;
@@ -244,7 +243,8 @@ struct InitDataOp<FixedWing, ActSrcLine>
 };
 
 template <>
-inline const AirfoilTable& airfoil_lookup<FixedWing>(FixedWing::DataType& data)
+AMREX_INLINE const AirfoilTable&
+airfoil_lookup<FixedWing>(FixedWing::DataType& data)
 {
     return *data.meta().aflookup;
 }

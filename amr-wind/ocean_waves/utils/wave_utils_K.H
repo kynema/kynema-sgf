@@ -1,5 +1,5 @@
-#ifndef WAVES_UTILS_H_
-#define WAVES_UTILS_H_
+#ifndef WAVES_UTILS_H
+#define WAVES_UTILS_H
 
 #include <cmath>
 #include <numbers>

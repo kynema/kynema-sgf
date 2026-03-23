@@ -51,7 +51,7 @@ void DamBreak::initialize_fields(int level, const amrex::Geometry& geom)
     const amrex::Real eps = std::cbrt(2.0_rt * dx[0] * dx[1] * dx[2]);
 
     amrex::ParallelFor(
-        levelset, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        levelset, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
             const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 

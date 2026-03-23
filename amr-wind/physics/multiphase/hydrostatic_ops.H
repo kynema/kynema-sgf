@@ -20,8 +20,7 @@ static void define_rho0(
         const auto& problo = geom[lev].ProbLoArray();
         const auto& rho0_arrs = rho0(lev).arrays();
         amrex::ParallelFor(
-            rho0(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            rho0(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real zbtm = problo[2] + (k * dx[2]);
                 const amrex::Real vof = amrex::max<amrex::Real>(
                     amrex::min<amrex::Real>(1.0_rt, (wlev - zbtm) / dx[2]),
@@ -48,7 +47,7 @@ static void define_p0(
         auto p0_arrs = p0(lev).arrays();
         amrex::ParallelFor(
             p0(lev), p0.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real z = problo[2] + (k * dx[2]);
                 // Integrated (top-down in z) phase heights to pressure node
                 const amrex::Real ih_g = amrex::max<amrex::Real>(

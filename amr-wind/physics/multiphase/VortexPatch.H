@@ -1,5 +1,5 @@
-#ifndef VortexPatch_H
-#define VortexPatch_H
+#ifndef VORTEXPATCH_H
+#define VORTEXPATCH_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"

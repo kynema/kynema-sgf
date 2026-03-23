@@ -58,7 +58,7 @@ void RayleighDamping::operator()(
     const amrex::Real fy = m_fcoord[1];
     const amrex::Real fz = m_fcoord[2];
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         amrex::Real coeff = 0.0_rt;
         const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 

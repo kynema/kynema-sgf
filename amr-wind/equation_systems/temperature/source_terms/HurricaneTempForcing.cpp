@@ -54,7 +54,7 @@ void HurricaneTempForcing::operator()(
     const amrex::Real* heights_end = m_vel_ht.end();
     const amrex::Real* vals = m_vel_vals.data();
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         amrex::IntVect iv(i, j, k);
         const amrex::Real ht = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
 

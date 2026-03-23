@@ -37,7 +37,7 @@ void UDFRefiner::operator()(
     const auto time = m_sim.time().current_time();
     auto udf_func = m_parser.compile<AMREX_SPACEDIM + 1>();
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
         const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
         const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);

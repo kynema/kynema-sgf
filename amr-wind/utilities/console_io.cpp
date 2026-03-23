@@ -65,7 +65,7 @@ Required:
 
 Optional:
     param=value  : Overrides for parameters during runtime
-)doc" << std::endl;
+)doc" << '\n';
 }
 
 void print_error(MPI_Comm comm, const std::string& msg)
@@ -84,7 +84,7 @@ void print_error(MPI_Comm comm, const std::string& msg)
     amrex::ignore_unused(comm);
 #endif
 
-    std::cout << "ERROR: " << msg << std::endl;
+    std::cout << "ERROR: " << msg << '\n';
 }
 
 void print_banner(MPI_Comm comm, std::ostream& out)
@@ -115,19 +115,19 @@ void print_banner(MPI_Comm comm, std::ostream& out)
     // clang-format off
     out << dbl_line
         << "                AMR-Wind (https://github.com/exawind/amr-wind)"
-        << std::endl << std::endl
-        << "  AMR-Wind version :: " << awind_version << std::endl
-        << "  AMR-Wind Git SHA :: " << awind_git_sha << std::endl
-        << "  AMReX version    :: " << amrex::Version() << std::endl << std::endl
+        << '\n' << '\n'
+        << "  AMR-Wind version :: " << awind_version << '\n'
+        << "  AMR-Wind Git SHA :: " << awind_git_sha << '\n'
+        << "  AMReX version    :: " << amrex::Version() << '\n' << '\n'
         << "  Exec. time       :: " << tstamp
-        << "  Build time       :: " << amrex::buildInfoGetBuildDate() << std::endl
+        << "  Build time       :: " << amrex::buildInfoGetBuildDate() << '\n'
         << "  C++ compiler     :: " << amrex::buildInfoGetComp()
-        << " " << amrex::buildInfoGetCompVersion() << std::endl << std::endl
+        << " " << amrex::buildInfoGetCompVersion() << '\n' << '\n'
         << "  MPI              :: "
 #ifdef AMREX_USE_MPI
         << "ON    (Num. ranks = " << num_ranks << ")" << std::endl
 #else
-        << "OFF " << std::endl
+        << "OFF " << '\n'
 #endif
         << "  GPU              :: "
 #ifdef AMREX_USE_GPU
@@ -141,38 +141,38 @@ void print_banner(MPI_Comm comm, std::ostream& out)
 #endif
         << std::endl
 #else
-        << "OFF" << std::endl
+        << "OFF" << '\n'
 #endif
         << "  OpenMP           :: "
 #ifdef AMREX_USE_OMP
         << "ON    (max threads = " << amrex::OpenMP::get_max_threads()
         << ")" << std::endl
 #else
-        << "OFF" << std::endl
+        << "OFF" << '\n'
 #endif
-        << std::endl;
+        << '\n';
 
     print_tpls(out);
 
     out << "           This software is released under the BSD 3-clause license.           "
-        << std::endl
+        << '\n'
         << " See https://github.com/Exawind/amr-wind/blob/development/LICENSE for details. "
-        << dash_line << std::endl;
+        << dash_line << '\n';
     // clang-format on
 }
 
 void print_mlmg_header(const std::string& key)
 {
     const int name_width = 26;
-    amrex::Print() << "\n" << key << std::endl;
+    amrex::Print() << "\n" << key << '\n';
     amrex::Print() << "  " << std::setw(name_width) << std::left << "System"
                    << std::setw(6) << std::right << "Iters" << std::setw(22)
                    << std::right << "Initial residual" << std::setw(22)
-                   << std::right << "Final residual" << std::endl
+                   << std::right << "Final residual" << '\n'
                    << "  "
                       "--------------------------------------------------------"
                       "--------------------"
-                   << std::endl;
+                   << '\n';
 }
 
 void print_mlmg_info(const std::string& solve_name, const amrex::MLMG& mlmg)
@@ -182,7 +182,7 @@ void print_mlmg_info(const std::string& solve_name, const amrex::MLMG& mlmg)
                    << std::setw(6) << std::right << mlmg.getNumIters()
                    << std::setw(22) << std::right << mlmg.getInitResidual()
                    << std::setw(22) << std::right << mlmg.getFinalResidual()
-                   << std::endl;
+                   << '\n';
 }
 
 void print_tpls(std::ostream& out)
@@ -212,10 +212,9 @@ void print_tpls(std::ostream& out)
         for (const auto& val : tpls) {
             out << "\n    " << val;
         }
-        out << std::endl << std::endl;
+        out << '\n' << '\n';
     } else {
-        out << "  No additional third-party libraries enabled" << std::endl
-            << std::endl;
+        out << "  No additional third-party libraries enabled" << '\n' << '\n';
     }
 }
 
@@ -250,7 +249,7 @@ void print_nonlinear_residual(
 
         amrex::ParallelFor(
             velocity_new(lev), amrex::IntVect(0), AMREX_SPACEDIM,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 if (osetmask_arr[nbx](i, j, k) == 0) {
                     veldiff_arr[nbx](i, j, k, n) = 0.;
                 } else {
@@ -273,7 +272,7 @@ void print_nonlinear_residual(
 
     amrex::Print() << "Norm of change over fixed point iterations in u:  "
                    << rms_vel[0] << ", v: " << rms_vel[1]
-                   << ", w: " << rms_vel[2] << std::endl;
+                   << ", w: " << rms_vel[2] << '\n';
 }
 
 } // namespace amr_wind::io

@@ -1,5 +1,5 @@
-#ifndef RayleighTaylorFIELDINIT_H
-#define RayleighTaylorFIELDINIT_H
+#ifndef RAYLEIGHTAYLORFIELDINIT_H
+#define RAYLEIGHTAYLORFIELDINIT_H
 
 #include "AMReX_Array.H"
 #include "AMReX_Array4.H"

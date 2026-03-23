@@ -127,7 +127,7 @@ void RadarSampler::check_bounds()
     if (!all_ok) {
         amrex::Print() << "WARNING: RadarSampler: Out of domain line was "
                           "truncated to match domain"
-                       << std::endl;
+                       << '\n';
     }
 }
 
@@ -213,12 +213,12 @@ bool RadarSampler::update_sampling_locations()
     m_los_proj.resize(m_ntotal * num_points_quad());
 
     if (m_debug_print) {
-        amrex::Print() << "-------------------------" << std::endl
+        amrex::Print() << "-------------------------" << '\n'
                        << "ts_diff: " << ts_diff << "\tm_ns: " << m_ns
                        << "\tm_ntotal: " << m_ntotal
                        << "\tRadar Time: " << m_radar_time
-                       << "\tAMR Time: " << time << std::endl
-                       << "-------------------------" << std::endl;
+                       << "\tAMR Time: " << time << '\n'
+                       << "-------------------------" << '\n';
     }
 
     const amrex::Long conetipbegin = m_cone_size - 1 - num_points_quad();
@@ -233,14 +233,14 @@ bool RadarSampler::update_sampling_locations()
                 sweep_count() % m_elevation_angles.size());
 
             if (m_debug_print) {
-                amrex::Print() << "-------------------------" << std::endl
+                amrex::Print() << "-------------------------" << '\n'
                                << "Total Sweep: " << total_sweep_time() << "\t"
                                << "Periodic Time: " << per_time << "\t"
                                << "Radar Time: " << m_radar_time << "\t"
                                << "S Angle: " << sweep_angle << "\t"
                                << "E Angle: " << elevation_angle << "\t"
-                               << "Sim Time: " << time << std::endl
-                               << "-------------------------" << std::endl;
+                               << "Sim Time: " << time << '\n'
+                               << "-------------------------" << '\n';
             }
 
             vs::Vector vertical_ref(
@@ -335,7 +335,7 @@ void RadarSampler::new_cone()
         for (int j = 0; j < nquad; ++j) {
             amrex::Print() << "Rays x: " << m_rays[j][0] << "\t"
                            << "Rays y: " << m_rays[j][1] << "\t"
-                           << "Rays z: " << m_rays[j][2] << "\t" << std::endl;
+                           << "Rays z: " << m_rays[j][2] << "\t" << '\n';
         }
     }
 
@@ -346,12 +346,12 @@ void RadarSampler::new_cone()
     }
 
     if (m_debug_print) {
-        amrex::Print() << "-------------------------" << std::endl
+        amrex::Print() << "-------------------------" << '\n'
                        << "Beam Length: " << m_beam_length
                        << "\tnquad: " << nquad << "\tdx[2]: " << dx[2]
                        << "\tm_npts: " << m_npts << "\tntheta: " << m_ntheta
-                       << "\tnphi: " << m_nphi << std::endl
-                       << "-------------------------" << std::endl;
+                       << "\tnphi: " << m_nphi << '\n'
+                       << "-------------------------" << '\n';
     }
 
     for (int n = 0; n < m_npts; ++n) {

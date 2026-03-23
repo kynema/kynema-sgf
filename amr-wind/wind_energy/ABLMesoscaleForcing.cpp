@@ -2,7 +2,7 @@
 #include "amr-wind/utilities/linear_interpolation.H"
 #include "AMReX_Print.H"
 #include "AMReX_ParmParse.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 // WORKAROUND
 #include <fstream>
@@ -15,18 +15,18 @@ ABLMesoscaleForcing::ABLMesoscaleForcing(
     const CFDSim& sim, const std::string& identifier)
     : m_time(sim.time()), m_mesh(sim.mesh())
 {
-    amrex::Print() << "Constructing " << identifier << " object" << std::endl;
+    amrex::Print() << "Constructing " << identifier << " object" << '\n';
 
     amrex::ParmParse pp(identifier);
     pp.query("forcing_scheme", m_forcing_scheme);
     pp.query("control_gain", m_gain_coeff);
     pp.query("debug", m_debug);
-    amrex::Print() << "  forcing_scheme : " << m_forcing_scheme << std::endl;
-    amrex::Print() << "  control_gain   : " << m_gain_coeff << std::endl;
+    amrex::Print() << "  forcing_scheme : " << m_forcing_scheme << '\n';
+    amrex::Print() << "  control_gain   : " << m_gain_coeff << '\n';
 
     if (pp.query("forcing_transition", m_forcing_transition) == 0) {
         amrex::Print() << "  using full profile assimilation by default"
-                       << std::endl;
+                       << '\n';
         m_forcing_transition = "none";
     }
 
@@ -35,10 +35,10 @@ ABLMesoscaleForcing::ABLMesoscaleForcing(
         // check for user-specified weighting profile
         if (pp.queryarr("weighting_heights", m_weighting_heights) == 1) {
             pp.getarr("weighting_values", m_weighting_values);
-            amrex::Print() << "  given weighting profile:" << std::endl;
+            amrex::Print() << "  given weighting profile:" << '\n';
             for (int i = 0; i < m_weighting_heights.size(); ++i) {
                 amrex::Print() << "  " << m_weighting_heights[i] << " "
-                               << m_weighting_values[i] << std::endl;
+                               << m_weighting_values[i] << '\n';
             }
             AMREX_ALWAYS_ASSERT(
                 m_weighting_heights.size() == m_weighting_values.size());
@@ -49,7 +49,7 @@ ABLMesoscaleForcing::ABLMesoscaleForcing(
             if (!m_user_specified_weighting) {
                 // default is to have uniform weighting throughout
                 amrex::Print()
-                    << "  using default regression weighting" << std::endl;
+                    << "  using default regression weighting" << '\n';
                 amrex::Real zmin = m_mesh.Geom(0).ProbLo(m_axis);
                 amrex::Real zmax = m_mesh.Geom(0).ProbHi(m_axis);
                 m_weighting_heights = {zmin, zmax};
@@ -62,10 +62,10 @@ ABLMesoscaleForcing::ABLMesoscaleForcing(
                 m_transition_thickness); // constant, required
             if (pp.query("constant_transition_height", m_transition_height) ==
                 1) {
-                amrex::Print() << "  fixed transition layer between "
-                               << m_transition_height << " and "
-                               << m_transition_height + m_transition_thickness
-                               << std::endl;
+                amrex::Print()
+                    << "  fixed transition layer between "
+                    << m_transition_height << " and "
+                    << m_transition_height + m_transition_thickness << '\n';
                 // set weighting profile
                 set_transition_weighting();
             } else {
@@ -79,8 +79,7 @@ ABLMesoscaleForcing::ABLMesoscaleForcing(
             (m_norm_zmax != 0)) {
             amrex::Real zmax = m_mesh.Geom(0).ProbHi(m_axis);
             m_scaleFact = 1.0_rt / zmax;
-            amrex::Print() << "  set scaling factor to " << m_scaleFact
-                           << std::endl;
+            amrex::Print() << "  set scaling factor to " << m_scaleFact << '\n';
         }
 
     } // if forcing scheme is "indirect"
@@ -100,17 +99,17 @@ void ABLMesoscaleForcing::set_transition_weighting()
         // set weighting profile based on forcing transition
         m_weighting_heights = m_blending_heights;
         m_weighting_values = {1.0_rt, 1.0_rt, 0.0_rt, 0.0_rt};
-        amrex::Print() << "setting new weighting profile" << std::endl;
+        amrex::Print() << "setting new weighting profile" << '\n';
         for (int i = 0; i < m_weighting_heights.size(); ++i) {
             amrex::Print() << "  " << m_weighting_heights[i] << " "
-                           << m_weighting_values[i] << std::endl;
+                           << m_weighting_values[i] << '\n';
         }
     }
 }
 
 void ABLMesoscaleForcing::update_weights()
 {
-    amrex::Print() << "Updating weights" << std::endl;
+    amrex::Print() << "Updating weights" << '\n';
 
     for (int i = 0; i < m_nht; ++i) {
         m_W[i] =
@@ -134,18 +133,18 @@ void ABLMesoscaleForcing::indirect_forcing_init()
         // - full profile assimilation
         // - partial profile assim w/ constant transition height
         // - partial profile assim w/ variable transition height (1st step only)
-        amrex::Print() << "Initializing indirect forcing" << std::endl;
+        amrex::Print() << "Initializing indirect forcing" << '\n';
         m_W.resize(m_nht);
         m_blend.resize(m_nht);
         update_weights();
     } else if (have_forcing_transition()) {
         // Will be here for:
         // - partial profile assim w/ variable transition height
-        amrex::Print() << "Reinitializing indirect forcing" << std::endl;
+        amrex::Print() << "Reinitializing indirect forcing" << '\n';
         update_weights();
     } else {
         amrex::Print() << "Should not be reinitializing indirect forcing!"
-                       << std::endl;
+                       << '\n';
         return;
     }
 
@@ -160,9 +159,8 @@ void ABLMesoscaleForcing::indirect_forcing_init()
             for (int iht = 0; iht < m_nht; iht++) {
                 zTz(irow, icol) =
                     zTz(irow, icol) +
-                    (m_W[iht] * std::pow(
-                                    m_zht[iht] * m_scaleFact,
-                                    static_cast<amrex::Real>(icol + irow)));
+                    (m_W[iht] *
+                     utils::powi(m_zht[iht] * m_scaleFact, (icol + irow)));
             }
             // amrex::Print()<< "Z^T W Z ["<<irow<<","<<icol<<"] : " <<
             // zTz(irow,icol) << std::endl;
@@ -251,19 +249,18 @@ void ABLMesoscaleForcing::constant_forcing_transition(
     // error checking
     if (hLevelBlend1 < 0) {
         amrex::Print() << "Note: Did not find bottom of transition layer"
-                       << std::endl;
+                       << '\n';
         hLevelBlend0 = m_nht - 1;
         hLevelBlend1 = m_nht - 1;
         hLevelBlendMax = m_nht - 1;
     } else if (hLevelBlendMax < 0) {
-        amrex::Print() << "Note: Did not find top of transition layer"
-                       << std::endl;
+        amrex::Print() << "Note: Did not find top of transition layer" << '\n';
         hLevelBlendMax = m_nht - 1;
     }
 
     amrex::Print() << "Forcing transition to constant from "
                    << m_zht[hLevelBlend1] << " to " << m_zht[hLevelBlendMax]
-                   << std::endl;
+                   << '\n';
 
     // calculate initial slope
     amrex::Real slope0 = (error[hLevelBlend1] - error[hLevelBlend0]) /
@@ -291,7 +288,7 @@ void ABLMesoscaleForcing::blend_forcings(
     const amrex::Vector<amrex::Real>& upper, // W=0
     amrex::Vector<amrex::Real>& error)
 {
-    amrex::Print() << "Blending forcings" << std::endl;
+    amrex::Print() << "Blending forcings" << '\n';
     for (int iht = 0; iht < m_nht; iht++) {
         error[iht] = (m_blend[iht] * lower[iht]) +
                      ((1.0_rt - m_blend[iht]) * upper[iht]);

@@ -46,27 +46,27 @@ public:
     scalar_diffusivity(const std::string& scalar_name) = 0;
 
     //! Thermal expansion coefficient
-    virtual std::unique_ptr<ScratchField> beta() const = 0;
+    [[nodiscard]] virtual std::unique_ptr<ScratchField> beta() const = 0;
 
     //! Thermal expansion coefficient
     virtual void beta_impl(
-        const int lev,
+        int lev,
         const amrex::MFIter& mfi,
         const amrex::Box& bx,
         const amrex::Array4<amrex::Real>& beta) const = 0;
 
     //! Reference temperature
-    virtual amrex::Real reference_temperature() const = 0;
+    [[nodiscard]] virtual amrex::Real reference_temperature() const = 0;
 
     //! Reference temperature
     virtual void ref_theta_impl(
-        const int lev,
+        int lev,
         const amrex::MFIter& mfi,
         const amrex::Box& bx,
         const amrex::Array4<amrex::Real>& ref_theta) const = 0;
 
     //! Reference temperature
-    virtual std::unique_ptr<ScratchField> ref_theta() const = 0;
+    [[nodiscard]] virtual std::unique_ptr<ScratchField> ref_theta() const = 0;
 
 protected:
     const int m_ngrow{1};

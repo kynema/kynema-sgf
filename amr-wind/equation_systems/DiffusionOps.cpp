@@ -133,7 +133,7 @@ void DiffSolverIface<LinOp>::linsys_solve_impl()
 
         amrex::ParallelFor(
             rhs, amrex::IntVect(0), ndim,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 rhs_arrs[nbx](i, j, k, n) =
                     rho_arrs[nbx](i, j, k) * fld_arrs[nbx](i, j, k, n);
             });

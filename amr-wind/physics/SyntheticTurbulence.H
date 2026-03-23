@@ -1,5 +1,5 @@
-#ifndef SyntheticTurbulence_H
-#define SyntheticTurbulence_H
+#ifndef SYNTHETICTURBULENCE_H
+#define SYNTHETICTURBULENCE_H
 
 #include <string>
 #include <cmath>
@@ -37,11 +37,11 @@ public:
 
     virtual ~MeanProfile() = default;
 
-    inline amrex::Real reference_velocity() const { return m_ref_vel; }
+    [[nodiscard]] amrex::Real reference_velocity() const { return m_ref_vel; }
 
-    inline int shear_dir() const { return m_shear_dir; }
+    [[nodiscard]] int shear_dir() const { return m_shear_dir; }
 
-    MeanVelOp device_instance() const { return m_op; }
+    [[nodiscard]] MeanVelOp device_instance() const { return m_op; }
 
 private:
     MeanVelOp m_op;

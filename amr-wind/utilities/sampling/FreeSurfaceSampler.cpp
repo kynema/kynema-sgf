@@ -136,7 +136,7 @@ void FreeSurfaceSampler::initialize(const std::string& key)
                     amrex::Box const& bx,
                     amrex::Array4<int const> const& mask_arr) -> int {
                     int ns_fab = 0;
-                    amrex::Loop(bx, [=, &ns_fab](int i, int j, int k) noexcept {
+                    amrex::Loop(bx, [=, &ns_fab](int i, int j, int k) {
                         // Cell location
                         amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> xm;
                         xm[0] = plo[0] + ((i + 0.5_rt) * dx[0]);
@@ -252,96 +252,94 @@ void FreeSurfaceSampler::initialize(const std::string& key)
             auto idx_arr = fidx(lev).array(mfi);
             auto mask_arr = level_mask.const_array(mfi);
             const auto& vbx = mfi.validbox();
-            amrex::ParallelFor(
-                vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                    // Cell location
-                    amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> xm;
-                    xm[0] = plo[0] + ((i + 0.5_rt) * dx[0]);
-                    xm[1] = plo[1] + ((j + 0.5_rt) * dx[1]);
-                    xm[2] = plo[2] + ((k + 0.5_rt) * dx[2]);
-                    int n0_f = 0;
-                    int n0_a = 0;
-                    int n1_f = 0;
-                    int n1_a = 0;
-                    // Get first and after sample indices for gc0
-                    if (ntps0 == 1) {
-                        n0_a = (std::abs(phi[gc0] - s_gc0) < eps ||
-                                (xm[gc0] - s_gc0 <= 0.5_rt * dx[gc0] &&
-                                 s_gc0 - xm[gc0] < 0.5_rt * dx[gc0]))
-                                   ? 1
-                                   : 0;
-                    } else {
-                        n0_f = static_cast<int>(std::ceil(
-                            (xm[gc0] - 0.5_rt * dx[gc0] - s_gc0) / dxs0));
-                        n0_a = static_cast<int>(std::ceil(
-                            (xm[gc0] + 0.5_rt * dx[gc0] - s_gc0) / dxs0));
-                        // Edge case of phi
-                        if (std::abs(xm[gc0] + (0.5_rt * dx[gc0]) - phi[gc0]) <
-                                eps &&
-                            std::abs(s_gc0 + (n0_a * dxs0) - phi[gc0]) < eps) {
-                            ++n0_a;
-                        }
-                        // Bounds
-                        n0_a = amrex::min(ntps0, n0_a);
-                        n0_f = amrex::max(amrex::min(0, n0_a), n0_f);
-                        // Out of bounds indicates no sample point
-                        if (n0_f >= ntps0 || n0_f < 0) {
-                            n0_a = n0_f;
-                        }
+            amrex::ParallelFor(vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                // Cell location
+                amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> xm;
+                xm[0] = plo[0] + ((i + 0.5_rt) * dx[0]);
+                xm[1] = plo[1] + ((j + 0.5_rt) * dx[1]);
+                xm[2] = plo[2] + ((k + 0.5_rt) * dx[2]);
+                int n0_f = 0;
+                int n0_a = 0;
+                int n1_f = 0;
+                int n1_a = 0;
+                // Get first and after sample indices for gc0
+                if (ntps0 == 1) {
+                    n0_a = (std::abs(phi[gc0] - s_gc0) < eps ||
+                            (xm[gc0] - s_gc0 <= 0.5_rt * dx[gc0] &&
+                             s_gc0 - xm[gc0] < 0.5_rt * dx[gc0]))
+                               ? 1
+                               : 0;
+                } else {
+                    n0_f = static_cast<int>(
+                        std::ceil((xm[gc0] - 0.5_rt * dx[gc0] - s_gc0) / dxs0));
+                    n0_a = static_cast<int>(
+                        std::ceil((xm[gc0] + 0.5_rt * dx[gc0] - s_gc0) / dxs0));
+                    // Edge case of phi
+                    if (std::abs(xm[gc0] + (0.5_rt * dx[gc0]) - phi[gc0]) <
+                            eps &&
+                        std::abs(s_gc0 + (n0_a * dxs0) - phi[gc0]) < eps) {
+                        ++n0_a;
                     }
-                    // Get first and after sample indices for gc1
-                    if (ntps1 == 1) {
-                        n1_a = (std::abs(phi[gc1] - s_gc1) < eps ||
-                                (xm[gc1] - s_gc1 <= 0.5_rt * dx[gc1] &&
-                                 s_gc1 - xm[gc1] < 0.5_rt * dx[gc1]))
-                                   ? 1
-                                   : 0;
-                    } else {
-                        n1_f = static_cast<int>(std::ceil(
-                            (xm[gc1] - 0.5_rt * dx[gc1] - s_gc1) / dxs1));
-                        n1_a = static_cast<int>(std::ceil(
-                            (xm[gc1] + 0.5_rt * dx[gc1] - s_gc1) / dxs1));
-                        // Edge case of phi
-                        if (std::abs(xm[gc1] + (0.5_rt * dx[gc1]) - phi[gc1]) <
-                                eps &&
-                            std::abs(s_gc1 + (n1_a * dxs1) - phi[gc1]) < eps) {
-                            ++n1_a;
-                        }
-                        // Bounds
-                        n1_a = amrex::min(ntps1, n1_a);
-                        n1_f = amrex::max(amrex::min(0, n1_a), n1_f);
-                        // Out of bounds indicates no sample point
-                        if (n1_f >= ntps1 || n1_f < 0) {
-                            n1_a = n1_f;
-                        }
+                    // Bounds
+                    n0_a = amrex::min(ntps0, n0_a);
+                    n0_f = amrex::max(amrex::min(0, n0_a), n0_f);
+                    // Out of bounds indicates no sample point
+                    if (n0_f >= ntps0 || n0_f < 0) {
+                        n0_a = n0_f;
                     }
-                    // Loop through local sample locations
-                    int ns = 0;
-                    for (int n0 = n0_f; n0 < n0_a; ++n0) {
-                        for (int n1 = n1_f; n1 < n1_a; ++n1) {
-                            // Save index and location
-                            idx_arr(i, j, k, ns) = (n1 * ntps0) + n0;
-                            loc_arr(i, j, k, 2 * ns) = s_gc0 + (n0 * dxs0);
-                            loc_arr(i, j, k, (2 * ns) + 1) =
-                                s_gc1 + (n1 * dxs1);
-                            // Advance to next point
-                            ++ns;
-                            // if ns gets to max components, break
-                            if (ns == ncomp) {
-                                break;
-                            }
-                        }
+                }
+                // Get first and after sample indices for gc1
+                if (ntps1 == 1) {
+                    n1_a = (std::abs(phi[gc1] - s_gc1) < eps ||
+                            (xm[gc1] - s_gc1 <= 0.5_rt * dx[gc1] &&
+                             s_gc1 - xm[gc1] < 0.5_rt * dx[gc1]))
+                               ? 1
+                               : 0;
+                } else {
+                    n1_f = static_cast<int>(
+                        std::ceil((xm[gc1] - 0.5_rt * dx[gc1] - s_gc1) / dxs1));
+                    n1_a = static_cast<int>(
+                        std::ceil((xm[gc1] + 0.5_rt * dx[gc1] - s_gc1) / dxs1));
+                    // Edge case of phi
+                    if (std::abs(xm[gc1] + (0.5_rt * dx[gc1]) - phi[gc1]) <
+                            eps &&
+                        std::abs(s_gc1 + (n1_a * dxs1) - phi[gc1]) < eps) {
+                        ++n1_a;
+                    }
+                    // Bounds
+                    n1_a = amrex::min(ntps1, n1_a);
+                    n1_f = amrex::max(amrex::min(0, n1_a), n1_f);
+                    // Out of bounds indicates no sample point
+                    if (n1_f >= ntps1 || n1_f < 0) {
+                        n1_a = n1_f;
+                    }
+                }
+                // Loop through local sample locations
+                int ns = 0;
+                for (int n0 = n0_f; n0 < n0_a; ++n0) {
+                    for (int n1 = n1_f; n1 < n1_a; ++n1) {
+                        // Save index and location
+                        idx_arr(i, j, k, ns) = (n1 * ntps0) + n0;
+                        loc_arr(i, j, k, 2 * ns) = s_gc0 + (n0 * dxs0);
+                        loc_arr(i, j, k, (2 * ns) + 1) = s_gc1 + (n1 * dxs1);
+                        // Advance to next point
+                        ++ns;
+                        // if ns gets to max components, break
                         if (ns == ncomp) {
                             break;
                         }
                     }
-                    // Set remaining values to -1 to indicate no point
-                    // or set all values to -1 if not in fine mesh
-                    int nstart = (mask_arr(i, j, k) == 0) ? 0 : ns;
-                    for (int n = nstart; n < ncomp; ++n) {
-                        idx_arr(i, j, k, n) = -1;
+                    if (ns == ncomp) {
+                        break;
                     }
-                });
+                }
+                // Set remaining values to -1 to indicate no point
+                // or set all values to -1 if not in fine mesh
+                int nstart = (mask_arr(i, j, k) == 0) ? 0 : ns;
+                for (int n = nstart; n < ncomp; ++n) {
+                    idx_arr(i, j, k, n) = -1;
+                }
+            });
         }
     }
 }
@@ -374,7 +372,7 @@ void FreeSurfaceSampler::check_bounds()
         amrex::Print()
             << "WARNING: FreeSurfaceSampler: Out of domain plane was "
                "truncated to match domain"
-            << std::endl;
+            << '\n';
     }
 }
 
@@ -477,7 +475,7 @@ bool FreeSurfaceSampler::update_sampling_locations()
                                            : amrex::Array4<int>();
                 const auto& vbx = mfi.validbox();
                 amrex::ParallelFor(
-                    vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+                    vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         // Cell location
                         amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> xm;
                         xm[0] = plo[0] + ((i + 0.5_rt) * dx[0]);
@@ -784,96 +782,94 @@ void FreeSurfaceSampler::post_regrid_actions()
             auto idx_arr = fidx(lev).array(mfi);
             auto mask_arr = level_mask.const_array(mfi);
             const auto& vbx = mfi.validbox();
-            amrex::ParallelFor(
-                vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                    // Cell location
-                    amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> xm;
-                    xm[0] = plo[0] + ((i + 0.5_rt) * dx[0]);
-                    xm[1] = plo[1] + ((j + 0.5_rt) * dx[1]);
-                    xm[2] = plo[2] + ((k + 0.5_rt) * dx[2]);
-                    int n0_f = 0;
-                    int n0_a = 0;
-                    int n1_f = 0;
-                    int n1_a = 0;
-                    // Get first and after sample indices for gc0
-                    if (ntps0 == 1) {
-                        n0_a = (std::abs(phi[gc0] - s_gc0) < eps ||
-                                (xm[gc0] - s_gc0 <= 0.5_rt * dx[gc0] &&
-                                 s_gc0 - xm[gc0] < 0.5_rt * dx[gc0]))
-                                   ? 1
-                                   : 0;
-                    } else {
-                        n0_f = (int)std::ceil(
-                            (xm[gc0] - 0.5_rt * dx[gc0] - s_gc0) / dxs0);
-                        n0_a = (int)std::ceil(
-                            (xm[gc0] + 0.5_rt * dx[gc0] - s_gc0) / dxs0);
-                        // Edge case of phi
-                        if (std::abs(xm[gc0] + (0.5_rt * dx[gc0]) - phi[gc0]) <
-                                eps &&
-                            std::abs(s_gc0 + (n0_a * dxs0) - phi[gc0]) < eps) {
-                            ++n0_a;
-                        }
-                        // Bounds
-                        n0_a = amrex::min(ntps0, n0_a);
-                        n0_f = amrex::max(amrex::min(0, n0_a), n0_f);
-                        // Out of bounds indicates no sample point
-                        if (n0_f >= ntps0 || n0_f < 0) {
-                            n0_a = n0_f;
-                        }
+            amrex::ParallelFor(vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                // Cell location
+                amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> xm;
+                xm[0] = plo[0] + ((i + 0.5_rt) * dx[0]);
+                xm[1] = plo[1] + ((j + 0.5_rt) * dx[1]);
+                xm[2] = plo[2] + ((k + 0.5_rt) * dx[2]);
+                int n0_f = 0;
+                int n0_a = 0;
+                int n1_f = 0;
+                int n1_a = 0;
+                // Get first and after sample indices for gc0
+                if (ntps0 == 1) {
+                    n0_a = (std::abs(phi[gc0] - s_gc0) < eps ||
+                            (xm[gc0] - s_gc0 <= 0.5_rt * dx[gc0] &&
+                             s_gc0 - xm[gc0] < 0.5_rt * dx[gc0]))
+                               ? 1
+                               : 0;
+                } else {
+                    n0_f = (int)std::ceil(
+                        (xm[gc0] - 0.5_rt * dx[gc0] - s_gc0) / dxs0);
+                    n0_a = (int)std::ceil(
+                        (xm[gc0] + 0.5_rt * dx[gc0] - s_gc0) / dxs0);
+                    // Edge case of phi
+                    if (std::abs(xm[gc0] + (0.5_rt * dx[gc0]) - phi[gc0]) <
+                            eps &&
+                        std::abs(s_gc0 + (n0_a * dxs0) - phi[gc0]) < eps) {
+                        ++n0_a;
                     }
-                    // Get first and after sample indices for gc1
-                    if (ntps1 == 1) {
-                        n1_a = (std::abs(phi[gc1] - s_gc1) < eps ||
-                                (xm[gc1] - s_gc1 <= 0.5_rt * dx[gc1] &&
-                                 s_gc1 - xm[gc1] < 0.5_rt * dx[gc1]))
-                                   ? 1
-                                   : 0;
-                    } else {
-                        n1_f = (int)std::ceil(
-                            (xm[gc1] - 0.5_rt * dx[gc1] - s_gc1) / dxs1);
-                        n1_a = (int)std::ceil(
-                            (xm[gc1] + 0.5_rt * dx[gc1] - s_gc1) / dxs1);
-                        // Edge case of phi
-                        if (std::abs(xm[gc1] + (0.5_rt * dx[gc1]) - phi[gc1]) <
-                                eps &&
-                            std::abs(s_gc1 + (n1_a * dxs1) - phi[gc1]) < eps) {
-                            ++n1_a;
-                        }
-                        // Bounds
-                        n1_a = amrex::min(ntps1, n1_a);
-                        n1_f = amrex::max(amrex::min(0, n1_a), n1_f);
-                        // Out of bounds indicates no sample point
-                        if (n1_f >= ntps1 || n1_f < 0) {
-                            n1_a = n1_f;
-                        }
+                    // Bounds
+                    n0_a = amrex::min(ntps0, n0_a);
+                    n0_f = amrex::max(amrex::min(0, n0_a), n0_f);
+                    // Out of bounds indicates no sample point
+                    if (n0_f >= ntps0 || n0_f < 0) {
+                        n0_a = n0_f;
                     }
-                    // Loop through local sample locations
-                    int ns = 0;
-                    for (int n0 = n0_f; n0 < n0_a; ++n0) {
-                        for (int n1 = n1_f; n1 < n1_a; ++n1) {
-                            // Save index and location
-                            idx_arr(i, j, k, ns) = (n1 * ntps0) + n0;
-                            loc_arr(i, j, k, 2 * ns) = s_gc0 + (n0 * dxs0);
-                            loc_arr(i, j, k, (2 * ns) + 1) =
-                                s_gc1 + (n1 * dxs1);
-                            // Advance to next point
-                            ++ns;
-                            // if ns gets to max components, break
-                            if (ns == ncomp) {
-                                break;
-                            }
-                        }
+                }
+                // Get first and after sample indices for gc1
+                if (ntps1 == 1) {
+                    n1_a = (std::abs(phi[gc1] - s_gc1) < eps ||
+                            (xm[gc1] - s_gc1 <= 0.5_rt * dx[gc1] &&
+                             s_gc1 - xm[gc1] < 0.5_rt * dx[gc1]))
+                               ? 1
+                               : 0;
+                } else {
+                    n1_f = (int)std::ceil(
+                        (xm[gc1] - 0.5_rt * dx[gc1] - s_gc1) / dxs1);
+                    n1_a = (int)std::ceil(
+                        (xm[gc1] + 0.5_rt * dx[gc1] - s_gc1) / dxs1);
+                    // Edge case of phi
+                    if (std::abs(xm[gc1] + (0.5_rt * dx[gc1]) - phi[gc1]) <
+                            eps &&
+                        std::abs(s_gc1 + (n1_a * dxs1) - phi[gc1]) < eps) {
+                        ++n1_a;
+                    }
+                    // Bounds
+                    n1_a = amrex::min(ntps1, n1_a);
+                    n1_f = amrex::max(amrex::min(0, n1_a), n1_f);
+                    // Out of bounds indicates no sample point
+                    if (n1_f >= ntps1 || n1_f < 0) {
+                        n1_a = n1_f;
+                    }
+                }
+                // Loop through local sample locations
+                int ns = 0;
+                for (int n0 = n0_f; n0 < n0_a; ++n0) {
+                    for (int n1 = n1_f; n1 < n1_a; ++n1) {
+                        // Save index and location
+                        idx_arr(i, j, k, ns) = (n1 * ntps0) + n0;
+                        loc_arr(i, j, k, 2 * ns) = s_gc0 + (n0 * dxs0);
+                        loc_arr(i, j, k, (2 * ns) + 1) = s_gc1 + (n1 * dxs1);
+                        // Advance to next point
+                        ++ns;
+                        // if ns gets to max components, break
                         if (ns == ncomp) {
                             break;
                         }
                     }
-                    // Set remaining values to -1 to indicate no point
-                    // or set all values to -1 if not in fine mesh
-                    int nstart = (mask_arr(i, j, k) == 0) ? 0 : ns;
-                    for (int n = nstart; n < ncomp; ++n) {
-                        idx_arr(i, j, k, n) = -1;
+                    if (ns == ncomp) {
+                        break;
                     }
-                });
+                }
+                // Set remaining values to -1 to indicate no point
+                // or set all values to -1 if not in fine mesh
+                int nstart = (mask_arr(i, j, k) == 0) ? 0 : ns;
+                for (int n = nstart; n < ncomp; ++n) {
+                    idx_arr(i, j, k, n) = -1;
+                }
+            });
         }
     }
 }

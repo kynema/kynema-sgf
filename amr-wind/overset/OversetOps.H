@@ -23,7 +23,6 @@ public:
 private:
     // Functions called within public functions
     void parameter_output() const;
-    void sharpen_nalu_data();
     void form_perturb_pressure();
     void replace_masked_gradp();
 
@@ -35,22 +34,6 @@ private:
 
     // Verbosity
     int m_verbose{0};
-
-    // Reinitialization parameters
-    int m_n_iterations{10};
-    int m_calc_convg_interval{1}; // calctolniter, cconv
-    amrex::Real m_convg_tol =
-        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
-    amrex::Real m_relative_length_scale = 1.5_rt;
-    amrex::Real m_upw_margin = 0.1_rt;
-    amrex::Real m_target_cutoff = 0.0_rt; // proc_tgvof_tol
-
-    // Tolerance for VOF-related bound checks
-    const amrex::Real m_vof_tol =
-        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
-    // Small number for approximate signed distance function
-    const amrex::Real m_asdf_tiny =
-        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     // Pointer for pressure gradient copy field
     amr_wind::Field* m_gp_copy{nullptr};

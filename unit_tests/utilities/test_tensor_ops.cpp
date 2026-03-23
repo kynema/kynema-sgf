@@ -1,3 +1,5 @@
+#include <utility>
+
 #include "aw_test_utils/AmrexTest.H"
 #include "amr-wind/utilities/tensor_ops.H"
 #include "AMReX_REAL.H"
@@ -24,8 +26,8 @@ struct TestVector
     ~TestVector() = default;
 
     amrex::Real* data() { return m_dvec.data(); }
-    const amrex::Real* data() const { return m_dvec.data(); }
-    size_t size() const { return m_hvec.size(); }
+    [[nodiscard]] const amrex::Real* data() const { return m_dvec.data(); }
+    [[nodiscard]] size_t size() const { return m_hvec.size(); }
 
 private:
     const amrex::Vector<amrex::Real> m_hvec = {1.0_rt, 2.0_rt, 3.0_rt};
@@ -59,7 +61,7 @@ void impl_vec_normalize()
     const auto np = tv.size();
     amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int /*unused*/) {
         amr_wind::utils::vec_normalize(pvec);
-        for (int i = 0; i < static_cast<int>(np); i++) {
+        for (int i = 0; std::cmp_less(i, np); i++) {
             ddata[i] = pvec[i];
         }
     });

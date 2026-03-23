@@ -61,7 +61,7 @@ void VortexPatchScalarVel::initialize_fields(
     const amrex::Real eps_vel = radius * m_sfactor;
 
     amrex::ParallelFor(
-        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
             const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
             const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
@@ -149,7 +149,7 @@ void VortexPatchScalarVel::pre_advance_work()
         const auto& wf_arrs = w_mac.arrays();
         amrex::ParallelFor(
             m_velocity(lev), amrex::IntVect(1),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
                 const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
                 const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);

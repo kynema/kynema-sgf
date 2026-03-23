@@ -1,5 +1,5 @@
-#ifndef TerrainDrag_H
-#define TerrainDrag_H
+#ifndef TERRAINDRAG_H
+#define TERRAINDRAG_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
@@ -36,12 +36,12 @@ public:
 
     void convert_waves_to_terrain_fields();
 
-    std::string wave_velocity_field_name() const
+    [[nodiscard]] std::string wave_velocity_field_name() const
     {
         return m_wave_velocity_name;
     }
 
-    std::string wave_negative_elevation_name() const
+    [[nodiscard]] std::string wave_negative_elevation_name() const
     {
         return m_wave_negative_elevation_name;
     }

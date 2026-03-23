@@ -69,12 +69,11 @@ amrex::Real Enstrophy::calculate_enstrophy()
                 amrex::Array4<int const> const& mask_arr) -> amrex::Real {
                 amrex::Real enstrophy_fab = 0.0_rt;
 
-                amrex::Loop(
-                    bx, [=, &enstrophy_fab](int i, int j, int k) noexcept {
-                        enstrophy_fab +=
-                            cell_vol * mask_arr(i, j, k) * den_arr(i, j, k) *
-                            (vort_arr(i, j, k) * vort_arr(i, j, k));
-                    });
+                amrex::Loop(bx, [=, &enstrophy_fab](int i, int j, int k) {
+                    enstrophy_fab += cell_vol * mask_arr(i, j, k) *
+                                     den_arr(i, j, k) *
+                                     (vort_arr(i, j, k) * vort_arr(i, j, k));
+                });
                 return enstrophy_fab;
             });
     }
@@ -108,7 +107,7 @@ void Enstrophy::prepare_ascii_file()
 
     if (amrex::ParallelDescriptor::IOProcessor()) {
         std::ofstream f(m_out_fname.c_str());
-        f << "time_step time enstrophy" << std::endl;
+        f << "time_step time enstrophy" << '\n';
         f.close();
     }
 }
@@ -123,7 +122,7 @@ void Enstrophy::write_ascii()
           << std::setprecision(m_precision) << std::setw(m_width)
           << m_sim.time().new_time();
         f << std::setw(m_width) << m_total_enstrophy;
-        f << std::endl;
+        f << '\n';
         f.close();
     }
 }

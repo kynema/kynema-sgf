@@ -45,7 +45,7 @@ MultiPhase::MultiPhase(CFDSim& sim)
     } else {
         amrex::Print() << "Please select an interface capturing model between "
                           "VOF and Levelset: defaulting to VOF "
-                       << std::endl;
+                       << '\n';
         m_interface_capturing_method = amr_wind::InterfaceCapturingMethod::VOF;
         auto& vof_eqn = sim.pde_manager().register_transport_pde("VOF");
         m_vof = &(vof_eqn.fields().field);
@@ -184,16 +184,15 @@ void MultiPhase::post_advance_work()
             amrex::Real mom_z = momentum_sum(2) - m_q2;
             const auto& geom = m_sim.mesh().Geom();
             const amrex::Real total_vol = geom[0].ProbDomain().volume();
-            amrex::Print() << "Volume of Fluid diagnostics:" << std::endl;
+            amrex::Print() << "Volume of Fluid diagnostics:" << '\n';
             amrex::Print() << "   Water Volume Fractions Sum, Difference : "
                            << m_total_volfrac << " "
-                           << m_total_volfrac - m_sumvof0 << std::endl;
+                           << m_total_volfrac - m_sumvof0 << '\n';
             amrex::Print() << "   Air Volume Fractions Sum : "
-                           << total_vol - m_total_volfrac << std::endl;
+                           << total_vol - m_total_volfrac << '\n';
             amrex::Print() << "   Total Momentum Difference (x, y, z) : "
-                           << mom_x << " " << mom_y << " " << mom_z
-                           << std::endl;
-            amrex::Print() << " " << std::endl;
+                           << mom_x << " " << mom_y << " " << mom_z << '\n';
+            amrex::Print() << " " << '\n';
         }
         break;
     case InterfaceCapturingMethod::LS:
@@ -236,7 +235,7 @@ amrex::Real MultiPhase::volume_fraction_sum()
                 amrex::Array4<amrex::Real const> const& volfrac,
                 amrex::Array4<int const> const& mask_arr) -> amrex::Real {
                 amrex::Real vol_fab = 0.0_rt;
-                amrex::Loop(bx, [=, &vol_fab](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &vol_fab](int i, int j, int k) {
                     vol_fab += volfrac(i, j, k) * mask_arr(i, j, k) * cell_vol;
                 });
                 return vol_fab;
@@ -283,7 +282,7 @@ amrex::Real MultiPhase::momentum_sum(int n)
                 amrex::Array4<amrex::Real const> const& dens,
                 amrex::Array4<int const> const& mask_arr) -> amrex::Real {
                 amrex::Real vol_fab = 0.0_rt;
-                amrex::Loop(bx, [=, &vol_fab](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &vol_fab](int i, int j, int k) {
                     vol_fab += vel(i, j, k, n) * dens(i, j, k) *
                                mask_arr(i, j, k) * cell_vol;
                 });
@@ -313,7 +312,7 @@ void MultiPhase::set_density_via_levelset()
         const amrex::Real captured_rho2 = m_rho2;
         amrex::ParallelFor(
             density, m_density.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 amrex::Real smooth_heaviside;
                 if (phi_arrs[nbx](i, j, k) > eps) {
                     smooth_heaviside = 1.0_rt;
@@ -350,7 +349,7 @@ void MultiPhase::set_density_via_vof(amr_wind::FieldState fstate)
         const amrex::Real captured_rho2 = m_rho2;
         amrex::ParallelFor(
             density, m_density.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 rho_arrs[nbx](i, j, k) =
                     (captured_rho1 * F_arrs[nbx](i, j, k)) +
                     (captured_rho2 * (1.0_rt - F_arrs[nbx](i, j, k)));
@@ -396,22 +395,21 @@ void MultiPhase::calculate_advected_facedensity()
             const auto& aa_y = advalpha_y(lev).array(mfi);
             const auto& aa_z = advalpha_z(lev).array(mfi);
 
-            amrex::ParallelFor(
-                bxg1, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                    // Volume terms at each face become density terms
-                    if (xbx.contains(i, j, k)) {
-                        aa_x(i, j, k) = (c_r1 * aa_x(i, j, k)) +
-                                        (c_r2 * (1.0_rt - aa_x(i, j, k)));
-                    }
-                    if (ybx.contains(i, j, k)) {
-                        aa_y(i, j, k) = (c_r1 * aa_y(i, j, k)) +
-                                        (c_r2 * (1.0_rt - aa_y(i, j, k)));
-                    }
-                    if (zbx.contains(i, j, k)) {
-                        aa_z(i, j, k) = (c_r1 * aa_z(i, j, k)) +
-                                        (c_r2 * (1.0_rt - aa_z(i, j, k)));
-                    }
-                });
+            amrex::ParallelFor(bxg1, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                // Volume terms at each face become density terms
+                if (xbx.contains(i, j, k)) {
+                    aa_x(i, j, k) = (c_r1 * aa_x(i, j, k)) +
+                                    (c_r2 * (1.0_rt - aa_x(i, j, k)));
+                }
+                if (ybx.contains(i, j, k)) {
+                    aa_y(i, j, k) = (c_r1 * aa_y(i, j, k)) +
+                                    (c_r2 * (1.0_rt - aa_y(i, j, k)));
+                }
+                if (zbx.contains(i, j, k)) {
+                    aa_z(i, j, k) = (c_r1 * aa_z(i, j, k)) +
+                                    (c_r2 * (1.0_rt - aa_z(i, j, k)));
+                }
+            });
         }
     }
 }
@@ -432,8 +430,7 @@ void MultiPhase::levelset2vof()
         const auto& volfrac_arrs = vof.arrays();
         const amrex::Real eps = 2.0_rt * std::cbrt(dx[0] * dx[1] * dx[2]);
         amrex::ParallelFor(
-            levelset,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            levelset, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 amrex::Real mx, my, mz;
                 multiphase::youngs_finite_difference_normal(
                     i, j, k, phi_arrs[nbx], mx, my, mz);
@@ -483,8 +480,7 @@ void MultiPhase::levelset2vof(
         const auto& iblank_arrs = iblank_cell(lev).const_arrays();
         const amrex::Real eps = 2.0_rt * std::cbrt(dx[0] * dx[1] * dx[2]);
         amrex::ParallelFor(
-            levelset,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            levelset, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 // Neumann of levelset across iblank boundaries
                 int ibdy =
                     (iblank_arrs[nbx](i, j, k) != iblank_arrs[nbx](i - 1, j, k))

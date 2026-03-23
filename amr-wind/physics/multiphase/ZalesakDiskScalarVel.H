@@ -1,5 +1,5 @@
-#ifndef ZalesakDiskScalarVel_H
-#define ZalesakDiskScalarVel_H
+#ifndef ZALESAKDISKSCALARVEL_H
+#define ZALESAKDISKSCALARVEL_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"

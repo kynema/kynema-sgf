@@ -85,7 +85,7 @@ void VelocityFreeAtmosphereForcing::operator()(
     const auto& terrain_height = (has_terrain)
                                      ? (*m_terrain_height)(lev).const_array(mfi)
                                      : amrex::Array4<amrex::Real>();
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real cell_terrain_height =
             (has_terrain) ? terrain_height(i, j, k) : 0.0_rt;
         const amrex::Real z = amrex::max<amrex::Real>(

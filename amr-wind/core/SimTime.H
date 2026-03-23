@@ -46,35 +46,33 @@ public:
 
     /** Return true if simulation should continue
      */
-    bool continue_simulation() const;
+    [[nodiscard]] bool continue_simulation() const;
 
     /** Return true if mesh refinement should be performed at this timestep
      */
-    bool do_regrid() const;
+    [[nodiscard]] bool do_regrid() const;
 
     /** Return true if plot files should be written at this timestep
      */
-    bool write_plot_file() const;
+    [[nodiscard]] bool write_plot_file() const;
 
     /** Return true if checkpoint files should be written at this timestep
      */
-    bool write_checkpoint() const;
+    [[nodiscard]] bool write_checkpoint() const;
 
     /** Return true if plot files should be written at this timestep
      */
-    bool write_last_plot_file() const;
+    [[nodiscard]] bool write_last_plot_file() const;
 
     /** Return true if checkpoint files should be written at this timestep
      */
-    bool write_last_checkpoint() const;
+    [[nodiscard]] bool write_last_checkpoint() const;
 
     /** Set current CFL and update timestep based on CFL components
      *
      */
     void set_current_cfl(
-        const amrex::Real conv_cfl,
-        const amrex::Real diff_cfl,
-        const amrex::Real src_cfl);
+        amrex::Real conv_cfl, amrex::Real diff_cfl, amrex::Real src_cfl);
 
     /** Use results of CFL and timestepping parameters to advance time to new,
      * output time information
@@ -183,7 +181,7 @@ public:
     /** Return true if TinyProfiler output should be sent to the log file at
      * this timestep
      */
-    bool output_profiling_info() const;
+    [[nodiscard]] bool output_profiling_info() const;
 
 private:
     //! Timestep sizes
@@ -244,7 +242,7 @@ private:
     amrex::Real m_chkpt_t_delay{0.0_rt};
 
     //! Relative (to dt) tolerance for checkpoint time interval output
-    amrex::Real m_chkpt_t_tol{std::numeric_limits<float>::epsilon() * 1.0e1_rt};
+    amrex::Real m_chkpt_t_tol{1.0e-2_rt};
 
     //! Relative (to chkpt_t_interval) tolerance for enforcing dt
     amrex::Real m_force_chkpt_tol{1.0e-3_rt};
@@ -256,12 +254,14 @@ private:
     amrex::Real m_plt_t_delay{0.0_rt};
 
     //! Relative (to dt) tolerance for plot time interval output
-    amrex::Real m_plt_t_tol{std::numeric_limits<float>::epsilon() * 1.0e1_rt};
+    amrex::Real m_plt_t_tol{1.0e-2_rt};
 
     //! Relative (to plt_t_interval) tolerance for enforcing dt
     amrex::Real m_force_plt_tol{1.0e-3_rt};
 
     //! Smallest absolute tolerance for enforcing dt, considering all
+    //! tolerance criteria. This is simply a high initial value; the code
+    //! calculates the actual tolerance with min() operations
     amrex::Real m_force_dt_abs_tol{1.0e8_rt};
 
     //! Initial starting time for generating checkpoint files (time-based)

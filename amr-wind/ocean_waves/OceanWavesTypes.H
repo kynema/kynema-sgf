@@ -81,13 +81,19 @@ public:
     {}
 
     CFDSim& sim() { return m_sim; }
-    const CFDSim& sim() const { return m_sim; }
+    [[nodiscard]] const CFDSim& sim() const { return m_sim; }
 
     typename OceanWavesTrait::InfoType& info() { return m_info; }
-    const typename OceanWavesTrait::InfoType& info() const { return m_info; }
+    [[nodiscard]] const typename OceanWavesTrait::InfoType& info() const
+    {
+        return m_info;
+    }
 
     typename OceanWavesTrait::MetaType& meta() { return m_meta; }
-    const typename OceanWavesTrait::MetaType& meta() const { return m_meta; }
+    [[nodiscard]] const typename OceanWavesTrait::MetaType& meta() const
+    {
+        return m_meta;
+    }
 };
 
 } // namespace ocean_waves

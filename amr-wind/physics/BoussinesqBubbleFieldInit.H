@@ -1,5 +1,5 @@
-#ifndef BoussinesqBubbleFIELDINIT_H
-#define BoussinesqBubbleFIELDINIT_H
+#ifndef BOUSSINESQBUBBLEFIELDINIT_H
+#define BOUSSINESQBUBBLEFIELDINIT_H
 
 #include "AMReX_Array.H"
 #include "AMReX_Array4.H"

@@ -86,7 +86,7 @@ struct InitDataOp<LinearWaves>
 
         amrex::ParallelFor(
             velocity(level), amrex::IntVect(3),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
                 const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
 
@@ -176,7 +176,7 @@ struct UpdateTargetFieldsOp<LinearWaves>
 
             amrex::ParallelFor(
                 ow_velocity(lev), amrex::IntVect(3),
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     const amrex::Real x = amrex::max<amrex::Real>(
                         problo[0], problo[0] + ((i + 0.5_rt) * dx[0]));
                     const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);

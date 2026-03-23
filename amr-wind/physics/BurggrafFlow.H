@@ -1,5 +1,5 @@
-#ifndef BurggrafFlow_H
-#define BurggrafFlow_H
+#ifndef BURGGRAFFLOW_H
+#define BURGGRAFFLOW_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
@@ -15,21 +15,21 @@ namespace {
 struct UExact
 {
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
-    operator()(const amrex::Real /*x*/, const amrex::Real /*y*/) const;
+    operator()(amrex::Real /*x*/, amrex::Real /*y*/) const;
     const int m_comp{0};
 };
 
 struct VExact
 {
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
-    operator()(const amrex::Real /*x*/, const amrex::Real /*y*/) const;
+    operator()(amrex::Real /*x*/, amrex::Real /*y*/) const;
     const int m_comp{1};
 };
 
 struct WExact
 {
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
-    operator()(const amrex::Real /*x*/, const amrex::Real /*y*/) const;
+    operator()(amrex::Real /*x*/, amrex::Real /*y*/) const;
     const int m_comp{2};
 };
 

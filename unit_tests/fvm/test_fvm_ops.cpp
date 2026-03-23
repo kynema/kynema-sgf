@@ -103,7 +103,7 @@ amrex::Real strainrate_test_impl(amr_wind::Field& vel, const int pdegree)
                 -> amrex::Real {
                 amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
                     const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
                     const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
@@ -160,7 +160,7 @@ amrex::Real nonlinearsum_test_impl(amr_wind::Field& vel, const int pdegree)
                 -> amrex::Real {
                 amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
                     const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
                     const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
@@ -248,7 +248,7 @@ amrex::Real vorticity_test_impl(amr_wind::Field& vel, const int pdegree)
                 -> amrex::Real {
                 amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
                     const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
                     const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
@@ -314,7 +314,7 @@ amrex::Real vorticity_mag_test_impl(amr_wind::Field& vel, const int pdegree)
                 -> amrex::Real {
                 amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
                     const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
                     const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
@@ -377,7 +377,7 @@ amrex::Real q_criterion_test_impl(amr_wind::Field& vel, const int pdegree)
                 -> amrex::Real {
                 amrex::Real error = 0.0_rt;
 
-                amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+                amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
                     const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
                     const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);

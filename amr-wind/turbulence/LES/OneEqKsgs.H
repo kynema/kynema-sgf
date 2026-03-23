@@ -56,11 +56,14 @@ public:
 
     ~OneEqKsgsM84() override;
 
-    std::string model_name() const override { return "OneEqKsgsM84"; }
+    [[nodiscard]] std::string model_name() const override
+    {
+        return "OneEqKsgsM84";
+    }
 
     //! Update the turbulent viscosity field
     void update_turbulent_viscosity(
-        const FieldState fstate, const DiffusionType /*unused*/) override;
+        FieldState fstate, DiffusionType /*unused*/) override;
 
     //! Do any post advance work
     void post_advance_work() override;
@@ -75,7 +78,7 @@ public:
     void parse_model_coeffs() override;
 
     //! Return turbulence model coefficients
-    TurbulenceModel::CoeffsDictType model_coeffs() const override;
+    [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 
 private:
     Field& m_temperature;
@@ -108,12 +111,14 @@ public:
 
     ~OneEqKsgsS94() override;
 
-    std::string model_name() const override { return "OneEqKsgsS94"; }
+    [[nodiscard]] std::string model_name() const override
+    {
+        return "OneEqKsgsS94";
+    }
 
     //! Update the turbulent viscosity field
     void update_turbulent_viscosity(
-        const FieldState fstate,
-        const DiffusionType diff_type /*unused*/) override;
+        FieldState fstate, DiffusionType diff_type /*unused*/) override;
 
     //! No post advance work for this model
     void post_advance_work() override {}
@@ -125,7 +130,7 @@ public:
     void parse_model_coeffs() override;
 
     //! Return turbulence model coefficients
-    TurbulenceModel::CoeffsDictType model_coeffs() const override;
+    [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 };
 
 } // namespace amr_wind::turbulence

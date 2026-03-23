@@ -1,7 +1,7 @@
 #include "amr-wind/wind_energy/actuator/disk/disk_ops.H"
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 #include "amr-wind/utilities/io_utils.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -113,8 +113,8 @@ AreaComputer::AreaComputer(
 amrex::Real AreaComputer::area_section(const int iRadius) const
 {
     return m_geometry_factor *
-           (std::pow(iRadius + 1.0_rt, 2.0_rt) -
-            std::pow(static_cast<amrex::Real>(iRadius), 2.0_rt));
+           (amr_wind::utils::powi(iRadius + 1.0_rt, 2) -
+            amr_wind::utils::powi(static_cast<amrex::Real>(iRadius), 2));
 }
 
 amrex::Real AreaComputer::weight(const int iRadius) const
@@ -153,7 +153,7 @@ void collect_parse_conflicts(
     std::ostringstream& ss)
 {
     if (pp.contains(p1) && pp.contains(p2)) {
-        ss << "ActuatorDisk Conflict: " << p1 << " and " << p2 << std::endl;
+        ss << "ActuatorDisk Conflict: " << p1 << " and " << p2 << '\n';
     }
 }
 
@@ -165,7 +165,7 @@ void collect_parse_dependencies_one_way(
 {
     if (pp.contains(dependent) && !pp.contains(independent)) {
         ss << "ActuatorDisk Dependency Missing: " << independent
-           << " required with " << dependent << std::endl;
+           << " required with " << dependent << '\n';
     }
 }
 
@@ -300,7 +300,7 @@ std::ostringstream check_for_parse_conflicts(const utils::ActParser& pp)
             error_collector << "ActuatorDisk Dependency Missing: wind_speed is "
                                "required when "
                                "there is more than 1 entry for thrust_coeff"
-                            << std::endl;
+                            << '\n';
         }
     }
 
@@ -311,7 +311,7 @@ std::ostringstream check_for_parse_conflicts(const utils::ActParser& pp)
             error_collector << "ActuatorDisk Conflict: wind_speed and "
                                "thrust_coeff must have the same number of "
                                "values"
-                            << std::endl;
+                            << '\n';
         }
     }
 

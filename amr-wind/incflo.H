@@ -1,5 +1,5 @@
-#ifndef INCFLO_H_
-#define INCFLO_H_
+#ifndef INCFLO_H
+#define INCFLO_H
 
 #include <AMReX_AmrCore.H>
 #include <AMReX_MultiFabUtil.H>
@@ -99,8 +99,8 @@ public:
     void pre_advance_stage1();
     void pre_advance_stage2();
     void prepare_time_step();
-    void do_advance(const int fixed_point_iteration);
-    void advance(const int fixed_point_iteration);
+    void do_advance(int fixed_point_iteration);
+    void advance(int fixed_point_iteration);
     void prescribe_advance();
     void post_advance_work();
 
@@ -137,8 +137,7 @@ public:
     void advance_time() { m_time.advance_time(); }
 
     void ApplyPredictor(
-        const bool incremental_projection = false,
-        const int fixed_point_iteration = 0);
+        bool incremental_projection = false, int fixed_point_iteration = 0);
     void ApplyCorrector();
     void ApplyPrescribeStep();
 
@@ -201,7 +200,7 @@ private:
     // end of member variables
     //
 
-    amrex::FabFactory<amrex::FArrayBox> const& Factory(int lev) const noexcept
+    amrex::FabFactory<amrex::FArrayBox> const& Factory(int lev) const
     {
         return m_repo.factory(lev);
     }

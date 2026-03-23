@@ -37,7 +37,7 @@ void init_field(amr_wind::Field& fld)
 
         amrex::ParallelFor(
             fld(lev), fld.num_grow(), ncomp,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 const amrex::Real x = problo[0] + ((i + offset) * dx[0]);
                 const amrex::Real y = problo[1] + ((j + offset) * dx[1]);
                 const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
@@ -57,7 +57,7 @@ void init_int_field(amr_wind::IntField& fld)
 
         amrex::ParallelFor(
             fld(lev), fld.num_grow(), ncomp,
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 farrs[nbx](i, j, k, n) = i + j + k;
             });
     }
@@ -141,7 +141,7 @@ void test_scontainer_impl(
     const int id_start = static_cast<int>(PType::NextID());
     const int proc_id = amrex::ParallelDescriptor::MyProc();
 
-    amrex::ParallelFor(npts, [=] AMREX_GPU_DEVICE(const int ip) noexcept {
+    amrex::ParallelFor(npts, [=] AMREX_GPU_DEVICE(const int ip) {
         auto& pp = pstruct[ip];
         pp.id() = id_start + ip;
         pp.cpu() = proc_id;
@@ -278,14 +278,16 @@ TEST_F(SamplingTest, sampling_timing)
     SamplingImpl probes(sim(), "sampling");
     probes.initialize();
     if (probes.do_output_now(
-            sim().time().time_index(), sim().time().new_time(),
+            sim().time().time_index(), sim().time().start_time_index(),
+            sim().time().new_time(), sim().time().start_time(),
             sim().time().delta_t(), 1.0_rt)) {
         probes.output_actions();
     }
     EXPECT_FALSE(probes.write_flag);
     sim().time().new_timestep();
     if (probes.do_output_now(
-            sim().time().time_index(), sim().time().new_time(),
+            sim().time().time_index(), sim().time().start_time_index(),
+            sim().time().new_time(), sim().time().start_time(),
             sim().time().delta_t(), 1.0_rt)) {
         probes.output_actions();
     }

@@ -678,7 +678,7 @@ struct InitDataOp<W2AWaves>
 
         amrex::ParallelFor(
             velocity(level), amrex::IntVect(3),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real x = problo[0] + (i + 0.5_rt) * dx[0];
                 const amrex::Real y = problo[1] + (j + 0.5_rt) * dx[1];
                 const amrex::Real z = problo[2] + (k + 0.5_rt) * dx[2];
@@ -725,7 +725,7 @@ struct InitDataOp<W2AWaves>
 
         amrex::ParallelFor(
             velocity(level), amrex::IntVect(2),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real eps =
                     2.0_rt * std::cbrt(dx[0] * dx[1] * dx[2]);
                 const amrex::Real vof_local =

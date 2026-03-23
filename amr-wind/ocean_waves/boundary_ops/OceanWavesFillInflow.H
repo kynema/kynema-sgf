@@ -23,7 +23,7 @@ public:
         amrex::Real time,
         amrex::MultiFab& mfab,
         const amrex::IntVect& nghost,
-        const FieldState fstate = FieldState::New) override;
+        FieldState fstate = FieldState::New) override;
 
     void fillpatch_sibling_fields(
         int lev,
@@ -34,7 +34,7 @@ public:
         const amrex::IntVect& nghost,
         const amrex::Vector<amrex::BCRec>& bcrec,
         const amrex::Vector<amrex::BCRec>& /* unused */,
-        const FieldState fstate = FieldState::New) override;
+        FieldState fstate = FieldState::New) override;
 
     //! Implementation that handles filling patches from a coarse to fine level
     void fillpatch_from_coarse(
@@ -42,7 +42,7 @@ public:
         amrex::Real time,
         amrex::MultiFab& mfab,
         const amrex::IntVect& nghost,
-        const FieldState fstate = FieldState::New) override;
+        FieldState fstate = FieldState::New) override;
 
     //! Implementation that handles filling physical boundary conditions
     void fillphysbc(
@@ -50,7 +50,7 @@ public:
         amrex::Real time,
         amrex::MultiFab& mfab,
         const amrex::IntVect& nghost,
-        const FieldState fstate = FieldState::New) override;
+        FieldState fstate = FieldState::New) override;
 
 protected:
     const OceanWavesBoundary& m_ow_bndry;

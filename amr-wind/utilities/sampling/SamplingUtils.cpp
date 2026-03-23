@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "SamplingUtils.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
@@ -96,15 +98,13 @@ void spherical_cap_quadrature(
     // circle and phi is a standard 1D quadrature of choice, mapped to
     // [cos(gamma), 1] with a variable transformation, following along from
     // DOI 10.1007/s10444-011-9187-2
-    std::transform(
-        abscissae1D.cbegin(), abscissae1D.cend(), abscissae1D.begin(),
-        [gammav](amrex::Real s) {
+    std::ranges::transform(
+        abscissae1D, abscissae1D.begin(), [gammav](amrex::Real s) {
             return (0.5_rt * (1.0_rt - std::cos(gammav)) * (-s)) +
                    (0.5_rt * (1.0_rt + std::cos(gammav)));
         });
-    std::transform(
-        weights1D.cbegin(), weights1D.cend(), weights1D.begin(),
-        [gammav](amrex::Real w) {
+    std::ranges::transform(
+        weights1D, weights1D.begin(), [gammav](amrex::Real w) {
             return w * 0.5_rt * (1.0_rt - std::cos(gammav));
         });
 
@@ -143,13 +143,11 @@ void spherical_cap_truncated_normal(
     auto [xlocs, xweights] = truncated_normal_rule(rule);
     // want the center of the truncated normal distribution at the pole of the
     // cap -> -1 . Weights are already for a [-1,1] range from the generator
-    std::transform(
-        xlocs.cbegin(), xlocs.cend(), xlocs.begin(),
-        [](amrex::Real x) { return (2 * x) - 1; });
+    std::ranges::transform(
+        xlocs, xlocs.begin(), [](amrex::Real x) { return (2 * x) - 1; });
     // half range to start, then mapped back to [-1,1]
-    std::transform(
-        xweights.cbegin(), xweights.cend(), xweights.begin(),
-        [](amrex::Real w) { return 4 * w; });
+    std::ranges::transform(
+        xweights, xweights.begin(), [](amrex::Real w) { return 4 * w; });
 
     spherical_cap_quadrature(gammav, ntheta, xlocs, xweights, rays, weights);
 }

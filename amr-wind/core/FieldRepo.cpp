@@ -154,7 +154,7 @@ FieldRepo::get_field(const std::string& name, const FieldState fstate) const
     BL_PROFILE("amr-wind::FieldRepo::get_field");
     const auto fname = field_impl::field_name_with_state(name, fstate);
     const auto found = m_fid_map.find(fname);
-    if (found == m_fid_map.end()) { // NOLINT
+    if (found == m_fid_map.end()) { // NOLINT(bugprone-branch-clone)
         amrex::Abort("Cannot find field: " + name);
         exit(1); // To appease the compiler
     } else if (found->second < static_cast<unsigned>(m_field_vec.size())) {
@@ -282,7 +282,7 @@ FieldRepo::get_int_field(const std::string& name, const FieldState fstate) const
     AMREX_ALWAYS_ASSERT(fstate == FieldState::New);
     const auto fname = field_impl::field_name_with_state(name, fstate);
     const auto found = m_int_fid_map.find(fname);
-    if (found == m_int_fid_map.end()) { // NOLINT
+    if (found == m_int_fid_map.end()) { // NOLINT(bugprone-branch-clone)
         amrex::Abort("Cannot find field: " + name);
         exit(1); // To appease the compiler
     } else if (found->second < static_cast<unsigned>(m_int_field_vec.size())) {
@@ -401,7 +401,7 @@ std::unique_ptr<IntScratchField> FieldRepo::create_int_scratch_field_on_host(
     return create_int_scratch_field_on_host(
         "int_scratch_field_host", ncomp, nghost, floc);
 }
-void FieldRepo::advance_states() noexcept
+void FieldRepo::advance_states()
 {
     for (auto& it : m_field_vec) {
         if (it->field_state() != FieldState::New) {

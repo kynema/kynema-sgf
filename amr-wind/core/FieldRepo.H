@@ -138,10 +138,10 @@ public:
      */
     Field& declare_field(
         const std::string& name,
-        const int ncomp = 1,
-        const int ngrow = 0,
-        const int nstates = 1,
-        const FieldLoc floc = FieldLoc::CELL);
+        int ncomp = 1,
+        int ngrow = 0,
+        int nstates = 1,
+        FieldLoc floc = FieldLoc::CELL);
 
     /** Declare a cell-centered field
      *
@@ -149,7 +149,7 @@ public:
      *
      *  \sa amr_wind::FieldRepo::declare_field
      */
-    inline Field& declare_cc_field(
+    Field& declare_cc_field(
         const std::string& name,
         const int ncomp = 1,
         const int ngrow = 0,
@@ -164,7 +164,7 @@ public:
      *
      *  \sa amr_wind::FieldRepo::declare_field
      */
-    inline Field& declare_nd_field(
+    Field& declare_nd_field(
         const std::string& name,
         const int ncomp = 1,
         const int ngrow = 0,
@@ -179,7 +179,7 @@ public:
      *
      *  \sa amr_wind::FieldRepo::declare_field
      */
-    inline Field& declare_xf_field(
+    Field& declare_xf_field(
         const std::string& name,
         const int ncomp = 1,
         const int ngrow = 0,
@@ -194,7 +194,7 @@ public:
      *
      *  \sa amr_wind::FieldRepo::declare_field
      */
-    inline Field& declare_yf_field(
+    Field& declare_yf_field(
         const std::string& name,
         const int ncomp = 1,
         const int ngrow = 0,
@@ -209,7 +209,7 @@ public:
      *
      *  \sa amr_wind::FieldRepo::declare_field
      */
-    inline Field& declare_zf_field(
+    Field& declare_zf_field(
         const std::string& name,
         const int ncomp = 1,
         const int ngrow = 0,
@@ -222,7 +222,7 @@ public:
      *
      *  This is a convenience function around `declare_field`
      */
-    inline amrex::Vector<Field*> declare_face_normal_field(
+    amrex::Vector<Field*> declare_face_normal_field(
         const amrex::Vector<std::string>& names,
         const int ncomp = 1,
         const int ngrow = 0,
@@ -239,8 +239,7 @@ public:
     /** Return a previously created field identified by name and time state
      */
     Field& get_field(
-        const std::string& name,
-        const FieldState fstate = FieldState::New) const;
+        const std::string& name, FieldState fstate = FieldState::New) const;
 
     /** Return a previously created field using a unique identifier
      */
@@ -260,8 +259,7 @@ public:
     //! Query if field uniquely identified by name and time state exists in
     //! repository
     bool field_exists(
-        const std::string& name,
-        const FieldState fstate = FieldState::New) const;
+        const std::string& name, FieldState fstate = FieldState::New) const;
 
     /** Declare an integer field
      *
@@ -275,15 +273,14 @@ public:
      */
     IntField& declare_int_field(
         const std::string& name,
-        const int ncomp = 1,
-        const int ngrow = 0,
-        const int nstates = 1,
-        const FieldLoc floc = FieldLoc::CELL);
+        int ncomp = 1,
+        int ngrow = 0,
+        int nstates = 1,
+        FieldLoc floc = FieldLoc::CELL);
 
     //! Return a reference to an integer field
     IntField& get_int_field(
-        const std::string& name,
-        const FieldState fstate = FieldState::New) const;
+        const std::string& name, FieldState fstate = FieldState::New) const;
 
     /** Return a reference to a previously created integer field using unique
      * identifier
@@ -295,8 +292,7 @@ public:
 
     //! Query if an integer field exists
     bool int_field_exists(
-        const std::string& name,
-        const FieldState fstate = FieldState::New) const;
+        const std::string& name, FieldState fstate = FieldState::New) const;
 
     /** Create a scratch field
      *
@@ -310,9 +306,9 @@ public:
      */
     std::unique_ptr<ScratchField> create_scratch_field(
         const std::string& name,
-        const int ncomp = 1,
-        const int nghost = 0,
-        const FieldLoc floc = FieldLoc::CELL) const;
+        int ncomp = 1,
+        int nghost = 0,
+        FieldLoc floc = FieldLoc::CELL) const;
 
     /** Create a scratch field
      *
@@ -325,46 +321,37 @@ public:
      *  the ScratchField object across timesteps.
      */
     std::unique_ptr<ScratchField> create_scratch_field(
-        const int ncomp = 1,
-        const int nghost = 0,
-        const FieldLoc floc = FieldLoc::CELL) const;
+        int ncomp = 1, int nghost = 0, FieldLoc floc = FieldLoc::CELL) const;
 
     std::unique_ptr<ScratchField> create_scratch_field_on_host(
         const std::string& name,
-        const int ncomp = 1,
-        const int nghost = 0,
-        const FieldLoc floc = FieldLoc::CELL) const;
+        int ncomp = 1,
+        int nghost = 0,
+        FieldLoc floc = FieldLoc::CELL) const;
 
     std::unique_ptr<ScratchField> create_scratch_field_on_host(
-        const int ncomp = 1,
-        const int nghost = 0,
-        const FieldLoc floc = FieldLoc::CELL) const;
+        int ncomp = 1, int nghost = 0, FieldLoc floc = FieldLoc::CELL) const;
 
     std::unique_ptr<IntScratchField> create_int_scratch_field_on_host(
         const std::string& name,
-        const int ncomp = 1,
-        const int nghost = 0,
-        const FieldLoc floc = FieldLoc::CELL) const;
+        int ncomp = 1,
+        int nghost = 0,
+        FieldLoc floc = FieldLoc::CELL) const;
 
     std::unique_ptr<IntScratchField> create_int_scratch_field_on_host(
-        const int ncomp = 1,
-        const int nghost = 0,
-        const FieldLoc floc = FieldLoc::CELL) const;
+        int ncomp = 1, int nghost = 0, FieldLoc floc = FieldLoc::CELL) const;
 
     //! Advance all fields with more than one timestate to the new timestep
-    void advance_states() noexcept;
+    void advance_states();
 
     //! Return a reference to the underlying AMR mesh instance
     const amrex::AmrCore& mesh() const { return m_mesh; }
 
     //! Total number of levels currently active in the AMR mesh
-    int num_active_levels() const noexcept { return m_mesh.finestLevel() + 1; }
+    int num_active_levels() const { return m_mesh.finestLevel() + 1; }
 
     //! Number of fields registered in the database
-    int num_fields() const noexcept
-    {
-        return static_cast<int>(m_field_vec.size());
-    }
+    int num_fields() const { return static_cast<int>(m_field_vec.size()); }
 
     //! Return list of fields registered (for unit-test purposes only)
     const amrex::Vector<std::unique_ptr<Field>>& fields() const
@@ -373,8 +360,7 @@ public:
     }
 
     //! Return factory instance at a given level
-    inline const amrex::FabFactory<amrex::FArrayBox>&
-    factory(int lev) const noexcept
+    const amrex::FabFactory<amrex::FArrayBox>& factory(int lev) const
     {
         return *m_leveldata[lev]->m_factory;
     }
@@ -385,8 +371,7 @@ protected:
      *  \param fid Unique integer field identifier for this field
      *  \param lev AMR level
      */
-    inline amrex::MultiFab&
-    get_multifab(const unsigned fid, const int lev) noexcept
+    amrex::MultiFab& get_multifab(const unsigned fid, const int lev)
     {
         BL_ASSERT(lev <= m_mesh.finestLevel());
         return m_leveldata[lev]->m_mfabs[fid];
@@ -397,15 +382,14 @@ protected:
      *  \param fid Unique integer field identifier for this field
      *  \param lev AMR level
      */
-    inline amrex::iMultiFab&
-    get_int_fab(const unsigned fid, const int lev) noexcept
+    amrex::iMultiFab& get_int_fab(const unsigned fid, const int lev)
     {
         BL_ASSERT(lev <= m_mesh.finestLevel());
         return m_leveldata[lev]->m_int_fabs[fid];
     }
 
     //! Create a new state for a field
-    Field& create_state(Field& field, const FieldState fstate);
+    Field& create_state(Field& field, FieldState fstate);
 
     //! Allocate field data for a single level outside of regrid
     void allocate_field_data(

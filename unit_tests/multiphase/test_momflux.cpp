@@ -24,7 +24,7 @@ void init_field3(
         const auto& farrs = fld(lev).arrays();
         amrex::ParallelFor(
             fld(lev), fld.num_grow(), fld.num_comp(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 farrs[nbx](i, j, k, n) = ins[n];
             });
     }

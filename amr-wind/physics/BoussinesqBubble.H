@@ -1,5 +1,5 @@
-#ifndef BoussinesqBubble_H
-#define BoussinesqBubble_H
+#ifndef BOUSSINESQBUBBLE_H
+#define BOUSSINESQBUBBLE_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/physics/BoussinesqBubbleFieldInit.H"

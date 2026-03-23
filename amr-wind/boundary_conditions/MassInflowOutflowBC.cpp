@@ -41,7 +41,7 @@ void MassInflowOutflowBC::operator()(
             if (islow && (bx.smallEnd(idim) == domain.smallEnd(idim))) {
                 amrex::ParallelFor(
                     amrex::bdryLo(bx, idim),
-                    [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+                    [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         const amrex::IntVect iv = {i, j, k};
                         const amrex::IntVect ivm = iv - iv_dir;
                         if (vel(ivm[0], ivm[1], ivm[2], idim) < 0) {
@@ -56,7 +56,7 @@ void MassInflowOutflowBC::operator()(
             if (ishigh && (bx.bigEnd(idim) == domain.bigEnd(idim))) {
                 amrex::ParallelFor(
                     amrex::bdryHi(bx, idim),
-                    [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+                    [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         const amrex::IntVect iv = {i, j, k};
                         const amrex::IntVect ivm = iv - iv_dir;
                         if (vel(i, j, k, idim) > 0) {

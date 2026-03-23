@@ -63,10 +63,9 @@ amrex::Real get_pbottom(amr_wind::Field& pressure)
                 amrex::Array4<amrex::Real const> const& p_arr) -> amrex::Real {
                 amrex::Real pb_sum_fab = 0.0_rt;
 
-                amrex::Loop(
-                    nbx, [=, &pb_sum_fab](int i, int j, int k) noexcept {
-                        pb_sum_fab += (k == 0) ? p_arr(i, j, k) : 0.0_rt;
-                    });
+                amrex::Loop(nbx, [=, &pb_sum_fab](int i, int j, int k) {
+                    pb_sum_fab += (k == 0) ? p_arr(i, j, k) : 0.0_rt;
+                });
 
                 return pb_sum_fab;
             });

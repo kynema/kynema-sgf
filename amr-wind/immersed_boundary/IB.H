@@ -54,7 +54,7 @@ public:
 protected:
     //! Total number of immersed boundaries
 
-    int num_ibs() const { return static_cast<int>(m_ibs.size()); }
+    [[nodiscard]] int num_ibs() const { return static_cast<int>(m_ibs.size()); }
 
     virtual void prepare_outputs();
 

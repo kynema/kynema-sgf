@@ -16,12 +16,12 @@ namespace amr_wind::ioutils {
 
 void goto_next_line(std::istream& is);
 
-inline std::string amr_wind_version()
+AMREX_INLINE std::string amr_wind_version()
 {
     return {amrex::buildInfoGetGitHash(1)};
 }
 
-inline std::string timestamp()
+AMREX_INLINE std::string timestamp()
 {
     auto etime = std::chrono::system_clock::now();
     auto etimet = std::chrono::system_clock::to_time_t(etime);
@@ -38,7 +38,7 @@ inline std::string timestamp()
  *  vectors it appends "x, y, z" to the components, and for all other fields it
  *  numbers the components start with 0.
  */
-inline void add_var_names(
+AMREX_INLINE void add_var_names(
     amrex::Vector<std::string>& vnames,
     const std::string& fname,
     const int ncomp)
@@ -64,13 +64,13 @@ inline void add_var_names(
 }
 
 template <typename T>
-inline bool all_distinct(const amrex::Vector<T>& vec)
+AMREX_INLINE bool all_distinct(const amrex::Vector<T>& vec)
 {
     std::unordered_set<T> s(vec.begin(), vec.end());
     return static_cast<amrex::Long>(s.size()) == vec.size();
 }
 
-inline void assert_with_message(const bool val, const std::string& msg)
+AMREX_INLINE void assert_with_message(const bool val, const std::string& msg)
 {
     if (!val) {
         amrex::Abort(msg);

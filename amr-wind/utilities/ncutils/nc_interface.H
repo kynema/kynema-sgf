@@ -1,11 +1,3 @@
-/** \file nc_interface.H
- *
- *  Interface to NetCDF library
- *
- *  Defines convenience wrappers to interact with a NetCDF file in a more
- *  OOP-like manner.
- */
-
 #ifndef NC_INTERFACE_H
 #define NC_INTERFACE_H
 

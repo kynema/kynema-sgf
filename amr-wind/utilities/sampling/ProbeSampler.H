@@ -20,7 +20,10 @@ public:
     static std::string identifier() { return "ProbeSampler"; }
 
     //! Type of this sampling object
-    std::string sampletype() const override { return identifier(); }
+    [[nodiscard]] std::string sampletype() const override
+    {
+        return identifier();
+    }
 
     explicit ProbeSampler(const CFDSim& /*unused*/);
 
@@ -48,15 +51,15 @@ public:
     void
     define_netcdf_metadata(const ncutils::NCGroup& /*unused*/) const override;
 
-    std::string label() const override { return m_label; }
+    [[nodiscard]] std::string label() const override { return m_label; }
     std::string& label() override { return m_label; }
-    int id() const override { return m_id; }
+    [[nodiscard]] int id() const override { return m_id; }
     int& id() override { return m_id; }
 
-    long num_points() const override { return m_npts; }
+    [[nodiscard]] long num_points() const override { return m_npts; }
 
     //! Number of output probe locations (after data reduction etc.)
-    long num_output_points() const override { return m_npts; }
+    [[nodiscard]] long num_output_points() const override { return m_npts; }
 
 private:
     const CFDSim& m_sim;

@@ -91,7 +91,8 @@ void ActuatorContainer::initialize_particles(const int total_pts)
     // from 1.
     ParticleType::NextID(1U);
     const auto id_start = ParticleType::NextID();
-    AMREX_ALWAYS_ASSERT(id_start == 1U);
+    AMREX_ALWAYS_ASSERT(
+        id_start == 1U); // NOLINT(modernize-use-integer-sign-comparison)
     const int iproc = amrex::ParallelDescriptor::MyProc();
 
     // Flag indicating if a tile was found where all particles were deposited.
@@ -108,14 +109,13 @@ void ActuatorContainer::initialize_particles(const int total_pts)
             ptile.resize(total_pts);
             auto* pstruct = ptile.GetArrayOfStructs()().data();
 
-            amrex::ParallelFor(
-                total_pts, [=] AMREX_GPU_DEVICE(const int ip) noexcept {
-                    auto& pp = pstruct[ip];
+            amrex::ParallelFor(total_pts, [=] AMREX_GPU_DEVICE(const int ip) {
+                auto& pp = pstruct[ip];
 
-                    pp.id() = id_start + ip;
-                    pp.cpu() = iproc;
-                    pp.idata(0) = ip;
-                });
+                pp.id() = id_start + ip;
+                pp.cpu() = iproc;
+                pp.idata(0) = ip;
+            });
             assigned = true;
         }
     }
@@ -134,7 +134,7 @@ void ActuatorContainer::reset_container()
             const int np = pti.numParticles();
             auto* pstruct = pti.GetArrayOfStructs()().data();
 
-            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) noexcept {
+            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) {
                 auto& pp = pstruct[ip];
                 pp.id() = -1;
             });
@@ -172,7 +172,7 @@ void ActuatorContainer::update_positions()
             const int np = pti.numParticles();
             auto* pstruct = pti.GetArrayOfStructs()().data();
 
-            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) noexcept {
+            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) {
                 auto& pp = pstruct[ip];
                 const auto idx = pp.idata(0);
 
@@ -244,7 +244,7 @@ void ActuatorContainer::populate_field_buffers()
             const int np = pti.numParticles();
             auto* pstruct = pti.GetArrayOfStructs()().data();
 
-            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) noexcept {
+            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) {
                 auto& pp = pstruct[ip];
                 const auto iproc = pp.cpu();
                 const auto idx = offsets[iproc] + pp.idata(0);
@@ -305,7 +305,7 @@ void ActuatorContainer::interpolate_fields(
             const auto varr = vel(lev).const_array(pti);
             const auto darr = density(lev).const_array(pti);
 
-            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) noexcept {
+            amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) {
                 auto& pp = pstruct[ip];
                 // Determine offsets within the containing cell
                 const amrex::Real x =

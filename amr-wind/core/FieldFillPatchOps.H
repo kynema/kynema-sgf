@@ -47,51 +47,51 @@ public:
     //! Implementation that handles filling patches on a single level as well as
     //! across a coarse-fine interface.
     virtual void fillpatch(
-        const int lev,
-        const amrex::Real time,
+        int lev,
+        amrex::Real time,
         amrex::MultiFab& mfab,
         const amrex::IntVect& nghost,
-        const FieldState fstate = FieldState::New) = 0;
+        FieldState fstate = FieldState::New) = 0;
 
     //! Implementation that handles filling patches on a single level as well as
     //! across a coarse-fine interface, for an array of different fields
     virtual void fillpatch_sibling_fields(
-        const int lev,
-        const amrex::Real time,
+        int lev,
+        amrex::Real time,
         amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>& mfabs,
         amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>& ffabs,
         amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>& cfabs,
         const amrex::IntVect& nghost,
         const amrex::Vector<amrex::BCRec>& fillpatch_bcrec,
         const amrex::Vector<amrex::BCRec>& physbc_bcrec,
-        const FieldState fstate = FieldState::New) = 0;
+        FieldState fstate = FieldState::New) = 0;
 
     //! Implementation that handles filling patches from a coarse to fine level
     virtual void fillpatch_from_coarse(
-        const int lev,
-        const amrex::Real time,
+        int lev,
+        amrex::Real time,
         amrex::MultiFab& mfab,
         const amrex::IntVect& nghost,
-        const FieldState fstate = FieldState::New) = 0;
+        FieldState fstate = FieldState::New) = 0;
 
     //! Implementation that handles filling physical boundary conditions
     virtual void fillphysbc(
-        const int lev,
-        const amrex::Real time,
+        int lev,
+        amrex::Real time,
         amrex::MultiFab& mfab,
         const amrex::IntVect& nghost,
-        const FieldState fstate = FieldState::New) = 0;
+        FieldState fstate = FieldState::New) = 0;
 
     virtual void set_inflow(
-        const int lev,
-        const amrex::Real time,
+        int lev,
+        amrex::Real time,
         amrex::MultiFab& mfab,
         const amrex::IntVect& nghost,
-        const FieldState fstate = FieldState::New) = 0;
+        FieldState fstate = FieldState::New) = 0;
 
     virtual void set_inflow_sibling_fields(
-        const int lev,
-        const amrex::Real time,
+        int lev,
+        amrex::Real time,
         amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM> mfabs) = 0;
 };
 
@@ -400,7 +400,7 @@ public:
                 const auto& marr = mfab[mfi].array();
                 amrex::ParallelFor(
                     bx, [=] AMREX_GPU_DEVICE(
-                            const int i, const int j, const int k) noexcept {
+                            const int i, const int j, const int k) {
                         for (int n = 0; n < ncomp; ++n) {
                             bcfunc.set_inflow(
                                 {i, j, k}, marr, gdata, time, ori, n, 0, 0);
@@ -457,9 +457,8 @@ public:
                         tmp_fab.array();
 
                     amrex::ParallelFor(
-                        bx,
-                        [=] AMREX_GPU_DEVICE(
-                            const int i, const int j, const int k) noexcept {
+                        bx, [=] AMREX_GPU_DEVICE(
+                                const int i, const int j, const int k) {
                             bcfunc.set_inflow(
                                 {i, j, k}, tmp_marr, gdata, time, ori, 0, 0,
                                 fdir);
@@ -492,7 +491,7 @@ protected:
             amrex::Print()
                 << "WARNING: Changing the face interpolator to FaceLinear "
                    "because a refinement ratio is different than 2"
-                << std::endl;
+                << '\n';
             m_face_mapper = field_impl::get_interpolation_operator(
                 FieldInterpolator::FaceLinear);
         }

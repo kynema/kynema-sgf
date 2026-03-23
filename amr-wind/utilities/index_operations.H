@@ -60,7 +60,7 @@ AMREX_FORCE_INLINE T perpendicular_idx(const int normal)
  * with shifts added to consider the location of the field associated with the
  * grown_interior_box
  */
-inline amrex::Box face_aware_boundary_box_intersection(
+AMREX_INLINE amrex::Box face_aware_boundary_box_intersection(
     amrex::IntVect& shift_to_cc,
     amrex::Box grown_interior_box,
     const amrex::Box& domain_boundary_box,
@@ -84,7 +84,7 @@ inline amrex::Box face_aware_boundary_box_intersection(
 }
 
 // This version omits the shift to cell-centered data, often not needed
-inline amrex::Box face_aware_boundary_box_intersection(
+AMREX_INLINE amrex::Box face_aware_boundary_box_intersection(
     amrex::Box grown_interior_box,
     const amrex::Box& domain_boundary_box,
     const amrex::Orientation& ori)

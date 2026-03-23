@@ -15,7 +15,7 @@ struct TestProfile
     struct DeviceOp
     {
         AMREX_GPU_DEVICE
-        inline void operator()(
+        void operator()(
             const amrex::IntVect& iv,
             amrex::Array4<amrex::Real> const& field,
             amrex::GeometryData const& /*unused*/,
@@ -37,7 +37,7 @@ struct TestProfile
 
     explicit TestProfile(const amr_wind::Field& /*unused*/) {}
 
-    DeviceType device_instance() const { return m_op; }
+    [[nodiscard]] DeviceType device_instance() const { return m_op; }
 
     DeviceOp m_op;
 };
@@ -56,7 +56,7 @@ amrex::Real get_field_err(
             amrex::Array4<amrex::Real const> const& f_arr) -> amrex::Real {
             amrex::Real error = 0;
 
-            amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+            amrex::Loop(bx, [=, &error](int i, int j, int k) {
                 // Do indices manually to check against box operations in code
                 if (ncomp == 1) {
                     // Checking a MAC velocity

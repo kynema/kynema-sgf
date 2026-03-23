@@ -3,7 +3,7 @@
 #include "aw_test_utils/MeshTest.H"
 #include "amr-wind/turbulence/TurbulenceModel.H"
 #include "aw_test_utils/test_utils.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
@@ -28,7 +28,7 @@ void init_field3(amr_wind::Field& fld, amrex::Real srate)
 
         amrex::ParallelFor(
             fld(lev), fld.num_grow(), fld.num_comp(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 const amrex::IntVect iv(i, j, k);
                 const amrex::Real xc = problo[n] + ((iv[n] + offset) * dx[n]);
                 farrs[nbx](i, j, k, n) = xc / std::sqrt(6.0_rt) * srate;
@@ -54,7 +54,7 @@ void init_field_amd(amr_wind::Field& fld, amrex::Real scale)
 
         amrex::ParallelFor(
             fld(lev), fld.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real x = problo[0] + ((i + offset) * dx[0]);
                 const amrex::Real y = problo[1] + ((j + offset) * dx[1]);
                 const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
@@ -84,7 +84,7 @@ void init_field_incomp(amr_wind::Field& fld, amrex::Real scale)
 
         amrex::ParallelFor(
             fld(lev), fld.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real x = problo[0] + ((i + offset) * dx[0]);
                 const amrex::Real y = problo[1] + ((j + offset) * dx[1]);
                 const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
@@ -114,7 +114,7 @@ void init_field1(amr_wind::Field& fld, amrex::Real tgrad)
 
         amrex::ParallelFor(
             fld(lev), fld.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
 
                 farrs[nbx](i, j, k, 0) = z * tgrad;
@@ -213,8 +213,8 @@ TEST_F(TurbLESTest, test_smag_setup_calc)
     const amrex::Real tol =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     const amrex::Real smag_answer =
-        rho0 * std::pow(Cs, 2.0_rt) *
-        std::pow(std::cbrt(m_dx * m_dy * m_dz), 2.0_rt) * srate;
+        rho0 * amr_wind::utils::powi(Cs, 2) *
+        amr_wind::utils::powi(std::cbrt(m_dx * m_dy * m_dz), 2) * srate;
     EXPECT_NEAR(min_val, smag_answer, tol);
     EXPECT_NEAR(max_val, smag_answer, tol);
 
@@ -423,7 +423,7 @@ TEST_F(TurbLESTest, test_AMD_setup_calc)
 
     const amrex::Real amd_answer =
         C *
-        (-1.0_rt * std::pow(scale / std::sqrt(6.0_rt), 3.0_rt) *
+        (-1.0_rt * amr_wind::utils::powi(scale / std::sqrt(6.0_rt), 3) *
          (m_dx * m_dx - 8.0_rt * m_dy * m_dy - m_dz * m_dz)) /
         (1.0_rt * scale * scale);
     EXPECT_NEAR(min_val, amd_answer, tol);
@@ -502,7 +502,7 @@ TEST_F(TurbLESTest, test_AMDNoTherm_setup_calc)
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     const amrex::Real amd_answer =
-        -C * std::pow(scale, 3.0_rt) *
+        -C * amr_wind::utils::powi(scale, 3) *
         (m_dx * m_dx - 8.0_rt * m_dy * m_dy + m_dz * m_dz) /
         (6 * scale * scale);
     EXPECT_NEAR(min_val, amd_answer, tol);
@@ -597,8 +597,8 @@ TEST_F(TurbLESTest, test_kosovic_setup_calc)
     const amrex::Real tol =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     const amrex::Real kosovic_answer =
-        rho0 * std::pow(kosovic_Cs, 2.0_rt) *
-        std::pow(std::cbrt(m_dx * m_dy * m_dz), 2.0_rt) * srate;
+        rho0 * amr_wind::utils::powi(kosovic_Cs, 2) *
+        amr_wind::utils::powi(std::cbrt(m_dx * m_dy * m_dz), 2) * srate;
     EXPECT_NEAR(min_val, kosovic_answer, tol);
     EXPECT_NEAR(max_val, kosovic_answer, tol);
 

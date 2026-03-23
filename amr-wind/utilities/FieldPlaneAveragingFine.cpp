@@ -20,7 +20,7 @@ FPlaneAveragingFine<FType>::FPlaneAveragingFine(
     , m_axis(axis_in)
     , m_comp_deriv(compute_deriv)
 {
-    AMREX_ALWAYS_ASSERT(m_axis >= 0 && m_axis < AMREX_SPACEDIM);
+    AMREX_ALWAYS_ASSERT((m_axis >= 0) && (m_axis < AMREX_SPACEDIM));
     auto geom = m_field.repo().mesh().Geom();
 
     // beginning and end of line, for now assuming line is the length of the
@@ -77,7 +77,7 @@ void FPlaneAveragingFine<FType>::convert_x_to_ind(
         c = 1.0_rt;
     }
 
-    AMREX_ALWAYS_ASSERT(ind >= 0 && ind + 1 < m_ncell_line);
+    AMREX_ALWAYS_ASSERT((ind >= 0) && ((ind + 1) < m_ncell_line));
 }
 
 template <typename FType>
@@ -100,13 +100,13 @@ void FPlaneAveragingFine<FType>::output_line_average_ascii(
     if (step == 1) {
         // make new file
         outfile.open(filename.c_str(), std::ios_base::out);
-        outfile << "#ncell,ncomp" << std::endl;
-        outfile << m_ncell_line << ", " << m_ncomp + 3 << std::endl;
+        outfile << "#ncell,ncomp" << '\n';
+        outfile << m_ncell_line << ", " << m_ncomp + 3 << '\n';
         outfile << "#step,time,z";
         for (int i = 0; i < m_ncomp; ++i) {
             outfile << ",<" + m_field.name() + std::to_string(i) + ">";
         }
-        outfile << std::endl;
+        outfile << '\n';
     } else {
         // append file
         outfile.open(filename.c_str(), std::ios_base::out | std::ios_base::app);
@@ -119,7 +119,7 @@ void FPlaneAveragingFine<FType>::output_line_average_ascii(
             outfile << ", " << std::scientific
                     << m_line_average[(m_ncomp * i) + n];
         }
-        outfile << std::endl;
+        outfile << '\n';
     }
 }
 
@@ -135,10 +135,9 @@ template <typename FType>
 amrex::Real FPlaneAveragingFine<FType>::line_average_interpolated(
     amrex::Real x, int comp) const
 {
-
     BL_PROFILE("amr-wind::PlaneAveragingFine::line_average_interpolated");
 
-    AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_ncomp);
+    AMREX_ALWAYS_ASSERT((comp >= 0) && (comp < m_ncomp));
 
     int ind;
     amrex::Real c;
@@ -154,7 +153,7 @@ void FPlaneAveragingFine<FType>::line_average(
 {
     BL_PROFILE("amr-wind::PlaneAveragingFine::line_average");
 
-    AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_ncomp);
+    AMREX_ALWAYS_ASSERT((comp >= 0) && (comp < m_ncomp));
 
     for (int i = 0; i < m_ncell_line; i++) {
         l_vec[i] = m_line_average[(m_ncomp * i) + comp];
@@ -167,8 +166,8 @@ FPlaneAveragingFine<FType>::line_average_cell(int ind, int comp) const
 {
     BL_PROFILE("amr-wind::PlaneAveragingFine::line_average_cell");
 
-    AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_ncomp);
-    AMREX_ALWAYS_ASSERT(ind >= 0 && ind < m_ncell_line);
+    AMREX_ALWAYS_ASSERT((comp >= 0) && (comp < m_ncomp));
+    AMREX_ALWAYS_ASSERT((ind >= 0) && (ind < m_ncell_line));
 
     return m_line_average[(m_ncomp * ind) + comp];
 }
@@ -271,7 +270,7 @@ void FPlaneAveragingFine<FType>::compute_averages(const IndexSelector& idxOp)
                 amrex::Gpu::KernelInfo().setReduction(true), pbx,
                 [=] AMREX_GPU_DEVICE(
                     int p_i, int p_j, int p_k,
-                    amrex::Gpu::Handler const& handler) noexcept {
+                    amrex::Gpu::Handler const& handler) {
                     // Loop over the direction perpendicular to the plane.
                     // This reduces the atomic pressure on the destination
                     // arrays.
@@ -410,8 +409,8 @@ amrex::Real FPlaneAveragingFine<FType>::line_derivative_of_average_cell(
     BL_PROFILE(
         "amr-wind::FPlaneAveragingFine::line_derivative_of_average_cell");
 
-    AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_ncomp);
-    AMREX_ALWAYS_ASSERT(ind >= 0 && ind < m_ncell_line);
+    AMREX_ALWAYS_ASSERT((comp >= 0) && (comp < m_ncomp));
+    AMREX_ALWAYS_ASSERT((ind >= 0) && (ind < m_ncell_line));
 
     amrex::Real dudx;
 
@@ -439,7 +438,7 @@ amrex::Real FPlaneAveragingFine<FType>::line_derivative_interpolated(
 {
     BL_PROFILE("amr-wind::FPlaneAveragingFine::line_derivative_interpolated");
 
-    AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_ncomp);
+    AMREX_ALWAYS_ASSERT((comp >= 0) && (comp < m_ncomp));
 
     int ind;
     amrex::Real c;
@@ -452,6 +451,7 @@ amrex::Real FPlaneAveragingFine<FType>::line_derivative_interpolated(
 template class FPlaneAveragingFine<Field>;
 template class FPlaneAveragingFine<ScratchField>;
 
+// NOLINTBEGIN(clang-analyzer-security.ArrayBound)
 VelPlaneAveragingFine::VelPlaneAveragingFine(CFDSim& sim, int axis_in)
     : FieldPlaneAveragingFine(
           sim.repo().get_field("velocity"), sim.time(), axis_in)
@@ -460,6 +460,7 @@ VelPlaneAveragingFine::VelPlaneAveragingFine(CFDSim& sim, int axis_in)
     m_line_Su_average.resize(m_ncell_line, 0.0_rt);
     m_line_Sv_average.resize(m_ncell_line, 0.0_rt);
 }
+// NOLINTEND(clang-analyzer-security.ArrayBound)
 
 void VelPlaneAveragingFine::operator()()
 {
@@ -557,7 +558,7 @@ void VelPlaneAveragingFine::compute_hvelmag_averages(const IndexSelector& idxOp)
                 amrex::Gpu::KernelInfo().setReduction(true), pbx,
                 [=] AMREX_GPU_DEVICE(
                     int p_i, int p_j, int p_k,
-                    amrex::Gpu::Handler const& handler) noexcept {
+                    amrex::Gpu::Handler const& handler) {
                     // Loop over the direction perpendicular to the plane.
                     // This reduces the atomic pressure on the destination
                     // arrays.

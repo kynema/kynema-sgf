@@ -15,7 +15,7 @@ void amr_wind::diagnostics::make_mask_addend(
     const auto& arr_mask = mfab_mask.const_arrays();
     amrex::ParallelFor(
         mfab, mfab.n_grow, mfab.n_comp,
-        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) noexcept {
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
             arr[nbx](i, j, k, n) = std::abs(arr_mask[nbx](i, j, k) - mask_val) <
                                            constants::TIGHT_TOL
                                        ? 0.0_rt
@@ -115,7 +115,7 @@ amrex::Real amr_wind::diagnostics::get_vel_max(
             amrex::Array4<amrex::Real const> const& vel_arr,
             amrex::Array4<int const> const& mask_arr) -> amrex::Real {
             amrex::Real max_fab = -1.0e8_rt;
-            amrex::Loop(bx, [=, &max_fab](int i, int j, int k) noexcept {
+            amrex::Loop(bx, [=, &max_fab](int i, int j, int k) {
                 max_fab = amrex::max<amrex::Real>(
                     max_fab, mask_arr(i, j, k) > 0
                                  ? factor * vel_arr(i, j, k, vdir)
@@ -157,7 +157,7 @@ amrex::Real amr_wind::diagnostics::get_vel_loc(
             amrex::Array4<amrex::Real const> const& vel_arr,
             amrex::Array4<int const> const& mask_arr) -> amrex::Real {
             amrex::Real loc_fab = problo[ldir];
-            amrex::Loop(bx, [=, &loc_fab](int i, int j, int k) noexcept {
+            amrex::Loop(bx, [=, &loc_fab](int i, int j, int k) {
                 int idx = (ldir == 0 ? i : (ldir == 1 ? j : k));
                 amrex::Real offset = 0.5_rt;
                 amrex::Real loc = problo[ldir] + ((idx + offset) * dx[ldir]);
@@ -185,7 +185,7 @@ amrex::Real amr_wind::diagnostics::get_macvel_max(
             amrex::Array4<amrex::Real const> const& mvel_arr,
             amrex::Array4<int const> const& mask_arr) -> amrex::Real {
             amrex::Real max_fab = -1.0e8_rt;
-            amrex::Loop(bx, [=, &max_fab](int i, int j, int k) noexcept {
+            amrex::Loop(bx, [=, &max_fab](int i, int j, int k) {
                 int ii = i - (vdir == 0 ? 1 : 0);
                 int jj = j - (vdir == 1 ? 1 : 0);
                 int kk = k - (vdir == 2 ? 1 : 0);
@@ -231,7 +231,7 @@ amrex::Real amr_wind::diagnostics::get_macvel_loc(
             amrex::Array4<amrex::Real const> const& mvel_arr,
             amrex::Array4<int const> const& mask_arr) -> amrex::Real {
             amrex::Real loc_fab = problo[ldir];
-            amrex::Loop(bx, [=, &loc_fab](int i, int j, int k) noexcept {
+            amrex::Loop(bx, [=, &loc_fab](int i, int j, int k) {
                 int ii = i - (vdir == 0 ? 1 : 0);
                 int jj = j - (vdir == 1 ? 1 : 0);
                 int kk = k - (vdir == 2 ? 1 : 0);
@@ -379,48 +379,48 @@ amrex::Array<amrex::Real, 24> amr_wind::diagnostics::PrintMaxVelLocations(
     }
 
     // Output results
-    amrex::Print() << "\nL-inf norm vels: " << header << std::endl
+    amrex::Print() << "\nL-inf norm vels: " << header << '\n'
                    << "........................................................"
                       "......................"
-                   << std::endl;
+                   << '\n';
 
     amrex::Print() << "Max u: " << std::setw(20) << std::right << u_max;
     amrex::Print() << " |  Location (x,y,z): ";
     amrex::Print() << std::setw(10) << std::right << u_max_loc[0] << ", ";
     amrex::Print() << std::setw(10) << std::right << u_max_loc[1] << ", ";
-    amrex::Print() << std::setw(10) << std::right << u_max_loc[2] << std::endl;
+    amrex::Print() << std::setw(10) << std::right << u_max_loc[2] << '\n';
     amrex::Print() << "Min u: " << std::setw(20) << std::right << u_min;
     amrex::Print() << " |  Location (x,y,z): ";
     amrex::Print() << std::setw(10) << std::right << u_min_loc[0] << ", ";
     amrex::Print() << std::setw(10) << std::right << u_min_loc[1] << ", ";
-    amrex::Print() << std::setw(10) << std::right << u_min_loc[2] << std::endl;
+    amrex::Print() << std::setw(10) << std::right << u_min_loc[2] << '\n';
 
     amrex::Print() << "Max v: " << std::setw(20) << std::right << v_max;
     amrex::Print() << " |  Location (x,y,z): ";
     amrex::Print() << std::setw(10) << std::right << v_max_loc[0] << ", ";
     amrex::Print() << std::setw(10) << std::right << v_max_loc[1] << ", ";
-    amrex::Print() << std::setw(10) << std::right << v_max_loc[2] << std::endl;
+    amrex::Print() << std::setw(10) << std::right << v_max_loc[2] << '\n';
     amrex::Print() << "Min v: " << std::setw(20) << std::right << v_min;
     amrex::Print() << " |  Location (x,y,z): ";
     amrex::Print() << std::setw(10) << std::right << v_min_loc[0] << ", ";
     amrex::Print() << std::setw(10) << std::right << v_min_loc[1] << ", ";
-    amrex::Print() << std::setw(10) << std::right << v_min_loc[2] << std::endl;
+    amrex::Print() << std::setw(10) << std::right << v_min_loc[2] << '\n';
 
     amrex::Print() << "Max w: " << std::setw(20) << std::right << w_max;
     amrex::Print() << " |  Location (x,y,z): ";
     amrex::Print() << std::setw(10) << std::right << w_max_loc[0] << ", ";
     amrex::Print() << std::setw(10) << std::right << w_max_loc[1] << ", ";
-    amrex::Print() << std::setw(10) << std::right << w_max_loc[2] << std::endl;
+    amrex::Print() << std::setw(10) << std::right << w_max_loc[2] << '\n';
     amrex::Print() << "Min w: " << std::setw(20) << std::right << w_min;
     amrex::Print() << " |  Location (x,y,z): ";
     amrex::Print() << std::setw(10) << std::right << w_min_loc[0] << ", ";
     amrex::Print() << std::setw(10) << std::right << w_min_loc[1] << ", ";
-    amrex::Print() << std::setw(10) << std::right << w_min_loc[2] << std::endl;
+    amrex::Print() << std::setw(10) << std::right << w_min_loc[2] << '\n';
 
     amrex::Print() << "........................................................"
                       "......................"
-                   << std::endl
-                   << std::endl;
+                   << '\n'
+                   << '\n';
 
     // Return array of answers (for testing)
     return amrex::Array<amrex::Real, 24>{
@@ -598,54 +598,48 @@ amrex::Array<amrex::Real, 24> amr_wind::diagnostics::PrintMaxMACVelLocations(
     }
 
     // Output results
-    amrex::Print() << "\nL-inf norm MAC vels: " << header << std::endl
+    amrex::Print() << "\nL-inf norm MAC vels: " << header << '\n'
                    << "........................................................"
                       "......................"
-                   << std::endl;
+                   << '\n';
 
     amrex::Print() << "Max u: " << std::setw(20) << std::right << uMAC_max;
     amrex::Print() << " |  Location (x,y,z): ";
     amrex::Print() << std::setw(10) << std::right << uMAC_max_loc[0] << ", ";
     amrex::Print() << std::setw(10) << std::right << uMAC_max_loc[1] << ", ";
-    amrex::Print() << std::setw(10) << std::right << uMAC_max_loc[2]
-                   << std::endl;
+    amrex::Print() << std::setw(10) << std::right << uMAC_max_loc[2] << '\n';
     amrex::Print() << "Min u: " << std::setw(20) << std::right << uMAC_min;
     amrex::Print() << " |  Location (x,y,z): ";
     amrex::Print() << std::setw(10) << std::right << uMAC_min_loc[0] << ", ";
     amrex::Print() << std::setw(10) << std::right << uMAC_min_loc[1] << ", ";
-    amrex::Print() << std::setw(10) << std::right << uMAC_min_loc[2]
-                   << std::endl;
+    amrex::Print() << std::setw(10) << std::right << uMAC_min_loc[2] << '\n';
 
     amrex::Print() << "Max v: " << std::setw(20) << std::right << vMAC_max;
     amrex::Print() << " |  Location (x,y,z): ";
     amrex::Print() << std::setw(10) << std::right << vMAC_max_loc[0] << ", ";
     amrex::Print() << std::setw(10) << std::right << vMAC_max_loc[1] << ", ";
-    amrex::Print() << std::setw(10) << std::right << vMAC_max_loc[2]
-                   << std::endl;
+    amrex::Print() << std::setw(10) << std::right << vMAC_max_loc[2] << '\n';
     amrex::Print() << "Min v: " << std::setw(20) << std::right << vMAC_min;
     amrex::Print() << " |  Location (x,y,z): ";
     amrex::Print() << std::setw(10) << std::right << vMAC_min_loc[0] << ", ";
     amrex::Print() << std::setw(10) << std::right << vMAC_min_loc[1] << ", ";
-    amrex::Print() << std::setw(10) << std::right << vMAC_min_loc[2]
-                   << std::endl;
+    amrex::Print() << std::setw(10) << std::right << vMAC_min_loc[2] << '\n';
 
     amrex::Print() << "Max w: " << std::setw(20) << std::right << wMAC_max;
     amrex::Print() << " |  Location (x,y,z): ";
     amrex::Print() << std::setw(10) << std::right << wMAC_max_loc[0] << ", ";
     amrex::Print() << std::setw(10) << std::right << wMAC_max_loc[1] << ", ";
-    amrex::Print() << std::setw(10) << std::right << wMAC_max_loc[2]
-                   << std::endl;
+    amrex::Print() << std::setw(10) << std::right << wMAC_max_loc[2] << '\n';
     amrex::Print() << "Min w: " << std::setw(20) << std::right << wMAC_min;
     amrex::Print() << " |  Location (x,y,z): ";
     amrex::Print() << std::setw(10) << std::right << wMAC_min_loc[0] << ", ";
     amrex::Print() << std::setw(10) << std::right << wMAC_min_loc[1] << ", ";
-    amrex::Print() << std::setw(10) << std::right << wMAC_min_loc[2]
-                   << std::endl;
+    amrex::Print() << std::setw(10) << std::right << wMAC_min_loc[2] << '\n';
 
     amrex::Print() << "........................................................"
                       "......................"
-                   << std::endl
-                   << std::endl;
+                   << '\n'
+                   << '\n';
 
     // Return array of answers (for testing)
     return amrex::Array<amrex::Real, 24>{
@@ -664,19 +658,19 @@ void incflo::PrintMaxValues(const std::string& header)
 {
     BL_PROFILE("amr-wind::incflo::PrintMaxValues");
 
-    amrex::Print() << "\nL-inf norm summary: " << header << std::endl
+    amrex::Print() << "\nL-inf norm summary: " << header << '\n'
                    << "........................................................"
                       "......................";
 
     for (int lev = 0; lev <= finest_level; lev++) {
-        amrex::Print() << "\nLevel " << lev << std::endl;
+        amrex::Print() << "\nLevel " << lev << '\n';
 
         const auto& vel = icns().fields().field;
         amrex::Print() << "  " << std::setw(16) << std::left << vel.name();
         for (int i = 0; i < vel.num_comp(); ++i) {
             amrex::Print() << std::setw(20) << std::right << vel(lev).norm0(i);
         }
-        amrex::Print() << std::endl;
+        amrex::Print() << '\n';
 
         const auto& gradp = grad_p();
         amrex::Print() << "  " << std::setw(16) << std::left << gradp.name();
@@ -684,7 +678,7 @@ void incflo::PrintMaxValues(const std::string& header)
             amrex::Print() << std::setw(20) << std::right
                            << gradp(lev).norm0(i);
         }
-        amrex::Print() << std::endl;
+        amrex::Print() << '\n';
 
         for (auto& eqn : scalar_eqns()) {
             auto& field = eqn->fields().field;
@@ -694,13 +688,13 @@ void incflo::PrintMaxValues(const std::string& header)
                 amrex::Print()
                     << std::setw(20) << std::right << field(lev).norm0(i);
             }
-            amrex::Print() << std::endl;
+            amrex::Print() << '\n';
         }
     }
     amrex::Print() << "........................................................"
                       "......................"
-                   << std::endl
-                   << std::endl;
+                   << '\n'
+                   << '\n';
 }
 
 void incflo::PrintMaxVelLocations(const std::string& header)
@@ -716,7 +710,7 @@ void incflo::PrintMaxVel(int lev) const
     BL_PROFILE("amr-wind::incflo::PrintMaxVel");
     amrex::Print() << "max(abs(u/v/w))  = " << velocity()(lev).norm0(0) << "  "
                    << velocity()(lev).norm0(1) << "  "
-                   << velocity()(lev).norm0(2) << "  " << std::endl;
+                   << velocity()(lev).norm0(2) << "  " << '\n';
 }
 
 //
@@ -728,7 +722,7 @@ void incflo::PrintMaxGp(int lev) const
     amrex::Print() << "max(abs(gpx/gpy/gpz/p))  = " << grad_p()(lev).norm0(0)
                    << "  " << grad_p()(lev).norm0(1) << "  "
                    << grad_p()(lev).norm0(2) << "  " << pressure()(lev).norm0(0)
-                   << "  " << std::endl;
+                   << "  " << '\n';
 }
 
 void incflo::CheckForNans(int lev) const

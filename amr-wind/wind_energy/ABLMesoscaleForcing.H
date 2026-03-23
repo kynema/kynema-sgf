@@ -95,9 +95,7 @@ protected:
         if (m_forcing_transition.length() < 8) {
             return false;
         }
-        return (
-            0 == m_forcing_transition.compare(
-                     m_forcing_transition.length() - 8, 8, "Constant"));
+        return (m_forcing_transition.ends_with("Constant"));
     }
 
     // - slope varies linearly from the actual gradient of the forcing profile

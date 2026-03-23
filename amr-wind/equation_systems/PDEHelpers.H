@@ -13,25 +13,28 @@ namespace amr_wind {
 namespace pde_impl {
 
 //! Field name that holds the convective term
-inline std::string conv_term_name(const std::string& var)
+AMREX_INLINE std::string conv_term_name(const std::string& var)
 {
     return var + "_conv_term";
 }
 
 //! Field name that holds the diffusion term (divtau and laplacian for scalars)
-inline std::string diff_term_name(const std::string& var)
+AMREX_INLINE std::string diff_term_name(const std::string& var)
 {
     return var + "_diff_term";
 }
 
 //! Field name for all the source terms
-inline std::string src_term_name(const std::string& var)
+AMREX_INLINE std::string src_term_name(const std::string& var)
 {
     return var + "_src_term";
 }
 
 //! Effective viscosity for the transport equation
-inline std::string mueff_name(const std::string& var) { return var + "_mueff"; }
+AMREX_INLINE std::string mueff_name(const std::string& var)
+{
+    return var + "_mueff";
+}
 
 } // namespace pde_impl
 

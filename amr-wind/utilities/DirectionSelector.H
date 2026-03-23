@@ -1,5 +1,5 @@
-#ifndef DirectionSelector_H
-#define DirectionSelector_H
+#ifndef DIRECTIONSELECTOR_H
+#define DIRECTIONSELECTOR_H
 
 #include "AMReX_Box.H"
 #include "AMReX_Gpu.H"

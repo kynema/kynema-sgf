@@ -55,7 +55,7 @@ void apply_mms_vel(CFDSim& sim)
         const auto& varrs = velocity(lev).arrays();
         amrex::ParallelFor(
             levelset(lev), levelset.num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
                 const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
 
@@ -108,8 +108,7 @@ void apply_dirichlet_vel(CFDSim& sim, const amrex::Vector<amrex::Real>& vel_bc)
         const amrex::Real velz = vel_bc[2];
 
         amrex::ParallelFor(
-            levelset(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            levelset(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 // Pure solid-body points
                 if (phi_arrs[nbx](i, j, k) < -phi_b) {
                     varrs[nbx](i, j, k, 0) = velx;

@@ -50,7 +50,7 @@ void LineSampler::check_bounds()
     if (!all_ok) {
         amrex::Print() << "WARNING: LineSampler: Out of domain line was "
                           "truncated to match domain"
-                       << std::endl;
+                       << '\n';
     }
 }
 
@@ -82,7 +82,7 @@ void LineSampler::sampling_locations(
 
     for (int i = 0; i < m_npts; ++i) {
         const amrex::RealVect loc = {AMREX_D_DECL(
-            m_start[0] + i * dx[0], m_start[1] + i * dx[1],
+            m_start[0] + (i * dx[0]), m_start[1] + (i * dx[1]),
             m_start[2] + (i * dx[2]))};
         if (utils::contains(box, loc, plo, dxinv)) {
             sample_locs.push_back(loc, i);

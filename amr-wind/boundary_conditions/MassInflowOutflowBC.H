@@ -17,7 +17,7 @@ class MassInflowOutflowBC : public FieldBCIface
 public:
     MassInflowOutflowBC(Field& field, amrex::Orientation ori);
 
-    void operator()(Field& field, const FieldState /*rho_state*/) override;
+    void operator()(Field& field, FieldState /*rho_state*/) override;
 
 private:
     Field& m_field;

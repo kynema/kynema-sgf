@@ -53,7 +53,7 @@ public:
     ~LinearShearProfile() override = default;
 
     // cppcheck-suppress duplInheritedMember
-    LinearShearOp device_instance() const { return m_op; }
+    [[nodiscard]] LinearShearOp device_instance() const { return m_op; }
 
 private:
     LinearShearOp m_op;
@@ -102,7 +102,7 @@ public:
     ~PowerLawProfile() override = default;
 
     // cppcheck-suppress duplInheritedMember
-    PowerLawOp device_instance() const { return m_op; }
+    [[nodiscard]] PowerLawOp device_instance() const { return m_op; }
 
 private:
     PowerLawOp m_op;
@@ -486,7 +486,7 @@ SyntheticTurbulence::SyntheticTurbulence(const CFDSim& sim)
                    << "  Mean wind profile: U = "
                    << m_wind_profile->reference_velocity()
                    << " m/s; Dir = " << wind_direction
-                   << " deg; type = " << mean_wind_type << std::endl;
+                   << " deg; type = " << mean_wind_type << '\n';
 }
 
 void SyntheticTurbulence::initialize_fields(
@@ -591,7 +591,7 @@ void SyntheticTurbulence::update_impl(
 
         amrex::ParallelFor(
             m_turb_force(lev),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 // Position vector in local turbulence grid frame
                 vs::Vector xyz_l;
                 // velocity in local frame

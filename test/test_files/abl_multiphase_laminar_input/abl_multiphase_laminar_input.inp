@@ -11,7 +11,7 @@ time.cfl              =   0.95       # CFL factor
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
 #            INPUT AND OUTPUT           #
 #.......................................#
-io.restart_file = "../abl_multiphase_laminar/chk00005"
+io.restart_file = "../abl_multiphase_laminar/chk00003"
 time.plot_interval            =  10       # Steps between plot files
 time.checkpoint_interval      =  -1         # Steps between checkpoint files
 io.outputs = velocity_mueff temperature_mueff
@@ -68,7 +68,7 @@ OceanWaves.Wave1.relax_zone_out_length=40.0
 ABL.bndry_file = "../abl_multiphase_laminar/bndry_files"
 ABL.bndry_io_mode = 1
 ABL.bndry_planes = xlo
-ABL.bndry_output_start_time = 0.2
+ABL.bndry_output_start_time = 0.15
 ABL.bndry_var_names = velocity temperature vof density
 ABL.bndry_output_format = native
 

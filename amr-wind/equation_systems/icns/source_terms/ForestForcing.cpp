@@ -28,7 +28,7 @@ void ForestForcing::operator()(
     }
     auto* const m_forest_drag = &this->m_sim.repo().get_field("forest_drag");
     const auto& forest_drag = (*m_forest_drag)(lev).const_array(mfi);
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real ux = vel(i, j, k, 0);
         const amrex::Real uy = vel(i, j, k, 1);
         const amrex::Real uz = vel(i, j, k, 2);

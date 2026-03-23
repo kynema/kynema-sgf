@@ -48,9 +48,9 @@ public:
      */
     virtual void operator()(
         const SimTime& time,
-        const amrex::Real filter_width,
-        const amrex::Real avg_time_interval,
-        const amrex::Real elapsed_time) = 0;
+        amrex::Real filter_width,
+        amrex::Real avg_time_interval,
+        amrex::Real elapsed_time) = 0;
 
     virtual const std::string& average_field_name() = 0;
 };

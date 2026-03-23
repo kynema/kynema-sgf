@@ -1,5 +1,5 @@
-#ifndef VortexRing_H
-#define VortexRing_H
+#ifndef VORTEXRING_H
+#define VORTEXRING_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
@@ -59,15 +59,15 @@ private:
 struct FatCore
 {
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real operator()(
-        const amrex::Real /*r*/,
-        const amrex::Real /*unused*/,
-        const amrex::Real /*z*/,
-        const amrex::Real /*R*/,
-        const amrex::Real /*Gamma*/,
-        const amrex::Real /*unused*/,
-        const amrex::Real /*unused*/,
-        const amrex::Real /*unused*/,
-        const int /*unused*/,
+        amrex::Real /*r*/,
+        amrex::Real /*unused*/,
+        amrex::Real /*z*/,
+        amrex::Real /*R*/,
+        amrex::Real /*Gamma*/,
+        amrex::Real /*unused*/,
+        amrex::Real /*unused*/,
+        amrex::Real /*unused*/,
+        int /*unused*/,
         const int* /*unused*/,
         const amrex::Real* /*unused*/,
         const amrex::Real* /*unused*/) const;
@@ -76,15 +76,15 @@ struct FatCore
 struct CollidingRings
 {
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real operator()(
-        const amrex::Real /*r*/,
-        const amrex::Real /*theta*/,
-        const amrex::Real /*z*/,
-        const amrex::Real /*R*/,
-        const amrex::Real /*Gamma*/,
-        const amrex::Real /*delta*/,
-        const amrex::Real /*dz*/,
-        const amrex::Real /*perturbation_amplitude*/,
-        const int /*num_modes*/,
+        amrex::Real /*r*/,
+        amrex::Real /*theta*/,
+        amrex::Real /*z*/,
+        amrex::Real /*R*/,
+        amrex::Real /*Gamma*/,
+        amrex::Real /*delta*/,
+        amrex::Real /*dz*/,
+        amrex::Real /*perturbation_amplitude*/,
+        int /*num_modes*/,
         const int* /*perturbation_modes*/,
         const amrex::Real* /*perturbation_phases_1*/,
         const amrex::Real* /*perturbation_phases_2*/) const;

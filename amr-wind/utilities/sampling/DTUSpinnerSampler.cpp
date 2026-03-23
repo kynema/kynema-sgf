@@ -10,7 +10,7 @@
 #include "amr-wind/wind_energy/actuator/turbine/fast/TurbineFast.H"
 #include "amr-wind/wind_energy/actuator/turbine/fast/turbine_fast_ops.H"
 #include "amr-wind/wind_energy/actuator/ActuatorModel.H"
-#include "AMReX_REAL.H"
+#include "amr-wind/utilities/math_ops.H"
 
 using namespace amrex::literals;
 #endif
@@ -305,8 +305,8 @@ bool DTUSpinnerSampler::update_sampling_locations()
         m_hub_tilt = std::atan2(
             -m_current_hub_orient[6],
             std::sqrt(
-                std::pow(m_current_hub_orient[7], 2.0_rt) +
-                std::pow(m_current_hub_orient[8], 2.0_rt)));
+                utils::powi(m_current_hub_orient[7], 2) +
+                utils::powi(m_current_hub_orient[8], 2)));
         m_hub_roll =
             std::atan2(m_current_hub_orient[7], m_current_hub_orient[8]);
         m_hub_yaw =
@@ -344,7 +344,7 @@ bool DTUSpinnerSampler::update_sampling_locations()
         amrex::Print() << "ts_diff: " << ts_diff << "\tm_ns: " << m_ns
                        << "\tSpin Time: " << m_time_sampling
                        << "\tAMR Time: " << time << "\tn_size: " << n_size
-                       << std::endl;
+                       << '\n';
     }
 
     // Resize these variables so they can store all the locations

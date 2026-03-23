@@ -41,7 +41,7 @@ amrex::Real get_val_at_height(
             amrex::Array4<amrex::Real const> const& f_arr) -> amrex::Real {
             amrex::Real error = 0.0_rt;
 
-            amrex::Loop(bx, [=, &error](int i, int j, int k) noexcept {
+            amrex::Loop(bx, [=, &error](int i, int j, int k) {
                 const amrex::Real z = ploz + ((0.5_rt + k) * dz);
                 // Check if current cell is closest to desired height
                 if (std::abs(z - height) < 0.5_rt * dz) {

@@ -76,7 +76,7 @@ struct InitDataOp<Box>
                 const amrex::Real w = wdata.width;
                 const amrex::Real h = wdata.height;
                 amrex::ParallelFor(
-                    bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+                    bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         const amrex::Real x =
                             problo[0] + ((i + 0.5_rt) * dx[0]);
                         const amrex::Real y =
@@ -105,7 +105,7 @@ struct InitDataOp<Box>
                     });
                 const auto& nbx = mfi.nodaltilebox();
                 amrex::ParallelFor(
-                    nbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+                    nbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         const amrex::Real x = problo[0] + (i * dx[0]);
                         const amrex::Real y = problo[1] + (j * dx[1]);
                         const amrex::Real z = problo[2] + (k * dx[2]);

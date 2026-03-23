@@ -1,5 +1,5 @@
-#ifndef GravityForcing_H
-#define GravityForcing_H
+#ifndef GRAVITYFORCING_H
+#define GRAVITYFORCING_H
 
 #include "amr-wind/core/FieldRepo.H"
 #include "amr-wind/equation_systems/icns/MomentumSource.H"
@@ -22,10 +22,10 @@ public:
     ~GravityForcing() override;
 
     void operator()(
-        const int lev,
+        int lev,
         const amrex::MFIter& mfi,
         const amrex::Box& bx,
-        const FieldState fstate,
+        FieldState fstate,
         const amrex::Array4<amrex::Real>& vel_forces) const override;
 
 private:

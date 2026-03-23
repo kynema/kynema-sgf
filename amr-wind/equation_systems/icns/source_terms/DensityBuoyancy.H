@@ -1,10 +1,5 @@
-//
-//  DensityBuoyancy.H
-//  amr-wind
-//
-
-#ifndef DensityBuoyancy_H
-#define DensityBuoyancy_H
+#ifndef DENSITYBUOYANCY_H
+#define DENSITYBUOYANCY_H
 
 #include "amr-wind/core/FieldRepo.H"
 #include "amr-wind/equation_systems/icns/MomentumSource.H"
@@ -29,10 +24,10 @@ public:
     ~DensityBuoyancy() override;
 
     void operator()(
-        const int lev,
+        int lev,
         const amrex::MFIter& mfi,
         const amrex::Box& bx,
-        const FieldState fstate,
+        FieldState fstate,
         const amrex::Array4<amrex::Real>& vel_forces) const override;
 
 private:

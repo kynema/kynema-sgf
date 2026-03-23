@@ -28,14 +28,17 @@ public:
     explicit AMDNoTherm(CFDSim& sim);
 
     //! Model name for debugging purposes
-    std::string model_name() const override { return "AMDNoTherm"; }
+    [[nodiscard]] std::string model_name() const override
+    {
+        return "AMDNoTherm";
+    }
 
     //! Update the turbulent viscosity field
     void update_turbulent_viscosity(
-        const FieldState fstate, const DiffusionType /*unused*/) override;
+        FieldState fstate, DiffusionType /*unused*/) override;
 
     //! Return model coefficients dictionary
-    TurbulenceModel::CoeffsDictType model_coeffs() const override;
+    [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 
     //! Parse turbulence model coefficients for this model
     void parse_model_coeffs() override;
@@ -57,7 +60,7 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real amd_base_muvel(
     int k,
     const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> dx, // Grid spacing
     amrex::Real C,                                         // Poincare const
-    amrex::Array4<amrex::Real const> const& gradVel) noexcept
+    amrex::Array4<amrex::Real const> const& gradVel)
 {
 
     amrex::Real num_shear = 0;

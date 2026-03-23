@@ -63,7 +63,7 @@ void update_target_vof(CFDSim& sim)
         const amrex::Real eps = 2.0_rt * std::cbrt(dx[0] * dx[1] * dx[2]);
         amrex::ParallelFor(
             ow_vof(lev), amrex::IntVect(2),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 target_volfrac[nbx](i, j, k) =
                     multiphase::levelset_to_vof(i, j, k, eps, target_phi[nbx]);
             });
@@ -94,7 +94,7 @@ void modify_target_fields_for_beach(
 
         amrex::ParallelFor(
             ow_vel(lev), amrex::IntVect(3),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 // x is for combining wave profiles and does not need to exceed
                 // domain limits
                 const amrex::Real x = amrex::min<amrex::Real>(
@@ -185,7 +185,7 @@ void apply_relaxation_zones(CFDSim& sim, const RelaxZonesBaseData& wdata)
 
         amrex::ParallelFor(
             velocity(lev), amrex::IntVect(0),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real x = amrex::min<amrex::Real>(
                     amrex::max<amrex::Real>(
                         problo[0] + ((i + 0.5_rt) * dx[0]), problo[0]),

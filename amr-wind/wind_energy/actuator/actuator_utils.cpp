@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "amr-wind/wind_energy/actuator/actuator_utils.H"
 #include "amr-wind/wind_energy/actuator/actuator_types.H"
 
@@ -66,7 +68,7 @@ void determine_root_proc(ActInfo& info, amrex::Vector<int>& act_proc_count)
     // managing the lowest number of turbines.
 
     // Determine the MPI rank that contains the fewest turbines
-    auto it = std::min_element(act_proc_count.begin(), act_proc_count.end());
+    auto it = std::ranges::min_element(act_proc_count);
     // Make it the root process for this turbine
     info.root_proc =
         static_cast<int>(std::distance(act_proc_count.begin(), it));

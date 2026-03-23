@@ -61,7 +61,7 @@ void CurvatureRefinement::operator()(
     const auto curv_val = m_curv_value[level];
 
     amrex::ParallelFor(
-        mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             // TODO: ignoring wall stencils for now
 
             const auto phixx =

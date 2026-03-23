@@ -230,7 +230,7 @@ void ABL::pre_advance_work()
                 m_stats->theta_profile_fine(), m_meso_file);
         }
         amrex::Print() << "Current surface temperature flux: " << interpTflux
-                       << " K-m/s" << std::endl;
+                       << " K-m/s" << '\n';
         m_abl_wall_func.update_tflux(interpTflux);
     }
 

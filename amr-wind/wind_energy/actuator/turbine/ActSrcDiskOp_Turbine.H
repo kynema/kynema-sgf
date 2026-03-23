@@ -1,5 +1,5 @@
-#ifndef ACTSRCDISKOP_TURBINE_H_
-#define ACTSRCDISKOP_TURBINE_H_
+#ifndef ACTSRCDISKOP_TURBINE_H
+#define ACTSRCDISKOP_TURBINE_H
 
 #include <numbers>
 #include "AMReX_REAL.H"
@@ -38,8 +38,8 @@ public:
 
     void setup_op() { copy_to_device(); }
 
-    void operator()(
-        const int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom);
+    void
+    operator()(int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom);
 };
 
 template <typename ActTrait>
@@ -116,7 +116,7 @@ operator()(const int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom)
     const vs::Vector m_normal(tdata.rotor_frame.x());
     const vs::Vector m_origin(tdata.rot_center);
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const vs::Vector cc{
             problo[0] + ((i + 0.5_rt) * dx[0]),
             problo[1] + ((j + 0.5_rt) * dx[1]),
@@ -194,4 +194,4 @@ operator()(const int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom)
 }
 } // namespace amr_wind::actuator::ops
 
-#endif /* ACTSRCDISKOP_TURBINE_H_ */
+#endif /* ACTSRCDISKOP_TURBINE_H */

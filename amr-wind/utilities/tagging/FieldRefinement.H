@@ -38,11 +38,9 @@ public:
     //! Read input file and initialize boxarray used to refine each level
     void initialize(const std::string& key) override;
 
-    void operator()(
-        const int level,
-        amrex::TagBoxArray& tags,
-        const amrex::Real time,
-        const int ngrow) override;
+    void
+    operator()(int level, amrex::TagBoxArray& tags, amrex::Real time, int ngrow)
+        override;
 
     template <typename MF>
     void tag(const int level, amrex::TagBoxArray& tags, const MF& mfab)
@@ -59,11 +57,10 @@ public:
         if (tag_field) {
             const auto fld_err = m_field_error[level];
             amrex::ParallelFor(
-                mfab,
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     const amrex::RealVect coord = {AMREX_D_DECL(
-                        prob_lo[0] + (i + 0.5_rt) * dx[0],
-                        prob_lo[1] + (j + 0.5_rt) * dx[1],
+                        prob_lo[0] + ((i + 0.5_rt) * dx[0]),
+                        prob_lo[1] + ((j + 0.5_rt) * dx[1]),
                         prob_lo[2] + ((k + 0.5_rt) * dx[2]))};
 
                     if ((farrs[nbx](i, j, k) > fld_err) &&
@@ -76,11 +73,10 @@ public:
         if (tag_grad) {
             const auto gerr = m_grad_error[level];
             amrex::ParallelFor(
-                mfab,
-                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+                mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     const amrex::RealVect coord = {AMREX_D_DECL(
-                        prob_lo[0] + (i + 0.5_rt) * dx[0],
-                        prob_lo[1] + (j + 0.5_rt) * dx[1],
+                        prob_lo[0] + ((i + 0.5_rt) * dx[0]),
+                        prob_lo[1] + ((j + 0.5_rt) * dx[1]),
                         prob_lo[2] + ((k + 0.5_rt) * dx[2]))};
                     const auto axp =
                         std::abs(farrs[nbx](i + 1, j, k) - farrs[nbx](i, j, k));

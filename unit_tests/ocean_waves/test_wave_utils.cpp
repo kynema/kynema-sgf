@@ -153,7 +153,7 @@ TEST_F(WaveUtilsTest, combine_linear)
     const amrex::Real result =
         amr_wind::ocean_waves::utils::combine_linear(Gamma, target, current);
 
-    EXPECT_NEAR(result, (1.0_rt - Gamma) * target + Gamma * current, tol);
+    EXPECT_NEAR(result, ((1.0_rt - Gamma) * target) + (Gamma * current), tol);
 }
 
 TEST_F(WaveUtilsTest, harmonize_profiles)
@@ -186,7 +186,8 @@ TEST_F(WaveUtilsTest, harmonize_profiles)
         x - (problo_x + gen_length), 0.5_rt * gen_length);
     for (int n = 0; n < 4; ++n) {
         EXPECT_NEAR(
-            (1.0_rt - Gamma_l) * left[n] + Gamma_l * bulk[n], result[n], tol);
+            ((1.0_rt - Gamma_l) * left[n]) + (Gamma_l * bulk[n]), result[n],
+            tol);
     }
 
     x = 0.;
@@ -204,7 +205,8 @@ TEST_F(WaveUtilsTest, harmonize_profiles)
         0.5_rt * beach_length, 1.0_rt);
     for (int n = 0; n < 4; ++n) {
         EXPECT_NEAR(
-            (1.0_rt - Gamma_r) * right[n] + Gamma_r * bulk[n], result[n], tol);
+            ((1.0_rt - Gamma_r) * right[n]) + (Gamma_r * bulk[n]), result[n],
+            tol);
     }
 
     x = 0.8_rt;

@@ -1,5 +1,5 @@
-#ifndef Joukowsky_H_
-#define Joukowsky_H_
+#ifndef JOUKOWSKY_H
+#define JOUKOWSKY_H
 
 #include "amr-wind/wind_energy/actuator/disk/disk_types.H"
 #include "amr-wind/wind_energy/actuator/disk/ActuatorDisk.H"
@@ -58,4 +58,4 @@ struct Joukowsky : public DiskType
 
 } // namespace amr_wind::actuator
 
-#endif /* Joukowsky_H_ */
+#endif /* Joukowsky_H */

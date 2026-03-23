@@ -1,5 +1,5 @@
-#ifndef EkmanSpiral_H
-#define EkmanSpiral_H
+#ifndef EKMANSPIRAL_H
+#define EKMANSPIRAL_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"

@@ -105,8 +105,7 @@ struct SrcTermOpBase
 
             amrex::ParallelFor(
                 src_term, amrex::IntVect(0), fields.src_term.num_comp(),
-                [=] AMREX_GPU_DEVICE(
-                    int nbx, int i, int j, int k, int n) noexcept {
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                     vf_arrs[nbx](i, j, k, n) *= rho_arrs[nbx](i, j, k);
                 });
         }

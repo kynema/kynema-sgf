@@ -1,5 +1,5 @@
-#ifndef Intermittency_H
-#define Intermittency_H
+#ifndef INTERMITTENCY_H
+#define INTERMITTENCY_H
 
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"

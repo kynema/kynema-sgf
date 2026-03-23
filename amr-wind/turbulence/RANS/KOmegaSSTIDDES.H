@@ -37,11 +37,14 @@ public:
 
     ~KOmegaSSTIDDES() override;
 
-    std::string model_name() const override { return "KOmegaSSTIDDES"; }
+    [[nodiscard]] std::string model_name() const override
+    {
+        return "KOmegaSSTIDDES";
+    }
 
     //! Update the turbulent viscosity field
     void update_turbulent_viscosity(
-        const FieldState fstate, const DiffusionType diff_type) override;
+        FieldState fstate, DiffusionType diff_type) override;
 
     //! No post advance work for this model
     void post_advance_work() override {}
@@ -50,7 +53,7 @@ public:
     void parse_model_coeffs() override;
 
     //! Return turbulence model coefficients
-    TurbulenceModel::CoeffsDictType model_coeffs() const override;
+    [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 
 protected:
     Field& m_rans_ind;

@@ -1,26 +1,21 @@
 ---
 Checks: 'bugprone-*,
          -bugprone-easily-swappable-parameters,
-         -bugprone-exception-escape,
          clang-diagnostic-*,
          clang-analyzer-*,
          corecppguidelines-*,
          modernize-*,
          -modernize-use-trailing-return-type,
-         -modernize-use-nodiscard,
          mpi-*,
          performance-*,
-         -performance-avoid-endl,
          -performance-inefficient-string-concatenation,
-         -performance-enum-size,
          portability-*,
+         -portability-template-virtual-member-function,
          readability-*,
          -readability-magic-numbers,
          -readability-isolate-declaration,
-         -readability-avoid-const-params-in-decls,
          -readability-identifier-length,
          -readability-function-cognitive-complexity,
-         -readability-redundant-inline-specifier,
          -readability-avoid-nested-conditional-operator'
 WarningsAsErrors: ''
 HeaderFilterRegex: '.*'

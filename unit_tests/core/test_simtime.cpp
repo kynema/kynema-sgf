@@ -83,7 +83,7 @@ TEST_F(SimTimeTest, time_loop)
         if (time.do_regrid()) {
             ++regrid_counter;
         }
-        std::cout << time.new_time() << std::endl;
+        std::cout << time.new_time() << '\n';
     }
     EXPECT_EQ(counter, 5);
     EXPECT_EQ(plot_counter, 5);
@@ -175,6 +175,51 @@ TEST_F(SimTimeTest, plt_chk_timeinterval_loop)
         pp.add("fixed_dt", 0.3_rt);
         pp.add("stop_time", 5.0_rt);
         pp.add("max_step", 100);
+    }
+    amr_wind::SimTime time;
+    time.parse_parameters();
+
+    int counter = 0;
+    int plot_counter = 0;
+    int plot_step_sum = 0;
+    int chkpt_counter = 0;
+    int chkpt_step_sum = 0;
+    while (time.new_timestep()) {
+        time.set_current_cfl(0.45_rt / 0.3_rt, 0.0_rt, 0.0_rt);
+        time.advance_time();
+        ++counter;
+
+        if (time.write_plot_file()) {
+            ++plot_counter;
+            plot_step_sum += counter;
+        }
+        if (time.write_checkpoint()) {
+            ++chkpt_counter;
+            chkpt_step_sum += counter;
+        }
+    }
+    EXPECT_EQ(plot_counter, 5);
+    EXPECT_EQ(plot_step_sum, 4 + 7 + 10 + 14 + 17);
+    EXPECT_EQ(chkpt_counter, 1);
+    EXPECT_EQ(chkpt_step_sum, 14);
+}
+
+TEST_F(SimTimeTest, plt_chk_timeinterval_loop_perturb)
+{
+    build_simtime_params();
+    {
+        amrex::ParmParse pp("time");
+        pp.add("regrid_interval", -1);
+        pp.add("checkpoint_interval", -1);
+        pp.add("plot_interval", -1);
+        pp.add("checkpoint_time_interval", 4.0_rt);
+        pp.add("plot_time_interval", 1.0_rt);
+        pp.add("fixed_dt", 0.3_rt);
+        pp.add("stop_time", 5.0_rt);
+        pp.add("max_step", 100);
+        // Perturb start time - like floating point error present on a restart
+        pp.add("checkpoint_start_time", 1.0e-6_rt);
+        pp.add("plot_start_time", 1.0e-6_rt);
     }
     amr_wind::SimTime time;
     time.parse_parameters();

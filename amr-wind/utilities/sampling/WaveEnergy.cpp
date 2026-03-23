@@ -85,15 +85,14 @@ amrex::Real WaveEnergy::calculate_kinetic_energy()
                 amrex::Array4<int const> const& mask_arr) -> amrex::Real {
                 amrex::Real Wave_Energy_Fab = 0.0_rt;
 
-                amrex::Loop(
-                    bx, [=, &Wave_Energy_Fab](int i, int j, int k) noexcept {
-                        Wave_Energy_Fab +=
-                            cell_vol * mask_arr(i, j, k) * 0.5_rt *
-                            vof_arr(i, j, k) *
-                            (vel_arr(i, j, k, 0) * vel_arr(i, j, k, 0) +
-                             vel_arr(i, j, k, 1) * vel_arr(i, j, k, 1) +
-                             vel_arr(i, j, k, 2) * vel_arr(i, j, k, 2));
-                    });
+                amrex::Loop(bx, [=, &Wave_Energy_Fab](int i, int j, int k) {
+                    Wave_Energy_Fab +=
+                        cell_vol * mask_arr(i, j, k) * 0.5_rt *
+                        vof_arr(i, j, k) *
+                        (vel_arr(i, j, k, 0) * vel_arr(i, j, k, 0) +
+                         vel_arr(i, j, k, 1) * vel_arr(i, j, k, 1) +
+                         vel_arr(i, j, k, 2) * vel_arr(i, j, k, 2));
+                });
                 return Wave_Energy_Fab;
             });
     }
@@ -145,20 +144,17 @@ amrex::Real WaveEnergy::calculate_potential_energy()
                 amrex::Array4<int const> const& mask_arr) -> amrex::Real {
                 amrex::Real Wave_Energy_Fab = 0.0_rt;
 
-                amrex::Loop(
-                    bx, [=, &Wave_Energy_Fab](int i, int j, int k) noexcept {
-                        // Crude model of liquid height in multiphase cells
-                        amrex::Real kk =
-                            (vof_arr(i, j, k + 1) > vof_arr(i, j, k)) ? k + 1
-                                                                      : k;
-                        amrex::Real dir =
-                            (vof_arr(i, j, k + 1) > vof_arr(i, j, k)) ? -1 : 1;
-                        const amrex::Real zl =
-                            probloz +
-                            ((kk + dir * 0.5_rt * vof_arr(i, j, k)) * dz);
-                        Wave_Energy_Fab += cell_vol * mask_arr(i, j, k) *
-                                           vof_arr(i, j, k) * g * zl;
-                    });
+                amrex::Loop(bx, [=, &Wave_Energy_Fab](int i, int j, int k) {
+                    // Crude model of liquid height in multiphase cells
+                    amrex::Real kk =
+                        (vof_arr(i, j, k + 1) > vof_arr(i, j, k)) ? k + 1 : k;
+                    amrex::Real dir =
+                        (vof_arr(i, j, k + 1) > vof_arr(i, j, k)) ? -1 : 1;
+                    const amrex::Real zl =
+                        probloz + ((kk + dir * 0.5_rt * vof_arr(i, j, k)) * dz);
+                    Wave_Energy_Fab += cell_vol * mask_arr(i, j, k) *
+                                       vof_arr(i, j, k) * g * zl;
+                });
                 return Wave_Energy_Fab;
             });
     }
@@ -191,7 +187,7 @@ void WaveEnergy::prepare_ascii_file()
 
     if (amrex::ParallelDescriptor::IOProcessor()) {
         std::ofstream f(m_out_fname.c_str());
-        f << "time_step time kinetic_energy potential_energy" << std::endl;
+        f << "time_step time kinetic_energy potential_energy" << '\n';
         f.close();
     }
 }
@@ -207,7 +203,7 @@ void WaveEnergy::write_ascii()
           << m_sim.time().new_time();
         f << std::setw(m_width) << m_wave_kinetic_energy;
         f << std::setw(m_width) << m_wave_potential_energy;
-        f << std::endl;
+        f << '\n';
         f.close();
     }
 }

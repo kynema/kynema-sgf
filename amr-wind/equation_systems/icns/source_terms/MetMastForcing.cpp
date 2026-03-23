@@ -100,61 +100,57 @@ void MetMastForcing::operator()(
         auto* const m_terrain_height =
             &this->m_sim.repo().get_field("terrain_height");
         const auto& terrain_height = (*m_terrain_height)(lev).const_array(mfi);
-        amrex::ParallelFor(
-            bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                const amrex::Real x = prob_lo[0] + (i + 0.5_rt) * dx[0];
-                const amrex::Real y = prob_lo[1] + (j + 0.5_rt) * dx[1];
-                const amrex::Real z = amrex::max<amrex::Real>(
-                    prob_lo[2] + (k + 0.5_rt) * dx[2] - terrain_height(i, j, k),
-                    0.5_rt * dx[2]);
-                //! Testing for one point for now
-                int ii = 0;
-                amrex::Real ri2 = (x - metmast_x_d[ii]) *
-                                  (x - metmast_x_d[ii]) /
-                                  (long_radius * long_radius);
-                ri2 += (y - metmast_y_d[ii]) * (y - metmast_y_d[ii]) /
-                       (long_radius * long_radius);
-                ri2 += (z - metmast_z_d[ii]) * (z - metmast_z_d[ii]) /
-                       (vertical_radius * vertical_radius);
-                const amrex::Real weight_fn =
-                    (ri2 <= damping_radius) ? std::exp(-0.25_rt * ri2) : 0;
-                amrex::Real ref_windx = u_values_d[ii];
-                amrex::Real ref_windy = v_values_d[ii];
-                amrex::Real ref_windz = w_values_d[ii];
-                src_term(i, j, k, 0) -= weight_fn / meso_timescale *
-                                        (velocity(i, j, k, 0) - ref_windx);
-                src_term(i, j, k, 1) -= weight_fn / meso_timescale *
-                                        (velocity(i, j, k, 1) - ref_windy);
-                src_term(i, j, k, 2) -= weight_fn / meso_timescale *
-                                        (velocity(i, j, k, 2) - ref_windz);
-            });
+        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+            const amrex::Real x = prob_lo[0] + (i + 0.5_rt) * dx[0];
+            const amrex::Real y = prob_lo[1] + (j + 0.5_rt) * dx[1];
+            const amrex::Real z = amrex::max<amrex::Real>(
+                prob_lo[2] + (k + 0.5_rt) * dx[2] - terrain_height(i, j, k),
+                0.5_rt * dx[2]);
+            //! Testing for one point for now
+            int ii = 0;
+            amrex::Real ri2 = (x - metmast_x_d[ii]) * (x - metmast_x_d[ii]) /
+                              (long_radius * long_radius);
+            ri2 += (y - metmast_y_d[ii]) * (y - metmast_y_d[ii]) /
+                   (long_radius * long_radius);
+            ri2 += (z - metmast_z_d[ii]) * (z - metmast_z_d[ii]) /
+                   (vertical_radius * vertical_radius);
+            const amrex::Real weight_fn =
+                (ri2 <= damping_radius) ? std::exp(-0.25_rt * ri2) : 0;
+            amrex::Real ref_windx = u_values_d[ii];
+            amrex::Real ref_windy = v_values_d[ii];
+            amrex::Real ref_windz = w_values_d[ii];
+            src_term(i, j, k, 0) -=
+                weight_fn / meso_timescale * (velocity(i, j, k, 0) - ref_windx);
+            src_term(i, j, k, 1) -=
+                weight_fn / meso_timescale * (velocity(i, j, k, 1) - ref_windy);
+            src_term(i, j, k, 2) -=
+                weight_fn / meso_timescale * (velocity(i, j, k, 2) - ref_windz);
+        });
     } else {
-        amrex::ParallelFor(
-            bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-                const amrex::Real x = prob_lo[0] + (i + 0.5_rt) * dx[0];
-                const amrex::Real y = prob_lo[1] + (j + 0.5_rt) * dx[1];
-                const amrex::Real z = prob_lo[2] + (k + 0.5_rt) * dx[2];
-                //! Testing for one point for now
-                int ii = 0;
-                amrex::Real ri2 = (x - metmast_x_d[ii]) *
-                                  (x - metmast_x_d[ii]) /
-                                  (long_radius * long_radius);
-                ri2 += (y - metmast_y_d[ii]) * (y - metmast_y_d[ii]) /
-                       (long_radius * long_radius);
-                ri2 += (z - metmast_z_d[ii]) * (z - metmast_z_d[ii]) /
-                       (vertical_radius * vertical_radius);
-                const amrex::Real weight_fn =
-                    (ri2 <= 100) ? std::exp(-0.25_rt * ri2) : 0;
-                amrex::Real ref_windx = u_values_d[ii];
-                amrex::Real ref_windy = v_values_d[ii];
-                amrex::Real ref_windz = w_values_d[ii];
-                src_term(i, j, k, 0) -= weight_fn / meso_timescale *
-                                        (velocity(i, j, k, 0) - ref_windx);
-                src_term(i, j, k, 1) -= weight_fn / meso_timescale *
-                                        (velocity(i, j, k, 1) - ref_windy);
-                src_term(i, j, k, 2) -= weight_fn / meso_timescale *
-                                        (velocity(i, j, k, 2) - ref_windz);
-            });
+        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+            const amrex::Real x = prob_lo[0] + (i + 0.5_rt) * dx[0];
+            const amrex::Real y = prob_lo[1] + (j + 0.5_rt) * dx[1];
+            const amrex::Real z = prob_lo[2] + (k + 0.5_rt) * dx[2];
+            //! Testing for one point for now
+            int ii = 0;
+            amrex::Real ri2 = (x - metmast_x_d[ii]) * (x - metmast_x_d[ii]) /
+                              (long_radius * long_radius);
+            ri2 += (y - metmast_y_d[ii]) * (y - metmast_y_d[ii]) /
+                   (long_radius * long_radius);
+            ri2 += (z - metmast_z_d[ii]) * (z - metmast_z_d[ii]) /
+                   (vertical_radius * vertical_radius);
+            const amrex::Real weight_fn =
+                (ri2 <= 100) ? std::exp(-0.25_rt * ri2) : 0;
+            amrex::Real ref_windx = u_values_d[ii];
+            amrex::Real ref_windy = v_values_d[ii];
+            amrex::Real ref_windz = w_values_d[ii];
+            src_term(i, j, k, 0) -=
+                weight_fn / meso_timescale * (velocity(i, j, k, 0) - ref_windx);
+            src_term(i, j, k, 1) -=
+                weight_fn / meso_timescale * (velocity(i, j, k, 1) - ref_windy);
+            src_term(i, j, k, 2) -=
+                weight_fn / meso_timescale * (velocity(i, j, k, 2) - ref_windz);
+        });
     }
 }
 

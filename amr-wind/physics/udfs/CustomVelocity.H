@@ -22,7 +22,7 @@ struct CustomVelocity
         amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> bar = {0.0_rt};
 
         AMREX_GPU_DEVICE
-        inline void operator()(
+        void operator()(
             const amrex::IntVect& iv,
             amrex::Array4<amrex::Real> const& field,
             amrex::GeometryData const& geom,
@@ -52,7 +52,7 @@ struct CustomVelocity
 
     explicit CustomVelocity(const Field& fld);
 
-    DeviceType device_instance() const { return m_op; }
+    [[nodiscard]] DeviceType device_instance() const { return m_op; }
 
     DeviceOp m_op;
 };

@@ -107,7 +107,7 @@ void CartBoxRefinement::read_inputs(
     if (max_lev < nlev_in) {
         amrex::Print() << "WARNING: AmrMesh::finestLevel() is less than the "
                           "requested levels in static refinement file"
-                       << std::endl;
+                       << '\n';
     }
 
     // Set the number of levels to the minimum of what is in the input file and

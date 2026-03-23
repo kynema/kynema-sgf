@@ -25,7 +25,7 @@ void HybridRANSLESABL::initialize_fields(int level, const amrex::Geometry& geom)
 
     amrex::ParallelFor(
         (*m_tke)(level), m_tke->num_grow(),
-        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             sdr_arrs[nbx](i, j, k) =
                 std::sqrt(tke_arrs[nbx](i, j, k)) / (Ce * ds);
         });
@@ -93,7 +93,7 @@ void HybridRANSLESABL::compute_sdr_impl()
 
         amrex::ParallelFor(
             (*tke)(lev), tke->num_grow(),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 sdr_arrs[nbx](i, j, k) =
                     std::sqrt(tke_arrs[nbx](i, j, k)) / (Ce * ds);
             });

@@ -74,7 +74,7 @@ void ReynoldsStress::operator()(
         const auto& restressarrs = rfab.arrays();
 
         amrex::ParallelFor(
-            ffab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) noexcept {
+            ffab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 // The tensor index
                 int mn = 0;
                 for (int n = 0; n < ncomp; ++n) {

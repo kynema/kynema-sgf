@@ -10,10 +10,10 @@ target_sources(${amr_wind_lib_name}
   DTUSpinnerSampler.cpp
   PlaneSampler.cpp
   ProbeSampler.cpp
+  FreeSurfaceSampler.cpp
+  VolumeSampler.cpp
   FieldNorms.cpp
   KineticEnergy.cpp
   Enstrophy.cpp
-  FreeSurfaceSampler.cpp
-  VolumeSampler.cpp
   WaveEnergy.cpp
   )

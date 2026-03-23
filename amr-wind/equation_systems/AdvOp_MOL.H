@@ -86,8 +86,7 @@ struct AdvectionOp<
 
                     amrex::ParallelFor(
                         rhotrac_box, PDE::ndim,
-                        [=] AMREX_GPU_DEVICE(
-                            int i, int j, int k, int n) noexcept {
+                        [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
                             rhotrac(i, j, k, n) =
                                 rho_arr(i, j, k) * tra_arr(i, j, k, n);
                         });
