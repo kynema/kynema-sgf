@@ -221,10 +221,7 @@ void DragForcing::operator()(
     const int sponge_west = m_sponge_west;
     const int sponge_south = m_sponge_south;
     const int sponge_north = m_sponge_north;
-    // Copy Data
-    // const auto* device_vel_ht = m_device_vel_ht.data();
-    // const auto* device_vel_vals = m_device_vel_vals.data();
-    // const unsigned vsize = m_device_vel_ht.size();
+
     const auto& dt = m_time.delta_t();
     const bool is_laminar = m_is_laminar;
     const amrex::Real scale_factor = (dx[2] < 1.0_rt) ? 1.0_rt : 1.0_rt / dx[2];
