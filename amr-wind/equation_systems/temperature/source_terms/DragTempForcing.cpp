@@ -107,11 +107,12 @@ void DragTempForcing::operator()(
                       (std::log(1.5_rt * dx[2] / z0) - psi_h_neighbour));
         const amrex::Real tTarget =
             surf_temp +
-            thetastar / kappa * (std::log(0.5_rt * dx[2] / z0) - psi_h_cell);
+            (thetastar / kappa * (std::log(0.5_rt * dx[2] / z0) - psi_h_cell));
         const amrex::Real bc_forcing_t = -(tTarget - theta) / (5.0_rt * dt);
-        const amrex::Real m = std::sqrt(ux1 * ux1 + uy1 * uy1 + uz1 * uz1);
-        const amrex::Real Cd =
-            std::min(drag_coefficient / (m + tiny), cd_max / dx[2]);
+        const amrex::Real m =
+            std::sqrt((ux1 * ux1) + (uy1 * uy1) + (uz1 * uz1));
+        const amrex::Real Cd = amrex::min<amrex::Real>(
+            drag_coefficient / (m + tiny), cd_max / dx[2]);
         src_term(i, j, k, 0) -=
             ((Cd * (theta - T0) * blank(i, j, k, 0)) +
              (bc_forcing_t * drag(i, j, k)));

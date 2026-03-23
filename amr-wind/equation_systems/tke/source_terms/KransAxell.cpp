@@ -193,13 +193,13 @@ void KransAxell::operator()(
             ux = vel(i, j, k, 0);
             uy = vel(i, j, k, 1);
             const amrex::Real uz = vel(i, j, k, 2);
-            m = std::sqrt(ux * ux + uy * uy + uz * uz);
+            m = std::sqrt((ux * ux) + (uy * uy) + (uz * uz));
             const amrex::Real Cd = amrex::min<amrex::Real>(
                 10.0_rt / (dx[2] * m + amr_wind::constants::EPS),
                 100.0_rt / dx[2]);
             dragforcing = -Cd * m * tke_arr(i, j, k, 0);
             z = amrex::max<amrex::Real>(
-                problo[2] + (k + 0.5_rt) * dx[2] - terrain_height(i, j, k),
+                problo[2] + ((k + 0.5_rt) * dx[2]) - terrain_height(i, j, k),
                 0.5_rt * dx[2]);
             amrex::Real ref_tke = tke_arr(i, j, k);
             if (z > sponge_start) {

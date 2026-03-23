@@ -86,7 +86,7 @@ void TemperatureFreeAtmosphereForcing::operator()(
             (has_terrain) ? terrain_height(i, j, k) : 0.0_rt;
         const int cell_blanking = (has_terrain) ? terrain_blank(i, j, k) : 0;
         const amrex::Real z = amrex::max<amrex::Real>(
-            prob_lo[2] + (k + 0.5_rt) * dx[2] - cell_terrain_height,
+            prob_lo[2] + ((k + 0.5_rt) * dx[2]) - cell_terrain_height,
             0.5_rt * dx[2]);
         amrex::Real ref_temp = temperature(i, j, k);
         if (z > sponge_start) {

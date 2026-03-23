@@ -246,11 +246,11 @@ void DragForcing::operator()(
     const amrex::Real* uu = m_prof_u_d.data();
     const amrex::Real* vv = m_prof_v_d.data();
     const amrex::Real* ww = m_prof_w_d.data();
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
-        const amrex::Real x = prob_lo[0] + (i + 0.5_rt) * dx[0];
-        const amrex::Real y = prob_lo[1] + (j + 0.5_rt) * dx[1];
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+        const amrex::Real x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
+        const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
         const amrex::Real z = amrex::max<amrex::Real>(
-            prob_lo[2] + (k + 0.5_rt) * dx[2] - terrain_height(i, j, k),
+            prob_lo[2] + ((k + 0.5_rt) * dx[2]) - terrain_height(i, j, k),
             0.1_rt);
         amrex::Real xstart_damping = 0.0_rt;
         amrex::Real ystart_damping = 0.0_rt;
@@ -277,11 +277,12 @@ void DragForcing::operator()(
             (nwvals > 0) ? interp::linear(windh, windh + nwvals, vv, z) : vv[0];
         const amrex::Real spongeVelZ =
             (nwvals > 0) ? interp::linear(windh, windh + nwvals, ww, z) : ww[0];
-        amrex::Real Dxz = 0.0;
-        amrex::Real Dyz = 0.0;
+        amrex::Real Dxz = 0.0_rt;
+        amrex::Real Dyz = 0.0_rt;
         amrex::Real bc_forcing_x = 0.0_rt;
         amrex::Real bc_forcing_y = 0.0_rt;
-        const amrex::Real m = std::sqrt(ux1 * ux1 + uy1 * uy1 + uz1 * uz1);
+        const amrex::Real m =
+            std::sqrt((ux1 * ux1) + (uy1 * uy1) + (uz1 * uz1));
         if (drag(i, j, k) == 1 && (!is_laminar)) {
             // Check if close enough to interface to use current cell or below
             int k_off = -1;
@@ -338,7 +339,7 @@ void DragForcing::operator()(
             target_v = target_vel_arr(i, j, k, 1);
             target_w = target_vel_arr(i, j, k, 2);
         }
-        const amrex::Real CdM = std::min(
+        const amrex::Real CdM = amrex::min<amrex::Real>(
             Cd / (m + amr_wind::constants::EPS), cd_max / scale_factor);
         src_term(i, j, k, 0) -=
             (CdM * m * (ux1 - target_u) * blank(i, j, k) + Dxz * drag(i, j, k) +

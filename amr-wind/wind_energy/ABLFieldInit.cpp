@@ -256,9 +256,9 @@ void ABLFieldInit::operator()(
         const amrex::Real* vv = m_prof_v_d.data();
         const bool terrain_aligned_profile = m_terrain_aligned_profile;
         amrex::ParallelFor(vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-            amrex::Real x = problo[0] + (i + 0.5_rt) * dx[0];
-            amrex::Real y = problo[1] + (j + 0.5_rt) * dx[1];
-            amrex::Real z = problo[2] + (k + 0.5_rt) * dx[2];
+            amrex::Real x = problo[0] + ((i + 0.5_rt)) * dx[0];
+            amrex::Real y = problo[1] + ((j + 0.5_rt)) * dx[1];
+            amrex::Real z = problo[2] + ((k + 0.5_rt)) * dx[2];
             const amrex::Real terrainHt =
                 terrain_aligned_profile
                     ? interp::bilinear(
@@ -266,7 +266,7 @@ void ABLFieldInit::operator()(
                           yterrain_ptr, yterrain_ptr + yterrain_size,
                           zterrain_ptr, x, y)
                     : 0.0_rt;
-            z = std::max(0.1_rt, z - terrainHt);
+            z = amrex::max<amrex::Real>(0.1_rt, z - terrainHt);
             density(i, j, k) = rho_init;
             const amrex::Real theta =
                 (ntvals > 0) ? interp::linear(th, th + ntvals, tv, z) : tv[0];
@@ -354,10 +354,10 @@ void ABLFieldInit::operator()(
         const amrex::Real ib_height = m_ib_height;
 
         amrex::ParallelFor(vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-            const amrex::Real x = problo[0] + (i + 0.5_rt) * dx[0];
-            const amrex::Real y = problo[1] + (j + 0.5_rt) * dx[1];
-            const amrex::Real z =
-                std::max(problo[2] + (k + 0.5_rt) * dx[2] - ib_height, 0.1_rt);
+            const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+            const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+            const amrex::Real z = amrex::max<amrex::Real>(
+                problo[2] + ((k + 0.5_rt) * dx[2]) - ib_height, 0.1_rt);
             const amrex::Real xl = x - problo[0];
             const amrex::Real yl = y - problo[1];
             const amrex::Real zl = z / ref_height;
@@ -444,7 +444,7 @@ void ABLFieldInit::init_tke(
                               yterrain_ptr, yterrain_ptr + yterrain_size,
                               zterrain_ptr, x, y)
                         : 0.0_rt;
-                z = std::max(0.1_rt, z - terrainHt);
+                z = amrex::max<amrex::Real>(0.1_rt, z - terrainHt);
                 const amrex::Real tke_prof =
                     (nwvals > 0)
                         ? interp::linear(windh, windh + nwvals, tke_data, z)

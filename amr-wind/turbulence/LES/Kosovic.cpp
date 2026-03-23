@@ -208,11 +208,12 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                     (mu_arrs[nbx](i, j, k) * (1.0_rt - drag)) +
                     (drag * mut_loglaw);
                 amrex::Real stressScale =
-                    locSurfaceFactor *
-                        (std::pow(1.0_rt - fmu, locSurfaceRANSExp) *
-                             smag_factor * 0.25_rt * locC1 +
-                         std::pow(fmu, locSurfaceRANSExp) * ransL) +
-                    (1.0_rt - locSurfaceFactor) * smag_factor * 0.25_rt * locC1;
+                    (locSurfaceFactor *
+                     (std::pow(1.0_rt - fmu, locSurfaceRANSExp) * smag_factor *
+                          0.25_rt * locC1 +
+                      std::pow(fmu, locSurfaceRANSExp) * ransL)) +
+                    ((1.0_rt - locSurfaceFactor) * smag_factor * 0.25_rt *
+                     locC1);
                 divNij_arrs[nbx](i, j, k, 0) *= rho * stressScale * turnOff *
                                                 blankTerrain * non_linear_coeff;
                 divNij_arrs[nbx](i, j, k, 1) *= rho * stressScale * turnOff *
@@ -234,7 +235,7 @@ void Kosovic<Transport>::update_alphaeff(Field& alphaeff)
     auto lam_alpha = (this->m_transport).alpha();
     auto& mu_turb = this->m_mu_turb;
     auto& repo = mu_turb.repo();
-    const amrex::Real muCoeff = 3.0;
+    const amrex::Real muCoeff = 3.0_rt;
     const int nlevels = repo.num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& muturb_arrs = mu_turb(lev).const_arrays();

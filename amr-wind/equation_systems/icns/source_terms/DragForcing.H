@@ -2,8 +2,8 @@
 #define DRAGFORCING_H
 
 #include "amr-wind/equation_systems/icns/MomentumSource.H"
-#include "amr-wind/CFDSim.H"
 #include "amr-wind/core/SimTime.H"
+#include "amr-wind/CFDSim.H"
 #include "amr-wind/utilities/constants.H"
 #include "AMReX_REAL.H"
 
@@ -50,13 +50,13 @@ private:
     amrex::Gpu::DeviceVector<amrex::Real> m_prof_v_d;
     amrex::Gpu::DeviceVector<amrex::Real> m_prof_w_d;
 
-    amrex::Real m_drag_coefficient{10.0};
-    amrex::Real m_sponge_strength{1.0};
-    amrex::Real m_sponge_density{1.0};
-    amrex::Real m_sponge_distance_west{0};
-    amrex::Real m_sponge_distance_east{0};
-    amrex::Real m_sponge_distance_south{0};
-    amrex::Real m_sponge_distance_north{0};
+    amrex::Real m_drag_coefficient{10.0_rt};
+    amrex::Real m_sponge_strength{1.0_rt};
+    amrex::Real m_sponge_density{1.0_rt};
+    amrex::Real m_sponge_distance_west{0.0_rt};
+    amrex::Real m_sponge_distance_east{0.0_rt};
+    amrex::Real m_sponge_distance_south{0.0_rt};
+    amrex::Real m_sponge_distance_north{0.0_rt};
     int m_sponge_west{0};
     int m_sponge_east{0};
     int m_sponge_south{0};
