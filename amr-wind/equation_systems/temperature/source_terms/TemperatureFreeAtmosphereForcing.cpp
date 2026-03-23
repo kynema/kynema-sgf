@@ -80,11 +80,11 @@ void TemperatureFreeAtmosphereForcing::operator()(
                                     : amrex::Array4<int>();
     amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const amrex::Real cell_terrain_height =
-            (has_terrain) ? terrain_height(i, j, k) : 0.0;
-        const amrex::Real cell_blanking =
-            (has_terrain) ? terrain_blank(i, j, k) : 0.0;
+            (has_terrain) ? terrain_height(i, j, k) : 0.0_rt;
+        const int cell_blanking = (has_terrain) ? terrain_blank(i, j, k) : 0;
         const amrex::Real z = std::max(
-            prob_lo[2] + (k + 0.5) * dx[2] - cell_terrain_height, 0.5 * dx[2]);
+            prob_lo[2] + (k + 0.5_rt) * dx[2] - cell_terrain_height,
+            0.5_rt * dx[2]);
         amrex::Real ref_temp = temperature(i, j, k);
         if (z > sponge_start) {
             ref_temp = (vsize > 0)
@@ -93,7 +93,8 @@ void TemperatureFreeAtmosphereForcing::operator()(
                                  theta_values_d, z)
                            : temperature(i, j, k);
         }
-        src_term(i, j, k, 0) -= (1 - cell_blanking) / meso_timescale *
+        src_term(i, j, k, 0) -= static_cast<amrex::Real>(1 - cell_blanking) /
+                                meso_timescale *
                                 (temperature(i, j, k) - ref_temp);
     });
     if (m_horizontal_sponge) {

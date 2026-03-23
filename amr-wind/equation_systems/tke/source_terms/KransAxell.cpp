@@ -121,7 +121,7 @@ void KransAxell::operator()(
     }
     amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         amrex::Real bcforcing = 0;
-        const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
+        const amrex::Real z = problo[2] + (k + 0.5_rt) * dx[2];
         if (k == 0) {
             const amrex::Real ux = vel(i, j, k + 1, 0);
             const amrex::Real uy = vel(i, j, k + 1, 1);
