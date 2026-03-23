@@ -142,7 +142,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
     auto levelz0 = terrainz0.arrays();
     auto levelheight = terrain_height.arrays();
     auto levelDamping = damping.arrays();
-    
+
     amrex::ParallelFor(
         blanking, m_terrain_blank.num_grow(),
         [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
