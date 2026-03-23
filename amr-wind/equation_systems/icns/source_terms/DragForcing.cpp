@@ -282,8 +282,8 @@ void DragForcing::operator()(
             (nwvals > 0) ? interp::linear(windh, windh + nwvals, ww, z) : ww[0];
         amrex::Real Dxz = 0.0;
         amrex::Real Dyz = 0.0;
-        amrex::Real bc_forcing_x = 0;
-        amrex::Real bc_forcing_y = 0;
+        amrex::Real bc_forcing_x = 0.0_rt;
+        amrex::Real bc_forcing_y = 0.0_rt;
         const amrex::Real m = std::sqrt(ux1 * ux1 + uy1 * uy1 + uz1 * uz1);
         if (drag(i, j, k) == 1 && (!is_laminar)) {
             // Check if close enough to interface to use current cell or below
@@ -329,8 +329,8 @@ void DragForcing::operator()(
                 (amr_wind::constants::EPS +
                  std::sqrt((ux2r * ux2r) + (uy2r * uy2r)));
             // BC forcing pushes nonrelative velocity toward target velocity
-            bc_forcing_x = -(uxTarget - ux1) / (5 * dt);
-            bc_forcing_y = -(uyTarget - uy1) / (5 * dt);
+            bc_forcing_x = -(uxTarget - ux1) / (5.0_rt * dt);
+            bc_forcing_y = -(uyTarget - uy1) / (5.0_rt * dt);
         }
         // Target velocity intended for within terrain
         amrex::Real target_u = 0.0_rt;
