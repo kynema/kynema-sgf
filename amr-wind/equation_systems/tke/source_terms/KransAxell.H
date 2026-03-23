@@ -4,6 +4,9 @@
 #include "amr-wind/transport_models/TransportModel.H"
 #include "amr-wind/equation_systems/tke/TKESource.H"
 #include "amr-wind/utilities/constants.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
 
 namespace amr_wind::pde::tke {
 
@@ -40,7 +43,7 @@ private:
     amrex::Real m_z0{0.1_rt};
     amrex::Real m_kappa{0.41_rt};
     amrex::Real m_meso_start{600.0_rt};
-    amrex::Vector<amrex::Real> m_gravity{0.0, 0.0, -9.81_rt};
+    amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
     const SimTime& m_time;
     const CFDSim& m_sim;
     const amrex::AmrCore& m_mesh;
