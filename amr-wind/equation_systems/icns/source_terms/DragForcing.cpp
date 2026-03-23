@@ -8,6 +8,7 @@
 #include "amr-wind/utilities/linear_interpolation.H"
 #include "amr-wind/utilities/constants.H"
 #include "AMReX_REAL.H"
+#include <fstream>
 
 using namespace amrex::literals;
 

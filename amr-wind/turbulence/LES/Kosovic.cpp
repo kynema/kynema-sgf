@@ -55,6 +55,8 @@ Kosovic<Transport>::Kosovic(CFDSim& sim)
     pp_abl.query("mo_beta_m", m_beta_m);
     pp_abl.query("surface_roughness_z0", m_surface_roughness_z0);
     pp_abl.query("ref_temp", m_ref_temp);
+    amrex::ParmParse pp_inc("incflo");
+    pp_inc.queryarr("gravity", m_gravity);
 }
 template <typename Transport>
 void Kosovic<Transport>::update_turbulent_viscosity(
@@ -70,7 +72,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
     auto gradT = (this->m_sim.repo()).create_scratch_field(3, 0);
     fvm::gradient(*gradT, m_theta.state(fstate));
     const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> gravity{
-        0.0_rt, 0.0_rt, -9.81_rt};
+        m_gravity[0], m_gravity[1], m_gravity[2]};
     const auto& geom_vec = repo.mesh().Geom();
     const amrex::Real Cs_sqr = this->m_Cs * this->m_Cs;
     const bool has_terrain =

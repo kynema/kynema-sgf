@@ -73,7 +73,6 @@ private:
     amrex::Real m_horizontal_tau{20.0_rt};
     amrex::Real m_horizontal_abl_height{1e15_rt};
     amrex::Real m_horizontal_slope_end{1e30_rt};
-    amrex::Real m_horizontal_free_atmosphere{1e30_rt};
     amrex::Real m_vertical_slope{0.0_rt};
     amrex::Real m_vertical_full{1e30_rt};
     //! Lateral Damping - (-X)

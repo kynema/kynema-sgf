@@ -63,7 +63,6 @@ TerrainDrag::TerrainDrag(CFDSim& sim)
     pp.query("horizontal_time_scale", m_horizontal_tau);
     pp.query("horizontal_abl_height", m_horizontal_abl_height);
     pp.query("horizontal_slope_end", m_horizontal_slope_end);
-    pp.query("horizontal_free_atmosphere", m_horizontal_free_atmosphere);
     pp.query("vertical_slope", m_vertical_slope);
     pp.query("vertical_full", m_vertical_full);
 }
