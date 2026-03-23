@@ -40,8 +40,6 @@ private:
     const Field& m_velocity;
     const Field* m_target_vel{nullptr};
     const Field* m_target_levelset{nullptr};
-    // amrex::Gpu::DeviceVector<amrex::Real> m_device_vel_ht;
-    //   amrex::Gpu::DeviceVector<amrex::Real> m_device_vel_vals;
     std::string m_1d_rans;
     amrex::Vector<amrex::Real> m_wind_heights;
     amrex::Vector<amrex::Real> m_u_values;
