@@ -28,10 +28,9 @@ DragTempForcing::DragTempForcing(const CFDSim& sim)
     pp_abl.query("mo_beta_m", m_beta_m);
     pp_abl.query("mo_gamma_m", m_gamma_h);
     pp_abl.query("mo_beta_m", m_beta_h);
-    {
-        amrex::ParmParse pp_incflow("incflo");
-        pp_incflow.queryarr("gravity", m_gravity);
-    }
+
+    amrex::ParmParse pp_incflo("incflo");
+    pp_incflo.queryarr("gravity", m_gravity);
 }
 
 DragTempForcing::~DragTempForcing() = default;

@@ -59,10 +59,9 @@ KransAxell::KransAxell(const CFDSim& sim)
     pp.query("monin_obukhov_length", m_monin_obukhov_length);
     pp.query("mo_gamma_m", m_gamma_m);
     pp.query("mo_beta_m", m_beta_m);
-    {
-        amrex::ParmParse pp_incflow("incflo");
-        pp_incflow.queryarr("gravity", m_gravity);
-    }
+
+    amrex::ParmParse pp_incflo("incflo");
+    pp_incflo.queryarr("gravity", m_gravity);
 
     amrex::ParmParse pp_drag("DragForcing");
     pp_drag.query("sponge_west", m_sponge_west);
