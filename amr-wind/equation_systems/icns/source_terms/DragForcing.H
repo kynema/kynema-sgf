@@ -53,6 +53,7 @@ private:
     amrex::Real m_drag_coefficient{10.0_rt};
     amrex::Real m_sponge_strength{1.0_rt};
     amrex::Real m_sponge_density{1.0_rt};
+    amrex::Real m_forcing_time_factor{5.0_rt};
     amrex::Real m_sponge_distance_west{0.0_rt};
     amrex::Real m_sponge_distance_east{0.0_rt};
     amrex::Real m_sponge_distance_south{0.0_rt};

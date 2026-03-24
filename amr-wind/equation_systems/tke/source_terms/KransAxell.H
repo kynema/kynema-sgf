@@ -43,6 +43,7 @@ private:
     amrex::Real m_z0{0.1_rt};
     amrex::Real m_kappa{0.41_rt};
     amrex::Real m_meso_start{600.0_rt};
+    amrex::Real m_forcing_time_factor{5.0_rt};
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
     const SimTime& m_time;
     const CFDSim& m_sim;

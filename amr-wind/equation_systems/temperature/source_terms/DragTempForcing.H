@@ -43,6 +43,7 @@ private:
     amrex::Real m_gamma_h{5.0_rt};
     amrex::Real m_beta_h{16.0_rt};
     amrex::Real m_soil_temperature{300};
+    amrex::Real m_forcing_time_factor{5.0_rt};
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 };
 

@@ -97,6 +97,7 @@ DragForcing::DragForcing(const CFDSim& sim)
     amrex::ParmParse pp("DragForcing");
     pp.query("drag_coefficient", m_drag_coefficient);
     pp.query("sponge_strength", m_sponge_strength);
+    pp.query("bc_forcing_time_factor", m_forcing_time_factor);
     pp.query("sponge_density", m_sponge_density);
     pp.query("sponge_west", m_sponge_west);
     pp.query("sponge_east", m_sponge_east);
@@ -232,6 +233,7 @@ void DragForcing::operator()(
 
     const auto& dt = m_time.delta_t();
     const bool is_laminar = m_is_laminar;
+    const amrex::Real time_factor = m_forcing_time_factor;
     const amrex::Real scale_factor = (dx[2] < 1.0_rt) ? 1.0_rt : 1.0_rt / dx[2];
     const amrex::Real Cd =
         (is_laminar && dx[2] < 1) ? drag_coefficient : drag_coefficient / dx[2];
@@ -334,8 +336,8 @@ void DragForcing::operator()(
                 (amr_wind::constants::EPS +
                  std::sqrt((ux2r * ux2r) + (uy2r * uy2r)));
             // BC forcing pushes nonrelative velocity toward target velocity
-            bc_forcing_x = -(uxTarget - ux1) / (5.0_rt * dt);
-            bc_forcing_y = -(uyTarget - uy1) / (5.0_rt * dt);
+            bc_forcing_x = -(uxTarget - ux1) / (time_factor * dt);
+            bc_forcing_y = -(uyTarget - uy1) / (time_factor * dt);
         }
         // Target velocity intended for within terrain
         amrex::Real target_u = 0.0_rt;
