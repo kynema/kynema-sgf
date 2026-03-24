@@ -239,8 +239,8 @@ void DragForcing::operator()(
     const amrex::Real scale_factor = (dx[2] < 1.0_rt) ? 1.0_rt : 1.0_rt / dx[2];
     const amrex::Real Cd =
         (is_laminar && dx[2] < 1) ? drag_coefficient : drag_coefficient / dx[2];
+    const amrex::Real kappa = m_kappa;
     const amrex::Real z0_min = 1.0e-4_rt;
-    const amrex::Real kappa = 0.41_rt;
     const amrex::Real cd_max = 1000.0_rt;
 
     const amrex::Real non_neutral_neighbour =
