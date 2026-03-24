@@ -192,58 +192,60 @@ Section: Momentum Sources
 
    The value of the sponge layer density. It is recommended to use the default value of 1.0.  
 
-.. input_param:: DragForcing.sponge_distance_west
+.. input_param:: DragForcing.bc_forcing_time_factor
 
-   **type:** Real, optional
+   **type:** Real, optional, default = 5.0
 
-   This value is specified as a negative value when the inflow x-velocity is <=0. The default value is -1000 m and can be changed if strong 
-   reflections are observed. 
-
-.. input_param:: DragForcing.sponge_distance_east
-
-   **type:** Real, optional
-
-   This value is specified as a positive value when the inflow x-velocity is >=0. The default value is 1000 m and can be changed if strong 
-   reflections are observed. 
-
-.. input_param:: DragForcing.sponge_distance_south
-
-   **type:** Real, optional
-
-   This value is specified as a negative value when the inflow y-velocity is <=0. The default value is -1000 m and can be changed if strong 
-   reflections are observed. 
-
-.. input_param:: DragForcing.sponge_distance_north
-
-   **type:** Real, optional
-
-   This value is specified as a positive value when the inflow y-velocity is >=0. The default value is 1000 m and can be changed if strong 
-   reflections are observed. 
+   This value modifies the time scale of the BC forcing component of DragForcing relative to
+   the time step size.
 
 .. input_param:: DragForcing.sponge_west
 
-   **type:** int, optional
+   **type:** Boolean, optional, default = false
 
-   This term turns on the sponge layer in the west (-x) boundary. The default value is 0. 
+   This term turns on the sponge layer in the west (-x) boundary.
 
 .. input_param:: DragForcing.sponge_east
 
-   **type:** int, optional
+   **type:** Boolean, optional, default = false
 
-   This term turns on the sponge layer in the east (+x) boundary. The default value is 1. 
+   This term turns on the sponge layer in the east (+x) boundary.
 
 .. input_param:: DragForcing.sponge_south
 
-   **type:** int, optional
+   **type:** Boolean, optional, default = false
 
-   This term turns on the sponge layer in the south (-y) boundary. The default value is 0. 
+   This term turns on the sponge layer in the south (-y) boundary.
 
 .. input_param:: DragForcing.sponge_north
 
-   **type:** int, optional
+   **type:** Boolean, optional, default = false
 
-   This term turns on the sponge layer in the north (+y) boundary. The default value is 1. 
+   This term turns on the sponge layer in the north (+y) boundary.
 
+.. input_param:: DragForcing.sponge_distance_west
+
+   **type:** Real, mandatory if west sponge is active
+
+   This value is specified as a negative value when the inflow x-velocity is <=0. 
+
+.. input_param:: DragForcing.sponge_distance_east
+
+   **type:** Real, mandatory if east sponge is active
+
+   This value is specified as a positive value when the inflow x-velocity is >=0. 
+
+.. input_param:: DragForcing.sponge_distance_south
+
+   **type:** Real, mandatory if south sponge is active
+
+   This value is specified as a negative value when the inflow y-velocity is <=0. 
+
+.. input_param:: DragForcing.sponge_distance_north
+
+   **type:** Real, mandatory if west sponge is active
+
+   This value is specified as a positive value when the inflow y-velocity is >=0.
 
 .. input_param:: DragForcing.is_laminar
 
