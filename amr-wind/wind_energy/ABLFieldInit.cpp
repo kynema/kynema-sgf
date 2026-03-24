@@ -355,7 +355,7 @@ void ABLFieldInit::operator()(
         const amrex::Real vfac = m_deltaV * std::exp(0.5_rt) / m_ref_height;
         const amrex::Real ref_height = m_ref_height;
         const amrex::Real ib_height = m_ib_height;
-        const amrex::Real min_z = m_min_z;
+        const amrex::Real min_z = m_initial_wind_profile ? m_min_z : 0.0_rt;
 
         amrex::ParallelFor(vbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
             const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
