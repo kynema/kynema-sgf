@@ -65,15 +65,22 @@ KransAxell::KransAxell(const CFDSim& sim)
     }
 
     amrex::ParmParse pp_drag("DragForcing");
-    pp_drag.query("sponge_strength", m_sponge_strength);
-    pp_drag.query("sponge_distance_west", m_sponge_distance_west);
-    pp_drag.query("sponge_distance_east", m_sponge_distance_east);
-    pp_drag.query("sponge_distance_south", m_sponge_distance_south);
-    pp_drag.query("sponge_distance_north", m_sponge_distance_north);
     pp_drag.query("sponge_west", m_sponge_west);
     pp_drag.query("sponge_east", m_sponge_east);
     pp_drag.query("sponge_south", m_sponge_south);
     pp_drag.query("sponge_north", m_sponge_north);
+    if (m_sponge_west) {
+        pp_drag.get("sponge_distance_west", m_sponge_distance_west);
+    }
+    if (m_sponge_east) {
+        pp_drag.get("sponge_distance_east", m_sponge_distance_east);
+    }
+    if (m_sponge_south) {
+        pp_drag.get("sponge_distance_south", m_sponge_distance_south);
+    }
+    if (m_sponge_north) {
+        pp_drag.get("sponge_distance_north", m_sponge_distance_north);
+    }
 }
 
 KransAxell::~KransAxell() = default;

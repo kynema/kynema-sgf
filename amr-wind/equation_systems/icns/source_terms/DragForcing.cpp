@@ -98,14 +98,23 @@ DragForcing::DragForcing(const CFDSim& sim)
     pp.query("drag_coefficient", m_drag_coefficient);
     pp.query("sponge_strength", m_sponge_strength);
     pp.query("sponge_density", m_sponge_density);
-    pp.query("sponge_distance_west", m_sponge_distance_west);
-    pp.query("sponge_distance_east", m_sponge_distance_east);
-    pp.query("sponge_distance_south", m_sponge_distance_south);
-    pp.query("sponge_distance_north", m_sponge_distance_north);
     pp.query("sponge_west", m_sponge_west);
     pp.query("sponge_east", m_sponge_east);
     pp.query("sponge_south", m_sponge_south);
     pp.query("sponge_north", m_sponge_north);
+    if (m_sponge_west) {
+        pp.get("sponge_distance_west", m_sponge_distance_west);
+    }
+    if (m_sponge_east) {
+        pp.get("sponge_distance_east", m_sponge_distance_east);
+    }
+    if (m_sponge_south) {
+        pp.get("sponge_distance_south", m_sponge_distance_south);
+    }
+    if (m_sponge_north) {
+        pp.get("sponge_distance_north", m_sponge_distance_north);
+    }
+
     pp.query("is_laminar", m_is_laminar);
     if (m_sponge_west || m_sponge_east || m_sponge_south || m_sponge_north) {
         amrex::Print() << " WARNING: Sponge Forcing with no precursor RANS is "
