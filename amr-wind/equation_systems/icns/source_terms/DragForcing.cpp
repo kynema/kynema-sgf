@@ -251,22 +251,21 @@ void DragForcing::operator()(
         const amrex::Real z = amrex::max<amrex::Real>(
             prob_lo[2] + ((k + 0.5_rt) * dx[2]) - terrain_height(i, j, k),
             0.1_rt);
-        amrex::Real xstart_damping = 0.0_rt;
-        amrex::Real ystart_damping = 0.0_rt;
-        amrex::Real xend_damping = 0.0_rt;
-        amrex::Real yend_damping = 0.0_rt;
         amrex::Real xi_end = (x - start_east) / (prob_hi[0] - start_east);
         amrex::Real xi_start = (start_west - x) / (start_west - prob_lo[0]);
         xi_start = sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);
         xi_end = sponge_east * amrex::max<amrex::Real>(xi_end, 0.0_rt);
-        xstart_damping = sponge_west * sponge_strength * xi_start * xi_start;
-        xend_damping = sponge_east * sponge_strength * xi_end * xi_end;
+        const amrex::Real xstart_damping =
+            sponge_west * sponge_strength * xi_start * xi_start;
+        const amrex::Real xend_damping =
+            sponge_east * sponge_strength * xi_end * xi_end;
         amrex::Real yi_end = (y - start_north) / (prob_hi[1] - start_north);
         amrex::Real yi_start = (start_south - y) / (start_south - prob_lo[1]);
         yi_start = sponge_south * amrex::max<amrex::Real>(yi_start, 0.0_rt);
         yi_end = sponge_north * amrex::max<amrex::Real>(yi_end, 0.0_rt);
-        ystart_damping = sponge_strength * yi_start * yi_start;
-        yend_damping = sponge_strength * yi_end * yi_end;
+        const amrex::Real ystart_damping =
+            sponge_strength * yi_start * yi_start;
+        const amrex::Real yend_damping = sponge_strength * yi_end * yi_end;
         const amrex::Real ux1 = vel(i, j, k, 0);
         const amrex::Real uy1 = vel(i, j, k, 1);
         const amrex::Real uz1 = vel(i, j, k, 2);
