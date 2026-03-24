@@ -117,10 +117,6 @@ DragForcing::DragForcing(const CFDSim& sim)
     }
 
     pp.query("is_laminar", m_is_laminar);
-    if (m_sponge_west || m_sponge_east || m_sponge_south || m_sponge_north) {
-        amrex::Print() << " WARNING: Sponge Forcing with no precursor RANS is "
-                          "not recommended and use with caution.\n";
-    }
     const auto& phy_mgr = m_sim.physics_manager();
     amrex::ParmParse pp_abl("ABL");
     pp_abl.query("minimum_vertical_position", m_min_z);
@@ -155,7 +151,14 @@ DragForcing::DragForcing(const CFDSim& sim)
             amrex::Gpu::hostToDevice, m_w_values.begin(), m_w_values.end(),
             m_prof_w_d.begin());
     } else {
-        amrex::Abort("Cannot find 1-D RANS profile file " + m_1d_rans);
+        if (m_sponge_west || m_sponge_east || m_sponge_south ||
+            m_sponge_north) {
+            amrex::Print()
+                << " WARNING: Sponge Forcing with no precursor RANS is "
+                   "not recommended; use with caution.\n";
+        } else {
+            m_sponge_strength = 0.0_rt;
+        }
     }
     if (phy_mgr.contains("OceanWaves") && !sim.repo().field_exists("vof")) {
         const auto terrain_phys =
