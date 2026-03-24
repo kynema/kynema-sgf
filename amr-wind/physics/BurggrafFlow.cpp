@@ -171,14 +171,13 @@ void BurggrafFlow::output_error()
     // mapping
     const amrex::Real u_err = compute_error<UExact>(m_velocity);
     const amrex::Real v_err = compute_error<VExact>(m_velocity);
-    const amrex::Real w_err = compute_error<WExact>(m_velocity);
 
     if (amrex::ParallelDescriptor::IOProcessor()) {
         std::ofstream f;
         f.open(m_output_fname.c_str(), std::ios_base::app);
         f << std::setprecision(12) << std::setw(m_w) << m_time.new_time()
           << std::setw(m_w) << u_err << std::setw(m_w) << v_err
-          << std::setw(m_w) << w_err << '\n';
+          << '\n';
         f.close();
     }
 }
