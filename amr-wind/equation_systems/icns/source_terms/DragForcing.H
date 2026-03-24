@@ -57,10 +57,10 @@ private:
     amrex::Real m_sponge_distance_east{0.0_rt};
     amrex::Real m_sponge_distance_south{0.0_rt};
     amrex::Real m_sponge_distance_north{0.0_rt};
-    int m_sponge_west{0};
-    int m_sponge_east{0};
-    int m_sponge_south{0};
-    int m_sponge_north{0};
+    bool m_sponge_west{false};
+    bool m_sponge_east{false};
+    bool m_sponge_south{false};
+    bool m_sponge_north{false};
     bool m_is_laminar{false};
     bool m_terrain_is_waves{false};
     bool m_apply_MOSD{false};

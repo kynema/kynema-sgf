@@ -107,8 +107,7 @@ DragForcing::DragForcing(const CFDSim& sim)
     pp.query("sponge_south", m_sponge_south);
     pp.query("sponge_north", m_sponge_north);
     pp.query("is_laminar", m_is_laminar);
-    if (m_sponge_west == 1 || m_sponge_east == 1 || m_sponge_south == 1 ||
-        m_sponge_north == 1) {
+    if (m_sponge_west || m_sponge_east || m_sponge_south || m_sponge_north) {
         amrex::Print() << " WARNING: Sponge Forcing with no precursor RANS is "
                           "not recommended and use with caution.\n";
     }
@@ -217,10 +216,10 @@ void DragForcing::operator()(
     const amrex::Real start_west = prob_lo[0] - m_sponge_distance_west;
     const amrex::Real start_north = prob_hi[1] - m_sponge_distance_north;
     const amrex::Real start_south = prob_lo[1] - m_sponge_distance_south;
-    const int sponge_east = m_sponge_east;
-    const int sponge_west = m_sponge_west;
-    const int sponge_south = m_sponge_south;
-    const int sponge_north = m_sponge_north;
+    const int sponge_east = static_cast<int>(m_sponge_east);
+    const int sponge_west = static_cast<int>(m_sponge_west);
+    const int sponge_south = static_cast<int>(m_sponge_south);
+    const int sponge_north = static_cast<int>(m_sponge_north);
 
     const auto& dt = m_time.delta_t();
     const bool is_laminar = m_is_laminar;
