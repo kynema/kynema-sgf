@@ -110,8 +110,7 @@ DragForcing::DragForcing(const CFDSim& sim)
     if (m_sponge_west == 1 || m_sponge_east == 1 || m_sponge_south == 1 ||
         m_sponge_north == 1) {
         amrex::Print() << " WARNING: Sponge Forcing with no precursor RANS is "
-                          "not recommended and use with caution."
-                       << std::endl;
+                          "not recommended and use with caution.\n";
     }
     const auto& phy_mgr = m_sim.physics_manager();
     amrex::ParmParse pp_abl("ABL");
