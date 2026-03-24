@@ -136,6 +136,9 @@ private:
     //! Cutoff height for init tke profile
     amrex::Real m_tke_cutoff_height{250.0_rt};
 
+    //! Minimum vertical position
+    amrex::Real m_min_z{0.1_rt};
+
     //! Top velocity
     amrex::RealArray m_top_vel{20.0_rt};
 

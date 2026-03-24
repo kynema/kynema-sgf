@@ -123,6 +123,7 @@ DragForcing::DragForcing(const CFDSim& sim)
     }
     const auto& phy_mgr = m_sim.physics_manager();
     amrex::ParmParse pp_abl("ABL");
+    pp_abl.query("minimum_vertical_position",m_min_z);
     pp_abl.query("rans_1dprofile_file", m_1d_rans);
     if (!m_1d_rans.empty()) {
         std::ifstream ransfile(m_1d_rans, std::ios::in);
@@ -234,6 +235,7 @@ void DragForcing::operator()(
     const auto& dt = m_time.delta_t();
     const bool is_laminar = m_is_laminar;
     const amrex::Real time_factor = m_forcing_time_factor;
+    const amrex::Real min_z = m_min_z;
     const amrex::Real scale_factor = (dx[2] < 1.0_rt) ? 1.0_rt : 1.0_rt / dx[2];
     const amrex::Real Cd =
         (is_laminar && dx[2] < 1) ? drag_coefficient : drag_coefficient / dx[2];
@@ -261,7 +263,7 @@ void DragForcing::operator()(
         const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
         const amrex::Real z = amrex::max<amrex::Real>(
             prob_lo[2] + ((k + 0.5_rt) * dx[2]) - terrain_height(i, j, k),
-            0.1_rt);
+            min_z);
         amrex::Real xi_end = (x - start_east) / (prob_hi[0] - start_east);
         amrex::Real xi_start = (start_west - x) / (start_west - prob_lo[0]);
         xi_start = sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);

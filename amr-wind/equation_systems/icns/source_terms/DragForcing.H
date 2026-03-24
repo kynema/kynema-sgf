@@ -58,6 +58,7 @@ private:
     amrex::Real m_sponge_distance_east{0.0_rt};
     amrex::Real m_sponge_distance_south{0.0_rt};
     amrex::Real m_sponge_distance_north{0.0_rt};
+    amrex::Real m_min_z{0.1_rt};
     bool m_sponge_west{false};
     bool m_sponge_east{false};
     bool m_sponge_south{false};
