@@ -223,10 +223,10 @@ void KransAxell::operator()(
             const amrex::Real start_west = problo[0] - m_sponge_distance_west;
             const amrex::Real start_north = probhi[1] - m_sponge_distance_north;
             const amrex::Real start_south = problo[1] - m_sponge_distance_south;
-            const int sponge_east = m_sponge_east;
-            const int sponge_west = m_sponge_west;
-            const int sponge_south = m_sponge_south;
-            const int sponge_north = m_sponge_north;
+            const auto sponge_east = static_cast<int>(m_sponge_east);
+            const auto sponge_west = static_cast<int>(m_sponge_west);
+            const auto sponge_south = static_cast<int>(m_sponge_south);
+            const auto sponge_north = static_cast<int>(m_sponge_north);
             amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                 const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
                 const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);

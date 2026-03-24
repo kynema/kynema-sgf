@@ -216,10 +216,10 @@ void DragForcing::operator()(
     const amrex::Real start_west = prob_lo[0] - m_sponge_distance_west;
     const amrex::Real start_north = prob_hi[1] - m_sponge_distance_north;
     const amrex::Real start_south = prob_lo[1] - m_sponge_distance_south;
-    const int sponge_east = static_cast<int>(m_sponge_east);
-    const int sponge_west = static_cast<int>(m_sponge_west);
-    const int sponge_south = static_cast<int>(m_sponge_south);
-    const int sponge_north = static_cast<int>(m_sponge_north);
+    const auto sponge_east = static_cast<int>(m_sponge_east);
+    const auto sponge_west = static_cast<int>(m_sponge_west);
+    const auto sponge_south = static_cast<int>(m_sponge_south);
+    const auto sponge_north = static_cast<int>(m_sponge_north);
 
     const auto& dt = m_time.delta_t();
     const bool is_laminar = m_is_laminar;
