@@ -65,7 +65,27 @@ private:
     //! Roughness fields
     Field& m_terrainz0;
     Field& m_terrain_height;
+  Field& m_terrain_damping;
 
+  //! Lateral Damping - X
+  amrex::Real m_damp_east_slope{0};
+  amrex::Real m_damp_east_full{0};
+  amrex::Real m_horizontal_tau{20.0};
+  amrex::Real m_horizontal_abl_height{1e15};
+  amrex::Real m_horizontal_slope_end{1e30};
+  amrex::Real m_horizontal_free_atmosphere{1e30};
+  amrex::Real m_vertical_slope{0};
+  amrex::Real m_vertical_full{1e30};
+  //! Lateral Damping - (-X)
+  amrex::Real m_damp_west_slope{0};
+  amrex::Real m_damp_west_full{0};
+  //! Lateral Damping - (-Y)
+  amrex::Real m_damp_south_slope{0};
+  amrex::Real m_damp_south_full{0};
+  //! Lateral Damping - Y
+  amrex::Real m_damp_north_slope{0};
+  amrex::Real m_damp_north_full{0};  
+  
     //! Terrain Drag for waves
     bool m_terrain_is_waves{false};
     Field* m_wave_volume_fraction{nullptr};

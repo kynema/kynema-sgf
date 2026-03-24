@@ -16,7 +16,7 @@ TemperatureFreeAtmosphereForcing::TemperatureFreeAtmosphereForcing(
 {
     amrex::ParmParse pp_abl("ABL");
     //! Temperature variation as a function of height
-    pp_abl.query("meso_sponge_start", m_meso_start);
+    pp_abl.query("temp_sponge_start", m_meso_start);
     pp_abl.query("meso_timescale", m_meso_timescale);
     pp_abl.getarr("temperature_heights", m_theta_heights);
     pp_abl.getarr("temperature_values", m_theta_values);

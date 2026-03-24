@@ -45,8 +45,10 @@ void RayleighDamping::operator()(
     amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> ref_vel{
         m_ref_vel[0], m_ref_vel[1], m_ref_vel[2]};
     const auto& vel =
-        m_velocity.state(field_impl::dof_state(fstate))(lev).const_array(mfi);
+      m_velocity.state(field_impl::dof_state(fstate))(lev).const_array(mfi);
 
+
+    
     // Constants used to determine the fringe region coefficient
     const amrex::Real dRD = m_dRD;
     const amrex::Real dFull = m_dFull;
@@ -58,6 +60,8 @@ void RayleighDamping::operator()(
 
     amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
         amrex::Real coeff = 0.0;
+	const amrex::Real x = problo[0] + (i + 0.5) * dx[0];
+	const amrex::Real y = problo[1] + (j + 0.5) * dx[1];
         const amrex::Real z = problo[2] + (k + 0.5) * dx[2];
 
         if (probhi[2] - z > dRD + dFull) {
@@ -68,11 +72,11 @@ void RayleighDamping::operator()(
             coeff = 1.0;
         }
         src_term(i, j, k, 0) +=
-            fx * coeff * (ref_vel[0] - vel(i, j, k, 0)) / tau;
+	  fx * coeff * (ref_vel[0] - vel(i, j, k, 0)) / tau;
         src_term(i, j, k, 1) +=
-            fy * coeff * (ref_vel[1] - vel(i, j, k, 1)) / tau;
+	  fy * coeff * (ref_vel[1] - vel(i, j, k, 1)) / tau;
         src_term(i, j, k, 2) +=
-            fz * coeff * (ref_vel[2] - vel(i, j, k, 2)) / tau;
+	  fz * coeff * (ref_vel[2] - vel(i, j, k, 2)) / tau;
     });
 }
 

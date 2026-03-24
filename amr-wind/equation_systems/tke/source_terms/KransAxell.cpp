@@ -1,3 +1,4 @@
+
 #include <AMReX_Orientation.H>
 
 #include "amr-wind/equation_systems/tke/source_terms/KransAxell.H"
@@ -128,7 +129,7 @@ void KransAxell::operator()(
             const amrex::Real rans_b = std::pow(
                 std::max(hf, 0.0) * kappa * z / std::pow(Cmu, 3), (2.0 / 3.0));
             bcforcing =
-                (ustar * ustar / (Cmu * Cmu) + rans_b - tke_arr(i, j, k)) / dt;
+	      (ustar * ustar / (Cmu * Cmu) + rans_b - tke_arr(i, j, k)) / (10 * dt);
         }
         amrex::Real ref_tke = tke_arr(i, j, k);
         const amrex::Real zi =
@@ -182,7 +183,7 @@ void KransAxell::operator()(
                     (2.0 / 3.0));
                 terrainforcing =
                     (ustar * ustar / (Cmu * Cmu) + rans_b - tke_arr(i, j, k)) /
-                    dt;
+		  (5 * dt);
                 amrex::Real bcforcing = 0;
                 if (k == 0) {
                     bcforcing = (1 - blank_arr(i, j, k)) * terrainforcing;
