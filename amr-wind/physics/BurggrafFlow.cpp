@@ -176,8 +176,7 @@ void BurggrafFlow::output_error()
         std::ofstream f;
         f.open(m_output_fname.c_str(), std::ios_base::app);
         f << std::setprecision(12) << std::setw(m_w) << m_time.new_time()
-          << std::setw(m_w) << u_err << std::setw(m_w) << v_err
-          << '\n';
+          << std::setw(m_w) << u_err << std::setw(m_w) << v_err << '\n';
         f.close();
     }
 }
