@@ -272,12 +272,12 @@ void ABLFieldInit::operator()(
             z = amrex::max<amrex::Real>(min_z, z - terrainHt);
             density(i, j, k) = rho_init;
             const amrex::Real theta =
-                (ntvals > 0) ? interp::linear(th, th + ntvals, tv, z) : tv[0];
+                (ntvals > 1) ? interp::linear(th, th + ntvals, tv, z) : tv[0];
             const amrex::Real umean_prof =
-                (nwvals > 0) ? interp::linear(windh, windh + nwvals, uu, z)
+                (nwvals > 1) ? interp::linear(windh, windh + nwvals, uu, z)
                              : uu[0];
             const amrex::Real vmean_prof =
-                (nwvals > 0) ? interp::linear(windh, windh + nwvals, vv, z)
+                (nwvals > 1) ? interp::linear(windh, windh + nwvals, vv, z)
                              : vv[0];
 
             temperature(i, j, k, 0) += theta;
@@ -451,9 +451,9 @@ void ABLFieldInit::init_tke(
                         : 0.0_rt;
                 z = amrex::max<amrex::Real>(min_z, z - terrainHt);
                 const amrex::Real tke_prof =
-                    (nwvals > 0)
+                    (nwvals > 1)
                         ? interp::linear(windh, windh + nwvals, tke_data, z)
-                        : tiny;
+                        : ((nwvals == 0) ? tiny : tke_data[0]);
 
                 tke_arrs[nbx](i, j, k) = tke_prof;
             });

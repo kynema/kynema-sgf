@@ -286,11 +286,14 @@ void DragForcing::operator()(
         const amrex::Real uy1 = vel(i, j, k, 1);
         const amrex::Real uz1 = vel(i, j, k, 2);
         const amrex::Real spongeVelX =
-            (nwvals > 0) ? interp::linear(windh, windh + nwvals, uu, z) : uu[0];
+            (nwvals > 1) ? interp::linear(windh, windh + nwvals, uu, z)
+                         : ((nwvals == 0) ? ux1 : uu[0]);
         const amrex::Real spongeVelY =
-            (nwvals > 0) ? interp::linear(windh, windh + nwvals, vv, z) : vv[0];
+            (nwvals > 1) ? interp::linear(windh, windh + nwvals, vv, z)
+                         : ((nwvals == 0) ? uy1 : vv[0]);
         const amrex::Real spongeVelZ =
-            (nwvals > 0) ? interp::linear(windh, windh + nwvals, ww, z) : ww[0];
+            (nwvals > 1) ? interp::linear(windh, windh + nwvals, ww, z)
+                         : ((nwvals == 0) ? uz1 : ww[0]);
         amrex::Real Dxz = 0.0_rt;
         amrex::Real Dyz = 0.0_rt;
         amrex::Real bc_forcing_x = 0.0_rt;
