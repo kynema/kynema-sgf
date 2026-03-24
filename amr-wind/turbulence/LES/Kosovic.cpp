@@ -54,9 +54,14 @@ Kosovic<Transport>::Kosovic(CFDSim& sim)
     pp_abl.query("mo_gamma_m", m_gamma_m);
     pp_abl.query("mo_beta_m", m_beta_m);
     pp_abl.query("surface_roughness_z0", m_surface_roughness_z0);
-    pp_abl.query("ref_temp", m_ref_temp);
     amrex::ParmParse pp_inc("incflo");
     pp_inc.queryarr("gravity", m_gravity);
+    amrex::ParmParse pp_transport("transport");
+    if (pp.contains("reference_temperature")) {
+        pp.get("reference_temperature", m_ref_temp);
+    } else if (pp_abl.contains("reference_temperature")) {
+        pp_abl.get("reference_temperature", m_ref_temp);
+    } 
 }
 template <typename Transport>
 void Kosovic<Transport>::update_turbulent_viscosity(
