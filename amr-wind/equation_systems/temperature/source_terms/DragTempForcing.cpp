@@ -20,7 +20,7 @@ DragTempForcing::DragTempForcing(const CFDSim& sim)
     amrex::ParmParse pp("DragTempForcing");
     pp.query("drag_coefficient", m_drag_coefficient);
     pp.query("soil_temperature", m_soil_temperature);
-    pp.query("bc_forcing_time_factor",m_forcing_time_factor);
+    pp.query("bc_forcing_time_factor", m_forcing_time_factor);
     amrex::ParmParse pp_abl("ABL");
     pp_abl.query("wall_het_model", m_wall_het_model);
     pp_abl.query("monin_obukhov_length", m_monin_obukhov_length);
@@ -109,7 +109,8 @@ void DragTempForcing::operator()(
         const amrex::Real tTarget =
             surf_temp +
             (thetastar / kappa * (std::log(0.5_rt * dx[2] / z0) - psi_h_cell));
-        const amrex::Real bc_forcing_t = -(tTarget - theta) / (time_factor * dt);
+        const amrex::Real bc_forcing_t =
+            -(tTarget - theta) / (time_factor * dt);
         const amrex::Real m =
             std::sqrt((ux1 * ux1) + (uy1 * uy1) + (uz1 * uz1));
         const amrex::Real Cd = amrex::min<amrex::Real>(

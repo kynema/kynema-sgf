@@ -123,7 +123,7 @@ DragForcing::DragForcing(const CFDSim& sim)
     }
     const auto& phy_mgr = m_sim.physics_manager();
     amrex::ParmParse pp_abl("ABL");
-    pp_abl.query("minimum_vertical_position",m_min_z);
+    pp_abl.query("minimum_vertical_position", m_min_z);
     pp_abl.query("rans_1dprofile_file", m_1d_rans);
     if (!m_1d_rans.empty()) {
         std::ifstream ransfile(m_1d_rans, std::ios::in);
