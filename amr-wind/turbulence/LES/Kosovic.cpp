@@ -61,7 +61,7 @@ Kosovic<Transport>::Kosovic(CFDSim& sim)
         pp.get("reference_temperature", m_ref_temp);
     } else if (pp_abl.contains("reference_temperature")) {
         pp_abl.get("reference_temperature", m_ref_temp);
-    } 
+    }
 }
 template <typename Transport>
 void Kosovic<Transport>::update_turbulent_viscosity(

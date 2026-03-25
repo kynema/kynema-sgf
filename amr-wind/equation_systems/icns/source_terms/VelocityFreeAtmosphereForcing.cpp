@@ -34,8 +34,8 @@ VelocityFreeAtmosphereForcing::VelocityFreeAtmosphereForcing(const CFDSim& sim)
         }
     } else {
         amrex::Abort("Cannot find 1-D RANS profile file " + m_1d_rans_filename);
-    
-    pp_abl.query("meso_sponge_start", m_meso_start);}
+    }
+    pp_abl.query("meso_sponge_start", m_meso_start);
     pp_abl.query("velocity_sponge_start", m_meso_start);
     pp_abl.query("meso_timescale", m_meso_timescale);
     int num_wind_values = static_cast<int>(m_wind_heights.size());
