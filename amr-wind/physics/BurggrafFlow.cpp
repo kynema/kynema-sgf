@@ -45,7 +45,7 @@ BurggrafFlow::BurggrafFlow(const CFDSim& sim)
         std::ofstream f;
         f.open(m_output_fname.c_str());
         f << std::setw(m_w) << "time" << std::setw(m_w) << "L2_u"
-          << std::setw(m_w) << "L2_v" << std::setw(m_w) << "L2_w" << '\n';
+          << std::setw(m_w) << "L2_v\n";
         f.close();
     }
 }
