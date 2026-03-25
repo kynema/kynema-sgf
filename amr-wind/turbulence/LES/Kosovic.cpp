@@ -57,8 +57,8 @@ Kosovic<Transport>::Kosovic(CFDSim& sim)
     amrex::ParmParse pp_inc("incflo");
     pp_inc.queryarr("gravity", m_gravity);
     amrex::ParmParse pp_transport("transport");
-    if (pp.contains("reference_temperature")) {
-        pp.get("reference_temperature", m_ref_temp);
+    if (pp_transport.contains("reference_temperature")) {
+        pp_transport.get("reference_temperature", m_ref_temp);
     } else if (pp_abl.contains("reference_temperature")) {
         pp_abl.get("reference_temperature", m_ref_temp);
     }

@@ -243,7 +243,7 @@ Section: Momentum Sources
 
 .. input_param:: DragForcing.sponge_distance_north
 
-   **type:** Real, mandatory if west sponge is active
+   **type:** Real, mandatory if north sponge is active
 
    This value is specified as a positive value when the inflow y-velocity is >=0.
 
