@@ -359,26 +359,24 @@ void DragForcing::operator()(
         const amrex::Real CdM = amrex::min<amrex::Real>(
             Cd / (m + amr_wind::constants::EPS), cd_max / scale_factor);
         src_term(i, j, k, 0) -=
-            (CdM * m * (ux1 - target_u) * blank(i, j, k) + Dxz * drag(i, j, k) +
-             bc_forcing_x * drag(i, j, k) +
-             (1 - blank(i, j, k)) *
-                 (xstart_damping + xend_damping + ystart_damping +
-                  yend_damping) *
-                 (ux1 - sponge_density * spongeVelX));
+            ((CdM * m * (ux1 - target_u) * blank(i, j, k)) +
+             (Dxz * drag(i, j, k)) + (bc_forcing_x * drag(i, j, k)) +
+             (1 - blank(i, j, k)) * ((xstart_damping + xend_damping +
+                                      ystart_damping + yend_damping) *
+                                     (ux1 - sponge_density * spongeVelX)));
         src_term(i, j, k, 1) -=
-            (CdM * m * (uy1 - target_v) * blank(i, j, k) + Dyz * drag(i, j, k) +
-             bc_forcing_y * drag(i, j, k) +
-             (1 - blank(i, j, k)) *
-                 (xstart_damping + xend_damping + ystart_damping +
-                  yend_damping) *
-                 (uy1 - sponge_density * spongeVelY));
-        src_term(i, j, k, 2) -= (CdM * m * (uz1 - target_w) * blank(i, j, k) +
-                                 CdM * m * (uz1 - target_w) * drag(i, j, k) +
-                                 (1 - blank(i, j, k)) *
-                                     (xstart_damping + xend_damping +
+            ((CdM * m * (uy1 - target_v) * blank(i, j, k)) +
+             (Dyz * drag(i, j, k)) + (bc_forcing_y * drag(i, j, k)) +
+             (1 - blank(i, j, k)) * ((xstart_damping + xend_damping +
+                                      ystart_damping + yend_damping) *
+                                     (uy1 - sponge_density * spongeVelY)));
+        src_term(i, j, k, 2) -=
+            ((CdM * m * (uz1 - target_w) * blank(i, j, k)) +
+             (CdM * m * (uz1 - target_w) * drag(i, j, k)) +
+             (1 - blank(i, j, k)) * ((xstart_damping + xend_damping +
                                       ystart_damping + yend_damping) *
                                      (uz1 - sponge_density * spongeVelZ)) +
-                                damping(i, j, k) * (uz1);
+             damping(i, j, k) * (uz1));
     });
 }
 
