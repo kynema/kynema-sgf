@@ -48,6 +48,7 @@ TerrainDrag::TerrainDrag(CFDSim& sim)
 
     m_terrain_blank.setVal(0);
     m_terrain_drag.setVal(0);
+    m_terrain_damping.setVal(0);
     m_terrainz0.set_default_fillpatch_bc(m_sim.time());
     m_terrain_height.set_default_fillpatch_bc(m_sim.time());
     m_terrain_damping.set_default_fillpatch_bc(m_sim.time());
@@ -206,7 +207,6 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
             const amrex::Real x = prob_lo[0] + (i + 0.5_rt) * dx[0];
             const amrex::Real y = prob_lo[1] + (j + 0.5_rt) * dx[1];
             const amrex::Real z = prob_lo[2] + (k + 0.5_rt) * dx[2];
-            levelDamping[nbx](i, j, k, 0) = 0.0_rt;
             if (x < damping_east_start) {
                 horizontal_coeff_east = 0.0_rt;
             } else if (x >= damping_east_end) {
