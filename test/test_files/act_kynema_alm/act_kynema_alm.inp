@@ -33,7 +33,8 @@ time.plot_interval                       = 10
 time.checkpoint_interval                 = 5                
 io.plot_file                             = plt
 Actuator.type                            = TurbineKynemaLine     
-Actuator.TurbineKynemaLine.epsilon       = 5.0 5.0 5.0         
+Actuator.TurbineKynemaLine.epsilon       = 5.0 5.0 5.0   
+Actuator.TurbineKynemaLine.epsilon_tower = 5.0 5.0 5.0         
 Actuator.TurbineKynemaLine.fllc          = false               
 
 #---- tagging defs ----
@@ -107,7 +108,7 @@ tagging.T1_level_3_zone.T1_level_3_zone.zaxis = 0.0 0.0 151.2
 Actuator.TurbineKynemaLine.kynema_input_file      = NREL-5MW-aero.yaml
 Actuator.TurbineKynemaLine.num_struct_nodes_blade = 11
 Actuator.TurbineKynemaLine.num_points_blade       = 64
-Actuator.TurbineKynemaLine.num_points_tower       = 0
+Actuator.TurbineKynemaLine.num_points_tower       = 7
 Actuator.TurbineKynemaLine.rot_speed_rpm          = 12.1
 Actuator.TurbineKynemaLine.dt                     = 0.005
 Actuator.TurbineKynemaLine.fllc                   = false

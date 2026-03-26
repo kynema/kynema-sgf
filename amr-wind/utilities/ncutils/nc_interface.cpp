@@ -56,9 +56,7 @@ std::vector<size_t> NCVar::shape() const
     std::vector<int> dimids(ndims);
     std::vector<size_t> vshape(ndims);
 
-    for (int i = 0; i < ndims; ++i) {
-        check_nc_error(nc_inq_vardimid(ncid, varid, dimids.data()));
-    }
+    check_nc_error(nc_inq_vardimid(ncid, varid, dimids.data()));
 
     for (int i = 0; i < ndims; ++i) {
         check_nc_error(nc_inq_dimlen(ncid, dimids[i], &vshape[i]));

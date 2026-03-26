@@ -32,7 +32,7 @@ void incflo::CheckAndSetUpDryRun()
         amrex::ParmParse pp("time");
         pp.add("max_step", 0);
         pp.add("plot_interval", 1);
-        pp.add("checkpoint_inteval", (-1));
+        pp.add("checkpoint_interval", (-1));
     }
     // Give prefix to plotfile
     {
