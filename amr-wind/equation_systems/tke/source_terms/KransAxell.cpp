@@ -230,6 +230,10 @@ void KransAxell::operator()(
             const amrex::Real start_west = problo[0] - m_sponge_distance_west;
             const amrex::Real start_north = probhi[1] - m_sponge_distance_north;
             const amrex::Real start_south = problo[1] - m_sponge_distance_south;
+            const amrex::Real sdist_east = m_sponge_distance_east;
+            const amrex::Real sdist_west = m_sponge_distance_west;
+            const amrex::Real sdist_north = m_sponge_distance_north;
+            const amrex::Real sdist_south = m_sponge_distance_south;
             const auto sponge_east = static_cast<int>(m_sponge_east);
             const auto sponge_west = static_cast<int>(m_sponge_west);
             const auto sponge_south = static_cast<int>(m_sponge_south);
@@ -239,9 +243,13 @@ void KransAxell::operator()(
                 const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
                 const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
                 amrex::Real xi_end =
-                    (x - start_east) / (probhi[0] - start_east);
+                    (std::abs(sdist_east) > amr_wind::constants::EPS)
+                        ? (x - start_east) / (sdist_east)
+                        : 0.0_rt;
                 amrex::Real xi_start =
-                    (start_west - x) / (start_west - problo[0]);
+                    (std::abs(sdist_west) > amr_wind::constants::EPS)
+                        ? (start_west - x) / (-sdist_west)
+                        : 0.0_rt;
                 xi_start =
                     sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);
                 xi_end = sponge_east * amrex::max<amrex::Real>(xi_end, 0.0_rt);
@@ -252,9 +260,13 @@ void KransAxell::operator()(
                 const amrex::Real xend_damping =
                     sponge_east * sponge_strength * xi_end * xi_end;
                 amrex::Real yi_end =
-                    (y - start_north) / (probhi[1] - start_north);
+                    (std::abs(sdist_north) > amr_wind::constants::EPS)
+                        ? (y - start_north) / (sdist_north)
+                        : 0.0_rt;
                 amrex::Real yi_start =
-                    (start_south - y) / (start_south - problo[1]);
+                    (std::abs(sdist_south) > amr_wind::constants::EPS)
+                        ? (start_south - y) / (-sdist_south)
+                        : 0.0_rt;
                 yi_start =
                     sponge_south * amrex::max<amrex::Real>(yi_start, 0.0_rt);
                 yi_end = sponge_north * amrex::max<amrex::Real>(yi_end, 0.0_rt);
