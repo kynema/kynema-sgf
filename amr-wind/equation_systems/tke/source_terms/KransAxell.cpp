@@ -256,9 +256,9 @@ void KransAxell::operator()(
                 xi_start /= (xi_start + amr_wind::constants::EPS);
                 xi_end /= (xi_end + amr_wind::constants::EPS);
                 const amrex::Real xstart_damping =
-                    sponge_west * sponge_strength * xi_start * xi_start;
+                    sponge_strength * xi_start * xi_start;
                 const amrex::Real xend_damping =
-                    sponge_east * sponge_strength * xi_end * xi_end;
+                    sponge_strength * xi_end * xi_end;
                 amrex::Real yi_end =
                     (std::abs(sdist_north) > amr_wind::constants::EPS)
                         ? (y - start_north) / (sdist_north)

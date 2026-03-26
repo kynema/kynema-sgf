@@ -280,9 +280,8 @@ void DragForcing::operator()(
         xi_start = sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);
         xi_end = sponge_east * amrex::max<amrex::Real>(xi_end, 0.0_rt);
         const amrex::Real xstart_damping =
-            sponge_west * sponge_strength * xi_start * xi_start;
-        const amrex::Real xend_damping =
-            sponge_east * sponge_strength * xi_end * xi_end;
+            sponge_strength * xi_start * xi_start;
+        const amrex::Real xend_damping = sponge_strength * xi_end * xi_end;
         amrex::Real yi_end = (std::abs(sdist_north) > amr_wind::constants::EPS)
                                  ? (y - start_north) / (sdist_north)
                                  : 0.0_rt;
