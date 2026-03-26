@@ -129,10 +129,6 @@ void TemperatureFreeAtmosphereForcing::operator()(
             const amrex::Real x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
             const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
             const amrex::Real z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
-            amrex::Real xstart_damping = 0.0_rt;
-            amrex::Real ystart_damping = 0.0_rt;
-            amrex::Real xend_damping = 0.0_rt;
-            amrex::Real yend_damping = 0.0_rt;
             amrex::Real xi_end =
                 (std::abs(sdist_east) > amr_wind::constants::EPS)
                     ? (x - start_east) / (sdist_east)
@@ -143,9 +139,10 @@ void TemperatureFreeAtmosphereForcing::operator()(
                     : 0.0_rt;
             xi_start = sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);
             xi_end = sponge_east * amrex::max<amrex::Real>(xi_end, 0.0_rt);
-            xstart_damping =
+            const amrex::Real xstart_damping =
                 sponge_west * sponge_strength * xi_start * xi_start;
-            xend_damping = sponge_east * sponge_strength * xi_end * xi_end;
+            const amrex::Real xend_damping =
+                sponge_east * sponge_strength * xi_end * xi_end;
             amrex::Real yi_end =
                 (std::abs(sdist_north) > amr_wind::constants::EPS)
                     ? (y - start_north) / (sdist_north)
@@ -156,8 +153,9 @@ void TemperatureFreeAtmosphereForcing::operator()(
                     : 0.0_rt;
             yi_start = sponge_south * amrex::max<amrex::Real>(yi_start, 0.0_rt);
             yi_end = sponge_north * amrex::max<amrex::Real>(yi_end, 0.0_rt);
-            ystart_damping = sponge_strength * yi_start * yi_start;
-            yend_damping = sponge_strength * yi_end * yi_end;
+            const amrex::Real ystart_damping =
+                sponge_strength * yi_start * yi_start;
+            const amrex::Real yend_damping = sponge_strength * yi_end * yi_end;
             const amrex::Real ref_temp =
                 (vsize > 0) ? interp::linear(
                                   theta_heights_d, theta_heights_d + vsize,
