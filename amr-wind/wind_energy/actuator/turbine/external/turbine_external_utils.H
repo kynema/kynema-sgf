@@ -14,7 +14,7 @@ using namespace amrex::literals;
 
 namespace amr_wind::actuator::external {
 
-void swap_epsilon(vs::Vector& eps)
+inline void swap_epsilon(vs::Vector& eps)
 {
     const auto x = eps.x();
     const auto y = eps.y();
