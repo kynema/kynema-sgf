@@ -154,8 +154,8 @@ struct ReadInputsOp<TurbineFast, SrcTrait>
 };
 
 template <>
-inline void determine_influenced_procs<TurbineFast>(
-    typename TurbineFast::DataType& data)
+inline void
+determine_influenced_procs<TurbineFast>(typename TurbineFast::DataType& data)
 {
     external_determine_influenced_procs<TurbineFast::DataType>(data);
 }
