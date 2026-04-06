@@ -14,6 +14,7 @@ using namespace amrex::literals;
 
 namespace amr_wind::actuator::external {
 
+// Note: inline is necessary to avoid duplicate symbol errors
 inline void swap_epsilon(vs::Vector& eps)
 {
     const auto x = eps.x();
