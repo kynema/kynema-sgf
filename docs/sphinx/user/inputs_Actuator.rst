@@ -415,8 +415,9 @@ Example for ``TurbineKynemaLine``::
    Actuator.type = TurbineKynemaLine
    ## Turbine discretization parameters
    Actuator.TurbineKynemaLine.num_struct_nodes_blade = 6
+   Actuator.TurbineKynemaLine.num_struct_nodes_tower = 6
    Actuator.TurbineKynemaLine.num_points_blade = 64
-   Actuator.TurbineKynemaLine.num_points_tower = 0 # not enabled yet
+   Actuator.TurbineKynemaLine.num_points_tower = 7
    ## Turbine setup
    Actuator.TurbineKynemaLine.rot_speed_rpm    = 12.1
    Actuator.TurbineKynemaLine.yaw_deg = 30
@@ -448,6 +449,12 @@ Example for ``TurbineKynemaLine``::
 
    This is the number of structural nodes for Kynema to use when modeling each turbine blade.
 
+.. input_param:: Actuator.TurbineKynemaLine.num_struct_nodes_tower
+
+   **type:** Int, required
+
+   This is the number of structural nodes for Kynema to use when modeling the turbine tower.
+
 .. input_param:: Actuator.TurbineKynemaLine.num_points_blade
 
    **type:** Int, required
@@ -460,8 +467,10 @@ Example for ``TurbineKynemaLine``::
 
    **type:** Int, required
 
-   This is the number of aerodynamic sections for Kynema to use when modeling the tower.
-   This feature is still under development, so this argument must be set to 0.
+   This is the number of aerodynamic sections for Kynema to use when modeling the tower. Setting this
+   value to zero will disable aerodynamic representation of the tower and any forces from the tower.
+   If nonzero, this must be the same number of points as provided in the Kynema input file under
+   the tower outer shape.
 
 .. input_param:: Actuator.TurbineKynemaLine.rot_speed_rpm
 
