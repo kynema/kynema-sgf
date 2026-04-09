@@ -368,6 +368,36 @@ std::unique_ptr<ScratchField> FieldRepo::create_scratch_field_on_host(
     return create_scratch_field_on_host(
         "scratch_field_host", ncomp, nghost, floc);
 }
+std::unique_ptr<IntScratchField> FieldRepo::create_int_scratch_field(
+    const std::string& name,
+    const int ncomp,
+    const int nghost,
+    const FieldLoc floc) const
+{
+    BL_PROFILE("amr-wind::FieldRepo::create_int_scratch_field");
+    if (!m_is_initialized) {
+        amrex::Abort(
+            "Integer scratch field creation is not permitted before mesh is "
+            "initialized");
+    }
+    std::unique_ptr<IntScratchField> field(
+        new IntScratchField(*this, name, ncomp, nghost, floc));
+
+    for (int lev = 0; lev <= m_mesh.finestLevel(); ++lev) {
+        const auto ba =
+            amrex::convert(m_mesh.boxArray(lev), field_impl::index_type(floc));
+
+        field->m_data.emplace_back(
+            ba, m_mesh.DistributionMap(lev), ncomp, nghost, amrex::MFInfo(),
+            *(m_leveldata[lev]->m_int_fact));
+    }
+    return field;
+}
+std::unique_ptr<IntScratchField> FieldRepo::create_int_scratch_field(
+    const int ncomp, const int nghost, const FieldLoc floc) const
+{
+    return create_int_scratch_field("scratch_field", ncomp, nghost, floc);
+}
 std::unique_ptr<IntScratchField> FieldRepo::create_int_scratch_field_on_host(
     const std::string& name,
     const int ncomp,

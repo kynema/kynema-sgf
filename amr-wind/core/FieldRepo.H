@@ -310,6 +310,12 @@ public:
         int nghost = 0,
         FieldLoc floc = FieldLoc::CELL) const;
 
+    std::unique_ptr<IntScratchField> create_int_scratch_field(
+        const std::string& name,
+        int ncomp = 1,
+        int nghost = 0,
+        FieldLoc floc = FieldLoc::CELL) const;
+
     /** Create a scratch field
      *
      *  ScratchField is a temporary field used to compute and store intermediate
@@ -330,6 +336,9 @@ public:
         FieldLoc floc = FieldLoc::CELL) const;
 
     std::unique_ptr<ScratchField> create_scratch_field_on_host(
+        int ncomp = 1, int nghost = 0, FieldLoc floc = FieldLoc::CELL) const;
+
+    std::unique_ptr<IntScratchField> create_int_scratch_field(
         int ncomp = 1, int nghost = 0, FieldLoc floc = FieldLoc::CELL) const;
 
     std::unique_ptr<IntScratchField> create_int_scratch_field_on_host(
