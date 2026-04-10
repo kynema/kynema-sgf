@@ -17,9 +17,10 @@ This section is for setting atmospheric boundary layer parameters.
 
    Wall model surface roughness length (in meters). When specified, this sets both the aerodynamic 
    (pertaining to velocity) and thermal (pertaining to temperature) roughness lengths.
-   These roughness lengths can be set separately using the two parameters listed below; however,
-   if this parameter (which sets both) is used with either of the roughness parameters below,
-   the code will abort to prevent using conflicting parameters.
+   These roughness lengths can be set separately using the two parameters listed below.
+   Specifying these separately will override the combine parameter; however,
+   if this parameter (which sets both) is used with only one of the roughness parameters below,
+   the code will abort due to the ambiguity.
 
 .. input_param:: ABL.aerodynamic_roughness_length
 

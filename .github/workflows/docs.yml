@@ -28,7 +28,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends graphviz libenchant-2-dev
           python3 -m pip install --upgrade pip
-          pip3 install sphinx sphinx_rtd_theme sphinx_toolbox sphinx_copybutton pyenchant sphinxcontrib-spelling sphinxcontrib-bibtex doxysphinx
+          python3 -m pip install "sphinx<9" sphinx_rtd_theme sphinx_toolbox sphinx_copybutton pyenchant sphinxcontrib-spelling sphinxcontrib-bibtex doxysphinx
       - name: Doxygen install
         uses: ssciwr/doxygen-install@v1.6.0
         with:

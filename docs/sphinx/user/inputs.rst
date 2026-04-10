@@ -25,6 +25,13 @@ values (if available). The focus is on AMR-Wind specific input options
 and some common AMReX options (these are fully documented in `AMReX
 <https://amrex-codes.github.io/amrex/docs_html/RuntimeParameters.html>`_).
 
+Note that AMReX input files may also include the ``FILE = /path/to/other_file.inp``
+directive, which allows users to combine multiple input files. Adding this
+directive to an input file (or on the command line) is equivalent to
+copying and pasting the contents of ``other_file.inp`` onto that line of the
+input file. Unlike standard input file keywords, the directive is applied each
+time it is included, rather than only the last having an effect.
+
 In :program:`amr_wind`, the input file
 is broken into *sections* indicated by a namespace prefix. For
 example, all inputs related to the problem domain are prefixed with
@@ -50,7 +57,7 @@ Section                 Description
 ``io``                  Input/Output controls
 ``incflo``              CFD algorithm and physics controls
 ``transport``           Transport equation controls
-``turbulence``          Turbulence model controls 
+``turbulence``          Turbulence model controls
 ``ABL``                 Atmospheric boundary layer (ABL) controls
 ``ABLMesoForcing``      Mesoscale ABL forcing controls
 ``SyntheticTurbulence`` Inject turbulence using body forces
@@ -90,7 +97,7 @@ documentation provided here might not work with older releases.
    inputs_turbulence.rst
    inputs_Momentum_Sources.rst
    inputs_Temperature_Sources.rst
-   inputs_TKE_Sources.rst 
+   inputs_TKE_Sources.rst
    inputs_ABL.rst
    inputs_ABL_meso_forcing.rst
    inputs_SyntheticTurbulence.rst
@@ -106,4 +113,3 @@ documentation provided here might not work with older releases.
    inputs_Actuator.rst
    inputs_multiphase.rst
    inputs_ocean_waves.rst
-

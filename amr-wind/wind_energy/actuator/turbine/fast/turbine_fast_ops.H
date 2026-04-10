@@ -153,15 +153,17 @@ struct ReadInputsOp<TurbineFast, SrcTrait>
     }
 };
 
+// Note: inline is necessary here to avoid duplicate symbol errors
 template <>
-void determine_influenced_procs<TurbineFast>(
-    typename TurbineFast::DataType& data)
+inline void
+determine_influenced_procs<TurbineFast>(typename TurbineFast::DataType& data)
 {
     external_determine_influenced_procs<TurbineFast::DataType>(data);
 }
 
+// Note: inline is necessary here to avoid duplicate symbol errors
 template <>
-void determine_root_proc<TurbineFast>(
+inline void determine_root_proc<TurbineFast>(
     typename TurbineFast::DataType& data, amrex::Vector<int>& act_proc_count)
 {
     external_determine_root_proc<

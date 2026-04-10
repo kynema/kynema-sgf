@@ -37,10 +37,20 @@ ABLWallFunction::ABLWallFunction(const CFDSim& sim)
     const char* z0_aero = "aerodynamic_roughness_length";
     const char* z0_therm = "thermal_roughness_length";
     pp.query(z0_same, m_mo.z0);
-    if (!pp.contains(z0_same)) {
+    if (pp.contains(z0_aero) && pp.contains(z0_therm)) {
         pp.query(z0_aero, m_mo.z0);
         pp.query(z0_therm, m_mo.z0t);
-    } else if (pp.contains(z0_aero) || pp.contains(z0_therm)) {
+        if (pp.contains(z0_same)) {
+            amrex::Print()
+                << "WARNING: ABLWallFunction: Both " << z0_same
+                << " and separate roughness lengths (aerodynamic "
+                   "and thermal) are specified. Using separate roughness "
+                   "lengths and ignoring combined parameter "
+                << z0_same << ".\n";
+        }
+    } else if (
+        pp.contains(z0_same) &&
+        (pp.contains(z0_aero) || pp.contains(z0_therm))) {
         amrex::Abort(
             "ABLWallFunction parameter conflict: Roughness lengths must be "
             "specified as the same (" +

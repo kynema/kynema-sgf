@@ -721,11 +721,9 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::ext_init_turbine(
 
     const YAML::Node wio = YAML::LoadFile(fi.input_file);
 
-    constexpr int num_pts_tower_struct{11};
-
     // Builds turbine, including blades, nacelle, and tower
     exw_kynema::build_turbine(
-        builder, wio, fi.num_blades, fi.num_blade_elem, num_pts_tower_struct,
+        builder, wio, fi.num_blades, fi.num_blade_elem, fi.num_tower_elem,
         fi.rotational_speed, fi.generator_power, fi.wind_speed, fi.yaw,
         fi.generator_efficiency);
 
