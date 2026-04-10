@@ -293,10 +293,18 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
 {
     int pp_io_mode = -1;
     amrex::ParmParse pp_abl("ABL");
-    pp_abl.query("bndry_io_mode", pp_io_mode);
     const bool original_input = pp_abl.contains("bndry_io_mode");
     amrex::ParmParse pp("BoundaryPlane");
-    if (!original_input) {
+    const bool new_input = pp.contains("io_mode");
+
+    if (original_input && new_input) {
+        amrex::Abort(
+            "BoundaryPlane: both ABL.bndry_io_mode and BoundaryPlane.io_mode "
+            "are set. Please use only BoundaryPlane.io_mode.\n");
+    }
+    if (original_input) {
+        pp_abl.get("bndry_io_mode", pp_io_mode);
+    } else {
         pp.get("io_mode", pp_io_mode);
     }
     switch (pp_io_mode) {
