@@ -263,6 +263,9 @@ private:
     //! IO mode
     io_mode m_io_mode{io_mode::undefined};
 
+    //! Pointer to vof field for velocity population based on vof values
+    Field* m_vof_ptr{nullptr};
+
     //! Flag indicating if the simulation is overset -- needed for complicated
     //! timing of pre_advance_work
     bool m_has_overset{false};

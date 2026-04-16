@@ -362,6 +362,12 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
 void BoundaryPlane::post_init_actions()
 {
     initialize_data();
+    
+    // Initialize vof field pointer if it exists (for velocity population)
+    if (m_repo.field_exists("vof")) {
+        m_vof_ptr = &m_repo.get_field("vof");
+    }
+    
     write_header();
     write_file();
     read_header();
@@ -1356,6 +1362,10 @@ void BoundaryPlane::populate_data(
             ", m_in_data.tinterp() = " + std::to_string(m_in_data.tinterp()));
     }
 
+    // Check if this is velocity field and vof exists for conditional population
+    const bool is_velocity_field = (fld.name() == "velocity");
+    const bool use_vof_condition = is_velocity_field && (m_vof_ptr != nullptr);
+
     for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
         auto ori = oit();
         if ((!m_in_data.is_populated(ori)) ||
@@ -1397,12 +1407,28 @@ void BoundaryPlane::populate_data(
             const auto& dest = mfab.array(mfi);
             const auto& src_arr = src.array();
             const int nstart = m_in_data.component(static_cast<int>(fld.id()));
-            amrex::ParallelFor(
-                bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
-                    dest(i, j, k, n + dcomp) = src_arr(
-                        i + shift_to_cc[0], j + shift_to_cc[1],
-                        k + shift_to_cc[2], n + nstart + orig_comp);
-                });
+
+            // If velocity field with vof, get vof data and apply conditional population
+            if (use_vof_condition) {
+                const auto& vof_arr = (*m_vof_ptr)(lev).const_array(mfi);
+                amrex::ParallelFor(
+                    bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
+                        // Only populate velocity where vof > TIGHT_TOL
+                        if (vof_arr(i, j, k) > constants::TIGHT_TOL) {
+                            dest(i, j, k, n + dcomp) = src_arr(
+                                i + shift_to_cc[0], j + shift_to_cc[1],
+                                k + shift_to_cc[2], n + nstart + orig_comp);
+                        }
+                    });
+            } else {
+                // Standard population without vof condition
+                amrex::ParallelFor(
+                    bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
+                        dest(i, j, k, n + dcomp) = src_arr(
+                            i + shift_to_cc[0], j + shift_to_cc[1],
+                            k + shift_to_cc[2], n + nstart + orig_comp);
+                    });
+            }
         }
     }
 
