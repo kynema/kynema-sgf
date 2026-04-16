@@ -43,10 +43,10 @@ AMREX_FORCE_INLINE std::string level_name(int lev)
 }
 #endif
 
-AMREX_FORCE_INLINE phase
-parse_phase_condition(const std::string& condition)
+AMREX_FORCE_INLINE phase parse_phase_condition(const std::string& condition)
 {
-    if ((condition == "liquid") || (condition == "water") || (condition == "1")) {
+    if ((condition == "liquid") || (condition == "water") ||
+        (condition == "1")) {
         return phase::liquid;
     }
 
@@ -54,7 +54,8 @@ parse_phase_condition(const std::string& condition)
         return phase::gas;
     }
 
-    if ((condition == "both") || (condition == "agnostic") || (condition == "0")) {
+    if ((condition == "both") || (condition == "agnostic") ||
+        (condition == "0")) {
         return phase::both;
     }
 
@@ -62,11 +63,11 @@ parse_phase_condition(const std::string& condition)
         "BoundaryPlane: invalid phase='" + condition +
         "'. Valid options are liquid, gas, or both.");
     // To satisfy the compiler, will never reach this return with abort
-    return phase::both; 
+    return phase::both;
 }
 
-AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool vof_matches(
-    const phase condition, const amrex::Real vof)
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool
+vof_matches(const phase condition, const amrex::Real vof)
 {
     switch (condition) {
     case phase::liquid:
@@ -402,17 +403,18 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
 void BoundaryPlane::post_init_actions()
 {
     initialize_data();
-    
+
     // Initialize vof field pointer if it exists (for velocity population)
     if (m_repo.field_exists("vof")) {
         m_vof_ptr = &m_repo.get_field("vof");
     }
-    
-    // Initialize terrain_blank field pointer if it exists (for terrain-based velocity control)
+
+    // Initialize terrain_blank field pointer if it exists (for terrain-based
+    // velocity control)
     if (m_repo.int_field_exists("terrain_blank")) {
         m_terrain_blank_ptr = &m_repo.get_int_field("terrain_blank");
     }
-    
+
     write_header();
     write_file();
     read_header();
@@ -1410,9 +1412,9 @@ void BoundaryPlane::populate_data(
     // Apply optional VOF gating only when populating the velocity field.
     const bool is_velocity_field = (fld.name() == "velocity");
     const auto phase_condition = m_phase;
-    const bool use_vof_condition =
-        is_velocity_field && (m_vof_ptr != nullptr) &&
-        (phase_condition != phase::both);
+    const bool use_vof_condition = is_velocity_field &&
+                                   (m_vof_ptr != nullptr) &&
+                                   (phase_condition != phase::both);
     const bool use_terrain_condition =
         is_velocity_field && (m_terrain_blank_ptr != nullptr);
 
@@ -1438,10 +1440,11 @@ void BoundaryPlane::populate_data(
         }
 
         const size_t nc = mfab.nComp();
-        
+
         // Calculate shift to interior cell for terrain checking
         const int idir = ori.coordDir();
-        auto shift_to_interior = amrex::IntVect::TheDimensionVector(idir) * (ori.isLow() ? 1 : -1);
+        auto shift_to_interior =
+            amrex::IntVect::TheDimensionVector(idir) * (ori.isLow() ? 1 : -1);
 
 #ifdef AMREX_USE_OMP
 #pragma omp parallel if (amrex::Gpu::notInLaunchRegion())
@@ -1469,8 +1472,7 @@ void BoundaryPlane::populate_data(
                 amrex::ParallelFor(
                     bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
                         const amrex::IntVect iv{i, j, k};
-                        if (vof_matches(
-                            phase_condition, vof_arr(iv))) {
+                        if (vof_matches(phase_condition, vof_arr(iv))) {
                             dest(iv, n + dcomp) = src_arr(
                                 iv[0] + shift_to_cc[0], iv[1] + shift_to_cc[1],
                                 iv[2] + shift_to_cc[2], n + nstart + orig_comp);
@@ -1484,8 +1486,7 @@ void BoundaryPlane::populate_data(
                 const auto& vof_arr = (*m_vof_ptr)(lev).const_array(mfi);
                 amrex::ParallelFor(
                     bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
-                        if (vof_matches(
-                                phase_condition, vof_arr(i, j, k))) {
+                        if (vof_matches(phase_condition, vof_arr(i, j, k))) {
                             dest(i, j, k, n + dcomp) = src_arr(
                                 i + shift_to_cc[0], j + shift_to_cc[1],
                                 k + shift_to_cc[2], n + nstart + orig_comp);
