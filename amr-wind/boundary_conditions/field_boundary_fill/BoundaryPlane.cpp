@@ -368,6 +368,11 @@ void BoundaryPlane::post_init_actions()
         m_vof_ptr = &m_repo.get_field("vof");
     }
     
+    // Initialize terrain_blank field pointer if it exists (for terrain-based velocity control)
+    if (m_repo.int_field_exists("terrain_blank")) {
+        m_terrain_blank_ptr = &m_repo.get_int_field("terrain_blank");
+    }
+    
     write_header();
     write_file();
     read_header();
@@ -1365,6 +1370,7 @@ void BoundaryPlane::populate_data(
     // Check if this is velocity field and vof exists for conditional population
     const bool is_velocity_field = (fld.name() == "velocity");
     const bool use_vof_condition = is_velocity_field && (m_vof_ptr != nullptr);
+    const bool terrain_and_vof_exist = use_vof_condition && (m_vof_ptr != nullptr) && (m_terrain_blank_ptr != nullptr);
 
     for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
         auto ori = oit();
@@ -1388,6 +1394,10 @@ void BoundaryPlane::populate_data(
         }
 
         const size_t nc = mfab.nComp();
+        
+        // Calculate shift to interior cell for terrain checking
+        const int idir = ori.coordDir();
+        auto shift_to_interior = amrex::IntVect::TheDimensionVector(idir) * (ori.isLow() ? 1 : -1);
 
 #ifdef AMREX_USE_OMP
 #pragma omp parallel if (amrex::Gpu::notInLaunchRegion())
@@ -1408,8 +1418,26 @@ void BoundaryPlane::populate_data(
             const auto& src_arr = src.array();
             const int nstart = m_in_data.component(static_cast<int>(fld.id()));
 
-            // If velocity field with vof, get vof data and apply conditional population
-            if (use_vof_condition) {
+            // If velocity field with vof and terrain, apply conditional population
+            if (terrain_and_vof_exist) {
+                const auto& vof_arr = (*m_vof_ptr)(lev).const_array(mfi);
+                const auto& terrain_blank_flags = (*m_terrain_blank_ptr)(lev).const_array(mfi);
+                amrex::ParallelFor(
+                    bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
+                        const amrex::IntVect iv{i, j, k};
+                        // Only populate velocity where vof > TIGHT_TOL
+                        if (vof_arr(iv) > constants::TIGHT_TOL) {
+                            dest(iv, n + dcomp) = src_arr(
+                                iv[0] + shift_to_cc[0], iv[1] + shift_to_cc[1],
+                                iv[2] + shift_to_cc[2], n + nstart + orig_comp);
+                        }
+                        // If adjacent interior cell is terrain-blanked, set velocity to 0
+                        if (terrain_blank_flags(iv + shift_to_interior) == 1) {
+                            dest(iv, n + dcomp) = 0.0_rt;
+                        }
+                    });
+            } else if (use_vof_condition) {
+                // With vof only (no terrain)
                 const auto& vof_arr = (*m_vof_ptr)(lev).const_array(mfi);
                 amrex::ParallelFor(
                     bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
@@ -1421,7 +1449,7 @@ void BoundaryPlane::populate_data(
                         }
                     });
             } else {
-                // Standard population without vof condition
+                // Standard population without vof or terrain condition
                 amrex::ParallelFor(
                     bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
                         dest(i, j, k, n + dcomp) = src_arr(

@@ -266,6 +266,9 @@ private:
     //! Pointer to vof field for velocity population based on vof values
     Field* m_vof_ptr{nullptr};
 
+    //! Pointer to terrain_blank field for velocity population based on terrain
+    IntField* m_terrain_blank_ptr{nullptr};
+
     //! Flag indicating if the simulation is overset -- needed for complicated
     //! timing of pre_advance_work
     bool m_has_overset{false};
