@@ -18,11 +18,7 @@ namespace amr_wind {
 
 enum struct io_mode : std::uint8_t { output, input, undefined };
 
-enum struct velocity_vof_condition : std::uint8_t {
-    greater_than_zero,
-    less_than_one,
-    agnostic
-};
+enum struct phase : std::uint8_t { liquid, gas, both };
 
 struct BufferData
 {
@@ -271,8 +267,10 @@ private:
     io_mode m_io_mode{io_mode::undefined};
 
     //! User-selected VOF gate for boundary velocity population
-    velocity_vof_condition m_velocity_vof_condition{
-        velocity_vof_condition::greater_than_zero};
+    phase m_phase{phase::both};
+
+    //! Default string for collecting user input for velocity_vof_condition
+    std::string m_phase_str{"both"};
 
     //! Pointer to vof field for velocity population based on vof values
     Field* m_vof_ptr{nullptr};
