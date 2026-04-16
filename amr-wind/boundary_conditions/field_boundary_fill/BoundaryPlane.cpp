@@ -415,6 +415,13 @@ void BoundaryPlane::post_init_actions()
         m_terrain_blank_ptr = &m_repo.get_int_field("terrain_blank");
     }
 
+    // Currently, only instance of moving terrain is with waves, which is the
+    // only case where ow_vof field exists and vof field does not. This case is
+    // important because it means velocity should not be set to zero next to the
+    // terrain. Instead, trust the value coming from the boundary plane.
+    m_has_moving_terrain =
+        (m_vof_ptr == nullptr) && (m_repo.field_exists("ow_vof"));
+
     write_header();
     write_file();
     read_header();
@@ -1411,12 +1418,15 @@ void BoundaryPlane::populate_data(
 
     // Apply optional VOF gating only when populating the velocity field.
     const bool is_velocity_field = (fld.name() == "velocity");
+    const bool is_not_phase_field =
+        (fld.name() != "density") && (fld.name() != "vof");
     const auto phase_condition = m_phase;
-    const bool use_vof_condition = is_velocity_field &&
+    const bool use_vof_condition = is_not_phase_field &&
                                    (m_vof_ptr != nullptr) &&
                                    (phase_condition != phase::both);
-    const bool use_terrain_condition =
-        is_velocity_field && (m_terrain_blank_ptr != nullptr);
+    const bool use_terrain_condition = is_velocity_field &&
+                                       (m_terrain_blank_ptr != nullptr) &&
+                                       !m_has_moving_terrain;
 
     for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
         auto ori = oit();
@@ -1465,55 +1475,35 @@ void BoundaryPlane::populate_data(
             const auto& src_arr = src.array();
             const int nstart = m_in_data.component(static_cast<int>(fld.id()));
 
-            if (use_vof_condition && use_terrain_condition) {
-                const auto& vof_arr = (*m_vof_ptr)(lev).const_array(mfi);
-                const auto& terrain_blank_flags =
-                    (*m_terrain_blank_ptr)(lev).const_array(mfi);
-                amrex::ParallelFor(
-                    bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
-                        const amrex::IntVect iv{i, j, k};
-                        if (vof_matches(phase_condition, vof_arr(iv))) {
-                            dest(iv, n + dcomp) = src_arr(
-                                iv[0] + shift_to_cc[0], iv[1] + shift_to_cc[1],
-                                iv[2] + shift_to_cc[2], n + nstart + orig_comp);
-                        }
-                        if (terrain_blank_flags(
-                                iv + shift_to_cc + shift_to_interior) == 1) {
-                            dest(iv, n + dcomp) = 0.0_rt;
-                        }
-                    });
-            } else if (use_vof_condition) {
-                const auto& vof_arr = (*m_vof_ptr)(lev).const_array(mfi);
-                amrex::ParallelFor(
-                    bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
-                        if (vof_matches(phase_condition, vof_arr(i, j, k))) {
-                            dest(i, j, k, n + dcomp) = src_arr(
-                                i + shift_to_cc[0], j + shift_to_cc[1],
-                                k + shift_to_cc[2], n + nstart + orig_comp);
-                        }
-                    });
-            } else if (use_terrain_condition) {
-                const auto& terrain_blank_flags =
-                    (*m_terrain_blank_ptr)(lev).const_array(mfi);
-                amrex::ParallelFor(
-                    bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
-                        const amrex::IntVect iv{i, j, k};
+            const auto& vof_arr = m_vof_ptr != nullptr
+                                      ? (*m_vof_ptr)(lev).const_array(mfi)
+                                      : amrex::Array4<const amrex::Real>{};
+            const auto& terrain_blank_flags =
+                m_terrain_blank_ptr != nullptr
+                    ? (*m_terrain_blank_ptr)(lev).const_array(mfi)
+                    : amrex::Array4<const int>{};
+            amrex::ParallelFor(
+                bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
+                    const amrex::IntVect iv{i, j, k};
+                    // If vof condition is not being used, or if the condition
+                    // is met, populate the data. (Applies to any field except
+                    // for vof or density, since directly relate to phase.)
+                    if (!use_vof_condition ||
+                        (use_vof_condition &&
+                         vof_matches(phase_condition, vof_arr(iv)))) {
                         dest(iv, n + dcomp) = src_arr(
                             iv[0] + shift_to_cc[0], iv[1] + shift_to_cc[1],
                             iv[2] + shift_to_cc[2], n + nstart + orig_comp);
-                        if (terrain_blank_flags(
-                                iv + shift_to_cc + shift_to_interior) == 1) {
-                            dest(iv, n + dcomp) = 0.0_rt;
-                        }
-                    });
-            } else {
-                amrex::ParallelFor(
-                    bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
-                        dest(i, j, k, n + dcomp) = src_arr(
-                            i + shift_to_cc[0], j + shift_to_cc[1],
-                            k + shift_to_cc[2], n + nstart + orig_comp);
-                    });
-            }
+                    }
+                    // If the terrain condition is met, blank the velocity to 0
+                    // to prevent flow directly into static terrain or
+                    // bathymetry cells.
+                    if (use_terrain_condition &&
+                        terrain_blank_flags(
+                            iv + shift_to_cc + shift_to_interior) == 1) {
+                        dest(iv, n + dcomp) = 0.0_rt;
+                    }
+                });
         }
     }
 

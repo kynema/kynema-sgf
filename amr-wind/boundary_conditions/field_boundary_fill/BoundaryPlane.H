@@ -282,6 +282,9 @@ private:
     //! timing of pre_advance_work
     bool m_has_overset{false};
 
+    //! Flag indicating if terrain can move (i.e. if representing waves)
+    bool m_has_moving_terrain{false};
+
     //! controls extents on native bndry output
     const int m_in_rad = 1;
     const int m_out_rad = 1;
