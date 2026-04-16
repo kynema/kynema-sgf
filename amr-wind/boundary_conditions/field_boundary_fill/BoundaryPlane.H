@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include "amr-wind/core/Field.H"
+#include "amr-wind/core/IntField.H"
 #include "amr-wind/CFDSim.H"
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 #include "amr-wind/utilities/io_utils.H"
@@ -16,6 +17,12 @@ class MultiBlockContainer;
 namespace amr_wind {
 
 enum struct io_mode : std::uint8_t { output, input, undefined };
+
+enum struct velocity_vof_condition : std::uint8_t {
+    greater_than_zero,
+    less_than_one,
+    agnostic
+};
 
 struct BufferData
 {
@@ -262,6 +269,10 @@ private:
 
     //! IO mode
     io_mode m_io_mode{io_mode::undefined};
+
+    //! User-selected VOF gate for boundary velocity population
+    velocity_vof_condition m_velocity_vof_condition{
+        velocity_vof_condition::greater_than_zero};
 
     //! Pointer to vof field for velocity population based on vof values
     Field* m_vof_ptr{nullptr};

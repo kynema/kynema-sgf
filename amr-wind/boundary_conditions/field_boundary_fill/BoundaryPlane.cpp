@@ -43,6 +43,45 @@ AMREX_FORCE_INLINE std::string level_name(int lev)
 }
 #endif
 
+AMREX_FORCE_INLINE velocity_vof_condition
+parse_velocity_vof_condition(const std::string& condition)
+{
+    if ((condition == "greater_than_zero") || (condition == "vof_gt_0") ||
+        (condition == ">0")) {
+        return velocity_vof_condition::greater_than_zero;
+    }
+
+    if ((condition == "less_than_one") || (condition == "vof_lt_1") ||
+        (condition == "<1")) {
+        return velocity_vof_condition::less_than_one;
+    }
+
+    if ((condition == "agnostic") || (condition == "vof_agnostic")) {
+        return velocity_vof_condition::agnostic;
+    }
+
+    amrex::Abort(
+        "BoundaryPlane: invalid velocity_vof_condition='" + condition +
+        "'. Valid options are greater_than_zero, less_than_one, or "
+        "agnostic.");
+    return velocity_vof_condition::greater_than_zero;
+}
+
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool velocity_vof_matches(
+    const velocity_vof_condition condition, const amrex::Real vof)
+{
+    switch (condition) {
+    case velocity_vof_condition::greater_than_zero:
+        return vof > constants::TIGHT_TOL;
+    case velocity_vof_condition::less_than_one:
+        return vof < (1.0_rt - constants::TIGHT_TOL);
+    case velocity_vof_condition::agnostic:
+        return true;
+    }
+
+    return true;
+}
+
 } // namespace
 
 void InletData::resize(const int size)
@@ -328,6 +367,9 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
         pp.queryarr("var_names", m_var_names);
         pp.get("file", m_filename);
         pp.query("output_format", m_out_fmt);
+        std::string vof_condition{"greater_than_zero"};
+        pp.query("velocity_vof_condition", vof_condition);
+        m_velocity_vof_condition = parse_velocity_vof_condition(vof_condition);
     } else {
         pp_abl.query("bndry_write_frequency", m_write_frequency);
         pp_abl.queryarr("bndry_planes", m_planes);
@@ -335,6 +377,9 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
         pp_abl.queryarr("bndry_var_names", m_var_names);
         pp_abl.get("bndry_file", m_filename);
         pp_abl.query("bndry_output_format", m_out_fmt);
+        std::string vof_condition{"greater_than_zero"};
+        pp_abl.query("bndry_velocity_vof_condition", vof_condition);
+        m_velocity_vof_condition = parse_velocity_vof_condition(vof_condition);
     }
 
 #ifndef AMR_WIND_USE_NETCDF
@@ -1367,10 +1412,14 @@ void BoundaryPlane::populate_data(
             ", m_in_data.tinterp() = " + std::to_string(m_in_data.tinterp()));
     }
 
-    // Check if this is velocity field and vof exists for conditional population
+    // Apply optional VOF gating only when populating the velocity field.
     const bool is_velocity_field = (fld.name() == "velocity");
-    const bool use_vof_condition = is_velocity_field && (m_vof_ptr != nullptr);
-    const bool terrain_and_vof_exist = use_vof_condition && (m_vof_ptr != nullptr) && (m_terrain_blank_ptr != nullptr);
+    const auto vof_condition = m_velocity_vof_condition;
+    const bool use_vof_condition =
+        is_velocity_field && (m_vof_ptr != nullptr) &&
+        (vof_condition != velocity_vof_condition::agnostic);
+    const bool use_terrain_condition =
+        is_velocity_field && (m_terrain_blank_ptr != nullptr);
 
     for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
         auto ori = oit();
@@ -1418,38 +1467,50 @@ void BoundaryPlane::populate_data(
             const auto& src_arr = src.array();
             const int nstart = m_in_data.component(static_cast<int>(fld.id()));
 
-            // If velocity field with vof and terrain, apply conditional population
-            if (terrain_and_vof_exist) {
+            if (use_vof_condition && use_terrain_condition) {
                 const auto& vof_arr = (*m_vof_ptr)(lev).const_array(mfi);
-                const auto& terrain_blank_flags = (*m_terrain_blank_ptr)(lev).const_array(mfi);
+                const auto& terrain_blank_flags =
+                    (*m_terrain_blank_ptr)(lev).const_array(mfi);
                 amrex::ParallelFor(
                     bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
                         const amrex::IntVect iv{i, j, k};
-                        // Only populate velocity where vof > TIGHT_TOL
-                        if (vof_arr(iv) > constants::TIGHT_TOL) {
+                        if (velocity_vof_matches(
+                            vof_condition, vof_arr(iv))) {
                             dest(iv, n + dcomp) = src_arr(
                                 iv[0] + shift_to_cc[0], iv[1] + shift_to_cc[1],
                                 iv[2] + shift_to_cc[2], n + nstart + orig_comp);
                         }
-                        // If adjacent interior cell is terrain-blanked, set velocity to 0
-                        if (terrain_blank_flags(iv + shift_to_interior) == 1) {
+                        if (terrain_blank_flags(
+                                iv + shift_to_cc + shift_to_interior) == 1) {
                             dest(iv, n + dcomp) = 0.0_rt;
                         }
                     });
             } else if (use_vof_condition) {
-                // With vof only (no terrain)
                 const auto& vof_arr = (*m_vof_ptr)(lev).const_array(mfi);
                 amrex::ParallelFor(
                     bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
-                        // Only populate velocity where vof > TIGHT_TOL
-                        if (vof_arr(i, j, k) > constants::TIGHT_TOL) {
+                        if (velocity_vof_matches(
+                                vof_condition, vof_arr(i, j, k))) {
                             dest(i, j, k, n + dcomp) = src_arr(
                                 i + shift_to_cc[0], j + shift_to_cc[1],
                                 k + shift_to_cc[2], n + nstart + orig_comp);
                         }
                     });
+            } else if (use_terrain_condition) {
+                const auto& terrain_blank_flags =
+                    (*m_terrain_blank_ptr)(lev).const_array(mfi);
+                amrex::ParallelFor(
+                    bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
+                        const amrex::IntVect iv{i, j, k};
+                        dest(iv, n + dcomp) = src_arr(
+                            iv[0] + shift_to_cc[0], iv[1] + shift_to_cc[1],
+                            iv[2] + shift_to_cc[2], n + nstart + orig_comp);
+                        if (terrain_blank_flags(
+                                iv + shift_to_cc + shift_to_interior) == 1) {
+                            dest(iv, n + dcomp) = 0.0_rt;
+                        }
+                    });
             } else {
-                // Standard population without vof or terrain condition
                 amrex::ParallelFor(
                     bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
                         dest(i, j, k, n + dcomp) = src_arr(
