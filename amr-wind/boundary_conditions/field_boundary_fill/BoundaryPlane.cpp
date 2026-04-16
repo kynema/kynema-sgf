@@ -409,12 +409,12 @@ void BoundaryPlane::post_init_actions()
         m_vof_ptr = &m_repo.get_field("vof");
     } else if (m_phase != phase::both) {
         amrex::Abort(
-            "BoundaryPlane: phase condition specified as '" + m_phase_str +
+            "BoundaryPlane: fluid phase specified as '" + m_phase_str +
             "' but vof field not found, which means the simulation is "
-            "single-phase. Please remove the phase input argument or include "
-            "the MultiPhase physics class, which introduces the vof field. "
-            "Additional relevant physics classes may also be necessary for "
-            "proper problem setup.");
+            "single-phase. Please remove the fluid phase input argument or "
+            "include the MultiPhase physics class, which introduces the vof "
+            "field. Additional relevant physics classes may also be necessary "
+            "for proper problem setup.");
     }
 
     // Initialize terrain_blank field pointer if it exists (for terrain-based
