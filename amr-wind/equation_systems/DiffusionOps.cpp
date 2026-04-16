@@ -25,7 +25,7 @@ DiffSolverIface<LinOp>::DiffSolverIface(
     iapply.setMaxCoarseningLevel(0);
 
     const auto& mesh = m_pdefields.repo.mesh();
-    if (!has_overset) {
+    if (!has_overset && !fields.repo.int_field_exists("terrain_blank")) {
         m_solver.reset(new LinOp(
             mesh.Geom(0, mesh.finestLevel()),
             mesh.boxArray(0, mesh.finestLevel()),
@@ -35,7 +35,23 @@ DiffSolverIface<LinOp>::DiffSolverIface(
             mesh.boxArray(0, mesh.finestLevel()),
             mesh.DistributionMap(0, mesh.finestLevel()), iapply));
     } else {
-        auto imask = fields.repo.get_int_field("mask_cell").vec_const_ptrs();
+        auto combo_mask =
+            fields.repo.create_int_scratch_field("combo_mask", 1, 1);
+        combo_mask->setVal(1);
+        if (fields.repo.int_field_exists("terrain_blank")) {
+            auto& terrain_blank = fields.repo.get_int_field("terrain_blank");
+            for (int i = 0; i < mesh.finestLevel() + 1; ++i) {
+                amrex::iMultiFab::Saxpy(
+                    (*combo_mask)(i), -1, terrain_blank(i), 0, 0, 1,
+                    amrex::IntVect(1));
+            }
+        }
+        const auto& overset_mask = fields.repo.get_int_field("mask_cell");
+        for (int i = 0; i < mesh.finestLevel() + 1; ++i) {
+            amrex::iMultiFab::Multiply(
+                (*combo_mask)(i), overset_mask(i), 0, 0, 1, 1);
+        }
+        auto imask = (*combo_mask).vec_const_ptrs();
         m_solver.reset(new LinOp(
             mesh.Geom(0, mesh.finestLevel()),
             mesh.boxArray(0, mesh.finestLevel()),
