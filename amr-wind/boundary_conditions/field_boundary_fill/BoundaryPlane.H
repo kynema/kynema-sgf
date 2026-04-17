@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include "amr-wind/core/Field.H"
+#include "amr-wind/core/IntField.H"
 #include "amr-wind/CFDSim.H"
 #include "amr-wind/utilities/ncutils/nc_interface.H"
 #include "amr-wind/utilities/io_utils.H"
@@ -16,6 +17,8 @@ class MultiBlockContainer;
 namespace amr_wind {
 
 enum struct io_mode : std::uint8_t { output, input, undefined };
+
+enum struct phase : std::uint8_t { liquid, gas, both };
 
 struct BufferData
 {
@@ -263,9 +266,24 @@ private:
     //! IO mode
     io_mode m_io_mode{io_mode::undefined};
 
+    //! User-selected VOF gate for boundary velocity population
+    phase m_phase{phase::both};
+
+    //! Default string for collecting user input for velocity_vof_condition
+    std::string m_phase_str{"both"};
+
+    //! Pointer to vof field for velocity population based on vof values
+    Field* m_vof_ptr{nullptr};
+
+    //! Pointer to terrain_blank field for velocity population based on terrain
+    IntField* m_terrain_blank_ptr{nullptr};
+
     //! Flag indicating if the simulation is overset -- needed for complicated
     //! timing of pre_advance_work
     bool m_has_overset{false};
+
+    //! Flag indicating if terrain can move (i.e. if representing waves)
+    bool m_has_moving_terrain{false};
 
     //! controls extents on native bndry output
     const int m_in_rad = 1;

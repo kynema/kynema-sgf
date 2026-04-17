@@ -410,6 +410,7 @@ if(AMR_WIND_TEST_WITH_FCOMPARE)
   add_test_red(abl_godunov_forcetimetable abl_godunov_timetable)
   add_test_red(abl_multiphase_laminar_input abl_multiphase_laminar)
   add_test_red(abl_multiphase_laminar_inout abl_multiphase_laminar_2planes)
+  add_test_red(bathymetry_input ow_current_wing)
 endif()
 
 if(AMR_WIND_ENABLE_NETCDF)
