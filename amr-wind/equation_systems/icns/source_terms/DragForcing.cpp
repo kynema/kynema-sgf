@@ -199,17 +199,38 @@ void DragForcing::operator()(
     auto* const m_terrain_blank =
         &this->m_sim.repo().get_int_field("terrain_blank");
     const auto& blank = (*m_terrain_blank)(lev).const_array(mfi);
+
+    const bool has_terrain_drag =
+        this->m_sim.repo().int_field_exists("terrain_drag");
+    const bool has_terrainz0 = this->m_sim.repo().field_exists("terrainz0");
+    const bool has_terrain_damping =
+        this->m_sim.repo().field_exists("terrain_damping");
+    const bool has_terrain_height =
+        this->m_sim.repo().field_exists("terrain_height");
+
     auto* const m_terrain_drag =
-        &this->m_sim.repo().get_int_field("terrain_drag");
-    const auto& drag = (*m_terrain_drag)(lev).const_array(mfi);
-    auto* const m_terrainz0 = &this->m_sim.repo().get_field("terrainz0");
-    const auto& terrainz0 = (*m_terrainz0)(lev).const_array(mfi);
+        has_terrain_drag ? &this->m_sim.repo().get_int_field("terrain_drag")
+                         : nullptr;
+    const auto& drag = has_terrain_drag
+                           ? (*m_terrain_drag)(lev).const_array(mfi)
+                           : amrex::Array4<int>();
+    auto* const m_terrainz0 =
+        has_terrainz0 ? &this->m_sim.repo().get_field("terrainz0") : nullptr;
+    const auto& terrainz0 = has_terrainz0 ? (*m_terrainz0)(lev).const_array(mfi)
+                                          : amrex::Array4<amrex::Real>();
     auto* const m_terrain_damping =
-        &this->m_sim.repo().get_field("terrain_damping");
-    const auto& damping = (*m_terrain_damping)(lev).const_array(mfi);
+        has_terrain_damping ? &this->m_sim.repo().get_field("terrain_damping")
+                            : nullptr;
+    const auto& damping = has_terrain_damping
+                              ? (*m_terrain_damping)(lev).const_array(mfi)
+                              : amrex::Array4<amrex::Real>();
     auto* const m_terrain_height =
-        &this->m_sim.repo().get_field("terrain_height");
-    const auto& terrain_height = (*m_terrain_height)(lev).const_array(mfi);
+        has_terrain_height ? &this->m_sim.repo().get_field("terrain_height")
+                           : nullptr;
+    const auto& terrain_height = has_terrain_height
+                                     ? (*m_terrain_height)(lev).const_array(mfi)
+                                     : amrex::Array4<amrex::Real>();
+
     const bool is_waves = m_terrain_is_waves;
     const bool model_form_drag = m_apply_MOSD;
     const auto& target_vel_arr = is_waves
@@ -269,7 +290,8 @@ void DragForcing::operator()(
         const amrex::Real x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
         const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
         const amrex::Real z = amrex::max<amrex::Real>(
-            prob_lo[2] + ((k + 0.5_rt) * dx[2]) - terrain_height(i, j, k),
+            prob_lo[2] + ((k + 0.5_rt) * dx[2]) -
+                (has_terrain_height ? terrain_height(i, j, k) : 0.0_rt),
             min_z);
         amrex::Real xi_end = (std::abs(sdist_east) > amr_wind::constants::EPS)
                                  ? (x - start_east) / (sdist_east)
@@ -312,7 +334,7 @@ void DragForcing::operator()(
         amrex::Real bc_forcing_y = 0.0_rt;
         const amrex::Real m =
             std::sqrt((ux1 * ux1) + (uy1 * uy1) + (uz1 * uz1));
-        if (drag(i, j, k) == 1 && (!is_laminar)) {
+        if (has_terrain_drag && drag(i, j, k) == 1 && (!is_laminar)) {
             // Check if close enough to interface to use current cell or below
             int k_off = -1;
             if (is_waves) {
@@ -370,25 +392,42 @@ void DragForcing::operator()(
         }
         const amrex::Real CdM = amrex::min<amrex::Real>(
             Cd / (m + amr_wind::constants::EPS), cd_max / scale_factor);
-        src_term(i, j, k, 0) -=
-            ((CdM * m * (ux1 - target_u) * blank(i, j, k)) +
-             (Dxz * drag(i, j, k)) + (bc_forcing_x * drag(i, j, k)) +
-             (1 - blank(i, j, k)) * ((xstart_damping + xend_damping +
-                                      ystart_damping + yend_damping) *
-                                     (ux1 - sponge_density * spongeVelX)));
-        src_term(i, j, k, 1) -=
-            ((CdM * m * (uy1 - target_v) * blank(i, j, k)) +
-             (Dyz * drag(i, j, k)) + (bc_forcing_y * drag(i, j, k)) +
-             (1 - blank(i, j, k)) * ((xstart_damping + xend_damping +
-                                      ystart_damping + yend_damping) *
-                                     (uy1 - sponge_density * spongeVelY)));
-        src_term(i, j, k, 2) -=
-            ((CdM * m * (uz1 - target_w) * blank(i, j, k)) +
-             (CdM * m * (uz1 - target_w) * drag(i, j, k)) +
-             (1 - blank(i, j, k)) * ((xstart_damping + xend_damping +
-                                      ystart_damping + yend_damping) *
-                                     (uz1 - sponge_density * spongeVelZ)) +
-             damping(i, j, k) * (uz1));
+
+        // Force terms for blanked cells (inside terrain)
+        src_term(i, j, k, 0) -= (CdM * m * (ux1 - target_u) * blank(i, j, k));
+        src_term(i, j, k, 1) -= (CdM * m * (uy1 - target_v) * blank(i, j, k));
+        src_term(i, j, k, 2) -= (CdM * m * (uz1 - target_w) * blank(i, j, k));
+
+        // Force terms for drag cells (near terrain)
+        if (has_terrain_drag) {
+            src_term(i, j, k, 0) -=
+                (Dxz * drag(i, j, k)) + (bc_forcing_x * drag(i, j, k));
+            src_term(i, j, k, 1) -=
+                (Dyz * drag(i, j, k)) + (bc_forcing_y * drag(i, j, k));
+            src_term(i, j, k, 2) -=
+                (CdM * m * (uz1 - target_w) * drag(i, j, k));
+        }
+
+        // Sponge forcing for non-blank cells, for near boundaries
+        if (sponge_strength > 0.0_rt) {
+            src_term(i, j, k, 0) -=
+                (1 - blank(i, j, k)) * ((xstart_damping + xend_damping +
+                                         ystart_damping + yend_damping) *
+                                        (ux1 - sponge_density * spongeVelX));
+            src_term(i, j, k, 1) -=
+                (1 - blank(i, j, k)) * ((xstart_damping + xend_damping +
+                                         ystart_damping + yend_damping) *
+                                        (uy1 - sponge_density * spongeVelY));
+            src_term(i, j, k, 2) -=
+                (1 - blank(i, j, k)) * ((xstart_damping + xend_damping +
+                                         ystart_damping + yend_damping) *
+                                        (uz1 - sponge_density * spongeVelZ));
+        }
+
+        // Damping of vertical component based on damping field
+        if (has_terrain_damping) {
+            src_term(i, j, k, 2) -= damping(i, j, k) * (uz1);
+        }
     });
 }
 
