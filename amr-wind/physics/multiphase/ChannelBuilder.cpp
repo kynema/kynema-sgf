@@ -10,34 +10,6 @@ using namespace amrex::literals;
 
 namespace amr_wind::channelbuilder {
 
-namespace {
-[[nodiscard]] bool trapezoid(
-    const amrex::Real& top,
-    const amrex::Real& bottom,
-    const amrex::Real& height,
-    const amrex::Real& xloc,
-    const amrex::Real& zloc)
-{
-    return (zloc >= -height / 2.0_rt) && (zloc <= height / 2.0_rt) &&
-           (xloc >=
-            (-(top + bottom) / 2.0_rt + ((bottom - top) / height) * zloc)) &&
-           (xloc <=
-            ((top + bottom) / 2.0_rt - ((bottom - top) / height) * zloc));
-}
-
-[[nodiscard]] bool ellipse(
-    const amrex::Real& ax_horz,
-    const amrex::Real& ax_vert,
-    const amrex::Real& xloc,
-    const amrex::Real& zloc)
-{
-    return (
-        (xloc * xloc) / (ax_horz * ax_horz) +
-            (zloc * zloc) / (ax_vert * ax_vert) <=
-        1.0_rt);
-}
-} // namespace
-
 ChannelBuilder::ChannelBuilder(CFDSim& sim)
     : m_sim(sim)
     , m_repo(sim.repo())
