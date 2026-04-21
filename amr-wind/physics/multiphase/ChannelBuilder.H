@@ -36,6 +36,27 @@ namespace amr_wind::channelbuilder {
     const amrex::Real& end_y,
     const amrex::Real& end_z);
 
+/** Calculate local shape dimensions according to linear interpolation between
+ * start and end dimensions using length along segment.
+ */
+[[nodiscard]] AMREX_GPU_HOST_DEVICE amrex::GpuArray<amrex::Real, 3>
+get_local_dimensions(
+    const amrex::Real& x,
+    const amrex::Real& y,
+    const amrex::Real& z,
+    const amrex::Real& start_x,
+    const amrex::Real& start_y,
+    const amrex::Real& start_z,
+    const amrex::Real& end_x,
+    const amrex::Real& end_y,
+    const amrex::Real& end_z,
+    const amrex::Real& dim0_s,
+    const amrex::Real& dim1_s,
+    const amrex::Real& dim2_s,
+    const amrex::Real& dim0_e,
+    const amrex::Real& dim1_e,
+    const amrex::Real& dim2_e);
+
 /** Transform global coordinates to local segment coordinates.
  *  Returns [xloc, yloc, zloc] where xloc is along segment,
  *  yloc is lateral/horizontal, zloc is vertical to segment.
@@ -90,9 +111,12 @@ private:
 
     //! Quantities for constructing channels
     amrex::Vector<ChannelSegmentType> m_type;
-    amrex::Vector<amrex::Real> m_dim0;
-    amrex::Vector<amrex::Real> m_dim1;
-    amrex::Vector<amrex::Real> m_dim2;
+    amrex::Vector<amrex::Real> m_dim0_s;
+    amrex::Vector<amrex::Real> m_dim1_s;
+    amrex::Vector<amrex::Real> m_dim2_s;
+    amrex::Vector<amrex::Real> m_dim0_e;
+    amrex::Vector<amrex::Real> m_dim1_e;
+    amrex::Vector<amrex::Real> m_dim2_e;
     amrex::Vector<amrex::Array<amrex::Real, 3>> m_segment_start;
     amrex::Vector<amrex::Array<amrex::Real, 3>> m_segment_end;
 

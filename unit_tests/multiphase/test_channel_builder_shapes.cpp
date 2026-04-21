@@ -13,20 +13,25 @@ TEST(ChannelBuilderShapes, trapezoid_inside_outside)
     const amrex::Real height = 6.0_rt;
 
     // Interior points
-    EXPECT_TRUE(amr_wind::channelbuilder::trapezoid(
-        top, bottom, height, 0.0_rt, 0.0_rt));
-    EXPECT_TRUE(amr_wind::channelbuilder::trapezoid(
-        top, bottom, height, 0.8_rt, 1.5_rt));
+    EXPECT_TRUE(
+        amr_wind::channelbuilder::trapezoid(
+            top, bottom, height, 0.0_rt, 0.0_rt));
+    EXPECT_TRUE(
+        amr_wind::channelbuilder::trapezoid(
+            top, bottom, height, 0.8_rt, 1.5_rt));
 
     // Boundary point should be included
-    EXPECT_TRUE(amr_wind::channelbuilder::trapezoid(
-        top, bottom, height, -1.5_rt, 3.0_rt));
+    EXPECT_TRUE(
+        amr_wind::channelbuilder::trapezoid(
+            top, bottom, height, -1.5_rt, 3.0_rt));
 
     // Exterior points
-    EXPECT_FALSE(amr_wind::channelbuilder::trapezoid(
-        top, bottom, height, 3.1_rt, 0.0_rt));
-    EXPECT_FALSE(amr_wind::channelbuilder::trapezoid(
-        top, bottom, height, 0.0_rt, 3.1_rt));
+    EXPECT_FALSE(
+        amr_wind::channelbuilder::trapezoid(
+            top, bottom, height, 3.1_rt, 0.0_rt));
+    EXPECT_FALSE(
+        amr_wind::channelbuilder::trapezoid(
+            top, bottom, height, 0.0_rt, 3.1_rt));
 }
 
 TEST(ChannelBuilderShapes, ellipse_inside_outside)
@@ -35,20 +40,20 @@ TEST(ChannelBuilderShapes, ellipse_inside_outside)
     const amrex::Real ax_vert = 2.0_rt;
 
     // Interior points
-    EXPECT_TRUE(amr_wind::channelbuilder::ellipse(
-        ax_horz, ax_vert, 0.0_rt, 0.0_rt));
-    EXPECT_TRUE(amr_wind::channelbuilder::ellipse(
-        ax_horz, ax_vert, 2.0_rt, 0.5_rt));
+    EXPECT_TRUE(
+        amr_wind::channelbuilder::ellipse(ax_horz, ax_vert, 0.0_rt, 0.0_rt));
+    EXPECT_TRUE(
+        amr_wind::channelbuilder::ellipse(ax_horz, ax_vert, 2.0_rt, 0.5_rt));
 
     // Boundary point should be included
-    EXPECT_TRUE(amr_wind::channelbuilder::ellipse(
-        ax_horz, ax_vert, 3.0_rt, 0.0_rt));
+    EXPECT_TRUE(
+        amr_wind::channelbuilder::ellipse(ax_horz, ax_vert, 3.0_rt, 0.0_rt));
 
     // Exterior points
-    EXPECT_FALSE(amr_wind::channelbuilder::ellipse(
-        ax_horz, ax_vert, 3.2_rt, 0.0_rt));
-    EXPECT_FALSE(amr_wind::channelbuilder::ellipse(
-        ax_horz, ax_vert, 2.5_rt, 1.5_rt));
+    EXPECT_FALSE(
+        amr_wind::channelbuilder::ellipse(ax_horz, ax_vert, 3.2_rt, 0.0_rt));
+    EXPECT_FALSE(
+        amr_wind::channelbuilder::ellipse(ax_horz, ax_vert, 2.5_rt, 1.5_rt));
 }
 
 TEST(ChannelBuilderShapes, is_point_within_planes)
@@ -62,25 +67,54 @@ TEST(ChannelBuilderShapes, is_point_within_planes)
     const amrex::Real end_z = 0.0_rt;
 
     // Point between planes should return true
-    EXPECT_TRUE(amr_wind::channelbuilder::is_point_within_planes(
-        5.0_rt, 0.0_rt, 0.0_rt, start_x, start_y, start_z, end_x, end_y,
-        end_z));
+    EXPECT_TRUE(
+        amr_wind::channelbuilder::is_point_within_planes(
+            5.0_rt, 0.0_rt, 0.0_rt, start_x, start_y, start_z, end_x, end_y,
+            end_z));
 
     // Points on or near segment should return true
-    EXPECT_TRUE(amr_wind::channelbuilder::is_point_within_planes(
-        0.0_rt, 0.0_rt, 0.0_rt, start_x, start_y, start_z, end_x, end_y,
-        end_z));
-    EXPECT_TRUE(amr_wind::channelbuilder::is_point_within_planes(
-        10.0_rt, 0.0_rt, 0.0_rt, start_x, start_y, start_z, end_x, end_y,
-        end_z));
+    EXPECT_TRUE(
+        amr_wind::channelbuilder::is_point_within_planes(
+            0.0_rt, 0.0_rt, 0.0_rt, start_x, start_y, start_z, end_x, end_y,
+            end_z));
+    EXPECT_TRUE(
+        amr_wind::channelbuilder::is_point_within_planes(
+            10.0_rt, 0.0_rt, 0.0_rt, start_x, start_y, start_z, end_x, end_y,
+            end_z));
 
     // Points outside segment planes should return false
-    EXPECT_FALSE(amr_wind::channelbuilder::is_point_within_planes(
-        -5.0_rt, 0.0_rt, 0.0_rt, start_x, start_y, start_z, end_x, end_y,
-        end_z));
-    EXPECT_FALSE(amr_wind::channelbuilder::is_point_within_planes(
-        15.0_rt, 0.0_rt, 0.0_rt, start_x, start_y, start_z, end_x, end_y,
-        end_z));
+    EXPECT_FALSE(
+        amr_wind::channelbuilder::is_point_within_planes(
+            -5.0_rt, 0.0_rt, 0.0_rt, start_x, start_y, start_z, end_x, end_y,
+            end_z));
+    EXPECT_FALSE(
+        amr_wind::channelbuilder::is_point_within_planes(
+            15.0_rt, 0.0_rt, 0.0_rt, start_x, start_y, start_z, end_x, end_y,
+            end_z));
+}
+
+TEST(ChannelBuilderShapes, interpolate_to_get_local_dimensions)
+{
+    // Define a simple segment from (0, 0, 0) to (10, 0, 0)
+    const amrex::Real start_x = 0.0_rt;
+    const amrex::Real start_y = 0.0_rt;
+    const amrex::Real start_z = 0.0_rt;
+    const amrex::Real end_x = 10.0_rt;
+    const amrex::Real end_y = 8.0_rt;
+    const amrex::Real end_z = 6.0_rt;
+    const amrex::Real dim0_s = 1.0_rt;
+    const amrex::Real dim1_s = 2.0_rt;
+    const amrex::Real dim2_s = 3.0_rt;
+    const amrex::Real dim0_e = 4.0_rt;
+    const amrex::Real dim1_e = 5.0_rt;
+    const amrex::Real dim2_e = 6.0_rt;
+
+    auto local_dims = amr_wind::channelbuilder::get_local_dimensions(
+        5.0_rt, 4.0_rt, 3.0_rt, start_x, start_y, start_z, end_x, end_y, end_z,
+        dim0_s, dim1_s, dim2_s, dim0_e, dim1_e, dim2_e);
+    EXPECT_NEAR(local_dims[0], 2.5_rt, 1e-8_rt);
+    EXPECT_NEAR(local_dims[1], 3.5_rt, 1e-8_rt);
+    EXPECT_NEAR(local_dims[2], 4.5_rt, 1e-8_rt);
 }
 
 TEST(ChannelBuilderShapes, transform_to_local_coordinates)
@@ -112,8 +146,8 @@ TEST(ChannelBuilderShapes, transform_to_local_coordinates)
     end[2] = 5.0_rt;
 
     auto both_xy = amr_wind::channelbuilder::transform_to_local_coordinates(
-        2.0_rt + 2.0_rt / sqrt(2.0_rt), 3.0_rt, 5.0_rt, start[0], start[1], start[2], end[0], end[1],
-        end[2]);
+        2.0_rt + 2.0_rt / sqrt(2.0_rt), 3.0_rt, 5.0_rt, start[0], start[1],
+        start[2], end[0], end[1], end[2]);
     EXPECT_NEAR(both_xy[0], 1.0_rt, 1.0e-8_rt);
     EXPECT_NEAR(both_xy[1], -1.0_rt, 1.0e-8_rt);
     EXPECT_NEAR(both_xy[2], 0.0_rt, 1.0e-8_rt);
@@ -123,12 +157,11 @@ TEST(ChannelBuilderShapes, transform_to_local_coordinates)
     end[2] = 10.0_rt;
 
     auto both_xz = amr_wind::channelbuilder::transform_to_local_coordinates(
-        2.0_rt + 2.0_rt / sqrt(2.0_rt), 3.0_rt, 5.0_rt, start[0], start[1], start[2], end[0], end[1],
-        end[2]);
+        2.0_rt + 2.0_rt / sqrt(2.0_rt), 3.0_rt, 5.0_rt, start[0], start[1],
+        start[2], end[0], end[1], end[2]);
     EXPECT_NEAR(both_xz[0], 1.0_rt, 1.0e-8_rt);
     EXPECT_NEAR(both_xz[1], 0.0_rt, 1.0e-8_rt);
     EXPECT_NEAR(both_xz[2], -1.0_rt, 1.0e-8_rt);
-
 }
 
 } // namespace amr_wind_tests

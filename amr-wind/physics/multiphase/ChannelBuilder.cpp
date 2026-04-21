@@ -62,6 +62,41 @@ namespace amr_wind::channelbuilder {
 }
 
 [[nodiscard]] AMREX_GPU_HOST_DEVICE amrex::GpuArray<amrex::Real, 3>
+get_local_dimensions(
+    const amrex::Real& x,
+    const amrex::Real& y,
+    const amrex::Real& z,
+    const amrex::Real& start_x,
+    const amrex::Real& start_y,
+    const amrex::Real& start_z,
+    const amrex::Real& end_x,
+    const amrex::Real& end_y,
+    const amrex::Real& end_z,
+    const amrex::Real& dim0_s,
+    const amrex::Real& dim1_s,
+    const amrex::Real& dim2_s,
+    const amrex::Real& dim0_e,
+    const amrex::Real& dim1_e,
+    const amrex::Real& dim2_e)
+
+{
+    // Interpolate dimensions based on position along segment
+    const amrex::Real seg_length = std::sqrt(
+        (end_x - start_x) * (end_x - start_x) +
+        (end_y - start_y) * (end_y - start_y) +
+        (end_z - start_z) * (end_z - start_z));
+    const amrex::Real point_length = std::sqrt(
+        (x - start_x) * (x - start_x) + (y - start_y) * (y - start_y) +
+        (z - start_z) * (z - start_z));
+    const amrex::Real t = point_length / seg_length;
+    const amrex::Real dim0 = dim0_s + t * (dim0_e - dim0_s);
+    const amrex::Real dim1 = dim1_s + t * (dim1_e - dim1_s);
+    const amrex::Real dim2 = dim2_s + t * (dim2_e - dim2_s);
+
+    return amrex::GpuArray<amrex::Real, 3>{{dim0, dim1, dim2}};
+}
+
+[[nodiscard]] AMREX_GPU_HOST_DEVICE amrex::GpuArray<amrex::Real, 3>
 transform_to_local_coordinates(
     const amrex::Real& x,
     const amrex::Real& y,
@@ -88,10 +123,8 @@ transform_to_local_coordinates(
     const amrex::Real cos_theta_xy = a / mag_xy;
     const amrex::Real sin_theta_xy = b / mag_xy;
 
-    const amrex::Real xpp =
-        xp * cos_theta_xy + yp * sin_theta_xy;
-    const amrex::Real ypp =
-        - xp * sin_theta_xy + yp * cos_theta_xy;
+    const amrex::Real xpp = xp * cos_theta_xy + yp * sin_theta_xy;
+    const amrex::Real ypp = -xp * sin_theta_xy + yp * cos_theta_xy;
 
     // Rotate around y-axis based on z component
     const amrex::Real mag = std::sqrt(a * a + b * b + c * c);
@@ -99,14 +132,11 @@ transform_to_local_coordinates(
     const amrex::Real sin_theta_xpz = c / mag;
 
     // Local coordinates: xloc along segment, yloc lateral, zloc vertical
-    const amrex::Real xloc =
-        xpp * cos_theta_xpz + zp * sin_theta_xpz;
-    const amrex::Real zloc =
-        - xpp * sin_theta_xpz + zp * cos_theta_xpz;
+    const amrex::Real xloc = xpp * cos_theta_xpz + zp * sin_theta_xpz;
+    const amrex::Real zloc = -xpp * sin_theta_xpz + zp * cos_theta_xpz;
     const amrex::Real yloc = ypp;
 
-    return amrex::GpuArray<amrex::Real, 3>{
-        {xloc, yloc, zloc}};
+    return amrex::GpuArray<amrex::Real, 3>{{xloc, yloc, zloc}};
 }
 
 ChannelBuilder::ChannelBuilder(CFDSim& sim)
@@ -134,9 +164,12 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
         amrex::ParmParse pp1(key);
         std::string stype = "Ellipse";
         ChannelSegmentType type = ChannelSegmentType::Ellipse;
-        amrex::Real dim0 = 0.0_rt;
-        amrex::Real dim1 = 0.0_rt;
-        amrex::Real dim2 = 0.0_rt;
+        amrex::Real dim0_s = 0.0_rt;
+        amrex::Real dim1_s = 0.0_rt;
+        amrex::Real dim2_s = 0.0_rt;
+        amrex::Real dim0_e = 0.0_rt;
+        amrex::Real dim1_e = 0.0_rt;
+        amrex::Real dim2_e = 0.0_rt;
         amrex::Vector<amrex::Real> seg_start{0.0_rt, 0.0_rt, 0.0_rt};
         amrex::Vector<amrex::Real> seg_end{0.0_rt, 0.0_rt, 0.0_rt};
 
@@ -144,29 +177,55 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
         if (stype == "Ellipse") {
             type = ChannelSegmentType::Ellipse;
             if (pp1.contains("diameter")) {
-                pp1.get("diameter", dim0);
-                dim1 = dim0;
+                pp1.get("diameter", dim0_s);
+                dim1_s = dim0_s;
+                dim0_e = dim0_s;
+                dim1_e = dim0_s;
+            } else if (pp1.contains("diameter_start")) {
+                pp1.get("diameter_start", dim0_s);
+                pp1.get("diameter_end", dim0_e);
+                dim1_s = dim0_s;
+                dim1_e = dim0_e;
+            } else if (pp1.contains("horizontal_axis")) {
+                pp1.get("horizontal_axis", dim0_s);
+                pp1.get("vertical_axis", dim1_s);
+                dim0_e = dim0_s;
+                dim1_e = dim1_s;
             } else {
-                pp1.get("horizontal_axis", dim0);
-                pp1.get("vertical_axis", dim1);
+                pp1.get("horizontal_axis_start", dim0_s);
+                pp1.get("vertical_axis_start", dim1_s);
+                pp1.get("horizontal_axis_end", dim0_e);
+                pp1.get("vertical_axis_end", dim1_e);
             }
         } else if (stype == "Trapezoid") {
             type = ChannelSegmentType::Trapezoid;
-            pp1.get("top_width", dim1);
-            pp1.get("bottom_width", dim0);
-            pp1.get("height", dim2);
+            if (pp1.contains("top_width")) {
+                pp1.get("top_width", dim0_s);
+                pp1.get("bottom_width", dim1_s);
+                pp1.get("height", dim2_s);
+            } else {
+                pp1.get("top_width_start", dim0_s);
+                pp1.get("bottom_width_start", dim1_s);
+                pp1.get("height_start", dim2_s);
+                pp1.get("top_width_end", dim0_e);
+                pp1.get("bottom_width_end", dim1_e);
+                pp1.get("height_end", dim2_e);
+            }
         } else {
             amrex::Abort(
                 "Invalid channel segment type specified: " + stype +
                 ". Only 'Ellipse' and 'Trapezoid' are supported.");
         }
-        pp1.getarr("segment_start", seg_start);
-        pp1.getarr("segment_end", seg_end);
+        pp1.getarr("segment_start_point", seg_start);
+        pp1.getarr("segment_end_point", seg_end);
 
         m_type.emplace_back(type);
-        m_dim0.emplace_back(dim0);
-        m_dim1.emplace_back(dim1);
-        m_dim2.emplace_back(dim2);
+        m_dim0_s.emplace_back(dim0_s);
+        m_dim1_s.emplace_back(dim1_s);
+        m_dim2_s.emplace_back(dim2_s);
+        m_dim0_e.emplace_back(dim0_e);
+        m_dim1_e.emplace_back(dim1_e);
+        m_dim2_e.emplace_back(dim2_e);
         m_segment_start.emplace_back(
             amrex::Array<amrex::Real, 3>{
                 seg_start[0], seg_start[1], seg_start[2]});
@@ -205,15 +264,27 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
                 const auto& start = m_segment_start[seg];
                 const auto& end = m_segment_end[seg];
                 const auto& seg_type = m_type[seg];
-                const auto& dim0 = m_dim0[seg];
-                const auto& dim1 = m_dim1[seg];
-                const auto& dim2 = m_dim2[seg];
+                const auto& dim0_s = m_dim0_s[seg];
+                const auto& dim1_s = m_dim1_s[seg];
+                const auto& dim2_s = m_dim2_s[seg];
+                const auto& dim0_e = m_dim0_e[seg];
+                const auto& dim1_e = m_dim1_e[seg];
+                const auto& dim2_e = m_dim2_e[seg];
 
                 // Check if point is within bounding planes of segment start and
                 // end
                 if (is_point_within_planes(
                         x, y, z, start[0], start[1], start[2], end[0], end[1],
                         end[2])) {
+
+                    // Get local dimensions at this point along segment
+                    const auto local_dims = get_local_dimensions(
+                        x, y, z, start[0], start[1], start[2], end[0], end[1],
+                        end[2], dim0_s, dim1_s, dim2_s, dim0_e, dim1_e, dim2_e);
+                    const amrex::Real dim0 = local_dims[0];
+                    const amrex::Real dim1 = local_dims[1];
+                    const amrex::Real dim2 = local_dims[2];
+
                     // Transform to local segment coordinates
                     const auto local_coords = transform_to_local_coordinates(
                         x, y, z, start[0], start[1], start[2], end[0], end[1],
