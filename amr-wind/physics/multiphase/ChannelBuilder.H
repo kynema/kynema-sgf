@@ -22,6 +22,36 @@ namespace amr_wind::channelbuilder {
     const amrex::Real& hcoord,
     const amrex::Real& vcoord);
 
+/** Check if a point is within the bounding planes of a segment
+ *  defined by start and end points.
+ */
+[[nodiscard]] AMREX_GPU_HOST_DEVICE bool is_point_within_planes(
+    const amrex::Real& x,
+    const amrex::Real& y,
+    const amrex::Real& z,
+    const amrex::Real& start_x,
+    const amrex::Real& start_y,
+    const amrex::Real& start_z,
+    const amrex::Real& end_x,
+    const amrex::Real& end_y,
+    const amrex::Real& end_z);
+
+/** Transform global coordinates to local segment coordinates.
+ *  Returns [xloc, yloc, zloc] where xloc is along segment,
+ *  yloc is lateral/horizontal, zloc is vertical to segment.
+ */
+[[nodiscard]] AMREX_GPU_HOST_DEVICE amrex::GpuArray<amrex::Real, 3>
+transform_to_local_coordinates(
+    const amrex::Real& x,
+    const amrex::Real& y,
+    const amrex::Real& z,
+    const amrex::Real& start_x,
+    const amrex::Real& start_y,
+    const amrex::Real& start_z,
+    const amrex::Real& end_x,
+    const amrex::Real& end_y,
+    const amrex::Real& end_z);
+
 /** Terraindrag Flow physics
  *  \ingroup physics
  */

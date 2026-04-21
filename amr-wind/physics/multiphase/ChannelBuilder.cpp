@@ -36,6 +36,78 @@ namespace amr_wind::channelbuilder {
         1.0_rt);
 }
 
+[[nodiscard]] AMREX_GPU_HOST_DEVICE bool is_point_within_planes(
+    const amrex::Real& x,
+    const amrex::Real& y,
+    const amrex::Real& z,
+    const amrex::Real& start_x,
+    const amrex::Real& start_y,
+    const amrex::Real& start_z,
+    const amrex::Real& end_x,
+    const amrex::Real& end_y,
+    const amrex::Real& end_z)
+{
+    // Normal vector of plane: from start to end
+    const amrex::Real a = end_x - start_x;
+    const amrex::Real b = end_y - start_y;
+    const amrex::Real c = end_z - start_z;
+
+    // Dot product with plane normal at start and end
+    const amrex::Real p1 =
+        a * (x - start_x) + b * (y - start_y) + c * (z - start_z);
+    const amrex::Real p2 = a * (x - end_x) + b * (y - end_y) + c * (z - end_z);
+
+    // Point is within planes if it's on opposite sides or on a plane
+    return (p1 * p2 <= 0.0_rt);
+}
+
+[[nodiscard]] AMREX_GPU_HOST_DEVICE amrex::GpuArray<amrex::Real, 3>
+transform_to_local_coordinates(
+    const amrex::Real& x,
+    const amrex::Real& y,
+    const amrex::Real& z,
+    const amrex::Real& start_x,
+    const amrex::Real& start_y,
+    const amrex::Real& start_z,
+    const amrex::Real& end_x,
+    const amrex::Real& end_y,
+    const amrex::Real& end_z)
+{
+    // Segment direction vector
+    const amrex::Real a = end_x - start_x;
+    const amrex::Real b = end_y - start_y;
+    const amrex::Real c = end_z - start_z;
+
+    // Translate point relative to segment start
+    const amrex::Real xp = x - start_x;
+    const amrex::Real yp = y - start_y;
+    const amrex::Real zp = z - start_z;
+
+    // Rotate around z-axis based on xy component of direction
+    const amrex::Real mag_xy = std::sqrt(a * a + b * b);
+    const amrex::Real cos_theta_xy = a / mag_xy;
+    const amrex::Real sin_theta_xy = b / mag_xy;
+
+    const amrex::Real xpp =
+        xp * cos_theta_xy + yp * sin_theta_xy;
+    const amrex::Real ypp =
+        - xp * sin_theta_xy + yp * cos_theta_xy;
+
+    // Rotate around y-axis based on z component
+    const amrex::Real mag = std::sqrt(a * a + b * b + c * c);
+    const amrex::Real cos_theta_xpz = mag_xy / mag;
+    const amrex::Real sin_theta_xpz = c / mag;
+
+    // Local coordinates: xloc along segment, yloc lateral, zloc vertical
+    const amrex::Real xloc =
+        xpp * cos_theta_xpz + zp * sin_theta_xpz;
+    const amrex::Real zloc =
+        - xpp * sin_theta_xpz + zp * cos_theta_xpz;
+
+    return amrex::GpuArray<amrex::Real, 3>{
+        {xloc, ypp, zloc}};
+}
+
 ChannelBuilder::ChannelBuilder(CFDSim& sim)
     : m_sim(sim)
     , m_repo(sim.repo())
@@ -137,48 +209,16 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
                 const auto& dim2 = m_dim2[seg];
 
                 // Check if point is within bounding planes of segment start and
-                // end Normal vector of plane: from start to end
-                const amrex::Real a = end[0] - start[0];
-                const amrex::Real b = end[1] - start[1];
-                const amrex::Real c = end[2] - start[2];
-
-                const amrex::Real p1 = a * (x - start[0]) + b * (y - start[1]) +
-                                       c * (z - start[2]);
-                const amrex::Real p2 =
-                    a * (x - end[0]) + b * (y - end[1]) + c * (z - end[2]);
-                // If point is within planes, check shape
-                if (p1 * p2 <= 0.0_rt) {
-                    // Convert coordinates to local segment coordinates
-                    // Translate: x' = x - xstart, y' = y - ystart
-                    // Rotate: x'' = x' * cos(theta) + y' * sin(theta)
-                    //         y'' = x' * sin(theta) - y' * cos(theta)
-                    // (this is a passive rotation; points are stationary and
-                    // axes are rotated)
-                    const amrex::Real xp = x - start[0];
-                    const amrex::Real yp = y - start[1];
-                    // Normalize normal vector to get xy rotation angle
-                    const amrex::Real mag_xy = std::sqrt(a * a + b * b);
-                    const amrex::Real cos_theta_xy = a / mag_xy;
-                    const amrex::Real sin_theta_xy = b / mag_xy;
-                    // For the moment, nothing is a function along the segment
-                    // (fixed cross section)
-                    const amrex::Real xpp =
-                        xp * cos_theta_xy + yp * sin_theta_xy;
-                    const amrex::Real ypp =
-                        xp * sin_theta_xy - yp * cos_theta_xy;
-                    // Now do the same with the vertical coordinate and xpp
-                    const amrex::Real zp = z - start[2];
-                    const amrex::Real mag = std::sqrt(a * a + b * b + c * c);
-                    const amrex::Real cos_theta_xpz = mag_xy / mag;
-                    const amrex::Real sin_theta_xpz = c / mag;
-                    // Coordinates local to the segment centerline:
-                    // x is along the segment, y is lateral/horizontal, and z is
-                    // vertical to the segment
-                    const amrex::Real xloc =
-                        xpp * cos_theta_xpz + zp * sin_theta_xpz;
-                    const amrex::Real zloc =
-                        xpp * sin_theta_xpz - zp * cos_theta_xpz;
-                    const amrex::Real yloc = ypp;
+                // end
+                if (is_point_within_planes(
+                        x, y, z, start[0], start[1], start[2], end[0], end[1],
+                        end[2])) {
+                    // Transform to local segment coordinates
+                    const auto local_coords = transform_to_local_coordinates(
+                        x, y, z, start[0], start[1], start[2], end[0], end[1],
+                        end[2]);
+                    const amrex::Real yloc = local_coords[1];
+                    const amrex::Real zloc = local_coords[2];
 
                     if (seg_type == ChannelSegmentType::Ellipse) {
                         outside_channel &= !ellipse(dim0, dim1, yloc, zloc);
