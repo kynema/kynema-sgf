@@ -1,5 +1,6 @@
 target_sources(
   ${amr_wind_unit_test_exe_name} PRIVATE
+  test_channel_builder_shapes.cpp
   test_vof_plic.cpp
   test_vof_cons.cpp
   test_vof_tools.cpp
