@@ -103,9 +103,10 @@ transform_to_local_coordinates(
         xpp * cos_theta_xpz + zp * sin_theta_xpz;
     const amrex::Real zloc =
         - xpp * sin_theta_xpz + zp * cos_theta_xpz;
+    const amrex::Real yloc = ypp;
 
     return amrex::GpuArray<amrex::Real, 3>{
-        {xloc, ypp, zloc}};
+        {xloc, yloc, zloc}};
 }
 
 ChannelBuilder::ChannelBuilder(CFDSim& sim)
