@@ -13,14 +13,14 @@ namespace amr_wind::channelbuilder {
     const amrex::Real& top,
     const amrex::Real& bottom,
     const amrex::Real& height,
-    const amrex::Real& xloc,
-    const amrex::Real& zloc);
+    const amrex::Real& hcoord,
+    const amrex::Real& vcoord);
 
 [[nodiscard]] bool ellipse(
     const amrex::Real& ax_horz,
     const amrex::Real& ax_vert,
-    const amrex::Real& xloc,
-    const amrex::Real& zloc);
+    const amrex::Real& hcoord,
+    const amrex::Real& vcoord);
 
 /** Terraindrag Flow physics
  *  \ingroup physics
