@@ -4,6 +4,7 @@
 #include "AMReX_ParmParse.H"
 #include "amr-wind/utilities/IOManager.H"
 #include "AMReX_iMultiFab.H"
+#include "AMReX_Gpu.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -159,6 +160,13 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
         pp_multiphase.add("water_level", m_water_level);
     }
     pp.getarr("segment_labels", labels);
+
+    amrex::Vector<ChannelSegmentType> h_type;
+    amrex::Vector<amrex::Real> h_dim0_s, h_dim1_s, h_dim2_s;
+    amrex::Vector<amrex::Real> h_dim0_e, h_dim1_e, h_dim2_e;
+    amrex::Vector<amrex::Array<amrex::Real, 3>> h_segment_start;
+    amrex::Vector<amrex::Array<amrex::Real, 3>> h_segment_end;
+
     for (const auto& lbl : labels) {
         const std::string key = identifier() + "." + lbl;
         amrex::ParmParse pp1(key);
@@ -219,19 +227,58 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
         pp1.getarr("segment_start_point", seg_start);
         pp1.getarr("segment_end_point", seg_end);
 
-        m_type.emplace_back(type);
-        m_dim0_s.emplace_back(dim0_s);
-        m_dim1_s.emplace_back(dim1_s);
-        m_dim2_s.emplace_back(dim2_s);
-        m_dim0_e.emplace_back(dim0_e);
-        m_dim1_e.emplace_back(dim1_e);
-        m_dim2_e.emplace_back(dim2_e);
-        m_segment_start.emplace_back(
+        h_type.emplace_back(type);
+        h_dim0_s.emplace_back(dim0_s);
+        h_dim1_s.emplace_back(dim1_s);
+        h_dim2_s.emplace_back(dim2_s);
+        h_dim0_e.emplace_back(dim0_e);
+        h_dim1_e.emplace_back(dim1_e);
+        h_dim2_e.emplace_back(dim2_e);
+        h_segment_start.emplace_back(
             amrex::Array<amrex::Real, 3>{
                 seg_start[0], seg_start[1], seg_start[2]});
-        m_segment_end.emplace_back(
+        h_segment_end.emplace_back(
             amrex::Array<amrex::Real, 3>{seg_end[0], seg_end[1], seg_end[2]});
     }
+
+    const int nseg = static_cast<int>(h_type.size());
+    m_type.resize(nseg);
+    m_dim0_s.resize(nseg);
+    m_dim1_s.resize(nseg);
+    m_dim2_s.resize(nseg);
+    m_dim0_e.resize(nseg);
+    m_dim1_e.resize(nseg);
+    m_dim2_e.resize(nseg);
+    m_segment_start.resize(nseg);
+    m_segment_end.resize(nseg);
+
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, h_type.begin(), h_type.end(),
+        m_type.begin());
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, h_dim0_s.begin(), h_dim0_s.end(),
+        m_dim0_s.begin());
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, h_dim1_s.begin(), h_dim1_s.end(),
+        m_dim1_s.begin());
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, h_dim2_s.begin(), h_dim2_s.end(),
+        m_dim2_s.begin());
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, h_dim0_e.begin(), h_dim0_e.end(),
+        m_dim0_e.begin());
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, h_dim1_e.begin(), h_dim1_e.end(),
+        m_dim1_e.begin());
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, h_dim2_e.begin(), h_dim2_e.end(),
+        m_dim2_e.begin());
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, h_segment_start.begin(),
+        h_segment_start.end(), m_segment_start.begin());
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, h_segment_end.begin(), h_segment_end.end(),
+        m_segment_end.begin());
 }
 
 void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
@@ -248,6 +295,20 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     const auto& prob_hi = geom.ProbHiArray();
     auto& blank_mfab = m_terrain_blank(level);
     auto blank_arrs = blank_mfab.arrays();
+
+    const int nseg = static_cast<int>(m_type.size());
+    const ChannelSegmentType* type_ptr = m_type.data();
+    const amrex::Real* dim0_s_ptr = m_dim0_s.data();
+    const amrex::Real* dim1_s_ptr = m_dim1_s.data();
+    const amrex::Real* dim2_s_ptr = m_dim2_s.data();
+    const amrex::Real* dim0_e_ptr = m_dim0_e.data();
+    const amrex::Real* dim1_e_ptr = m_dim1_e.data();
+    const amrex::Real* dim2_e_ptr = m_dim2_e.data();
+    const amrex::Array<amrex::Real, 3>* start_ptr = m_segment_start.data();
+    const amrex::Array<amrex::Real, 3>* end_ptr = m_segment_end.data();
+    const bool multiphase = is_multiphase;
+    const amrex::Real land_level = m_land_level;
+
     amrex::ParallelFor(
         blank_mfab, m_terrain_blank.num_grow(),
         [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
@@ -260,16 +321,16 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
 
             // Loop through segments and determine if cell is within any channel
             // segment
-            for (int seg = 0; seg < m_type.size(); ++seg) {
-                const auto& start = m_segment_start[seg];
-                const auto& end = m_segment_end[seg];
-                const auto& seg_type = m_type[seg];
-                const auto& dim0_s = m_dim0_s[seg];
-                const auto& dim1_s = m_dim1_s[seg];
-                const auto& dim2_s = m_dim2_s[seg];
-                const auto& dim0_e = m_dim0_e[seg];
-                const auto& dim1_e = m_dim1_e[seg];
-                const auto& dim2_e = m_dim2_e[seg];
+            for (int seg = 0; seg < nseg; ++seg) {
+                const auto& start = start_ptr[seg];
+                const auto& end = end_ptr[seg];
+                const auto& seg_type = type_ptr[seg];
+                const auto& dim0_s = dim0_s_ptr[seg];
+                const auto& dim1_s = dim1_s_ptr[seg];
+                const auto& dim2_s = dim2_s_ptr[seg];
+                const auto& dim0_e = dim0_e_ptr[seg];
+                const auto& dim1_e = dim1_e_ptr[seg];
+                const auto& dim2_e = dim2_e_ptr[seg];
 
                 // Check if point is within bounding planes of segment start and
                 // end
@@ -302,7 +363,7 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
             }
 
             // Do adjustments for multiphase case
-            if (is_multiphase && z > m_land_level) {
+            if (multiphase && z > land_level) {
                 // Above land level means unblanked
                 outside_channel = false;
             }

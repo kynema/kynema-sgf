@@ -4,6 +4,7 @@
 #include "amr-wind/core/Physics.H"
 #include "amr-wind/core/Field.H"
 #include "amr-wind/CFDSim.H"
+#include "AMReX_Gpu.H"
 
 enum class ChannelSegmentType : std::uint8_t { Ellipse, Trapezoid };
 
@@ -110,15 +111,15 @@ private:
     amrex::Real m_land_level{0.0_rt};
 
     //! Quantities for constructing channels
-    amrex::Vector<ChannelSegmentType> m_type;
-    amrex::Vector<amrex::Real> m_dim0_s;
-    amrex::Vector<amrex::Real> m_dim1_s;
-    amrex::Vector<amrex::Real> m_dim2_s;
-    amrex::Vector<amrex::Real> m_dim0_e;
-    amrex::Vector<amrex::Real> m_dim1_e;
-    amrex::Vector<amrex::Real> m_dim2_e;
-    amrex::Vector<amrex::Array<amrex::Real, 3>> m_segment_start;
-    amrex::Vector<amrex::Array<amrex::Real, 3>> m_segment_end;
+    amrex::Gpu::DeviceVector<ChannelSegmentType> m_type;
+    amrex::Gpu::DeviceVector<amrex::Real> m_dim0_s;
+    amrex::Gpu::DeviceVector<amrex::Real> m_dim1_s;
+    amrex::Gpu::DeviceVector<amrex::Real> m_dim2_s;
+    amrex::Gpu::DeviceVector<amrex::Real> m_dim0_e;
+    amrex::Gpu::DeviceVector<amrex::Real> m_dim1_e;
+    amrex::Gpu::DeviceVector<amrex::Real> m_dim2_e;
+    amrex::Gpu::DeviceVector<amrex::Array<amrex::Real, 3>> m_segment_start;
+    amrex::Gpu::DeviceVector<amrex::Array<amrex::Real, 3>> m_segment_end;
 
     bool is_multiphase;
 };
