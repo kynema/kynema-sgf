@@ -46,7 +46,7 @@ private:
     amrex::Real m_land_level{0.0_rt};
 
     //! Quantities for constructing channels
-    amrex::Vector<std::string> m_type;
+    amrex::Vector<ChannelSegmentType> m_type;
     amrex::Vector<amrex::Real> m_dim0;
     amrex::Vector<amrex::Real> m_dim1;
     amrex::Vector<amrex::Real> m_dim2;
