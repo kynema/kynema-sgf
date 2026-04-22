@@ -9,7 +9,7 @@ void incflo::MakeNewLevelFromCoarse(
     const amrex::BoxArray& ba,
     const amrex::DistributionMapping& dm)
 {
-    BL_PROFILE("amr-wind::incflo::MakeNewLevelFromCoarse()");
+    BL_PROFILE("kynema-sgf::incflo::MakeNewLevelFromCoarse()");
 
     if (m_verbose > 0) {
         amrex::Print() << "Making new level " << lev << " from coarse" << '\n';
@@ -27,7 +27,7 @@ void incflo::RemakeLevel(
     const amrex::BoxArray& ba,
     const amrex::DistributionMapping& dm)
 {
-    BL_PROFILE("amr-wind::incflo::RemakeLevel()");
+    BL_PROFILE("kynema-sgf::incflo::RemakeLevel()");
 
     if (m_verbose > 0) {
         amrex::Print() << "Remaking level " << lev << '\n';
@@ -40,6 +40,6 @@ void incflo::RemakeLevel(
 // overrides the pure virtual function in AmrCore
 void incflo::ClearLevel(int lev)
 {
-    BL_PROFILE("amr-wind::incflo::ClearLevel()");
+    BL_PROFILE("kynema-sgf::incflo::ClearLevel()");
     m_repo.clear_level(lev);
 }

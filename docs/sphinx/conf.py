@@ -246,7 +246,7 @@ html_show_copyright = False
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'amr-wind-doc'
+htmlhelp_basename = 'kynema-sgf-doc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -314,7 +314,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'amr-wind', u'Kynema-SGF Documentation',
+    (master_doc, 'kynema-sgf', u'Kynema-SGF Documentation',
      [author], 1)
 ]
 

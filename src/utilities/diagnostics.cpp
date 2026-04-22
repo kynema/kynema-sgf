@@ -253,7 +253,7 @@ amrex::Real kynema_sgf::diagnostics::get_macvel_loc(
 amrex::Array<amrex::Real, 24> kynema_sgf::diagnostics::PrintMaxVelLocations(
     const kynema_sgf::FieldRepo& repo, const std::string& header)
 {
-    BL_PROFILE("amr-wind::diagnostics::PrintMaxVelLocations");
+    BL_PROFILE("kynema-sgf::diagnostics::PrintMaxVelLocations");
 
     // Get fields
     const auto& vel = repo.get_field("velocity");
@@ -440,7 +440,7 @@ amrex::Array<amrex::Real, 24> kynema_sgf::diagnostics::PrintMaxVelLocations(
 amrex::Array<amrex::Real, 24> kynema_sgf::diagnostics::PrintMaxMACVelLocations(
     const kynema_sgf::FieldRepo& repo, const std::string& header)
 {
-    BL_PROFILE("amr-wind::diagnostics::PrintMaxMACVelLocations");
+    BL_PROFILE("kynema-sgf::diagnostics::PrintMaxMACVelLocations");
 
     // Get fields
     const auto& u_mac = repo.get_field("u_mac");
@@ -662,7 +662,7 @@ amrex::Array<amrex::Real, 24> kynema_sgf::diagnostics::PrintMaxMACVelLocations(
 //
 void incflo::PrintMaxValues(const std::string& header)
 {
-    BL_PROFILE("amr-wind::incflo::PrintMaxValues");
+    BL_PROFILE("kynema-sgf::incflo::PrintMaxValues");
 
     amrex::Print() << "\nL-inf norm summary: " << header << '\n'
                    << "........................................................"
@@ -713,7 +713,7 @@ void incflo::PrintMaxVelLocations(const std::string& header)
 //
 void incflo::PrintMaxVel(int lev) const
 {
-    BL_PROFILE("amr-wind::incflo::PrintMaxVel");
+    BL_PROFILE("kynema-sgf::incflo::PrintMaxVel");
     amrex::Print() << "max(abs(u/v/w))  = " << velocity()(lev).norm0(0) << "  "
                    << velocity()(lev).norm0(1) << "  "
                    << velocity()(lev).norm0(2) << "  " << '\n';
@@ -724,7 +724,7 @@ void incflo::PrintMaxVel(int lev) const
 //
 void incflo::PrintMaxGp(int lev) const
 {
-    BL_PROFILE("amr-wind::incflo::PrintMaxGp");
+    BL_PROFILE("kynema-sgf::incflo::PrintMaxGp");
     amrex::Print() << "max(abs(gpx/gpy/gpz/p))  = " << grad_p()(lev).norm0(0)
                    << "  " << grad_p()(lev).norm0(1) << "  "
                    << grad_p()(lev).norm0(2) << "  " << pressure()(lev).norm0(0)
@@ -733,7 +733,7 @@ void incflo::PrintMaxGp(int lev) const
 
 void incflo::CheckForNans(int lev) const
 {
-    BL_PROFILE("amr-wind::incflo::CheckForNans");
+    BL_PROFILE("kynema-sgf::incflo::CheckForNans");
     bool ro_has_nans = density()(lev).contains_nan(false);
     bool ug_has_nans = velocity()(lev).contains_nan(false);
     bool vg_has_nans = velocity()(lev).contains_nan(true);

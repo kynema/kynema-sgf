@@ -19,7 +19,7 @@ FreeSurfaceSampler::~FreeSurfaceSampler() = default;
 
 void FreeSurfaceSampler::initialize(const std::string& key)
 {
-    BL_PROFILE("amr-wind::FreeSurfaceSampler::initialize");
+    BL_PROFILE("kynema-sgf::FreeSurfaceSampler::initialize");
 
     {
         amrex::ParmParse pp(key);
@@ -414,7 +414,7 @@ void FreeSurfaceSampler::sampling_locations(
 
 bool FreeSurfaceSampler::update_sampling_locations()
 {
-    BL_PROFILE("amr-wind::FreeSurfaceSampler::update_sampling_locations");
+    BL_PROFILE("kynema-sgf::FreeSurfaceSampler::update_sampling_locations");
 
     // Zero data in output array
     for (int n = 0; n < m_npts * m_ninst; n++) {
@@ -731,7 +731,7 @@ bool FreeSurfaceSampler::update_sampling_locations()
 
 void FreeSurfaceSampler::post_regrid_actions()
 {
-    BL_PROFILE("amr-wind::FreeSurfaceSampler::post_regrid_actions");
+    BL_PROFILE("kynema-sgf::FreeSurfaceSampler::post_regrid_actions");
     // Small number for floating-point comparisons
     constexpr amrex::Real eps = std::numeric_limits<amrex::Real>::epsilon();
     // Get working fields

@@ -476,7 +476,7 @@ void update_turbine(::ext_turb::KynemaTurbine& fi, bool advance)
     }
 
     if (fi.substep_counter == 0) {
-        // Output once per amr-wind timestep
+        // Output once per kynema-sgf timestep
         fi.interface->OpenOutputFile();
         fi.interface->WriteOutput();
         fi.interface->CloseOutputFile();
@@ -513,7 +513,7 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::parse_inputs(
 template <>
 void ExtTurbIface<KynemaTurbine, KynemaSolverData>::allocate_ext_turbines()
 {
-    BL_PROFILE("amr-wind::KynemaIface::allocate_turbines");
+    BL_PROFILE("kynema-sgf::KynemaIface::allocate_turbines");
 
     m_is_initialized = true;
 
@@ -536,7 +536,7 @@ template <>
 void ExtTurbIface<KynemaTurbine, KynemaSolverData>::init_solution(
     const int local_id)
 {
-    BL_PROFILE("amr-wind::KynemaIface::init_solution");
+    BL_PROFILE("kynema-sgf::KynemaIface::init_solution");
     AMREX_ALWAYS_ASSERT(local_id < static_cast<int>(m_turbine_data.size()));
     AMREX_ALWAYS_ASSERT(m_is_initialized);
 
@@ -551,7 +551,7 @@ template <>
 void ExtTurbIface<KynemaTurbine, KynemaSolverData>::get_hub_stats(
     const int local_id)
 {
-    BL_PROFILE("amr-wind::KynemaIface::get_hub_stats");
+    BL_PROFILE("kynema-sgf::KynemaIface::get_hub_stats");
 
     auto& fi = *m_turbine_data[local_id];
 
@@ -573,7 +573,7 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::prepare_netcdf_file(
     KynemaTurbine& fi)
 {
 #ifdef AMR_WIND_USE_NETCDF
-    BL_PROFILE("amr-wind::KynemaIface::prepare_netcdf_file");
+    BL_PROFILE("kynema-sgf::KynemaIface::prepare_netcdf_file");
     if (!amrex::UtilCreateDirectory(m_solver_data.output_dir, 0755)) {
         amrex::CreateDirectoryFailed(m_solver_data.output_dir);
     }
@@ -628,7 +628,7 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::write_velocity_data(
     const KynemaTurbine& fi)
 {
 #ifdef AMR_WIND_USE_NETCDF
-    BL_PROFILE("amr-wind::KynemaIface::write_velocity_data");
+    BL_PROFILE("kynema-sgf::KynemaIface::write_velocity_data");
     const std::string fname =
         m_solver_data.output_dir + "/" + fi.tlabel + ".nc";
     auto ncf = ncutils::NCFile::open(fname, NC_WRITE);
@@ -703,7 +703,7 @@ template <>
 void ExtTurbIface<KynemaTurbine, KynemaSolverData>::ext_init_turbine(
     KynemaTurbine& fi)
 {
-    BL_PROFILE("amr-wind::KynemaIface::init_turbine");
+    BL_PROFILE("kynema-sgf::KynemaIface::init_turbine");
 
     auto builder = kynema::interfaces::TurbineInterfaceBuilder{};
 
@@ -801,7 +801,7 @@ template <>
 void ExtTurbIface<KynemaTurbine, KynemaSolverData>::ext_restart_turbine(
     KynemaTurbine& fi)
 {
-    BL_PROFILE("amr-wind::KynemaIface::restart_turbine");
+    BL_PROFILE("kynema-sgf::KynemaIface::restart_turbine");
 
     AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
         amrex::FileSystem::Exists(fi.checkpoint_file + ".chkp"),

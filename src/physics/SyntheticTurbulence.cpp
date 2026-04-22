@@ -169,7 +169,7 @@ void load_turb_plane_data(
     const int il,
     const int ir)
 {
-    BL_PROFILE("amr-wind::SyntheticTurbulence::load_plane_data");
+    BL_PROFILE("kynema-sgf::SyntheticTurbulence::load_plane_data");
 #ifdef AMR_WIND_USE_NETCDF
     auto ncf = ncutils::NCFile::open(turb_filename, NC_NOWRITE);
 
@@ -504,7 +504,7 @@ void SyntheticTurbulence::pre_advance_work()
 
 void SyntheticTurbulence::initialize()
 {
-    BL_PROFILE("amr-wind::SyntheticTurbulence::initialize");
+    BL_PROFILE("kynema-sgf::SyntheticTurbulence::initialize");
     // Convert current time to an equivalent length based on the reference
     // velocity to determine the position within the turbulence grid
     const amrex::Real curTime = m_time.new_time() - m_time_offset;
@@ -518,7 +518,7 @@ void SyntheticTurbulence::initialize()
 
 void SyntheticTurbulence::update()
 {
-    BL_PROFILE("amr-wind::SyntheticTurbulence::update");
+    BL_PROFILE("kynema-sgf::SyntheticTurbulence::update");
 
     // Convert current time to an equivalent length based on the reference
     // velocity to determine the position within the turbulence grid

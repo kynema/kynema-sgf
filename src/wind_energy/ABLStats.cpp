@@ -48,7 +48,7 @@ void ABLStats::post_init_actions()
 
 void ABLStats::initialize()
 {
-    BL_PROFILE("amr-wind::ABLStats::initialize");
+    BL_PROFILE("kynema-sgf::ABLStats::initialize");
 
     {
         amrex::ParmParse pp("ABL");
@@ -98,7 +98,7 @@ void ABLStats::initialize()
 
 void ABLStats::calc_averages()
 {
-    BL_PROFILE("amr-wind::ABLStats::calc_averages");
+    BL_PROFILE("kynema-sgf::ABLStats::calc_averages");
     m_pa_vel();
     m_pa_temp();
     m_pa_vel_fine();
@@ -111,7 +111,7 @@ void ABLStats::calc_sfs_stress_avgs(
     ScratchField& sfs_stress, ScratchField& t_sfs_stress)
 {
 
-    BL_PROFILE("amr-wind::ABLStats::calc_sfs_stress_avgs");
+    BL_PROFILE("kynema-sgf::ABLStats::calc_sfs_stress_avgs");
 
     const auto& repo = m_sim.repo();
 
@@ -162,7 +162,7 @@ void ABLStats::calc_tke_diffusion(
     const amrex::Real dt)
 {
 
-    BL_PROFILE("amr-wind::ABLStats::calc_tke_diffusion");
+    BL_PROFILE("kynema-sgf::ABLStats::calc_tke_diffusion");
 
     // Get tke fields
     Field& tke = m_sim.repo().get_field("tke");
@@ -213,7 +213,7 @@ void ABLStats::calc_tke_diffusion(
 
 void ABLStats::post_advance_work()
 {
-    BL_PROFILE("amr-wind::ABLStats::post_advance_work");
+    BL_PROFILE("kynema-sgf::ABLStats::post_advance_work");
 
     // Always compute mean velocity/temperature profiles
     calc_averages();
@@ -237,7 +237,7 @@ void ABLStats::post_advance_work()
 
 void ABLStats::compute_zi()
 {
-    BL_PROFILE("amr-wind::ABLStats::compute_zi");
+    BL_PROFILE("kynema-sgf::ABLStats::compute_zi");
 
     auto gradT = (this->m_sim.repo())
                      .create_scratch_field(3, m_temperature.num_grow()[0]);
@@ -365,7 +365,7 @@ void ABLStats::compute_zi()
 
 void ABLStats::process_output()
 {
-    BL_PROFILE("amr-wind::ABLStats::process_output");
+    BL_PROFILE("kynema-sgf::ABLStats::process_output");
 
     if (m_out_freq > 0) {
         if (m_out_fmt == "ascii") {
@@ -380,7 +380,7 @@ void ABLStats::process_output()
 
 void ABLStats::write_ascii()
 {
-    BL_PROFILE("amr-wind::ABLStats::write_ascii");
+    BL_PROFILE("kynema-sgf::ABLStats::write_ascii");
 
     const std::string post_dir = m_sim.io_manager().post_processing_directory();
     const auto& time = m_sim.time();
@@ -450,7 +450,7 @@ void ABLStats::write_ascii()
 
 void ABLStats::prepare_ascii_file()
 {
-    BL_PROFILE("amr-wind::ABLStats::prepare_ascii_file");
+    BL_PROFILE("kynema-sgf::ABLStats::prepare_ascii_file");
     amrex::Print() << "WARNING: ABLStats: ASCII output will impact performance"
                    << '\n';
 
@@ -476,7 +476,7 @@ void ABLStats::prepare_ascii_file()
 void ABLStats::prepare_netcdf_file()
 {
 #ifdef AMR_WIND_USE_NETCDF
-    BL_PROFILE("amr-wind::ABLStats::prepare_netcdf_file");
+    BL_PROFILE("kynema-sgf::ABLStats::prepare_netcdf_file");
 
     const std::string post_dir = m_sim.io_manager().post_processing_directory();
     const std::string sname =
@@ -582,7 +582,7 @@ void ABLStats::prepare_netcdf_file()
 void ABLStats::write_netcdf()
 {
 #ifdef AMR_WIND_USE_NETCDF
-    BL_PROFILE("amr-wind::ABLStats::write_netcdf");
+    BL_PROFILE("kynema-sgf::ABLStats::write_netcdf");
 
     // First calculate sfs stress averages
     auto sfs_stress = m_sim.repo().create_scratch_field("sfs_stress", 3);

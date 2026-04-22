@@ -86,7 +86,7 @@ struct Vorticity
 template <typename FTypeIn, typename FTypeOut>
 void vorticity(FTypeOut& vortphi, const FTypeIn& phi)
 {
-    BL_PROFILE("amr-wind::fvm::vorticity");
+    BL_PROFILE("kynema-sgf::fvm::vorticity");
     Vorticity<FTypeIn, FTypeOut> vort(vortphi, phi);
     impl::apply(vort, phi);
 }

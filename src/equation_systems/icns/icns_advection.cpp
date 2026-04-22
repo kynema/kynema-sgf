@@ -205,7 +205,7 @@ void MacProjOp::set_inflow_velocity(amrex::Real time)
 
 void MacProjOp::operator()(const FieldState fstate, const amrex::Real dt)
 {
-    BL_PROFILE("amr-wind::ICNS::advection_mac_project");
+    BL_PROFILE("kynema-sgf::ICNS::advection_mac_project");
     const auto& geom = m_repo.mesh().Geom();
     auto& u_mac = m_repo.get_field("u_mac");
     auto& v_mac = m_repo.get_field("v_mac");

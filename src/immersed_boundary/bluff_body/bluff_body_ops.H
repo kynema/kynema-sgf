@@ -72,7 +72,7 @@ struct UpdateVelOp<
 {
     void operator()(typename GeomTrait::DataType& data)
     {
-        BL_PROFILE("amr-wind::ib::IB::update_velocities");
+        BL_PROFILE("kynema-sgf::ib::IB::update_velocities");
 
         const auto& wdata = data.meta();
         auto& sim = data.sim();

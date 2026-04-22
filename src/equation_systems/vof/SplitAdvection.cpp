@@ -25,7 +25,7 @@ void multiphase::split_advection_step(
     amrex::Real dt,
     bool rm_debris)
 {
-    BL_PROFILE("amr-wind::multiphase::split_advection_step");
+    BL_PROFILE("kynema-sgf::multiphase::split_advection_step");
 
     for (int lev = 0; lev < nlevels; ++lev) {
         amrex::MFItInfo mfi_info;
@@ -121,7 +121,7 @@ void multiphase::split_compute_fluxes(
     amrex::Vector<amrex::Geometry> geom,
     const amrex::Real dt)
 {
-    BL_PROFILE("amr-wind::multiphase::split_compute_fluxes");
+    BL_PROFILE("kynema-sgf::multiphase::split_compute_fluxes");
     amrex::Box const& bxg1 = amrex::grow(bx, 1);
 
     const amrex::Real dx = geom[lev].CellSize(0);
@@ -181,7 +181,7 @@ void multiphase::split_compute_sum(
     amrex::Vector<amrex::Geometry> geom,
     const amrex::Real dt)
 {
-    BL_PROFILE("amr-wind::multiphase::split_compute_sum");
+    BL_PROFILE("kynema-sgf::multiphase::split_compute_sum");
 
     const auto dxinv = geom[lev].InvCellSizeArray();
 
@@ -223,7 +223,7 @@ void multiphase::sweep_fluxes(
     amrex::Array4<amrex::Real> const& vofR)
 {
 
-    BL_PROFILE("amr-wind::multiphase::sweep_fluxes");
+    BL_PROFILE("kynema-sgf::multiphase::sweep_fluxes");
 
     amrex::Box const& bxg1 = amrex::grow(bx, 1);
 
@@ -250,7 +250,7 @@ void multiphase::sweep_balance(
     amrex::Array4<amrex::Real const> const& fluxC)
 {
 
-    BL_PROFILE("amr-wind::multiphase::sweep_balance");
+    BL_PROFILE("kynema-sgf::multiphase::sweep_balance");
 
     int ii = (dir == 0) ? 1 : 0;
     int jj = (dir == 1) ? 1 : 0;

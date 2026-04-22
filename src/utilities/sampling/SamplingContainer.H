@@ -90,7 +90,7 @@ public:
     template <typename FType>
     void interpolate_fields(const amrex::Vector<FType>& fields, const int scomp)
     {
-        BL_PROFILE("amr-wind::SamplingContainer::interpolate_fields");
+        BL_PROFILE("kynema-sgf::SamplingContainer::interpolate_fields");
 
         const int nlevels = m_mesh.finestLevel() + 1;
 
@@ -145,7 +145,7 @@ public:
         const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>& dx,
         const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>& offset)
     {
-        BL_PROFILE("amr-wind::SamplingContainer::sample_impl");
+        BL_PROFILE("kynema-sgf::SamplingContainer::sample_impl");
 
         auto* pstruct = pvec.data();
         auto* parr = pavec.data();

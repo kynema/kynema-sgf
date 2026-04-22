@@ -79,7 +79,7 @@ struct Divergence
 template <typename FTypeIn, typename FTypeOut>
 void divergence(FTypeOut& divphi, const FTypeIn& phi)
 {
-    BL_PROFILE("amr-wind::fvm::divergence");
+    BL_PROFILE("kynema-sgf::fvm::divergence");
     Divergence<FTypeIn, FTypeOut> grad(divphi, phi);
     impl::apply(grad, phi);
 }

@@ -4,7 +4,7 @@ This document is intended for developers who want to understand the C++ code
 structure and modify the codebase and, therefore, assumes that the reader is
 familiar with the installation, compilation, and execution steps. If you are new to
 Kynema-SGF and haven't installed/used Kynema-SGF previously, we recommend starting
-with the [user manual](https://exawind.github.io/amr-wind/) that provides a detailed
+with the [user manual](https://kynema.github.io/kynema-sgf/user/user.html) that provides a detailed
 overview of the installation process as well as general usage.
 
 ## How to use this API guide?
@@ -35,10 +35,10 @@ when to advance the simulation, exit, or write outputs.
 
 ### Source code organization
 
-Upon successful download/clone, the base repository (`amr-wind`) has source code
+Upon successful download/clone, the base repository (`kynema-sgf`) has source code
 is organized in subdirectories described below:
 
-- `amr-wind` -- C++ source files. All code is located within this directory
+- `src` -- C++ source files. All code is located within this directory
 - `unit_tests` -- Unit-tests for individual modules/classes
 - `cmake` -- Functions, utilities used during CMake configuration phase
 - `docs` -- User manual (Sphinx-based) and Doxygen files
@@ -54,13 +54,13 @@ are also a good way to explore the usage of individual components of the code.
 
 Kynema-SGF is an open-source code and we welcome contributions from the community.
 Please consult the [developer
-documentation](https://exawind.github.io/amr-wind/developer/index.html) section
+documentation](https://exawind.github.io/kynema-sgf/developer/index.html) section
 of the user manual to learn about the process of submitting code enhancements,
 bug-fixes, documentation updates, etc.
 
 ## License
 
 Kynema-SGF is licensed under BSD 3-clause license. Please see the
-[LICENSE](https://github.com/Exawind/amr-wind/blob/development/LICENSE) included in
+[LICENSE](https://github.com/Exawind/kynema-sgf/blob/development/LICENSE) included in
 the source code repository for more details.
 

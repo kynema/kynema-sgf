@@ -89,7 +89,7 @@ struct VorticityMag
 template <typename FTypeIn, typename FTypeOut>
 void vorticity_mag(FTypeOut& vortmagphi, const FTypeIn& phi)
 {
-    BL_PROFILE("amr-wind::fvm::vorticity_mag");
+    BL_PROFILE("kynema-sgf::fvm::vorticity_mag");
     VorticityMag<FTypeIn, FTypeOut> vortmag(vortmagphi, phi);
     impl::apply(vortmag, phi);
 }

@@ -86,7 +86,7 @@ struct Gradient
 template <typename FTypeIn, typename FTypeOut>
 void gradient(FTypeOut& gradphi, const FTypeIn& phi)
 {
-    BL_PROFILE("amr-wind::fvm::gradient");
+    BL_PROFILE("kynema-sgf::fvm::gradient");
     Gradient<FTypeIn, FTypeOut> grad(gradphi, phi);
     impl::apply(grad, phi);
 }

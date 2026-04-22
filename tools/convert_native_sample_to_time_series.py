@@ -13,7 +13,7 @@ def main():
     parser.add_argument(
         "-ks",
         "--kynema_sgf_path",
-        help="path to amr-wind directory",
+        help="path to kynema-sgf directory",
         required=True,
         type=str,
     )

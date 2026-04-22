@@ -99,7 +99,7 @@ struct StrainRate
 template <typename FTypeIn, typename FTypeOut>
 void strainrate(FTypeOut& strphi, const FTypeIn& phi)
 {
-    BL_PROFILE("amr-wind::fvm::strainrate");
+    BL_PROFILE("kynema-sgf::fvm::strainrate");
     StrainRate<FTypeIn, FTypeOut> str(strphi, phi);
     impl::apply(str, phi);
 }

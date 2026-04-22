@@ -59,7 +59,7 @@ public:
     void initialize() override
     {
         if (PDE::has_diffusion) {
-            BL_PROFILE("amr-wind::" + this->identifier() + "::initialize");
+            BL_PROFILE("kynema-sgf::" + this->identifier() + "::initialize");
             m_diff_op.reset(new DiffusionOp<PDE, Scheme>(
                 m_fields, m_sim.has_overset(), m_sim.has_mesh_mapping()));
             m_turb_op.reset(
@@ -84,7 +84,7 @@ public:
     {
         if (PDE::has_diffusion) {
             BL_PROFILE(
-                "amr-wind::" + this->identifier() + "::post_regrid_actions");
+                "kynema-sgf::" + this->identifier() + "::post_regrid_actions");
             m_diff_op.reset(new DiffusionOp<PDE, Scheme>(
                 m_fields, m_sim.has_overset(), m_sim.has_mesh_mapping()));
         }
@@ -107,14 +107,14 @@ public:
 
     void compute_source_term(const FieldState fstate) override
     {
-        BL_PROFILE("amr-wind::" + this->identifier() + "::compute_source_term");
+        BL_PROFILE("kynema-sgf::" + this->identifier() + "::compute_source_term");
         m_src_op(fstate, m_sim.has_mesh_mapping());
     }
 
     void compute_mueff(const FieldState /*unused*/) override
     {
         if (PDE::has_diffusion) {
-            BL_PROFILE("amr-wind::" + this->identifier() + "::compute_mueff");
+            BL_PROFILE("kynema-sgf::" + this->identifier() + "::compute_mueff");
             (*m_turb_op)();
         }
     }
@@ -123,7 +123,7 @@ public:
     {
         if (PDE::has_diffusion) {
             BL_PROFILE(
-                "amr-wind::" + this->identifier() + "::compute_diffusion_term");
+                "kynema-sgf::" + this->identifier() + "::compute_diffusion_term");
             m_bc_op.apply_bcs(fstate);
             m_diff_op->compute_diff_term(fstate);
         }
@@ -132,14 +132,14 @@ public:
     void compute_advection_term(const FieldState fstate) override
     {
         BL_PROFILE(
-            "amr-wind::" + this->identifier() + "::compute_advection_term");
+            "kynema-sgf::" + this->identifier() + "::compute_advection_term");
         (*m_adv_op)(fstate, m_time.delta_t());
     }
 
     void pre_advection_actions(const FieldState fstate) override
     {
         BL_PROFILE(
-            "amr-wind::" + this->identifier() + "::pre_advection_actions");
+            "kynema-sgf::" + this->identifier() + "::pre_advection_actions");
         m_adv_op->preadvect(
             fstate, m_time.delta_t(),
             0.5_rt * (m_time.current_time() + m_time.new_time()));
@@ -148,7 +148,7 @@ public:
     void compute_predictor_rhs(const DiffusionType difftype) override
     {
         BL_PROFILE(
-            "amr-wind::" + this->identifier() + "::compute_predictor_rhs");
+            "kynema-sgf::" + this->identifier() + "::compute_predictor_rhs");
         m_rhs_op.predictor_rhs(
             difftype, m_time.delta_t(), m_sim.has_mesh_mapping());
     }
@@ -156,7 +156,7 @@ public:
     void compute_corrector_rhs(const DiffusionType difftype) override
     {
         BL_PROFILE(
-            "amr-wind::" + this->identifier() + "::compute_corrector_rhs");
+            "kynema-sgf::" + this->identifier() + "::compute_corrector_rhs");
         m_rhs_op.corrector_rhs(
             difftype, m_time.delta_t(), m_sim.has_mesh_mapping());
     }
@@ -164,7 +164,7 @@ public:
     void solve(const amrex::Real dt) override
     {
         if (PDE::has_diffusion) {
-            BL_PROFILE("amr-wind::" + this->identifier() + "::linsys_solve");
+            BL_PROFILE("kynema-sgf::" + this->identifier() + "::linsys_solve");
             m_bc_op.apply_bcs(FieldState::New);
             m_diff_op->linsys_solve(dt);
         }
@@ -176,7 +176,7 @@ public:
     {
         if (PDE::has_diffusion) {
             BL_PROFILE(
-                "amr-wind::" + this->identifier() +
+                "kynema-sgf::" + this->identifier() +
                 "::improve_explicit_diffusion");
             m_rhs_op.improve_explicit_diff(dt);
         }

@@ -57,7 +57,7 @@ template <typename FType>
 void FPlaneAveraging<FType>::output_line_average_ascii(
     const std::string& filename, int step, amrex::Real time)
 {
-    BL_PROFILE("amr-wind::FPlaneAveraging::output_line_average_ascii");
+    BL_PROFILE("kynema-sgf::FPlaneAveraging::output_line_average_ascii");
 
     if (step != m_last_updated_index) {
         operator()();
@@ -109,7 +109,7 @@ amrex::Real
 FPlaneAveraging<FType>::line_average_interpolated(amrex::Real x, int comp) const
 {
 
-    BL_PROFILE("amr-wind::PlaneAveraging::line_average_interpolated");
+    BL_PROFILE("kynema-sgf::PlaneAveraging::line_average_interpolated");
 
     AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_ncomp);
 
@@ -137,7 +137,7 @@ template <typename FType>
 void FPlaneAveraging<FType>::line_average(
     int comp, amrex::Vector<amrex::Real>& l_vec)
 {
-    BL_PROFILE("amr-wind::PlaneAveraging::line_average");
+    BL_PROFILE("kynema-sgf::PlaneAveraging::line_average");
 
     AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_ncomp);
 
@@ -149,7 +149,7 @@ void FPlaneAveraging<FType>::line_average(
 template <typename FType>
 amrex::Real FPlaneAveraging<FType>::line_average_cell(int ind, int comp) const
 {
-    BL_PROFILE("amr-wind::PlaneAveraging::line_average_cell");
+    BL_PROFILE("kynema-sgf::PlaneAveraging::line_average_cell");
 
     AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_ncomp);
     AMREX_ALWAYS_ASSERT(ind >= 0 && ind < m_ncell_line);
@@ -160,7 +160,7 @@ amrex::Real FPlaneAveraging<FType>::line_average_cell(int ind, int comp) const
 template <typename FType>
 void FPlaneAveraging<FType>::compute_line_derivatives()
 {
-    BL_PROFILE("amr-wind::PlaneAveraging::compute_line_derivatives");
+    BL_PROFILE("kynema-sgf::PlaneAveraging::compute_line_derivatives");
     for (int i = 0; i < m_ncell_line; ++i) {
         for (int n = 0; n < m_ncomp; ++n) {
             m_line_deriv[(m_ncomp * i) + n] =
@@ -173,7 +173,7 @@ template <typename FType>
 amrex::Real
 FPlaneAveraging<FType>::line_derivative_of_average_cell(int ind, int comp) const
 {
-    BL_PROFILE("amr-wind::PlaneAveraging::line_derivative_of_average_cell");
+    BL_PROFILE("kynema-sgf::PlaneAveraging::line_derivative_of_average_cell");
 
     AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_ncomp);
     AMREX_ALWAYS_ASSERT(ind >= 0 && ind < m_ncell_line);
@@ -202,7 +202,7 @@ template <typename FType>
 amrex::Real FPlaneAveraging<FType>::line_derivative_interpolated(
     amrex::Real x, int comp) const
 {
-    BL_PROFILE("amr-wind::PlaneAveraging::line_derivative_interpolated");
+    BL_PROFILE("kynema-sgf::PlaneAveraging::line_derivative_interpolated");
 
     AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_ncomp);
 
@@ -229,7 +229,7 @@ amrex::Real FPlaneAveraging<FType>::line_derivative_interpolated(
 template <typename FType>
 void FPlaneAveraging<FType>::operator()()
 {
-    BL_PROFILE("amr-wind::FPlaneAveraging::operator");
+    BL_PROFILE("kynema-sgf::FPlaneAveraging::operator");
 
     m_last_updated_index = m_time.time_index();
 
@@ -260,7 +260,7 @@ template <typename IndexSelector>
 void FPlaneAveraging<FType>::compute_averages(
     const IndexSelector& idxOp, const amrex::MultiFab& mfab)
 {
-    BL_PROFILE("amr-wind::PlaneAveraging::compute_averages");
+    BL_PROFILE("kynema-sgf::PlaneAveraging::compute_averages");
 
     const amrex::Real denom = 1.0_rt / (amrex::Real)m_ncell_plane;
 
@@ -336,7 +336,7 @@ VelPlaneAveraging::VelPlaneAveraging(CFDSim& sim, int axis_in)
 void VelPlaneAveraging::operator()()
 {
 
-    BL_PROFILE("amr-wind::VelPlaneAveraging::operator");
+    BL_PROFILE("kynema-sgf::VelPlaneAveraging::operator");
 
     FieldPlaneAveraging::operator()();
 
@@ -369,7 +369,7 @@ void VelPlaneAveraging::compute_hvelmag_averages(
     const int h2_idx,
     const amrex::MultiFab& mfab)
 {
-    BL_PROFILE("amr-wind::VelPlaneAveraging::compute_hvelmag_averages");
+    BL_PROFILE("kynema-sgf::VelPlaneAveraging::compute_hvelmag_averages");
 
     const amrex::Real denom = 1.0_rt / (amrex::Real)m_ncell_plane;
 
@@ -426,7 +426,7 @@ void VelPlaneAveraging::compute_hvelmag_averages(
 
 void VelPlaneAveraging::compute_line_hvelmag_derivatives()
 {
-    BL_PROFILE("amr-wind::VelPlaneAveraging::compute_line_hvelmag_derivatives");
+    BL_PROFILE("kynema-sgf::VelPlaneAveraging::compute_line_hvelmag_derivatives");
     for (int i = 0; i < m_ncell_line; ++i) {
         m_line_hvelmag_deriv[i] = line_hvelmag_derivative_of_average_cell(i);
     }
@@ -435,7 +435,7 @@ void VelPlaneAveraging::compute_line_hvelmag_derivatives()
 amrex::Real
 VelPlaneAveraging::line_hvelmag_derivative_of_average_cell(int ind) const
 {
-    BL_PROFILE("amr-wind::VelPlaneAveraging::line_derivative_of_average_cell");
+    BL_PROFILE("kynema-sgf::VelPlaneAveraging::line_derivative_of_average_cell");
 
     AMREX_ALWAYS_ASSERT(ind >= 0 && ind < m_ncell_line);
 
@@ -462,7 +462,7 @@ amrex::Real
 VelPlaneAveraging::line_hvelmag_average_interpolated(amrex::Real x) const
 {
 
-    BL_PROFILE("amr-wind::PlaneAveraging::line_average_interpolated");
+    BL_PROFILE("kynema-sgf::PlaneAveraging::line_average_interpolated");
 
     amrex::Real c = 0.0_rt;
     int ind = 0;
@@ -486,7 +486,7 @@ VelPlaneAveraging::line_hvelmag_average_interpolated(amrex::Real x) const
 
 amrex::Real VelPlaneAveraging::line_hvelmag_average_cell(int ind) const
 {
-    BL_PROFILE("amr-wind::VelPlaneAveraging::line_hvelmag_average_cell");
+    BL_PROFILE("kynema-sgf::VelPlaneAveraging::line_hvelmag_average_cell");
 
     AMREX_ALWAYS_ASSERT(ind >= 0 && ind < m_ncell_line);
 
@@ -496,7 +496,7 @@ amrex::Real VelPlaneAveraging::line_hvelmag_average_cell(int ind) const
 void VelPlaneAveraging::output_line_average_ascii(
     const std::string& filename, int step, amrex::Real time)
 {
-    BL_PROFILE("amr-wind::VelPlaneAveraging::output_line_average_ascii");
+    BL_PROFILE("kynema-sgf::VelPlaneAveraging::output_line_average_ascii");
 
     if (step != m_last_updated_index) {
         operator()();

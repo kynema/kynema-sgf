@@ -10,7 +10,7 @@ namespace kynema_sgf {
 void SecondMomentAveraging::output_line_average_ascii(
     const std::string& filename, int step, amrex::Real time)
 {
-    BL_PROFILE("amr-wind::SecondMomentAveraging::output_line_average_ascii");
+    BL_PROFILE("kynema-sgf::SecondMomentAveraging::output_line_average_ascii");
 
     if (step != m_last_updated_index) {
         operator()();
@@ -129,7 +129,7 @@ void SecondMomentAveraging::compute_average(
     const amrex::MultiFab& mfab2)
 {
 
-    BL_PROFILE("amr-wind::SecondMomentAveraging::compute_average");
+    BL_PROFILE("kynema-sgf::SecondMomentAveraging::compute_average");
 
     amrex::AsyncArray<amrex::Real> lfluc(
         m_second_moments_line.data(), m_second_moments_line.size());
@@ -212,7 +212,7 @@ void SecondMomentAveraging::compute_average(
 amrex::Real SecondMomentAveraging::line_average_interpolated(
     amrex::Real x, int comp1, int comp2) const
 {
-    BL_PROFILE("amr-wind::SecondMomentAveraging::line_average_interpolated 1");
+    BL_PROFILE("kynema-sgf::SecondMomentAveraging::line_average_interpolated 1");
 
     AMREX_ALWAYS_ASSERT(comp1 >= 0 && comp1 < m_plane_average1.ncomp());
     AMREX_ALWAYS_ASSERT(comp2 >= 0 && comp2 < m_plane_average2.ncomp());
@@ -224,7 +224,7 @@ amrex::Real SecondMomentAveraging::line_average_interpolated(
 amrex::Real
 SecondMomentAveraging::line_average_interpolated(amrex::Real x, int comp) const
 {
-    BL_PROFILE("amr-wind::SecondMomentAveraging::line_average_interpolated 2");
+    BL_PROFILE("kynema-sgf::SecondMomentAveraging::line_average_interpolated 2");
 
     AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_num_moments);
 
@@ -255,7 +255,7 @@ SecondMomentAveraging::line_average_interpolated(amrex::Real x, int comp) const
 
 amrex::Real SecondMomentAveraging::line_average_cell(int ind, int comp) const
 {
-    BL_PROFILE("amr-wind::SecondMomentAveraging::line_average_cell 2");
+    BL_PROFILE("kynema-sgf::SecondMomentAveraging::line_average_cell 2");
 
     AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_num_moments);
     AMREX_ALWAYS_ASSERT(ind >= 0 and ind + 1 < m_plane_average1.ncell_line());
@@ -266,7 +266,7 @@ amrex::Real SecondMomentAveraging::line_average_cell(int ind, int comp) const
 amrex::Real
 SecondMomentAveraging::line_average_cell(int ind, int comp1, int comp2) const
 {
-    BL_PROFILE("amr-wind::SecondMomentAveraging::line_average_cell 1");
+    BL_PROFILE("kynema-sgf::SecondMomentAveraging::line_average_cell 1");
 
     AMREX_ALWAYS_ASSERT(comp1 >= 0 && comp1 < m_plane_average1.ncomp());
     AMREX_ALWAYS_ASSERT(comp2 >= 0 && comp2 < m_plane_average2.ncomp());
@@ -278,7 +278,7 @@ SecondMomentAveraging::line_average_cell(int ind, int comp1, int comp2) const
 void SecondMomentAveraging::line_moment(
     int comp, amrex::Vector<amrex::Real>& l_vec)
 {
-    BL_PROFILE("amr-wind::SecondMomentAveraging::line_moment");
+    BL_PROFILE("kynema-sgf::SecondMomentAveraging::line_moment");
 
     AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_num_moments);
 

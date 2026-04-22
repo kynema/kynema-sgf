@@ -205,7 +205,7 @@ void MultiPhase::post_advance_work()
 
 amrex::Real MultiPhase::volume_fraction_sum()
 {
-    BL_PROFILE("amr-wind::multiphase::ComputeVolumeFractionSum");
+    BL_PROFILE("kynema-sgf::multiphase::ComputeVolumeFractionSum");
     const int nlevels = m_sim.repo().num_active_levels();
     const auto& geom = m_sim.mesh().Geom();
     const auto& mesh = m_sim.mesh();
@@ -250,7 +250,7 @@ amrex::Real MultiPhase::volume_fraction_sum()
 
 amrex::Real MultiPhase::momentum_sum(int n)
 {
-    BL_PROFILE("amr-wind::multiphase::ComputeVolumeFractionSum");
+    BL_PROFILE("kynema-sgf::multiphase::ComputeVolumeFractionSum");
     const int nlevels = m_sim.repo().num_active_levels();
     const auto& geom = m_sim.mesh().Geom();
     const auto& mesh = m_sim.mesh();

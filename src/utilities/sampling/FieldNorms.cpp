@@ -20,7 +20,7 @@ FieldNorms::~FieldNorms() = default;
 
 void FieldNorms::initialize()
 {
-    BL_PROFILE("amr-wind::FieldNorms::initialize");
+    BL_PROFILE("kynema-sgf::FieldNorms::initialize");
 
     {
         amrex::ParmParse pp(m_label);
@@ -213,7 +213,7 @@ void FieldNorms::process_field_norms()
 
 void FieldNorms::output_actions()
 {
-    BL_PROFILE("amr-wind::FieldNorms::output_actions");
+    BL_PROFILE("kynema-sgf::FieldNorms::output_actions");
 
     process_field_norms();
     write_ascii();
@@ -221,7 +221,7 @@ void FieldNorms::output_actions()
 
 void FieldNorms::prepare_ascii_file()
 {
-    BL_PROFILE("amr-wind::FieldNorms::prepare_ascii_file");
+    BL_PROFILE("kynema-sgf::FieldNorms::prepare_ascii_file");
 
     const std::string post_dir = m_sim.io_manager().post_processing_directory();
     const std::string sname =
@@ -242,7 +242,7 @@ void FieldNorms::prepare_ascii_file()
 
 void FieldNorms::write_ascii()
 {
-    BL_PROFILE("amr-wind::FieldNorms::write_ascii");
+    BL_PROFILE("kynema-sgf::FieldNorms::write_ascii");
 
     if (amrex::ParallelDescriptor::IOProcessor()) {
         std::ofstream f(m_out_fname.c_str(), std::ios_base::app);

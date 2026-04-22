@@ -24,7 +24,7 @@ Sampling::~Sampling() = default;
 
 void Sampling::initialize()
 {
-    BL_PROFILE("amr-wind::Sampling::initialize");
+    BL_PROFILE("kynema-sgf::Sampling::initialize");
 
     // Labels for the different sampler types
     amrex::Vector<std::string> labels;
@@ -147,7 +147,7 @@ void Sampling::initialize()
 
 void Sampling::update_container()
 {
-    BL_PROFILE("amr-wind::Sampling::update_container");
+    BL_PROFILE("kynema-sgf::Sampling::update_container");
 
     // Initialize the particle container based on user inputs
     m_scontainer = std::make_unique<SamplingContainer>(m_sim.mesh());
@@ -165,7 +165,7 @@ void Sampling::update_container()
 
 void Sampling::update_sampling_locations()
 {
-    BL_PROFILE("amr-wind::Sampling::update_sampling_locations");
+    BL_PROFILE("kynema-sgf::Sampling::update_sampling_locations");
 
     amrex::Vector<bool> updated_position;
     for (const auto& obj : m_samplers) {
@@ -181,7 +181,7 @@ void Sampling::update_sampling_locations()
 
 void Sampling::output_actions()
 {
-    BL_PROFILE("amr-wind::Sampling::output_actions");
+    BL_PROFILE("kynema-sgf::Sampling::output_actions");
 
     sampling_workflow();
 
@@ -193,7 +193,7 @@ void Sampling::output_actions()
 void Sampling::sampling_workflow()
 {
 
-    BL_PROFILE("amr-wind::Sampling::sampling_workflow");
+    BL_PROFILE("kynema-sgf::Sampling::sampling_workflow");
 
     update_sampling_locations();
 
@@ -214,7 +214,7 @@ void Sampling::sampling_workflow()
 void Sampling::sampling_post()
 {
 
-    BL_PROFILE("amr-wind::Sampling::sampling_post");
+    BL_PROFILE("kynema-sgf::Sampling::sampling_post");
 
     for (const auto& obj : m_samplers) {
         obj->post_sample_actions();
@@ -229,7 +229,7 @@ void Sampling::sampling_post()
 
 void Sampling::post_regrid_actions()
 {
-    BL_PROFILE("amr-wind::Sampling::post_regrid_actions");
+    BL_PROFILE("kynema-sgf::Sampling::post_regrid_actions");
 
     for (const auto& obj : m_samplers) {
         obj->post_regrid_actions();
@@ -240,7 +240,7 @@ void Sampling::post_regrid_actions()
 
 void Sampling::convert_velocity_lineofsight()
 {
-    BL_PROFILE("amr-wind::Sampling::convert_velocity_lineofsight");
+    BL_PROFILE("kynema-sgf::Sampling::convert_velocity_lineofsight");
 
     if (m_out_fmt != "netcdf") {
         return;
@@ -302,7 +302,7 @@ void Sampling::convert_velocity_lineofsight()
 
 void Sampling::create_output_buffer()
 {
-    BL_PROFILE("amr-wind::Sampling::create_output_buffer");
+    BL_PROFILE("kynema-sgf::Sampling::create_output_buffer");
 
     if (m_out_fmt != "netcdf") {
         return;
@@ -344,7 +344,7 @@ void Sampling::create_output_buffer()
 
 void Sampling::fill_buffer()
 {
-    BL_PROFILE("amr-wind::Sampling::fill_buffer");
+    BL_PROFILE("kynema-sgf::Sampling::fill_buffer");
     if (m_out_fmt == "netcdf") {
 #ifdef AMR_WIND_USE_NETCDF
         m_scontainer->populate_buffer(m_sample_buf);
@@ -359,7 +359,7 @@ void Sampling::fill_buffer()
 
 void Sampling::process_output()
 {
-    BL_PROFILE("amr-wind::Sampling::process_output");
+    BL_PROFILE("kynema-sgf::Sampling::process_output");
     if (m_out_fmt == "native") {
         impl_write_native();
     } else if (m_out_fmt == "ascii") {
@@ -373,7 +373,7 @@ void Sampling::process_output()
 
 void Sampling::impl_write_native()
 {
-    BL_PROFILE("amr-wind::Sampling::write_native");
+    BL_PROFILE("kynema-sgf::Sampling::write_native");
 
     const std::string post_dir = m_sim.io_manager().post_processing_directory();
     const std::string sampling_name =
@@ -395,7 +395,7 @@ void Sampling::impl_write_native()
 
 void Sampling::write_ascii()
 {
-    BL_PROFILE("amr-wind::Sampling::write_ascii");
+    BL_PROFILE("kynema-sgf::Sampling::write_ascii");
     amrex::Print()
         << "WARNING: Sampling: ASCII output will negatively impact performance"
         << '\n';
@@ -413,7 +413,7 @@ void Sampling::write_ascii()
 
 void Sampling::write_info_file(const std::string& fname)
 {
-    BL_PROFILE("amr-wind::Sampling::write_info_file");
+    BL_PROFILE("kynema-sgf::Sampling::write_info_file");
 
     // Only I/O processor writes the info file
     if (!amrex::ParallelDescriptor::IOProcessor()) {
@@ -444,7 +444,7 @@ void Sampling::write_info_file(const std::string& fname)
 
 void Sampling::write_header_file(const std::string& fname)
 {
-    BL_PROFILE("amr-wind::Sampling::write_header_file");
+    BL_PROFILE("kynema-sgf::Sampling::write_header_file");
 
     // Only I/O processor writes the info file
     if (!amrex::ParallelDescriptor::IOProcessor()) {

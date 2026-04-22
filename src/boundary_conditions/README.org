@@ -1,6 +1,6 @@
 * Boundary conditions in Kynema-SGF
 
-This file describes the various boundary conditions available in =amr-wind= and
+This file describes the various boundary conditions available in =kynema-sgf= and
 its relationship to AMReX boundary condition types available for =fillpatch= and
 during linear solve. Please read the AMReX documentation at the following links
 if you are unfamiliar with the boundary condition types
@@ -8,7 +8,7 @@ if you are unfamiliar with the boundary condition types
 - BCRec :: https://amrex-codes.github.io/amrex/docs_html/Basics.html#boundary-conditions
 - LinOpBCType :: https://amrex-codes.github.io/amrex/docs_html/LinearSolvers.html#boundary-conditions
 
-=amr-wind= defines several boundary conditions that the user can specify in the input
+=kynema-sgf= defines several boundary conditions that the user can specify in the input
 file to handle different =BCRec= and =LinOpBCType= combinations. The user can
 specify a /default/ boundary condition for the low/high faces of the
 non-periodic boundaries, but can override the defaults for a specific

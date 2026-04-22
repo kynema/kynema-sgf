@@ -81,7 +81,7 @@ template <typename ShearStressSimple>
 void VelWallFunc::wall_model(
     Field& velocity, const FieldState rho_state, const ShearStressSimple& tau)
 {
-    BL_PROFILE("amr-wind::VelWallFunc");
+    BL_PROFILE("kynema-sgf::VelWallFunc");
     constexpr int idim = 2;
     const auto& repo = velocity.repo();
     const auto& density = repo.get_field("density", rho_state);
@@ -239,7 +239,7 @@ void VelWallFunc::wall_model(
 void VelWallFunc::wall_model(
     Field& velocity, const FieldState rho_state, const amrex::Real utau)
 {
-    BL_PROFILE("amr-wind::VelWallFunc");
+    BL_PROFILE("kynema-sgf::VelWallFunc");
     constexpr int idim = 2;
     const auto& repo = velocity.repo();
     const auto& density = repo.get_field("density", rho_state);

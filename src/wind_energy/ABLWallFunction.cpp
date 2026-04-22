@@ -230,7 +230,7 @@ template <typename ShearStress>
 void ABLVelWallFunc::wall_model(
     Field& velocity, const FieldState rho_state, const ShearStress& tau)
 {
-    BL_PROFILE("amr-wind::ABLVelWallFunc");
+    BL_PROFILE("kynema-sgf::ABLVelWallFunc");
 
     constexpr int idim = 2;
     const auto& repo = velocity.repo();
@@ -401,7 +401,7 @@ void ABLTempWallFunc::wall_model(
         return;
     }
 
-    BL_PROFILE("amr-wind::ABLTempWallFunc");
+    BL_PROFILE("kynema-sgf::ABLTempWallFunc");
     auto& velocity = repo.get_field("velocity");
     const auto& density = repo.get_field("density", rho_state);
     const auto& alpha = repo.get_field("temperature_mueff");

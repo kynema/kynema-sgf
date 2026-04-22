@@ -108,7 +108,7 @@ get_diffuse_scalar_bc(kynema_sgf::Field& scalar, amrex::Orientation::Side side)
 amrex::Array<amrex::MultiFab, AMREX_SPACEDIM> average_velocity_eta_to_faces(
     const amrex::Geometry& geom, amrex::MultiFab const& cc_eta)
 {
-    BL_PROFILE("amr-wind::diffusion::average_velocity_eta_to_faces");
+    BL_PROFILE("kynema-sgf::diffusion::average_velocity_eta_to_faces");
     const auto& ba = cc_eta.boxArray();
     const auto& dm = cc_eta.DistributionMap();
     const auto& fact = cc_eta.Factory();
@@ -132,7 +132,7 @@ void fixup_eta_on_domain_faces(
     amrex::Array<amrex::MultiFab, AMREX_SPACEDIM>& fc,
     amrex::MultiFab const& cc)
 {
-    BL_PROFILE("amr-wind::diffusion::fixup_eta_on_domain_faces");
+    BL_PROFILE("kynema-sgf::diffusion::fixup_eta_on_domain_faces");
 
     const amrex::Box& domain = geom.Domain();
     amrex::MFItInfo mfi_info{};

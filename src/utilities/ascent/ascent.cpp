@@ -21,7 +21,7 @@ void AscentPostProcess::pre_init_actions() {}
 
 void AscentPostProcess::initialize()
 {
-    BL_PROFILE("amr-wind::AscentPostProcess::initialize");
+    BL_PROFILE("kynema-sgf::AscentPostProcess::initialize");
 
     amrex::Vector<std::string> field_names;
 
@@ -51,7 +51,7 @@ void AscentPostProcess::initialize()
 
 void AscentPostProcess::output_actions()
 {
-    BL_PROFILE("amr-wind::AscentPostProcess::output_actions");
+    BL_PROFILE("kynema-sgf::AscentPostProcess::output_actions");
 
     amrex::Vector<int> istep(
         m_sim.mesh().finestLevel() + 1, m_sim.time().time_index());

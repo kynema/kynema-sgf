@@ -76,7 +76,7 @@ struct ApplyRelaxZonesOp<
 {
     void operator()(typename WaveTheoryTrait::DataType& data)
     {
-        BL_PROFILE("amr-wind::ocean_waves::OceanWaves::update_velocities");
+        BL_PROFILE("kynema-sgf::ocean_waves::OceanWaves::update_velocities");
 
         const auto& wdata = data.meta();
         auto& sim = data.sim();
@@ -93,7 +93,7 @@ struct UpdateTargetFieldsSecondaryOp<
 {
     void operator()(typename WaveTheoryTrait::DataType& data)
     {
-        BL_PROFILE("amr-wind::ocean_waves::OceanWaves::update_target_vof");
+        BL_PROFILE("kynema-sgf::ocean_waves::OceanWaves::update_target_vof");
 
         const auto& wdata = data.meta();
         auto& sim = data.sim();

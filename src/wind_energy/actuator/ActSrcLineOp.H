@@ -91,7 +91,7 @@ void ActSrcOp<ActTrait, ActSrcLine>::operator()(
     const int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom)
 {
     BL_PROFILE(
-        "amr-wind::ActSrcOp<" + ActTrait::identifier() +
+        "kynema-sgf::ActSrcOp<" + ActTrait::identifier() +
         ActSrcLine::identifier() + ">");
 
     const auto& bx = mfi.tilebox();

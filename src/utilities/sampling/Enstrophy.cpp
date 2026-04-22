@@ -23,7 +23,7 @@ Enstrophy::~Enstrophy() = default;
 
 void Enstrophy::initialize()
 {
-    BL_PROFILE("amr-wind::Enstrophy::initialize");
+    BL_PROFILE("kynema-sgf::Enstrophy::initialize");
     amrex::ParmParse pp(m_label);
     populate_output_parameters(pp);
     prepare_ascii_file();
@@ -31,7 +31,7 @@ void Enstrophy::initialize()
 
 amrex::Real Enstrophy::calculate_enstrophy()
 {
-    BL_PROFILE("amr-wind::Enstrophy::calculate_enstrophy");
+    BL_PROFILE("kynema-sgf::Enstrophy::calculate_enstrophy");
 
     // integrated total Enstrophy
     amrex::Real total_enstrophy = 0.0_rt;
@@ -90,14 +90,14 @@ amrex::Real Enstrophy::calculate_enstrophy()
 
 void Enstrophy::output_actions()
 {
-    BL_PROFILE("amr-wind::Enstrophy::output_actions");
+    BL_PROFILE("kynema-sgf::Enstrophy::output_actions");
     m_total_enstrophy = calculate_enstrophy();
     write_ascii();
 }
 
 void Enstrophy::prepare_ascii_file()
 {
-    BL_PROFILE("amr-wind::Enstrophy::prepare_ascii_file");
+    BL_PROFILE("kynema-sgf::Enstrophy::prepare_ascii_file");
 
     const std::string post_dir = m_sim.io_manager().post_processing_directory();
     const std::string sname =
@@ -114,7 +114,7 @@ void Enstrophy::prepare_ascii_file()
 
 void Enstrophy::write_ascii()
 {
-    BL_PROFILE("amr-wind::Enstrophy::write_ascii");
+    BL_PROFILE("kynema-sgf::Enstrophy::write_ascii");
 
     if (amrex::ParallelDescriptor::IOProcessor()) {
         std::ofstream f(m_out_fname.c_str(), std::ios_base::app);

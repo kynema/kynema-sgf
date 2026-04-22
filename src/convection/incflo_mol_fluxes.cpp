@@ -15,7 +15,7 @@ void mol::compute_convective_rate(
     amrex::Array4<amrex::Real const> const& fz,
     amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> dxi)
 {
-    BL_PROFILE("amr-wind::mol::compute_convective_rate");
+    BL_PROFILE("kynema-sgf::mol::compute_convective_rate");
     const auto dxinv = dxi;
     amrex::ParallelFor(
         bx, ncomp, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
@@ -41,7 +41,7 @@ void mol::compute_convective_fluxes(
     amrex::BCRec const* d_bcrec,
     amrex::Vector<amrex::Geometry> geom)
 {
-    BL_PROFILE("amr-wind::mol::compute_convective_fluxes");
+    BL_PROFILE("kynema-sgf::mol::compute_convective_fluxes");
     constexpr amrex::Real small_vel = std::numeric_limits<float>::epsilon();
 
     const amrex::Box& domain_box = geom[lev].Domain();

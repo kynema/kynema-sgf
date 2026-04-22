@@ -14,13 +14,13 @@ using namespace amrex::literals;
 
 void incflo::pre_advance_stage1()
 {
-    BL_PROFILE("amr-wind::incflo::pre_advance_stage1");
+    BL_PROFILE("kynema-sgf::incflo::pre_advance_stage1");
     advance_time();
 }
 
 void incflo::pre_advance_stage2()
 {
-    BL_PROFILE("amr-wind::incflo::pre_advance_stage2");
+    BL_PROFILE("kynema-sgf::incflo::pre_advance_stage2");
     for (auto& pp : m_sim.physics()) {
         pp->pre_advance_work();
     }
@@ -62,7 +62,7 @@ void incflo::prepare_time_step()
  */
 void incflo::advance(const int fixed_point_iteration)
 {
-    BL_PROFILE("amr-wind::incflo::advance");
+    BL_PROFILE("kynema-sgf::incflo::advance");
     if (fixed_point_iteration == 0) {
         prepare_time_step();
     }
@@ -186,7 +186,7 @@ void incflo::advance(const int fixed_point_iteration)
 void incflo::ApplyPredictor(
     const bool incremental_projection, const int fixed_point_iteration)
 {
-    BL_PROFILE("amr-wind::incflo::ApplyPredictor");
+    BL_PROFILE("kynema-sgf::incflo::ApplyPredictor");
     // We use the new time value for things computed on the "*" state
     amrex::Real new_time = m_time.new_time();
 
@@ -527,7 +527,7 @@ void incflo::ApplyPredictor(
  */
 void incflo::ApplyCorrector()
 {
-    BL_PROFILE("amr-wind::incflo::ApplyCorrector");
+    BL_PROFILE("kynema-sgf::incflo::ApplyCorrector");
 
     // We use the new time value for things computed on the "*" state
     amrex::Real new_time = m_time.new_time();
@@ -653,7 +653,7 @@ void incflo::ApplyCorrector()
 
 void incflo::prescribe_advance()
 {
-    BL_PROFILE("amr-wind::incflo::prescribe_advance");
+    BL_PROFILE("kynema-sgf::incflo::prescribe_advance");
 
     prepare_time_step();
 
@@ -662,7 +662,7 @@ void incflo::prescribe_advance()
 
 void incflo::ApplyPrescribeStep()
 {
-    BL_PROFILE("amr-wind::incflo::ApplyPrescribeStep");
+    BL_PROFILE("kynema-sgf::incflo::ApplyPrescribeStep");
     // The intent of this function is to see the effect of a prescribed
     // advection velocity:
     // - No source terms or viscous terms are used for icns

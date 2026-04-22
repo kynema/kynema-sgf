@@ -285,7 +285,7 @@ void TiogaInterface::update_solution()
 
 void TiogaInterface::amr_to_tioga_mesh()
 {
-    BL_PROFILE("amr-wind::TiogaInterface::amr_to_tioga_mesh");
+    BL_PROFILE("kynema-sgf::TiogaInterface::amr_to_tioga_mesh");
     auto& mesh = m_sim.mesh();
     const int nlevels = mesh.finestLevel() + 1;
     const int iproc = amrex::ParallelDescriptor::MyProc();
@@ -366,7 +366,7 @@ void TiogaInterface::amr_to_tioga_mesh()
 }
 void TiogaInterface::amr_to_tioga_iblank()
 {
-    BL_PROFILE("amr-wind::TiogaInterface::amr_to_tioga_iblank");
+    BL_PROFILE("kynema-sgf::TiogaInterface::amr_to_tioga_iblank");
     const auto& mesh = m_sim.mesh();
     const int nlevels = mesh.finestLevel() + 1;
 

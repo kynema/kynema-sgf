@@ -74,7 +74,7 @@ struct Laplacian
 template <typename FTypeIn, typename FTypeOut>
 void laplacian(FTypeOut& lapphi, const FTypeIn& phi)
 {
-    BL_PROFILE("amr-wind::fvm::laplacian");
+    BL_PROFILE("kynema-sgf::fvm::laplacian");
     Laplacian<FTypeIn, FTypeOut> lap(lapphi, phi);
     impl::apply(lap, phi);
 }

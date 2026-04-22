@@ -138,7 +138,7 @@ struct NonLinearSum
 template <typename FTypeIn, typename FTypeOut>
 void nonlinearsum(FTypeOut& strphi, const FTypeIn& phi)
 {
-    BL_PROFILE("amr-wind::fvm::nonlinearsum");
+    BL_PROFILE("kynema-sgf::fvm::nonlinearsum");
     NonLinearSum<FTypeIn, FTypeOut> str(strphi, phi);
     impl::apply(str, phi);
 }

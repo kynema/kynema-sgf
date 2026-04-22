@@ -172,7 +172,7 @@ void Field::fillpatch(
     amrex::MultiFab& mfab,
     const amrex::IntVect& nghost)
 {
-    BL_PROFILE("amr-wind::Field::fillpatch 2");
+    BL_PROFILE("kynema-sgf::Field::fillpatch 2");
     BL_ASSERT(m_info->m_fillpatch_op);
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
     auto& fop = *(m_info->m_fillpatch_op);
@@ -186,7 +186,7 @@ void Field::fillpatch_from_coarse(
     amrex::MultiFab& mfab,
     const amrex::IntVect& nghost)
 {
-    BL_PROFILE("amr-wind::Field::fillpatch_from_coarse");
+    BL_PROFILE("kynema-sgf::Field::fillpatch_from_coarse");
     BL_ASSERT(m_info->m_fillpatch_op);
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
     auto& fop = *(m_info->m_fillpatch_op);
@@ -196,7 +196,7 @@ void Field::fillpatch_from_coarse(
 
 void Field::fillpatch(const amrex::Real time, const amrex::IntVect ng)
 {
-    BL_PROFILE("amr-wind::Field::fillpatch");
+    BL_PROFILE("kynema-sgf::Field::fillpatch");
     BL_ASSERT(m_info->m_fillpatch_op);
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
     auto& fop = *(m_info->m_fillpatch_op);
@@ -214,7 +214,7 @@ void Field::fillpatch_sibling_fields(
     const amrex::IntVect ng,
     amrex::Array<Field*, AMREX_SPACEDIM>& fields) const
 {
-    BL_PROFILE("amr-wind::Field::fillpatch array");
+    BL_PROFILE("kynema-sgf::Field::fillpatch array");
     BL_ASSERT(m_info->m_fillpatch_op);
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
     BL_ASSERT(m_info->m_ncomp == static_cast<int>(fields.size()));
@@ -242,7 +242,7 @@ void Field::fillphysbc(
     amrex::MultiFab& mfab,
     const amrex::IntVect& ng)
 {
-    BL_PROFILE("amr-wind::Field::fillphysbc");
+    BL_PROFILE("kynema-sgf::Field::fillphysbc");
     BL_ASSERT(m_info->m_fillpatch_op);
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
     auto& fop = *(m_info->m_fillpatch_op);
@@ -251,7 +251,7 @@ void Field::fillphysbc(
 
 void Field::fillphysbc(const amrex::Real time, const amrex::IntVect ng)
 {
-    BL_PROFILE("amr-wind::Field::fillphysbc");
+    BL_PROFILE("kynema-sgf::Field::fillphysbc");
     BL_ASSERT(m_info->m_fillpatch_op);
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
     auto& fop = *(m_info->m_fillpatch_op);
@@ -278,7 +278,7 @@ void Field::set_inflow(
     amrex::MultiFab& mfab,
     const amrex::IntVect& ng)
 {
-    BL_PROFILE("amr-wind::Field::set_inflow");
+    BL_PROFILE("kynema-sgf::Field::set_inflow");
     BL_ASSERT(m_info->m_fillpatch_op);
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
     auto& fop = *(m_info->m_fillpatch_op);
@@ -290,7 +290,7 @@ void Field::set_inflow_sibling_fields(
     const amrex::Real time,
     const amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM> mfabs)
 {
-    BL_PROFILE("amr-wind::Field::set_inflow_sibling_fields");
+    BL_PROFILE("kynema-sgf::Field::set_inflow_sibling_fields");
     BL_ASSERT(m_info->m_fillpatch_op);
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
     auto& fop = *(m_info->m_fillpatch_op);
@@ -299,7 +299,7 @@ void Field::set_inflow_sibling_fields(
 
 void Field::advance_states()
 {
-    BL_PROFILE("amr-wind::Field::advance_states");
+    BL_PROFILE("kynema-sgf::Field::advance_states");
     if (num_time_states() < 2) {
         return;
     }
@@ -318,7 +318,7 @@ void Field::advance_states()
 
 void Field::copy_state(FieldState to_state, FieldState from_state)
 {
-    BL_PROFILE("amr-wind::Field::copy_state");
+    BL_PROFILE("kynema-sgf::Field::copy_state");
     auto& to_field = state(to_state);
     const auto& from_field = state(from_state);
 
@@ -340,7 +340,7 @@ Field& Field::create_state(const FieldState fstate)
 
 void Field::setVal(amrex::Real value)
 {
-    BL_PROFILE("amr-wind::Field::setVal 1");
+    BL_PROFILE("kynema-sgf::Field::setVal 1");
     for (int lev = 0; lev < m_repo.num_active_levels(); ++lev) {
         operator()(lev).setVal(value);
     }
@@ -348,7 +348,7 @@ void Field::setVal(amrex::Real value)
 
 void Field::setVal(amrex::Real value, int start_comp, int num_comp, int nghost)
 {
-    BL_PROFILE("amr-wind::Field::setVal 2");
+    BL_PROFILE("kynema-sgf::Field::setVal 2");
     for (int lev = 0; lev < m_repo.num_active_levels(); ++lev) {
         operator()(lev).setVal(value, start_comp, num_comp, nghost);
     }
@@ -356,7 +356,7 @@ void Field::setVal(amrex::Real value, int start_comp, int num_comp, int nghost)
 
 void Field::setVal(const amrex::Vector<amrex::Real>& values, int nghost)
 {
-    BL_PROFILE("amr-wind::Field::setVal 3");
+    BL_PROFILE("kynema-sgf::Field::setVal 3");
     AMREX_ASSERT(num_comp() == static_cast<int>(values.size()));
 
     // Update 1 component at a time

@@ -116,7 +116,7 @@ void ModulatedPowerLaw::set_velocity(
     const int orig_comp) const
 {
 
-    BL_PROFILE("amr-wind::ModulatedPowerLaw::set_velocity");
+    BL_PROFILE("kynema-sgf::ModulatedPowerLaw::set_velocity");
 
     const amrex::Real tvx = m_uvec[0];
     const amrex::Real tvy = m_uvec[1];
@@ -216,7 +216,7 @@ void ModulatedPowerLaw::set_temperature(
     amrex::MultiFab& mfab) const
 {
 
-    BL_PROFILE("amr-wind::ModulatedPowerLaw::set_temperature");
+    BL_PROFILE("kynema-sgf::ModulatedPowerLaw::set_temperature");
 
     const amrex::Real delta_t = m_delta_t;
     const amrex::Real theta_cutoff_height = m_theta_cutoff_height;

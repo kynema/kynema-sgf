@@ -25,7 +25,7 @@ IB::~IB() = default;
 
 void IB::pre_init_actions()
 {
-    BL_PROFILE("amr-wind::ib::IB::pre_init_actions");
+    BL_PROFILE("kynema-sgf::ib::IB::pre_init_actions");
     amrex::ParmParse pp(identifier());
 
     amrex::Vector<std::string> labels;
@@ -58,7 +58,7 @@ void IB::pre_init_actions()
 
 void IB::post_init_actions()
 {
-    BL_PROFILE("amr-wind::ib::IB::post_init_actions");
+    BL_PROFILE("kynema-sgf::ib::IB::post_init_actions");
     m_ib_levelset.setVal(1.0e30_rt);
 
     for (auto& ib : m_ibs) {
@@ -70,18 +70,18 @@ void IB::post_regrid_actions() {}
 
 void IB::pre_advance_work()
 {
-    BL_PROFILE("amr-wind::ib::IB::pre_advance_work");
+    BL_PROFILE("kynema-sgf::ib::IB::pre_advance_work");
 }
 
 void IB::pre_pressure_correction_work()
 {
-    BL_PROFILE("amr-wind::ib::IB::pre_pressure_correction_work");
+    BL_PROFILE("kynema-sgf::ib::IB::pre_pressure_correction_work");
     update_velocities();
 }
 
 void IB::post_pressure_correction_work()
 {
-    BL_PROFILE("amr-wind::ib::IB::pre_pressure_correction_work");
+    BL_PROFILE("kynema-sgf::ib::IB::pre_pressure_correction_work");
     update_velocities();
 }
 
@@ -94,7 +94,7 @@ void IB::post_pressure_correction_work()
  */
 void IB::update_positions()
 {
-    BL_PROFILE("amr-wind::ib::IB::update_positions");
+    BL_PROFILE("kynema-sgf::ib::IB::update_positions");
 }
 
 /** Provide updated velocities to immersed boundary instances
@@ -103,7 +103,7 @@ void IB::update_positions()
  */
 void IB::update_velocities()
 {
-    BL_PROFILE("amr-wind::ib::IB::update_velocity");
+    BL_PROFILE("kynema-sgf::ib::IB::update_velocity");
     for (auto& ib : m_ibs) {
         ib->update_velocities();
     }
@@ -113,7 +113,7 @@ void IB::update_velocities()
  */
 void IB::compute_forces()
 {
-    BL_PROFILE("amr-wind::ib::IB::compute_forces");
+    BL_PROFILE("kynema-sgf::ib::IB::compute_forces");
     for (auto& ib : m_ibs) {
         ib->compute_forces();
     }
@@ -135,7 +135,7 @@ void IB::prepare_outputs()
 
 void IB::post_advance_work()
 {
-    BL_PROFILE("amr-wind::ib::IB::post_advance_work");
+    BL_PROFILE("kynema-sgf::ib::IB::post_advance_work");
     for (auto& ib : m_ibs) {
         ib->compute_forces();
         ib->update_positions();

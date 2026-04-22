@@ -99,7 +99,7 @@ template <typename SolverTurbine, typename SolverData>
 int ExtTurbIface<SolverTurbine, SolverData>::register_turbine(
     SolverTurbine& data)
 {
-    BL_PROFILE("amr-wind::ExtTurbIface::register_turbine");
+    BL_PROFILE("kynema-sgf::ExtTurbIface::register_turbine");
     AMREX_ALWAYS_ASSERT(!m_is_initialized);
     const int local_id = static_cast<int>(m_turbine_data.size());
     const int gid = data.tid_global;
@@ -144,7 +144,7 @@ template <typename SolverTurbine, typename SolverData>
 void ExtTurbIface<SolverTurbine, SolverData>::advance_turbine(
     const int local_id)
 {
-    BL_PROFILE("amr-wind::ExtTurbIface::advance_turbine");
+    BL_PROFILE("kynema-sgf::ExtTurbIface::advance_turbine");
     AMREX_ASSERT(local_id < static_cast<int>(m_turbine_data.size()));
 
     auto& fi = *m_turbine_data[local_id];

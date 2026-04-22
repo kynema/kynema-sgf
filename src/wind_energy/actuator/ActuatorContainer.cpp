@@ -41,7 +41,7 @@ ActuatorContainer::ActuatorContainer(
  */
 void ActuatorContainer::initialize_container()
 {
-    BL_PROFILE("amr-wind::actuator::ActuatorContainer::initialize_container");
+    BL_PROFILE("kynema-sgf::actuator::ActuatorContainer::initialize_container");
 
     compute_local_coordinates();
 
@@ -161,7 +161,7 @@ void ActuatorContainer::reset_container()
  */
 void ActuatorContainer::update_positions()
 {
-    BL_PROFILE("amr-wind::actuator::ActuatorContainer::update_positions");
+    BL_PROFILE("kynema-sgf::actuator::ActuatorContainer::update_positions");
     AMREX_ALWAYS_ASSERT(m_container_initialized && !m_is_scattered);
 
     const auto dpos = gpu::device_view(m_data.position);
@@ -203,7 +203,7 @@ void ActuatorContainer::update_positions()
  */
 void ActuatorContainer::sample_fields(const Field& vel, const Field& density)
 {
-    BL_PROFILE("amr-wind::actuator::ActuatorContainer::sample_velocities");
+    BL_PROFILE("kynema-sgf::actuator::ActuatorContainer::sample_velocities");
     AMREX_ALWAYS_ASSERT(m_container_initialized && m_is_scattered);
 
     // Sample velocity field
@@ -227,7 +227,7 @@ void ActuatorContainer::sample_fields(const Field& vel, const Field& density)
  */
 void ActuatorContainer::populate_field_buffers()
 {
-    BL_PROFILE("amr-wind::actuator::ActuatorContainer::populate_vel_buffer");
+    BL_PROFILE("kynema-sgf::actuator::ActuatorContainer::populate_vel_buffer");
     const size_t num_buff_entries =
         m_proc_offsets.back() * static_cast<size_t>(NumPStructReal);
 
@@ -290,7 +290,7 @@ void ActuatorContainer::populate_field_buffers()
 void ActuatorContainer::interpolate_fields(
     const Field& vel, const Field& density)
 {
-    BL_PROFILE("amr-wind::actuator::ActuatorContainer::interpolate_velocities");
+    BL_PROFILE("kynema-sgf::actuator::ActuatorContainer::interpolate_velocities");
     auto* dptr = m_pos_device.data();
     const int nlevels = m_mesh.finestLevel() + 1;
     for (int lev = 0; lev < nlevels; ++lev) {
@@ -374,7 +374,7 @@ void ActuatorContainer::interpolate_fields(
 void ActuatorContainer::compute_local_coordinates()
 {
     BL_PROFILE(
-        "amr-wind::actuator::ActuatorContainer::compute_local_coordinates");
+        "kynema-sgf::actuator::ActuatorContainer::compute_local_coordinates");
     const int nprocs = amrex::ParallelDescriptor::NProcs();
     const int iproc = amrex::ParallelDescriptor::MyProc();
 

@@ -13,7 +13,7 @@ namespace kynema_sgf::sampling {
 void SamplingContainer::setup_container(
     const int num_real_components, const int num_int_components)
 {
-    BL_PROFILE("amr-wind::SamplingContainer::setup");
+    BL_PROFILE("kynema-sgf::SamplingContainer::setup");
     const bool communicate_comp = true;
     for (int i = 0; i < num_real_components; ++i) {
         AddRealComp(static_cast<int>(communicate_comp));
@@ -36,7 +36,7 @@ void SamplingContainer::setup_container(
 void SamplingContainer::initialize_particles(
     const amrex::Vector<std::unique_ptr<SamplerBase>>& samplers)
 {
-    BL_PROFILE("amr-wind::SamplingContainer::initialize");
+    BL_PROFILE("kynema-sgf::SamplingContainer::initialize");
 
     const int lev = 0;
     const auto iproc = amrex::ParallelDescriptor::MyProc();
@@ -147,7 +147,7 @@ void SamplingContainer::initialize_particles(
 void SamplingContainer::interpolate_derived_fields(
     const DerivedQtyMgr& derived_mgr, const FieldRepo& repo, const int scomp)
 {
-    BL_PROFILE("amr-wind::SamplingContainer::interpolate_derived_fields");
+    BL_PROFILE("kynema-sgf::SamplingContainer::interpolate_derived_fields");
 
     auto outfield = repo.create_scratch_field(derived_mgr.num_comp(), 1);
     derived_mgr(*outfield, 0);
@@ -166,7 +166,7 @@ void SamplingContainer::interpolate_derived_fields(
 
 void SamplingContainer::populate_buffer(std::vector<amrex::Real>& buf)
 {
-    BL_PROFILE("amr-wind::SamplingContainer::populate_buffer");
+    BL_PROFILE("kynema-sgf::SamplingContainer::populate_buffer");
 
     amrex::Gpu::DeviceVector<amrex::Real> dbuf(buf.size(), 0.0_rt);
     auto* dbuf_ptr = dbuf.data();

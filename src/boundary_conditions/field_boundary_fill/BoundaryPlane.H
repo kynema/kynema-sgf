@@ -206,7 +206,7 @@ private:
     const FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
 
-    // pointer to pointer : when ABL boundary plane gets initialized, amr-wind
+    // pointer to pointer : when ABL boundary plane gets initialized, kynema-sgf
     // CFDsim does not yet have the up to date pointer to the mbc or the
     // read_erf function, hence the use of double pointers
     MultiBlockContainer** m_mbc;

@@ -43,7 +43,7 @@ class TurbulenceModel;
 /** Data structures for a CFD simulation
  *  \ingroup core
  *
- *  CFDSim represents the amr-wind execution environment and manages all the
+ *  CFDSim represents the kynema-sgf execution environment and manages all the
  *  necessary components used to perform a simulation. Each simulation contains
  *  a single CFDSim instance that holds references to the mesh, FieldRepo,
  *  SimTime, PhysicsMgr, pde::PDEMgr, IOManager, and post-processing manager

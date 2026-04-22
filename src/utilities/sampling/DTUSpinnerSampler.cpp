@@ -193,7 +193,7 @@ void DTUSpinnerSampler::sampling_locations(
 void DTUSpinnerSampler::bcast_turbine(
     amrex::Array<amrex::Real, 18>& turbine_pack, int root_proc)
 {
-    BL_PROFILE("amr-wind::Sampling::DTUSpinnerSampler::bcast_turbine");
+    BL_PROFILE("kynema-sgf::Sampling::DTUSpinnerSampler::bcast_turbine");
 
     amrex::ParallelDescriptor::Bcast(
         turbine_pack.begin(), turbine_pack.size(), root_proc,
@@ -212,7 +212,7 @@ void DTUSpinnerSampler::bcast_turbine(
 void DTUSpinnerSampler::get_turbine_data(const std::string& turbine_label)
 {
 
-    BL_PROFILE("amr-wind::Sampling::DTUSpinnerSampler::get_turbine_data");
+    BL_PROFILE("kynema-sgf::Sampling::DTUSpinnerSampler::get_turbine_data");
 
     // Use Physics Manager to get actuators
     const auto& all_actuators =
@@ -284,7 +284,7 @@ void DTUSpinnerSampler::get_turbine_data(const std::string& turbine_label)
 bool DTUSpinnerSampler::update_sampling_locations()
 {
     BL_PROFILE(
-        "amr-wind::Sampling::DTUSpinnerSampler::update_sampling_locations");
+        "kynema-sgf::Sampling::DTUSpinnerSampler::update_sampling_locations");
 
 #ifdef AMR_WIND_USE_OPENFAST
     if (m_spinner_mode == "hub") {

@@ -23,7 +23,7 @@ WaveEnergy::~WaveEnergy() = default;
 
 void WaveEnergy::initialize()
 {
-    BL_PROFILE("amr-wind::WaveEnergy::initialize");
+    BL_PROFILE("kynema-sgf::WaveEnergy::initialize");
     // Default water level is 0
     amrex::Real w_lev = 0.0_rt;
     {
@@ -49,7 +49,7 @@ void WaveEnergy::initialize()
 
 amrex::Real WaveEnergy::calculate_kinetic_energy()
 {
-    BL_PROFILE("amr-wind::WaveEnergy::calculate_kinetic_energy");
+    BL_PROFILE("kynema-sgf::WaveEnergy::calculate_kinetic_energy");
 
     // integrated total wave Energy
     amrex::Real wave_ke = 0.0_rt;
@@ -104,7 +104,7 @@ amrex::Real WaveEnergy::calculate_kinetic_energy()
 
 amrex::Real WaveEnergy::calculate_potential_energy()
 {
-    BL_PROFILE("amr-wind::WaveEnergy::calculate_potential_energy");
+    BL_PROFILE("kynema-sgf::WaveEnergy::calculate_potential_energy");
 
     // integrated total wave Energy
     amrex::Real wave_pe = 0.0_rt;
@@ -166,7 +166,7 @@ amrex::Real WaveEnergy::calculate_potential_energy()
 
 void WaveEnergy::output_actions()
 {
-    BL_PROFILE("amr-wind::WaveEnergy::output_actions");
+    BL_PROFILE("kynema-sgf::WaveEnergy::output_actions");
 
     m_wave_kinetic_energy = calculate_kinetic_energy() / m_escl;
     m_wave_potential_energy =
@@ -177,7 +177,7 @@ void WaveEnergy::output_actions()
 
 void WaveEnergy::prepare_ascii_file()
 {
-    BL_PROFILE("amr-wind::WaveEnergy::prepare_ascii_file");
+    BL_PROFILE("kynema-sgf::WaveEnergy::prepare_ascii_file");
 
     const std::string post_dir = m_sim.io_manager().post_processing_directory();
     const std::string sname =
@@ -194,7 +194,7 @@ void WaveEnergy::prepare_ascii_file()
 
 void WaveEnergy::write_ascii()
 {
-    BL_PROFILE("amr-wind::WaveEnergy::write_ascii");
+    BL_PROFILE("kynema-sgf::WaveEnergy::write_ascii");
 
     if (amrex::ParallelDescriptor::IOProcessor()) {
         std::ofstream f(m_out_fname.c_str(), std::ios_base::app);

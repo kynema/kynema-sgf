@@ -60,7 +60,7 @@ void DiffSolverIface<LinOp>::setup_operator(
     const amrex::Real beta,
     const FieldState fstate)
 {
-    BL_PROFILE("amr-wind::setup_operator");
+    BL_PROFILE("kynema-sgf::setup_operator");
     auto& repo = m_pdefields.repo;
     const int nlevels = repo.num_active_levels();
 
@@ -75,7 +75,7 @@ void DiffSolverIface<LinOp>::setup_operator(
 template <typename LinOp>
 void DiffSolverIface<LinOp>::set_acoeffs(LinOp& linop, const FieldState fstate)
 {
-    BL_PROFILE("amr-wind::set_acoeffs");
+    BL_PROFILE("kynema-sgf::set_acoeffs");
     auto& repo = m_pdefields.repo;
     const int nlevels = repo.num_active_levels();
     const auto& density = m_density.state(fstate);
@@ -103,7 +103,7 @@ void DiffSolverIface<LinOp>::set_acoeffs(LinOp& linop, const FieldState fstate)
 template <typename LinOp>
 void DiffSolverIface<LinOp>::setup_solver(amrex::MLMG& mlmg)
 {
-    BL_PROFILE("amr-wind::setup_solver");
+    BL_PROFILE("kynema-sgf::setup_solver");
     // Set all MLMG options
     m_options(mlmg);
 }

@@ -30,7 +30,7 @@ OceanWavesBoundary::OceanWavesBoundary(CFDSim& sim)
 
 void OceanWavesBoundary::post_init_actions()
 {
-    BL_PROFILE("amr-wind::OceanWavesBoundary::post_init_actions");
+    BL_PROFILE("kynema-sgf::OceanWavesBoundary::post_init_actions");
     m_repo.get_field("velocity")
         .register_fill_patch_op<OceanWavesFillInflow>(m_mesh, m_time, *this);
     m_vof_exists = m_repo.field_exists("vof");
@@ -61,7 +61,7 @@ void OceanWavesBoundary::post_init_actions()
 
 void OceanWavesBoundary::pre_advance_work()
 {
-    BL_PROFILE("amr-wind::OceanWavesBoundary::pre_advance_work");
+    BL_PROFILE("kynema-sgf::OceanWavesBoundary::pre_advance_work");
     // ow values at nph time for advection boundaries
     const amrex::Real adv_bdy_time =
         0.5_rt * (m_time.current_time() + m_time.new_time());
@@ -70,7 +70,7 @@ void OceanWavesBoundary::pre_advance_work()
 
 void OceanWavesBoundary::pre_predictor_work()
 {
-    BL_PROFILE("amr-wind::OceanWavesBoundary::pre_predictor_work");
+    BL_PROFILE("kynema-sgf::OceanWavesBoundary::pre_predictor_work");
     // ow values at new time for boundary fills
     const amrex::Real bdy_fill_time = m_time.new_time();
     record_boundary_data_time(bdy_fill_time);
@@ -84,7 +84,7 @@ void OceanWavesBoundary::set_velocity(
     const int dcomp,
     const int orig_comp) const
 {
-    BL_PROFILE("amr-wind::OceanWavesBoundary::set_velocity");
+    BL_PROFILE("kynema-sgf::OceanWavesBoundary::set_velocity");
 
     const auto& geom = m_mesh.Geom(lev);
     const auto& bctype = fld.bc_type();
@@ -152,7 +152,7 @@ void OceanWavesBoundary::set_vof(
     const Field& fld,
     amrex::MultiFab& mfab) const
 {
-    BL_PROFILE("amr-wind::OceanWavesBoundary::set_vof");
+    BL_PROFILE("kynema-sgf::OceanWavesBoundary::set_vof");
 
     const auto& geom = m_mesh.Geom(lev);
     const auto& bctype = fld.bc_type();
@@ -200,7 +200,7 @@ void OceanWavesBoundary::set_density(
         return;
     }
 
-    BL_PROFILE("amr-wind::OceanWavesBoundary::set_density");
+    BL_PROFILE("kynema-sgf::OceanWavesBoundary::set_density");
 
     const auto& geom = m_mesh.Geom(lev);
     const auto& bctype = fld.bc_type();
@@ -246,7 +246,7 @@ void OceanWavesBoundary::set_inflow_sibling_velocity(
     const Field& fld,
     const amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM> mfabs) const
 {
-    BL_PROFILE("amr-wind::OceanWavesBoundary::set_inflow_sibling_velocity");
+    BL_PROFILE("kynema-sgf::OceanWavesBoundary::set_inflow_sibling_velocity");
 
     const bool terrain_and_vof_exist = m_terrain_exists && m_vof_exists;
     const auto& bctype = fld.bc_type();

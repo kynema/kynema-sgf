@@ -44,7 +44,7 @@ void AMD<Transport>::update_turbulent_viscosity(
     const FieldState fstate, const DiffusionType /*unused*/)
 {
     BL_PROFILE(
-        "amr-wind::" + this->identifier() + "::update_turbulent_viscosity");
+        "kynema-sgf::" + this->identifier() + "::update_turbulent_viscosity");
 
     auto& mu_turb = this->mu_turb();
     const auto& repo = mu_turb.repo();
@@ -119,7 +119,7 @@ template <typename Transport>
 void AMD<Transport>::update_alphaeff(Field& alphaeff)
 {
 
-    BL_PROFILE("amr-wind::" + this->identifier() + "::update_alphaeff");
+    BL_PROFILE("kynema-sgf::" + this->identifier() + "::update_alphaeff");
 
     const auto& repo = alphaeff.repo();
     const auto& geom_vec = repo.mesh().Geom();

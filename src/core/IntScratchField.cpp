@@ -12,7 +12,7 @@ namespace kynema_sgf {
 
 void IntScratchField::setVal(int value)
 {
-    BL_PROFILE("amr-wind::IntScratchField::setVal 1");
+    BL_PROFILE("kynema-sgf::IntScratchField::setVal 1");
     for (int lev = 0; lev < m_repo.num_active_levels(); ++lev) {
         operator()(lev).setVal(value);
     }

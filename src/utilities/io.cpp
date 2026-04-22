@@ -11,7 +11,7 @@ using namespace amrex::literals;
 
 void incflo::ReadCheckpointFile()
 {
-    BL_PROFILE("amr-wind::incflo::ReadCheckpointFile()");
+    BL_PROFILE("kynema-sgf::incflo::ReadCheckpointFile()");
 
     const std::string& restart_file = m_sim.io_manager().restart_file();
     amrex::Print() << "Restarting from checkpoint " << restart_file << '\n';

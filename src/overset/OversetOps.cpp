@@ -92,7 +92,7 @@ void OversetOps::pre_advance_work()
 
 void OversetOps::update_gradp()
 {
-    BL_PROFILE("amr-wind::OversetOps::update_gradp");
+    BL_PROFILE("kynema-sgf::OversetOps::update_gradp");
 
     // Get relevant fields
     auto& grad_p = m_sim_ptr->repo().get_field("gp");

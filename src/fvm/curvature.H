@@ -140,7 +140,7 @@ struct Curvature
 template <typename FTypeIn, typename FTypeOut>
 void curvature(FTypeOut& curphi, const FTypeIn& phi)
 {
-    BL_PROFILE("amr-wind::fvm::curvature");
+    BL_PROFILE("kynema-sgf::fvm::curvature");
     Curvature<FTypeIn, FTypeOut> cur(curphi, phi);
     impl::apply(cur, phi);
 }

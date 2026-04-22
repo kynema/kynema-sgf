@@ -58,7 +58,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
     const FieldState fstate, const DiffusionType /*unused*/)
 {
     BL_PROFILE(
-        "amr-wind::" + this->identifier() + "::update_turbulent_viscosity");
+        "kynema-sgf::" + this->identifier() + "::update_turbulent_viscosity");
 
     auto& mu_turb = this->mu_turb();
     const auto& repo = mu_turb.repo();
@@ -205,7 +205,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
 template <typename Transport>
 void Kosovic<Transport>::update_alphaeff(Field& alphaeff)
 {
-    BL_PROFILE("amr-wind::" + this->identifier() + "::update_alphaeff");
+    BL_PROFILE("kynema-sgf::" + this->identifier() + "::update_alphaeff");
 
     auto lam_alpha = (this->m_transport).alpha();
     auto& mu_turb = this->m_mu_turb;

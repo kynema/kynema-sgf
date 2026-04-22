@@ -9,7 +9,7 @@ RefineCriteriaManager::RefineCriteriaManager(CFDSim& sim) : m_sim(sim) {}
 
 void RefineCriteriaManager::initialize()
 {
-    BL_PROFILE("amr-wind::RefineCriteriaManager::initialize");
+    BL_PROFILE("kynema-sgf::RefineCriteriaManager::initialize");
     // Labels for different sampler types
     amrex::Vector<std::string> labels;
     {
@@ -32,7 +32,7 @@ void RefineCriteriaManager::initialize()
 void RefineCriteriaManager::tag_cells(
     int lev, amrex::TagBoxArray& tags, amrex::Real time, int ngrow)
 {
-    BL_PROFILE("amr-wind::RefineCriteriaManager::tag_cells");
+    BL_PROFILE("kynema-sgf::RefineCriteriaManager::tag_cells");
     for (const auto& rc : m_refiners) {
         (*rc)(lev, tags, time, ngrow);
         amrex::Gpu::streamSynchronize();

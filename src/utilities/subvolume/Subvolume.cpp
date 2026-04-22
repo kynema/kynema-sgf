@@ -20,7 +20,7 @@ Subvolume::~Subvolume() = default;
 
 void Subvolume::initialize()
 {
-    BL_PROFILE("amr-wind::Subvolume::initialize");
+    BL_PROFILE("kynema-sgf::Subvolume::initialize");
 
     // Labels for the different sampler types
     amrex::Vector<std::string> labels;
@@ -123,7 +123,7 @@ void Subvolume::initialize()
 
 void Subvolume::post_regrid_actions()
 {
-    BL_PROFILE("amr-wind::Subvolume::post_regrid_actions");
+    BL_PROFILE("kynema-sgf::Subvolume::post_regrid_actions");
 
     for (const auto& obj : m_subvolumes) {
         obj->post_regrid_actions();
@@ -132,7 +132,7 @@ void Subvolume::post_regrid_actions()
 
 void Subvolume::output_actions()
 {
-    BL_PROFILE("amr-wind::Subvolume::output_actions");
+    BL_PROFILE("kynema-sgf::Subvolume::output_actions");
 
     const std::string post_dir = m_sim.io_manager().post_processing_directory();
     const std::string name(post_dir + "/" + m_label_out);

@@ -74,7 +74,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
         return;
     }
 
-    BL_PROFILE("amr-wind::" + this->identifier() + "::initialize_fields");
+    BL_PROFILE("kynema-sgf::" + this->identifier() + "::initialize_fields");
 
     //! Reading the Terrain Coordinates from  file
     amrex::Vector<amrex::Real> xterrain;
@@ -290,7 +290,7 @@ void TerrainDrag::post_init_actions()
     if (!m_terrain_is_waves) {
         return;
     }
-    BL_PROFILE("amr-wind::" + this->identifier() + "::post_init_actions");
+    BL_PROFILE("kynema-sgf::" + this->identifier() + "::post_init_actions");
     convert_waves_to_terrain_fields();
 }
 
@@ -299,7 +299,7 @@ void TerrainDrag::pre_advance_work()
     if (!m_terrain_is_waves) {
         return;
     }
-    BL_PROFILE("amr-wind::" + this->identifier() + "::pre_advance_work");
+    BL_PROFILE("kynema-sgf::" + this->identifier() + "::pre_advance_work");
     convert_waves_to_terrain_fields();
 }
 

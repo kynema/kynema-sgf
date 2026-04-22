@@ -86,7 +86,7 @@ struct Filter
 template <typename FTypeIn, typename FTypeOut>
 void filter(FTypeOut& filterphi, const FTypeIn& phi)
 {
-    BL_PROFILE("amr-wind::fvm::filter");
+    BL_PROFILE("kynema-sgf::fvm::filter");
     Filter<FTypeIn, FTypeOut> filtering(filterphi, phi);
     impl::apply(filtering, phi);
 }

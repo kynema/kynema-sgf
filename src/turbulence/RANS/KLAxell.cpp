@@ -75,7 +75,7 @@ void KLAxell<Transport>::update_turbulent_viscosity(
     const FieldState fstate, const DiffusionType /*unused*/)
 {
     BL_PROFILE(
-        "amr-wind::" + this->identifier() + "::update_turbulent_viscosity");
+        "kynema-sgf::" + this->identifier() + "::update_turbulent_viscosity");
 
     auto gradT = (this->m_sim.repo()).create_scratch_field(3, 0);
     fvm::gradient(*gradT, m_temperature.state(fstate));
@@ -287,7 +287,7 @@ template <typename Transport>
 void KLAxell<Transport>::update_alphaeff(Field& alphaeff)
 {
 
-    BL_PROFILE("amr-wind::" + this->identifier() + "::update_alphaeff");
+    BL_PROFILE("kynema-sgf::" + this->identifier() + "::update_alphaeff");
     auto lam_alpha = (this->m_transport).alpha();
     auto& mu_turb = this->m_mu_turb;
     auto& repo = mu_turb.repo();
@@ -341,7 +341,7 @@ template <typename Transport>
 void KLAxell<Transport>::update_scalar_diff(
     Field& deff, const std::string& name)
 {
-    BL_PROFILE("amr-wind::" + this->identifier() + "::update_scalar_diff");
+    BL_PROFILE("kynema-sgf::" + this->identifier() + "::update_scalar_diff");
 
     if (name == pde::TKE::var_name()) {
         auto& mu_turb = this->mu_turb();
@@ -357,7 +357,7 @@ void KLAxell<Transport>::update_scalar_diff(
 template <typename Transport>
 void KLAxell<Transport>::post_advance_work()
 {
-    BL_PROFILE("amr-wind::" + this->identifier() + "::post_advance_work");
+    BL_PROFILE("kynema-sgf::" + this->identifier() + "::post_advance_work");
 }
 
 } // namespace turbulence

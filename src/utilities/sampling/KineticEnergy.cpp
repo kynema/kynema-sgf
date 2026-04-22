@@ -22,7 +22,7 @@ KineticEnergy::~KineticEnergy() = default;
 
 void KineticEnergy::initialize()
 {
-    BL_PROFILE("amr-wind::KineticEnergy::initialize");
+    BL_PROFILE("kynema-sgf::KineticEnergy::initialize");
     amrex::ParmParse pp(m_label);
     populate_output_parameters(pp);
     prepare_ascii_file();
@@ -30,7 +30,7 @@ void KineticEnergy::initialize()
 
 amrex::Real KineticEnergy::calculate_kinetic_energy()
 {
-    BL_PROFILE("amr-wind::KineticEnergy::calculate_kinetic_energy");
+    BL_PROFILE("kynema-sgf::KineticEnergy::calculate_kinetic_energy");
 
     // integrated total Kinetic Energy
     amrex::Real Kinetic_energy = 0.0_rt;
@@ -89,7 +89,7 @@ amrex::Real KineticEnergy::calculate_kinetic_energy()
 
 void KineticEnergy::output_actions()
 {
-    BL_PROFILE("amr-wind::KineticEnergy::output_actions");
+    BL_PROFILE("kynema-sgf::KineticEnergy::output_actions");
 
     m_total_kinetic_energy = calculate_kinetic_energy();
 
@@ -98,7 +98,7 @@ void KineticEnergy::output_actions()
 
 void KineticEnergy::prepare_ascii_file()
 {
-    BL_PROFILE("amr-wind::KineticEnergy::prepare_ascii_file");
+    BL_PROFILE("kynema-sgf::KineticEnergy::prepare_ascii_file");
 
     const std::string post_dir = m_sim.io_manager().post_processing_directory();
     const std::string sname =
@@ -115,7 +115,7 @@ void KineticEnergy::prepare_ascii_file()
 
 void KineticEnergy::write_ascii()
 {
-    BL_PROFILE("amr-wind::KineticEnergy::write_ascii");
+    BL_PROFILE("kynema-sgf::KineticEnergy::write_ascii");
 
     if (amrex::ParallelDescriptor::IOProcessor()) {
         std::ofstream f(m_out_fname.c_str(), std::ios_base::app);

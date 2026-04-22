@@ -114,7 +114,7 @@ void print_banner(MPI_Comm comm, std::ostream& out)
 
     // clang-format off
     out << dbl_line
-        << "                Kynema-SGF (https://github.com/exawind/amr-wind)"
+        << "                Kynema-SGF (https://github.com/kynema/kynema-sgf)"
         << '\n' << '\n'
         << "  Kynema-SGF version :: " << awind_version << '\n'
         << "  Kynema-SGF Git SHA :: " << awind_git_sha << '\n'
@@ -156,7 +156,7 @@ void print_banner(MPI_Comm comm, std::ostream& out)
 
     out << "           This software is released under the BSD 3-clause license.           "
         << '\n'
-        << " See https://github.com/Exawind/amr-wind/blob/development/LICENSE for details. "
+        << " See https://github.com/Exawind/kynema-sgf/blob/development/LICENSE for details. "
         << dash_line << '\n';
     // clang-format on
 }

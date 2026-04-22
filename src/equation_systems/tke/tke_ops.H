@@ -164,7 +164,7 @@ struct DiffusionOp<TKE, Scheme> : public DiffSolverIface<typename TKE::MLDiffOp>
     void
     set_acoeffs(typename TKE::MLDiffOp& linop, const FieldState fstate) override
     {
-        BL_PROFILE("amr-wind::pde::set_acoeffs");
+        BL_PROFILE("kynema-sgf::pde::set_acoeffs");
         auto& repo = m_pdefields.repo;
 
         const int nlevels = repo.num_active_levels();

@@ -117,7 +117,7 @@ struct DiffusionOp<SDR, Scheme> : public DiffSolverIface<typename SDR::MLDiffOp>
     void
     set_acoeffs(typename SDR::MLDiffOp& linop, const FieldState fstate) override
     {
-        BL_PROFILE("amr-wind::pde::set_acoeffs");
+        BL_PROFILE("kynema-sgf::pde::set_acoeffs");
         auto& repo = m_pdefields.repo;
 
         const int nlevels = repo.num_active_levels();

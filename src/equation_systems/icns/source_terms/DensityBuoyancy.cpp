@@ -1,6 +1,6 @@
 //
 //  DensityBuoyancy.cpp
-//  amr-wind
+//  kynema-sgf
 //
 
 #include "src/equation_systems/icns/source_terms/DensityBuoyancy.H"

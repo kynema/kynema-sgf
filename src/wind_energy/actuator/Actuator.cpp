@@ -22,7 +22,7 @@ Actuator::~Actuator() = default;
 
 void Actuator::pre_init_actions()
 {
-    BL_PROFILE("amr-wind::actuator::Actuator::pre_init_actions");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::pre_init_actions");
     amrex::ParmParse pp(identifier());
 
     amrex::Vector<std::string> labels;
@@ -86,7 +86,7 @@ void Actuator::pre_init_actions()
 
 void Actuator::post_init_actions()
 {
-    BL_PROFILE("amr-wind::actuator::Actuator::post_init_actions");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::post_init_actions");
 
     amrex::Vector<int> act_proc_count(amrex::ParallelDescriptor::NProcs(), 0);
     for (auto& act : m_actuators) {
@@ -121,7 +121,7 @@ void Actuator::post_init_actions()
 
 void Actuator::post_regrid_actions()
 {
-    BL_PROFILE("amr-wind::actuator::Actuator::post_regrid_actions");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::post_regrid_actions");
 
     const bool compute_root_proc =
         std::ranges::any_of(m_actuators, [](const auto& act) {
@@ -147,7 +147,7 @@ void Actuator::post_regrid_actions()
 
 void Actuator::pre_advance_work()
 {
-    BL_PROFILE("amr-wind::actuator::Actuator::pre_advance_work");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::pre_advance_work");
 
     m_container->reset_container();
     update_positions();
@@ -160,7 +160,7 @@ void Actuator::pre_advance_work()
 void Actuator::communicate_turbine_io()
 {
 #ifdef AMR_WIND_USE_HELICS
-    BL_PROFILE("amr-wind::actuator::Actuator::communicate_turbine_io");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::communicate_turbine_io");
 
     if (!m_sim.helics().is_activated()) {
         return;
@@ -200,7 +200,7 @@ void Actuator::communicate_turbine_io()
  */
 void Actuator::setup_container()
 {
-    BL_PROFILE("amr-wind::actuator::Actuator::setup_container");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::setup_container");
 
     const int ntotal = num_actuators();
     const int nlocal = static_cast<int>(std::count_if(
@@ -233,7 +233,7 @@ void Actuator::setup_container()
  */
 void Actuator::update_positions()
 {
-    BL_PROFILE("amr-wind::actuator::Actuator::update_positions");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::update_positions");
     auto& pinfo = m_container->m_data;
     for (int i = 0, ic = 0; i < pinfo.num_objects; ++i) {
         const auto ig = pinfo.global_id[i];
@@ -256,7 +256,7 @@ void Actuator::update_positions()
  */
 void Actuator::update_velocities()
 {
-    BL_PROFILE("amr-wind::actuator::Actuator::update_velocities");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::update_velocities");
     auto& pinfo = m_container->m_data;
     for (int i = 0, ic = 0; i < pinfo.num_objects; ++i) {
         const auto ig = pinfo.global_id[i];
@@ -276,7 +276,7 @@ void Actuator::update_velocities()
  */
 void Actuator::compute_forces()
 {
-    BL_PROFILE("amr-wind::actuator::Actuator::compute_forces");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::compute_forces");
     for (auto& ac : m_actuators) {
         if (ac->info().actuator_in_proc) {
             ac->compute_forces();
@@ -286,7 +286,7 @@ void Actuator::compute_forces()
 
 void Actuator::compute_source_term()
 {
-    BL_PROFILE("amr-wind::actuator::Actuator::compute_source_term");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::compute_source_term");
     m_act_source.setVal(0.0_rt);
     const int nlevels = m_sim.repo().num_active_levels();
 
@@ -313,7 +313,7 @@ void Actuator::compute_source_term()
 
 void Actuator::prepare_outputs()
 {
-    BL_PROFILE("amr-wind::actuator::Actuator::prepare_outputs");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::prepare_outputs");
 
     const std::string post_dir = m_sim.io_manager().post_processing_directory();
     const std::string out_dir_prefix = post_dir + "/actuator";
@@ -332,7 +332,7 @@ void Actuator::prepare_outputs()
 
 void Actuator::post_advance_work()
 {
-    BL_PROFILE("amr-wind::actuator::Actuator::post_advance_work");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::post_advance_work");
 
     const int iproc = amrex::ParallelDescriptor::MyProc();
     for (auto& ac : m_actuators) {
@@ -344,7 +344,7 @@ void Actuator::post_advance_work()
 
 ActuatorModel& Actuator::get_act_bylabel(const std::string& actlabel) const
 {
-    BL_PROFILE("amr-wind::actuator::Actuator::get_act_bylabel");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::get_act_bylabel");
     int thisid = 0; // Default to first actuator
     for (const auto& act : m_actuators) {
         std::string thislabel = act->label();
@@ -359,7 +359,7 @@ ActuatorModel& Actuator::get_act_bylabel(const std::string& actlabel) const
 template <typename T>
 T* Actuator::get_actuator(std::string& key) const
 {
-    BL_PROFILE("amr-wind::actuator::Actuator::get_actuator");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::get_actuator");
     for (const auto& act : m_actuators) {
         std::string thislabel = act->label();
         if (thislabel == key) {

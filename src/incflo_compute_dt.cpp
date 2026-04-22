@@ -32,7 +32,7 @@ using namespace amrex::literals;
  */
 void incflo::compute_dt()
 {
-    BL_PROFILE("amr-wind::incflo::compute_dt");
+    BL_PROFILE("kynema-sgf::incflo::compute_dt");
 
     bool explicit_diffusion = (m_diff_type == DiffusionType::Explicit);
 
@@ -222,7 +222,7 @@ void incflo::compute_dt()
 
 void incflo::compute_prescribe_dt()
 {
-    BL_PROFILE("amr-wind::incflo::compute_prescribe_dt");
+    BL_PROFILE("kynema-sgf::incflo::compute_prescribe_dt");
 
     amrex::Real conv_cfl = 0.0_rt;
     const bool mesh_mapping = m_sim.has_mesh_mapping();

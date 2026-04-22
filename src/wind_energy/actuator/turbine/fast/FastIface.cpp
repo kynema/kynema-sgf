@@ -112,7 +112,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::parse_inputs(
 template <>
 void ExtTurbIface<FastTurbine, FastSolverData>::allocate_ext_turbines()
 {
-    BL_PROFILE("amr-wind::FastIface::allocate_turbines");
+    BL_PROFILE("kynema-sgf::FastIface::allocate_turbines");
     int nturbines = static_cast<int>(m_turbine_data.size());
     fast_func(FAST_AllocateTurbines, &nturbines);
     m_is_initialized = true;
@@ -122,7 +122,7 @@ template <>
 void ExtTurbIface<FastTurbine, FastSolverData>::init_solution(
     const int local_id)
 {
-    BL_PROFILE("amr-wind::FastIface::init_solution");
+    BL_PROFILE("kynema-sgf::FastIface::init_solution");
     AMREX_ALWAYS_ASSERT(local_id < static_cast<int>(m_turbine_data.size()));
     AMREX_ALWAYS_ASSERT(m_is_initialized);
 
@@ -135,7 +135,7 @@ template <>
 void ExtTurbIface<FastTurbine, FastSolverData>::get_hub_stats(
     const int local_id)
 {
-    BL_PROFILE("amr-wind::FastIface::get_hub_stats");
+    BL_PROFILE("kynema-sgf::FastIface::get_hub_stats");
 
     auto& fi = *m_turbine_data[local_id];
 
@@ -151,7 +151,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::prepare_netcdf_file(
     FastTurbine& fi)
 {
 #ifdef AMR_WIND_USE_NETCDF
-    BL_PROFILE("amr-wind::FastIface::prepare_netcdf_file");
+    BL_PROFILE("kynema-sgf::FastIface::prepare_netcdf_file");
     if (!amrex::UtilCreateDirectory(m_solver_data.output_dir, 0755)) {
         amrex::CreateDirectoryFailed(m_solver_data.output_dir);
     }
@@ -206,7 +206,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::write_velocity_data(
     const FastTurbine& fi)
 {
 #ifdef AMR_WIND_USE_NETCDF
-    BL_PROFILE("amr-wind::FastIface::write_velocity_data");
+    BL_PROFILE("kynema-sgf::FastIface::write_velocity_data");
     const std::string fname =
         m_solver_data.output_dir + "/" + fi.tlabel + ".nc";
     auto ncf = ncutils::NCFile::open(fname, NC_WRITE);
@@ -283,7 +283,7 @@ template <>
 void ExtTurbIface<FastTurbine, FastSolverData>::ext_init_turbine(
     FastTurbine& fi)
 {
-    BL_PROFILE("amr-wind::FastIface::init_turbine");
+    BL_PROFILE("kynema-sgf::FastIface::init_turbine");
 
     AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
         amrex::FileSystem::Exists(fi.input_file),
@@ -352,7 +352,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_replay_turbine(
     FastTurbine& fi)
 {
 #ifdef AMR_WIND_USE_NETCDF
-    BL_PROFILE("amr-wind::FastIface::replay_turbine");
+    BL_PROFILE("kynema-sgf::FastIface::replay_turbine");
 
     // Determine the number of timesteps we should advance this turbine
     const auto num_steps =
@@ -401,7 +401,7 @@ template <>
 void ExtTurbIface<FastTurbine, FastSolverData>::ext_restart_turbine(
     FastTurbine& fi)
 {
-    BL_PROFILE("amr-wind::FastIface::restart_turbine");
+    BL_PROFILE("kynema-sgf::FastIface::restart_turbine");
 
     AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
         amrex::FileSystem::Exists(fi.checkpoint_file + ".chkp"),

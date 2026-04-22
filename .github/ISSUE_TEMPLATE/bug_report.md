@@ -2,7 +2,7 @@
 name: Bug report
 about: Report a bug to help us improve
 title: 'Bug report'
-labels: "bug:amr-wind"
+labels: "bug:kynema-sgf"
 ---
 
 ## Bug description
@@ -50,7 +50,7 @@ Steps to reproduce the behavior:
 
 ```
 ==============================================================================
-                Kynema-SGF (https://github.com/exawind/amr-wind)
+                Kynema-SGF (https://github.com/exawind/kynema-sgf)
 
   Kynema-SGF version :: v1.4.0-17-g250778a3-DIRTY
   Kynema-SGF Git SHA :: 250778a3306e96b46afc117fc722491acaeb6176-DIRTY
@@ -67,7 +67,7 @@ Steps to reproduce the behavior:
   No additional third-party libraries enabled
 
            This software is released under the BSD 3-clause license.
- See https://github.com/Exawind/amr-wind/blob/development/LICENSE for details.
+ See https://github.com/Exawind/kynema-sgf/blob/development/LICENSE for details.
 ------------------------------------------------------------------------------
 ```
 

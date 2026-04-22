@@ -76,7 +76,7 @@ void KOmegaSSTIDDES<Transport>::update_turbulent_viscosity(
     const FieldState fstate, const DiffusionType diff_type)
 {
     BL_PROFILE(
-        "amr-wind::" + this->identifier() + "::update_turbulent_viscosity");
+        "kynema-sgf::" + this->identifier() + "::update_turbulent_viscosity");
 
     const amrex::Real beta_star = this->m_beta_star;
     const amrex::Real alpha1 = this->m_alpha1;

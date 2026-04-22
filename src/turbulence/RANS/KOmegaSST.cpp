@@ -71,7 +71,7 @@ void KOmegaSST<Transport>::update_turbulent_viscosity(
     const FieldState fstate, const DiffusionType diff_type)
 {
     BL_PROFILE(
-        "amr-wind::" + this->identifier() + "::update_turbulent_viscosity");
+        "kynema-sgf::" + this->identifier() + "::update_turbulent_viscosity");
 
     const amrex::Real beta_star = this->m_beta_star;
     const amrex::Real alpha1 = this->m_alpha1;
@@ -288,7 +288,7 @@ template <typename Transport>
 void KOmegaSST<Transport>::update_scalar_diff(
     Field& deff, const std::string& name)
 {
-    BL_PROFILE("amr-wind::" + this->identifier() + "::update_scalar_diff");
+    BL_PROFILE("kynema-sgf::" + this->identifier() + "::update_scalar_diff");
 
     auto lam_mu = (this->m_transport).mu();
     const auto& mu_turb = this->mu_turb();

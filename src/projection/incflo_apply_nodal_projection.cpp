@@ -152,7 +152,7 @@ void incflo::ApplyProjection(
     amrex::Real scaling_factor,
     bool incremental)
 {
-    BL_PROFILE("amr-wind::incflo::ApplyProjection");
+    BL_PROFILE("kynema-sgf::incflo::ApplyProjection");
 
     // If we have dropped the dt substantially for whatever reason,
     // use a different form of the approximate projection that

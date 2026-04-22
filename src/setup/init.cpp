@@ -103,7 +103,7 @@ void incflo::ReadParameters()
  */
 void incflo::InitialIterations()
 {
-    BL_PROFILE("amr-wind::incflo::InitialIterations()");
+    BL_PROFILE("kynema-sgf::incflo::InitialIterations()");
     amrex::Print() << "Begin initial pressure iterations. Num. iters = "
                    << m_initial_iterations << '\n';
 
@@ -201,7 +201,7 @@ void incflo::InitialIterations()
  */
 void incflo::InitialProjection()
 {
-    BL_PROFILE("amr-wind::incflo::InitialProjection()");
+    BL_PROFILE("kynema-sgf::incflo::InitialProjection()");
 
     amrex::Print() << "Begin initial projection" << '\n';
     if (m_verbose != 0) {

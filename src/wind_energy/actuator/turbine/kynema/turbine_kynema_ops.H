@@ -126,7 +126,7 @@ struct InitDataOp<TurbineKynema, SrcTrait>
 {
     void operator()(TurbineKynema::DataType& data)
     {
-        BL_PROFILE("amr-wind::InitDataOp<TurbineKynema>");
+        BL_PROFILE("kynema-sgf::InitDataOp<TurbineKynema>");
         init_data_op<TurbineKynema::DataType>(data);
     }
 };
@@ -136,7 +136,7 @@ struct UpdatePosOp<TurbineKynema, SrcTrait>
 {
     void operator()(typename TurbineKynema::DataType& data)
     {
-        BL_PROFILE("amr-wind::actuator::UpdatePosOp<TurbineKynema>");
+        BL_PROFILE("kynema-sgf::actuator::UpdatePosOp<TurbineKynema>");
         update_pos_op<TurbineKynema::DataType>(data);
     }
 };
@@ -146,7 +146,7 @@ struct UpdateVelOp<TurbineKynema, SrcTrait>
 {
     void operator()(typename TurbineKynema::DataType& data)
     {
-        BL_PROFILE("amr-wind::actuator::UpdateVelOp<TurbineKynema>");
+        BL_PROFILE("kynema-sgf::actuator::UpdateVelOp<TurbineKynema>");
         update_vel_op<TurbineKynema::DataType>(data);
     }
 };
@@ -156,7 +156,7 @@ struct ComputeForceOp<TurbineKynema, SrcTrait>
 {
     void operator()(typename TurbineKynema::DataType& data)
     {
-        BL_PROFILE("amr-wind::actuator::ComputeForceOp<TurbineKynema>");
+        BL_PROFILE("kynema-sgf::actuator::ComputeForceOp<TurbineKynema>");
         compute_force_op<TurbineKynema::DataType>(data);
     }
 };

@@ -93,7 +93,7 @@ OceanWaves::~OceanWaves() = default;
 
 void OceanWaves::pre_init_actions()
 {
-    BL_PROFILE("amr-wind::ocean_waves::OceanWaves::pre_init_actions");
+    BL_PROFILE("kynema-sgf::ocean_waves::OceanWaves::pre_init_actions");
     amrex::ParmParse pp(identifier());
 
     if (!(m_multiphase_mode ||
@@ -124,13 +124,13 @@ void OceanWaves::pre_init_actions()
 
 void OceanWaves::initialize_fields(int level, const amrex::Geometry& geom)
 {
-    BL_PROFILE("amr-wind::ocean_waves::OceanWaves::initialize_fields");
+    BL_PROFILE("kynema-sgf::ocean_waves::OceanWaves::initialize_fields");
     m_owm->init_waves(level, geom, m_multiphase_mode);
 }
 
 void OceanWaves::post_init_actions()
 {
-    BL_PROFILE("amr-wind::ocean_waves::OceanWaves::post_init_actions");
+    BL_PROFILE("kynema-sgf::ocean_waves::OceanWaves::post_init_actions");
     m_owm->update_target_fields(m_sim.time().current_time());
     if (m_multiphase_mode) {
         m_owm->apply_relax_zones();
@@ -140,13 +140,13 @@ void OceanWaves::post_init_actions()
 
 void OceanWaves::post_regrid_actions()
 {
-    BL_PROFILE("amr-wind::ocean_waves::OceanWaves::post_regrid_actions");
+    BL_PROFILE("kynema-sgf::ocean_waves::OceanWaves::post_regrid_actions");
     m_owm->record_regrid_flag();
 }
 
 void OceanWaves::pre_advance_work()
 {
-    BL_PROFILE("amr-wind::ocean_waves::OceanWaves::pre_advance_work");
+    BL_PROFILE("kynema-sgf::ocean_waves::OceanWaves::pre_advance_work");
     // Update ow values for advection boundaries
     const amrex::Real adv_bdy_time =
         0.5_rt * (m_sim.time().current_time() + m_sim.time().new_time());
@@ -155,7 +155,7 @@ void OceanWaves::pre_advance_work()
 
 void OceanWaves::pre_predictor_work()
 {
-    BL_PROFILE("amr-wind::ocean_waves::OceanWaves::pre_predictor_work");
+    BL_PROFILE("kynema-sgf::ocean_waves::OceanWaves::pre_predictor_work");
     // Update ow values for boundary fills at new time
     const amrex::Real bdy_fill_time = m_sim.time().new_time();
     m_owm->update_target_fields(bdy_fill_time);
@@ -163,7 +163,7 @@ void OceanWaves::pre_predictor_work()
 
 void OceanWaves::post_advance_work()
 {
-    BL_PROFILE("amr-wind::ocean_waves::OceanWaves::post_advance_work");
+    BL_PROFILE("kynema-sgf::ocean_waves::OceanWaves::post_advance_work");
     if (m_multiphase_mode) {
         m_owm->apply_relax_zones();
     }

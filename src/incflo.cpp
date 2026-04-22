@@ -41,7 +41,7 @@ incflo::~incflo() = default;
  */
 void incflo::init_mesh()
 {
-    BL_PROFILE("amr-wind::incflo::init_mesh");
+    BL_PROFILE("kynema-sgf::incflo::init_mesh");
     // Initialize I/O manager to enable restart and outputs
     auto& io_mgr = m_sim.io_manager();
     io_mgr.initialize_io();
@@ -97,7 +97,7 @@ void incflo::init_mesh()
  */
 void incflo::init_kynema_sgf_modules()
 {
-    BL_PROFILE("amr-wind::incflo::init_kynema_sgf_modules");
+    BL_PROFILE("kynema-sgf::incflo::init_kynema_sgf_modules");
     if (m_sim.has_overset()) {
         m_time.override_simulation_end_parameters();
         m_sim.overset_manager()->post_init_actions();
@@ -137,7 +137,7 @@ void incflo::init_kynema_sgf_modules()
  */
 void incflo::prepare_for_time_integration()
 {
-    BL_PROFILE("amr-wind::incflo::prepare_for_time_integration");
+    BL_PROFILE("kynema-sgf::incflo::prepare_for_time_integration");
     // Don't perform initial work if this is a restart
     // but still need to write plot file for dry run of restart
     if (m_sim.io_manager().is_restart() && !m_dry_run) {
@@ -173,7 +173,7 @@ void incflo::prepare_for_time_integration()
  */
 void incflo::InitData()
 {
-    BL_PROFILE("amr-wind::incflo::InitData()");
+    BL_PROFILE("kynema-sgf::incflo::InitData()");
 
     init_mesh();
     init_kynema_sgf_modules();
@@ -186,7 +186,7 @@ void incflo::InitData()
  */
 bool incflo::regrid_and_update()
 {
-    BL_PROFILE("amr-wind::incflo::regrid_and_update");
+    BL_PROFILE("kynema-sgf::incflo::regrid_and_update");
 
     if (m_time.do_regrid()) {
         amrex::Print() << "Regrid mesh ... ";
@@ -253,7 +253,7 @@ bool incflo::regrid_and_update()
  */
 void incflo::post_advance_work()
 {
-    BL_PROFILE("amr-wind::incflo::post_advance_work");
+    BL_PROFILE("kynema-sgf::incflo::post_advance_work");
 
     m_sim.turbulence_model().post_advance_work();
 
@@ -289,7 +289,7 @@ void incflo::post_advance_work()
  */
 void incflo::Evolve()
 {
-    BL_PROFILE("amr-wind::incflo::Evolve()");
+    BL_PROFILE("kynema-sgf::incflo::Evolve()");
 
     const auto init_time =
         static_cast<amrex::Real>(amrex::ParallelDescriptor::second());
@@ -386,7 +386,7 @@ void incflo::MakeNewLevelFromScratch(
     const amrex::BoxArray& new_grids,
     const amrex::DistributionMapping& new_dmap)
 {
-    BL_PROFILE("amr-wind::incflo::MakeNewLevelFromScratch()");
+    BL_PROFILE("kynema-sgf::incflo::MakeNewLevelFromScratch()");
 
     if (m_verbose > 0) {
         amrex::Print() << "Making new level " << lev << " from scratch" << '\n';
@@ -467,6 +467,6 @@ void incflo::init_physics_and_pde()
 void incflo::ErrorEst(
     int lev, amrex::TagBoxArray& tags, amrex::Real time, int ngrow)
 {
-    BL_PROFILE("amr-wind::incflo::ErrorEst()");
+    BL_PROFILE("kynema-sgf::incflo::ErrorEst()");
     m_mesh_refiner->tag_cells(lev, tags, time, ngrow);
 }

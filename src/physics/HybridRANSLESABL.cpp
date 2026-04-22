@@ -12,7 +12,7 @@ HybridRANSLESABL::HybridRANSLESABL(const CFDSim& sim) : m_sim(sim) {}
  */
 void HybridRANSLESABL::initialize_fields(int level, const amrex::Geometry& geom)
 {
-    BL_PROFILE("amr-wind::" + this->identifier() + "::initialize_fields");
+    BL_PROFILE("kynema-sgf::" + this->identifier() + "::initialize_fields");
 
     const amrex::Real Ce = this->m_Ce;
     const amrex::Real dx = geom.CellSize()[0];
@@ -35,7 +35,7 @@ void HybridRANSLESABL::initialize_fields(int level, const amrex::Geometry& geom)
 void HybridRANSLESABL::pre_init_actions()
 {
 
-    BL_PROFILE("amr-wind::" + this->identifier() + "::pre_init_actions");
+    BL_PROFILE("kynema-sgf::" + this->identifier() + "::pre_init_actions");
 
     AMREX_ALWAYS_ASSERT(
         m_sim.turbulence_model().model_name() == "OneEqKsgsM84");
@@ -55,7 +55,7 @@ void HybridRANSLESABL::pre_init_actions()
 void HybridRANSLESABL::post_init_actions()
 {
 
-    BL_PROFILE("amr-wind::" + this->identifier() + "::post_init_actions");
+    BL_PROFILE("kynema-sgf::" + this->identifier() + "::post_init_actions");
 
     compute_sdr_impl();
 }
@@ -63,7 +63,7 @@ void HybridRANSLESABL::post_init_actions()
 void HybridRANSLESABL::post_advance_work()
 {
 
-    BL_PROFILE("amr-wind::" + this->identifier() + "::post_advance_work");
+    BL_PROFILE("kynema-sgf::" + this->identifier() + "::post_advance_work");
 
     compute_sdr_impl();
 }
@@ -72,7 +72,7 @@ void HybridRANSLESABL::post_advance_work()
 void HybridRANSLESABL::compute_sdr_impl()
 {
 
-    BL_PROFILE("amr-wind::" + this->identifier() + "::compute_sdr_impl");
+    BL_PROFILE("kynema-sgf::" + this->identifier() + "::compute_sdr_impl");
 
     auto* tke = this->m_tke;
     auto* sdr = this->m_sdr;

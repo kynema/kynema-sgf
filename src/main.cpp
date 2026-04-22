@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
     { /* These braces are necessary to ensure amrex::Finalize() can be called
         without explicitly deleting all the incflo member MultiFabs */
 
-        BL_PROFILE("amr-wind::main()");
+        BL_PROFILE("kynema-sgf::main()");
 
         // Start timing the program
         auto start_time =

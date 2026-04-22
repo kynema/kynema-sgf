@@ -176,7 +176,7 @@ struct InitDataOp<TurbineFast, SrcTrait>
 {
     void operator()(TurbineFast::DataType& data)
     {
-        BL_PROFILE("amr-wind::InitDataOp<TurbineFast>");
+        BL_PROFILE("kynema-sgf::InitDataOp<TurbineFast>");
         // Ensure that FAST simulation time is set properly before doing any
         // initialization tasks. We perform this check here to account for
         // restart which is only known after reading the checkpoint file.
@@ -215,7 +215,7 @@ struct UpdatePosOp<TurbineFast, SrcTrait>
 {
     void operator()(typename TurbineFast::DataType& data)
     {
-        BL_PROFILE("amr-wind::actuator::UpdatePosOp<TurbineFast>");
+        BL_PROFILE("kynema-sgf::actuator::UpdatePosOp<TurbineFast>");
         update_pos_op<TurbineFast::DataType>(data);
     }
 };
@@ -225,7 +225,7 @@ struct UpdateVelOp<TurbineFast, SrcTrait>
 {
     void operator()(typename TurbineFast::DataType& data)
     {
-        BL_PROFILE("amr-wind::actuator::UpdateVelOp<TurbineFast>");
+        BL_PROFILE("kynema-sgf::actuator::UpdateVelOp<TurbineFast>");
         update_vel_op<TurbineFast::DataType>(data);
     }
 };
@@ -235,7 +235,7 @@ struct ComputeForceOp<TurbineFast, SrcTrait>
 {
     void operator()(typename TurbineFast::DataType& data)
     {
-        BL_PROFILE("amr-wind::actuator::ComputeForceOp<TurbineFast>");
+        BL_PROFILE("kynema-sgf::actuator::ComputeForceOp<TurbineFast>");
         compute_force_op<TurbineFast::DataType>(data);
     }
 };

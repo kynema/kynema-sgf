@@ -389,7 +389,7 @@ void BoundaryPlane::post_advance_work() { write_file(); }
 
 void BoundaryPlane::initialize_data()
 {
-    BL_PROFILE("amr-wind::BoundaryPlane::initialize_data");
+    BL_PROFILE("kynema-sgf::BoundaryPlane::initialize_data");
     for (const auto& fname : m_var_names) {
         if (m_repo.field_exists(fname)) {
             auto& fld = m_repo.get_field(fname);
@@ -409,7 +409,7 @@ void BoundaryPlane::initialize_data()
 
 void BoundaryPlane::write_header()
 {
-    BL_PROFILE("amr-wind::BoundaryPlane::write_header");
+    BL_PROFILE("kynema-sgf::BoundaryPlane::write_header");
     if (m_io_mode != io_mode::output) {
         return;
     }
@@ -541,7 +541,7 @@ void BoundaryPlane::write_header()
 
 void BoundaryPlane::write_bndry_native_header(const std::string& chkname)
 {
-    BL_PROFILE("amr-wind::BoundaryPlane::write_bndry_native_header");
+    BL_PROFILE("kynema-sgf::BoundaryPlane::write_bndry_native_header");
     if (m_io_mode != io_mode::output) {
         return;
     }
@@ -631,7 +631,7 @@ void BoundaryPlane::write_bndry_native_header(const std::string& chkname)
 
 void BoundaryPlane::write_file()
 {
-    BL_PROFILE("amr-wind::BoundaryPlane::write_file");
+    BL_PROFILE("kynema-sgf::BoundaryPlane::write_file");
     const amrex::Real time = m_time.new_time();
     const int t_step = m_time.time_index();
 
@@ -747,7 +747,7 @@ void BoundaryPlane::write_file()
 
 void BoundaryPlane::read_header()
 {
-    BL_PROFILE("amr-wind::BoundaryPlane::read_header");
+    BL_PROFILE("kynema-sgf::BoundaryPlane::read_header");
     if (m_io_mode != io_mode::input) {
         return;
     }
@@ -962,7 +962,7 @@ void BoundaryPlane::read_header()
 amrex::Vector<amrex::BoxArray> BoundaryPlane::read_bndry_native_boxarrays(
     const std::string& chkname, const Field& field) const
 {
-    BL_PROFILE("amr-wind::BoundaryPlane::read_bndry_native_boxarrays");
+    BL_PROFILE("kynema-sgf::BoundaryPlane::read_bndry_native_boxarrays");
     AMREX_ALWAYS_ASSERT(m_io_mode == io_mode::input);
 
 #ifndef AMR_WIND_USE_NETCDF
@@ -1157,7 +1157,7 @@ amrex::Vector<amrex::BoxArray> BoundaryPlane::read_bndry_native_boxarrays(
 
 void BoundaryPlane::read_file(const bool nph_target_time)
 {
-    BL_PROFILE("amr-wind::BoundaryPlane::read_file");
+    BL_PROFILE("kynema-sgf::BoundaryPlane::read_file");
     if (m_io_mode != io_mode::input) {
         return;
     }
@@ -1321,7 +1321,7 @@ void BoundaryPlane::populate_data(
     const int orig_comp) const
 {
 
-    BL_PROFILE("amr-wind::BoundaryPlane::populate_data");
+    BL_PROFILE("kynema-sgf::BoundaryPlane::populate_data");
 
     if (m_io_mode != io_mode::input) {
         return;
@@ -1419,7 +1419,7 @@ void BoundaryPlane::set_velocity(
     const int dcomp,
     const int orig_comp) const
 {
-    BL_PROFILE("amr-wind::BoundaryPlane::set_velocity");
+    BL_PROFILE("kynema-sgf::BoundaryPlane::set_velocity");
     if (m_io_mode != io_mode::input) {
         return;
     }
@@ -1440,7 +1440,7 @@ void BoundaryPlane::write_data(
     const int lev,
     const Field* fld)
 {
-    BL_PROFILE("amr-wind::BoundaryPlane::write_data");
+    BL_PROFILE("kynema-sgf::BoundaryPlane::write_data");
     // Plane info
     const int normal = ori.coordDir();
     const amrex::GpuArray<int, 2> perp = utils::perpendicular_idx(normal);

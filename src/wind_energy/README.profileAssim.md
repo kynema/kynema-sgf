@@ -4,7 +4,7 @@ Eliot Quon, Shashank Yellapantula
 TODOs:
 - [x] Implement general input for weighting matrix
 - [x] Update z normaliation in regression matrix
-- [ ] Combine inputs for partial profile assimilation (fix issue with netcdf https://github.com/ewquon/amr-wind/commit/d8db4842ad8b8c6c2d123b234ec1b9d979ef8718, get rid of workaround)
+- [ ] Combine inputs for partial profile assimilation (fix issue with netcdf https://github.com/ewquon/kynema-sgf/commit/d8db4842ad8b8c6c2d123b234ec1b9d979ef8718, get rid of workaround)
 - [ ] Add error profile output (to netcdf)
 - [ ] Fix netCDF input format so that mesoscale data have separate ntime,nheight dimensions
       rather than an ambiguous single arraySize dimension
