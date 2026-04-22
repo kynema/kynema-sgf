@@ -2,7 +2,7 @@
 
 #include "src/utilities/io_utils.H"
 
-namespace amr_wind::ioutils {
+namespace kynema_sgf::ioutils {
 
 void goto_next_line(std::istream& is)
 {
@@ -56,4 +56,4 @@ void read_flat_grid_file(
 
     file.close();
 }
-} // namespace amr_wind::ioutils
+} // namespace kynema_sgf::ioutils

@@ -5,7 +5,7 @@
 #include "src/core/vs/vstraits.H"
 #include "src/core/vs/vector.H"
 
-namespace amr_wind::vs {
+namespace kynema_sgf::vs {
 
 /** Tensor in 3D vector space
  */
@@ -157,7 +157,7 @@ struct TensorT
 
 using Tensor = TensorT<amrex::Real>;
 
-} // namespace amr_wind::vs
+} // namespace kynema_sgf::vs
 
 #include "src/core/vs/tensorI.H"
 

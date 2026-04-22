@@ -12,7 +12,7 @@ using namespace amrex::literals;
 namespace amr_wind_tests::utils {
 
 AMREX_INLINE amrex::Real
-field_min(const amr_wind::Field& field, const int icomp = 0)
+field_min(const kynema_sgf::Field& field, const int icomp = 0)
 {
     amrex::Real min_val = std::numeric_limits<amrex::Real>::max();
     for (int lev = 0; lev < field.repo().num_active_levels(); ++lev) {
@@ -23,7 +23,7 @@ field_min(const amr_wind::Field& field, const int icomp = 0)
 }
 
 AMREX_INLINE amrex::Real
-field_max(const amr_wind::Field& field, const int icomp = 0)
+field_max(const kynema_sgf::Field& field, const int icomp = 0)
 {
     amrex::Real max_val = -std::numeric_limits<amrex::Real>::max();
     for (int lev = 0; lev < field.repo().num_active_levels(); ++lev) {
@@ -34,7 +34,7 @@ field_max(const amr_wind::Field& field, const int icomp = 0)
 }
 
 AMREX_INLINE amrex::Real
-field_min(const amr_wind::ScratchField& field, const int icomp = 0)
+field_min(const kynema_sgf::ScratchField& field, const int icomp = 0)
 {
     amrex::Real min_val = std::numeric_limits<amrex::Real>::max();
     for (int lev = 0; lev < field.repo().num_active_levels(); ++lev) {
@@ -45,7 +45,7 @@ field_min(const amr_wind::ScratchField& field, const int icomp = 0)
 }
 
 AMREX_INLINE amrex::Real
-field_max(const amr_wind::ScratchField& field, const int icomp = 0)
+field_max(const kynema_sgf::ScratchField& field, const int icomp = 0)
 {
     amrex::Real max_val = -std::numeric_limits<amrex::Real>::max();
     for (int lev = 0; lev < field.repo().num_active_levels(); ++lev) {
@@ -175,7 +175,7 @@ AMREX_INLINE T field_probe_impl(
 }
 
 AMREX_INLINE int field_probe(
-    const amr_wind::IntField& field,
+    const kynema_sgf::IntField& field,
     const int lev,
     const int i,
     const int j,
@@ -188,7 +188,7 @@ AMREX_INLINE int field_probe(
 }
 
 AMREX_INLINE amrex::Real field_probe(
-    const amr_wind::Field& field,
+    const kynema_sgf::Field& field,
     const int lev,
     const int i,
     const int j,

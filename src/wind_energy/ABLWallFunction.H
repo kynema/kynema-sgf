@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Wall-function computations for LES simulations of ABL
  *  \ingroup we_abl
@@ -114,6 +114,6 @@ private:
     amrex::Real m_monin_obukhov_length{constants::LARGE_NUM};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* ABLWALLFUNCTION_H */

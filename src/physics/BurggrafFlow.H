@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::burggraf {
+namespace kynema_sgf::burggraf {
 
 namespace {
 
@@ -65,7 +65,7 @@ public:
     void post_advance_work() override;
 
 private:
-    const amr_wind::SimTime& m_time;
+    const kynema_sgf::SimTime& m_time;
     const FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
 
@@ -84,6 +84,6 @@ private:
     //! error log file
     std::string m_output_fname{"burggraf.log"};
 };
-} // namespace amr_wind::burggraf
+} // namespace kynema_sgf::burggraf
 
 #endif

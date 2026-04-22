@@ -3,7 +3,7 @@
 #include "src/boundary_conditions/field_boundary_fill/OceanWavesFillInflow.H"
 #include "src/utilities/constants.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 OceanWavesFillInflow::OceanWavesFillInflow(
     Field& field,
@@ -133,4 +133,4 @@ void OceanWavesFillInflow::fillpatch_sibling_fields(
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

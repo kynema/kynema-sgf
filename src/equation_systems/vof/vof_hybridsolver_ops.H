@@ -5,13 +5,13 @@
 #include "src/core/FieldRepo.H"
 #include "AMReX_FArrayBox.H"
 
-namespace amr_wind::multiphase {
+namespace kynema_sgf::multiphase {
 
 static void replace_masked_vof(
     const int nlevels,
-    amr_wind::IntField& f_iblank,
-    amr_wind::Field& f_vof,
-    amr_wind::Field& f_vof_new)
+    kynema_sgf::IntField& f_iblank,
+    kynema_sgf::Field& f_vof,
+    kynema_sgf::Field& f_vof_new)
 {
     // Sharpen data from nalu-wind (in iblank regions)
     for (int lev = 0; lev < nlevels; ++lev) {
@@ -31,6 +31,6 @@ static void replace_masked_vof(
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind::multiphase
+} // namespace kynema_sgf::multiphase
 
 #endif // VOF_HYBRIDSOLVER_OPS.H

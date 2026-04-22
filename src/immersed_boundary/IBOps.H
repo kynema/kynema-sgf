@@ -5,7 +5,7 @@
 #include "AMReX_Vector.H"
 #include "src/CFDSim.H"
 
-namespace amr_wind::ib::ops {
+namespace kynema_sgf::ib::ops {
 
 /** Read user inputs from an input file for a given immersed boundary object.
  *
@@ -64,6 +64,6 @@ struct ComputeForceOp;
 template <typename GeomTrait, typename = void>
 struct ProcessOutputsOp;
 
-} // namespace amr_wind::ib::ops
+} // namespace kynema_sgf::ib::ops
 
 #endif /* IBOPS_H */

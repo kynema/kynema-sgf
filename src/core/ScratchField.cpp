@@ -8,7 +8,7 @@
 #include "AMReX_FillPatchUtil.H"
 #include "AMReX_MultiFab.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 namespace {
 struct SFBCNoOp
@@ -103,4 +103,4 @@ void ScratchField::fillpatch(
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

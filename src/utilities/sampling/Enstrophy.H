@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::enstrophy {
+namespace kynema_sgf::enstrophy {
 
 /** enstrophy object
  *  \ingroup sampling
@@ -75,6 +75,6 @@ private:
     int m_precision{12};
 };
 
-} // namespace amr_wind::enstrophy
+} // namespace kynema_sgf::enstrophy
 
 #endif /* ENSTROPHY_H */

@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace turbulence {
 
 template <typename Transport>
@@ -318,4 +318,4 @@ void OneEqKsgsS94<Transport>::update_scalar_diff(
 INSTANTIATE_TURBULENCE_MODEL(OneEqKsgsM84);
 INSTANTIATE_TURBULENCE_MODEL(OneEqKsgsS94);
 
-} // namespace amr_wind
+} // namespace kynema_sgf

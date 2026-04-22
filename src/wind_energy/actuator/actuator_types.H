@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 
@@ -61,13 +61,13 @@ struct ActSrcDisk : ActSrcType
 };
 
 using RealList = amrex::Vector<amrex::Real>;
-using RealSlice = ::amr_wind::utils::Slice<amrex::Real>;
-using VecList = amrex::Vector<amr_wind::vs::Vector>;
-using VecSlice = ::amr_wind::utils::Slice<amr_wind::vs::Vector>;
-using TensorList = amrex::Vector<amr_wind::vs::Tensor>;
-using TensorSlice = ::amr_wind::utils::Slice<amr_wind::vs::Tensor>;
-using DeviceVecList = amrex::Gpu::DeviceVector<amr_wind::vs::Vector>;
-using DeviceTensorList = amrex::Gpu::DeviceVector<amr_wind::vs::Tensor>;
+using RealSlice = ::kynema_sgf::utils::Slice<amrex::Real>;
+using VecList = amrex::Vector<kynema_sgf::vs::Vector>;
+using VecSlice = ::kynema_sgf::utils::Slice<kynema_sgf::vs::Vector>;
+using TensorList = amrex::Vector<kynema_sgf::vs::Tensor>;
+using TensorSlice = ::kynema_sgf::utils::Slice<kynema_sgf::vs::Tensor>;
+using DeviceVecList = amrex::Gpu::DeviceVector<kynema_sgf::vs::Vector>;
+using DeviceTensorList = amrex::Gpu::DeviceVector<kynema_sgf::vs::Tensor>;
 
 /** Actuator data at each node for an actuator component.
  *
@@ -234,6 +234,6 @@ public:
 };
 
 } // namespace actuator
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* ACTUATOR_TYPES_H */

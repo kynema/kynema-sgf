@@ -7,7 +7,7 @@
 #include "src/core/SimTime.H"
 #include "src/physics/udfs/CustomScalar.H"
 
-namespace amr_wind::scalar_bc {
+namespace kynema_sgf::scalar_bc {
 
 template <typename WallOp>
 void register_inflow_scalar_dirichlet(
@@ -31,6 +31,6 @@ void register_scalar_dirichlet(
     const SimTime& time,
     const amrex::Array<const std::string, 3>& udfs);
 
-} // namespace amr_wind::scalar_bc
+} // namespace kynema_sgf::scalar_bc
 
 #endif /* SCALAR_BCS_H */

@@ -6,7 +6,7 @@
 #include "src/boundary_conditions/BCInterface.H"
 #include "src/boundary_conditions/scalar_bcs.H"
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /** BC operations for all scalar transport equations
  *  \ingroup pdeop
@@ -55,6 +55,6 @@ struct BCOp<PDE, std::enable_if_t<std::is_base_of_v<ScalarTransport, PDE>>>
     const SimTime& m_time;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* BCOPS_H */

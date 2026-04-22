@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 /** \brief This struct will operate on a blade/wing.
  *  The velocity from the simulation is corrected using the
@@ -41,7 +41,7 @@ struct FLLCOp
 
     static void constant_chord(ComponentView& data, FLLCData& fllc)
     {
-        namespace interp = ::amr_wind::interp;
+        namespace interp = ::kynema_sgf::interp;
 
         const int npts = static_cast<int>(fllc.correction_velocity.size());
         auto& du = fllc.correction_velocity;
@@ -51,7 +51,7 @@ struct FLLCOp
         auto& G = fllc.lift;
         auto& dG = fllc.grad_lift;
         VecSlice u_force_pnt_slice =
-            ::amr_wind::utils::slice(fllc.force_point_velocity, 0);
+            ::kynema_sgf::utils::slice(fllc.force_point_velocity, 0);
         vs::Vector* vel_ptr = data.vel.data();
 
         /**
@@ -164,7 +164,7 @@ struct FLLCOp
 
     static void variable_chord(ComponentView& data, FLLCData& fllc)
     {
-        namespace interp = ::amr_wind::interp;
+        namespace interp = ::kynema_sgf::interp;
 
         const int npts = static_cast<int>(fllc.correction_velocity.size());
         auto& du = fllc.correction_velocity;
@@ -175,7 +175,7 @@ struct FLLCOp
         auto& G = fllc.lift;
         auto& nonuniform_G = fllc.nonuniform_lift;
         VecSlice u_force_pnt_slice =
-            ::amr_wind::utils::slice(fllc.force_point_velocity, 0);
+            ::kynema_sgf::utils::slice(fllc.force_point_velocity, 0);
         vs::Vector* vel_ptr = data.vel.data();
 
         /**
@@ -303,6 +303,6 @@ struct FLLCOp
     }
 };
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 #endif /* FLLCOP_H */

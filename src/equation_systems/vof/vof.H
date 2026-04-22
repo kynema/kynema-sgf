@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /** \defgroup vof Volume of fluid
  *
@@ -33,6 +33,6 @@ struct VOF : ScalarTransport
     static constexpr amrex::Real default_density_bc_value = 1.0_rt;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* VOF_H */

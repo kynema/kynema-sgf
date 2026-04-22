@@ -16,7 +16,7 @@ incflo::incflo()
     : m_sim(*this)
     , m_time(m_sim.time())
     , m_repo(m_sim.repo())
-    , m_mesh_refiner(new amr_wind::RefineCriteriaManager(m_sim))
+    , m_mesh_refiner(new kynema_sgf::RefineCriteriaManager(m_sim))
 {
     // NOTE: Geometry on all levels has just been defined in the AmrCore
     // constructor. No valid BoxArray and DistributionMapping have been defined.
@@ -105,7 +105,7 @@ void incflo::init_amr_wind_modules()
     } else {
         auto& mask_cell = m_sim.repo().declare_int_field("mask_cell", 1, 1);
         auto& mask_node = m_sim.repo().declare_int_field(
-            "mask_node", 1, 1, 1, amr_wind::FieldLoc::NODE);
+            "mask_node", 1, 1, 1, kynema_sgf::FieldLoc::NODE);
         mask_cell.setVal(1);
         mask_node.setVal(1);
     }

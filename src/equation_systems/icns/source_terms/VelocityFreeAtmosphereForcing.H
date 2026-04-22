@@ -5,7 +5,7 @@
 #include "src/core/SimTime.H"
 #include "src/CFDSim.H"
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 class VelocityFreeAtmosphereForcing
     : public MomentumSource::Register<VelocityFreeAtmosphereForcing>
@@ -42,5 +42,5 @@ private:
     const CFDSim& m_sim;
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 #endif

@@ -9,7 +9,7 @@
  *  \ingroup wind
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class Field;
 
@@ -93,6 +93,6 @@ private:
 };
 
 } // namespace actuator
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* ACTUATOR_H */

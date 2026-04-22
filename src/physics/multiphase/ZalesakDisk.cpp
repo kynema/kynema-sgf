@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 ZalesakDisk::ZalesakDisk(CFDSim& sim)
     : m_sim(sim)
@@ -28,7 +28,7 @@ ZalesakDisk::ZalesakDisk(CFDSim& sim)
 /** Initialize the velocity and levelset fields at the beginning of the
  *  simulation.
  *
- *  \sa amr_wind::ZalesakDiskFieldInit
+ *  \sa kynema_sgf::ZalesakDiskFieldInit
  */
 void ZalesakDisk::initialize_fields(int level, const amrex::Geometry& geom)
 {
@@ -214,4 +214,4 @@ void ZalesakDisk::post_advance_work()
     m_velocity.fillpatch(m_sim.time().current_time());
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

@@ -5,7 +5,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 void SecondMomentAveraging::output_line_average_ascii(
     const std::string& filename, int step, amrex::Real time)
@@ -288,4 +288,4 @@ void SecondMomentAveraging::line_moment(
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

@@ -4,7 +4,7 @@
 #include "AMReX_Gpu.H"
 #include "src/core/vs/vstraits.H"
 
-namespace amr_wind::vs {
+namespace kynema_sgf::vs {
 
 /** Vector in 3D space
  */
@@ -144,7 +144,7 @@ struct VectorT
 
 using Vector = VectorT<amrex::Real>;
 
-} // namespace amr_wind::vs
+} // namespace kynema_sgf::vs
 
 #include "src/core/vs/vectorI.H"
 

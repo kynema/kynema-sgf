@@ -3,7 +3,7 @@
 
 #include "src/wind_energy/actuator/disk/ActuatorDisk.H"
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 struct UniformCtData : public DiskBaseData
 {};
@@ -18,6 +18,6 @@ struct UniformCt : public DiskType
     static std::string identifier() { return "UniformCt"; }
 };
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 #endif /* UNIFORMCT_H */

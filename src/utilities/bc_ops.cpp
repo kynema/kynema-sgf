@@ -1,7 +1,7 @@
 #include "src/utilities/bc_ops.H"
 
 std::pair<bool, bool>
-amr_wind::utils::has_extdir(amrex::BCRec const* bcrec, int ncomp, int dir)
+kynema_sgf::utils::has_extdir(amrex::BCRec const* bcrec, int ncomp, int dir)
 {
     std::pair<bool, bool> r{false, false};
     for (int n = 0; n < ncomp; ++n) {
@@ -12,7 +12,7 @@ amr_wind::utils::has_extdir(amrex::BCRec const* bcrec, int ncomp, int dir)
 }
 
 std::pair<bool, bool>
-amr_wind::utils::has_extdir_or_ho(amrex::BCRec const* bcrec, int ncomp, int dir)
+kynema_sgf::utils::has_extdir_or_ho(amrex::BCRec const* bcrec, int ncomp, int dir)
 {
     std::pair<bool, bool> r{false, false};
     for (int n = 0; n < ncomp; ++n) {

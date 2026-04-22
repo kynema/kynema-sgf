@@ -3,7 +3,7 @@
 #include "src/core/IntField.H"
 #include "src/core/FieldRepo.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 IntField::IntField(
     FieldRepo& repo,
@@ -88,4 +88,4 @@ void IntField::setVal(const amrex::Vector<int>& values, int nghost)
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

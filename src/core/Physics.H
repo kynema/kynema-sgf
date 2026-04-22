@@ -6,7 +6,7 @@
 #include "AMReX_MultiFab.H"
 #include "AMReX_Geometry.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 
@@ -116,6 +116,6 @@ public:
     }
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* PHYSICS_H */

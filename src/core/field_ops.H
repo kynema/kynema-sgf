@@ -20,7 +20,7 @@ using namespace amrex::literals;
  *  \ingroup fields
  */
 
-namespace amr_wind::field_ops {
+namespace kynema_sgf::field_ops {
 
 /** Add two fields \f$y = x + y\f$
  *  \ingroup field_ops
@@ -469,6 +469,6 @@ void normalize(FType& field)
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind::field_ops
+} // namespace kynema_sgf::field_ops
 
 #endif /* FIELD_OPS_H */

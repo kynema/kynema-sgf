@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::kinetic_energy {
+namespace kynema_sgf::kinetic_energy {
 
 KineticEnergy::KineticEnergy(CFDSim& sim, std::string label)
     : m_sim(sim)
@@ -128,4 +128,4 @@ void KineticEnergy::write_ascii()
     }
 }
 
-} // namespace amr_wind::kinetic_energy
+} // namespace kynema_sgf::kinetic_energy

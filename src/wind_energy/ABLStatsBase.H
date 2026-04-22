@@ -6,7 +6,7 @@
 #include "src/CFDSim.H"
 #include "src/wind_energy/ABLWallFunction.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace pde::icns {
 class ABLForcing;
 class ABLMesoForcingMom;
@@ -62,6 +62,6 @@ public:
         pde::temperature::ABLMesoForcingTemp* forcing) const = 0;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* ABLSTATSBASE_H */

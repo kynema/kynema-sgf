@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::fvm {
+namespace kynema_sgf::fvm {
 
 /** Qcriterion operator
  *  \ingroup fvm
@@ -138,6 +138,6 @@ std::unique_ptr<ScratchField> q_criterion(const FType& phi)
     return qcritphi;
 }
 
-} // namespace amr_wind::fvm
+} // namespace kynema_sgf::fvm
 
 #endif /* QCRITERION_H */

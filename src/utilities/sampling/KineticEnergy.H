@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::kinetic_energy {
+namespace kynema_sgf::kinetic_energy {
 
 /** kinetic energy object
  *  \ingroup sampling
@@ -75,6 +75,6 @@ private:
     int m_precision{12};
 };
 
-} // namespace amr_wind::kinetic_energy
+} // namespace kynema_sgf::kinetic_energy
 
 #endif /* KINETICENERGY_H */

@@ -5,7 +5,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 TEST(TestFLLCData, data_initializes_with_cviews)
 {
@@ -18,12 +18,12 @@ TEST(TestFLLCData, data_initializes_with_cviews)
     FLLCData data;
 
     ComponentView view;
-    view.pos = ::amr_wind::utils::slice(dummy_vec, 0, num_points);
-    view.force = ::amr_wind::utils::slice(dummy_vec, 0, num_points);
-    view.epsilon = ::amr_wind::utils::slice(dummy_vec, 0, num_points);
-    view.orientation = ::amr_wind::utils::slice(dummy_tensor, 0, num_points);
-    view.chord = ::amr_wind::utils::slice(dummy_real, 0, num_points);
-    view.vel_rel = ::amr_wind::utils::slice(dummy_vec, 0, num_points);
+    view.pos = ::kynema_sgf::utils::slice(dummy_vec, 0, num_points);
+    view.force = ::kynema_sgf::utils::slice(dummy_vec, 0, num_points);
+    view.epsilon = ::kynema_sgf::utils::slice(dummy_vec, 0, num_points);
+    view.orientation = ::kynema_sgf::utils::slice(dummy_tensor, 0, num_points);
+    view.chord = ::kynema_sgf::utils::slice(dummy_real, 0, num_points);
+    view.vel_rel = ::kynema_sgf::utils::slice(dummy_vec, 0, num_points);
 
     data.nonuniform = false;
 
@@ -46,12 +46,12 @@ TEST(TestFLLCData, data_initializes_with_cviews_nonuniform)
     FLLCData data;
 
     ComponentView view;
-    view.pos = ::amr_wind::utils::slice(dummy_vec, 0, num_points);
-    view.force = ::amr_wind::utils::slice(dummy_vec, 0, num_points);
-    view.epsilon = ::amr_wind::utils::slice(dummy_vec, 0, num_points);
-    view.orientation = ::amr_wind::utils::slice(dummy_tensor, 0, num_points);
-    view.chord = ::amr_wind::utils::slice(dummy_real, 0, num_points);
-    view.vel_rel = ::amr_wind::utils::slice(dummy_vec, 0, num_points);
+    view.pos = ::kynema_sgf::utils::slice(dummy_vec, 0, num_points);
+    view.force = ::kynema_sgf::utils::slice(dummy_vec, 0, num_points);
+    view.epsilon = ::kynema_sgf::utils::slice(dummy_vec, 0, num_points);
+    view.orientation = ::kynema_sgf::utils::slice(dummy_tensor, 0, num_points);
+    view.chord = ::kynema_sgf::utils::slice(dummy_real, 0, num_points);
+    view.vel_rel = ::kynema_sgf::utils::slice(dummy_vec, 0, num_points);
 
     data.nonuniform = true;
     data.eps_dr = 1.1_rt;
@@ -69,4 +69,4 @@ TEST(TestFLLCData, data_initializes_with_cviews_nonuniform)
     ASSERT_EQ(npts_r, npts_dr);
 }
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator

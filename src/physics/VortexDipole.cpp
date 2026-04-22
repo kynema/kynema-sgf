@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 VortexDipole::VortexDipole(const CFDSim& sim)
     : m_velocity(sim.repo().get_field("velocity"))
@@ -80,4 +80,4 @@ void VortexDipole::initialize_fields(int level, const amrex::Geometry& geom)
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

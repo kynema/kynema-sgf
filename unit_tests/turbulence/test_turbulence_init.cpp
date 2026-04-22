@@ -11,7 +11,7 @@ TEST_F(TurbTest, test_turb_create)
 {
     initialize_mesh();
 
-    amr_wind::turbulence::TurbulenceModel::print(std::cout);
+    kynema_sgf::turbulence::TurbulenceModel::print(std::cout);
 }
 
 } // namespace amr_wind_tests

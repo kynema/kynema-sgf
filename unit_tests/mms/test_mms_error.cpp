@@ -23,9 +23,9 @@ void perturb_vel_field(
             const amrex::Real x = problo[0] + (i + 0.5_rt) * dx[0];
             const amrex::Real y = problo[1] + (j + 0.5_rt) * dx[1];
             const amrex::Real z = problo[2] + (k + 0.5_rt) * dx[2];
-            vel(i, j, k, 0) += std::sin(amr_wind::utils::two_pi() * x);
-            vel(i, j, k, 1) += std::sin(amr_wind::utils::two_pi() * 2.0_rt * y);
-            vel(i, j, k, 2) += std::cos(amr_wind::utils::two_pi() * z);
+            vel(i, j, k, 0) += std::sin(kynema_sgf::utils::two_pi() * x);
+            vel(i, j, k, 1) += std::sin(kynema_sgf::utils::two_pi() * 2.0_rt * y);
+            vel(i, j, k, 2) += std::cos(kynema_sgf::utils::two_pi() * z);
         });
 }
 } // namespace
@@ -43,7 +43,7 @@ TEST_F(MMSMeshTest, mms_error)
     auto& velocityf = frepo.declare_field("velocity", 3, 0);
     frepo.declare_field("density");
 
-    amr_wind::mms::MMS mms(sim());
+    kynema_sgf::mms::MMS mms(sim());
     const int nlevels = mesh().num_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
         mms.initialize_fields(lev, mesh().Geom(lev));

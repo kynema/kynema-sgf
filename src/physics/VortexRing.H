@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Vortex ring physics
  *  \ingroup physics
@@ -90,6 +90,6 @@ struct CollidingRings
         const amrex::Real* /*perturbation_phases_2*/) const;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* VortexRing_H */

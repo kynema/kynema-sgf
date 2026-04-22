@@ -4,7 +4,7 @@
 #include <AMReX_RealVect.H>
 #include "src/core/Factory.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 
@@ -54,6 +54,6 @@ public:
 };
 
 } // namespace subvolume
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* SUBVOLUMEBASE_H */

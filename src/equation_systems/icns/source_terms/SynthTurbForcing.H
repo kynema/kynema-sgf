@@ -3,7 +3,7 @@
 
 #include "src/equation_systems/icns/MomentumSource.H"
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Synthetic turbulence momentum source term
  *  \ingroup icns_src synth_turb
@@ -28,6 +28,6 @@ private:
     Field& m_turb_force;
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif /* SYNTHTURBFORCING_H */

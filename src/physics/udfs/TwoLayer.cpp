@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::udf {
+namespace kynema_sgf::udf {
 
 TwoLayer::TwoLayer(const Field& fld)
 {
@@ -38,4 +38,4 @@ TwoLayer::TwoLayer(const Field& fld)
     }
 }
 
-} // namespace amr_wind::udf
+} // namespace kynema_sgf::udf

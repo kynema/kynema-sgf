@@ -3,7 +3,7 @@
 
 #include "src/equation_systems/sdr/SDRSource.H"
 
-namespace amr_wind::pde::tke {
+namespace kynema_sgf::pde::tke {
 
 /** Source terms for SDR equation
  *   \ingroup turb_model
@@ -31,6 +31,6 @@ private:
     Field& m_sdr_diss;
 };
 
-} // namespace amr_wind::pde::tke
+} // namespace kynema_sgf::pde::tke
 
 #endif /* SDRSRC_H */

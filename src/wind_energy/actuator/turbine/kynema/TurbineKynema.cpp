@@ -2,12 +2,12 @@
 #include "src/wind_energy/actuator/turbine/kynema/turbine_kynema_ops.H"
 #include "src/wind_energy/actuator/ActuatorModel.H"
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 template class ActModel<TurbineKynema, ActSrcLine>;
 template class ActModel<TurbineKynema, ActSrcDisk>;
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 namespace ext_turb {
 template <>

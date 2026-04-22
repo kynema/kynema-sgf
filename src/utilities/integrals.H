@@ -4,7 +4,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::utils {
+namespace kynema_sgf::utils {
 
 /** Trapezoid integration
  *
@@ -26,5 +26,5 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real trapz(
     return dx * sum;
 }
 
-} // namespace amr_wind::utils
+} // namespace kynema_sgf::utils
 #endif

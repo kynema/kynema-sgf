@@ -37,7 +37,7 @@ protected:
 
 namespace {
 
-void init_vof_only(amr_wind::Field& vof)
+void init_vof_only(kynema_sgf::Field& vof)
 {
     run_algorithm(vof, [&](const int lev, const amrex::MFIter& mfi) {
         auto vof_arr = vof(lev).array(mfi);
@@ -55,7 +55,7 @@ void init_vof_only(amr_wind::Field& vof)
     });
 }
 
-void init_iblank_node(amr_wind::IntField& iblank)
+void init_iblank_node(kynema_sgf::IntField& iblank)
 {
     run_algorithm(iblank, [&](const int lev, const amrex::MFIter& mfi) {
         auto ibl_n = iblank(lev).array(mfi);
@@ -79,7 +79,7 @@ void init_iblank_node(amr_wind::IntField& iblank)
     });
 }
 
-void init_iblank_cell(amr_wind::IntField& iblank)
+void init_iblank_cell(kynema_sgf::IntField& iblank)
 {
     run_algorithm(iblank, [&](const int lev, const amrex::MFIter& mfi) {
         auto ibl_c = iblank(lev).array(mfi);
@@ -103,7 +103,7 @@ void init_iblank_cell(amr_wind::IntField& iblank)
     });
 }
 
-amrex::Real check_iblank_node_impl(amr_wind::IntField& mask_node)
+amrex::Real check_iblank_node_impl(kynema_sgf::IntField& mask_node)
 {
     amrex::Real error_total = 0;
 
@@ -142,7 +142,7 @@ amrex::Real check_iblank_node_impl(amr_wind::IntField& mask_node)
     return error_total;
 }
 
-amrex::Real check_iblank_cell_impl(amr_wind::IntField& mask_cell)
+amrex::Real check_iblank_cell_impl(kynema_sgf::IntField& mask_cell)
 {
     amrex::Real error_total = 0;
 
@@ -181,7 +181,7 @@ amrex::Real check_iblank_cell_impl(amr_wind::IntField& mask_cell)
     return error_total;
 }
 
-amrex::Real check_iblank_cell_default_impl(amr_wind::IntField& mask_cell)
+amrex::Real check_iblank_cell_default_impl(kynema_sgf::IntField& mask_cell)
 {
     amrex::Real error_total = 0;
 
@@ -221,9 +221,9 @@ TEST_F(VOFOversetOps, projection_masks)
     const int nghost = 3;
     auto& vof = repo.declare_field("vof", 1, nghost);
     auto& iblank_node = repo.declare_int_field(
-        "iblank_node", 1, nghost, 1, amr_wind::FieldLoc::NODE);
+        "iblank_node", 1, nghost, 1, kynema_sgf::FieldLoc::NODE);
     auto& mask_node = repo.declare_int_field(
-        "mask_node", 1, nghost, 1, amr_wind::FieldLoc::NODE);
+        "mask_node", 1, nghost, 1, kynema_sgf::FieldLoc::NODE);
     auto& iblank_cell = repo.declare_int_field("iblank_cell", 1, nghost);
     auto& mask_cell = repo.declare_int_field("mask_cell", 1, nghost);
 
@@ -233,8 +233,8 @@ TEST_F(VOFOversetOps, projection_masks)
     init_iblank_cell(iblank_cell);
 
     // Create masks
-    amr_wind::overset_ops::iblank_node_to_mask_vof(iblank_node, vof, mask_node);
-    amr_wind::overset_ops::prepare_mask_cell_for_mac(repo);
+    kynema_sgf::overset_ops::iblank_node_to_mask_vof(iblank_node, vof, mask_node);
+    kynema_sgf::overset_ops::prepare_mask_cell_for_mac(repo);
 
     // Check against expectations
     amrex::Real error_node = check_iblank_node_impl(mask_node);
@@ -249,7 +249,7 @@ TEST_F(VOFOversetOps, projection_masks)
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt);
 
     // Change mask_cell to default (single-phase) approach
-    amr_wind::overset_ops::revert_mask_cell_after_mac(repo);
+    kynema_sgf::overset_ops::revert_mask_cell_after_mac(repo);
 
     // Check against expectations
     error_cell = check_iblank_cell_default_impl(mask_cell);

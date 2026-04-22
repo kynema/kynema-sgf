@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::ocean_waves {
+namespace kynema_sgf::ocean_waves {
 
 struct LinearWavesData : public RelaxZonesBaseData
 {
@@ -24,6 +24,6 @@ struct LinearWaves : public RelaxZonesType
     static std::string identifier() { return "LinearWaves"; }
 };
 
-} // namespace amr_wind::ocean_waves
+} // namespace kynema_sgf::ocean_waves
 
 #endif /* LINEARWAVES_H */

@@ -5,7 +5,7 @@
 
 #include <string>
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 template <typename IStream>
 std::unique_ptr<AirfoilTable> AirfoilLoader::load_text_file(IStream& affile)
@@ -56,5 +56,5 @@ AirfoilLoader::load_openfast_airfoil(IStream& affile)
     return aftab;
 }
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 #endif

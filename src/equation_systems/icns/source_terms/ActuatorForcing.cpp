@@ -4,7 +4,7 @@
 
 #include "AMReX_Gpu.H"
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 ActuatorForcing::ActuatorForcing(const CFDSim& sim)
     : m_act_src(sim.repo().get_field("actuator_src_term"))
@@ -32,4 +32,4 @@ void ActuatorForcing::operator()(
     });
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

@@ -30,7 +30,7 @@ TEST_F(ABLMeshTest, abl_initialization)
     auto density = densityf.vec_ptrs();
     auto temperature = temperaturef.vec_ptrs();
 
-    amr_wind::ABLFieldInit ablinit;
+    kynema_sgf::ABLFieldInit ablinit;
     run_algorithm(
         mesh().num_levels(), density,
         [&](const int lev, const amrex::MFIter& mfi) {

@@ -4,13 +4,13 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 void fllc_init(
     FLLCData& data, const ComponentView& view, const amrex::Real eps_chord)
 {
 
-    namespace interp = ::amr_wind::interp;
+    namespace interp = ::kynema_sgf::interp;
     const int npts = static_cast<int>(view.pos.size());
     data.different_sizes = view.pos.size() != view.vel_pos.size();
     if (data.different_sizes) {
@@ -134,4 +134,4 @@ void fllc_parse(const utils::ActParser& pp, FLLCData& data)
     }
 }
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator

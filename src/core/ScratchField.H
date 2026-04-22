@@ -10,7 +10,7 @@
 #include "AMReX_Vector.H"
 #include "AMReX_PhysBCFunct.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class FieldRepo;
 
@@ -109,6 +109,6 @@ protected:
     amrex::Vector<amrex::MultiFab> m_data;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* SCRATCHFIELD_H */

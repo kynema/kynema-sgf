@@ -33,11 +33,11 @@ TEST_F(FieldRepoTest, field_pre_declare)
     int num_invalid = 0;
     for (const auto& field : frepo.fields()) {
         switch (field->field_location()) {
-        case amr_wind::FieldLoc::CELL:
+        case kynema_sgf::FieldLoc::CELL:
             ++num_cc;
             break;
 
-        case amr_wind::FieldLoc::NODE:
+        case kynema_sgf::FieldLoc::NODE:
             ++num_nd;
             break;
 
@@ -112,11 +112,11 @@ TEST_F(FieldRepoTest, field_get)
     const auto& frepo = mesh().field_repo();
     auto& velf = frepo.get_field("vel");
     const auto& presf = frepo.get_field("pressure");
-    const auto& vel_old = frepo.get_field("vel", amr_wind::FieldState::Old);
+    const auto& vel_old = frepo.get_field("vel", kynema_sgf::FieldState::Old);
 
-    EXPECT_EQ(velf.field_location(), amr_wind::FieldLoc::CELL);
-    EXPECT_EQ(presf.field_location(), amr_wind::FieldLoc::NODE);
-    EXPECT_EQ(vel_old.field_state(), amr_wind::FieldState::Old);
+    EXPECT_EQ(velf.field_location(), kynema_sgf::FieldLoc::CELL);
+    EXPECT_EQ(presf.field_location(), kynema_sgf::FieldLoc::NODE);
+    EXPECT_EQ(vel_old.field_state(), kynema_sgf::FieldState::Old);
 
     const amrex::Real vx = 30.0_rt + (5.0_rt * (amrex::Random() - 0.5_rt));
     const amrex::Real vy = 30.0_rt + (5.0_rt * (amrex::Random() - 0.5_rt));
@@ -147,7 +147,7 @@ TEST_F(FieldRepoTest, field_multiple_states)
 
     auto& frepo = mesh().field_repo();
     auto& velocity = frepo.declare_field("vel", 3, 0, 2);
-    auto& vel_old = velocity.state(amr_wind::FieldState::Old);
+    auto& vel_old = velocity.state(kynema_sgf::FieldState::Old);
     auto& veldiff = frepo.declare_field("vel_diff", 3, 0);
 
     const amrex::Real vx = 30.0_rt + (5.0_rt * (amrex::Random() - 0.5_rt));
@@ -161,7 +161,7 @@ TEST_F(FieldRepoTest, field_multiple_states)
     velocity.setVal(amrex::Vector<amrex::Real>{vx, vy, vz});
     vel_old.setVal(amrex::Vector<amrex::Real>{vx_old, vy_old, vz_old});
 
-    amr_wind::field_ops::lincomb(
+    kynema_sgf::field_ops::lincomb(
         veldiff, 1.0_rt, velocity, 0, -1.0_rt, vel_old, 0, 0, 3, 0);
 
     const int nlevels = mesh().finestLevel() + 1;
@@ -188,20 +188,20 @@ TEST_F(FieldRepoTest, field_location)
     auto& field_repo = mesh().field_repo();
     const auto& velocity = field_repo.declare_field("vel", 3, 0, 2);
     const auto& pressure =
-        field_repo.declare_field("p", 1, 0, 1, amr_wind::FieldLoc::NODE);
+        field_repo.declare_field("p", 1, 0, 1, kynema_sgf::FieldLoc::NODE);
 
     const auto& umac =
-        field_repo.declare_field("umac", 1, 0, 1, amr_wind::FieldLoc::XFACE);
+        field_repo.declare_field("umac", 1, 0, 1, kynema_sgf::FieldLoc::XFACE);
     const auto& vmac =
-        field_repo.declare_field("vmac", 1, 0, 1, amr_wind::FieldLoc::YFACE);
+        field_repo.declare_field("vmac", 1, 0, 1, kynema_sgf::FieldLoc::YFACE);
     const auto& wmac =
-        field_repo.declare_field("wmac", 1, 0, 1, amr_wind::FieldLoc::ZFACE);
+        field_repo.declare_field("wmac", 1, 0, 1, kynema_sgf::FieldLoc::ZFACE);
 
-    EXPECT_EQ(velocity.field_location(), amr_wind::FieldLoc::CELL);
-    EXPECT_EQ(pressure.field_location(), amr_wind::FieldLoc::NODE);
-    EXPECT_EQ(umac.field_location(), amr_wind::FieldLoc::XFACE);
-    EXPECT_EQ(vmac.field_location(), amr_wind::FieldLoc::YFACE);
-    EXPECT_EQ(wmac.field_location(), amr_wind::FieldLoc::ZFACE);
+    EXPECT_EQ(velocity.field_location(), kynema_sgf::FieldLoc::CELL);
+    EXPECT_EQ(pressure.field_location(), kynema_sgf::FieldLoc::NODE);
+    EXPECT_EQ(umac.field_location(), kynema_sgf::FieldLoc::XFACE);
+    EXPECT_EQ(vmac.field_location(), kynema_sgf::FieldLoc::YFACE);
+    EXPECT_EQ(wmac.field_location(), kynema_sgf::FieldLoc::ZFACE);
 
     const auto xf = amrex::IndexType(amrex::IntVect::TheDimensionVector(0));
     const auto yf = amrex::IndexType(amrex::IntVect::TheDimensionVector(1));
@@ -223,7 +223,7 @@ TEST_F(FieldRepoTest, field_advance_states)
 
     auto& field_repo = mesh().field_repo();
     auto& velocity = field_repo.declare_field("vel", 3, 0, 2);
-    auto& vel_old = velocity.state(amr_wind::FieldState::Old);
+    auto& vel_old = velocity.state(kynema_sgf::FieldState::Old);
     EXPECT_EQ(velocity.num_states(), 2);
 
     const amrex::Real vx = 30.0_rt + (5.0_rt * (amrex::Random() - 0.5_rt));
@@ -259,17 +259,17 @@ TEST_F(FieldRepoTest, field_create_state)
 
     // Assert that there is no half state
     EXPECT_TRUE(density.num_states() == 1);
-    EXPECT_FALSE(density.query_state(amr_wind::FieldState::NPH));
+    EXPECT_FALSE(density.query_state(kynema_sgf::FieldState::NPH));
 
     // Create a new state and ensure that Field information is updated to
     // reflect this new state
-    auto& rho_nph = density.create_state(amr_wind::FieldState::NPH);
-    auto& rho_nph1 = density.state(amr_wind::FieldState::NPH);
+    auto& rho_nph = density.create_state(kynema_sgf::FieldState::NPH);
+    auto& rho_nph1 = density.state(kynema_sgf::FieldState::NPH);
     // Exact time states is still one
     EXPECT_TRUE(density.num_time_states() == 1);
     // But total states are two
     EXPECT_TRUE(density.num_states() == 2);
-    EXPECT_TRUE(density.query_state(amr_wind::FieldState::NPH));
+    EXPECT_TRUE(density.query_state(kynema_sgf::FieldState::NPH));
     EXPECT_EQ(&rho_nph, &rho_nph1);
 
     // Ensure that we can still "declare_field" and get the old field back as
@@ -280,7 +280,7 @@ TEST_F(FieldRepoTest, field_create_state)
 
     const amrex::Real rho_val = 1.0_rt + (amrex::Random() - 0.5_rt);
     density.setVal(rho_val);
-    amr_wind::field_ops::copy(
+    kynema_sgf::field_ops::copy(
         rho_nph, density, 0, 0, density.num_comp(), density.num_grow());
 
     const int nlevels = field_repo.num_active_levels();
@@ -294,7 +294,7 @@ TEST_F(FieldRepoTest, field_create_state)
     }
 
     // Ensure that advance states is a no op
-    EXPECT_FALSE(density.query_state(amr_wind::FieldState::Old));
+    EXPECT_FALSE(density.query_state(kynema_sgf::FieldState::Old));
     density.advance_states();
 }
 
@@ -312,7 +312,7 @@ TEST_F(FieldRepoTest, scratch_fields)
 #endif
 
     initialize_mesh();
-    auto umac = frepo.create_scratch_field(3, 0, amr_wind::FieldLoc::XFACE);
+    auto umac = frepo.create_scratch_field(3, 0, kynema_sgf::FieldLoc::XFACE);
     auto rho_nph = frepo.create_scratch_field(1, 0);
 
     const auto xf = amrex::IndexType(amrex::IntVect::TheDimensionVector(0));
@@ -323,7 +323,7 @@ TEST_F(FieldRepoTest, scratch_fields)
         rho(lev).setVal(1.225_rt);
     }
 
-    amr_wind::field_ops::copy(*rho_nph, rho, 0, 0, 1, 0);
+    kynema_sgf::field_ops::copy(*rho_nph, rho, 0, 0, 1, 0);
 
     for (int lev = 0; lev < nlevels; ++lev) {
         EXPECT_NEAR(
@@ -350,9 +350,9 @@ TEST_F(FieldRepoTest, int_scratch_fields)
     initialize_mesh();
 
     auto ibcell_host = frepo.create_int_scratch_field_on_host(
-        "iblank_cell_host", 1, 0, amr_wind::FieldLoc::CELL);
+        "iblank_cell_host", 1, 0, kynema_sgf::FieldLoc::CELL);
     auto ibnode_host = frepo.create_int_scratch_field_on_host(
-        "iblank_node_host", 1, 0, amr_wind::FieldLoc::NODE);
+        "iblank_node_host", 1, 0, kynema_sgf::FieldLoc::NODE);
 
     const int nlevels = frepo.num_active_levels();
 
@@ -374,7 +374,7 @@ TEST_F(FieldRepoTest, int_fields)
     auto& frepo = mesh().field_repo();
     auto& ibcell = frepo.declare_int_field("iblank_cell", 1, 0, 1);
     auto& ibnode = frepo.declare_int_field(
-        "iblank_node", 1, 0, 1, amr_wind::FieldLoc::NODE);
+        "iblank_node", 1, 0, 1, kynema_sgf::FieldLoc::NODE);
 
     const int nlevels = frepo.num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {

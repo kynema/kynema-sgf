@@ -7,14 +7,14 @@
 
 #include "AMReX_MFIter.H"
 
-namespace amr_wind::fvm::impl {
+namespace kynema_sgf::fvm::impl {
 
 /** Apply a finite volume operator for a given field
  */
 template <typename FvmOp, typename FType>
 AMREX_INLINE void apply(const FvmOp& fvmop, const FType& fld)
 {
-    namespace stencil = amr_wind::fvm::stencil;
+    namespace stencil = kynema_sgf::fvm::stencil;
     const int nlevels = fld.repo().num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& domain = fld.repo().mesh().Geom(lev).Domain();
@@ -75,6 +75,6 @@ AMREX_INLINE void apply(const FvmOp& fvmop, const FType& fld)
     }
 }
 
-} // namespace amr_wind::fvm::impl
+} // namespace kynema_sgf::fvm::impl
 
 #endif /* FVM_UTILS_H */

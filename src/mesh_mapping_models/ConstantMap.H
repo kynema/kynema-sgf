@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::const_map {
+namespace kynema_sgf::const_map {
 
 /** Coonstant scaling mesh map
  *  \ingroup mesh_map
@@ -37,6 +37,6 @@ private:
     amrex::Vector<amrex::Real> m_fac{1.0_rt, 1.0_rt, 1.0_rt};
 };
 
-} // namespace amr_wind::const_map
+} // namespace kynema_sgf::const_map
 
 #endif /* CONSTANTMAP_H */

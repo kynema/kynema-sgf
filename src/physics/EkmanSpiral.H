@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Ekman Spiral physics
  *  \ingroup physics
@@ -36,7 +36,7 @@ public:
     void post_advance_work() override;
 
 private:
-    const amr_wind::SimTime& m_time;
+    const kynema_sgf::SimTime& m_time;
     const FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
     Field& m_velocity;
@@ -57,6 +57,6 @@ private:
     //! error log file
     const std::string m_output_fname{"ekman_spiral.log"};
 };
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* EkmanSpiral_H */

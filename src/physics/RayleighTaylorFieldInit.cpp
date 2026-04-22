@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 RayleighTaylorFieldInit::RayleighTaylorFieldInit()
 {
@@ -49,4 +49,4 @@ void RayleighTaylorFieldInit::operator()(
     });
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

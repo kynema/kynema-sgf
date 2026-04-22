@@ -5,9 +5,9 @@
 #include "AMReX_MultiFab.H"
 #include "AMReX_Interpolater.H"
 
-namespace amr_wind::field_impl {
+namespace kynema_sgf::field_impl {
 
-/** Convert amr_wind::FieldLoc to index type for use with AMReX objects.
+/** Convert kynema_sgf::FieldLoc to index type for use with AMReX objects.
  *  \ingroup field_ops
  */
 AMREX_INLINE amrex::IndexType index_type(const FieldLoc floc)
@@ -63,7 +63,7 @@ field_name_with_state(const std::string& fname, const FieldState fstate)
 
 /** Check if the field is not a reserved field name
  *
- *  In amr_wind::FieldRepo, field with states are stored using suffixes that
+ *  In kynema_sgf::FieldRepo, field with states are stored using suffixes that
  *  create a unique string to identify different states. This function checks if
  *  the user specified field name matches any of those reserved suffixes.
  *
@@ -78,7 +78,7 @@ AMREX_INLINE bool is_valid_field_name(const std::string& name)
 }
 
 /** Return an AMReX coarse-to-fine field interpolation object based on
- *  amr_wind::FieldInterpolator
+ *  kynema_sgf::FieldInterpolator
  *  \ingroup field_ops
  */
 AMREX_INLINE amrex::Interpolater*
@@ -117,6 +117,6 @@ AMREX_INLINE FieldState phi_state(const FieldState fstate)
     return (fstate == FieldState::Old) ? FieldState::Old : FieldState::NPH;
 }
 
-} // namespace amr_wind::field_impl
+} // namespace kynema_sgf::field_impl
 
 #endif /* FIELDUTILS_H */

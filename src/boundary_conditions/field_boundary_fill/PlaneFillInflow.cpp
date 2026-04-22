@@ -2,7 +2,7 @@
 
 #include "src/boundary_conditions/field_boundary_fill/PlaneFillInflow.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 PlaneFillInflow::PlaneFillInflow(
     Field& field,
@@ -112,4 +112,4 @@ void PlaneFillInflow::fillpatch_sibling_fields(
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

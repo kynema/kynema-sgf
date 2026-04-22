@@ -64,7 +64,7 @@ void initialize_velocity(
     });
 }
 
-amrex::Real strainrate_test_impl(amr_wind::Field& vel, const int pdegree)
+amrex::Real strainrate_test_impl(kynema_sgf::Field& vel, const int pdegree)
 {
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
@@ -81,7 +81,7 @@ amrex::Real strainrate_test_impl(amr_wind::Field& vel, const int pdegree)
         initialize_velocity(geom[lev], bx, pdegree, cu, cv, cw, vel_arr);
     });
 
-    auto str = amr_wind::fvm::strainrate(vel);
+    auto str = kynema_sgf::fvm::strainrate(vel);
 
     const int nlevels = vel.repo().num_active_levels();
     amrex::Real error_total = 0.0_rt;
@@ -121,7 +121,7 @@ amrex::Real strainrate_test_impl(amr_wind::Field& vel, const int pdegree)
     return error_total;
 }
 
-amrex::Real nonlinearsum_test_impl(amr_wind::Field& vel, const int pdegree)
+amrex::Real nonlinearsum_test_impl(kynema_sgf::Field& vel, const int pdegree)
 {
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
@@ -138,7 +138,7 @@ amrex::Real nonlinearsum_test_impl(amr_wind::Field& vel, const int pdegree)
         initialize_velocity(geom[lev], bx, pdegree, cu, cv, cw, vel_arr);
     });
 
-    auto nonlinearsum = amr_wind::fvm::nonlinearsum(vel);
+    auto nonlinearsum = kynema_sgf::fvm::nonlinearsum(vel);
 
     const int nlevels = vel.repo().num_active_levels();
     amrex::Real error_total = 0.0_rt;
@@ -209,7 +209,7 @@ amrex::Real nonlinearsum_test_impl(amr_wind::Field& vel, const int pdegree)
     return error_total;
 }
 
-amrex::Real vorticity_test_impl(amr_wind::Field& vel, const int pdegree)
+amrex::Real vorticity_test_impl(kynema_sgf::Field& vel, const int pdegree)
 {
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
@@ -226,7 +226,7 @@ amrex::Real vorticity_test_impl(amr_wind::Field& vel, const int pdegree)
         initialize_velocity(geom[lev], bx, pdegree, cu, cv, cw, vel_arr);
     });
 
-    auto vorticity = amr_wind::fvm::vorticity(vel);
+    auto vorticity = kynema_sgf::fvm::vorticity(vel);
 
     const int nlevels = vel.repo().num_active_levels();
     amrex::Real error_total = 0.0_rt;
@@ -273,7 +273,7 @@ amrex::Real vorticity_test_impl(amr_wind::Field& vel, const int pdegree)
     return error_total;
 }
 
-amrex::Real vorticity_mag_test_impl(amr_wind::Field& vel, const int pdegree)
+amrex::Real vorticity_mag_test_impl(kynema_sgf::Field& vel, const int pdegree)
 {
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
@@ -290,8 +290,8 @@ amrex::Real vorticity_mag_test_impl(amr_wind::Field& vel, const int pdegree)
         initialize_velocity(geom[lev], bx, pdegree, cu, cv, cw, vel_arr);
     });
 
-    auto vrt_mag = amr_wind::fvm::vorticity_mag(vel);
-    auto vorticity = amr_wind::fvm::vorticity(vel);
+    auto vrt_mag = kynema_sgf::fvm::vorticity_mag(vel);
+    auto vorticity = kynema_sgf::fvm::vorticity(vel);
 
     const int nlevels = vel.repo().num_active_levels();
     amrex::Real error_total = 0.0_rt;
@@ -339,7 +339,7 @@ amrex::Real vorticity_mag_test_impl(amr_wind::Field& vel, const int pdegree)
     return error_total;
 }
 
-amrex::Real q_criterion_test_impl(amr_wind::Field& vel, const int pdegree)
+amrex::Real q_criterion_test_impl(kynema_sgf::Field& vel, const int pdegree)
 {
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
@@ -355,7 +355,7 @@ amrex::Real q_criterion_test_impl(amr_wind::Field& vel, const int pdegree)
         initialize_velocity(geom[lev], bx, pdegree, cu, cv, cw, vel_arr);
     });
 
-    auto qcrit = amr_wind::fvm::q_criterion(vel);
+    auto qcrit = kynema_sgf::fvm::q_criterion(vel);
 
     const int nlevels = vel.repo().num_active_levels();
     amrex::Real error_total = 0.0_rt;

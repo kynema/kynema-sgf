@@ -3,7 +3,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::overset_ops {
+namespace kynema_sgf::overset_ops {
 
 /** Convert iblanks to AMReX mask
  *
@@ -64,7 +64,7 @@ void iblank_node_to_mask_vof(
                         for (int kk = k - 1; kk < k + 1; kk++) {
                             near_interface =
                                 near_interface ||
-                                amr_wind::multiphase::interface_band(
+                                kynema_sgf::multiphase::interface_band(
                                     ii, jj, kk, vofarrs[nbx], 1, band_tol);
                         }
                     }
@@ -124,7 +124,7 @@ void prepare_mask_cell_for_mac(FieldRepo& repo)
                     // Default is masking all 0 and -1 iblanks
                     marrs[nbx](i, j, k) = amrex::max(ibarrs[nbx](i, j, k), 0);
                     // Check cells neighboring node for being near interface
-                    bool near_interface = amr_wind::multiphase::interface_band(
+                    bool near_interface = kynema_sgf::multiphase::interface_band(
                         i, j, k, vofarrs[nbx], 1, band_tol);
                     // Check neighboring cells for being near solid or overset
                     bool near_solid = false;
@@ -212,4 +212,4 @@ void apply_pressure_gradient(
         });
 }
 
-} // namespace amr_wind::overset_ops
+} // namespace kynema_sgf::overset_ops

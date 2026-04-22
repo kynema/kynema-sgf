@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Monin-Obukhov surface layer profile
  *  \ingroup we_abl
@@ -81,6 +81,6 @@ struct MOData
     void update_fluxes(int max_iters = 25);
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* MODATA_H */

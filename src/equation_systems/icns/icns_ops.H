@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /** Specialization of field registration for ICNS
  *  \ingroup icns
@@ -152,6 +152,6 @@ struct TurbulenceOp<ICNS>
     PDEFields& m_fields;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* ICNS_OPS_H */

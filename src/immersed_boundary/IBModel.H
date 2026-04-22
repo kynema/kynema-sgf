@@ -6,7 +6,7 @@
 #include "src/immersed_boundary/IBOps.H"
 #include "src/core/MultiParser.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 
@@ -19,7 +19,7 @@ namespace ib {
  * This class is intended to represent a single object (e.g., floating
  * platform, tower complex terrain) that exists in the computational domain. A
  * collection of immersed boundary objects (e.g., multiple cylinders) is modeled
- * using the amr_wind::IB physics class that holds a collection of instances of
+ * using the kynema_sgf::IB physics class that holds a collection of instances of
  * IBModel and acts on them.
  */
 class ImmersedBoundaryModel
@@ -38,7 +38,7 @@ public:
 
     [[nodiscard]] virtual int id() const = 0;
 
-    virtual void read_inputs(const ::amr_wind::utils::MultiParser&) = 0;
+    virtual void read_inputs(const ::kynema_sgf::utils::MultiParser&) = 0;
 
     virtual void init_ib() = 0;
 
@@ -59,7 +59,7 @@ public:
  *
  * \tparam GeomTrait A geometry type trait that defines the behavior of the
  * different actions (initialization, velocity update, force computation)
- * that are executed by the IBModel class through the amr_wind::ib physics
+ * that are executed by the IBModel class through the kynema_sgf::ib physics
  * driver class.
  *
  */
@@ -95,7 +95,7 @@ public:
     //! Return the unique tag (integer ID) for this instance
     [[nodiscard]] int id() const override { return m_data.info().id; }
 
-    void read_inputs(const ::amr_wind::utils::MultiParser& pp) override
+    void read_inputs(const ::kynema_sgf::utils::MultiParser& pp) override
     {
         ops::ReadInputsOp<GeomTrait>()(m_data, pp);
         m_out_op.read_io_options(pp);
@@ -118,6 +118,6 @@ public:
 };
 
 } // namespace ib
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* IBMODEL_H */

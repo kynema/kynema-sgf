@@ -2,7 +2,7 @@
 #include "src/CFDSim.H"
 #include "masa.h"
 
-namespace amr_wind::pde::icns::mms {
+namespace kynema_sgf::pde::icns::mms {
 
 /** MMS forcing term
  */
@@ -28,4 +28,4 @@ void MMSForcing::operator()(
         src_term(i, j, k, 2) += mms_src_arr(i, j, k, 2);
     });
 }
-} // namespace amr_wind::pde::icns::mms
+} // namespace kynema_sgf::pde::icns::mms

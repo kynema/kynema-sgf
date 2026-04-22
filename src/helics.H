@@ -14,7 +14,7 @@
 using namespace amrex::literals;
 #endif
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class HelicsStorage
 {
@@ -57,6 +57,6 @@ private:
 #endif
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* HELICS_H */

@@ -8,7 +8,7 @@
 #include "src/core/field_ops.H"
 #include "src/equation_systems/sdr/SDRSource.H"
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /**
  *  \defgroup sdr_eqn Specific Dissipation Rate (SDR) transport equation
@@ -44,6 +44,6 @@ struct SDR : ScalarTransport
     static constexpr bool need_nph_state = true;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* SDR_H */

@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Dummy transition model for overset exchange of the gamma variable
  *  \ingroup physics
@@ -37,6 +37,6 @@ private:
     amrex::Real m_gamma{1.0_rt};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* TaylorGreenVortex_H */

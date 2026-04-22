@@ -16,7 +16,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 namespace pde::icns {
 class ABLForcing;
@@ -195,6 +195,6 @@ private:
     bool m_do_energy_budget{false};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* ABLISTATS_H */

@@ -1,6 +1,6 @@
 #include "src/boundary_conditions/MassInflowOutflowBC.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 MassInflowOutflowBC::MassInflowOutflowBC(Field& field, amrex::Orientation ori)
     : m_field(field), m_ori(ori)
@@ -71,4 +71,4 @@ void MassInflowOutflowBC::operator()(
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

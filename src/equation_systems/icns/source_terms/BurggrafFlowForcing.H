@@ -4,7 +4,7 @@
 #include "src/equation_systems/icns/MomentumSource.H"
 #include "src/core/SimTime.H"
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Body forcing introduced to represent the Burrgraf cavity flow.
  *
@@ -30,6 +30,6 @@ private:
     const Field& m_bf_src;
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif /* ACTUATORFORCING_H */

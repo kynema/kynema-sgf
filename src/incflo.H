@@ -15,13 +15,13 @@
 
 #include "src/boundary_conditions/field_boundary_fill/ReadERFFunction.H"
 class MultiBlockContainer;
-namespace amr_wind {
+namespace kynema_sgf {
 namespace pde {
 class PDEBase;
 }
 class RefinementCriteria;
 class RefineCriteriaManager;
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 /**
  *  \defgroup driver AMR-Wind driver code
@@ -104,33 +104,33 @@ public:
     void prescribe_advance();
     void post_advance_work();
 
-    amr_wind::CFDSim& sim() { return m_sim; }
-    const amr_wind::SimTime& time() const { return m_time; }
-    amr_wind::FieldRepo& repo() { return m_repo; }
-    const amr_wind::FieldRepo& repo() const { return m_repo; }
+    kynema_sgf::CFDSim& sim() { return m_sim; }
+    const kynema_sgf::SimTime& time() const { return m_time; }
+    kynema_sgf::FieldRepo& repo() { return m_repo; }
+    const kynema_sgf::FieldRepo& repo() const { return m_repo; }
 
-    amr_wind::pde::PDEBase& icns() { return m_sim.pde_manager().icns(); }
-    const amr_wind::pde::PDEBase& icns() const
+    kynema_sgf::pde::PDEBase& icns() { return m_sim.pde_manager().icns(); }
+    const kynema_sgf::pde::PDEBase& icns() const
     {
         return m_sim.pde_manager().icns();
     }
-    amr_wind::pde::PDEMgr::TypeVector& scalar_eqns()
+    kynema_sgf::pde::PDEMgr::TypeVector& scalar_eqns()
     {
         return m_sim.pde_manager().scalar_eqns();
     }
-    const amr_wind::pde::PDEMgr::TypeVector& scalar_eqns() const
+    const kynema_sgf::pde::PDEMgr::TypeVector& scalar_eqns() const
     {
         return m_sim.pde_manager().scalar_eqns();
     }
 
-    amr_wind::Field& velocity() const { return m_repo.get_field("velocity"); }
-    amr_wind::Field& density() const { return m_repo.get_field("density"); }
-    amr_wind::Field& temperature() const
+    kynema_sgf::Field& velocity() const { return m_repo.get_field("velocity"); }
+    kynema_sgf::Field& density() const { return m_repo.get_field("density"); }
+    kynema_sgf::Field& temperature() const
     {
         return m_repo.get_field("temperature");
     }
-    amr_wind::Field& pressure() const { return m_repo.get_field("p"); }
-    amr_wind::Field& grad_p() const { return m_repo.get_field("gp"); }
+    kynema_sgf::Field& pressure() const { return m_repo.get_field("p"); }
+    kynema_sgf::Field& grad_p() const { return m_repo.get_field("gp"); }
 
     void compute_dt();
     void compute_prescribe_dt();
@@ -163,12 +163,12 @@ private:
     // member variables
     //
 
-    amr_wind::CFDSim m_sim;
-    amr_wind::SimTime& m_time;
-    amr_wind::FieldRepo& m_repo;
-    amr_wind::OversetOps m_ovst_ops;
+    kynema_sgf::CFDSim m_sim;
+    kynema_sgf::SimTime& m_time;
+    kynema_sgf::FieldRepo& m_repo;
+    kynema_sgf::OversetOps m_ovst_ops;
 
-    std::unique_ptr<amr_wind::RefineCriteriaManager> m_mesh_refiner;
+    std::unique_ptr<kynema_sgf::RefineCriteriaManager> m_mesh_refiner;
 
     // Be verbose?
     int m_verbose = 0;

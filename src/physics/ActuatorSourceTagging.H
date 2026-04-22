@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Tracer Tagging physics
  *  \ingroup physics
@@ -44,6 +44,6 @@ private:
     bool m_has_iblank{false};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* ACTUATORSOURCETAGGING_H */

@@ -90,10 +90,10 @@ int update_offset_timestep(const int ntime, const int n0)
 }
 
 void populate_fields_all_levels(
-    amr_wind::ocean_waves::W2AWaves::MetaType& wdata,
+    kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata,
     amrex::Vector<amrex::Geometry>& geom_all,
-    amr_wind::Field& lvs_field,
-    amr_wind::Field& vel_field,
+    kynema_sgf::Field& lvs_field,
+    kynema_sgf::Field& vel_field,
     int ntime_off = 0)
 {
 
@@ -178,10 +178,10 @@ void populate_fields_all_levels(
 }
 
 void time_interpolate_wave_fields(
-    amr_wind::Field& lvs_field,
-    amr_wind::Field& vel_field,
-    const amr_wind::Field& future_lvs_field,
-    const amr_wind::Field& future_vel_field,
+    kynema_sgf::Field& lvs_field,
+    kynema_sgf::Field& vel_field,
+    const kynema_sgf::Field& future_lvs_field,
+    const kynema_sgf::Field& future_vel_field,
     const amrex::Real t_old,
     const amrex::Real t_new,
     const amrex::Real t_future)
@@ -190,10 +190,10 @@ void time_interpolate_wave_fields(
         (t_new - t_old) /
         (t_future - t_old + std::numeric_limits<amrex::Real>::epsilon());
     const amrex::Real a = 1.0_rt - b;
-    amr_wind::field_ops::lincomb(
+    kynema_sgf::field_ops::lincomb(
         lvs_field, a, lvs_field, 0, b, future_lvs_field, 0, 0, 1,
         lvs_field.num_grow());
-    amr_wind::field_ops::lincomb(
+    kynema_sgf::field_ops::lincomb(
         vel_field, a, vel_field, 0, b, future_vel_field, 0, 0, AMREX_SPACEDIM,
         vel_field.num_grow());
 }
@@ -201,7 +201,7 @@ void time_interpolate_wave_fields(
 } // namespace
 #endif
 
-namespace amr_wind::ocean_waves::ops {
+namespace kynema_sgf::ocean_waves::ops {
 
 template <>
 struct ReadInputsOp<W2AWaves>
@@ -209,7 +209,7 @@ struct ReadInputsOp<W2AWaves>
     void operator()(
         // cppcheck-suppress constParameterReference
         W2AWaves::DataType& data,
-        const ::amr_wind::utils::MultiParser& pp)
+        const ::kynema_sgf::utils::MultiParser& pp)
     {
 // Check for W2A initialization
 #ifndef AMR_WIND_USE_W2A
@@ -617,8 +617,8 @@ struct InitDataOp<W2AWaves>
         auto& w2a_levelset = sim.repo().get_field("w2a_levelset");
         auto& w2a_velocity = sim.repo().get_field("w2a_velocity");
         // Copy current fields to old w2a fields for time interp
-        auto& w2a_lvs_old = w2a_levelset.state(amr_wind::FieldState::Old);
-        auto& w2a_vel_old = w2a_velocity.state(amr_wind::FieldState::Old);
+        auto& w2a_lvs_old = w2a_levelset.state(kynema_sgf::FieldState::Old);
+        auto& w2a_vel_old = w2a_velocity.state(kynema_sgf::FieldState::Old);
 
         Field* levelset{nullptr};
         if (multiphase_mode) {
@@ -780,8 +780,8 @@ struct UpdateTargetFieldsOp<W2AWaves>
         auto& w2a_levelset = sim.repo().get_field("w2a_levelset");
         auto& w2a_velocity = sim.repo().get_field("w2a_velocity");
         // Old state of HOS fields used for time interpolation
-        auto& w2a_lvs_old = w2a_levelset.state(amr_wind::FieldState::Old);
-        auto& w2a_vel_old = w2a_velocity.state(amr_wind::FieldState::Old);
+        auto& w2a_lvs_old = w2a_levelset.state(kynema_sgf::FieldState::Old);
+        auto& w2a_vel_old = w2a_velocity.state(kynema_sgf::FieldState::Old);
 
         // Proxy for multiphase mode of ocean waves
         bool vof_exists = sim.repo().field_exists("vof");
@@ -914,10 +914,10 @@ struct UpdateTargetFieldsOp<W2AWaves>
 
             if (double_data == 0) {
                 // Previous W2A data needs to be copied into old fields
-                amr_wind::field_ops::copy(
+                kynema_sgf::field_ops::copy(
                     w2a_lvs_old, w2a_levelset, 0, 0, 1,
                     w2a_levelset.num_grow());
-                amr_wind::field_ops::copy(
+                kynema_sgf::field_ops::copy(
                     w2a_vel_old, w2a_velocity, 0, 0, AMREX_SPACEDIM,
                     w2a_velocity.num_grow());
             } else if (double_data == 1) {
@@ -979,6 +979,6 @@ struct UpdateTargetFieldsOp<W2AWaves>
     }
 };
 
-} // namespace amr_wind::ocean_waves::ops
+} // namespace kynema_sgf::ocean_waves::ops
 
 #endif /* WAVES2AMR_OPS_H */

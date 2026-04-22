@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::ocean_waves {
+namespace kynema_sgf::ocean_waves {
 
 OceanWaves::OceanWaves(CFDSim& sim)
     : m_sim(sim)
@@ -117,7 +117,7 @@ void OceanWaves::pre_init_actions()
     m_owm = OceanWavesModel::create(type, m_sim, tname, 0);
 
     const std::string default_prefix = identifier() + "." + type;
-    ::amr_wind::utils::MultiParser inp(default_prefix, prefix);
+    ::kynema_sgf::utils::MultiParser inp(default_prefix, prefix);
 
     m_owm->read_inputs(inp);
 }
@@ -183,4 +183,4 @@ void OceanWaves::prepare_outputs()
     m_owm->prepare_outputs(sname);
 }
 
-} // namespace amr_wind::ocean_waves
+} // namespace kynema_sgf::ocean_waves

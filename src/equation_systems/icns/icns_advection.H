@@ -16,7 +16,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 class MacProjOp
 {
@@ -37,10 +37,10 @@ public:
     void operator()(FieldState fstate, amrex::Real dt);
 
     static void mac_proj_to_uniform_space(
-        const amr_wind::FieldRepo& /*repo*/,
-        amr_wind::Field& /*u_mac*/,
-        amr_wind::Field& /*v_mac*/,
-        amr_wind::Field& /*w_mac*/,
+        const kynema_sgf::FieldRepo& /*repo*/,
+        kynema_sgf::Field& /*u_mac*/,
+        kynema_sgf::Field& /*v_mac*/,
+        kynema_sgf::Field& /*w_mac*/,
         amrex::Array<amrex::MultiFab*, ICNS::ndim>& /*rho_face*/,
         amrex::Real /*ovst_fac*/,
         int /*lev*/);
@@ -243,25 +243,25 @@ struct AdvectionOp<ICNS, fvm::Godunov>
         // cppcheck-suppress constVariableReference
         auto& conv_term = fields.conv_term;
         const auto& dof_field = fields.field.state(fstate);
-        const auto& dof_nph = fields.field.state(amr_wind::FieldState::NPH);
+        const auto& dof_nph = fields.field.state(kynema_sgf::FieldState::NPH);
 
         auto flux_x =
-            repo.create_scratch_field(ICNS::ndim, 0, amr_wind::FieldLoc::XFACE);
+            repo.create_scratch_field(ICNS::ndim, 0, kynema_sgf::FieldLoc::XFACE);
         auto flux_y =
-            repo.create_scratch_field(ICNS::ndim, 0, amr_wind::FieldLoc::YFACE);
+            repo.create_scratch_field(ICNS::ndim, 0, kynema_sgf::FieldLoc::YFACE);
         auto flux_z =
-            repo.create_scratch_field(ICNS::ndim, 0, amr_wind::FieldLoc::ZFACE);
+            repo.create_scratch_field(ICNS::ndim, 0, kynema_sgf::FieldLoc::ZFACE);
         auto face_x =
-            repo.create_scratch_field(ICNS::ndim, 0, amr_wind::FieldLoc::XFACE);
+            repo.create_scratch_field(ICNS::ndim, 0, kynema_sgf::FieldLoc::XFACE);
         auto face_y =
-            repo.create_scratch_field(ICNS::ndim, 0, amr_wind::FieldLoc::YFACE);
+            repo.create_scratch_field(ICNS::ndim, 0, kynema_sgf::FieldLoc::YFACE);
         auto face_z =
-            repo.create_scratch_field(ICNS::ndim, 0, amr_wind::FieldLoc::ZFACE);
+            repo.create_scratch_field(ICNS::ndim, 0, kynema_sgf::FieldLoc::ZFACE);
 
         const auto& rho_o =
-            repo.get_field("density").state(amr_wind::FieldState::Old);
+            repo.get_field("density").state(kynema_sgf::FieldState::Old);
         const auto& rho_nph =
-            repo.get_field("density").state(amr_wind::FieldState::NPH);
+            repo.get_field("density").state(kynema_sgf::FieldState::NPH);
 
         const bool mphase_vof = repo.field_exists("vof");
 
@@ -592,6 +592,6 @@ struct AdvectionOp<ICNS, fvm::MOL>
     MacProjOp m_macproj_op;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* ICNS_ADVECTION_H */

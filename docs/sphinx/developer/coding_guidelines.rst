@@ -76,7 +76,7 @@ not on code that has not been written by you.
 
 Other AMR-Wind specific conventions:
 
-#. All AMR-Wind specific code must be within ``amr_wind`` namespace. Code for
+#. All AMR-Wind specific code must be within ``kynema_sgf`` namespace. Code for
    unit tests must be in ``amr_wind_tests`` namespace.
 
 #. Following AMReX convention, header files will use a ``.H`` extension and C++
@@ -110,7 +110,7 @@ Sample C++ code
    #include "PDEBase.H"
    #include "Physics.H"
 
-   namespace amr_wind {
+   namespace kynema_sgf {
 
    // Forward declaration if necessary
    namespace turbulence {
@@ -185,6 +185,6 @@ Sample C++ code
        std::unique_ptr<turbulence::TurbulenceModel> m_turbulence;
    };
 
-   } // namespace amr_wind
+   } // namespace kynema_sgf
 
    #endif /* CFDSIM_H */

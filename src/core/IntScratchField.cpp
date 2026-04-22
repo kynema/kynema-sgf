@@ -8,7 +8,7 @@
 #include "AMReX_FillPatchUtil.H"
 #include "AMReX_iMultiFab.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 void IntScratchField::setVal(int value)
 {
@@ -18,4 +18,4 @@ void IntScratchField::setVal(int value)
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

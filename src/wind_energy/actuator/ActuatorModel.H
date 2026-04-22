@@ -9,7 +9,7 @@
 #include "src/wind_energy/actuator/disk/ActSrcDiskOp.H"
 #include "src/wind_energy/actuator/ActParser.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 
@@ -22,7 +22,7 @@ namespace actuator {
  *  This class is intended to represent a single object (e.g., turbine, fixed
  *  wing) that exists in the computational domain. A collection of source
  *  objects (e.g., turbines in a wind farm) is modeled using the
- *  amr_wind::Actuator physics class that holds a collection of instances of
+ *  kynema_sgf::Actuator physics class that holds a collection of instances of
  *  ActuatorModel and acts on them.
  */
 class ActuatorModel
@@ -72,7 +72,7 @@ public:
  *  \tparam ActTrait An actuator type trait that defines the behavior of the
  *  different actions (initialization, velocity sampling, force computation, and
  *  momentum source term computations) that are executed by the ActuatorModel
- *  class through the amr_wind::Actuator physics driver class.
+ *  class through the kynema_sgf::Actuator physics driver class.
  *
  *  \tparam SrcTrait A source type trait that defines how the forcing term is
  *  computed, e.g., if the turbine rotor is represented as a line or a disk. For
@@ -207,6 +207,6 @@ int ActModel<ActTrait, SrcTrait>::num_velocity_points() const
 }
 
 } // namespace actuator
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* ACTUATORMODEL_H */

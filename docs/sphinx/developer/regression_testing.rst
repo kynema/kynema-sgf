@@ -255,5 +255,5 @@ For example, if the build directory is :file:`build-test` then the outputs for
 the test `abl_godunov` will be stored in the directory
 :file:`build-test/test/test_files/abl_godunov/`. At least two outputs are always
 generated: a log file (e.g., :file:`abl_godunov.log`) that contains the output
-usually printed to the console during :program:`amr_wind` execution, and plot
+usually printed to the console during :program:`kynema_sgf` execution, and plot
 file output.

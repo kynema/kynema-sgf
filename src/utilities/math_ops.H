@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::utils {
+namespace kynema_sgf::utils {
 
 //! Helper function to do pow() with integer exponents and output amrex::Real
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real
@@ -24,6 +24,6 @@ powi(const amrex::Real& x, const int& y)
 template <typename T, typename U>
 amrex::Real powi(T, U) = delete;
 
-} // namespace amr_wind::utils
+} // namespace kynema_sgf::utils
 
 #endif /* MATH_OPS_H */

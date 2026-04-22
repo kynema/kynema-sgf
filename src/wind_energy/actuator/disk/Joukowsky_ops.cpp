@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator::ops::joukowsky {
+namespace kynema_sgf::actuator::ops::joukowsky {
 void check_for_parse_conflicts(const utils::ActParser& pp)
 {
     auto error_collector = ops::base::check_for_parse_conflicts(pp);
@@ -195,4 +195,4 @@ void write_netcdf(
 #endif
 }
 
-} // namespace amr_wind::actuator::ops::joukowsky
+} // namespace kynema_sgf::actuator::ops::joukowsky

@@ -4,7 +4,7 @@
 #include "AMReX.H"
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 OversetRefinement::OversetRefinement(const CFDSim& sim)
     : m_sim(sim), m_max_lev(m_sim.mesh().maxLevel())
@@ -59,4 +59,4 @@ void OversetRefinement::operator()(
         });
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

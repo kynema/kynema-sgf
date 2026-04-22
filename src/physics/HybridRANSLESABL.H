@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::hybrid_rans_les_abl {
+namespace kynema_sgf::hybrid_rans_les_abl {
 
 /** Hybrid RANS/LES with ABL
  *  \ingroup physics
@@ -46,6 +46,6 @@ private:
     //! Turbulence model constant
     amrex::Real m_Ce{0.1_rt};
 };
-} // namespace amr_wind::hybrid_rans_les_abl
+} // namespace kynema_sgf::hybrid_rans_les_abl
 
 #endif /* HybridRANSLESABL_H */

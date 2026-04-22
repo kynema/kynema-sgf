@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::udf {
+namespace kynema_sgf::udf {
 
 Rankine::Rankine(const Field& fld)
 {
@@ -39,4 +39,4 @@ Rankine::Rankine(const Field& fld)
     }
 }
 
-} // namespace amr_wind::udf
+} // namespace kynema_sgf::udf

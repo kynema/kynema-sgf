@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::turbulence {
+namespace kynema_sgf::turbulence {
 
 /** Base class for 1-Equation subgrid scale TKE turbulence model
  *  \ingroup turb_model
@@ -41,7 +41,7 @@ protected:
  *
  *  Implements the model described in Moeng 1984 paper
  *
- *  \sa amr_wind::pde::tke::KsgsM84Src
+ *  \sa kynema_sgf::pde::tke::KsgsM84Src
  */
 template <typename Transport>
 class OneEqKsgsM84 : public OneEqKsgs<Transport>
@@ -96,7 +96,7 @@ private:
  *
  *  Implements the model described in Sullivan 1994 paper
  *
- *  \sa amr_wind::pde::tke::KsgsS94Src
+ *  \sa kynema_sgf::pde::tke::KsgsS94Src
  */
 template <typename Transport>
 class OneEqKsgsS94 : public OneEqKsgs<Transport>
@@ -133,6 +133,6 @@ public:
     [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 };
 
-} // namespace amr_wind::turbulence
+} // namespace kynema_sgf::turbulence
 
 #endif /* ONEEQKSGS_H */

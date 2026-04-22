@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class Field;
 
@@ -64,6 +64,6 @@ struct PowerLawProfile
 }; // namespace udf
 
 } // namespace udf
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* POWERLAWPROFILE_H */

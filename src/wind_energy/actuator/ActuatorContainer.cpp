@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 ActuatorCloud::ActuatorCloud(const int nobjects)
     : num_pts(nobjects, 0), global_id(nobjects, -1), num_objects(nobjects)
@@ -422,4 +422,4 @@ void ActuatorContainer::compute_local_coordinates()
         m_pos_device.begin());
 }
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator

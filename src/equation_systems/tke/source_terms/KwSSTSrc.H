@@ -3,7 +3,7 @@
 
 #include "src/equation_systems/tke/TKESource.H"
 
-namespace amr_wind::pde::tke {
+namespace kynema_sgf::pde::tke {
 
 /** Source terms for TKE equation in K-w-SST turbulence model
  *   \ingroup turb_model
@@ -32,6 +32,6 @@ private:
     Field& m_buoy_term;
 };
 
-} // namespace amr_wind::pde::tke
+} // namespace kynema_sgf::pde::tke
 
 #endif /* KWSSTSRC_H */

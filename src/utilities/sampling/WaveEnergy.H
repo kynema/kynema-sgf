@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::wave_energy {
+namespace kynema_sgf::wave_energy {
 
 /** wave energy object
  *  \ingroup sampling
@@ -106,6 +106,6 @@ private:
     int m_precision{12};
 };
 
-} // namespace amr_wind::wave_energy
+} // namespace kynema_sgf::wave_energy
 
 #endif /* WAVEENERGY_H */

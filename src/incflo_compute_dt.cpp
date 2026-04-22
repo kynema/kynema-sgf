@@ -42,9 +42,9 @@ void incflo::compute_dt()
     const bool mesh_mapping = m_sim.has_mesh_mapping();
 
     const auto& den = density();
-    amr_wind::Field const* mesh_fac =
+    kynema_sgf::Field const* mesh_fac =
         mesh_mapping
-            ? &(m_repo.get_mesh_mapping_field(amr_wind::FieldLoc::CELL))
+            ? &(m_repo.get_mesh_mapping_field(kynema_sgf::FieldLoc::CELL))
             : nullptr;
     const auto& mask_cell = m_repo.get_int_field("mask_cell");
 
@@ -103,7 +103,7 @@ void incflo::compute_dt()
 
                     // Check for interface
                     auto is_near =
-                        amr_wind::multiphase::interface_band(i, j, k, vof_bx);
+                        kynema_sgf::multiphase::interface_band(i, j, k, vof_bx);
 
                     // CFL calculation is not needed away from interface
                     amrex::Real result = 0.0_rt;
@@ -227,9 +227,9 @@ void incflo::compute_prescribe_dt()
     amrex::Real conv_cfl = 0.0_rt;
     const bool mesh_mapping = m_sim.has_mesh_mapping();
 
-    amr_wind::Field const* mesh_fac =
+    kynema_sgf::Field const* mesh_fac =
         mesh_mapping
-            ? &(m_repo.get_mesh_mapping_field(amr_wind::FieldLoc::CELL))
+            ? &(m_repo.get_mesh_mapping_field(kynema_sgf::FieldLoc::CELL))
             : nullptr;
     const auto& mask_cell = m_repo.get_int_field("mask_cell");
 
@@ -295,7 +295,7 @@ void incflo::compute_prescribe_dt()
 
                     // Check for interface
                     const auto is_near =
-                        amr_wind::multiphase::interface_band(i, j, k, vof_bx);
+                        kynema_sgf::multiphase::interface_band(i, j, k, vof_bx);
 
                     // CFL calculation is not needed away from interface
                     amrex::Real result = 0.0_rt;

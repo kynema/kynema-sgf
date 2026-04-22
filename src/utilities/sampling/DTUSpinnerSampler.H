@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::sampling {
+namespace kynema_sgf::sampling {
 
 struct PrismParameters
 {
@@ -152,6 +152,6 @@ private:
     amrex::Real m_fill_val{-99999.99_rt};
 };
 
-} // namespace amr_wind::sampling
+} // namespace kynema_sgf::sampling
 
 #endif /* DTUSPINNERSAMPLER_H */

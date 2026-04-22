@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator::ops {
+namespace kynema_sgf::actuator::ops {
 
 template <>
 struct ReadInputsOp<FixedWing, ActSrcLine>
@@ -216,7 +216,7 @@ struct InitDataOp<FixedWing, ActSrcLine>
                 wx[i] = vs::mag(grid.pos[i] - grid.pos[0]) / wlen;
             }
             meta.chord.resize(npts);
-            ::amr_wind::interp::linear_monotonic(
+            ::kynema_sgf::interp::linear_monotonic(
                 meta.span_locs, meta.chord_inp, wx, meta.chord);
             meta.epsilon_chord = {
                 meta.epsilon_chord.x(), meta.epsilon_chord.z(),
@@ -249,6 +249,6 @@ airfoil_lookup<FixedWing>(FixedWing::DataType& data)
     return *data.meta().aflookup;
 }
 
-} // namespace amr_wind::actuator::ops
+} // namespace kynema_sgf::actuator::ops
 
 #endif /* FIXED_WING_OPS_H */

@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::transport {
+namespace kynema_sgf::transport {
 
 /** Two-phase fluid transport model with piece-wise constant properties
  *  \ingroup transport
@@ -448,6 +448,6 @@ private:
     }
 };
 
-} // namespace amr_wind::transport
+} // namespace kynema_sgf::transport
 
 #endif /* TWOPHASETRANSPORT_H */

@@ -28,9 +28,9 @@ protected:
 };
 } // namespace
 
-namespace act = amr_wind::actuator;
+namespace act = kynema_sgf::actuator;
 namespace ops = act::ops;
-namespace vs = amr_wind::vs;
+namespace vs = kynema_sgf::vs;
 
 TEST_F(UniformCtTest, compute_vecs_from_yaw)
 {

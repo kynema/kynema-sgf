@@ -1,6 +1,6 @@
 #include "src/utilities/index_operations.H"
 
-namespace amr_wind::utils {
+namespace kynema_sgf::utils {
 amrex::Box
 realbox_to_box(const amrex::RealBox& rbx, const amrex::Geometry& geom)
 {
@@ -23,4 +23,4 @@ realbox_to_box(const amrex::RealBox& rbx, const amrex::Geometry& geom)
     return amrex::Box{lo, hi};
 }
 
-} // namespace amr_wind::utils
+} // namespace kynema_sgf::utils

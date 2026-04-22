@@ -9,7 +9,7 @@
 #include "src/core/FieldDescTypes.H"
 #include "src/incflo_enums.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 
@@ -182,6 +182,6 @@ private:
 };
 
 } // namespace pde
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* PDEBASE_H */

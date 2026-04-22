@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 struct DiskBaseData
 {
@@ -37,6 +37,6 @@ struct DiskBaseData
     }
 };
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 #endif /* ACTUATORDISK_H */

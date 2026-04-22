@@ -4,7 +4,7 @@
 #include "AMReX_Print.H"
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 // cppcheck-suppress uninitMemberVar
 ABLMesoscaleInput::ABLMesoscaleInput(std::string ncfile, std::string var_prefix)
@@ -68,4 +68,4 @@ ABLMesoscaleInput::ABLMesoscaleInput(std::string ncfile, std::string var_prefix)
     pp.query("tendency_forcing", m_abl_tendency);
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

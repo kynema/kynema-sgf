@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Interface for Ocean Waves boundary data
  *
@@ -69,7 +69,7 @@ public:
     }
 
 private:
-    const amr_wind::SimTime& m_time;
+    const kynema_sgf::SimTime& m_time;
     const FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
     Field* m_ow_velocity{nullptr};
@@ -89,6 +89,6 @@ private:
     amrex::Real m_rho1{-1.0_rt};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* OCEANWAVESBOUNDARY_H */

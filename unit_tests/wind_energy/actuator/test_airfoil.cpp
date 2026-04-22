@@ -12,7 +12,7 @@ namespace {
 
 std::stringstream generate_txt_airfoil()
 {
-    using namespace ::amr_wind::utils;
+    using namespace ::kynema_sgf::utils;
     std::stringstream ss;
     ss << 6 << '\n';
     ss << -180.0_rt << " " << 0.0_rt << " " << 0.0_rt << " " << 0.0_rt << '\n';
@@ -56,7 +56,7 @@ std::stringstream generate_openfast_airfoil()
 
 TEST(Airfoil, read_txt_file)
 {
-    using AirfoilLoader = ::amr_wind::actuator::AirfoilLoader;
+    using AirfoilLoader = ::kynema_sgf::actuator::AirfoilLoader;
     auto ss = generate_txt_airfoil();
 
     auto af = AirfoilLoader::load_text_file(ss);
@@ -71,7 +71,7 @@ TEST(Airfoil, read_txt_file)
 
 TEST(Airfoil, read_openfast_file)
 {
-    using AirfoilLoader = ::amr_wind::actuator::AirfoilLoader;
+    using AirfoilLoader = ::kynema_sgf::actuator::AirfoilLoader;
     auto ss = generate_openfast_airfoil();
 
     auto af = AirfoilLoader::load_openfast_airfoil(ss);
@@ -80,13 +80,13 @@ TEST(Airfoil, read_openfast_file)
         af->aoa().front(), -1.0_rt * std::numbers::pi_v<amrex::Real>,
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
     EXPECT_NEAR(
-        af->aoa().back(), ::amr_wind::utils::radians(-150.0_rt),
+        af->aoa().back(), ::kynema_sgf::utils::radians(-150.0_rt),
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
 }
 
 TEST(Airfoil, airfoil_lookup)
 {
-    using AirfoilLoader = ::amr_wind::actuator::AirfoilLoader;
+    using AirfoilLoader = ::kynema_sgf::actuator::AirfoilLoader;
     auto ss = generate_txt_airfoil();
 
     auto af = AirfoilLoader::load_text_file(ss);
@@ -96,9 +96,9 @@ TEST(Airfoil, airfoil_lookup)
     amrex::Vector<amrex::Real> aoa_test{-15.0_rt, -5.0_rt, 0.0_rt,
                                         5.0_rt,   10.0_rt, 15.0_rt};
     for (const auto& aoa_deg : aoa_test) {
-        const amrex::Real aoa_rad = ::amr_wind::utils::radians(aoa_deg);
+        const amrex::Real aoa_rad = ::kynema_sgf::utils::radians(aoa_deg);
         (*af)(aoa_rad, cl, cd);
-        EXPECT_NEAR(cl, ::amr_wind::utils::two_pi() * aoa_rad, 1.0e-3_rt);
+        EXPECT_NEAR(cl, ::kynema_sgf::utils::two_pi() * aoa_rad, 1.0e-3_rt);
         EXPECT_NEAR(cd, 0.0_rt, 1.0e-3_rt);
     }
 }

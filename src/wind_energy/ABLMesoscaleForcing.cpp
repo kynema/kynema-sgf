@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 ABLMesoscaleForcing::ABLMesoscaleForcing(
     const CFDSim& sim, const std::string& identifier)
@@ -295,4 +295,4 @@ void ABLMesoscaleForcing::blend_forcings(
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

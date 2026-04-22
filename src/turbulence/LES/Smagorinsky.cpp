@@ -7,7 +7,7 @@
 #include "AMReX_MultiFab.H"
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace turbulence {
 
 template <typename Transport>
@@ -79,4 +79,4 @@ TurbulenceModel::CoeffsDictType Smagorinsky<Transport>::model_coeffs() const
 
 INSTANTIATE_TURBULENCE_MODEL(Smagorinsky);
 
-} // namespace amr_wind
+} // namespace kynema_sgf

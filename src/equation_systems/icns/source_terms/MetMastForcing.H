@@ -5,7 +5,7 @@
 #include "src/core/SimTime.H"
 #include "src/CFDSim.H"
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 class MetMastForcing : public MomentumSource::Register<MetMastForcing>
 {
@@ -47,5 +47,5 @@ private:
     const CFDSim& m_sim;
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 #endif

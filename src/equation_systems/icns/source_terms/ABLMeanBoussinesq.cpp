@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Boussinesq buoyancy source term for ABL simulations
  */
@@ -16,7 +16,7 @@ ABLMeanBoussinesq::ABLMeanBoussinesq(const CFDSim& sim)
     : m_mesh(sim.mesh()), m_transport(sim.transport_model())
 
 {
-    const auto& abl = sim.physics_manager().get<amr_wind::ABL>();
+    const auto& abl = sim.physics_manager().get<kynema_sgf::ABL>();
     abl.register_mean_boussinesq_term(this);
 
     // gravity in `incflo` namespace
@@ -116,7 +116,7 @@ void ABLMeanBoussinesq::operator()(
         const amrex::Real ht = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
         const amrex::Real T0 = ref_theta_arr(i, j, k);
         const amrex::Real temp =
-            amr_wind::interp::linear(theights, theights_end, tvals, ht);
+            kynema_sgf::interp::linear(theights, theights_end, tvals, ht);
         const amrex::Real fac = beta_arr(i, j, k) * (temp - T0);
         src_term(i, j, k, 0) += gravity[0] * fac;
         src_term(i, j, k, 1) += gravity[1] * fac;
@@ -180,4 +180,4 @@ void ABLMeanBoussinesq::read_temperature_profile(
         m_theta_vals.begin());
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

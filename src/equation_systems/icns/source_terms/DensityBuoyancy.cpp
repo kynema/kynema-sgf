@@ -12,7 +12,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Density based buoyancy source term
  *
@@ -66,4 +66,4 @@ void DensityBuoyancy::operator()(
     });
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

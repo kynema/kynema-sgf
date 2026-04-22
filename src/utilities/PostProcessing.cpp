@@ -6,7 +6,7 @@
 
 #include <set>
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 namespace {
 void perform_checks(
@@ -104,4 +104,4 @@ void PostProcessManager::post_regrid_actions()
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

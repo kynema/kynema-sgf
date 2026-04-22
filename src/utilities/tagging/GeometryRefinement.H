@@ -4,7 +4,7 @@
 #include "src/utilities/index_operations.H"
 #include "src/utilities/tagging/RefinementCriteria.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace tagging {
 
 /** Abstract definition of shapes for AMR
@@ -65,6 +65,6 @@ private:
     int m_max_level{32};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* GEOMETRYREFINEMENT_H */

@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 class MultiBlockContainer;
-namespace amr_wind {
+namespace kynema_sgf {
 
 enum struct io_mode : std::uint8_t { output, input, undefined };
 
@@ -113,7 +113,7 @@ private:
  *
  *  \sa PlaneFillInflow
  */
-class BoundaryPlane : public amr_wind::FieldBoundary::Register<BoundaryPlane>
+class BoundaryPlane : public kynema_sgf::FieldBoundary::Register<BoundaryPlane>
 {
     static_assert(AMREX_SPACEDIM == 3, "ABL requires 3 dimensional mesh");
 
@@ -202,7 +202,7 @@ public:
     }
 
 private:
-    const amr_wind::SimTime& m_time;
+    const kynema_sgf::SimTime& m_time;
     const FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
 
@@ -276,6 +276,6 @@ private:
     std::string m_out_fmt{"native"};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* BOUNDARYPLANE_H */

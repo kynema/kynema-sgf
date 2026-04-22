@@ -4,7 +4,7 @@
 #include "src/wind_energy/actuator/turbine/turbine_types.H"
 #include "src/wind_energy/actuator/ActParser.H"
 
-namespace amr_wind::actuator::utils {
+namespace kynema_sgf::actuator::utils {
 void read_inputs(
     TurbineBaseData& tdata, TurbineInfo& info, const utils::ActParser& pp);
 
@@ -21,6 +21,6 @@ void write_netcdf(
     const ActGrid& /*grid*/,
     amrex::Real /*time*/);
 
-} // namespace amr_wind::actuator::utils
+} // namespace kynema_sgf::actuator::utils
 
 #endif /* TURBINE_UTILS_H */

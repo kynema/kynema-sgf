@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class Field;
 
@@ -63,6 +63,6 @@ struct Rankine
 };
 
 } // namespace udf
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* RANKINE_H */

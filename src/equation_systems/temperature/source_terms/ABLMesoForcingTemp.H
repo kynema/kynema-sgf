@@ -11,7 +11,7 @@
 #include "src/wind_energy/ABLMesoscaleInput.H"
 #include "AMReX_REAL.H"
 
-namespace amr_wind::pde::temperature {
+namespace kynema_sgf::pde::temperature {
 
 class ABLMesoForcingTemp
     : public ABLMesoscaleForcing
@@ -62,6 +62,6 @@ private:
     amrex::Array<amrex::Real, 4> m_poly_coeff_theta;
 };
 
-} // namespace amr_wind::pde::temperature
+} // namespace kynema_sgf::pde::temperature
 
 #endif

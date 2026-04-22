@@ -6,7 +6,7 @@
 #include "src/ocean_waves/OceanWavesOps.H"
 #include "src/core/MultiParser.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 
@@ -30,7 +30,7 @@ public:
 
     [[nodiscard]] virtual int id() const = 0;
 
-    virtual void read_inputs(const ::amr_wind::utils::MultiParser&) = 0;
+    virtual void read_inputs(const ::kynema_sgf::utils::MultiParser&) = 0;
 
     virtual void init_waves(int, const amrex::Geometry&, bool) = 0;
 
@@ -53,7 +53,7 @@ public:
  *
  * \tparam WaveTheoryTrait A wave theory trait that defines the behavior of the
  * different actions (initialization, velocity update, free surface update)
- * that are executed by the WaveModel class through the amr_wind::ocean_waves
+ * that are executed by the WaveModel class through the kynema_sgf::ocean_waves
  * physics driver class.
  *
  */
@@ -88,7 +88,7 @@ public:
     //! Return the unique tag (integer ID) for this instance
     [[nodiscard]] int id() const override { return m_data.info().id; }
 
-    void read_inputs(const ::amr_wind::utils::MultiParser& pp) override
+    void read_inputs(const ::kynema_sgf::utils::MultiParser& pp) override
     {
         ops::ReadInputsOp<WaveTheoryTrait>()(m_data, pp);
         m_out_op.read_io_options(pp);
@@ -125,6 +125,6 @@ public:
 };
 
 } // namespace ocean_waves
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* OWMODEL_H */

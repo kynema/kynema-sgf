@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::turbulence {
+namespace kynema_sgf::turbulence {
 /** AMD LES Model
  *  \ingroup turb_model
  */
@@ -82,9 +82,9 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real amd_muvel(
     amrex::Real num_shear = 0.0_rt;
     amrex::Real num_buoy = 0.0_rt;
     amrex::Real denom = 0.0_rt;
-    const int n_ind = amr_wind::direction_selector(i, j, k, normal_dir);
+    const int n_ind = kynema_sgf::direction_selector(i, j, k, normal_dir);
     const amrex::Real h = nlo + ((n_ind + 0.5_rt) * dx[normal_dir]);
-    const amrex::Real gradTbar_h = amr_wind::interp::linear(
+    const amrex::Real gradTbar_h = kynema_sgf::interp::linear(
         gradTbar_coord_begin, gradTbar_coord_end, gradTbar, h);
     for (int ii = 0; ii < AMREX_SPACEDIM; ++ii) {
         // This should operate only on the wall normal velocity
@@ -147,6 +147,6 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real amd_thermal_diff(
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt, num / denom);
 }
 
-} // namespace amr_wind::turbulence
+} // namespace kynema_sgf::turbulence
 
 #endif /* AMD_H */

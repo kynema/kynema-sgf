@@ -14,7 +14,7 @@
 #include "src/core/FieldDescTypes.H"
 #include "src/core/ViewField.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class Field;
 class FieldRepo;
@@ -86,7 +86,7 @@ struct FieldInfo
  *  This is an abstraction of a collection of MultiFabs over multiple levels,
  *  and allows operations on the field as a whole. The Field cannot be
  *  constructed directly but instead must be created using field creation
- *  functions in amr_wind::FieldRepo. This indirection is necessary to allow
+ *  functions in kynema_sgf::FieldRepo. This indirection is necessary to allow
  *  different parts of the code to hold a reference to the Field instance
  *  without having to worry about the changes in underlynig MultiFab data during
  *  regrid operations.
@@ -94,15 +94,15 @@ struct FieldInfo
  *  Field data is split into two groups: information that is unique to a
  *  particular field at a given time state, and data that is common to a given
  *  field with multiple timestates. The latter is held within
- *  amr_wind::FieldInfo object that is common to all time instances of a given
+ *  kynema_sgf::FieldInfo object that is common to all time instances of a given
  *  Field (which are themselves Field instances). Different time instances of a
  *  Field can access other states through this FieldInfo instance, as well as
  *  access boundary conditions and fill patch operators applicable to all
  *  states.
  *
  *  As Field does not hold any data itself, but instead is just a thin wrapper
- *  to data held by amr_wind::FieldRepo, Field instance cannot be created
- *  directly. Instead the user must use amr_wind::FieldRepo::declare_field to
+ *  to data held by kynema_sgf::FieldRepo, Field instance cannot be created
+ *  directly. Instead the user must use kynema_sgf::FieldRepo::declare_field to
  *  create and initialize the field. This also ensures that the FieldInfo
  *  instance is managed properly during field creation. Once a field is created,
  *  the user can customize the behavior (e.g., registering fill patch operator,
@@ -307,7 +307,7 @@ public:
 
     /** Register a custom fillpatch class instance for this field
      *
-     *  The class must be a subclass of amr_wind::FieldFillPatchOpsBase
+     *  The class must be a subclass of kynema_sgf::FieldFillPatchOpsBase
      */
     template <typename T, class... Args>
     void register_fill_patch_op(Args&&... args)
@@ -444,6 +444,6 @@ protected:
     bool m_inout_bndry{false};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* FIELD_H */

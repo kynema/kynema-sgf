@@ -322,7 +322,7 @@ TEST_F(OceanWavesW2ATest, time_interp)
 
     if (t_sim > t_w2a) {
         // Copy current w2a data and update old time
-        amr_wind::field_ops::copy(lvs, w2a_lvs, 0, 0, 1, lvs.num_grow());
+        kynema_sgf::field_ops::copy(lvs, w2a_lvs, 0, 0, 1, lvs.num_grow());
         t_last = t_w2a;
         // Update w2a values (as in a file read)
         w2a_lvs.setVal(0.0_rt);

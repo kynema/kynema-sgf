@@ -18,7 +18,7 @@ using namespace amrex::literals;
 //! faces are prescribed as functions of time and space, and do not depend on
 //! the changing cell-centered velocity field.
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class VortexPatchScalarVel : public Physics::Register<VortexPatchScalarVel>
 {
@@ -65,6 +65,6 @@ private:
     amrex::Real m_TT{3.0_rt};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* VortexPatchScalarVel_H */

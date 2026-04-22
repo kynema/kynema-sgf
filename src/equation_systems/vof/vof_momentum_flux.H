@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::multiphase {
+namespace kynema_sgf::multiphase {
 
 static AMREX_INLINE void hybrid_fluxes(
     const FieldRepo& repo,
@@ -41,22 +41,22 @@ static AMREX_INLINE void hybrid_fluxes(
     const auto& advrho_y = repo.get_field("advalpha_y");
     const auto& advrho_z = repo.get_field("advalpha_z");
     // Get VOF
-    const auto& vof = repo.get_field("vof").state(amr_wind::FieldState::Old);
+    const auto& vof = repo.get_field("vof").state(kynema_sgf::FieldState::Old);
 
     // Create scratch arrays for local flux storage
     auto ftmp_x =
-        repo.create_scratch_field(ncomp, 0, amr_wind::FieldLoc::XFACE);
+        repo.create_scratch_field(ncomp, 0, kynema_sgf::FieldLoc::XFACE);
     auto ftmp_y =
-        repo.create_scratch_field(ncomp, 0, amr_wind::FieldLoc::YFACE);
+        repo.create_scratch_field(ncomp, 0, kynema_sgf::FieldLoc::YFACE);
     auto ftmp_z =
-        repo.create_scratch_field(ncomp, 0, amr_wind::FieldLoc::ZFACE);
+        repo.create_scratch_field(ncomp, 0, kynema_sgf::FieldLoc::ZFACE);
 
     auto face_x =
-        repo.create_scratch_field(ncomp, 0, amr_wind::FieldLoc::XFACE);
+        repo.create_scratch_field(ncomp, 0, kynema_sgf::FieldLoc::XFACE);
     auto face_y =
-        repo.create_scratch_field(ncomp, 0, amr_wind::FieldLoc::YFACE);
+        repo.create_scratch_field(ncomp, 0, kynema_sgf::FieldLoc::YFACE);
     auto face_z =
-        repo.create_scratch_field(ncomp, 0, amr_wind::FieldLoc::ZFACE);
+        repo.create_scratch_field(ncomp, 0, kynema_sgf::FieldLoc::ZFACE);
 
     // Create iconserv = 0 array for density, avoid multiplication by face vel
     amrex::Gpu::DeviceVector<int> idnsty;
@@ -249,6 +249,6 @@ static AMREX_INLINE void hybrid_fluxes(
         }
     }
 }
-} // namespace amr_wind::multiphase
+} // namespace kynema_sgf::multiphase
 
 #endif

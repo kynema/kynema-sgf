@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 struct FLLCData;
 
@@ -85,6 +85,6 @@ struct TurbineBaseData
 struct TurbineType : public ActuatorType
 {};
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 #endif /* TURBINE_TYPES_H */

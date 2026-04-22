@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::turbulence {
+namespace kynema_sgf::turbulence {
 
 /** Kosovic LES Model
  *  \ingroup turb_model
@@ -73,6 +73,6 @@ private:
     amrex::Real m_surface_roughness_z0{0.1_rt};
 };
 
-} // namespace amr_wind::turbulence
+} // namespace kynema_sgf::turbulence
 
 #endif /* SMAGORINSKY_H */

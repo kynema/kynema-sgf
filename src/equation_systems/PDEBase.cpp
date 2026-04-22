@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 PDEFields::PDEFields(FieldRepo& repo_in, const std::string& var_name)
     : repo(repo_in)
@@ -53,7 +53,7 @@ PDEBase& PDEMgr::register_icns()
 {
     const std::string name = "ICNS-" + m_scheme;
 
-    m_icns = amr_wind::pde::PDEBase::create(name, m_sim);
+    m_icns = kynema_sgf::pde::PDEBase::create(name, m_sim);
     return *m_icns;
 }
 
@@ -227,4 +227,4 @@ void PDEMgr::fillpatch_state_fields(
     }
 }
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde

@@ -4,7 +4,7 @@
 #include "src/equation_systems/icns/MomentumSource.H"
 #include "src/core/SimTime.H"
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Body forces introduced by turbines modeled as actuators in flow field.
  *
@@ -32,6 +32,6 @@ private:
     const Field& m_act_src;
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif /* ACTUATORFORCING_H */

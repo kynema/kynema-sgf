@@ -6,7 +6,7 @@
 #include <unordered_map>
 #include "AMReX_Vector.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Interface to manage objects of sub-classes based on factory registration
  *  \ingroup core
@@ -87,6 +87,6 @@ protected:
     friend Collection;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* COLLMGR_H */

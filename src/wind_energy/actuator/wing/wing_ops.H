@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 namespace wing {
 
 // Initialize core data structures when modeling fixed wings
@@ -50,15 +50,15 @@ ComponentView make_component_view(typename T::DataType& data)
     auto& grid = data.grid();
     auto& meta = data.meta();
     ComponentView view;
-    view.pos = ::amr_wind::utils::slice(grid.pos, 0, meta.num_pts);
-    view.vel_pos = ::amr_wind::utils::slice(grid.vel_pos, 0, meta.num_pts);
-    view.force = ::amr_wind::utils::slice(grid.force, 0, meta.num_pts);
-    view.epsilon = ::amr_wind::utils::slice(grid.epsilon, 0, meta.num_pts);
+    view.pos = ::kynema_sgf::utils::slice(grid.pos, 0, meta.num_pts);
+    view.vel_pos = ::kynema_sgf::utils::slice(grid.vel_pos, 0, meta.num_pts);
+    view.force = ::kynema_sgf::utils::slice(grid.force, 0, meta.num_pts);
+    view.epsilon = ::kynema_sgf::utils::slice(grid.epsilon, 0, meta.num_pts);
     view.orientation =
-        ::amr_wind::utils::slice(grid.orientation, 0, meta.num_pts);
-    view.chord = ::amr_wind::utils::slice(meta.chord, 0, meta.num_pts);
-    view.vel_rel = ::amr_wind::utils::slice(meta.vel_rel, 0, meta.num_pts);
-    view.vel = ::amr_wind::utils::slice(grid.vel, 0, meta.num_pts);
+        ::kynema_sgf::utils::slice(grid.orientation, 0, meta.num_pts);
+    view.chord = ::kynema_sgf::utils::slice(meta.chord, 0, meta.num_pts);
+    view.vel_rel = ::kynema_sgf::utils::slice(meta.vel_rel, 0, meta.num_pts);
+    view.vel = ::kynema_sgf::utils::slice(grid.vel, 0, meta.num_pts);
 
     return view;
 }
@@ -155,7 +155,7 @@ struct ComputeForceOp<
         if (!wdata.pitch_timetable_file.empty()) {
             const auto time_interp =
                 (time.current_time() + time.new_time()) / 2.0_rt;
-            wdata.pitch = amr_wind::interp::linear_angle(
+            wdata.pitch = kynema_sgf::interp::linear_angle(
                 wdata.time_table, wdata.pitch_table, time_interp, 360.0_rt);
             amrex::Print() << "Wing Ops: Current wing pitch (at time "
                            << time_interp << " s) is " << wdata.pitch
@@ -184,7 +184,7 @@ struct ComputeForceOp<
 
             const auto vmag = vs::mag(windvector);
             const auto aoa = std::atan2(windvector[2], windvector[0]) +
-                             amr_wind::utils::radians(wdata.pitch);
+                             kynema_sgf::utils::radians(wdata.pitch);
 
             // Get Cl, Cd values
             amrex::Real cl, cd;
@@ -232,7 +232,7 @@ struct ComputeForceOp<
 
             // Assign values for output
             wdata.vel_rel[ip] = windvector;
-            wdata.aoa[ip] = amr_wind::utils::degrees(aoa);
+            wdata.aoa[ip] = kynema_sgf::utils::degrees(aoa);
             wdata.cl[ip] = cl;
             wdata.cd[ip] = cd;
 
@@ -247,7 +247,7 @@ struct ComputeForceOp<
             if (!(wdata.fllc->initialized) &&
                 (time.current_time() > wdata.fllc->fllc_start_time)) {
                 wdata.component_view =
-                    amr_wind::actuator::wing::make_component_view<ActTrait>(
+                    kynema_sgf::actuator::wing::make_component_view<ActTrait>(
                         data);
                 fllc_init(
                     *(wdata.fllc.get()), wdata.component_view,
@@ -303,6 +303,6 @@ public:
 };
 
 } // namespace ops
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 #endif /* WING_OPS_H */

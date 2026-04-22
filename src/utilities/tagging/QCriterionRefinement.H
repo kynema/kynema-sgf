@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 class Field;
 
 /** AMR refinement using Q criterion
@@ -49,6 +49,6 @@ private:
     bool m_nondim{true};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* QCRITERIONREFINEMENT_H */

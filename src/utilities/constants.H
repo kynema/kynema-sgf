@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::constants {
+namespace kynema_sgf::constants {
 
 //! A number very close to zero
 static constexpr amrex::Real EPS =
@@ -55,5 +55,5 @@ static constexpr amrex::Real MOLAR_MASS_AIR = 0.02896492_rt;
 //! Molar mass of water vapor (kg/mol)
 static constexpr amrex::Real MOLAR_MASS_WATER_VAPOR = 0.01801528_rt;
 
-} // namespace amr_wind::constants
+} // namespace kynema_sgf::constants
 #endif

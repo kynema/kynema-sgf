@@ -30,8 +30,8 @@ int main(int argc, char* argv[])
 
     if (argc < 2) {
         // Print usage and exit with error code if no input file was provided.
-        amr_wind::io::print_usage(MPI_COMM_WORLD, std::cout);
-        amr_wind::io::print_error(
+        kynema_sgf::io::print_usage(MPI_COMM_WORLD, std::cout);
+        kynema_sgf::io::print_error(
             MPI_COMM_WORLD, "No input file provided. Exiting!!");
         return 1;
     }
@@ -40,22 +40,22 @@ int main(int argc, char* argv[])
         char* user_arg = argv[i];
         if ((std::strcmp(user_arg, "--help") == 0) ||
             (std::strcmp(user_arg, "-h") == 0)) {
-            amr_wind::io::print_banner(MPI_COMM_WORLD, std::cout);
-            amr_wind::io::print_usage(MPI_COMM_WORLD, std::cout);
+            kynema_sgf::io::print_banner(MPI_COMM_WORLD, std::cout);
+            kynema_sgf::io::print_usage(MPI_COMM_WORLD, std::cout);
             return 0;
         }
     }
 
     if (!amrex::FileSystem::Exists(std::string(argv[1]))) {
         // Print usage and exit with error code if we cannot find the input file
-        amr_wind::io::print_usage(MPI_COMM_WORLD, std::cout);
-        amr_wind::io::print_error(
+        kynema_sgf::io::print_usage(MPI_COMM_WORLD, std::cout);
+        kynema_sgf::io::print_error(
             MPI_COMM_WORLD, "Input file does not exist = " +
                                 std::string(argv[1]) + ". Exiting!!");
         return 1;
     }
 
-    amr_wind::io::print_banner(MPI_COMM_WORLD, std::cout);
+    kynema_sgf::io::print_banner(MPI_COMM_WORLD, std::cout);
     amrex::Initialize(argc, argv, true, MPI_COMM_WORLD, []() {
         amrex::ParmParse pp("amrex");
         // Set the defaults so that we throw an exception instead of attempting

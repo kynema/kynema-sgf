@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::sampling {
+namespace kynema_sgf::sampling {
 
 PlaneSampler::PlaneSampler(const CFDSim& sim) : m_sim(sim) {}
 
@@ -190,4 +190,4 @@ void PlaneSampler::populate_netcdf_metadata(
 {}
 #endif
 
-} // namespace amr_wind::sampling
+} // namespace kynema_sgf::sampling

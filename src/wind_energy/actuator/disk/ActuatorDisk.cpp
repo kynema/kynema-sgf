@@ -5,8 +5,8 @@
 #include "src/wind_energy/actuator/ActuatorModel.H"
 #include "src/wind_energy/actuator/disk/disk_spreading.H"
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 template class ActModel<UniformCt, ActSrcDisk>;
 template class ActModel<Joukowsky, ActSrcDisk>;
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator

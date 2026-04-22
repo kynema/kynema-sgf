@@ -11,12 +11,12 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 ABLForcing::ABLForcing(const CFDSim& sim)
     : m_time(sim.time()), m_mesh(sim.mesh())
 {
-    const auto& abl = sim.physics_manager().get<amr_wind::ABL>();
+    const auto& abl = sim.physics_manager().get<kynema_sgf::ABL>();
     abl.register_forcing_term(this);
     abl.abl_statistics().register_forcing_term(this);
 
@@ -67,7 +67,7 @@ ABLForcing::ABLForcing(const CFDSim& sim)
     // Set up relaxation toward 0 forcing near the air-water interface
     if (sim.repo().field_exists("vof")) {
         // If vof exists, get multiphase physics
-        const auto& mphase = sim.physics_manager().get<amr_wind::MultiPhase>();
+        const auto& mphase = sim.physics_manager().get<kynema_sgf::MultiPhase>();
         // Retrieve interface position
         m_water_level = mphase.water_level();
         // Confirm that water level will be used
@@ -141,4 +141,4 @@ void ABLForcing::operator()(
     });
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

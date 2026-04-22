@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 /** Vortex dipole Physics
  *   \ingroup physics
  */
@@ -54,6 +54,6 @@ private:
     amrex::Real m_r0{0.1_rt};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* VORTEX_DIPOLE_H */

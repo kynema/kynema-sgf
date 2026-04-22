@@ -11,12 +11,12 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::ocean_waves::relaxation_zones {
+namespace kynema_sgf::ocean_waves::relaxation_zones {
 
 void read_inputs(
     RelaxZonesBaseData& wdata,
     OceanWavesInfo& /*unused*/,
-    const ::amr_wind::utils::MultiParser& pp)
+    const ::kynema_sgf::utils::MultiParser& pp)
 {
     // Free surface zero level
     pp.query("zero_sea_level", wdata.zsl);
@@ -150,8 +150,8 @@ void apply_relaxation_zones(CFDSim& sim, const RelaxZonesBaseData& wdata)
     auto& velocity = sim.repo().get_field("velocity");
     auto& density = sim.repo().get_field("density");
 
-    amr_wind::IntField* terrain_blank_ptr{nullptr};
-    amr_wind::IntField* terrain_drag_ptr{nullptr};
+    kynema_sgf::IntField* terrain_blank_ptr{nullptr};
+    kynema_sgf::IntField* terrain_drag_ptr{nullptr};
     const bool terrain_exists = sim.repo().int_field_exists("terrain_blank");
     // Get fields to prevent forcing in or near underwater terrain
     if (terrain_exists) {
@@ -318,4 +318,4 @@ void write_netcdf(
     amrex::ignore_unused(ncfile, meta, info, time);
 }
 
-} // namespace amr_wind::ocean_waves::relaxation_zones
+} // namespace kynema_sgf::ocean_waves::relaxation_zones

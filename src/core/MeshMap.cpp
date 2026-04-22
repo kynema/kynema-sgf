@@ -1,7 +1,7 @@
 #include "src/core/MeshMap.H"
 #include "src/CFDSim.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 void MeshMap::declare_mapping_fields(const CFDSim& sim, int nghost)
 {
@@ -39,4 +39,4 @@ void MeshMap::declare_mapping_fields(const CFDSim& sim, int nghost)
     // TODO: Create BCNoOP fill patch operators for mesh scaling fields ?
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

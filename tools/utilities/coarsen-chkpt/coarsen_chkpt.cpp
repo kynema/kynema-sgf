@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 
     using namespace amrex::mpidatatypes;
 
-    amr_wind::io::print_banner(MPI_COMM_WORLD, std::cout);
+    kynema_sgf::io::print_banner(MPI_COMM_WORLD, std::cout);
 
     amrex::Initialize(argc, argv, true, MPI_COMM_WORLD, []() {
         {
@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
 
     {
         BL_PROFILE("coarsen-chkpt::main");
-        amr_wind::tools::CoarsenCheckpt obj;
+        kynema_sgf::tools::CoarsenCheckpt obj;
         obj.run_utility();
     }
 

@@ -4,7 +4,7 @@
 #include "src/core/FieldRepo.H"
 #include "src/equation_systems/icns/MomentumSource.H"
 
-namespace amr_wind::pde::icns::mms {
+namespace kynema_sgf::pde::icns::mms {
 
 class MMSForcing : public MomentumSource::Register<MMSForcing>
 {
@@ -25,6 +25,6 @@ public:
 private:
     const Field& m_mms_vel_source;
 };
-} // namespace amr_wind::pde::icns::mms
+} // namespace kynema_sgf::pde::icns::mms
 
 #endif /* MMSFORCING_H */

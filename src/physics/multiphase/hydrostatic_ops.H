@@ -6,10 +6,10 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::hydrostatic {
+namespace kynema_sgf::hydrostatic {
 
 static void define_rho0(
-    amr_wind::Field& rho0,
+    kynema_sgf::Field& rho0,
     const amrex::Real rho1,
     const amrex::Real rho2,
     const amrex::Real wlev,
@@ -33,7 +33,7 @@ static void define_rho0(
 }
 
 static void define_p0(
-    amr_wind::Field& p0,
+    kynema_sgf::Field& p0,
     const amrex::Real rho1,
     const amrex::Real rho2,
     const amrex::Real wlev,
@@ -65,6 +65,6 @@ static void define_p0(
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind::hydrostatic
+} // namespace kynema_sgf::hydrostatic
 
 #endif

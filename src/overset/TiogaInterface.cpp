@@ -9,7 +9,7 @@
 
 #include <memory>
 #include <numeric>
-namespace amr_wind {
+namespace kynema_sgf {
 
 AMROversetInfo::AMROversetInfo(const int nglobal, const int nlocal)
     : level(nglobal)
@@ -410,4 +410,4 @@ void TiogaInterface::amr_to_tioga_iblank()
         amrex::Gpu::hostToDevice, tmpdataPtrn.begin(), tmpdataPtrn.end(),
         ad.iblank_node.d_view.begin());
 }
-} // namespace amr_wind
+} // namespace kynema_sgf

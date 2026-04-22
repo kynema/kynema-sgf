@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Forcing term to drive the ABL profile to a desired state
  *  \ingroup icns_src we_abl
@@ -53,9 +53,9 @@ public:
             // Forces should be applied at n+1/2. Because ABL forcing is a
             // delta, the difference between the target velocity (at n+1) and
             // the current velocity (at n) puts the force term at n+1/2
-            const amrex::Real new_spd = ::amr_wind::interp::linear(
+            const amrex::Real new_spd = ::kynema_sgf::interp::linear(
                 m_time_table, m_speed_table, new_time);
-            const amrex::Real new_dir = ::amr_wind::interp::linear_angle(
+            const amrex::Real new_dir = ::kynema_sgf::interp::linear_angle(
                 m_time_table, m_direction_table, new_time,
                 2.0_rt * std::numbers::pi_v<amrex::Real>);
 
@@ -141,6 +141,6 @@ private:
     const Field* m_vof;
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif /* ABLFORCING_H */

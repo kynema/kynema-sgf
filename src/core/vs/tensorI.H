@@ -5,7 +5,7 @@
 #include "src/core/vs/tensor.H"
 #include "src/utilities/trig_ops.H"
 
-namespace amr_wind::vs {
+namespace kynema_sgf::vs {
 
 template <typename T>
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE TensorT<T>::TensorT(
@@ -242,6 +242,6 @@ quaternion(const Vector& axis, const amrex::Real angle)
     return t;
 }
 
-} // namespace amr_wind::vs
+} // namespace kynema_sgf::vs
 
 #endif /* VS_TENSORI_H */

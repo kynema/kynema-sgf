@@ -4,7 +4,7 @@
 #include "AMReX.H"
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 GeometryRefinement::GeometryRefinement(const CFDSim& sim)
     : m_sim(sim), m_max_level(m_sim.mesh().maxLevel())
@@ -70,4 +70,4 @@ void GeometryRefinement::operator()(
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

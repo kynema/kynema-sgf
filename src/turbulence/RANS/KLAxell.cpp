@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace turbulence {
 
 template <typename Transport>
@@ -364,4 +364,4 @@ void KLAxell<Transport>::post_advance_work()
 
 INSTANTIATE_TURBULENCE_MODEL(KLAxell);
 
-} // namespace amr_wind
+} // namespace kynema_sgf

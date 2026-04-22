@@ -4,7 +4,7 @@
 #include "src/CFDSim.H"
 #include "src/utilities/PostProcessing.H"
 
-namespace amr_wind::field_norms {
+namespace kynema_sgf::field_norms {
 
 /** field norm object
  *  \ingroup sampling
@@ -35,7 +35,7 @@ public:
     void post_regrid_actions() override {}
 
     static amrex::Real get_norm(
-        const amr_wind::Field& field,
+        const kynema_sgf::Field& field,
         int comp,
         int ncomp,
         int norm_type,
@@ -96,6 +96,6 @@ private:
     bool m_use_vector_magnitude{false};
 };
 
-} // namespace amr_wind::field_norms
+} // namespace kynema_sgf::field_norms
 
 #endif /* FIELDNORMS_H */

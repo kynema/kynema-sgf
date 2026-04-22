@@ -3,7 +3,7 @@
 
 #include "src/turbulence/TurbModel.H"
 
-namespace amr_wind::turbulence {
+namespace kynema_sgf::turbulence {
 
 /** Laminar model
  *  \ingroup turb_model
@@ -59,6 +59,6 @@ public:
     [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 };
 
-} // namespace amr_wind::turbulence
+} // namespace kynema_sgf::turbulence
 
 #endif /* LAMINARMODEL_H */

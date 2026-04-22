@@ -15,12 +15,12 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::ib::bluff_body {
+namespace kynema_sgf::ib::bluff_body {
 
 void read_inputs(
     BluffBodyBaseData& wdata,
     IBInfo& /*unused*/,
-    const ::amr_wind::utils::MultiParser& pp)
+    const ::kynema_sgf::utils::MultiParser& pp)
 {
     pp.query("has_wall_model", wdata.has_wall_model);
     pp.query("is_moving", wdata.is_moving);
@@ -158,4 +158,4 @@ void write_netcdf(
     amrex::ignore_unused(ncfile, meta, info, time);
 }
 
-} // namespace amr_wind::ib::bluff_body
+} // namespace kynema_sgf::ib::bluff_body

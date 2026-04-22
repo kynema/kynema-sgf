@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 ModulatedPowerLaw::ModulatedPowerLaw(CFDSim& sim)
     : m_sim(sim)
@@ -37,7 +37,7 @@ ModulatedPowerLaw::ModulatedPowerLaw(CFDSim& sim)
     const amrex::Real wind_speed = m_wind_speed;
     const amrex::Real wind_direction = -m_wind_direction + 270.0_rt;
     const amrex::Real wind_direction_radian =
-        amr_wind::utils::radians(wind_direction);
+        kynema_sgf::utils::radians(wind_direction);
 
     m_uvec[0] = wind_speed * std::cos(wind_direction_radian);
     m_uvec[1] = wind_speed * std::sin(wind_direction_radian);
@@ -85,7 +85,7 @@ void ModulatedPowerLaw::pre_advance_work()
         const amrex::Real wind_direction =
             -m_sim.helics().m_inflow_wind_direction_to_amrwind + 270.0_rt;
         const amrex::Real wind_direction_radian =
-            amr_wind::utils::radians(wind_direction);
+            kynema_sgf::utils::radians(wind_direction);
 
         m_uvec[0] = wind_speed * std::cos(wind_direction_radian);
         m_uvec[1] = wind_speed * std::sin(wind_direction_radian);
@@ -285,4 +285,4 @@ void ModulatedPowerLaw::set_temperature(
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

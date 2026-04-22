@@ -15,9 +15,9 @@ class MultiBlockContainer;
 
 /** AMR-Wind
  *
- *  All C++ code in AMR-Wind is organized within the amr_wind namespace.
+ *  All C++ code in AMR-Wind is organized within the kynema_sgf namespace.
  */
-namespace amr_wind {
+namespace kynema_sgf {
 class IOManager;
 class PostProcessManager;
 class OversetManager;
@@ -205,6 +205,6 @@ private:
     ReadERFFunction m_read_erf{nullptr};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* CFDSIM_H */

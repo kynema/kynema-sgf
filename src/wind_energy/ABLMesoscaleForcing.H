@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class ABLMesoscaleForcing
 {
@@ -113,6 +113,6 @@ protected:
         amrex::Vector<amrex::Real>& error);
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif

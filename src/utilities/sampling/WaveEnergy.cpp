@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::wave_energy {
+namespace kynema_sgf::wave_energy {
 
 WaveEnergy::WaveEnergy(CFDSim& sim, std::string label)
     : m_sim(sim)
@@ -208,4 +208,4 @@ void WaveEnergy::write_ascii()
     }
 }
 
-} // namespace amr_wind::wave_energy
+} // namespace kynema_sgf::wave_energy

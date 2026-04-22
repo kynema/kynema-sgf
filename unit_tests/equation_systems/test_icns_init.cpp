@@ -44,8 +44,8 @@ protected:
         ss << "0.8 0.5 0.5 0.9 0.5 0.5" << '\n';
 
         create_mesh_instance<RefineMesh>();
-        std::unique_ptr<amr_wind::CartBoxRefinement> box_refine(
-            new amr_wind::CartBoxRefinement(sim()));
+        std::unique_ptr<kynema_sgf::CartBoxRefinement> box_refine(
+            new kynema_sgf::CartBoxRefinement(sim()));
         box_refine->read_inputs(mesh(), ss);
 
         if (mesh<RefineMesh>() != nullptr) {

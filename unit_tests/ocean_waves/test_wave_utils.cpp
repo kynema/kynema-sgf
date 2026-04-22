@@ -21,22 +21,22 @@ TEST_F(WaveUtilsTest, free_surface_to_vof)
     constexpr amrex::Real dz = 0.5_rt;
 
     const amrex::Real vof_fully_above =
-        amr_wind::ocean_waves::utils::free_surface_to_vof(zsl, 100.0_rt, dz);
+        kynema_sgf::ocean_waves::utils::free_surface_to_vof(zsl, 100.0_rt, dz);
     const amrex::Real vof_fully_below =
-        amr_wind::ocean_waves::utils::free_surface_to_vof(zsl, -100.0_rt, dz);
+        kynema_sgf::ocean_waves::utils::free_surface_to_vof(zsl, -100.0_rt, dz);
     const amrex::Real vof_at_level =
-        amr_wind::ocean_waves::utils::free_surface_to_vof(zsl, zsl, dz);
+        kynema_sgf::ocean_waves::utils::free_surface_to_vof(zsl, zsl, dz);
     const amrex::Real vof_half_above =
-        amr_wind::ocean_waves::utils::free_surface_to_vof(
+        kynema_sgf::ocean_waves::utils::free_surface_to_vof(
             zsl, zsl + (0.25_rt * dz), dz);
     const amrex::Real vof_half_below =
-        amr_wind::ocean_waves::utils::free_surface_to_vof(
+        kynema_sgf::ocean_waves::utils::free_surface_to_vof(
             zsl, zsl - (0.25_rt * dz), dz);
     const amrex::Real vof_exactly_above =
-        amr_wind::ocean_waves::utils::free_surface_to_vof(
+        kynema_sgf::ocean_waves::utils::free_surface_to_vof(
             zsl, zsl + (0.5_rt * dz), dz);
     const amrex::Real vof_exactly_below =
-        amr_wind::ocean_waves::utils::free_surface_to_vof(
+        kynema_sgf::ocean_waves::utils::free_surface_to_vof(
             zsl, zsl - (0.5_rt * dz), dz);
 
     EXPECT_NEAR(vof_fully_above, 0.0_rt, tol);
@@ -55,16 +55,16 @@ TEST_F(WaveUtilsTest, gamma_generate)
     constexpr amrex::Real zone_length = 1.5_rt;
 
     const amrex::Real gamma_past_left =
-        amr_wind::ocean_waves::utils::gamma_generate(-1.0_rt, zone_length);
+        kynema_sgf::ocean_waves::utils::gamma_generate(-1.0_rt, zone_length);
     const amrex::Real gamma_left =
-        amr_wind::ocean_waves::utils::gamma_generate(0.0_rt, zone_length);
+        kynema_sgf::ocean_waves::utils::gamma_generate(0.0_rt, zone_length);
     const amrex::Real gamma_middle =
-        amr_wind::ocean_waves::utils::gamma_generate(
+        kynema_sgf::ocean_waves::utils::gamma_generate(
             0.5_rt * zone_length, zone_length);
     const amrex::Real gamma_right =
-        amr_wind::ocean_waves::utils::gamma_generate(zone_length, zone_length);
+        kynema_sgf::ocean_waves::utils::gamma_generate(zone_length, zone_length);
     const amrex::Real gamma_past_right =
-        amr_wind::ocean_waves::utils::gamma_generate(
+        kynema_sgf::ocean_waves::utils::gamma_generate(
             zone_length + 1.0_rt, zone_length);
 
     const amrex::Real gamma_middle_gold =
@@ -85,20 +85,20 @@ TEST_F(WaveUtilsTest, gamma_absorb)
     constexpr amrex::Real zone_length = 1.5_rt;
 
     const amrex::Real gamma_past_left =
-        amr_wind::ocean_waves::utils::gamma_absorb(
+        kynema_sgf::ocean_waves::utils::gamma_absorb(
             -1.0_rt, zone_length, 1.0_rt);
     const amrex::Real gamma_left =
-        amr_wind::ocean_waves::utils::gamma_absorb(0.0_rt, zone_length, 1.0_rt);
-    const amrex::Real gamma_middle = amr_wind::ocean_waves::utils::gamma_absorb(
+        kynema_sgf::ocean_waves::utils::gamma_absorb(0.0_rt, zone_length, 1.0_rt);
+    const amrex::Real gamma_middle = kynema_sgf::ocean_waves::utils::gamma_absorb(
         0.5_rt * zone_length, zone_length, 1.0_rt);
-    const amrex::Real gamma_right = amr_wind::ocean_waves::utils::gamma_absorb(
+    const amrex::Real gamma_right = kynema_sgf::ocean_waves::utils::gamma_absorb(
         zone_length, zone_length, 1.0_rt);
     const amrex::Real gamma_past_right =
-        amr_wind::ocean_waves::utils::gamma_absorb(
+        kynema_sgf::ocean_waves::utils::gamma_absorb(
             zone_length + 1.0_rt, zone_length, 1.0_rt);
 
     const amrex::Real gamma_right_length_factor2 =
-        amr_wind::ocean_waves::utils::gamma_absorb(
+        kynema_sgf::ocean_waves::utils::gamma_absorb(
             zone_length, zone_length, 2.0_rt);
 
     const amrex::Real gamma_middle_gold =
@@ -121,15 +121,15 @@ TEST_F(WaveUtilsTest, ramp)
     constexpr amrex::Real ramp_period = 1.5_rt;
 
     const amrex::Real f_ramp_begin =
-        amr_wind::ocean_waves::utils::ramp(0.0_rt, ramp_period);
+        kynema_sgf::ocean_waves::utils::ramp(0.0_rt, ramp_period);
     const amrex::Real f_ramp_middle =
-        amr_wind::ocean_waves::utils::ramp(0.5_rt * ramp_period, ramp_period);
+        kynema_sgf::ocean_waves::utils::ramp(0.5_rt * ramp_period, ramp_period);
     const amrex::Real f_ramp_near_end =
-        amr_wind::ocean_waves::utils::ramp(ramp_period - near_tol, ramp_period);
+        kynema_sgf::ocean_waves::utils::ramp(ramp_period - near_tol, ramp_period);
     const amrex::Real f_ramp_end =
-        amr_wind::ocean_waves::utils::ramp(ramp_period, ramp_period);
+        kynema_sgf::ocean_waves::utils::ramp(ramp_period, ramp_period);
     const amrex::Real f_ramp_past =
-        amr_wind::ocean_waves::utils::ramp(ramp_period + 1.0_rt, ramp_period);
+        kynema_sgf::ocean_waves::utils::ramp(ramp_period + 1.0_rt, ramp_period);
 
     const amrex::Real f_ramp_middle_gold =
         0.5_rt - (std::sin(std::numbers::pi_v<amrex::Real> * 0.5_rt) /
@@ -151,7 +151,7 @@ TEST_F(WaveUtilsTest, combine_linear)
     constexpr amrex::Real current = 1.5_rt;
 
     const amrex::Real result =
-        amr_wind::ocean_waves::utils::combine_linear(Gamma, target, current);
+        kynema_sgf::ocean_waves::utils::combine_linear(Gamma, target, current);
 
     EXPECT_NEAR(result, ((1.0_rt - Gamma) * target) + (Gamma * current), tol);
 }
@@ -165,24 +165,24 @@ TEST_F(WaveUtilsTest, harmonize_profiles)
     constexpr amrex::Real gen_length = 0.2_rt;
     constexpr amrex::Real beach_length = 0.4_rt;
 
-    const amr_wind::ocean_waves::utils::WaveVec left{
+    const kynema_sgf::ocean_waves::utils::WaveVec left{
         1.0_rt, 2.0_rt, 3.0_rt, 0.1_rt};
-    const amr_wind::ocean_waves::utils::WaveVec bulk{
+    const kynema_sgf::ocean_waves::utils::WaveVec bulk{
         0.0_rt, 1.1_rt, 2.0_rt, 0.0_rt};
-    const amr_wind::ocean_waves::utils::WaveVec right{
+    const kynema_sgf::ocean_waves::utils::WaveVec right{
         -1.0_rt, 1.0_rt, 0.5_rt, -0.1_rt};
 
     amrex::Real x = -0.9_rt;
-    auto result = amr_wind::ocean_waves::utils::harmonize_profiles_1d(
+    auto result = kynema_sgf::ocean_waves::utils::harmonize_profiles_1d(
         x, problo_x, gen_length, probhi_x, beach_length, left, bulk, right);
     for (int n = 0; n < 4; ++n) {
         EXPECT_NEAR(left[n], result[n], tol);
     }
 
     x = -0.75_rt;
-    result = amr_wind::ocean_waves::utils::harmonize_profiles_1d(
+    result = kynema_sgf::ocean_waves::utils::harmonize_profiles_1d(
         x, problo_x, gen_length, probhi_x, beach_length, left, bulk, right);
-    const amrex::Real Gamma_l = amr_wind::ocean_waves::utils::gamma_generate(
+    const amrex::Real Gamma_l = kynema_sgf::ocean_waves::utils::gamma_generate(
         x - (problo_x + gen_length), 0.5_rt * gen_length);
     for (int n = 0; n < 4; ++n) {
         EXPECT_NEAR(
@@ -191,16 +191,16 @@ TEST_F(WaveUtilsTest, harmonize_profiles)
     }
 
     x = 0.;
-    result = amr_wind::ocean_waves::utils::harmonize_profiles_1d(
+    result = kynema_sgf::ocean_waves::utils::harmonize_profiles_1d(
         x, problo_x, gen_length, probhi_x, beach_length, left, bulk, right);
     for (int n = 0; n < 4; ++n) {
         EXPECT_NEAR(bulk[n], result[n], tol);
     }
 
     x = 0.5_rt;
-    result = amr_wind::ocean_waves::utils::harmonize_profiles_1d(
+    result = kynema_sgf::ocean_waves::utils::harmonize_profiles_1d(
         x, problo_x, gen_length, probhi_x, beach_length, left, bulk, right);
-    const amrex::Real Gamma_r = amr_wind::ocean_waves::utils::gamma_absorb(
+    const amrex::Real Gamma_r = kynema_sgf::ocean_waves::utils::gamma_absorb(
         x - (probhi_x - beach_length) + (0.5_rt * beach_length),
         0.5_rt * beach_length, 1.0_rt);
     for (int n = 0; n < 4; ++n) {
@@ -210,7 +210,7 @@ TEST_F(WaveUtilsTest, harmonize_profiles)
     }
 
     x = 0.8_rt;
-    result = amr_wind::ocean_waves::utils::harmonize_profiles_1d(
+    result = kynema_sgf::ocean_waves::utils::harmonize_profiles_1d(
         x, problo_x, gen_length, probhi_x, beach_length, left, bulk, right);
     for (int n = 0; n < 4; ++n) {
         EXPECT_NEAR(right[n], result[n], tol);
@@ -248,16 +248,16 @@ TEST_F(WaveUtilsTest, gamma_xy)
 
     for (int n = 0; n < x.size(); ++n) {
         const amrex::Real gamma_xlo =
-            amr_wind::ocean_waves::utils::gamma_generate(
+            kynema_sgf::ocean_waves::utils::gamma_generate(
                 x[n] - 0.0_rt, zone_length);
         const amrex::Real gamma_xhi =
-            amr_wind::ocean_waves::utils::gamma_absorb(
+            kynema_sgf::ocean_waves::utils::gamma_absorb(
                 x[n] - (1.0_rt - zone_length), zone_length, 1.0_rt);
         const amrex::Real gamma_ylo =
-            amr_wind::ocean_waves::utils::gamma_generate(
+            kynema_sgf::ocean_waves::utils::gamma_generate(
                 y[n] - 0.0_rt, zone_length);
         const amrex::Real gamma_yhi =
-            amr_wind::ocean_waves::utils::gamma_absorb(
+            kynema_sgf::ocean_waves::utils::gamma_absorb(
                 y[n] - (1.0_rt - zone_length), zone_length, 1.0_rt);
         const amrex::Real gamma =
             std::min({gamma_xhi, gamma_xlo, gamma_yhi, gamma_ylo});

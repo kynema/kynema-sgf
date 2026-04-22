@@ -6,9 +6,9 @@
 #include "src/equation_systems/vof/vof_ops.H"
 #include "src/equation_systems/vof/vof_bcop.H"
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 template class PDESystem<VOF, fvm::Godunov>;
 template class PDESystem<VOF, fvm::MOL>;
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde

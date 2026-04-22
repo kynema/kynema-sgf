@@ -42,7 +42,7 @@ void tokenize(
     }
 }
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 HelicsStorage::HelicsStorage(CFDSim& sim) : m_sim(sim)
 {
@@ -195,7 +195,7 @@ void HelicsStorage::recv_messages_from_controller()
 
         auto& phy_mgr = m_sim.physics_manager();
         if (phy_mgr.contains("ABL")) {
-            auto& abl = phy_mgr.get<amr_wind::ABL>();
+            auto& abl = phy_mgr.get<kynema_sgf::ABL>();
             const amrex::Real height = 90.0_rt;
             wind_speed = abl.abl_statistics()
                              .vel_profile()
@@ -208,7 +208,7 @@ void HelicsStorage::recv_messages_from_controller()
                     height, 1);
             const amrex::Real turbine_angle = std::atan2(vely, velx);
             wind_direction =
-                -amr_wind::utils::degrees(turbine_angle) + 270.0_rt;
+                -kynema_sgf::utils::degrees(turbine_angle) + 270.0_rt;
         }
 
         amrex::Print() << "pub count: " << pubCount << std::endl;
@@ -263,4 +263,4 @@ void HelicsStorage::recv_messages_from_controller()
 
 HelicsStorage::~HelicsStorage() = default;
 
-} // namespace amr_wind
+} // namespace kynema_sgf

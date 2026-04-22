@@ -3,7 +3,7 @@
 
 #include "AMReX_MultiFabUtil.H"
 
-namespace amr_wind::diagnostics {
+namespace kynema_sgf::diagnostics {
 
 void make_mask_addend(
     amrex::MultiFab& mfab,
@@ -14,7 +14,7 @@ void make_mask_addend(
 void get_field_extrema(
     amrex::Real& field_max_val,
     amrex::Real& field_min_val,
-    const amr_wind::Field& field,
+    const kynema_sgf::Field& field,
     int comp,
     int ncomp,
     int nghost);
@@ -22,8 +22,8 @@ void get_field_extrema(
 bool get_field_extrema(
     amrex::Real& field_max_val,
     amrex::Real& field_min_val,
-    const amr_wind::Field& field,
-    const amr_wind::Field& field_mask,
+    const kynema_sgf::Field& field,
+    const kynema_sgf::Field& field_mask,
     amrex::Real mask_val,
     int comp,
     int ncomp,
@@ -72,11 +72,11 @@ amrex::Real get_macvel_loc(
     amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> dx);
 
 amrex::Array<amrex::Real, 24> PrintMaxVelLocations(
-    const amr_wind::FieldRepo& repo, const std::string& header);
+    const kynema_sgf::FieldRepo& repo, const std::string& header);
 
 amrex::Array<amrex::Real, 24> PrintMaxMACVelLocations(
-    const amr_wind::FieldRepo& repo, const std::string& header);
+    const kynema_sgf::FieldRepo& repo, const std::string& header);
 
-} // namespace amr_wind::diagnostics
+} // namespace kynema_sgf::diagnostics
 
 #endif

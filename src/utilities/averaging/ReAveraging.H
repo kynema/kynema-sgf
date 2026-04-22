@@ -3,7 +3,7 @@
 
 #include "src/utilities/averaging/TimeAveraging.H"
 
-namespace amr_wind::averaging {
+namespace kynema_sgf::averaging {
 
 /** Reynolds averaging to compute mean field from a given CFD field
  */
@@ -45,6 +45,6 @@ private:
     Field& m_average;
 };
 
-} // namespace amr_wind::averaging
+} // namespace kynema_sgf::averaging
 
 #endif /* REAVERAGING_H */

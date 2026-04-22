@@ -8,7 +8,7 @@
 
 #include <ascent.hpp>
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace ascent_int {
 
 AscentPostProcess::AscentPostProcess(CFDSim& sim, const std::string& label)
@@ -113,4 +113,4 @@ void AscentPostProcess::post_regrid_actions()
 }
 
 } // namespace ascent_int
-} // namespace amr_wind
+} // namespace kynema_sgf

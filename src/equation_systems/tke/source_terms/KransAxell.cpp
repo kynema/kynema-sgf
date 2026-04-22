@@ -9,7 +9,7 @@
 #include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
-namespace amr_wind::pde::tke {
+namespace kynema_sgf::pde::tke {
 
 KransAxell::KransAxell(const CFDSim& sim)
     : m_turb_lscale(sim.repo().get_field("turb_lscale"))
@@ -154,7 +154,7 @@ void KransAxell::operator()(
             1.0_rt / dt * (tke_arr(i, j, k) - ref_tke);
         dissip_arr(i, j, k) = utils::powi(Cmu, 3) *
                               std::pow(tke_arr(i, j, k), 1.5_rt) /
-                              (tlscale_arr(i, j, k) + amr_wind::constants::EPS);
+                              (tlscale_arr(i, j, k) + kynema_sgf::constants::EPS);
         src_term(i, j, k) += shear_prod_arr(i, j, k) + buoy_prod_arr(i, j, k) -
                              dissip_arr(i, j, k) -
                              ((1.0_rt - static_cast<int>(has_terrain)) *
@@ -202,7 +202,7 @@ void KransAxell::operator()(
             const amrex::Real uz = vel(i, j, k, 2);
             m = std::sqrt((ux * ux) + (uy * uy) + (uz * uz));
             const amrex::Real Cd = amrex::min<amrex::Real>(
-                10.0_rt / (dx[2] * m + amr_wind::constants::EPS),
+                10.0_rt / (dx[2] * m + kynema_sgf::constants::EPS),
                 100.0_rt / dx[2]);
             const amrex::Real dragforcing = -Cd * m * tke_arr(i, j, k, 0);
             z = amrex::max<amrex::Real>(
@@ -243,35 +243,35 @@ void KransAxell::operator()(
                 const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
                 const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
                 amrex::Real xi_end =
-                    (std::abs(sdist_east) > amr_wind::constants::EPS)
+                    (std::abs(sdist_east) > kynema_sgf::constants::EPS)
                         ? (x - start_east) / (sdist_east)
                         : 0.0_rt;
                 amrex::Real xi_start =
-                    (std::abs(sdist_west) > amr_wind::constants::EPS)
+                    (std::abs(sdist_west) > kynema_sgf::constants::EPS)
                         ? (start_west - x) / (-sdist_west)
                         : 0.0_rt;
                 xi_start =
                     sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);
                 xi_end = sponge_east * amrex::max<amrex::Real>(xi_end, 0.0_rt);
-                xi_start /= (xi_start + amr_wind::constants::EPS);
-                xi_end /= (xi_end + amr_wind::constants::EPS);
+                xi_start /= (xi_start + kynema_sgf::constants::EPS);
+                xi_end /= (xi_end + kynema_sgf::constants::EPS);
                 const amrex::Real xstart_damping =
                     sponge_strength * xi_start * xi_start;
                 const amrex::Real xend_damping =
                     sponge_strength * xi_end * xi_end;
                 amrex::Real yi_end =
-                    (std::abs(sdist_north) > amr_wind::constants::EPS)
+                    (std::abs(sdist_north) > kynema_sgf::constants::EPS)
                         ? (y - start_north) / (sdist_north)
                         : 0.0_rt;
                 amrex::Real yi_start =
-                    (std::abs(sdist_south) > amr_wind::constants::EPS)
+                    (std::abs(sdist_south) > kynema_sgf::constants::EPS)
                         ? (start_south - y) / (-sdist_south)
                         : 0.0_rt;
                 yi_start =
                     sponge_south * amrex::max<amrex::Real>(yi_start, 0.0_rt);
                 yi_end = sponge_north * amrex::max<amrex::Real>(yi_end, 0.0_rt);
-                yi_start /= (yi_start + amr_wind::constants::EPS);
-                yi_end /= (yi_end + amr_wind::constants::EPS);
+                yi_start /= (yi_start + kynema_sgf::constants::EPS);
+                yi_end /= (yi_end + kynema_sgf::constants::EPS);
                 const amrex::Real ystart_damping =
                     sponge_strength * yi_start * yi_start;
                 const amrex::Real yend_damping =
@@ -283,7 +283,7 @@ void KransAxell::operator()(
                                 : tke_arr(i, j, k, 0);
                 const amrex::Real damping_sum =
                     (xstart_damping + xend_damping + ystart_damping +
-                     yend_damping + amr_wind::constants::EPS);
+                     yend_damping + kynema_sgf::constants::EPS);
                 const amrex::Real sponge_forcing =
                     (xstart_damping + xend_damping + ystart_damping +
                      yend_damping) /
@@ -294,4 +294,4 @@ void KransAxell::operator()(
     }
 }
 
-} // namespace amr_wind::pde::tke
+} // namespace kynema_sgf::pde::tke

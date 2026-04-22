@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::sampling {
+namespace kynema_sgf::sampling {
 
 void SamplingContainer::setup_container(
     const int num_real_components, const int num_int_components)
@@ -196,4 +196,4 @@ void SamplingContainer::populate_buffer(std::vector<amrex::Real>& buf)
         amrex::ParallelDescriptor::IOProcessorNumber());
 }
 
-} // namespace amr_wind::sampling
+} // namespace kynema_sgf::sampling

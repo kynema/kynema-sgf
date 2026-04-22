@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 struct JoukowskyData : public DiskBaseData
 {
@@ -56,6 +56,6 @@ struct Joukowsky : public DiskType
     static std::string identifier() { return "Joukowsky"; }
 };
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 #endif /* Joukowsky_H */

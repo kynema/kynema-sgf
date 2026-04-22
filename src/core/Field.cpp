@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 FieldInfo::FieldInfo(
     std::string basename,
@@ -445,4 +445,4 @@ void Field::to_stretched_space()
     m_mesh_mapped = false;
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

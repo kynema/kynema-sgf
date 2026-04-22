@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::fvm {
+namespace kynema_sgf::fvm {
 
 /** filter operator
  *  \ingroup fvm
@@ -105,6 +105,6 @@ std::unique_ptr<ScratchField> filter(const FType& phi)
     return filterphi;
 }
 
-} // namespace amr_wind::fvm
+} // namespace kynema_sgf::fvm
 
 #endif /* FILTER_H */

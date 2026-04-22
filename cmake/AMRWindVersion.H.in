@@ -7,7 +7,7 @@
 #ifndef AMRWINDVERSION_H
 #define AMRWINDVERSION_H
 
-namespace amr_wind::version {
+namespace kynema_sgf::version {
 
 #cmakedefine AMR_WIND_HAVE_GIT_INFO
 
@@ -21,6 +21,6 @@ const std::string amr_wind_git_sha = "UNKNOWN";
 const std::string amr_wind_dirty_repo = "UNKNOWN";
 #endif
 
-} // namespace amr_wind::version
+} // namespace kynema_sgf::version
 
 #endif /* AMRWINDVERSION_H */

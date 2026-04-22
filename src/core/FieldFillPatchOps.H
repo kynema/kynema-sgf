@@ -30,7 +30,7 @@
  *  \ingroup fields
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Abstract interface for classes that handle fill patch and physical boundary
  *  condition operations for multi-level AMR meshes.
@@ -510,6 +510,6 @@ protected:
     amrex::Interpolater* m_face_mapper;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* FIELDFILLPATCHOPS_H */

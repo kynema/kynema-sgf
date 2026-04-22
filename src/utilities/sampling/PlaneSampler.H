@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::sampling {
+namespace kynema_sgf::sampling {
 
 /** Sample data on uniform grids
  *  \ingroup sampling
@@ -99,6 +99,6 @@ private:
     int m_npts{0};
 };
 
-} // namespace amr_wind::sampling
+} // namespace kynema_sgf::sampling
 
 #endif /* PLANESAMPLER_H */

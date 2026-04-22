@@ -63,7 +63,7 @@ ExtTurbIface<FastTurbine, FastSolverData>::~ExtTurbIface()
 
 template <>
 void ExtTurbIface<FastTurbine, FastSolverData>::parse_inputs(
-    const amr_wind::CFDSim& sim, const std::string& inp_name)
+    const kynema_sgf::CFDSim& sim, const std::string& inp_name)
 {
     amrex::ParmParse pp(inp_name);
 
@@ -169,8 +169,8 @@ void ExtTurbIface<FastTurbine, FastSolverData>::prepare_netcdf_file(
     const std::string np_name = "num_vel_points";
     ncf.enter_def_mode();
     ncf.put_attr("title", "AMR-Wind OpenFAST velocity data");
-    ncf.put_attr("AMR-Wind_version", amr_wind::ioutils::amr_wind_version());
-    ncf.put_attr("created_on", amr_wind::ioutils::timestamp());
+    ncf.put_attr("AMR-Wind_version", kynema_sgf::ioutils::amr_wind_version());
+    ncf.put_attr("created_on", kynema_sgf::ioutils::timestamp());
     ncf.def_dim(nt_name, NC_UNLIMITED);
     ncf.def_dim(np_name, fi.from_cfd.u_Len);
     ncf.def_dim("ndim", AMREX_SPACEDIM);

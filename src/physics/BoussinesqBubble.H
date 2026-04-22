@@ -5,7 +5,7 @@
 #include "src/physics/BoussinesqBubbleFieldInit.H"
 #include "src/core/Field.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Boussinesq Bubble physics
  *  \ingroup physics
@@ -44,6 +44,6 @@ private:
     std::unique_ptr<BoussinesqBubbleFieldInit> m_field_init;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* BoussinesqBubble_H */

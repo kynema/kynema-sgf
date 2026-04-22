@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::temperature {
+namespace kynema_sgf::pde::temperature {
 
 TemperatureFreeAtmosphereForcing::TemperatureFreeAtmosphereForcing(
     const CFDSim& sim)
@@ -130,11 +130,11 @@ void TemperatureFreeAtmosphereForcing::operator()(
             const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
             const amrex::Real z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
             amrex::Real xi_end =
-                (std::abs(sdist_east) > amr_wind::constants::EPS)
+                (std::abs(sdist_east) > kynema_sgf::constants::EPS)
                     ? (x - start_east) / (sdist_east)
                     : 0.0_rt;
             amrex::Real xi_start =
-                (std::abs(sdist_west) > amr_wind::constants::EPS)
+                (std::abs(sdist_west) > kynema_sgf::constants::EPS)
                     ? (start_west - x) / (-sdist_west)
                     : 0.0_rt;
             xi_start = sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);
@@ -143,11 +143,11 @@ void TemperatureFreeAtmosphereForcing::operator()(
                 sponge_strength * xi_start * xi_start;
             const amrex::Real xend_damping = sponge_strength * xi_end * xi_end;
             amrex::Real yi_end =
-                (std::abs(sdist_north) > amr_wind::constants::EPS)
+                (std::abs(sdist_north) > kynema_sgf::constants::EPS)
                     ? (y - start_north) / (sdist_north)
                     : 0.0_rt;
             amrex::Real yi_start =
-                (std::abs(sdist_south) > amr_wind::constants::EPS)
+                (std::abs(sdist_south) > kynema_sgf::constants::EPS)
                     ? (start_south - y) / (-sdist_south)
                     : 0.0_rt;
             yi_start = sponge_south * amrex::max<amrex::Real>(yi_start, 0.0_rt);
@@ -168,4 +168,4 @@ void TemperatureFreeAtmosphereForcing::operator()(
     }
 }
 
-} // namespace amr_wind::pde::temperature
+} // namespace kynema_sgf::pde::temperature

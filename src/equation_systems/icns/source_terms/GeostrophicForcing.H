@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Apply source term equivalent to drive the flow to match given geostrophic
  * wind \ingroup icns_src we_abl
@@ -73,6 +73,6 @@ private:
     const Field* m_vof;
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif /* GEOSTROPHICFORCING_H */

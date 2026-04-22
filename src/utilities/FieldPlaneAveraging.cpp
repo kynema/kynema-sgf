@@ -5,12 +5,12 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 template <typename FType>
 FPlaneAveraging<FType>::FPlaneAveraging(
     const FType& field_in,
-    const amr_wind::SimTime& time,
+    const kynema_sgf::SimTime& time,
     int axis_in,
     bool compute_deriv)
     : m_field(field_in)
@@ -543,4 +543,4 @@ void VelPlaneAveraging::output_line_average_ascii(int step, amrex::Real time)
     output_line_average_ascii(filename, step, time);
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

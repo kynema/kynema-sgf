@@ -8,7 +8,7 @@
 #include "AMReX_Gpu.H"
 #include "AMReX_RealBox.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 
@@ -22,10 +22,10 @@ struct OceanWavesType
 {};
 
 using RealList = amrex::Vector<amrex::Real>;
-using VecList = amrex::Vector<amr_wind::vs::Vector>;
-using TensorList = amrex::Vector<amr_wind::vs::Tensor>;
-using DeviceVecList = amrex::Gpu::DeviceVector<amr_wind::vs::Vector>;
-using DeviceTensorList = amrex::Gpu::DeviceVector<amr_wind::vs::Tensor>;
+using VecList = amrex::Vector<kynema_sgf::vs::Vector>;
+using TensorList = amrex::Vector<kynema_sgf::vs::Tensor>;
+using DeviceVecList = amrex::Gpu::DeviceVector<kynema_sgf::vs::Vector>;
+using DeviceTensorList = amrex::Gpu::DeviceVector<kynema_sgf::vs::Tensor>;
 
 /** Basic information that is common to all wave models
  *
@@ -97,6 +97,6 @@ public:
 };
 
 } // namespace ocean_waves
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* OCEANTYPES_H */

@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator::ops {
+namespace kynema_sgf::actuator::ops {
 
 namespace joukowsky {
 void parse_and_gather_params(const utils::ActParser& pp, JoukowskyData& data);
@@ -19,7 +19,7 @@ AMREX_INLINE void
 set_current_angular_velocity(JoukowskyData& data, const amrex::Real uInfSqr)
 {
     const amrex::Real uInfMag = std::sqrt(uInfSqr);
-    data.current_angular_velocity = ::amr_wind::interp::linear(
+    data.current_angular_velocity = ::kynema_sgf::interp::linear(
         data.table_velocity, data.angular_velocity, uInfMag);
 }
 void prepare_netcdf_file(
@@ -68,7 +68,7 @@ struct UpdatePosOp<Joukowsky, ActSrcDisk>
             -data.sim().helics().m_turbine_yaw_to_amrwind[data.info().id] +
             90.0_rt;
         const amrex::Real turbine_direction_radian =
-            amr_wind::utils::radians(turbine_direction);
+            kynema_sgf::utils::radians(turbine_direction);
 
         meta.normal_vec[0] = std::cos(turbine_direction_radian);
         meta.normal_vec[1] = std::sin(turbine_direction_radian);
@@ -187,7 +187,7 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
 
         if (ddata.Ct_rated > 0.0_rt) {
             if (Ct < ddata.Ct_rated) {
-                S0 = alpha1 * amr_wind::utils::powi(
+                S0 = alpha1 * kynema_sgf::utils::powi(
                                   (ddata.Ct_rated - Ct) / ddata.Ct_rated, 3);
             } else {
                 S0 = alpha2 * (ddata.Ct_rated - Ct) / ddata.Ct_rated;
@@ -206,20 +206,20 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
             const amrex::Real x =
                 amrex::max<amrex::Real>((ip + 0.5_rt) * dx, machine_eps);
 
-            a1 += amr_wind::utils::powi(ddata.tip_correction[ip], 2) *
-                  amr_wind::utils::powi(ddata.root_correction[ip], 2) / x * dx;
+            a1 += kynema_sgf::utils::powi(ddata.tip_correction[ip], 2) *
+                  kynema_sgf::utils::powi(ddata.root_correction[ip], 2) / x * dx;
 
             a2 += ddata.tip_correction[ip] * ddata.root_correction[ip] * x * dx;
 
-            a3 += amr_wind::utils::powi(ddata.tip_correction[ip], 2) *
-                  amr_wind::utils::powi(ddata.root_correction[ip], 2) * x * dx;
+            a3 += kynema_sgf::utils::powi(ddata.tip_correction[ip], 2) *
+                  kynema_sgf::utils::powi(ddata.root_correction[ip], 2) * x * dx;
 
             a4 += ddata.tip_correction[ip] * ddata.root_correction[ip] *
-                  amr_wind::utils::powi(x, 3) * dx;
+                  kynema_sgf::utils::powi(x, 3) * dx;
 
-            a5 += amr_wind::utils::powi(ddata.tip_correction[ip], 2) *
-                  amr_wind::utils::powi(ddata.root_correction[ip], 2) *
-                  amr_wind::utils::powi(x, 3) * dx;
+            a5 += kynema_sgf::utils::powi(ddata.tip_correction[ip], 2) *
+                  kynema_sgf::utils::powi(ddata.root_correction[ip], 2) *
+                  kynema_sgf::utils::powi(x, 3) * dx;
         }
 
         // step 2: determine the circulation (q0) from a1, a2 and Ct
@@ -230,7 +230,7 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
         //                            a1
 
         const amrex::Real term1 =
-            amr_wind::utils::powi((a2 * lambda) + (a3 * S0), 2);
+            kynema_sgf::utils::powi((a2 * lambda) + (a3 * S0), 2);
         const amrex::Real term2 =
             a1 * (0.5_rt * Ct - 2.0_rt * a4 * lambda * S0 - a5 * S0 * S0);
         const amrex::Real term3 = (a2 * lambda) + (a3 * S0);
@@ -245,14 +245,14 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
         // step 3: compute normal force (fz) and azimuthal force (f_theta) (eq
         // 13) and cp (eq 20)
 
-        VecSlice disk_velocity = ::amr_wind::utils::slice(
+        VecSlice disk_velocity = ::kynema_sgf::utils::slice(
             grid.vel, ddata.num_force_pts, ddata.num_force_pts);
 
         amrex::Real moment = 0.0_rt;
 
         int ip = 0;
 
-        const auto dTheta = amr_wind::utils::two_pi() / ddata.num_vel_pts_t;
+        const auto dTheta = kynema_sgf::utils::two_pi() / ddata.num_vel_pts_t;
         const auto current_time = data.sim().time().current_time();
 
         for (int i = 0; i < ddata.num_vel_pts_r; i++) {
@@ -310,8 +310,8 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
         // equation 20
         const amrex::Real eq_20_denominator = amrex::max<amrex::Real>(
             0.5_rt * std::numbers::pi_v<amrex::Real> * ddata.density *
-                amr_wind::utils::powi(ddata.radius(), 2) *
-                amr_wind::utils::powi(U_ref, 3),
+                kynema_sgf::utils::powi(ddata.radius(), 2) *
+                kynema_sgf::utils::powi(U_ref, 3),
             machine_eps);
 
         ddata.current_power =
@@ -336,7 +336,7 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
             data.sim()
                 .helics()
                 .m_turbine_wind_direction_to_controller[data.info().id] =
-                270.0_rt - amr_wind::utils::degrees(turbine_angle);
+                270.0_rt - kynema_sgf::utils::degrees(turbine_angle);
         }
 #endif
     }
@@ -388,6 +388,6 @@ public:
     }
 };
 
-} // namespace amr_wind::actuator::ops
+} // namespace kynema_sgf::actuator::ops
 
 #endif /* Joukowsky_OPS_H */

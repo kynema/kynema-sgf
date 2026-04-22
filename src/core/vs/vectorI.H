@@ -5,7 +5,7 @@
 #include <cmath>
 #include "src/core/vs/vector.H"
 
-namespace amr_wind::vs {
+namespace kynema_sgf::vs {
 
 template <typename T>
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T>
@@ -141,6 +141,6 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT<T> sqrt(const VectorT<T>& v)
     return VectorT<T>{std::sqrt(v.x()), std::sqrt(v.y()), std::sqrt(v.z())};
 }
 
-} // namespace amr_wind::vs
+} // namespace kynema_sgf::vs
 
 #endif /* VS_VECTORI_H */

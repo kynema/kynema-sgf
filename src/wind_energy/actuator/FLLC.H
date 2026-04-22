@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 enum class FLLCType : std::uint8_t { ConstantChord, VariableChord };
 
@@ -70,6 +70,6 @@ void fllc_parse(const utils::ActParser& pp, FLLCData& data);
 void fllc_init(
     FLLCData& data, const ComponentView& view, amrex::Real eps_chord);
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 #endif /* FLLC */

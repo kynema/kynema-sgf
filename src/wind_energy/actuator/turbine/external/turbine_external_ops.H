@@ -8,9 +8,9 @@
 #include "src/utilities/IOManager.H"
 #include "src/wind_energy/actuator/turbine/external/turbine_external_utils.H"
 
-using namespace amr_wind::actuator::external;
+using namespace kynema_sgf::actuator::external;
 
-namespace amr_wind::actuator::ops {
+namespace kynema_sgf::actuator::ops {
 
 template <typename datatype>
 void read_ops(datatype& data, const utils::ActParser& pp)
@@ -66,7 +66,7 @@ template <typename datatype, typename SolverTurbine, typename SolverData>
 void external_determine_root_proc(
     datatype& data, amrex::Vector<int>& act_proc_count)
 {
-    namespace utils = ::amr_wind::actuator::utils;
+    namespace utils = ::kynema_sgf::actuator::utils;
     auto& info = data.info();
     info.procs =
         utils::determine_influenced_procs(data.sim().mesh(), info.bound_box);
@@ -233,6 +233,6 @@ void compute_force_op(datatype& data)
     }
 }
 
-} // namespace amr_wind::actuator::ops
+} // namespace kynema_sgf::actuator::ops
 
 #endif /* TURBINE_EXTERNAL_OPS_H */

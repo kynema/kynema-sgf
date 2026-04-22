@@ -68,25 +68,25 @@ protected:
     }
 };
 
-class ActTurbPhyTest : public ::amr_wind::actuator::Actuator
+class ActTurbPhyTest : public ::kynema_sgf::actuator::Actuator
 {
 public:
-    explicit ActTurbPhyTest(::amr_wind::CFDSim& sim)
-        : ::amr_wind::actuator::Actuator(sim)
+    explicit ActTurbPhyTest(::kynema_sgf::CFDSim& sim)
+        : ::kynema_sgf::actuator::Actuator(sim)
     {}
 
 protected:
     void prepare_outputs() override {}
 };
 
-namespace act = ::amr_wind::actuator;
+namespace act = ::kynema_sgf::actuator;
 using MyTypes = ::testing::Types<act::ActSrcLine, act::ActSrcDisk>;
 
 TYPED_TEST_SUITE(ActTurbineFastTest, MyTypes, );
 
 TYPED_TEST(ActTurbineFastTest, test_ops)
 {
-    namespace act = ::amr_wind::actuator;
+    namespace act = ::kynema_sgf::actuator;
     MeshTest::initialize_mesh();
     act::utils::ActParser pp(
         "Actuator.TurbineFast" + TypeParam::identifier(), "Actuator.T1");

@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Adds the forcing term to include the presence of immersed boundary
  *
@@ -73,6 +73,6 @@ private:
     amrex::Real m_beta_m{16.0_rt};
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif

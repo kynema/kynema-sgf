@@ -9,7 +9,7 @@
 #include "src/core/Field.H"
 #include "src/core/FieldRepo.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Multi-level vector
  *  \ingroup utilities
@@ -60,5 +60,5 @@ private:
     amrex::Vector<amrex::Gpu::DeviceVector<amrex::Real>> m_data_d;
     amrex::Vector<amrex::Vector<amrex::Real>> m_data_h;
 };
-} // namespace amr_wind
+} // namespace kynema_sgf
 #endif

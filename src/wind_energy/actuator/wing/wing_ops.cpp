@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator::wing {
+namespace kynema_sgf::actuator::wing {
 
 void init_data_structures(WingBaseData& wdata, ActGrid& grid)
 {
@@ -214,4 +214,4 @@ void new_wing_position_velocity(
     }
 }
 
-} // namespace amr_wind::actuator::wing
+} // namespace kynema_sgf::actuator::wing

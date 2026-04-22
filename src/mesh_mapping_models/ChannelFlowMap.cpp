@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::channel_map {
+namespace kynema_sgf::channel_map {
 
 namespace {
 
@@ -323,4 +323,4 @@ void ChannelFlowMap::create_non_uniform_mesh(
     }
 }
 
-} // namespace amr_wind::channel_map
+} // namespace kynema_sgf::channel_map

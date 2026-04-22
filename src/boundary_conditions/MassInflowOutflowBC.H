@@ -5,7 +5,7 @@
 #include "src/core/FieldRepo.H"
 #include "AMReX_Orientation.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Custom Neumann fills for the inflow-outflow BC
  *  \ingroup field_bc
@@ -25,6 +25,6 @@ private:
     amrex::Orientation m_ori;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* MASSINFLOWOUTFLOWBC_H */

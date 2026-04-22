@@ -5,11 +5,11 @@
 #include "src/wind_energy/ShearStress.H"
 #include "src/boundary_conditions/wall_models/MOSD.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 struct SimpleShearSchumann
 {
-    explicit SimpleShearSchumann(const amr_wind::LogLaw& ll)
+    explicit SimpleShearSchumann(const kynema_sgf::LogLaw& ll)
         : utau2(ll.utau_mean * ll.utau_mean), wspd_mean(ll.wspd_mean), m_ll(ll)
     {}
 
@@ -26,11 +26,11 @@ struct SimpleShearSchumann
 
     amrex::Real utau2;
     amrex::Real wspd_mean;
-    const amr_wind::LogLaw m_ll;
+    const kynema_sgf::LogLaw m_ll;
 };
 struct SimpleShearLogLaw
 {
-    explicit SimpleShearLogLaw(const amr_wind::LogLaw& ll) : m_ll(ll) {}
+    explicit SimpleShearLogLaw(const kynema_sgf::LogLaw& ll) : m_ll(ll) {}
 
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real get_shear(
         amrex::Real u,
@@ -44,13 +44,13 @@ struct SimpleShearLogLaw
         return utau * utau * u / wspd;
     };
 
-    const amr_wind::LogLaw m_ll;
+    const kynema_sgf::LogLaw m_ll;
 };
 
 struct SimpleShearMOSD
 {
     explicit SimpleShearMOSD(
-        const amr_wind::LogLaw& ll, const amr_wind::MOSD& md)
+        const kynema_sgf::LogLaw& ll, const kynema_sgf::MOSD& md)
         : m_ll(ll), m_md(md)
     {}
 
@@ -70,10 +70,10 @@ struct SimpleShearMOSD
         return tau_vis + tau_wave;
     };
 
-    const amr_wind::LogLaw m_ll;
-    const amr_wind::MOSD m_md;
+    const kynema_sgf::LogLaw m_ll;
+    const kynema_sgf::MOSD m_md;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* SHEARSTRESSSIMPLE_H */

@@ -6,7 +6,7 @@
 #include "src/equation_systems/vof/volume_fractions.H"
 #include "src/core/FieldRepo.H"
 
-namespace amr_wind::overset_ops {
+namespace kynema_sgf::overset_ops {
 
 void iblank_to_mask(const IntField& iblank, IntField& maskf);
 
@@ -30,6 +30,6 @@ void apply_pressure_gradient(
     const amrex::MultiFab& mf_gp,
     amrex::Real scaling_factor);
 
-} // namespace amr_wind::overset_ops
+} // namespace kynema_sgf::overset_ops
 
 #endif

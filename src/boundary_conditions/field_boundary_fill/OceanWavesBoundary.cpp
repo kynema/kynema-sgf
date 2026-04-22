@@ -11,14 +11,14 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 OceanWavesBoundary::OceanWavesBoundary(CFDSim& sim)
     : m_time(sim.time()), m_repo(sim.repo()), m_mesh(sim.mesh())
 {
     // Get liquid density, will only be used if vof is present
     if (sim.physics_manager().contains("MultiPhase")) {
-        m_rho1 = sim.physics_manager().get<amr_wind::MultiPhase>().rho1();
+        m_rho1 = sim.physics_manager().get<kynema_sgf::MultiPhase>().rho1();
     }
     if (!sim.physics_manager().contains("OceanWaves")) {
         amrex::Abort(
@@ -324,4 +324,4 @@ void OceanWavesBoundary::set_inflow_sibling_velocity(
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

@@ -3,7 +3,7 @@
 
 #include "src/fvm/fvm_utils.H"
 
-namespace amr_wind::fvm {
+namespace kynema_sgf::fvm {
 
 /** Laplacian operator
  *  \ingroup fvm
@@ -93,6 +93,6 @@ std::unique_ptr<ScratchField> laplacian(const FType& phi)
     return lapphi;
 }
 
-} // namespace amr_wind::fvm
+} // namespace kynema_sgf::fvm
 
 #endif /* LAPLACIAN_H */

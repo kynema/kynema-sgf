@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::tagging {
+namespace kynema_sgf::tagging {
 
 /** Refine region inside a cylinder
  *  \ingroup amr_utils
@@ -45,6 +45,6 @@ private:
     amrex::RealBox m_bound_box;
 };
 
-} // namespace amr_wind::tagging
+} // namespace kynema_sgf::tagging
 
 #endif /* CYLINDERREFINER_H */

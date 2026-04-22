@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 
@@ -149,6 +149,6 @@ public:
 };
 
 } // namespace sampling
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* SAMPLERBASE_H */

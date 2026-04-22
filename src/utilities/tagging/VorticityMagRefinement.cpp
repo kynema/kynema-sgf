@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 VorticityMagRefinement::VorticityMagRefinement(const CFDSim& sim)
     : m_sim(sim)
@@ -104,4 +104,4 @@ void VorticityMagRefinement::operator()(
         });
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

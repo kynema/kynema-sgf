@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::forestdrag {
+namespace kynema_sgf::forestdrag {
 
 ForestDrag::ForestDrag(CFDSim& sim)
     : m_sim(sim)
@@ -126,4 +126,4 @@ amrex::Vector<Forest> ForestDrag::read_forest(const int level) const
     file.close();
     return forests;
 }
-} // namespace amr_wind::forestdrag
+} // namespace kynema_sgf::forestdrag

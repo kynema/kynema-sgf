@@ -5,7 +5,7 @@
 
 using namespace amrex::literals;
 
-void amr_wind::diagnostics::make_mask_addend(
+void kynema_sgf::diagnostics::make_mask_addend(
     amrex::MultiFab& mfab,
     const amrex::MultiFab& mfab_mask,
     const amrex::Real mask_val,
@@ -23,10 +23,10 @@ void amr_wind::diagnostics::make_mask_addend(
         });
 }
 
-void amr_wind::diagnostics::get_field_extrema(
+void kynema_sgf::diagnostics::get_field_extrema(
     amrex::Real& field_max_val,
     amrex::Real& field_min_val,
-    const amr_wind::Field& field,
+    const kynema_sgf::Field& field,
     const int comp,
     const int ncomp,
     const int nghost)
@@ -50,11 +50,11 @@ void amr_wind::diagnostics::get_field_extrema(
     amrex::ParallelDescriptor::ReduceRealMin(field_min_val);
 }
 
-bool amr_wind::diagnostics::get_field_extrema(
+bool kynema_sgf::diagnostics::get_field_extrema(
     amrex::Real& field_max_val,
     amrex::Real& field_min_val,
-    const amr_wind::Field& field,
-    const amr_wind::Field& field_mask,
+    const kynema_sgf::Field& field,
+    const kynema_sgf::Field& field_mask,
     const amrex::Real mask_val,
     const int comp,
     const int ncomp,
@@ -76,9 +76,9 @@ bool amr_wind::diagnostics::get_field_extrema(
         amrex::MultiFab mask_addend_min(
             field_mask(lev).boxArray(), field_mask(lev).DistributionMap(),
             ncomp, nghost);
-        amr_wind::diagnostics::make_mask_addend(
+        kynema_sgf::diagnostics::make_mask_addend(
             mask_addend_max, field_mask(lev), mask_val, constants::LOW_NUM);
-        amr_wind::diagnostics::make_mask_addend(
+        kynema_sgf::diagnostics::make_mask_addend(
             mask_addend_min, field_mask(lev), mask_val, constants::LARGE_NUM);
         min_mask_lev = mask_addend_min.min(0, nghost);
         mask_min = amrex::min(mask_min, min_mask_lev);
@@ -102,7 +102,7 @@ bool amr_wind::diagnostics::get_field_extrema(
     return found_mask_val;
 }
 
-amrex::Real amr_wind::diagnostics::get_vel_max(
+amrex::Real kynema_sgf::diagnostics::get_vel_max(
     const amrex::MultiFab& vel,
     const amrex::iMultiFab& level_mask,
     const int vdir,
@@ -125,7 +125,7 @@ amrex::Real amr_wind::diagnostics::get_vel_max(
         });
 }
 
-amrex::Real amr_wind::diagnostics::get_vel_max(
+amrex::Real kynema_sgf::diagnostics::get_vel_max(
     const amrex::MultiFab& vel,
     const amrex::iMultiFab& level_mask,
     const int vdir)
@@ -133,7 +133,7 @@ amrex::Real amr_wind::diagnostics::get_vel_max(
     return get_vel_max(vel, level_mask, vdir, 1.0_rt);
 }
 
-amrex::Real amr_wind::diagnostics::get_vel_min(
+amrex::Real kynema_sgf::diagnostics::get_vel_min(
     const amrex::MultiFab& vel,
     const amrex::iMultiFab& level_mask,
     const int vdir)
@@ -141,7 +141,7 @@ amrex::Real amr_wind::diagnostics::get_vel_min(
     return get_vel_max(vel, level_mask, vdir, -1.0_rt);
 }
 
-amrex::Real amr_wind::diagnostics::get_vel_loc(
+amrex::Real kynema_sgf::diagnostics::get_vel_loc(
     const amrex::MultiFab& vel,
     const amrex::iMultiFab& level_mask,
     const int vdir,
@@ -172,7 +172,7 @@ amrex::Real amr_wind::diagnostics::get_vel_loc(
         });
 }
 
-amrex::Real amr_wind::diagnostics::get_macvel_max(
+amrex::Real kynema_sgf::diagnostics::get_macvel_max(
     const amrex::MultiFab& macvel,
     const amrex::iMultiFab& level_mask,
     const int vdir,
@@ -198,7 +198,7 @@ amrex::Real amr_wind::diagnostics::get_macvel_max(
         });
 }
 
-amrex::Real amr_wind::diagnostics::get_macvel_max(
+amrex::Real kynema_sgf::diagnostics::get_macvel_max(
     const amrex::MultiFab& macvel,
     const amrex::iMultiFab& level_mask,
     const int vdir)
@@ -206,7 +206,7 @@ amrex::Real amr_wind::diagnostics::get_macvel_max(
     return get_macvel_max(macvel, level_mask, vdir, 1.0_rt);
 }
 
-amrex::Real amr_wind::diagnostics::get_macvel_min(
+amrex::Real kynema_sgf::diagnostics::get_macvel_min(
     const amrex::MultiFab& macvel,
     const amrex::iMultiFab& level_mask,
     const int vdir)
@@ -214,7 +214,7 @@ amrex::Real amr_wind::diagnostics::get_macvel_min(
     return get_macvel_max(macvel, level_mask, vdir, -1.0_rt);
 }
 
-amrex::Real amr_wind::diagnostics::get_macvel_loc(
+amrex::Real kynema_sgf::diagnostics::get_macvel_loc(
     const amrex::MultiFab& macvel,
     const amrex::iMultiFab& level_mask,
     const int vdir,
@@ -250,8 +250,8 @@ amrex::Real amr_wind::diagnostics::get_macvel_loc(
         });
 }
 
-amrex::Array<amrex::Real, 24> amr_wind::diagnostics::PrintMaxVelLocations(
-    const amr_wind::FieldRepo& repo, const std::string& header)
+amrex::Array<amrex::Real, 24> kynema_sgf::diagnostics::PrintMaxVelLocations(
+    const kynema_sgf::FieldRepo& repo, const std::string& header)
 {
     BL_PROFILE("amr-wind::diagnostics::PrintMaxVelLocations");
 
@@ -278,22 +278,22 @@ amrex::Array<amrex::Real, 24> amr_wind::diagnostics::PrintMaxVelLocations(
         }
 
         u_max = amrex::max<amrex::Real>(
-            u_max, amr_wind::diagnostics::get_vel_max(vel(lev), level_mask, 0));
+            u_max, kynema_sgf::diagnostics::get_vel_max(vel(lev), level_mask, 0));
 
         u_min = amrex::max<amrex::Real>(
-            u_min, amr_wind::diagnostics::get_vel_min(vel(lev), level_mask, 0));
+            u_min, kynema_sgf::diagnostics::get_vel_min(vel(lev), level_mask, 0));
 
         v_max = amrex::max<amrex::Real>(
-            v_max, amr_wind::diagnostics::get_vel_max(vel(lev), level_mask, 1));
+            v_max, kynema_sgf::diagnostics::get_vel_max(vel(lev), level_mask, 1));
 
         v_min = amrex::max<amrex::Real>(
-            v_min, amr_wind::diagnostics::get_vel_min(vel(lev), level_mask, 1));
+            v_min, kynema_sgf::diagnostics::get_vel_min(vel(lev), level_mask, 1));
 
         w_max = amrex::max<amrex::Real>(
-            w_max, amr_wind::diagnostics::get_vel_max(vel(lev), level_mask, 2));
+            w_max, kynema_sgf::diagnostics::get_vel_max(vel(lev), level_mask, 2));
 
         w_min = amrex::max<amrex::Real>(
-            w_min, amr_wind::diagnostics::get_vel_min(vel(lev), level_mask, 2));
+            w_min, kynema_sgf::diagnostics::get_vel_min(vel(lev), level_mask, 2));
     }
 
     // Do additional parallelism stuff
@@ -338,32 +338,32 @@ amrex::Array<amrex::Real, 24> amr_wind::diagnostics::PrintMaxVelLocations(
         for (int n = 0; n < 3; n++) {
             u_max_loc[n] = amrex::max<amrex::Real>(
                 u_max_loc[n],
-                amr_wind::diagnostics::get_vel_loc(
+                kynema_sgf::diagnostics::get_vel_loc(
                     vel(lev), level_mask, 0, n, u_max, problo, dx));
 
             u_min_loc[n] = amrex::max<amrex::Real>(
                 u_min_loc[n],
-                amr_wind::diagnostics::get_vel_loc(
+                kynema_sgf::diagnostics::get_vel_loc(
                     vel(lev), level_mask, 0, n, u_min, problo, dx));
 
             v_max_loc[n] = amrex::max<amrex::Real>(
                 v_max_loc[n],
-                amr_wind::diagnostics::get_vel_loc(
+                kynema_sgf::diagnostics::get_vel_loc(
                     vel(lev), level_mask, 1, n, v_max, problo, dx));
 
             v_min_loc[n] = amrex::max<amrex::Real>(
                 v_min_loc[n],
-                amr_wind::diagnostics::get_vel_loc(
+                kynema_sgf::diagnostics::get_vel_loc(
                     vel(lev), level_mask, 1, n, v_min, problo, dx));
 
             w_max_loc[n] = amrex::max<amrex::Real>(
                 w_max_loc[n],
-                amr_wind::diagnostics::get_vel_loc(
+                kynema_sgf::diagnostics::get_vel_loc(
                     vel(lev), level_mask, 2, n, w_max, problo, dx));
 
             w_min_loc[n] = amrex::max<amrex::Real>(
                 w_min_loc[n],
-                amr_wind::diagnostics::get_vel_loc(
+                kynema_sgf::diagnostics::get_vel_loc(
                     vel(lev), level_mask, 2, n, w_min, problo, dx));
         }
     }
@@ -431,8 +431,8 @@ amrex::Array<amrex::Real, 24> amr_wind::diagnostics::PrintMaxVelLocations(
         w_min,        w_min_loc[0], w_min_loc[1], w_min_loc[2]};
 }
 
-amrex::Array<amrex::Real, 24> amr_wind::diagnostics::PrintMaxMACVelLocations(
-    const amr_wind::FieldRepo& repo, const std::string& header)
+amrex::Array<amrex::Real, 24> kynema_sgf::diagnostics::PrintMaxMACVelLocations(
+    const kynema_sgf::FieldRepo& repo, const std::string& header)
 {
     BL_PROFILE("amr-wind::diagnostics::PrintMaxMACVelLocations");
 
@@ -474,27 +474,27 @@ amrex::Array<amrex::Real, 24> amr_wind::diagnostics::PrintMaxMACVelLocations(
 
         uMAC_max = amrex::max<amrex::Real>(
             uMAC_max,
-            amr_wind::diagnostics::get_macvel_max(u_mac(lev), level_mask, 0));
+            kynema_sgf::diagnostics::get_macvel_max(u_mac(lev), level_mask, 0));
 
         uMAC_min = amrex::max<amrex::Real>(
             uMAC_min,
-            amr_wind::diagnostics::get_macvel_min(u_mac(lev), level_mask, 0));
+            kynema_sgf::diagnostics::get_macvel_min(u_mac(lev), level_mask, 0));
 
         vMAC_max = amrex::max<amrex::Real>(
             vMAC_max,
-            amr_wind::diagnostics::get_macvel_max(v_mac(lev), level_mask, 1));
+            kynema_sgf::diagnostics::get_macvel_max(v_mac(lev), level_mask, 1));
 
         vMAC_min = amrex::max<amrex::Real>(
             vMAC_min,
-            amr_wind::diagnostics::get_macvel_min(v_mac(lev), level_mask, 1));
+            kynema_sgf::diagnostics::get_macvel_min(v_mac(lev), level_mask, 1));
 
         wMAC_max = amrex::max<amrex::Real>(
             wMAC_max,
-            amr_wind::diagnostics::get_macvel_max(w_mac(lev), level_mask, 2));
+            kynema_sgf::diagnostics::get_macvel_max(w_mac(lev), level_mask, 2));
 
         wMAC_min = amrex::max<amrex::Real>(
             wMAC_min,
-            amr_wind::diagnostics::get_macvel_min(w_mac(lev), level_mask, 2));
+            kynema_sgf::diagnostics::get_macvel_min(w_mac(lev), level_mask, 2));
     }
 
     // Do additional parallelism stuff
@@ -557,32 +557,32 @@ amrex::Array<amrex::Real, 24> amr_wind::diagnostics::PrintMaxMACVelLocations(
         for (int n = 0; n < 3; n++) {
             uMAC_max_loc[n] = amrex::max<amrex::Real>(
                 uMAC_max_loc[n],
-                amr_wind::diagnostics::get_macvel_loc(
+                kynema_sgf::diagnostics::get_macvel_loc(
                     u_mac(lev), level_mask, 0, n, uMAC_max, problo, dx));
 
             uMAC_min_loc[n] = amrex::max<amrex::Real>(
                 uMAC_min_loc[n],
-                amr_wind::diagnostics::get_macvel_loc(
+                kynema_sgf::diagnostics::get_macvel_loc(
                     u_mac(lev), level_mask, 0, n, uMAC_min, problo, dx));
 
             vMAC_max_loc[n] = amrex::max<amrex::Real>(
                 vMAC_max_loc[n],
-                amr_wind::diagnostics::get_macvel_loc(
+                kynema_sgf::diagnostics::get_macvel_loc(
                     v_mac(lev), level_mask, 1, n, vMAC_max, problo, dx));
 
             vMAC_min_loc[n] = amrex::max<amrex::Real>(
                 vMAC_min_loc[n],
-                amr_wind::diagnostics::get_macvel_loc(
+                kynema_sgf::diagnostics::get_macvel_loc(
                     v_mac(lev), level_mask, 1, n, vMAC_min, problo, dx));
 
             wMAC_max_loc[n] = amrex::max<amrex::Real>(
                 wMAC_max_loc[n],
-                amr_wind::diagnostics::get_macvel_loc(
+                kynema_sgf::diagnostics::get_macvel_loc(
                     w_mac(lev), level_mask, 2, n, wMAC_max, problo, dx));
 
             wMAC_min_loc[n] = amrex::max<amrex::Real>(
                 wMAC_min_loc[n],
-                amr_wind::diagnostics::get_macvel_loc(
+                kynema_sgf::diagnostics::get_macvel_loc(
                     w_mac(lev), level_mask, 2, n, wMAC_min, problo, dx));
         }
     }
@@ -699,7 +699,7 @@ void incflo::PrintMaxValues(const std::string& header)
 
 void incflo::PrintMaxVelLocations(const std::string& header)
 {
-    amr_wind::diagnostics::PrintMaxVelLocations(repo(), header);
+    kynema_sgf::diagnostics::PrintMaxVelLocations(repo(), header);
 }
 
 //

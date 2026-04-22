@@ -4,7 +4,7 @@
 #include "src/core/Factory.H"
 #include "src/core/CollMgr.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 
@@ -34,6 +34,6 @@ public:
     }
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* EXTSOLVER_H */

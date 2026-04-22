@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace turbulence {
 
 template <typename Transport>
@@ -245,4 +245,4 @@ TurbulenceModel::CoeffsDictType Kosovic<Transport>::model_coeffs() const
 
 INSTANTIATE_TURBULENCE_MODEL(Kosovic);
 
-} // namespace amr_wind
+} // namespace kynema_sgf

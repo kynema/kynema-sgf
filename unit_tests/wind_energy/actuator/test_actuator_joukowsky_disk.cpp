@@ -12,8 +12,8 @@ using namespace amrex::literals;
 
 namespace amr_wind_tests {
 namespace {
-namespace act = amr_wind::actuator;
-namespace vs = amr_wind::vs;
+namespace act = kynema_sgf::actuator;
+namespace vs = kynema_sgf::vs;
 
 struct Joukowsky : public act::Joukowsky
 {
@@ -53,7 +53,7 @@ protected:
         auto& density = sim().repo().declare_field("density", 1, 3);
         vel.setVal(10.0_rt, 0, 1, 3);
         density.setVal(1.0_rt);
-        amr_wind::actuator::ActuatorContainer::ParticleType::NextID(1U);
+        kynema_sgf::actuator::ActuatorContainer::ParticleType::NextID(1U);
     }
 
     static void add_actuators(
@@ -87,7 +87,7 @@ protected:
 
 } // namespace amr_wind_tests
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 namespace ops {
 
 template <>
@@ -96,7 +96,7 @@ struct ReadInputsOp<::amr_wind_tests::Joukowsky, ActSrcDisk>
     void operator()(
         ::amr_wind_tests::Joukowsky::DataType& data, const utils::ActParser& pp)
     {
-        ReadInputsOp<::amr_wind::actuator::Joukowsky, ActSrcDisk> actual_op;
+        ReadInputsOp<::kynema_sgf::actuator::Joukowsky, ActSrcDisk> actual_op;
         EXPECT_NO_FATAL_FAILURE(actual_op(data, pp));
 
         const auto& meta = data.meta();
@@ -112,7 +112,7 @@ struct InitDataOp<::amr_wind_tests::Joukowsky, ActSrcDisk>
 {
     void operator()(::amr_wind_tests::Joukowsky::DataType& data)
     {
-        InitDataOp<::amr_wind::actuator::Joukowsky, ActSrcDisk> actual_op;
+        InitDataOp<::kynema_sgf::actuator::Joukowsky, ActSrcDisk> actual_op;
         EXPECT_NO_FATAL_FAILURE(actual_op(data));
         const auto& meta = data.meta();
         const auto& grid = data.grid();
@@ -162,7 +162,7 @@ struct ComputeForceOp<::amr_wind_tests::Joukowsky, ActSrcDisk>
                 std::numeric_limits<amrex::Real>::epsilon() * 1.0e2_rt)
                 << ", " << i;
         }
-        ComputeForceOp<::amr_wind::actuator::Joukowsky, ActSrcDisk> actual_op;
+        ComputeForceOp<::kynema_sgf::actuator::Joukowsky, ActSrcDisk> actual_op;
         EXPECT_NO_FATAL_FAILURE(actual_op(data));
         for (int i = 0; i < meta.num_force_pts; ++i) {
             for (int j = 0; j < 3; ++j) {
@@ -190,16 +190,16 @@ struct ProcessOutputsOp<::amr_wind_tests::Joukowsky, ActSrcDisk>
 };
 
 } // namespace ops
-template class ::amr_wind::actuator::
-    ActModel<::amr_wind_tests::Joukowsky, ::amr_wind::actuator::ActSrcDisk>;
-} // namespace amr_wind::actuator
+template class ::kynema_sgf::actuator::
+    ActModel<::amr_wind_tests::Joukowsky, ::kynema_sgf::actuator::ActSrcDisk>;
+} // namespace kynema_sgf::actuator
 
 namespace amr_wind_tests {
-class ActPhysicsTest : public ::amr_wind::actuator::Actuator
+class ActPhysicsTest : public ::kynema_sgf::actuator::Actuator
 {
 public:
-    explicit ActPhysicsTest(::amr_wind::CFDSim& sim)
-        : ::amr_wind::actuator::Actuator(sim)
+    explicit ActPhysicsTest(::kynema_sgf::CFDSim& sim)
+        : ::kynema_sgf::actuator::Actuator(sim)
     {}
 
 protected:

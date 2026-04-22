@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /**
  *  \defgroup levelset Levelset transport equation
@@ -44,6 +44,6 @@ struct Levelset : ScalarTransport
     static constexpr amrex::Real default_bc_value = 0.0_rt;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* LEVELSET_H */

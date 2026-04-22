@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::tke {
+namespace kynema_sgf::pde::tke {
 
 SDRSrc::SDRSrc(const CFDSim& sim)
     : m_sdr_src(sim.repo().get_field("omega_src"))
@@ -34,4 +34,4 @@ void SDRSrc::operator()(
     });
 }
 
-} // namespace amr_wind::pde::tke
+} // namespace kynema_sgf::pde::tke

@@ -12,13 +12,13 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::temperature {
+namespace kynema_sgf::pde::temperature {
 
 HurricaneTempForcing::HurricaneTempForcing(const CFDSim& sim)
     : m_mesh(sim.mesh())
 {
 
-    const auto& abl = sim.physics_manager().get<amr_wind::ABL>();
+    const auto& abl = sim.physics_manager().get<kynema_sgf::ABL>();
     // NO need to re-register the hurricane forcing
     abl.register_hurricane_temp_forcing(this);
     // Read the Hurricane Temperature Forcing
@@ -65,7 +65,7 @@ void HurricaneTempForcing::operator()(
         */
         const amrex::Real dTdR_z = dTdR * (dTzh - ht) / dTzh;
         const amrex::Real vmean =
-            amr_wind::interp::linear(heights, heights_end, vals, ht, 3, 1);
+            kynema_sgf::interp::linear(heights, heights_end, vals, ht, 3, 1);
 
         src_term(i, j, k) -= vmean * dTdR_z;
     });
@@ -100,4 +100,4 @@ void HurricaneTempForcing::mean_velocity_update(const VelPlaneAveraging& vavg)
         vavg.line_average().end(), m_vel_vals.begin());
 }
 
-} // namespace amr_wind::pde::temperature
+} // namespace kynema_sgf::pde::temperature

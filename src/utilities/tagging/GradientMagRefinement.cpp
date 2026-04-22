@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 GradientMagRefinement::GradientMagRefinement(const CFDSim& sim)
     : m_sim(sim)
@@ -81,4 +81,4 @@ void GradientMagRefinement::operator()(
         });
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

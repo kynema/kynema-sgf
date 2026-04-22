@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 class ICNSDiffTensorOp : public DiffSolverIface<amrex::MLTensorOp>
 {
@@ -123,7 +123,7 @@ public:
         const int nlevels = repo.num_active_levels();
         const auto& geom = repo.mesh().Geom();
 
-        bool diff_for_RHS(fstate == amr_wind::FieldState::New);
+        bool diff_for_RHS(fstate == kynema_sgf::FieldState::New);
         auto& divtau = m_pdefields.diff_term.state(tau_state);
         const auto& density = m_density.state(fstate);
         const auto& viscosity = m_pdefields.mueff;
@@ -330,7 +330,7 @@ public:
         const auto& geom = repo.mesh().Geom();
 
         auto& divtau = m_pdefields.diff_term.state(tau_state);
-        bool diff_for_RHS(fstate == amr_wind::FieldState::New);
+        bool diff_for_RHS(fstate == kynema_sgf::FieldState::New);
         const auto& density = m_density.state(fstate);
         const auto& viscosity = m_pdefields.mueff;
         Field const* mesh_detJ =
@@ -579,6 +579,6 @@ struct DiffusionOp<ICNS, Scheme>
     }
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* ICNS_DIFFUSION_H */

@@ -3,7 +3,7 @@
 
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 RefineCriteriaManager::RefineCriteriaManager(CFDSim& sim) : m_sim(sim) {}
 
@@ -39,4 +39,4 @@ void RefineCriteriaManager::tag_cells(
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

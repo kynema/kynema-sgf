@@ -16,7 +16,7 @@ using namespace amrex::literals;
  *  input/output, post-processing, collecting statistics etc.
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 
@@ -251,6 +251,6 @@ private:
     amrex::Vector<std::unique_ptr<PostProcessBase>> m_post;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* POSTPROCESSING_H */

@@ -11,8 +11,8 @@ namespace amr_wind_tests {
 namespace {
 
 amrex::Real get_val_at_kindex(
-    amr_wind::Field& field,
-    amr_wind::Field& divisor,
+    kynema_sgf::Field& field,
+    kynema_sgf::Field& divisor,
     const int comp,
     const int kref)
 {
@@ -40,13 +40,13 @@ amrex::Real get_val_at_kindex(
     return error_total;
 }
 
-void init_field3(amr_wind::Field& fld, amrex::Real srate)
+void init_field3(kynema_sgf::Field& fld, amrex::Real srate)
 {
     const auto& mesh = fld.repo().mesh();
     const int nlevels = fld.repo().num_active_levels();
 
     amrex::Real offset = 0.0_rt;
-    if (fld.field_location() == amr_wind::FieldLoc::CELL) {
+    if (fld.field_location() == kynema_sgf::FieldLoc::CELL) {
         offset = 0.5_rt;
     }
 
@@ -65,13 +65,13 @@ void init_field3(amr_wind::Field& fld, amrex::Real srate)
     amrex::Gpu::streamSynchronize();
 }
 
-void init_field1(amr_wind::Field& fld, amrex::Real tgrad)
+void init_field1(kynema_sgf::Field& fld, amrex::Real tgrad)
 {
     const auto& mesh = fld.repo().mesh();
     const int nlevels = fld.repo().num_active_levels();
 
     amrex::Real offset = 0.0_rt;
-    if (fld.field_location() == amr_wind::FieldLoc::CELL) {
+    if (fld.field_location() == kynema_sgf::FieldLoc::CELL) {
         offset = 0.5_rt;
     }
 
@@ -190,12 +190,12 @@ protected:
         vel.fillpatch(0.0_rt);
         temp.fillpatch(0.0_rt);
         // Ensure nonzero viscosity (only molecular at this point)
-        icns_eq.compute_mueff(amr_wind::FieldState::New);
+        icns_eq.compute_mueff(kynema_sgf::FieldState::New);
 
         // Advance states (important for wall model)
         pde_mgr.advance_states();
         // Compute diffusion term to use BCs (wall model)
-        icns_eq.compute_diffusion_term(amr_wind::FieldState::New);
+        icns_eq.compute_diffusion_term(kynema_sgf::FieldState::New);
 
         // Post_solve afterward
         if (do_postsolve) {
@@ -204,7 +204,7 @@ protected:
 
         // Update turbulent viscosity directly
         tmodel.update_turbulent_viscosity(
-            amr_wind::FieldState::New, DiffusionType::Crank_Nicolson);
+            kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
     }
 
     const amrex::Real m_dx = 10.0_rt / 10.0_rt;
@@ -411,7 +411,7 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_wallmodel_failnofillpatch)
     const amrex::Real vmag_ref = std::sqrt(2.0_rt * uref * uref);
     const amrex::Real utau = kappa * vmag_ref / (std::log(zref / z0));
     const amrex::Real uz_wm =
-        uref / vmag_ref * amr_wind::utils::powi(utau, 2) * m_rho0 / m_mu;
+        uref / vmag_ref * kynema_sgf::utils::powi(utau, 2) * m_rho0 / m_mu;
 
     // Velocity gradient with wallmodel value included as dirichlet
     const amrex::Real uz_wmdirichlet =

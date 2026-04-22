@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 void multiphase::split_advection_step(
     int isweep,
@@ -264,4 +264,4 @@ void multiphase::sweep_balance(
     });
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

@@ -5,7 +5,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 LevelDataHolder::LevelDataHolder()
     : m_factory(new amrex::FArrayBoxFactory())
@@ -522,4 +522,4 @@ Field& FieldRepo::create_state(Field& infield, const FieldState fstate)
     return *m_field_vec.back();
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

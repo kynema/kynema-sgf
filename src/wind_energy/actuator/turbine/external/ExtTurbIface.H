@@ -13,7 +13,7 @@ namespace ncutils {
 class NCFile;
 }
 
-namespace amr_wind {
+namespace kynema_sgf {
 class CFDSim;
 }
 
@@ -21,13 +21,13 @@ namespace ext_turb {
 
 template <typename SolverTurbine, typename SolverData>
 class ExtTurbIface
-    : public ::amr_wind::ExtSolver::Register<
+    : public ::kynema_sgf::ExtSolver::Register<
           ExtTurbIface<SolverTurbine, SolverData>>
 {
 public:
     static std::string identifier() { return ext_id<SolverData>(); }
 
-    explicit ExtTurbIface(const ::amr_wind::CFDSim& sim);
+    explicit ExtTurbIface(const ::kynema_sgf::CFDSim& sim);
 
     /* -- General for all external turbines -- */
     int register_turbine(SolverTurbine& data);
@@ -46,7 +46,7 @@ public:
     ~ExtTurbIface() override;
 
     void parse_inputs(
-        const amr_wind::CFDSim& /*sim*/, const std::string& /*inp_name*/);
+        const kynema_sgf::CFDSim& /*sim*/, const std::string& /*inp_name*/);
 
     void init_solution(const int local_id);
 
@@ -92,7 +92,7 @@ protected:
 // General implementations of some functions
 template <typename SolverTurbine, typename SolverData>
 ExtTurbIface<SolverTurbine, SolverData>::ExtTurbIface(
-    const amr_wind::CFDSim& /*unused*/)
+    const kynema_sgf::CFDSim& /*unused*/)
 {}
 
 template <typename SolverTurbine, typename SolverData>

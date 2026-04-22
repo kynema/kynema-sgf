@@ -4,7 +4,7 @@
 #include "src/utilities/trig_ops.H"
 #include "src/physics/udfs/UDF.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 namespace {
 
@@ -64,4 +64,4 @@ void FreeStream::initialize_fields(int level, const amrex::Geometry& geom)
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /**
  *  \defgroup tke_eqn Turbulent Kinetic Energy (TKE) transport equation
@@ -48,6 +48,6 @@ struct TKE : ScalarTransport
     static constexpr bool need_nph_state = true;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* TKE_H */

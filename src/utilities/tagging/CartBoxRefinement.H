@@ -7,7 +7,7 @@
 #include "AMReX_RealBox.H"
 #include "AMReX_Vector.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Static refinement with Cartesian-aligned bounding boxes
  *  \ingroup amr_utils wind
@@ -56,6 +56,6 @@ protected:
     int m_nlevels{-1};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* CARTBOXREFINEMENT_H */

@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::tke {
+namespace kynema_sgf::pde::tke {
 
 /** TKE source term based on Axell 2011 paper
  * Axell, L. B., & Liungman, O. (2001). A one-equation turbulence model for
@@ -75,6 +75,6 @@ private:
     amrex::Real m_beta_m{16.0_rt};
 };
 
-} // namespace amr_wind::pde::tke
+} // namespace kynema_sgf::pde::tke
 
 #endif /* KRANSAXELL_H */

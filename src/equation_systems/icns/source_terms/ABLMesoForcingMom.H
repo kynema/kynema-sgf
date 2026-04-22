@@ -12,7 +12,7 @@
 #include "src/wind_energy/ABLMesoscaleForcing.H"
 #include "src/wind_energy/ABLMesoscaleInput.H"
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Forcing term for meso-micro scale coupled ABL simulations
  *  \ingroup icns_src we_abl
@@ -75,6 +75,6 @@ private:
     amrex::Array<amrex::Real, 4> m_poly_coeff_V;
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif // ABLMESOFORCINGMOM_H

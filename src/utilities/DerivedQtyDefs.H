@@ -3,7 +3,7 @@
 
 #include "src/utilities/DerivedQuantity.H"
 
-namespace amr_wind::derived {
+namespace kynema_sgf::derived {
 struct VorticityMag : public DerivedQty::Register<VorticityMag>
 {
     static constexpr int ncomp = 1;
@@ -155,6 +155,6 @@ private:
     int m_ncomp{0};
 };
 
-} // namespace amr_wind::derived
+} // namespace kynema_sgf::derived
 
 #endif /* DERIVEDQTYDEFS_H */

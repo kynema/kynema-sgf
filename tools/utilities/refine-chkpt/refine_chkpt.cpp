@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 
     using namespace amrex::mpidatatypes;
 
-    amr_wind::io::print_banner(MPI_COMM_WORLD, std::cout);
+    kynema_sgf::io::print_banner(MPI_COMM_WORLD, std::cout);
 
     amrex::Initialize(argc, argv, true, MPI_COMM_WORLD, []() {
         amrex::ParmParse pp("amrex");
@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
 
     {
         BL_PROFILE("refine-chkpt::main");
-        amr_wind::tools::RefineCheckpt obj;
+        kynema_sgf::tools::RefineCheckpt obj;
         obj.run_utility();
     }
 

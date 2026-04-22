@@ -6,7 +6,7 @@
 
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind::udf {
+namespace kynema_sgf::udf {
 
 BurggrafLid::BurggrafLid(const Field& fld)
 {
@@ -14,4 +14,4 @@ BurggrafLid::BurggrafLid(const Field& fld)
     AMREX_ALWAYS_ASSERT(fld.num_comp() == AMREX_SPACEDIM);
 }
 
-} // namespace amr_wind::udf
+} // namespace kynema_sgf::udf

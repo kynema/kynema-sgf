@@ -65,7 +65,7 @@ the syntax of the AMR-Wind command looks like
 
 .. code-block:: console
 
-    amr_wind spinup.inp
+    kynema_sgf spinup.inp
 
 which should follow after an ``srun`` or ``mpiexec`` command (or similar) in a submission script to take advantage of parallelization.
 This particular simulation has about 1 million cells, which means that it is suited run with about 50-80 CPU ranks.

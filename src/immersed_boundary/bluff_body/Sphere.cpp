@@ -2,8 +2,8 @@
 #include "src/immersed_boundary/bluff_body/sphere_ops.H"
 #include "src/immersed_boundary/IBModel.H"
 
-namespace amr_wind::ib {
+namespace kynema_sgf::ib {
 
 template class IBModel<Sphere>;
 
-} // namespace amr_wind::ib
+} // namespace kynema_sgf::ib

@@ -6,7 +6,7 @@
 #include "AMReX_Geometry.H"
 #include "AMReX_MFIter.H"
 
-namespace amr_wind::fvm {
+namespace kynema_sgf::fvm {
 
 /** Divergence operator
  *  \ingroup fvm
@@ -99,6 +99,6 @@ std::unique_ptr<ScratchField> divergence(const FType& phi)
     return divphi;
 }
 
-} // namespace amr_wind::fvm
+} // namespace kynema_sgf::fvm
 
 #endif /* DIVERGENCE_H */

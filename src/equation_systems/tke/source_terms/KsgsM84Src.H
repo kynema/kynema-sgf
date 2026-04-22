@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::tke {
+namespace kynema_sgf::pde::tke {
 
 /** TKE source term based on Moeng 1984 paper
  *  \ingroup tke_src turb_model we_abl
@@ -50,6 +50,6 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_dissip(
     return Ceps * std::sqrt(tke) * tke / tlscale;
 }
 
-} // namespace amr_wind::pde::tke
+} // namespace kynema_sgf::pde::tke
 
 #endif /* KSGSM84SRC_H */

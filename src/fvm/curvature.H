@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::fvm {
+namespace kynema_sgf::fvm {
 
 /** Curvature operator
  *  \ingroup fvm
@@ -157,6 +157,6 @@ std::unique_ptr<ScratchField> curvature(const FType& phi)
     return curphi;
 }
 
-} // namespace amr_wind::fvm
+} // namespace kynema_sgf::fvm
 
 #endif /* CURVATURE_H */

@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 void SimTime::parse_parameters()
 {
@@ -462,4 +462,4 @@ bool SimTime::output_profiling_info() const
         (m_time_index % m_profiling_interval == 0));
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

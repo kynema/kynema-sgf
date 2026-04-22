@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Body Force
  */
@@ -136,9 +136,9 @@ void BodyForce::operator()(
             amrex::IntVect iv(i, j, k);
             const amrex::Real ht = problo[2] + ((iv[2] + 0.5_rt) * dx[2]);
             const amrex::Real fx =
-                amr_wind::interp::linear(force_ht, force_ht_end, force_x, ht);
+                kynema_sgf::interp::linear(force_ht, force_ht_end, force_x, ht);
             const amrex::Real fy =
-                amr_wind::interp::linear(force_ht, force_ht_end, force_y, ht);
+                kynema_sgf::interp::linear(force_ht, force_ht_end, force_y, ht);
             src_term(i, j, k, 0) += fx;
             src_term(i, j, k, 1) += fy;
         });
@@ -151,11 +151,11 @@ void BodyForce::operator()(
         if (!m_utt_file.empty()) {
             // Populate forcing from file if supplied
             forcing[0] =
-                amr_wind::interp::linear(m_time_table, m_fx_table, nph_time);
+                kynema_sgf::interp::linear(m_time_table, m_fx_table, nph_time);
             forcing[1] =
-                amr_wind::interp::linear(m_time_table, m_fy_table, nph_time);
+                kynema_sgf::interp::linear(m_time_table, m_fy_table, nph_time);
             forcing[2] =
-                amr_wind::interp::linear(m_time_table, m_fz_table, nph_time);
+                kynema_sgf::interp::linear(m_time_table, m_fz_table, nph_time);
         }
 
         amrex::Real coeff =
@@ -168,4 +168,4 @@ void BodyForce::operator()(
     }
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

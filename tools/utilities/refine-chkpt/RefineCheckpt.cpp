@@ -1,7 +1,7 @@
 #include "RefineCheckpt.H"
 #include "src/utilities/IOManager.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace tools {
 
 RefineCheckpt::RefineCheckpt() : incflo() {}
@@ -80,4 +80,4 @@ void RefineCheckpt::run_utility()
 }
 
 } // namespace tools
-} // namespace amr_wind
+} // namespace kynema_sgf

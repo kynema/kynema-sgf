@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /** RHS computation operator
  *  \ingroup pdeop
@@ -304,6 +304,6 @@ struct ComputeRHSOp
     Field& density;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* COMPRHSOPS_H */

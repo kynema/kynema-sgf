@@ -12,12 +12,12 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 HurricaneForcing::HurricaneForcing(const CFDSim& sim) : m_mesh(sim.mesh())
 {
 
-    const auto& abl = sim.physics_manager().get<amr_wind::ABL>();
+    const auto& abl = sim.physics_manager().get<kynema_sgf::ABL>();
     abl.register_hurricane_forcing(this);
 
     {
@@ -76,9 +76,9 @@ void HurricaneForcing::operator()(
         const amrex::Real ht = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
 
         const amrex::Real umean =
-            amr_wind::interp::linear(heights, heights_end, vals, ht, 3, 0);
+            kynema_sgf::interp::linear(heights, heights_end, vals, ht, 3, 0);
         const amrex::Real vmean =
-            amr_wind::interp::linear(heights, heights_end, vals, ht, 3, 1);
+            kynema_sgf::interp::linear(heights, heights_end, vals, ht, 3, 1);
 
         // Gradient velocities varying with height
         const amrex::Real V_z = V * (Vzh - ht) / Vzh;
@@ -123,4 +123,4 @@ void HurricaneForcing::mean_velocity_update(const VelPlaneAveraging& vavg)
         vavg.line_average().end(), m_vel_vals.begin());
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

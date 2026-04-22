@@ -3,7 +3,7 @@
 
 #include "src/core/Factory.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 
@@ -65,6 +65,6 @@ public:
     virtual void update_solution() = 0;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* OVERSETMANAGER_H */

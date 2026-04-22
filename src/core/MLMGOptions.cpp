@@ -3,7 +3,7 @@
 #include "hydro_MacProjector.H"
 #include "hydro_NodalProjector.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 MLMGOptions::MLMGOptions(const std::string& prefix) { parse_options(prefix); }
 
@@ -129,4 +129,4 @@ void MLMGOptions::operator()(Hydro::NodalProjector& nodal_proj)
     operator()(nodal_proj.getMLMG());
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

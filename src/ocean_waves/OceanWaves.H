@@ -9,7 +9,7 @@
  *  Ocean Waves class
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class Field;
 
@@ -74,6 +74,6 @@ private:
 };
 
 } // namespace ocean_waves
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* OCEAN_WAVES_H */

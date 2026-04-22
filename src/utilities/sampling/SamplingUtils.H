@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::sampling::sampling_utils {
+namespace kynema_sgf::sampling::sampling_utils {
 
 /** Utility functions available to advanced sampling techniques
  *
@@ -51,6 +51,6 @@ void spherical_cap_truncated_normal(
 std::pair<std::vector<amrex::Real>, std::vector<amrex::Real>>
 truncated_normal_rule(NormalRule rule);
 
-} // namespace amr_wind::sampling::sampling_utils
+} // namespace kynema_sgf::sampling::sampling_utils
 
 #endif /* SAMPLINGUTILS_H */

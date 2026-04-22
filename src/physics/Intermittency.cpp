@@ -3,7 +3,7 @@
 #include "AMReX_ParmParse.H"
 #include "src/utilities/trig_ops.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 Intermittency::Intermittency(const CFDSim& sim)
     : m_intermittency(sim.repo().declare_field(
@@ -26,4 +26,4 @@ void Intermittency::initialize_fields(
     gamma.setVal(m_gamma);
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

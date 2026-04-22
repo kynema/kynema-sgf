@@ -272,7 +272,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'amr_wind.tex', u'AMR-Wind Documentation',
+    (master_doc, 'kynema_sgf.tex', u'AMR-Wind Documentation',
      author, 'manual'),
 ]
 
@@ -329,7 +329,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'amr_wind', u'AMR-Wind Documentation',
+    (master_doc, 'kynema_sgf', u'AMR-Wind Documentation',
      author, 'AMR-Wind', 'One line description of project.',
      'Miscellaneous'),
 ]

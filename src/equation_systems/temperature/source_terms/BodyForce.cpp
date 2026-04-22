@@ -17,7 +17,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::temperature {
+namespace kynema_sgf::pde::temperature {
 
 BodyForce::BodyForce(const CFDSim& sim) : m_time(sim.time()), m_mesh(sim.mesh())
 {
@@ -85,7 +85,7 @@ void BodyForce::operator()(
         amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
             amrex::IntVect iv(i, j, k);
             const amrex::Real ht = problo[2] + ((iv[2] + 0.5_rt) * dx[2]);
-            const amrex::Real ftheta = amr_wind::interp::linear(
+            const amrex::Real ftheta = kynema_sgf::interp::linear(
                 force_ht, force_ht_end, force_theta, ht);
 
             src_term(i, j, k, 0) += ftheta;
@@ -93,4 +93,4 @@ void BodyForce::operator()(
     }
 }
 
-} // namespace amr_wind::pde::temperature
+} // namespace kynema_sgf::pde::temperature

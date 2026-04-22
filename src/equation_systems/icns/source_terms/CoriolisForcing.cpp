@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Coriolis term for planetary rotation
  *
@@ -102,4 +102,4 @@ void CoriolisForcing::operator()(
     });
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

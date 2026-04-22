@@ -3,7 +3,7 @@
 Running AMR-Wind
 =================
 
-To run :program:`amr_wind`, the user must provide a text file containing inputs
+To run :program:`kynema_sgf`, the user must provide a text file containing inputs
 describing the problem and any additional command-line arguments that override
 the parameters in the input file for that particular invocation of the
 executable.
@@ -11,7 +11,7 @@ executable.
 .. code-block:: console
 
    # Parse input parameters from `inputs.abl` but change max_step to 20
-   $ ./amr_wind inputs.abl time.max_step=20
+   $ ./kynema_sgf inputs.abl time.max_step=20
 
 
 See :ref:`input file description <inputs>` for a list of AMR-Wind input flags and proper syntax.

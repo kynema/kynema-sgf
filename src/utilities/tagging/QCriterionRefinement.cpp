@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 QCriterionRefinement::QCriterionRefinement(const CFDSim& sim)
     : m_sim(sim)
@@ -133,4 +133,4 @@ void QCriterionRefinement::operator()(
         });
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

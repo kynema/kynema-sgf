@@ -25,7 +25,7 @@ namespace amr_wind_tests {
 
 namespace {
 amrex::Real get_val_at_height(
-    amr_wind::Field& field,
+    kynema_sgf::Field& field,
     const int lev,
     const int comp,
     const amrex::Real ploz,
@@ -58,7 +58,7 @@ amrex::Real get_val_at_height(
 } // namespace
 
 using ICNSFields =
-    amr_wind::pde::FieldRegOp<amr_wind::pde::ICNS, amr_wind::fvm::Godunov>;
+    kynema_sgf::pde::FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
 
 TEST_F(ABLMeshTest, abl_forcing)
 {
@@ -74,14 +74,14 @@ TEST_F(ABLMeshTest, abl_forcing)
 
     auto& src_term = pde_mgr.icns().fields().src_term;
 
-    amr_wind::pde::icns::ABLForcing abl_forcing(sim());
+    kynema_sgf::pde::icns::ABLForcing abl_forcing(sim());
 
     src_term.setVal(0.0_rt);
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
 
-        abl_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+        abl_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
     });
 
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
@@ -104,7 +104,7 @@ TEST_F(ABLMeshTest, abl_forcing)
             const auto& bx = mfi.tilebox();
             const auto& src_arr = src_term(lev).array(mfi);
 
-            abl_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+            abl_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
         });
 
         // Targets are U = (20.0_rt, 10.0_rt, 0.0_rt) set in initial conditions
@@ -135,14 +135,14 @@ TEST_F(ABLMeshTest, body_force)
 
     auto& src_term = pde_mgr.icns().fields().src_term;
 
-    amr_wind::pde::icns::BodyForce body_force(sim());
+    kynema_sgf::pde::icns::BodyForce body_force(sim());
 
     src_term.setVal(0.0_rt);
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
 
-        body_force(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+        body_force(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
     });
 
     const auto valx = utils::field_max(src_term, 0);
@@ -163,7 +163,7 @@ TEST_F(ABLMeshTest, body_force)
             const auto& bx = mfi.tilebox();
             const auto& src_arr = src_term(lev).array(mfi);
 
-            body_force(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+            body_force(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
         });
 
         const amrex::Array<amrex::Real, AMREX_SPACEDIM> golds{
@@ -201,17 +201,17 @@ TEST_F(ABLMeshTest, geostrophic_forcing)
     auto& density = sim().repo().get_field("density");
     density.setVal(1.0_rt);
 
-    amr_wind::pde::icns::GeostrophicForcing geostrophic_forcing(sim());
+    kynema_sgf::pde::icns::GeostrophicForcing geostrophic_forcing(sim());
     src_term.setVal(0.0_rt);
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
 
-        geostrophic_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+        geostrophic_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
     });
 
     constexpr amrex::Real corfac =
-        2.0_rt * amr_wind::utils::two_pi() / 86164.091_rt * 0.80901699437_rt;
+        2.0_rt * kynema_sgf::utils::two_pi() / 86164.091_rt * 0.80901699437_rt;
     const amrex::Array<amrex::Real, AMREX_SPACEDIM> golds{
         {-corfac * 6.0_rt, corfac * 10.0_rt, 0.0_rt}};
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
@@ -239,13 +239,13 @@ TEST_F(ABLMeshTest, rayleigh_damping)
     auto& density = sim().repo().get_field("density");
     density.setVal(1.0_rt);
 
-    amr_wind::pde::icns::RayleighDamping rayleigh_damping(sim());
+    kynema_sgf::pde::icns::RayleighDamping rayleigh_damping(sim());
     src_term.setVal(0.0_rt);
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
 
-        rayleigh_damping(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+        rayleigh_damping(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
     });
 
     // Domain is from 0 to 1000 in z, with 64 cells
@@ -347,17 +347,17 @@ TEST_F(ABLMeshTest, hurricane_forcing)
     density.setVal(1.0_rt);
 
     // Calculate Hurricane Forcing to the momentum equation
-    amr_wind::pde::icns::HurricaneForcing hurricane_forcing(sim());
+    kynema_sgf::pde::icns::HurricaneForcing hurricane_forcing(sim());
     src_term_icns.setVal(0.0_rt);
     run_algorithm(src_term_icns, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term_icns(lev).array(mfi);
 
-        hurricane_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+        hurricane_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
     });
 
     // Calculate Hurricane Forcing to the temperature equation
-    amr_wind::pde::temperature::HurricaneTempForcing hurricane_temp_forcing(
+    kynema_sgf::pde::temperature::HurricaneTempForcing hurricane_temp_forcing(
         sim());
     src_term_temp.setVal(0.0_rt);
     run_algorithm(src_term_temp, [&](const int lev, const amrex::MFIter& mfi) {
@@ -365,12 +365,12 @@ TEST_F(ABLMeshTest, hurricane_forcing)
         const auto& src_arr = src_term_temp(lev).array(mfi);
 
         hurricane_temp_forcing(
-            lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+            lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
     });
 
     // Test the momentum hurricane forcing
     constexpr amrex::Real corfac =
-        2.0_rt * amr_wind::utils::two_pi() / 86400.0_rt;
+        2.0_rt * kynema_sgf::utils::two_pi() / 86400.0_rt;
     const amrex::Real dz = sim().mesh().Geom(0).CellSizeArray()[2];
     const amrex::Real ratio_top =
         (18000.0_rt - (1000.0_rt - 0.5_rt * dz)) / 18000.0_rt;
@@ -402,9 +402,9 @@ TEST_F(ABLMeshTest, coriolis_const_vel)
     constexpr amrex::Real tol =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     constexpr amrex::Real corfac =
-        2.0_rt * amr_wind::utils::two_pi() / 86164.091_rt;
+        2.0_rt * kynema_sgf::utils::two_pi() / 86164.091_rt;
     // Latitude is set to 45 degrees in the input file so sinphi = cosphi
-    const amrex::Real latfac = std::sin(amr_wind::utils::radians(45.0_rt));
+    const amrex::Real latfac = std::sin(kynema_sgf::utils::radians(45.0_rt));
     // Initialize a random value for the velocity component
     const amrex::Real vel_comp =
         10.0_rt + (5.0_rt * (amrex::Random() - 0.5_rt));
@@ -416,7 +416,7 @@ TEST_F(ABLMeshTest, coriolis_const_vel)
     auto fields = ICNSFields(sim())(sim().time());
     auto& vel = fields.field;
     auto& src_term = fields.src_term;
-    amr_wind::pde::icns::CoriolisForcing coriolis(sim());
+    kynema_sgf::pde::icns::CoriolisForcing coriolis(sim());
 
     // Velocity in x-direction test
     {
@@ -430,7 +430,7 @@ TEST_F(ABLMeshTest, coriolis_const_vel)
             const auto& bx = mfi.tilebox();
             const auto& src_arr = src_term(lev).array(mfi);
 
-            coriolis(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+            coriolis(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
         });
 
         for (int i = 0; i < AMREX_SPACEDIM; ++i) {
@@ -454,7 +454,7 @@ TEST_F(ABLMeshTest, coriolis_const_vel)
             const auto& bx = mfi.tilebox();
             const auto& src_arr = src_term(lev).array(mfi);
 
-            coriolis(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+            coriolis(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
         });
 
         for (int i = 0; i < AMREX_SPACEDIM; ++i) {
@@ -487,9 +487,9 @@ TEST_F(ABLMeshTest, coriolis_height_variation)
     constexpr amrex::Real tol =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     constexpr amrex::Real corfac =
-        2.0_rt * amr_wind::utils::two_pi() / 86164.091_rt;
+        2.0_rt * kynema_sgf::utils::two_pi() / 86164.091_rt;
     // Latitude is set to 45 degrees in the input file so sinphi = cosphi
-    const amrex::Real latfac = std::sin(amr_wind::utils::radians(45.0_rt));
+    const amrex::Real latfac = std::sin(kynema_sgf::utils::radians(45.0_rt));
 
     // Initialize parameters
     populate_parameters();
@@ -498,7 +498,7 @@ TEST_F(ABLMeshTest, coriolis_height_variation)
     auto fields = ICNSFields(sim())(sim().time());
     auto& velocity = fields.field;
     auto& vel_src = fields.src_term;
-    amr_wind::pde::icns::CoriolisForcing coriolis(sim());
+    kynema_sgf::pde::icns::CoriolisForcing coriolis(sim());
 
     velocity.setVal(0.0_rt);
     vel_src.setVal(0.0_rt);
@@ -508,7 +508,7 @@ TEST_F(ABLMeshTest, coriolis_height_variation)
         const auto& vel_arr = velocity(lev).array(mfi);
         const auto& vel_src_arr = vel_src(lev).array(mfi);
         cor_height_init_vel_field(bx, vel_arr);
-        coriolis(lev, mfi, bx, amr_wind::FieldState::New, vel_src_arr);
+        coriolis(lev, mfi, bx, kynema_sgf::FieldState::New, vel_src_arr);
     });
 
     EXPECT_NEAR(utils::field_min(vel_src, 0), 0.0_rt, tol);
@@ -563,12 +563,12 @@ TEST_F(ABLMeshTest, boussinesq)
     sim().create_transport_model();
     sim().init_physics();
 
-    amr_wind::pde::icns::BoussinesqBuoyancy bb(sim());
+    kynema_sgf::pde::icns::BoussinesqBuoyancy bb(sim());
 
     auto& src_term = pde_mgr.icns().fields().src_term;
 
     auto& temperature =
-        sim().repo().get_field("temperature", amr_wind::FieldState::Old);
+        sim().repo().get_field("temperature", kynema_sgf::FieldState::Old);
 
     src_term.setVal(0.0_rt);
 
@@ -578,7 +578,7 @@ TEST_F(ABLMeshTest, boussinesq)
         const auto& src_arr = src_term(lev).array(mfi);
 
         init_abl_temperature_field(kdim, bx, temp_arr);
-        bb(lev, mfi, bx, amr_wind::FieldState::Old, src_arr);
+        bb(lev, mfi, bx, kynema_sgf::FieldState::Old, src_arr);
     });
 
     // should be no forcing in x and y directions
@@ -612,12 +612,12 @@ TEST_F(ABLMeshTest, boussinesq_nph)
     sim().create_transport_model();
     sim().init_physics();
 
-    amr_wind::pde::icns::BoussinesqBuoyancy bb(sim());
+    kynema_sgf::pde::icns::BoussinesqBuoyancy bb(sim());
 
     auto& src_term = pde_mgr.icns().fields().src_term;
 
     auto& temperature =
-        sim().repo().get_field("temperature", amr_wind::FieldState::NPH);
+        sim().repo().get_field("temperature", kynema_sgf::FieldState::NPH);
 
     src_term.setVal(0.0_rt);
 
@@ -627,7 +627,7 @@ TEST_F(ABLMeshTest, boussinesq_nph)
         const auto& src_arr = src_term(lev).array(mfi);
 
         init_abl_temperature_field(kdim, bx, temp_arr);
-        bb(lev, mfi, bx, amr_wind::FieldState::NPH, src_arr);
+        bb(lev, mfi, bx, kynema_sgf::FieldState::NPH, src_arr);
     });
 
     // should be no forcing in x and y directions
@@ -686,9 +686,9 @@ TEST_F(ABLMeshTest, densitybuoyancy)
 
     auto& src_term = pde_mgr.icns().fields().src_term;
     auto& density =
-        sim().repo().get_field("density", amr_wind::FieldState::Old);
+        sim().repo().get_field("density", kynema_sgf::FieldState::Old);
 
-    amr_wind::pde::icns::DensityBuoyancy db(sim());
+    kynema_sgf::pde::icns::DensityBuoyancy db(sim());
 
     density.setVal(1.0_rt);
     src_term.setVal(0.0_rt);
@@ -696,7 +696,7 @@ TEST_F(ABLMeshTest, densitybuoyancy)
     run_algorithm(density, [&](const int lev, const amrex::MFIter& mfi) {
         const auto bx = mfi.validbox();
         const auto& src_arr = src_term(lev).array(mfi);
-        db(lev, mfi, bx, amr_wind::FieldState::Old, src_arr);
+        db(lev, mfi, bx, kynema_sgf::FieldState::Old, src_arr);
     });
 
     // should be no forcing for constant density
@@ -712,7 +712,7 @@ TEST_F(ABLMeshTest, densitybuoyancy)
         const auto& src_arr = src_term(lev).array(mfi);
         const auto& den_arr = density(lev).array(mfi);
         init_density_field(kdim, bx, den_arr);
-        db(lev, mfi, bx, amr_wind::FieldState::Old, src_arr);
+        db(lev, mfi, bx, kynema_sgf::FieldState::Old, src_arr);
     });
 
     // should be no forcing in x and y directions

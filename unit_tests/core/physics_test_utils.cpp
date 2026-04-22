@@ -2,7 +2,7 @@
 
 namespace amr_wind_tests {
 
-PhysicsEx::PhysicsEx(amr_wind::CFDSim& /*unused*/) {}
+PhysicsEx::PhysicsEx(kynema_sgf::CFDSim& /*unused*/) {}
 
 void PhysicsEx::post_init_actions() {}
 void PhysicsEx::post_regrid_actions() {}

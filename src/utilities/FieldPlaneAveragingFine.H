@@ -16,7 +16,7 @@
  *  \ingroup utilities
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Output average of a field on planes normal to a given direction
  *  \ingroup statistics we_abl
@@ -39,7 +39,7 @@ public:
      */
     FPlaneAveragingFine(
         const FType& field_in,
-        const amr_wind::SimTime& time,
+        const kynema_sgf::SimTime& time,
         int axis_in,
         bool compute_deriv = false);
 
@@ -178,6 +178,6 @@ public: // public for GPU
     [[nodiscard]] amrex::Real line_sv_average_interpolated(amrex::Real x) const;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* FieldPlaneAveragingFine_H */

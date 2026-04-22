@@ -5,14 +5,14 @@
 #include "src/transport_models/ConstTransport.H"
 #include "src/transport_models/TwoPhaseTransport.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 #define INSTANTIATE_TURBULENCE_MODEL(Model)                                    \
-    template struct ::amr_wind::turbulence::TurbulenceModel::Register<         \
-        ::amr_wind::turbulence::Model<transport::ConstTransport>>;             \
-    template struct ::amr_wind::turbulence::TurbulenceModel::Register<         \
-        ::amr_wind::turbulence::Model<transport::TwoPhaseTransport>>
+    template struct ::kynema_sgf::turbulence::TurbulenceModel::Register<         \
+        ::kynema_sgf::turbulence::Model<transport::ConstTransport>>;             \
+    template struct ::kynema_sgf::turbulence::TurbulenceModel::Register<         \
+        ::kynema_sgf::turbulence::Model<transport::TwoPhaseTransport>>
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* TURBMODELDEFS_H */

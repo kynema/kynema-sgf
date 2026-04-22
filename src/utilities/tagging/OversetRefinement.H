@@ -3,7 +3,7 @@
 
 #include "src/utilities/tagging/RefinementCriteria.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class OversetRefinement : public RefinementCriteria::Register<OversetRefinement>
 {
@@ -29,6 +29,6 @@ private:
     bool m_tag_hole{false};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* OVERSETREFINEMENT_H */

@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 ABLFieldInit::ABLFieldInit()
 {
@@ -475,4 +475,4 @@ void ABLFieldInit::init_tke(
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

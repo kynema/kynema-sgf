@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Boussinesq buoyancy source term
  *  \ingroup icns_src we_abl
@@ -41,6 +41,6 @@ private:
     //! Transport model
     const transport::TransportModel& m_transport;
 };
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif /* BOUSSINESQBUOYANCY_H */

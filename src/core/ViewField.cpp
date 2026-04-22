@@ -3,7 +3,7 @@
 #include "src/core/ScratchField.H"
 #include "src/core/FieldRepo.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 template <typename T>
 ViewField<T>::ViewField(T& src, const int scomp, const int ncomp)
@@ -19,4 +19,4 @@ ViewField<T>::ViewField(T& src, const int scomp, const int ncomp)
 template class ViewField<Field>;
 template class ViewField<ScratchField>;
 
-} // namespace amr_wind
+} // namespace kynema_sgf

@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 TaylorGreenVortex::TaylorGreenVortex(const CFDSim& sim)
     : m_velocity(sim.repo().get_field("velocity"))
@@ -53,4 +53,4 @@ void TaylorGreenVortex::initialize_fields(
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

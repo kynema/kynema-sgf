@@ -3,7 +3,7 @@
 
 #include "src/utilities/sampling/SamplerBase.H"
 
-namespace amr_wind::sampling {
+namespace kynema_sgf::sampling {
 
 /** Sample data on uniform grids
  *  \ingroup sampling
@@ -83,6 +83,6 @@ private:
     int m_npts{0};
 };
 
-} // namespace amr_wind::sampling
+} // namespace kynema_sgf::sampling
 
 #endif /* VOLUMESAMPLER_H */

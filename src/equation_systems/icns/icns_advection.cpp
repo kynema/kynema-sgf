@@ -14,7 +14,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 namespace {
 
@@ -81,7 +81,7 @@ void MacProjOp::init_projector(const MacProjOp::FaceFabPtrVec& beta)
 {
     // Prepare masking for projection
     if (m_has_overset) {
-        amr_wind::overset_ops::prepare_mask_cell_for_mac(m_repo);
+        kynema_sgf::overset_ops::prepare_mask_cell_for_mac(m_repo);
     }
 
     // Prepare projector
@@ -110,7 +110,7 @@ void MacProjOp::init_projector(const amrex::Real beta)
 {
     // Prepare masking for projection
     if (m_has_overset) {
-        amr_wind::overset_ops::prepare_mask_cell_for_mac(m_repo);
+        kynema_sgf::overset_ops::prepare_mask_cell_for_mac(m_repo);
     }
 
     // Prepare projector
@@ -220,11 +220,11 @@ void MacProjOp::operator()(const FieldState fstate, const amrex::Real dt)
     std::unique_ptr<ScratchField> ref_rho_xf, ref_rho_yf, ref_rho_zf;
     if (m_is_anelastic) {
         ref_rho_xf =
-            m_repo.create_scratch_field(1, 0, amr_wind::FieldLoc::XFACE);
+            m_repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::XFACE);
         ref_rho_yf =
-            m_repo.create_scratch_field(1, 0, amr_wind::FieldLoc::YFACE);
+            m_repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::YFACE);
         ref_rho_zf =
-            m_repo.create_scratch_field(1, 0, amr_wind::FieldLoc::ZFACE);
+            m_repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::ZFACE);
     }
     amrex::Vector<amrex::Array<amrex::MultiFab*, ICNS::ndim>> ref_rho_face(
         m_repo.num_active_levels());
@@ -241,9 +241,9 @@ void MacProjOp::operator()(const FieldState fstate, const amrex::Real dt)
 
         // This will hold density on faces
         std::unique_ptr<ScratchField> rho_xf, rho_yf, rho_zf;
-        rho_xf = m_repo.create_scratch_field(1, 0, amr_wind::FieldLoc::XFACE);
-        rho_yf = m_repo.create_scratch_field(1, 0, amr_wind::FieldLoc::YFACE);
-        rho_zf = m_repo.create_scratch_field(1, 0, amr_wind::FieldLoc::ZFACE);
+        rho_xf = m_repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::XFACE);
+        rho_yf = m_repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::YFACE);
+        rho_zf = m_repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::ZFACE);
         amrex::Vector<amrex::Array<amrex::MultiFab*, ICNS::ndim>> rho_face(
             m_repo.num_active_levels());
 
@@ -334,7 +334,7 @@ void MacProjOp::operator()(const FieldState fstate, const amrex::Real dt)
     if (m_has_overset) {
         // In masked regions, the pressure should not change from what was used
         // when preparing the MAC velocity field; therefore, phi is set to 0
-        auto phif = m_repo.create_scratch_field(1, 1, amr_wind::FieldLoc::CELL);
+        auto phif = m_repo.create_scratch_field(1, 1, kynema_sgf::FieldLoc::CELL);
         for (int lev = 0; lev < m_repo.num_active_levels(); ++lev) {
             (*phif)(lev).setVal(0.);
         }
@@ -365,7 +365,7 @@ void MacProjOp::operator()(const FieldState fstate, const amrex::Real dt)
 
     // Prepare masking for remainder of algorithm
     if (m_has_overset) {
-        amr_wind::overset_ops::revert_mask_cell_after_mac(m_repo);
+        kynema_sgf::overset_ops::revert_mask_cell_after_mac(m_repo);
     }
 
     if (m_mac_proj) {
@@ -374,26 +374,26 @@ void MacProjOp::operator()(const FieldState fstate, const amrex::Real dt)
 }
 
 void MacProjOp::mac_proj_to_uniform_space(
-    const amr_wind::FieldRepo& repo,
-    amr_wind::Field& u_mac,
-    amr_wind::Field& v_mac,
-    amr_wind::Field& w_mac,
+    const kynema_sgf::FieldRepo& repo,
+    kynema_sgf::Field& u_mac,
+    kynema_sgf::Field& v_mac,
+    kynema_sgf::Field& w_mac,
     amrex::Array<amrex::MultiFab*, ICNS::ndim>& rho_face,
     amrex::Real ovst_fac,
     int lev)
 {
     const auto& mesh_fac_xf =
-        repo.get_mesh_mapping_field(amr_wind::FieldLoc::XFACE);
+        repo.get_mesh_mapping_field(kynema_sgf::FieldLoc::XFACE);
     const auto& mesh_fac_yf =
-        repo.get_mesh_mapping_field(amr_wind::FieldLoc::YFACE);
+        repo.get_mesh_mapping_field(kynema_sgf::FieldLoc::YFACE);
     const auto& mesh_fac_zf =
-        repo.get_mesh_mapping_field(amr_wind::FieldLoc::ZFACE);
+        repo.get_mesh_mapping_field(kynema_sgf::FieldLoc::ZFACE);
     const auto& mesh_detJ_xf =
-        repo.get_mesh_mapping_det_j(amr_wind::FieldLoc::XFACE);
+        repo.get_mesh_mapping_det_j(kynema_sgf::FieldLoc::XFACE);
     const auto& mesh_detJ_yf =
-        repo.get_mesh_mapping_det_j(amr_wind::FieldLoc::YFACE);
+        repo.get_mesh_mapping_det_j(kynema_sgf::FieldLoc::YFACE);
     const auto& mesh_detJ_zf =
-        repo.get_mesh_mapping_det_j(amr_wind::FieldLoc::ZFACE);
+        repo.get_mesh_mapping_det_j(kynema_sgf::FieldLoc::ZFACE);
 
     // scale U^mac to accommodate for mesh mapping -> U^bar = J/fac *
     // U^mac beta accounted for mesh mapping = J/fac^2 * 1/rho construct
@@ -453,4 +453,4 @@ void MacProjOp::mac_proj_to_uniform_space(
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde

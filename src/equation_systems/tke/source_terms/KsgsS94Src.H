@@ -3,7 +3,7 @@
 
 #include "src/equation_systems/tke/TKESource.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace pde {
 namespace tke {
 
@@ -28,6 +28,6 @@ public:
 };
 } // namespace tke
 } // namespace pde
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* KSGSS94SRC_H */

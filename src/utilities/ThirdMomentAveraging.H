@@ -6,7 +6,7 @@
 #include "src/core/Field.H"
 #include "src/utilities/FieldPlaneAveraging.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Compute the third moment with three fields
  *  \ingroup statistics
@@ -72,6 +72,6 @@ public: // public for GPU
         const amrex::MultiFab& mfab3);
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* ThirdMomentAveraging_H */

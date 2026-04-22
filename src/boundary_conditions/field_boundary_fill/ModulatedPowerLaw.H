@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Interface for ABL modulated power law
  *  \ingroup we_abl
@@ -49,7 +49,7 @@ public:
 
 private:
     const CFDSim& m_sim;
-    const amr_wind::SimTime& m_time;
+    const kynema_sgf::SimTime& m_time;
     const FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
     Field& m_velocity;
@@ -87,6 +87,6 @@ private:
     amrex::Real m_theta_gauss_var{1.0_rt};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* MODULATEDPOWERLAW_H */

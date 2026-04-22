@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class Field;
 
@@ -52,6 +52,6 @@ struct BurggrafLid
 };
 
 } // namespace udf
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* BURGGRAF_LID_H */

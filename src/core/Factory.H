@@ -8,7 +8,7 @@
 #include "AMReX_Print.H"
 #include "AMReX.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Runtime selection of options based on string keyword lookup
  *  \ingroup core
@@ -160,6 +160,6 @@ template <class T>
 bool Factory<Base, Args...>::Register<T>::registered =
     Factory<Base, Args...>::Register<T>::add_sub_type();
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* FACTORY_H */

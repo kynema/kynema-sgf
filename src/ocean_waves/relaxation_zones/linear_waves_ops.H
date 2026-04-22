@@ -10,13 +10,13 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::ocean_waves::ops {
+namespace kynema_sgf::ocean_waves::ops {
 
 template <>
 struct ReadInputsOp<LinearWaves>
 {
     void operator()(
-        LinearWaves::DataType& data, const ::amr_wind::utils::MultiParser& pp)
+        LinearWaves::DataType& data, const ::kynema_sgf::utils::MultiParser& pp)
     {
         auto& wdata = data.meta();
         auto& info = data.info();
@@ -226,6 +226,6 @@ struct UpdateTargetFieldsOp<LinearWaves>
     }
 };
 
-} // namespace amr_wind::ocean_waves::ops
+} // namespace kynema_sgf::ocean_waves::ops
 
 #endif /* LINEAR_WAVES_OPS_H */

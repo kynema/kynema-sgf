@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::tke {
+namespace kynema_sgf::pde::tke {
 
 KsgsM84Src::KsgsM84Src(const CFDSim& sim)
     : m_turb_lscale(sim.repo().get_field("turb_lscale"))
@@ -98,4 +98,4 @@ void KsgsM84Src::operator()(
     }
 }
 
-} // namespace amr_wind::pde::tke
+} // namespace kynema_sgf::pde::tke

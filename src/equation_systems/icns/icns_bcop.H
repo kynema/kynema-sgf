@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /** BC operations for incompressible Navier-Stokes
  *  \ingroup icns
@@ -70,6 +70,6 @@ struct BCOp<ICNS>
     const SimTime& m_time;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* ICNS_BCOP_H */

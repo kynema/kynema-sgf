@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace amr_wind::fvm {
+namespace kynema_sgf::fvm {
 
 /** Characteristics of the Godnov numerical scheme
  *  \ingroup eqsys
@@ -50,6 +50,6 @@ struct MOL
     static constexpr int num_conv_states = 2;
 };
 
-} // namespace amr_wind::fvm
+} // namespace kynema_sgf::fvm
 
 #endif /* SCHEMETRAITS_H */

@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::averaging {
+namespace kynema_sgf::averaging {
 
 ReynoldsStress::ReynoldsStress(
     CFDSim& sim, const std::string& avgname, const std::string& fname)
@@ -104,4 +104,4 @@ void ReynoldsStress::operator()(
     m_re_stress.fillpatch(time.new_time());
 }
 
-} // namespace amr_wind::averaging
+} // namespace kynema_sgf::averaging

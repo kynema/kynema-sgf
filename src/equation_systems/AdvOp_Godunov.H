@@ -18,7 +18,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /** Godunov advection operator for scalar transport equations
  *  \ingroup pdeop
@@ -111,24 +111,24 @@ struct AdvectionOp<
         // cppcheck-suppress constVariableReference
         auto& conv_term = fields.conv_term;
         const auto& dof_field = fields.field.state(fstate);
-        const auto& dof_nph = fields.field.state(amr_wind::FieldState::NPH);
+        const auto& dof_nph = fields.field.state(kynema_sgf::FieldState::NPH);
 
         auto flux_x =
-            repo.create_scratch_field(PDE::ndim, 0, amr_wind::FieldLoc::XFACE);
+            repo.create_scratch_field(PDE::ndim, 0, kynema_sgf::FieldLoc::XFACE);
         auto flux_y =
-            repo.create_scratch_field(PDE::ndim, 0, amr_wind::FieldLoc::YFACE);
+            repo.create_scratch_field(PDE::ndim, 0, kynema_sgf::FieldLoc::YFACE);
         auto flux_z =
-            repo.create_scratch_field(PDE::ndim, 0, amr_wind::FieldLoc::ZFACE);
+            repo.create_scratch_field(PDE::ndim, 0, kynema_sgf::FieldLoc::ZFACE);
         auto face_x =
-            repo.create_scratch_field(PDE::ndim, 0, amr_wind::FieldLoc::XFACE);
+            repo.create_scratch_field(PDE::ndim, 0, kynema_sgf::FieldLoc::XFACE);
         auto face_y =
-            repo.create_scratch_field(PDE::ndim, 0, amr_wind::FieldLoc::YFACE);
+            repo.create_scratch_field(PDE::ndim, 0, kynema_sgf::FieldLoc::YFACE);
         auto face_z =
-            repo.create_scratch_field(PDE::ndim, 0, amr_wind::FieldLoc::ZFACE);
+            repo.create_scratch_field(PDE::ndim, 0, kynema_sgf::FieldLoc::ZFACE);
 
         // only needed if multiplying by rho below
         const auto& den = density.state(fstate);
-        const auto& den_nph = density.state(amr_wind::FieldState::NPH);
+        const auto& den_nph = density.state(kynema_sgf::FieldState::NPH);
 
         const bool mphase_vof = repo.field_exists("vof");
 
@@ -310,6 +310,6 @@ struct AdvectionOp<
     std::string advection_type{"Godunov"};
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* ADVOP_GODUNOV_H */

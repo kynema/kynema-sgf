@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::turbulence {
+namespace kynema_sgf::turbulence {
 
 namespace turb_base_impl {
 
@@ -161,6 +161,6 @@ protected:
     Field* m_alpha_turb{nullptr};
 };
 
-} // namespace amr_wind::turbulence
+} // namespace kynema_sgf::turbulence
 
 #endif /* TURBMODELBASE_H */

@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator::ops {
+namespace kynema_sgf::actuator::ops {
 
 template <typename SrcTrait>
 struct ReadInputsOp<TurbineKynema, SrcTrait>
@@ -207,6 +207,6 @@ public:
     }
 };
 
-} // namespace amr_wind::actuator::ops
+} // namespace kynema_sgf::actuator::ops
 
 #endif /* TURBINE_KYNEMA_OPS_H */

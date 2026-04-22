@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Apply Rayleigh damping as a source terms
  * \ingroup icns_src
@@ -53,6 +53,6 @@ private:
     amrex::Vector<int> m_fcoord{1, 1, 1};
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif

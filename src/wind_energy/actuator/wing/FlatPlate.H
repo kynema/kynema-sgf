@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 struct FlatPlateData : public WingBaseData
 {
@@ -27,6 +27,6 @@ struct FlatPlate : public WingType
     static std::string identifier() { return "FlatPlate"; }
 };
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 #endif /* FLATPLATE_H */

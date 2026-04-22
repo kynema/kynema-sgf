@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::tke {
+namespace kynema_sgf::pde::tke {
 
 KwSSTSrc::KwSSTSrc(const CFDSim& sim)
     : m_shear_prod(sim.repo().get_field("shear_prod"))
@@ -35,4 +35,4 @@ void KwSSTSrc::operator()(
     });
 }
 
-} // namespace amr_wind::pde::tke
+} // namespace kynema_sgf::pde::tke

@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Gravity Forcing term
  *  \ingroup icns_src
@@ -42,6 +42,6 @@ private:
     amrex::Real m_rho0_const{1.0_rt};
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif /* GravityForcing_H */

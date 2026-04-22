@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 ABLFieldInitFile::ABLFieldInitFile()
 {
@@ -127,4 +127,4 @@ bool ABLFieldInitFile::operator()(
 #endif
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

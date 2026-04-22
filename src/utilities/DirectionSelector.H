@@ -99,7 +99,7 @@ parallel_box(const amrex::Box& bx, const amrex::IntVect& iv)
     return lbx;
 }
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE int
 direction_selector(const int i, const int j, const int k, const int dir)
@@ -107,5 +107,5 @@ direction_selector(const int i, const int j, const int k, const int dir)
     return (dir == 0) ? i : (dir == 1) ? j : k;
 }
 
-} /* namespace amr_wind */
+} /* namespace kynema_sgf */
 #endif /* DirectionSelector_H */

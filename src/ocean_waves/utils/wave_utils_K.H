@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::ocean_waves::utils {
+namespace kynema_sgf::ocean_waves::utils {
 
 using WaveVec = amrex::GpuArray<amrex::Real, 4>;
 
@@ -138,6 +138,6 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE WaveVec harmonize_profiles_2d(
     return profile_init;
 }
 
-} // namespace amr_wind::ocean_waves::utils
+} // namespace kynema_sgf::ocean_waves::utils
 
 #endif

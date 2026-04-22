@@ -1,7 +1,7 @@
 #ifndef PDETRAITS_H
 #define PDETRAITS_H
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /** Characteristics of a vector transport equation
  *  \ingroup eqsys
@@ -54,6 +54,6 @@ struct ScalarTransport
     // static constexpr bool need_nph_state = true;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* PDETRAITS_H */

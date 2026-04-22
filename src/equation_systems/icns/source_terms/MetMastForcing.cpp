@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 MetMastForcing::MetMastForcing(const CFDSim& sim)
     : m_time(sim.time())
@@ -154,4 +154,4 @@ void MetMastForcing::operator()(
     }
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

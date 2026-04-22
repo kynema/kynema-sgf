@@ -9,7 +9,7 @@
 
 #include "AMReX_MultiFabUtil.H"
 
-namespace amr_wind::ib {
+namespace kynema_sgf::ib {
 namespace bluff_body {
 
 /** Parse common data for modeling non-blade bluff bodies via an immersed
@@ -18,7 +18,7 @@ namespace bluff_body {
 void read_inputs(
     BluffBodyBaseData& /*wdata*/,
     IBInfo& /*unused*/,
-    const ::amr_wind::utils::MultiParser& /*pp*/);
+    const ::kynema_sgf::utils::MultiParser& /*pp*/);
 
 /** Initialize core data structures when modeling the IB geometry
  */
@@ -109,7 +109,7 @@ public:
     explicit ProcessOutputsOp(typename GeomTrait::DataType& data) : m_data(data)
     {}
 
-    void read_io_options(const ::amr_wind::utils::MultiParser& pp)
+    void read_io_options(const ::kynema_sgf::utils::MultiParser& pp)
     {
         pp.query("output_frequency", m_out_freq);
     }
@@ -136,6 +136,6 @@ public:
 
 } // namespace ops
 
-} // namespace amr_wind::ib
+} // namespace kynema_sgf::ib
 
 #endif /* BLUFF_BODY_OPS_H */

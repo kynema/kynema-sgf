@@ -4,7 +4,7 @@
 
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Boussinesq buoyancy source term for ABL simulations
  *
@@ -50,4 +50,4 @@ void BoussinesqBuoyancy::operator()(
     });
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

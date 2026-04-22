@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator::ops {
+namespace kynema_sgf::actuator::ops {
 
 /**
  * \brief  A collection of spreading functions
@@ -50,7 +50,7 @@ public:
     {
         const auto& bx = mfi.tilebox();
 
-        const auto bxa = amr_wind::utils::realbox_to_box(
+        const auto bxa = kynema_sgf::utils::realbox_to_box(
             actObj.m_data.info().bound_box, geom);
         const auto& bxi = bx & bxa;
         if (bxi.isEmpty()) {
@@ -69,7 +69,7 @@ public:
         const auto* force = actObj.m_force.data();
         const int npts = data.num_force_pts;
         const int nForceTheta = data.num_force_theta_pts;
-        const auto dTheta = ::amr_wind::utils::two_pi() / nForceTheta;
+        const auto dTheta = ::kynema_sgf::utils::two_pi() / nForceTheta;
 
         amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
             const vs::Vector cc{
@@ -85,7 +85,7 @@ public:
 
                 for (int it = 0; it < nForceTheta; ++it) {
                     const amrex::Real angle =
-                        ::amr_wind::utils::degrees(it * dTheta);
+                        ::kynema_sgf::utils::degrees(it * dTheta);
                     const auto rotMatrix = vs::quaternion(m_normal, angle);
                     const auto diskPoint = pLoc & rotMatrix;
                     const auto distance = diskPoint - cc;
@@ -112,7 +112,7 @@ public:
     {
         const auto& bx = mfi.tilebox();
 
-        const auto bxa = amr_wind::utils::realbox_to_box(
+        const auto bxa = kynema_sgf::utils::realbox_to_box(
             actObj.m_data.info().bound_box, geom);
         const auto& bxi = bx & bxa;
         if (bxi.isEmpty()) {
@@ -152,7 +152,7 @@ public:
                 const amrex::Real weight_R =
                     utils::linear_basis_1d(dist_on_disk.x(), dR);
                 const amrex::Real weight_T =
-                    1.0_rt / (::amr_wind::utils::two_pi() * R);
+                    1.0_rt / (::kynema_sgf::utils::two_pi() * R);
                 const amrex::Real weight_N =
                     utils::gaussian1d(dist_on_disk.z(), epsilon);
                 const auto projection_weight = weight_R * weight_T * weight_N;
@@ -175,7 +175,7 @@ public:
     {
         const auto& bx = mfi.tilebox();
 
-        const auto bxa = amr_wind::utils::realbox_to_box(
+        const auto bxa = kynema_sgf::utils::realbox_to_box(
             actObj.m_data.info().bound_box, geom);
         const auto& bxi = bx & bxa;
         if (bxi.isEmpty()) {
@@ -190,7 +190,7 @@ public:
 
         const amrex::Real dR = data.dr;
         const amrex::Real dTheta =
-            ::amr_wind::utils::two_pi() / data.num_vel_pts_t;
+            ::kynema_sgf::utils::two_pi() / data.num_vel_pts_t;
         const amrex::Real epsilon = data.epsilon;
         const vs::Vector m_normal(data.normal_vec);
         const vs::Vector m_origin(data.center);
@@ -252,5 +252,5 @@ public:
         }
     }
 };
-} // namespace amr_wind::actuator::ops
+} // namespace kynema_sgf::actuator::ops
 #endif /* DISK_SPREADING_H */

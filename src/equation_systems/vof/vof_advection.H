@@ -6,7 +6,7 @@
 #include "src/equation_systems/vof/SplitAdvection.H"
 #include "src/core/SimTime.H"
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /** Godunov scheme for VOF
  *  \ingroup vof
@@ -57,10 +57,10 @@ struct AdvectionOp<VOF, fvm::Godunov>
         auto& aa_z = repo.get_field("advalpha_z");
 
         // Old and new states
-        auto& dof_old = fields.field.state(amr_wind::FieldState::Old);
+        auto& dof_old = fields.field.state(kynema_sgf::FieldState::Old);
         auto& dof_new = fields.field;
         // Working state of vof is nph, to keep others untouched during step
-        auto& dof_field = fields.field.state(amr_wind::FieldState::NPH);
+        auto& dof_field = fields.field.state(kynema_sgf::FieldState::NPH);
 
         // Initialize as old state values
         for (int lev = 0; lev < repo.num_active_levels(); ++lev) {
@@ -75,14 +75,14 @@ struct AdvectionOp<VOF, fvm::Godunov>
         //
 
         auto flux_x =
-            repo.create_scratch_field(1, 0, amr_wind::FieldLoc::XFACE);
+            repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::XFACE);
         auto flux_y =
-            repo.create_scratch_field(1, 0, amr_wind::FieldLoc::YFACE);
+            repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::YFACE);
         auto flux_z =
-            repo.create_scratch_field(1, 0, amr_wind::FieldLoc::ZFACE);
+            repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::ZFACE);
 
         // Scratch field for fluxC
-        auto fluxC = repo.create_scratch_field(1, 0, amr_wind::FieldLoc::CELL);
+        auto fluxC = repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::CELL);
 
         // Define the sweep time
         isweep += 1;
@@ -124,7 +124,7 @@ struct AdvectionOp<VOF, fvm::Godunov>
         // Replace masked cells using overset
         if (repo.int_field_exists("iblank_cell") && m_replace_mask) {
             auto& f_iblank = repo.get_int_field("iblank_cell");
-            amr_wind::multiphase::replace_masked_vof(
+            kynema_sgf::multiphase::replace_masked_vof(
                 nlevels, f_iblank, dof_field, dof_new);
         }
 
@@ -147,5 +147,5 @@ struct AdvectionOp<VOF, fvm::Godunov>
     // Lagrangian transport is deprecated, only Eulerian is supported
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 #endif

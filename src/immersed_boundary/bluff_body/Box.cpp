@@ -5,8 +5,8 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::ib {
+namespace kynema_sgf::ib {
 
 template class IBModel<Box>;
 
-} // namespace amr_wind::ib
+} // namespace kynema_sgf::ib

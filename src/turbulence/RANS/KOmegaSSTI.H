@@ -10,7 +10,7 @@
 
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind::turbulence {
+namespace kynema_sgf::turbulence {
 
 template <typename Transport>
 // cppcheck-suppress uninitMemberVar
@@ -44,6 +44,6 @@ KOmegaSST<Transport>::KOmegaSST(CFDSim& sim)
 template <typename Transport>
 KOmegaSST<Transport>::~KOmegaSST() = default;
 
-} // namespace amr_wind::turbulence
+} // namespace kynema_sgf::turbulence
 
 #endif /* KOMEGASSTI_H */

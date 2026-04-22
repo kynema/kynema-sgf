@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::forestdrag {
+namespace kynema_sgf::forestdrag {
 
 struct Forest
 {
@@ -32,7 +32,7 @@ struct Forest
             const amrex::Real captured_height_forest = m_height_forest;
             const amrex::Real treeZm = m_laimax_forest * captured_height_forest;
             const int n = 100;
-            const amrex::Real int_0_fh = amr_wind::utils::trapz(
+            const amrex::Real int_0_fh = kynema_sgf::utils::trapz(
                 0, captured_height_forest - constants::TIGHT_TOL, n,
                 [=](const amrex::Real x) {
                     const amrex::Real ratio =
@@ -120,6 +120,6 @@ private:
     Field& m_forest_id;
     std::string m_forest_file{"forest.amrwind"};
 };
-} // namespace amr_wind::forestdrag
+} // namespace kynema_sgf::forestdrag
 
 #endif

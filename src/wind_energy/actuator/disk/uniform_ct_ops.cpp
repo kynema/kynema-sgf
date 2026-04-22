@@ -5,7 +5,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator::ops::uniformct {
+namespace kynema_sgf::actuator::ops::uniformct {
 
 void check_for_removed_syntax(
     const utils::ActParser& pp, std::ostringstream& stream)
@@ -86,4 +86,4 @@ void update_disk_points(UniformCt::DataType& data)
     base::compute_disk_points(
         meta, grid.vel_pos, nVec, meta.num_vel_pts / 2, 0);
 }
-} // namespace amr_wind::actuator::ops::uniformct
+} // namespace kynema_sgf::actuator::ops::uniformct

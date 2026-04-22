@@ -19,14 +19,14 @@ namespace amr_wind_tests {
 
 namespace {
 
-void init_field(amr_wind::Field& fld)
+void init_field(kynema_sgf::Field& fld)
 {
     const auto& mesh = fld.repo().mesh();
     const int nlevels = fld.repo().num_active_levels();
     const int ncomp = fld.num_comp();
 
     amrex::Real offset = 0.0_rt;
-    if (fld.field_location() == amr_wind::FieldLoc::CELL) {
+    if (fld.field_location() == kynema_sgf::FieldLoc::CELL) {
         offset = 0.5_rt;
     }
 
@@ -47,7 +47,7 @@ void init_field(amr_wind::Field& fld)
     amrex::Gpu::streamSynchronize();
 }
 
-void init_int_field(amr_wind::IntField& fld)
+void init_int_field(kynema_sgf::IntField& fld)
 {
     const int nlevels = fld.repo().num_active_levels();
     const int ncomp = fld.num_comp();
@@ -75,11 +75,11 @@ void write_probe_sampler_file(const std::string& fname)
     os << "100.0\t8.0\t5.0\n";
 }
 
-class SamplingImpl : public amr_wind::sampling::Sampling
+class SamplingImpl : public kynema_sgf::sampling::Sampling
 {
 public:
-    SamplingImpl(amr_wind::CFDSim& sim, const std::string& label)
-        : amr_wind::sampling::Sampling(sim, label)
+    SamplingImpl(kynema_sgf::CFDSim& sim, const std::string& label)
+        : kynema_sgf::sampling::Sampling(sim, label)
     {}
 
     bool write_flag{false};
@@ -127,10 +127,10 @@ protected:
 namespace {
 
 void test_scontainer_impl(
-    amr_wind::sampling::SamplingContainer::ParticleVector& pvec, const int npts)
+    kynema_sgf::sampling::SamplingContainer::ParticleVector& pvec, const int npts)
 {
-    using IIx = amr_wind::sampling::IIx;
-    using PType = amr_wind::sampling::SamplingContainer::ParticleType;
+    using IIx = kynema_sgf::sampling::IIx;
+    using PType = kynema_sgf::sampling::SamplingContainer::ParticleType;
     // Create a line probe
     amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> begin{
         {66.0_rt, 66.0_rt, 1.0_rt}};
@@ -168,11 +168,11 @@ TEST_F(SamplingTest, scontainer)
         GTEST_SKIP();
     }
 
-    using ParIter = amr_wind::sampling::SamplingContainer::ParIterType;
+    using ParIter = kynema_sgf::sampling::SamplingContainer::ParIterType;
     const int ncomp = 5;
     initialize_mesh();
 
-    amr_wind::sampling::SamplingContainer sc(mesh());
+    kynema_sgf::sampling::SamplingContainer sc(mesh());
     // Set up runtime components and prime the particle container
     sc.setup_container(ncomp);
 
@@ -313,9 +313,9 @@ TEST_F(SamplingTest, probe_sampler)
             amrex::Vector<amrex::Real>{0.2_rt, 0.5_rt, 1.0_rt});
     }
 
-    amr_wind::sampling::ProbeSampler cloud(sim());
+    kynema_sgf::sampling::ProbeSampler cloud(sim());
     cloud.initialize("cloud");
-    amr_wind::sampling::SampleLocType sample_locs;
+    kynema_sgf::sampling::SampleLocType sample_locs;
     cloud.sampling_locations(sample_locs);
 
     ASSERT_EQ(sample_locs.locations().size(), 3 * 2);
@@ -361,9 +361,9 @@ TEST_F(SamplingTest, plane_sampler)
             amrex::Vector<amrex::Real>{1.0_rt, 0.0_rt, 0.0_rt});
     }
 
-    amr_wind::sampling::PlaneSampler plane(sim());
+    kynema_sgf::sampling::PlaneSampler plane(sim());
     plane.initialize("plane");
-    amr_wind::sampling::SampleLocType sample_locs;
+    kynema_sgf::sampling::SampleLocType sample_locs;
     plane.sampling_locations(sample_locs);
 
     ASSERT_EQ(sample_locs.locations().size(), 3 * 3 * 2);
@@ -377,9 +377,9 @@ TEST_F(SamplingTest, volume_sampler)
     pp.addarr("lo", amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 0.0_rt});
     pp.addarr("num_points", amrex::Vector<int>{3, 5, 5});
 
-    amr_wind::sampling::VolumeSampler volume(sim());
+    kynema_sgf::sampling::VolumeSampler volume(sim());
     volume.initialize("volume");
-    amr_wind::sampling::SampleLocType sample_locs;
+    kynema_sgf::sampling::SampleLocType sample_locs;
     volume.sampling_locations(sample_locs);
 
     ASSERT_EQ(sample_locs.locations().size(), 3 * 5 * 5);
@@ -410,9 +410,9 @@ TEST_F(SamplingTest, spinner_sampler)
     pp.add("fixed_roll", 0);
     pp.add("fixed_tilt", 0);
 
-    amr_wind::sampling::DTUSpinnerSampler spinner(sim());
+    kynema_sgf::sampling::DTUSpinnerSampler spinner(sim());
     spinner.initialize("spinner");
-    amr_wind::sampling::SampleLocType sample_locs;
+    kynema_sgf::sampling::SampleLocType sample_locs;
     spinner.sampling_locations(sample_locs);
 
     ASSERT_EQ(sample_locs.locations().size(), 21600);
@@ -445,9 +445,9 @@ TEST_F(SamplingTest, radar_sampler)
         amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 1.0_rt});
     pp.add("debug_print", false);
 
-    amr_wind::sampling::RadarSampler radar(sim());
+    kynema_sgf::sampling::RadarSampler radar(sim());
     radar.initialize("radar");
-    amr_wind::sampling::SampleLocType sample_locs;
+    kynema_sgf::sampling::SampleLocType sample_locs;
     radar.sampling_locations(sample_locs);
 
     ASSERT_EQ(sample_locs.locations().size(), 193536);
@@ -455,7 +455,7 @@ TEST_F(SamplingTest, radar_sampler)
 
 TEST_F(SamplingTest, sampling_utils)
 {
-    namespace vs = amr_wind::vs;
+    namespace vs = kynema_sgf::vs;
     amrex::Real toler = std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt;
     vs::Vector unitx{1.0_rt, 0.0_rt, 0.0_rt};
     vs::Vector unity{0.0_rt, 1.0_rt, 0.0_rt};
@@ -466,17 +466,17 @@ TEST_F(SamplingTest, sampling_utils)
     vs::Vector result;
     vs::Vector angles{0.0_rt, 180.0_rt, 0.0_rt};
 
-    result = amr_wind::sampling::sampling_utils::reflect(unity, ffn);
+    result = kynema_sgf::sampling::sampling_utils::reflect(unity, ffn);
     EXPECT_NEAR(result[0], ffnr[0], toler);
     EXPECT_NEAR(result[1], ffnr[1], toler);
     EXPECT_NEAR(result[2], ffnr[2], toler);
 
-    result = amr_wind::sampling::sampling_utils::rotation(angles, unitx);
+    result = kynema_sgf::sampling::sampling_utils::rotation(angles, unitx);
     EXPECT_NEAR(result[0], nunitx[0], toler);
     EXPECT_NEAR(result[1], nunitx[1], toler);
     EXPECT_NEAR(result[2], nunitx[2], toler);
 
-    result = amr_wind::sampling::sampling_utils::rotate_euler_vec(
+    result = kynema_sgf::sampling::sampling_utils::rotate_euler_vec(
         unity, -90.0_rt, unitx);
     EXPECT_NEAR(result[0], unitz[0], toler);
     EXPECT_NEAR(result[1], unitz[1], toler);
@@ -486,8 +486,8 @@ TEST_F(SamplingTest, sampling_utils)
 TEST_F(SamplingTest, quadrature)
 {
     amrex::Real toler = std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
-    namespace vs = amr_wind::vs;
-    namespace su = amr_wind::sampling::sampling_utils;
+    namespace vs = kynema_sgf::vs;
+    namespace su = kynema_sgf::sampling::sampling_utils;
     int ntheta = 5;
     amrex::Real gammav = 0.25_rt * std::numbers::pi_v<amrex::Real> / 180.0_rt;
     std::vector<amrex::Real> weights = {

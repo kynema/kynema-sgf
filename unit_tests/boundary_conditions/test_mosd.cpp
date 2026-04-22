@@ -30,7 +30,7 @@ protected:
 TEST_F(MOSDTest, test_mosd)
 {
     populate_parameters();
-    amr_wind::MOSD md;
+    kynema_sgf::MOSD md;
 
     md.amplitude = 0.05_rt;
     md.wavenumber = 4;

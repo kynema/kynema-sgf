@@ -9,7 +9,7 @@
 #include "AMReX_BoxArray.H"
 #include "AMReX_DistributionMapping.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 class Field;
@@ -167,6 +167,6 @@ private:
     int m_nfiles{256};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* IOMANAGER_H */

@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 namespace disk {
 // refactor these when we add more disk types later
 void prepare_netcdf_file(
@@ -129,7 +129,7 @@ AMREX_INLINE void
 set_thrust_coefficient(DiskBaseData& data, const amrex::Real& uInfSqr)
 {
     const amrex::Real uInfMag = std::sqrt(uInfSqr);
-    data.current_ct = ::amr_wind::interp::linear(
+    data.current_ct = ::kynema_sgf::interp::linear(
         data.table_velocity, data.thrust_coeff, uInfMag);
 }
 
@@ -177,6 +177,6 @@ struct UpdatePosOp<
     void operator()(typename ActTrait::DataType& /*data*/) {}
 };
 } // namespace ops
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 #endif /* DISK_OPS_H */

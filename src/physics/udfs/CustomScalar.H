@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class Field;
 
@@ -57,6 +57,6 @@ struct CustomScalar
 };
 
 } // namespace udf
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* CUSTOM_SCALAR_H */

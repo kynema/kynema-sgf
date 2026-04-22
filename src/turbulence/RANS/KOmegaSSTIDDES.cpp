@@ -14,7 +14,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace turbulence {
 
 template <typename Transport>
@@ -344,4 +344,4 @@ void KOmegaSSTIDDES<Transport>::update_turbulent_viscosity(
 
 INSTANTIATE_TURBULENCE_MODEL(KOmegaSSTIDDES);
 
-} // namespace amr_wind
+} // namespace kynema_sgf

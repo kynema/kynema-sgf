@@ -17,11 +17,11 @@ using namespace amrex::literals;
  * \ingroup we_abl
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 struct ShearStressConstant
 {
-    explicit ShearStressConstant(const amr_wind::MOData& mo)
+    explicit ShearStressConstant(const kynema_sgf::MOData& mo)
         : utau2(mo.utau * mo.utau)
         , u_mean(mo.vel_mean[0])
         , v_mean(mo.vel_mean[1])
@@ -60,7 +60,7 @@ struct ShearStressConstant
 
 struct ShearStressLocal
 {
-    explicit ShearStressLocal(const amr_wind::MOData& mo)
+    explicit ShearStressLocal(const kynema_sgf::MOData& mo)
         : utau2(mo.utau * mo.utau)
         , theta_surface(mo.surf_temp)
         , term1(mo.utau * mo.kappa / mo.phi_h())
@@ -92,7 +92,7 @@ struct ShearStressLocal
 
 struct ShearStressSchumann
 {
-    explicit ShearStressSchumann(const amr_wind::MOData& mo)
+    explicit ShearStressSchumann(const kynema_sgf::MOData& mo)
         : utau2(mo.utau * mo.utau)
         , wspd_mean(mo.vmag_mean)
         , theta_surface(mo.surf_temp)
@@ -125,7 +125,7 @@ struct ShearStressSchumann
 
 struct ShearStressMoeng
 {
-    explicit ShearStressMoeng(const amr_wind::MOData& mo)
+    explicit ShearStressMoeng(const kynema_sgf::MOData& mo)
         : utau2(mo.utau * mo.utau)
         , u_mean(mo.vel_mean[0])
         , v_mean(mo.vel_mean[1])
@@ -168,7 +168,7 @@ struct ShearStressMoeng
 
 struct ShearStressDonelan
 {
-    explicit ShearStressDonelan(const amr_wind::MOData& mo)
+    explicit ShearStressDonelan(const kynema_sgf::MOData& mo)
         : wspd_mean(mo.vmag_mean)
         , theta_mean(mo.theta_mean)
         , theta_surface(mo.surf_temp)
@@ -213,10 +213,10 @@ struct ShearStressDonelan
     {
         amrex::Real flux = 0.0_rt;
         switch (alg_type) {
-        case amr_wind::MOData::ThetaCalcType::HEAT_FLUX:
+        case kynema_sgf::MOData::ThetaCalcType::HEAT_FLUX:
             flux = temp_flux_surface;
             break;
-        case amr_wind::MOData::ThetaCalcType::SURFACE_TEMPERATURE:
+        case kynema_sgf::MOData::ThetaCalcType::SURFACE_TEMPERATURE:
             flux = 0.0012_rt * wspd_mean * (theta_surface - theta_mean);
             break;
         }
@@ -227,9 +227,9 @@ struct ShearStressDonelan
     amrex::Real theta_mean;
     amrex::Real theta_surface;
     amrex::Real temp_flux_surface;
-    amr_wind::MOData::ThetaCalcType alg_type;
+    kynema_sgf::MOData::ThetaCalcType alg_type;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* ShearStress_H */

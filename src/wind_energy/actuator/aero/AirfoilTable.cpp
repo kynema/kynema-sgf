@@ -3,7 +3,7 @@
 #include <fstream>
 #include <algorithm>
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 AirfoilTable::AirfoilTable(const int num_entries)
     : m_aoa(num_entries), m_polar(num_entries)
@@ -14,7 +14,7 @@ AirfoilTable::~AirfoilTable() = default;
 void AirfoilTable::operator()(
     const amrex::Real aoa, amrex::Real& cl, amrex::Real& cd) const
 {
-    namespace interp = ::amr_wind::interp;
+    namespace interp = ::kynema_sgf::interp;
     vs::Vector polar = interp::linear(m_aoa, m_polar, aoa);
     cl = polar.x();
     cd = polar.y();
@@ -26,7 +26,7 @@ void AirfoilTable::operator()(
     amrex::Real& cd,
     amrex::Real& cm) const
 {
-    namespace interp = ::amr_wind::interp;
+    namespace interp = ::kynema_sgf::interp;
     vs::Vector polar = interp::linear(m_aoa, m_polar, aoa);
     cl = polar.x();
     cd = polar.y();
@@ -36,7 +36,7 @@ void AirfoilTable::operator()(
 void ThinAirfoil::operator()(
     const amrex::Real aoa, amrex::Real& cl, amrex::Real& cd) const
 {
-    cl = ::amr_wind::utils::two_pi() * aoa;
+    cl = ::kynema_sgf::utils::two_pi() * aoa;
     cd = m_cd_factor * std::sin(aoa);
 }
 
@@ -86,4 +86,4 @@ AirfoilLoader::load_airfoil(const std::string& af_file, const std::string& type)
     return af;
 }
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator

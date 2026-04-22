@@ -58,7 +58,7 @@ void initialize_volume_fractions(
     });
 }
 
-void init_vof(amr_wind::Field& vof, const int dir)
+void init_vof(kynema_sgf::Field& vof, const int dir)
 {
     run_algorithm(vof, [&](const int lev, const amrex::MFIter& mfi) {
         auto vof_arr = vof(lev).array(mfi);
@@ -90,7 +90,7 @@ void initialize_volume_fractions_horizontal(
     });
 }
 
-void init_vof_h(amr_wind::Field& vof, const amrex::Real vof_val, const int dir)
+void init_vof_h(kynema_sgf::Field& vof, const amrex::Real vof_val, const int dir)
 {
     run_algorithm(vof, [&](const int lev, const amrex::MFIter& mfi) {
         auto vof_arr = vof(lev).array(mfi);
@@ -106,14 +106,14 @@ void initialize_volume_fractions(
         vof_arr(i, j, k) =
             (0.13_rt * (static_cast<amrex::Real>(i) - 1.5_rt)) +
             (0.04_rt *
-             amr_wind::utils::powi(static_cast<amrex::Real>(j) - 1.0_rt, 2)) +
+             kynema_sgf::utils::powi(static_cast<amrex::Real>(j) - 1.0_rt, 2)) +
             (0.01_rt *
-             amr_wind::utils::powi(static_cast<amrex::Real>(k) - 2.0_rt, 3)) +
+             kynema_sgf::utils::powi(static_cast<amrex::Real>(k) - 2.0_rt, 3)) +
             0.5_rt;
     });
 }
 
-void init_vof(amr_wind::Field& vof)
+void init_vof(kynema_sgf::Field& vof)
 {
     run_algorithm(vof, [&](const int lev, const amrex::MFIter& mfi) {
         auto vof_arr = vof(lev).array(mfi);
@@ -137,7 +137,7 @@ void initialize_iblank_distribution(
     });
 }
 
-void init_iblank(amr_wind::IntField& iblank, const int dir)
+void init_iblank(kynema_sgf::IntField& iblank, const int dir)
 {
     run_algorithm(iblank, [&](const int lev, const amrex::MFIter& mfi) {
         auto iblk_arr = iblank(lev).array(mfi);
@@ -189,7 +189,7 @@ void initialize_volume_fractions_iblank(
 }
 
 void init_vof_iblank(
-    amr_wind::Field& vof, amr_wind::IntField& iblank, const int dir)
+    kynema_sgf::Field& vof, kynema_sgf::IntField& iblank, const int dir)
 {
     run_algorithm(vof, [&](const int lev, const amrex::MFIter& mfi) {
         auto vof_arr = vof(lev).array(mfi);
@@ -199,7 +199,7 @@ void init_vof_iblank(
     });
 }
 
-amrex::Real normal_vector_test_impl(amr_wind::Field& vof, const int dir)
+amrex::Real normal_vector_test_impl(kynema_sgf::Field& vof, const int dir)
 {
     amrex::Real error_total = 0.0_rt;
 
@@ -215,7 +215,7 @@ amrex::Real normal_vector_test_impl(amr_wind::Field& vof, const int dir)
 
                 amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     amrex::Real mx, my, mz;
-                    amr_wind::multiphase::mixed_youngs_central_normal(
+                    kynema_sgf::multiphase::mixed_youngs_central_normal(
                         i, j, k, vof_arr, mx, my, mz);
 
                     int ii = (dir != 0 ? i : 0);
@@ -237,7 +237,7 @@ amrex::Real normal_vector_test_impl(amr_wind::Field& vof, const int dir)
 }
 
 amrex::Real normal_vector_neumann_test_impl(
-    amr_wind::Field& vof, amr_wind::IntField& iblk_fld)
+    kynema_sgf::Field& vof, kynema_sgf::IntField& iblk_fld)
 {
     amrex::Real error_total = 0.0_rt;
 
@@ -262,11 +262,11 @@ amrex::Real normal_vector_neumann_test_impl(
                     jbdy = (iblank(i, j, k) != iblank(i, j + 1, k)) ? +1 : jbdy;
                     kbdy = (iblank(i, j, k) != iblank(i, j, k + 1)) ? +1 : kbdy;
                     amrex::Real mxn, myn, mzn;
-                    amr_wind::multiphase::
+                    kynema_sgf::multiphase::
                         youngs_finite_difference_normal_neumann(
                             i, j, k, ibdy, jbdy, kbdy, vof_arr, mxn, myn, mzn);
                     amrex::Real mx, my, mz;
-                    amr_wind::multiphase::youngs_finite_difference_normal(
+                    kynema_sgf::multiphase::youngs_finite_difference_normal(
                         i, j, k, vof_arr, mx, my, mz);
 
                     // Use L1 norm, check against non-neumann implementation
@@ -300,7 +300,7 @@ amrex::Real normal_vector_neumann_test_impl(
 }
 
 amrex::Real normal_vector_neumann_test_impl(
-    amr_wind::Field& vof, amr_wind::IntField& iblk_fld, const int& dir)
+    kynema_sgf::Field& vof, kynema_sgf::IntField& iblk_fld, const int& dir)
 {
     const amrex::Real ref_m = 16.0_rt * (1.0_rt - 0.0_rt);
     amrex::Real error_total = 0.0_rt;
@@ -326,7 +326,7 @@ amrex::Real normal_vector_neumann_test_impl(
                     jbdy = (iblank(i, j, k) != iblank(i, j + 1, k)) ? +1 : jbdy;
                     kbdy = (iblank(i, j, k) != iblank(i, j, k + 1)) ? +1 : kbdy;
                     amrex::Real mxn, myn, mzn;
-                    amr_wind::multiphase::
+                    kynema_sgf::multiphase::
                         youngs_finite_difference_normal_neumann(
                             i, j, k, ibdy, jbdy, kbdy, vof_arr, mxn, myn, mzn);
 
@@ -363,7 +363,7 @@ amrex::Real normal_vector_neumann_test_impl(
     return error_total;
 }
 
-amrex::Real fit_plane_test_impl(amr_wind::Field& vof, const int dir)
+amrex::Real fit_plane_test_impl(kynema_sgf::Field& vof, const int dir)
 {
     amrex::Real error_total = 0.0_rt;
 
@@ -384,7 +384,7 @@ amrex::Real fit_plane_test_impl(amr_wind::Field& vof, const int dir)
                     // Check multiphase cells
                     if (ii + jj + kk == 3) {
                         amrex::Real mx, my, mz, alpha;
-                        amr_wind::multiphase::fit_plane(
+                        kynema_sgf::multiphase::fit_plane(
                             i, j, k, vof_arr, mx, my, mz, alpha);
 
                         // Check slope
@@ -403,7 +403,7 @@ amrex::Real fit_plane_test_impl(amr_wind::Field& vof, const int dir)
 }
 
 amrex::Real fit_plane_test_impl_h(
-    amr_wind::Field& vof, const amrex::Real vof_val, const int dir)
+    kynema_sgf::Field& vof, const amrex::Real vof_val, const int dir)
 {
     amrex::Real error_total = 0.0_rt;
     const amrex::Real vv = vof_val;
@@ -423,7 +423,7 @@ amrex::Real fit_plane_test_impl_h(
                     // Check multiphase cells
                     if (ii == 1) {
                         amrex::Real mx, my, mz, alpha;
-                        amr_wind::multiphase::fit_plane(
+                        kynema_sgf::multiphase::fit_plane(
                             i, j, k, vof_arr, mx, my, mz, alpha);
 
                         // Check slope
@@ -466,7 +466,7 @@ TEST_F(VOFOpTest, volume_intercept)
                 vof));
         // Get intercept value and check for nan
         amrex::Real alpha =
-            amr_wind::multiphase::volume_intercept(mx, my, mz, vof);
+            kynema_sgf::multiphase::volume_intercept(mx, my, mz, vof);
         EXPECT_EQ(alpha, alpha);
 
         // Set one of the slope components to 0, then try again
@@ -488,13 +488,13 @@ TEST_F(VOFOpTest, volume_intercept)
         my = my / mm2;
         mz = mz / mm2;
         // Get intercept value and check for nan
-        alpha = amr_wind::multiphase::volume_intercept(mx, my, mz, vof);
+        alpha = kynema_sgf::multiphase::volume_intercept(mx, my, mz, vof);
         EXPECT_EQ(alpha, alpha);
     }
 
     // Check specific problem case
     amrex::Real alpha =
-        amr_wind::multiphase::volume_intercept(0.5_rt, 0.5_rt, 0.0_rt, 0.5_rt);
+        kynema_sgf::multiphase::volume_intercept(0.5_rt, 0.5_rt, 0.0_rt, 0.5_rt);
     EXPECT_EQ(alpha, alpha);
 }
 

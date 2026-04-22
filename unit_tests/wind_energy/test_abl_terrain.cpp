@@ -76,7 +76,7 @@ TEST_F(TerrainTest, terrain)
     amrex::ParmParse pp("incflo");
     amrex::Vector<std::string> physics{"terrainDrag"};
     pp.addarr("physics", physics);
-    amr_wind::terraindrag::TerrainDrag terrain_drag(sim());
+    kynema_sgf::terraindrag::TerrainDrag terrain_drag(sim());
     const int nlevels = sim().repo().num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& geom = sim().repo().mesh().Geom(lev);

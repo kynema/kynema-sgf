@@ -6,7 +6,7 @@
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
-namespace amr_wind {
+namespace kynema_sgf {
 struct LogLaw
 {
     /*
@@ -58,6 +58,6 @@ struct LogLaw
         return utau;
     }
 };
-} /* namespace amr_wind */
+} /* namespace kynema_sgf */
 
 #endif /* LogLaw_H */

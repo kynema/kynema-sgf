@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Idealized Hurricane forcing source term
  *  Apply mesoscale tendency source term to drive the flow
@@ -67,6 +67,6 @@ private:
     amrex::Real m_coriolis_factor{0.0005_rt};
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif /* HURRICANE_FORCING_H */

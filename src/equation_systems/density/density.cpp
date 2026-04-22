@@ -4,9 +4,9 @@
 #include "src/equation_systems/BCOps.H"
 #include "src/equation_systems/density/density_ops.H"
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 template class PDESystem<Density, fvm::Godunov>;
 template class PDESystem<Density, fvm::MOL>;
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde

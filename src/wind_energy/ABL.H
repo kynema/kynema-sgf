@@ -37,7 +37,7 @@ using namespace amrex::literals;
 
 class incflo;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class ABLMesoscaleInput;
 
@@ -170,6 +170,6 @@ private:
     std::unique_ptr<ABLFieldInitFile> m_field_init_file;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* ABL_H */

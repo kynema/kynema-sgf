@@ -9,7 +9,7 @@
 #include "src/core/FieldFillPatchOps.H"
 #include "src/core/FieldBCOps.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace pde_impl {
 
 //! Field name that holds the convective term
@@ -84,6 +84,6 @@ PDEFields create_fields_instance(
 }
 
 } // namespace pde
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* PDEHELPERS_H */

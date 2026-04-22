@@ -8,7 +8,7 @@
 #include <unordered_map>
 #include <memory>
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Freestream physics
  *  \ingroup physics
@@ -44,6 +44,6 @@ private:
     std::unordered_map<std::string, std::unique_ptr<udf::UDF>> m_field_funcs;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* FreeStream_H */

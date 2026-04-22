@@ -2,8 +2,8 @@
 #define DISK_TYPES_H
 
 #include "src/wind_energy/actuator/actuator_types.H"
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 struct DiskType : public ActuatorType
 {};
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 #endif /* DISK_TYPES_H */

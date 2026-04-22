@@ -10,7 +10,7 @@
 
 #include "AMReX_MultiFabUtil.H"
 
-namespace amr_wind::ocean_waves {
+namespace kynema_sgf::ocean_waves {
 namespace relaxation_zones {
 
 /** Parse common data for modeling relaxation zones
@@ -18,7 +18,7 @@ namespace relaxation_zones {
 void read_inputs(
     RelaxZonesBaseData& /*wdata*/,
     OceanWavesInfo& /*unused*/,
-    const ::amr_wind::utils::MultiParser& /*pp*/);
+    const ::kynema_sgf::utils::MultiParser& /*pp*/);
 
 /** Initialize core data structures when modeling the IB geometry
  */
@@ -124,7 +124,7 @@ public:
         : m_data(data)
     {}
 
-    void read_io_options(const ::amr_wind::utils::MultiParser& pp)
+    void read_io_options(const ::kynema_sgf::utils::MultiParser& pp)
     {
         pp.query("output_frequency", m_out_freq);
     }
@@ -151,6 +151,6 @@ public:
 
 } // namespace ops
 
-} // namespace amr_wind::ocean_waves
+} // namespace kynema_sgf::ocean_waves
 
 #endif /* RELAX_ZONES_OPS_H */

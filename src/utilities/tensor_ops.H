@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::utils {
+namespace kynema_sgf::utils {
 
 /** Compute the dot product of two vectors
  */
@@ -93,6 +93,6 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE void inv_transform_vec(
     y[2] = (tmat(0, 2) * x[0]) + (tmat(1, 2) * x[1]) + (tmat(2, 2) * x[2]);
 }
 
-} // namespace amr_wind::utils
+} // namespace kynema_sgf::utils
 
 #endif /* TENSOR_OPS_H */

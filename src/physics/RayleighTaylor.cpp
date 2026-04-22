@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 RayleighTaylor::RayleighTaylor(const CFDSim& sim)
     : m_velocity(sim.repo().get_field("velocity"))
@@ -18,7 +18,7 @@ RayleighTaylor::RayleighTaylor(const CFDSim& sim)
 /** Initialize the velocity and density fields at the beginning of the
  *  simulation.
  *
- *  \sa amr_wind::RayleighTaylorFieldInit
+ *  \sa kynema_sgf::RayleighTaylorFieldInit
  */
 void RayleighTaylor::initialize_fields(int level, const amrex::Geometry& geom)
 {
@@ -37,4 +37,4 @@ void RayleighTaylor::initialize_fields(int level, const amrex::Geometry& geom)
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

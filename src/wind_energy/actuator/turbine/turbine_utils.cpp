@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator::utils {
+namespace kynema_sgf::actuator::utils {
 
 void read_inputs(
     TurbineBaseData& tdata, TurbineInfo& tinfo, const utils::ActParser& pp)
@@ -166,4 +166,4 @@ void write_netcdf(
 #endif
 }
 
-} // namespace amr_wind::actuator::utils
+} // namespace kynema_sgf::actuator::utils

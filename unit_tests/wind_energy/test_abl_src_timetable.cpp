@@ -48,7 +48,7 @@ void write_body_force_file(const std::string& fname)
 namespace amr_wind_tests {
 
 using ICNSFields =
-    amr_wind::pde::FieldRegOp<amr_wind::pde::ICNS, amr_wind::fvm::Godunov>;
+    kynema_sgf::pde::FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
 
 // Tests in this file involve ABLForcing, BodyForce, and GeostrophicWind
 class ABLSrcTimeTableTest : public MeshTest
@@ -138,12 +138,12 @@ TEST_F(ABLSrcTimeTableTest, abl)
     auto& src_term = pde_mgr.icns().fields().src_term;
     src_term.setVal(0.0_rt);
     // Source term object for ABLForcing
-    amr_wind::pde::icns::ABLForcing abl_forcing(sim());
+    kynema_sgf::pde::icns::ABLForcing abl_forcing(sim());
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
 
-        abl_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+        abl_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
     });
 
     // Initial velocity should be the same as target velocity, so force is 0
@@ -168,7 +168,7 @@ TEST_F(ABLSrcTimeTableTest, abl)
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
 
-        abl_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+        abl_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
     });
     // Velocity at hub height is (5, 3) and target is (8, 0)
     target_force[0] = (init_vel[0] - new_vel[0]) / m_dt;
@@ -194,7 +194,7 @@ TEST_F(ABLSrcTimeTableTest, abl)
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
 
-        abl_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+        abl_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
     });
     // Velocity at hub height is 8 at 0deg and target is 8 at 2.5deg
     target_force[0] =
@@ -260,12 +260,12 @@ TEST_F(ABLSrcTimeTableTest, bodyforce)
     auto& src_term = pde_mgr.icns().fields().src_term;
     src_term.setVal(0.0_rt);
     // Source term object for BodyForce
-    amr_wind::pde::icns::BodyForce body_forcing(sim());
+    kynema_sgf::pde::icns::BodyForce body_forcing(sim());
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
 
-        body_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+        body_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
     });
 
     // Force is 0 initially
@@ -290,7 +290,7 @@ TEST_F(ABLSrcTimeTableTest, bodyforce)
             const auto& bx = mfi.tilebox();
             const auto& src_arr = src_term(lev).array(mfi);
 
-            body_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+            body_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
         });
         // Forces correspond to ABL Forcing from other test
         const amrex::Vector<amrex::Real> init_vel{8.0_rt, 0.0_rt, 0.0_rt};
@@ -366,12 +366,12 @@ TEST_F(ABLSrcTimeTableTest, geostrophic)
     auto& src_term = pde_mgr.icns().fields().src_term;
     src_term.setVal(0.0_rt);
     // Source term object for geostrophic forcing
-    amr_wind::pde::icns::GeostrophicForcing gstr_forcing(sim());
+    kynema_sgf::pde::icns::GeostrophicForcing gstr_forcing(sim());
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
 
-        gstr_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+        gstr_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
     });
 
     // Initial velocity should be the same as target velocity
@@ -397,7 +397,7 @@ TEST_F(ABLSrcTimeTableTest, geostrophic)
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
 
-        gstr_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+        gstr_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
     });
     // New target velocity is 8 at 1.25deg (nph velocity)
     const amrex::Vector<amrex::Real> targ_vel{

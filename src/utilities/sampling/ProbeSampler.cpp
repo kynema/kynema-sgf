@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::sampling {
+namespace kynema_sgf::sampling {
 
 ProbeSampler::ProbeSampler(const CFDSim& sim) : m_sim(sim) {}
 
@@ -131,4 +131,4 @@ void ProbeSampler::define_netcdf_metadata(
 {}
 #endif
 
-} // namespace amr_wind::sampling
+} // namespace kynema_sgf::sampling

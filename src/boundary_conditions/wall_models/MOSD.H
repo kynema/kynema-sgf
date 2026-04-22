@@ -7,7 +7,7 @@
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
-namespace amr_wind {
+namespace kynema_sgf {
 struct MOSD
 {
     /*
@@ -60,5 +60,5 @@ struct MOSD
     }
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 #endif /* MOSD_H */

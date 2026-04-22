@@ -61,9 +61,9 @@ TEST_F(NestRefineTest, box_refine)
 
     create_mesh_instance<RefineMesh>();
     auto& ref_vec = mesh<RefineMesh>()->refine_criteria_vec();
-    ref_vec.emplace_back(std::make_unique<amr_wind::CartBoxRefinement>(sim()));
+    ref_vec.emplace_back(std::make_unique<kynema_sgf::CartBoxRefinement>(sim()));
     auto* box_refine =
-        dynamic_cast<amr_wind::CartBoxRefinement*>(ref_vec[0].get());
+        dynamic_cast<kynema_sgf::CartBoxRefinement*>(ref_vec[0].get());
     box_refine->read_inputs(mesh(), ss);
     // Store the target boxarray for future tests
     auto targets = box_refine->boxarray_vec();
@@ -99,8 +99,8 @@ TEST_F(NestRefineTest, level_warning)
     {
         CaptureOutput io;
         create_mesh_instance<RefineMesh>();
-        std::unique_ptr<amr_wind::CartBoxRefinement> box_refine(
-            new amr_wind::CartBoxRefinement(sim()));
+        std::unique_ptr<kynema_sgf::CartBoxRefinement> box_refine(
+            new kynema_sgf::CartBoxRefinement(sim()));
         box_refine->read_inputs(mesh(), ss);
 
         auto msg = io.stdout().str();
@@ -124,8 +124,8 @@ TEST_F(NestRefineTest, bbox_limits)
     ss << "-60.0 -200.0 -10.0 35.0 200.0 60.0" << '\n';
 
     create_mesh_instance<RefineMesh>();
-    std::unique_ptr<amr_wind::CartBoxRefinement> box_refine(
-        new amr_wind::CartBoxRefinement(sim()));
+    std::unique_ptr<kynema_sgf::CartBoxRefinement> box_refine(
+        new kynema_sgf::CartBoxRefinement(sim()));
     box_refine->read_inputs(mesh(), ss);
 
     auto targets = box_refine->boxarray_vec();

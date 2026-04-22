@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::fvm {
+namespace kynema_sgf::fvm {
 
 /** Strain rate operator
  *  \ingroup fvm
@@ -118,6 +118,6 @@ std::unique_ptr<ScratchField> strainrate(const FType& phi)
     return strphi;
 }
 
-} // namespace amr_wind::fvm
+} // namespace kynema_sgf::fvm
 
 #endif /* STRAINRATE_H */

@@ -184,7 +184,7 @@ initialized properly.
 
 .. function:: default_time_inputs()
 
-   Populates ParmParse data structure with necessary inputs for `amr_wind::SimTime`.
+   Populates ParmParse data structure with necessary inputs for `kynema_sgf::SimTime`.
 
 .. class:: AmrexTestEnv
 
@@ -279,7 +279,7 @@ of this test fixture:
        }
 
        // Create the object that is being tested
-       amr_wind::SimTime time;
+       kynema_sgf::SimTime time;
        time.parse_parameters();
 
        // Perform tests
@@ -312,7 +312,7 @@ of this test fixture:
 :class:`AmrTestMesh` is a concrete implementation of `amrex::AmrCore`
 that creates an AMR mesh that can be used with unit testing. In addition to
 implementing the basic level data creation methods and refinement routines
-``ErrorEst``, it also creates an `amr_wind::FieldRepo` instance for
+``ErrorEst``, it also creates an `kynema_sgf::FieldRepo` instance for
 creating and manipulating fields from within unit tests. :class:`AmrTestMesh` is
 never directly created within unit tests, instead it is created on-demand
 through the test fixture :class:`MeshTest` described next.
@@ -350,7 +350,7 @@ example shows the basic usage of this test fixture.
 
        // Now all data structures are ready for use by the test
 
-       // Access the amr_wind::CFDSim object
+       // Access the kynema_sgf::CFDSim object
        auto& sim = sim();
 
        // Access the simulation time object
@@ -426,7 +426,7 @@ scratch. After a call to this function, the mesh is ready for use.
 .. function:: populate_parameters()
 
    Populate default parameters necessary for creating an AMRMesh and
-   `amr_wind::SimTime` objects.
+   `kynema_sgf::SimTime` objects.
 
 
 .. function:: create_mesh_instance()
@@ -445,7 +445,7 @@ be used as starting points for users to write new tests:
 `test_simtime.cpp <https://github.com/Exawind/amr-wind/blob/development/unit_tests/core/test_simtime.cpp>`_
 
    Simple unit test example that tests the behavior of
-   `amr_wind::SimTime`. This test only relies on :class:`AmrexTest` and
+   `kynema_sgf::SimTime`. This test only relies on :class:`AmrexTest` and
    does not require a mesh.
 
 `test_abl_init.cpp <https://github.com/Exawind/amr-wind/blob/development/unit_tests/wind_energy/test_abl_init.cpp>`_

@@ -9,7 +9,7 @@
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
-namespace amr_wind::actuator::ops {
+namespace kynema_sgf::actuator::ops {
 namespace uniformct {
 
 void parse_and_gather_params(const utils::ActParser& pp, UniformCtData& data);
@@ -42,7 +42,7 @@ struct UpdatePosOp<UniformCt, ActSrcDisk>
             -data.sim().helics().m_turbine_yaw_to_amrwind[data.info().id] +
             90.0_rt;
         const amrex::Real wind_direction_radian =
-            amr_wind::utils::radians(wind_direction);
+            kynema_sgf::utils::radians(wind_direction);
 
         auto& meta = data.meta();
 
@@ -113,7 +113,7 @@ struct ComputeForceOp<UniformCt, ActSrcDisk>
             data.sim()
                 .helics()
                 .m_turbine_wind_direction_to_controller[data.info().id] =
-                -amr_wind::utils::degrees(turbine_angle) + 270.0_rt;
+                -kynema_sgf::utils::degrees(turbine_angle) + 270.0_rt;
         }
 #endif
     }
@@ -172,6 +172,6 @@ public:
             time.new_time());
     }
 };
-} // namespace amr_wind::actuator::ops
+} // namespace kynema_sgf::actuator::ops
 
 #endif /* UNIFORM_CT_OPS_H */

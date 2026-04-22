@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::ib {
+namespace kynema_sgf::ib {
 
 struct SphereData : public BluffBodyBaseData
 {
@@ -23,6 +23,6 @@ struct Sphere : public BluffBodyType
     static std::string identifier() { return "Sphere"; }
 };
 
-} // namespace amr_wind::ib
+} // namespace kynema_sgf::ib
 
 #endif /* Sphere_H */

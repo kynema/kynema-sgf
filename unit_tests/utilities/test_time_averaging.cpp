@@ -53,7 +53,7 @@ TEST_F(TimeAveragingTest, every_step)
     initialize_mesh();
 
     auto& m_sim = sim();
-    amr_wind::PostProcessManager& post_manager = m_sim.post_manager();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
     auto& time = sim().time();
     auto& temp = sim().repo().declare_cc_field("temperature", 1, 1, 1);
     temp.setVal(0.0_rt);
@@ -90,7 +90,7 @@ TEST_F(TimeAveragingTest, phase_linear)
     initialize_mesh();
 
     auto& m_sim = sim();
-    amr_wind::PostProcessManager& post_manager = m_sim.post_manager();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
     auto& time = sim().time();
     auto& temp = sim().repo().declare_cc_field("temperature", 1, 1, 1);
     temp.setVal(0.0);
@@ -137,7 +137,7 @@ TEST_F(TimeAveragingTest, phase_stairstep_offset)
     initialize_mesh();
 
     auto& m_sim = sim();
-    amr_wind::PostProcessManager& post_manager = m_sim.post_manager();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
     auto& time = sim().time();
     auto& temp = sim().repo().declare_cc_field("temperature", 1, 1, 1);
     temp.setVal(0.0_rt);
@@ -176,7 +176,7 @@ TEST_F(TimeAveragingTest, mismatch_time_interval)
     initialize_mesh();
 
     auto& m_sim = sim();
-    amr_wind::PostProcessManager& post_manager = m_sim.post_manager();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
     auto& time = sim().time();
     auto& temp = sim().repo().declare_cc_field("temperature", 1, 1, 1);
     temp.setVal(0.0);

@@ -15,7 +15,7 @@
 using namespace amrex::literals;
 #endif
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace sampling {
 
 DTUSpinnerSampler::DTUSpinnerSampler(const CFDSim& sim) : LidarSampler(sim) {}
@@ -605,7 +605,7 @@ void DTUSpinnerSampler::output_netcdf_data(
 
 } // namespace sampling
 
-template struct ::amr_wind::sampling::SamplerBase::Register<
-    ::amr_wind::sampling::DTUSpinnerSampler>;
+template struct ::kynema_sgf::sampling::SamplerBase::Register<
+    ::kynema_sgf::sampling::DTUSpinnerSampler>;
 
-} // namespace amr_wind
+} // namespace kynema_sgf

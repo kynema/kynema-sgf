@@ -12,7 +12,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /**
  *  \defgroup pdeop PDE Operators
@@ -21,7 +21,7 @@ namespace amr_wind::pde {
  *  The different terms in a PDE as well as other actions on a PDE are
  *  implemented within AMR-Wind using operator classes. These operators can be
  *  specialized for a given PDE or a Scheme based on specific traits that are
- *  passed to the amr_wind::pde::PDESytem class.
+ *  passed to the kynema_sgf::pde::PDESytem class.
  *
  *  \ingroup eqsys
  */
@@ -210,6 +210,6 @@ struct PostSolveOp
     PDEFields& m_fields;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* PDEOPS_H */

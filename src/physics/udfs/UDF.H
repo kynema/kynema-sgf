@@ -4,7 +4,7 @@
 #include "src/core/Factory.H"
 #include "AMReX_Gpu.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 class Field;
 
 namespace udf {
@@ -47,6 +47,6 @@ private:
 };
 
 } // namespace udf
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* UDF_H */

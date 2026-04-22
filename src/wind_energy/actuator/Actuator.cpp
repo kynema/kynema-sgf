@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 Actuator::Actuator(CFDSim& sim)
     : m_sim(sim)
@@ -238,7 +238,7 @@ void Actuator::update_positions()
     for (int i = 0, ic = 0; i < pinfo.num_objects; ++i) {
         const auto ig = pinfo.global_id[i];
         auto vpos =
-            ::amr_wind::utils::slice(pinfo.position, ic, pinfo.num_pts[i]);
+            ::kynema_sgf::utils::slice(pinfo.position, ic, pinfo.num_pts[i]);
         m_actuators[ig]->update_positions(vpos);
         ic += pinfo.num_pts[i];
     }
@@ -262,10 +262,10 @@ void Actuator::update_velocities()
         const auto ig = pinfo.global_id[i];
 
         const auto vel =
-            ::amr_wind::utils::slice(pinfo.velocity, ic, pinfo.num_pts[i]);
+            ::kynema_sgf::utils::slice(pinfo.velocity, ic, pinfo.num_pts[i]);
 
         const auto density =
-            ::amr_wind::utils::slice(pinfo.density, ic, pinfo.num_pts[i]);
+            ::kynema_sgf::utils::slice(pinfo.density, ic, pinfo.num_pts[i]);
 
         m_actuators[ig]->update_fields(vel, density);
         ic += pinfo.num_pts[i];
@@ -372,4 +372,4 @@ T* Actuator::get_actuator(std::string& key) const
     amrex::Abort("Could not find actuator");
 }
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator

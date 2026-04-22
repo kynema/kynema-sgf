@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 template <>
 struct AirfoilTraits<FlatPlate>
@@ -75,6 +75,6 @@ const ThinAirfoil& airfoil_lookup<FlatPlate>(FlatPlate::DataType& data)
 }
 
 } // namespace ops
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 #endif /* FLAT_PLATE_OPS_H */

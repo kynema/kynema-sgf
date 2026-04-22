@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /**
  *  \defgroup temp_eqn Temperature transport equation
@@ -62,6 +62,6 @@ struct TurbulenceOp<Temperature>
     PDEFields& m_fields;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* TEMPERATURE_H */

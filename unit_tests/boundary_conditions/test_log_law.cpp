@@ -27,7 +27,7 @@ protected:
 TEST_F(LogLawTest, test_log_law)
 {
     populate_parameters();
-    amr_wind::LogLaw ll;
+    kynema_sgf::LogLaw ll;
     ll.zref = m_zref;
     ll.nu = m_nu;
 

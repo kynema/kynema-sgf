@@ -9,7 +9,7 @@ namespace amr_wind_tests {
 
 namespace {
 
-void init_vof(amr_wind::Field& vof_fld, amrex::Real water_level)
+void init_vof(kynema_sgf::Field& vof_fld, amrex::Real water_level)
 {
     const auto& mesh = vof_fld.repo().mesh();
     const int nlevels = vof_fld.repo().num_active_levels();
@@ -37,7 +37,7 @@ void init_vof(amr_wind::Field& vof_fld, amrex::Real water_level)
 }
 
 void init_vof_multival(
-    amr_wind::Field& vof_fld, amrex::Real wl0, amrex::Real wl1, amrex::Real wl2)
+    kynema_sgf::Field& vof_fld, amrex::Real wl0, amrex::Real wl1, amrex::Real wl2)
 {
     const auto& mesh = vof_fld.repo().mesh();
     const int nlevels = vof_fld.repo().num_active_levels();
@@ -87,7 +87,7 @@ void init_vof_multival(
 }
 
 void init_vof_slope(
-    amr_wind::Field& vof_fld,
+    kynema_sgf::Field& vof_fld,
     amrex::Real water_level,
     amrex::Real slope,
     amrex::Real domain_length)
@@ -126,7 +126,7 @@ void init_vof_slope(
     amrex::Gpu::streamSynchronize();
 }
 
-void init_vof_diffuse(amr_wind::Field& vof_fld, amrex::Real water_level)
+void init_vof_diffuse(kynema_sgf::Field& vof_fld, amrex::Real water_level)
 {
     const auto& mesh = vof_fld.repo().mesh();
     const int nlevels = vof_fld.repo().num_active_levels();
@@ -154,7 +154,7 @@ void init_vof_diffuse(amr_wind::Field& vof_fld, amrex::Real water_level)
 }
 
 void init_vof_outliers(
-    amr_wind::Field& vof_fld, amrex::Real water_level, bool distort_above)
+    kynema_sgf::Field& vof_fld, amrex::Real water_level, bool distort_above)
 {
     const auto& mesh = vof_fld.repo().mesh();
     const int nlevels = vof_fld.repo().num_active_levels();
@@ -190,7 +190,7 @@ void init_vof_outliers(
 class FSRefineMesh : public AmrTestMesh
 {
 public:
-    FSRefineMesh() : m_mesh_refiner(new amr_wind::RefineCriteriaManager(m_sim))
+    FSRefineMesh() : m_mesh_refiner(new kynema_sgf::RefineCriteriaManager(m_sim))
     {}
     void init_refiner() { m_mesh_refiner->initialize(); }
     void remesh() { regrid(0, 0.0_rt); }
@@ -241,14 +241,14 @@ protected:
     }
 
 private:
-    std::unique_ptr<amr_wind::RefineCriteriaManager> m_mesh_refiner;
+    std::unique_ptr<kynema_sgf::RefineCriteriaManager> m_mesh_refiner;
 };
 
-class FreeSurfaceImpl : public amr_wind::sampling::FreeSurfaceSampler
+class FreeSurfaceImpl : public kynema_sgf::sampling::FreeSurfaceSampler
 {
 public:
-    FreeSurfaceImpl(amr_wind::CFDSim& sim)
-        : amr_wind::sampling::FreeSurfaceSampler(sim)
+    FreeSurfaceImpl(kynema_sgf::CFDSim& sim)
+        : kynema_sgf::sampling::FreeSurfaceSampler(sim)
     {}
     int check_output(const std::string& op, amrex::Real check_val);
     int check_output(int cidx, const std::string& op, amrex::Real check_val);
@@ -351,7 +351,7 @@ int FreeSurfaceImpl::check_sloc(const std::string& op)
 {
     // Get number of points and sampling locations array
     auto npts_tot = num_points();
-    amr_wind::sampling::SampleLocType sample_locs;
+    kynema_sgf::sampling::SampleLocType sample_locs;
     output_locations(sample_locs);
     // Get locations from other functions
     auto gridlocs = grid_locations();
@@ -833,7 +833,7 @@ TEST_F(FreeSurfaceTest, point_diffuse_in_single_phase)
         vof_cell + (2.0_rt * (vof_pxy - vof_cell) / 4.0_rt * (2.0_rt - 0.1_rt));
     const amrex::Real slope_z = (vof_cell - vof_mz) / 2.0_rt;
     const amrex::Real ht =
-        61.0_rt + ((0.5_rt - vof_c) / (slope_z + amr_wind::constants::EPS));
+        61.0_rt + ((0.5_rt - vof_c) / (slope_z + kynema_sgf::constants::EPS));
     const amrex::Real ht_est =
         water_lev_diffuse + (2.0_rt * vof_slope * (2.0_rt - 0.1_rt));
     int nout = tool.check_output("~", ht);

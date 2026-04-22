@@ -6,7 +6,7 @@ using namespace amrex::literals;
 
 // Adapted from OpenFOAM/src/meshTools/sets/cellSources/cylinderAnnulusToCell
 
-namespace amr_wind::tagging {
+namespace kynema_sgf::tagging {
 
 CylinderRefiner::CylinderRefiner(
     const CFDSim& /*unused*/, const std::string& key)
@@ -90,4 +90,4 @@ void CylinderRefiner::operator()(
     });
 }
 
-} // namespace amr_wind::tagging
+} // namespace kynema_sgf::tagging

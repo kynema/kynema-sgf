@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::eos {
+namespace kynema_sgf::eos {
 
 /**
  *  \defgroup eos Equation of state models
@@ -84,6 +84,6 @@ struct GammaLaw
     const amrex::Real m_water_vapor_gas_constant{
         constants::UNIVERSAL_GAS_CONSTANT / constants::MOLAR_MASS_WATER_VAPOR};
 };
-} // namespace amr_wind::eos
+} // namespace kynema_sgf::eos
 
 #endif /* EOSMODEL_H */

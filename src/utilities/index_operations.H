@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::utils {
+namespace kynema_sgf::utils {
 
 //! Return closest index (from lower) of value in vector
 AMREX_FORCE_INLINE int closest_index(
@@ -119,6 +119,6 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool contains(
 amrex::Box
 realbox_to_box(const amrex::RealBox& rbx, const amrex::Geometry& geom);
 
-} // namespace amr_wind::utils
+} // namespace kynema_sgf::utils
 
 #endif /* INDEX_OPERATIONS_H */

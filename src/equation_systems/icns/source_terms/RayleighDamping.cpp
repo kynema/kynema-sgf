@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 RayleighDamping::RayleighDamping(const CFDSim& sim)
     : m_mesh(sim.mesh()), m_velocity(sim.repo().get_field("velocity"))
@@ -81,4 +81,4 @@ void RayleighDamping::operator()(
     });
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

@@ -9,7 +9,7 @@
 #include "AMReX_Geometry.H"
 #include "AMReX_PhysBCFunct.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class Field;
 
@@ -252,6 +252,6 @@ struct BCOpCreator
     WallOp m_wall_op;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* FIELDBCOPS_H */

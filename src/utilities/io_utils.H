@@ -12,7 +12,7 @@ namespace amrex {
 const char* buildInfoGetGitHash(int i);
 }
 
-namespace amr_wind::ioutils {
+namespace kynema_sgf::ioutils {
 
 void goto_next_line(std::istream& is);
 
@@ -88,6 +88,6 @@ void read_flat_grid_file(
     amrex::Vector<amrex::Real>& ys,
     amrex::Vector<amrex::Real>& zs);
 
-} // namespace amr_wind::ioutils
+} // namespace kynema_sgf::ioutils
 
 #endif /* IO_UTILS_H */

@@ -25,7 +25,7 @@ protected:
         initialize_mesh();
 
         // Initialize MAC projection operator
-        const auto& mco = amr_wind::pde::MacProjOp(
+        const auto& mco = kynema_sgf::pde::MacProjOp(
             sim().repo(), sim().field_boundary_manager(), false, false, false,
             false);
         // Get background density and check

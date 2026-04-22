@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 BoussinesqBubbleFieldInit::BoussinesqBubbleFieldInit()
 {
@@ -62,4 +62,4 @@ void BoussinesqBubbleFieldInit::operator()(
     });
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

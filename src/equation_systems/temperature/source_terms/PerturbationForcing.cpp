@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::temperature {
+namespace kynema_sgf::pde::temperature {
 
 PerturbationForcing::PerturbationForcing(const CFDSim& sim)
     : m_sim(sim), m_time(sim.time()), m_mesh(sim.mesh())
@@ -78,4 +78,4 @@ void PerturbationForcing::operator()(
     }
 }
 
-} // namespace amr_wind::pde::temperature
+} // namespace kynema_sgf::pde::temperature

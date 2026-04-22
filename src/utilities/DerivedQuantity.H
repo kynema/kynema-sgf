@@ -9,7 +9,7 @@
 #include "src/core/CollMgr.H"
 #include "src/CFDSim.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class DerivedQty
     : public Factory<DerivedQty, const FieldRepo&, std::vector<std::string>&>
@@ -64,6 +64,6 @@ private:
     std::unordered_map<std::string, int> m_obj_map;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* DERIVEDQUANTITY_H */

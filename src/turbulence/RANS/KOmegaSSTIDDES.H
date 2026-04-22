@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::turbulence {
+namespace kynema_sgf::turbulence {
 
 /** K-Omega-SST-IDDES Hybrid RANS/LES turbulence model
  *
@@ -70,6 +70,6 @@ protected:
     amrex::Real m_sdr_prod_clip_factor{10.0_rt};
 };
 
-} // namespace amr_wind::turbulence
+} // namespace kynema_sgf::turbulence
 
 #endif /* KOMEGASSTIDDES_H */

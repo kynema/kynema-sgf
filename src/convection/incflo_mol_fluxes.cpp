@@ -58,7 +58,7 @@ void mol::compute_convective_fluxes(
 
     // At an ext_dir boundary, the boundary value is on the face, not cell
     // center.
-    auto extdir_lohi = amr_wind::utils::has_extdir_or_ho(
+    auto extdir_lohi = kynema_sgf::utils::has_extdir_or_ho(
         h_bcrec, ncomp, static_cast<int>(amrex::Direction::x));
     bool has_extdir_lo = extdir_lohi.first;
     bool has_extdir_hi = extdir_lohi.second;
@@ -127,7 +127,7 @@ void mol::compute_convective_fluxes(
             });
     }
 
-    extdir_lohi = amr_wind::utils::has_extdir_or_ho(
+    extdir_lohi = kynema_sgf::utils::has_extdir_or_ho(
         h_bcrec, ncomp, static_cast<int>(amrex::Direction::y));
     has_extdir_lo = extdir_lohi.first;
     has_extdir_hi = extdir_lohi.second;
@@ -196,7 +196,7 @@ void mol::compute_convective_fluxes(
             });
     }
 
-    extdir_lohi = amr_wind::utils::has_extdir_or_ho(
+    extdir_lohi = kynema_sgf::utils::has_extdir_or_ho(
         h_bcrec, ncomp, static_cast<int>(amrex::Direction::z));
     has_extdir_lo = extdir_lohi.first;
     has_extdir_hi = extdir_lohi.second;

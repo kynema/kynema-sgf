@@ -34,7 +34,7 @@ const char* buildInfoGetGitHash(int i);
 const char* buildInfoGetCompVersion();
 } // namespace amrex
 
-namespace amr_wind::io {
+namespace kynema_sgf::io {
 
 namespace {
 const std::string dbl_line = std::string(78, '=') + "\n";
@@ -58,7 +58,7 @@ void print_usage(MPI_Comm comm, std::ostream& out)
 #endif
 
     out << R"doc(Usage:
-    amr_wind <input_file> [param=value] [param=value] ...
+    kynema_sgf <input_file> [param=value] [param=value] ...
 
 Required:
     input_file   : Input file with simulation settings
@@ -275,4 +275,4 @@ void print_nonlinear_residual(
                    << ", w: " << rms_vel[2] << '\n';
 }
 
-} // namespace amr_wind::io
+} // namespace kynema_sgf::io

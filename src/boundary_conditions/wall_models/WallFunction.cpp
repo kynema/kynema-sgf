@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 WallFunction::WallFunction(CFDSim& sim)
     : m_sim(sim), m_mesh(m_sim.mesh()), m_pa_vel(sim, m_direction)
@@ -341,4 +341,4 @@ void WallFunction::update_umean()
 void WallFunction::update_utau_mean() { m_log_law.update_utau_mean(); }
 
 void WallFunction::update_time() { m_mosd.time = m_sim.time().current_time(); }
-} // namespace amr_wind
+} // namespace kynema_sgf

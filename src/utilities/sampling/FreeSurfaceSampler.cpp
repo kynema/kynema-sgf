@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::sampling {
+namespace kynema_sgf::sampling {
 
 FreeSurfaceSampler::FreeSurfaceSampler(CFDSim& sim)
     : m_sim(sim), m_vof(sim.repo().get_field("vof"))
@@ -445,7 +445,7 @@ bool FreeSurfaceSampler::update_sampling_locations()
     bool use_linear = m_use_linear;
     const amrex::Real lx_linear = m_lx_linear;
     bool has_overset = m_sim.has_overset();
-    amr_wind::IntField* iblank_ptr{nullptr};
+    kynema_sgf::IntField* iblank_ptr{nullptr};
     if (has_overset) {
         iblank_ptr = &m_sim.repo().get_int_field("iblank_cell");
     }
@@ -916,4 +916,4 @@ void FreeSurfaceSampler::output_netcdf_data(
 {}
 #endif
 
-} // namespace amr_wind::sampling
+} // namespace kynema_sgf::sampling

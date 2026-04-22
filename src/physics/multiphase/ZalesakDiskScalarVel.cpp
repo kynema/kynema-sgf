@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::zds {
+namespace kynema_sgf::zds {
 
 namespace {
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real SCexact::operator()(
@@ -61,7 +61,7 @@ ZalesakDiskScalarVel::ZalesakDiskScalarVel(CFDSim& sim)
 /** Initialize the velocity and levelset fields at the beginning of the
  *  simulation.
  *
- *  \sa amr_wind::ZalesakDiskScalarVelFieldInit
+ *  \sa kynema_sgf::ZalesakDiskScalarVelFieldInit
  */
 void ZalesakDiskScalarVel::initialize_fields(
     int level, const amrex::Geometry& geom)
@@ -244,7 +244,7 @@ amrex::Real ZalesakDiskScalarVel::compute_error(const Field& field)
                      : nullptr;
     Field const* mesh_fac_cc =
         mesh_mapping
-            ? &(m_sim.repo().get_mesh_mapping_field(amr_wind::FieldLoc::CELL))
+            ? &(m_sim.repo().get_mesh_mapping_field(kynema_sgf::FieldLoc::CELL))
             : nullptr;
 
     const int nlevels = m_sim.repo().num_active_levels();
@@ -344,4 +344,4 @@ void ZalesakDiskScalarVel::output_error()
         f.close();
     }
 }
-} // namespace amr_wind::zds
+} // namespace kynema_sgf::zds

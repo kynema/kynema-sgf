@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real GaussianPulseFV::operator()(
     const amrex::Real x,
@@ -338,4 +338,4 @@ void ScalarAdvection::post_advance_work()
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

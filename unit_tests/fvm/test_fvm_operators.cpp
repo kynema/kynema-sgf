@@ -58,7 +58,7 @@ void initialize_velocity(
     });
 }
 
-amrex::Real grad_test_impl(amr_wind::Field& vel, const int pdegree)
+amrex::Real grad_test_impl(kynema_sgf::Field& vel, const int pdegree)
 {
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
@@ -75,7 +75,7 @@ amrex::Real grad_test_impl(amr_wind::Field& vel, const int pdegree)
         initialize_velocity(geom[lev], bx, pdegree, cu, cv, cw, vel_arr);
     });
 
-    auto grad_vel = amr_wind::fvm::gradient(vel);
+    auto grad_vel = kynema_sgf::fvm::gradient(vel);
 
     const int nlevels = vel.repo().num_active_levels();
     amrex::Real error_total = 0.0_rt;
@@ -139,7 +139,7 @@ amrex::Real grad_test_impl(amr_wind::Field& vel, const int pdegree)
     return error_total;
 }
 
-amrex::Real laplacian_test_impl(amr_wind::Field& vel, const int pdegree)
+amrex::Real laplacian_test_impl(kynema_sgf::Field& vel, const int pdegree)
 {
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
@@ -156,7 +156,7 @@ amrex::Real laplacian_test_impl(amr_wind::Field& vel, const int pdegree)
         initialize_velocity(geom[lev], bx, pdegree, cu, cv, cw, vel_arr);
     });
 
-    auto lap = amr_wind::fvm::laplacian(vel);
+    auto lap = kynema_sgf::fvm::laplacian(vel);
 
     const int nlevels = vel.repo().num_active_levels();
     amrex::Real error_total = 0.0_rt;
@@ -196,7 +196,7 @@ amrex::Real laplacian_test_impl(amr_wind::Field& vel, const int pdegree)
     return error_total;
 }
 
-amrex::Real divergence_test_impl(amr_wind::Field& vel, const int pdegree)
+amrex::Real divergence_test_impl(kynema_sgf::Field& vel, const int pdegree)
 {
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
@@ -213,7 +213,7 @@ amrex::Real divergence_test_impl(amr_wind::Field& vel, const int pdegree)
         initialize_velocity(geom[lev], bx, pdegree, cu, cv, cw, vel_arr);
     });
 
-    auto div = amr_wind::fvm::divergence(vel);
+    auto div = kynema_sgf::fvm::divergence(vel);
 
     const int nlevels = vel.repo().num_active_levels();
     amrex::Real error_total = 0.0_rt;

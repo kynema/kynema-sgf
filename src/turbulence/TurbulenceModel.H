@@ -7,7 +7,7 @@
 #include "src/core/FieldDescTypes.H"
 #include "src/incflo.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 class ScratchField;
@@ -108,6 +108,6 @@ public:
 };
 
 } // namespace turbulence
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* TURBULENCEMODEL_H */

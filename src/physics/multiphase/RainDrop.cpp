@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 RainDrop::RainDrop(CFDSim& sim)
     : m_velocity(sim.repo().get_field("velocity"))
@@ -23,7 +23,7 @@ RainDrop::RainDrop(CFDSim& sim)
 /** Initialize the velocity and levelset fields at the beginning of the
  *  simulation.
  *
- *  \sa amr_wind::RainDropFieldInit
+ *  \sa kynema_sgf::RainDropFieldInit
  */
 void RainDrop::initialize_fields(int level, const amrex::Geometry& geom)
 {
@@ -104,4 +104,4 @@ void RainDrop::initialize_fields(int level, const amrex::Geometry& geom)
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

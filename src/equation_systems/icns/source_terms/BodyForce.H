@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Apply a user-defined body force as a source term
  *  \ingroup icns_src
@@ -67,6 +67,6 @@ private:
     amrex::Vector<amrex::Real> m_fz_table;
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif /* BODYFORCE_H */

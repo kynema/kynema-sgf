@@ -6,7 +6,7 @@
 #include "src/wind_energy/actuator/disk/disk_types.H"
 #include "src/wind_energy/actuator/disk/disk_spreading.H"
 
-namespace amr_wind::actuator::ops {
+namespace kynema_sgf::actuator::ops {
 
 template <typename ActTrait>
 class ActSrcOp<
@@ -92,6 +92,6 @@ void ActSrcOp<
         m_force.begin());
 }
 
-} // namespace amr_wind::actuator::ops
+} // namespace kynema_sgf::actuator::ops
 
 #endif /* ACTSRCDISKOP_H */

@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::channel_map {
+namespace kynema_sgf::channel_map {
 
 /** Channel flow scaling mesh map
  *  \ingroup mesh_map
@@ -39,6 +39,6 @@ private:
     amrex::Real m_eps{std::numeric_limits<amrex::Real>::epsilon() * 1.0e5_rt};
 };
 
-} // namespace amr_wind::channel_map
+} // namespace kynema_sgf::channel_map
 
 #endif /* CHANNELFLOWMAP_H */

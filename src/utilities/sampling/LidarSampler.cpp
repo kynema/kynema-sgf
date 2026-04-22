@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace sampling {
 
 LidarSampler::LidarSampler(const CFDSim& sim) : LineSampler(sim) {}
@@ -74,11 +74,11 @@ bool LidarSampler::update_sampling_locations()
 
     // The current azimuth angle
     const amrex::Real current_azimuth = utils::radians(
-        ::amr_wind::interp::linear(m_time_table, m_azimuth_table, time));
+        ::kynema_sgf::interp::linear(m_time_table, m_azimuth_table, time));
 
     const amrex::Real current_elevation = utils::radians(
         90.0_rt -
-        ::amr_wind::interp::linear(m_time_table, m_elevation_table, time));
+        ::kynema_sgf::interp::linear(m_time_table, m_elevation_table, time));
 
     // Coordinate transform spherical to cartesian
     m_end[0] = m_start[0] + (m_length * std::cos(current_azimuth) *
@@ -132,7 +132,7 @@ void LidarSampler::output_netcdf_data(
 
 } // namespace sampling
 
-template struct ::amr_wind::sampling::SamplerBase::Register<
-    ::amr_wind::sampling::LidarSampler>;
+template struct ::kynema_sgf::sampling::SamplerBase::Register<
+    ::kynema_sgf::sampling::LidarSampler>;
 
-} // namespace amr_wind
+} // namespace kynema_sgf

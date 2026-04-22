@@ -4,12 +4,12 @@
 #include "src/wind_energy/actuator/turbine/external/TurbineExternal.H"
 #include "src/wind_energy/actuator/turbine/kynema/kynema_types.H"
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 using TurbineKynema = TurbineFromExtSolver<
     ::ext_turb::KynemaTurbine,
     ::ext_turb::KynemaSolverData>;
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 #endif /* TURBINEKYNEMA_H */

@@ -4,9 +4,9 @@
 #include "src/equation_systems/icns/icns_diffusion.H"
 #include "src/equation_systems/icns/icns_bcop.H"
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
-template class PDESystem<ICNS, ::amr_wind::fvm::Godunov>;
-template class PDESystem<ICNS, ::amr_wind::fvm::MOL>;
+template class PDESystem<ICNS, ::kynema_sgf::fvm::Godunov>;
+template class PDESystem<ICNS, ::kynema_sgf::fvm::MOL>;
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde

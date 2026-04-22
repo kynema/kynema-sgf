@@ -9,7 +9,7 @@
 #include "AMReX_REAL.H"
 #include "AMReX_Vector.H"
 
-namespace amr_wind::pde::temperature {
+namespace kynema_sgf::pde::temperature {
 
 class BodyForce : public TemperatureSource::Register<BodyForce>
 {
@@ -42,6 +42,6 @@ private:
     amrex::Gpu::DeviceVector<amrex::Real> m_ht;
 };
 
-} // namespace amr_wind::pde::temperature
+} // namespace kynema_sgf::pde::temperature
 
 #endif

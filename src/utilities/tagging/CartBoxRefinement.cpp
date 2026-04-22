@@ -5,7 +5,7 @@
 #include "src/CFDSim.H"
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 namespace {
 
@@ -135,4 +135,4 @@ void CartBoxRefinement::operator()(
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

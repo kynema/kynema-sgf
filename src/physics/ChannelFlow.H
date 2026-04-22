@@ -35,7 +35,7 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real analytical_smagorinsky_profile(
 
 } // namespace
 
-namespace amr_wind::channel_flow {
+namespace kynema_sgf::channel_flow {
 
 /** Channel Flow physics
  *  \ingroup physics
@@ -78,7 +78,7 @@ private:
     //! CFD simulation controller instance
     CFDSim& m_sim;
 
-    const amr_wind::SimTime& m_time;
+    const kynema_sgf::SimTime& m_time;
     FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
 
@@ -155,6 +155,6 @@ private:
     //! error log file
     std::string m_output_fname{"channel_flow.log"};
 };
-} // namespace amr_wind::channel_flow
+} // namespace kynema_sgf::channel_flow
 
 #endif /* ChannelFlow_H */

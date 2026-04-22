@@ -12,7 +12,7 @@ using namespace amrex::literals;
  *
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class ZalesakDisk : public Physics::Register<ZalesakDisk>
 {
@@ -62,6 +62,6 @@ private:
     amrex::Real m_TT{6.0_rt};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* ZalesakDisk_H */

@@ -7,7 +7,7 @@
 #include "AMReX_MultiFab.H"
 #include "AMReX_Vector.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class FieldRepo;
 
@@ -84,6 +84,6 @@ private:
     amrex::Vector<amrex::MultiFab> m_data;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* VIEWFIELD_H */

@@ -7,12 +7,12 @@
 
 namespace amr_wind_tests {
 
-class PhysicsEx : public amr_wind::Physics::Register<PhysicsEx>
+class PhysicsEx : public kynema_sgf::Physics::Register<PhysicsEx>
 {
 public:
     static std::string identifier() { return "PhysicsEx"; }
 
-    explicit PhysicsEx(amr_wind::CFDSim& /*unused*/);
+    explicit PhysicsEx(kynema_sgf::CFDSim& /*unused*/);
 
     ~PhysicsEx() override = default;
 

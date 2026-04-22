@@ -22,9 +22,9 @@ namespace amr_wind_tests {
 
 TEST(Configuration, Build)
 {
-    const std::string dirty_tag = "-" + amr_wind::version::amr_wind_dirty_repo;
+    const std::string dirty_tag = "-" + kynema_sgf::version::amr_wind_dirty_repo;
     const std::string awind_git_sha =
-        amr_wind::version::amr_wind_git_sha + dirty_tag;
+        kynema_sgf::version::amr_wind_git_sha + dirty_tag;
     const char* amrex_git = amrex::buildInfoGetGitHash(2);
     amrex::Print() << "AMR-Wind SHA = " << awind_git_sha
                    << "\nAMReX    SHA = " << amrex_git << '\n';
@@ -90,7 +90,7 @@ TEST(Configuration, GPU)
 TEST(Configuration, TPLs)
 {
     if (amrex::ParallelDescriptor::IOProcessor()) {
-        amr_wind::io::print_tpls(std::cout);
+        kynema_sgf::io::print_tpls(std::cout);
     }
 }
 

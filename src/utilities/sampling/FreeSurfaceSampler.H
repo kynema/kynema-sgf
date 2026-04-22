@@ -4,7 +4,7 @@
 #include "src/CFDSim.H"
 #include "src/utilities/sampling/SamplerBase.H"
 
-namespace amr_wind::sampling {
+namespace kynema_sgf::sampling {
 
 class FreeSurfaceSampler : public SamplerBase::Register<FreeSurfaceSampler>
 {
@@ -127,6 +127,6 @@ private:
     int m_id{-1};
 };
 
-} // namespace amr_wind::sampling
+} // namespace kynema_sgf::sampling
 
 #endif /* FREESURFACESAMPLER_H */

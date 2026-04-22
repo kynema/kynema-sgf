@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::mms {
+namespace kynema_sgf::mms {
 
 using FuncDef = amrex::Real (*)(amrex::Real, amrex::Real, amrex::Real);
 
@@ -40,7 +40,7 @@ public:
     void post_advance_work() override;
 
 private:
-    const amr_wind::SimTime& m_time;
+    const kynema_sgf::SimTime& m_time;
     const FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
     Field& m_velocity;
@@ -55,6 +55,6 @@ private:
         {"beta", 2.2_rt}, {"gamma", 2.4_rt}, {"delta", 2.0_rt}, {"kx", 1.0_rt},
         {"ky", 1.0_rt},   {"kz", 1.0_rt},    {"nu", 1.0_rt}};
 };
-} // namespace amr_wind::mms
+} // namespace kynema_sgf::mms
 
 #endif /* MMS_H */

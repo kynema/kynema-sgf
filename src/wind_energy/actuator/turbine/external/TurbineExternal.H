@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 template <typename SolverTurbine, typename SolverData>
 struct TurbineExternalData : public TurbineBaseData
@@ -36,6 +36,6 @@ struct TurbineFromExtSolver : public TurbineType
     }
 };
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 #endif /* TURBINEEXTERNAL_H */

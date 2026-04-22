@@ -13,7 +13,7 @@ using namespace amrex::literals;
 namespace amr_wind_tests {
 
 using ICNSFields =
-    amr_wind::pde::FieldRegOp<amr_wind::pde::ICNS, amr_wind::fvm::Godunov>;
+    kynema_sgf::pde::FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
 
 TEST_F(MMSMeshTest, mms_forcing)
 {
@@ -36,7 +36,7 @@ TEST_F(MMSMeshTest, mms_forcing)
 
     auto fields = ICNSFields(sim())(sim().time());
     auto& src_term = fields.src_term;
-    amr_wind::pde::icns::mms::MMSForcing mmsforcing(sim());
+    kynema_sgf::pde::icns::mms::MMSForcing mmsforcing(sim());
 
     const amrex::Array<amrex::Real, AMREX_SPACEDIM> min_golds = {
         -2.1397143441391857_rt, -2.5061563892200622_rt, -2.6756003260809429_rt};
@@ -48,7 +48,7 @@ TEST_F(MMSMeshTest, mms_forcing)
         const auto& bx = mfi.tilebox();
         const auto& src_arr = src_term(lev).array(mfi);
 
-        mmsforcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+        mmsforcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
     });
 
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {

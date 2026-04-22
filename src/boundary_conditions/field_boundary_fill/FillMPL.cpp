@@ -2,7 +2,7 @@
 
 #include "src/boundary_conditions/field_boundary_fill/FillMPL.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 FillMPL::FillMPL(
     Field& field,
@@ -114,4 +114,4 @@ void FillMPL::fillpatch_sibling_fields(
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

@@ -3,7 +3,7 @@
 
 #include "src/utilities/sampling/SamplerBase.H"
 
-namespace amr_wind::sampling {
+namespace kynema_sgf::sampling {
 
 /** Sample data along a line
  *  \ingroup sampling
@@ -80,6 +80,6 @@ protected:
     int m_npts{0};
 };
 
-} // namespace amr_wind::sampling
+} // namespace kynema_sgf::sampling
 
 #endif /* LINESAMPLER_H */

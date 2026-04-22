@@ -23,7 +23,7 @@
  *  \ingroup utilities
  */
 
-namespace amr_wind::subvolume {
+namespace kynema_sgf::subvolume {
 
 class Subvolume : public PostProcessBase::Register<Subvolume>
 {
@@ -98,6 +98,6 @@ private:
     int m_ndcomp{0};
 };
 
-} // namespace amr_wind::subvolume
+} // namespace kynema_sgf::subvolume
 
 #endif /* SUBVOLUME_H */

@@ -7,7 +7,7 @@
 
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind::averaging {
+namespace kynema_sgf::averaging {
 
 TimeAveraging::TimeAveraging(CFDSim& sim, std::string label)
     : m_sim(sim), m_label(std::move(label))
@@ -95,7 +95,7 @@ void TimeAveraging::post_advance_work()
     //   periodic behavior, such as regular waves or actuator lines rotating at
     //   fixed rotor speed.
     //   2. if we are within the averaging time period requested by the user
-    const auto t_tol = amr_wind::constants::LOOSE_TOL * cur_dt;
+    const auto t_tol = kynema_sgf::constants::LOOSE_TOL * cur_dt;
     const bool do_phase_avg =
         (m_time_interval < 0. ||
          ((cur_time - m_start_time + t_tol) / m_time_interval) -
@@ -116,4 +116,4 @@ void TimeAveraging::post_advance_work()
     m_accumulated_avg_time_interval = 0.;
 }
 
-} // namespace amr_wind::averaging
+} // namespace kynema_sgf::averaging

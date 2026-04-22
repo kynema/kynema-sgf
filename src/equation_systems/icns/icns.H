@@ -9,7 +9,7 @@
 
 #include "AMReX_MLTensorOp.H"
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /**
  *  \defgroup icns Incompressible Navier-Stokes
@@ -45,6 +45,6 @@ struct ICNS : VectorTransport
     static constexpr bool need_nph_state = true;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* ICNS_H */

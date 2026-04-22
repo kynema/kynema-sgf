@@ -15,7 +15,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 class SimTime;
@@ -99,7 +99,7 @@ private:
     amrex::Real m_stop_time{std::numeric_limits<amrex::Real>::max()};
 
     //! Time averaging window (in seconds)
-    amrex::Real m_filter{amr_wind::constants::LARGE_NUM};
+    amrex::Real m_filter{kynema_sgf::constants::LARGE_NUM};
 
     //! Time averaging time interval (in seconds)
     amrex::Real m_time_interval{-1.};
@@ -109,6 +109,6 @@ private:
 };
 
 } // namespace averaging
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* TIMEAVERAGING_H */

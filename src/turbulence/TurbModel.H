@@ -4,7 +4,7 @@
 #include "src/turbulence/TurbulenceModel.H"
 #include "src/CFDSim.H"
 
-namespace amr_wind::turbulence {
+namespace kynema_sgf::turbulence {
 
 /** Turbulence model with a specific transport model
  *  \ingroup turb_model
@@ -69,6 +69,6 @@ protected:
     Field* m_alphaeff{nullptr};
 };
 
-} // namespace amr_wind::turbulence
+} // namespace kynema_sgf::turbulence
 
 #endif /* TURBMODEL_H */

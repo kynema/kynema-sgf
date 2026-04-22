@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 BreakingWaves::BreakingWaves(CFDSim& sim)
     : m_sim(sim)
@@ -126,4 +126,4 @@ void BreakingWaves::initialize_fields(int level, const amrex::Geometry& geom)
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

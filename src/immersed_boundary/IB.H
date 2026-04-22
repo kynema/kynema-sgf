@@ -8,7 +8,7 @@
  *  Immersed boundary class
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class Field;
 
@@ -77,6 +77,6 @@ private:
 };
 
 } // namespace ib
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* IB_H */

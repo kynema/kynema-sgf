@@ -8,7 +8,7 @@
 #include "AMReX_MultiFab.H"
 #include "AMReX_Geometry.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 
@@ -57,6 +57,6 @@ protected:
     Field* m_non_uniform_coord_nd{nullptr};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* MESHMAP_H */

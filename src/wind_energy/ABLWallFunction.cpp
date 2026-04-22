@@ -17,7 +17,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 ABLWallFunction::ABLWallFunction(const CFDSim& sim)
     : m_sim(sim), m_mesh(sim.mesh())
@@ -173,7 +173,7 @@ void ABLWallFunction::update_umean(
                      time.current_time() - m_surf_temp_rate_tstart, 0.0_rt) /
                  3600.0_rt);
         } else {
-            m_mo.surf_temp = amr_wind::interp::linear(
+            m_mo.surf_temp = kynema_sgf::interp::linear(
                 m_surf_temp_time, m_surf_temp_value, time.current_time());
         }
         amrex::Print() << "Current surface temperature: " << m_mo.surf_temp
@@ -525,4 +525,4 @@ void ABLTempWallFunc::operator()(Field& temperature, const FieldState rho_state)
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

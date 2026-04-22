@@ -11,13 +11,13 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::ocean_waves::ops {
+namespace kynema_sgf::ocean_waves::ops {
 
 template <>
 struct ReadInputsOp<StokesWaves>
 {
     void operator()(
-        StokesWaves::DataType& data, const ::amr_wind::utils::MultiParser& pp)
+        StokesWaves::DataType& data, const ::kynema_sgf::utils::MultiParser& pp)
     {
         auto& wdata = data.meta();
         auto& info = data.info();
@@ -238,6 +238,6 @@ struct UpdateTargetFieldsOp<StokesWaves>
     }
 };
 
-} // namespace amr_wind::ocean_waves::ops
+} // namespace kynema_sgf::ocean_waves::ops
 
 #endif /* STOKES_WAVES_OPS_H */

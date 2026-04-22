@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Boussinesq buoyancy source term
  *  \ingroup icns_src we_abl
@@ -56,6 +56,6 @@ private:
     //! Read a temperature profile from a text file
     void read_temperature_profile(const std::string& profile_file_name);
 };
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif /* ABLMEANBOUSSINESQ_H */

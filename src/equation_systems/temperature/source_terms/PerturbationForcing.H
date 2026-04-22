@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::temperature {
+namespace kynema_sgf::pde::temperature {
 
 class PerturbationForcing
     : public TemperatureSource::Register<PerturbationForcing>
@@ -39,5 +39,5 @@ private:
     amrex::Real m_pert_amplitude{1.0_rt};
 };
 
-} // namespace amr_wind::pde::temperature
+} // namespace kynema_sgf::pde::temperature
 #endif

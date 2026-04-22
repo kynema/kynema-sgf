@@ -3,7 +3,7 @@
 
 #include "AMReX_Gpu.H"
 
-namespace amr_wind::tioga_iface {
+namespace kynema_sgf::tioga_iface {
 
 /** Wrapper to handle host/device views of the data for TIOGA overset
  */
@@ -51,6 +51,6 @@ struct AmrDualArray
     }
 };
 
-} // namespace amr_wind::tioga_iface
+} // namespace kynema_sgf::tioga_iface
 
 #endif /* OVERSET_TYPES_H */

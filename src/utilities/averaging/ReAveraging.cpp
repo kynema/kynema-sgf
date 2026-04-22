@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::averaging {
+namespace kynema_sgf::averaging {
 
 ReAveraging::ReAveraging(
     CFDSim& sim, const std::string& avgname, const std::string& fname)
@@ -70,4 +70,4 @@ void ReAveraging::operator()(
     m_average.fillpatch(time.new_time());
 }
 
-} // namespace amr_wind::averaging
+} // namespace kynema_sgf::averaging

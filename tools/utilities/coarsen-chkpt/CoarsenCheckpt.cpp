@@ -11,7 +11,7 @@ void GotoNextLine(std::istream& is)
 }
 } // namespace
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace tools {
 
 CoarsenCheckpt::CoarsenCheckpt() : incflo() {}
@@ -278,4 +278,4 @@ void CoarsenCheckpt::average_down_all_fields()
 }
 
 } // namespace tools
-} // namespace amr_wind
+} // namespace kynema_sgf

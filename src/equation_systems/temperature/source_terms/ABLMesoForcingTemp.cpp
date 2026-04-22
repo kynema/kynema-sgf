@@ -12,12 +12,12 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::temperature {
+namespace kynema_sgf::pde::temperature {
 
 ABLMesoForcingTemp::ABLMesoForcingTemp(const CFDSim& sim)
     : ABLMesoscaleForcing(sim, identifier())
 {
-    const auto& abl = sim.physics_manager().get<amr_wind::ABL>();
+    const auto& abl = sim.physics_manager().get<kynema_sgf::ABL>();
     abl.register_meso_temp_forcing(this);
     abl.abl_statistics().register_meso_temp_forcing(this);
 
@@ -86,7 +86,7 @@ amrex::Real ABLMesoForcingTemp::mean_temperature_heights(
     amrex::Real currtime;
     currtime = m_time.current_time();
 
-    const amrex::Real interpTflux = amr_wind::interp::linear(
+    const amrex::Real interpTflux = kynema_sgf::interp::linear(
         ncfile->meso_times(), ncfile->meso_tflux(), currtime);
 
     if (m_forcing_scheme.empty()) {
@@ -99,7 +99,7 @@ amrex::Real ABLMesoForcingTemp::mean_temperature_heights(
     amrex::Vector<amrex::Real> time_interpolated_theta(num_meso_ht);
 
     for (int i = 0; i < num_meso_ht; i++) {
-        time_interpolated_theta[i] = amr_wind::interp::linear(
+        time_interpolated_theta[i] = kynema_sgf::interp::linear(
             ncfile->meso_times(), ncfile->meso_temp(), currtime, num_meso_ht,
             i);
     }
@@ -123,7 +123,7 @@ amrex::Real ABLMesoForcingTemp::mean_temperature_heights(
     currtime = m_time.current_time();
     const auto& dt = m_time.delta_t();
 
-    const amrex::Real interpTflux = amr_wind::interp::linear(
+    const amrex::Real interpTflux = kynema_sgf::interp::linear(
         ncfile->meso_times(), ncfile->meso_tflux(), currtime);
 
     if (m_forcing_scheme.empty()) {
@@ -134,7 +134,7 @@ amrex::Real ABLMesoForcingTemp::mean_temperature_heights(
     amrex::Vector<amrex::Real> error_T(m_nht);
 
     for (int i = 0; i < m_nht; i++) {
-        const amrex::Real interpolated_theta = amr_wind::interp::bilinear(
+        const amrex::Real interpolated_theta = kynema_sgf::interp::bilinear(
 
             ncfile->meso_times(), ncfile->meso_heights(), ncfile->meso_temp(),
             currtime, tavg.line_centroids()[i]);
@@ -147,7 +147,7 @@ amrex::Real ABLMesoForcingTemp::mean_temperature_heights(
             // ec5eb95c6ca853ce0fea8488e3f2515a2d6374e7
             // First the index in time
 
-            m_transition_height = amr_wind::interp::linear(
+            m_transition_height = kynema_sgf::interp::linear(
                 ncfile->meso_times(), ncfile->meso_transition_height(),
                 currtime);
             amrex::Print() << "current transition height = "
@@ -258,7 +258,7 @@ void ABLMesoForcingTemp::operator()(
     amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         amrex::IntVect iv(i, j, k);
         const amrex::Real ht = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
-        const amrex::Real theta_err = amr_wind::interp::linear(
+        const amrex::Real theta_err = kynema_sgf::interp::linear(
             theights_begin, theights_end, theta_error_val, ht);
 
         // Compute Source term
@@ -266,4 +266,4 @@ void ABLMesoForcingTemp::operator()(
     });
 }
 
-} // namespace amr_wind::pde::temperature
+} // namespace kynema_sgf::pde::temperature

@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::temperature {
+namespace kynema_sgf::pde::temperature {
 
 class DragTempForcing : public TemperatureSource::Register<DragTempForcing>
 {
@@ -47,5 +47,5 @@ private:
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 };
 
-} // namespace amr_wind::pde::temperature
+} // namespace kynema_sgf::pde::temperature
 #endif

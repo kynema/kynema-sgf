@@ -9,7 +9,7 @@
 
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 CFDSim::CFDSim(amrex::AmrCore& mesh)
     : m_mesh(mesh)
@@ -104,4 +104,4 @@ bool CFDSim::is_anelastic() const
     }
     return false;
 }
-} // namespace amr_wind
+} // namespace kynema_sgf

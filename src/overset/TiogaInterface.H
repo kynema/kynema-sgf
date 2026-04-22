@@ -5,7 +5,7 @@
 #include "src/overset/OversetManager.H"
 #include "src/overset/overset_types.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class IntField;
 class ScratchField;
@@ -141,6 +141,6 @@ private:
     std::vector<std::string> m_node_vars;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* TIOGAINTERFACE_H */

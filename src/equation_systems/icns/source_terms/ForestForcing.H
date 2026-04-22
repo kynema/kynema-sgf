@@ -5,7 +5,7 @@
 #include "src/core/SimTime.H"
 #include "src/CFDSim.H"
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Adds a forcing term to represent forest terrain
  *
@@ -34,6 +34,6 @@ private:
     const Field& m_velocity;
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif

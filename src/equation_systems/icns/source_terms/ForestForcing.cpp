@@ -5,7 +5,7 @@
 #include "AMReX_Random.H"
 #include "src/wind_energy/ABL.H"
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 ForestForcing::ForestForcing(const CFDSim& sim)
     : m_sim(sim), m_velocity(sim.repo().get_field("velocity"))
@@ -40,4 +40,4 @@ void ForestForcing::operator()(
     });
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

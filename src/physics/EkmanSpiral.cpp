@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 namespace {
 
@@ -204,4 +204,4 @@ void EkmanSpiral::post_init_actions() { output_error(); }
 
 void EkmanSpiral::post_advance_work() { output_error(); }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

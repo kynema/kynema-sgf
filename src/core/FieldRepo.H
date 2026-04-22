@@ -15,7 +15,7 @@
 #include "AMReX_MultiFab.H"
 #include "AMReX_iMultiFab.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /**
  *  \defgroup fields Field management
@@ -53,7 +53,7 @@ struct LevelDataHolder
  *  simulation. It provides an interface to automatically handle the
  *  creation/destruction of lower-level data structures (amrex::MultiFab) during
  *  regrids and handles the interface between the actual data and the
- *  amr_wind::Field interface which doesn't hold any actual data.
+ *  kynema_sgf::Field interface which doesn't hold any actual data.
  *
  *  FieldRepo allows the user to declare instances of fields and their types
  *  (e.g., cell or node cenrered), and allows querying and accessing these
@@ -68,15 +68,15 @@ struct LevelDataHolder
  *  available, data is allocated and ready for use immediately upon declaration.
  *
  *  Field declarations use a unique string name to differentiate different
- *  fields. If amr_wind::FieldRepo::declare_field is called multiple times with
+ *  fields. If kynema_sgf::FieldRepo::declare_field is called multiple times with
  *  the same field name, the previously created instance is returned on
  *  subsequent calls. However, an error is raised if the subsequent calls do not
  *  have the same field parameters (e.g., number of components, states, or ghost
  *  cells).
  *
- *  Fields can be accessed using amr_wind::FieldRepo::get_field method. Unlike
+ *  Fields can be accessed using kynema_sgf::FieldRepo::get_field method. Unlike
  *  the declaration method, this method will raise an error if no field exists.
- *  amr_wind::FieldRepo::field_exists can be used to determine if a field exists
+ *  kynema_sgf::FieldRepo::field_exists can be used to determine if a field exists
  *  in the repository.
  *
  *  FieldRepo also manages integer fields (IntField) as well as creation of
@@ -147,7 +147,7 @@ public:
      *
      *  This is a convenience wrapper around `declare_field`
      *
-     *  \sa amr_wind::FieldRepo::declare_field
+     *  \sa kynema_sgf::FieldRepo::declare_field
      */
     Field& declare_cc_field(
         const std::string& name,
@@ -162,7 +162,7 @@ public:
      *
      *  This is a convenience wrapper around `declare_field`
      *
-     *  \sa amr_wind::FieldRepo::declare_field
+     *  \sa kynema_sgf::FieldRepo::declare_field
      */
     Field& declare_nd_field(
         const std::string& name,
@@ -177,7 +177,7 @@ public:
      *
      *  This is a convenience wrapper around `declare_field`
      *
-     *  \sa amr_wind::FieldRepo::declare_field
+     *  \sa kynema_sgf::FieldRepo::declare_field
      */
     Field& declare_xf_field(
         const std::string& name,
@@ -192,7 +192,7 @@ public:
      *
      *  This is a convenience wrapper around `declare_field`
      *
-     *  \sa amr_wind::FieldRepo::declare_field
+     *  \sa kynema_sgf::FieldRepo::declare_field
      */
     Field& declare_yf_field(
         const std::string& name,
@@ -207,7 +207,7 @@ public:
      *
      *  This is a convenience wrapper around `declare_field`
      *
-     *  \sa amr_wind::FieldRepo::declare_field
+     *  \sa kynema_sgf::FieldRepo::declare_field
      */
     Field& declare_zf_field(
         const std::string& name,
@@ -442,6 +442,6 @@ protected:
     bool m_is_initialized{false};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* FIELDREPO_H */

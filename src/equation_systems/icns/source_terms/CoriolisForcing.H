@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Account for Coriolis forcing due to earth's rotation
  *  \ingroup icns_src we_abl
@@ -56,6 +56,6 @@ private:
     bool m_is_horizontal{false};
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif /* CORIOLISFORCING_H */

@@ -15,7 +15,7 @@ class NodalProjector;
 class MacProjector;
 } // namespace Hydro
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Interface to control the behavior of AMReX LinearSolvers
  *
@@ -139,6 +139,6 @@ private:
 #endif
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* MLMGOPTIONS_H */

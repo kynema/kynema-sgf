@@ -20,7 +20,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 ABL::ABL(CFDSim& sim)
     : m_sim(sim)
@@ -129,7 +129,7 @@ ABL::~ABL() = default;
 /** Initialize the velocity and temperature fields at the beginning of the
  *  simulation.
  *
- *  \sa amr_wind::ABLFieldInit
+ *  \sa kynema_sgf::ABLFieldInit
  */
 void ABL::initialize_fields(int level, const amrex::Geometry& geom)
 {
@@ -227,7 +227,7 @@ void ABL::pre_advance_work()
             const amrex::Real wind_direction =
                 -m_sim.helics().m_inflow_wind_direction_to_amrwind + 270.0_rt;
             const amrex::Real wind_direction_radian =
-                amr_wind::utils::radians(wind_direction);
+                kynema_sgf::utils::radians(wind_direction);
             const amrex::Real tvx =
                 wind_speed * std::cos(wind_direction_radian);
             const amrex::Real tvy =
@@ -285,4 +285,4 @@ void ABL::pre_advance_work()
  */
 void ABL::post_advance_work() { m_stats->post_advance_work(); }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

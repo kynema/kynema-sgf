@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::multiphase {
+namespace kynema_sgf::multiphase {
 
 /** Young's finite-difference gradient scheme.
  *
@@ -564,6 +564,6 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real levelset_to_vof(
     return result;
 }
 
-} // namespace amr_wind::multiphase
+} // namespace kynema_sgf::multiphase
 
 #endif // VOLUME_FRACTIONS.H

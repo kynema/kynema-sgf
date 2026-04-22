@@ -12,7 +12,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 void OversetOps::initialize(CFDSim& sim)
 {
@@ -115,7 +115,7 @@ void OversetOps::update_gradp()
     for (int lev = 0; lev <= finest_level; ++lev) {
         vel.push_back(&(velocity(lev)));
     }
-    amr_wind::MLMGOptions options("nodal_proj");
+    kynema_sgf::MLMGOptions options("nodal_proj");
     // Create nodal projector with unity scaling factor for simplicity
     nodal_projector = std::make_unique<Hydro::NodalProjector>(
         vel, 1.0_rt, m_sim_ptr->mesh().Geom(0, finest_level), options.lpinfo());
@@ -207,4 +207,4 @@ void OversetOps::replace_masked_gradp()
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

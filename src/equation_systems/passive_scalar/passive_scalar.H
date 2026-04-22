@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /**
  *  \defgroup passive_eqn Passive scalar transport equation
@@ -46,6 +46,6 @@ struct PassiveScalar : ScalarTransport
     static constexpr bool need_nph_state = true;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif

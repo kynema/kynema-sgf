@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::interp {
+namespace kynema_sgf::interp {
 
 enum class Limits : int { // NOLINT(performance-enum-size)
     LOWLIM = -2,
@@ -349,6 +349,6 @@ typename C2::value_type bilinear(
         (yinp.data() + yinp.size()), zinp.data(), xout, yout);
 }
 
-} // namespace amr_wind::interp
+} // namespace kynema_sgf::interp
 
 #endif /* LINEAR_INTERPOLATION_H */

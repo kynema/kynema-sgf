@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 MultiPhase::MultiPhase(CFDSim& sim)
     : m_sim(sim)
@@ -28,7 +28,7 @@ MultiPhase::MultiPhase(CFDSim& sim)
 
     // Register either the VOF or levelset equation
     if (amrex::toLower(m_interface_model) == "vof") {
-        m_interface_capturing_method = amr_wind::InterfaceCapturingMethod::VOF;
+        m_interface_capturing_method = kynema_sgf::InterfaceCapturingMethod::VOF;
         auto& vof_eqn = sim.pde_manager().register_transport_pde("VOF");
         m_vof = &(vof_eqn.fields().field);
         // Create levelset as a auxiliary field only !
@@ -38,7 +38,7 @@ MultiPhase::MultiPhase(CFDSim& sim)
         bc_ls(levelset_default);
         m_levelset->fillpatch(sim.time().current_time());
     } else if (amrex::toLower(m_interface_model) == "levelset") {
-        m_interface_capturing_method = amr_wind::InterfaceCapturingMethod::LS;
+        m_interface_capturing_method = kynema_sgf::InterfaceCapturingMethod::LS;
         auto& levelset_eqn =
             sim.pde_manager().register_transport_pde("Levelset");
         m_levelset = &(levelset_eqn.fields().field);
@@ -46,7 +46,7 @@ MultiPhase::MultiPhase(CFDSim& sim)
         amrex::Print() << "Please select an interface capturing model between "
                           "VOF and Levelset: defaulting to VOF "
                        << '\n';
-        m_interface_capturing_method = amr_wind::InterfaceCapturingMethod::VOF;
+        m_interface_capturing_method = kynema_sgf::InterfaceCapturingMethod::VOF;
         auto& vof_eqn = sim.pde_manager().register_transport_pde("VOF");
         m_vof = &(vof_eqn.fields().field);
         // Create levelset as a auxiliary field only !
@@ -335,7 +335,7 @@ void MultiPhase::set_density_via_levelset()
     amrex::Gpu::streamSynchronize();
 }
 
-void MultiPhase::set_density_via_vof(amr_wind::FieldState fstate)
+void MultiPhase::set_density_via_vof(kynema_sgf::FieldState fstate)
 {
     const int nlevels = m_sim.repo().num_active_levels();
 
@@ -361,9 +361,9 @@ void MultiPhase::set_density_via_vof(amr_wind::FieldState fstate)
 void MultiPhase::set_nph_density()
 {
 
-    amr_wind::field_ops::lincomb(
-        m_density.state(amr_wind::FieldState::NPH), 0.5_rt,
-        m_density.state(amr_wind::FieldState::Old), 0, 0.5_rt, m_density, 0, 0,
+    kynema_sgf::field_ops::lincomb(
+        m_density.state(kynema_sgf::FieldState::NPH), 0.5_rt,
+        m_density.state(kynema_sgf::FieldState::Old), 0, 0.5_rt, m_density, 0, 0,
         m_density.num_comp(), 1);
 }
 
@@ -539,4 +539,4 @@ void MultiPhase::levelset2vof(
     vof_scr.fillpatch(m_sim.time().current_time());
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

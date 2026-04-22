@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 VortexPatch::VortexPatch(CFDSim& sim)
     : m_sim(sim)
@@ -26,7 +26,7 @@ VortexPatch::VortexPatch(CFDSim& sim)
 /** Initialize the velocity and levelset fields at the beginning of the
  *  simulation.
  *
- *  \sa amr_wind::VortexPatchFieldInit
+ *  \sa kynema_sgf::VortexPatchFieldInit
  */
 void VortexPatch::initialize_fields(int level, const amrex::Geometry& geom)
 {
@@ -218,4 +218,4 @@ void VortexPatch::post_advance_work()
     m_velocity.fillpatch(time);
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

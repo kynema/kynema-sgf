@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::utils {
+namespace kynema_sgf::utils {
 
 //! Return \f$2 \pi\f$
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE constexpr amrex::Real two_pi()
@@ -41,6 +41,6 @@ degrees(const amrex::Real rad_val)
     return 180.0_rt * rad_val / std::numbers::pi_v<amrex::Real>;
 }
 
-} // namespace amr_wind::utils
+} // namespace kynema_sgf::utils
 
 #endif /* TRIG_OPS_H */

@@ -12,7 +12,7 @@ using namespace amrex::literals;
  *
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class VortexPatch : public Physics::Register<VortexPatch>
 {
@@ -55,6 +55,6 @@ private:
     amrex::Real m_TT{3.0_rt};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* VortexPatch_H */

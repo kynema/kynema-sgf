@@ -12,7 +12,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator::external {
+namespace kynema_sgf::actuator::external {
 
 // Note: inline is necessary to avoid duplicate symbol errors
 inline void swap_epsilon(vs::Vector& eps)
@@ -40,21 +40,21 @@ void make_component_views(datatype& data)
         const auto start = ib * num_pts_blade + 1;
         const auto start_vel = ib * num_vel_pts_blade;
         // clang-format off
-            cv.pos = ::amr_wind::utils::slice(
+            cv.pos = ::kynema_sgf::utils::slice(
                 grid.pos, start, num_pts_blade);
-            cv.force = ::amr_wind::utils::slice(
+            cv.force = ::kynema_sgf::utils::slice(
                 grid.force, start, num_pts_blade);
-            cv.epsilon = ::amr_wind::utils::slice(
+            cv.epsilon = ::kynema_sgf::utils::slice(
                 grid.epsilon, start, num_pts_blade);
-            cv.orientation = ::amr_wind::utils::slice(
+            cv.orientation = ::kynema_sgf::utils::slice(
                 grid.orientation, start, num_pts_blade);
-            cv.chord = ::amr_wind::utils::slice(
+            cv.chord = ::kynema_sgf::utils::slice(
                 tdata.chord, start, num_pts_blade);
-            cv.vel_rel = ::amr_wind::utils::slice(
+            cv.vel_rel = ::kynema_sgf::utils::slice(
                 tdata.vel_rel, start, num_pts_blade);
-            cv.vel= ::amr_wind::utils::slice(
+            cv.vel= ::kynema_sgf::utils::slice(
                 grid.vel, start_vel, num_vel_pts_blade);
-            cv.vel_pos= ::amr_wind::utils::slice(
+            cv.vel_pos= ::kynema_sgf::utils::slice(
                 grid.vel_pos, start_vel, num_vel_pts_blade);
         // clang-format on
 
@@ -65,23 +65,23 @@ void make_component_views(datatype& data)
         const int ntwr_start = num_blades * num_pts_blade + 1;
         auto& cv = tdata.tower;
 
-        cv.pos = ::amr_wind::utils::slice(grid.pos, ntwr_start, num_pts_tower);
+        cv.pos = ::kynema_sgf::utils::slice(grid.pos, ntwr_start, num_pts_tower);
         cv.force =
-            ::amr_wind::utils::slice(grid.force, ntwr_start, num_pts_tower);
+            ::kynema_sgf::utils::slice(grid.force, ntwr_start, num_pts_tower);
         cv.epsilon =
-            ::amr_wind::utils::slice(grid.epsilon, ntwr_start, num_pts_tower);
-        cv.orientation = ::amr_wind::utils::slice(
+            ::kynema_sgf::utils::slice(grid.epsilon, ntwr_start, num_pts_tower);
+        cv.orientation = ::kynema_sgf::utils::slice(
             grid.orientation, ntwr_start, num_pts_tower);
         cv.chord =
-            ::amr_wind::utils::slice(tdata.chord, ntwr_start, num_pts_tower);
+            ::kynema_sgf::utils::slice(tdata.chord, ntwr_start, num_pts_tower);
     }
     {
         auto& cv = tdata.hub;
-        cv.pos = ::amr_wind::utils::slice(grid.pos, 0, 1);
-        cv.force = ::amr_wind::utils::slice(grid.force, 0, 1);
-        cv.epsilon = ::amr_wind::utils::slice(grid.epsilon, 0, 1);
-        cv.orientation = ::amr_wind::utils::slice(grid.orientation, 0, 1);
-        cv.chord = ::amr_wind::utils::slice(tdata.chord, 0, 1);
+        cv.pos = ::kynema_sgf::utils::slice(grid.pos, 0, 1);
+        cv.force = ::kynema_sgf::utils::slice(grid.force, 0, 1);
+        cv.epsilon = ::kynema_sgf::utils::slice(grid.epsilon, 0, 1);
+        cv.orientation = ::kynema_sgf::utils::slice(grid.orientation, 0, 1);
+        cv.chord = ::kynema_sgf::utils::slice(tdata.chord, 0, 1);
     }
 }
 
@@ -158,7 +158,7 @@ void compute_nacelle_force(datatype& data)
     if (eps > 0.0_rt) {
         amrex::Real fac =
             1.0_rt -
-            (cd_area) / (2.0_rt * ::amr_wind::utils::two_pi() * eps * eps);
+            (cd_area) / (2.0_rt * ::kynema_sgf::utils::two_pi() * eps * eps);
         correction = 1.0_rt / fac;
     }
     amrex::Real coeff =
@@ -312,6 +312,6 @@ void scatter_data(datatype& data)
     }
 }
 
-} // namespace amr_wind::actuator::external
+} // namespace kynema_sgf::actuator::external
 
 #endif /* TURBINE_EXTERNAL_UTILS_H */

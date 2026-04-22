@@ -24,7 +24,7 @@ void set_default(
     }
 }
 
-//! Default inputs for amr_wind::SimTime
+//! Default inputs for kynema_sgf::SimTime
 void default_time_inputs();
 
 //! Default inputs for amrex::AmrCore

@@ -58,7 +58,7 @@ void run_algorithm(
 }
 
 template <typename Functor>
-void run_algorithm(amr_wind::Field& field, const Functor& func)
+void run_algorithm(kynema_sgf::Field& field, const Functor& func)
 {
     const int nlevels = field.repo().num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
@@ -80,7 +80,7 @@ void run_algorithm(
 }
 
 template <typename Functor>
-void run_algorithm(amr_wind::IntField& intfield, const Functor& func)
+void run_algorithm(kynema_sgf::IntField& intfield, const Functor& func)
 {
     const int nlevels = intfield.repo().num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {

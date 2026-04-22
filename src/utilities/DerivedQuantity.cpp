@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace {
 
 std::string strip_spaces(const std::string& inp)
@@ -151,4 +151,4 @@ void DerivedQtyMgr::filter(const std::set<std::string>& erase)
         m_derived_vec.end());
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

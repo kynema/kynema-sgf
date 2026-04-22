@@ -5,7 +5,7 @@
 #include "AMReX_REAL.H"
 #include "AMReX_Vector.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class ABLMesoscaleInput
 {
@@ -86,6 +86,6 @@ private:
     bool m_abl_tendency{false};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif

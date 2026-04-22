@@ -3,7 +3,7 @@
 
 #include "src/fvm/fvm_utils.H"
 
-namespace amr_wind::fvm {
+namespace kynema_sgf::fvm {
 
 /** Non-linear Term for Kosovic Model
  *  \ingroup fvm
@@ -157,6 +157,6 @@ std::unique_ptr<ScratchField> nonlinearsum(const FType& phi)
     return strphi;
 }
 
-} // namespace amr_wind::fvm
+} // namespace kynema_sgf::fvm
 
 #endif /* NONLINEARSUM_H */

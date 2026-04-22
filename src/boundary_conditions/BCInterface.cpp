@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 BCIface::BCIface(Field& field) : m_field(field) {}
 
@@ -444,4 +444,4 @@ void BCFillPatchExtrap::set_bcrec()
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

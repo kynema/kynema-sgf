@@ -4,7 +4,7 @@
 
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind::subvolume {
+namespace kynema_sgf::subvolume {
 
 RectangularSubvolume::RectangularSubvolume(const CFDSim& sim) : m_sim(sim) {}
 
@@ -135,4 +135,4 @@ void RectangularSubvolume::evaluate_inputs()
     m_ba = ba;
 }
 
-} // namespace amr_wind::subvolume
+} // namespace kynema_sgf::subvolume

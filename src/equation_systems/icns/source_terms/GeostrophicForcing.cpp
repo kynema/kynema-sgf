@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Geostrophic forcing term for ABL
  *
@@ -79,7 +79,7 @@ GeostrophicForcing::GeostrophicForcing(const CFDSim& sim)
     // Set up relaxation toward 0 forcing near the air-water interface
     if (sim.repo().field_exists("vof")) {
         // If vof exists, get multiphase physics
-        const auto& mphase = sim.physics_manager().get<amr_wind::MultiPhase>();
+        const auto& mphase = sim.physics_manager().get<kynema_sgf::MultiPhase>();
         // Retrieve interface position
         m_water_level = mphase.water_level();
         // Confirm that water level will be used
@@ -123,8 +123,8 @@ void GeostrophicForcing::operator()(
     // Calculate forcing values if target velocity is a function of time
     if (!m_vel_timetable.empty()) {
         const amrex::Real nph_spd =
-            amr_wind::interp::linear(m_time_table, m_speed_table, nph_time);
-        const amrex::Real nph_dir = amr_wind::interp::linear_angle(
+            kynema_sgf::interp::linear(m_time_table, m_speed_table, nph_time);
+        const amrex::Real nph_dir = kynema_sgf::interp::linear_angle(
             m_time_table, m_direction_table, nph_time,
             2.0_rt * std::numbers::pi_v<amrex::Real>);
 
@@ -170,4 +170,4 @@ void GeostrophicForcing::operator()(
     });
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

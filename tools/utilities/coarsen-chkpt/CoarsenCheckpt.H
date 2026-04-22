@@ -3,7 +3,7 @@
 
 #include "src/incflo.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace tools {
 
 // Adapted from RefineCheckpt tool
@@ -36,6 +36,6 @@ private:
 };
 
 } // namespace tools
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* COARSENCHECKPT_H */

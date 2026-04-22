@@ -5,7 +5,7 @@
 #include "src/core/FieldBCOps.H"
 #include "src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class OceanWavesFillInflow : public FieldFillPatchOps<FieldBCDirichlet>
 {
@@ -56,6 +56,6 @@ protected:
     const OceanWavesBoundary& m_ow_bndry;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* ABLFILLINFLOW_H */

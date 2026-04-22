@@ -4,7 +4,7 @@
 #include "src/core/vs/vector_space.H"
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind::utils {
+namespace kynema_sgf::utils {
 
 /** Utility to parse inputs from multiple namespaces.
  *
@@ -157,6 +157,6 @@ private:
     amrex::ParmParse m_pp;
 };
 
-} // namespace amr_wind::utils
+} // namespace kynema_sgf::utils
 
 #endif /* MULTIPARSER_H */

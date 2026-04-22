@@ -14,7 +14,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::udf {
+namespace kynema_sgf::udf {
 
 ConstValue::ConstValue(Field& fld) : m_field(fld)
 {
@@ -68,4 +68,4 @@ template class UDFImpl<CustomVelocity>;
 template class UDFImpl<CustomScalar>;
 template class UDFImpl<TwoLayer>;
 
-} // namespace amr_wind::udf
+} // namespace kynema_sgf::udf

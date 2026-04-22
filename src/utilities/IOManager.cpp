@@ -23,7 +23,7 @@
 using namespace amrex::literals;
 #endif
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 IOManager::IOManager(CFDSim& sim)
     : m_sim(sim), m_derived_mgr(new DerivedQtyMgr(m_sim.repo()))
@@ -368,7 +368,7 @@ void IOManager::write_info_file(const std::string& path)
         amrex::FileOpenFailed(fname);
     }
 
-    amr_wind::io::print_banner(amrex::ParallelContext::CommunicatorSub(), fh);
+    kynema_sgf::io::print_banner(amrex::ParallelContext::CommunicatorSub(), fh);
 
     fh << dash_line << "Grid information: " << '\n';
     const auto& mesh = m_sim.mesh();
@@ -388,4 +388,4 @@ void IOManager::write_info_file(const std::string& path)
     fh.close();
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

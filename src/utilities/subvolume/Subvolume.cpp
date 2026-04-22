@@ -8,7 +8,7 @@
 
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind::subvolume {
+namespace kynema_sgf::subvolume {
 
 Subvolume::Subvolume(CFDSim& sim, std::string label)
     : m_sim(sim)
@@ -208,4 +208,4 @@ void Subvolume::output_actions()
     }
 }
 
-} // namespace amr_wind::subvolume
+} // namespace kynema_sgf::subvolume

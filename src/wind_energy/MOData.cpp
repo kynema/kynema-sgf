@@ -4,7 +4,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /*
  * van der Laan, P., Kelly, M. C., & Sørensen, N. N. (2017). A new k-epsilon
@@ -102,4 +102,4 @@ void MOData::update_fluxes(int max_iters)
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

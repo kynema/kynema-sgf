@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::fvm {
+namespace kynema_sgf::fvm {
 
 /** VorticityMag operator
  *  \ingroup fvm
@@ -108,6 +108,6 @@ std::unique_ptr<ScratchField> vorticity_mag(const FType& phi)
     return vortmagphi;
 }
 
-} // namespace amr_wind::fvm
+} // namespace kynema_sgf::fvm
 
 #endif /* VORTICITYMAG_H */

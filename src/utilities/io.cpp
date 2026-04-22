@@ -43,29 +43,29 @@ void incflo::ReadCheckpointFile()
 
     // Finest level
     is >> finest_level;
-    amr_wind::ioutils::goto_next_line(is);
+    kynema_sgf::ioutils::goto_next_line(is);
 
     int nstep;
     amrex::Real cur_time, dt_restart;
     // Step count
     is >> nstep;
-    amr_wind::ioutils::goto_next_line(is);
+    kynema_sgf::ioutils::goto_next_line(is);
 
     // Current time
     is >> cur_time;
-    amr_wind::ioutils::goto_next_line(is);
+    kynema_sgf::ioutils::goto_next_line(is);
 
     m_time.set_restart_time(nstep, cur_time);
 
     // Time step size
     is >> dt_restart;
-    amr_wind::ioutils::goto_next_line(is);
+    kynema_sgf::ioutils::goto_next_line(is);
 
     is >> m_time.delta_t_nm1();
-    amr_wind::ioutils::goto_next_line(is);
+    kynema_sgf::ioutils::goto_next_line(is);
 
     is >> m_time.delta_t_nm2();
-    amr_wind::ioutils::goto_next_line(is);
+    kynema_sgf::ioutils::goto_next_line(is);
 
     // Low coordinates of domain bounding box
     std::getline(is, line);
@@ -144,7 +144,7 @@ void incflo::ReadCheckpointFile()
     for (int lev = 0; lev <= finest_level; ++lev) {
         // read in level 'lev' BoxArray from Header
         ba_inp[lev].readFrom(is);
-        amr_wind::ioutils::goto_next_line(is);
+        kynema_sgf::ioutils::goto_next_line(is);
     }
 
     // always use level 0 to check domain size

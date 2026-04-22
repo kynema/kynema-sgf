@@ -22,7 +22,7 @@ using namespace amrex::literals;
 // Kinnas S. A., Notes on fifth order gravity wave theory
 // https://www.caee.utexas.edu/prof/kinnas/ce358/oenotes/kinnas_stokes11.pdf
 
-namespace amr_wind::ocean_waves::relaxation_zones {
+namespace kynema_sgf::ocean_waves::relaxation_zones {
 
 // Compute wavelength as a function of wave period, water depth, and g
 AMREX_FORCE_INLINE amrex::Real stokes_wave_length(
@@ -373,5 +373,5 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void stokes_waves(
     w_w *= (c0 * std::sqrt(g / wavenumber));
 }
 
-} // namespace amr_wind::ocean_waves::relaxation_zones
+} // namespace kynema_sgf::ocean_waves::relaxation_zones
 #endif

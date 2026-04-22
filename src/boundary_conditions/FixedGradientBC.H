@@ -5,7 +5,7 @@
 #include "src/core/FieldRepo.H"
 #include "AMReX_Orientation.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Applies a non-zero gradient at the domain boundary
  *  \ingroup field_bc
@@ -26,6 +26,6 @@ private:
     amrex::Orientation m_ori;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* FIXEDGRADIENTBC_H */

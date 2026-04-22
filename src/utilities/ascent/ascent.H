@@ -7,7 +7,7 @@
  * Ascent In-situ Integration
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class Field;
 
@@ -45,6 +45,6 @@ private:
 };
 
 } // namespace ascent_int
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif

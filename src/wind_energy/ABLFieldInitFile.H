@@ -11,7 +11,7 @@
 #include "AMReX_Vector.H"
 #include "AMReX_Gpu.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Initialize subset of ABL fields using input NetCDF file
  */
@@ -33,6 +33,6 @@ private:
     std::string m_ic_input;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* ABLFIELDINIT_H */

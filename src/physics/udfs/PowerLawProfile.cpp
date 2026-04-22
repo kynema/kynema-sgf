@@ -6,7 +6,7 @@
 
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind::udf {
+namespace kynema_sgf::udf {
 
 PowerLawProfile::PowerLawProfile(const Field& fld)
 {
@@ -32,4 +32,4 @@ PowerLawProfile::PowerLawProfile(const Field& fld)
     }
 }
 
-} // namespace amr_wind::udf
+} // namespace kynema_sgf::udf

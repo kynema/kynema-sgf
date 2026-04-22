@@ -20,7 +20,7 @@ using namespace amrex::literals;
  * initial conditions are generated.
  *
  */
-namespace amr_wind {
+namespace kynema_sgf {
 
 enum class InterfaceCapturingMethod : std::uint8_t {
     VOF, ///< Volume of fluid
@@ -51,7 +51,7 @@ public:
     void set_density_via_levelset();
 
     void set_density_via_vof(
-        amr_wind::FieldState fstate = amr_wind::FieldState::New);
+        kynema_sgf::FieldState fstate = kynema_sgf::FieldState::New);
 
     void set_nph_density();
 
@@ -136,6 +136,6 @@ private:
     amrex::Real m_sumvof0{0.0_rt};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* MULTIPHASE_H */

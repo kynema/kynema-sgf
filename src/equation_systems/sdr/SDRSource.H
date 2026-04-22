@@ -7,7 +7,7 @@
 #include "src/core/FieldRepo.H"
 #include "AMReX_MultiFab.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 
@@ -34,6 +34,6 @@ public:
 };
 
 } // namespace pde
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* SDRSOURCE_H */

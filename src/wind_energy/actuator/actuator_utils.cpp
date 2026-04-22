@@ -3,7 +3,7 @@
 #include "src/wind_energy/actuator/actuator_utils.H"
 #include "src/wind_energy/actuator/actuator_types.H"
 
-namespace amr_wind::actuator::utils {
+namespace kynema_sgf::actuator::utils {
 
 std::set<int> determine_influenced_procs(
     const amrex::AmrCore& mesh, const amrex::RealBox& rbx)
@@ -11,7 +11,7 @@ std::set<int> determine_influenced_procs(
     std::set<int> procs;
     const int finest_level = mesh.finestLevel();
     const int nlevels = mesh.finestLevel() + 1;
-    auto bx = amr_wind::utils::realbox_to_box(rbx, mesh.Geom(0));
+    auto bx = kynema_sgf::utils::realbox_to_box(rbx, mesh.Geom(0));
 
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& ba = mesh.boxArray(lev);
@@ -89,4 +89,4 @@ void determine_root_proc(ActInfo& info, amrex::Vector<int>& act_proc_count)
     }
 }
 
-} // namespace amr_wind::actuator::utils
+} // namespace kynema_sgf::actuator::utils

@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Initialize RayleighTaylor fields
  */
@@ -35,6 +35,6 @@ private:
     amrex::Real m_rho_hi{2.0_rt};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* RayleighTaylorFIELDINIT_H */

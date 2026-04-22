@@ -8,7 +8,7 @@ namespace amr_wind_tests {
 
 namespace {
 
-void init_vel_z(amr_wind::Field& vel, const amrex::Real w_const)
+void init_vel_z(kynema_sgf::Field& vel, const amrex::Real w_const)
 {
     const int nlevels = vel.repo().num_active_levels();
 
@@ -24,7 +24,7 @@ void init_vel_z(amr_wind::Field& vel, const amrex::Real w_const)
 }
 
 void init_ref_p(
-    amr_wind::Field& ref_p,
+    kynema_sgf::Field& ref_p,
     const amrex::Vector<amrex::Geometry>& geom,
     const amrex::Real F_g,
     const amrex::Real rho_0)
@@ -51,7 +51,7 @@ void init_ref_p(
     amrex::Gpu::streamSynchronize();
 }
 
-amrex::Real get_pbottom(amr_wind::Field& pressure)
+amrex::Real get_pbottom(kynema_sgf::Field& pressure)
 {
     amrex::Real pb_sum = 0.0_rt;
 

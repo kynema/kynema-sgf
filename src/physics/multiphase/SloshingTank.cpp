@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 SloshingTank::SloshingTank(CFDSim& sim)
     : m_velocity(sim.repo().get_field("velocity"))
@@ -98,4 +98,4 @@ void SloshingTank::initialize_fields(int level, const amrex::Geometry& geom)
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

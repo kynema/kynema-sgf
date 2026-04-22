@@ -7,7 +7,7 @@
 
 #include "AMReX_iMultiFab.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class FieldRepo;
 
@@ -78,6 +78,6 @@ protected:
     FieldLoc m_floc;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* INTFIELD_H */

@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::sampling::sampling_utils {
+namespace kynema_sgf::sampling::sampling_utils {
 
 vs::Vector reflect(vs::Vector line, vs::Vector vec)
 {
@@ -193,4 +193,4 @@ truncated_normal_rule(NormalRule rule)
     }
 }
 
-} // namespace amr_wind::sampling::sampling_utils
+} // namespace kynema_sgf::sampling::sampling_utils

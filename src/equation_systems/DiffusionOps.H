@@ -17,7 +17,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /** Base class for all diffusion operators
  *  \ingroup pdeop
@@ -177,6 +177,6 @@ struct DiffusionOp<
     }
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* DIFFUSIONOPS_H */

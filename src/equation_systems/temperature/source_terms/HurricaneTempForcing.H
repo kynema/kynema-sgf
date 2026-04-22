@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::temperature {
+namespace kynema_sgf::pde::temperature {
 
 class HurricaneTempForcing
     : public TemperatureSource::Register<HurricaneTempForcing>
@@ -49,6 +49,6 @@ private:
     amrex::Real m_dTzh{18000.};
 };
 
-} // namespace amr_wind::pde::temperature
+} // namespace kynema_sgf::pde::temperature
 
 #endif

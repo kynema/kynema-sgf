@@ -5,7 +5,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 ActuatorSourceTagging::ActuatorSourceTagging(CFDSim& sim) : m_repo(sim.repo())
 {
@@ -86,4 +86,4 @@ void ActuatorSourceTagging::post_advance_work()
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

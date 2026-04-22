@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Possible time states for a given Field instance
  *  \ingroup fields
@@ -44,6 +44,6 @@ enum class FieldInterpolator : std::uint8_t {
     FaceLinear         ///< Linear face interpolation
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* FIELDDESCTYPES_H */

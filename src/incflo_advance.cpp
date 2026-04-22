@@ -195,25 +195,25 @@ void incflo::ApplyPredictor(
     }
 
     if (m_use_godunov) {
-        amr_wind::io::print_mlmg_header("Godunov:");
+        kynema_sgf::io::print_mlmg_header("Godunov:");
     } else {
-        amr_wind::io::print_mlmg_header("Predictor:");
+        kynema_sgf::io::print_mlmg_header("Predictor:");
     }
 
     auto& icns_fields = icns().fields();
     auto& velocity_new = icns_fields.field;
-    auto& velocity_old = velocity_new.state(amr_wind::FieldState::Old);
+    auto& velocity_old = velocity_new.state(kynema_sgf::FieldState::Old);
 
     auto& density_new = density();
-    const auto& density_old = density_new.state(amr_wind::FieldState::Old);
-    auto& density_nph = density_new.state(amr_wind::FieldState::NPH);
+    const auto& density_old = density_new.state(kynema_sgf::FieldState::Old);
+    auto& density_nph = density_new.state(kynema_sgf::FieldState::NPH);
 
     if (fixed_point_iteration > 0) {
         icns().fields().field.fillpatch(m_time.current_time());
         // Get n + 1/2 velocity
-        amr_wind::field_ops::lincomb(
-            icns().fields().field.state(amr_wind::FieldState::NPH), 0.5_rt,
-            icns().fields().field.state(amr_wind::FieldState::Old), 0, 0.5_rt,
+        kynema_sgf::field_ops::lincomb(
+            icns().fields().field.state(kynema_sgf::FieldState::NPH), 0.5_rt,
+            icns().fields().field.state(kynema_sgf::FieldState::Old), 0, 0.5_rt,
             icns().fields().field, 0, 0, icns().fields().field.num_comp(),
             icns().fields().field.num_grow());
     }
@@ -224,10 +224,10 @@ void incflo::ApplyPredictor(
     // TODO: This sub-section has not been adjusted for mesh mapping - adjust in
     // corrector too
     m_sim.turbulence_model().update_turbulent_viscosity(
-        amr_wind::FieldState::Old, m_diff_type);
-    icns().compute_mueff(amr_wind::FieldState::Old);
+        kynema_sgf::FieldState::Old, m_diff_type);
+    icns().compute_mueff(kynema_sgf::FieldState::Old);
     for (auto& eqns : scalar_eqns()) {
-        eqns->compute_mueff(amr_wind::FieldState::Old);
+        eqns->compute_mueff(kynema_sgf::FieldState::Old);
     }
 
     // *************************************************************************************
@@ -236,9 +236,9 @@ void incflo::ApplyPredictor(
     // TODO: Godunov has not been adjusted for mesh mapping - adjust in
     // corrector too
     if (m_use_godunov) {
-        icns().compute_source_term(amr_wind::FieldState::Old);
+        icns().compute_source_term(kynema_sgf::FieldState::Old);
         for (auto& seqn : scalar_eqns()) {
-            seqn->compute_source_term(amr_wind::FieldState::Old);
+            seqn->compute_source_term(kynema_sgf::FieldState::Old);
         }
     }
 
@@ -249,15 +249,15 @@ void incflo::ApplyPredictor(
         // Compute explicit viscous term using old density (1/rho)
         // *************************************************************************************
         // Reuse existing buffer to avoid creating new multifabs
-        amr_wind::field_ops::copy(
+        kynema_sgf::field_ops::copy(
             velocity_new, velocity_old, 0, 0, velocity_new.num_comp(), 1);
-        icns().compute_diffusion_term(amr_wind::FieldState::Old);
+        icns().compute_diffusion_term(kynema_sgf::FieldState::Old);
         if (m_use_godunov) {
             auto& velocity_forces = icns_fields.src_term;
             // only the old states are used in predictor
             const auto& divtau = icns_fields.diff_term;
 
-            amr_wind::field_ops::add(
+            kynema_sgf::field_ops::add(
                 velocity_forces, divtau, 0, 0, AMREX_SPACEDIM, 0);
         }
         // *************************************************************************************
@@ -266,14 +266,14 @@ void incflo::ApplyPredictor(
         for (auto& eqn : scalar_eqns()) {
             auto& field = eqn->fields().field;
             // Reuse existing buffer to avoid creating new multifabs
-            amr_wind::field_ops::copy(
-                field, field.state(amr_wind::FieldState::Old), 0, 0,
+            kynema_sgf::field_ops::copy(
+                field, field.state(kynema_sgf::FieldState::Old), 0, 0,
                 field.num_comp(), 1);
 
-            eqn->compute_diffusion_term(amr_wind::FieldState::Old);
+            eqn->compute_diffusion_term(kynema_sgf::FieldState::Old);
 
             if (m_use_godunov) {
-                amr_wind::field_ops::add(
+                kynema_sgf::field_ops::add(
                     eqn->fields().src_term, eqn->fields().diff_term, 0, 0,
                     field.num_comp(), 0);
             }
@@ -283,7 +283,7 @@ void incflo::ApplyPredictor(
     if (m_use_godunov) {
         // ICNS source term (and viscous term) are in terms of momentum;
         // convert to velocity for MAC velocities by dividing by density
-        amr_wind::field_ops::divide(
+        kynema_sgf::field_ops::divide(
             icns().fields().src_term, density_old, 0, 0, 1, AMREX_SPACEDIM, 0);
 
         const int nghost_force = 1;
@@ -297,15 +297,15 @@ void incflo::ApplyPredictor(
 
     // Extrapolate and apply MAC projection for advection velocities
     const auto fstate_preadv = (fixed_point_iteration == 0)
-                                   ? amr_wind::FieldState::Old
-                                   : amr_wind::FieldState::NPH;
+                                   ? kynema_sgf::FieldState::Old
+                                   : kynema_sgf::FieldState::NPH;
     icns().pre_advection_actions(fstate_preadv);
 
     // *************************************************************************************
     // Update density first
     // *************************************************************************************
     if (m_sim.pde_manager().constant_density()) {
-        amr_wind::field_ops::copy(density_nph, density_old, 0, 0, 1, 1);
+        kynema_sgf::field_ops::copy(density_nph, density_old, 0, 0, 1, 1);
     }
 
     // TODO: This sub-section has not been adjusted for mesh mapping - adjust in
@@ -315,10 +315,10 @@ void incflo::ApplyPredictor(
     // when computing their source terms.
     for (auto& eqn : scalar_eqns()) {
         // Compute explicit advection
-        eqn->compute_advection_term(amr_wind::FieldState::Old);
+        eqn->compute_advection_term(kynema_sgf::FieldState::Old);
 
         // Compute (recompute for Godunov) the scalar forcing terms
-        eqn->compute_source_term(amr_wind::FieldState::NPH);
+        eqn->compute_source_term(kynema_sgf::FieldState::NPH);
 
         // Update the scalar (if explicit), or the RHS for implicit/CN
         eqn->compute_predictor_rhs(m_diff_type);
@@ -336,36 +336,36 @@ void incflo::ApplyPredictor(
         } else if (m_diff_type == DiffusionType::Explicit && m_use_godunov) {
             // explicit RK2
             auto diff_old =
-                m_repo.create_scratch_field(1, 0, amr_wind::FieldLoc::CELL);
+                m_repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::CELL);
             auto& diff_new =
-                eqn->fields().diff_term.state(amr_wind::FieldState::New);
-            amr_wind::field_ops::copy(*diff_old, diff_new, 0, 0, 1, 0);
-            eqn->compute_diffusion_term(amr_wind::FieldState::New);
-            amr_wind::field_ops::saxpy(
+                eqn->fields().diff_term.state(kynema_sgf::FieldState::New);
+            kynema_sgf::field_ops::copy(*diff_old, diff_new, 0, 0, 1, 0);
+            eqn->compute_diffusion_term(kynema_sgf::FieldState::New);
+            kynema_sgf::field_ops::saxpy(
                 diff_new, -1.0_rt, *diff_old, 0, 0, 1, 0);
             eqn->improve_explicit_diffusion(m_time.delta_t());
         }
         eqn->post_solve_actions();
 
         // Update scalar at n+1/2
-        amr_wind::field_ops::lincomb(
-            field.state(amr_wind::FieldState::NPH), 0.5_rt,
-            field.state(amr_wind::FieldState::Old), 0, 0.5_rt, field, 0, 0,
+        kynema_sgf::field_ops::lincomb(
+            field.state(kynema_sgf::FieldState::NPH), 0.5_rt,
+            field.state(kynema_sgf::FieldState::Old), 0, 0.5_rt, field, 0, 0,
             field.num_comp(), 1);
     }
 
     // With scalars computed, compute advection of momentum
     const auto fstate = (fixed_point_iteration == 0)
-                            ? amr_wind::FieldState::Old
-                            : amr_wind::FieldState::NPH;
+                            ? kynema_sgf::FieldState::Old
+                            : kynema_sgf::FieldState::NPH;
     icns().compute_advection_term(fstate);
 
     // *************************************************************************************
     // Define (or if use_godunov, re-define) the forcing terms and viscous
     // terms independently for the right hand side, without 1/rho term
     // *************************************************************************************
-    icns().compute_source_term(amr_wind::FieldState::NPH);
-    icns().compute_diffusion_term(amr_wind::FieldState::Old);
+    icns().compute_source_term(kynema_sgf::FieldState::NPH);
+    icns().compute_diffusion_term(kynema_sgf::FieldState::Old);
 
     // *************************************************************************************
     // Evaluate right hand side and store in velocity
@@ -388,12 +388,12 @@ void incflo::ApplyPredictor(
     } else if (m_diff_type == DiffusionType::Explicit && m_use_godunov) {
         // explicit RK2
         auto diff_old = m_repo.create_scratch_field(
-            AMREX_SPACEDIM, 0, amr_wind::FieldLoc::CELL);
+            AMREX_SPACEDIM, 0, kynema_sgf::FieldLoc::CELL);
         auto& diff_new =
-            icns().fields().diff_term.state(amr_wind::FieldState::New);
-        amr_wind::field_ops::copy(*diff_old, diff_new, 0, 0, AMREX_SPACEDIM, 0);
-        icns().compute_diffusion_term(amr_wind::FieldState::New);
-        amr_wind::field_ops::saxpy(
+            icns().fields().diff_term.state(kynema_sgf::FieldState::New);
+        kynema_sgf::field_ops::copy(*diff_old, diff_new, 0, 0, AMREX_SPACEDIM, 0);
+        icns().compute_diffusion_term(kynema_sgf::FieldState::New);
+        kynema_sgf::field_ops::saxpy(
             diff_new, -1.0_rt, *diff_old, 0, 0, AMREX_SPACEDIM, 0);
         icns().improve_explicit_diffusion(m_time.delta_t());
     }
@@ -418,18 +418,18 @@ void incflo::ApplyPredictor(
     // ScratchField to store the old np1
     if (fixed_point_iteration > 0 && m_verbose > 0) {
         auto vel_np1_old = m_repo.create_scratch_field(
-            "vel_np1_old", AMREX_SPACEDIM, 1, amr_wind::FieldLoc::CELL);
+            "vel_np1_old", AMREX_SPACEDIM, 1, kynema_sgf::FieldLoc::CELL);
 
         auto vel_diff = m_repo.create_scratch_field(
-            "vel_diff", AMREX_SPACEDIM, 1, amr_wind::FieldLoc::CELL);
+            "vel_diff", AMREX_SPACEDIM, 1, kynema_sgf::FieldLoc::CELL);
         // lincomb to get old np1
-        amr_wind::field_ops::lincomb(
+        kynema_sgf::field_ops::lincomb(
             (*vel_np1_old), -1.0_rt,
-            icns().fields().field.state(amr_wind::FieldState::Old), 0, 2,
-            icns().fields().field.state(amr_wind::FieldState::NPH), 0, 0,
+            icns().fields().field.state(kynema_sgf::FieldState::Old), 0, 2,
+            icns().fields().field.state(kynema_sgf::FieldState::NPH), 0, 0,
             icns().fields().field.num_comp(), 1);
 
-        amr_wind::io::print_nonlinear_residual(m_sim, *vel_diff, *vel_np1_old);
+        kynema_sgf::io::print_nonlinear_residual(m_sim, *vel_diff, *vel_np1_old);
         vel_np1_old.reset();
         vel_diff.reset();
     }
@@ -534,14 +534,14 @@ void incflo::ApplyCorrector()
         PrintMaxValues("before corrector step");
     }
 
-    amr_wind::io::print_mlmg_header("Corrector:");
+    kynema_sgf::io::print_mlmg_header("Corrector:");
 
     auto& density_new = density();
-    const auto& density_old = density_new.state(amr_wind::FieldState::Old);
-    auto& density_nph = density_new.state(amr_wind::FieldState::NPH);
+    const auto& density_old = density_new.state(kynema_sgf::FieldState::Old);
+    auto& density_nph = density_new.state(kynema_sgf::FieldState::NPH);
 
     // Extrapolate and apply MAC projection for advection velocities
-    icns().pre_advection_actions(amr_wind::FieldState::New);
+    icns().pre_advection_actions(kynema_sgf::FieldState::New);
 
     // *************************************************************************************
     // Compute the explicit "new" advective terms R_u^(n+1,*), R_r^(n+1,*) and
@@ -549,28 +549,28 @@ void incflo::ApplyCorrector()
     // don't use the forces in constructing the advection term
     // *************************************************************************************
     for (auto& seqn : scalar_eqns()) {
-        seqn->compute_advection_term(amr_wind::FieldState::New);
+        seqn->compute_advection_term(kynema_sgf::FieldState::New);
     }
-    icns().compute_advection_term(amr_wind::FieldState::New);
+    icns().compute_advection_term(kynema_sgf::FieldState::New);
 
     // *************************************************************************************
     // Compute viscosity / diffusive coefficients
     // *************************************************************************************
     m_sim.turbulence_model().update_turbulent_viscosity(
-        amr_wind::FieldState::New, m_diff_type);
-    icns().compute_mueff(amr_wind::FieldState::New);
+        kynema_sgf::FieldState::New, m_diff_type);
+    icns().compute_mueff(kynema_sgf::FieldState::New);
     for (auto& eqns : scalar_eqns()) {
-        eqns->compute_mueff(amr_wind::FieldState::New);
+        eqns->compute_mueff(kynema_sgf::FieldState::New);
     }
 
     // Here we create divtau of the (n+1,*) state that was computed in the
     // predictor;
     //      we use this laps only if DiffusionType::Explicit
     if (m_diff_type == DiffusionType::Explicit) {
-        icns().compute_diffusion_term(amr_wind::FieldState::New);
+        icns().compute_diffusion_term(kynema_sgf::FieldState::New);
 
         for (auto& eqns : scalar_eqns()) {
-            eqns->compute_diffusion_term(amr_wind::FieldState::New);
+            eqns->compute_diffusion_term(kynema_sgf::FieldState::New);
         }
     }
 
@@ -578,7 +578,7 @@ void incflo::ApplyCorrector()
     // Update density first
     // *************************************************************************************
     if (m_sim.pde_manager().constant_density()) {
-        amr_wind::field_ops::copy(density_nph, density_old, 0, 0, 1, 1);
+        kynema_sgf::field_ops::copy(density_nph, density_old, 0, 0, 1, 1);
     }
 
     // TODO: This sub-section has not been adjusted for mesh mapping - adjust in
@@ -588,7 +588,7 @@ void incflo::ApplyCorrector()
     for (auto& eqn : scalar_eqns()) {
         // Compute (recompute for Godunov) the scalar forcing terms
         // Note this is (rho * scalar) and not just scalar
-        eqn->compute_source_term(amr_wind::FieldState::New);
+        eqn->compute_source_term(kynema_sgf::FieldState::New);
 
         // Update (note that dtdt already has rho in it)
         // (rho trac)^new = (rho trac)^old + dt * (
@@ -607,9 +607,9 @@ void incflo::ApplyCorrector()
         eqn->post_solve_actions();
 
         // Update scalar at n+1/2
-        amr_wind::field_ops::lincomb(
-            field.state(amr_wind::FieldState::NPH), 0.5_rt,
-            field.state(amr_wind::FieldState::Old), 0, 0.5_rt, field, 0, 0,
+        kynema_sgf::field_ops::lincomb(
+            field.state(kynema_sgf::FieldState::NPH), 0.5_rt,
+            field.state(kynema_sgf::FieldState::Old), 0, 0.5_rt, field, 0, 0,
             field.num_comp(), 1);
     }
 
@@ -617,7 +617,7 @@ void incflo::ApplyCorrector()
     // Define the forcing terms to use in the final update (using half-time
     // density)
     // *************************************************************************************
-    icns().compute_source_term(amr_wind::FieldState::New);
+    icns().compute_source_term(kynema_sgf::FieldState::New);
 
     // *************************************************************************************
     // Evaluate right hand side and store in velocity
@@ -672,18 +672,18 @@ void incflo::ApplyPrescribeStep()
     }
 
     auto& density_new = density();
-    const auto& density_old = density_new.state(amr_wind::FieldState::Old);
-    auto& density_nph = density_new.state(amr_wind::FieldState::NPH);
+    const auto& density_old = density_new.state(kynema_sgf::FieldState::Old);
+    auto& density_nph = density_new.state(kynema_sgf::FieldState::NPH);
 
     // Compute diffusive and source terms for scalars
     m_sim.turbulence_model().update_turbulent_viscosity(
-        amr_wind::FieldState::Old, m_diff_type);
+        kynema_sgf::FieldState::Old, m_diff_type);
     for (auto& eqns : scalar_eqns()) {
-        eqns->compute_mueff(amr_wind::FieldState::Old);
+        eqns->compute_mueff(kynema_sgf::FieldState::Old);
     }
     if (m_use_godunov) {
         for (auto& seqn : scalar_eqns()) {
-            seqn->compute_source_term(amr_wind::FieldState::Old);
+            seqn->compute_source_term(kynema_sgf::FieldState::Old);
         }
     }
 
@@ -692,14 +692,14 @@ void incflo::ApplyPrescribeStep()
         for (auto& eqn : scalar_eqns()) {
             auto& field = eqn->fields().field;
             // Reuse existing buffer to avoid creating new multifabs
-            amr_wind::field_ops::copy(
-                field, field.state(amr_wind::FieldState::Old), 0, 0,
+            kynema_sgf::field_ops::copy(
+                field, field.state(kynema_sgf::FieldState::Old), 0, 0,
                 field.num_comp(), 1);
 
-            eqn->compute_diffusion_term(amr_wind::FieldState::Old);
+            eqn->compute_diffusion_term(kynema_sgf::FieldState::Old);
 
             if (m_use_godunov) {
-                amr_wind::field_ops::add(
+                kynema_sgf::field_ops::add(
                     eqn->fields().src_term, eqn->fields().diff_term, 0, 0,
                     field.num_comp(), 0);
             }
@@ -722,19 +722,19 @@ void incflo::ApplyPrescribeStep()
     //                     R_u^n      , R_s^n       and R_t^n
     // *************************************************************************************
     for (auto& seqn : scalar_eqns()) {
-        seqn->compute_advection_term(amr_wind::FieldState::Old);
+        seqn->compute_advection_term(kynema_sgf::FieldState::Old);
     }
 
     // *************************************************************************************
     // Update density first
     // *************************************************************************************
     if (m_sim.pde_manager().constant_density()) {
-        amr_wind::field_ops::copy(density_nph, density_old, 0, 0, 1, 1);
+        kynema_sgf::field_ops::copy(density_nph, density_old, 0, 0, 1, 1);
     }
 
     for (auto& eqn : scalar_eqns()) {
         // Compute (recompute for Godunov) the scalar forcing terms
-        eqn->compute_source_term(amr_wind::FieldState::NPH);
+        eqn->compute_source_term(kynema_sgf::FieldState::NPH);
 
         // Update the scalar (if explicit), or the RHS for implicit/CN
         eqn->compute_predictor_rhs(m_diff_type);
@@ -752,14 +752,14 @@ void incflo::ApplyPrescribeStep()
         eqn->post_solve_actions();
 
         // Update scalar at n+1/2
-        amr_wind::field_ops::lincomb(
-            field.state(amr_wind::FieldState::NPH), 0.5_rt,
-            field.state(amr_wind::FieldState::Old), 0, 0.5_rt, field, 0, 0,
+        kynema_sgf::field_ops::lincomb(
+            field.state(kynema_sgf::FieldState::NPH), 0.5_rt,
+            field.state(kynema_sgf::FieldState::Old), 0, 0.5_rt, field, 0, 0,
             field.num_comp(), 1);
     }
 
     // With scalars computed, compute advection of momentum
-    icns().compute_advection_term(amr_wind::FieldState::Old);
+    icns().compute_advection_term(kynema_sgf::FieldState::Old);
 
     // Evaluate right hand side and store in velocity
     // Explicit is used because viscous icns terms are supposed to be ignored

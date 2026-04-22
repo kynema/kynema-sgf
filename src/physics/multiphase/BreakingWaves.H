@@ -24,7 +24,7 @@ using namespace amrex::literals;
  *  \ingroup breaking_waves
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Numerical Wave Basin physics
  *  \ingroup we_abl
@@ -76,6 +76,6 @@ private:
     bool m_laminar{false};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* NWB_H */

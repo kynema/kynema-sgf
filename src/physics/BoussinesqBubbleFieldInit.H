@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Initialize BoussinesqBubble fields
  */
@@ -47,6 +47,6 @@ private:
     amrex::Real m_tracer_radius{0.1_rt};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* BoussinesqBubbleFIELDINIT_H */

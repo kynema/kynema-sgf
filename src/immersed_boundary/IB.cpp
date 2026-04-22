@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::ib {
+namespace kynema_sgf::ib {
 
 IB::IB(CFDSim& sim)
     : m_sim(sim)
@@ -49,7 +49,7 @@ void IB::pre_init_actions()
         auto obj = ImmersedBoundaryModel::create(type, m_sim, tname, i);
 
         const std::string default_prefix = identifier() + "." + type;
-        ::amr_wind::utils::MultiParser inp(default_prefix, prefix);
+        ::kynema_sgf::utils::MultiParser inp(default_prefix, prefix);
 
         obj->read_inputs(inp);
         m_ibs.emplace_back(std::move(obj));
@@ -143,4 +143,4 @@ void IB::post_advance_work()
     }
 }
 
-} // namespace amr_wind::ib
+} // namespace kynema_sgf::ib

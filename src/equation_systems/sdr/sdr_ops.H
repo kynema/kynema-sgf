@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /** Implementation of Turbulence operator for SDR equation
  *  \ingroup sdr_eqn
@@ -134,6 +134,6 @@ struct DiffusionOp<SDR, Scheme> : public DiffSolverIface<typename SDR::MLDiffOp>
     Field& m_lhs_src_term;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* SDR_OPS_H */

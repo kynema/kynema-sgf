@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::temperature {
+namespace kynema_sgf::pde::temperature {
 
 class TemperatureFreeAtmosphereForcing
     : public TemperatureSource::Register<TemperatureFreeAtmosphereForcing>
@@ -53,5 +53,5 @@ private:
     const CFDSim& m_sim;
 };
 
-} // namespace amr_wind::pde::temperature
+} // namespace kynema_sgf::pde::temperature
 #endif

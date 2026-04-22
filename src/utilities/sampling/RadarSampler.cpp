@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::sampling {
+namespace kynema_sgf::sampling {
 
 RadarSampler::RadarSampler(const CFDSim& sim) : m_sim(sim) {}
 
@@ -651,4 +651,4 @@ bool RadarSampler::output_netcdf_field(
 
 #endif
 
-} // namespace amr_wind::sampling
+} // namespace kynema_sgf::sampling

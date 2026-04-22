@@ -3,7 +3,7 @@
 
 #include <iosfwd>
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class FieldRepo;
 class Field;
@@ -44,6 +44,6 @@ struct PDEFields
 };
 
 } // namespace pde
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* PDEFIELDS_H */

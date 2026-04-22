@@ -11,7 +11,7 @@ using namespace amrex::literals;
  *  \ingroup multiphase_physics
  *
  */
-namespace amr_wind::zds {
+namespace kynema_sgf::zds {
 
 namespace {
 struct SCexact
@@ -89,6 +89,6 @@ private:
     std::string m_output_fname{"zds.log"};
 };
 
-} // namespace amr_wind::zds
+} // namespace kynema_sgf::zds
 
 #endif /* ZalesakDiskScalarVel_H */

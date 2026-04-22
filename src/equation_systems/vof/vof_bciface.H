@@ -3,7 +3,7 @@
 
 #include "src/boundary_conditions/BCInterface.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** BC interface for VOF
  *  \ingroup vof
@@ -173,6 +173,6 @@ protected:
     }
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* VOF_BCIFACE_H */

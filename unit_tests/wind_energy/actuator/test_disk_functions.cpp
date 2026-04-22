@@ -5,7 +5,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator::disk {
+namespace kynema_sgf::actuator::disk {
 
 struct AreaComputerData
 {
@@ -125,4 +125,4 @@ INSTANTIATE_TEST_SUITE_P(
         AreaComputerData{30.0_rt, 5, 30}),
     TestAreaComputer::PrintParamNamesToString());
 
-} // namespace amr_wind::actuator::disk
+} // namespace kynema_sgf::actuator::disk

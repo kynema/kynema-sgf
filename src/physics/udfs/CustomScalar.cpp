@@ -6,7 +6,7 @@
 
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind::udf {
+namespace kynema_sgf::udf {
 
 CustomScalar::CustomScalar(const Field& fld)
 {
@@ -27,4 +27,4 @@ CustomScalar::CustomScalar(const Field& fld)
         "in the header file before using it. Then remove this message");
 }
 
-} // namespace amr_wind::udf
+} // namespace kynema_sgf::udf

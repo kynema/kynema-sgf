@@ -3,7 +3,7 @@
 
 #include <limits>
 
-namespace amr_wind::vs {
+namespace kynema_sgf::vs {
 
 template <typename T>
 struct DTraits
@@ -44,6 +44,6 @@ struct DTraits<float>
     }
 };
 
-} // namespace amr_wind::vs
+} // namespace kynema_sgf::vs
 
 #endif /* VSTRAITS_H */

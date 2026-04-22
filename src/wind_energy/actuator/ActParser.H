@@ -3,10 +3,10 @@
 
 #include "src/core/MultiParser.H"
 
-namespace amr_wind::actuator::utils {
+namespace kynema_sgf::actuator::utils {
 
-using ActParser = ::amr_wind::utils::MultiParser;
+using ActParser = ::kynema_sgf::utils::MultiParser;
 
-} // namespace amr_wind::actuator::utils
+} // namespace kynema_sgf::actuator::utils
 
 #endif /* ACTPARSER_H */

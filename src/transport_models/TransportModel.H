@@ -7,7 +7,7 @@
 #include "src/utilities/constants.H"
 #include "src/core/field_ops.H"
 
-namespace amr_wind::transport {
+namespace kynema_sgf::transport {
 
 /**
  *  \defgroup transport Transport models
@@ -21,7 +21,7 @@ namespace amr_wind::transport {
  *  separate out this behavior from the base turbulence model implementation.
  *  The turbulence models are templated on transport model to provide different
  *  behavior depending on fluid transport model chosen by the user. For more
- *  details see amr_wind::turbulence::TurbModel implementation.
+ *  details see kynema_sgf::turbulence::TurbModel implementation.
  *
  */
 
@@ -71,6 +71,6 @@ public:
 protected:
     const int m_ngrow{1};
 };
-} // namespace amr_wind::transport
+} // namespace kynema_sgf::transport
 
 #endif /* TRANSPORTMODEL_H */

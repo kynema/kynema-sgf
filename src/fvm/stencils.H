@@ -42,7 +42,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::fvm::stencil {
+namespace kynema_sgf::fvm::stencil {
 
 namespace impl {
 
@@ -1207,6 +1207,6 @@ struct StencilIhiJhiKhi
     }
 };
 
-} // namespace amr_wind::fvm::stencil
+} // namespace kynema_sgf::fvm::stencil
 
 #endif /* STENCILS_H */

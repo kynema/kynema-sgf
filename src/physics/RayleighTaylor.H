@@ -7,7 +7,7 @@
 #include "src/physics/RayleighTaylorFieldInit.H"
 #include "src/core/Field.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Rayleigh Taylor physics
  *  \ingroup physics
@@ -43,6 +43,6 @@ private:
     std::unique_ptr<RayleighTaylorFieldInit> m_field_init;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* RayleighTaylor_H */

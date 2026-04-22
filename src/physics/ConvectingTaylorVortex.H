@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::ctv {
+namespace kynema_sgf::ctv {
 
 namespace {
 struct UExact
@@ -117,8 +117,8 @@ public:
     [[nodiscard]] amrex::Real get_omega() const { return m_omega; }
 
 private:
-    const amr_wind::SimTime& m_time;
-    const amr_wind::CFDSim& m_sim;
+    const kynema_sgf::SimTime& m_time;
+    const kynema_sgf::CFDSim& m_sim;
     const FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
 
@@ -149,6 +149,6 @@ private:
     bool m_activate_pressure{false};
     bool m_mesh_mapping{false};
 };
-} // namespace amr_wind::ctv
+} // namespace kynema_sgf::ctv
 
 #endif /* ConvectingTaylorVortex_H */

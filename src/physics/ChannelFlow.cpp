@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::channel_flow {
+namespace kynema_sgf::channel_flow {
 
 ChannelFlow::ChannelFlow(CFDSim& sim)
     : m_sim(sim)
@@ -268,7 +268,7 @@ amrex::Real ChannelFlow::compute_error(const IndexSelector& idxOp)
         mesh_mapping ? &(m_repo.get_field("non_uniform_coord_cc")) : nullptr;
     Field const* mesh_fac_cc =
         mesh_mapping
-            ? &(m_repo.get_mesh_mapping_field(amr_wind::FieldLoc::CELL))
+            ? &(m_repo.get_mesh_mapping_field(kynema_sgf::FieldLoc::CELL))
             : nullptr;
 
     const int nlevels = m_repo.num_active_levels();
@@ -466,4 +466,4 @@ void ChannelFlow::post_advance_work()
     }
 }
 
-} // namespace amr_wind::channel_flow
+} // namespace kynema_sgf::channel_flow

@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::burggraf {
+namespace kynema_sgf::burggraf {
 
 namespace {
 
@@ -185,4 +185,4 @@ void BurggrafFlow::post_init_actions() { output_error(); }
 
 void BurggrafFlow::post_advance_work() { output_error(); }
 
-} // namespace amr_wind::burggraf
+} // namespace kynema_sgf::burggraf

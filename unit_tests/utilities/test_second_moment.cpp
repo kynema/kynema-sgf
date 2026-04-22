@@ -48,10 +48,10 @@ TEST_F(SecondMomentAveragingTest, test_constant)
     // test the average of a constant is the same constant
     for (int dir = 0; dir < 3; ++dir) {
 
-        amr_wind::FieldPlaneAveraging pa(velocityf, sim().time(), dir);
+        kynema_sgf::FieldPlaneAveraging pa(velocityf, sim().time(), dir);
         pa();
 
-        amr_wind::SecondMomentAveraging uu(pa, pa);
+        kynema_sgf::SecondMomentAveraging uu(pa, pa);
         uu();
 
         amrex::Real x = 0.5_rt * (problo[dir] + probhi[dir]);
@@ -120,9 +120,9 @@ TEST_F(SecondMomentAveragingTest, test_linear)
             add_linear(dir, u0, mesh().Geom(0), bx, vel);
         });
 
-    amr_wind::FieldPlaneAveraging pa(velocityf, sim().time(), dir);
+    kynema_sgf::FieldPlaneAveraging pa(velocityf, sim().time(), dir);
     pa();
-    amr_wind::SecondMomentAveraging uu(pa, pa);
+    kynema_sgf::SecondMomentAveraging uu(pa, pa);
     uu();
 
     constexpr int n = 20;
@@ -219,9 +219,9 @@ void SecondMomentAveragingTest::test_dir(int dir)
     const auto& probhi = mesh().Geom(0).ProbHiArray();
 
     amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> a;
-    a[0] = periods * amr_wind::utils::two_pi() / (probhi[0] - problo[0]);
-    a[1] = periods * amr_wind::utils::two_pi() / (probhi[1] - problo[1]);
-    a[2] = periods * amr_wind::utils::two_pi() / (probhi[2] - problo[2]);
+    a[0] = periods * kynema_sgf::utils::two_pi() / (probhi[0] - problo[0]);
+    a[1] = periods * kynema_sgf::utils::two_pi() / (probhi[1] - problo[1]);
+    a[2] = periods * kynema_sgf::utils::two_pi() / (probhi[2] - problo[2]);
 
     run_algorithm(
         mesh().num_levels(), velocity,
@@ -232,10 +232,10 @@ void SecondMomentAveragingTest::test_dir(int dir)
             add_periodic(a, mesh().Geom(lev), bx, vel);
         });
 
-    amr_wind::FieldPlaneAveraging pa(velocityf, sim().time(), dir);
+    kynema_sgf::FieldPlaneAveraging pa(velocityf, sim().time(), dir);
     pa();
 
-    amr_wind::SecondMomentAveraging uu(pa, pa);
+    kynema_sgf::SecondMomentAveraging uu(pa, pa);
     uu();
 
     amrex::Real x =

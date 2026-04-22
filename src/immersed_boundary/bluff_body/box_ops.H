@@ -9,13 +9,13 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::ib::ops {
+namespace kynema_sgf::ib::ops {
 
 template <>
 struct ReadInputsOp<Box>
 {
     void
-    operator()(Box::DataType& data, const ::amr_wind::utils::MultiParser& pp)
+    operator()(Box::DataType& data, const ::kynema_sgf::utils::MultiParser& pp)
     {
         auto& wdata = data.meta();
         auto& info = data.info();
@@ -124,6 +124,6 @@ struct InitDataOp<Box>
     }
 };
 
-} // namespace amr_wind::ib::ops
+} // namespace kynema_sgf::ib::ops
 
 #endif /* BOX_OPS_H */

@@ -5,7 +5,7 @@
 #include "src/wind_energy/actuator/ActParser.H"
 #include "AMReX_Vector.H"
 
-namespace amr_wind::actuator::ops {
+namespace kynema_sgf::actuator::ops {
 
 /** Read user inputs from an input file for a given actuator object.
  *
@@ -92,7 +92,7 @@ template <typename T>
 void determine_root_proc(
     typename T::DataType& /*data*/, amrex::Vector<int>& /*act_proc_count*/);
 
-} // namespace amr_wind::actuator::ops
+} // namespace kynema_sgf::actuator::ops
 
 #include "src/wind_energy/actuator/actuator_opsI.H"
 

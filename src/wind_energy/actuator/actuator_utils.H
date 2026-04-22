@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 struct ActInfo;
 
@@ -139,6 +139,6 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE vs::Vector compute_tangential_vector(
 }
 
 } // namespace utils
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 #endif /* ACUTATOR_UTILS_H */

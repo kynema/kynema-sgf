@@ -6,7 +6,7 @@
 #include "src/core/Field.H"
 #include "src/utilities/FieldPlaneAveraging.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Compute second moments for two variables
  *  \ingroup statistics
@@ -77,6 +77,6 @@ public: // public for GPU
         const amrex::MultiFab& mfab2);
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* SecondMomentAveraging_H */

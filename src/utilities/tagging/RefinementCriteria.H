@@ -16,7 +16,7 @@
  *  \ingroup utilities
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class CFDSim;
 
@@ -71,6 +71,6 @@ private:
     amrex::Vector<std::unique_ptr<RefinementCriteria>> m_refiners;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* REFINEMENTCRITERIA_H */

@@ -5,7 +5,7 @@
 #include "src/utilities/index_operations.H"
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind::sampling {
+namespace kynema_sgf::sampling {
 
 VolumeSampler::VolumeSampler(const CFDSim& sim) : m_sim(sim) {}
 
@@ -128,4 +128,4 @@ void VolumeSampler::populate_netcdf_metadata(
 {}
 #endif
 
-} // namespace amr_wind::sampling
+} // namespace kynema_sgf::sampling

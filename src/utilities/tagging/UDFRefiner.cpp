@@ -4,7 +4,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::tagging {
+namespace kynema_sgf::tagging {
 
 UDFRefiner::UDFRefiner(const CFDSim& sim, const std::string& key)
     : m_sim(sim), m_bound_box(m_sim.repo().mesh().Geom(0).ProbDomain())
@@ -48,4 +48,4 @@ void UDFRefiner::operator()(
     });
 }
 
-} // namespace amr_wind::tagging
+} // namespace kynema_sgf::tagging

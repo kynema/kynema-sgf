@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::temperature {
+namespace kynema_sgf::pde::temperature {
 
 DragTempForcing::DragTempForcing(const CFDSim& sim)
     : m_time(sim.time())
@@ -121,4 +121,4 @@ void DragTempForcing::operator()(
     });
 }
 
-} // namespace amr_wind::pde::temperature
+} // namespace kynema_sgf::pde::temperature

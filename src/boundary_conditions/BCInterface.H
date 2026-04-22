@@ -27,7 +27,7 @@ using namespace amrex::literals;
  *  \ingroup fields
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace {
 amrex::Vector<std::string> bcnames = {"xlo", "ylo", "zlo", "xhi", "yhi", "zhi"};
 }
@@ -179,6 +179,6 @@ protected:
     amrex::BCType::mathematicalBndryTypes m_extrap_type;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* BCINTERFACE_H */

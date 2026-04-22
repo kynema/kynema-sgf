@@ -6,7 +6,7 @@
 #include "AMReX_Geometry.H"
 #include "AMReX_MFIter.H"
 
-namespace amr_wind::fvm {
+namespace kynema_sgf::fvm {
 
 /** Gradient operator
  *  \ingroup fvm
@@ -106,6 +106,6 @@ std::unique_ptr<ScratchField> gradient(const FType& phi)
     return gradphi;
 }
 
-} // namespace amr_wind::fvm
+} // namespace kynema_sgf::fvm
 
 #endif /* GRADIENT_H */

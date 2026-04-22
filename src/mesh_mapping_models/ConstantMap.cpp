@@ -5,7 +5,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::const_map {
+namespace kynema_sgf::const_map {
 
 ConstantMap::ConstantMap()
 {
@@ -162,4 +162,4 @@ void ConstantMap::create_non_uniform_mesh(int lev, const amrex::Geometry& geom)
     }
 }
 
-} // namespace amr_wind::const_map
+} // namespace kynema_sgf::const_map

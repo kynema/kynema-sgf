@@ -17,11 +17,11 @@ void test_trapezoid_integration_xsquared_impl()
     amrex::Gpu::DeviceScalar<amrex::Real> integ(0.0_rt);
     auto* d_integ = integ.dataPtr();
     amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int /*unused*/) {
-        d_integ[0] = amr_wind::utils::trapz(
+        d_integ[0] = kynema_sgf::utils::trapz(
             xa, xb, n, [](const amrex::Real x) { return x * x; });
     });
 
-    EXPECT_NEAR(integ.dataValue(), 0.576_rt, amr_wind::constants::LOOSE_TOL);
+    EXPECT_NEAR(integ.dataValue(), 0.576_rt, kynema_sgf::constants::LOOSE_TOL);
 }
 
 TEST(Integrals, trapezoid_integration_xsquared)

@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::ib {
+namespace kynema_sgf::ib {
 
 struct CylinderData : public BluffBodyBaseData
 {
@@ -24,6 +24,6 @@ struct Cylinder : public BluffBodyType
     static std::string identifier() { return "Cylinder"; }
 };
 
-} // namespace amr_wind::ib
+} // namespace kynema_sgf::ib
 
 #endif /* CYLINDER_H */

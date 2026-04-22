@@ -2,7 +2,7 @@
 #include "src/turbulence/TurbModelDefs.H"
 #include "src/core/field_ops.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace turbulence {
 
 namespace {
@@ -109,4 +109,4 @@ TurbulenceModel::CoeffsDictType Laminar<Transport>::model_coeffs() const
 
 INSTANTIATE_TURBULENCE_MODEL(Laminar);
 
-} // namespace amr_wind
+} // namespace kynema_sgf

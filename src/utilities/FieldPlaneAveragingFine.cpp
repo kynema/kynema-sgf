@@ -7,12 +7,12 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 template <typename FType>
 FPlaneAveragingFine<FType>::FPlaneAveragingFine(
     const FType& field_in,
-    const amr_wind::SimTime& time,
+    const kynema_sgf::SimTime& time,
     int axis_in,
     bool compute_deriv)
     : m_field(field_in)
@@ -299,7 +299,7 @@ void FPlaneAveragingFine<FType>::compute_averages(const IndexSelector& idxOp)
                                     amrex::max(
                                         static_cast<int>(
                                             (cell_xhi -
-                                             amr_wind::constants::TIGHT_TOL -
+                                             kynema_sgf::constants::TIGHT_TOL -
                                              xlo) /
                                             line_dx),
                                         0),
@@ -691,4 +691,4 @@ VelPlaneAveragingFine::line_sv_average_interpolated(amrex::Real x) const
            (m_line_Sv_average[ind + 1] * c);
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

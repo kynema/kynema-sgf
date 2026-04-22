@@ -24,7 +24,7 @@ AMREX_FORCE_INLINE amrex::Real get_enforced_dt_for_output(
 }
 } // namespace
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Time manager for simulations
  *  \ingroup core
@@ -332,6 +332,6 @@ private:
     amrex::Vector<amrex::Real> m_postprocess_time_delay;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* SIMTIME_H */

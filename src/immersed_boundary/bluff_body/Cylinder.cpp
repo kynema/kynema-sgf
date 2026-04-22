@@ -2,8 +2,8 @@
 #include "src/immersed_boundary/bluff_body/cylinder_ops.H"
 #include "src/immersed_boundary/IBModel.H"
 
-namespace amr_wind::ib {
+namespace kynema_sgf::ib {
 
 template class IBModel<Cylinder>;
 
-} // namespace amr_wind::ib
+} // namespace kynema_sgf::ib

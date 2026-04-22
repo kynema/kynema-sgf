@@ -3,7 +3,7 @@
 #include "src/fvm/fvm.H"
 #include "src/utilities/io_utils.H"
 
-namespace amr_wind::derived {
+namespace kynema_sgf::derived {
 
 VorticityMag::VorticityMag(
     const FieldRepo& repo, const std::vector<std::string>& args)
@@ -147,4 +147,4 @@ void FieldComponents::operator()(ScratchField& fld, const int scomp) const
     }
 }
 
-} // namespace amr_wind::derived
+} // namespace kynema_sgf::derived

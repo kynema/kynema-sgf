@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Interface for ABL anelastic
  *  \ingroup we_abl
@@ -50,5 +50,5 @@ private:
     MultiLevelVector m_pressure{FieldLoc::NODE};
     MultiLevelVector m_theta{FieldLoc::CELL};
 };
-} // namespace amr_wind
+} // namespace kynema_sgf
 #endif

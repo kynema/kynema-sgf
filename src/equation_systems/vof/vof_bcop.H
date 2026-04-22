@@ -5,7 +5,7 @@
 #include "src/equation_systems/BCOps.H"
 #include "src/equation_systems/vof/vof_bciface.H"
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /** BC operations for VOF
  *  \ingroup vof
@@ -51,6 +51,6 @@ struct BCOp<VOF>
     const SimTime& m_time;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* VOF_BCOP_H */

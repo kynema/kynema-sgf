@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /** Field registration operator for Levelset equation system
  *  \ingroup levelset
@@ -141,6 +141,6 @@ struct PostSolveOp<Levelset>
     PDEFields& m_fields;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* LEVELSET_OPS_H */

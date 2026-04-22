@@ -8,7 +8,7 @@ using namespace amrex::literals;
 namespace diffusion {
 
 amrex::Vector<amrex::Array<amrex::LinOpBCType, AMREX_SPACEDIM>>
-get_diffuse_tensor_bc(amr_wind::Field& velocity, amrex::Orientation::Side side)
+get_diffuse_tensor_bc(kynema_sgf::Field& velocity, amrex::Orientation::Side side)
 {
     const auto& geom = velocity.repo().mesh().Geom(0);
     amrex::Vector<amrex::Array<amrex::LinOpBCType, AMREX_SPACEDIM>> r(3);
@@ -68,7 +68,7 @@ get_diffuse_tensor_bc(amr_wind::Field& velocity, amrex::Orientation::Side side)
 }
 
 amrex::Array<amrex::LinOpBCType, AMREX_SPACEDIM>
-get_diffuse_scalar_bc(amr_wind::Field& scalar, amrex::Orientation::Side side)
+get_diffuse_scalar_bc(kynema_sgf::Field& scalar, amrex::Orientation::Side side)
 {
     amrex::Array<amrex::LinOpBCType, AMREX_SPACEDIM> r;
     for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
@@ -206,21 +206,21 @@ void fixup_eta_on_domain_faces(
 
 void viscosity_to_uniform_space(
     amrex::Array<amrex::MultiFab, AMREX_SPACEDIM>& b,
-    const amr_wind::FieldRepo& repo,
+    const kynema_sgf::FieldRepo& repo,
     int lev)
 {
     const auto& mesh_fac_xf =
-        repo.get_mesh_mapping_field(amr_wind::FieldLoc::XFACE);
+        repo.get_mesh_mapping_field(kynema_sgf::FieldLoc::XFACE);
     const auto& mesh_fac_yf =
-        repo.get_mesh_mapping_field(amr_wind::FieldLoc::YFACE);
+        repo.get_mesh_mapping_field(kynema_sgf::FieldLoc::YFACE);
     const auto& mesh_fac_zf =
-        repo.get_mesh_mapping_field(amr_wind::FieldLoc::ZFACE);
+        repo.get_mesh_mapping_field(kynema_sgf::FieldLoc::ZFACE);
     const auto& mesh_detJ_xf =
-        repo.get_mesh_mapping_det_j(amr_wind::FieldLoc::XFACE);
+        repo.get_mesh_mapping_det_j(kynema_sgf::FieldLoc::XFACE);
     const auto& mesh_detJ_yf =
-        repo.get_mesh_mapping_det_j(amr_wind::FieldLoc::YFACE);
+        repo.get_mesh_mapping_det_j(kynema_sgf::FieldLoc::YFACE);
     const auto& mesh_detJ_zf =
-        repo.get_mesh_mapping_det_j(amr_wind::FieldLoc::ZFACE);
+        repo.get_mesh_mapping_det_j(kynema_sgf::FieldLoc::ZFACE);
 
     // beta accounted for mesh mapping (x-face) = J/fac^2 * mu
     {
@@ -232,7 +232,7 @@ void viscosity_to_uniform_space(
             b[0], [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 mu_arrs[nbx](i, j, k) =
                     mu_arrs[nbx](i, j, k) * detJ_arrs[nbx](i, j, k) /
-                    amr_wind::utils::powi(fac_arrs[nbx](i, j, k, 0), 2);
+                    kynema_sgf::utils::powi(fac_arrs[nbx](i, j, k, 0), 2);
             });
     }
     // beta accounted for mesh mapping (y-face) = J/fac^2 * mu
@@ -245,7 +245,7 @@ void viscosity_to_uniform_space(
             b[1], [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 mu_arrs[nbx](i, j, k) =
                     mu_arrs[nbx](i, j, k) * detJ_arrs[nbx](i, j, k) /
-                    amr_wind::utils::powi(fac_arrs[nbx](i, j, k, 1), 2);
+                    kynema_sgf::utils::powi(fac_arrs[nbx](i, j, k, 1), 2);
             });
     }
     // beta accounted for mesh mapping (z-face) = J/fac^2 * mu
@@ -258,7 +258,7 @@ void viscosity_to_uniform_space(
             b[2], [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 mu_arrs[nbx](i, j, k) =
                     mu_arrs[nbx](i, j, k) * detJ_arrs[nbx](i, j, k) /
-                    amr_wind::utils::powi(fac_arrs[nbx](i, j, k, 2), 2);
+                    kynema_sgf::utils::powi(fac_arrs[nbx](i, j, k, 2), 2);
             });
     }
     amrex::Gpu::streamSynchronize();

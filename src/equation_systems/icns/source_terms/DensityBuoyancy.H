@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Buoyancy term from density variations
  *  \ingroup icns_src
@@ -38,6 +38,6 @@ private:
     Field& m_density;
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif /* DensityBuoyancy_H */

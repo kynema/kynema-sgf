@@ -111,22 +111,22 @@ void incflo::InitialIterations()
 
     {
         auto& vel = icns().fields().field;
-        vel.copy_state(amr_wind::FieldState::Old, amr_wind::FieldState::New);
-        vel.state(amr_wind::FieldState::Old).fillpatch(m_time.current_time());
+        vel.copy_state(kynema_sgf::FieldState::Old, kynema_sgf::FieldState::New);
+        vel.state(kynema_sgf::FieldState::Old).fillpatch(m_time.current_time());
 
         if (m_sim.pde_manager().constant_density()) {
             auto& rho = density();
             rho.copy_state(
-                amr_wind::FieldState::Old, amr_wind::FieldState::New);
-            rho.state(amr_wind::FieldState::Old)
+                kynema_sgf::FieldState::Old, kynema_sgf::FieldState::New);
+            rho.state(kynema_sgf::FieldState::Old)
                 .fillpatch(m_time.current_time());
         }
 
         for (auto& eqn : scalar_eqns()) {
             auto& scal = eqn->fields().field;
             scal.copy_state(
-                amr_wind::FieldState::Old, amr_wind::FieldState::New);
-            scal.state(amr_wind::FieldState::Old)
+                kynema_sgf::FieldState::Old, kynema_sgf::FieldState::New);
+            scal.state(kynema_sgf::FieldState::Old)
                 .fillpatch(m_time.current_time());
         }
     }
@@ -136,10 +136,10 @@ void incflo::InitialIterations()
     if (m_reconstruct_true_pressure) {
         auto& press = m_repo.get_field("p");
         amrex::Real global_max_p =
-            amr_wind::field_ops::global_max_magnitude(press);
+            kynema_sgf::field_ops::global_max_magnitude(press);
         // If max pressure is different from 0, then infer that pressure has
         // been initialized
-        bool init_p = std::abs(global_max_p) > amr_wind::constants::LOOSE_TOL;
+        bool init_p = std::abs(global_max_p) > kynema_sgf::constants::LOOSE_TOL;
         if (init_p) {
             const auto& p0 = m_repo.get_field("reference_pressure");
             for (int lev = 0; lev <= finest_level; lev++) {
@@ -163,18 +163,18 @@ void incflo::InitialIterations()
                 vel.to_stretched_space();
             }
             vel.copy_state(
-                amr_wind::FieldState::New, amr_wind::FieldState::Old);
+                kynema_sgf::FieldState::New, kynema_sgf::FieldState::Old);
 
             if (m_sim.pde_manager().constant_density()) {
                 auto& rho = density();
                 rho.copy_state(
-                    amr_wind::FieldState::New, amr_wind::FieldState::Old);
+                    kynema_sgf::FieldState::New, kynema_sgf::FieldState::Old);
             }
 
             for (auto& eqn : scalar_eqns()) {
                 auto& scal = eqn->fields().field;
                 scal.copy_state(
-                    amr_wind::FieldState::New, amr_wind::FieldState::Old);
+                    kynema_sgf::FieldState::New, kynema_sgf::FieldState::Old);
             }
         }
     }

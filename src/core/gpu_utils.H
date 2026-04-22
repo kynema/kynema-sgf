@@ -3,7 +3,7 @@
 
 #include "AMReX_Gpu.H"
 
-namespace amr_wind::gpu {
+namespace kynema_sgf::gpu {
 
 template <typename T>
 amrex::Gpu::DeviceVector<T> device_view(const amrex::Vector<T>& hview)
@@ -14,6 +14,6 @@ amrex::Gpu::DeviceVector<T> device_view(const amrex::Vector<T>& hview)
     return dview;
 }
 
-} // namespace amr_wind::gpu
+} // namespace kynema_sgf::gpu
 
 #endif /* GPU_UTILS_H */

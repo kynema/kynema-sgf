@@ -5,7 +5,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 namespace disk {
 void prepare_netcdf_file(
     const std::string& name,
@@ -113,8 +113,8 @@ AreaComputer::AreaComputer(
 amrex::Real AreaComputer::area_section(const int iRadius) const
 {
     return m_geometry_factor *
-           (amr_wind::utils::powi(iRadius + 1.0_rt, 2) -
-            amr_wind::utils::powi(static_cast<amrex::Real>(iRadius), 2));
+           (kynema_sgf::utils::powi(iRadius + 1.0_rt, 2) -
+            kynema_sgf::utils::powi(static_cast<amrex::Real>(iRadius), 2));
 }
 
 amrex::Real AreaComputer::weight(const int iRadius) const
@@ -388,7 +388,7 @@ void compute_disk_points(
     const vs::VectorT<int> nvp = {meta.num_vel_pts_r, meta.num_vel_pts_t, 1};
 
     const amrex::Real dr = meta.diameter * 0.5_rt / nvp.x();
-    const amrex::Real dt = ::amr_wind::utils::two_pi() / nvp.y();
+    const amrex::Real dt = ::kynema_sgf::utils::two_pi() / nvp.y();
     const amrex::Real du = dOffset * meta.diameter;
 
     //  if there is only 1 velocity point in r then we want to sample along the
@@ -401,7 +401,7 @@ void compute_disk_points(
         const amrex::Real r = dr * (i + index_shift);
         for (int j = 0; j < nvp.y(); j++, ip++) {
             const auto refPoint = r * refVec + du * cylAxis;
-            const amrex::Real angle = ::amr_wind::utils::degrees(dt * j);
+            const amrex::Real angle = ::kynema_sgf::utils::degrees(dt * j);
             const auto rotMatrix = vs::quaternion(cylAxis, angle);
 
             points[ip] = (refPoint & rotMatrix) + cc;
@@ -409,4 +409,4 @@ void compute_disk_points(
     }
 }
 } // namespace ops::base
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator

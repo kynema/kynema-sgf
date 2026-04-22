@@ -30,11 +30,11 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real viscous_drag_calculations(
         m2 * kappa / (std::log(1.5_rt * dz / z0) - non_neutral_neighbour);
     Dxz +=
         -ustar * ustar * ux1r /
-        (amr_wind::constants::EPS + std::sqrt((ux1r * ux1r) + (uy1r * uy1r))) /
+        (kynema_sgf::constants::EPS + std::sqrt((ux1r * ux1r) + (uy1r * uy1r))) /
         dz;
     Dyz +=
         -ustar * ustar * uy1r /
-        (amr_wind::constants::EPS + std::sqrt((ux1r * ux1r) + (uy1r * uy1r))) /
+        (kynema_sgf::constants::EPS + std::sqrt((ux1r * ux1r) + (uy1r * uy1r))) /
         dz;
     return ustar;
 }
@@ -53,7 +53,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void form_drag_calculations(
 {
     // phi = eta - z, so eta derivatives in x and y can be calculate with phi
     amrex::Real n_x, n_y, n_z;
-    amr_wind::multiphase::youngs_finite_difference_normal(
+    kynema_sgf::multiphase::youngs_finite_difference_normal(
         i, j, k, phi, n_x, n_y, n_z);
     // factor of 32 has to do with finite differences, number of points used
     // negative to make normals point away from waves into air
@@ -86,7 +86,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void form_drag_calculations(
 }
 } // namespace
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 DragForcing::DragForcing(const CFDSim& sim)
     : m_time(sim.time())
@@ -162,7 +162,7 @@ DragForcing::DragForcing(const CFDSim& sim)
     }
     if (phy_mgr.contains("OceanWaves") && !sim.repo().field_exists("vof")) {
         const auto terrain_phys =
-            m_sim.physics_manager().get<amr_wind::terraindrag::TerrainDrag>();
+            m_sim.physics_manager().get<kynema_sgf::terraindrag::TerrainDrag>();
         const auto target_vel_name = terrain_phys.wave_velocity_field_name();
         m_target_vel = &sim.repo().get_field(target_vel_name);
         const auto target_levelset_name =
@@ -271,10 +271,10 @@ void DragForcing::operator()(
         const amrex::Real z = amrex::max<amrex::Real>(
             prob_lo[2] + ((k + 0.5_rt) * dx[2]) - terrain_height(i, j, k),
             min_z);
-        amrex::Real xi_end = (std::abs(sdist_east) > amr_wind::constants::EPS)
+        amrex::Real xi_end = (std::abs(sdist_east) > kynema_sgf::constants::EPS)
                                  ? (x - start_east) / (sdist_east)
                                  : 0.0_rt;
-        amrex::Real xi_start = (std::abs(sdist_west) > amr_wind::constants::EPS)
+        amrex::Real xi_start = (std::abs(sdist_west) > kynema_sgf::constants::EPS)
                                    ? (start_west - x) / (-sdist_west)
                                    : 0.0_rt;
         xi_start = sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);
@@ -282,11 +282,11 @@ void DragForcing::operator()(
         const amrex::Real xstart_damping =
             sponge_strength * xi_start * xi_start;
         const amrex::Real xend_damping = sponge_strength * xi_end * xi_end;
-        amrex::Real yi_end = (std::abs(sdist_north) > amr_wind::constants::EPS)
+        amrex::Real yi_end = (std::abs(sdist_north) > kynema_sgf::constants::EPS)
                                  ? (y - start_north) / (sdist_north)
                                  : 0.0_rt;
         amrex::Real yi_start =
-            (std::abs(sdist_south) > amr_wind::constants::EPS)
+            (std::abs(sdist_south) > kynema_sgf::constants::EPS)
                 ? (start_south - y) / (-sdist_south)
                 : 0.0_rt;
         yi_start = sponge_south * amrex::max<amrex::Real>(yi_start, 0.0_rt);
@@ -349,11 +349,11 @@ void DragForcing::operator()(
                 (std::log(0.5_rt * dx[2] / z0) - non_neutral_cell);
             const amrex::Real uxTarget =
                 uTarget * ux2r /
-                (amr_wind::constants::EPS +
+                (kynema_sgf::constants::EPS +
                  std::sqrt((ux2r * ux2r) + (uy2r * uy2r)));
             const amrex::Real uyTarget =
                 uTarget * uy2r /
-                (amr_wind::constants::EPS +
+                (kynema_sgf::constants::EPS +
                  std::sqrt((ux2r * ux2r) + (uy2r * uy2r)));
             // BC forcing pushes nonrelative velocity toward target velocity
             bc_forcing_x = -(uxTarget - ux1) / (time_factor * dt);
@@ -369,7 +369,7 @@ void DragForcing::operator()(
             target_w = target_vel_arr(i, j, k, 2);
         }
         const amrex::Real CdM = amrex::min<amrex::Real>(
-            Cd / (m + amr_wind::constants::EPS), cd_max / scale_factor);
+            Cd / (m + kynema_sgf::constants::EPS), cd_max / scale_factor);
         src_term(i, j, k, 0) -=
             ((CdM * m * (ux1 - target_u) * blank(i, j, k)) +
              (Dxz * drag(i, j, k)) + (bc_forcing_x * drag(i, j, k)) +
@@ -392,4 +392,4 @@ void DragForcing::operator()(
     });
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

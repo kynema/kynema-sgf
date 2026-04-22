@@ -3,7 +3,7 @@
 
 #include "src/immersed_boundary/bluff_body/BluffBody.H"
 
-namespace amr_wind::ib {
+namespace kynema_sgf::ib {
 
 struct BoxData : public BluffBodyBaseData
 {
@@ -22,6 +22,6 @@ struct Box : public BluffBodyType
     static std::string identifier() { return "Box"; }
 };
 
-} // namespace amr_wind::ib
+} // namespace kynema_sgf::ib
 
 #endif /* BOX_H */

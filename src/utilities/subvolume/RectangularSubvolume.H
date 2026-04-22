@@ -3,7 +3,7 @@
 
 #include "src/utilities/subvolume/SubvolumeBase.H"
 
-namespace amr_wind::subvolume {
+namespace kynema_sgf::subvolume {
 
 /** Get subvolume defined by 3D rectangle
  *  \ingroup subvolume
@@ -61,6 +61,6 @@ protected:
     std::string m_label;
 };
 
-} // namespace amr_wind::subvolume
+} // namespace kynema_sgf::subvolume
 
 #endif /* RECTANGULARSUBVOLUME_H */

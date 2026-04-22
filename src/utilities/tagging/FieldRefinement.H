@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 class CFDSim;
 class Field;
 class IntField;
@@ -115,6 +115,6 @@ private:
     amrex::RealBox m_tagging_box;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* FIELDREFINEMENT_H */

@@ -1,6 +1,6 @@
 #include "src/utilities/MultiLevelVector.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 void MultiLevelVector::resize(
     const int axis, const amrex::Vector<amrex::Geometry>& geom)
@@ -46,4 +46,4 @@ void MultiLevelVector::copy_to_field(Field& fld)
     }
     amrex::Gpu::streamSynchronize();
 }
-} // namespace amr_wind
+} // namespace kynema_sgf

@@ -3,7 +3,7 @@
 
 #include "src/core/FieldRepo.H"
 
-namespace amr_wind::multiphase {
+namespace kynema_sgf::multiphase {
 
 void split_advection_step(
     int isweep,
@@ -83,5 +83,5 @@ void sweep_balance(
     amrex::Array4<amrex::Real const> const& fluxF,
     amrex::Array4<amrex::Real const> const& fluxC);
 
-} // namespace amr_wind::multiphase
+} // namespace kynema_sgf::multiphase
 #endif /* SplitAdvection_H */

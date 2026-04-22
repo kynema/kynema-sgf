@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 FieldRefinement::FieldRefinement(const CFDSim& sim)
     : m_sim(sim)
@@ -102,4 +102,4 @@ void FieldRefinement::operator()(
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

@@ -10,9 +10,9 @@
 
 using namespace amrex::literals;
 
-void amr_wind::nodal_projection::set_inflow_velocity(
-    amr_wind::FieldBoundaryMgr::TypeVector& fbs,
-    amr_wind::Field& vel_fld,
+void kynema_sgf::nodal_projection::set_inflow_velocity(
+    kynema_sgf::FieldBoundaryMgr::TypeVector& fbs,
+    kynema_sgf::Field& vel_fld,
     int lev,
     amrex::Real time,
     amrex::MultiFab& vel_mfab,
@@ -26,9 +26,9 @@ void amr_wind::nodal_projection::set_inflow_velocity(
 }
 
 amrex::Array<amrex::LinOpBCType, AMREX_SPACEDIM>
-amr_wind::nodal_projection::get_projection_bc(
+kynema_sgf::nodal_projection::get_projection_bc(
     amrex::Orientation::Side side,
-    amr_wind::Field& pressure,
+    kynema_sgf::Field& pressure,
     const amrex::Array<int, AMREX_SPACEDIM>& is_periodic)
 {
     const auto& bctype = pressure.bc_type();
@@ -58,7 +58,7 @@ amr_wind::nodal_projection::get_projection_bc(
     return r;
 }
 
-void amr_wind::nodal_projection::apply_dirichlet_vel(
+void kynema_sgf::nodal_projection::apply_dirichlet_vel(
     amrex::MultiFab& mf_velocity, amrex::iMultiFab& mf_iblank)
 {
     const auto& vel = mf_velocity.arrays();
@@ -75,8 +75,8 @@ void amr_wind::nodal_projection::apply_dirichlet_vel(
         });
 }
 
-void amr_wind::nodal_projection::enforce_inout_solvability(
-    amr_wind::Field& velocity,
+void kynema_sgf::nodal_projection::enforce_inout_solvability(
+    kynema_sgf::Field& velocity,
     const amrex::Vector<amrex::Geometry>& geom,
     const int num_levels)
 {
@@ -179,14 +179,14 @@ void incflo::ApplyProjection(
     auto& grad_p = m_repo.get_field("gp");
     auto& pressure = m_repo.get_field("p");
     auto& velocity = icns().fields().field;
-    auto& velocity_old = icns().fields().field.state(amr_wind::FieldState::Old);
-    amr_wind::Field const* mesh_fac =
+    auto& velocity_old = icns().fields().field.state(kynema_sgf::FieldState::Old);
+    kynema_sgf::Field const* mesh_fac =
         mesh_mapping
-            ? &(m_repo.get_mesh_mapping_field(amr_wind::FieldLoc::CELL))
+            ? &(m_repo.get_mesh_mapping_field(kynema_sgf::FieldLoc::CELL))
             : nullptr;
-    amr_wind::Field const* mesh_detJ =
+    kynema_sgf::Field const* mesh_detJ =
         mesh_mapping
-            ? &(m_repo.get_mesh_mapping_det_j(amr_wind::FieldLoc::CELL))
+            ? &(m_repo.get_mesh_mapping_det_j(kynema_sgf::FieldLoc::CELL))
             : nullptr;
     const auto* ref_density =
         is_anelastic ? &(m_repo.get_field("reference_density")) : nullptr;
@@ -283,7 +283,7 @@ void incflo::ApplyProjection(
                     amrex::Real det_j =
                         mesh_mapping ? (detJ_arrs[nbx](i, j, k)) : 1.0_rt;
                     sig_arrs[nbx](i, j, k, n) =
-                        amr_wind::utils::powi(fac_cc, -2) * det_j *
+                        kynema_sgf::utils::powi(fac_cc, -2) * det_j *
                         scaling_factor / rho_arrs[nbx](i, j, k);
                     if (is_anelastic) {
                         sig_arrs[nbx](i, j, k, n) *= ref_rho_arrs[nbx](i, j, k);
@@ -296,9 +296,9 @@ void incflo::ApplyProjection(
     // Perform projection
     std::unique_ptr<Hydro::NodalProjector> nodal_projector;
 
-    auto bclo = amr_wind::nodal_projection::get_projection_bc(
+    auto bclo = kynema_sgf::nodal_projection::get_projection_bc(
         amrex::Orientation::low, pressure, m_sim.mesh().Geom()[0].isPeriodic());
-    auto bchi = amr_wind::nodal_projection::get_projection_bc(
+    auto bchi = kynema_sgf::nodal_projection::get_projection_bc(
         amrex::Orientation::high, pressure,
         m_sim.mesh().Geom()[0].isPeriodic());
 
@@ -307,7 +307,7 @@ void incflo::ApplyProjection(
         vel.push_back(&(velocity(lev)));
         vel[lev]->setBndry(0.0_rt);
         if (!proj_for_small_dt and !incremental) {
-            amr_wind::nodal_projection::set_inflow_velocity(
+            kynema_sgf::nodal_projection::set_inflow_velocity(
                 m_sim.field_boundaries(), velocity, lev, time, *vel[lev], 1);
 
             // fill periodic boundaries to avoid corner cell issues
@@ -318,7 +318,7 @@ void incflo::ApplyProjection(
     // Need to apply custom Neumann funcs for inflow-outflow BC
     // after setting the inflow vels above
     if (!proj_for_small_dt and !incremental and velocity.has_inout_bndry()) {
-        velocity.apply_bc_funcs(amr_wind::FieldState::New);
+        velocity.apply_bc_funcs(kynema_sgf::FieldState::New);
     }
 
     if (is_anelastic) {
@@ -333,11 +333,11 @@ void incflo::ApplyProjection(
 
     // enforce solvability by matching outflow to inflow
     if (!proj_for_small_dt and !incremental and velocity.has_inout_bndry()) {
-        amr_wind::nodal_projection::enforce_inout_solvability(
+        kynema_sgf::nodal_projection::enforce_inout_solvability(
             velocity, m_repo.mesh().Geom(), m_repo.num_active_levels());
     }
 
-    amr_wind::MLMGOptions options("nodal_proj");
+    kynema_sgf::MLMGOptions options("nodal_proj");
 
     if (variable_density || mesh_mapping) {
         nodal_projector = std::make_unique<Hydro::NodalProjector>(
@@ -360,7 +360,7 @@ void incflo::ApplyProjection(
     bool has_ib = m_sim.physics_manager().contains("IB");
     if (has_ib) {
         auto div_vel_rhs =
-            sim().repo().create_scratch_field(1, 0, amr_wind::FieldLoc::NODE);
+            sim().repo().create_scratch_field(1, 0, kynema_sgf::FieldLoc::NODE);
         nodal_projector->computeRHS(div_vel_rhs->vec_ptrs(), vel, {}, {});
         // Mask the righ-hand side of the Poisson solve for the nodes inside the
         // body
@@ -381,13 +381,13 @@ void incflo::ApplyProjection(
             linop.setOversetMask(lev, imask_node(lev));
         }
 
-        auto phif = m_repo.create_scratch_field(1, 1, amr_wind::FieldLoc::NODE);
+        auto phif = m_repo.create_scratch_field(1, 1, kynema_sgf::FieldLoc::NODE);
         if (incremental) {
             for (int lev = 0; lev <= finestLevel(); ++lev) {
                 (*phif)(lev).setVal(0.0_rt);
             }
         } else {
-            amr_wind::field_ops::copy(*phif, pressure, 0, 0, 1, 1);
+            kynema_sgf::field_ops::copy(*phif, pressure, 0, 0, 1, 1);
         }
 
         nodal_projector->project(
@@ -396,7 +396,7 @@ void incflo::ApplyProjection(
         nodal_projector->project(options.rel_tol, options.abs_tol);
     }
 
-    amr_wind::io::print_mlmg_info(
+    kynema_sgf::io::print_mlmg_info(
         "Nodal_projection", nodal_projector->getMLMG());
 
     if (is_anelastic) {

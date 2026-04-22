@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 class AirfoilLoader;
 
@@ -84,7 +84,7 @@ struct AirfoilTraits
     using AirfoilLookup = AirfoilTable;
 };
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 #include "src/wind_energy/actuator/aero/AirfoilTableI.H"
 

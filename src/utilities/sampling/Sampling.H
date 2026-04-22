@@ -26,7 +26,7 @@ using namespace amrex::literals;
  *  \ingroup utilities
  */
 
-namespace amr_wind::sampling {
+namespace kynema_sgf::sampling {
 
 /** Collection of data sampling objects
  *  \ingroup sampling
@@ -34,7 +34,7 @@ namespace amr_wind::sampling {
  *  A concrete implementation of the post-processing interface that deals with
  *  data probes. Multiple instances of sampling entities (e.g., point cloud or
  *  probes, line, or plane samplers) can be registered. Internally, the data
- *  problems are represented as amr_wind::sampling::SamplingContainer for
+ *  problems are represented as kynema_sgf::sampling::SamplingContainer for
  *  tracking their position within the CFD mesh and updating the fields of
  *  interest.
  *
@@ -190,6 +190,6 @@ private:
     size_t m_total_particles{0};
 };
 
-} // namespace amr_wind::sampling
+} // namespace kynema_sgf::sampling
 
 #endif /* SAMPLING_H */

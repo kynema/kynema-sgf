@@ -21,7 +21,7 @@ TEST_F(MMSMeshTest, mms_initialization)
     auto& velocityf = frepo.declare_field("velocity", 3, 0);
     auto& densityf = frepo.declare_field("density");
 
-    amr_wind::mms::MMS mms(sim());
+    kynema_sgf::mms::MMS mms(sim());
     const int nlevels = mesh().num_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
         mms.initialize_fields(lev, mesh().Geom(lev));

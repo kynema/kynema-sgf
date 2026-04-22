@@ -7,7 +7,7 @@
 #include "src/boundary_conditions/wall_models/LogLaw.H"
 #include "src/boundary_conditions/wall_models/MOSD.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Wall-function computations for LES simulations
  *  \ingroup utilities
@@ -68,6 +68,6 @@ private:
     WallFunction& m_wall_func;
     std::string m_wall_shear_stress_type{"constant"};
 };
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* WALLFUNCTION_H */

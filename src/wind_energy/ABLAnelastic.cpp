@@ -3,7 +3,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 ABLAnelastic::ABLAnelastic(CFDSim& sim) : m_sim(sim)
 {
@@ -91,7 +91,7 @@ void ABLAnelastic::initialize_isentropic_hse()
 {
     const int max_iterations = 10;
     const auto ref_theta = m_sim.transport_model().reference_temperature();
-    const auto eos = amr_wind::eos::GammaLaw(m_bottom_reference_pressure);
+    const auto eos = kynema_sgf::eos::GammaLaw(m_bottom_reference_pressure);
 
     for (int lev = 0; lev < m_density.size(); lev++) {
         auto& dens = m_density.host_data(lev);
@@ -173,4 +173,4 @@ void ABLAnelastic::initialize_isentropic_hse()
     m_theta.copy_host_to_device();
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

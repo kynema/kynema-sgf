@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 struct FixedWingData : public WingBaseData
 {
@@ -29,6 +29,6 @@ struct FixedWing : public WingType
     static std::string identifier() { return "FixedWing"; }
 };
 
-} // namespace amr_wind::actuator
+} // namespace kynema_sgf::actuator
 
 #endif /* FIXEDWING_H */

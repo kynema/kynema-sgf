@@ -49,7 +49,7 @@ void initialize_scalar(
     });
 }
 
-amrex::Real filtering_test_impl(amr_wind::Field& scalar, const int pdegree)
+amrex::Real filtering_test_impl(kynema_sgf::Field& scalar, const int pdegree)
 {
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
 
@@ -63,7 +63,7 @@ amrex::Real filtering_test_impl(amr_wind::Field& scalar, const int pdegree)
         initialize_scalar(geom[lev], bx, pdegree, coeff, scalar_arr);
     });
 
-    auto filtered_scalar = amr_wind::fvm::filter(scalar);
+    auto filtered_scalar = kynema_sgf::fvm::filter(scalar);
 
     const int nlevels = scalar.repo().num_active_levels();
     amrex::Real error_total = 0.0_rt;

@@ -12,7 +12,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::terraindrag {
+namespace kynema_sgf::terraindrag {
 
 namespace {} // namespace
 
@@ -360,4 +360,4 @@ void TerrainDrag::convert_waves_to_terrain_fields()
     }
 }
 
-} // namespace amr_wind::terraindrag
+} // namespace kynema_sgf::terraindrag

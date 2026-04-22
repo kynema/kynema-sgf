@@ -5,7 +5,7 @@
 #include "src/core/Field.H"
 #include "src/CFDSim.H"
 
-namespace amr_wind::terraindrag {
+namespace kynema_sgf::terraindrag {
 
 /** Terraindrag Flow physics
  *  \ingroup physics
@@ -93,6 +93,6 @@ private:
     const std::string m_wave_negative_elevation_name{"ow_levelset"};
     const std::string m_wave_velocity_name{"ow_velocity"};
 };
-} // namespace amr_wind::terraindrag
+} // namespace kynema_sgf::terraindrag
 
 #endif

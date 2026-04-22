@@ -12,7 +12,7 @@
 #include "src/physics/udfs/CustomVelocity.H"
 #include "src/physics/udfs/TwoLayer.H"
 
-namespace amr_wind::vel_bc {
+namespace kynema_sgf::vel_bc {
 
 template <typename WallOp>
 void register_inflow_vel_dirichlet(
@@ -82,6 +82,6 @@ void register_velocity_dirichlet(
     }
 }
 
-} // namespace amr_wind::vel_bc
+} // namespace kynema_sgf::vel_bc
 
 #endif /* VELOCITY_BCS_H */

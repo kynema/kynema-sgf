@@ -1,6 +1,6 @@
 #include "src/boundary_conditions/FixedGradientBC.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace {
 AMREX_FORCE_INLINE
 amrex::Box lower_boundary_faces(const amrex::Box& b, int dir)
@@ -68,4 +68,4 @@ void FixedGradientBC::operator()(Field& field, const FieldState /*rho_state*/)
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

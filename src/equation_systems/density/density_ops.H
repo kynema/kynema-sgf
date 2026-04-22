@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 template <typename Scheme>
 struct ComputeRHSOp<Density, Scheme>
@@ -81,6 +81,6 @@ struct ComputeRHSOp<Density, Scheme>
     // data members
     PDEFields& fields;
 };
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* DENSITY_OPS_H */

@@ -43,9 +43,9 @@ public:
     //! Reset the problem domain for this test
     virtual void reset_prob_domain();
 
-    amr_wind::CFDSim& sim() { return mesh().sim(); }
+    kynema_sgf::CFDSim& sim() { return mesh().sim(); }
 
-    amr_wind::SimTime& time() { return sim().time(); }
+    kynema_sgf::SimTime& time() { return sim().time(); }
 
     AmrTestMesh& mesh() { return *m_mesh; }
 
@@ -64,7 +64,7 @@ protected:
 class RefineMesh : public AmrTestMesh
 {
 public:
-    amrex::Vector<std::unique_ptr<amr_wind::RefinementCriteria>>&
+    amrex::Vector<std::unique_ptr<kynema_sgf::RefinementCriteria>>&
     refine_criteria_vec()
     {
         return m_refine_crit;
@@ -80,7 +80,7 @@ protected:
     }
 
 private:
-    amrex::Vector<std::unique_ptr<amr_wind::RefinementCriteria>> m_refine_crit;
+    amrex::Vector<std::unique_ptr<kynema_sgf::RefinementCriteria>> m_refine_crit;
 };
 
 } // namespace amr_wind_tests

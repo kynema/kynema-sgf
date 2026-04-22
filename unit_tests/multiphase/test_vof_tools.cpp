@@ -59,7 +59,7 @@ void initialize_levelset(
             // Parabola
             lvs_arr(i, j, k) =
                 (1.9_rt * dx) + (0.1_rt * dx *
-                                 amr_wind::utils::powi(
+                                 kynema_sgf::utils::powi(
                                      static_cast<amrex::Real>(j) - 0.3_rt, 2));
         } else if (s == 2) {
             // Cosine profile
@@ -97,7 +97,7 @@ void initialize_volume_fractions(
 }
 
 void init_lvs(
-    const int dir, const amrex::Real deltax, amr_wind::Field& levelset)
+    const int dir, const amrex::Real deltax, kynema_sgf::Field& levelset)
 {
     run_algorithm(levelset, [&](const int lev, const amrex::MFIter& mfi) {
         auto levelset_arr = levelset(lev).array(mfi);
@@ -106,7 +106,7 @@ void init_lvs(
     });
 }
 
-void init_vof(amr_wind::Field& vof)
+void init_vof(kynema_sgf::Field& vof)
 {
     run_algorithm(vof, [&](const int lev, const amrex::MFIter& mfi) {
         auto vof_arr = vof(lev).array(mfi);
@@ -116,7 +116,7 @@ void init_vof(amr_wind::Field& vof)
 }
 
 amrex::Real
-levelset_to_vof_test_impl(const amrex::Real deltax, amr_wind::Field& levelset)
+levelset_to_vof_test_impl(const amrex::Real deltax, kynema_sgf::Field& levelset)
 {
     amrex::Real error_total = 0.0_rt;
     const amrex::Real dx = deltax;
@@ -132,7 +132,7 @@ levelset_to_vof_test_impl(const amrex::Real deltax, amr_wind::Field& levelset)
                 amrex::Real error = 0.0_rt;
 
                 amrex::Loop(bx, [=, &error](int i, int j, int k) {
-                    amrex::Real vof = amr_wind::multiphase::levelset_to_vof(
+                    amrex::Real vof = kynema_sgf::multiphase::levelset_to_vof(
                         i, j, k, 2.0_rt * dx, levelset_arr);
 
                     // Perform checks in multiphase cells
@@ -174,7 +174,7 @@ levelset_to_vof_test_impl(const amrex::Real deltax, amr_wind::Field& levelset)
     return error_total;
 }
 
-amrex::Real interface_band_test_impl(amr_wind::Field& vof)
+amrex::Real interface_band_test_impl(kynema_sgf::Field& vof)
 {
     amrex::Real error_total = 0;
 
@@ -190,7 +190,7 @@ amrex::Real interface_band_test_impl(amr_wind::Field& vof)
 
                 amrex::Loop(bx, [=, &error](int i, int j, int k) {
                     bool intf =
-                        amr_wind::multiphase::interface_band(i, j, k, vof_arr);
+                        kynema_sgf::multiphase::interface_band(i, j, k, vof_arr);
 
                     bool nocheck = true;
                     // Check within a cell of multiphase cells
@@ -217,7 +217,7 @@ amrex::Real interface_band_test_impl(amr_wind::Field& vof)
     return error_total;
 }
 
-amrex::Real initvof_test_impl(amr_wind::Field& vof)
+amrex::Real initvof_test_impl(kynema_sgf::Field& vof)
 {
     amrex::Real error_total = 0;
 
@@ -282,7 +282,7 @@ TEST_F(VOFToolTest, interface_band)
     EXPECT_EQ(error_total, 0.0_rt);
 
     // Invert VOF field, check again
-    amr_wind::field_ops::lincomb(
+    kynema_sgf::field_ops::lincomb(
         vof, -1.0_rt, vof, 0, 1.0_rt, unity, 0, 0, 1, nghost);
     error_total = interface_band_test_impl(vof);
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
@@ -347,7 +347,7 @@ TEST_F(VOFToolTest, replace_masked_vof)
     // Initialize other field (working copy of vof)
     vof_mod.setVal(100.0_rt);
     // Replace masked vof values with new ones
-    amr_wind::multiphase::replace_masked_vof(1, iblank, vof_mod, vof_new);
+    kynema_sgf::multiphase::replace_masked_vof(1, iblank, vof_mod, vof_new);
 
     // Check results
     amrex::Real error_total = initvof_test_impl(vof_mod);

@@ -12,12 +12,12 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 ABLMesoForcingMom::ABLMesoForcingMom(const CFDSim& sim)
     : ABLMesoscaleForcing(sim, identifier())
 {
-    const auto& abl = sim.physics_manager().get<amr_wind::ABL>();
+    const auto& abl = sim.physics_manager().get<kynema_sgf::ABL>();
     abl.register_meso_mom_forcing(this);
     abl.abl_statistics().register_meso_mom_forcing(this);
 
@@ -101,9 +101,9 @@ void ABLMesoForcingMom::mean_velocity_heights(
     amrex::Vector<amrex::Real> time_interpolated_v(num_meso_ht);
 
     for (int i = 0; i < num_meso_ht; i++) {
-        time_interpolated_u[i] = amr_wind::interp::linear(
+        time_interpolated_u[i] = kynema_sgf::interp::linear(
             ncfile->meso_times(), ncfile->meso_u(), currtime, num_meso_ht, i);
-        time_interpolated_v[i] = amr_wind::interp::linear(
+        time_interpolated_v[i] = kynema_sgf::interp::linear(
             ncfile->meso_times(), ncfile->meso_v(), currtime, num_meso_ht, i);
     }
 
@@ -143,9 +143,9 @@ void ABLMesoForcingMom::mean_velocity_heights(
     const auto& meso_heights = ncfile->meso_heights();
 
     for (int i = 0; i < m_nht; i++) {
-        const amrex::Real interpolated_u = amr_wind::interp::bilinear(
+        const amrex::Real interpolated_u = kynema_sgf::interp::bilinear(
             meso_times, meso_heights, ncfile->meso_u(), currtime, vavg_lc[i]);
-        const amrex::Real interpolated_v = amr_wind::interp::bilinear(
+        const amrex::Real interpolated_v = kynema_sgf::interp::bilinear(
             meso_times, meso_heights, ncfile->meso_v(), currtime, vavg_lc[i]);
         error_U[i] = interpolated_u - vavg_lavg[static_cast<int>(numcomp * i)];
         error_V[i] = interpolated_v - vavg_lavg[(numcomp * i) + 1];
@@ -155,7 +155,7 @@ void ABLMesoForcingMom::mean_velocity_heights(
         if (m_update_transition_height) {
             // possible unexpected behaviors, as described in
             // ec5eb95c6ca853ce0fea8488e3f2515a2d6374e7
-            m_transition_height = amr_wind::interp::linear(
+            m_transition_height = kynema_sgf::interp::linear(
                 meso_times, ncfile->meso_transition_height(), currtime);
             amrex::Print() << "current transition height = "
                            << m_transition_height << '\n';
@@ -287,9 +287,9 @@ void ABLMesoForcingMom::operator()(
     amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         amrex::IntVect iv(i, j, k);
         const amrex::Real ht = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
-        const amrex::Real u_err = amr_wind::interp::linear(
+        const amrex::Real u_err = kynema_sgf::interp::linear(
             vheights_begin, vheights_end, u_error_val, ht);
-        const amrex::Real v_err = amr_wind::interp::linear(
+        const amrex::Real v_err = kynema_sgf::interp::linear(
             vheights_begin, vheights_end, v_error_val, ht);
 
         // Compute Source term
@@ -300,4 +300,4 @@ void ABLMesoForcingMom::operator()(
     });
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

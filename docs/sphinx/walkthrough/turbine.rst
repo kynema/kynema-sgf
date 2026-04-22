@@ -117,7 +117,7 @@ and the turbine inflow-outflow simulation is ready to be submitted using
 
 .. code-block:: console
 
-    amr_wind turbines.inp
+    kynema_sgf turbines.inp
 
 which should follow after an ``srun`` or ``mpiexec`` or a similar command to take advantage of parallelization.
 

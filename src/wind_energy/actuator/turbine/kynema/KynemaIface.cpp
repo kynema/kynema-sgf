@@ -412,7 +412,7 @@ amrex::Vector<int> build_aero(
              tower_os["outer_diameter"]["values"].as<std::vector<double>>()) {
             const auto s = tower_os["outer_diameter"]["grid"]
                                .as<std::vector<double>>()[id];
-            const auto cd = ::amr_wind::interp::linear(s_cd, cd_vec, s);
+            const auto cd = ::kynema_sgf::interp::linear(s_cd, cd_vec, s);
             tower_aero_sections.emplace_back(
                 id, s, chord, section_offset_x, section_offset_y,
                 aerodynamic_center, twist, aoa, cl, std::vector<double>{cd, cd},
@@ -497,7 +497,7 @@ ExtTurbIface<KynemaTurbine, KynemaSolverData>::~ExtTurbIface()
 // !! This doesn't get used by the actual code, just by unit tests !! //
 template <>
 void ExtTurbIface<KynemaTurbine, KynemaSolverData>::parse_inputs(
-    const amr_wind::CFDSim& sim, const std::string& inp_name)
+    const kynema_sgf::CFDSim& sim, const std::string& inp_name)
 {
     amrex::ParmParse pp(inp_name);
 
@@ -591,8 +591,8 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::prepare_netcdf_file(
     const std::string np_name = "num_vel_points";
     ncf.enter_def_mode();
     ncf.put_attr("title", "AMR-Wind Kynema velocity data");
-    ncf.put_attr("AMR-Wind_version", amr_wind::ioutils::amr_wind_version());
-    ncf.put_attr("created_on", amr_wind::ioutils::timestamp());
+    ncf.put_attr("AMR-Wind_version", kynema_sgf::ioutils::amr_wind_version());
+    ncf.put_attr("created_on", kynema_sgf::ioutils::timestamp());
     ncf.def_dim(nt_name, NC_UNLIMITED);
     ncf.def_dim(np_name, fi.length_fluid_velocity(0));
     ncf.def_dim("ndim", AMREX_SPACEDIM);

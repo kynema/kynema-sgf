@@ -4,7 +4,7 @@
 
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind::turbulence::turb_utils {
+namespace kynema_sgf::turbulence::turb_utils {
 
 void inject_turbulence_src_terms(
     const std::string& key, const amrex::Vector<std::string>& terms)
@@ -39,4 +39,4 @@ void inject_turbulence_src_terms(
     pp.addarr("source_terms", srcin);
 }
 
-} // namespace amr_wind::turbulence::turb_utils
+} // namespace kynema_sgf::turbulence::turb_utils

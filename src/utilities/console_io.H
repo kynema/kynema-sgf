@@ -5,7 +5,7 @@
 #include "AMReX_MLMG.H"
 #include "src/CFDSim.H"
 
-namespace amr_wind::io {
+namespace kynema_sgf::io {
 
 using namespace amrex::mpidatatypes;
 
@@ -26,6 +26,6 @@ void print_tpls(std::ostream& /*out*/);
 void print_nonlinear_residual(
     const CFDSim& sim, ScratchField& vel_diff, const ScratchField& vel_star);
 
-} // namespace amr_wind::io
+} // namespace kynema_sgf::io
 
 #endif /* CONSOLE_IO_H */

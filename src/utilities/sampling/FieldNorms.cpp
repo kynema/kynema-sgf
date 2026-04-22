@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::field_norms {
+namespace kynema_sgf::field_norms {
 
 FieldNorms::FieldNorms(CFDSim& sim, std::string label)
     : m_sim(sim), m_label(std::move(label))
@@ -57,7 +57,7 @@ void FieldNorms::initialize()
 }
 
 amrex::Real FieldNorms::get_norm(
-    const amr_wind::Field& field,
+    const kynema_sgf::Field& field,
     const int comp,
     const int ncomp,
     const int norm_type,
@@ -257,4 +257,4 @@ void FieldNorms::write_ascii()
     }
 }
 
-} // namespace amr_wind::field_norms
+} // namespace kynema_sgf::field_norms

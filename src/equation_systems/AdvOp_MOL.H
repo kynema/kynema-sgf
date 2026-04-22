@@ -11,7 +11,7 @@
 #include "AMReX_Gpu.H"
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /** MOL advection operator for scalar transport equations
  *  \ingroup pdeop
@@ -128,6 +128,6 @@ struct AdvectionOp<
     Field& w_mac;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* ADVOP_MOL_H */

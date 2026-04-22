@@ -8,7 +8,7 @@ namespace amr_wind_tests {
 
 namespace {
 
-void init_velocity(amr_wind::Field& velocity)
+void init_velocity(kynema_sgf::Field& velocity)
 {
     const auto& mesh = velocity.repo().mesh();
     const int nlevels = velocity.repo().num_active_levels();
@@ -25,8 +25,8 @@ void init_velocity(amr_wind::Field& velocity)
                 const amrex::Real yc = problo[1] + ((j + 0.5_rt) * dx[1]);
                 const amrex::Real zc = problo[2] + ((k + 0.5_rt) * dx[2]);
 
-                farrs[nbx](i, j, k, 0) = 1.0_rt - amr_wind::utils::powi(xc, 2);
-                farrs[nbx](i, j, k, 1) = -1.0_rt + amr_wind::utils::powi(zc, 2);
+                farrs[nbx](i, j, k, 0) = 1.0_rt - kynema_sgf::utils::powi(xc, 2);
+                farrs[nbx](i, j, k, 1) = -1.0_rt + kynema_sgf::utils::powi(zc, 2);
                 farrs[nbx](i, j, k, 2) = 5.0_rt * std::cos(yc);
 
                 if (lev == 0 && nlevels > 1) {
@@ -41,10 +41,10 @@ void init_velocity(amr_wind::Field& velocity)
 }
 
 void init_mac_velocity(
-    amr_wind::Field& cc,
-    amr_wind::Field& umac,
-    amr_wind::Field& vmac,
-    amr_wind::Field& wmac)
+    kynema_sgf::Field& cc,
+    kynema_sgf::Field& umac,
+    kynema_sgf::Field& vmac,
+    kynema_sgf::Field& wmac)
 {
     const auto& mesh = cc.repo().mesh();
     const int nlevels = cc.repo().num_active_levels();
@@ -63,8 +63,8 @@ void init_mac_velocity(
                 const amrex::Real yc = problo[1] + ((j + 0.5_rt) * dx[1]);
                 const amrex::Real zc = problo[2] + ((k + 0.5_rt) * dx[2]);
 
-                uarrs[nbx](i, j, k) = 1.0_rt - amr_wind::utils::powi(x, 2);
-                varrs[nbx](i, j, k) = -1.0_rt + amr_wind::utils::powi(zc, 2);
+                uarrs[nbx](i, j, k) = 1.0_rt - kynema_sgf::utils::powi(x, 2);
+                varrs[nbx](i, j, k) = -1.0_rt + kynema_sgf::utils::powi(zc, 2);
                 warrs[nbx](i, j, k) = -3.0_rt * std::cos(yc);
 
                 if (lev == 0 && nlevels > 1) {
@@ -78,7 +78,7 @@ void init_mac_velocity(
     amrex::Gpu::streamSynchronize();
 }
 
-void init_vof(amr_wind::Field& vof, bool bounded)
+void init_vof(kynema_sgf::Field& vof, bool bounded)
 {
     const auto& mesh = vof.repo().mesh();
     const int nlevels = vof.repo().num_active_levels();
@@ -113,7 +113,7 @@ void init_vof(amr_wind::Field& vof, bool bounded)
     amrex::Gpu::streamSynchronize();
 }
 
-void modify_vof(amr_wind::Field& vof, amrex::Vector<int> ncell)
+void modify_vof(kynema_sgf::Field& vof, amrex::Vector<int> ncell)
 {
     const int nlevels = vof.repo().num_active_levels();
     const int nx = ncell[0];
@@ -170,7 +170,7 @@ TEST_F(DiagnosticsTest, Max_Vel)
     init_velocity(velocity);
 
     auto cc_results =
-        amr_wind::diagnostics::PrintMaxVelLocations(repo, "cell-centered");
+        kynema_sgf::diagnostics::PrintMaxVelLocations(repo, "cell-centered");
 
     // Check max's and min's, according to profiles
     const amrex::Real tol =
@@ -178,19 +178,19 @@ TEST_F(DiagnosticsTest, Max_Vel)
     // max(u)
     EXPECT_NEAR(
         cc_results[0],
-        1.0_rt - amr_wind::utils::powi(0.5_rt * 10.0_rt / 24.0_rt, 2), tol);
+        1.0_rt - kynema_sgf::utils::powi(0.5_rt * 10.0_rt / 24.0_rt, 2), tol);
     // min(u)
     EXPECT_NEAR(
         cc_results[4],
-        1.0_rt - amr_wind::utils::powi(11.5_rt * 10.0_rt / 24.0_rt, 2), tol);
+        1.0_rt - kynema_sgf::utils::powi(11.5_rt * 10.0_rt / 24.0_rt, 2), tol);
     // max(v)
     EXPECT_NEAR(
         cc_results[8],
-        -1.0_rt + amr_wind::utils::powi(3.5_rt * 4.0_rt / 8.0_rt, 2), tol);
+        -1.0_rt + kynema_sgf::utils::powi(3.5_rt * 4.0_rt / 8.0_rt, 2), tol);
     // min(v)
     EXPECT_NEAR(
         cc_results[12],
-        -1.0_rt + amr_wind::utils::powi(0.5_rt * 4.0_rt / 8.0_rt, 2), tol);
+        -1.0_rt + kynema_sgf::utils::powi(0.5_rt * 4.0_rt / 8.0_rt, 2), tol);
     // max(w)
     EXPECT_NEAR(
         cc_results[16], 5.0_rt * std::cos(0.5_rt * 10.0_rt / 24.0_rt), tol);
@@ -215,7 +215,7 @@ TEST_F(DiagnosticsTest, Max_MACvel)
     init_mac_velocity(cc, umac, vmac, wmac);
 
     auto fc_results =
-        amr_wind::diagnostics::PrintMaxMACVelLocations(repo, "face-centered");
+        kynema_sgf::diagnostics::PrintMaxMACVelLocations(repo, "face-centered");
 
     // Check max's and min's, according to profiles
     const amrex::Real tol =
@@ -223,19 +223,19 @@ TEST_F(DiagnosticsTest, Max_MACvel)
     // max(umac)
     EXPECT_NEAR(
         fc_results[0],
-        1.0_rt - amr_wind::utils::powi(0.0_rt * 10.0_rt / 24.0_rt, 2), tol);
+        1.0_rt - kynema_sgf::utils::powi(0.0_rt * 10.0_rt / 24.0_rt, 2), tol);
     // min(umac)
     EXPECT_NEAR(
         fc_results[4],
-        1.0_rt - amr_wind::utils::powi(12.0_rt * 10.0_rt / 24.0_rt, 2), tol);
+        1.0_rt - kynema_sgf::utils::powi(12.0_rt * 10.0_rt / 24.0_rt, 2), tol);
     // max(vmac)
     EXPECT_NEAR(
         fc_results[8],
-        -1.0_rt + amr_wind::utils::powi(3.5_rt * 4.0_rt / 8.0_rt, 2), tol);
+        -1.0_rt + kynema_sgf::utils::powi(3.5_rt * 4.0_rt / 8.0_rt, 2), tol);
     // min(vmac)
     EXPECT_NEAR(
         fc_results[12],
-        -1.0_rt + amr_wind::utils::powi(0.5_rt * 4.0_rt / 8.0_rt, 2), tol);
+        -1.0_rt + kynema_sgf::utils::powi(0.5_rt * 4.0_rt / 8.0_rt, 2), tol);
     // min(wmac)
     EXPECT_NEAR(
         fc_results[20], -3.0_rt * std::cos(0.5_rt * 10.0_rt / 24.0_rt), tol);
@@ -263,9 +263,9 @@ TEST_F(DiagnosticsTest, Max_Vel_MultiLevel)
     ss << "-5 -5 -2 5 5 2" << '\n';
     create_mesh_instance<RefineMesh>();
     auto& ref_vec = mesh<RefineMesh>()->refine_criteria_vec();
-    ref_vec.emplace_back(std::make_unique<amr_wind::CartBoxRefinement>(sim()));
+    ref_vec.emplace_back(std::make_unique<kynema_sgf::CartBoxRefinement>(sim()));
     auto* box_refine =
-        dynamic_cast<amr_wind::CartBoxRefinement*>(ref_vec[0].get());
+        dynamic_cast<kynema_sgf::CartBoxRefinement*>(ref_vec[0].get());
     box_refine->read_inputs(mesh(), ss);
     initialize_mesh();
 
@@ -274,7 +274,7 @@ TEST_F(DiagnosticsTest, Max_Vel_MultiLevel)
     init_velocity(velocity);
 
     auto cc_results =
-        amr_wind::diagnostics::PrintMaxVelLocations(repo, "cell-centered");
+        kynema_sgf::diagnostics::PrintMaxVelLocations(repo, "cell-centered");
 
     // Check max's and min's, according to profiles
     const amrex::Real tol =
@@ -282,19 +282,19 @@ TEST_F(DiagnosticsTest, Max_Vel_MultiLevel)
     // max(u)
     EXPECT_NEAR(
         cc_results[0],
-        1.0_rt - amr_wind::utils::powi(0.5_rt * 10.0_rt / 48.0_rt, 2), tol);
+        1.0_rt - kynema_sgf::utils::powi(0.5_rt * 10.0_rt / 48.0_rt, 2), tol);
     // min(u)
     EXPECT_NEAR(
         cc_results[4],
-        1.0_rt - amr_wind::utils::powi(23.5_rt * 10.0_rt / 48.0_rt, 2), tol);
+        1.0_rt - kynema_sgf::utils::powi(23.5_rt * 10.0_rt / 48.0_rt, 2), tol);
     // max(v)
     EXPECT_NEAR(
         cc_results[8],
-        -1.0_rt + amr_wind::utils::powi(7.5_rt * 4.0_rt / 16.0_rt, 2), tol);
+        -1.0_rt + kynema_sgf::utils::powi(7.5_rt * 4.0_rt / 16.0_rt, 2), tol);
     // min(v)
     EXPECT_NEAR(
         cc_results[12],
-        -1.0_rt + amr_wind::utils::powi(0.5_rt * 4.0_rt / 16.0_rt, 2), tol);
+        -1.0_rt + kynema_sgf::utils::powi(0.5_rt * 4.0_rt / 16.0_rt, 2), tol);
     // max(w)
     EXPECT_NEAR(
         cc_results[16], 5.0_rt * std::cos(0.5_rt * 10.0_rt / 48.0_rt), tol);
@@ -322,9 +322,9 @@ TEST_F(DiagnosticsTest, Max_MACvel_MultiLevel)
     ss << "-5 -5 -2 5 5 2" << '\n';
     create_mesh_instance<RefineMesh>();
     auto& ref_vec = mesh<RefineMesh>()->refine_criteria_vec();
-    ref_vec.emplace_back(std::make_unique<amr_wind::CartBoxRefinement>(sim()));
+    ref_vec.emplace_back(std::make_unique<kynema_sgf::CartBoxRefinement>(sim()));
     auto* box_refine =
-        dynamic_cast<amr_wind::CartBoxRefinement*>(ref_vec[0].get());
+        dynamic_cast<kynema_sgf::CartBoxRefinement*>(ref_vec[0].get());
     box_refine->read_inputs(mesh(), ss);
     initialize_mesh();
 
@@ -337,7 +337,7 @@ TEST_F(DiagnosticsTest, Max_MACvel_MultiLevel)
     init_mac_velocity(cc, umac, vmac, wmac);
 
     auto fc_results =
-        amr_wind::diagnostics::PrintMaxMACVelLocations(repo, "face-centered");
+        kynema_sgf::diagnostics::PrintMaxMACVelLocations(repo, "face-centered");
 
     // Check max's and min's, according to profiles
     const amrex::Real tol =
@@ -345,19 +345,19 @@ TEST_F(DiagnosticsTest, Max_MACvel_MultiLevel)
     // max(umac)
     EXPECT_NEAR(
         fc_results[0],
-        1.0_rt - amr_wind::utils::powi(0.0_rt * 10.0_rt / 48.0_rt, 2), tol);
+        1.0_rt - kynema_sgf::utils::powi(0.0_rt * 10.0_rt / 48.0_rt, 2), tol);
     // min(umac)
     EXPECT_NEAR(
         fc_results[4],
-        1.0_rt - amr_wind::utils::powi(24 * 10.0_rt / 48.0_rt, 2), tol);
+        1.0_rt - kynema_sgf::utils::powi(24 * 10.0_rt / 48.0_rt, 2), tol);
     // max(vmac)
     EXPECT_NEAR(
         fc_results[8],
-        -1.0_rt + amr_wind::utils::powi(7.5_rt * 4.0_rt / 16.0_rt, 2), tol);
+        -1.0_rt + kynema_sgf::utils::powi(7.5_rt * 4.0_rt / 16.0_rt, 2), tol);
     // min(vmac)
     EXPECT_NEAR(
         fc_results[12],
-        -1.0_rt + amr_wind::utils::powi(0.5_rt * 4.0_rt / 16.0_rt, 2), tol);
+        -1.0_rt + kynema_sgf::utils::powi(0.5_rt * 4.0_rt / 16.0_rt, 2), tol);
     // min(wmac)
     EXPECT_NEAR(
         fc_results[20], -3.0_rt * std::cos(0.5_rt * 10.0_rt / 48.0_rt), tol);
@@ -379,7 +379,7 @@ TEST_F(DiagnosticsTest, Field_Extrema)
 
     // Get max and min regardless of phase
     amrex::Real fmin{0.}, fmax{0.};
-    amr_wind::diagnostics::get_field_extrema(fmax, fmin, vof, 0, 1, 1);
+    kynema_sgf::diagnostics::get_field_extrema(fmax, fmin, vof, 0, 1, 1);
 
     // Lowest and highest possible values according to init_vof
     const amrex::Real gold_fmin =
@@ -402,9 +402,9 @@ TEST_F(DiagnosticsTest, Field_Extrema)
 
     // Get max and min using masking for phase
     amrex::Real fmin_g{0.0_rt}, fmax_g{0.0_rt}, fmin_l{0.0_rt}, fmax_l{0.0_rt};
-    bool found_g = amr_wind::diagnostics::get_field_extrema(
+    bool found_g = kynema_sgf::diagnostics::get_field_extrema(
         fmax_g, fmin_g, vof, vof, 0.0_rt, 0, 1, 1);
-    bool found_l = amr_wind::diagnostics::get_field_extrema(
+    bool found_l = kynema_sgf::diagnostics::get_field_extrema(
         fmax_l, fmin_l, vof, vof, 1.0_rt, 0, 1, 1);
 
     // Confirm that gas and liquid not found
@@ -420,9 +420,9 @@ TEST_F(DiagnosticsTest, Field_Extrema)
     // Modify vof to ensure some single-phase cells while remaining unbounded
     modify_vof(vof, m_ncell);
     // Get max and min using masking for phase
-    found_g = amr_wind::diagnostics::get_field_extrema(
+    found_g = kynema_sgf::diagnostics::get_field_extrema(
         fmax_g, fmin_g, vof, vof, 0.0_rt, 0, 1, 1);
-    found_l = amr_wind::diagnostics::get_field_extrema(
+    found_l = kynema_sgf::diagnostics::get_field_extrema(
         fmax_l, fmin_l, vof, vof, 1.0_rt, 0, 1, 1);
 
     // Phases should be found this time
@@ -441,9 +441,9 @@ TEST_F(DiagnosticsTest, Field_Extrema)
     // Get max and min with masking on bounded vof
     amrex::Real fmin_g_bounded{0.0_rt}, fmax_g_bounded{0.0_rt},
         fmin_l_bounded{0.0_rt}, fmax_l_bounded{0.0_rt};
-    amr_wind::diagnostics::get_field_extrema(
+    kynema_sgf::diagnostics::get_field_extrema(
         fmax_g_bounded, fmin_g_bounded, vof, vof, 0.0_rt, 0, 1, 1);
-    amr_wind::diagnostics::get_field_extrema(
+    kynema_sgf::diagnostics::get_field_extrema(
         fmax_l_bounded, fmin_l_bounded, vof, vof, 1.0_rt, 0, 1, 1);
 
     EXPECT_NEAR(fmin_g_bounded, gold_fmin_g, tol);

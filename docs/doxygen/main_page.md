@@ -23,10 +23,10 @@ chapter](https://amrex-codes.github.io/amrex/docs_html/Basics.html) to
 familiarize yourself with the core AMReX terminology and concepts. Once you have
 read that chapter, read the \ref core "AMR-Wind core"
 documentation and familiarize yourself with the concept of \ref
-amr_wind::Field "Field" and \ref amr_wind::FieldRepo "FieldRepo" (see \ref
+kynema_sgf::Field "Field" and \ref kynema_sgf::FieldRepo "FieldRepo" (see \ref
 fields) in AMR-Wind as these are used quite heavily everywhere in the code. Two
-other global data structures that are used frequently are \ref amr_wind::CFDSim
-"CFDSim" and \ref amr_wind::SimTime "SimTime". `CFDSim` represents the
+other global data structures that are used frequently are \ref kynema_sgf::CFDSim
+"CFDSim" and \ref kynema_sgf::SimTime "SimTime". `CFDSim` represents the
 simulation environment and holds references to the mesh, the field repository,
 time instance, the registered \ref physics "physics" instances, the \ref eqsys
 "equation systems", and \ref utilities "post-processing and I/O" utilities.

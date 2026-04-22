@@ -3,7 +3,7 @@
 AMR-Wind inputs file
 =====================
 
-To run :program:`amr_wind`, the user must provide a text file containing inputs
+To run :program:`kynema_sgf`, the user must provide a text file containing inputs
 describing the problem and any additional command-line arguments that override
 the parameters in the input file for that particular invocation of the
 executable.
@@ -11,7 +11,7 @@ executable.
 .. code-block:: console
 
    # Parse input parameters from `inputs.abl` but change max_step to 20
-   $ ./amr_wind inputs.abl time.max_step=20
+   $ ./kynema_sgf inputs.abl time.max_step=20
 
 
 The input file is a simple text file containing ``key = value``
@@ -32,7 +32,7 @@ copying and pasting the contents of ``other_file.inp`` onto that line of the
 input file. Unlike standard input file keywords, the directive is applied each
 time it is included, rather than only the last having an effect.
 
-In :program:`amr_wind`, the input file
+In :program:`kynema_sgf`, the input file
 is broken into *sections* indicated by a namespace prefix. For
 example, all inputs related to the problem domain are prefixed with
 ``geometry.`` and so on. A sample input file is shown below

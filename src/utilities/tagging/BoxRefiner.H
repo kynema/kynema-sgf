@@ -4,7 +4,7 @@
 #include "src/utilities/tagging/GeometryRefinement.H"
 #include "src/core/vs/vector_space.H"
 
-namespace amr_wind::tagging {
+namespace kynema_sgf::tagging {
 
 /** AMR inside an arbitrarily oriented hexahedral box
  *  \ingroup amr_utils
@@ -42,6 +42,6 @@ protected:
     amrex::RealBox m_bound_box;
 };
 
-} // namespace amr_wind::tagging
+} // namespace kynema_sgf::tagging
 
 #endif /* BOXREFINER_H */

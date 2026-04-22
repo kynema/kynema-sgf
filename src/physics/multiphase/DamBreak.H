@@ -12,7 +12,7 @@ using namespace amrex::literals;
  *
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class DamBreak : public Physics::Register<DamBreak>
 {
@@ -52,6 +52,6 @@ private:
     amrex::Real m_height{0.25_rt};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* DamBreak_H */

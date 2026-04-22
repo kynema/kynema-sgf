@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::actuator::ops {
+namespace kynema_sgf::actuator::ops {
 
 template <typename ActTrait>
 class ActSrcOp<ActTrait, ActSrcLine>
@@ -97,7 +97,7 @@ void ActSrcOp<ActTrait, ActSrcLine>::operator()(
     const auto& bx = mfi.tilebox();
 
     const auto bxa =
-        amr_wind::utils::realbox_to_box(m_data.info().bound_box, geom);
+        kynema_sgf::utils::realbox_to_box(m_data.info().bound_box, geom);
     const auto& bxi = bx & bxa;
     if (bxi.isEmpty()) {
         return;
@@ -146,6 +146,6 @@ void ActSrcOp<ActTrait, ActSrcLine>::operator()(
         sarr(i, j, k, 2) += src_force[2];
     });
 }
-} // namespace amr_wind::actuator::ops
+} // namespace kynema_sgf::actuator::ops
 
 #endif /* ACTSRCLINEOP_H */

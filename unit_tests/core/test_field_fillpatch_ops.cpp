@@ -35,7 +35,7 @@ struct TestProfile
 
     static std::string identifier() { return "TestProfile"; }
 
-    explicit TestProfile(const amr_wind::Field& /*unused*/) {}
+    explicit TestProfile(const kynema_sgf::Field& /*unused*/) {}
 
     [[nodiscard]] DeviceType device_instance() const { return m_op; }
 
@@ -43,7 +43,7 @@ struct TestProfile
 };
 
 amrex::Real get_field_err(
-    amr_wind::Field& field, const bool check_all_ghost, const int comp = 0)
+    kynema_sgf::Field& field, const bool check_all_ghost, const int comp = 0)
 {
     const int lev = 0;
     amrex::Real error_total = 0;
@@ -197,9 +197,9 @@ public:
             ibctype[ori] = BC::mass_inflow;
         }
         using InflowOp =
-            amr_wind::BCOpCreator<TestProfile, amr_wind::ConstDirichlet>;
+            kynema_sgf::BCOpCreator<TestProfile, kynema_sgf::ConstDirichlet>;
         AMREX_ALWAYS_ASSERT(TestProfile(*m_vel).identifier() == "TestProfile");
-        (*m_vel).register_fill_patch_op<amr_wind::FieldFillPatchOps<InflowOp>>(
+        (*m_vel).register_fill_patch_op<kynema_sgf::FieldFillPatchOps<InflowOp>>(
             mesh(), time(), InflowOp(*m_vel));
         (*m_vel).copy_bc_to_device();
         EXPECT_TRUE((*m_vel).bc_initialized());
@@ -219,10 +219,10 @@ public:
         set_up_dirichlet();
     }
 
-    amr_wind::Field* m_vel;
-    amr_wind::Field* m_umac;
-    amr_wind::Field* m_vmac;
-    amr_wind::Field* m_wmac;
+    kynema_sgf::Field* m_vel;
+    kynema_sgf::Field* m_umac;
+    kynema_sgf::Field* m_vmac;
+    kynema_sgf::Field* m_wmac;
 };
 
 TEST_F(FieldFillPatchTest, dirichlet_fp)
@@ -240,7 +240,7 @@ TEST_F(FieldFillPatchTest, dirichlet_inflow)
     prep_test();
 
     // Test set_inflow and check boundary cells
-    amr_wind::nodal_projection::set_inflow_velocity(
+    kynema_sgf::nodal_projection::set_inflow_velocity(
         sim().field_boundaries(), (*m_vel), 0, time().current_time(),
         (*m_vel)(0), 1);
     const auto err = get_field_err(*m_vel, false);
@@ -252,7 +252,7 @@ TEST_F(FieldFillPatchTest, dirichlet_sibling_fp)
     prep_test();
 
     // Test sibling fillpatch and check ghost cells
-    amrex::Array<amr_wind::Field*, AMREX_SPACEDIM> mac_vel = {
+    amrex::Array<kynema_sgf::Field*, AMREX_SPACEDIM> mac_vel = {
         AMREX_D_DECL(m_umac, m_vmac, m_wmac)};
     (*m_vel).fillpatch_sibling_fields(
         time().current_time(), (*m_umac).num_grow(), mac_vel);

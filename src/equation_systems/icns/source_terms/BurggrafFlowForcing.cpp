@@ -4,7 +4,7 @@
 
 #include "AMReX_Gpu.H"
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 BurggrafFlowForcing::BurggrafFlowForcing(const CFDSim& sim)
     : m_bf_src(sim.repo().get_field("bf_src_term"))
@@ -33,4 +33,4 @@ void BurggrafFlowForcing::operator()(
     });
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

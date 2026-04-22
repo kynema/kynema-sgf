@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::enstrophy {
+namespace kynema_sgf::enstrophy {
 
 Enstrophy::Enstrophy(CFDSim& sim, std::string label)
     : m_sim(sim)
@@ -39,7 +39,7 @@ amrex::Real Enstrophy::calculate_enstrophy()
     const int finest_level = m_velocity.repo().num_active_levels() - 1;
     const auto& geom = m_velocity.repo().mesh().Geom();
 
-    auto vorticity = amr_wind::fvm::vorticity_mag(m_velocity);
+    auto vorticity = kynema_sgf::fvm::vorticity_mag(m_velocity);
 
     for (int lev = 0; lev <= finest_level; lev++) {
 
@@ -127,4 +127,4 @@ void Enstrophy::write_ascii()
     }
 }
 
-} // namespace amr_wind::enstrophy
+} // namespace kynema_sgf::enstrophy

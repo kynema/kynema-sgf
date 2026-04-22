@@ -12,7 +12,7 @@ using namespace amrex::literals;
  *
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class RainDrop : public Physics::Register<RainDrop>
 {
@@ -54,6 +54,6 @@ private:
     amrex::Real m_radius{0.003_rt};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* RainDrop_H */

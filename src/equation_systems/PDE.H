@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /** Implementation of the PDE interface for transport equations
  *  \ingroup eqsys
@@ -214,6 +214,6 @@ protected:
     PostSolveOp<PDE> m_post_solve_op;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* PDE_H */

@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::ib {
+namespace kynema_sgf::ib {
 
 /** Base data representation of an IB geometry.
  *
@@ -32,6 +32,6 @@ struct BluffBodyBaseData
 struct BluffBodyType : public IBType
 {};
 
-} // namespace amr_wind::ib
+} // namespace kynema_sgf::ib
 
 #endif /* GEOMETRY_H */

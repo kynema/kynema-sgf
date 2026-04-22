@@ -12,7 +12,7 @@ using namespace amrex::literals;
  *
  */
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class SloshingTank : public Physics::Register<SloshingTank>
 {
@@ -57,5 +57,5 @@ private:
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 #endif /* SloshingTank_H */

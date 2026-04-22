@@ -7,11 +7,11 @@
 #include "src/wind_energy/ABL.H"
 #include "src/ocean_waves/OceanWaves.H"
 
-namespace amr_wind::nodal_projection {
+namespace kynema_sgf::nodal_projection {
 
 void set_inflow_velocity(
-    amr_wind::FieldBoundaryMgr::TypeVector& fbs,
-    amr_wind::Field& vel_fld,
+    kynema_sgf::FieldBoundaryMgr::TypeVector& fbs,
+    kynema_sgf::Field& vel_fld,
     int lev,
     amrex::Real time,
     amrex::MultiFab& vel_mfab,
@@ -19,17 +19,17 @@ void set_inflow_velocity(
 
 amrex::Array<amrex::LinOpBCType, AMREX_SPACEDIM> get_projection_bc(
     amrex::Orientation::Side side,
-    amr_wind::Field& pressure,
+    kynema_sgf::Field& pressure,
     const amrex::Array<int, AMREX_SPACEDIM>& is_periodic);
 
 void apply_dirichlet_vel(
     amrex::MultiFab& mf_velocity, amrex::iMultiFab& mf_iblank);
 
 void enforce_inout_solvability(
-    amr_wind::Field& velocity,
+    kynema_sgf::Field& velocity,
     const amrex::Vector<amrex::Geometry>& geom,
     int num_levels);
 
-} // namespace amr_wind::nodal_projection
+} // namespace kynema_sgf::nodal_projection
 
 #endif

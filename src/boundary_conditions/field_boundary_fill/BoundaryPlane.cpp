@@ -12,7 +12,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 namespace {
 
@@ -1608,4 +1608,4 @@ bool BoundaryPlane::box_intersects_boundary(
     return !intersection.isEmpty();
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

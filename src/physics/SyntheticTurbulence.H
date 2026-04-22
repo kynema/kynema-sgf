@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 namespace synth_turb {
 
@@ -181,7 +181,7 @@ public:
         const T& /*velfunc*/);
 
 private:
-    const amr_wind::SimTime& m_time;
+    const kynema_sgf::SimTime& m_time;
     const FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
     Field& m_velocity;
@@ -207,6 +207,6 @@ private:
     bool m_is_init{true};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* SyntheticTurbulence_H */

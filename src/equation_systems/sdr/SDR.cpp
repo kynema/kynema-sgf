@@ -4,9 +4,9 @@
 #include "src/equation_systems/BCOps.H"
 #include "src/equation_systems/sdr/sdr_ops.H"
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 template class PDESystem<SDR, fvm::Godunov>;
 template class PDESystem<SDR, fvm::MOL>;
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde

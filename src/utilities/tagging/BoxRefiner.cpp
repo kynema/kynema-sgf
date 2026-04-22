@@ -6,7 +6,7 @@ using namespace amrex::literals;
 
 // Adapted from OpenFOAM/src/meshTools/sets/cellSources/rotatedBoxToCell
 
-namespace amr_wind::tagging {
+namespace kynema_sgf::tagging {
 
 namespace {
 
@@ -170,4 +170,4 @@ void BoxRefiner::operator()(
     });
 }
 
-} // namespace amr_wind::tagging
+} // namespace kynema_sgf::tagging

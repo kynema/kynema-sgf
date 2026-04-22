@@ -5,7 +5,7 @@
 #include "AMReX_Vector.H"
 #include "AMReX_Gpu.H"
 
-namespace amr_wind::utils {
+namespace kynema_sgf::utils {
 
 template <typename T>
 struct Slice
@@ -110,6 +110,6 @@ Slice<T> slice(amrex::Gpu::DeviceVector<T>& vec, const size_t start)
     return slice(vec, start, vec.size() - start);
 }
 
-} // namespace amr_wind::utils
+} // namespace kynema_sgf::utils
 
 #endif /* SLICE_H */

@@ -4,7 +4,7 @@
 #include "src/equation_systems/vof/vof.H"
 #include "src/physics/multiphase/MultiPhase.H"
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 /** Field registration operator for VOF equation system
  *  \ingroup vof
@@ -86,6 +86,6 @@ struct PostSolveOp<VOF>
     PDEFields& m_fields;
 };
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde
 
 #endif /* VOF_OPS_H */

@@ -5,7 +5,7 @@
 #include "src/utilities/tagging/GeometryRefinement.H"
 #include "AMReX_Parser.H"
 
-namespace amr_wind::tagging {
+namespace kynema_sgf::tagging {
 
 /** AMR refinement using a user defined expression
  *  \ingroup amr_utils
@@ -36,6 +36,6 @@ private:
     amrex::Parser m_parser;
 };
 
-} // namespace amr_wind::tagging
+} // namespace kynema_sgf::tagging
 
 #endif /* UDFREFINER_H */

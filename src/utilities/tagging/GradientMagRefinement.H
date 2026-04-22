@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 class Field;
 
 /** AMR refinement using a given field (e.g., density)
@@ -47,6 +47,6 @@ private:
     int m_max_lev_field{-1};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* GRADIENTMAGREFINEMENT_H */

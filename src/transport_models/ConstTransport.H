@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::transport {
+namespace kynema_sgf::transport {
 
 /** Fluid transport model with constant properties
  *  \ingroup transport
@@ -280,6 +280,6 @@ private:
     amrex::Real m_reference_temperature{-1.0_rt};
 };
 
-} // namespace amr_wind::transport
+} // namespace kynema_sgf::transport
 
 #endif /* CONSTTRANSPORT_H */

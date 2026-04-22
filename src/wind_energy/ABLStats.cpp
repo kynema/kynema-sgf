@@ -19,7 +19,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 ABLStats::ABLStats(
     CFDSim& sim, const ABLWallFunction& abl_wall_func, const int dir)
@@ -166,11 +166,11 @@ void ABLStats::calc_tke_diffusion(
 
     // Get tke fields
     Field& tke = m_sim.repo().get_field("tke");
-    Field& tke_old = tke.state(amr_wind::FieldState::Old);
+    Field& tke_old = tke.state(kynema_sgf::FieldState::Old);
     // Get conv_term from tke eq
     auto& pde_mgr = m_sim.pde_manager();
     // Check for presence of tke-godunov
-    std::string tke_pde_name = amr_wind::pde::TKE::pde_name();
+    std::string tke_pde_name = kynema_sgf::pde::TKE::pde_name();
     if (!pde_mgr.has_pde(tke_pde_name)) {
         amrex::Abort(
             "ABL Stats Failure: " + tke_pde_name +
@@ -178,10 +178,10 @@ void ABLStats::calc_tke_diffusion(
             "Godunov "
             "assumptions.");
     }
-    std::string tke_scheme_name = amr_wind::fvm::Godunov::scheme_name();
+    std::string tke_scheme_name = kynema_sgf::fvm::Godunov::scheme_name();
     if (pde_mgr.scheme() != tke_scheme_name) {
         amrex::Abort(
-            "ABL Stats Failure: " + amr_wind::fvm::Godunov::scheme_name() +
+            "ABL Stats Failure: " + kynema_sgf::fvm::Godunov::scheme_name() +
             " not being used. Energy budget relies on tke equation and Godunov "
             "assumptions");
     }
@@ -790,4 +790,4 @@ void ABLStats::write_netcdf()
 #endif
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

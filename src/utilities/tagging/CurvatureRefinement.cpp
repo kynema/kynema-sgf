@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 CurvatureRefinement::CurvatureRefinement(const CFDSim& sim)
     : m_sim(sim)
@@ -132,4 +132,4 @@ void CurvatureRefinement::operator()(
         });
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

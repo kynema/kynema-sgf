@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Initialize ABL fields
  */
@@ -161,6 +161,6 @@ private:
     bool m_init_uvtheta_profile{false};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* ABLFIELDINIT_H */

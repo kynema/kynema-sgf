@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::turbulence {
+namespace kynema_sgf::turbulence {
 
 /** Smagorinsky LES Model
  *  \ingroup turb_model
@@ -51,6 +51,6 @@ private:
     const Field& m_rho;
 };
 
-} // namespace amr_wind::turbulence
+} // namespace kynema_sgf::turbulence
 
 #endif /* SMAGORINSKY_H */

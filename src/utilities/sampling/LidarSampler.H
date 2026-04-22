@@ -4,7 +4,7 @@
 #include "src/utilities/sampling/LineSampler.H"
 #include "src/core/vs/vector_space.H"
 
-namespace amr_wind::sampling {
+namespace kynema_sgf::sampling {
 
 /** Sample data along a line that moves in time
  *  \ingroup sampling
@@ -60,6 +60,6 @@ protected:
     amrex::Real m_period{std::numeric_limits<amrex::Real>::max()};
 };
 
-} // namespace amr_wind::sampling
+} // namespace kynema_sgf::sampling
 
 #endif /* LIDARSAMPLER_H */

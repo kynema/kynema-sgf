@@ -12,7 +12,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::turbulence {
+namespace kynema_sgf::turbulence {
 /** AMD LES Model
  *  \ingroup turb_model
  */
@@ -88,6 +88,6 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real amd_base_muvel(
         num_shear / denom);
 }
 
-} // namespace amr_wind::turbulence
+} // namespace kynema_sgf::turbulence
 
 #endif /* AMDNoTherm_H */

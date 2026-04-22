@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::turbulence {
+namespace kynema_sgf::turbulence {
 
 /** Base class for 1-Equation RANS TKE turbulence model
  *  \ingroup turb_model
@@ -65,6 +65,6 @@ private:
     amrex::Real m_meso_sponge_start{2000};
 };
 
-} // namespace amr_wind::turbulence
+} // namespace kynema_sgf::turbulence
 
 #endif /* KLAXELL_H */

@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class Field;
 
@@ -251,6 +251,6 @@ private:
 };
 
 } // namespace sampling
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* SAMPLINGCONTAINER_H */

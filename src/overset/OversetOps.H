@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 class OversetOps
 {
@@ -36,13 +36,13 @@ private:
     int m_verbose{0};
 
     // Pointer for pressure gradient copy field
-    amr_wind::Field* m_gp_copy{nullptr};
+    kynema_sgf::Field* m_gp_copy{nullptr};
     // Pointer for MultiPhase physics
-    amr_wind::MultiPhase* m_mphase{nullptr};
+    kynema_sgf::MultiPhase* m_mphase{nullptr};
 
     CFDSim* m_sim_ptr;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* OVERSETOPS_H */

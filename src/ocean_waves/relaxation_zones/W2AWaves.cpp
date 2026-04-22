@@ -2,8 +2,8 @@
 #include "src/ocean_waves/relaxation_zones/waves2amr_ops.H"
 #include "src/ocean_waves/OceanWavesModel.H"
 
-namespace amr_wind::ocean_waves {
+namespace kynema_sgf::ocean_waves {
 
 template class OWModel<W2AWaves>;
 
-} // namespace amr_wind::ocean_waves
+} // namespace kynema_sgf::ocean_waves

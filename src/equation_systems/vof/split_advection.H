@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::multiphase {
+namespace kynema_sgf::multiphase {
 
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE void eulerian_implicit(
     const int i,
@@ -218,5 +218,5 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE void remove_vof_debris(
     }
 }
 
-} // namespace amr_wind::multiphase
+} // namespace kynema_sgf::multiphase
 #endif // SPLIT_ADVECTION.H

@@ -5,7 +5,7 @@
 #include "src/core/FieldBCOps.H"
 #include "src/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Operations to perform inflow of data from boundary planes
  *  \ingroup we_abl
@@ -64,6 +64,6 @@ protected:
     const ModulatedPowerLaw& m_abl_mpl;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* FILLMPL_H */

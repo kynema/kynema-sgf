@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::udf {
+namespace kynema_sgf::udf {
 
 CustomVelocity::CustomVelocity(const Field& fld)
 {
@@ -33,4 +33,4 @@ CustomVelocity::CustomVelocity(const Field& fld)
         "in the header file before using it. Then remove this message");
 }
 
-} // namespace amr_wind::udf
+} // namespace kynema_sgf::udf

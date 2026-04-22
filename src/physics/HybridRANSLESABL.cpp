@@ -4,7 +4,7 @@
 #include "AMReX_iMultiFab.H"
 #include "AMReX_MultiFabUtil.H"
 
-namespace amr_wind::hybrid_rans_les_abl {
+namespace kynema_sgf::hybrid_rans_les_abl {
 
 HybridRANSLESABL::HybridRANSLESABL(const CFDSim& sim) : m_sim(sim) {}
 
@@ -101,4 +101,4 @@ void HybridRANSLESABL::compute_sdr_impl()
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind::hybrid_rans_les_abl
+} // namespace kynema_sgf::hybrid_rans_les_abl

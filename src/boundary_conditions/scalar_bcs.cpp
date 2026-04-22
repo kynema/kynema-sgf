@@ -1,6 +1,6 @@
 #include "src/boundary_conditions/scalar_bcs.H"
 
-namespace amr_wind::scalar_bc {
+namespace kynema_sgf::scalar_bc {
 void register_scalar_dirichlet(
     Field& field,
     const amrex::AmrCore& mesh,
@@ -32,4 +32,4 @@ void register_scalar_dirichlet(
             field, inflow_outflow_udf, mesh, time);
     }
 }
-} // namespace amr_wind::scalar_bc
+} // namespace kynema_sgf::scalar_bc

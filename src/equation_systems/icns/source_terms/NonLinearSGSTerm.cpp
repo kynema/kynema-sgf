@@ -4,7 +4,7 @@
 
 #include "AMReX_Gpu.H"
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 NonLinearSGSTerm::NonLinearSGSTerm(const CFDSim& sim)
     : m_divNij(sim.repo().get_field("divNij"))
@@ -28,4 +28,4 @@ void NonLinearSGSTerm::operator()(
     });
 }
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns

@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::ocean_waves {
+namespace kynema_sgf::ocean_waves {
 
 /** Base data representation of a regular waves
  *
@@ -48,6 +48,6 @@ struct RelaxZonesBaseData
 struct RelaxZonesType : public OceanWavesType
 {};
 
-} // namespace amr_wind::ocean_waves
+} // namespace kynema_sgf::ocean_waves
 
 #endif // REGULAR_WAVES_H

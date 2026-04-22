@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::pde {
+namespace kynema_sgf::pde {
 
 template <typename LinOp>
 DiffSolverIface<LinOp>::DiffSolverIface(
@@ -161,4 +161,4 @@ void DiffSolverIface<LinOp>::linsys_solve(const amrex::Real dt)
 template class DiffSolverIface<amrex::MLABecLaplacian>;
 template class DiffSolverIface<amrex::MLTensorOp>;
 
-} // namespace amr_wind::pde
+} // namespace kynema_sgf::pde

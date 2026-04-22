@@ -56,7 +56,7 @@ Building from source
       cmake -DAMR_WIND_ENABLE_TESTS:BOOL=ON ../
       make
 
-   Upon successful build, you will end up with an executable :file:`amr_wind` in
+   Upon successful build, you will end up with an executable :file:`kynema_sgf` in
    your build directory.
 
 #. (Optional) Test your build

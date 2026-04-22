@@ -12,7 +12,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind::sampling {
+namespace kynema_sgf::sampling {
 
 Sampling::Sampling(CFDSim& sim, std::string label)
     : m_sim(sim)
@@ -616,4 +616,4 @@ void Sampling::write_netcdf()
 #endif
 }
 
-} // namespace amr_wind::sampling
+} // namespace kynema_sgf::sampling

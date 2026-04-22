@@ -5,7 +5,7 @@
 
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind::sampling {
+namespace kynema_sgf::sampling {
 
 LineSampler::LineSampler(const CFDSim& sim) : m_sim(sim) {}
 
@@ -110,4 +110,4 @@ void LineSampler::populate_netcdf_metadata(
 {}
 #endif
 
-} // namespace amr_wind::sampling
+} // namespace kynema_sgf::sampling

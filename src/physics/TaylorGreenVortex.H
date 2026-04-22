@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Taylor Green Vortex physics
  *  \ingroup physics
@@ -40,6 +40,6 @@ private:
     amrex::Real m_rho{1.0_rt};
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* TaylorGreenVortex_H */

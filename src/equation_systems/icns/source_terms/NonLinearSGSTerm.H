@@ -4,7 +4,7 @@
 #include "src/equation_systems/icns/MomentumSource.H"
 #include "src/core/SimTime.H"
 
-namespace amr_wind::pde::icns {
+namespace kynema_sgf::pde::icns {
 
 /** Adds the non-linear terms from the Kosovic Model to Momentum Equation..
  *
@@ -32,6 +32,6 @@ private:
     const Field& m_divNij;
 };
 
-} // namespace amr_wind::pde::icns
+} // namespace kynema_sgf::pde::icns
 
 #endif /* NONLINEARSGSTERM_H */

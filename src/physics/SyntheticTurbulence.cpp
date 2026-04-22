@@ -13,7 +13,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace synth_turb {
 
 struct LinearShearOp
@@ -653,4 +653,4 @@ void SyntheticTurbulence::update_impl(
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

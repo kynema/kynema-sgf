@@ -3,7 +3,7 @@
 
 #include "src/utilities/averaging/TimeAveraging.H"
 
-namespace amr_wind::averaging {
+namespace kynema_sgf::averaging {
 
 /** Compute correlation from 2 CFD fields
  *  The formula used to compute the correlations between two fields:
@@ -62,6 +62,6 @@ private:
     Field& m_re_stress;
 };
 
-} // namespace amr_wind::averaging
+} // namespace kynema_sgf::averaging
 
 #endif /* REYNOLDSSTRESS_H */

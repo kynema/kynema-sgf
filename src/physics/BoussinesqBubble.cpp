@@ -5,7 +5,7 @@
 #include "src/CFDSim.H"
 #include "src/wind_energy/ABLWallFunction.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 BoussinesqBubble::BoussinesqBubble(CFDSim& sim)
     : m_velocity(sim.repo().get_field("velocity"))
@@ -24,7 +24,7 @@ BoussinesqBubble::BoussinesqBubble(CFDSim& sim)
 /** Initialize the velocity and temperature fields at the beginning of the
  *  simulation.
  *
- *  \sa amr_wind::BoussinesqBubbleFieldInit
+ *  \sa kynema_sgf::BoussinesqBubbleFieldInit
  */
 void BoussinesqBubble::initialize_fields(int level, const amrex::Geometry& geom)
 {
@@ -44,4 +44,4 @@ void BoussinesqBubble::initialize_fields(int level, const amrex::Geometry& geom)
     }
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

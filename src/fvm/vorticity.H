@@ -3,7 +3,7 @@
 
 #include "src/fvm/fvm_utils.H"
 
-namespace amr_wind::fvm {
+namespace kynema_sgf::fvm {
 
 /** Vorticity operator
  *  \ingroup fvm
@@ -105,6 +105,6 @@ std::unique_ptr<ScratchField> vorticity(const FType& phi)
     return vortphi;
 }
 
-} // namespace amr_wind::fvm
+} // namespace kynema_sgf::fvm
 
 #endif /* VORTICITY_H */

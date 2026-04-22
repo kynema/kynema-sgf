@@ -9,7 +9,7 @@ class MultiLevelVectorTest : public MeshTest
 TEST_F(MultiLevelVectorTest, test_multilevelvector)
 {
     initialize_mesh();
-    amr_wind::MultiLevelVector mlv;
+    kynema_sgf::MultiLevelVector mlv;
     mlv.resize(2, mesh().Geom());
     EXPECT_EQ(mlv.size(), 1);
     EXPECT_EQ(mlv.ncells(0), 8);

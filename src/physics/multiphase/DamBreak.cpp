@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 DamBreak::DamBreak(CFDSim& sim)
     : m_sim(sim)
@@ -26,7 +26,7 @@ DamBreak::DamBreak(CFDSim& sim)
 /** Initialize the velocity and levelset fields at the beginning of the
  *  simulation.
  *
- *  \sa amr_wind::DamBreakFieldInit
+ *  \sa kynema_sgf::DamBreakFieldInit
  */
 void DamBreak::initialize_fields(int level, const amrex::Geometry& geom)
 {
@@ -84,4 +84,4 @@ void DamBreak::initialize_fields(int level, const amrex::Geometry& geom)
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind
+} // namespace kynema_sgf

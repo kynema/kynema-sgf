@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind {
+namespace kynema_sgf {
 
 /** Scalar Advection physics
  *  \ingroup physics
@@ -154,6 +154,6 @@ struct GaussianWavePacketFV
         amrex::Real /*unused*/) const;
 };
 
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* ScalarAdvection_H */
