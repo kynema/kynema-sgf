@@ -124,8 +124,9 @@ void prepare_mask_cell_for_mac(FieldRepo& repo)
                     // Default is masking all 0 and -1 iblanks
                     marrs[nbx](i, j, k) = amrex::max(ibarrs[nbx](i, j, k), 0);
                     // Check cells neighboring node for being near interface
-                    bool near_interface = kynema_sgf::multiphase::interface_band(
-                        i, j, k, vofarrs[nbx], 1, band_tol);
+                    bool near_interface =
+                        kynema_sgf::multiphase::interface_band(
+                            i, j, k, vofarrs[nbx], 1, band_tol);
                     // Check neighboring cells for being near solid or overset
                     bool near_solid = false;
                     bool near_overset_boundary = false;

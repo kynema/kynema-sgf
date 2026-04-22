@@ -57,8 +57,8 @@ amrex::Real get_val_at_height(
 }
 } // namespace
 
-using ICNSFields =
-    kynema_sgf::pde::FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
+using ICNSFields = kynema_sgf::pde::
+    FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
 
 TEST_F(ABLMeshTest, abl_forcing)
 {

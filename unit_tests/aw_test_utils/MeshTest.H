@@ -80,7 +80,8 @@ protected:
     }
 
 private:
-    amrex::Vector<std::unique_ptr<kynema_sgf::RefinementCriteria>> m_refine_crit;
+    amrex::Vector<std::unique_ptr<kynema_sgf::RefinementCriteria>>
+        m_refine_crit;
 };
 
 } // namespace amr_wind_tests

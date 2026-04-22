@@ -233,7 +233,8 @@ TEST_F(VOFOversetOps, projection_masks)
     init_iblank_cell(iblank_cell);
 
     // Create masks
-    kynema_sgf::overset_ops::iblank_node_to_mask_vof(iblank_node, vof, mask_node);
+    kynema_sgf::overset_ops::iblank_node_to_mask_vof(
+        iblank_node, vof, mask_node);
     kynema_sgf::overset_ops::prepare_mask_cell_for_mac(repo);
 
     // Check against expectations

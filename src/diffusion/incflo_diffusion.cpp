@@ -8,7 +8,8 @@ using namespace amrex::literals;
 namespace diffusion {
 
 amrex::Vector<amrex::Array<amrex::LinOpBCType, AMREX_SPACEDIM>>
-get_diffuse_tensor_bc(kynema_sgf::Field& velocity, amrex::Orientation::Side side)
+get_diffuse_tensor_bc(
+    kynema_sgf::Field& velocity, amrex::Orientation::Side side)
 {
     const auto& geom = velocity.repo().mesh().Geom(0);
     amrex::Vector<amrex::Array<amrex::LinOpBCType, AMREX_SPACEDIM>> r(3);

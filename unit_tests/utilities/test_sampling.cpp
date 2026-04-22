@@ -127,7 +127,8 @@ protected:
 namespace {
 
 void test_scontainer_impl(
-    kynema_sgf::sampling::SamplingContainer::ParticleVector& pvec, const int npts)
+    kynema_sgf::sampling::SamplingContainer::ParticleVector& pvec,
+    const int npts)
 {
     using IIx = kynema_sgf::sampling::IIx;
     using PType = kynema_sgf::sampling::SamplingContainer::ParticleType;

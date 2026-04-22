@@ -199,8 +199,9 @@ public:
         using InflowOp =
             kynema_sgf::BCOpCreator<TestProfile, kynema_sgf::ConstDirichlet>;
         AMREX_ALWAYS_ASSERT(TestProfile(*m_vel).identifier() == "TestProfile");
-        (*m_vel).register_fill_patch_op<kynema_sgf::FieldFillPatchOps<InflowOp>>(
-            mesh(), time(), InflowOp(*m_vel));
+        (*m_vel)
+            .register_fill_patch_op<kynema_sgf::FieldFillPatchOps<InflowOp>>(
+                mesh(), time(), InflowOp(*m_vel));
         (*m_vel).copy_bc_to_device();
         EXPECT_TRUE((*m_vel).bc_initialized());
     }

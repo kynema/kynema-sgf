@@ -124,8 +124,8 @@ void MMS::post_init_actions() { fill_src(); }
 
 void MMS::post_regrid_actions() { fill_src(); }
 
-amrex::Real
-MMS::compute_error(const int comp, const Field& field, kynema_sgf::mms::FuncDef f)
+amrex::Real MMS::compute_error(
+    const int comp, const Field& field, kynema_sgf::mms::FuncDef f)
 {
     amrex::Real error = 0.0_rt;
 

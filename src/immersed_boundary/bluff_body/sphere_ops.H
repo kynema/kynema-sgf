@@ -14,8 +14,8 @@ namespace kynema_sgf::ib::ops {
 template <>
 struct ReadInputsOp<Sphere>
 {
-    void
-    operator()(Sphere::DataType& data, const ::kynema_sgf::utils::MultiParser& pp)
+    void operator()(
+        Sphere::DataType& data, const ::kynema_sgf::utils::MultiParser& pp)
     {
         auto& wdata = data.meta();
         auto& info = data.info();

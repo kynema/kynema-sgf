@@ -28,7 +28,8 @@ MultiPhase::MultiPhase(CFDSim& sim)
 
     // Register either the VOF or levelset equation
     if (amrex::toLower(m_interface_model) == "vof") {
-        m_interface_capturing_method = kynema_sgf::InterfaceCapturingMethod::VOF;
+        m_interface_capturing_method =
+            kynema_sgf::InterfaceCapturingMethod::VOF;
         auto& vof_eqn = sim.pde_manager().register_transport_pde("VOF");
         m_vof = &(vof_eqn.fields().field);
         // Create levelset as a auxiliary field only !
@@ -46,7 +47,8 @@ MultiPhase::MultiPhase(CFDSim& sim)
         amrex::Print() << "Please select an interface capturing model between "
                           "VOF and Levelset: defaulting to VOF "
                        << '\n';
-        m_interface_capturing_method = kynema_sgf::InterfaceCapturingMethod::VOF;
+        m_interface_capturing_method =
+            kynema_sgf::InterfaceCapturingMethod::VOF;
         auto& vof_eqn = sim.pde_manager().register_transport_pde("VOF");
         m_vof = &(vof_eqn.fields().field);
         // Create levelset as a auxiliary field only !
@@ -363,8 +365,8 @@ void MultiPhase::set_nph_density()
 
     kynema_sgf::field_ops::lincomb(
         m_density.state(kynema_sgf::FieldState::NPH), 0.5_rt,
-        m_density.state(kynema_sgf::FieldState::Old), 0, 0.5_rt, m_density, 0, 0,
-        m_density.num_comp(), 1);
+        m_density.state(kynema_sgf::FieldState::Old), 0, 0.5_rt, m_density, 0,
+        0, m_density.num_comp(), 1);
 }
 
 // Using phase densities to convert advected VOF arrays to advected density

@@ -63,8 +63,8 @@ void init_velocity(kynema_sgf::Field& fld, amrex::Real vval, int dir)
 }
 } // namespace
 
-using ICNSFields =
-    kynema_sgf::pde::FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
+using ICNSFields = kynema_sgf::pde::
+    FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
 
 TEST_F(ABLMeshTest, abl_local_wall_model)
 {

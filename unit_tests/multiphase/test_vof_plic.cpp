@@ -90,7 +90,8 @@ void initialize_volume_fractions_horizontal(
     });
 }
 
-void init_vof_h(kynema_sgf::Field& vof, const amrex::Real vof_val, const int dir)
+void init_vof_h(
+    kynema_sgf::Field& vof, const amrex::Real vof_val, const int dir)
 {
     run_algorithm(vof, [&](const int lev, const amrex::MFIter& mfi) {
         auto vof_arr = vof(lev).array(mfi);
@@ -493,8 +494,8 @@ TEST_F(VOFOpTest, volume_intercept)
     }
 
     // Check specific problem case
-    amrex::Real alpha =
-        kynema_sgf::multiphase::volume_intercept(0.5_rt, 0.5_rt, 0.0_rt, 0.5_rt);
+    amrex::Real alpha = kynema_sgf::multiphase::volume_intercept(
+        0.5_rt, 0.5_rt, 0.0_rt, 0.5_rt);
     EXPECT_EQ(alpha, alpha);
 }
 

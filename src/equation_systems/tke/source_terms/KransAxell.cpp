@@ -152,9 +152,9 @@ void KransAxell::operator()(
         }
         const amrex::Real sponge_forcing =
             1.0_rt / dt * (tke_arr(i, j, k) - ref_tke);
-        dissip_arr(i, j, k) = utils::powi(Cmu, 3) *
-                              std::pow(tke_arr(i, j, k), 1.5_rt) /
-                              (tlscale_arr(i, j, k) + kynema_sgf::constants::EPS);
+        dissip_arr(i, j, k) =
+            utils::powi(Cmu, 3) * std::pow(tke_arr(i, j, k), 1.5_rt) /
+            (tlscale_arr(i, j, k) + kynema_sgf::constants::EPS);
         src_term(i, j, k) += shear_prod_arr(i, j, k) + buoy_prod_arr(i, j, k) -
                              dissip_arr(i, j, k) -
                              ((1.0_rt - static_cast<int>(has_terrain)) *

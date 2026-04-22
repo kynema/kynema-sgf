@@ -28,14 +28,14 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real viscous_drag_calculations(
     const amrex::Real m2 = std::sqrt((ux2r * ux2r) + (uy2r * uy2r));
     const amrex::Real ustar =
         m2 * kappa / (std::log(1.5_rt * dz / z0) - non_neutral_neighbour);
-    Dxz +=
-        -ustar * ustar * ux1r /
-        (kynema_sgf::constants::EPS + std::sqrt((ux1r * ux1r) + (uy1r * uy1r))) /
-        dz;
-    Dyz +=
-        -ustar * ustar * uy1r /
-        (kynema_sgf::constants::EPS + std::sqrt((ux1r * ux1r) + (uy1r * uy1r))) /
-        dz;
+    Dxz += -ustar * ustar * ux1r /
+           (kynema_sgf::constants::EPS +
+            std::sqrt((ux1r * ux1r) + (uy1r * uy1r))) /
+           dz;
+    Dyz += -ustar * ustar * uy1r /
+           (kynema_sgf::constants::EPS +
+            std::sqrt((ux1r * ux1r) + (uy1r * uy1r))) /
+           dz;
     return ustar;
 }
 
@@ -274,17 +274,19 @@ void DragForcing::operator()(
         amrex::Real xi_end = (std::abs(sdist_east) > kynema_sgf::constants::EPS)
                                  ? (x - start_east) / (sdist_east)
                                  : 0.0_rt;
-        amrex::Real xi_start = (std::abs(sdist_west) > kynema_sgf::constants::EPS)
-                                   ? (start_west - x) / (-sdist_west)
-                                   : 0.0_rt;
+        amrex::Real xi_start =
+            (std::abs(sdist_west) > kynema_sgf::constants::EPS)
+                ? (start_west - x) / (-sdist_west)
+                : 0.0_rt;
         xi_start = sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);
         xi_end = sponge_east * amrex::max<amrex::Real>(xi_end, 0.0_rt);
         const amrex::Real xstart_damping =
             sponge_strength * xi_start * xi_start;
         const amrex::Real xend_damping = sponge_strength * xi_end * xi_end;
-        amrex::Real yi_end = (std::abs(sdist_north) > kynema_sgf::constants::EPS)
-                                 ? (y - start_north) / (sdist_north)
-                                 : 0.0_rt;
+        amrex::Real yi_end =
+            (std::abs(sdist_north) > kynema_sgf::constants::EPS)
+                ? (y - start_north) / (sdist_north)
+                : 0.0_rt;
         amrex::Real yi_start =
             (std::abs(sdist_south) > kynema_sgf::constants::EPS)
                 ? (start_south - y) / (-sdist_south)

@@ -68,7 +68,8 @@ TEST_F(ForestTest, forest)
 
     constexpr amrex::Real n_forests = 3.0_rt;
     const auto& f_id = sim().repo().get_field("forest_id");
-    const amrex::Real max_id = kynema_sgf::field_ops::global_max_magnitude(f_id);
+    const amrex::Real max_id =
+        kynema_sgf::field_ops::global_max_magnitude(f_id);
     EXPECT_EQ(max_id, n_forests);
 
     constexpr amrex::Real expected_max_drag = 0.050285714285714288_rt;
@@ -80,7 +81,8 @@ TEST_F(ForestTest, forest)
     constexpr amrex::Real expected_norm_drag = 0.0030635155406915832_rt;
     const auto norm_drag =
         kynema_sgf::field_norms::FieldNorms::get_norm(f_drag, 0, 1, 2, false);
-    EXPECT_NEAR(norm_drag, expected_norm_drag, kynema_sgf::constants::TIGHT_TOL);
+    EXPECT_NEAR(
+        norm_drag, expected_norm_drag, kynema_sgf::constants::TIGHT_TOL);
 }
 
 } // namespace amr_wind_tests

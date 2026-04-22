@@ -179,7 +179,8 @@ void incflo::ApplyProjection(
     auto& grad_p = m_repo.get_field("gp");
     auto& pressure = m_repo.get_field("p");
     auto& velocity = icns().fields().field;
-    auto& velocity_old = icns().fields().field.state(kynema_sgf::FieldState::Old);
+    auto& velocity_old =
+        icns().fields().field.state(kynema_sgf::FieldState::Old);
     kynema_sgf::Field const* mesh_fac =
         mesh_mapping
             ? &(m_repo.get_mesh_mapping_field(kynema_sgf::FieldLoc::CELL))
@@ -381,7 +382,8 @@ void incflo::ApplyProjection(
             linop.setOversetMask(lev, imask_node(lev));
         }
 
-        auto phif = m_repo.create_scratch_field(1, 1, kynema_sgf::FieldLoc::NODE);
+        auto phif =
+            m_repo.create_scratch_field(1, 1, kynema_sgf::FieldLoc::NODE);
         if (incremental) {
             for (int lev = 0; lev <= finestLevel(); ++lev) {
                 (*phif)(lev).setVal(0.0_rt);

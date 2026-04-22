@@ -8,9 +8,9 @@
 namespace kynema_sgf {
 
 #define INSTANTIATE_TURBULENCE_MODEL(Model)                                    \
-    template struct ::kynema_sgf::turbulence::TurbulenceModel::Register<         \
-        ::kynema_sgf::turbulence::Model<transport::ConstTransport>>;             \
-    template struct ::kynema_sgf::turbulence::TurbulenceModel::Register<         \
+    template struct ::kynema_sgf::turbulence::TurbulenceModel::Register<       \
+        ::kynema_sgf::turbulence::Model<transport::ConstTransport>>;           \
+    template struct ::kynema_sgf::turbulence::TurbulenceModel::Register<       \
         ::kynema_sgf::turbulence::Model<transport::TwoPhaseTransport>>
 
 } // namespace kynema_sgf

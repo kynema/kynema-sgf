@@ -61,7 +61,8 @@ TEST_F(NestRefineTest, box_refine)
 
     create_mesh_instance<RefineMesh>();
     auto& ref_vec = mesh<RefineMesh>()->refine_criteria_vec();
-    ref_vec.emplace_back(std::make_unique<kynema_sgf::CartBoxRefinement>(sim()));
+    ref_vec.emplace_back(
+        std::make_unique<kynema_sgf::CartBoxRefinement>(sim()));
     auto* box_refine =
         dynamic_cast<kynema_sgf::CartBoxRefinement*>(ref_vec[0].get());
     box_refine->read_inputs(mesh(), ss);

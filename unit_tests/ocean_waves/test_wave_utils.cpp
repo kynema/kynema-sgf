@@ -62,7 +62,8 @@ TEST_F(WaveUtilsTest, gamma_generate)
         kynema_sgf::ocean_waves::utils::gamma_generate(
             0.5_rt * zone_length, zone_length);
     const amrex::Real gamma_right =
-        kynema_sgf::ocean_waves::utils::gamma_generate(zone_length, zone_length);
+        kynema_sgf::ocean_waves::utils::gamma_generate(
+            zone_length, zone_length);
     const amrex::Real gamma_past_right =
         kynema_sgf::ocean_waves::utils::gamma_generate(
             zone_length + 1.0_rt, zone_length);
@@ -87,12 +88,14 @@ TEST_F(WaveUtilsTest, gamma_absorb)
     const amrex::Real gamma_past_left =
         kynema_sgf::ocean_waves::utils::gamma_absorb(
             -1.0_rt, zone_length, 1.0_rt);
-    const amrex::Real gamma_left =
-        kynema_sgf::ocean_waves::utils::gamma_absorb(0.0_rt, zone_length, 1.0_rt);
-    const amrex::Real gamma_middle = kynema_sgf::ocean_waves::utils::gamma_absorb(
-        0.5_rt * zone_length, zone_length, 1.0_rt);
-    const amrex::Real gamma_right = kynema_sgf::ocean_waves::utils::gamma_absorb(
-        zone_length, zone_length, 1.0_rt);
+    const amrex::Real gamma_left = kynema_sgf::ocean_waves::utils::gamma_absorb(
+        0.0_rt, zone_length, 1.0_rt);
+    const amrex::Real gamma_middle =
+        kynema_sgf::ocean_waves::utils::gamma_absorb(
+            0.5_rt * zone_length, zone_length, 1.0_rt);
+    const amrex::Real gamma_right =
+        kynema_sgf::ocean_waves::utils::gamma_absorb(
+            zone_length, zone_length, 1.0_rt);
     const amrex::Real gamma_past_right =
         kynema_sgf::ocean_waves::utils::gamma_absorb(
             zone_length + 1.0_rt, zone_length, 1.0_rt);
@@ -124,8 +127,8 @@ TEST_F(WaveUtilsTest, ramp)
         kynema_sgf::ocean_waves::utils::ramp(0.0_rt, ramp_period);
     const amrex::Real f_ramp_middle =
         kynema_sgf::ocean_waves::utils::ramp(0.5_rt * ramp_period, ramp_period);
-    const amrex::Real f_ramp_near_end =
-        kynema_sgf::ocean_waves::utils::ramp(ramp_period - near_tol, ramp_period);
+    const amrex::Real f_ramp_near_end = kynema_sgf::ocean_waves::utils::ramp(
+        ramp_period - near_tol, ramp_period);
     const amrex::Real f_ramp_end =
         kynema_sgf::ocean_waves::utils::ramp(ramp_period, ramp_period);
     const amrex::Real f_ramp_past =

@@ -9,7 +9,9 @@ namespace amr_wind_tests {
 namespace {
 
 void auxiliary_fill_boundary(
-    kynema_sgf::Field& velocity, kynema_sgf::IntField& indices, const int comp = 0)
+    kynema_sgf::Field& velocity,
+    kynema_sgf::IntField& indices,
+    const int comp = 0)
 {
     const int nlevels = velocity.repo().num_active_levels();
     const int ncomp = velocity.num_comp();

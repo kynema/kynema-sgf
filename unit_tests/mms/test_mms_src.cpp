@@ -12,8 +12,8 @@ using namespace amrex::literals;
 
 namespace amr_wind_tests {
 
-using ICNSFields =
-    kynema_sgf::pde::FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
+using ICNSFields = kynema_sgf::pde::
+    FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
 
 TEST_F(MMSMeshTest, mms_forcing)
 {

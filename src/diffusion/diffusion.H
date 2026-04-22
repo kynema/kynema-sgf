@@ -7,7 +7,8 @@
 namespace diffusion {
 
 amrex::Vector<amrex::Array<amrex::LinOpBCType, AMREX_SPACEDIM>>
-get_diffuse_tensor_bc(kynema_sgf::Field& velocity, amrex::Orientation::Side side);
+get_diffuse_tensor_bc(
+    kynema_sgf::Field& velocity, amrex::Orientation::Side side);
 
 amrex::Array<amrex::LinOpBCType, AMREX_SPACEDIM>
 get_diffuse_scalar_bc(kynema_sgf::Field& scalar, amrex::Orientation::Side side);

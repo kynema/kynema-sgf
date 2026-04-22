@@ -82,7 +82,8 @@ void initialize_relaxation_zone_field(
     });
 }
 
-void init_relaxation_field(kynema_sgf::Field& theor_field, amrex::Real gen_length)
+void init_relaxation_field(
+    kynema_sgf::Field& theor_field, amrex::Real gen_length)
 {
     const auto& geom = theor_field.repo().mesh().Geom();
     run_algorithm(theor_field, [&](const int lev, const amrex::MFIter& mfi) {
@@ -128,7 +129,8 @@ void apply_relaxation_zone_field(
     amrex::Gpu::streamSynchronize();
 }
 
-amrex::Real field_error(kynema_sgf::Field& comp, kynema_sgf::Field& targ, int ncomp)
+amrex::Real
+field_error(kynema_sgf::Field& comp, kynema_sgf::Field& targ, int ncomp)
 {
     amrex::Real error_total = 0.0_rt;
     int nc = ncomp;
@@ -230,7 +232,8 @@ void make_target_density(
     amrex::Gpu::streamSynchronize();
 }
 
-amrex::Real bdy_error(kynema_sgf::Field& comp, kynema_sgf::Field& targ, int ncomp)
+amrex::Real
+bdy_error(kynema_sgf::Field& comp, kynema_sgf::Field& targ, int ncomp)
 {
     amrex::Real error_total = 0.0_rt;
     int nc = ncomp;

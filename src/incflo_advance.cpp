@@ -391,7 +391,8 @@ void incflo::ApplyPredictor(
             AMREX_SPACEDIM, 0, kynema_sgf::FieldLoc::CELL);
         auto& diff_new =
             icns().fields().diff_term.state(kynema_sgf::FieldState::New);
-        kynema_sgf::field_ops::copy(*diff_old, diff_new, 0, 0, AMREX_SPACEDIM, 0);
+        kynema_sgf::field_ops::copy(
+            *diff_old, diff_new, 0, 0, AMREX_SPACEDIM, 0);
         icns().compute_diffusion_term(kynema_sgf::FieldState::New);
         kynema_sgf::field_ops::saxpy(
             diff_new, -1.0_rt, *diff_old, 0, 0, AMREX_SPACEDIM, 0);
@@ -429,7 +430,8 @@ void incflo::ApplyPredictor(
             icns().fields().field.state(kynema_sgf::FieldState::NPH), 0, 0,
             icns().fields().field.num_comp(), 1);
 
-        kynema_sgf::io::print_nonlinear_residual(m_sim, *vel_diff, *vel_np1_old);
+        kynema_sgf::io::print_nonlinear_residual(
+            m_sim, *vel_diff, *vel_np1_old);
         vel_np1_old.reset();
         vel_diff.reset();
     }

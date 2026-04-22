@@ -189,8 +189,8 @@ amrex::Real interface_band_test_impl(kynema_sgf::Field& vof)
                 amrex::Real error = 0;
 
                 amrex::Loop(bx, [=, &error](int i, int j, int k) {
-                    bool intf =
-                        kynema_sgf::multiphase::interface_band(i, j, k, vof_arr);
+                    bool intf = kynema_sgf::multiphase::interface_band(
+                        i, j, k, vof_arr);
 
                     bool nocheck = true;
                     // Check within a cell of multiphase cells

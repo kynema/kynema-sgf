@@ -19,8 +19,8 @@ namespace ib {
  * This class is intended to represent a single object (e.g., floating
  * platform, tower complex terrain) that exists in the computational domain. A
  * collection of immersed boundary objects (e.g., multiple cylinders) is modeled
- * using the kynema_sgf::IB physics class that holds a collection of instances of
- * IBModel and acts on them.
+ * using the kynema_sgf::IB physics class that holds a collection of instances
+ * of IBModel and acts on them.
  */
 class ImmersedBoundaryModel
     : public Factory<

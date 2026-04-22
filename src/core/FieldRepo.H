@@ -68,16 +68,16 @@ struct LevelDataHolder
  *  available, data is allocated and ready for use immediately upon declaration.
  *
  *  Field declarations use a unique string name to differentiate different
- *  fields. If kynema_sgf::FieldRepo::declare_field is called multiple times with
- *  the same field name, the previously created instance is returned on
+ *  fields. If kynema_sgf::FieldRepo::declare_field is called multiple times
+ * with the same field name, the previously created instance is returned on
  *  subsequent calls. However, an error is raised if the subsequent calls do not
  *  have the same field parameters (e.g., number of components, states, or ghost
  *  cells).
  *
  *  Fields can be accessed using kynema_sgf::FieldRepo::get_field method. Unlike
  *  the declaration method, this method will raise an error if no field exists.
- *  kynema_sgf::FieldRepo::field_exists can be used to determine if a field exists
- *  in the repository.
+ *  kynema_sgf::FieldRepo::field_exists can be used to determine if a field
+ * exists in the repository.
  *
  *  FieldRepo also manages integer fields (IntField) as well as creation of
  *  ScratchField instances.

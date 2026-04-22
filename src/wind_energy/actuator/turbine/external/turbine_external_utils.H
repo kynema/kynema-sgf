@@ -65,7 +65,8 @@ void make_component_views(datatype& data)
         const int ntwr_start = num_blades * num_pts_blade + 1;
         auto& cv = tdata.tower;
 
-        cv.pos = ::kynema_sgf::utils::slice(grid.pos, ntwr_start, num_pts_tower);
+        cv.pos =
+            ::kynema_sgf::utils::slice(grid.pos, ntwr_start, num_pts_tower);
         cv.force =
             ::kynema_sgf::utils::slice(grid.force, ntwr_start, num_pts_tower);
         cv.epsilon =

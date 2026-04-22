@@ -24,7 +24,8 @@ void perturb_vel_field(
             const amrex::Real y = problo[1] + (j + 0.5_rt) * dx[1];
             const amrex::Real z = problo[2] + (k + 0.5_rt) * dx[2];
             vel(i, j, k, 0) += std::sin(kynema_sgf::utils::two_pi() * x);
-            vel(i, j, k, 1) += std::sin(kynema_sgf::utils::two_pi() * 2.0_rt * y);
+            vel(i, j, k, 1) +=
+                std::sin(kynema_sgf::utils::two_pi() * 2.0_rt * y);
             vel(i, j, k, 2) += std::cos(kynema_sgf::utils::two_pi() * z);
         });
 }

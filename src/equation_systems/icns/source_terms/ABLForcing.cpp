@@ -67,7 +67,8 @@ ABLForcing::ABLForcing(const CFDSim& sim)
     // Set up relaxation toward 0 forcing near the air-water interface
     if (sim.repo().field_exists("vof")) {
         // If vof exists, get multiphase physics
-        const auto& mphase = sim.physics_manager().get<kynema_sgf::MultiPhase>();
+        const auto& mphase =
+            sim.physics_manager().get<kynema_sgf::MultiPhase>();
         // Retrieve interface position
         m_water_level = mphase.water_level();
         // Confirm that water level will be used

@@ -37,7 +37,10 @@ void init_vof(kynema_sgf::Field& vof_fld, amrex::Real water_level)
 }
 
 void init_vof_multival(
-    kynema_sgf::Field& vof_fld, amrex::Real wl0, amrex::Real wl1, amrex::Real wl2)
+    kynema_sgf::Field& vof_fld,
+    amrex::Real wl0,
+    amrex::Real wl1,
+    amrex::Real wl2)
 {
     const auto& mesh = vof_fld.repo().mesh();
     const int nlevels = vof_fld.repo().num_active_levels();
@@ -190,7 +193,8 @@ void init_vof_outliers(
 class FSRefineMesh : public AmrTestMesh
 {
 public:
-    FSRefineMesh() : m_mesh_refiner(new kynema_sgf::RefineCriteriaManager(m_sim))
+    FSRefineMesh()
+        : m_mesh_refiner(new kynema_sgf::RefineCriteriaManager(m_sim))
     {}
     void init_refiner() { m_mesh_refiner->initialize(); }
     void remesh() { regrid(0, 0.0_rt); }

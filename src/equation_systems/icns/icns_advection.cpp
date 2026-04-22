@@ -334,7 +334,8 @@ void MacProjOp::operator()(const FieldState fstate, const amrex::Real dt)
     if (m_has_overset) {
         // In masked regions, the pressure should not change from what was used
         // when preparing the MAC velocity field; therefore, phi is set to 0
-        auto phif = m_repo.create_scratch_field(1, 1, kynema_sgf::FieldLoc::CELL);
+        auto phif =
+            m_repo.create_scratch_field(1, 1, kynema_sgf::FieldLoc::CELL);
         for (int lev = 0; lev < m_repo.num_active_levels(); ++lev) {
             (*phif)(lev).setVal(0.);
         }

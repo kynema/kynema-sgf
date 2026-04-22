@@ -82,7 +82,8 @@ struct AdvectionOp<VOF, fvm::Godunov>
             repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::ZFACE);
 
         // Scratch field for fluxC
-        auto fluxC = repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::CELL);
+        auto fluxC =
+            repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::CELL);
 
         // Define the sweep time
         isweep += 1;

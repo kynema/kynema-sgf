@@ -66,7 +66,8 @@ void init_velocity(
 class FNRefinemesh : public AmrTestMesh
 {
 public:
-    FNRefinemesh() : m_mesh_refiner(new kynema_sgf::RefineCriteriaManager(m_sim))
+    FNRefinemesh()
+        : m_mesh_refiner(new kynema_sgf::RefineCriteriaManager(m_sim))
     {}
     void init_refiner() { m_mesh_refiner->initialize(); }
     void remesh() { regrid(0, 0.0_rt); }

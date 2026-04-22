@@ -245,18 +245,18 @@ struct AdvectionOp<ICNS, fvm::Godunov>
         const auto& dof_field = fields.field.state(fstate);
         const auto& dof_nph = fields.field.state(kynema_sgf::FieldState::NPH);
 
-        auto flux_x =
-            repo.create_scratch_field(ICNS::ndim, 0, kynema_sgf::FieldLoc::XFACE);
-        auto flux_y =
-            repo.create_scratch_field(ICNS::ndim, 0, kynema_sgf::FieldLoc::YFACE);
-        auto flux_z =
-            repo.create_scratch_field(ICNS::ndim, 0, kynema_sgf::FieldLoc::ZFACE);
-        auto face_x =
-            repo.create_scratch_field(ICNS::ndim, 0, kynema_sgf::FieldLoc::XFACE);
-        auto face_y =
-            repo.create_scratch_field(ICNS::ndim, 0, kynema_sgf::FieldLoc::YFACE);
-        auto face_z =
-            repo.create_scratch_field(ICNS::ndim, 0, kynema_sgf::FieldLoc::ZFACE);
+        auto flux_x = repo.create_scratch_field(
+            ICNS::ndim, 0, kynema_sgf::FieldLoc::XFACE);
+        auto flux_y = repo.create_scratch_field(
+            ICNS::ndim, 0, kynema_sgf::FieldLoc::YFACE);
+        auto flux_z = repo.create_scratch_field(
+            ICNS::ndim, 0, kynema_sgf::FieldLoc::ZFACE);
+        auto face_x = repo.create_scratch_field(
+            ICNS::ndim, 0, kynema_sgf::FieldLoc::XFACE);
+        auto face_y = repo.create_scratch_field(
+            ICNS::ndim, 0, kynema_sgf::FieldLoc::YFACE);
+        auto face_z = repo.create_scratch_field(
+            ICNS::ndim, 0, kynema_sgf::FieldLoc::ZFACE);
 
         const auto& rho_o =
             repo.get_field("density").state(kynema_sgf::FieldState::Old);

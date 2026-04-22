@@ -278,22 +278,28 @@ amrex::Array<amrex::Real, 24> kynema_sgf::diagnostics::PrintMaxVelLocations(
         }
 
         u_max = amrex::max<amrex::Real>(
-            u_max, kynema_sgf::diagnostics::get_vel_max(vel(lev), level_mask, 0));
+            u_max,
+            kynema_sgf::diagnostics::get_vel_max(vel(lev), level_mask, 0));
 
         u_min = amrex::max<amrex::Real>(
-            u_min, kynema_sgf::diagnostics::get_vel_min(vel(lev), level_mask, 0));
+            u_min,
+            kynema_sgf::diagnostics::get_vel_min(vel(lev), level_mask, 0));
 
         v_max = amrex::max<amrex::Real>(
-            v_max, kynema_sgf::diagnostics::get_vel_max(vel(lev), level_mask, 1));
+            v_max,
+            kynema_sgf::diagnostics::get_vel_max(vel(lev), level_mask, 1));
 
         v_min = amrex::max<amrex::Real>(
-            v_min, kynema_sgf::diagnostics::get_vel_min(vel(lev), level_mask, 1));
+            v_min,
+            kynema_sgf::diagnostics::get_vel_min(vel(lev), level_mask, 1));
 
         w_max = amrex::max<amrex::Real>(
-            w_max, kynema_sgf::diagnostics::get_vel_max(vel(lev), level_mask, 2));
+            w_max,
+            kynema_sgf::diagnostics::get_vel_max(vel(lev), level_mask, 2));
 
         w_min = amrex::max<amrex::Real>(
-            w_min, kynema_sgf::diagnostics::get_vel_min(vel(lev), level_mask, 2));
+            w_min,
+            kynema_sgf::diagnostics::get_vel_min(vel(lev), level_mask, 2));
     }
 
     // Do additional parallelism stuff

@@ -25,8 +25,10 @@ void init_velocity(kynema_sgf::Field& velocity)
                 const amrex::Real yc = problo[1] + ((j + 0.5_rt) * dx[1]);
                 const amrex::Real zc = problo[2] + ((k + 0.5_rt) * dx[2]);
 
-                farrs[nbx](i, j, k, 0) = 1.0_rt - kynema_sgf::utils::powi(xc, 2);
-                farrs[nbx](i, j, k, 1) = -1.0_rt + kynema_sgf::utils::powi(zc, 2);
+                farrs[nbx](i, j, k, 0) =
+                    1.0_rt - kynema_sgf::utils::powi(xc, 2);
+                farrs[nbx](i, j, k, 1) =
+                    -1.0_rt + kynema_sgf::utils::powi(zc, 2);
                 farrs[nbx](i, j, k, 2) = 5.0_rt * std::cos(yc);
 
                 if (lev == 0 && nlevels > 1) {
@@ -263,7 +265,8 @@ TEST_F(DiagnosticsTest, Max_Vel_MultiLevel)
     ss << "-5 -5 -2 5 5 2" << '\n';
     create_mesh_instance<RefineMesh>();
     auto& ref_vec = mesh<RefineMesh>()->refine_criteria_vec();
-    ref_vec.emplace_back(std::make_unique<kynema_sgf::CartBoxRefinement>(sim()));
+    ref_vec.emplace_back(
+        std::make_unique<kynema_sgf::CartBoxRefinement>(sim()));
     auto* box_refine =
         dynamic_cast<kynema_sgf::CartBoxRefinement*>(ref_vec[0].get());
     box_refine->read_inputs(mesh(), ss);
@@ -322,7 +325,8 @@ TEST_F(DiagnosticsTest, Max_MACvel_MultiLevel)
     ss << "-5 -5 -2 5 5 2" << '\n';
     create_mesh_instance<RefineMesh>();
     auto& ref_vec = mesh<RefineMesh>()->refine_criteria_vec();
-    ref_vec.emplace_back(std::make_unique<kynema_sgf::CartBoxRefinement>(sim()));
+    ref_vec.emplace_back(
+        std::make_unique<kynema_sgf::CartBoxRefinement>(sim()));
     auto* box_refine =
         dynamic_cast<kynema_sgf::CartBoxRefinement*>(ref_vec[0].get());
     box_refine->read_inputs(mesh(), ss);

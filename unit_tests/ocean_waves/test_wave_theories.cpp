@@ -139,7 +139,7 @@ TEST_F(WaveTheoriesTest, StokesWavesFreeSurfaceProfile)
           kynema_sgf::utils::powi(eps, 3) * B31 *
               (std::cos(phase) - std::cos(3.0_rt * phase)) +
           kynema_sgf::utils::powi(eps, 4) * (B42 * std::cos(2.0_rt * phase) +
-                                           B44 * std::cos(4.0_rt * phase)) +
+                                             B44 * std::cos(4.0_rt * phase)) +
           kynema_sgf::utils::powi(eps, 5) *
               (-(B53 + B55) * std::cos(phase) + B53 * std::cos(3.0_rt * phase) +
                B55 * std::cos(5.0_rt * phase))) /
@@ -200,7 +200,7 @@ TEST_F(WaveTheoriesTest, StokesWavesFreeSurfaceProfile)
           kynema_sgf::utils::powi(eps, 3) * B31 *
               (std::cos(phase) - std::cos(3.0_rt * phase)) +
           kynema_sgf::utils::powi(eps, 4) * (B42 * std::cos(2.0_rt * phase) +
-                                           B44 * std::cos(4.0_rt * phase)) +
+                                             B44 * std::cos(4.0_rt * phase)) +
           kynema_sgf::utils::powi(eps, 5) *
               (-(B53 + B55) * std::cos(phase) + B53 * std::cos(3.0_rt * phase) +
                B55 * std::cos(5.0_rt * phase))) /

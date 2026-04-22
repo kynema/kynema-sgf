@@ -98,8 +98,8 @@ void init_vof_field(
 }
 } // namespace
 
-using ICNSFields =
-    kynema_sgf::pde::FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
+using ICNSFields = kynema_sgf::pde::
+    FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
 
 TEST_F(ABLOffshoreMeshTest, abl_forcing)
 {

@@ -111,7 +111,8 @@ void incflo::InitialIterations()
 
     {
         auto& vel = icns().fields().field;
-        vel.copy_state(kynema_sgf::FieldState::Old, kynema_sgf::FieldState::New);
+        vel.copy_state(
+            kynema_sgf::FieldState::Old, kynema_sgf::FieldState::New);
         vel.state(kynema_sgf::FieldState::Old).fillpatch(m_time.current_time());
 
         if (m_sim.pde_manager().constant_density()) {

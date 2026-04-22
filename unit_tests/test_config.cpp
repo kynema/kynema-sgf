@@ -22,7 +22,8 @@ namespace amr_wind_tests {
 
 TEST(Configuration, Build)
 {
-    const std::string dirty_tag = "-" + kynema_sgf::version::amr_wind_dirty_repo;
+    const std::string dirty_tag =
+        "-" + kynema_sgf::version::amr_wind_dirty_repo;
     const std::string awind_git_sha =
         kynema_sgf::version::amr_wind_git_sha + dirty_tag;
     const char* amrex_git = amrex::buildInfoGetGitHash(2);

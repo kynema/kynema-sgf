@@ -320,7 +320,8 @@ protected:
 
         // Calculate density and fillpatch
         auto& density = repo.get_field("density");
-        auto& multiphase = sim().physics_manager().get<kynema_sgf::MultiPhase>();
+        auto& multiphase =
+            sim().physics_manager().get<kynema_sgf::MultiPhase>();
         multiphase.set_density_via_vof();
         density.fillpatch(0.0_rt);
 

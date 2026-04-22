@@ -207,12 +207,14 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
                 amrex::max<amrex::Real>((ip + 0.5_rt) * dx, machine_eps);
 
             a1 += kynema_sgf::utils::powi(ddata.tip_correction[ip], 2) *
-                  kynema_sgf::utils::powi(ddata.root_correction[ip], 2) / x * dx;
+                  kynema_sgf::utils::powi(ddata.root_correction[ip], 2) / x *
+                  dx;
 
             a2 += ddata.tip_correction[ip] * ddata.root_correction[ip] * x * dx;
 
             a3 += kynema_sgf::utils::powi(ddata.tip_correction[ip], 2) *
-                  kynema_sgf::utils::powi(ddata.root_correction[ip], 2) * x * dx;
+                  kynema_sgf::utils::powi(ddata.root_correction[ip], 2) * x *
+                  dx;
 
             a4 += ddata.tip_correction[ip] * ddata.root_correction[ip] *
                   kynema_sgf::utils::powi(x, 3) * dx;

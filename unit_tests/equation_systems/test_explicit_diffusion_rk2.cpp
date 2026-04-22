@@ -124,7 +124,8 @@ TEST_F(ExplicitDiffusionRK2Test, old_approach)
     // Subtract diffusion term manually, mimicking the assumption in the code
     // If correct, should go back to old value
     const auto dt = sim().time().delta_t();
-    auto& diff_old = k_eqn.fields().diff_term.state(kynema_sgf::FieldState::New);
+    auto& diff_old =
+        k_eqn.fields().diff_term.state(kynema_sgf::FieldState::New);
     kynema_sgf::field_ops::saxpy(tke, -dt, diff_old, 0, 0, 1, 0);
 
     // Subtract original tke from result for comparison
@@ -153,7 +154,8 @@ TEST_F(ExplicitDiffusionRK2Test, correct_approach)
 
     // Change term to -2 times original value so it will cancel RHS contribution
     const auto dt = sim().time().delta_t();
-    auto& diff_new = k_eqn.fields().diff_term.state(kynema_sgf::FieldState::New);
+    auto& diff_new =
+        k_eqn.fields().diff_term.state(kynema_sgf::FieldState::New);
     kynema_sgf::field_ops::saxpy(diff_new, -3.0_rt, diff_new, 0, 0, 1, 0);
 
     // Apply operation through PDE function
