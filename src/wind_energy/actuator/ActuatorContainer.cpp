@@ -290,7 +290,8 @@ void ActuatorContainer::populate_field_buffers()
 void ActuatorContainer::interpolate_fields(
     const Field& vel, const Field& density)
 {
-    BL_PROFILE("kynema-sgf::actuator::ActuatorContainer::interpolate_velocities");
+    BL_PROFILE(
+        "kynema-sgf::actuator::ActuatorContainer::interpolate_velocities");
     auto* dptr = m_pos_device.data();
     const int nlevels = m_mesh.finestLevel() + 1;
     for (int lev = 0; lev < nlevels; ++lev) {

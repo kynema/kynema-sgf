@@ -155,7 +155,8 @@ template <>
 struct ReadInputsOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
 {
     void operator()(
-        ::kynema_sgf_tests::FixedWing::DataType& data, const utils::ActParser& pp)
+        ::kynema_sgf_tests::FixedWing::DataType& data,
+        const utils::ActParser& pp)
     {
         ReadInputsOp<::kynema_sgf::actuator::FixedWing, ActSrcLine> actual_op;
         EXPECT_NO_FATAL_FAILURE(actual_op(data, pp));

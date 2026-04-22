@@ -107,7 +107,8 @@ public:
 
     void compute_source_term(const FieldState fstate) override
     {
-        BL_PROFILE("kynema-sgf::" + this->identifier() + "::compute_source_term");
+        BL_PROFILE(
+            "kynema-sgf::" + this->identifier() + "::compute_source_term");
         m_src_op(fstate, m_sim.has_mesh_mapping());
     }
 
@@ -123,7 +124,8 @@ public:
     {
         if (PDE::has_diffusion) {
             BL_PROFILE(
-                "kynema-sgf::" + this->identifier() + "::compute_diffusion_term");
+                "kynema-sgf::" + this->identifier() +
+                "::compute_diffusion_term");
             m_bc_op.apply_bcs(fstate);
             m_diff_op->compute_diff_term(fstate);
         }

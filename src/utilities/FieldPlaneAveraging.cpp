@@ -426,7 +426,8 @@ void VelPlaneAveraging::compute_hvelmag_averages(
 
 void VelPlaneAveraging::compute_line_hvelmag_derivatives()
 {
-    BL_PROFILE("kynema-sgf::VelPlaneAveraging::compute_line_hvelmag_derivatives");
+    BL_PROFILE(
+        "kynema-sgf::VelPlaneAveraging::compute_line_hvelmag_derivatives");
     for (int i = 0; i < m_ncell_line; ++i) {
         m_line_hvelmag_deriv[i] = line_hvelmag_derivative_of_average_cell(i);
     }
@@ -435,7 +436,8 @@ void VelPlaneAveraging::compute_line_hvelmag_derivatives()
 amrex::Real
 VelPlaneAveraging::line_hvelmag_derivative_of_average_cell(int ind) const
 {
-    BL_PROFILE("kynema-sgf::VelPlaneAveraging::line_derivative_of_average_cell");
+    BL_PROFILE(
+        "kynema-sgf::VelPlaneAveraging::line_derivative_of_average_cell");
 
     AMREX_ALWAYS_ASSERT(ind >= 0 && ind < m_ncell_line);
 

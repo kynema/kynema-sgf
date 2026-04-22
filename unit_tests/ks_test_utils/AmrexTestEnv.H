@@ -7,7 +7,8 @@
 
 namespace kynema_sgf_tests {
 
-/** Global setup/teardown test environment configuration for Kynema-SGF unit tests
+/** Global setup/teardown test environment configuration for Kynema-SGF unit
+ * tests
  *
  *  This class is registered with GoogleTest infrastructure to perform global
  *  setup/teardown tasks. The base implementation calls the amrex::Initialize

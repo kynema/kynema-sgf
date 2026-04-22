@@ -225,7 +225,8 @@ void ABL::pre_advance_work()
             const amrex::Real wind_speed =
                 m_sim.helics().m_inflow_wind_speed_to_kynema_sgf;
             const amrex::Real wind_direction =
-                -m_sim.helics().m_inflow_wind_direction_to_kynema_sgf + 270.0_rt;
+                -m_sim.helics().m_inflow_wind_direction_to_kynema_sgf +
+                270.0_rt;
             const amrex::Real wind_direction_radian =
                 kynema_sgf::utils::radians(wind_direction);
             const amrex::Real tvx =

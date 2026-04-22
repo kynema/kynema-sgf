@@ -13,7 +13,8 @@ class CFDSim;
  *  Overset connectivity interface.
  *
  *  This module contains all the code necessary for performing overset
- *  simulations by integrating Kynema-SGF with other solvers using overset meshes.
+ *  simulations by integrating Kynema-SGF with other solvers using overset
+ * meshes.
  */
 
 /** Overset interface manager

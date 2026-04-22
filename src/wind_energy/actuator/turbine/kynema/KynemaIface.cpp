@@ -591,7 +591,8 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::prepare_netcdf_file(
     const std::string np_name = "num_vel_points";
     ncf.enter_def_mode();
     ncf.put_attr("title", "Kynema-SGF Kynema velocity data");
-    ncf.put_attr("Kynema-SGF_version", kynema_sgf::ioutils::kynema_sgf_version());
+    ncf.put_attr(
+        "Kynema-SGF_version", kynema_sgf::ioutils::kynema_sgf_version());
     ncf.put_attr("created_on", kynema_sgf::ioutils::timestamp());
     ncf.def_dim(nt_name, NC_UNLIMITED);
     ncf.def_dim(np_name, fi.length_fluid_velocity(0));

@@ -210,7 +210,8 @@ void scatter_data(datatype& data)
     // Copy data into MPI send/recv buffer from the OpenFAST data structure.
     // Note, other procs do not have a valid data in those pointers.
     if (data.info().is_root_proc) {
-        BL_PROFILE("kynema-sgf::actuator::external::compute_force_op::scatter1");
+        BL_PROFILE(
+            "kynema-sgf::actuator::external::compute_force_op::scatter1");
         const auto& ext_tdata = data.meta().ext_data;
         auto it = buf.begin();
         for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
@@ -238,7 +239,8 @@ void scatter_data(datatype& data)
     const auto& procs = data.info().procs;
     const int tag = 1001;
     if (data.info().is_root_proc) {
-        BL_PROFILE("kynema-sgf::actuator::external::compute_force_op::scatter2");
+        BL_PROFILE(
+            "kynema-sgf::actuator::external::compute_force_op::scatter2");
         for (const int ip : procs) {
             if (ip == data.info().root_proc) {
                 continue;
@@ -248,7 +250,8 @@ void scatter_data(datatype& data)
                 buf.data(), dsize, ip, tag, data.meta().tcomm);
         }
     } else {
-        BL_PROFILE("kynema-sgf::actuator::external::compute_force_op::scatter2");
+        BL_PROFILE(
+            "kynema-sgf::actuator::external::compute_force_op::scatter2");
         amrex::ParallelDescriptor::Recv(
             buf.data(), dsize, data.info().root_proc, tag, data.meta().tcomm);
     }
@@ -256,7 +259,8 @@ void scatter_data(datatype& data)
     // Populate the actuator grid data structures with data from the MPI
     // send/recv buffer.
     {
-        BL_PROFILE("kynema-sgf::actuator::external::compute_force_op::scatter3");
+        BL_PROFILE(
+            "kynema-sgf::actuator::external::compute_force_op::scatter3");
         const auto& bp = data.info().base_pos;
         auto& grid = data.grid();
         const auto& npts = grid.pos.size();

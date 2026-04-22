@@ -94,7 +94,8 @@ template <>
 struct ReadInputsOp<::kynema_sgf_tests::Joukowsky, ActSrcDisk>
 {
     void operator()(
-        ::kynema_sgf_tests::Joukowsky::DataType& data, const utils::ActParser& pp)
+        ::kynema_sgf_tests::Joukowsky::DataType& data,
+        const utils::ActParser& pp)
     {
         ReadInputsOp<::kynema_sgf::actuator::Joukowsky, ActSrcDisk> actual_op;
         EXPECT_NO_FATAL_FAILURE(actual_op(data, pp));

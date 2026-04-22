@@ -212,7 +212,8 @@ void SecondMomentAveraging::compute_average(
 amrex::Real SecondMomentAveraging::line_average_interpolated(
     amrex::Real x, int comp1, int comp2) const
 {
-    BL_PROFILE("kynema-sgf::SecondMomentAveraging::line_average_interpolated 1");
+    BL_PROFILE(
+        "kynema-sgf::SecondMomentAveraging::line_average_interpolated 1");
 
     AMREX_ALWAYS_ASSERT(comp1 >= 0 && comp1 < m_plane_average1.ncomp());
     AMREX_ALWAYS_ASSERT(comp2 >= 0 && comp2 < m_plane_average2.ncomp());
@@ -224,7 +225,8 @@ amrex::Real SecondMomentAveraging::line_average_interpolated(
 amrex::Real
 SecondMomentAveraging::line_average_interpolated(amrex::Real x, int comp) const
 {
-    BL_PROFILE("kynema-sgf::SecondMomentAveraging::line_average_interpolated 2");
+    BL_PROFILE(
+        "kynema-sgf::SecondMomentAveraging::line_average_interpolated 2");
 
     AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_num_moments);
 
