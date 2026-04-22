@@ -123,7 +123,7 @@ namespace {
  */
 void process_nc_file(const std::string& turb_filename, SynthTurbData& turb_grid)
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     auto ncf = ncutils::NCFile::open(turb_filename, NC_NOWRITE);
 
     // Grid dimensions
@@ -170,7 +170,7 @@ void load_turb_plane_data(
     const int ir)
 {
     BL_PROFILE("kynema-sgf::SyntheticTurbulence::load_plane_data");
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     auto ncf = ncutils::NCFile::open(turb_filename, NC_NOWRITE);
 
     // clang-format off
@@ -371,7 +371,7 @@ SyntheticTurbulence::SyntheticTurbulence(const CFDSim& sim)
     , m_density(sim.repo().get_field("density"))
     , m_turb_force(sim.repo().declare_field("synth_turb_forcing", 3))
 {
-#ifndef AMR_WIND_USE_NETCDF
+#ifndef KYNEMA_SGF_USE_NETCDF
     amrex::Abort(
         "SyntheticTurbulence: Kynema-SGF was not built with NetCDF support.");
 #endif

@@ -106,7 +106,7 @@ void VolumeSampler::sampling_locations(
     }
 }
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
 void VolumeSampler::define_netcdf_metadata(const ncutils::NCGroup& grp) const
 {
     const std::vector<int> ijk{m_npts_dir[0], m_npts_dir[1], m_npts_dir[2]};

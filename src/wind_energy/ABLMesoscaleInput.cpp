@@ -10,7 +10,7 @@ namespace kynema_sgf {
 ABLMesoscaleInput::ABLMesoscaleInput(std::string ncfile, std::string var_prefix)
     : m_filename{std::move(ncfile)}, m_var_prefix{std::move(var_prefix)}
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     auto ncf = ncutils::NCFile::open_par(
         m_filename, NC_NOWRITE | NC_NETCDF4 | NC_MPIIO,
         amrex::ParallelContext::CommunicatorSub(), MPI_INFO_NULL);

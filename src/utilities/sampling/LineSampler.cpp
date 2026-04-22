@@ -90,7 +90,7 @@ void LineSampler::sampling_locations(
     }
 }
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
 void LineSampler::define_netcdf_metadata(const ncutils::NCGroup& grp) const
 {
     grp.put_attr("sampling_type", identifier());

@@ -44,7 +44,7 @@ public:
     void define_level_data(
         amrex::Orientation /*ori*/, const amrex::Box& /*bx*/, size_t /*nc*/);
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     void read_data(
         ncutils::NCGroup& /*grp*/,
         const amrex::Orientation /*ori*/,
@@ -165,7 +165,7 @@ public:
         int dcomp = 0,
         int orig_comp = 0) const;
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     static void impl_buffer_field(
         const amrex::Box& /*bx*/,
         const int /*n1*/,
@@ -212,7 +212,7 @@ private:
     MultiBlockContainer** m_mbc;
     ReadERFFunction* m_read_erf{nullptr};
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     void write_data(
         const ncutils::NCGroup& grp,
         const amrex::Orientation /*ori*/,
@@ -236,7 +236,7 @@ private:
     //! Start outputting after this time
     amrex::Real m_out_start_time{0.0_rt};
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     //! NetCDF time output counter
     size_t m_out_counter{0};
 #endif

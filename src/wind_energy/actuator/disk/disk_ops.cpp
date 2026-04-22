@@ -13,7 +13,7 @@ void prepare_netcdf_file(
     const ActInfo& info,
     const ActGrid& grid)
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     using dvec = std::vector<amrex::Real>;
     // Only root process handles I/O
     if (info.root_proc != amrex::ParallelDescriptor::MyProc()) {
@@ -78,7 +78,7 @@ void write_netcdf(
     const ActGrid& /*unused*/,
     const amrex::Real time)
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     // Only root process handles I/O
     if (info.root_proc != amrex::ParallelDescriptor::MyProc()) {
         return;

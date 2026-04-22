@@ -36,7 +36,7 @@ struct UpdatePosOp<UniformCt, ActSrcDisk>
             return;
         }
 
-#ifdef AMR_WIND_USE_HELICS
+#ifdef KYNEMA_SGF_USE_HELICS
 
         const amrex::Real wind_direction =
             -data.sim().helics().m_turbine_yaw_to_kynema_sgf[data.info().id] +
@@ -93,7 +93,7 @@ struct ComputeForceOp<UniformCt, ActSrcDisk>
             // disk force should always point in direction of the normal
             grid.force[ip] = (aeroPressure * a) * normal;
         }
-#ifdef AMR_WIND_USE_HELICS
+#ifdef KYNEMA_SGF_USE_HELICS
 
         if (data.info().is_root_proc && data.sim().helics().is_activated()) {
 

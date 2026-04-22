@@ -12,7 +12,7 @@
 
 using namespace amrex::literals;
 
-#ifdef AMR_WIND_USE_HELICS
+#ifdef KYNEMA_SGF_USE_HELICS
 using namespace helicscpp;
 #endif
 
@@ -47,7 +47,7 @@ namespace kynema_sgf {
 HelicsStorage::HelicsStorage(CFDSim& sim) : m_sim(sim)
 {
 
-#ifdef AMR_WIND_USE_HELICS
+#ifdef KYNEMA_SGF_USE_HELICS
     amrex::ParmParse phelics("helics");
     phelics.query("activated", m_helics_activated);
 
@@ -67,7 +67,7 @@ HelicsStorage::HelicsStorage(CFDSim& sim) : m_sim(sim)
         return;
     }
 
-#ifdef AMR_WIND_USE_HELICS
+#ifdef KYNEMA_SGF_USE_HELICS
     if (amrex::ParallelDescriptor::IOProcessor()) {
 
         m_fi = std::make_unique<helicscpp::FederateInfo>("zmq");
@@ -108,7 +108,7 @@ HelicsStorage::HelicsStorage(CFDSim& sim) : m_sim(sim)
 
 void HelicsStorage::pre_advance_work()
 {
-#ifdef AMR_WIND_USE_HELICS
+#ifdef KYNEMA_SGF_USE_HELICS
     if (m_helics_activated) {
         send_messages_to_controller();
         recv_messages_from_controller();
@@ -118,7 +118,7 @@ void HelicsStorage::pre_advance_work()
 
 void HelicsStorage::send_messages_to_controller()
 {
-#ifdef AMR_WIND_USE_HELICS
+#ifdef KYNEMA_SGF_USE_HELICS
     if (amrex::ParallelDescriptor::IOProcessor()) {
         // put helics send stuff here
     }
@@ -131,7 +131,7 @@ void HelicsStorage::recv_messages_from_controller()
     amrex::Print() << "recv message from controller at time: "
                    << m_sim.time().current_time() << '\n';
 
-#ifdef AMR_WIND_USE_HELICS
+#ifdef KYNEMA_SGF_USE_HELICS
     // receive wind direction and speed from controller (1 + 1)
     // receive turbine yaw directions (num_turbines)
     if (amrex::ParallelDescriptor::IOProcessor()) {

@@ -548,7 +548,7 @@ void RadarSampler::post_sample_actions()
     m_num_output_points_prior = num_output_points();
 }
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
 void RadarSampler::define_netcdf_metadata(const ncutils::NCGroup& grp) const
 {
     grp.put_attr("sampling_type", identifier());

@@ -28,7 +28,7 @@ ensuring that the modifications do not break current
 capabilities. Regression testing is not enabled by default in a CMake
 build and must be enabled explicitly by the user.  To enable
 regression testing, the user must enable additional flags during the
-CMake configure phase: :cmakeval:`AMR_WIND_ENABLE_TESTS` as shown below:
+CMake configure phase: :cmakeval:`KYNEMA_SGF_ENABLE_TESTS` as shown below:
 
 .. code-block:: console
 
@@ -38,13 +38,13 @@ CMake configure phase: :cmakeval:`AMR_WIND_ENABLE_TESTS` as shown below:
    mkdir build-test
    cd build-test
    # Run configure with testing flags
-   cmake -DAMR_WIND_ENABLE_TESTS=ON ../
+   cmake -DKYNEMA_SGF_ENABLE_TESTS=ON ../
    # Build code
    make -j 4
 
 .. tip::
 
-   The flag ``AMR_WIND_ENABLE_TESTS`` activates CTest facility and
+   The flag ``KYNEMA_SGF_ENABLE_TESTS`` activates CTest facility and
    enables the use of CTest to run the regression test
    facility. Running :program:`ctest` in this mode runs the tests but
    the results of the tests are not compared to any reference (i.e.,
@@ -85,11 +85,11 @@ correctly to generate the correct executable.
 
 To enable regression testing with gold files, the user must enable
 additional flags during the CMake configure phase:
-:cmakeval:`AMR_WIND_ENABLE_TESTS`,
-:cmakeval:`AMR_WIND_TEST_WITH_FCOMPARE`,
-:cmakeval:`AMR_WIND_REFERENCE_GOLDS_DIRECTORY`,
-:cmakeval:`AMR_WIND_SAVE_GOLDS`, and
-:cmakeval:`AMR_WIND_SAVED_GOLDS_DIRECTORY` as shown below:
+:cmakeval:`KYNEMA_SGF_ENABLE_TESTS`,
+:cmakeval:`KYNEMA_SGF_TEST_WITH_FCOMPARE`,
+:cmakeval:`KYNEMA_SGF_REFERENCE_GOLDS_DIRECTORY`,
+:cmakeval:`KYNEMA_SGF_SAVE_GOLDS`, and
+:cmakeval:`KYNEMA_SGF_SAVED_GOLDS_DIRECTORY` as shown below:
 
 .. code-block:: console
 
@@ -101,19 +101,19 @@ additional flags during the CMake configure phase:
    # Create the directory for the new gold files
    mkdir -p golds/tmp
    # Run configure with testing flags
-   # AMR_WIND_REFERENCE_GOLDS_DIRECTORY is the directory where the reference gold files are stored
-   # AMR_WIND_SAVE_GOLDS indicates that the gold files should be saved
-   # AMR_WIND_SAVED_GOLDS_DIRECTORY is the directory where the gold file are saved, it must exist
-   cmake -DAMR_WIND_ENABLE_TESTS=ON \
-         -DAMR_WIND_TEST_WITH_FCOMPARE=ON \
-         -DAMR_WIND_REFERENCE_GOLDS_DIRECTORY=$(pwd)/golds/current \
-         -DAMR_WIND_SAVE_GOLDS:BOOL=ON \
-         -DAMR_WIND_SAVED_GOLDS_DIRECTORY=$(pwd)/golds/tmp \
+   # KYNEMA_SGF_REFERENCE_GOLDS_DIRECTORY is the directory where the reference gold files are stored
+   # KYNEMA_SGF_SAVE_GOLDS indicates that the gold files should be saved
+   # KYNEMA_SGF_SAVED_GOLDS_DIRECTORY is the directory where the gold file are saved, it must exist
+   cmake -DKYNEMA_SGF_ENABLE_TESTS=ON \
+         -DKYNEMA_SGF_TEST_WITH_FCOMPARE=ON \
+         -DKYNEMA_SGF_REFERENCE_GOLDS_DIRECTORY=$(pwd)/golds/current \
+         -DKYNEMA_SGF_SAVE_GOLDS:BOOL=ON \
+         -DKYNEMA_SGF_SAVED_GOLDS_DIRECTORY=$(pwd)/golds/tmp \
          ../
    # Build code
    make -j 4
 
-The flag ``AMR_WIND_TEST_WITH_FCOMPARE`` uses AMReX
+The flag ``KYNEMA_SGF_TEST_WITH_FCOMPARE`` uses AMReX
 :program:`fcompare` utility to test the plotfile outputs against *gold
 files* to ensure that the results haven't changed. Upon successful
 build, you will notice that a new executable :program:`fcompare` is

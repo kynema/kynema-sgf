@@ -5,7 +5,7 @@
 #include "src/utilities/index_operations.H"
 #include "AMReX_ParmParse.H"
 
-#ifdef AMR_WIND_USE_OPENFAST
+#ifdef KYNEMA_SGF_USE_OPENFAST
 #include "src/wind_energy/actuator/Actuator.H"
 #include "src/wind_energy/actuator/turbine/fast/TurbineFast.H"
 #include "src/wind_energy/actuator/turbine/fast/turbine_fast_ops.H"
@@ -86,7 +86,7 @@ void DTUSpinnerSampler::initialize(const std::string& key)
     // Print hub fast turbine values to debug
     pp.query("hub_debug", m_hub_debug);
 
-#ifdef AMR_WIND_USE_OPENFAST
+#ifdef KYNEMA_SGF_USE_OPENFAST
 
     if (m_spinner_mode == "hub") {
         amrex::Print() << "Spinner Lidar will be attached to OpenFAST actuator"
@@ -97,7 +97,7 @@ void DTUSpinnerSampler::initialize(const std::string& key)
 
     AMREX_ALWAYS_ASSERT(m_spinner_mode == "fixed");
 
-#endif // AMR_WIND_USE_OPENFAST
+#endif // KYNEMA_SGF_USE_OPENFAST
 
     update_sampling_locations();
     check_bounds();
@@ -189,7 +189,7 @@ void DTUSpinnerSampler::sampling_locations(
     }
 }
 
-#ifdef AMR_WIND_USE_OPENFAST
+#ifdef KYNEMA_SGF_USE_OPENFAST
 void DTUSpinnerSampler::bcast_turbine(
     amrex::Array<amrex::Real, 18>& turbine_pack, int root_proc)
 {
@@ -279,14 +279,14 @@ void DTUSpinnerSampler::get_turbine_data(const std::string& turbine_label)
         amrex::Abort("DTUSpinnerSampler: Problem finding actuator");
     }
 }
-#endif // AMR_WIND_USE_OPENFAST
+#endif // KYNEMA_SGF_USE_OPENFAST
 
 bool DTUSpinnerSampler::update_sampling_locations()
 {
     BL_PROFILE(
         "kynema-sgf::Sampling::DTUSpinnerSampler::update_sampling_locations");
 
-#ifdef AMR_WIND_USE_OPENFAST
+#ifdef KYNEMA_SGF_USE_OPENFAST
     if (m_spinner_mode == "hub") {
         get_turbine_data(m_turbine_label);
 
@@ -355,7 +355,7 @@ bool DTUSpinnerSampler::update_sampling_locations()
         m_end.resize(n_totalsize);
     }
 
-#ifdef AMR_WIND_USE_OPENFAST
+#ifdef KYNEMA_SGF_USE_OPENFAST
     if (m_hub_debug) {
         amrex::Print() << "Turbine Hub Pos: " << m_current_hub_abs_pos[0] << " "
                        << m_current_hub_abs_pos[1] << " "
@@ -470,7 +470,7 @@ bool DTUSpinnerSampler::update_sampling_locations()
     return true;
 }
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
 
 void DTUSpinnerSampler::define_netcdf_metadata(
     const ncutils::NCGroup& grp) const

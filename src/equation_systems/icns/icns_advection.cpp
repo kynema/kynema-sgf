@@ -59,7 +59,7 @@ MacProjOp::MacProjOp(
 {
     amrex::ParmParse pp("incflo");
     pp.query("density", m_rho_0);
-#ifdef AMR_WIND_USE_FFT
+#ifdef KYNEMA_SGF_USE_FFT
     {
         amrex::ParmParse pp("mac_proj");
         pp.query("use_fft", m_use_fft);
@@ -124,7 +124,7 @@ void MacProjOp::init_projector(const amrex::Real beta)
     auto const& hibc = get_projection_bc(
         amrex::Orientation::high, bctype, m_repo.mesh().Geom());
 
-#ifdef AMR_WIND_USE_FFT
+#ifdef KYNEMA_SGF_USE_FFT
     if (m_use_fft) {
         if (m_repo.num_active_levels() == 1 && m_has_overset == false) {
             m_fft_mac_proj = std::make_unique<Hydro::FFTMacProjector>(
@@ -292,7 +292,7 @@ void MacProjOp::operator()(const FieldState fstate, const amrex::Real dt)
         if (m_need_init) {
             init_projector(factor / m_rho_0);
         } else {
-#ifdef AMR_WIND_USE_FFT
+#ifdef KYNEMA_SGF_USE_FFT
             if (!m_fft_mac_proj)
 #endif
             {
@@ -320,7 +320,7 @@ void MacProjOp::operator()(const FieldState fstate, const amrex::Real dt)
         enforce_inout_solvability(mac_vec);
     }
 
-#ifdef AMR_WIND_USE_FFT
+#ifdef KYNEMA_SGF_USE_FFT
     if (m_fft_mac_proj) {
         // This is set on mac_vec[0] since FFT based projection is restricted to
         // a single level
@@ -344,7 +344,7 @@ void MacProjOp::operator()(const FieldState fstate, const amrex::Real dt)
             phif->vec_ptrs(), m_options.rel_tol, m_options.abs_tol);
 
     } else {
-#ifdef AMR_WIND_USE_FFT
+#ifdef KYNEMA_SGF_USE_FFT
         if (m_fft_mac_proj) {
             m_fft_mac_proj->project();
         } else

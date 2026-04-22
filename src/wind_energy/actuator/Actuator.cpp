@@ -159,7 +159,7 @@ void Actuator::pre_advance_work()
 
 void Actuator::communicate_turbine_io()
 {
-#ifdef AMR_WIND_USE_HELICS
+#ifdef KYNEMA_SGF_USE_HELICS
     BL_PROFILE("kynema-sgf::actuator::Actuator::communicate_turbine_io");
 
     if (!m_sim.helics().is_activated()) {

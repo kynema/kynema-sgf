@@ -161,7 +161,7 @@ private:
         nullptr};
 
     //! Format of the data output (ascii, netcdf, etc.)
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     std::string m_out_fmt{"netcdf"};
     std::string m_ncfile_name;
 #else

@@ -165,7 +165,7 @@ void ABLFieldInit::initialize_from_inputfile()
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 void ABLFieldInit::initialize_from_netcdf()
 {
-#ifndef AMR_WIND_USE_NETCDF
+#ifndef KYNEMA_SGF_USE_NETCDF
     amrex::Abort("initialization from profile capability requires NetCDF");
 #else
     m_init_uvtheta_profile = true;

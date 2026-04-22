@@ -3,7 +3,7 @@
 
 namespace exw_fast {
 
-#ifdef AMR_WIND_USE_OPENFAST
+#ifdef KYNEMA_SGF_USE_OPENFAST
 extern "C" {
 #include "FAST_Library.h"
 #include "AMReX_REAL.H"

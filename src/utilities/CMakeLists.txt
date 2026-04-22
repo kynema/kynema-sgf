@@ -25,10 +25,10 @@ add_subdirectory(sampling)
 add_subdirectory(subvolume)
 add_subdirectory(averaging)
 
-if (AMR_WIND_ENABLE_NETCDF)
+if (KYNEMA_SGF_ENABLE_NETCDF)
   add_subdirectory(ncutils)
 endif()
 
-if (AMR_WIND_ENABLE_ASCENT)
+if (KYNEMA_SGF_ENABLE_ASCENT)
    add_subdirectory(ascent)
 endif()

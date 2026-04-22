@@ -51,7 +51,7 @@ ABL::ABL(CFDSim& sim)
     amrex::ParmParse pp("ABL");
 
     if (pp.contains("mesoscale_forcing")) {
-#ifndef AMR_WIND_USE_NETCDF
+#ifndef KYNEMA_SGF_USE_NETCDF
         amrex::Abort("Mesoscale forcing capability requires NetCDF");
 #else
         std::string ncfile;
@@ -60,7 +60,7 @@ ABL::ABL(CFDSim& sim)
 #endif
 
     } else if (pp.contains("WRFforcing")) {
-#ifndef AMR_WIND_USE_NETCDF
+#ifndef KYNEMA_SGF_USE_NETCDF
         amrex::Abort("WRF forcing capability requires NetCDF");
 #else
         amrex::Print() << "Note: ABL.WRFforcing is deprecated -- "
@@ -220,7 +220,7 @@ void ABL::pre_advance_work()
         // Set the mean velocities at the forcing height so that the source
         // terms can be computed during the time integration calls
 
-#ifdef AMR_WIND_USE_HELICS
+#ifdef KYNEMA_SGF_USE_HELICS
         if (m_sim.helics().is_activated()) {
             const amrex::Real wind_speed =
                 m_sim.helics().m_inflow_wind_speed_to_kynema_sgf;

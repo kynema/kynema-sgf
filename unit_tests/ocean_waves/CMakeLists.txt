@@ -5,7 +5,7 @@ target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
   test_wave_theories.cpp
   )
 
-if (AMR_WIND_ENABLE_W2A)
+if (KYNEMA_SGF_ENABLE_W2A)
   target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
     test_waves_2_amr.cpp
     )

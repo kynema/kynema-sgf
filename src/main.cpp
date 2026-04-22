@@ -3,7 +3,7 @@
 #include "AMReX_FileSystem.H"
 #include "AMReX_REAL.H"
 
-#ifdef AMR_WIND_USE_KYNEMA
+#ifdef KYNEMA_SGF_USE_KYNEMA
 #include <Kokkos_Core.hpp>
 #endif
 
@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
     MPI_Init(&argc, &argv);
 #endif
 
-#ifdef AMR_WIND_USE_KYNEMA
+#ifdef KYNEMA_SGF_USE_KYNEMA
     Kokkos::initialize(argc, argv);
 #endif
 

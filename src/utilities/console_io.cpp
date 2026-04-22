@@ -6,19 +6,19 @@
 #include "AMReX_OpenMP.H"
 #include "src/CFDSim.H"
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
 #include "netcdf.h"
 #ifdef NC_HAVE_META_H
 #include "netcdf_meta.h"
 #endif
 #endif
-#ifdef AMR_WIND_USE_MASA
+#ifdef KYNEMA_SGF_USE_MASA
 #include "masa.h"
 #endif
 #ifdef AMREX_USE_HYPRE
 #include "HYPRE_config.h"
 #endif
-#ifdef AMR_WIND_USE_ASCENT
+#ifdef KYNEMA_SGF_USE_ASCENT
 #include "ascent_config.h"
 #include "AMReX_REAL.H"
 
@@ -189,21 +189,21 @@ void print_tpls(std::ostream& out)
 {
     amrex::Vector<std::string> tpls;
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     tpls.push_back(std::string("NetCDF    ") + NC_VERSION);
 #endif
 #ifdef AMREX_USE_HYPRE
     tpls.push_back(std::string("HYPRE     ") + HYPRE_RELEASE_VERSION);
 #endif
-#ifdef AMR_WIND_USE_OPENFAST
+#ifdef KYNEMA_SGF_USE_OPENFAST
     std::string of_version =
         TOSTRING(OPENFAST_VERSION_MAJOR) "." TOSTRING(OPENFAST_VERSION_MINOR);
     tpls.push_back(std::string("OpenFAST  ") + of_version);
 #endif
-#ifdef AMR_WIND_USE_MASA
+#ifdef KYNEMA_SGF_USE_MASA
     tpls.push_back(std::string("MASA      ") + MASA_LIB_VERSION);
 #endif
-#ifdef AMR_WIND_USE_ASCENT
+#ifdef KYNEMA_SGF_USE_ASCENT
     tpls.push_back(std::string("ASCENT    ") + ASCENT_VERSION);
 #endif
 

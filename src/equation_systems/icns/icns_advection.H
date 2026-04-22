@@ -58,7 +58,7 @@ private:
     FieldRepo& m_repo;
     FieldBoundaryMgr& m_fb_mgr;
     std::unique_ptr<Hydro::MacProjector> m_mac_proj;
-#ifdef AMR_WIND_USE_FFT
+#ifdef KYNEMA_SGF_USE_FFT
     std::unique_ptr<Hydro::FFTMacProjector> m_fft_mac_proj;
     bool m_use_fft{true}; // use fft if possible
 #endif

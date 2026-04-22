@@ -15,7 +15,7 @@
 
 using namespace amrex::literals;
 
-#ifdef AMR_WIND_USE_W2A
+#ifdef KYNEMA_SGF_USE_W2A
 namespace {
 int evaluate_read_resize(
     int& ntime,
@@ -212,7 +212,7 @@ struct ReadInputsOp<W2AWaves>
         const ::kynema_sgf::utils::MultiParser& pp)
     {
 // Check for W2A initialization
-#ifndef AMR_WIND_USE_W2A
+#ifndef KYNEMA_SGF_USE_W2A
         // Assert Waves2AMR must be used for initial condition file
         amrex::Abort(
             "ocean_waves/W2AWaves: Kynema-SGF was not built with Waves2AMR "
@@ -603,7 +603,7 @@ struct InitDataOp<W2AWaves>
         bool multiphase_mode)
     {
 
-#ifdef AMR_WIND_USE_W2A
+#ifdef KYNEMA_SGF_USE_W2A
         auto& wdata = data.meta();
 
         auto& sim = data.sim();
@@ -769,7 +769,7 @@ struct UpdateTargetFieldsOp<W2AWaves>
     void operator()(W2AWaves::DataType& data, const amrex::Real time)
     {
 
-#ifdef AMR_WIND_USE_W2A
+#ifdef KYNEMA_SGF_USE_W2A
         auto& wdata = data.meta();
         auto& sim = data.sim();
 

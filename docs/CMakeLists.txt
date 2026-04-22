@@ -10,7 +10,7 @@ file(MAKE_DIRECTORY ${DOXYGEN_OUTPUT_DIR})
 # Doxygen target
 find_package(Doxygen REQUIRED)
 
-file(GLOB_RECURSE AMR_WIND_PUBLIC_SOURCE ${DOXYGEN_INPUT_DIR}/*.H ${DOXYGEN_INPUT_DIR}/*.cpp)
+file(GLOB_RECURSE KYNEMA_SGF_PUBLIC_SOURCE ${DOXYGEN_INPUT_DIR}/*.H ${DOXYGEN_INPUT_DIR}/*.cpp)
 set(DOXYGEN_INDEX_FILE ${DOXYGEN_HTML_OUTPUT_DIR}/index.html)
 set(DOXYGEN_TAG_FILE ${DOXYGEN_HTML_OUTPUT_DIR}/tagfile.xml)
 set(DOXYGEN_AWESOME_STYLE_FILE ${PROJECT_SOURCE_DIR}/submods/doxygen-awesome-css/doxygen-awesome.css)
@@ -19,7 +19,7 @@ set(DOXYFILE_OUT ${DOXYGEN_OUTPUT_DIR}/Doxyfile)
 configure_file(${DOXYFILE_IN} ${DOXYFILE_OUT} @ONLY)
 
 add_custom_command(OUTPUT ${DOXYGEN_INDEX_FILE}
-                   DEPENDS ${AMR_WIND_PUBLIC_SOURCE}
+                   DEPENDS ${KYNEMA_SGF_PUBLIC_SOURCE}
                    DEPENDS ${DOXYGEN_SOURCE_DIR}/main_page.md
                    COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE_OUT}
                    MAIN_DEPENDENCY ${DOXYFILE_OUT} ${DOXYFILE_IN})

@@ -78,7 +78,7 @@ void ModulatedPowerLaw::post_init_actions()
 void ModulatedPowerLaw::pre_advance_work()
 {
 
-#ifdef AMR_WIND_USE_HELICS
+#ifdef KYNEMA_SGF_USE_HELICS
     if (m_sim.helics().is_activated()) {
         const amrex::Real wind_speed =
             m_sim.helics().m_inflow_wind_speed_to_kynema_sgf;

@@ -164,7 +164,7 @@ void PlaneSampler::sampling_locations(
     }
 }
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
 void PlaneSampler::define_netcdf_metadata(const ncutils::NCGroup& grp) const
 {
     const std::vector<int> ijk{

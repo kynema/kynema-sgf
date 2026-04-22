@@ -25,6 +25,6 @@ target_sources(${kynema_sgf_lib_name}
 add_subdirectory(multiphase)
 add_subdirectory(udfs)
 
-if(AMR_WIND_ENABLE_MASA)
+if(KYNEMA_SGF_ENABLE_MASA)
   add_subdirectory(mms)
 endif()

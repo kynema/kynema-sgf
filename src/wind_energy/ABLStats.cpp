@@ -475,7 +475,7 @@ void ABLStats::prepare_ascii_file()
 
 void ABLStats::prepare_netcdf_file()
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     BL_PROFILE("kynema-sgf::ABLStats::prepare_netcdf_file");
 
     const std::string post_dir = m_sim.io_manager().post_processing_directory();
@@ -581,7 +581,7 @@ void ABLStats::prepare_netcdf_file()
 
 void ABLStats::write_netcdf()
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     BL_PROFILE("kynema-sgf::ABLStats::write_netcdf");
 
     // First calculate sfs stress averages

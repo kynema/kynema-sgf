@@ -566,13 +566,13 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::get_hub_stats(
     }
 }
 
-#ifdef AMR_WIND_USE_KYNEMA
+#ifdef KYNEMA_SGF_USE_KYNEMA
 
 template <>
 void ExtTurbIface<KynemaTurbine, KynemaSolverData>::prepare_netcdf_file(
     KynemaTurbine& fi)
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     BL_PROFILE("kynema-sgf::KynemaIface::prepare_netcdf_file");
     if (!amrex::UtilCreateDirectory(m_solver_data.output_dir, 0755)) {
         amrex::CreateDirectoryFailed(m_solver_data.output_dir);
@@ -628,7 +628,7 @@ template <>
 void ExtTurbIface<KynemaTurbine, KynemaSolverData>::write_velocity_data(
     const KynemaTurbine& fi)
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     BL_PROFILE("kynema-sgf::KynemaIface::write_velocity_data");
     const std::string fname =
         m_solver_data.output_dir + "/" + fi.tlabel + ".nc";
@@ -651,7 +651,7 @@ template <>
 void ExtTurbIface<KynemaTurbine, KynemaSolverData>::read_velocity_data(
     KynemaTurbine& fi, const ncutils::NCFile& ncf, const size_t tid)
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     const auto nt = static_cast<size_t>(tid);
     const auto npts = static_cast<size_t>(fi.length_fluid_velocity(0));
 

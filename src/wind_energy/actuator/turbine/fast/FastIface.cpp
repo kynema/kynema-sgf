@@ -144,13 +144,13 @@ void ExtTurbIface<FastTurbine, FastSolverData>::get_hub_stats(
         fi.hub_rot_vel.begin(), fi.hub_orient.begin());
 }
 
-#ifdef AMR_WIND_USE_OPENFAST
+#ifdef KYNEMA_SGF_USE_OPENFAST
 
 template <>
 void ExtTurbIface<FastTurbine, FastSolverData>::prepare_netcdf_file(
     FastTurbine& fi)
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     BL_PROFILE("kynema-sgf::FastIface::prepare_netcdf_file");
     if (!amrex::UtilCreateDirectory(m_solver_data.output_dir, 0755)) {
         amrex::CreateDirectoryFailed(m_solver_data.output_dir);
@@ -206,7 +206,7 @@ template <>
 void ExtTurbIface<FastTurbine, FastSolverData>::write_velocity_data(
     const FastTurbine& fi)
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     BL_PROFILE("kynema-sgf::FastIface::write_velocity_data");
     const std::string fname =
         m_solver_data.output_dir + "/" + fi.tlabel + ".nc";
@@ -230,7 +230,7 @@ template <>
 void ExtTurbIface<FastTurbine, FastSolverData>::read_velocity_data(
     FastTurbine& fi, const ncutils::NCFile& ncf, const size_t tid)
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     const auto nt = static_cast<size_t>(tid);
     const auto npts = static_cast<size_t>(fi.from_cfd.u_Len);
 
@@ -316,7 +316,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_init_turbine(
 #endif
 
     {
-#ifdef AMR_WIND_USE_OPENFAST
+#ifdef KYNEMA_SGF_USE_OPENFAST
         // Check if OpenFAST has tower and reset tower nodes appropriately
         const int npts = fi.to_cfd.fx_Len;
         const int nrotor_pts = fi.num_blades * fi.num_pts_blade + 1;
@@ -353,7 +353,7 @@ template <>
 void ExtTurbIface<FastTurbine, FastSolverData>::ext_replay_turbine(
     FastTurbine& fi)
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     BL_PROFILE("kynema-sgf::FastIface::replay_turbine");
 
     // Determine the number of timesteps we should advance this turbine
@@ -427,7 +427,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_restart_turbine(
 #endif
 
     {
-#ifdef AMR_WIND_USE_OPENFAST
+#ifdef KYNEMA_SGF_USE_OPENFAST
         // Check if OpenFAST has tower and reset tower nodes appropriately
         const int npts = fi.to_cfd.fx_Len;
         const int nrotor_pts = fi.num_blades * fi.num_pts_blade + 1;

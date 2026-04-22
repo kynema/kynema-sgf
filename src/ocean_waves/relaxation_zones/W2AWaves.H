@@ -4,7 +4,7 @@
 #include "src/ocean_waves/relaxation_zones/RelaxationZones.H"
 #include <vector>
 #include <complex>
-#ifdef AMR_WIND_USE_W2A
+#ifdef KYNEMA_SGF_USE_W2A
 #include "Waves2AMR.h"
 #include "AMReX_REAL.H"
 
@@ -58,7 +58,7 @@ struct W2AWavesData : public RelaxZonesBaseData
     std::vector<amrex::Real> r_mX, r_mY, r_mZ, r_mFS, r_mAdd;
 
 // Struct variables that have special types
-#ifdef AMR_WIND_USE_W2A
+#ifdef KYNEMA_SGF_USE_W2A
     // FFTW plan vector
     std::vector<fftw_plan> plan_vector;
     // FFTW pointers to store modes ready for ifft
@@ -89,7 +89,7 @@ struct W2AWavesData : public RelaxZonesBaseData
 
     ~W2AWavesData()
     {
-#ifdef AMR_WIND_USE_W2A
+#ifdef KYNEMA_SGF_USE_W2A
         if (c_eta_mptr) {
             delete[] c_eta_mptr;
         }

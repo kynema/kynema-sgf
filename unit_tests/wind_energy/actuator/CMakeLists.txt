@@ -10,7 +10,7 @@ target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
   test_disk_functions.cpp
   )
 
-if (AMR_WIND_ENABLE_OPENFAST)
+if (KYNEMA_SGF_ENABLE_OPENFAST)
   target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
     test_fast_iface.cpp
     test_turbine_fast.cpp

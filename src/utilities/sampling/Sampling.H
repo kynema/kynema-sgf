@@ -81,7 +81,7 @@ public:
         return static_cast<int>(m_total_particles);
     }
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     int num_netcdf_output_particles() const
     {
         if (m_out_fmt == "netcdf") {
@@ -158,7 +158,7 @@ private:
     const std::string m_label;
 
     //! Format of the data output (native, ascii, netcdf, etc.)
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     std::string m_out_fmt{"netcdf"};
     std::string m_ncfile_name;
 

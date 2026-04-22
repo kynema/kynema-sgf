@@ -16,7 +16,7 @@
 #include "AMReX_PlotFileUtil.H"
 #include "AMReX_MultiFabUtil.H"
 
-#ifdef AMR_WIND_USE_HDF5
+#ifdef KYNEMA_SGF_USE_HDF5
 #include "AMReX_PlotFileUtilHDF5.H"
 #include "AMReX_REAL.H"
 
@@ -48,9 +48,9 @@ void IOManager::initialize_io()
     pp.query("post_processing_directory", m_post_dir);
     pp.query("restart_file", m_restart_file);
     pp.query("allow_missing_restart_fields", m_allow_missing_restart_fields);
-#ifdef AMR_WIND_USE_HDF5
+#ifdef KYNEMA_SGF_USE_HDF5
     pp.query("output_hdf5_plotfile", m_output_hdf5_plotfile);
-#ifdef AMR_WIND_USE_HDF5_ZFP
+#ifdef KYNEMA_SGF_USE_HDF5_ZFP
     pp.query("hdf5_compression", m_hdf5_compression);
 #endif
 #endif
@@ -168,12 +168,12 @@ void IOManager::write_plot_file()
     const auto& mesh = m_sim.mesh();
     amrex::Print() << "Writing plot file       " << plt_filename << " at time "
                    << m_sim.time().new_time() << '\n';
-#ifdef AMR_WIND_USE_HDF5
+#ifdef KYNEMA_SGF_USE_HDF5
     if (m_output_hdf5_plotfile) {
         amrex::WriteMultiLevelPlotfileHDF5SingleDset(
             plt_filename, nlevels, outfield->vec_const_ptrs(), m_plt_var_names,
             mesh.Geom(), m_sim.time().new_time(), istep, mesh.refRatio()
-#ifdef AMR_WIND_USE_HDF5_ZFP
+#ifdef KYNEMA_SGF_USE_HDF5_ZFP
                                                              ,
             m_hdf5_compression
 #endif
@@ -184,7 +184,7 @@ void IOManager::write_plot_file()
             plt_filename, nlevels, outfield->vec_const_ptrs(), m_plt_var_names,
             mesh.Geom(), m_sim.time().new_time(), istep, mesh.refRatio());
         write_info_file(plt_filename);
-#ifdef AMR_WIND_USE_HDF5
+#ifdef KYNEMA_SGF_USE_HDF5
     }
 #endif
 }

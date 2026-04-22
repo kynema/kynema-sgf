@@ -125,7 +125,7 @@ void Sampling::initialize()
 
     update_container();
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     if (m_out_fmt == "netcdf") {
         prepare_netcdf_file();
         m_sample_buf.assign(m_total_particles * m_var_names.size(), 0.0_rt);
@@ -220,7 +220,7 @@ void Sampling::sampling_post()
         obj->post_sample_actions();
     }
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     if (m_out_fmt == "netcdf") {
         m_output_buf.clear();
     }
@@ -246,7 +246,7 @@ void Sampling::convert_velocity_lineofsight()
         return;
     }
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     amrex::Vector<int> vel_map(AMREX_SPACEDIM, 0);
     const amrex::Vector<std::string> vnames = {
         "velocityx", "velocityy", "velocityz"};
@@ -308,7 +308,7 @@ void Sampling::create_output_buffer()
         return;
     }
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     const long nvars = m_var_names.size();
     for (int iv = 0; iv < nvars; ++iv) {
         long offset = iv * m_scontainer->num_sampling_particles();
@@ -346,7 +346,7 @@ void Sampling::fill_buffer()
 {
     BL_PROFILE("kynema-sgf::Sampling::fill_buffer");
     if (m_out_fmt == "netcdf") {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
         m_scontainer->populate_buffer(m_sample_buf);
 #else
         amrex::Abort(
@@ -481,7 +481,7 @@ void Sampling::write_header_file(const std::string& fname)
 
 void Sampling::prepare_netcdf_file()
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
 
     const std::string post_dir = m_sim.io_manager().post_processing_directory();
     const std::string sname =
@@ -555,7 +555,7 @@ void Sampling::prepare_netcdf_file()
 
 void Sampling::write_netcdf()
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     if (!amrex::ParallelDescriptor::IOProcessor()) {
         return;
     }

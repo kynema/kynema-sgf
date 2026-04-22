@@ -66,7 +66,7 @@ void prepare_netcdf_file(
     const TurbineInfo& info,
     const ActGrid& grid)
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     // Only root process handles I/O
     if (!info.is_root_proc) {
         return;
@@ -134,7 +134,7 @@ void write_netcdf(
     const ActGrid& grid,
     const amrex::Real time)
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     // Only root process handles I/O
     if (!info.is_root_proc) {
         return;

@@ -17,7 +17,7 @@ target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
   test_time_averaging.cpp
   )
 
-if (AMR_WIND_ENABLE_NETCDF)
+if (KYNEMA_SGF_ENABLE_NETCDF)
   target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
     test_ncutils.cpp
     )

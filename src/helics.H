@@ -5,7 +5,7 @@
 #include "src/core/SimTime.H"
 #include "src/CFDSim.H"
 
-#ifdef AMR_WIND_USE_HELICS
+#ifdef KYNEMA_SGF_USE_HELICS
 #include "helics/cpp98/CombinationFederate.hpp"
 #include "helics/cpp98/helics.hpp"
 #include "helics/cpp98/Federate.hpp"
@@ -25,7 +25,7 @@ public:
     void pre_advance_work();
     [[nodiscard]] bool is_activated() const { return m_helics_activated; }
 
-#ifdef AMR_WIND_USE_HELICS
+#ifdef KYNEMA_SGF_USE_HELICS
     HelicsTime m_currenttime = 0.0_rt;
     std::string m_fedinitstring = "--federates=1";
 #endif
@@ -45,12 +45,12 @@ private:
     void send_messages_to_controller();
     void recv_messages_from_controller();
 
-#ifdef AMR_WIND_USE_HELICS
+#ifdef KYNEMA_SGF_USE_HELICS
     std::unique_ptr<helicscpp::FederateInfo> m_fi;
     std::unique_ptr<helicscpp::CombinationFederate> m_vfed;
 #endif
 
-#ifdef AMR_WIND_USE_HELICS
+#ifdef KYNEMA_SGF_USE_HELICS
     bool m_helics_activated{true};
 #else
     bool m_helics_activated{false};

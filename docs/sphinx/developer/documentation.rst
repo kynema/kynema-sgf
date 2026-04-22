@@ -84,7 +84,7 @@ Run the following command to build the documentation:
 
 .. code-block:: console
 
-    cd build && cmake -DAMR_WIND_ENABLE_DOCUMENTATION:BOOL=ON .. && cmake --build . -t docs
+    cd build && cmake -DKYNEMA_SGF_ENABLE_DOCUMENTATION:BOOL=ON .. && cmake --build . -t docs
 
 .. tip::
 

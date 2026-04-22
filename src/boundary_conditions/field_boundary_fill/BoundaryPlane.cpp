@@ -28,7 +28,7 @@ AMREX_FORCE_INLINE amrex::IntVect offset(const int face_dir, const int normal)
     return offset;
 }
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE int
 plane_idx(const int i, const int j, const int k, const int perp, const int lo)
 {
@@ -70,7 +70,7 @@ void InletData::define_level_data(
     m_data_interp[ori]->push_back(amrex::FArrayBox(bx, static_cast<int>(nc)));
 }
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
 void InletData::read_data(
     ncutils::NCGroup& grp,
     const amrex::Orientation ori,
@@ -337,7 +337,7 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
         pp_abl.query("bndry_output_format", m_out_fmt);
     }
 
-#ifndef AMR_WIND_USE_NETCDF
+#ifndef KYNEMA_SGF_USE_NETCDF
     if (m_out_fmt == "netcdf") {
         amrex::Print()
             << "Warning: boundary output format using netcdf must link netcdf "
@@ -414,7 +414,7 @@ void BoundaryPlane::write_header()
         return;
     }
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
 
     if (m_out_fmt == "netcdf") {
         amrex::Print() << "Creating output NetCDF file: " << m_filename
@@ -546,7 +546,7 @@ void BoundaryPlane::write_bndry_native_header(const std::string& chkname)
         return;
     }
 
-#ifndef AMR_WIND_USE_NETCDF
+#ifndef KYNEMA_SGF_USE_NETCDF
     if (m_out_fmt == "netcdf") {
         amrex::Abort("This is only used in the native format pathway");
     }
@@ -645,7 +645,7 @@ void BoundaryPlane::write_file()
         fld->fillpatch(m_time.current_time());
     }
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
 
     if (m_out_fmt == "netcdf") {
         amrex::Print() << "\nWriting NetCDF file " << m_filename << " at time "
@@ -755,7 +755,7 @@ void BoundaryPlane::read_header()
     // TODO: overallocate this for now
     m_in_data.resize(2 * AMREX_SPACEDIM);
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
 
     if (m_out_fmt == "netcdf") {
         amrex::Print() << "Reading input NetCDF file: " << m_filename
@@ -965,7 +965,7 @@ amrex::Vector<amrex::BoxArray> BoundaryPlane::read_bndry_native_boxarrays(
     BL_PROFILE("kynema-sgf::BoundaryPlane::read_bndry_native_boxarrays");
     AMREX_ALWAYS_ASSERT(m_io_mode == io_mode::input);
 
-#ifndef AMR_WIND_USE_NETCDF
+#ifndef KYNEMA_SGF_USE_NETCDF
     if (m_out_fmt == "netcdf") {
         amrex::Abort("This is only used in the native format pathway");
     }
@@ -1198,7 +1198,7 @@ void BoundaryPlane::read_file(const bool nph_target_time)
         return;
     }
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     if (m_out_fmt == "netcdf") {
 
         auto ncf = ncutils::NCFile::open_par(
@@ -1433,7 +1433,7 @@ void BoundaryPlane::set_velocity(
     populate_data(lev, time, fld, mfab, dcomp, orig_comp);
 }
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
 void BoundaryPlane::write_data(
     const ncutils::NCGroup& grp,
     const amrex::Orientation ori,

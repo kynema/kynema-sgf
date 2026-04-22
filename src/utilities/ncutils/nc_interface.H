@@ -1,7 +1,7 @@
 #ifndef NC_INTERFACE_H
 #define NC_INTERFACE_H
 
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
 #include <string>
 #include <unordered_map>
 #include <vector>

@@ -63,7 +63,7 @@ public:
         amrex::Real pitch,
         amrex::Real roll);
 
-#ifdef AMR_WIND_USE_OPENFAST
+#ifdef KYNEMA_SGF_USE_OPENFAST
 
     void bcast_turbine(
         amrex::Array<amrex::Real, 18>& /*turbine_pack*/, int /*root_proc*/);
@@ -133,7 +133,7 @@ private:
     vs::Vector m_hub_location{0, 0, 0};
     vs::Vector m_hub_location_init{0, 0, 0};
 
-#ifdef AMR_WIND_USE_OPENFAST
+#ifdef KYNEMA_SGF_USE_OPENFAST
 
     amrex::Array<float, 3> m_turbine_base_pos = {0, 0, 0};
     amrex::Array<float, 3> m_current_hub_abs_pos = {0, 0, 0};

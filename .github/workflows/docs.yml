@@ -36,7 +36,7 @@ jobs:
       - name: Configure
         run: |
           cmake -B ${{runner.workspace}}/build-docs \
-            -DAMR_WIND_ENABLE_DOCUMENTATION:BOOL=ON \
+            -DKYNEMA_SGF_ENABLE_DOCUMENTATION:BOOL=ON \
             ${{github.workspace}}
       - name: Build
         # execute from top-level amr-wind directory

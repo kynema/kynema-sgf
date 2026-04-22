@@ -13,7 +13,7 @@ namespace kynema_sgf {
 
 ABLFieldInitFile::ABLFieldInitFile()
 {
-#ifndef AMR_WIND_USE_NETCDF
+#ifndef KYNEMA_SGF_USE_NETCDF
     // Assert netcdf must be used for initial condition file
     amrex::Abort(
         "ABLFieldInitFile: Kynema-SGF was not built with NetCDF support; "
@@ -30,7 +30,7 @@ bool ABLFieldInitFile::operator()(
     const amrex::Array4<amrex::Real>& velocity,
     const int lev) const
 {
-#ifdef AMR_WIND_USE_NETCDF
+#ifdef KYNEMA_SGF_USE_NETCDF
     // Load the netcdf file with data if specified in the inputs
     if (lev == 0) {
         // Ensure that the input dimensions match the coarsest grid size
