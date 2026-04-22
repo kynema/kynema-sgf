@@ -162,15 +162,16 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
     pp.getarr("segment_labels", labels);
 
     amrex::Vector<ChannelSegmentType> h_type;
+    amrex::Vector<ChannelVelocityProfile> h_velocity_profile;
     amrex::Vector<amrex::Real> h_dim0_s, h_dim1_s, h_dim2_s;
     amrex::Vector<amrex::Real> h_dim0_e, h_dim1_e, h_dim2_e;
     amrex::Vector<amrex::Array<amrex::Real, 3>> h_segment_start;
     amrex::Vector<amrex::Array<amrex::Real, 3>> h_segment_end;
+    amrex::Vector<amrex::Real> h_flow_speed;
 
     for (const auto& lbl : labels) {
         const std::string key = identifier() + "." + lbl;
         amrex::ParmParse pp1(key);
-        std::string stype = "Ellipse";
         ChannelSegmentType type = ChannelSegmentType::Ellipse;
         amrex::Real dim0_s = 0.0_rt;
         amrex::Real dim1_s = 0.0_rt;
@@ -181,9 +182,10 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
         amrex::Vector<amrex::Real> seg_start{0.0_rt, 0.0_rt, 0.0_rt};
         amrex::Vector<amrex::Real> seg_end{0.0_rt, 0.0_rt, 0.0_rt};
 
+        std::string stype = "Ellipse";
         pp1.query("type", stype);
         if (stype == "Ellipse") {
-            type = ChannelSegmentType::Ellipse;
+            h_type.emplace_back(ChannelSegmentType::Ellipse);
             if (pp1.contains("diameter")) {
                 pp1.get("diameter", dim0_s);
                 dim1_s = dim0_s;
@@ -206,7 +208,7 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
                 pp1.get("vertical_axis_end", dim1_e);
             }
         } else if (stype == "Trapezoid") {
-            type = ChannelSegmentType::Trapezoid;
+            h_type.emplace_back(ChannelSegmentType::Trapezoid);
             if (pp1.contains("top_width")) {
                 pp1.get("top_width", dim0_s);
                 pp1.get("bottom_width", dim1_s);
@@ -227,7 +229,6 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
         pp1.getarr("segment_start_point", seg_start);
         pp1.getarr("segment_end_point", seg_end);
 
-        h_type.emplace_back(type);
         h_dim0_s.emplace_back(dim0_s);
         h_dim1_s.emplace_back(dim1_s);
         h_dim2_s.emplace_back(dim2_s);
@@ -239,6 +240,23 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
                 seg_start[0], seg_start[1], seg_start[2]});
         h_segment_end.emplace_back(
             amrex::Array<amrex::Real, 3>{seg_end[0], seg_end[1], seg_end[2]});
+
+        stype = "Uniform";
+        pp1.query("velocity_profile", stype);
+        if (stype == "Uniform") {
+            h_velocity_profile.emplace_back(ChannelVelocityProfile::Uniform);
+        } else if (stype == "Linear") {
+            h_velocity_profile.emplace_back(ChannelVelocityProfile::Linear);
+        } else if (stype == "Parabolic") {
+            h_velocity_profile.emplace_back(ChannelVelocityProfile::Parabolic);
+        } else {
+            amrex::Abort(
+                "Invalid channel velocity profile specified: " + stype +
+                ". Only 'Uniform', 'Linear', and 'Parabolic' are supported.");
+        }
+        amrex::Real flow_speed = 0.0_rt;
+        pp1.get("flow_speed", flow_speed);
+        h_flow_speed.emplace_back(flow_speed);
     }
 
     const int nseg = static_cast<int>(h_type.size());
@@ -251,10 +269,11 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
     m_dim2_e.resize(nseg);
     m_segment_start.resize(nseg);
     m_segment_end.resize(nseg);
+    m_velocity_profile.resize(nseg);
+    m_flow_speed.resize(nseg);
 
     amrex::Gpu::copy(
-        amrex::Gpu::hostToDevice, h_type.begin(), h_type.end(),
-        m_type.begin());
+        amrex::Gpu::hostToDevice, h_type.begin(), h_type.end(), m_type.begin());
     amrex::Gpu::copy(
         amrex::Gpu::hostToDevice, h_dim0_s.begin(), h_dim0_s.end(),
         m_dim0_s.begin());
@@ -279,6 +298,12 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
     amrex::Gpu::copy(
         amrex::Gpu::hostToDevice, h_segment_end.begin(), h_segment_end.end(),
         m_segment_end.begin());
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, h_velocity_profile.begin(),
+        h_velocity_profile.end(), m_velocity_profile.begin());
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, h_flow_speed.begin(), h_flow_speed.end(),
+        m_flow_speed.begin());
 }
 
 void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
@@ -293,6 +318,8 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     const auto& dx = geom.CellSizeArray();
     const auto& prob_lo = geom.ProbLoArray();
     const auto& prob_hi = geom.ProbHiArray();
+    auto& velocity_mfab = m_repo.get_field("velocity")(level);
+    auto vel_arrs = velocity_mfab.arrays();
     auto& blank_mfab = m_terrain_blank(level);
     auto blank_arrs = blank_mfab.arrays();
 
@@ -306,6 +333,8 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     const amrex::Real* dim2_e_ptr = m_dim2_e.data();
     const amrex::Array<amrex::Real, 3>* start_ptr = m_segment_start.data();
     const amrex::Array<amrex::Real, 3>* end_ptr = m_segment_end.data();
+    const ChannelVelocityProfile* velocity_profile_ptr = m_velocity_profile.data();
+    const amrex::Real* flow_speed_ptr = m_flow_speed.data();
     const bool multiphase = is_multiphase;
     const amrex::Real land_level = m_land_level;
 
@@ -331,6 +360,8 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
                 const auto& dim0_e = dim0_e_ptr[seg];
                 const auto& dim1_e = dim1_e_ptr[seg];
                 const auto& dim2_e = dim2_e_ptr[seg];
+                const auto& velocity_profile = velocity_profile_ptr[seg];
+                const auto& flow_speed = flow_speed_ptr[seg];
 
                 // Check if point is within bounding planes of segment start and
                 // end
@@ -353,8 +384,22 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
                     const amrex::Real yloc = local_coords[1];
                     const amrex::Real zloc = local_coords[2];
 
+                    // Transform flow speed to channel-aligned velocity vector
+
                     if (seg_type == ChannelSegmentType::Ellipse) {
                         outside_channel &= !ellipse(dim0, dim1, yloc, zloc);
+                        if (!outside_channel) {
+                            if (velocity_profile == ChannelVelocityProfile::Uniform) {
+                                vel_arrs[nbx](i, j, k, 0) = flow_speed;
+                            } else if (velocity_profile == ChannelVelocityProfile::Linear) {
+                                vel_arrs[nbx](i, j, k, 0) =
+                                    flow_speed * (1.0_rt - std::abs(yloc) / (dim1 / 2.0_rt));
+                            } else if (velocity_profile == ChannelVelocityProfile::Parabolic) {
+                                const amrex::Real y_norm = yloc / (dim1 / 2.0_rt);
+                                vel_arrs[nbx](i, j, k, 0) =
+                                    flow_speed * (1.0_rt - y_norm * y_norm);
+                            }
+                        }
                     } else if (seg_type == ChannelSegmentType::Trapezoid) {
                         outside_channel &=
                             !trapezoid(dim0, dim1, dim2, yloc, zloc);

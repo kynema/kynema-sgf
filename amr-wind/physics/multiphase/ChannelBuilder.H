@@ -8,6 +8,8 @@
 
 enum class ChannelSegmentType : std::uint8_t { Ellipse, Trapezoid };
 
+enum class ChannelVelocityProfile : std::uint8_t { Uniform, Linear, Parabolic };
+
 namespace amr_wind::channelbuilder {
 
 [[nodiscard]] bool trapezoid(
@@ -120,6 +122,10 @@ private:
     amrex::Gpu::DeviceVector<amrex::Real> m_dim2_e;
     amrex::Gpu::DeviceVector<amrex::Array<amrex::Real, 3>> m_segment_start;
     amrex::Gpu::DeviceVector<amrex::Array<amrex::Real, 3>> m_segment_end;
+
+    //! Quantities for setting velocity in channels
+    amrex::Gpu::DeviceVector<ChannelVelocityProfile> m_velocity_profile;
+    amrex::Gpu::DeviceVector<amrex::Real> m_flow_speed;
 
     bool is_multiphase;
 };
