@@ -1,5 +1,5 @@
-#include "aw_test_utils/MeshTest.H"
-#include "aw_test_utils/pp_utils.H"
+#include "ks_test_utils/MeshTest.H"
+#include "ks_test_utils/pp_utils.H"
 
 #include "src/wind_energy/actuator/turbine/external/ExtTurbIface.H"
 #include "src/wind_energy/actuator/turbine/fast/fast_types.H"
@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-#define AW_ENABLE_OPENFAST_UTEST 0
+#define KS_ENABLE_OPENFAST_UTEST 0
 
 namespace amr_wind_tests {
 namespace {
@@ -73,7 +73,7 @@ TEST_F(FastIfaceTest, fast_init)
 
     EXPECT_EQ(fi.tid_local, 0);
 
-#if AW_ENABLE_OPENFAST_UTEST
+#if KS_ENABLE_OPENFAST_UTEST
     fast.init_turbine(fi.tid_local);
     EXPECT_NEAR(
         fi.dt_ext, 0.00625_rt,
@@ -132,7 +132,7 @@ TEST_F(FastIfaceTest, fast_replay)
     EXPECT_EQ(fi.tid_local, 0);
     EXPECT_TRUE(fi.is_solution0);
 
-#if AW_ENABLE_OPENFAST_UTEST
+#if KS_ENABLE_OPENFAST_UTEST
     fast.init_turbine(fi.tid_local);
     EXPECT_EQ(fi.time_index, 20);
     EXPECT_FALSE(fi.is_solution0);

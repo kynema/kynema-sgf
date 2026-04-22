@@ -1,4 +1,4 @@
-target_sources(${amr_wind_unit_test_exe_name} PRIVATE
+target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
   test_actuator_sampling.cpp
   test_actuator_flat_plate.cpp
   test_actuator_fixed_wing.cpp
@@ -11,7 +11,7 @@ target_sources(${amr_wind_unit_test_exe_name} PRIVATE
   )
 
 if (AMR_WIND_ENABLE_OPENFAST)
-  target_sources(${amr_wind_unit_test_exe_name} PRIVATE
+  target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
     test_fast_iface.cpp
     test_turbine_fast.cpp
     )

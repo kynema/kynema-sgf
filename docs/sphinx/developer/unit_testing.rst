@@ -163,7 +163,7 @@ provides a few classes that provide the necessary scaffolding to quickly setup
 and run tests.
 
 Within the :file:`amr-wind/unit_tests` directory, the scaffolding utilities
-related to testing are in :file:`aw_test_utils` directory. This section provides
+related to testing are in :file:`ks_test_utils` directory. This section provides
 a brief overview of the core classes and their purpose.
 
 ``pp_utils`` - ParmParse utilities

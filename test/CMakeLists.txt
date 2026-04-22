@@ -143,7 +143,7 @@ function(add_test_u TEST_NAME)
     else()
       unset(MPI_COMMANDS)
     endif()
-    add_test(${TEST_NAME} bash -c "${MPI_COMMANDS} ${CMAKE_BINARY_DIR}/${amr_wind_unit_test_exe_name}")
+    add_test(${TEST_NAME} bash -c "${MPI_COMMANDS} ${CMAKE_BINARY_DIR}/${kynema_sgf_unit_test_exe_name}")
     set_tests_properties(${TEST_NAME} PROPERTIES
                          TIMEOUT 500
                          PROCESSORS ${TEST_NP}

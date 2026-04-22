@@ -7,7 +7,7 @@ target_sources(${tool_exe_name}
 
 target_include_directories(${tool_exe_name} PRIVATE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
-target_link_libraries(${tool_exe_name} PRIVATE ${amr_wind_lib_name} AMReX-Hydro::amrex_hydro_api)
+target_link_libraries(${tool_exe_name} PRIVATE ${kynema_sgf_lib_name} AMReX-Hydro::amrex_hydro_api)
 if (AMR_WIND_ENABLE_W2A)
   target_link_libraries(${tool_exe_name} PRIVATE Waves2AMR::Waves2AMR)
 endif()

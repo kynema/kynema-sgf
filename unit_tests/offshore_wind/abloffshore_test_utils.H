@@ -1,8 +1,8 @@
 #ifndef ABLOFFSHORE_TEST_UTILS_H
 #define ABLOFFSHORE_TEST_UTILS_H
 
-#include "aw_test_utils/MeshTest.H"
-#include "aw_test_utils/pp_utils.H"
+#include "ks_test_utils/MeshTest.H"
+#include "ks_test_utils/pp_utils.H"
 
 namespace amr_wind_tests {
 

@@ -1,4 +1,4 @@
-target_sources(${amr_wind_unit_test_exe_name} PRIVATE
+target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
   # testing utilities
   abl_test_utils.cpp
 
@@ -13,7 +13,7 @@ target_sources(${amr_wind_unit_test_exe_name} PRIVATE
   )
 
 if (AMR_WIND_ENABLE_NETCDF)
-  target_sources(${amr_wind_unit_test_exe_name} PRIVATE
+  target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
     test_abl_init_ncf.cpp
     )
 endif()

@@ -1,4 +1,4 @@
-target_sources(${amr_wind_lib_name}
+target_sources(${kynema_sgf_lib_name}
   PRIVATE
 
   actuator_utils.cpp

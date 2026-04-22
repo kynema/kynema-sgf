@@ -3,7 +3,7 @@
  */
 
 #include "gtest/gtest.h"
-#include "aw_test_utils/AmrexTestEnv.H"
+#include "ks_test_utils/AmrexTestEnv.H"
 
 //! Global instance of the environment (for access in tests)
 amr_wind_tests::AmrexTestEnv* utest_env = nullptr;

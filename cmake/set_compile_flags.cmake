@@ -18,13 +18,13 @@ endif()
 # Add our extra flags according to language
 separate_arguments(AMR_WIND_CXX_FLAGS)
 target_compile_options(
-  ${amr_wind_lib_name} PUBLIC
+  ${kynema_sgf_lib_name} PUBLIC
   $<$<COMPILE_LANGUAGE:CXX>:${AMR_WIND_CXX_FLAGS}>)
 
 # Building on CUDA requires additional considerations
 if (AMR_WIND_ENABLE_CUDA AND AMR_WIND_ENABLE_CUDA_RDC)
   set_target_properties(
-    ${amr_wind_lib_name} PROPERTIES
+    ${kynema_sgf_lib_name} PROPERTIES
     CUDA_SEPARABLE_COMPILATION ON)
 endif()
 
@@ -34,10 +34,10 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR
     target_compile_options(
       amrex_3d PUBLIC $<$<COMPILE_LANGUAGE:CXX>:-ffp-exception-behavior=maytrap>)
     target_compile_options(
-      ${amr_wind_lib_name} PUBLIC $<$<COMPILE_LANGUAGE:CXX>:-ffp-exception-behavior=maytrap>)
+      ${kynema_sgf_lib_name} PUBLIC $<$<COMPILE_LANGUAGE:CXX>:-ffp-exception-behavior=maytrap>)
   endif()
   target_compile_options(
     amrex_3d PUBLIC $<$<COMPILE_LANGUAGE:CXX>:-Wno-pass-failed>)
   target_compile_options(
-    ${amr_wind_lib_name} PUBLIC $<$<COMPILE_LANGUAGE:CXX>:-Wno-pass-failed>)
+    ${kynema_sgf_lib_name} PUBLIC $<$<COMPILE_LANGUAGE:CXX>:-Wno-pass-failed>)
 endif()

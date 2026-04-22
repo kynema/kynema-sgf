@@ -1,4 +1,4 @@
-#include "aw_test_utils/MeshTest.H"
+#include "ks_test_utils/MeshTest.H"
 #include "test_act_utils.H"
 
 #include "src/wind_energy/actuator/turbine/fast/TurbineFast.H"
@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-#define AW_ENABLE_OPENFAST_UTEST 0
+#define KS_ENABLE_OPENFAST_UTEST 0
 
 namespace amr_wind_tests {
 namespace {
@@ -100,7 +100,7 @@ TYPED_TEST(ActTurbineFastTest, test_ops)
     amrex::Vector<int> act_proc_count(::amrex::ParallelDescriptor::NProcs(), 0);
     act::ops::determine_root_proc<act::TurbineFast>(data, act_proc_count);
 
-#if AW_ENABLE_OPENFAST_UTEST
+#if KS_ENABLE_OPENFAST_UTEST
     {
         using InitOp = act::ops::InitDataOp<act::TurbineFast, TypeParam>;
         InitOp op;
@@ -144,7 +144,7 @@ TYPED_TEST(ActTurbineFastTest, fast_turbine)
 
     ActTurbPhyTest act(MeshTest::sim());
     act.pre_init_actions();
-#if AW_ENABLE_OPENFAST_UTEST
+#if KS_ENABLE_OPENFAST_UTEST
     act.post_init_actions();
 #else
     GTEST_SKIP();
