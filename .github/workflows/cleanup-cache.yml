@@ -2,7 +2,7 @@ name: CleanUpCache
 
 on:
   workflow_run:
-    workflows: [AMR-Wind-CI]
+    workflows: [Kynema-SGF-CI]
     types:
       - completed
 

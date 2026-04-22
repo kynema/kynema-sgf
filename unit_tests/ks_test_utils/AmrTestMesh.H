@@ -9,7 +9,7 @@
 #include "src/core/FieldRepo.H"
 #include "src/core/Field.H"
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 /** Base class for tests that require a valid Mesh
  *
@@ -62,6 +62,6 @@ protected:
     kynema_sgf::FieldRepo& m_repo;
 };
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
 
 #endif /* AMRTESTMESH_H */

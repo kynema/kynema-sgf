@@ -4,7 +4,7 @@ Coding Guidelines
 =================
 
 This section presents an incomplete list of coding guidelines currently used to
-develop AMR-Wind code. As is the case with rules, it might not apply to all
+develop Kynema-SGF code. As is the case with rules, it might not apply to all
 circumstances. Please use your best judgment when trying to comply with the
 rules and break them if necessary, but be ready to convince the rest of the
 team.
@@ -12,7 +12,7 @@ team.
 **Use modern C++**
 
    Traditionally, AMReX based solvers have used C++ for managing data structures
-   but Fortran for computational kernels. However, AMR-Wind is purely written in
+   but Fortran for computational kernels. However, Kynema-SGF is purely written in
    C++. One of the primary drivers for this choice is our desire to target
    next-generation Exascale systems that require targeting GPUs through CUDA,
    HIP, and other offloading paradigms. Support for languages other than C/C++
@@ -59,13 +59,13 @@ Style Guide/Recommendations
 ----------------------------
 
 This section documents the preferred style for formatting source code within
-AMR-Wind. While the guidelines presented in the previous section are based on
+Kynema-SGF. While the guidelines presented in the previous section are based on
 technical and quality assurance reasons, the formatting style is largely a
 matter of individual taste and there is no hard and fast rule. However, to
 ensure consistency in a codebase used by a large team, we provide some
 guidelines here.
 
-AMR-Wind comes with a :file:`.clang-format` definition that can be used with
+Kynema-SGF comes with a :file:`.clang-format` definition that can be used with
 `Clang format <https://clang.llvm.org/docs/ClangFormat.html>`_ to automatically
 reformat source code to be consistent with the rest of the codebase. Many source
 code editors come with Clang format integration that allows you to reformat code
@@ -74,10 +74,10 @@ your editor's documentation to setup clang-format integration. However, please
 be careful that you only use Clang format on code you've written modified and
 not on code that has not been written by you.
 
-Other AMR-Wind specific conventions:
+Other Kynema-SGF specific conventions:
 
-#. All AMR-Wind specific code must be within ``kynema_sgf`` namespace. Code for
-   unit tests must be in ``amr_wind_tests`` namespace.
+#. All Kynema-SGF specific code must be within ``kynema_sgf`` namespace. Code for
+   unit tests must be in ``kynema_sgf_tests`` namespace.
 
 #. Following AMReX convention, header files will use a ``.H`` extension and C++
    source files will use a ``.cpp`` extension.

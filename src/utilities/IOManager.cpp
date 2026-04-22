@@ -362,7 +362,7 @@ void IOManager::write_info_file(const std::string& path)
     }
 
     const std::string dash_line = "\n" + std::string(78, '-') + "\n";
-    const std::string fname(path + "/amr_wind_info");
+    const std::string fname(path + "/kynema_sgf_info");
     std::ofstream fh(fname.c_str(), std::ios::out);
     if (!fh.good()) {
         amrex::FileOpenFailed(fname);

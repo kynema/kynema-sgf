@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 TEST_F(MMSMeshTest, mms_initialization)
 {
 #if defined(AMREX_USE_HIP)
@@ -54,4 +54,4 @@ TEST_F(MMSMeshTest, mms_initialization)
 #endif
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

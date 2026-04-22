@@ -1,6 +1,6 @@
 .. _inputs:
 
-AMR-Wind inputs file
+Kynema-SGF inputs file
 =====================
 
 To run :program:`kynema_sgf`, the user must provide a text file containing inputs
@@ -21,7 +21,7 @@ interpreted as comments and ignored by the parser. Input file
 processing is handled by `AMReX ParmParse library
 <https://amrex-codes.github.io/amrex/docs_html/Basics.html#parmparse>`_. This
 section documents the common input file parameters and their default
-values (if available). The focus is on AMR-Wind specific input options
+values (if available). The focus is on Kynema-SGF specific input options
 and some common AMReX options (these are fully documented in `AMReX
 <https://amrex-codes.github.io/amrex/docs_html/RuntimeParameters.html>`_).
 
@@ -45,7 +45,7 @@ example, all inputs related to the problem domain are prefixed with
 Input file reference
 ---------------------
 
-The AMR-Wind input file is organized in the following sections
+The Kynema-SGF input file is organized in the following sections
 
 ======================= ============================================================
 Section                 Description
@@ -70,8 +70,8 @@ Section                 Description
 
 This section documents the parameters available within each section. Please
 note that the documentation provided here is for the latest major release of
-AMR-Wind. While input file specifications rarely change, major releases of
-AMR-Wind (e.g ``2.x`` to ``3.x``) might have breaking changes and the
+Kynema-SGF. While input file specifications rarely change, major releases of
+Kynema-SGF (e.g ``2.x`` to ``3.x``) might have breaking changes and the
 documentation provided here might not work with older releases.
 
 .. note::

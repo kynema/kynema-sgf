@@ -1,4 +1,4 @@
-set(tool_exe_name amr_wind_refine_chkpt)
+set(tool_exe_name kynema_sgf_refine_chkpt)
 
 add_executable(${tool_exe_name})
 target_sources(${tool_exe_name}

@@ -18,7 +18,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 class ActFlatPlateTest : public MeshTest
 {
@@ -60,7 +60,7 @@ struct FlatPlate : public act::WingType
 
 } // namespace
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
 
 namespace kynema_sgf::actuator {
 
@@ -68,7 +68,7 @@ namespace ops {
 
 template <>
 struct UseDefaultOp<
-    ::amr_wind_tests::FlatPlate,
+    ::kynema_sgf_tests::FlatPlate,
     ::kynema_sgf::actuator::ActSrcLine>
 {
     static constexpr bool update_pos = true;
@@ -78,10 +78,10 @@ struct UseDefaultOp<
 };
 
 template <typename SrcTrait>
-struct ReadInputsOp<::amr_wind_tests::FlatPlate, SrcTrait>
+struct ReadInputsOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 {
     void operator()(
-        ::amr_wind_tests::FlatPlate::DataType& data,
+        ::kynema_sgf_tests::FlatPlate::DataType& data,
         const kynema_sgf::actuator::utils::ActParser& pp)
     {
         // Copied from flat_plate_ops, but with unit chord assumed
@@ -111,9 +111,9 @@ struct ReadInputsOp<::amr_wind_tests::FlatPlate, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct InitDataOp<::amr_wind_tests::FlatPlate, SrcTrait>
+struct InitDataOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 {
-    void operator()(::amr_wind_tests::FlatPlate::DataType& data)
+    void operator()(::kynema_sgf_tests::FlatPlate::DataType& data)
     {
         auto& grid = data.grid();
         auto& wdata = data.meta();
@@ -146,9 +146,9 @@ struct InitDataOp<::amr_wind_tests::FlatPlate, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct UpdateVelOp<::amr_wind_tests::FlatPlate, SrcTrait>
+struct UpdateVelOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 {
-    void operator()(::amr_wind_tests::FlatPlate::DataType& data)
+    void operator()(::kynema_sgf_tests::FlatPlate::DataType& data)
     {
         const auto& grid = data.grid();
         const auto& pos = grid.vel_pos;
@@ -166,9 +166,9 @@ struct UpdateVelOp<::amr_wind_tests::FlatPlate, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct ComputeForceOp<::amr_wind_tests::FlatPlate, SrcTrait>
+struct ComputeForceOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 {
-    void operator()(::amr_wind_tests::FlatPlate::DataType& data)
+    void operator()(::kynema_sgf_tests::FlatPlate::DataType& data)
     {
         auto& grid = data.grid();
         const int npts = data.meta().num_pts;
@@ -205,10 +205,10 @@ struct ComputeForceOp<::amr_wind_tests::FlatPlate, SrcTrait>
 } // namespace ops
 
 template class ::kynema_sgf::actuator::
-    ActModel<::amr_wind_tests::FlatPlate, ::kynema_sgf::actuator::ActSrcLine>;
+    ActModel<::kynema_sgf_tests::FlatPlate, ::kynema_sgf::actuator::ActSrcLine>;
 } // namespace kynema_sgf::actuator
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class ActPhysicsTest : public ::kynema_sgf::actuator::Actuator
 {
@@ -328,4 +328,4 @@ TEST_F(ActFlatPlateTest, flat_plate_init)
     act.pre_init_actions();
     act.post_init_actions();
 }
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -1,1 +1,1 @@
-The file "input_HOS-NWT.dat" is not used by AMR-Wind to run this simulation. "input_HOS-NWT.dat" is the input file used to run HOS-NWT, which produces the "nwt_2d_modes_HOS_SWENSE.dat" file. This modes file is used by AMR-Wind and its submodule, Waves2AMR, to run the simulation.
+The file "input_HOS-NWT.dat" is not used by Kynema-SGF to run this simulation. "input_HOS-NWT.dat" is the input file used to run HOS-NWT, which produces the "nwt_2d_modes_HOS_SWENSE.dat" file. This modes file is used by Kynema-SGF and its submodule, Waves2AMR, to run the simulation.

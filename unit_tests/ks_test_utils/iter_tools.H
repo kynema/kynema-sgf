@@ -9,7 +9,7 @@
  *  Iteration utilities
  */
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 /** Helper to run a functor over all levels of a given field
  *
@@ -89,6 +89,6 @@ void run_algorithm(kynema_sgf::IntField& intfield, const Functor& func)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
 
 #endif /* ITER_TOOLS_H */

@@ -5,13 +5,13 @@
 Unit testing
 ============
 
-AMR-Wind uses `GoogleTest
+Kynema-SGF uses `GoogleTest
 <https://github.com/google/googletest/blob/master/googletest/docs/primer.md>`_
 to provide unit-testing capabilities for the source code. Unit tests are built
-by default when compiling AMR-Wind using CMake and can be run using the
+by default when compiling Kynema-SGF using CMake and can be run using the
 :program:`kynema_sgf_unit_tests` executable --- see :ref:`build` for details of
-building AMR-Wind with CMake. This section documents the process of running the
-unit tests, the unit test scaffolding facilities available within AMR-Wind unit
+building Kynema-SGF with CMake. This section documents the process of running the
+unit tests, the unit test scaffolding facilities available within Kynema-SGF unit
 testing infrastructure, and a brief overview of the process of creating new unit
 tests.
 
@@ -28,22 +28,22 @@ execution of unit tests, .e.g., to run a single test or a subset of tests.
 .. code-block:: console
 
    # Show command line arguments and brief help
-   ./amr_wind_unit_tests -h
+   ./kynema_sgf_unit_tests -h
 
    # List available tests
-   ./amr_wind_unit_tests --gtest_list_tests
+   ./kynema_sgf_unit_tests --gtest_list_tests
 
    # Run a single test
-   ./amr_wind_unit_tests --gtest_filter="ABLTest.abl_forcing"
+   ./kynema_sgf_unit_tests --gtest_filter="ABLTest.abl_forcing"
 
    # Run all tests belonging to a test suite
-   ./amr_wind_unit_tests --gtest_filter="ABLTest.*"
+   ./kynema_sgf_unit_tests --gtest_filter="ABLTest.*"
 
    # Run all tests beginning with keyword
-   ./amr_wind_unit_tests --gtest_filter="*.*field*"
+   ./kynema_sgf_unit_tests --gtest_filter="*.*field*"
 
    # Run all tests except for those in ABLTest suite
-   ./amr_wind_unit_tests --gtest_filter="-ABLTest.*"
+   ./kynema_sgf_unit_tests --gtest_filter="-ABLTest.*"
 
 Basic unit test concepts
 ------------------------
@@ -63,7 +63,7 @@ is organized in the test suite ``FieldRepoTest``. To run just this subset of tes
 .. code-block:: console
 
    # Run only tests related to field repository
-   ./amr_wind_unit_tests --gtest_filter="FieldRepoTest.*"
+   ./kynema_sgf_unit_tests --gtest_filter="FieldRepoTest.*"
 
 Assertions
 ~~~~~~~~~~~
@@ -136,19 +136,19 @@ additional data structures for its execution -- see `GoogleTest Simple Test docs
 Test fixtures, on the other hand, allow you to group all necessary data in a
 custom test class that can be reused for multiple tests. Defining a new simple
 test requires the use of ``TEST()`` macro, and defining a new test with a
-fixture requires the use of ``TEST_F()`` macro. In AMR-Wind, we use test
+fixture requires the use of ``TEST_F()`` macro. In Kynema-SGF, we use test
 fixtures extensively to perform actions like creating a mesh and generating some
 test fields that will be used to perform the tests.
 
-Unit testing in AMR-Wind
+Unit testing in Kynema-SGF
 -------------------------
 
 Unit test files are in :file:`amr-wind/unit_tests` directory. All unit test code
-is written within the ``amr_wind_tests`` namespace. This section describes the
+is written within the ``kynema_sgf_tests`` namespace. This section describes the
 scaffolding available to create unit tests and provides a few examples of unit
 tests to help developers write new ones.
 
-.. namespace:: amr_wind_tests
+.. namespace:: kynema_sgf_tests
 
 Unit test scaffolding
 ~~~~~~~~~~~~~~~~~~~~~
@@ -158,7 +158,7 @@ CFD applications is more complicated. Most often this will require the creation
 of a test mesh, generating field data structures that will be used to set up and
 run the test. This is also complicated by the fact that AMReX creates several
 global data structures, e.g., Geometry and ParmParse, that must be properly
-reset between each test to ensure a clean environment for each test. AMR-Wind
+reset between each test to ensure a clean environment for each test. Kynema-SGF
 provides a few classes that provide the necessary scaffolding to quickly setup
 and run tests.
 
@@ -169,7 +169,7 @@ a brief overview of the core classes and their purpose.
 ``pp_utils`` - ParmParse utilities
 ```````````````````````````````````
 
-Classes written in AMR-Wind often require user inputs that are generally read in
+Classes written in Kynema-SGF often require user inputs that are generally read in
 from input files through `amrex::ParmParse` (see `docs
 <https://amrex-codes.github.io/amrex/docs_html/Basics.html#parmparse>`_).
 ``pp_utils`` are a set of functions that create skeleton input data that are
@@ -210,13 +210,13 @@ example, to set the verbosity:
 
 .. code-block:: console
 
-   ./amr_wind_unit_tests amrex.verbose=1
+   ./kynema_sgf_unit_tests amrex.verbose=1
 
 And to keep parameters provided in the command line for use with tests:
 
 .. code-block:: console
 
-   ./amr_wind_unit_tests utest.keep_parameters=1
+   ./kynema_sgf_unit_tests utest.keep_parameters=1
 
 In normal development workflow, users will almost never have to interact with
 AmrexTestEnv directly.
@@ -224,7 +224,7 @@ AmrexTestEnv directly.
 .. class:: AmrexTest
 
 :class:`AmrexTest` is a test fixture is derived from ``::testing::Test`` and is
-the base class for all the other test fixtures used within AMR-Wind unit testing
+the base class for all the other test fixtures used within Kynema-SGF unit testing
 infrastructure. It provides setup and teardown actions that call
 ``ParmParse::Initialize()`` and ``ParmParse::Finalize()`` actions respectively
 to create a clean inputs table environment for each test. The setup/teardown
@@ -232,14 +232,14 @@ actions are called before and after a ``TEST_F()`` body is executed. This
 fixture does not create a mesh or related data structures, and can be used as a
 base fixture for tests that do not require any underlying mesh description.
 
-The following example, taken from one of the unit tests in AMR-Wind, shows usage
+The following example, taken from one of the unit tests in Kynema-SGF, shows usage
 of this test fixture:
 
 .. code-block:: c++
    :linenos:
 
-   // All unit tests are created within the `amr_wind_tests` namespace
-   namespace amr_wind_tests {
+   // All unit tests are created within the `kynema_sgf_tests` namespace
+   namespace kynema_sgf_tests {
 
    // Anonymous namespace to declare utility functions used within this file
    namespace {
@@ -304,7 +304,7 @@ of this test fixture:
        EXPECT_FALSE(time.write_last_plot_file());
    }
 
-   } // namespace amr_wind_tests
+   } // namespace kynema_sgf_tests
 
 
 .. class:: AmrTestMesh
@@ -325,19 +325,19 @@ setup/teardown actions described in :class:`AmrexTest`, it also resets the
 default `amrex::Geometry` static data so that different tests can run on
 different problem domains prescribed by the test fixture.
 
-Almost all unit tests within AMR-Wind use :class:`MeshTest` as their base test
+Almost all unit tests within Kynema-SGF use :class:`MeshTest` as their base test
 fixture. In order to allow grouping tests in logical test suites. The following
 example shows the basic usage of this test fixture.
 
 .. code-block:: c++
    :linenos:
 
-   /** Example showing the use of MeshTest test fixture in AMR-Wind unit tests
+   /** Example showing the use of MeshTest test fixture in Kynema-SGF unit tests
     *
     */
 
-   // AMR-Wind unit test namespace
-   namespace amr_wind_tests {
+   // Kynema-SGF unit test namespace
+   namespace kynema_sgf_tests {
 
    // Create a unique name for this test suite (for grouping and filtering)
    class DemoTest : public MeshTest
@@ -370,7 +370,7 @@ example shows the basic usage of this test fixture.
        EXPECT_EQ(repo.num_fields(), 0);
    }
 
-   } // namespace amr_wind_tests
+   } // namespace kynema_sgf_tests
 
 The next example shows a more advanced use case where the user can override
 defaults before creating the mesh.
@@ -439,7 +439,7 @@ scratch. After a call to this function, the mesh is ready for use.
 Example unit tests
 ~~~~~~~~~~~~~~~~~~
 
-Following are a list of unit tests available within AMR-Wind repository that can
+Following are a list of unit tests available within Kynema-SGF repository that can
 be used as starting points for users to write new tests:
 
 `test_simtime.cpp <https://github.com/Exawind/amr-wind/blob/development/unit_tests/core/test_simtime.cpp>`_

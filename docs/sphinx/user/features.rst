@@ -4,13 +4,13 @@
 Capabilities
 ============
 
-This section documents a non-exhaustive list of current AMR-Wind
+This section documents a non-exhaustive list of current Kynema-SGF
 capabilities.
 
 .. tip::
 
    If your project relies on a capability that is not yet present in
-   AMR-Wind, please create an issue on the code project page.
+   Kynema-SGF, please create an issue on the code project page.
 
    Please acknowledge as a publication co-author any developer that
    has significantly contributed to implementing or improving specific

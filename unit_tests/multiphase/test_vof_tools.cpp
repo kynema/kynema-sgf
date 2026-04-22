@@ -12,7 +12,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class VOFToolTest : public MeshTest
 {
@@ -357,4 +357,4 @@ TEST_F(VOFToolTest, replace_masked_vof)
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

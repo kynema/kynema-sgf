@@ -16,7 +16,7 @@ namespace kynema_sgf::ioutils {
 
 void goto_next_line(std::istream& is);
 
-AMREX_INLINE std::string amr_wind_version()
+AMREX_INLINE std::string kynema_sgf_version()
 {
     return {amrex::buildInfoGetGitHash(1)};
 }

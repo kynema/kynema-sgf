@@ -6,7 +6,7 @@
 
 Wall-Modeled RANS 
 ============================
-Most RANS simulations are run in steady or pseudo-steady mode. However, as AMR-Wind is a unsteady solver, 
+Most RANS simulations are run in steady or pseudo-steady mode. However, as Kynema-SGF is a unsteady solver, 
 we try to mimic pseudo-steady mode to ensure faster convergence of the simulations. The precursor input 
 file for RANS is very similar to LES. The only modifications required are 
 

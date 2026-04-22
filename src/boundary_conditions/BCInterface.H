@@ -16,7 +16,7 @@ using namespace amrex::literals;
  *  Boundary conditions management
  *
  *  This group documents the boundary condition management interface within
- *  AMR-Wind. Boundary conditions are registered on a Field instance and are
+ *  Kynema-SGF. Boundary conditions are registered on a Field instance and are
  *  used by the Field::fillpatch and Field::fillphysbc calls to perform the
  *  actual work. The classes documented in this group provide the interface to
  *  read user inputs and initialize the BC data structures in FieldInfo, moves

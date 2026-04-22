@@ -12,7 +12,7 @@ namespace kynema_sgf::transport {
 /**
  *  \defgroup transport Transport models
  *
- *  AMR-Wind representation of fluid transport models.
+ *  Kynema-SGF representation of fluid transport models.
  *
  *  For most land-based wind-energy applications, a constant transport
  *  (ConstTransport) model is sufficient with uniform properties. However, for

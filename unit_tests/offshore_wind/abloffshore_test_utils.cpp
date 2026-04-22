@@ -4,7 +4,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 void ABLOffshoreMeshTest::populate_parameters()
 {
@@ -104,4 +104,4 @@ void ABLOffshoreMeshTest::populate_parameters()
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

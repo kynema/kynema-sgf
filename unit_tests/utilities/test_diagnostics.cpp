@@ -4,7 +4,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -456,4 +456,4 @@ TEST_F(DiagnosticsTest, Field_Extrema)
     EXPECT_NEAR(fmax_l_bounded, gold_fmax_l, tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

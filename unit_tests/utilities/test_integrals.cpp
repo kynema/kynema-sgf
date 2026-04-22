@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 void test_trapezoid_integration_xsquared_impl()
 {
@@ -29,4 +29,4 @@ TEST(Integrals, trapezoid_integration_xsquared)
     test_trapezoid_integration_xsquared_impl();
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -590,8 +590,8 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::prepare_netcdf_file(
     const std::string nt_name = "num_time_steps";
     const std::string np_name = "num_vel_points";
     ncf.enter_def_mode();
-    ncf.put_attr("title", "AMR-Wind Kynema velocity data");
-    ncf.put_attr("AMR-Wind_version", kynema_sgf::ioutils::amr_wind_version());
+    ncf.put_attr("title", "Kynema-SGF Kynema velocity data");
+    ncf.put_attr("Kynema-SGF_version", kynema_sgf::ioutils::kynema_sgf_version());
     ncf.put_attr("created_on", kynema_sgf::ioutils::timestamp());
     ncf.def_dim(nt_name, NC_UNLIMITED);
     ncf.def_dim(np_name, fi.length_fluid_velocity(0));
@@ -660,7 +660,7 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::read_velocity_data(
 #else
     amrex::ignore_unused(fi);
     amrex::Abort(
-        "KynemaIface::read_velocity_data: AMR-Wind was not compiled with "
+        "KynemaIface::read_velocity_data: Kynema-SGF was not compiled with "
         "NetCDF "
         "support");
 #endif
@@ -732,7 +732,7 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::ext_init_turbine(
 
     if (n_aero_sections[0] != fi.num_pts_blade) {
         amrex::Abort(
-            "KynemaIface: number of points per blade (from AMR-Wind input "
+            "KynemaIface: number of points per blade (from Kynema-SGF input "
             "file: " +
             std::to_string(fi.num_pts_blade) +
             ") does not match number of aerodynamic sections per blade (from "
@@ -742,7 +742,7 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::ext_init_turbine(
 
     if (n_aero_sections[1] != fi.num_pts_tower) {
         amrex::Abort(
-            "KynemaIface: number of tower points (from AMR-Wind input "
+            "KynemaIface: number of tower points (from Kynema-SGF input "
             "file: " +
             std::to_string(fi.num_pts_tower) +
             ") does not match number of aerodynamic tower sections (from "

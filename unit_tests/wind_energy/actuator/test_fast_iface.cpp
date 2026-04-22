@@ -11,7 +11,7 @@ using namespace amrex::literals;
 
 #define KS_ENABLE_OPENFAST_UTEST 0
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 class FastIfaceTest : public MeshTest
 {
@@ -144,4 +144,4 @@ TEST_F(FastIfaceTest, fast_replay)
 #endif
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

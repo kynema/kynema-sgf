@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class OceanWavesW2ATest : public MeshTest
 {};
@@ -342,4 +342,4 @@ TEST_F(OceanWavesW2ATest, time_interp)
         fmin2, 0.5_rt, std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

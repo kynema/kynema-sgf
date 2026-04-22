@@ -206,7 +206,7 @@ struct InitDataOp<TurbineFast, SrcTrait>
         const amrex::Real fast_sim = tf.stop_time - tf.start_time;
         AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
             fast_sim > cfd_sim,
-            "OpenFAST simulation time is shorter than AMR-Wind duration");
+            "OpenFAST simulation time is shorter than Kynema-SGF duration");
     }
 };
 

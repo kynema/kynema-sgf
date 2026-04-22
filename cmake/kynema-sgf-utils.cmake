@@ -132,7 +132,7 @@ macro(init_code_checks)
           COMMAND cat cppcheck/cppcheck-short-report.txt | egrep "information:|error:|performance:|portability:|style:|warning:" | sort > cppcheck-ci-report.txt
           COMMAND printf "Warnings: " >> cppcheck-ci-report.txt
           COMMAND cat cppcheck-ci-report.txt | awk "END{print NR-1}" >> cppcheck-ci-report.txt
-          COMMENT "Filter cppcheck results to only AMR-Wind files with results in cppcheck-ci-report.txt"
+          COMMENT "Filter cppcheck results to only Kynema-SGF files with results in cppcheck-ci-report.txt"
           DEPENDS cppcheck
           BYPRODUCTS cppcheck-ci-report.txt
           WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
@@ -151,7 +151,7 @@ macro(generate_version_info)
   if (AMR_WIND_GIT_COMMIT_SHA)
     git_describe(AMR_WIND_VERSION_TAG "--tags" "--always")
     git_local_changes(AMR_WIND_REPO_DIRTY)
-    option(AMR_WIND_HAVE_GIT_INFO "Git version for AMR-Wind" ON)
+    option(AMR_WIND_HAVE_GIT_INFO "Git version for Kynema-SGF" ON)
     if (${AMR_WIND_VERSION_TAG} MATCHES ".*-NOTFOUND")
       set(AMR_WIND_VERSION_TAG "v0.0.1")
     endif()

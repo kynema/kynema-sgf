@@ -66,8 +66,8 @@ void prepare_netcdf_file(
     const std::vector<std::string> two_dim{nt_name, np_name};
 
     ncf.enter_def_mode();
-    ncf.put_attr("title", "AMR-Wind fixed wing actuator output");
-    ncf.put_attr("version", ioutils::amr_wind_version());
+    ncf.put_attr("title", "Kynema-SGF fixed wing actuator output");
+    ncf.put_attr("version", ioutils::kynema_sgf_version());
     ncf.put_attr("created_on", ioutils::timestamp());
     ncf.def_dim(nt_name, NC_UNLIMITED);
     ncf.def_dim("ndim", AMREX_SPACEDIM);

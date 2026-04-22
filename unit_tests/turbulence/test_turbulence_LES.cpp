@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -615,4 +615,4 @@ TEST_F(TurbLESTest, test_kosovic_setup_calc)
     EXPECT_EQ(visc_name, "velocity_mueff");
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

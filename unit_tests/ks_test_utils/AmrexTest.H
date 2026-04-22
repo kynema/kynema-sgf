@@ -4,9 +4,9 @@
 #include "gtest/gtest.h"
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
-/** Base class for AMR-Wind unit tests
+/** Base class for Kynema-SGF unit tests
  *
  *  Resets the ParmParse global dictionary for each test in this test fixture
  */
@@ -40,6 +40,6 @@ protected:
     bool m_keep_parameters{false};
 };
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
 
 #endif /* AMREXTEST_H */

@@ -4,7 +4,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 
 amrex::Real density_test_impl(
@@ -166,4 +166,4 @@ TEST_F(MultiPhaseHydroStatic, reference_pressure)
         error_total, 0.0_rt, std::numeric_limits<float>::epsilon() * 1.0e1_rt);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

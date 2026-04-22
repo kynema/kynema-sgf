@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class WaveTheoriesTest : public MeshTest
 {};
@@ -406,4 +406,4 @@ TEST_F(WaveTheoriesTest, StokesWaveLength)
         LHS2, RHS2, std::numeric_limits<amrex::Real>::epsilon() * 1.0e8_rt);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 class UniformCtTest : public AmrexTest
@@ -291,4 +291,4 @@ TEST_F(UniformCtTest, sample_yawed_normal_is_opposite_expected_wind_dir)
         }
     }
 }
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

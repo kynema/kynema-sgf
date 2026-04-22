@@ -19,7 +19,7 @@ namespace kynema_sgf::pde {
  *  PDE Operators
  *
  *  The different terms in a PDE as well as other actions on a PDE are
- *  implemented within AMR-Wind using operator classes. These operators can be
+ *  implemented within Kynema-SGF using operator classes. These operators can be
  *  specialized for a given PDE or a Scheme based on specific traits that are
  *  passed to the kynema_sgf::pde::PDESytem class.
  *

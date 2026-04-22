@@ -21,7 +21,7 @@ void write_forest(const std::string& fname)
 
 } // namespace
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 // Testing the terrain drag reading to ensure that terrain is properly setup
 class ForestTest : public MeshTest
@@ -85,4 +85,4 @@ TEST_F(ForestTest, forest)
         norm_drag, expected_norm_drag, kynema_sgf::constants::TIGHT_TOL);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

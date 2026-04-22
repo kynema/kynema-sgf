@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 
 /** Mock test object to allow access to the data struct
@@ -172,4 +172,4 @@ TEST_F(ActuatorTest, act_container)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

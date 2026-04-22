@@ -21,7 +21,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 amrex::Real get_val_at_height(
@@ -732,4 +732,4 @@ TEST_F(ABLMeshTest, densitybuoyancy)
         tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

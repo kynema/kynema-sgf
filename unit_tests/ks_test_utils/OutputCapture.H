@@ -4,7 +4,7 @@
 #include <iostream>
 #include <sstream>
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 /** Class to handle output capture
  */
@@ -56,6 +56,6 @@ protected:
     bool m_stderr{false};
 };
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
 
 #endif /* OUTPUTCAPTURE_H */

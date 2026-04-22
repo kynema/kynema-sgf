@@ -12,7 +12,7 @@ using namespace amrex::literals;
  *  \defgroup utilities Utilities
  *  Utilities
  *
- *  This group documents various utilities available in AMR-Wind for
+ *  This group documents various utilities available in Kynema-SGF for
  *  input/output, post-processing, collecting statistics etc.
  */
 

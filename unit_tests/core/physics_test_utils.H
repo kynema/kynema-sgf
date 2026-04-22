@@ -5,7 +5,7 @@
 
 #include "src/core/Physics.H"
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class PhysicsEx : public kynema_sgf::Physics::Register<PhysicsEx>
 {
@@ -24,6 +24,6 @@ public:
     void post_advance_work() override;
 };
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
 
 #endif /* PHYSICS_TEST_UTILS_H */

@@ -3,7 +3,7 @@
 Compiling using Spack, with Exawind-Manager
 ===========================================
 
-The first step before using AMR-Wind is compilation of the software on the computing resources
+The first step before using Kynema-SGF is compilation of the software on the computing resources
 you intend to use. We recommend the use of Spack to streamline this process because of its ability
 to handle code dependencies and keep track of hardware variations.
 
@@ -18,7 +18,7 @@ Conda environments in concept, but they benefit from reusing software that you'v
 As such it is recommended that you maintain a single instance of Spack-Manager to organize and curate your builds, 
 and create new environments when you want to start a new development project." 
 
-This walkthrough is meant for common AMR-Wind workflows, and to avoid verbosity we provide limited 
+This walkthrough is meant for common Kynema-SGF workflows, and to avoid verbosity we provide limited 
 details about the functionality of Spack and Exawind-Manager. Some additional details are included in 
 dropdown sections, but these can be ignored if they are hard to understand.
 If you would rather avoid the use of Spack and handle dependencies manually, please refer to
@@ -85,10 +85,10 @@ that rely on the actuator-line method (ALM). The next step is to create the envi
     mkdir ${REPO_DEST}/env_amrwind_openfast && cd ${REPO_DEST}/env_amrwind_openfast
     quick-create-dev -d . -s amr-wind@main+openfast+netcdf%compiler openfast@3.5.3+rosco%compiler
 
-This ``quick-create-dev`` command has flags selected so that that AMR-Wind will work with OpenFAST,
-AMR-Wind can save certain files using NetCDF, and OpenFAST will compile with
+This ``quick-create-dev`` command has flags selected so that that Kynema-SGF will work with OpenFAST,
+Kynema-SGF can save certain files using NetCDF, and OpenFAST will compile with
 the turbine controller package ROSCO. By executing this command, the environment is set up and activated,
-and the AMR-Wind and OpenFAST repositories are cloned to the environment directory. 
+and the Kynema-SGF and OpenFAST repositories are cloned to the environment directory. 
 
 .. collapse:: Details on quick-create-dev
 
@@ -103,7 +103,7 @@ and the AMR-Wind and OpenFAST repositories are cloned to the environment directo
     to modify the submodules to correspond to the chosen commit.
     
     If you do not want
-    to clone new copies of AMR-Wind or OpenFAST and instead want to use other, already-cloned repositories:
+    to clone new copies of Kynema-SGF or OpenFAST and instead want to use other, already-cloned repositories:
     after making the environment directory, create symbolic links to the cloned repositories in the environment
     directory, ensuring that the name of the links match the name of the repository. Then create the
     environment with ``quick-create-dev``. If you use your own cloned repositories, be aware that this 
@@ -172,7 +172,7 @@ to add them to the path, enabling the executable to be used directly. When the s
 
     spack load amr-wind
 
-to make executables from AMR-Wind directly available. To verify that the package was loaded correctly, type
+to make executables from Kynema-SGF directly available. To verify that the package was loaded correctly, type
 
 .. code-block:: console
 

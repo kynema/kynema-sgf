@@ -10,7 +10,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 namespace act = kynema_sgf::actuator;
 
@@ -146,16 +146,16 @@ void write_pitch_file(const std::string& fname)
 }
 
 } // namespace
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
 
 namespace kynema_sgf::actuator {
 namespace ops {
 
 template <>
-struct ReadInputsOp<::amr_wind_tests::FixedWing, ActSrcLine>
+struct ReadInputsOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
 {
     void operator()(
-        ::amr_wind_tests::FixedWing::DataType& data, const utils::ActParser& pp)
+        ::kynema_sgf_tests::FixedWing::DataType& data, const utils::ActParser& pp)
     {
         ReadInputsOp<::kynema_sgf::actuator::FixedWing, ActSrcLine> actual_op;
         EXPECT_NO_FATAL_FAILURE(actual_op(data, pp));
@@ -176,9 +176,9 @@ struct ReadInputsOp<::amr_wind_tests::FixedWing, ActSrcLine>
 };
 
 template <>
-struct InitDataOp<::amr_wind_tests::FixedWing, ActSrcLine>
+struct InitDataOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
 {
-    void operator()(::amr_wind_tests::FixedWing::DataType& data)
+    void operator()(::kynema_sgf_tests::FixedWing::DataType& data)
     {
         InitDataOp<::kynema_sgf::actuator::FixedWing, ActSrcLine> actual_op;
         EXPECT_NO_FATAL_FAILURE(actual_op(data));
@@ -186,9 +186,9 @@ struct InitDataOp<::amr_wind_tests::FixedWing, ActSrcLine>
 };
 
 template <>
-struct ComputeForceOp<::amr_wind_tests::FixedWing, ActSrcLine>
+struct ComputeForceOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
 {
-    void operator()(::amr_wind_tests::FixedWing::DataType& data)
+    void operator()(::kynema_sgf_tests::FixedWing::DataType& data)
     {
         constexpr amrex::Real tol =
             std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt;
@@ -236,10 +236,10 @@ struct ComputeForceOp<::amr_wind_tests::FixedWing, ActSrcLine>
 };
 
 template <>
-struct ProcessOutputsOp<::amr_wind_tests::FixedWing, ActSrcLine>
+struct ProcessOutputsOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
 {
-    ProcessOutputsOp(::amr_wind_tests::FixedWing::DataType& /**/) {}
-    void operator()(::amr_wind_tests::FixedWing::DataType& /**/) {}
+    ProcessOutputsOp(::kynema_sgf_tests::FixedWing::DataType& /**/) {}
+    void operator()(::kynema_sgf_tests::FixedWing::DataType& /**/) {}
     void read_io_options(const utils::ActParser& /**/) {}
     void prepare_outputs(const std::string& /**/) {}
     void write_outputs() {}
@@ -247,10 +247,10 @@ struct ProcessOutputsOp<::amr_wind_tests::FixedWing, ActSrcLine>
 
 } // namespace ops
 template class ::kynema_sgf::actuator::
-    ActModel<::amr_wind_tests::FixedWing, ActSrcLine>;
+    ActModel<::kynema_sgf_tests::FixedWing, ActSrcLine>;
 } // namespace kynema_sgf::actuator
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class ActPhysicsTest : public ::kynema_sgf::actuator::Actuator
 {
@@ -323,4 +323,4 @@ TEST_F(ActFixedWingTest, pitch_table_2D)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

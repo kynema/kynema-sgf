@@ -45,15 +45,15 @@ Steps to reproduce the behavior:
 ## Expected behavior
 <!-- A clear and concise description of what is expected behavior. -->
 
-## AMR-Wind information
-<!-- Please provide as much detail as possible including git commit. The best information is a snapshot of the AMR-Wind header. -->
+## Kynema-SGF information
+<!-- Please provide as much detail as possible including git commit. The best information is a snapshot of the Kynema-SGF header. -->
 
 ```
 ==============================================================================
-                AMR-Wind (https://github.com/exawind/amr-wind)
+                Kynema-SGF (https://github.com/exawind/amr-wind)
 
-  AMR-Wind version :: v1.4.0-17-g250778a3-DIRTY
-  AMR-Wind Git SHA :: 250778a3306e96b46afc117fc722491acaeb6176-DIRTY
+  Kynema-SGF version :: v1.4.0-17-g250778a3-DIRTY
+  Kynema-SGF Git SHA :: 250778a3306e96b46afc117fc722491acaeb6176-DIRTY
   AMReX version    :: 24.03-36-g748f8dfea597
 
   Exec. time       :: Fri May 10 09:51:15 2024

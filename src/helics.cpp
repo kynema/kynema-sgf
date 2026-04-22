@@ -101,7 +101,7 @@ HelicsStorage::HelicsStorage(CFDSim& sim) : m_sim(sim)
 
     m_turbine_power_to_controller.resize(m_num_turbines, 0.0_rt);
     m_turbine_wind_direction_to_controller.resize(m_num_turbines, 0.0_rt);
-    m_turbine_yaw_to_amrwind.resize(m_num_turbines, 270.0_rt);
+    m_turbine_yaw_to_kynema_sgf.resize(m_num_turbines, 270.0_rt);
 
 #endif
 }
@@ -160,25 +160,25 @@ void HelicsStorage::recv_messages_from_controller()
             // skip the time stamp and source strings from return_list
             return_list.pop_front();
             return_list.pop_front();
-            for (int i = m_turbine_yaw_to_amrwind.size() - 1; i >= 0; --i) {
-                m_turbine_yaw_to_amrwind[i] = return_list.front();
+            for (int i = m_turbine_yaw_to_kynema_sgf.size() - 1; i >= 0; --i) {
+                m_turbine_yaw_to_kynema_sgf[i] = return_list.front();
                 return_list.pop_front();
             }
 
-            m_inflow_wind_direction_to_amrwind = return_list.front();
+            m_inflow_wind_direction_to_kynema_sgf = return_list.front();
             return_list.pop_front();
-            m_inflow_wind_speed_to_amrwind = return_list.front();
+            m_inflow_wind_speed_to_kynema_sgf = return_list.front();
             return_list.pop_front();
             auto time = return_list.front();
             return_list.pop_front();
 
-            amrex::Print() << "\n speed: " << m_inflow_wind_speed_to_amrwind
+            amrex::Print() << "\n speed: " << m_inflow_wind_speed_to_kynema_sgf
                            << "  direction: "
-                           << m_inflow_wind_direction_to_amrwind << " Time "
+                           << m_inflow_wind_direction_to_kynema_sgf << " Time "
                            << time << std::endl;
-            for (int i = 0; i < m_turbine_yaw_to_amrwind.size(); ++i) {
+            for (int i = 0; i < m_turbine_yaw_to_kynema_sgf.size(); ++i) {
                 amrex::Print()
-                    << "T" << i << " yaw: " << m_turbine_yaw_to_amrwind[i]
+                    << "T" << i << " yaw: " << m_turbine_yaw_to_kynema_sgf[i]
                     << ' ';
             }
             amrex::Print() << std::endl;
@@ -244,18 +244,18 @@ void HelicsStorage::recv_messages_from_controller()
     // broadcast wind turbine yaw angles to all procs
     // TODO: some day only need to send/recv to specific turbines
     amrex::ParallelDescriptor::Bcast(
-        m_turbine_yaw_to_amrwind.data(), m_turbine_yaw_to_amrwind.size(),
+        m_turbine_yaw_to_kynema_sgf.data(), m_turbine_yaw_to_kynema_sgf.size(),
         amrex::ParallelDescriptor::IOProcessorNumber(),
         amrex::ParallelDescriptor::Communicator());
 
     // broadcast wind speed and direction to all procs
     amrex::ParallelDescriptor::Bcast(
-        &m_inflow_wind_speed_to_amrwind, 1,
+        &m_inflow_wind_speed_to_kynema_sgf, 1,
         amrex::ParallelDescriptor::IOProcessorNumber(),
         amrex::ParallelDescriptor::Communicator());
 
     amrex::ParallelDescriptor::Bcast(
-        &m_inflow_wind_direction_to_amrwind, 1,
+        &m_inflow_wind_direction_to_kynema_sgf, 1,
         amrex::ParallelDescriptor::IOProcessorNumber(),
         amrex::ParallelDescriptor::Communicator());
 #endif

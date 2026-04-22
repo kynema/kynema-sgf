@@ -23,7 +23,7 @@ namespace kynema_sgf::pde {
  *  \ingroup pdeop
  *
  *  This class provides the common operations for an implicit solution of a
- *  convection-diffusion equation within AMR-Wind.
+ *  convection-diffusion equation within Kynema-SGF.
  *
  *  \tparam LinOp The linear operator (see [AMREeX
  * docs](https://amrex-codes.github.io/amrex/docs_html/LinearSolvers.html))

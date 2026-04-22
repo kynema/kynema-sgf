@@ -12,7 +12,7 @@ using namespace amrex::literals;
  *  Breaking Waves modeling
  *
  *  This group documents all the wave mechanics related physics models available
- * in AMR-Wind
+ * in Kynema-SGF
  *
  *  \ingroup physics
  */

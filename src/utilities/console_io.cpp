@@ -1,7 +1,7 @@
 #include <chrono>
 #include <ctime>
 #include "src/utilities/console_io.H"
-#include "src/AMRWindVersion.H"
+#include "src/KynemaSGFVersion.H"
 #include "AMReX.H"
 #include "AMReX_OpenMP.H"
 #include "src/CFDSim.H"
@@ -108,16 +108,16 @@ void print_banner(MPI_Comm comm, std::ostream& out)
     amrex::Array<char, 64> time_buf;
     ctime_r(&etimet, time_buf.begin());
     const std::string tstamp(time_buf.begin());
-    const std::string dirty_tag = "-" + version::amr_wind_dirty_repo;
-    const std::string awind_version = version::amr_wind_version + dirty_tag;
-    const std::string awind_git_sha = version::amr_wind_git_sha + dirty_tag;
+    const std::string dirty_tag = "-" + version::kynema_sgf_dirty_repo;
+    const std::string awind_version = version::kynema_sgf_version + dirty_tag;
+    const std::string awind_git_sha = version::kynema_sgf_git_sha + dirty_tag;
 
     // clang-format off
     out << dbl_line
-        << "                AMR-Wind (https://github.com/exawind/amr-wind)"
+        << "                Kynema-SGF (https://github.com/exawind/amr-wind)"
         << '\n' << '\n'
-        << "  AMR-Wind version :: " << awind_version << '\n'
-        << "  AMR-Wind Git SHA :: " << awind_git_sha << '\n'
+        << "  Kynema-SGF version :: " << awind_version << '\n'
+        << "  Kynema-SGF Git SHA :: " << awind_git_sha << '\n'
         << "  AMReX version    :: " << amrex::Version() << '\n' << '\n'
         << "  Exec. time       :: " << tstamp
         << "  Build time       :: " << amrex::buildInfoGetBuildDate() << '\n'

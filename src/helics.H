@@ -32,12 +32,12 @@ public:
 
     int m_num_turbines{1};
 
-    amrex::Real m_inflow_wind_speed_to_amrwind{8.0_rt};
-    amrex::Real m_inflow_wind_direction_to_amrwind{270.0_rt};
+    amrex::Real m_inflow_wind_speed_to_kynema_sgf{8.0_rt};
+    amrex::Real m_inflow_wind_direction_to_kynema_sgf{270.0_rt};
 
     amrex::Vector<amrex::Real> m_turbine_power_to_controller;
     amrex::Vector<amrex::Real> m_turbine_wind_direction_to_controller;
-    amrex::Vector<amrex::Real> m_turbine_yaw_to_amrwind;
+    amrex::Vector<amrex::Real> m_turbine_yaw_to_kynema_sgf;
 
 private:
     CFDSim& m_sim;

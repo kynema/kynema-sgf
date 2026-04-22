@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -519,4 +519,4 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_symmetricwall)
     EXPECT_NEAR(shear_wall, s_true, m_tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

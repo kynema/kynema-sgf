@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class TimeAveragingTest : public MeshTest
 {
@@ -216,4 +216,4 @@ TEST_F(TimeAveragingTest, mismatch_time_interval)
     EXPECT_NEAR(max_f, avg_val_ideal, m_tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

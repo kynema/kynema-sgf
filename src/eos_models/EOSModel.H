@@ -11,7 +11,7 @@ namespace kynema_sgf::eos {
 /**
  *  \defgroup eos Equation of state models
  *
- *  AMR-Wind representation of equation of state models. These
+ *  Kynema-SGF representation of equation of state models. These
  *  expression are adapted from those found in ERF
  *  https://github.com/erf-model/ERF.
  *

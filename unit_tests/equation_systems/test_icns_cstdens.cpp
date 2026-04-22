@@ -4,7 +4,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class ICNSConstDensTest : public MeshTest
 {
@@ -37,4 +37,4 @@ protected:
 
 TEST_F(ICNSConstDensTest, nonunity) { testing_density(); }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -5,7 +5,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class PostProcTimeTest : public MeshTest
 {
@@ -431,4 +431,4 @@ TEST_F(PostProcTimeTest, conflict_fails)
     EXPECT_THROW(post_manager.post_init_actions(), std::runtime_error);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

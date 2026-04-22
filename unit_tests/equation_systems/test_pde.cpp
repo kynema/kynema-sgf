@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 #include "ks_test_utils/MeshTest.H"
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class PDETest : public MeshTest
 {};
@@ -38,4 +38,4 @@ TEST_F(PDETest, test_pde_create_mol)
     EXPECT_EQ(mesh().field_repo().num_fields(), 26);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

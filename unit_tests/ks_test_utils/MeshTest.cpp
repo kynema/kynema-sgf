@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 void MeshTest::create_mesh_instance()
 {
@@ -53,4 +53,4 @@ void MeshTest::populate_parameters()
     m_need_params = false;
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

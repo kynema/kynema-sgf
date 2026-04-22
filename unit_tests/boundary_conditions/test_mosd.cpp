@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class MOSDTest : public MeshTest
 {
@@ -69,4 +69,4 @@ TEST_F(MOSDTest, test_mosd)
             m_tol);
     }
 }
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

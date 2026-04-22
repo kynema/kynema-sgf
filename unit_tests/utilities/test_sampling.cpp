@@ -15,7 +15,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -507,4 +507,4 @@ TEST_F(SamplingTest, quadrature)
     EXPECT_NEAR(weights[20], 6.6402168628164281e-07_rt, toler);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

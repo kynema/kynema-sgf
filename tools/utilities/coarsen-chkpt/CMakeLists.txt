@@ -1,4 +1,4 @@
-set(tool_exe_name amr_wind_coarsen_chkpt)
+set(tool_exe_name kynema_sgf_coarsen_chkpt)
 
 add_executable(${tool_exe_name})
 target_sources(${tool_exe_name}

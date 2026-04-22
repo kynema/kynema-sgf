@@ -9,7 +9,7 @@
 #include "src/utilities/constants.H"
 #include "src/utilities/tagging/CartBoxRefinement.H"
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 /** Base class for test fixtures that require a valid AmrMesh instance
  */
@@ -84,6 +84,6 @@ private:
         m_refine_crit;
 };
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
 
 #endif /* MESHTEST_H */

@@ -37,7 +37,7 @@ void write_terrain(const std::string& fname)
 
 } // namespace
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 // Testing the terrain drag reading to ensure that terrain is properly setup
 class TerrainTest : public MeshTest
@@ -91,4 +91,4 @@ TEST_F(TerrainTest, terrain)
     EXPECT_EQ(value_in, 1 + tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

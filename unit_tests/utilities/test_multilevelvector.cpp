@@ -1,7 +1,7 @@
 #include "ks_test_utils/MeshTest.H"
 #include "src/utilities/MultiLevelVector.H"
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class MultiLevelVectorTest : public MeshTest
 {};
@@ -14,4 +14,4 @@ TEST_F(MultiLevelVectorTest, test_multilevelvector)
     EXPECT_EQ(mlv.size(), 1);
     EXPECT_EQ(mlv.ncells(0), 8);
 }
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -287,7 +287,7 @@ void scatter_data(datatype& data)
             // Copy over the orientation matrix
             //
             // Note that we transpose the orientation matrix when copying
-            // from external to AMR-Wind Tensor data structure. This is done
+            // from external to Kynema-SGF Tensor data structure. This is done
             // so that post-multiplication of vector transforms from global
             // to local reference frame.
             const auto off =

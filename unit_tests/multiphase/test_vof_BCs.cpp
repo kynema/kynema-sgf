@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 void initialize_volume_fractions(
@@ -385,4 +385,4 @@ TEST_F(VOFBCTest, slipwallY) { testing_bc_coorddir(2, 1, tol1); }
 TEST_F(VOFBCTest, noslipwallZ) { testing_bc_coorddir(3, 2, tol1); }
 TEST_F(VOFBCTest, pressureX) { testing_bc_coorddir(4, 0, tol1); }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

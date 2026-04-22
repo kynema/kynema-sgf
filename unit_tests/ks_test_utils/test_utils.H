@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests::utils {
+namespace kynema_sgf_tests::utils {
 
 AMREX_INLINE amrex::Real
 field_min(const kynema_sgf::Field& field, const int icomp = 0)
@@ -200,6 +200,6 @@ AMREX_INLINE amrex::Real field_probe(
     return value;
 }
 
-} // namespace amr_wind_tests::utils
+} // namespace kynema_sgf_tests::utils
 
 #endif /* TEST_UTILS_H */

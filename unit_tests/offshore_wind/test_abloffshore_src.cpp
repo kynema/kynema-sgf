@@ -16,7 +16,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 amrex::Real get_val_at_height(
@@ -378,4 +378,4 @@ TEST_F(ABLOffshoreMeshTest, boussinesq)
     EXPECT_NEAR(src_z_val, 0.0_rt, tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

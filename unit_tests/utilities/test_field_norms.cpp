@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -719,4 +719,4 @@ TEST_F(FieldNormsTest, norm_vector_magnitude)
     tool_linf.check_output(vmag_norm);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -5,9 +5,9 @@
 #include "AMReX.H"
 #include "AMReX_ParmParse.H"
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
-/** Global setup/teardown test environment configuration for AMR-Wind unit tests
+/** Global setup/teardown test environment configuration for Kynema-SGF unit tests
  *
  *  This class is registered with GoogleTest infrastructure to perform global
  *  setup/teardown tasks. The base implementation calls the amrex::Initialize
@@ -74,6 +74,6 @@ protected:
     bool m_has_managed_memory{true};
 };
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
 
 #endif /* AMREXTESTENV_H */

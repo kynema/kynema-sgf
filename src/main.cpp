@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
         // Start timing the program
         auto start_time =
             static_cast<amrex::Real>(amrex::ParallelDescriptor::second());
-        amrex::Print() << "Initializing AMR-Wind ..." << '\n';
+        amrex::Print() << "Initializing Kynema-SGF ..." << '\n';
 
         // Default constructor. Note inheritance: incflo : AmrCore : AmrMesh.
         incflo my_incflo;

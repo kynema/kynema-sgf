@@ -27,7 +27,7 @@ struct W2AWavesData : public RelaxZonesBaseData
     // Spatial resolution in each direction
     amrex::Real dx0{0.};
     amrex::Real dx1{0.};
-    // Offsets for spatial data (between AMR-Wind domain and HOS domain)
+    // Offsets for spatial data (between Kynema-SGF domain and HOS domain)
     amrex::Real xlo0{0.};
     amrex::Real xlo1{0.};
     // Length to dimensionalize nondim data
@@ -36,7 +36,7 @@ struct W2AWavesData : public RelaxZonesBaseData
     amrex::Real dt_modes{0.0_rt};
 
     // Time (in HOS sim) to begin reading from
-    // (this corresponds to t = 0 in AMR-Wind sim, functions as offset)
+    // (this corresponds to t = 0 in Kynema-SGF sim, functions as offset)
     amrex::Real t_winit{-1.0_rt};
     // Timestep (in HOS sim) of latest imported wave data
     int ntime{0};
@@ -47,10 +47,10 @@ struct W2AWavesData : public RelaxZonesBaseData
     // Timestep offset (in HOS sim) for resetting to earlier data
     int n_offset{0};
 
-    // Time (in AMR-Wind sim) when ow arrays were last changed
+    // Time (in Kynema-SGF sim) when ow arrays were last changed
     // (this is from the last timestep, goes with time-interpolated data)
     amrex::Real t_last{-1.0_rt};
-    // Time (in AMR-Wind sim) of latest imported wave data
+    // Time (in Kynema-SGF sim) of latest imported wave data
     amrex::Real t{0.0_rt};
 
     // Vectors to store complex or real modes

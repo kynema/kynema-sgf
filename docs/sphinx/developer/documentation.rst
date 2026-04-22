@@ -3,7 +3,7 @@
 Documentation
 =============
 
-AMR-Wind comes with two different types of documentation:
+Kynema-SGF comes with two different types of documentation:
 
 - The manual, i.e., the document you are reading now, that is
   written using `Sphinx <https://www.sphinx-doc.org/en/master/index.html>`_, and
@@ -14,12 +14,12 @@ AMR-Wind comes with two different types of documentation:
 Manual
 ------
 
-The AMR-Wind manual is written using a special format called
+The Kynema-SGF manual is written using a special format called
 ReStructured Text (ReST) and is converted into HTML and PDF formats
 using a python package Sphinx. Since the manuals are written in simple
 text files, they can be version controlled alongside the source
 code. Documentation is automatically generated with new updates to the
-GitHub repository and deployed at `AMR-Wind documentation site
+GitHub repository and deployed at `Kynema-SGF documentation site
 <https://exawind.github.io/amr-wind>`_.
 
 Writing documentation
@@ -41,7 +41,7 @@ code documentation as well as inheritance diagrams. The
 the codebase can be browsed in this manual. The `Doxygen manual
 <http://www.doxygen.nl/manual/index.html>`_ provides an overview of
 the syntax that must be used. Please follow the Doxygen style of
-commenting code when commenting AMR-Wind sources.
+commenting code when commenting Kynema-SGF sources.
 
 When commenting code, try to use self-documenting code, i.e., descriptive names
 for variables and functions that eliminate the need to describe what is going on
@@ -56,7 +56,7 @@ Building documentation
 Dependencies
 ````````````
 
-To generate the AMR-Wind manual on a local machine, `doxygen`,
+To generate the Kynema-SGF manual on a local machine, `doxygen`,
 `graphviz`, `doxysphinx`, `enchant`, and `sphinx` are required.
 
 To install the required packages on Linux:

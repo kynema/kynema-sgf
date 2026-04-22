@@ -45,7 +45,7 @@ void write_body_force_file(const std::string& fname)
 }
 } // namespace
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 using ICNSFields = kynema_sgf::pde::
     FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
@@ -426,4 +426,4 @@ TEST_F(ABLSrcTimeTableTest, geostrophic)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -4,7 +4,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -62,7 +62,7 @@ void fgtest_kernel(
             my_incflo.sim().repo().declare_field("reference_density", 1, 3, 1);
         init_density(ref_dens, nz / 2);
     }
-    my_incflo.init_amr_wind_modules();
+    my_incflo.init_kynema_sgf_modules();
     auto& density = my_incflo.sim().repo().get_field("density").state(
         kynema_sgf::FieldState::NPH);
     auto& velocity = my_incflo.sim().repo().get_field("velocity");
@@ -216,4 +216,4 @@ TEST_F(GravityForcingTest, perturb_field)
         Fg, m_nx * m_ny * m_nz, m_nz, kynema_sgf::FieldState::New, true);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

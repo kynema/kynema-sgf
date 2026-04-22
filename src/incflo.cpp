@@ -88,16 +88,16 @@ void incflo::init_mesh()
     }
 }
 
-/** Initialize AMR-Wind data structures after mesh has been created.
+/** Initialize Kynema-SGF data structures after mesh has been created.
  *
  *  Modules initialized:
  *    - Registered \ref physics classes
  *    - Registered PDE systems
  *    - Registered post-processing classes
  */
-void incflo::init_amr_wind_modules()
+void incflo::init_kynema_sgf_modules()
 {
-    BL_PROFILE("amr-wind::incflo::init_amr_wind_modules");
+    BL_PROFILE("amr-wind::incflo::init_kynema_sgf_modules");
     if (m_sim.has_overset()) {
         m_time.override_simulation_end_parameters();
         m_sim.overset_manager()->post_init_actions();
@@ -164,7 +164,7 @@ void incflo::prepare_for_time_integration()
     }
 }
 
-/** Perform all initialization actions for AMR-Wind.
+/** Perform all initialization actions for Kynema-SGF.
  *
  *  This is a wrapper method that calls the following methods to perform the
  * actual work.
@@ -176,7 +176,7 @@ void incflo::InitData()
     BL_PROFILE("amr-wind::incflo::InitData()");
 
     init_mesh();
-    init_amr_wind_modules();
+    init_kynema_sgf_modules();
     prepare_for_time_integration();
 }
 

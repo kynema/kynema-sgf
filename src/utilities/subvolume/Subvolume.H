@@ -14,7 +14,7 @@
  *  Mesh data subvolume utilities
  *
  *  Subvolume is a data-retrieval tool designed to obtain partitions (chunks)
- * directly from the AMR-Wind computational mesh. It is distinct from the
+ * directly from the Kynema-SGF computational mesh. It is distinct from the
  * sampling utilities because it does not use particles and is therefore
  * confined to the actual cell locations; however, it is another way to sample
  * data from the simulation. In essence, subvolume outputs are like plotfiles

@@ -5,7 +5,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -846,4 +846,4 @@ TEST_F(FreeSurfaceTest, point_diffuse_in_single_phase)
     EXPECT_NEAR(ht, ht_est, 5.0e-2_rt);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

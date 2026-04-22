@@ -4,7 +4,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -410,4 +410,4 @@ TEST_F(MFluxSchemeTest, minmodbdy)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

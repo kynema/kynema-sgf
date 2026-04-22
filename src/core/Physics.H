@@ -36,9 +36,9 @@ public:
 /**
  *  \defgroup physics Physics models
  *
- *  AMR-Wind representation of different physics
+ *  Kynema-SGF representation of different physics
  *
- *  In AMR-Wind, different physics are implemented using the Physics class.
+ *  In Kynema-SGF, different physics are implemented using the Physics class.
  *  Every simulation is a collection of several physics instances that are used
  *  to set initial conditions, perform certain actions at the start and
  *  completion of a timestep, or after a regrid.

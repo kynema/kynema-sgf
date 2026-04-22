@@ -492,8 +492,8 @@ void ABLStats::prepare_netcdf_file()
     auto ncf = ncutils::NCFile::create(m_ncfile_name, NC_CLOBBER | NC_NETCDF4);
     const std::string nt_name = "num_time_steps";
     ncf.enter_def_mode();
-    ncf.put_attr("title", "AMR-Wind ABL statistics output");
-    ncf.put_attr("version", ioutils::amr_wind_version());
+    ncf.put_attr("title", "Kynema-SGF ABL statistics output");
+    ncf.put_attr("version", ioutils::kynema_sgf_version());
     ncf.put_attr("created_on", ioutils::timestamp());
     ncf.def_dim(nt_name, NC_UNLIMITED);
     ncf.def_dim("ndim", AMREX_SPACEDIM);

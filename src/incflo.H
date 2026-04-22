@@ -24,13 +24,13 @@ class RefineCriteriaManager;
 } // namespace kynema_sgf
 
 /**
- *  \defgroup driver AMR-Wind driver code
+ *  \defgroup driver Kynema-SGF driver code
  *
  *  Code that implements initialization and time-stepping logic.
  *
  *  This module documents the high-level driver code that is manages the
  *  initialization and execution of the time-integration algorithm when invoked
- *  from the executable. Currently there are two phases during AMR-Wind
+ *  from the executable. Currently there are two phases during Kynema-SGF
  * execution:
  *
  *  <ol>
@@ -44,7 +44,7 @@ class RefineCriteriaManager;
  *  </ol>
  */
 
-/** AMR-Wind driver class
+/** Kynema-SGF driver class
  *  \ingroup driver
  *
  */
@@ -93,7 +93,7 @@ public:
     void ClearLevel(int lev) override;
 
     void init_mesh();
-    void init_amr_wind_modules();
+    void init_kynema_sgf_modules();
     void prepare_for_time_integration();
     bool regrid_and_update();
     void pre_advance_stage1();

@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 // Utility function to populate the velocity field used for tests
 AMREX_INLINE void init_field(kynema_sgf::Field& fld)
@@ -57,6 +57,6 @@ AMREX_INLINE void init_field(kynema_sgf::Field& fld)
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
 
 #endif /* TEST_ACT_UTILS_H */

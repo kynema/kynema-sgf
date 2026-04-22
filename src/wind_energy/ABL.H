@@ -23,7 +23,7 @@ using namespace amrex::literals;
  *  Wind energy modeling
  *
  *  This group documents all the wind-energy related physics models available in
- *  AMR-Wind
+ *  Kynema-SGF
  *
  *  \ingroup physics
  */
@@ -57,7 +57,7 @@ class HurricaneTempForcing;
  *  \ingroup we_abl
  *
  *  This class implements the necessary code to simulation atmospheric boundary
- *  layers with AMR-Wind. It reads the namespace `ABL` from the input file to
+ *  layers with Kynema-SGF. It reads the namespace `ABL` from the input file to
  *  determine how the initial conditions are generated. At each timestep it
  *  performs plane averages to collect statistics as well as set the necessary
  *  data to be used by wall models as well as any ABLForcing terms that might be

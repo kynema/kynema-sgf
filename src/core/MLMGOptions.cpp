@@ -104,7 +104,7 @@ void MLMGOptions::operator()(amrex::MLMG& mlmg)
                 "structured");
         }
 #else
-        amrex::Abort("AMR-Wind was not built with hypre support");
+        amrex::Abort("Kynema-SGF was not built with hypre support");
 #endif
     }
 }

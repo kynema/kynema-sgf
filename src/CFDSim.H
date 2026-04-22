@@ -13,9 +13,9 @@
 #include "src/boundary_conditions/field_boundary_fill/ReadERFFunction.H"
 class MultiBlockContainer;
 
-/** AMR-Wind
+/** Kynema-SGF
  *
- *  All C++ code in AMR-Wind is organized within the kynema_sgf namespace.
+ *  All C++ code in Kynema-SGF is organized within the kynema_sgf namespace.
  */
 namespace kynema_sgf {
 class IOManager;
@@ -33,10 +33,10 @@ class TurbulenceModel;
 }
 
 /**
- *  \defgroup core AMR-Wind core
- *  Core data structures in AMR-Wind
+ *  \defgroup core Kynema-SGF core
+ *  Core data structures in Kynema-SGF
  *
- *  This group describes the core data structures implemented in AMR-Wind that
+ *  This group describes the core data structures implemented in Kynema-SGF that
  *  provide a higher-level abstraction over the classes available in AMReX.
  */
 

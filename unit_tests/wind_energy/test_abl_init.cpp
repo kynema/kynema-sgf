@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {} // namespace
 
 TEST_F(ABLMeshTest, abl_initialization)
@@ -79,4 +79,4 @@ TEST_F(ABLMeshTest, abl_initialization)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -12,7 +12,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class FieldPlaneAveragingTest : public MeshTest
 {
@@ -260,4 +260,4 @@ TEST_F(FieldPlaneAveragingTest, test_xdir) { test_dir(0); }
 TEST_F(FieldPlaneAveragingTest, test_ydir) { test_dir(1); }
 TEST_F(FieldPlaneAveragingTest, test_zdir) { test_dir(2); }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

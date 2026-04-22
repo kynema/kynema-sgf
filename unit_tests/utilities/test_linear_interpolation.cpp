@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 TEST(LinearInterpolation, check_bounds)
 {
@@ -298,4 +298,4 @@ TEST(LinearInterpolation, lin_interp_angle)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

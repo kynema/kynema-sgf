@@ -4,7 +4,7 @@ A tool to generate native boundary planes header files
 
 This script is only for generating the header files for boundary plane
 data that does not already have them. Most likely they were generated
-with AMR-Wind version 3.2.0 and prior.
+with Kynema-SGF version 3.2.0 and prior.
 
 """
 
@@ -26,14 +26,14 @@ def main():
     parser.add_argument(
         "-f",
         "--fdir",
-        help="AMR-Wind directory with boundary data",
+        help="Kynema-SGF directory with boundary data",
         required=True,
         type=str,
     )
     parser.add_argument(
         "-i",
         "--iname",
-        help="AMR-Wind input file that generated the boundary data",
+        help="Kynema-SGF input file that generated the boundary data",
         required=True,
         type=str,
     )

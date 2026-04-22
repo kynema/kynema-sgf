@@ -215,7 +215,7 @@ struct ReadInputsOp<W2AWaves>
 #ifndef AMR_WIND_USE_W2A
         // Assert Waves2AMR must be used for initial condition file
         amrex::Abort(
-            "ocean_waves/W2AWaves: AMR-Wind was not built with Waves2AMR "
+            "ocean_waves/W2AWaves: Kynema-SGF was not built with Waves2AMR "
             "support; associated wave data cannot be processed for relaxation "
             "zones.");
 
@@ -388,7 +388,7 @@ struct ReadInputsOp<W2AWaves>
         if (std::abs(depth - (wdata.zsl - prob_lo_input[2])) >
             1.0e-3_rt * depth) {
             amrex::Print()
-                << "WARNING: Mismatch between water depths from AMR-Wind "
+                << "WARNING: Mismatch between water depths from Kynema-SGF "
                    "domain and HOS data interpreted by Waves2AMR. \n   ^This "
                    "warning is not a concern when using waves as terrain.\n";
         }

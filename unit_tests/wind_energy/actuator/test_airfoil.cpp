@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 
 std::stringstream generate_txt_airfoil()
@@ -103,4 +103,4 @@ TEST(Airfoil, airfoil_lookup)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

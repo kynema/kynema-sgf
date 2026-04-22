@@ -5,7 +5,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 constexpr amrex::Real tol =
@@ -190,4 +190,4 @@ TEST(VectorSpace, vector_ops)
         tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

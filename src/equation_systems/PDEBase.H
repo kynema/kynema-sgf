@@ -30,7 +30,7 @@ namespace pde {
  *  discretization process.
  */
 
-/** Abstract interface defining a PDE and its solution process withn AMR-Wind
+/** Abstract interface defining a PDE and its solution process withn Kynema-SGF
  *  \ingroup eqsys
  *
  *  The exact behavior is implemented by subclass PDESystem that is specialized

@@ -5,7 +5,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -165,4 +165,4 @@ TEST_F(WaveEnergyTest, checkoutput)
     EXPECT_NEAR(pe, pe_exact, m_tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

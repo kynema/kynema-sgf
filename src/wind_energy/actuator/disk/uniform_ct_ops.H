@@ -39,7 +39,7 @@ struct UpdatePosOp<UniformCt, ActSrcDisk>
 #ifdef AMR_WIND_USE_HELICS
 
         const amrex::Real wind_direction =
-            -data.sim().helics().m_turbine_yaw_to_amrwind[data.info().id] +
+            -data.sim().helics().m_turbine_yaw_to_kynema_sgf[data.info().id] +
             90.0_rt;
         const amrex::Real wind_direction_radian =
             kynema_sgf::utils::radians(wind_direction);

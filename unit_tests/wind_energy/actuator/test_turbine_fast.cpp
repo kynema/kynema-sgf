@@ -11,7 +11,7 @@ using namespace amrex::literals;
 
 #define KS_ENABLE_OPENFAST_UTEST 0
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 
 template <typename T>
@@ -152,4 +152,4 @@ TYPED_TEST(ActTurbineFastTest, fast_turbine)
 }
 } // namespace
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

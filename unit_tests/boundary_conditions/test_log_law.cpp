@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class LogLawTest : public MeshTest
 {
@@ -49,4 +49,4 @@ TEST_F(LogLawTest, test_log_law)
     ll.update_utau_mean();
     EXPECT_NEAR(ll.utau_mean, utau_expected, m_tol);
 }
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

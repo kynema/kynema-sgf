@@ -373,7 +373,7 @@ SyntheticTurbulence::SyntheticTurbulence(const CFDSim& sim)
 {
 #ifndef AMR_WIND_USE_NETCDF
     amrex::Abort(
-        "SyntheticTurbulence: AMR-Wind was not built with NetCDF support.");
+        "SyntheticTurbulence: Kynema-SGF was not built with NetCDF support.");
 #endif
     amrex::ParmParse pp("SynthTurb");
 

@@ -5,7 +5,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 void test_eos_impl()
 {
@@ -29,4 +29,4 @@ void test_eos_impl()
 }
 
 TEST(EOSModelTest, test_eos) { test_eos_impl(); }
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -5,7 +5,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -548,4 +548,4 @@ TEST_F(SimTimeTest, enforce_chkpt_timeinterval)
     EXPECT_EQ(chkpt_step_sum, 2 + 6);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

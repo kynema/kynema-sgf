@@ -12,13 +12,13 @@ namespace kynema_sgf::version {
 #cmakedefine AMR_WIND_HAVE_GIT_INFO
 
 #ifdef AMR_WIND_HAVE_GIT_INFO
-const std::string amr_wind_version = "@AMR_WIND_VERSION_TAG@";
-const std::string amr_wind_git_sha = "@AMR_WIND_GIT_COMMIT_SHA@";
-const std::string amr_wind_dirty_repo = "@AMR_WIND_REPO_DIRTY@";
+const std::string kynema_sgf_version = "@AMR_WIND_VERSION_TAG@";
+const std::string kynema_sgf_git_sha = "@AMR_WIND_GIT_COMMIT_SHA@";
+const std::string kynema_sgf_dirty_repo = "@AMR_WIND_REPO_DIRTY@";
 #else
-const std::string amr_wind_version = "v0.0.1";
-const std::string amr_wind_git_sha = "UNKNOWN";
-const std::string amr_wind_dirty_repo = "UNKNOWN";
+const std::string kynema_sgf_version = "v0.0.1";
+const std::string kynema_sgf_git_sha = "UNKNOWN";
+const std::string kynema_sgf_dirty_repo = "UNKNOWN";
 #endif
 
 } // namespace kynema_sgf::version

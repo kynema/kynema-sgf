@@ -14,7 +14,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class FieldPlaneAveragingFineTest : public MeshTest
 {
@@ -217,4 +217,4 @@ TEST_F(FieldPlaneAveragingFineTest, test_linear)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

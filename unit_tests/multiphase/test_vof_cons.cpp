@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 
 void initialize_volume_fractions(
@@ -276,4 +276,4 @@ TEST_F(VOFConsTest, CFL01) { testing_coorddir(-1, 0.1_rt); }
 // Test transport across multiple mesh levels - just check conservation
 TEST_F(VOFConsTest, 2level) { testing_coorddir(-2, 0.5_rt * 0.45_rt); }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -1,6 +1,6 @@
 #include "physics_test_utils.H"
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 PhysicsEx::PhysicsEx(kynema_sgf::CFDSim& /*unused*/) {}
 
@@ -12,4 +12,4 @@ void PhysicsEx::initialize_fields(
 void PhysicsEx::pre_advance_work() {}
 void PhysicsEx::post_advance_work() {}
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -4,7 +4,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -202,4 +202,4 @@ TEST_F(ProjPerturb, full_p_perturb)
     ptest_kernel(m_rho_0, 0.0_rt, -m_Fg, (m_nx + 1) * (m_ny + 1), m_Fg);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

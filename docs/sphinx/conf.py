@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# AMR-Wind documentation build configuration file
+# Kynema-SGF documentation build configuration file
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -57,7 +57,7 @@ source_suffix = {'.rst': 'restructuredtext'}
 master_doc = 'index'
 
 # General information about the project.
-project = u'AMR-Wind'
+project = u'Kynema-SGF'
 copyright = u'ExaWind team'
 author = u'ExaWind team'
 
@@ -145,7 +145,7 @@ html_theme = 'sphinx_rtd_theme'
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
 #
-# html_title = u'AMR-Wind v0.01'
+# html_title = u'Kynema-SGF v0.01'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #
@@ -272,7 +272,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'kynema_sgf.tex', u'AMR-Wind Documentation',
+    (master_doc, 'kynema_sgf.tex', u'Kynema-SGF Documentation',
      author, 'manual'),
 ]
 
@@ -314,7 +314,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'amr-wind', u'AMR-Wind Documentation',
+    (master_doc, 'amr-wind', u'Kynema-SGF Documentation',
      [author], 1)
 ]
 
@@ -329,8 +329,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'kynema_sgf', u'AMR-Wind Documentation',
-     author, 'AMR-Wind', 'One line description of project.',
+    (master_doc, 'kynema_sgf', u'Kynema-SGF Documentation',
+     author, 'Kynema-SGF', 'One line description of project.',
      'Miscellaneous'),
 ]
 
@@ -355,5 +355,5 @@ def setup(app):
                         objname="CMake configuration value",
                         indextemplate="pair: %s; CMake configuration")
     app.add_object_type("input_param", "input_param",
-                        objname="AMR-Wind input parameter",
-                        indextemplate="pair: %s; AMR-Wind input parameter")
+                        objname="Kynema-SGF input parameter",
+                        indextemplate="pair: %s; Kynema-SGF input parameter")

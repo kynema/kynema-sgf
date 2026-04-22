@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -179,4 +179,4 @@ TEST_F(ExplicitDiffusionRK2Test, correct_approach)
         abs_diff_term, std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

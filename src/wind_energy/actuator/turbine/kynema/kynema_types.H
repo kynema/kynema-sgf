@@ -52,7 +52,7 @@ struct KynemaTurbine : public ext_turb::ExternalTurbine
         // Get hub information for nacelle force
         // Chord is not used, set it to zero
         buffer_cf[0] = 0.;
-        // Force is calculated by AMR-Wind, passed to Kynema
+        // Force is calculated by Kynema-SGF, passed to Kynema
         // Get position directly from node information
         buffer_pf[0] = interface->Turbine().hub_node.position[0];
         buffer_pf[length_force(0)] = interface->Turbine().hub_node.position[1];
@@ -124,7 +124,7 @@ struct KynemaTurbine : public ext_turb::ExternalTurbine
     void pass_fluid_velocity_and_hub_load()
     {
         // Fluid velocity at hub does not need to be passed, loads computed
-        // internally in AMR-Wind
+        // internally in Kynema-SGF
         int idx = 0;
         for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
             // Skip hub node

@@ -33,14 +33,14 @@ Section: Momentum Sources
    **type:** List of 3 reals, optional, default = 1.0 0.0 0.0
    
    East vector that gives the orientation of the grid w.r.t. to planetary coordinate system.
-   This vector is automatically normalized within AMR-Wind.
+   This vector is automatically normalized within Kynema-SGF.
    
 .. input_param:: CoriolisForcing.north_vector
 
    **type:** List of 3 reals, optional, default = 0.0 1.0 0.0
    
    North vector that gives the orientation of the grid w.r.t. to planetary coordinate system.
-   This vector is automatically normalized within AMR-Wind.
+   This vector is automatically normalized within Kynema-SGF.
 
 .. input_param:: GeostrophicForcing.geostrophic_wind
 

@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class ICNSInitTest : public MeshTest
 {
@@ -76,4 +76,4 @@ TEST_F(ICNSInitTest, generic_2level)
     generic_field.fillpatch(0.0_rt);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

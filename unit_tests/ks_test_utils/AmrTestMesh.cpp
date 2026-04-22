@@ -2,7 +2,7 @@
 #include "gtest/gtest.h"
 #include "AMReX_MultiFab.H"
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 AmrTestMesh::AmrTestMesh() : m_sim(*this), m_repo(m_sim.repo())
 {
@@ -64,4 +64,4 @@ void AmrTestMesh::ErrorEst(
     amrex::Abort("Not implemented");
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

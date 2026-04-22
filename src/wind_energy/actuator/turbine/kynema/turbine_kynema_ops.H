@@ -48,7 +48,7 @@ struct ReadInputsOp<TurbineKynema, SrcTrait>
         pp.query("controller_input_file", tf.controller_input_file);
 
         // Get hub height and turbine diameter from turbine input,
-        // not AMR-Wind input file
+        // not Kynema-SGF input file
         const YAML::Node wio = YAML::LoadFile(tf.input_file);
         {
             const auto& wio_blade = wio["components"]["blade"];
@@ -67,7 +67,7 @@ struct ReadInputsOp<TurbineKynema, SrcTrait>
 
         read_ops<TurbineKynema::DataType>(data, pp);
 
-        // Do AMR-Wind inputs specific to kynema turbine
+        // Do Kynema-SGF inputs specific to kynema turbine
         tf.fluid_density = data.meta().density;
 
         tf.dt_ext = -1.;

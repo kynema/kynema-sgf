@@ -15,7 +15,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class FvmOpTest : public MeshTest
 {};
@@ -535,4 +535,4 @@ TEST_F(FvmOpTest, q_criterion)
     EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

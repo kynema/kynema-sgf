@@ -276,8 +276,8 @@ Example for ``FixedWingLine``::
 TurbineFastLine
 """""""""""""""
 
-This actuator type requires an AMR-Wind build with OpenFAST coupling
-enabled. AMR-Wind provides flow quantities at the actuator point
+This actuator type requires an Kynema-SGF build with OpenFAST coupling
+enabled. Kynema-SGF provides flow quantities at the actuator point
 locations to OpenFAST and OpenFAST provides the actuator point
 locations and forces at those points. This tight coupling happens at
 every time step.
@@ -399,13 +399,13 @@ Example for ``TurbineFastLine``::
 TurbineKynemaLine
 """""""""""""""""
 
-This actuator type requires an AMR-Wind build with Kynema coupling
+This actuator type requires an Kynema-SGF build with Kynema coupling
 enabled. This is a similar coupling to OpenFAST, but Kynema
 acts as the turbine solver in this instance. Some turbine quantities
-that the OpenFAST interface needs from the AMR-Wind input file
+that the OpenFAST interface needs from the Kynema-SGF input file
 are instead found directly by the code within the Kynema input file,
 whereas other quantities that OpenFAST has stored within its inputs
-need to be directly supplied through the AMR-Wind input file for Kynema,
+need to be directly supplied through the Kynema-SGF input file for Kynema,
 especially for initialization.
 
 Example for ``TurbineKynemaLine``::
@@ -460,7 +460,7 @@ Example for ``TurbineKynemaLine``::
    **type:** Int, required
 
    This is the number of aerodynamic sections for Kynema to use when modeling each turbine blade.
-   This will correspond to the number of force points and velocity points on each blade in AMR-Wind.
+   This will correspond to the number of force points and velocity points on each blade in Kynema-SGF.
    This must be the same number as provided in the Kynema input file.
 
 .. input_param:: Actuator.TurbineKynemaLine.num_points_tower
@@ -544,11 +544,11 @@ Example for ``TurbineKynemaLine``::
 
 .. input_param:: Actuator.TurbineKynemaLine.dt
 
-   **type:** Real, optional, default = same as AMR-Wind dt
+   **type:** Real, optional, default = same as Kynema-SGF dt
 
    This is the time step size chosen for the Kynema turbine model. It must
-   be a factor of the AMR-Wind time step so that Kynema can take an integer
-   number of sub-steps for each AMR-Wind time step. If not populated, the Kynema time
+   be a factor of the Kynema-SGF time step so that Kynema can take an integer
+   number of sub-steps for each Kynema-SGF time step. If not populated, the Kynema time
    step size will be the same as the flow solver time step, and, due to the
    robustness of Kynema, this is typically fine.
 
@@ -556,9 +556,9 @@ Example for ``TurbineKynemaLine``::
 
    **type:** Int, optional, default = 10
 
-   This is how often, in time steps, to output actuator data from AMR-Wind.
+   This is how often, in time steps, to output actuator data from Kynema-SGF.
    Note, this does not govern how often Kynema outputs turbine data. Kynema
-   automatically outputs data every AMR-Wind time step.
+   automatically outputs data every Kynema-SGF time step.
 
 .. input_param:: Kynema.abs_err_tol
 

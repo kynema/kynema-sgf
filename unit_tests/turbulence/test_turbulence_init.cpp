@@ -2,7 +2,7 @@
 #include "ks_test_utils/MeshTest.H"
 #include "src/turbulence/TurbulenceModel.H"
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class TurbTest : public MeshTest
 {};
@@ -14,4 +14,4 @@ TEST_F(TurbTest, test_turb_create)
     kynema_sgf::turbulence::TurbulenceModel::print(std::cout);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

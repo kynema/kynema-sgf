@@ -11,7 +11,7 @@ namespace act = ::kynema_sgf::actuator::utils;
 namespace vs = ::kynema_sgf::vs;
 namespace utils = ::kynema_sgf::utils;
 
-namespace amr_wind_tests::kynema_sgf {
+namespace kynema_sgf_tests::kynema_sgf {
 namespace {
 
 TEST(CylindricalTransformation, distances_on_z_aligned_circle)
@@ -108,4 +108,4 @@ TEST(CylindricalTransformation, distances_on_rotated_shifted_circle)
 }
 
 } // namespace
-} // namespace amr_wind_tests::kynema_sgf
+} // namespace kynema_sgf_tests::kynema_sgf

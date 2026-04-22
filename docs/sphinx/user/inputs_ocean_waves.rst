@@ -17,7 +17,7 @@ This section is for setting up wave forcing and relaxation zones.
 
    Type of wave to be used. Options include LinearWaves, StokesWaves, and W2AWaves. 
    Linear and stokes waves are monochromatic waves. W2AWaves uses the Waves2AMR library to read 
-   and transform HOS-Ocean wave data into the AMR-Wind domain, and this option requires the Waves2AMR 
+   and transform HOS-Ocean wave data into the Kynema-SGF domain, and this option requires the Waves2AMR 
    library (abbreviated W2A) to be enabled at compile time.
 
 .. input_param:: OceanWaves.label.relax_zone_gen_length
@@ -189,33 +189,33 @@ The following input arguments are only valid for the W2AWaves wave type:
 
    **type:** Integer, optional, default = 0
 
-   The time step in the modes file for the AMR-Wind simulation to start at.
+   The time step in the modes file for the Kynema-SGF simulation to start at.
 
 .. input_param:: OceanWaves.label.HOS_init_time
 
    **type:** Integer, optional, default = 0
 
-   The physical time in the modes file for the AMR-Wind simulation to start at.
-   This argument is only active if HOS_init_timestep is omitted. AMR-Wind will pick the
+   The physical time in the modes file for the Kynema-SGF simulation to start at.
+   This argument is only active if HOS_init_timestep is omitted. Kynema-SGF will pick the
    time step in the modes closest to the specified time.
 
 .. input_param:: OceanWaves.label.HOS_domain_offset_x
 
    **type:** Real, optional, default = 0.
 
-   A physical space offset for mapping between the HOS domain and the AMR-Wind domain.
+   A physical space offset for mapping between the HOS domain and the Kynema-SGF domain.
    The coordinates of the HOS domain always start at (x,y) = (0,0), but often the setup
-   of an AMR-Wind domain is not constrained in this way, and also the AMR-Wind domain
+   of an Kynema-SGF domain is not constrained in this way, and also the Kynema-SGF domain
    may only represent a portion of the HOS domain. This parameter, :math:`x_textrm{off}`, 
-   contributes to the mapping such that :math:`x_\textrm{AMR-Wind} = x_\textrm{HOS} + x_\textrm{off}`.
+   contributes to the mapping such that :math:`x_\textrm{Kynema-SGF} = x_\textrm{HOS} + x_\textrm{off}`.
 
 .. input_param:: OceanWaves.label.HOS_domain_offset_y
 
    **type:** Real, optional, default = 0.
 
-   A physical space offset for mapping between the HOS domain and the AMR-Wind domain.
+   A physical space offset for mapping between the HOS domain and the Kynema-SGF domain.
    This parameter, :math:`y_textrm{off}`, contributes to the mapping such that
-   :math:`y_\textrm{AMR-Wind} = y_\textrm{HOS} + y_\textrm{off}`.
+   :math:`y_\textrm{Kynema-SGF} = y_\textrm{HOS} + y_\textrm{off}`.
 
 .. input_param:: OceanWaves.label.fftw_planner_flag
 
@@ -233,11 +233,11 @@ The following input arguments are only valid for the W2AWaves wave type:
    **type:** Integer, mandatory
 
    When Waves2AMR converts mode data to spatial data, the z locations to perform the transformation
-   must be chosen. AMR-Wind does this by creating a geometric series from the water surface
+   must be chosen. Kynema-SGF does this by creating a geometric series from the water surface
    to the lower z boundary, starting with a small spacing between points near the surface and 
    then expanding downward. This argument is the total number of z locations where wave modes will be
    transformed to inform the wave velocity field. After the transformation step, the data is then interpolated
-   to the AMR-Wind mesh. More points means better resolution over the whole depth, but more points
+   to the Kynema-SGF mesh. More points means better resolution over the whole depth, but more points
    also means more work for the solver.
 
 .. input_param:: OceanWaves.label.interp_spacing_at_surface

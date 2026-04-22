@@ -5,9 +5,9 @@
 
 using namespace amrex::literals;
 
-extern amr_wind_tests::AmrexTestEnv* utest_env;
+extern kynema_sgf_tests::AmrexTestEnv* utest_env;
 
-namespace amr_wind_tests::pp_utils {
+namespace kynema_sgf_tests::pp_utils {
 
 bool has_managed_memory()
 {
@@ -55,4 +55,4 @@ void default_mesh_inputs()
     }
 }
 
-} // namespace amr_wind_tests::pp_utils
+} // namespace kynema_sgf_tests::pp_utils

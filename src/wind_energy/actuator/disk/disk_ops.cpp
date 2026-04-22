@@ -25,8 +25,8 @@ void prepare_netcdf_file(
     const std::string nv_name = "num_velocity_points";
 
     ncf.enter_def_mode();
-    ncf.put_attr("title", "AMR-Wind ActuatorDisk actuator output");
-    ncf.put_attr("version", ioutils::amr_wind_version());
+    ncf.put_attr("title", "Kynema-SGF ActuatorDisk actuator output");
+    ncf.put_attr("version", ioutils::kynema_sgf_version());
     ncf.put_attr("created_on", ioutils::timestamp());
     ncf.def_dim(nt_name, NC_UNLIMITED);
     ncf.def_dim("ndim", AMREX_SPACEDIM);

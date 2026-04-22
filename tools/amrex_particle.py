@@ -5,7 +5,7 @@ AMReX Particle Data Processor
 -----------------------------
 
 This module provides a python class :class:`AmrexParticleFile` that can parse
-the sampling data written out by AMR-Wind using the native AMReX binary format.
+the sampling data written out by Kynema-SGF using the native AMReX binary format.
 
 """
 

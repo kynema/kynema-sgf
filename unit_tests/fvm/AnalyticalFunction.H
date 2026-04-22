@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests::analytical_function {
+namespace kynema_sgf_tests::analytical_function {
 
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real phi_eval(
     int degree,
@@ -628,5 +628,5 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real q_criterion(
     return 0.25_rt * (W2 - S2);
 }
 
-} // namespace amr_wind_tests::analytical_function
+} // namespace kynema_sgf_tests::analytical_function
 #endif

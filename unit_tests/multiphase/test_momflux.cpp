@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -306,4 +306,4 @@ TEST_F(MassMomFluxOpTest, fluxfaceX) { testing_coorddir(0); }
 TEST_F(MassMomFluxOpTest, fluxfaceY) { testing_coorddir(1); }
 TEST_F(MassMomFluxOpTest, fluxfaceZ) { testing_coorddir(2); }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

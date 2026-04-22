@@ -168,8 +168,8 @@ void ExtTurbIface<FastTurbine, FastSolverData>::prepare_netcdf_file(
     const std::string nt_name = "num_time_steps";
     const std::string np_name = "num_vel_points";
     ncf.enter_def_mode();
-    ncf.put_attr("title", "AMR-Wind OpenFAST velocity data");
-    ncf.put_attr("AMR-Wind_version", kynema_sgf::ioutils::amr_wind_version());
+    ncf.put_attr("title", "Kynema-SGF OpenFAST velocity data");
+    ncf.put_attr("Kynema-SGF_version", kynema_sgf::ioutils::kynema_sgf_version());
     ncf.put_attr("created_on", kynema_sgf::ioutils::timestamp());
     ncf.def_dim(nt_name, NC_UNLIMITED);
     ncf.def_dim(np_name, fi.from_cfd.u_Len);
@@ -240,7 +240,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::read_velocity_data(
 #else
     amrex::ignore_unused(fi);
     amrex::Abort(
-        "FastIface::read_velocity_data: AMR-Wind was not compiled with NetCDF "
+        "FastIface::read_velocity_data: Kynema-SGF was not compiled with NetCDF "
         "support");
 #endif
 }
@@ -391,7 +391,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_replay_turbine(
 #else
     amrex::ignore_unused(fi);
     amrex::Abort(
-        "FastIface::replay_turbine: AMR-Wind was not compiled with NetCDF "
+        "FastIface::replay_turbine: Kynema-SGF was not compiled with NetCDF "
         "support");
 #endif
 }

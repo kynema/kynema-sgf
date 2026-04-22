@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 constexpr amrex::Real tol =
     std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
@@ -182,4 +182,4 @@ TEST(TensorOps, transform_vec) { impl_transform_vec(); }
 
 TEST(TensorOps, inv_transform_vec) { impl_inv_transform_vec(); }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

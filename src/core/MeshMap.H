@@ -15,9 +15,9 @@ class CFDSim;
 /**
  *  \defgroup mesh_map Mesh mapping models
  *
- *  AMR-Wind representation of different mesh mapping models
+ *  Kynema-SGF representation of different mesh mapping models
  *
- *  In AMR-Wind, different mesh mappings are implemented using the MeshMap
+ *  In Kynema-SGF, different mesh mappings are implemented using the MeshMap
  * class.
  */
 

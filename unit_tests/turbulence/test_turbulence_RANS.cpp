@@ -6,7 +6,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -191,4 +191,4 @@ TEST_F(TurbRANSTest, test_1eqKrans_setup_calc)
     EXPECT_NEAR(max_val, nut_max, tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

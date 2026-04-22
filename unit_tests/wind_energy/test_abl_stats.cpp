@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 void init_field1(kynema_sgf::Field& fld)
@@ -262,4 +262,4 @@ TEST_F(ABLMeshTest, stats_energy_budget)
     EXPECT_NEAR(err_total, 0.0_rt, tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -50,7 +50,7 @@ private:
     amrex::Gpu::DeviceVector<amrex::Real> m_meso_ht;
     amrex::Gpu::DeviceVector<amrex::Real> m_meso_theta_vals;
 
-    // this is the instantaneous planar average (at AMR-Wind levels)
+    // this is the instantaneous planar average (at Kynema-SGF levels)
     amrex::Gpu::DeviceVector<amrex::Real> m_theta_ht;
 
     // this specifies the source term

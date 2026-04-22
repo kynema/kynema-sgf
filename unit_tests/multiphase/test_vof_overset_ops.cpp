@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class VOFOversetOps : public MeshTest
 {
@@ -260,4 +260,4 @@ TEST_F(VOFOversetOps, projection_masks)
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

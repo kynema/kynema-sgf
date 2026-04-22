@@ -15,7 +15,7 @@ using namespace amrex::literals;
  *  \defgroup multiphase_physics Multiphase physics
  *
  * This class implements the necessary code to simulate multiphase
- * (air-water interaction) problems with AMR-Wind. It reads the
+ * (air-water interaction) problems with Kynema-SGF. It reads the
  * namespace `MultiPhase' from the input file to determine how the
  * initial conditions are generated.
  *

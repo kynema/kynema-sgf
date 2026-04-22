@@ -4,7 +4,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class FieldRepoTest : public MeshTest
 {
@@ -452,4 +452,4 @@ TEST_F(FieldRepoTest, field_subviews)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

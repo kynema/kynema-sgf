@@ -18,14 +18,14 @@ namespace turbulence {
 /**
  *  \defgroup turb_model Turbulence models
  *
- *  Turbulence models available in AMR-Wind
+ *  Turbulence models available in Kynema-SGF
  */
 
 /** Abstract representation of a turbulence model
  *  \ingroup turb_model
  *
  *  This class is an abstract representation of a turbulence model used in
- *  AMR-Wind. Subclasses must implement the methods defined in this class to
+ *  Kynema-SGF. Subclasses must implement the methods defined in this class to
  *  interact with \ref eqsys.
  */
 class TurbulenceModel : public Factory<TurbulenceModel, CFDSim&>

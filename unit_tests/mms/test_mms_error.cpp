@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 void perturb_vel_field(
@@ -82,4 +82,4 @@ TEST_F(MMSMeshTest, mms_error)
 #endif
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

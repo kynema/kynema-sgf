@@ -1,11 +1,11 @@
-How to Cite AMR-Wind
-====================
+How to Cite Kynema-SGF
+======================
 
-The following journal articles (`AMR-Wind reference <https://doi.org/10.1002/we.70010>`_, `ExaWind reference <https://doi.org/10.1002/we.2886>`_) should be cited when referencing AMR-Wind::
+The following journal articles (`AMR-Wind reference <https://doi.org/10.1002/we.70010>`_, `ExaWind reference <https://doi.org/10.1002/we.2886>`_) should be cited when referencing Kynema-SGF, though the name has changed since publication::
 
     @article{amrwind2025,
         author = {Kuhn, Michael B. and {Henry de Frahan}, Marc T. and Mohan, Prakash and Deskos, Georgios and Churchfield, Matthew and Cheung, Lawrence and Sharma, Ashesh and Almgren, Ann and Ananthan, Shreyas and Brazell, Michael J. and {Martinez-Tossas} Luis A. and Thedin, Regis and Rood, Jon and Sakievich, Philip and Vijayakumar, Ganesh and Zhang, Weiqun and Sprague, Michael A.},
-        title = {AMR-Wind: A performance-portable, high-fidelity flow solver for wind farm simulations},
+        title = {Kynema-SGF: A performance-portable, high-fidelity flow solver for wind farm simulations},
         journal = {Wind Energy},
         volume = {28},
         number = {5},

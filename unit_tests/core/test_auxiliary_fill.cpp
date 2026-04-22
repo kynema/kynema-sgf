@@ -4,7 +4,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -344,4 +344,4 @@ TEST_F(AuxiliaryFillTest, velocity_face)
     EXPECT_DOUBLE_EQ(w_err, 0.);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

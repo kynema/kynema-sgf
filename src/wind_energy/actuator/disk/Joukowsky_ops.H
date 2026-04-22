@@ -65,7 +65,7 @@ struct UpdatePosOp<Joukowsky, ActSrcDisk>
         auto& meta = data.meta();
 
         const amrex::Real turbine_direction =
-            -data.sim().helics().m_turbine_yaw_to_amrwind[data.info().id] +
+            -data.sim().helics().m_turbine_yaw_to_kynema_sgf[data.info().id] +
             90.0_rt;
         const amrex::Real turbine_direction_radian =
             kynema_sgf::utils::radians(turbine_direction);

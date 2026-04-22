@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class WaveUtilsTest : public MeshTest
 {};
@@ -268,4 +268,4 @@ TEST_F(WaveUtilsTest, gamma_xy)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

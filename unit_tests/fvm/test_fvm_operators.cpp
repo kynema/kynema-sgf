@@ -9,7 +9,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class FvmOperatorsTest : public MeshTest
 {};
@@ -338,4 +338,4 @@ TEST_F(FvmOperatorsTest, divergence)
     EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -21,7 +21,7 @@ namespace kynema_sgf {
  *  \defgroup fields Field management
  *  Field management infrastructure
  *
- *  Field is at the core of AMR-Wind implementation that handles all the data
+ *  Field is at the core of Kynema-SGF implementation that handles all the data
  *  used during the simulation. FieldRepo manages a collection of fields and is
  *  responsible for all memory allocation and reinitialization during regrid
  *  process. Field provides a higher-level interface than MultiFabs and also

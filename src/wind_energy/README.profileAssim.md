@@ -19,14 +19,14 @@ TODOs:
 ## Differences from SOWFA
 
 - Regression matrix (Z^T W Z) is formed with z/zmax in SOWFA
-  Regression matrix (Z^T W Z) is formed with z*scaleFact in AMR-Wind, which was previously
+  Regression matrix (Z^T W Z) is formed with z*scaleFact in Kynema-SGF, which was previously
     hard-coded with scaleFact=1e-3; SOWFA behavior is achieved with the `normalize_by_zmax` flag
 - Blending/forcing transition in SOWFA is over:
     (assimMaxHeight, assimMaxHeight+blendThickness)
-  Blending/forcing transition in AMR-Wind is over:
+  Blending/forcing transition in Kynema-SGF is over:
     (transition_height, transition_height+transition_thickness)
 - Blending (from indirect) to constant/direct is enabled in SOWFA with the `blendToConst`
     and `blendToDirect` flags, respectively
-  Blending in AMR-Wind is enabled by setting `forcing_transition=indirectToConstant` or
+  Blending in Kynema-SGF is enabled by setting `forcing_transition=indirectToConstant` or
     `forcing_transition=indirectToDirect`
 

@@ -4,7 +4,7 @@ Section: Sampling
 ~~~~~~~~~~~~~~~~~
 
 This section controls data-sampling actions supported within
-AMR-Wind. The input parameters below use the label ``sampling`` as an example,
+Kynema-SGF. The input parameters below use the label ``sampling`` as an example,
 as if this was provided to :input_param:`incflo.post_processing` in the input file.
 For more information on specifying
 when sampled data is output to a file, see the :ref:`post-processing
@@ -25,7 +25,7 @@ inputs <inputs_post_processing>`
        on performance and must be used for debugging only.
 
    ``netcdf``
-       This requires linking to the netcdf library. If netcdf is linked to AMR-Wind and output format
+       This requires linking to the netcdf library. If netcdf is linked to Kynema-SGF and output format
        is not specified then netcdf is chosen by default.
 
 .. input_param:: sampling.labels

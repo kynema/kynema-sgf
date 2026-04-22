@@ -22,7 +22,7 @@
  *  This group documents classes and functions available for performing
  *  fillpatch operations on the entire field. This API represents a higher-level
  *  interface to the MultiFab based fillpatch operations and fill physics BC
- *  operations defined in AMReX library. The functionality available in AMR-Wind
+ *  operations defined in AMReX library. The functionality available in Kynema-SGF
  *  has two components: 1. the fill patch operators themselves that perform the
  *  fill operation, and 2. operator classes that define what happens during a
  *  fillpatch operation at the domain boundaries.

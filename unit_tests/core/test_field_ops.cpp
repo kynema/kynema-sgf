@@ -4,7 +4,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class FieldOpsTest : public MeshTest
 {
@@ -54,4 +54,4 @@ TEST_F(FieldOpsTest, compute_max_magnitude)
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -16,7 +16,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 //! Custom test fixture for Cartesian Box refinement
 class NestRefineTest : public MeshTest
@@ -141,4 +141,4 @@ TEST_F(NestRefineTest, bbox_limits)
     EXPECT_EQ(bx.bigEnd(), big_end.diagShift(1));
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -21,7 +21,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 amrex::Real
@@ -270,4 +270,4 @@ TEST_F(ABLMeshTest, abl_donelan_wall_model)
     EXPECT_NEAR(vexpct, vbase, tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

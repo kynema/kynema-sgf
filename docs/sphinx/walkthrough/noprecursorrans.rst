@@ -4,7 +4,7 @@ External Driven Terrain Simulations
 ===================================
 
 The default method for running inflow-outflow simulation with the immersed forcing terrain method in 
-AMR-Wind is to run a precursor simulation and use the time-dependent boundary plane from this simulation 
+Kynema-SGF is to run a precursor simulation and use the time-dependent boundary plane from this simulation 
 to provide the driving conditions. However, this method is not required for RANS simulations and can be 
 avoided with LES. The schematic of the domain setup is shown below:
 

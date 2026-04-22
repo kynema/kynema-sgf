@@ -7,7 +7,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 void write_ncf()
 {
@@ -182,4 +182,4 @@ TEST_F(ABLMeshTest, abl_netcdf_cleanup)
     EXPECT_FALSE(ff.good());
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
