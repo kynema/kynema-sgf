@@ -239,7 +239,7 @@ if(AMR_WIND_TEST_WITH_PYTHON)
 endif()
 
 generate_version_info()
-add_subdirectory(amr-wind)
+add_subdirectory(src)
 
 target_link_libraries_system(${amr_wind_lib_name} PUBLIC AMReX::amrex AMReX-Hydro::amrex_hydro_api)
 target_link_libraries(${amr_wind_exe_name} PRIVATE ${amr_wind_lib_name} AMReX-Hydro::amrex_hydro_api)
@@ -294,7 +294,7 @@ if(AMR_WIND_ENABLE_UNIT_TESTS OR AMR_WIND_ENABLE_TESTS)
 endif()
 
 install(
-  DIRECTORY ${PROJECT_SOURCE_DIR}/amr-wind
+  DIRECTORY ${PROJECT_SOURCE_DIR}/src
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
   FILES_MATCHING PATTERN "*.H")
 
