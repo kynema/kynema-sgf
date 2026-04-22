@@ -20,7 +20,7 @@ jobs:
     - name: Check formatting
       uses: DoozyX/clang-format-lint-action@v0.20
       with:
-        source: './amr-wind ./unit_tests ./tools/utilities'
+        source: './src ./unit_tests ./tools/utilities'
         exclude: '.'
         extensions: 'H,h,cpp'
         clangFormatVersion: 20
