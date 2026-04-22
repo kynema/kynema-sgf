@@ -1,8 +1,8 @@
-#include "amr-wind/equation_systems/tke/TKE.H"
-#include "amr-wind/equation_systems/AdvOp_Godunov.H"
-#include "amr-wind/equation_systems/AdvOp_MOL.H"
-#include "amr-wind/equation_systems/BCOps.H"
-#include "amr-wind/equation_systems/tke/tke_ops.H"
+#include "src/equation_systems/tke/TKE.H"
+#include "src/equation_systems/AdvOp_Godunov.H"
+#include "src/equation_systems/AdvOp_MOL.H"
+#include "src/equation_systems/BCOps.H"
+#include "src/equation_systems/tke/tke_ops.H"
 
 namespace amr_wind::pde {
 

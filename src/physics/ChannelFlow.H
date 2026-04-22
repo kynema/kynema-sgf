@@ -1,11 +1,11 @@
 #ifndef CHANNELFLOW_H
 #define CHANNELFLOW_H
 
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/core/Field.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/boundary_conditions/wall_models/WallFunction.H"
-#include "amr-wind/turbulence/TurbulenceModel.H"
+#include "src/core/Physics.H"
+#include "src/core/Field.H"
+#include "src/CFDSim.H"
+#include "src/boundary_conditions/wall_models/WallFunction.H"
+#include "src/turbulence/TurbulenceModel.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

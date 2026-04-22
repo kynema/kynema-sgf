@@ -1,12 +1,12 @@
 #include <algorithm>
 #include <memory>
-#include "amr-wind/wind_energy/actuator/Actuator.H"
-#include "amr-wind/wind_energy/actuator/ActParser.H"
-#include "amr-wind/wind_energy/actuator/ActuatorContainer.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/utilities/io_utils.H"
-#include "amr-wind/utilities/IOManager.H"
+#include "src/wind_energy/actuator/Actuator.H"
+#include "src/wind_energy/actuator/ActParser.H"
+#include "src/wind_energy/actuator/ActuatorContainer.H"
+#include "src/CFDSim.H"
+#include "src/core/FieldRepo.H"
+#include "src/utilities/io_utils.H"
+#include "src/utilities/IOManager.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

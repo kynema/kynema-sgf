@@ -5,9 +5,9 @@
 #include "AMReX_Vector.H"
 #include "AMReX_GpuContainers.H"
 #include "AMReX_MFParallelFor.H"
-#include "amr-wind/core/FieldDescTypes.H"
-#include "amr-wind/core/Field.H"
-#include "amr-wind/core/FieldRepo.H"
+#include "src/core/FieldDescTypes.H"
+#include "src/core/Field.H"
+#include "src/core/FieldRepo.H"
 
 namespace amr_wind {
 

@@ -1,5 +1,5 @@
-#include "amr-wind/core/MeshMap.H"
-#include "amr-wind/CFDSim.H"
+#include "src/core/MeshMap.H"
+#include "src/CFDSim.H"
 
 namespace amr_wind {
 

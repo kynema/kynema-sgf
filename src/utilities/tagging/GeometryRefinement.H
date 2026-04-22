@@ -1,8 +1,8 @@
 #ifndef GEOMETRYREFINEMENT_H
 #define GEOMETRYREFINEMENT_H
 
-#include "amr-wind/utilities/index_operations.H"
-#include "amr-wind/utilities/tagging/RefinementCriteria.H"
+#include "src/utilities/index_operations.H"
+#include "src/utilities/tagging/RefinementCriteria.H"
 
 namespace amr_wind {
 namespace tagging {

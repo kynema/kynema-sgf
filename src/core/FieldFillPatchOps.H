@@ -3,11 +3,11 @@
 
 #include <utility>
 
-#include "amr-wind/core/Field.H"
-#include "amr-wind/core/SimTime.H"
-#include "amr-wind/core/FieldDescTypes.H"
-#include "amr-wind/core/FieldUtils.H"
-#include "amr-wind/core/FieldBCOps.H"
+#include "src/core/Field.H"
+#include "src/core/SimTime.H"
+#include "src/core/FieldDescTypes.H"
+#include "src/core/FieldUtils.H"
+#include "src/core/FieldBCOps.H"
 
 #include "AMReX_AmrCore.H"
 #include "AMReX_MultiFab.H"

@@ -3,7 +3,7 @@
 
 #include <ostream>
 #include <cmath>
-#include "amr-wind/core/vs/vector.H"
+#include "src/core/vs/vector.H"
 
 namespace amr_wind::vs {
 

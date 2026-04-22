@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <string>
-#include "amr-wind/utilities/DerivedQuantity.H"
-#include "amr-wind/utilities/io_utils.H"
+#include "src/utilities/DerivedQuantity.H"
+#include "src/utilities/io_utils.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

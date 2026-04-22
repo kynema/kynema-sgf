@@ -1,7 +1,7 @@
 #include "aw_test_utils/MeshTest.H"
-#include "amr-wind/utilities/IOManager.H"
-#include "amr-wind/utilities/sampling/FieldNorms.H"
-#include "amr-wind/utilities/tagging/FieldRefinement.H"
+#include "src/utilities/IOManager.H"
+#include "src/utilities/sampling/FieldNorms.H"
+#include "src/utilities/tagging/FieldRefinement.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

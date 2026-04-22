@@ -1,8 +1,8 @@
 #include "aw_test_utils/MeshTest.H"
 #include "aw_test_utils/pp_utils.H"
 
-#include "amr-wind/wind_energy/actuator/turbine/external/ExtTurbIface.H"
-#include "amr-wind/wind_energy/actuator/turbine/fast/fast_types.H"
+#include "src/wind_energy/actuator/turbine/external/ExtTurbIface.H"
+#include "src/wind_energy/actuator/turbine/fast/fast_types.H"
 
 #include <algorithm>
 #include "AMReX_REAL.H"

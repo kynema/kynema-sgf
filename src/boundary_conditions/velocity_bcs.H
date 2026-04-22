@@ -1,16 +1,16 @@
 #ifndef VELOCITY_BCS_H
 #define VELOCITY_BCS_H
 
-#include "amr-wind/core/FieldBCOps.H"
-#include "amr-wind/core/FieldFillPatchOps.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/core/SimTime.H"
-#include "amr-wind/physics/udfs/LinearProfile.H"
-#include "amr-wind/physics/udfs/PowerLawProfile.H"
-#include "amr-wind/physics/udfs/BurggrafLid.H"
-#include "amr-wind/physics/udfs/Rankine.H"
-#include "amr-wind/physics/udfs/CustomVelocity.H"
-#include "amr-wind/physics/udfs/TwoLayer.H"
+#include "src/core/FieldBCOps.H"
+#include "src/core/FieldFillPatchOps.H"
+#include "src/core/FieldRepo.H"
+#include "src/core/SimTime.H"
+#include "src/physics/udfs/LinearProfile.H"
+#include "src/physics/udfs/PowerLawProfile.H"
+#include "src/physics/udfs/BurggrafLid.H"
+#include "src/physics/udfs/Rankine.H"
+#include "src/physics/udfs/CustomVelocity.H"
+#include "src/physics/udfs/TwoLayer.H"
 
 namespace amr_wind::vel_bc {
 

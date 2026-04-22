@@ -1,12 +1,12 @@
 #include <AMReX_BC_TYPES.H>
-#include "amr-wind/incflo.H"
+#include "src/incflo.H"
 #include <cmath>
 
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/wind_energy/ABL.H"
-#include "amr-wind/physics/BoussinesqBubble.H"
-#include "amr-wind/utilities/tagging/RefinementCriteria.H"
-#include "amr-wind/utilities/tagging/CartBoxRefinement.H"
+#include "src/core/Physics.H"
+#include "src/wind_energy/ABL.H"
+#include "src/physics/BoussinesqBubble.H"
+#include "src/utilities/tagging/RefinementCriteria.H"
+#include "src/utilities/tagging/CartBoxRefinement.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

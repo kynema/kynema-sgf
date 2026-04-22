@@ -2,7 +2,7 @@
 #define DIFFUSION_H
 
 #include "AMReX_MLMG.H"
-#include "amr-wind/core/FieldRepo.H"
+#include "src/core/FieldRepo.H"
 
 namespace diffusion {
 

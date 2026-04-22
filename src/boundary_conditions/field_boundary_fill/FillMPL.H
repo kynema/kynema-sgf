@@ -1,9 +1,9 @@
 #ifndef FILLMPL_H
 #define FILLMPL_H
 
-#include "amr-wind/core/FieldFillPatchOps.H"
-#include "amr-wind/core/FieldBCOps.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H"
+#include "src/core/FieldFillPatchOps.H"
+#include "src/core/FieldBCOps.H"
+#include "src/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H"
 
 namespace amr_wind {
 

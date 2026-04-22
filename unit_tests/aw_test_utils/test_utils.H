@@ -4,7 +4,7 @@
 #include "gtest/gtest.h"
 #include "AMReX_MultiFab.H"
 #include "AMReX_Vector.H"
-#include "amr-wind/core/FieldRepo.H"
+#include "src/core/FieldRepo.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

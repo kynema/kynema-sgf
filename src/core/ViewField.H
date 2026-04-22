@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "amr-wind/core/FieldDescTypes.H"
+#include "src/core/FieldDescTypes.H"
 #include "AMReX_MultiFab.H"
 #include "AMReX_Vector.H"
 

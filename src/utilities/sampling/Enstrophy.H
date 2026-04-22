@@ -1,8 +1,8 @@
 #ifndef ENSTROPHY_H
 #define ENSTROPHY_H
 
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/PostProcessing.H"
+#include "src/CFDSim.H"
+#include "src/utilities/PostProcessing.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

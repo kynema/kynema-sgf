@@ -5,9 +5,9 @@
 #include <unordered_map>
 #include <vector>
 
-#include "amr-wind/core/Factory.H"
-#include "amr-wind/core/CollMgr.H"
-#include "amr-wind/CFDSim.H"
+#include "src/core/Factory.H"
+#include "src/core/CollMgr.H"
+#include "src/CFDSim.H"
 
 namespace amr_wind {
 

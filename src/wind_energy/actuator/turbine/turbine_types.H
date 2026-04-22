@@ -1,7 +1,7 @@
 #ifndef TURBINE_TYPES_H
 #define TURBINE_TYPES_H
 
-#include "amr-wind/wind_energy/actuator/actuator_types.H"
+#include "src/wind_energy/actuator/actuator_types.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

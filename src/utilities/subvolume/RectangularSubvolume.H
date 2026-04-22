@@ -1,7 +1,7 @@
 #ifndef RECTANGULARSUBVOLUME_H
 #define RECTANGULARSUBVOLUME_H
 
-#include "amr-wind/utilities/subvolume/SubvolumeBase.H"
+#include "src/utilities/subvolume/SubvolumeBase.H"
 
 namespace amr_wind::subvolume {
 

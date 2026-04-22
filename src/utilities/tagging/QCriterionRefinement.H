@@ -1,7 +1,7 @@
 #ifndef QCRITERIONREFINEMENT_H
 #define QCRITERIONREFINEMENT_H
 
-#include "amr-wind/utilities/tagging/RefinementCriteria.H"
+#include "src/utilities/tagging/RefinementCriteria.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

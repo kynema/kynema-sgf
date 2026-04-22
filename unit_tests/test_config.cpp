@@ -4,8 +4,8 @@
  */
 
 #include "gtest/gtest.h"
-#include "amr-wind/AMRWindVersion.H"
-#include "amr-wind/utilities/console_io.H"
+#include "src/AMRWindVersion.H"
+#include "src/utilities/console_io.H"
 #include "AMReX_ccse-mpi.H"
 #include "AMReX_ParallelDescriptor.H"
 #include "AMReX_Print.H"

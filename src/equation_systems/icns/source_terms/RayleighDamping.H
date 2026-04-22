@@ -1,8 +1,8 @@
 #ifndef RAYLEIGH_DAMPING_H
 #define RAYLEIGH_DAMPING_H
 
-#include "amr-wind/equation_systems/icns/MomentumSource.H"
-#include "amr-wind/core/SimTime.H"
+#include "src/equation_systems/icns/MomentumSource.H"
+#include "src/core/SimTime.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

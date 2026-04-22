@@ -1,7 +1,7 @@
 #ifndef SDRSRC_H
 #define SDRSRC_H
 
-#include "amr-wind/equation_systems/sdr/SDRSource.H"
+#include "src/equation_systems/sdr/SDRSource.H"
 
 namespace amr_wind::pde::tke {
 

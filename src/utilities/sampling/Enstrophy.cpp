@@ -1,11 +1,11 @@
-#include "amr-wind/utilities/sampling/Enstrophy.H"
-#include "amr-wind/utilities/io_utils.H"
-#include "amr-wind/utilities/ncutils/nc_interface.H"
+#include "src/utilities/sampling/Enstrophy.H"
+#include "src/utilities/io_utils.H"
+#include "src/utilities/ncutils/nc_interface.H"
 #include <AMReX_MultiFabUtil.H>
 #include <utility>
 #include "AMReX_ParmParse.H"
-#include "amr-wind/utilities/IOManager.H"
-#include "amr-wind/fvm/vorticity_mag.H"
+#include "src/utilities/IOManager.H"
+#include "src/fvm/vorticity_mag.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

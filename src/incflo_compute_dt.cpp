@@ -1,5 +1,5 @@
-#include "amr-wind/incflo.H"
-#include "amr-wind/equation_systems/vof/volume_fractions.H"
+#include "src/incflo.H"
+#include "src/equation_systems/vof/volume_fractions.H"
 
 #include <cmath>
 #include <limits>

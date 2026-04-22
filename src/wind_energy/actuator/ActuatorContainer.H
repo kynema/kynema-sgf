@@ -1,7 +1,7 @@
 #ifndef ACTUATORCONTAINER_H
 #define ACTUATORCONTAINER_H
 
-#include "amr-wind/core/vs/vector_space.H"
+#include "src/core/vs/vector_space.H"
 
 #include "AMReX_AmrParticles.H"
 

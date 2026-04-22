@@ -1,8 +1,8 @@
 #include <utility>
-#include "amr-wind/utilities/sampling/FreeSurfaceSampler.H"
-#include "amr-wind/utilities/io_utils.H"
-#include "amr-wind/equation_systems/vof/volume_fractions.H"
-#include "amr-wind/utilities/index_operations.H"
+#include "src/utilities/sampling/FreeSurfaceSampler.H"
+#include "src/utilities/io_utils.H"
+#include "src/equation_systems/vof/volume_fractions.H"
+#include "src/utilities/index_operations.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"

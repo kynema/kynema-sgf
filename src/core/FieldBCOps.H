@@ -1,8 +1,8 @@
 #ifndef FIELDBCOPS_H
 #define FIELDBCOPS_H
 
-#include "amr-wind/core/FieldDescTypes.H"
-#include "amr-wind/core/Field.H"
+#include "src/core/FieldDescTypes.H"
+#include "src/core/Field.H"
 
 #include "AMReX_Gpu.H"
 #include "AMReX_FArrayBox.H"

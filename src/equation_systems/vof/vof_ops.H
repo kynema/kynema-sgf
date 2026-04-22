@@ -1,8 +1,8 @@
 #ifndef VOF_OPS_H
 #define VOF_OPS_H
 
-#include "amr-wind/equation_systems/vof/vof.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
+#include "src/equation_systems/vof/vof.H"
+#include "src/physics/multiphase/MultiPhase.H"
 
 namespace amr_wind::pde {
 

@@ -1,10 +1,10 @@
 #include "mms_test_utils.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/utilities/trig_ops.H"
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
 
 #include "masa.h"
-#include "amr-wind/physics/mms/MMS.H"
+#include "src/physics/mms/MMS.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

@@ -3,10 +3,10 @@
 
 #include <numbers>
 #include "AMReX_REAL.H"
-#include "amr-wind/wind_energy/actuator/actuator_ops.H"
-#include "amr-wind/wind_energy/actuator/actuator_utils.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/wind_energy/actuator/turbine/turbine_types.H"
+#include "src/wind_energy/actuator/actuator_ops.H"
+#include "src/wind_energy/actuator/actuator_utils.H"
+#include "src/core/FieldRepo.H"
+#include "src/wind_energy/actuator/turbine/turbine_types.H"
 
 using namespace amrex::literals;
 

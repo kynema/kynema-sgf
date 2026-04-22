@@ -1,7 +1,7 @@
 #ifndef HYDROSTATIC_OPS_H
 #define HYDROSTATIC_OPS_H
 #include <AMReX_MultiFabUtil.H>
-#include "amr-wind/core/FieldRepo.H"
+#include "src/core/FieldRepo.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

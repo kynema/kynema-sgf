@@ -1,8 +1,8 @@
-#include "amr-wind/physics/FreeStream.H"
-#include "amr-wind/CFDSim.H"
+#include "src/physics/FreeStream.H"
+#include "src/CFDSim.H"
 #include "AMReX_ParmParse.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "amr-wind/physics/udfs/UDF.H"
+#include "src/utilities/trig_ops.H"
+#include "src/physics/udfs/UDF.H"
 
 namespace amr_wind {
 

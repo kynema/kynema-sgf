@@ -1,4 +1,4 @@
-#include "amr-wind/boundary_conditions/FixedGradientBC.H"
+#include "src/boundary_conditions/FixedGradientBC.H"
 
 namespace amr_wind {
 namespace {

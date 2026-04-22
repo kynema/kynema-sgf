@@ -2,8 +2,8 @@
 #define HELICS_H
 
 #include "AMReX_AmrCore.H"
-#include "amr-wind/core/SimTime.H"
-#include "amr-wind/CFDSim.H"
+#include "src/core/SimTime.H"
+#include "src/CFDSim.H"
 
 #ifdef AMR_WIND_USE_HELICS
 #include "helics/cpp98/CombinationFederate.hpp"

@@ -1,7 +1,7 @@
 #include "aw_test_utils/AmrexTest.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "amr-wind/core/vs/vector_space.H"
-#include "amr-wind/wind_energy/actuator/actuator_utils.H"
+#include "src/utilities/trig_ops.H"
+#include "src/core/vs/vector_space.H"
+#include "src/wind_energy/actuator/actuator_utils.H"
 #include <cmath>
 #include "AMReX_REAL.H"
 

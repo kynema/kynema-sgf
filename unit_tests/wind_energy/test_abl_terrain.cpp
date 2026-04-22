@@ -1,7 +1,7 @@
 #include "aw_test_utils/MeshTest.H"
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
-#include "amr-wind/physics/TerrainDrag.H"
+#include "src/physics/TerrainDrag.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

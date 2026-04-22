@@ -1,8 +1,8 @@
-#include "amr-wind/equation_systems/icns/source_terms/ABLMeanBoussinesq.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/core/FieldUtils.H"
-#include "amr-wind/wind_energy/ABL.H"
-#include "amr-wind/utilities/linear_interpolation.H"
+#include "src/equation_systems/icns/source_terms/ABLMeanBoussinesq.H"
+#include "src/CFDSim.H"
+#include "src/core/FieldUtils.H"
+#include "src/wind_energy/ABL.H"
+#include "src/utilities/linear_interpolation.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 

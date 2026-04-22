@@ -1,8 +1,8 @@
 #ifndef OVERSETOPS_H
 #define OVERSETOPS_H
 
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
+#include "src/CFDSim.H"
+#include "src/physics/multiphase/MultiPhase.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

@@ -1,7 +1,7 @@
-#include "amr-wind/incflo.H"
-#include "amr-wind/diffusion/diffusion.H"
+#include "src/incflo.H"
+#include "src/diffusion/diffusion.H"
 #include "AMReX_REAL.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

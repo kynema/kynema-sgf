@@ -1,12 +1,12 @@
 #include <AMReX_Orientation.H>
 
-#include "amr-wind/equation_systems/tke/source_terms/KransAxell.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/turbulence/TurbulenceModel.H"
-#include "amr-wind/wind_energy/MOData.H"
-#include "amr-wind/utilities/linear_interpolation.H"
-#include "amr-wind/utilities/constants.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/equation_systems/tke/source_terms/KransAxell.H"
+#include "src/CFDSim.H"
+#include "src/turbulence/TurbulenceModel.H"
+#include "src/wind_energy/MOData.H"
+#include "src/utilities/linear_interpolation.H"
+#include "src/utilities/constants.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 namespace amr_wind::pde::tke {

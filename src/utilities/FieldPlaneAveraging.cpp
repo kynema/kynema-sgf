@@ -1,4 +1,4 @@
-#include "amr-wind/utilities/FieldPlaneAveraging.H"
+#include "src/utilities/FieldPlaneAveraging.H"
 
 #include <algorithm>
 #include "AMReX_REAL.H"

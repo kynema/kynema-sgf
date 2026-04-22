@@ -1,8 +1,8 @@
-#include "amr-wind/wind_energy/ABLMesoscaleForcing.H"
-#include "amr-wind/utilities/linear_interpolation.H"
+#include "src/wind_energy/ABLMesoscaleForcing.H"
+#include "src/utilities/linear_interpolation.H"
 #include "AMReX_Print.H"
 #include "AMReX_ParmParse.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/math_ops.H"
 
 // WORKAROUND
 #include <fstream>

@@ -1,10 +1,10 @@
 #ifndef DRAGTEMPFORCING_H
 #define DRAGTEMPFORCING_H
 
-#include "amr-wind/equation_systems/temperature/TemperatureSource.H"
-#include "amr-wind/core/SimTime.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/constants.H"
+#include "src/equation_systems/temperature/TemperatureSource.H"
+#include "src/core/SimTime.H"
+#include "src/CFDSim.H"
+#include "src/utilities/constants.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

@@ -1,12 +1,12 @@
 #include <numbers>
-#include "amr-wind/physics/multiphase/MultiPhase.H"
-#include "amr-wind/physics/multiphase/ZalesakDiskScalarVel.H"
-#include "amr-wind/CFDSim.H"
+#include "src/physics/multiphase/MultiPhase.H"
+#include "src/physics/multiphase/ZalesakDiskScalarVel.H"
+#include "src/CFDSim.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_MultiFabUtil.H"
-#include "amr-wind/fvm/gradient.H"
-#include "amr-wind/core/field_ops.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/fvm/gradient.H"
+#include "src/core/field_ops.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

@@ -1,6 +1,6 @@
 #include "aw_test_utils/AmrexTest.H"
 #include "AMReX_ParmParse.H"
-#include "amr-wind/core/SimTime.H"
+#include "src/core/SimTime.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

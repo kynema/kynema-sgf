@@ -1,7 +1,7 @@
 #include <numbers>
-#include "amr-wind/physics/multiphase/MultiPhase.H"
-#include "amr-wind/physics/multiphase/VortexPatch.H"
-#include "amr-wind/CFDSim.H"
+#include "src/physics/multiphase/MultiPhase.H"
+#include "src/physics/multiphase/VortexPatch.H"
+#include "src/CFDSim.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 

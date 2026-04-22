@@ -2,7 +2,7 @@
 #define VOF_HYBRIDSOLVER_OPS_H
 
 #include <cmath>
-#include "amr-wind/core/FieldRepo.H"
+#include "src/core/FieldRepo.H"
 #include "AMReX_FArrayBox.H"
 
 namespace amr_wind::multiphase {

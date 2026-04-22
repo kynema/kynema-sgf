@@ -1,7 +1,7 @@
 #include <utility>
 #include "aw_test_utils/MeshTest.H"
-#include "amr-wind/utilities/sampling/WaveEnergy.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/sampling/WaveEnergy.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

@@ -1,7 +1,7 @@
 #ifndef REYNOLDSSTRESS_H
 #define REYNOLDSSTRESS_H
 
-#include "amr-wind/utilities/averaging/TimeAveraging.H"
+#include "src/utilities/averaging/TimeAveraging.H"
 
 namespace amr_wind::averaging {
 

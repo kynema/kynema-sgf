@@ -1,9 +1,9 @@
 #ifndef SHEARSTRESSSIMPLE_H
 #define SHEARSTRESSSIMPLE_H
 
-#include "amr-wind/boundary_conditions/wall_models/LogLaw.H"
-#include "amr-wind/wind_energy/ShearStress.H"
-#include "amr-wind/boundary_conditions/wall_models/MOSD.H"
+#include "src/boundary_conditions/wall_models/LogLaw.H"
+#include "src/wind_energy/ShearStress.H"
+#include "src/boundary_conditions/wall_models/MOSD.H"
 
 namespace amr_wind {
 

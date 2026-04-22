@@ -1,11 +1,11 @@
 #include "aw_test_utils/MeshTest.H"
 #include "test_act_utils.H"
 
-#include "amr-wind/wind_energy/actuator/Actuator.H"
-#include "amr-wind/wind_energy/actuator/ActuatorContainer.H"
-#include "amr-wind/wind_energy/actuator/ActuatorModel.H"
-#include "amr-wind/wind_energy/actuator/ActParser.H"
-#include "amr-wind/wind_energy/actuator/wing/fixed_wing_ops.H"
+#include "src/wind_energy/actuator/Actuator.H"
+#include "src/wind_energy/actuator/ActuatorContainer.H"
+#include "src/wind_energy/actuator/ActuatorModel.H"
+#include "src/wind_energy/actuator/ActParser.H"
+#include "src/wind_energy/actuator/wing/fixed_wing_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

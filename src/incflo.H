@@ -7,13 +7,13 @@
 #include <AMReX_iMultiFab.H>
 #include <hydro_NodalProjector.H>
 
-#include "amr-wind/incflo_enums.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/core/SimTime.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/overset/OversetOps.H"
+#include "src/incflo_enums.H"
+#include "src/CFDSim.H"
+#include "src/core/SimTime.H"
+#include "src/core/FieldRepo.H"
+#include "src/overset/OversetOps.H"
 
-#include "amr-wind/boundary_conditions/field_boundary_fill/ReadERFFunction.H"
+#include "src/boundary_conditions/field_boundary_fill/ReadERFFunction.H"
 class MultiBlockContainer;
 namespace amr_wind {
 namespace pde {

@@ -1,7 +1,7 @@
 #ifndef KSGSM84SRC_H
 #define KSGSM84SRC_H
 
-#include "amr-wind/equation_systems/tke/TKESource.H"
+#include "src/equation_systems/tke/TKESource.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

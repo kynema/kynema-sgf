@@ -5,7 +5,7 @@
 #include <cmath>
 #include <numbers>
 #include "AMReX_FArrayBox.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

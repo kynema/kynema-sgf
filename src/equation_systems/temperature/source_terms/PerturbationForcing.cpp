@@ -1,5 +1,5 @@
-#include "amr-wind/equation_systems/temperature/source_terms/PerturbationForcing.H"
-#include "amr-wind/utilities/IOManager.H"
+#include "src/equation_systems/temperature/source_terms/PerturbationForcing.H"
+#include "src/utilities/IOManager.H"
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_Gpu.H"

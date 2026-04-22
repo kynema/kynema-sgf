@@ -1,11 +1,11 @@
 #ifndef DENSITY_H
 #define DENSITY_H
 
-#include "amr-wind/equation_systems/PDETraits.H"
-#include "amr-wind/equation_systems/SchemeTraits.H"
-#include "amr-wind/equation_systems/PDEHelpers.H"
-#include "amr-wind/equation_systems/PDE.H"
-#include "amr-wind/equation_systems/density/DensitySource.H"
+#include "src/equation_systems/PDETraits.H"
+#include "src/equation_systems/SchemeTraits.H"
+#include "src/equation_systems/PDEHelpers.H"
+#include "src/equation_systems/PDE.H"
+#include "src/equation_systems/density/DensitySource.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

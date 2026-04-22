@@ -1,7 +1,7 @@
 #ifndef DENSITY_OPS_H
 #define DENSITY_OPS_H
 
-#include "amr-wind/equation_systems/density/density.H"
+#include "src/equation_systems/density/density.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

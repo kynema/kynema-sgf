@@ -1,15 +1,15 @@
 #ifndef W2A_WAVES_OPS_H
 #define W2A_WAVES_OPS_H
 
-#include "amr-wind/ocean_waves/relaxation_zones/W2AWaves.H"
-#include "amr-wind/ocean_waves/OceanWavesOps.H"
-#include "amr-wind/ocean_waves/OceanWaves.H"
-#include "amr-wind/ocean_waves/relaxation_zones/relaxation_zones_ops.H"
-#include "amr-wind/equation_systems/vof/volume_fractions.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/core/field_ops.H"
-#include "amr-wind/equation_systems/BCOps.H"
+#include "src/ocean_waves/relaxation_zones/W2AWaves.H"
+#include "src/ocean_waves/OceanWavesOps.H"
+#include "src/ocean_waves/OceanWaves.H"
+#include "src/ocean_waves/relaxation_zones/relaxation_zones_ops.H"
+#include "src/equation_systems/vof/volume_fractions.H"
+#include "src/physics/multiphase/MultiPhase.H"
+#include "src/core/FieldRepo.H"
+#include "src/core/field_ops.H"
+#include "src/equation_systems/BCOps.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_REAL.H"
 

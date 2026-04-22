@@ -1,12 +1,12 @@
 #ifndef TKE_H
 #define TKE_H
 
-#include "amr-wind/equation_systems/PDETraits.H"
-#include "amr-wind/equation_systems/SchemeTraits.H"
-#include "amr-wind/equation_systems/PDEHelpers.H"
-#include "amr-wind/equation_systems/PDE.H"
-#include "amr-wind/core/field_ops.H"
-#include "amr-wind/equation_systems/tke/TKESource.H"
+#include "src/equation_systems/PDETraits.H"
+#include "src/equation_systems/SchemeTraits.H"
+#include "src/equation_systems/PDEHelpers.H"
+#include "src/equation_systems/PDE.H"
+#include "src/core/field_ops.H"
+#include "src/equation_systems/tke/TKESource.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

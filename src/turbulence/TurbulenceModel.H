@@ -3,9 +3,9 @@
 
 #include <unordered_map>
 
-#include "amr-wind/core/Factory.H"
-#include "amr-wind/core/FieldDescTypes.H"
-#include "amr-wind/incflo.H"
+#include "src/core/Factory.H"
+#include "src/core/FieldDescTypes.H"
+#include "src/incflo.H"
 
 namespace amr_wind {
 

@@ -1,5 +1,5 @@
-#include "amr-wind/equation_systems/DiffusionOps.H"
-#include "amr-wind/utilities/console_io.H"
+#include "src/equation_systems/DiffusionOps.H"
+#include "src/utilities/console_io.H"
 
 #include "AMReX_MLTensorOp.H"
 #include "AMReX_REAL.H"

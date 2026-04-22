@@ -1,12 +1,12 @@
 #include "aw_test_utils/MeshTest.H"
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
-#include "amr-wind/ocean_waves/utils/wave_utils_K.H"
-#include "amr-wind/ocean_waves/OceanWaves.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
-#include "amr-wind/utilities/constants.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
-#include "amr-wind/equation_systems/icns/icns_advection.H"
+#include "src/ocean_waves/utils/wave_utils_K.H"
+#include "src/ocean_waves/OceanWaves.H"
+#include "src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
+#include "src/utilities/constants.H"
+#include "src/physics/multiphase/MultiPhase.H"
+#include "src/equation_systems/icns/icns_advection.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

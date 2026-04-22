@@ -1,12 +1,12 @@
 #ifndef DIFFUSIONOPS_H
 #define DIFFUSIONOPS_H
 
-#include "amr-wind/core/MLMGOptions.H"
-#include "amr-wind/equation_systems/PDETraits.H"
-#include "amr-wind/equation_systems/SchemeTraits.H"
-#include "amr-wind/equation_systems/PDEOps.H"
-#include "amr-wind/equation_systems/PDEHelpers.H"
-#include "amr-wind/diffusion/diffusion.H"
+#include "src/core/MLMGOptions.H"
+#include "src/equation_systems/PDETraits.H"
+#include "src/equation_systems/SchemeTraits.H"
+#include "src/equation_systems/PDEOps.H"
+#include "src/equation_systems/PDEHelpers.H"
+#include "src/diffusion/diffusion.H"
 
 #include "AMReX_MLABecLaplacian.H"
 #include "AMReX_MLTensorOp.H"

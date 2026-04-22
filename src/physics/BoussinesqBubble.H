@@ -1,9 +1,9 @@
 #ifndef BOUSSINESQBUBBLE_H
 #define BOUSSINESQBUBBLE_H
 
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/physics/BoussinesqBubbleFieldInit.H"
-#include "amr-wind/core/Field.H"
+#include "src/core/Physics.H"
+#include "src/physics/BoussinesqBubbleFieldInit.H"
+#include "src/core/Field.H"
 
 namespace amr_wind {
 

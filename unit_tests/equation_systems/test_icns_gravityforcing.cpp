@@ -1,5 +1,5 @@
 #include "aw_test_utils/AmrexTest.H"
-#include "amr-wind/incflo.H"
+#include "src/incflo.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

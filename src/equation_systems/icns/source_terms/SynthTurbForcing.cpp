@@ -1,5 +1,5 @@
-#include "amr-wind/equation_systems/icns/source_terms/SynthTurbForcing.H"
-#include "amr-wind/CFDSim.H"
+#include "src/equation_systems/icns/source_terms/SynthTurbForcing.H"
+#include "src/CFDSim.H"
 
 #include "AMReX_Gpu.H"
 

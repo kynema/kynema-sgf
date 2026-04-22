@@ -5,9 +5,9 @@
 #include <unordered_map>
 
 #include "AMReX_AmrCore.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/core/Field.H"
+#include "src/CFDSim.H"
+#include "src/core/FieldRepo.H"
+#include "src/core/Field.H"
 
 namespace amr_wind_tests {
 

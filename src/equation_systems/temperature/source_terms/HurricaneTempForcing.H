@@ -1,9 +1,9 @@
 #ifndef HURRICANE_TEMP_FORCING_H
 #define HURRICANE_TEMP_FORCING_H
 
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/equation_systems/temperature/TemperatureSource.H"
-#include "amr-wind/utilities/FieldPlaneAveraging.H"
+#include "src/core/FieldRepo.H"
+#include "src/equation_systems/temperature/TemperatureSource.H"
+#include "src/utilities/FieldPlaneAveraging.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

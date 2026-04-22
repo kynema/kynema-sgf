@@ -1,6 +1,6 @@
-#include "amr-wind/helics.H"
-#include "amr-wind/wind_energy/ABL.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/helics.H"
+#include "src/wind_energy/ABL.H"
+#include "src/utilities/trig_ops.H"
 
 #include "AMReX_ParmParse.H"
 

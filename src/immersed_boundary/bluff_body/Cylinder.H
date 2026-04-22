@@ -1,7 +1,7 @@
 #ifndef CYLINDER_H
 #define CYLINDER_H
 
-#include "amr-wind/immersed_boundary/bluff_body/BluffBody.H"
+#include "src/immersed_boundary/bluff_body/BluffBody.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

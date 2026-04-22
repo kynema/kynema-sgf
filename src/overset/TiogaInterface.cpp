@@ -1,10 +1,10 @@
-#include "amr-wind/overset/TiogaInterface.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/equation_systems/PDEBase.H"
-#include "amr-wind/core/field_ops.H"
-#include "amr-wind/overset/overset_ops_routines.H"
-#include "amr-wind/utilities/IOManager.H"
+#include "src/overset/TiogaInterface.H"
+#include "src/CFDSim.H"
+#include "src/core/FieldRepo.H"
+#include "src/equation_systems/PDEBase.H"
+#include "src/core/field_ops.H"
+#include "src/overset/overset_ops_routines.H"
+#include "src/utilities/IOManager.H"
 #include "AMReX_ParmParse.H"
 
 #include <memory>

@@ -3,17 +3,17 @@
 
 #include <memory>
 
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/wind_energy/ABLFieldInit.H"
-#include "amr-wind/wind_energy/ABLFieldInitFile.H"
-#include "amr-wind/wind_energy/ABLWallFunction.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/FieldBoundary.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/BoundaryPlane.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H"
-#include "amr-wind/core/SimTime.H"
-#include "amr-wind/utilities/FieldPlaneAveraging.H"
-#include "amr-wind/wind_energy/ABLStatsBase.H"
-#include "amr-wind/wind_energy/ABLAnelastic.H"
+#include "src/core/Physics.H"
+#include "src/wind_energy/ABLFieldInit.H"
+#include "src/wind_energy/ABLFieldInitFile.H"
+#include "src/wind_energy/ABLWallFunction.H"
+#include "src/boundary_conditions/field_boundary_fill/FieldBoundary.H"
+#include "src/boundary_conditions/field_boundary_fill/BoundaryPlane.H"
+#include "src/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H"
+#include "src/core/SimTime.H"
+#include "src/utilities/FieldPlaneAveraging.H"
+#include "src/wind_energy/ABLStatsBase.H"
+#include "src/wind_energy/ABLAnelastic.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

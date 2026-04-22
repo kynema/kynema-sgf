@@ -3,12 +3,12 @@
 
 #include <memory>
 
-#include "amr-wind/equation_systems/PDETraits.H"
-#include "amr-wind/equation_systems/PDEOps.H"
-#include "amr-wind/equation_systems/PDEHelpers.H"
-#include "amr-wind/equation_systems/DiffusionOps.H"
-#include "amr-wind/equation_systems/icns/icns.H"
-#include "amr-wind/utilities/console_io.H"
+#include "src/equation_systems/PDETraits.H"
+#include "src/equation_systems/PDEOps.H"
+#include "src/equation_systems/PDEHelpers.H"
+#include "src/equation_systems/DiffusionOps.H"
+#include "src/equation_systems/icns/icns.H"
+#include "src/utilities/console_io.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

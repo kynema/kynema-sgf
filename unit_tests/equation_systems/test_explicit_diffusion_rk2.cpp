@@ -1,8 +1,8 @@
 #include "aw_test_utils/MeshTest.H"
 #include "aw_test_utils/test_utils.H"
-#include "amr-wind/incflo_enums.H"
-#include "amr-wind/core/field_ops.H"
-#include "amr-wind/equation_systems/PDEBase.H"
+#include "src/incflo_enums.H"
+#include "src/core/field_ops.H"
+#include "src/equation_systems/PDEBase.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

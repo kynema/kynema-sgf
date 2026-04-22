@@ -2,11 +2,11 @@
 #define PDE_H
 
 #include <string>
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/equation_systems/PDEBase.H"
-#include "amr-wind/equation_systems/PDEOps.H"
-#include "amr-wind/equation_systems/CompRHSOps.H"
-#include "amr-wind/equation_systems/DiffusionOps.H"
+#include "src/CFDSim.H"
+#include "src/equation_systems/PDEBase.H"
+#include "src/equation_systems/PDEOps.H"
+#include "src/equation_systems/CompRHSOps.H"
+#include "src/equation_systems/DiffusionOps.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

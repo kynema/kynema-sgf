@@ -1,7 +1,7 @@
 #ifndef SHEARSTRESS_H
 #define SHEARSTRESS_H
 
-#include "amr-wind/wind_energy/MOData.H"
+#include "src/wind_energy/MOData.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

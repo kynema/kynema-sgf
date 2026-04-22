@@ -1,11 +1,11 @@
-#include "amr-wind/utilities/sampling/WaveEnergy.H"
-#include "amr-wind/utilities/io_utils.H"
-#include "amr-wind/utilities/ncutils/nc_interface.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
+#include "src/utilities/sampling/WaveEnergy.H"
+#include "src/utilities/io_utils.H"
+#include "src/utilities/ncutils/nc_interface.H"
+#include "src/physics/multiphase/MultiPhase.H"
 #include <AMReX_MultiFabUtil.H>
 #include <utility>
 #include "AMReX_ParmParse.H"
-#include "amr-wind/utilities/IOManager.H"
+#include "src/utilities/IOManager.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

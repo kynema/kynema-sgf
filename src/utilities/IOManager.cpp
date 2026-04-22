@@ -4,13 +4,13 @@
 #include <ctime>
 #include <fstream>
 
-#include "amr-wind/utilities/IOManager.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/console_io.H"
-#include "amr-wind/utilities/io_utils.H"
-#include "amr-wind/utilities/DerivedQuantity.H"
-#include "amr-wind/utilities/DerivedQtyDefs.H"
-#include "amr-wind/utilities/ncutils/nc_interface.H"
+#include "src/utilities/IOManager.H"
+#include "src/CFDSim.H"
+#include "src/utilities/console_io.H"
+#include "src/utilities/io_utils.H"
+#include "src/utilities/DerivedQuantity.H"
+#include "src/utilities/DerivedQtyDefs.H"
+#include "src/utilities/ncutils/nc_interface.H"
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_PlotFileUtil.H"

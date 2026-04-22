@@ -1,10 +1,10 @@
 #ifndef VOF_ADVECTION_H
 #define VOF_ADVECTION_H
 
-#include "amr-wind/equation_systems/vof/vof.H"
-#include "amr-wind/equation_systems/vof/vof_hybridsolver_ops.H"
-#include "amr-wind/equation_systems/vof/SplitAdvection.H"
-#include "amr-wind/core/SimTime.H"
+#include "src/equation_systems/vof/vof.H"
+#include "src/equation_systems/vof/vof_hybridsolver_ops.H"
+#include "src/equation_systems/vof/SplitAdvection.H"
+#include "src/core/SimTime.H"
 
 namespace amr_wind::pde {
 

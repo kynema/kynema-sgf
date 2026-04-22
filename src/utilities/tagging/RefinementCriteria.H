@@ -4,7 +4,7 @@
 #include "AMReX_AmrCore.H"
 #include "AMReX_TagBox.H"
 
-#include "amr-wind/core/Factory.H"
+#include "src/core/Factory.H"
 
 /**
  *  \defgroup amr_utils Mesh refinement

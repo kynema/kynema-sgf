@@ -1,9 +1,9 @@
 
 #include <algorithm>
 
-#include "amr-wind/utilities/sampling/SamplingContainer.H"
-#include "amr-wind/utilities/sampling/SamplerBase.H"
-#include "amr-wind/core/Field.H"
+#include "src/utilities/sampling/SamplingContainer.H"
+#include "src/utilities/sampling/SamplerBase.H"
+#include "src/core/Field.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

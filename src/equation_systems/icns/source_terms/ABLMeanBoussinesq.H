@@ -1,10 +1,10 @@
 #ifndef ABLMEANBOUSSINESQ_H
 #define ABLMEANBOUSSINESQ_H
 
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/transport_models/TransportModel.H"
-#include "amr-wind/equation_systems/icns/MomentumSource.H"
-#include "amr-wind/utilities/FieldPlaneAveraging.H"
+#include "src/core/FieldRepo.H"
+#include "src/transport_models/TransportModel.H"
+#include "src/equation_systems/icns/MomentumSource.H"
+#include "src/utilities/FieldPlaneAveraging.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

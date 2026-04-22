@@ -1,8 +1,8 @@
 #ifndef VORTEXPATCH_H
 #define VORTEXPATCH_H
 
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/core/Field.H"
+#include "src/core/Physics.H"
+#include "src/core/Field.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

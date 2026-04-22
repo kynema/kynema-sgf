@@ -1,5 +1,5 @@
-#include "amr-wind/utilities/tagging/RefinementCriteria.H"
-#include "amr-wind/CFDSim.H"
+#include "src/utilities/tagging/RefinementCriteria.H"
+#include "src/CFDSim.H"
 
 #include "AMReX_ParmParse.H"
 

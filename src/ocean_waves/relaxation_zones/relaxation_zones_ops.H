@@ -1,12 +1,12 @@
 #ifndef RELAX_ZONES_OPS_H
 #define RELAX_ZONES_OPS_H
 
-#include "amr-wind/ocean_waves/relaxation_zones/RelaxationZones.H"
-#include "amr-wind/ocean_waves/OceanWavesTypes.H"
-#include "amr-wind/ocean_waves/OceanWavesOps.H"
-#include "amr-wind/ocean_waves/utils/wave_utils_K.H"
-#include "amr-wind/core/MultiParser.H"
-#include "amr-wind/fvm/gradient.H"
+#include "src/ocean_waves/relaxation_zones/RelaxationZones.H"
+#include "src/ocean_waves/OceanWavesTypes.H"
+#include "src/ocean_waves/OceanWavesOps.H"
+#include "src/ocean_waves/utils/wave_utils_K.H"
+#include "src/core/MultiParser.H"
+#include "src/fvm/gradient.H"
 
 #include "AMReX_MultiFabUtil.H"
 

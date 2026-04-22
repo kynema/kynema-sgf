@@ -2,7 +2,7 @@
 #define MODATA_H
 
 #include <cstdint>
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/utilities/trig_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

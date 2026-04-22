@@ -1,8 +1,8 @@
 #include "aw_test_utils/MeshTest.H"
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
-#include "amr-wind/equation_systems/vof/volume_fractions.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/equation_systems/vof/volume_fractions.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

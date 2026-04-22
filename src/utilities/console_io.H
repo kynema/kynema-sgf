@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "AMReX_MLMG.H"
-#include "amr-wind/CFDSim.H"
+#include "src/CFDSim.H"
 
 namespace amr_wind::io {
 

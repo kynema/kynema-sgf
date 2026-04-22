@@ -1,8 +1,8 @@
 #ifndef TURBINEFAST_H
 #define TURBINEFAST_H
 
-#include "amr-wind/wind_energy/actuator/turbine/external/TurbineExternal.H"
-#include "amr-wind/wind_energy/actuator/turbine/fast/fast_types.H"
+#include "src/wind_energy/actuator/turbine/external/TurbineExternal.H"
+#include "src/wind_energy/actuator/turbine/fast/fast_types.H"
 
 namespace amr_wind::actuator {
 

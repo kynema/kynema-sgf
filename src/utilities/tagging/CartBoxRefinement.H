@@ -3,7 +3,7 @@
 
 #include <iosfwd>
 
-#include "amr-wind/utilities/tagging/RefinementCriteria.H"
+#include "src/utilities/tagging/RefinementCriteria.H"
 #include "AMReX_RealBox.H"
 #include "AMReX_Vector.H"
 

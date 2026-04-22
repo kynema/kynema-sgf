@@ -1,10 +1,10 @@
 #ifndef PERTURBATIONFORCING_H
 #define PERTURBATIONFORCING_H
 
-#include "amr-wind/equation_systems/temperature/TemperatureSource.H"
-#include "amr-wind/core/SimTime.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/transport_models/TransportModel.H"
+#include "src/equation_systems/temperature/TemperatureSource.H"
+#include "src/core/SimTime.H"
+#include "src/CFDSim.H"
+#include "src/transport_models/TransportModel.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

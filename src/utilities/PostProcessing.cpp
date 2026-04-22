@@ -1,6 +1,6 @@
-#include "amr-wind/utilities/PostProcessing.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/averaging/TimeAveraging.H"
+#include "src/utilities/PostProcessing.H"
+#include "src/CFDSim.H"
+#include "src/utilities/averaging/TimeAveraging.H"
 
 #include "AMReX_ParmParse.H"
 

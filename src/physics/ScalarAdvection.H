@@ -2,9 +2,9 @@
 #define SCALARADVECTION_H
 
 #include <numbers>
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/core/Field.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/core/Physics.H"
+#include "src/core/Field.H"
+#include "src/utilities/trig_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

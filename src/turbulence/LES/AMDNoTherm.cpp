@@ -1,8 +1,8 @@
 #include <cmath>
 
-#include "amr-wind/fvm/gradient.H"
-#include "amr-wind/turbulence/LES/AMDNoTherm.H"
-#include "amr-wind/turbulence/TurbModelDefs.H"
+#include "src/fvm/gradient.H"
+#include "src/turbulence/LES/AMDNoTherm.H"
+#include "src/turbulence/TurbModelDefs.H"
 
 #include "AMReX_Config.H"
 #include "AMReX_REAL.H"

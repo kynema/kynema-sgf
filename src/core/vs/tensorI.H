@@ -2,8 +2,8 @@
 #define VS_TENSORI_H
 
 #include <cmath>
-#include "amr-wind/core/vs/tensor.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/core/vs/tensor.H"
+#include "src/utilities/trig_ops.H"
 
 namespace amr_wind::vs {
 

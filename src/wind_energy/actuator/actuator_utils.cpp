@@ -1,7 +1,7 @@
 #include <algorithm>
 
-#include "amr-wind/wind_energy/actuator/actuator_utils.H"
-#include "amr-wind/wind_energy/actuator/actuator_types.H"
+#include "src/wind_energy/actuator/actuator_utils.H"
+#include "src/wind_energy/actuator/actuator_types.H"
 
 namespace amr_wind::actuator::utils {
 

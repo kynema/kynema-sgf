@@ -1,8 +1,8 @@
 #ifndef FIELDNORMS_H
 #define FIELDNORMS_H
 
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/PostProcessing.H"
+#include "src/CFDSim.H"
+#include "src/utilities/PostProcessing.H"
 
 namespace amr_wind::field_norms {
 

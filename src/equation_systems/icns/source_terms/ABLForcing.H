@@ -1,10 +1,10 @@
 #ifndef ABLFORCING_H
 #define ABLFORCING_H
 
-#include "amr-wind/equation_systems/icns/MomentumSource.H"
-#include "amr-wind/core/SimTime.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "amr-wind/utilities/linear_interpolation.H"
+#include "src/equation_systems/icns/MomentumSource.H"
+#include "src/core/SimTime.H"
+#include "src/utilities/trig_ops.H"
+#include "src/utilities/linear_interpolation.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

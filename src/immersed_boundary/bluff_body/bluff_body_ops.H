@@ -1,11 +1,11 @@
 #ifndef BLUFF_BODY_OPS_H
 #define BLUFF_BODY_OPS_H
 
-#include "amr-wind/immersed_boundary/bluff_body/BluffBody.H"
-#include "amr-wind/immersed_boundary/IBTypes.H"
-#include "amr-wind/immersed_boundary/IBOps.H"
-#include "amr-wind/core/MultiParser.H"
-#include "amr-wind/fvm/gradient.H"
+#include "src/immersed_boundary/bluff_body/BluffBody.H"
+#include "src/immersed_boundary/IBTypes.H"
+#include "src/immersed_boundary/IBOps.H"
+#include "src/core/MultiParser.H"
+#include "src/fvm/gradient.H"
 
 #include "AMReX_MultiFabUtil.H"
 

@@ -1,7 +1,7 @@
 #include "aw_test_utils/AmrexTest.H"
 #include "test_act_utils.H"
 
-#include "amr-wind/wind_energy/actuator/disk/uniform_ct_ops.H"
+#include "src/wind_energy/actuator/disk/uniform_ct_ops.H"
 #include "AMReX_Exception.H"
 #include "AMReX_REAL.H"
 

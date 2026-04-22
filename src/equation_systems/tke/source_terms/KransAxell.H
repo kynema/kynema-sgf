@@ -1,9 +1,9 @@
 #ifndef KRANSAXELL_H
 #define KRANSAXELL_H
 
-#include "amr-wind/transport_models/TransportModel.H"
-#include "amr-wind/equation_systems/tke/TKESource.H"
-#include "amr-wind/utilities/constants.H"
+#include "src/transport_models/TransportModel.H"
+#include "src/equation_systems/tke/TKESource.H"
+#include "src/utilities/constants.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

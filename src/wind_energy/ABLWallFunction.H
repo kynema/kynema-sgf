@@ -1,12 +1,12 @@
 #ifndef ABLWALLFUNCTION_H
 #define ABLWALLFUNCTION_H
 
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/FieldPlaneAveraging.H"
-#include "amr-wind/utilities/FieldPlaneAveragingFine.H"
-#include "amr-wind/core/FieldBCOps.H"
-#include "amr-wind/wind_energy/MOData.H"
-#include "amr-wind/utilities/constants.H"
+#include "src/CFDSim.H"
+#include "src/utilities/FieldPlaneAveraging.H"
+#include "src/utilities/FieldPlaneAveragingFine.H"
+#include "src/core/FieldBCOps.H"
+#include "src/wind_energy/MOData.H"
+#include "src/utilities/constants.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

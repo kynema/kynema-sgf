@@ -1,5 +1,5 @@
 #include "aw_test_utils/MeshTest.H"
-#include "amr-wind/utilities/index_operations.H"
+#include "src/utilities/index_operations.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

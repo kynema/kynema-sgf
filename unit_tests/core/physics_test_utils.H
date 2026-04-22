@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "amr-wind/core/Physics.H"
+#include "src/core/Physics.H"
 
 namespace amr_wind_tests {
 

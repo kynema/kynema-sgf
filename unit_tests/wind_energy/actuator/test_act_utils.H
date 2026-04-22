@@ -1,8 +1,8 @@
 #ifndef TEST_ACT_UTILS_H
 #define TEST_ACT_UTILS_H
 
-#include "amr-wind/core/Field.H"
-#include "amr-wind/core/FieldRepo.H"
+#include "src/core/Field.H"
+#include "src/core/FieldRepo.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

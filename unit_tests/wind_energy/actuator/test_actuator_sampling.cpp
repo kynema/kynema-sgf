@@ -1,9 +1,9 @@
 #include "aw_test_utils/MeshTest.H"
 #include "test_act_utils.H"
 
-#include "amr-wind/wind_energy/actuator/ActuatorContainer.H"
-#include "amr-wind/core/gpu_utils.H"
-#include "amr-wind/core/vs/vector_space.H"
+#include "src/wind_energy/actuator/ActuatorContainer.H"
+#include "src/core/gpu_utils.H"
+#include "src/core/vs/vector_space.H"
 
 #include <algorithm>
 #include "AMReX_REAL.H"

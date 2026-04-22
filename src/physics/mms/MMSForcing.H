@@ -1,8 +1,8 @@
 #ifndef MMSFORCING_H
 #define MMSFORCING_H
 
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/equation_systems/icns/MomentumSource.H"
+#include "src/core/FieldRepo.H"
+#include "src/equation_systems/icns/MomentumSource.H"
 
 namespace amr_wind::pde::icns::mms {
 

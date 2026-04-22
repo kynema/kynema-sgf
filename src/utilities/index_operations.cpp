@@ -1,4 +1,4 @@
-#include "amr-wind/utilities/index_operations.H"
+#include "src/utilities/index_operations.H"
 
 namespace amr_wind::utils {
 amrex::Box

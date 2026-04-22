@@ -1,9 +1,9 @@
 #ifndef OCEAN_WAVES_OPS_H
 #define OCEAN_WAVES_OPS_H
 
-#include "amr-wind/ocean_waves/OceanWavesTypes.H"
+#include "src/ocean_waves/OceanWavesTypes.H"
 #include "AMReX_Vector.H"
-#include "amr-wind/CFDSim.H"
+#include "src/CFDSim.H"
 
 namespace amr_wind::ocean_waves::ops {
 

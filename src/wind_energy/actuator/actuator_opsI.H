@@ -1,8 +1,8 @@
 #ifndef ACTUATOR_OPSI_H
 #define ACTUATOR_OPSI_H
 
-#include "amr-wind/wind_energy/actuator/actuator_utils.H"
-#include "amr-wind/CFDSim.H"
+#include "src/wind_energy/actuator/actuator_utils.H"
+#include "src/CFDSim.H"
 
 #include <algorithm>
 

@@ -3,8 +3,8 @@
 
 #include "AMReX_iMultiFab.H"
 #include "AMReX_MultiFab.H"
-#include "amr-wind/equation_systems/vof/volume_fractions.H"
-#include "amr-wind/core/FieldRepo.H"
+#include "src/equation_systems/vof/volume_fractions.H"
+#include "src/core/FieldRepo.H"
 
 namespace amr_wind::overset_ops {
 

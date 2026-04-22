@@ -2,9 +2,9 @@
 #define KOSOVIC_H
 
 #include <string>
-#include "amr-wind/turbulence/TurbModelBase.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/utilities/constants.H"
+#include "src/turbulence/TurbModelBase.H"
+#include "src/core/FieldRepo.H"
+#include "src/utilities/constants.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

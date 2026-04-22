@@ -1,7 +1,7 @@
 #include <utility>
 
 #include "aw_test_utils/AmrexTest.H"
-#include "amr-wind/utilities/tensor_ops.H"
+#include "src/utilities/tensor_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

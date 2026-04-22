@@ -1,7 +1,7 @@
-#include "amr-wind/core/ViewField.H"
-#include "amr-wind/core/Field.H"
-#include "amr-wind/core/ScratchField.H"
-#include "amr-wind/core/FieldRepo.H"
+#include "src/core/ViewField.H"
+#include "src/core/Field.H"
+#include "src/core/ScratchField.H"
+#include "src/core/FieldRepo.H"
 
 namespace amr_wind {
 

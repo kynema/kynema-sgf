@@ -1,10 +1,10 @@
-#include "amr-wind/immersed_boundary/IB.H"
-#include "amr-wind/immersed_boundary/IBModel.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/core/MultiParser.H"
-#include "amr-wind/utilities/IOManager.H"
-#include "amr-wind/utilities/io_utils.H"
+#include "src/immersed_boundary/IB.H"
+#include "src/immersed_boundary/IBModel.H"
+#include "src/CFDSim.H"
+#include "src/core/FieldRepo.H"
+#include "src/core/MultiParser.H"
+#include "src/utilities/IOManager.H"
+#include "src/utilities/io_utils.H"
 #include <algorithm>
 #include "AMReX_REAL.H"
 

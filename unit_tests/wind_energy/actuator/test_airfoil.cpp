@@ -1,8 +1,8 @@
 #include <string>
 #include <numbers>
 #include "aw_test_utils/AmrexTest.H"
-#include "amr-wind/wind_energy/actuator/aero/AirfoilTable.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/wind_energy/actuator/aero/AirfoilTable.H"
+#include "src/utilities/trig_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

@@ -1,8 +1,8 @@
 #ifndef FREESURFACESAMPLER_H
 #define FREESURFACESAMPLER_H
 
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/sampling/SamplerBase.H"
+#include "src/CFDSim.H"
+#include "src/utilities/sampling/SamplerBase.H"
 
 namespace amr_wind::sampling {
 

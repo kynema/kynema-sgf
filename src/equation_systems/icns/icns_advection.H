@@ -1,17 +1,17 @@
 #ifndef ICNS_ADVECTION_H
 #define ICNS_ADVECTION_H
 
-#include "amr-wind/equation_systems/AdvOp_Godunov.H"
-#include "amr-wind/equation_systems/AdvOp_MOL.H"
-#include "amr-wind/equation_systems/icns/icns.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/FieldBoundary.H"
+#include "src/equation_systems/AdvOp_Godunov.H"
+#include "src/equation_systems/AdvOp_MOL.H"
+#include "src/equation_systems/icns/icns.H"
+#include "src/boundary_conditions/field_boundary_fill/FieldBoundary.H"
 
 #include "AMReX_MultiFabUtil.H"
 #include "hydro_MacProjector.H"
 #include "hydro_mol.H"
 #include "hydro_utils.H"
 
-#include "amr-wind/utilities/diagnostics.H"
+#include "src/utilities/diagnostics.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

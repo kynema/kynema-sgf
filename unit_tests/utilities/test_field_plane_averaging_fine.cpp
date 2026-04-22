@@ -10,7 +10,7 @@
 #include "AMReX_Vector.H"
 #include "AMReX_REAL.H"
 
-#include "amr-wind/utilities/FieldPlaneAveragingFine.H"
+#include "src/utilities/FieldPlaneAveragingFine.H"
 
 using namespace amrex::literals;
 

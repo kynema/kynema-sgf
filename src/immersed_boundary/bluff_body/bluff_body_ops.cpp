@@ -1,14 +1,14 @@
 #include <numbers>
-#include "amr-wind/immersed_boundary/bluff_body/bluff_body_ops.H"
-#include "amr-wind/core/MultiParser.H"
-#include "amr-wind/utilities/ncutils/nc_interface.H"
-#include "amr-wind/utilities/io_utils.H"
+#include "src/immersed_boundary/bluff_body/bluff_body_ops.H"
+#include "src/core/MultiParser.H"
+#include "src/utilities/ncutils/nc_interface.H"
+#include "src/utilities/io_utils.H"
 
-#include "amr-wind/fvm/gradient.H"
-#include "amr-wind/core/field_ops.H"
+#include "src/fvm/gradient.H"
+#include "src/core/field_ops.H"
 
 // Used for mms
-#include "amr-wind/physics/ConvectingTaylorVortex.H"
+#include "src/physics/ConvectingTaylorVortex.H"
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"

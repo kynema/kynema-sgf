@@ -5,7 +5,7 @@
 #include "AMReX_REAL.H"
 #include "AMReX_Array.H"
 #include "AMReX_Vector.H"
-#include "amr-wind/CFDSim.H"
+#include "src/CFDSim.H"
 
 using namespace amrex::literals;
 

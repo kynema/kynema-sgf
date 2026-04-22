@@ -1,5 +1,5 @@
-#include "amr-wind/utilities/tagging/CurvatureRefinement.H"
-#include "amr-wind/CFDSim.H"
+#include "src/utilities/tagging/CurvatureRefinement.H"
+#include "src/CFDSim.H"
 
 #include "AMReX.H"
 #include "AMReX_ParmParse.H"

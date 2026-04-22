@@ -1,13 +1,13 @@
 #ifndef ACTUATORMODEL_H
 #define ACTUATORMODEL_H
 
-#include "amr-wind/core/Factory.H"
-#include "amr-wind/wind_energy/actuator/actuator_types.H"
-#include "amr-wind/wind_energy/actuator/actuator_ops.H"
-#include "amr-wind/wind_energy/actuator/ActSrcLineOp.H"
-#include "amr-wind/wind_energy/actuator/turbine/ActSrcDiskOp_Turbine.H"
-#include "amr-wind/wind_energy/actuator/disk/ActSrcDiskOp.H"
-#include "amr-wind/wind_energy/actuator/ActParser.H"
+#include "src/core/Factory.H"
+#include "src/wind_energy/actuator/actuator_types.H"
+#include "src/wind_energy/actuator/actuator_ops.H"
+#include "src/wind_energy/actuator/ActSrcLineOp.H"
+#include "src/wind_energy/actuator/turbine/ActSrcDiskOp_Turbine.H"
+#include "src/wind_energy/actuator/disk/ActSrcDiskOp.H"
+#include "src/wind_energy/actuator/ActParser.H"
 
 namespace amr_wind {
 

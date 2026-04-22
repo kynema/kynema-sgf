@@ -1,8 +1,8 @@
-#include "amr-wind/utilities/tagging/QCriterionRefinement.H"
-#include "amr-wind/CFDSim.H"
+#include "src/utilities/tagging/QCriterionRefinement.H"
+#include "src/CFDSim.H"
 #include "AMReX.H"
 #include "AMReX_ParmParse.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

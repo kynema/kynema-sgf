@@ -1,9 +1,9 @@
 #ifndef FREESTREAM_H
 #define FREESTREAM_H
 
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/core/Field.H"
-#include "amr-wind/physics/udfs/UDF.H"
+#include "src/core/Physics.H"
+#include "src/core/Field.H"
+#include "src/physics/udfs/UDF.H"
 
 #include <unordered_map>
 #include <memory>

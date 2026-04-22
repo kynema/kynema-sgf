@@ -1,9 +1,9 @@
 #ifndef ICNS_BCOP_H
 #define ICNS_BCOP_H
 
-#include "amr-wind/equation_systems/icns/icns.H"
-#include "amr-wind/equation_systems/BCOps.H"
-#include "amr-wind/boundary_conditions/velocity_bcs.H"
+#include "src/equation_systems/icns/icns.H"
+#include "src/equation_systems/BCOps.H"
+#include "src/boundary_conditions/velocity_bcs.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

@@ -1,7 +1,7 @@
 #ifndef AIRFOILTABLE_H
 #define AIRFOILTABLE_H
 
-#include "amr-wind/wind_energy/actuator/actuator_types.H"
+#include "src/wind_energy/actuator/actuator_types.H"
 #include <iosfwd>
 #include <memory>
 #include "AMReX_REAL.H"
@@ -86,6 +86,6 @@ struct AirfoilTraits
 
 } // namespace amr_wind::actuator
 
-#include "amr-wind/wind_energy/actuator/aero/AirfoilTableI.H"
+#include "src/wind_energy/actuator/aero/AirfoilTableI.H"
 
 #endif /* AIRFOILTABLE_H */

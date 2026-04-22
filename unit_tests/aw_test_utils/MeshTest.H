@@ -5,9 +5,9 @@
 
 #include "aw_test_utils/AmrexTest.H"
 #include "aw_test_utils/AmrTestMesh.H"
-#include "amr-wind/core/SimTime.H"
-#include "amr-wind/utilities/constants.H"
-#include "amr-wind/utilities/tagging/CartBoxRefinement.H"
+#include "src/core/SimTime.H"
+#include "src/utilities/constants.H"
+#include "src/utilities/tagging/CartBoxRefinement.H"
 
 namespace amr_wind_tests {
 

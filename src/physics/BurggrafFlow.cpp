@@ -1,11 +1,11 @@
-#include "amr-wind/physics/BurggrafFlow.H"
-#include "amr-wind/CFDSim.H"
+#include "src/physics/BurggrafFlow.H"
+#include "src/CFDSim.H"
 #include "AMReX_iMultiFab.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_ParReduce.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/trig_ops.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

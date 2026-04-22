@@ -1,8 +1,8 @@
-#include "amr-wind/boundary_conditions/wall_models/WallFunction.H"
-#include "amr-wind/boundary_conditions/wall_models/ShearStressSimple.H"
-#include "amr-wind/utilities/tensor_ops.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "amr-wind/diffusion/diffusion.H"
+#include "src/boundary_conditions/wall_models/WallFunction.H"
+#include "src/boundary_conditions/wall_models/ShearStressSimple.H"
+#include "src/utilities/tensor_ops.H"
+#include "src/utilities/trig_ops.H"
+#include "src/diffusion/diffusion.H"
 
 #include <cmath>
 

@@ -1,9 +1,9 @@
 #include "abl_test_utils.H"
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
-#include "amr-wind/equation_systems/tke/TKE.H"
-#include "amr-wind/wind_energy/ABLStats.H"
-#include "amr-wind/incflo.H"
+#include "src/equation_systems/tke/TKE.H"
+#include "src/wind_energy/ABLStats.H"
+#include "src/incflo.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

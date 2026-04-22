@@ -1,5 +1,5 @@
 #include "aw_test_utils/MeshTest.H"
-#include "amr-wind/core/field_ops.H"
+#include "src/core/field_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

@@ -1,7 +1,7 @@
-#include "amr-wind/physics/VortexDipole.H"
-#include "amr-wind/CFDSim.H"
+#include "src/physics/VortexDipole.H"
+#include "src/CFDSim.H"
 #include "AMReX_ParmParse.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/utilities/trig_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

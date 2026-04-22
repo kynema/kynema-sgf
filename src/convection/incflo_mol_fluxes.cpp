@@ -1,5 +1,5 @@
-#include "amr-wind/convection/MOL.H"
-#include "amr-wind/utilities/bc_ops.H"
+#include "src/convection/MOL.H"
+#include "src/utilities/bc_ops.H"
 #include "AMReX_Geometry.H"
 #include "AMReX_Slopes_K.H"
 #include "AMReX_REAL.H"

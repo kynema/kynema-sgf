@@ -2,10 +2,10 @@
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
 
-#include "amr-wind/physics/mms/MMS.H"
-#include "amr-wind/physics/mms/MMSForcing.H"
-#include "amr-wind/equation_systems/icns/icns.H"
-#include "amr-wind/equation_systems/icns/icns_ops.H"
+#include "src/physics/mms/MMS.H"
+#include "src/physics/mms/MMSForcing.H"
+#include "src/equation_systems/icns/icns.H"
+#include "src/equation_systems/icns/icns_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

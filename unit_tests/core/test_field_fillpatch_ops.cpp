@@ -1,7 +1,7 @@
 #include "aw_test_utils/MeshTest.H"
-#include "amr-wind/core/FieldBCOps.H"
-#include "amr-wind/core/FieldFillPatchOps.H"
-#include "amr-wind/projection/nodal_projection_ops.H"
+#include "src/core/FieldBCOps.H"
+#include "src/core/FieldFillPatchOps.H"
+#include "src/projection/nodal_projection_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

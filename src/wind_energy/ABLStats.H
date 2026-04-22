@@ -1,17 +1,17 @@
 #ifndef ABLISTATS_H
 #define ABLISTATS_H
 
-#include "amr-wind/wind_energy/ABLStatsBase.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/transport_models/TransportModel.H"
-#include "amr-wind/utilities/FieldPlaneAveraging.H"
-#include "amr-wind/utilities/FieldPlaneAveragingFine.H"
-#include "amr-wind/utilities/SecondMomentAveraging.H"
-#include "amr-wind/utilities/ThirdMomentAveraging.H"
-#include "amr-wind/utilities/PostProcessing.H"
-#include "amr-wind/utilities/sampling/SamplerBase.H"
-#include "amr-wind/utilities/sampling/SamplingContainer.H"
-#include "amr-wind/wind_energy/ABLWallFunction.H"
+#include "src/wind_energy/ABLStatsBase.H"
+#include "src/CFDSim.H"
+#include "src/transport_models/TransportModel.H"
+#include "src/utilities/FieldPlaneAveraging.H"
+#include "src/utilities/FieldPlaneAveragingFine.H"
+#include "src/utilities/SecondMomentAveraging.H"
+#include "src/utilities/ThirdMomentAveraging.H"
+#include "src/utilities/PostProcessing.H"
+#include "src/utilities/sampling/SamplerBase.H"
+#include "src/utilities/sampling/SamplingContainer.H"
+#include "src/wind_energy/ABLWallFunction.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

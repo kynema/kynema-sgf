@@ -1,7 +1,7 @@
 #ifndef AIRFOILTABLEI_H
 #define AIRFOILTABLEI_H
 
-#include "amr-wind/wind_energy/actuator/aero/AirfoilTable.H"
+#include "src/wind_energy/actuator/aero/AirfoilTable.H"
 
 #include <string>
 

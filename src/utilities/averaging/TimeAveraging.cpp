@@ -1,9 +1,9 @@
 #include <utility>
 
-#include "amr-wind/utilities/averaging/TimeAveraging.H"
-#include "amr-wind/utilities/averaging/ReAveraging.H"
-#include "amr-wind/utilities/io_utils.H"
-#include "amr-wind/CFDSim.H"
+#include "src/utilities/averaging/TimeAveraging.H"
+#include "src/utilities/averaging/ReAveraging.H"
+#include "src/utilities/io_utils.H"
+#include "src/CFDSim.H"
 
 #include "AMReX_ParmParse.H"
 

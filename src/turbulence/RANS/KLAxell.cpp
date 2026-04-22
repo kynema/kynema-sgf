@@ -1,12 +1,12 @@
-#include "amr-wind/turbulence/RANS/KLAxell.H"
-#include "amr-wind/equation_systems/PDEBase.H"
-#include "amr-wind/turbulence/TurbModelDefs.H"
-#include "amr-wind/fvm/gradient.H"
-#include "amr-wind/fvm/strainrate.H"
-#include "amr-wind/turbulence/turb_utils.H"
-#include "amr-wind/equation_systems/tke/TKE.H"
+#include "src/turbulence/RANS/KLAxell.H"
+#include "src/equation_systems/PDEBase.H"
+#include "src/turbulence/TurbModelDefs.H"
+#include "src/fvm/gradient.H"
+#include "src/fvm/strainrate.H"
+#include "src/turbulence/turb_utils.H"
+#include "src/equation_systems/tke/TKE.H"
 #include "AMReX_ParmParse.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

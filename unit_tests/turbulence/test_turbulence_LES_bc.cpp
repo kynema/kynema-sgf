@@ -1,8 +1,8 @@
 #include "gtest/gtest.h"
 #include "aw_test_utils/MeshTest.H"
-#include "amr-wind/turbulence/TurbulenceModel.H"
+#include "src/turbulence/TurbulenceModel.H"
 #include "aw_test_utils/test_utils.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

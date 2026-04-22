@@ -1,5 +1,5 @@
-#include "amr-wind/physics/mms/MMSForcing.H"
-#include "amr-wind/CFDSim.H"
+#include "src/physics/mms/MMSForcing.H"
+#include "src/CFDSim.H"
 #include "masa.h"
 
 namespace amr_wind::pde::icns::mms {

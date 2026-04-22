@@ -1,4 +1,4 @@
-#include "amr-wind/incflo.H"
+#include "src/incflo.H"
 
 // Make a new level using provided BoxArray and DistributionMapping and
 // fill with interpolated coarse level data.

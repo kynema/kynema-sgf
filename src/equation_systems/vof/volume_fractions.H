@@ -4,7 +4,7 @@
 #include <AMReX_FArrayBox.H>
 #include <algorithm>
 #include <cmath>
-#include "amr-wind/utilities/constants.H"
+#include "src/utilities/constants.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

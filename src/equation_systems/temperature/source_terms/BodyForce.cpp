@@ -1,7 +1,7 @@
-#include "amr-wind/equation_systems/temperature/source_terms/BodyForce.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "amr-wind/utilities/linear_interpolation.H"
+#include "src/equation_systems/temperature/source_terms/BodyForce.H"
+#include "src/CFDSim.H"
+#include "src/utilities/trig_ops.H"
+#include "src/utilities/linear_interpolation.H"
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_Gpu.H"

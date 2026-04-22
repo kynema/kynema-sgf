@@ -5,7 +5,7 @@
 #include <cstdint>
 
 #include "AMReX_AmrParticles.H"
-#include "amr-wind/utilities/DerivedQuantity.H"
+#include "src/utilities/DerivedQuantity.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

@@ -1,7 +1,7 @@
 #include <utility>
 
-#include "amr-wind/core/IntField.H"
-#include "amr-wind/core/FieldRepo.H"
+#include "src/core/IntField.H"
+#include "src/core/FieldRepo.H"
 
 namespace amr_wind {
 

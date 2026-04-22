@@ -2,13 +2,13 @@
 #include "aw_test_utils/MeshTest.H"
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "amr-wind/core/field_ops.H"
-#include "amr-wind/equation_systems/vof/volume_fractions.H"
-#include "amr-wind/equation_systems/vof/vof_hybridsolver_ops.H"
-#include "amr-wind/equation_systems/vof/vof.H"
-#include "amr-wind/equation_systems/SchemeTraits.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/trig_ops.H"
+#include "src/core/field_ops.H"
+#include "src/equation_systems/vof/volume_fractions.H"
+#include "src/equation_systems/vof/vof_hybridsolver_ops.H"
+#include "src/equation_systems/vof/vof.H"
+#include "src/equation_systems/SchemeTraits.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

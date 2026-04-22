@@ -1,5 +1,5 @@
 #include <limits>
-#include "amr-wind/wind_energy/MOData.H"
+#include "src/wind_energy/MOData.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

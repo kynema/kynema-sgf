@@ -1,11 +1,11 @@
 #include <numbers>
-#include "amr-wind/physics/ConvectingTaylorVortex.H"
-#include "amr-wind/CFDSim.H"
+#include "src/physics/ConvectingTaylorVortex.H"
+#include "src/CFDSim.H"
 #include "AMReX_iMultiFab.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_ParReduce.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/utilities/trig_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

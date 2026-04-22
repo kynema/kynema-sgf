@@ -3,8 +3,8 @@
 
 #include <string>
 #include <cstdint>
-#include "amr-wind/core/vs/vector_space.H"
-#include "amr-wind/utilities/tensor_ops.H"
+#include "src/core/vs/vector_space.H"
+#include "src/utilities/tensor_ops.H"
 #include "AMReX_Vector.H"
 #include "AMReX_REAL.H"
 

@@ -1,7 +1,7 @@
 #ifndef PLANESAMPLER_H
 #define PLANESAMPLER_H
 
-#include "amr-wind/utilities/sampling/SamplerBase.H"
+#include "src/utilities/sampling/SamplerBase.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

@@ -8,9 +8,9 @@
 #include "AMReX_RealBox.H"
 #include "AMReX_Vector.H"
 
-#include "amr-wind/utilities/FieldPlaneAveraging.H"
-#include "amr-wind/utilities/SecondMomentAveraging.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/utilities/FieldPlaneAveraging.H"
+#include "src/utilities/SecondMomentAveraging.H"
+#include "src/utilities/trig_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

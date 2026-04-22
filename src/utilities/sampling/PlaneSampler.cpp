@@ -1,7 +1,7 @@
 #include <limits>
-#include "amr-wind/utilities/sampling/PlaneSampler.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/index_operations.H"
+#include "src/utilities/sampling/PlaneSampler.H"
+#include "src/CFDSim.H"
+#include "src/utilities/index_operations.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 

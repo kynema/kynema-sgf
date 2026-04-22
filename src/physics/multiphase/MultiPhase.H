@@ -2,10 +2,10 @@
 #define MULTIPHASE_H
 
 #include <cstdint>
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/core/Field.H"
-#include "amr-wind/core/IntField.H"
-#include "amr-wind/core/ScratchField.H"
+#include "src/core/Physics.H"
+#include "src/core/Field.H"
+#include "src/core/IntField.H"
+#include "src/core/ScratchField.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

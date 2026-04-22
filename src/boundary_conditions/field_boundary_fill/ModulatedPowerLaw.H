@@ -1,12 +1,12 @@
 #ifndef MODULATEDPOWERLAW_H
 #define MODULATEDPOWERLAW_H
 
-#include "amr-wind/core/Field.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/FieldBoundary.H"
+#include "src/core/Field.H"
+#include "src/CFDSim.H"
+#include "src/boundary_conditions/field_boundary_fill/FieldBoundary.H"
 #include "AMReX_Gpu.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "amr-wind/core/vs/vector_space.H"
+#include "src/utilities/trig_ops.H"
+#include "src/core/vs/vector_space.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

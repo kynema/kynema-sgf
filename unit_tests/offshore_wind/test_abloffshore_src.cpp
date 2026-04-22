@@ -1,18 +1,18 @@
 #include <numbers>
 #include "abloffshore_test_utils.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/utilities/trig_ops.H"
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_Random.H"
 #include "AMReX_REAL.H"
-#include "amr-wind/equation_systems/icns/icns.H"
-#include "amr-wind/equation_systems/icns/icns_ops.H"
-#include "amr-wind/equation_systems/icns/MomentumSource.H"
-#include "amr-wind/equation_systems/icns/source_terms/ABLForcing.H"
-#include "amr-wind/equation_systems/icns/source_terms/GeostrophicForcing.H"
-#include "amr-wind/equation_systems/icns/source_terms/BoussinesqBuoyancy.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
+#include "src/equation_systems/icns/icns.H"
+#include "src/equation_systems/icns/icns_ops.H"
+#include "src/equation_systems/icns/MomentumSource.H"
+#include "src/equation_systems/icns/source_terms/ABLForcing.H"
+#include "src/equation_systems/icns/source_terms/GeostrophicForcing.H"
+#include "src/equation_systems/icns/source_terms/BoussinesqBuoyancy.H"
+#include "src/physics/multiphase/MultiPhase.H"
 
 using namespace amrex::literals;
 

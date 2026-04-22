@@ -1,6 +1,6 @@
-#include "amr-wind/equation_systems/icns/source_terms/VelocityFreeAtmosphereForcing.H"
-#include "amr-wind/utilities/IOManager.H"
-#include "amr-wind/utilities/linear_interpolation.H"
+#include "src/equation_systems/icns/source_terms/VelocityFreeAtmosphereForcing.H"
+#include "src/utilities/IOManager.H"
+#include "src/utilities/linear_interpolation.H"
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_Gpu.H"

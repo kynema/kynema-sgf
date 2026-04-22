@@ -2,7 +2,7 @@
 #define SPLIT_ADVECTION_H
 
 #include <cmath>
-#include "amr-wind/equation_systems/vof/volume_fractions.H"
+#include "src/equation_systems/vof/volume_fractions.H"
 #include "AMReX_FArrayBox.H"
 #include "AMReX_BCRec.H"
 #include "AMReX_REAL.H"

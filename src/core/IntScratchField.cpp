@@ -1,5 +1,5 @@
-#include "amr-wind/core/IntScratchField.H"
-#include "amr-wind/core/FieldRepo.H"
+#include "src/core/IntScratchField.H"
+#include "src/core/FieldRepo.H"
 
 #include "AMReX_Gpu.H"
 #include "AMReX_IArrayBox.H"

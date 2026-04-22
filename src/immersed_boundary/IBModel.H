@@ -1,10 +1,10 @@
 #ifndef IBMODEL_H
 #define IBMODEL_H
 
-#include "amr-wind/core/Factory.H"
-#include "amr-wind/immersed_boundary/IBTypes.H"
-#include "amr-wind/immersed_boundary/IBOps.H"
-#include "amr-wind/core/MultiParser.H"
+#include "src/core/Factory.H"
+#include "src/immersed_boundary/IBTypes.H"
+#include "src/immersed_boundary/IBOps.H"
+#include "src/core/MultiParser.H"
 
 namespace amr_wind {
 

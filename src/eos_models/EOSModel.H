@@ -2,7 +2,7 @@
 #define EOSMODEL_H
 
 #include "AMReX_REAL.H"
-#include "amr-wind/utilities/constants.H"
+#include "src/utilities/constants.H"
 
 using namespace amrex::literals;
 

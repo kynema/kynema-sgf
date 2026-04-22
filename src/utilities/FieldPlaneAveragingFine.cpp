@@ -1,5 +1,5 @@
-#include "amr-wind/utilities/FieldPlaneAveragingFine.H"
-#include "amr-wind/utilities/constants.H"
+#include "src/utilities/FieldPlaneAveragingFine.H"
+#include "src/utilities/constants.H"
 #include "AMReX_iMultiFab.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_REAL.H"

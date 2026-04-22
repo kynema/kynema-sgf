@@ -1,8 +1,8 @@
 #include <cmath>
 
-#include "amr-wind/turbulence/LES/Smagorinsky.H"
-#include "amr-wind/turbulence/TurbModelDefs.H"
-#include "amr-wind/fvm/strainrate.H"
+#include "src/turbulence/LES/Smagorinsky.H"
+#include "src/turbulence/TurbModelDefs.H"
+#include "src/fvm/strainrate.H"
 #include "AMReX_REAL.H"
 #include "AMReX_MultiFab.H"
 #include "AMReX_ParmParse.H"

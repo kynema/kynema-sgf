@@ -1,4 +1,4 @@
-#include "amr-wind/wind_energy/ABL.H"
+#include "src/wind_energy/ABL.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

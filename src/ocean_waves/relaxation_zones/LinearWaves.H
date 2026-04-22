@@ -1,7 +1,7 @@
 #ifndef LINEARWAVES_H
 #define LINEARWAVES_H
 
-#include "amr-wind/ocean_waves/relaxation_zones/RelaxationZones.H"
+#include "src/ocean_waves/relaxation_zones/RelaxationZones.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

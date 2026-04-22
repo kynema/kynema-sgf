@@ -1,8 +1,8 @@
 #ifndef EXTSOLVER_H
 #define EXTSOLVER_H
 
-#include "amr-wind/core/Factory.H"
-#include "amr-wind/core/CollMgr.H"
+#include "src/core/Factory.H"
+#include "src/core/CollMgr.H"
 
 namespace amr_wind {
 

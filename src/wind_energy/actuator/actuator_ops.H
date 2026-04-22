@@ -1,8 +1,8 @@
 #ifndef ACT_OPS_H
 #define ACT_OPS_H
 
-#include "amr-wind/wind_energy/actuator/actuator_types.H"
-#include "amr-wind/wind_energy/actuator/ActParser.H"
+#include "src/wind_energy/actuator/actuator_types.H"
+#include "src/wind_energy/actuator/ActParser.H"
 #include "AMReX_Vector.H"
 
 namespace amr_wind::actuator::ops {
@@ -94,6 +94,6 @@ void determine_root_proc(
 
 } // namespace amr_wind::actuator::ops
 
-#include "amr-wind/wind_energy/actuator/actuator_opsI.H"
+#include "src/wind_energy/actuator/actuator_opsI.H"
 
 #endif /* ACT_OPS_H */

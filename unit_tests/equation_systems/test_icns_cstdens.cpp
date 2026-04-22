@@ -1,5 +1,5 @@
 #include "aw_test_utils/MeshTest.H"
-#include "amr-wind/equation_systems/icns/icns_advection.H"
+#include "src/equation_systems/icns/icns_advection.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

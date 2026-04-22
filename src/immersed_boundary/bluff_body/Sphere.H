@@ -1,7 +1,7 @@
 #ifndef SPHERE_H
 #define SPHERE_H
 
-#include "amr-wind/immersed_boundary/bluff_body/BluffBody.H"
+#include "src/immersed_boundary/bluff_body/BluffBody.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

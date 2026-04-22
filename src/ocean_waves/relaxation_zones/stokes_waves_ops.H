@@ -1,12 +1,12 @@
 #ifndef STOKES_WAVES_OPS_H
 #define STOKES_WAVES_OPS_H
 
-#include "amr-wind/ocean_waves/relaxation_zones/StokesWaves.H"
-#include "amr-wind/ocean_waves/relaxation_zones/stokes_waves_K.H"
-#include "amr-wind/ocean_waves/OceanWavesOps.H"
-#include "amr-wind/ocean_waves/OceanWaves.H"
-#include "amr-wind/ocean_waves/relaxation_zones/relaxation_zones_ops.H"
-#include "amr-wind/equation_systems/vof/volume_fractions.H"
+#include "src/ocean_waves/relaxation_zones/StokesWaves.H"
+#include "src/ocean_waves/relaxation_zones/stokes_waves_K.H"
+#include "src/ocean_waves/OceanWavesOps.H"
+#include "src/ocean_waves/OceanWaves.H"
+#include "src/ocean_waves/relaxation_zones/relaxation_zones_ops.H"
+#include "src/equation_systems/vof/volume_fractions.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

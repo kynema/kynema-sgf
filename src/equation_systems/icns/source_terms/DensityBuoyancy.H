@@ -1,8 +1,8 @@
 #ifndef DENSITYBUOYANCY_H
 #define DENSITYBUOYANCY_H
 
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/equation_systems/icns/MomentumSource.H"
+#include "src/core/FieldRepo.H"
+#include "src/equation_systems/icns/MomentumSource.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

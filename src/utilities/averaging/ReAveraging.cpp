@@ -1,8 +1,8 @@
-#include "amr-wind/utilities/averaging/ReAveraging.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/core/Field.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/utilities/IOManager.H"
+#include "src/utilities/averaging/ReAveraging.H"
+#include "src/CFDSim.H"
+#include "src/core/Field.H"
+#include "src/core/FieldRepo.H"
+#include "src/utilities/IOManager.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

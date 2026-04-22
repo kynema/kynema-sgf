@@ -1,8 +1,8 @@
 #include <iostream>
 #include <fstream>
 
-#include "amr-wind/utilities/tagging/CartBoxRefinement.H"
-#include "amr-wind/CFDSim.H"
+#include "src/utilities/tagging/CartBoxRefinement.H"
+#include "src/CFDSim.H"
 #include "AMReX_ParmParse.H"
 
 namespace amr_wind {

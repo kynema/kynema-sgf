@@ -1,7 +1,7 @@
 #ifndef REFINECHECKPT_H
 #define REFINECHECKPT_H
 
-#include "amr-wind/incflo.H"
+#include "src/incflo.H"
 
 namespace amr_wind {
 namespace tools {

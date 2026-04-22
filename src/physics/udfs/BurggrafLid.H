@@ -2,7 +2,7 @@
 #define BURGGRAF_LID_H
 
 #include "AMReX_Geometry.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

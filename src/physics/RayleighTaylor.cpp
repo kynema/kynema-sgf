@@ -1,8 +1,8 @@
 #include <memory>
 
-#include "amr-wind/physics/RayleighTaylor.H"
-#include "amr-wind/physics/RayleighTaylorFieldInit.H"
-#include "amr-wind/CFDSim.H"
+#include "src/physics/RayleighTaylor.H"
+#include "src/physics/RayleighTaylorFieldInit.H"
+#include "src/CFDSim.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

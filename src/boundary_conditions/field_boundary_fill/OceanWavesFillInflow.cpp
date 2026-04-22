@@ -1,7 +1,7 @@
 #include <utility>
 
-#include "amr-wind/boundary_conditions/field_boundary_fill/OceanWavesFillInflow.H"
-#include "amr-wind/utilities/constants.H"
+#include "src/boundary_conditions/field_boundary_fill/OceanWavesFillInflow.H"
+#include "src/utilities/constants.H"
 
 namespace amr_wind {
 

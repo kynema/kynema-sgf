@@ -1,11 +1,11 @@
-#include "amr-wind/physics/ForestDrag.H"
-#include "amr-wind/CFDSim.H"
+#include "src/physics/ForestDrag.H"
+#include "src/CFDSim.H"
 #include "AMReX_iMultiFab.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_ParReduce.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "amr-wind/utilities/IOManager.H"
+#include "src/utilities/trig_ops.H"
+#include "src/utilities/IOManager.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

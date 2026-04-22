@@ -1,7 +1,7 @@
 #include "ascent.H"
 
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/io_utils.H"
+#include "src/CFDSim.H"
+#include "src/utilities/io_utils.H"
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_Conduit_Blueprint.H"

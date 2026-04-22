@@ -1,14 +1,14 @@
 #ifndef WING_OPS_H
 #define WING_OPS_H
 
-#include "amr-wind/wind_energy/actuator/wing/ActuatorWing.H"
-#include "amr-wind/wind_energy/actuator/actuator_types.H"
-#include "amr-wind/wind_energy/actuator/actuator_ops.H"
-#include "amr-wind/wind_energy/actuator/aero/AirfoilTable.H"
-#include "amr-wind/wind_energy/actuator/ActParser.H"
-#include "amr-wind/wind_energy/actuator/FLLCOp.H"
-#include "amr-wind/utilities/linear_interpolation.H"
-#include "amr-wind/core/vs/vector_space.H"
+#include "src/wind_energy/actuator/wing/ActuatorWing.H"
+#include "src/wind_energy/actuator/actuator_types.H"
+#include "src/wind_energy/actuator/actuator_ops.H"
+#include "src/wind_energy/actuator/aero/AirfoilTable.H"
+#include "src/wind_energy/actuator/ActParser.H"
+#include "src/wind_energy/actuator/FLLCOp.H"
+#include "src/utilities/linear_interpolation.H"
+#include "src/core/vs/vector_space.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

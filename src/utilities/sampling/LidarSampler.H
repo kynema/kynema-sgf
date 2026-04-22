@@ -1,8 +1,8 @@
 #ifndef LIDARSAMPLER_H
 #define LIDARSAMPLER_H
 
-#include "amr-wind/utilities/sampling/LineSampler.H"
-#include "amr-wind/core/vs/vector_space.H"
+#include "src/utilities/sampling/LineSampler.H"
+#include "src/core/vs/vector_space.H"
 
 namespace amr_wind::sampling {
 

@@ -1,16 +1,16 @@
-#include "amr-wind/utilities/sampling/DTUSpinnerSampler.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/tensor_ops.H"
-#include "amr-wind/utilities/linear_interpolation.H"
-#include "amr-wind/utilities/index_operations.H"
+#include "src/utilities/sampling/DTUSpinnerSampler.H"
+#include "src/CFDSim.H"
+#include "src/utilities/tensor_ops.H"
+#include "src/utilities/linear_interpolation.H"
+#include "src/utilities/index_operations.H"
 #include "AMReX_ParmParse.H"
 
 #ifdef AMR_WIND_USE_OPENFAST
-#include "amr-wind/wind_energy/actuator/Actuator.H"
-#include "amr-wind/wind_energy/actuator/turbine/fast/TurbineFast.H"
-#include "amr-wind/wind_energy/actuator/turbine/fast/turbine_fast_ops.H"
-#include "amr-wind/wind_energy/actuator/ActuatorModel.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/wind_energy/actuator/Actuator.H"
+#include "src/wind_energy/actuator/turbine/fast/TurbineFast.H"
+#include "src/wind_energy/actuator/turbine/fast/turbine_fast_ops.H"
+#include "src/wind_energy/actuator/ActuatorModel.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 #endif

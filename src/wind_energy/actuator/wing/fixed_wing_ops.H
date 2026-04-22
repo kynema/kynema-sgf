@@ -3,10 +3,10 @@
 
 #include <algorithm>
 
-#include "amr-wind/wind_energy/actuator/wing/FixedWing.H"
-#include "amr-wind/wind_energy/actuator/actuator_ops.H"
-#include "amr-wind/wind_energy/actuator/wing/wing_ops.H"
-#include "amr-wind/utilities/linear_interpolation.H"
+#include "src/wind_energy/actuator/wing/FixedWing.H"
+#include "src/wind_energy/actuator/actuator_ops.H"
+#include "src/wind_energy/actuator/wing/wing_ops.H"
+#include "src/utilities/linear_interpolation.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

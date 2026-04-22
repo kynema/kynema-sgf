@@ -1,9 +1,9 @@
 #ifndef FVM_UTILS_H
 #define FVM_UTILS_H
 
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/fvm/stencils.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/core/FieldRepo.H"
+#include "src/fvm/stencils.H"
+#include "src/utilities/math_ops.H"
 
 #include "AMReX_MFIter.H"
 

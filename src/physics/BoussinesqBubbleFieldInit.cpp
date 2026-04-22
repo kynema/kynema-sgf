@@ -1,6 +1,6 @@
 #include <cmath>
 
-#include "amr-wind/physics/BoussinesqBubbleFieldInit.H"
+#include "src/physics/BoussinesqBubbleFieldInit.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"

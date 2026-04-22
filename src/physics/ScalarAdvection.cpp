@@ -1,9 +1,9 @@
 #include <numbers>
-#include "amr-wind/physics/ScalarAdvection.H"
-#include "amr-wind/CFDSim.H"
+#include "src/physics/ScalarAdvection.H"
+#include "src/CFDSim.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_MultiFabUtil.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

@@ -1,7 +1,7 @@
 #ifndef MOL_H
 #define MOL_H
 
-#include "amr-wind/core/FieldRepo.H"
+#include "src/core/FieldRepo.H"
 
 namespace mol {
 

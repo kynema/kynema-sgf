@@ -2,8 +2,8 @@
 #define FIELDREFINEMENT_H
 
 #include "AMReX_REAL.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/tagging/RefinementCriteria.H"
+#include "src/CFDSim.H"
+#include "src/utilities/tagging/RefinementCriteria.H"
 
 using namespace amrex::literals;
 

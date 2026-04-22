@@ -1,8 +1,8 @@
 #ifndef TURBINEKYNEMA_H
 #define TURBINEKYNEMA_H
 
-#include "amr-wind/wind_energy/actuator/turbine/external/TurbineExternal.H"
-#include "amr-wind/wind_energy/actuator/turbine/kynema/kynema_types.H"
+#include "src/wind_energy/actuator/turbine/external/TurbineExternal.H"
+#include "src/wind_energy/actuator/turbine/kynema/kynema_types.H"
 
 namespace amr_wind::actuator {
 

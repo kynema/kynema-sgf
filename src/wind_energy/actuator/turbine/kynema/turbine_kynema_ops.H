@@ -1,8 +1,8 @@
 #ifndef TURBINE_KYNEMA_OPS_H
 #define TURBINE_KYNEMA_OPS_H
 
-#include "amr-wind/wind_energy/actuator/turbine/kynema/TurbineKynema.H"
-#include "amr-wind/wind_energy/actuator/turbine/external/turbine_external_ops.H"
+#include "src/wind_energy/actuator/turbine/kynema/TurbineKynema.H"
+#include "src/wind_energy/actuator/turbine/external/turbine_external_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

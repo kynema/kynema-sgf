@@ -1,8 +1,8 @@
-#include "amr-wind/utilities/sampling/RadarSampler.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/tensor_ops.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "amr-wind/utilities/index_operations.H"
+#include "src/utilities/sampling/RadarSampler.H"
+#include "src/CFDSim.H"
+#include "src/utilities/tensor_ops.H"
+#include "src/utilities/trig_ops.H"
+#include "src/utilities/index_operations.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 

@@ -1,9 +1,9 @@
 #include <cmath>
 
-#include "amr-wind/mesh_mapping_models/ChannelFlowMap.H"
+#include "src/mesh_mapping_models/ChannelFlowMap.H"
 
 #include "AMReX_ParmParse.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

@@ -1,9 +1,9 @@
 #ifndef TIMEAVERAGING_H
 #define TIMEAVERAGING_H
 
-#include "amr-wind/core/Factory.H"
-#include "amr-wind/utilities/PostProcessing.H"
-#include "amr-wind/utilities/constants.H"
+#include "src/core/Factory.H"
+#include "src/utilities/PostProcessing.H"
+#include "src/utilities/constants.H"
 
 #include "AMReX_Vector.H"
 

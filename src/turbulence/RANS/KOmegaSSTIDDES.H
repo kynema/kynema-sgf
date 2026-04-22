@@ -2,7 +2,7 @@
 #define KOMEGASSTIDDES_H
 
 #include <string>
-#include "amr-wind/turbulence/RANS/KOmegaSST.H"
+#include "src/turbulence/RANS/KOmegaSST.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

@@ -1,7 +1,7 @@
 #ifndef UNIFORMCT_H
 #define UNIFORMCT_H
 
-#include "amr-wind/wind_energy/actuator/disk/ActuatorDisk.H"
+#include "src/wind_energy/actuator/disk/ActuatorDisk.H"
 
 namespace amr_wind::actuator {
 

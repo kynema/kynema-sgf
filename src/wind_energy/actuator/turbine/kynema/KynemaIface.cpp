@@ -1,13 +1,13 @@
 #include <algorithm>
 #include <cmath>
-#include "amr-wind/wind_energy/actuator/turbine/external/ExtTurbIface.H"
-#include "amr-wind/wind_energy/actuator/turbine/kynema/kynema_types.H"
-#include "amr-wind/wind_energy/actuator/turbine/kynema/kynema_wrapper.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/core/SimTime.H"
-#include "amr-wind/utilities/io_utils.H"
-#include "amr-wind/utilities/ncutils/nc_interface.H"
-#include "amr-wind/utilities/linear_interpolation.H"
+#include "src/wind_energy/actuator/turbine/external/ExtTurbIface.H"
+#include "src/wind_energy/actuator/turbine/kynema/kynema_types.H"
+#include "src/wind_energy/actuator/turbine/kynema/kynema_wrapper.H"
+#include "src/CFDSim.H"
+#include "src/core/SimTime.H"
+#include "src/utilities/io_utils.H"
+#include "src/utilities/ncutils/nc_interface.H"
+#include "src/utilities/linear_interpolation.H"
 
 #include "AMReX.H"
 #include "AMReX_ParmParse.H"

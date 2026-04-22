@@ -1,7 +1,7 @@
 #ifndef MULTIPARSER_H
 #define MULTIPARSER_H
 
-#include "amr-wind/core/vs/vector_space.H"
+#include "src/core/vs/vector_space.H"
 #include "AMReX_ParmParse.H"
 
 namespace amr_wind::utils {

@@ -1,7 +1,7 @@
 #include <cmath>
 #include <numbers>
 
-#include "amr-wind/physics/RayleighTaylorFieldInit.H"
+#include "src/physics/RayleighTaylorFieldInit.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"

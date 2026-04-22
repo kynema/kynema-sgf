@@ -1,7 +1,7 @@
-#include "amr-wind/utilities/sampling/LineSampler.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/tensor_ops.H"
-#include "amr-wind/utilities/index_operations.H"
+#include "src/utilities/sampling/LineSampler.H"
+#include "src/CFDSim.H"
+#include "src/utilities/tensor_ops.H"
+#include "src/utilities/index_operations.H"
 
 #include "AMReX_ParmParse.H"
 

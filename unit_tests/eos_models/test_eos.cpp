@@ -1,6 +1,6 @@
 #include <AMReX_Gpu.H>
 #include "aw_test_utils/AmrexTest.H"
-#include "amr-wind/eos_models/EOSModel.H"
+#include "src/eos_models/EOSModel.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

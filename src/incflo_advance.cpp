@@ -1,12 +1,12 @@
 #include <cmath>
 
-#include "amr-wind/incflo.H"
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/core/field_ops.H"
-#include "amr-wind/equation_systems/PDEBase.H"
-#include "amr-wind/turbulence/TurbulenceModel.H"
-#include "amr-wind/utilities/console_io.H"
-#include "amr-wind/utilities/PostProcessing.H"
+#include "src/incflo.H"
+#include "src/core/Physics.H"
+#include "src/core/field_ops.H"
+#include "src/equation_systems/PDEBase.H"
+#include "src/turbulence/TurbulenceModel.H"
+#include "src/utilities/console_io.H"
+#include "src/utilities/PostProcessing.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_REAL.H"
 

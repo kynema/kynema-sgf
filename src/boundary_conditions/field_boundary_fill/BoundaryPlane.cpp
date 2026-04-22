@@ -1,11 +1,11 @@
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/BoundaryPlane.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/PlaneFillInflow.H"
+#include "src/CFDSim.H"
+#include "src/boundary_conditions/field_boundary_fill/BoundaryPlane.H"
+#include "src/boundary_conditions/field_boundary_fill/PlaneFillInflow.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_ParmParse.H"
-#include "amr-wind/utilities/ncutils/nc_interface.H"
-#include "amr-wind/utilities/index_operations.H"
-#include "amr-wind/utilities/constants.H"
+#include "src/utilities/ncutils/nc_interface.H"
+#include "src/utilities/index_operations.H"
+#include "src/utilities/constants.H"
 #include <AMReX_PlotFileUtil.H>
 #include <algorithm>
 #include "AMReX_REAL.H"

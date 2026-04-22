@@ -2,7 +2,7 @@
 #define VS_VECTOR_H
 
 #include "AMReX_Gpu.H"
-#include "amr-wind/core/vs/vstraits.H"
+#include "src/core/vs/vstraits.H"
 
 namespace amr_wind::vs {
 
@@ -146,6 +146,6 @@ using Vector = VectorT<amrex::Real>;
 
 } // namespace amr_wind::vs
 
-#include "amr-wind/core/vs/vectorI.H"
+#include "src/core/vs/vectorI.H"
 
 #endif /* VS_VECTOR_H */

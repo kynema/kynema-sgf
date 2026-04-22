@@ -1,9 +1,9 @@
 #ifndef OCEAN_WAVES_H
 #define OCEAN_WAVES_H
 
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
+#include "src/core/Physics.H"
+#include "src/core/FieldRepo.H"
+#include "src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
 
 /** \defgroup ocean_waves Ocean Waves module
  *  Ocean Waves class

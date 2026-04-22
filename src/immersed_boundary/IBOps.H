@@ -1,9 +1,9 @@
 #ifndef IBOPS_H
 #define IBOPS_H
 
-#include "amr-wind/immersed_boundary/IBTypes.H"
+#include "src/immersed_boundary/IBTypes.H"
 #include "AMReX_Vector.H"
-#include "amr-wind/CFDSim.H"
+#include "src/CFDSim.H"
 
 namespace amr_wind::ib::ops {
 

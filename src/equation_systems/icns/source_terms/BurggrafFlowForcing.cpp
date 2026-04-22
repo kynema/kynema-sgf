@@ -1,6 +1,6 @@
-#include "amr-wind/equation_systems/icns/source_terms/BurggrafFlowForcing.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/physics/BurggrafFlow.H"
+#include "src/equation_systems/icns/source_terms/BurggrafFlowForcing.H"
+#include "src/CFDSim.H"
+#include "src/physics/BurggrafFlow.H"
 
 #include "AMReX_Gpu.H"
 

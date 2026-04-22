@@ -1,10 +1,10 @@
-#include "amr-wind/ocean_waves/OceanWaves.H"
-#include "amr-wind/ocean_waves/OceanWavesModel.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/core/MultiParser.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
-#include "amr-wind/utilities/IOManager.H"
+#include "src/ocean_waves/OceanWaves.H"
+#include "src/ocean_waves/OceanWavesModel.H"
+#include "src/CFDSim.H"
+#include "src/core/FieldRepo.H"
+#include "src/core/MultiParser.H"
+#include "src/physics/multiphase/MultiPhase.H"
+#include "src/utilities/IOManager.H"
 
 #include <algorithm>
 #include "AMReX_REAL.H"

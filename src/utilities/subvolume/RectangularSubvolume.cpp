@@ -1,6 +1,6 @@
-#include "amr-wind/utilities/subvolume/RectangularSubvolume.H"
-#include "amr-wind/utilities/constants.H"
-#include "amr-wind/CFDSim.H"
+#include "src/utilities/subvolume/RectangularSubvolume.H"
+#include "src/utilities/constants.H"
+#include "src/CFDSim.H"
 
 #include "AMReX_ParmParse.H"
 

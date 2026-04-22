@@ -1,11 +1,11 @@
 #ifndef TEMPERATURE_H
 #define TEMPERATURE_H
 
-#include "amr-wind/equation_systems/PDETraits.H"
-#include "amr-wind/equation_systems/SchemeTraits.H"
-#include "amr-wind/equation_systems/PDEHelpers.H"
-#include "amr-wind/equation_systems/PDE.H"
-#include "amr-wind/equation_systems/temperature/TemperatureSource.H"
+#include "src/equation_systems/PDETraits.H"
+#include "src/equation_systems/SchemeTraits.H"
+#include "src/equation_systems/PDEHelpers.H"
+#include "src/equation_systems/PDE.H"
+#include "src/equation_systems/temperature/TemperatureSource.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

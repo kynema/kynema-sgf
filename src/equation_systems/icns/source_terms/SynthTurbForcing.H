@@ -1,7 +1,7 @@
 #ifndef SYNTHTURBFORCING_H
 #define SYNTHTURBFORCING_H
 
-#include "amr-wind/equation_systems/icns/MomentumSource.H"
+#include "src/equation_systems/icns/MomentumSource.H"
 
 namespace amr_wind::pde::icns {
 

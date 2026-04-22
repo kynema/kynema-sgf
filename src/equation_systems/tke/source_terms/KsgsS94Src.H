@@ -1,7 +1,7 @@
 #ifndef KSGSS94SRC_H
 #define KSGSS94SRC_H
 
-#include "amr-wind/equation_systems/tke/TKESource.H"
+#include "src/equation_systems/tke/TKESource.H"
 
 namespace amr_wind {
 namespace pde {

@@ -1,7 +1,7 @@
 #ifndef ACTPARSER_H
 #define ACTPARSER_H
 
-#include "amr-wind/core/MultiParser.H"
+#include "src/core/MultiParser.H"
 
 namespace amr_wind::actuator::utils {
 

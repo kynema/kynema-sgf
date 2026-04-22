@@ -1,7 +1,7 @@
-#include "amr-wind/utilities/DerivedQtyDefs.H"
-#include "amr-wind/core/field_ops.H"
-#include "amr-wind/fvm/fvm.H"
-#include "amr-wind/utilities/io_utils.H"
+#include "src/utilities/DerivedQtyDefs.H"
+#include "src/core/field_ops.H"
+#include "src/fvm/fvm.H"
+#include "src/utilities/io_utils.H"
 
 namespace amr_wind::derived {
 

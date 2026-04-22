@@ -1,7 +1,7 @@
-#include "amr-wind/equation_systems/temperature/source_terms/TemperatureFreeAtmosphereForcing.H"
-#include "amr-wind/utilities/IOManager.H"
-#include "amr-wind/utilities/linear_interpolation.H"
-#include "amr-wind/utilities/constants.H"
+#include "src/equation_systems/temperature/source_terms/TemperatureFreeAtmosphereForcing.H"
+#include "src/utilities/IOManager.H"
+#include "src/utilities/linear_interpolation.H"
+#include "src/utilities/constants.H"
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_Gpu.H"

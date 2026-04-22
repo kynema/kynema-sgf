@@ -1,6 +1,6 @@
 #include "aw_test_utils/MeshTest.H"
-#include "amr-wind/utilities/diagnostics.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/diagnostics.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

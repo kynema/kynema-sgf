@@ -1,9 +1,9 @@
 #ifndef PLANEFILLINFLOW_H
 #define PLANEFILLINFLOW_H
 
-#include "amr-wind/core/FieldFillPatchOps.H"
-#include "amr-wind/core/FieldBCOps.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/BoundaryPlane.H"
+#include "src/core/FieldFillPatchOps.H"
+#include "src/core/FieldBCOps.H"
+#include "src/boundary_conditions/field_boundary_fill/BoundaryPlane.H"
 
 namespace amr_wind {
 

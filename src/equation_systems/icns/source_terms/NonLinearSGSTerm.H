@@ -1,8 +1,8 @@
 #ifndef NONLINEARSGSTERM_H
 #define NONLINEARSGSTERM_H
 
-#include "amr-wind/equation_systems/icns/MomentumSource.H"
-#include "amr-wind/core/SimTime.H"
+#include "src/equation_systems/icns/MomentumSource.H"
+#include "src/core/SimTime.H"
 
 namespace amr_wind::pde::icns {
 

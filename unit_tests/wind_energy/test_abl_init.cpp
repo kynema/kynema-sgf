@@ -1,7 +1,7 @@
 #include "abl_test_utils.H"
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
-#include "amr-wind/wind_energy/ABLFieldInit.H"
+#include "src/wind_energy/ABLFieldInit.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

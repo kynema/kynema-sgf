@@ -1,16 +1,16 @@
 #include <memory>
 #include "AMReX.H"
-#include "amr-wind/equation_systems/icns/icns_advection.H"
-#include "amr-wind/core/MLMGOptions.H"
-#include "amr-wind/utilities/console_io.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/BoundaryPlane.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
-#include "amr-wind/overset/overset_ops_routines.H"
+#include "src/equation_systems/icns/icns_advection.H"
+#include "src/core/MLMGOptions.H"
+#include "src/utilities/console_io.H"
+#include "src/boundary_conditions/field_boundary_fill/BoundaryPlane.H"
+#include "src/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H"
+#include "src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
+#include "src/overset/overset_ops_routines.H"
 #include "AMReX_MultiFabUtil.H"
 #include "hydro_MacProjector.H"
 #include "AMReX_REAL.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

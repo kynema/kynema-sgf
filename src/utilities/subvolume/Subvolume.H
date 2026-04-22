@@ -3,10 +3,10 @@
 
 #include <memory>
 
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/DerivedQuantity.H"
-#include "amr-wind/utilities/PostProcessing.H"
-#include "amr-wind/utilities/subvolume/SubvolumeBase.H"
+#include "src/CFDSim.H"
+#include "src/utilities/DerivedQuantity.H"
+#include "src/utilities/PostProcessing.H"
+#include "src/utilities/subvolume/SubvolumeBase.H"
 #include <AMReX_PlotFileUtil.H>
 
 /**

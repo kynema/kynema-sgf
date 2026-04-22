@@ -1,6 +1,6 @@
-#include "amr-wind/equation_systems/icns/source_terms/NonLinearSGSTerm.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/turbulence/LES/Kosovic.H"
+#include "src/equation_systems/icns/source_terms/NonLinearSGSTerm.H"
+#include "src/CFDSim.H"
+#include "src/turbulence/LES/Kosovic.H"
 
 #include "AMReX_Gpu.H"
 

@@ -1,8 +1,8 @@
 #ifndef SDR_OPS_H
 #define SDR_OPS_H
 
-#include "amr-wind/equation_systems/sdr/SDR.H"
-#include "amr-wind/core/field_ops.H"
+#include "src/equation_systems/sdr/SDR.H"
+#include "src/core/field_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

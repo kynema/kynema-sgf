@@ -1,12 +1,12 @@
-#include "amr-wind/transport_models/TransportModel.H"
-#include "amr-wind/wind_energy/ABLWallFunction.H"
-#include "amr-wind/wind_energy/ABL.H"
-#include "amr-wind/utilities/tensor_ops.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "amr-wind/diffusion/diffusion.H"
-#include "amr-wind/wind_energy/ShearStress.H"
-#include "amr-wind/wind_energy/MOData.H"
-#include "amr-wind/utilities/linear_interpolation.H"
+#include "src/transport_models/TransportModel.H"
+#include "src/wind_energy/ABLWallFunction.H"
+#include "src/wind_energy/ABL.H"
+#include "src/utilities/tensor_ops.H"
+#include "src/utilities/trig_ops.H"
+#include "src/diffusion/diffusion.H"
+#include "src/wind_energy/ShearStress.H"
+#include "src/wind_energy/MOData.H"
+#include "src/utilities/linear_interpolation.H"
 
 #include <cmath>
 

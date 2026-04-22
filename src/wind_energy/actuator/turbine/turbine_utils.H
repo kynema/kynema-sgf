@@ -1,8 +1,8 @@
 #ifndef TURBINE_UTILS_H
 #define TURBINE_UTILS_H
 
-#include "amr-wind/wind_energy/actuator/turbine/turbine_types.H"
-#include "amr-wind/wind_energy/actuator/ActParser.H"
+#include "src/wind_energy/actuator/turbine/turbine_types.H"
+#include "src/wind_energy/actuator/ActParser.H"
 
 namespace amr_wind::actuator::utils {
 void read_inputs(

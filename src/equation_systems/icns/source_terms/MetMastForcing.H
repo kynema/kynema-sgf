@@ -1,9 +1,9 @@
 #ifndef METMASTFORCING_H
 #define METMASTFORCING_H
 
-#include "amr-wind/equation_systems/icns/MomentumSource.H"
-#include "amr-wind/core/SimTime.H"
-#include "amr-wind/CFDSim.H"
+#include "src/equation_systems/icns/MomentumSource.H"
+#include "src/core/SimTime.H"
+#include "src/CFDSim.H"
 
 namespace amr_wind::pde::icns {
 

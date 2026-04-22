@@ -1,6 +1,6 @@
 #include <cstdio>
 
-#include "amr-wind/utilities/ncutils/nc_interface.H"
+#include "src/utilities/ncutils/nc_interface.H"
 
 #include "AMReX.H"
 #include "AMReX_REAL.H"

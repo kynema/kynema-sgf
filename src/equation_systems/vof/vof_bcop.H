@@ -1,9 +1,9 @@
 #ifndef VOF_BCOP_H
 #define VOF_BCOP_H
 
-#include "amr-wind/equation_systems/vof/vof.H"
-#include "amr-wind/equation_systems/BCOps.H"
-#include "amr-wind/equation_systems/vof/vof_bciface.H"
+#include "src/equation_systems/vof/vof.H"
+#include "src/equation_systems/BCOps.H"
+#include "src/equation_systems/vof/vof_bciface.H"
 
 namespace amr_wind::pde {
 

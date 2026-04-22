@@ -1,8 +1,8 @@
 #ifndef LEVELSET_OPS_H
 #define LEVELSET_OPS_H
 
-#include "amr-wind/equation_systems/levelset/levelset.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
+#include "src/equation_systems/levelset/levelset.H"
+#include "src/physics/multiphase/MultiPhase.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

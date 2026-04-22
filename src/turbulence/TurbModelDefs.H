@@ -1,9 +1,9 @@
 #ifndef TURBMODELDEFS_H
 #define TURBMODELDEFS_H
 
-#include "amr-wind/turbulence/TurbulenceModel.H"
-#include "amr-wind/transport_models/ConstTransport.H"
-#include "amr-wind/transport_models/TwoPhaseTransport.H"
+#include "src/turbulence/TurbulenceModel.H"
+#include "src/transport_models/ConstTransport.H"
+#include "src/transport_models/TwoPhaseTransport.H"
 
 namespace amr_wind {
 

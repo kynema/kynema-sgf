@@ -1,4 +1,4 @@
-#include "amr-wind/utilities/bc_ops.H"
+#include "src/utilities/bc_ops.H"
 
 std::pair<bool, bool>
 amr_wind::utils::has_extdir(amrex::BCRec const* bcrec, int ncomp, int dir)

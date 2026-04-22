@@ -1,8 +1,8 @@
 #ifndef BODYFORCE_H
 #define BODYFORCE_H
 
-#include "amr-wind/equation_systems/icns/MomentumSource.H"
-#include "amr-wind/core/SimTime.H"
+#include "src/equation_systems/icns/MomentumSource.H"
+#include "src/core/SimTime.H"
 #include "AMReX_GpuContainers.H"
 #include "AMReX_REAL.H"
 #include "AMReX_Vector.H"

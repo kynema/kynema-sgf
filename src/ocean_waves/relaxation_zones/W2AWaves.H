@@ -1,7 +1,7 @@
 #ifndef W2AWAVES_H
 #define W2AWAVES_H
 
-#include "amr-wind/ocean_waves/relaxation_zones/RelaxationZones.H"
+#include "src/ocean_waves/relaxation_zones/RelaxationZones.H"
 #include <vector>
 #include <complex>
 #ifdef AMR_WIND_USE_W2A

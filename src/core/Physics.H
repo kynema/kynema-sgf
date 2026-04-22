@@ -1,8 +1,8 @@
 #ifndef PHYSICS_H
 #define PHYSICS_H
 
-#include "amr-wind/core/Factory.H"
-#include "amr-wind/core/CollMgr.H"
+#include "src/core/Factory.H"
+#include "src/core/CollMgr.H"
 #include "AMReX_MultiFab.H"
 #include "AMReX_Geometry.H"
 

@@ -1,10 +1,10 @@
 #ifndef FIELDPLANEAVERAGINGFINE_H
 #define FIELDPLANEAVERAGINGFINE_H
 
-#include "amr-wind/utilities/DirectionSelector.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/core/Field.H"
-#include "amr-wind/core/SimTime.H"
+#include "src/utilities/DirectionSelector.H"
+#include "src/CFDSim.H"
+#include "src/core/Field.H"
+#include "src/core/SimTime.H"
 
 /**
  *  \defgroup statistics Field statistics

@@ -1,7 +1,7 @@
 #ifndef VOF_MOMENTUM_FLUX_H
 #define VOF_MOMENTUM_FLUX_H
 
-#include "amr-wind/equation_systems/vof/volume_fractions.H"
+#include "src/equation_systems/vof/volume_fractions.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

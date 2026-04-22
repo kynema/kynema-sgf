@@ -2,7 +2,7 @@
 #define SUBVOLUMEBASE_H
 
 #include <AMReX_RealVect.H>
-#include "amr-wind/core/Factory.H"
+#include "src/core/Factory.H"
 
 namespace amr_wind {
 

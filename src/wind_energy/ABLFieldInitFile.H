@@ -1,7 +1,7 @@
 #ifndef ABLFIELDINITFILE_H
 #define ABLFIELDINITFILE_H
 
-#include "amr-wind/core/Field.H"
+#include "src/core/Field.H"
 
 #include "AMReX_Array.H"
 #include "AMReX_Array4.H"

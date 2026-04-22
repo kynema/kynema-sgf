@@ -1,8 +1,8 @@
 #ifndef FAST_TYPES_H
 #define FAST_TYPES_H
 
-#include "amr-wind/wind_energy/actuator/turbine/fast/fast_wrapper.H"
-#include "amr-wind/wind_energy/actuator/turbine/external/external_base_types.H"
+#include "src/wind_energy/actuator/turbine/fast/fast_wrapper.H"
+#include "src/wind_energy/actuator/turbine/external/external_base_types.H"
 
 #include <string>
 #include "AMReX_REAL.H"

@@ -1,11 +1,11 @@
 #ifndef PDEOPS_H
 #define PDEOPS_H
 
-#include "amr-wind/core/FieldUtils.H"
-#include "amr-wind/equation_systems/PDEHelpers.H"
-#include "amr-wind/turbulence/TurbulenceModel.H"
-#include "amr-wind/utilities/IOManager.H"
-#include "amr-wind/CFDSim.H"
+#include "src/core/FieldUtils.H"
+#include "src/equation_systems/PDEHelpers.H"
+#include "src/turbulence/TurbulenceModel.H"
+#include "src/utilities/IOManager.H"
+#include "src/CFDSim.H"
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"

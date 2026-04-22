@@ -1,7 +1,7 @@
 #ifndef ASCENT_INT_H
 #define ASCENT_INT_H
 
-#include "amr-wind/utilities/PostProcessing.H"
+#include "src/utilities/PostProcessing.H"
 
 /**
  * Ascent In-situ Integration

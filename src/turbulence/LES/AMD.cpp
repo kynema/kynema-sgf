@@ -2,10 +2,10 @@
 #include <AMReX_GpuQualifiers.H>
 #include <cmath>
 
-#include "amr-wind/fvm/gradient.H"
-#include "amr-wind/turbulence/LES/AMD.H"
-#include "amr-wind/turbulence/TurbModelDefs.H"
-#include "amr-wind/utilities/DirectionSelector.H"
+#include "src/fvm/gradient.H"
+#include "src/turbulence/LES/AMD.H"
+#include "src/turbulence/TurbModelDefs.H"
+#include "src/utilities/DirectionSelector.H"
 
 #include "AMReX_REAL.H"
 #include "AMReX_MultiFab.H"

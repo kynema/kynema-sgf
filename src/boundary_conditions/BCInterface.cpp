@@ -1,7 +1,7 @@
-#include "amr-wind/boundary_conditions/BCInterface.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/boundary_conditions/FixedGradientBC.H"
-#include "amr-wind/boundary_conditions/MassInflowOutflowBC.H"
+#include "src/boundary_conditions/BCInterface.H"
+#include "src/core/FieldRepo.H"
+#include "src/boundary_conditions/FixedGradientBC.H"
+#include "src/boundary_conditions/MassInflowOutflowBC.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 

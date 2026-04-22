@@ -2,15 +2,15 @@
 #define CFDSIM_H
 
 #include "AMReX_AmrCore.H"
-#include "amr-wind/core/SimTime.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/equation_systems/PDEBase.H"
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/FieldBoundary.H"
-#include "amr-wind/core/MeshMap.H"
-#include "amr-wind/helics.H"
+#include "src/core/SimTime.H"
+#include "src/core/FieldRepo.H"
+#include "src/equation_systems/PDEBase.H"
+#include "src/core/Physics.H"
+#include "src/boundary_conditions/field_boundary_fill/FieldBoundary.H"
+#include "src/core/MeshMap.H"
+#include "src/helics.H"
 
-#include "amr-wind/boundary_conditions/field_boundary_fill/ReadERFFunction.H"
+#include "src/boundary_conditions/field_boundary_fill/ReadERFFunction.H"
 class MultiBlockContainer;
 
 /** AMR-Wind

@@ -2,9 +2,9 @@
 #define ABLSTATSBASE_H
 
 #include <cstdint>
-#include "amr-wind/core/Factory.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/wind_energy/ABLWallFunction.H"
+#include "src/core/Factory.H"
+#include "src/CFDSim.H"
+#include "src/wind_energy/ABLWallFunction.H"
 
 namespace amr_wind {
 namespace pde::icns {

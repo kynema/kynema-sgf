@@ -2,9 +2,9 @@
 #define SAMPLERBASE_H
 
 #include <AMReX_RealVect.H>
-#include "amr-wind/core/Factory.H"
-#include "amr-wind/utilities/ncutils/nc_interface.H"
-#include "amr-wind/utilities/constants.H"
+#include "src/core/Factory.H"
+#include "src/utilities/ncutils/nc_interface.H"
+#include "src/utilities/constants.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

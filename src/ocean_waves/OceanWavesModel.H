@@ -1,10 +1,10 @@
 #ifndef WAVE_MODEL_H
 #define WAVE_MODEL_H
 
-#include "amr-wind/core/Factory.H"
-#include "amr-wind/ocean_waves/OceanWavesTypes.H"
-#include "amr-wind/ocean_waves/OceanWavesOps.H"
-#include "amr-wind/core/MultiParser.H"
+#include "src/core/Factory.H"
+#include "src/ocean_waves/OceanWavesTypes.H"
+#include "src/ocean_waves/OceanWavesOps.H"
+#include "src/core/MultiParser.H"
 
 namespace amr_wind {
 

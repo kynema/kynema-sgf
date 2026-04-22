@@ -2,9 +2,9 @@
 #define FLLCOP_H
 
 #include <numbers>
-#include "amr-wind/wind_energy/actuator/actuator_types.H"
-#include "amr-wind/wind_energy/actuator/FLLC.H"
-#include "amr-wind/utilities/linear_interpolation.H"
+#include "src/wind_energy/actuator/actuator_types.H"
+#include "src/wind_energy/actuator/FLLC.H"
+#include "src/utilities/linear_interpolation.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

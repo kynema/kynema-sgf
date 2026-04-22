@@ -1,5 +1,5 @@
-#include "amr-wind/wind_energy/actuator/disk/uniform_ct_ops.H"
-#include "amr-wind/wind_energy/actuator/ActParser.H"
+#include "src/wind_energy/actuator/disk/uniform_ct_ops.H"
+#include "src/wind_energy/actuator/ActParser.H"
 #include "AMReX_REAL.H"
 #include <ostream>
 

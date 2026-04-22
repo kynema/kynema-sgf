@@ -1,10 +1,10 @@
-#include "amr-wind/physics/ChannelFlow.H"
-#include "amr-wind/CFDSim.H"
+#include "src/physics/ChannelFlow.H"
+#include "src/CFDSim.H"
 #include "AMReX_iMultiFab.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_ParmParse.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "amr-wind/utilities/DirectionSelector.H"
+#include "src/utilities/trig_ops.H"
+#include "src/utilities/DirectionSelector.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

@@ -1,5 +1,5 @@
-#include "amr-wind/utilities/tagging/GeometryRefinement.H"
-#include "amr-wind/CFDSim.H"
+#include "src/utilities/tagging/GeometryRefinement.H"
+#include "src/CFDSim.H"
 
 #include "AMReX.H"
 #include "AMReX_ParmParse.H"

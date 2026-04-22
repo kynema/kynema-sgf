@@ -1,7 +1,7 @@
 #ifndef VOLUMESAMPLER_H
 #define VOLUMESAMPLER_H
 
-#include "amr-wind/utilities/sampling/SamplerBase.H"
+#include "src/utilities/sampling/SamplerBase.H"
 
 namespace amr_wind::sampling {
 

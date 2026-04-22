@@ -1,8 +1,8 @@
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
 
-#include "amr-wind/immersed_boundary/IBTypes.H"
-#include "amr-wind/core/vs/vector_space.H"
+#include "src/immersed_boundary/IBTypes.H"
+#include "src/core/vs/vector_space.H"
 
 #include <string>
 #include "AMReX_REAL.H"

@@ -1,9 +1,9 @@
 #ifndef COMPRHSOPS_H
 #define COMPRHSOPS_H
 
-#include "amr-wind/incflo_enums.H"
-#include "amr-wind/equation_systems/PDEOps.H"
-#include "amr-wind/equation_systems/SchemeTraits.H"
+#include "src/incflo_enums.H"
+#include "src/equation_systems/PDEOps.H"
+#include "src/equation_systems/SchemeTraits.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

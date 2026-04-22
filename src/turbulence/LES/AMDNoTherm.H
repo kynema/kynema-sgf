@@ -2,10 +2,10 @@
 #define AMDNOTHERM_H
 
 #include <string>
-#include "amr-wind/incflo_enums.H"
-#include "amr-wind/turbulence/TurbModelBase.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/fvm/stencils.H"
+#include "src/incflo_enums.H"
+#include "src/turbulence/TurbModelBase.H"
+#include "src/core/FieldRepo.H"
+#include "src/fvm/stencils.H"
 #include "AMReX_Config.H"
 #include "AMReX_AmrCore.H"
 #include "AMReX_REAL.H"

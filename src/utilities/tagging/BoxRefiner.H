@@ -1,8 +1,8 @@
 #ifndef BOXREFINER_H
 #define BOXREFINER_H
 
-#include "amr-wind/utilities/tagging/GeometryRefinement.H"
-#include "amr-wind/core/vs/vector_space.H"
+#include "src/utilities/tagging/GeometryRefinement.H"
+#include "src/core/vs/vector_space.H"
 
 namespace amr_wind::tagging {
 

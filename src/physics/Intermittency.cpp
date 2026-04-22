@@ -1,7 +1,7 @@
-#include "amr-wind/physics/Intermittency.H"
-#include "amr-wind/CFDSim.H"
+#include "src/physics/Intermittency.H"
+#include "src/CFDSim.H"
 #include "AMReX_ParmParse.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/utilities/trig_ops.H"
 
 namespace amr_wind {
 

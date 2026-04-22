@@ -1,5 +1,5 @@
 #include "RefineCheckpt.H"
-#include "amr-wind/utilities/console_io.H"
+#include "src/utilities/console_io.H"
 
 int main(int argc, char* argv[])
 {

@@ -3,12 +3,12 @@
 
 #include <AMReX_GpuContainers.H>
 #include <string>
-#include "amr-wind/turbulence/TurbModelBase.H"
-#include "amr-wind/utilities/FieldPlaneAveragingFine.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/fvm/stencils.H"
-#include "amr-wind/utilities/DirectionSelector.H"
-#include "amr-wind/utilities/linear_interpolation.H"
+#include "src/turbulence/TurbModelBase.H"
+#include "src/utilities/FieldPlaneAveragingFine.H"
+#include "src/core/FieldRepo.H"
+#include "src/fvm/stencils.H"
+#include "src/utilities/DirectionSelector.H"
+#include "src/utilities/linear_interpolation.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

@@ -1,6 +1,6 @@
 #include <numbers>
 #include "gtest/gtest.h"
-#include "amr-wind/wind_energy/actuator/disk/disk_ops.H"
+#include "src/wind_energy/actuator/disk/disk_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

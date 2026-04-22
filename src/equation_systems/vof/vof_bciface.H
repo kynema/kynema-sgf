@@ -1,7 +1,7 @@
 #ifndef VOF_BCIFACE_H
 #define VOF_BCIFACE_H
 
-#include "amr-wind/boundary_conditions/BCInterface.H"
+#include "src/boundary_conditions/BCInterface.H"
 
 namespace amr_wind {
 

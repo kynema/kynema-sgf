@@ -1,10 +1,10 @@
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/FillMPL.H"
+#include "src/CFDSim.H"
+#include "src/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H"
+#include "src/boundary_conditions/field_boundary_fill/FillMPL.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_ParmParse.H"
-#include "amr-wind/utilities/ncutils/nc_interface.H"
-#include "amr-wind/utilities/index_operations.H"
+#include "src/utilities/ncutils/nc_interface.H"
+#include "src/utilities/index_operations.H"
 #include "AMReX_PlotFileUtil.H"
 #include <sstream>
 #include <iostream>

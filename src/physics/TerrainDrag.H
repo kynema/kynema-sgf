@@ -1,9 +1,9 @@
 #ifndef TERRAINDRAG_H
 #define TERRAINDRAG_H
 
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/core/Field.H"
-#include "amr-wind/CFDSim.H"
+#include "src/core/Physics.H"
+#include "src/core/Field.H"
+#include "src/CFDSim.H"
 
 namespace amr_wind::terraindrag {
 

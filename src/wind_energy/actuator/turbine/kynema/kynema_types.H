@@ -2,8 +2,8 @@
 #define KYNEMA_TYPES_H
 
 #include <string>
-#include "amr-wind/wind_energy/actuator/turbine/kynema/kynema_wrapper.H"
-#include "amr-wind/wind_energy/actuator/turbine/external/external_base_types.H"
+#include "src/wind_energy/actuator/turbine/kynema/kynema_wrapper.H"
+#include "src/wind_energy/actuator/turbine/external/external_base_types.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

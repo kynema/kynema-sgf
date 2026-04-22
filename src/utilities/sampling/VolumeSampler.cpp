@@ -1,8 +1,8 @@
 #include <limits>
 
-#include "amr-wind/utilities/sampling/VolumeSampler.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/index_operations.H"
+#include "src/utilities/sampling/VolumeSampler.H"
+#include "src/CFDSim.H"
+#include "src/utilities/index_operations.H"
 #include "AMReX_ParmParse.H"
 
 namespace amr_wind::sampling {

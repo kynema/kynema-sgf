@@ -3,11 +3,11 @@
 
 #include <algorithm>
 
-#include "amr-wind/wind_energy/actuator/disk/Joukowsky.H"
-#include "amr-wind/wind_energy/actuator/disk/disk_ops.H"
-#include "amr-wind/utilities/linear_interpolation.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/wind_energy/actuator/disk/Joukowsky.H"
+#include "src/wind_energy/actuator/disk/disk_ops.H"
+#include "src/utilities/linear_interpolation.H"
+#include "src/utilities/trig_ops.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

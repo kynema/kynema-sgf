@@ -1,9 +1,9 @@
-#include "amr-wind/equation_systems/icns/source_terms/ForestForcing.H"
-#include "amr-wind/utilities/IOManager.H"
+#include "src/equation_systems/icns/source_terms/ForestForcing.H"
+#include "src/utilities/IOManager.H"
 
 #include "AMReX_Gpu.H"
 #include "AMReX_Random.H"
-#include "amr-wind/wind_energy/ABL.H"
+#include "src/wind_energy/ABL.H"
 
 namespace amr_wind::pde::icns {
 

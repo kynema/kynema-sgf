@@ -1,10 +1,10 @@
 #include "aw_test_utils/MeshTest.H"
 #include "aw_test_utils/iter_tools.H"
 #include "aw_test_utils/test_utils.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
-#include "amr-wind/equation_systems/vof/vof.H"
-#include "amr-wind/equation_systems/SchemeTraits.H"
-#include "amr-wind/utilities/tagging/CartBoxRefinement.H"
+#include "src/physics/multiphase/MultiPhase.H"
+#include "src/equation_systems/vof/vof.H"
+#include "src/equation_systems/SchemeTraits.H"
+#include "src/utilities/tagging/CartBoxRefinement.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

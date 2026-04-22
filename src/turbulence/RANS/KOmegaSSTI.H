@@ -1,12 +1,12 @@
 #ifndef KOMEGASSTI_H
 #define KOMEGASSTI_H
 
-#include "amr-wind/turbulence/RANS/KOmegaSST.H"
-#include "amr-wind/equation_systems/PDEBase.H"
-#include "amr-wind/turbulence/TurbModelDefs.H"
-#include "amr-wind/turbulence/turb_utils.H"
-#include "amr-wind/equation_systems/tke/TKE.H"
-#include "amr-wind/equation_systems/sdr/SDR.H"
+#include "src/turbulence/RANS/KOmegaSST.H"
+#include "src/equation_systems/PDEBase.H"
+#include "src/turbulence/TurbModelDefs.H"
+#include "src/turbulence/turb_utils.H"
+#include "src/equation_systems/tke/TKE.H"
+#include "src/equation_systems/sdr/SDR.H"
 
 #include "AMReX_ParmParse.H"
 

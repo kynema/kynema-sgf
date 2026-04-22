@@ -1,10 +1,10 @@
 #include <chrono>
 #include <ctime>
-#include "amr-wind/utilities/console_io.H"
-#include "amr-wind/AMRWindVersion.H"
+#include "src/utilities/console_io.H"
+#include "src/AMRWindVersion.H"
 #include "AMReX.H"
 #include "AMReX_OpenMP.H"
-#include "amr-wind/CFDSim.H"
+#include "src/CFDSim.H"
 
 #ifdef AMR_WIND_USE_NETCDF
 #include "netcdf.h"

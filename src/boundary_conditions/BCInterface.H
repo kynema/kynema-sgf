@@ -1,8 +1,8 @@
 #ifndef BCINTERFACE_H
 #define BCINTERFACE_H
 
-#include "amr-wind/core/Field.H"
-#include "amr-wind/incflo_enums.H"
+#include "src/core/Field.H"
+#include "src/incflo_enums.H"
 
 #include "AMReX_BC_TYPES.H"
 

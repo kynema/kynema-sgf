@@ -1,9 +1,9 @@
 #ifndef TURBMODELBASE_H
 #define TURBMODELBASE_H
 
-#include "amr-wind/turbulence/TurbModel.H"
-#include "amr-wind/utilities/IOManager.H"
-#include "amr-wind/core/field_ops.H"
+#include "src/turbulence/TurbModel.H"
+#include "src/utilities/IOManager.H"
+#include "src/core/field_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

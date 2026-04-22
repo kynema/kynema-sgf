@@ -1,8 +1,8 @@
 #ifndef NWB_H
 #define NWB_H
 
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/core/SimTime.H"
+#include "src/core/Physics.H"
+#include "src/core/SimTime.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

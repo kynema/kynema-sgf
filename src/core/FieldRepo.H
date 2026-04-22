@@ -4,12 +4,12 @@
 #include <string>
 #include <unordered_map>
 
-#include "amr-wind/core/FieldDescTypes.H"
-#include "amr-wind/core/FieldUtils.H"
-#include "amr-wind/core/Field.H"
-#include "amr-wind/core/IntField.H"
-#include "amr-wind/core/ScratchField.H"
-#include "amr-wind/core/IntScratchField.H"
+#include "src/core/FieldDescTypes.H"
+#include "src/core/FieldUtils.H"
+#include "src/core/Field.H"
+#include "src/core/IntField.H"
+#include "src/core/ScratchField.H"
+#include "src/core/IntScratchField.H"
 
 #include "AMReX_AmrCore.H"
 #include "AMReX_MultiFab.H"

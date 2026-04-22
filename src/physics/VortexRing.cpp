@@ -1,13 +1,13 @@
 #include <numbers>
-#include "amr-wind/physics/VortexRing.H"
-#include "amr-wind/CFDSim.H"
+#include "src/physics/VortexRing.H"
+#include "src/CFDSim.H"
 #include "AMReX_ParmParse.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/utilities/trig_ops.H"
 #include "AMReX_MLNodeLaplacian.H"
 #include "AMReX_MLMG.H"
 #include "AMReX_FillPatchUtil.H"
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/core/FieldRepo.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

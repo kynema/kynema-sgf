@@ -1,7 +1,7 @@
 #ifndef STRAINRATE_H
 #define STRAINRATE_H
 
-#include "amr-wind/fvm/fvm_utils.H"
+#include "src/fvm/fvm_utils.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

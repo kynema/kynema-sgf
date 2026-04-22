@@ -2,13 +2,13 @@
 #define ABLMESOFORCINGTEMP_H
 
 #include <memory>
-#include "amr-wind/core/FieldRepo.H"
-#include "amr-wind/equation_systems/temperature/TemperatureSource.H"
-#include "amr-wind/core/SimTime.H"
-#include "amr-wind/utilities/FieldPlaneAveragingFine.H"
-#include "amr-wind/utilities/ncutils/nc_interface.H"
-#include "amr-wind/wind_energy/ABLMesoscaleForcing.H"
-#include "amr-wind/wind_energy/ABLMesoscaleInput.H"
+#include "src/core/FieldRepo.H"
+#include "src/equation_systems/temperature/TemperatureSource.H"
+#include "src/core/SimTime.H"
+#include "src/utilities/FieldPlaneAveragingFine.H"
+#include "src/utilities/ncutils/nc_interface.H"
+#include "src/wind_energy/ABLMesoscaleForcing.H"
+#include "src/wind_energy/ABLMesoscaleInput.H"
 #include "AMReX_REAL.H"
 
 namespace amr_wind::pde::temperature {

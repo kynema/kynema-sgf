@@ -1,5 +1,5 @@
-#include "amr-wind/wind_energy/actuator/aero/AirfoilTable.H"
-#include "amr-wind/utilities/linear_interpolation.H"
+#include "src/wind_energy/actuator/aero/AirfoilTable.H"
+#include "src/utilities/linear_interpolation.H"
 #include <fstream>
 #include <algorithm>
 

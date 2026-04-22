@@ -3,8 +3,8 @@
 // This must be BODYFORCE2_H because another BODYFORCE_H exists
 
 #include <cstddef>
-#include "amr-wind/equation_systems/temperature/TemperatureSource.H"
-#include "amr-wind/core/SimTime.H"
+#include "src/equation_systems/temperature/TemperatureSource.H"
+#include "src/core/SimTime.H"
 #include "AMReX_GpuContainers.H"
 #include "AMReX_REAL.H"
 #include "AMReX_Vector.H"

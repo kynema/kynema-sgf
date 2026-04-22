@@ -1,7 +1,7 @@
 #ifndef KWSSTSRC_H
 #define KWSSTSRC_H
 
-#include "amr-wind/equation_systems/tke/TKESource.H"
+#include "src/equation_systems/tke/TKESource.H"
 
 namespace amr_wind::pde::tke {
 

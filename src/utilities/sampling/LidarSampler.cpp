@@ -1,7 +1,7 @@
-#include "amr-wind/utilities/sampling/LidarSampler.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/tensor_ops.H"
-#include "amr-wind/utilities/linear_interpolation.H"
+#include "src/utilities/sampling/LidarSampler.H"
+#include "src/CFDSim.H"
+#include "src/utilities/tensor_ops.H"
+#include "src/utilities/linear_interpolation.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 

@@ -1,8 +1,8 @@
 #ifndef TKE_OPS_H
 #define TKE_OPS_H
 
-#include "amr-wind/equation_systems/tke/TKE.H"
-#include "amr-wind/core/field_ops.H"
+#include "src/equation_systems/tke/TKE.H"
+#include "src/core/field_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

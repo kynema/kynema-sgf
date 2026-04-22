@@ -1,12 +1,12 @@
 #include "AMReX_BC_TYPES.H"
 #include <memory>
-#include "amr-wind/incflo.H"
-#include "amr-wind/core/MLMGOptions.H"
-#include "amr-wind/utilities/console_io.H"
-#include "amr-wind/core/field_ops.H"
-#include "amr-wind/projection/nodal_projection_ops.H"
+#include "src/incflo.H"
+#include "src/core/MLMGOptions.H"
+#include "src/utilities/console_io.H"
+#include "src/core/field_ops.H"
+#include "src/projection/nodal_projection_ops.H"
 #include "hydro_utils.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

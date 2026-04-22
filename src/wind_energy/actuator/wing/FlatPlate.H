@@ -1,8 +1,8 @@
 #ifndef FLATPLATE_H
 #define FLATPLATE_H
 
-#include "amr-wind/wind_energy/actuator/wing/ActuatorWing.H"
-#include "amr-wind/wind_energy/actuator/aero/AirfoilTable.H"
+#include "src/wind_energy/actuator/wing/ActuatorWing.H"
+#include "src/wind_energy/actuator/aero/AirfoilTable.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

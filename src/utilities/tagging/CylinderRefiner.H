@@ -1,8 +1,8 @@
 #ifndef CYLINDERREFINER_H
 #define CYLINDERREFINER_H
 
-#include "amr-wind/utilities/tagging/GeometryRefinement.H"
-#include "amr-wind/core/vs/vector_space.H"
+#include "src/utilities/tagging/GeometryRefinement.H"
+#include "src/core/vs/vector_space.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

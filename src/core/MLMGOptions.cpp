@@ -1,4 +1,4 @@
-#include "amr-wind/core/MLMGOptions.H"
+#include "src/core/MLMGOptions.H"
 
 #include "hydro_MacProjector.H"
 #include "hydro_NodalProjector.H"

@@ -1,7 +1,7 @@
-#include "amr-wind/equation_systems/icns/source_terms/CoriolisForcing.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/tensor_ops.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/equation_systems/icns/source_terms/CoriolisForcing.H"
+#include "src/CFDSim.H"
+#include "src/utilities/tensor_ops.H"
+#include "src/utilities/trig_ops.H"
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"

@@ -3,11 +3,11 @@
 
 #include <string>
 
-#include "amr-wind/core/Factory.H"
-#include "amr-wind/core/CollMgr.H"
-#include "amr-wind/equation_systems/PDEFields.H"
-#include "amr-wind/core/FieldDescTypes.H"
-#include "amr-wind/incflo_enums.H"
+#include "src/core/Factory.H"
+#include "src/core/CollMgr.H"
+#include "src/equation_systems/PDEFields.H"
+#include "src/core/FieldDescTypes.H"
+#include "src/incflo_enums.H"
 
 namespace amr_wind {
 

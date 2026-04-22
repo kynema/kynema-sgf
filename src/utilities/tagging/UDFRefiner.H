@@ -1,8 +1,8 @@
 #ifndef UDFREFINER_H
 #define UDFREFINER_H
 
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/tagging/GeometryRefinement.H"
+#include "src/CFDSim.H"
+#include "src/utilities/tagging/GeometryRefinement.H"
 #include "AMReX_Parser.H"
 
 namespace amr_wind::tagging {

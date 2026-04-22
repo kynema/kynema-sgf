@@ -1,7 +1,7 @@
 #ifndef CONSTANTMAP_H
 #define CONSTANTMAP_H
 
-#include "amr-wind/core/MeshMap.H"
+#include "src/core/MeshMap.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

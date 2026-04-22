@@ -1,7 +1,7 @@
 #ifndef REAVERAGING_H
 #define REAVERAGING_H
 
-#include "amr-wind/utilities/averaging/TimeAveraging.H"
+#include "src/utilities/averaging/TimeAveraging.H"
 
 namespace amr_wind::averaging {
 

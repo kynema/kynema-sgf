@@ -1,8 +1,8 @@
 #ifndef BURGGRAF_FLOW_FORCING_H
 #define BURGGRAF_FLOW_FORCING_H
 
-#include "amr-wind/equation_systems/icns/MomentumSource.H"
-#include "amr-wind/core/SimTime.H"
+#include "src/equation_systems/icns/MomentumSource.H"
+#include "src/core/SimTime.H"
 
 namespace amr_wind::pde::icns {
 

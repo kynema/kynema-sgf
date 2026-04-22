@@ -1,7 +1,7 @@
 #ifndef GRADIENTMAGREFINEMENT_H
 #define GRADIENTMAGREFINEMENT_H
 
-#include "amr-wind/utilities/tagging/RefinementCriteria.H"
+#include "src/utilities/tagging/RefinementCriteria.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

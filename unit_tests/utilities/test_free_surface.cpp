@@ -1,6 +1,6 @@
 #include "aw_test_utils/MeshTest.H"
-#include "amr-wind/utilities/sampling/FreeSurfaceSampler.H"
-#include "amr-wind/utilities/tagging/FieldRefinement.H"
+#include "src/utilities/sampling/FreeSurfaceSampler.H"
+#include "src/utilities/tagging/FieldRefinement.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

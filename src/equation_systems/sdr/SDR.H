@@ -1,12 +1,12 @@
 #ifndef SDR_H
 #define SDR_H
 
-#include "amr-wind/equation_systems/PDETraits.H"
-#include "amr-wind/equation_systems/SchemeTraits.H"
-#include "amr-wind/equation_systems/PDEHelpers.H"
-#include "amr-wind/equation_systems/PDE.H"
-#include "amr-wind/core/field_ops.H"
-#include "amr-wind/equation_systems/sdr/SDRSource.H"
+#include "src/equation_systems/PDETraits.H"
+#include "src/equation_systems/SchemeTraits.H"
+#include "src/equation_systems/PDEHelpers.H"
+#include "src/equation_systems/PDE.H"
+#include "src/core/field_ops.H"
+#include "src/equation_systems/sdr/SDRSource.H"
 
 namespace amr_wind::pde {
 

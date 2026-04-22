@@ -1,5 +1,5 @@
-#include "amr-wind/equation_systems/vof/SplitAdvection.H"
-#include "amr-wind/equation_systems/vof/split_advection.H"
+#include "src/equation_systems/vof/SplitAdvection.H"
+#include "src/equation_systems/vof/split_advection.H"
 #include "AMReX_Geometry.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_REAL.H"

@@ -1,8 +1,8 @@
 #include <AMReX_Orientation.H>
 
-#include "amr-wind/equation_systems/tke/source_terms/KwSSTSrc.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/turbulence/TurbulenceModel.H"
+#include "src/equation_systems/tke/source_terms/KwSSTSrc.H"
+#include "src/CFDSim.H"
+#include "src/turbulence/TurbulenceModel.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

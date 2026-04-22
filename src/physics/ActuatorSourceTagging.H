@@ -1,9 +1,9 @@
 #ifndef ACTUATORSOURCETAGGING_H
 #define ACTUATORSOURCETAGGING_H
 
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/core/Field.H"
-#include "amr-wind/core/IntField.H"
+#include "src/core/Physics.H"
+#include "src/core/Field.H"
+#include "src/core/IntField.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

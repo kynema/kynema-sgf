@@ -1,7 +1,7 @@
 #ifndef FILTER_H
 #define FILTER_H
 
-#include "amr-wind/fvm/fvm_utils.H"
+#include "src/fvm/fvm_utils.H"
 #include "AMReX_Array4.H"
 #include "AMReX_Geometry.H"
 #include "AMReX_MFIter.H"

@@ -1,7 +1,7 @@
 #ifndef SPLITADVECTION_H
 #define SPLITADVECTION_H
 
-#include "amr-wind/core/FieldRepo.H"
+#include "src/core/FieldRepo.H"
 
 namespace amr_wind::multiphase {
 

@@ -1,4 +1,4 @@
-#include "amr-wind/boundary_conditions/scalar_bcs.H"
+#include "src/boundary_conditions/scalar_bcs.H"
 
 namespace amr_wind::scalar_bc {
 void register_scalar_dirichlet(

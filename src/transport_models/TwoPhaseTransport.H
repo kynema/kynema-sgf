@@ -2,8 +2,8 @@
 #define TWOPHASETRANSPORT_H
 
 #include <numbers>
-#include "amr-wind/physics/multiphase/MultiPhase.H"
-#include "amr-wind/transport_models/TransportModel.H"
+#include "src/physics/multiphase/MultiPhase.H"
+#include "src/transport_models/TransportModel.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 

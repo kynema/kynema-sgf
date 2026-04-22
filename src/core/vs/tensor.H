@@ -2,8 +2,8 @@
 #define VS_TENSOR_H
 
 #include "AMReX_Gpu.H"
-#include "amr-wind/core/vs/vstraits.H"
-#include "amr-wind/core/vs/vector.H"
+#include "src/core/vs/vstraits.H"
+#include "src/core/vs/vector.H"
 
 namespace amr_wind::vs {
 
@@ -159,6 +159,6 @@ using Tensor = TensorT<amrex::Real>;
 
 } // namespace amr_wind::vs
 
-#include "amr-wind/core/vs/tensorI.H"
+#include "src/core/vs/tensorI.H"
 
 #endif /* VS_TENSOR_H */

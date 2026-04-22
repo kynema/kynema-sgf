@@ -1,11 +1,11 @@
 #ifndef WALLFUNCTION_H
 #define WALLFUNCTION_H
 
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/core/FieldBCOps.H"
-#include "amr-wind/utilities/FieldPlaneAveragingFine.H"
-#include "amr-wind/boundary_conditions/wall_models/LogLaw.H"
-#include "amr-wind/boundary_conditions/wall_models/MOSD.H"
+#include "src/CFDSim.H"
+#include "src/core/FieldBCOps.H"
+#include "src/utilities/FieldPlaneAveragingFine.H"
+#include "src/boundary_conditions/wall_models/LogLaw.H"
+#include "src/boundary_conditions/wall_models/MOSD.H"
 
 namespace amr_wind {
 

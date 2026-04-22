@@ -4,8 +4,8 @@
 #include <vector>
 #include <numeric>
 #include "aw_test_utils/AmrexTest.H"
-#include "amr-wind/utilities/linear_interpolation.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/utilities/linear_interpolation.H"
+#include "src/utilities/trig_ops.H"
 #include "AMReX_Random.H"
 #include "AMReX_REAL.H"
 

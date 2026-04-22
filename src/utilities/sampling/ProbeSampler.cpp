@@ -1,6 +1,6 @@
-#include "amr-wind/utilities/sampling/ProbeSampler.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/index_operations.H"
+#include "src/utilities/sampling/ProbeSampler.H"
+#include "src/CFDSim.H"
+#include "src/utilities/index_operations.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 

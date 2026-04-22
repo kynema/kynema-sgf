@@ -1,6 +1,6 @@
-#include "amr-wind/turbulence/LaminarModel.H"
-#include "amr-wind/turbulence/TurbModelDefs.H"
-#include "amr-wind/core/field_ops.H"
+#include "src/turbulence/LaminarModel.H"
+#include "src/turbulence/TurbModelDefs.H"
+#include "src/core/field_ops.H"
 
 namespace amr_wind {
 namespace turbulence {

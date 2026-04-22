@@ -1,7 +1,7 @@
 #ifndef BOX_H
 #define BOX_H
 
-#include "amr-wind/immersed_boundary/bluff_body/BluffBody.H"
+#include "src/immersed_boundary/bluff_body/BluffBody.H"
 
 namespace amr_wind::ib {
 

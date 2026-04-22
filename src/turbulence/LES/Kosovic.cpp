@@ -1,13 +1,13 @@
 #include <cmath>
-#include "amr-wind/turbulence/LES/Kosovic.H"
-#include "amr-wind/turbulence/TurbModelDefs.H"
-#include "amr-wind/fvm/nonLinearSum.H"
-#include "amr-wind/fvm/strainrate.H"
-#include "amr-wind/fvm/divergence.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/turbulence/LES/Kosovic.H"
+#include "src/turbulence/TurbModelDefs.H"
+#include "src/fvm/nonLinearSum.H"
+#include "src/fvm/strainrate.H"
+#include "src/fvm/divergence.H"
+#include "src/utilities/math_ops.H"
 #include "AMReX_MultiFab.H"
 #include "AMReX_ParmParse.H"
-#include "amr-wind/wind_energy/ABL.H"
+#include "src/wind_energy/ABL.H"
 
 using namespace amrex::literals;
 

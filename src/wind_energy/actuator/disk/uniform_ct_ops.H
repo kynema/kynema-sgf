@@ -2,10 +2,10 @@
 #define UNIFORM_CT_OPS_H
 
 #include <numbers>
-#include "amr-wind/wind_energy/actuator/disk/disk_ops.H"
-#include "amr-wind/wind_energy/actuator/disk/UniformCt.H"
-#include "amr-wind/utilities/linear_interpolation.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/wind_energy/actuator/disk/disk_ops.H"
+#include "src/wind_energy/actuator/disk/UniformCt.H"
+#include "src/utilities/linear_interpolation.H"
+#include "src/utilities/trig_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

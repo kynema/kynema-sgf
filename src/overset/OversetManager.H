@@ -1,7 +1,7 @@
 #ifndef OVERSETMANAGER_H
 #define OVERSETMANAGER_H
 
-#include "amr-wind/core/Factory.H"
+#include "src/core/Factory.H"
 
 namespace amr_wind {
 

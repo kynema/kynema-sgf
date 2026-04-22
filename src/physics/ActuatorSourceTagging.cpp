@@ -1,5 +1,5 @@
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/physics/ActuatorSourceTagging.H"
+#include "src/CFDSim.H"
+#include "src/physics/ActuatorSourceTagging.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 

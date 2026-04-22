@@ -1,12 +1,12 @@
 #ifndef FORESTDRAG_H
 #define FORESTDRAG_H
 
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/core/Field.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/index_operations.H"
-#include "amr-wind/utilities/integrals.H"
-#include "amr-wind/utilities/constants.H"
+#include "src/core/Physics.H"
+#include "src/core/Field.H"
+#include "src/CFDSim.H"
+#include "src/utilities/index_operations.H"
+#include "src/utilities/integrals.H"
+#include "src/utilities/constants.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

@@ -1,9 +1,9 @@
 #ifndef FIELDBOUNDARY_H
 #define FIELDBOUNDARY_H
 
-#include "amr-wind/core/Factory.H"
-#include "amr-wind/core/CollMgr.H"
-#include "amr-wind/core/Field.H"
+#include "src/core/Factory.H"
+#include "src/core/CollMgr.H"
+#include "src/core/Field.H"
 #include "AMReX_MultiFab.H"
 #include "AMReX_Geometry.H"
 

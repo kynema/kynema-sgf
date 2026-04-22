@@ -2,8 +2,8 @@
 #define TIOGAINTERFACE_H
 
 #include <vector>
-#include "amr-wind/overset/OversetManager.H"
-#include "amr-wind/overset/overset_types.H"
+#include "src/overset/OversetManager.H"
+#include "src/overset/overset_types.H"
 
 namespace amr_wind {
 

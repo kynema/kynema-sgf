@@ -1,7 +1,7 @@
 #ifndef FIELD_OPS_H
 #define FIELD_OPS_H
 
-#include "amr-wind/core/Field.H"
+#include "src/core/Field.H"
 #include "AMReX_MultiFab.H"
 #include "AMReX_REAL.H"
 

@@ -1,8 +1,8 @@
 #ifndef IB_H
 #define IB_H
 
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/core/FieldRepo.H"
+#include "src/core/Physics.H"
+#include "src/core/FieldRepo.H"
 
 /** \defgroup immersed_boundary Immersed boundary module
  *  Immersed boundary class

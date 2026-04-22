@@ -2,10 +2,10 @@
 #include <memory>
 #include <utility>
 
-#include "amr-wind/utilities/sampling/Sampling.H"
-#include "amr-wind/utilities/io_utils.H"
-#include "amr-wind/utilities/ncutils/nc_interface.H"
-#include "amr-wind/utilities/IOManager.H"
+#include "src/utilities/sampling/Sampling.H"
+#include "src/utilities/io_utils.H"
+#include "src/utilities/ncutils/nc_interface.H"
+#include "src/utilities/IOManager.H"
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"

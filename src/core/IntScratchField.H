@@ -4,8 +4,8 @@
 #include <string>
 #include <utility>
 
-#include "amr-wind/core/FieldDescTypes.H"
-#include "amr-wind/core/ViewField.H"
+#include "src/core/FieldDescTypes.H"
+#include "src/core/ViewField.H"
 #include "AMReX_iMultiFab.H"
 #include "AMReX_Vector.H"
 #include "AMReX_PhysBCFunct.H"

@@ -2,7 +2,7 @@
 #define POSTPROCESSING_H
 
 #include <memory>
-#include "amr-wind/core/Factory.H"
+#include "src/core/Factory.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 

@@ -1,7 +1,7 @@
 #ifndef DERIVEDQTYDEFS_H
 #define DERIVEDQTYDEFS_H
 
-#include "amr-wind/utilities/DerivedQuantity.H"
+#include "src/utilities/DerivedQuantity.H"
 
 namespace amr_wind::derived {
 struct VorticityMag : public DerivedQty::Register<VorticityMag>

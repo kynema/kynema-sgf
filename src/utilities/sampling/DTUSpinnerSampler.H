@@ -1,9 +1,9 @@
 #ifndef DTUSPINNERSAMPLER_H
 #define DTUSPINNERSAMPLER_H
 
-#include "amr-wind/utilities/sampling/SamplingUtils.H"
-#include "amr-wind/utilities/sampling/LidarSampler.H"
-#include "amr-wind/core/vs/vector_space.H"
+#include "src/utilities/sampling/SamplingUtils.H"
+#include "src/utilities/sampling/LidarSampler.H"
+#include "src/core/vs/vector_space.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

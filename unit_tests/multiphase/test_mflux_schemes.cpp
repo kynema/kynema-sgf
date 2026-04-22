@@ -1,6 +1,6 @@
 #include "aw_test_utils/MeshTest.H"
 #include "hydro_godunov_ppm.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 

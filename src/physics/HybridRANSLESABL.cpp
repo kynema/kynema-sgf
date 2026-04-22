@@ -1,6 +1,6 @@
-#include "amr-wind/physics/HybridRANSLESABL.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/turbulence/TurbulenceModel.H"
+#include "src/physics/HybridRANSLESABL.H"
+#include "src/CFDSim.H"
+#include "src/turbulence/TurbulenceModel.H"
 #include "AMReX_iMultiFab.H"
 #include "AMReX_MultiFabUtil.H"
 

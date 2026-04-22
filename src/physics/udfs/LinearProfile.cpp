@@ -1,6 +1,6 @@
-#include "amr-wind/physics/udfs/LinearProfile.H"
-#include "amr-wind/core/Field.H"
-#include "amr-wind/core/FieldRepo.H"
+#include "src/physics/udfs/LinearProfile.H"
+#include "src/core/Field.H"
+#include "src/core/FieldRepo.H"
 
 #include "AMReX_ParmParse.H"
 

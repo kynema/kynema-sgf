@@ -3,17 +3,17 @@
 
 #include <type_traits>
 
-#include "amr-wind/convection/Godunov.H"
-#include "amr-wind/equation_systems/SchemeTraits.H"
-#include "amr-wind/equation_systems/PDETraits.H"
-#include "amr-wind/equation_systems/PDEOps.H"
+#include "src/convection/Godunov.H"
+#include "src/equation_systems/SchemeTraits.H"
+#include "src/equation_systems/PDETraits.H"
+#include "src/equation_systems/PDEOps.H"
 
 #include "AMReX_Gpu.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_MultiFabUtil.H"
 #include "hydro_utils.H"
 
-#include "amr-wind/equation_systems/vof/vof_momentum_flux.H"
+#include "src/equation_systems/vof/vof_momentum_flux.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

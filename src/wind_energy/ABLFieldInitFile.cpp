@@ -1,10 +1,10 @@
 #include <cmath>
 
-#include "amr-wind/wind_energy/ABLFieldInitFile.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/wind_energy/ABLFieldInitFile.H"
+#include "src/utilities/trig_ops.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_ParmParse.H"
-#include "amr-wind/utilities/ncutils/nc_interface.H"
+#include "src/utilities/ncutils/nc_interface.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

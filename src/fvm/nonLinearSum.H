@@ -1,7 +1,7 @@
 #ifndef NONLINEARSUM_H
 #define NONLINEARSUM_H
 
-#include "amr-wind/fvm/fvm_utils.H"
+#include "src/fvm/fvm_utils.H"
 
 namespace amr_wind::fvm {
 

@@ -1,8 +1,8 @@
 #ifndef RELAX_ZONE_H
 #define RELAX_ZONE_H
 
-#include "amr-wind/ocean_waves/OceanWavesTypes.H"
-#include "amr-wind/core/vs/vector_space.H"
+#include "src/ocean_waves/OceanWavesTypes.H"
+#include "src/core/vs/vector_space.H"
 
 #include <string>
 #include "AMReX_REAL.H"

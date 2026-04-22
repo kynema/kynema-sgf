@@ -3,8 +3,8 @@
 
 #include <utility>
 
-#include "amr-wind/core/Slice.H"
-#include "amr-wind/core/vs/vector_space.H"
+#include "src/core/Slice.H"
+#include "src/core/vs/vector_space.H"
 
 #include "AMReX_Gpu.H"
 #include "AMReX_RealBox.H"

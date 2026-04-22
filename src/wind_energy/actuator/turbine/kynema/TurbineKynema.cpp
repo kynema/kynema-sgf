@@ -1,6 +1,6 @@
-#include "amr-wind/wind_energy/actuator/turbine/kynema/TurbineKynema.H"
-#include "amr-wind/wind_energy/actuator/turbine/kynema/turbine_kynema_ops.H"
-#include "amr-wind/wind_energy/actuator/ActuatorModel.H"
+#include "src/wind_energy/actuator/turbine/kynema/TurbineKynema.H"
+#include "src/wind_energy/actuator/turbine/kynema/turbine_kynema_ops.H"
+#include "src/wind_energy/actuator/ActuatorModel.H"
 
 namespace amr_wind::actuator {
 

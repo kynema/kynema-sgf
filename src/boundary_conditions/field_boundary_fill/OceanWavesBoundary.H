@@ -1,10 +1,10 @@
 #ifndef OCEANWAVESBOUNDARY_H
 #define OCEANWAVESBOUNDARY_H
 
-#include "amr-wind/core/Field.H"
-#include "amr-wind/core/IntField.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/FieldBoundary.H"
+#include "src/core/Field.H"
+#include "src/core/IntField.H"
+#include "src/CFDSim.H"
+#include "src/boundary_conditions/field_boundary_fill/FieldBoundary.H"
 #include "AMReX_Gpu.H"
 #include <AMReX_BndryRegister.H>
 #include "AMReX_REAL.H"

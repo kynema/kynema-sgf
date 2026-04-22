@@ -2,7 +2,7 @@
 #define KOMEGASST_H
 
 #include <string>
-#include "amr-wind/turbulence/TurbModelBase.H"
+#include "src/turbulence/TurbModelBase.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

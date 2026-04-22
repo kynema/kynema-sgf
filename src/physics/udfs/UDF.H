@@ -1,7 +1,7 @@
 #ifndef UDF_H
 #define UDF_H
 
-#include "amr-wind/core/Factory.H"
+#include "src/core/Factory.H"
 #include "AMReX_Gpu.H"
 
 namespace amr_wind {

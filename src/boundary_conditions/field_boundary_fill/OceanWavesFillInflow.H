@@ -1,9 +1,9 @@
 #ifndef OCEANWAVESFILLINFLOW_H
 #define OCEANWAVESFILLINFLOW_H
 
-#include "amr-wind/core/FieldFillPatchOps.H"
-#include "amr-wind/core/FieldBCOps.H"
-#include "amr-wind/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
+#include "src/core/FieldFillPatchOps.H"
+#include "src/core/FieldBCOps.H"
+#include "src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
 
 namespace amr_wind {
 

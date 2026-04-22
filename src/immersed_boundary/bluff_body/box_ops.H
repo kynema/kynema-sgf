@@ -1,10 +1,10 @@
 #ifndef BOX_OPS_H
 #define BOX_OPS_H
 
-#include "amr-wind/immersed_boundary/bluff_body/Box.H"
-#include "amr-wind/immersed_boundary/IBOps.H"
-#include "amr-wind/immersed_boundary/IB.H"
-#include "amr-wind/immersed_boundary/bluff_body/bluff_body_ops.H"
+#include "src/immersed_boundary/bluff_body/Box.H"
+#include "src/immersed_boundary/IBOps.H"
+#include "src/immersed_boundary/IB.H"
+#include "src/immersed_boundary/bluff_body/bluff_body_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
