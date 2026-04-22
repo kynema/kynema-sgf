@@ -110,7 +110,7 @@ a reference for the best practices currently used to develop AMR-Wind.
 
 To pass the code format checking, use this command with a new version of `clang-format`:
 ```
-find amr-wind unit_tests \( -name "*.cpp" -o -name "*.H" -o -name "*.h" \) -exec clang-format -i {} +
+find src unit_tests \( -name "*.cpp" -o -name "*.H" -o -name "*.h" \) -exec clang-format -i {} +
 ```
 
 Please acknowledge as a publication co-author any developer that has
