@@ -37,7 +37,7 @@ is broken into *sections* indicated by a namespace prefix. For
 example, all inputs related to the problem domain are prefixed with
 ``geometry.`` and so on. A sample input file is shown below
 
-.. literalinclude:: ./amr_wind_inputs.txt
+.. literalinclude:: ./kynema_sgf_inputs.txt
    :linenos:
 
 .. _input-file-ref:

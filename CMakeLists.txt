@@ -117,7 +117,7 @@ include(set_rpath)
 
 #Create target names
 set(amr_wind_lib_name "amrwind_obj")
-set(amr_wind_exe_name "amr_wind")
+set(amr_wind_exe_name "kynema_sgf")
 set(amr_wind_unit_test_exe_name "${amr_wind_exe_name}_unit_tests")
 set(aw_api_lib "amrwind_api")
 

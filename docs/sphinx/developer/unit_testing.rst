@@ -9,7 +9,7 @@ AMR-Wind uses `GoogleTest
 <https://github.com/google/googletest/blob/master/googletest/docs/primer.md>`_
 to provide unit-testing capabilities for the source code. Unit tests are built
 by default when compiling AMR-Wind using CMake and can be run using the
-:program:`amr_wind_unit_tests` executable --- see :ref:`build` for details of
+:program:`kynema_sgf_unit_tests` executable --- see :ref:`build` for details of
 building AMR-Wind with CMake. This section documents the process of running the
 unit tests, the unit test scaffolding facilities available within AMR-Wind unit
 testing infrastructure, and a brief overview of the process of creating new unit
@@ -18,7 +18,7 @@ tests.
 Running unit tests
 ------------------
 
-To run the unit test suite, simply execute the :program:`amr_wind_unit_tests`
+To run the unit test suite, simply execute the :program:`kynema_sgf_unit_tests`
 executable at the command prompt. This will execute all the unit tests and print
 a summary of the success/failure status for each tests. The executable will also
 print a summary of the total number of passed, failed, and skipped tests at the
