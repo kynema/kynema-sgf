@@ -1,7 +1,7 @@
 .. _build:
 
 Compiling Kynema-SGF
-==================
+====================
 
 Kynema-SGF is primarily written in C++ and requires a modern C++ compiler (that
 supports C++14 standard) to build. This section describes the dependencies of
@@ -111,7 +111,7 @@ Dependencies
    OpenFAST version. Default: 3
 
 Other Kynema-SGF specific options
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. cmakeval:: KYNEMA_SGF_ENABLE_DOCUMENTATION
 
