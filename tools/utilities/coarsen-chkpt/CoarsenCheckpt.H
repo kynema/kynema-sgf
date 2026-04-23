@@ -7,8 +7,8 @@ namespace kynema_sgf {
 namespace tools {
 
 // Adapted from RefineCheckpt tool
-// additional code from kynema-sgf/utilities/io.cpp and
-// kynema-sgf/utilities/IOManager.cpp
+// additional code from src/utilities/io.cpp and
+// src/utilities/IOManager.cpp
 
 class CoarsenCheckpt : public incflo
 {

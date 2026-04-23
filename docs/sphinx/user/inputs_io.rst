@@ -8,7 +8,7 @@ solely the checkpoint and plot files. These inputs do not affect when these file
 are output, but they address file naming and high-level parameters. The "time" section
 controls when these files are output.
 
-| Primary location in code: ``kynema-sgf/utilities/IOManager.cpp``.
+| Primary location in code: ``kynema-sgf/src/utilities/IOManager.cpp``.
 
 .. input_param:: io.check_file
 
