@@ -8,7 +8,7 @@ solely the checkpoint and plot files. These inputs do not affect when these file
 are output, but they address file naming and high-level parameters. The "time" section
 controls when these files are output.
 
-| Primary location in code: ``amr-wind/utilities/IOManager.cpp``.
+| Primary location in code: ``kynema-sgf/src/utilities/IOManager.cpp``.
 
 .. input_param:: io.check_file
 
@@ -28,7 +28,7 @@ controls when these files are output.
 
    **type:** String, optional, default = ""
 
-   If a string is present AMR-Wind will restart using the specified file in the string. This is the only argument addressing "input" of data to the simulation instead of "output".
+   If a string is present Kynema-SGF will restart using the specified file in the string. This is the only argument addressing "input" of data to the simulation instead of "output".
 
 .. input_param:: io.post_processing_directory
 
@@ -40,13 +40,13 @@ controls when these files are output.
 
    **type:** Boolean, optional, default = true
 
-   Based on what fields are active in a simulation, AMR-Wind generates a list of variables to output to plotfiles (e.g., velocity, density, and p). If these defaults are not desired, this input argument can be set to false.
+   Based on what fields are active in a simulation, Kynema-SGF generates a list of variables to output to plotfiles (e.g., velocity, density, and p). If these defaults are not desired, this input argument can be set to false.
 
 .. input_param:: io.allow_missing_restart_fields
 
    **type:** Boolean, optional, default = true
 
-   When initializing a simulation, AMR-Wind determines which fields are necessary based on the physics and other details in the input file. If a simulation begins with a restart file, it is possible that the restart file has fewer fields than what the new simulation needs, depending on the input arguments. This argument allows the simulation to continue despite the mismatch. If set to "false", the simulation will abort when necessary fields are missing in the restart file.
+   When initializing a simulation, Kynema-SGF determines which fields are necessary based on the physics and other details in the input file. If a simulation begins with a restart file, it is possible that the restart file has fewer fields than what the new simulation needs, depending on the input arguments. This argument allows the simulation to continue despite the mismatch. If set to "false", the simulation will abort when necessary fields are missing in the restart file.
 
 .. input_param:: io.outputs
 

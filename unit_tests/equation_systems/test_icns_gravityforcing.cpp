@@ -1,14 +1,14 @@
-#include "aw_test_utils/AmrexTest.H"
-#include "amr-wind/incflo.H"
+#include "ks_test_utils/AmrexTest.H"
+#include "src/incflo.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
-void init_density(amr_wind::Field& density, const int k_thresh = -3)
+void init_density(kynema_sgf::Field& density, const int k_thresh = -3)
 {
     const int nlevels = density.repo().num_active_levels();
 
@@ -24,7 +24,7 @@ void init_density(amr_wind::Field& density, const int k_thresh = -3)
     amrex::Gpu::streamSynchronize();
 }
 
-amrex::Real get_fgz_sum(amr_wind::Field& src_term)
+amrex::Real get_fgz_sum(kynema_sgf::Field& src_term)
 {
     amrex::Real Fgz_sum = 0.0_rt;
 
@@ -51,7 +51,7 @@ void fgtest_kernel(
     const amrex::Real Fz_ref,
     const int ncells,
     const int nz,
-    const amr_wind::FieldState fstate,
+    const kynema_sgf::FieldState fstate,
     const bool make_ref_dens = false)
 {
     incflo my_incflo;
@@ -62,16 +62,16 @@ void fgtest_kernel(
             my_incflo.sim().repo().declare_field("reference_density", 1, 3, 1);
         init_density(ref_dens, nz / 2);
     }
-    my_incflo.init_amr_wind_modules();
+    my_incflo.init_kynema_sgf_modules();
     auto& density = my_incflo.sim().repo().get_field("density").state(
-        amr_wind::FieldState::NPH);
+        kynema_sgf::FieldState::NPH);
     auto& velocity = my_incflo.sim().repo().get_field("velocity");
     auto& grad_p = my_incflo.sim().repo().get_field("gp");
     auto& Fg_field = my_incflo.icns().fields().src_term;
     // Set density field
     init_density(density);
     // Set old density to unity, avoid NaN
-    density.state(amr_wind::FieldState::Old).setVal(1.0_rt);
+    density.state(kynema_sgf::FieldState::Old).setVal(1.0_rt);
     // Set zero velocity
     velocity.setVal(0.0_rt);
     // Set zero pressure gradient
@@ -146,7 +146,7 @@ TEST_F(GravityForcingTest, full_term_u)
     // Expected average gravity term
     amrex::Real Fg = -5.0_rt;
     // Test with ordinary gravity term (rho not included)
-    fgtest_kernel(Fg, m_nx * m_ny * m_nz, m_nz, amr_wind::FieldState::Old);
+    fgtest_kernel(Fg, m_nx * m_ny * m_nz, m_nz, kynema_sgf::FieldState::Old);
 }
 
 TEST_F(GravityForcingTest, full_term_rhou)
@@ -171,7 +171,7 @@ TEST_F(GravityForcingTest, full_term_rhou)
     }
     Fg *= fac / m_nz;
     // Test with ordinary gravity term (rho included)
-    fgtest_kernel(Fg, m_nx * m_ny * m_nz, m_nz, amr_wind::FieldState::New);
+    fgtest_kernel(Fg, m_nx * m_ny * m_nz, m_nz, kynema_sgf::FieldState::New);
 }
 
 TEST_F(GravityForcingTest, perturb_const)
@@ -192,7 +192,7 @@ TEST_F(GravityForcingTest, perturb_const)
     // Expected average gravity term
     amrex::Real Fg = (1.0_rt - rho_ref) * gz / 1.0_rt;
     // Test with ordinary gravity term (rho not multiplied)
-    fgtest_kernel(Fg, m_nx * m_ny * m_nz, m_nz, amr_wind::FieldState::Old);
+    fgtest_kernel(Fg, m_nx * m_ny * m_nz, m_nz, kynema_sgf::FieldState::Old);
 }
 
 TEST_F(GravityForcingTest, perturb_field)
@@ -213,7 +213,7 @@ TEST_F(GravityForcingTest, perturb_field)
     Fg *= fac / m_nz;
     // Test with ordinary gravity term (rho included)
     fgtest_kernel(
-        Fg, m_nx * m_ny * m_nz, m_nz, amr_wind::FieldState::New, true);
+        Fg, m_nx * m_ny * m_nz, m_nz, kynema_sgf::FieldState::New, true);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

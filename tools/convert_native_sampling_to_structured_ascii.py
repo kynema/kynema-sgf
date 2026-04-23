@@ -11,9 +11,9 @@ def main():
         description="Convert native sampling data to a structured ASCII file for every sampler and output step"
     )
     parser.add_argument(
-        "-aw",
-        "--amr_wind_path",
-        help="path to amr-wind directory",
+        "-ks",
+        "--kynema_sgf_path",
+        help="path to kynema-sgf directory",
         required=True,
         type=str,
     )
@@ -50,12 +50,12 @@ def main():
     ########## Input arguments from command line ##############
     print("\nParameters to be used:")
     print("   run directory path: ", os.path.realpath(args.run_dir))
-    print("   AMR-Wind path: ", os.path.realpath(args.amr_wind_path))
+    print("   Kynema-SGF path: ", os.path.realpath(args.kynema_sgf_path))
     print("   post-processing directory name: ", args.post_proc_dir)
     print("   top-level sampling label name: ", args.label)
     ###########################################################
 
-    sys.path.append(args.amr_wind_path+'/tools/')
+    sys.path.append(args.kynema_sgf_path+'/tools/')
     import amrex_particle
     from amrex_particle import AmrexParticleFile
 

@@ -1,0 +1,34 @@
+#ifndef DENSITY_H
+#define DENSITY_H
+
+#include "src/equation_systems/PDETraits.H"
+#include "src/equation_systems/SchemeTraits.H"
+#include "src/equation_systems/PDEHelpers.H"
+#include "src/equation_systems/PDE.H"
+#include "src/equation_systems/density/DensitySource.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
+
+namespace kynema_sgf::pde {
+
+struct Density : ScalarTransport
+{
+    using MLDiffOp = amrex::MLABecLaplacian;
+    using SrcTerm = DensitySource;
+
+    static std::string pde_name() { return "Density"; }
+    static std::string var_name() { return "density"; }
+
+    static constexpr int ndim = 1;
+
+    static constexpr bool multiply_rho = false;
+    static constexpr bool has_diffusion = false;
+    static constexpr bool need_nph_state = true;
+
+    static constexpr amrex::Real default_bc_value = 1.0_rt;
+};
+
+} // namespace kynema_sgf::pde
+
+#endif /* DENSITY_H */

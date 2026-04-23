@@ -6,7 +6,7 @@ Section: time
 This section deals with parameters that control the time stepping of the simulation. 
 This section also addresses the time-dependent nature of checkpoint files, plot files, and regridding. 
 
-| Primary location in code: ``amr-wind/core/SimTime.cpp``.
+| Primary location in code: ``kynema-sgf/src/core/SimTime.cpp``.
 
 .. input_param:: time.stop_time
 
@@ -271,4 +271,4 @@ This section also addresses the time-dependent nature of checkpoint files, plot 
    If this value is greater than zero, it indicates the frequency (in
    timesteps) at which profiling information is written to the log
    file. This will only work if the code was compiled with
-   ``AMR_WIND_ENABLE_TINY_PROFILE`` set to ``ON``.
+   ``KYNEMA_SGF_ENABLE_TINY_PROFILE`` set to ``ON``.

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 """\
-AMR-Wind Native Boundary Plane
+Kynema-SGF Native Boundary Plane
 ------------------------------
 
-This module provides a python class :class:`NativeBoundaryPlane` that can be used to define, manipulate, and output native boundary planes for AMR-Wind
+This module provides a python class :class:`NativeBoundaryPlane` that can be used to define, manipulate, and output native boundary planes for Kynema-SGF
 
 """
 from amrex_plotfile import AmrexPlotFile

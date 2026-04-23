@@ -1,15 +1,15 @@
 #include <utility>
-#include "aw_test_utils/MeshTest.H"
-#include "amr-wind/utilities/sampling/WaveEnergy.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "ks_test_utils/MeshTest.H"
+#include "src/utilities/sampling/WaveEnergy.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
-void init_velocity(amr_wind::Field& fld)
+void init_velocity(kynema_sgf::Field& fld)
 {
     const int nlevels = fld.repo().num_active_levels();
 
@@ -26,7 +26,7 @@ void init_velocity(amr_wind::Field& fld)
     amrex::Gpu::streamSynchronize();
 }
 
-void init_vof(amr_wind::Field& fld)
+void init_vof(kynema_sgf::Field& fld)
 {
     const int nlevels = fld.repo().num_active_levels();
 
@@ -55,12 +55,12 @@ void init_vof(amr_wind::Field& fld)
     amrex::Gpu::streamSynchronize();
 }
 
-class WaveEnergyImpl : public amr_wind::wave_energy::WaveEnergy
+class WaveEnergyImpl : public kynema_sgf::wave_energy::WaveEnergy
 {
 public:
     // cppcheck-suppress passedByValue
-    WaveEnergyImpl(amr_wind::CFDSim& sim, std::string label)
-        : amr_wind::wave_energy::WaveEnergy(sim, std::move(label))
+    WaveEnergyImpl(kynema_sgf::CFDSim& sim, std::string label)
+        : kynema_sgf::wave_energy::WaveEnergy(sim, std::move(label))
     {}
 
 protected:
@@ -159,10 +159,10 @@ TEST_F(WaveEnergyTest, checkoutput)
     // Formula has been integrated in z, and uses exact interface locations
     amrex::Real pe_exact =
         (dx * dx * (-m_g) * 0.5_rt / (m_wlev * 2.0_rt * 2.0_rt) *
-         (15.0_rt * amr_wind::utils::powi(2.5_rt * dz, 2) +
-          10.0_rt * amr_wind::utils::powi(3.0_rt * dz, 2))) +
+         (15.0_rt * kynema_sgf::utils::powi(2.5_rt * dz, 2) +
+          10.0_rt * kynema_sgf::utils::powi(3.0_rt * dz, 2))) +
         (0.5_rt * (-m_g) * m_wlev);
     EXPECT_NEAR(pe, pe_exact, m_tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

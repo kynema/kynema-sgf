@@ -1,0 +1,62 @@
+#ifndef MESHMAP_H
+#define MESHMAP_H
+
+#include "src/core/CollMgr.H"
+#include "src/core/Factory.H"
+#include "src/core/Field.H"
+
+#include "AMReX_MultiFab.H"
+#include "AMReX_Geometry.H"
+
+namespace kynema_sgf {
+
+class CFDSim;
+
+/**
+ *  \defgroup mesh_map Mesh mapping models
+ *
+ *  Kynema-SGF representation of different mesh mapping models
+ *
+ *  In Kynema-SGF, different mesh mappings are implemented using the MeshMap
+ * class.
+ */
+
+/** Abstract representation of different mesh mapping models
+ *
+ *  This class defines an abstract API that represents the notion of some
+ *  mesh mapping that will be used to scale the mesh. The most common use-case
+ *  for this class is to perform RANS simulations.
+ */
+class MeshMap : public Factory<MeshMap>
+{
+public:
+    static std::string base_identifier() { return "MeshMap"; }
+
+    ~MeshMap() override = default;
+
+    //! declare mesh mapping fields
+    void declare_mapping_fields(const CFDSim& /*sim*/, int /*nghost*/);
+
+    //! Construct mesh scaling field
+    virtual void create_map(int, const amrex::Geometry&) = 0;
+
+protected:
+    Field* m_mesh_scale_fac_cc{nullptr};
+    Field* m_mesh_scale_fac_nd{nullptr};
+    Field* m_mesh_scale_fac_xf{nullptr};
+    Field* m_mesh_scale_fac_yf{nullptr};
+    Field* m_mesh_scale_fac_zf{nullptr};
+
+    Field* m_mesh_scale_detJ_cc{nullptr};
+    Field* m_mesh_scale_detJ_nd{nullptr};
+    Field* m_mesh_scale_detJ_xf{nullptr};
+    Field* m_mesh_scale_detJ_yf{nullptr};
+    Field* m_mesh_scale_detJ_zf{nullptr};
+
+    Field* m_non_uniform_coord_cc{nullptr};
+    Field* m_non_uniform_coord_nd{nullptr};
+};
+
+} // namespace kynema_sgf
+
+#endif /* MESHMAP_H */

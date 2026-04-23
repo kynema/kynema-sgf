@@ -1,14 +1,14 @@
 #ifndef COARSENCHECKPT_H
 #define COARSENCHECKPT_H
 
-#include "amr-wind/incflo.H"
+#include "src/incflo.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace tools {
 
 // Adapted from RefineCheckpt tool
-// additional code from amr-wind/utilities/io.cpp and
-// amr-wind/utilities/IOManager.cpp
+// additional code from src/utilities/io.cpp and
+// src/utilities/IOManager.cpp
 
 class CoarsenCheckpt : public incflo
 {
@@ -36,6 +36,6 @@ private:
 };
 
 } // namespace tools
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* COARSENCHECKPT_H */

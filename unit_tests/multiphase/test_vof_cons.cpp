@@ -1,19 +1,19 @@
-#include "aw_test_utils/MeshTest.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
-#include "amr-wind/equation_systems/vof/vof.H"
-#include "amr-wind/equation_systems/SchemeTraits.H"
-#include "amr-wind/utilities/tagging/CartBoxRefinement.H"
+#include "ks_test_utils/MeshTest.H"
+#include "ks_test_utils/iter_tools.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/physics/multiphase/MultiPhase.H"
+#include "src/equation_systems/vof/vof.H"
+#include "src/equation_systems/SchemeTraits.H"
+#include "src/utilities/tagging/CartBoxRefinement.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 
 void initialize_volume_fractions(
-    const int dir, const int nx, amr_wind::Field& vof)
+    const int dir, const int nx, kynema_sgf::Field& vof)
 {
 
     run_algorithm(vof, [&](const int lev, const amrex::MFIter& mfi) {
@@ -50,10 +50,10 @@ void initialize_volume_fractions(
 }
 
 void initialize_adv_velocities(
-    amr_wind::Field& vof,
-    amr_wind::Field& umac,
-    amr_wind::Field& vmac,
-    amr_wind::Field& wmac,
+    kynema_sgf::Field& vof,
+    kynema_sgf::Field& umac,
+    kynema_sgf::Field& vmac,
+    kynema_sgf::Field& wmac,
     amrex::GpuArray<amrex::Real, 3> varr)
 {
     run_algorithm(vof, [&](const int lev, const amrex::MFIter& mfi) {
@@ -70,7 +70,7 @@ void initialize_adv_velocities(
 }
 
 void get_accuracy(
-    amr_wind::ScratchField& err_fld, int dir, int nx, amr_wind::Field& vof)
+    kynema_sgf::ScratchField& err_fld, int dir, int nx, kynema_sgf::Field& vof)
 {
     run_algorithm(vof, [&](const int lev, const amrex::MFIter& mfi) {
         auto err_arr = err_fld(lev).array(mfi);
@@ -174,8 +174,8 @@ protected:
             ss << "0.8 0.5 0.5 0.9 0.5 0.5" << '\n';
 
             create_mesh_instance<RefineMesh>();
-            std::unique_ptr<amr_wind::CartBoxRefinement> box_refine(
-                new amr_wind::CartBoxRefinement(sim()));
+            std::unique_ptr<kynema_sgf::CartBoxRefinement> box_refine(
+                new kynema_sgf::CartBoxRefinement(sim()));
             box_refine->read_inputs(mesh(), ss);
 
             if (mesh<RefineMesh>() != nullptr) {
@@ -200,7 +200,7 @@ protected:
         auto& vof = repo.get_field("vof");
         initialize_volume_fractions(dir, m_nx, vof);
         // Get multiphase object
-        auto& mphase = sim().physics_manager().get<amr_wind::MultiPhase>();
+        auto& mphase = sim().physics_manager().get<kynema_sgf::MultiPhase>();
 
         // Initialize constant velocity field in single direction
         amrex::GpuArray<amrex::Real, 3> varr = {0};
@@ -222,19 +222,19 @@ protected:
         amrex::Real sum_vof0 = mphase.volume_fraction_sum();
         // Get equation handle and perform init
         auto& seqn = pde_mgr(
-            amr_wind::pde::VOF::pde_name() + "-" +
-            amr_wind::fvm::Godunov::scheme_name());
+            kynema_sgf::pde::VOF::pde_name() + "-" +
+            kynema_sgf::fvm::Godunov::scheme_name());
         seqn.initialize();
 
         for (int n = 0; n < niter; ++n) {
             // Copy new to old to prep for advection
             for (int lev = 0; lev < repo.num_active_levels(); ++lev) {
                 amrex::MultiFab::Copy(
-                    vof.state(amr_wind::FieldState::Old)(lev), vof(lev), 0, 0,
+                    vof.state(kynema_sgf::FieldState::Old)(lev), vof(lev), 0, 0,
                     vof.num_comp(), vof.num_grow());
             }
             // Perform VOF solve
-            seqn.compute_advection_term(amr_wind::FieldState::Old);
+            seqn.compute_advection_term(kynema_sgf::FieldState::Old);
             seqn.post_solve_actions();
             // Check conservation
             EXPECT_NEAR(mphase.volume_fraction_sum(), sum_vof0, tol);
@@ -276,4 +276,4 @@ TEST_F(VOFConsTest, CFL01) { testing_coorddir(-1, 0.1_rt); }
 // Test transport across multiple mesh levels - just check conservation
 TEST_F(VOFConsTest, 2level) { testing_coorddir(-2, 0.5_rt * 0.45_rt); }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

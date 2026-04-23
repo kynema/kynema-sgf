@@ -37,7 +37,7 @@ frequency (actually an interval) set to 30.
 NetCDF format: dam break example
 --------------------------------
 To generate the data required to replicate this example, run the simulation contained in 
-test/test_files/dam_break_godunov with the sampling format set to "netcdf" (AMR-Wind must 
+test/test_files/dam_break_godunov with the sampling format set to "netcdf" (Kynema-SGF must 
 also be compiled with NetCDF) and the sampling frequency (actually an interval) set to 30.
 
 Because the FreeSurfaceSampler tracks the interface location, the sample points change position 

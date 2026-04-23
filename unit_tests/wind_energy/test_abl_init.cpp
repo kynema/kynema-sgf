@@ -1,12 +1,12 @@
 #include "abl_test_utils.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/wind_energy/ABLFieldInit.H"
+#include "ks_test_utils/iter_tools.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/wind_energy/ABLFieldInit.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {} // namespace
 
 TEST_F(ABLMeshTest, abl_initialization)
@@ -30,7 +30,7 @@ TEST_F(ABLMeshTest, abl_initialization)
     auto density = densityf.vec_ptrs();
     auto temperature = temperaturef.vec_ptrs();
 
-    amr_wind::ABLFieldInit ablinit;
+    kynema_sgf::ABLFieldInit ablinit;
     run_algorithm(
         mesh().num_levels(), density,
         [&](const int lev, const amrex::MFIter& mfi) {
@@ -79,4 +79,4 @@ TEST_F(ABLMeshTest, abl_initialization)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

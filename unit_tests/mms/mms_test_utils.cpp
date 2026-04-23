@@ -3,7 +3,7 @@
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests::utils {
+namespace kynema_sgf_tests::utils {
 void populate_mms_params()
 {
     {
@@ -61,4 +61,4 @@ void populate_mms_params()
         pp.add("fixed_dt", 0.05_rt);
     }
 }
-} // namespace amr_wind_tests::utils
+} // namespace kynema_sgf_tests::utils

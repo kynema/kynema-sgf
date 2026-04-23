@@ -1,11 +1,11 @@
-#include "aw_test_utils/MeshTest.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/PostProcessing.H"
+#include "ks_test_utils/MeshTest.H"
+#include "src/CFDSim.H"
+#include "src/utilities/PostProcessing.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class PostProcTimeTest : public MeshTest
 {
@@ -50,7 +50,7 @@ TEST_F(PostProcTimeTest, time_interval)
     initialize_mesh();
 
     auto& m_sim = sim();
-    amr_wind::PostProcessManager& post_manager = m_sim.post_manager();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
     auto& time = sim().time();
     post_manager.pre_init_actions();
     post_manager.post_init_actions();
@@ -110,7 +110,7 @@ TEST_F(PostProcTimeTest, time_interval_perturb)
     initialize_mesh();
 
     auto& m_sim = sim();
-    amr_wind::PostProcessManager& post_manager = m_sim.post_manager();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
     auto& time = sim().time();
     post_manager.pre_init_actions();
     post_manager.post_init_actions();
@@ -168,7 +168,7 @@ TEST_F(PostProcTimeTest, enforce_time_interval)
     initialize_mesh();
 
     auto& m_sim = sim();
-    amr_wind::PostProcessManager& post_manager = m_sim.post_manager();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
     auto& time = sim().time();
     post_manager.pre_init_actions();
     // Give a real value for dt so initial output happens
@@ -229,7 +229,7 @@ TEST_F(PostProcTimeTest, output_end)
     initialize_mesh();
 
     auto& m_sim = sim();
-    amr_wind::PostProcessManager& post_manager = m_sim.post_manager();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
     auto& time = sim().time();
     post_manager.pre_init_actions();
     post_manager.post_init_actions();
@@ -290,7 +290,7 @@ TEST_F(PostProcTimeTest, time_output_end)
     initialize_mesh();
 
     auto& m_sim = sim();
-    amr_wind::PostProcessManager& post_manager = m_sim.post_manager();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
     auto& time = sim().time();
     post_manager.pre_init_actions();
     post_manager.post_init_actions();
@@ -349,7 +349,7 @@ TEST_F(PostProcTimeTest, no_output_end)
     initialize_mesh();
 
     auto& m_sim = sim();
-    amr_wind::PostProcessManager& post_manager = m_sim.post_manager();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
     auto& time = sim().time();
     post_manager.pre_init_actions();
     post_manager.post_init_actions();
@@ -399,7 +399,7 @@ TEST_F(PostProcTimeTest, conflict_fails)
     initialize_mesh();
 
     auto& m_sim = sim();
-    amr_wind::PostProcessManager& post_manager = m_sim.post_manager();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
     post_manager.pre_init_actions();
     // Confirm no fail with default arguments
     post_manager.post_init_actions();
@@ -431,4 +431,4 @@ TEST_F(PostProcTimeTest, conflict_fails)
     EXPECT_THROW(post_manager.post_init_actions(), std::runtime_error);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -1,16 +1,16 @@
 #ifndef TEST_ACT_UTILS_H
 #define TEST_ACT_UTILS_H
 
-#include "amr-wind/core/Field.H"
-#include "amr-wind/core/FieldRepo.H"
+#include "src/core/Field.H"
+#include "src/core/FieldRepo.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 // Utility function to populate the velocity field used for tests
-AMREX_INLINE void init_field(amr_wind::Field& fld)
+AMREX_INLINE void init_field(kynema_sgf::Field& fld)
 {
     const auto& mesh = fld.repo().mesh();
     const int nlevels = fld.repo().num_active_levels();
@@ -19,20 +19,20 @@ AMREX_INLINE void init_field(amr_wind::Field& fld)
     amrex::Real offsetx = 0.0_rt;
     amrex::Real offsety = 0.0_rt;
     amrex::Real offsetz = 0.0_rt;
-    if (fld.field_location() == amr_wind::FieldLoc::CELL) {
+    if (fld.field_location() == kynema_sgf::FieldLoc::CELL) {
         offsetx = 0.5_rt;
         offsety = 0.5_rt;
         offsetz = 0.5_rt;
     }
-    if (fld.field_location() == amr_wind::FieldLoc::XFACE) {
+    if (fld.field_location() == kynema_sgf::FieldLoc::XFACE) {
         offsety = 0.5_rt;
         offsetz = 0.5_rt;
     }
-    if (fld.field_location() == amr_wind::FieldLoc::YFACE) {
+    if (fld.field_location() == kynema_sgf::FieldLoc::YFACE) {
         offsetx = 0.5_rt;
         offsetz = 0.5_rt;
     }
-    if (fld.field_location() == amr_wind::FieldLoc::ZFACE) {
+    if (fld.field_location() == kynema_sgf::FieldLoc::ZFACE) {
         offsetx = 0.5_rt;
         offsety = 0.5_rt;
     }
@@ -57,6 +57,6 @@ AMREX_INLINE void init_field(amr_wind::Field& fld)
     amrex::Gpu::streamSynchronize();
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
 
 #endif /* TEST_ACT_UTILS_H */

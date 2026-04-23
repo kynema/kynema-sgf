@@ -1,0 +1,135 @@
+# Kynema-SGF example input file
+#
+# Atmospheric boundary layer (precursor) simulation
+#
+
+# Problem domain definition
+geometry.prob_lo                            = 0.0 0.0 0.0
+geometry.prob_hi                            = 5120.0 5120.0 1280.0
+geometry.is_periodic                        = 1 1 0
+
+# Mesh resolution and AMR definitions
+amr.n_cell                                  = 512 512 128
+amr.max_level                               = 0
+
+# Simulation control parameters
+time.stop_time                              = 20000.0
+time.max_step                               = -1
+time.fixed_dt                               = 0.5
+time.cfl                                    = 0.95
+time.init_shrink                            = 0.1
+time.regrid_interval                        = -1
+time.plot_interval                          = 1000
+time.checkpoint_interval                    = 10000
+time.use_force_cfl                          = false
+
+# input/output settings
+io.check_file                               = "chk"
+io.plot_file                                = "plt"
+io.restart_file                             = ""
+
+# incflo
+incflo.physics                              = ABL
+incflo.density                              = 1.225
+incflo.velocity                             = 6.0 5.0 0.0
+incflo.verbose                              = 0
+incflo.initial_iterations                   = 3
+incflo.do_initial_proj                      = true
+incflo.constant_density                     = true
+incflo.use_godunov                          = 1
+incflow.godunov_type                        = "ppm"
+incflo.godunov_use_forces_in_trans          = false
+incflo.diffusion_type                       = 2
+
+# transport equation parameters
+transport.model                             = ConstTransport
+transport.viscosity                         = 1.0e-5
+transport.laminar_prandtl                   = 0.7
+transport.turbulent_prandtl                 = 0.333
+transport.reference_temperature                   = 290.0
+
+# turbulence equation parameters
+turbulence.model                            = OneEqKsgsM84
+
+# Atmospheric boundary layer
+ABL.Uperiods                                = 4.0
+ABL.Vperiods                                = 4.0
+ABL.cutoff_height                           = 50.0
+ABL.deltaU                                  = 1.0
+ABL.deltaV                                  = 1.0
+ABL.kappa                                   = .41
+ABL.normal_direction                        = 2
+ABL.perturb_ref_height                      = 50.0
+ABL.perturb_temperature                     = true
+ABL.perturb_velocity                        = true
+ABL.stats_output_format                     = netcdf
+ABL.stats_output_frequency                  = 1
+ABL.surface_roughness_z0                    = 0.01
+ABL.surface_temp_flux                       = 0.005
+ABL.temperature_heights                     = 0.0 2000.0
+ABL.temperature_values                      = 290.0 296.0
+
+# momentum source term parameters
+ICNS.source_terms                           = BoussinesqBuoyancy CoriolisForcing ABLForcing
+ABLForcing.abl_forcing_height               = 90.0
+CoriolisForcing.east_vector                 = 1.0 0.0 0.0
+CoriolisForcing.latitude                    = 41.3
+CoriolisForcing.north_vector                = 0.0 1.0 0.0
+CoriolisForcing.rotational_time_period      = 86400.0
+GeostrophicForcing.geostrophic_wind         = 10.0 0.0 0.0
+
+# Boundary conditions
+zhi.type                                    = "slip_wall"
+zhi.temperature_type                        = "fixed_gradient"
+zhi.temperature                             = 0.003
+zlo.type                                    = "wall_model"
+zlo.tke_type                                = "fixed_gradient"
+
+# MLMG options for cell-centered diffusion solve
+diffusion.mg_verbose                        = 0
+diffusion.mg_cg_verbose                     = 0
+diffusion.mg_max_iter                       = 200
+diffusion.mg_cg_max_iter                    = 200
+diffusion.mg_fmg_max_iter                   = 0
+diffusion.mg_max_coarsening_level           = 100
+diffusion.mg_max_order                      = 2
+diffusion.mg_rtol                           = 1.0e-6
+diffusion.mg_atol                           = 1.0e-12
+diffusion.bottom_solver                     = "bicgstab"
+
+# MLMG options for MAC Projection
+mac_proj.mg_rtol                            = 1.0e-6
+mac_proj.mg_atol                            = 1.0e-12
+
+# MLMG options for Nodal Projection
+nodal_proj.mg_rtol                          = 1.0e-6
+nodal_proj.mg_atol                          = 1.0e-12
+
+# Post processing algorithms
+incflo.post_processing = sampling enstrophy ke
+
+# Data probe sampling
+sampling.output_interval = 1
+sampling.labels = l_v11 p_h
+sampling.fields = velocity temperature
+
+# sampling along a line
+sampling.l_v11.type = LineSampler
+sampling.l_v11.num_points = 192
+sampling.l_v11.start = 500.0 500.0 5.0
+sampling.l_v11.end = 500.0 500.0 1995.0
+
+# Sampling on a plane
+sampling.p_h.type = PlaneSampler
+sampling.p_h.axis1 = 5210.0 0.0 0.0
+sampling.p_h.axis2 = 0.0 5210.0 0.0
+sampling.p_h.origin = 0.0 0.0 50.0
+sampling.p_h.num_points = 288 288
+sampling.p_h.normal = 0.0 0.0 1.0
+sampling.p_h.offsets = 0.0 50.0 150.0
+
+# kinetic energy and enstrophy integration
+ke.type = KineticEnergy
+ke.output_interval = 1
+enstrophy.type = Enstrophy
+enstrophy.output_interval = 1

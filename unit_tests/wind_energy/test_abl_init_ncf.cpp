@@ -1,13 +1,13 @@
 #include "abl_test_utils.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/wind_energy/ABLFieldInitFile.H"
-#include "amr-wind/utilities/ncutils/nc_interface.H"
+#include "ks_test_utils/iter_tools.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/wind_energy/ABLFieldInitFile.H"
+#include "src/utilities/ncutils/nc_interface.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 void write_ncf()
 {
@@ -56,7 +56,7 @@ TEST_F(ABLMeshTest, abl_init_netcdf)
     auto& velocityf = frepo.declare_field("velocity", 3, 0);
     auto velocity = velocityf.vec_ptrs();
 
-    amr_wind::ABLFieldInitFile ablinitfile;
+    kynema_sgf::ABLFieldInitFile ablinitfile;
     run_algorithm(
         mesh().num_levels(), velocity,
         [&](const int lev, const amrex::MFIter& mfi) {
@@ -114,8 +114,8 @@ TEST_F(ABLMeshTest, abl_init_netcdf_multilevel)
         ss << "0 0 0 120 120 200" << std::endl;
 
         create_mesh_instance<RefineMesh>();
-        std::unique_ptr<amr_wind::CartBoxRefinement> box_refine(
-            new amr_wind::CartBoxRefinement(sim()));
+        std::unique_ptr<kynema_sgf::CartBoxRefinement> box_refine(
+            new kynema_sgf::CartBoxRefinement(sim()));
         box_refine->read_inputs(mesh(), ss);
 
         if (mesh<RefineMesh>() != nullptr) {
@@ -132,7 +132,7 @@ TEST_F(ABLMeshTest, abl_init_netcdf_multilevel)
     // Default operation needed for fillpatch
     velocityf.set_default_fillpatch_bc(sim().time());
 
-    amr_wind::ABLFieldInitFile ablinitfile;
+    kynema_sgf::ABLFieldInitFile ablinitfile;
     bool interp_fine_levels = false;
     const int nlevels = mesh().num_levels();
 
@@ -182,4 +182,4 @@ TEST_F(ABLMeshTest, abl_netcdf_cleanup)
     EXPECT_FALSE(ff.good());
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

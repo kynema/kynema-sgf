@@ -1,10 +1,10 @@
-#include "aw_test_utils/MeshTest.H"
-#include "amr-wind/core/field_ops.H"
+#include "ks_test_utils/MeshTest.H"
+#include "src/core/field_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class FieldOpsTest : public MeshTest
 {
@@ -17,7 +17,7 @@ public:
     }
 
     static void initialise_default_fields(
-        amr_wind::Field& field,
+        kynema_sgf::Field& field,
         amrex::Vector<amrex::Geometry> geom,
         const int nlevels)
     {
@@ -48,10 +48,10 @@ TEST_F(FieldOpsTest, compute_max_magnitude)
     initialise_default_fields(field, geom, nlevels);
 
     amrex::Real global_maximum =
-        amr_wind::field_ops::global_max_magnitude(field);
+        kynema_sgf::field_ops::global_max_magnitude(field);
     EXPECT_NEAR(
         global_maximum, 21.5_rt,
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -1,7 +1,7 @@
-#include "aw_test_utils/MeshTest.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/physics/TerrainDrag.H"
+#include "ks_test_utils/MeshTest.H"
+#include "ks_test_utils/iter_tools.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/physics/TerrainDrag.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -37,7 +37,7 @@ void write_terrain(const std::string& fname)
 
 } // namespace
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 // Testing the terrain drag reading to ensure that terrain is properly setup
 class TerrainTest : public MeshTest
@@ -76,7 +76,7 @@ TEST_F(TerrainTest, terrain)
     amrex::ParmParse pp("incflo");
     amrex::Vector<std::string> physics{"terrainDrag"};
     pp.addarr("physics", physics);
-    amr_wind::terraindrag::TerrainDrag terrain_drag(sim());
+    kynema_sgf::terraindrag::TerrainDrag terrain_drag(sim());
     const int nlevels = sim().repo().num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& geom = sim().repo().mesh().Geom(lev);
@@ -91,4 +91,4 @@ TEST_F(TerrainTest, terrain)
     EXPECT_EQ(value_in, 1 + tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

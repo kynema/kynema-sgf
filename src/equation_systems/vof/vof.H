@@ -1,0 +1,38 @@
+#ifndef VOF_H
+#define VOF_H
+
+#include "src/equation_systems/PDETraits.H"
+#include "src/equation_systems/SchemeTraits.H"
+#include "src/equation_systems/PDEHelpers.H"
+#include "src/equation_systems/PDE.H"
+#include "src/equation_systems/SourceTerm.H"
+#include "AMReX_REAL.H"
+
+using namespace amrex::literals;
+
+namespace kynema_sgf::pde {
+
+/** \defgroup vof Volume of fluid
+ *
+ */
+
+struct VOF : ScalarTransport
+{
+    using MLDiffOp = amrex::MLABecLaplacian;
+    using SrcTerm = SourceTerm;
+
+    static std::string pde_name() { return "VOF"; }
+    static std::string var_name() { return "vof"; }
+
+    static constexpr int ndim = 1;
+    static constexpr bool multiply_rho = false;
+    static constexpr bool has_diffusion = false;
+    static constexpr bool need_nph_state = true;
+
+    static constexpr amrex::Real default_bc_value = 0.0_rt;
+    static constexpr amrex::Real default_density_bc_value = 1.0_rt;
+};
+
+} // namespace kynema_sgf::pde
+
+#endif /* VOF_H */

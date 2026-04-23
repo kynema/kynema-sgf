@@ -1,4 +1,4 @@
-target_sources(${amr_wind_unit_test_exe_name} PRIVATE
+target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
   test_refinement.cpp
   test_plane_averaging.cpp
   test_field_plane_averaging.cpp
@@ -17,8 +17,8 @@ target_sources(${amr_wind_unit_test_exe_name} PRIVATE
   test_time_averaging.cpp
   )
 
-if (AMR_WIND_ENABLE_NETCDF)
-  target_sources(${amr_wind_unit_test_exe_name} PRIVATE
+if (KYNEMA_SGF_ENABLE_NETCDF)
+  target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
     test_ncutils.cpp
     )
 endif()

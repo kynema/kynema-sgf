@@ -1,7 +1,7 @@
 #include "CoarsenCheckpt.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_PlotFileUtil.H"
-#include "amr-wind/utilities/IOManager.H"
+#include "src/utilities/IOManager.H"
 
 namespace {
 void GotoNextLine(std::istream& is)
@@ -11,7 +11,7 @@ void GotoNextLine(std::istream& is)
 }
 } // namespace
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace tools {
 
 CoarsenCheckpt::CoarsenCheckpt() : incflo() {}
@@ -53,7 +53,7 @@ void CoarsenCheckpt::coarsen_chkpt_file()
 
 void CoarsenCheckpt::read_chkpt_add_baselevel()
 {
-    BL_PROFILE("amr-wind::incflo::ReadCheckpointFile()");
+    BL_PROFILE("kynema-sgf::incflo::ReadCheckpointFile()");
 
     const std::string& restart_file = sim().io_manager().restart_file();
     amrex::Print() << "Coarsening checkpoint " << restart_file << std::endl;
@@ -183,7 +183,7 @@ void CoarsenCheckpt::read_checkpoint_fields_offset(
     const amrex::Vector<amrex::DistributionMapping>& dm_chk,
     const amrex::IntVect& rep)
 {
-    BL_PROFILE("amr-wind::IOManager::read_checkpoint_fields");
+    BL_PROFILE("kynema-sgf::IOManager::read_checkpoint_fields");
 
     // Track set of fields that might be missing at this level
     std::set<std::string> missing;
@@ -278,4 +278,4 @@ void CoarsenCheckpt::average_down_all_fields()
 }
 
 } // namespace tools
-} // namespace amr_wind
+} // namespace kynema_sgf

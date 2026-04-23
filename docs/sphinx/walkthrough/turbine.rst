@@ -21,9 +21,9 @@ This file looks like the precursor input file, except for the following changes:
 * We add information about the turbines and surrounding mesh refinements into the input file. Because of the finer mesh, the small dt is
   required for this simulation.
 * ``time.fixed_dt`` is changed from 0.125 to 0.12. Although 0.125 is sufficient for the finer mesh in this simulation, there is an 
-  additional constraint of compatibility with the OpenFAST turbine model. The AMR-Wind time step size must be an integer multiple of
+  additional constraint of compatibility with the OpenFAST turbine model. The Kynema-SGF time step size must be an integer multiple of
   the recommended time step size of the turbine model (written as ``DT`` in the ``.fst`` OpenFAST input). For this turbine model,
-  the recommended DT is 0.01, requiring a change to the AMR-Wind dt. Due to this change in the time step size, we have also adjusted
+  the recommended DT is 0.01, requiring a change to the Kynema-SGF dt. Due to this change in the time step size, we have also adjusted
   the plotting, checkpoint, and sampling intervals.
 
 .. collapse:: Further details about these source terms and wall function (wf) specifications
@@ -47,11 +47,11 @@ When running an inflow-outflow simulation, information must be provided for the 
 values are intended to be statistical data calculated from the precursor simulation. During the precursor, ABL Stats
 output planar-averaged data at discrete times. To average this data in time and obtain values for the input arguments,
 applying a script is the most direct approach. For this step, run the ``calc_inflowoutflow_stats.py`` script, provided in
-the tools directory of the AMR-Wind repo, as follows:
+the tools directory of the Kynema-SGF repo, as follows:
 
 .. code-block:: console
 
-    python <path to amr-wind repo>/tools/calc_inflowoutflow_stats.py -sf <path to precursor directory>/post_processing/abl_statistics14400.nc -ts 7200 -te 7800
+    python <path to kynema-sgf repo>/tools/calc_inflowoutflow_stats.py -sf <path to precursor directory>/post_processing/abl_statistics14400.nc -ts 7200 -te 7800
 
 
 The ``-ts`` and ``-te`` arguments communicate the start time and end time for the time averaging, respectively. Running the
@@ -59,7 +59,7 @@ script provides two important things:
 
 * Complete input lines to be copy-pasted into the turbine input file, which feature time-averaged information
 * An ``avg_theta.dat`` file with an average temperature profile for ``ABLMeanBoussinesq``. It is critical that this file 
-  is available where the job will run; otherwise, AMR-Wind will fail by not being able to find the file.
+  is available where the job will run; otherwise, Kynema-SGF will fail by not being able to find the file.
 
 Although the script provides a value for the ``BodyForce.magnitude``, this has been commented out after being pasted into the
 input file. This is because we prefer to use a timetable for the body force, which was output by the precursor simulation.
@@ -88,16 +88,16 @@ Then, check out only the path that we need.
   git sparse-checkout set --no-cone IEA-scaled/NREL-2.8-127/20_monolithic_opt2/OpenFAST && git checkout
   cd IEA-scaled/NREL-2.8-127/20_monolithic_opt2/OpenFAST/
 
-Note that, when simulating OpenFAST turbines through AMR-Wind instead of directly through OpenFAST, it is important to make the
+Note that, when simulating OpenFAST turbines through Kynema-SGF instead of directly through OpenFAST, it is important to make the
 following changes to the OpenFAST files:
 
 * ``NREL-2p8-127_AeroDyn15.dat``: Make sure ``WakeMod`` is ``0``
 * ``NREL-2p8-127_ElastoDyn.dat``: Set the initial RPM ``RotSpeed`` and initial yaw angle ``NacYaw`` to reasonable values (in this walkthrough we use ``13.5`` RPM and ``0`` degrees, respectively)
 * ``NREL-2p8-127.fst``: Set ``CompInflow`` to be ``2`` and ``OutFileFmt`` to be ``1``
-* ``NREL-2p8-127_ServoDyn.dat``: Make sure ``DLL_FileName`` points to a ``libdiscon.so`` (on Linux) or ``libdiscon.dylib`` (on Mac) file from ROSCO. If you compiled using exawind-manager,
+* ``NREL-2p8-127_ServoDyn.dat``: Make sure ``DLL_FileName`` points to a ``libdiscon.so`` (on Linux) or ``libdiscon.dylib`` (on Mac) file from ROSCO. If you compiled using kynema-manager,
   see the :ref:`section of the documentation <rosco-dyn-lib>` that discusses how to determine the correct path to this ROSCO library file.
 
-After performing these changes, copy the OpenFAST model to the run directory using the names in the AMR-Wind input file.
+After performing these changes, copy the OpenFAST model to the run directory using the names in the Kynema-SGF input file.
 
 .. code-block:: console
 
@@ -117,7 +117,7 @@ and the turbine inflow-outflow simulation is ready to be submitted using
 
 .. code-block:: console
 
-    amr_wind turbines.inp
+    kynema_sgf turbines.inp
 
 which should follow after an ``srun`` or ``mpiexec`` or a similar command to take advantage of parallelization.
 

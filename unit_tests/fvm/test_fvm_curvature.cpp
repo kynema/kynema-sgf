@@ -1,13 +1,13 @@
-#include "aw_test_utils/MeshTest.H"
-#include "amr-wind/fvm/curvature.H"
+#include "ks_test_utils/MeshTest.H"
+#include "src/fvm/curvature.H"
 #include "AnalyticalFunction.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
+#include "ks_test_utils/iter_tools.H"
+#include "ks_test_utils/test_utils.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class FvmOpTestCurvature : public MeshTest
 {};
@@ -48,7 +48,7 @@ void initialize_scalar(
     });
 }
 
-amrex::Real curvature_test_impl(amr_wind::Field& scalar, const int pdegree)
+amrex::Real curvature_test_impl(kynema_sgf::Field& scalar, const int pdegree)
 {
 
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
@@ -63,7 +63,7 @@ amrex::Real curvature_test_impl(amr_wind::Field& scalar, const int pdegree)
         initialize_scalar(geom[lev], bx, pdegree, coeff, scalar_arr);
     });
 
-    auto curv_scalar = amr_wind::fvm::curvature(scalar);
+    auto curv_scalar = kynema_sgf::fvm::curvature(scalar);
 
     const int nlevels = scalar.repo().num_active_levels();
     amrex::Real error_total = 0.0_rt;
@@ -130,4 +130,4 @@ TEST_F(FvmOpTestCurvature, curvature)
     EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

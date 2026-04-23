@@ -1,14 +1,14 @@
-#include "aw_test_utils/MeshTest.H"
-#include "amr-wind/physics/multiphase/hydrostatic_ops.H"
+#include "ks_test_utils/MeshTest.H"
+#include "src/physics/multiphase/hydrostatic_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 
 amrex::Real density_test_impl(
-    amr_wind::Field& rho0,
+    kynema_sgf::Field& rho0,
     const amrex::Vector<amrex::Geometry>& geom,
     const amrex::Real rho1,
     const amrex::Real rho2,
@@ -45,7 +45,7 @@ amrex::Real density_test_impl(
 }
 
 amrex::Real pressure_test_impl(
-    amr_wind::Field& p0,
+    kynema_sgf::Field& p0,
     const amrex::Vector<amrex::Geometry>& geom,
     const amrex::Real rho1,
     const amrex::Real rho2,
@@ -137,7 +137,7 @@ TEST_F(MultiPhaseHydroStatic, reference_density)
     const int nghost = 0;
     auto& rho0 = repo.declare_field("reference_density", ncomp, nghost);
 
-    amr_wind::hydrostatic::define_rho0(
+    kynema_sgf::hydrostatic::define_rho0(
         rho0, m_rho1, m_rho2, m_wlev, sim().mesh().Geom());
 
     amrex::Real error_total =
@@ -156,7 +156,7 @@ TEST_F(MultiPhaseHydroStatic, reference_pressure)
     const int nghost = 3;
     auto& p0 = repo.declare_nd_field("reference_pressure", ncomp, nghost);
 
-    amr_wind::hydrostatic::define_p0(
+    kynema_sgf::hydrostatic::define_p0(
         p0, m_rho1, m_rho2, m_wlev, m_gz, sim().mesh().Geom());
 
     amrex::Real error_total = pressure_test_impl(
@@ -166,4 +166,4 @@ TEST_F(MultiPhaseHydroStatic, reference_pressure)
         error_total, 0.0_rt, std::numeric_limits<float>::epsilon() * 1.0e1_rt);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -1,12 +1,12 @@
-#include "aw_test_utils/MeshTest.H"
-#include "amr-wind/CFDSim.H"
-#include "amr-wind/utilities/PostProcessing.H"
-#include "aw_test_utils/test_utils.H"
+#include "ks_test_utils/MeshTest.H"
+#include "src/CFDSim.H"
+#include "src/utilities/PostProcessing.H"
+#include "ks_test_utils/test_utils.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class TimeAveragingTest : public MeshTest
 {
@@ -53,7 +53,7 @@ TEST_F(TimeAveragingTest, every_step)
     initialize_mesh();
 
     auto& m_sim = sim();
-    amr_wind::PostProcessManager& post_manager = m_sim.post_manager();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
     auto& time = sim().time();
     auto& temp = sim().repo().declare_cc_field("temperature", 1, 1, 1);
     temp.setVal(0.0_rt);
@@ -90,7 +90,7 @@ TEST_F(TimeAveragingTest, phase_linear)
     initialize_mesh();
 
     auto& m_sim = sim();
-    amr_wind::PostProcessManager& post_manager = m_sim.post_manager();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
     auto& time = sim().time();
     auto& temp = sim().repo().declare_cc_field("temperature", 1, 1, 1);
     temp.setVal(0.0);
@@ -137,7 +137,7 @@ TEST_F(TimeAveragingTest, phase_stairstep_offset)
     initialize_mesh();
 
     auto& m_sim = sim();
-    amr_wind::PostProcessManager& post_manager = m_sim.post_manager();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
     auto& time = sim().time();
     auto& temp = sim().repo().declare_cc_field("temperature", 1, 1, 1);
     temp.setVal(0.0_rt);
@@ -176,7 +176,7 @@ TEST_F(TimeAveragingTest, mismatch_time_interval)
     initialize_mesh();
 
     auto& m_sim = sim();
-    amr_wind::PostProcessManager& post_manager = m_sim.post_manager();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
     auto& time = sim().time();
     auto& temp = sim().repo().declare_cc_field("temperature", 1, 1, 1);
     temp.setVal(0.0);
@@ -216,4 +216,4 @@ TEST_F(TimeAveragingTest, mismatch_time_interval)
     EXPECT_NEAR(max_f, avg_val_ideal, m_tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

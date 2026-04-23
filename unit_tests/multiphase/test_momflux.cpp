@@ -1,18 +1,18 @@
-#include "aw_test_utils/MeshTest.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/equation_systems/vof/vof.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
+#include "ks_test_utils/MeshTest.H"
+#include "ks_test_utils/iter_tools.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/equation_systems/vof/vof.H"
+#include "src/physics/multiphase/MultiPhase.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
 void init_field3(
-    amr_wind::Field& fld,
+    kynema_sgf::Field& fld,
     const amrex::Real in0,
     const amrex::Real in1,
     const amrex::Real in2)
@@ -200,7 +200,7 @@ protected:
         // Populate boundary cells
         vof.fillpatch(0.0_rt);
         // Sync density field with vof
-        auto& mphase = sim().physics_manager().get<amr_wind::MultiPhase>();
+        auto& mphase = sim().physics_manager().get<kynema_sgf::MultiPhase>();
         mphase.set_density_via_vof();
 
         // Advance states (new -> old)
@@ -208,15 +208,15 @@ protected:
 
         // Perform pre-advection step to get MAC velocity field (should be
         // uniform)
-        mom_eqn.pre_advection_actions(amr_wind::FieldState::Old);
+        mom_eqn.pre_advection_actions(kynema_sgf::FieldState::Old);
 
         // Perform VOF solve
         // Get equation handle and perform init
         auto& seqn = pde_mgr(
-            amr_wind::pde::VOF::pde_name() + "-" +
-            amr_wind::fvm::Godunov::scheme_name());
+            kynema_sgf::pde::VOF::pde_name() + "-" +
+            kynema_sgf::fvm::Godunov::scheme_name());
         seqn.initialize();
-        seqn.compute_advection_term(amr_wind::FieldState::Old);
+        seqn.compute_advection_term(kynema_sgf::FieldState::Old);
         seqn.post_solve_actions();
 
         // Zero unused momentum terms: src (pressure)
@@ -228,9 +228,9 @@ protected:
         mask_cell.setVal(1);
 
         // Perform momentum solve
-        mom_eqn.compute_advection_term(amr_wind::FieldState::Old);
-        mom_eqn.compute_diffusion_term(amr_wind::FieldState::New);
-        mom_eqn.compute_source_term(amr_wind::FieldState::New);
+        mom_eqn.compute_advection_term(kynema_sgf::FieldState::Old);
+        mom_eqn.compute_diffusion_term(kynema_sgf::FieldState::New);
+        mom_eqn.compute_source_term(kynema_sgf::FieldState::New);
         mom_eqn.compute_predictor_rhs(DiffusionType::Explicit);
 
         // Get MAC velocities for use in testing
@@ -244,7 +244,7 @@ protected:
 
         // Get convective term
         const auto& conv_term =
-            mom_eqn.fields().conv_term.state(amr_wind::FieldState::New);
+            mom_eqn.fields().conv_term.state(kynema_sgf::FieldState::New);
 
         // Create scratch field to store error, 1 component for each err type
         auto error_ptr = repo.create_scratch_field(8, 0);
@@ -306,4 +306,4 @@ TEST_F(MassMomFluxOpTest, fluxfaceX) { testing_coorddir(0); }
 TEST_F(MassMomFluxOpTest, fluxfaceY) { testing_coorddir(1); }
 TEST_F(MassMomFluxOpTest, fluxfaceZ) { testing_coorddir(2); }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

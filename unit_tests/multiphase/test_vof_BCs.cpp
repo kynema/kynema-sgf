@@ -1,13 +1,13 @@
-#include "aw_test_utils/MeshTest.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/equation_systems/vof/vof.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
+#include "ks_test_utils/MeshTest.H"
+#include "ks_test_utils/iter_tools.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/equation_systems/vof/vof.H"
+#include "src/physics/multiphase/MultiPhase.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 void initialize_volume_fractions(
@@ -19,12 +19,12 @@ void initialize_volume_fractions(
 }
 
 void get_accuracy_vofsol(
-    amr_wind::ScratchField& err_fld,
+    kynema_sgf::ScratchField& err_fld,
     const int lev,
     const int dir,
     const int vof_distr,
     const amrex::Real vof_bdyval,
-    const amr_wind::Field& vof,
+    const kynema_sgf::Field& vof,
     const amrex::Real wt1 = 1.0_rt,
     const amrex::Real wt2 = 0.0_rt)
 {
@@ -82,12 +82,12 @@ void get_accuracy_vofsol(
 }
 
 void get_accuracy_density(
-    amr_wind::ScratchField& err_fld,
+    kynema_sgf::ScratchField& err_fld,
     const int lev,
     const int dir,
     const int vof_distr,
     const amrex::Real vof_bdyval,
-    const amr_wind::Field& density,
+    const kynema_sgf::Field& density,
     const amrex::Real rho1,
     const amrex::Real rho2)
 {
@@ -96,14 +96,14 @@ void get_accuracy_density(
 }
 
 void get_accuracy_advalpha(
-    amr_wind::ScratchField& err_fld,
+    kynema_sgf::ScratchField& err_fld,
     const int lev,
     const int dir,
     const bool nonzero_flux,
     const amrex::Real rho1,
     const amrex::Real rho2,
-    const amr_wind::Field& vof,
-    const amr_wind::Field& advalpha_f)
+    const kynema_sgf::Field& vof,
+    const kynema_sgf::Field& advalpha_f)
 {
     /* -- Check VOF boundary fluxes -- */
 #ifdef AMREX_USE_OMP
@@ -320,7 +320,8 @@ protected:
 
         // Calculate density and fillpatch
         auto& density = repo.get_field("density");
-        auto& multiphase = sim().physics_manager().get<amr_wind::MultiPhase>();
+        auto& multiphase =
+            sim().physics_manager().get<kynema_sgf::MultiPhase>();
         multiphase.set_density_via_vof();
         density.fillpatch(0.0_rt);
 
@@ -350,10 +351,10 @@ protected:
             sim().pde_manager().advance_states();
             // Get equation handle and perform init
             auto& seqn = pde_mgr(
-                amr_wind::pde::VOF::pde_name() + "-" +
-                amr_wind::fvm::Godunov::scheme_name());
+                kynema_sgf::pde::VOF::pde_name() + "-" +
+                kynema_sgf::fvm::Godunov::scheme_name());
             seqn.initialize();
-            seqn.compute_advection_term(amr_wind::FieldState::Old);
+            seqn.compute_advection_term(kynema_sgf::FieldState::Old);
             seqn.post_solve_actions();
 
             // Get advected alpha
@@ -384,4 +385,4 @@ TEST_F(VOFBCTest, slipwallY) { testing_bc_coorddir(2, 1, tol1); }
 TEST_F(VOFBCTest, noslipwallZ) { testing_bc_coorddir(3, 2, tol1); }
 TEST_F(VOFBCTest, pressureX) { testing_bc_coorddir(4, 0, tol1); }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

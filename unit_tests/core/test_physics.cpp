@@ -1,8 +1,8 @@
-#include "aw_test_utils/MeshTest.H"
-#include "amr-wind/core/Physics.H"
+#include "ks_test_utils/MeshTest.H"
+#include "src/core/Physics.H"
 #include "physics_test_utils.H"
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class PhysicsTest : public MeshTest
 {};
@@ -62,4 +62,4 @@ TEST_F(PhysicsTest, physics_test_duplicates)
     EXPECT_EQ(&pex1, &pex2);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

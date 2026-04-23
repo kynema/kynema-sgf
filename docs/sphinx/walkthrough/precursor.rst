@@ -7,7 +7,7 @@
 Precursor (ABL) walkthrough
 ===========================
 
-With AMR-Wind compiled, we can run simulations. In this section, we will run two simulations of a
+With Kynema-SGF compiled, we can run simulations. In this section, we will run two simulations of a
 weakly convective atmospheric boundary layer. The first simulation will be of a transient "spinup" phase,
 and the second simulation will serve as a "precursor" for a turbine simulation.
 
@@ -20,7 +20,7 @@ input-file setup. This tool shows the locations of the turbines and refinements,
 sanity check for expensive simulations. For simpler simulations, with one or a handful of turbines,
 the manual approach is typically sufficient when beginning from a valid starting point. If you do not 
 have an input file on hand to use as a template, input files from the regression tests directory 
-("test/test_files/") in the AMR-Wind repository can serve as examples. Please consult the 
+("test/test_files/") in the Kynema-SGF repository can serve as examples. Please consult the 
 :ref:`input file reference <input-file-ref>` to understand and appropriately modify the available input arguments.
 
 Spinup simulation
@@ -58,14 +58,14 @@ When running simulations on a cluster, please follow the etiquette expected on t
 a scratch directory as the active directory during a simulation run. In that context, you will also need a submission script.
 Please consult the user manual of your cluster to design such a script properly. 
 
-Here are a few tips for submitting an AMR-Wind run. If you used a Spack environment to compile
-AMR-Wind, it is easiest to reference the amr-wind executable by activating Spack, activating the environment, and then using
-the command ``spack load amr-wind`` to have the correct executable available without needing to specify its full path. Finally,
-the syntax of the AMR-Wind command looks like
+Here are a few tips for submitting an Kynema-SGF run. If you used a Spack environment to compile
+Kynema-SGF, it is easiest to reference the kynema-sgf executable by activating Spack, activating the environment, and then using
+the command ``spack load kynema-sgf`` to have the correct executable available without needing to specify its full path. Finally,
+the syntax of the Kynema-SGF command looks like
 
 .. code-block:: console
 
-    amr_wind spinup.inp
+    kynema_sgf spinup.inp
 
 which should follow after an ``srun`` or ``mpiexec`` command (or similar) in a submission script to take advantage of parallelization.
 This particular simulation has about 1 million cells, which means that it is suited run with about 50-80 CPU ranks.

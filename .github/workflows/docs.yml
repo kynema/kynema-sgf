@@ -1,4 +1,4 @@
-name: AMR-Wind-Docs
+name: Kynema-SGF-Docs
 
 on:
   push:
@@ -36,10 +36,10 @@ jobs:
       - name: Configure
         run: |
           cmake -B ${{runner.workspace}}/build-docs \
-            -DAMR_WIND_ENABLE_DOCUMENTATION:BOOL=ON \
+            -DKYNEMA_SGF_ENABLE_DOCUMENTATION:BOOL=ON \
             ${{github.workspace}}
       - name: Build
-        # execute from top-level amr-wind directory
+        # execute from top-level kynema-sgf directory
         run: |
           echo "::add-matcher::.github/problem-matchers/sphinx.json"
           cmake --build ${{runner.workspace}}/build-docs -t docs 2>&1 | tee -a build-output.txt

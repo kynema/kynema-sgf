@@ -1,10 +1,10 @@
 #include "abloffshore_test_utils.H"
-#include "aw_test_utils/MeshTest.H"
+#include "ks_test_utils/MeshTest.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 void ABLOffshoreMeshTest::populate_parameters()
 {
@@ -104,4 +104,4 @@ void ABLOffshoreMeshTest::populate_parameters()
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -1,16 +1,16 @@
 .. _compiling:
 
-Compiling using Spack, with Exawind-Manager
+Compiling using Spack, with Kynema-Manager
 ===========================================
 
-The first step before using AMR-Wind is compilation of the software on the computing resources
+The first step before using Kynema-SGF is compilation of the software on the computing resources
 you intend to use. We recommend the use of Spack to streamline this process because of its ability
 to handle code dependencies and keep track of hardware variations.
 
 Spack is a "package management tool designed to support multiple versions and configurations of 
 software on a wide variety of platforms and environments." To make it easier for users to harness
-Spack, we provide the repository `Exawind-Manager <https://github.com/Exawind/exawind-manager>`_.
-Exawind-Manager is a custom application of the Spack-Manager tool, which uses Spack environments 
+Spack, we provide the repository `Kynema-Manager <https://github.com/Kynema/kynema-manager>`_.
+Kynema-Manager is a custom application of the Spack-Manager tool, which uses Spack environments 
 to manage software builds. From the 
 `Spack-Manager documentation <https://sandialabs.github.io/spack-manager/user_profiles/developers/developer_spack_minimum.html>`_,
 "These environments are similar to 
@@ -18,8 +18,8 @@ Conda environments in concept, but they benefit from reusing software that you'v
 As such it is recommended that you maintain a single instance of Spack-Manager to organize and curate your builds, 
 and create new environments when you want to start a new development project." 
 
-This walkthrough is meant for common AMR-Wind workflows, and to avoid verbosity we provide limited 
-details about the functionality of Spack and Exawind-Manager. Some additional details are included in 
+This walkthrough is meant for common Kynema-SGF workflows, and to avoid verbosity we provide limited 
+details about the functionality of Spack and Kynema-Manager. Some additional details are included in 
 dropdown sections, but these can be ignored if they are hard to understand.
 If you would rather avoid the use of Spack and handle dependencies manually, please refer to
 the section of the user manual outlining the process of building from the source code using CMake: :doc:`../user/build`.
@@ -29,23 +29,23 @@ the section of the user manual outlining the process of building from the source
     Further installation examples are provided in the Spack-Manager documentation, 
     including `Snapshot Developer Workflow Example <https://sandialabs.github.io/spack-manager/user_profiles/developers/snapshot_workflow.html>`_
     and `Spack-Manager abbreviated example <https://sandialabs.github.io/spack-manager/user_profiles/developers/developer_workflow.html#quick-start>`_.
-    However, it should be noted that when using Exawind-Manager, the environment variable EXAWIND_MANAGER should be used in place of
-    the SPACK_MANAGER variable, pointing to the location of the Exawind-Manager directory.
+    However, it should be noted that when using Kynema-Manager, the environment variable EXAWIND_MANAGER should be used in place of
+    the SPACK_MANAGER variable, pointing to the location of the Kynema-Manager directory.
 
 |
 
-Set up Exawind-Manager
+Set up Kynema-Manager
 ----------------------
 
-To begin the process, clone Exawind-Manager using the following command, which includes its submodules through the ``--recursive`` option.
+To begin the process, clone Kynema-Manager using the following command, which includes its submodules through the ``--recursive`` option.
 
 .. code-block:: console
 
     export REPO_DEST=<fill in the directory>
     cd ${REPO_DEST}
-    git clone --recursive https://github.com/Exawind/exawind-manager.git
+    git clone --recursive https://github.com/Kynema/kynema-manager.git
 
-Because the exawind-manager directory will house any dependencies that need to be downloaded, it is best to put it in a
+Because the kynema-manager directory will house any dependencies that need to be downloaded, it is best to put it in a
 location with sufficient memory.
 
 Set up Spack environment
@@ -55,7 +55,7 @@ Then activate it:
 
 .. code-block:: console
 
-    export EXAWIND_MANAGER=${REPO_DEST}/exawind-manager
+    export EXAWIND_MANAGER=${REPO_DEST}/kynema-manager
     source ${EXAWIND_MANAGER}/start.sh && spack-start
 
 It is helpful to put the above commands as a function in your bash environment so they can be easily 
@@ -65,7 +65,7 @@ Before installing anything, we can obtain info about the codes that Spack suppor
 
 .. code-block:: console
     
-    spack info amr-wind
+    spack info kynema-sgf
 
 and 
 
@@ -82,28 +82,28 @@ that rely on the actuator-line method (ALM). The next step is to create the envi
 
 .. code-block:: console
 
-    mkdir ${REPO_DEST}/env_amrwind_openfast && cd ${REPO_DEST}/env_amrwind_openfast
-    quick-create-dev -d . -s amr-wind@main+openfast+netcdf%compiler openfast@3.5.3+rosco%compiler
+    mkdir ${REPO_DEST}/env_kynemasgf_openfast && cd ${REPO_DEST}/env_kynemasgf_openfast
+    quick-create-dev -d . -s kynema-sgf@main+openfast+netcdf%compiler openfast@3.5.3+rosco%compiler
 
-This ``quick-create-dev`` command has flags selected so that that AMR-Wind will work with OpenFAST,
-AMR-Wind can save certain files using NetCDF, and OpenFAST will compile with
+This ``quick-create-dev`` command has flags selected so that that Kynema-SGF will work with OpenFAST,
+Kynema-SGF can save certain files using NetCDF, and OpenFAST will compile with
 the turbine controller package ROSCO. By executing this command, the environment is set up and activated,
-and the AMR-Wind and OpenFAST repositories are cloned to the environment directory. 
+and the Kynema-SGF and OpenFAST repositories are cloned to the environment directory. 
 
 .. collapse:: Details on quick-create-dev
 
     Environments can be associated with directories (using the ``-d`` *option) or with a name (using the*
     ``-n`` option). Environments associated with directories tend to be more navigable for development 
-    because named environments create and use directories within the Exawind-Manager directory.
+    because named environments create and use directories within the Kynema-Manager directory.
 
-    The repositories cloned by Exawind-Manager are shallow clones, and do not automatically have any commit 
+    The repositories cloned by Kynema-Manager are shallow clones, and do not automatically have any commit 
     history. If you would like to compile an older version of a code using a different commit, you can retrieve
     the commit history using the command ``git fetch --unshallow`` within the repository and then check out 
     any past commit that you may need. After choosing a different commit, be sure to run ``git submodule update``
     to modify the submodules to correspond to the chosen commit.
     
     If you do not want
-    to clone new copies of AMR-Wind or OpenFAST and instead want to use other, already-cloned repositories:
+    to clone new copies of Kynema-SGF or OpenFAST and instead want to use other, already-cloned repositories:
     after making the environment directory, create symbolic links to the cloned repositories in the environment
     directory, ensuring that the name of the links match the name of the repository. Then create the
     environment with ``quick-create-dev``. If you use your own cloned repositories, be aware that this 
@@ -112,7 +112,7 @@ and the AMR-Wind and OpenFAST repositories are cloned to the environment directo
     The fact we specified
     main and develop branches when we created the environment does not mean that the code in these repositories 
     must be on the main and develop branches, respectively. These references communicate to Spack a grouping of 
-    dependencies for each code. In many cases, using different commits or even your own fork for ExaWind codes will 
+    dependencies for each code. In many cases, using different commits or even your own fork for Kynema codes will 
     not change their dependencies, and so the specification of main or master is typically the correct spec for 
     whatever version of the code you are using. OpenFAST compatibility can vary more from version to version, though.
 
@@ -135,14 +135,14 @@ To activate the Spack environment now, first activate Spack by repeating these c
 
 .. code-block:: console
 
-    export EXAWIND_MANAGER=${REPO_DEST}/exawind-manager
+    export EXAWIND_MANAGER=${REPO_DEST}/kynema-manager
     source ${EXAWIND_MANAGER}/start.sh && spack-start
 
 Now, the Spack environment can be activated.
 
 .. code-block:: console
 
-    cd ${REPO_DEST}/env_amrwind_openfast
+    cd ${REPO_DEST}/env_kynemasgf_openfast
     quick-activate .
 
 Finally, the Spack compilation is
@@ -162,7 +162,7 @@ same process of activating the environment and repeating the install command.
     as ``spack concretize`` will perform this part of the installation by itself. If the specifications (specs) of an environment
     are changed after concretization, this step may need to be forced to overwrite the preexisting environment using ``spack concretize -f``.
     Environments can be modified by editing the spack.yaml file or by using the ``spack rm <spec>`` command to remove specs (e.g., 
-    ``amr-wind@main``) and ``spack add <spec>`` to add specs (e.g., ``amr-wind@main+hypre``).
+    ``kynema-sgf@main``) and ``spack add <spec>`` to add specs (e.g., ``kynema-sgf@main+hypre``).
 
 After the code is compiled, the executables can be located within build-spack directories inside the package directories, and each
 package build has its own hash. Instead of referencing these locations directly to use the executables, Spack provides a command
@@ -170,9 +170,9 @@ to add them to the path, enabling the executable to be used directly. When the s
 
 .. code-block:: console
 
-    spack load amr-wind
+    spack load kynema-sgf
 
-to make executables from AMR-Wind directly available. To verify that the package was loaded correctly, type
+to make executables from Kynema-SGF directly available. To verify that the package was loaded correctly, type
 
 .. code-block:: console
 

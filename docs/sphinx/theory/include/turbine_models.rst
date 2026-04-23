@@ -5,12 +5,12 @@ Turbine models
 
 The modeling approaches for turbines, namely actuator disk model (ADM)
 and actuator line model (ALM), are presented in this section. Although
-AMR-Wind offers some stand-alone ADM implementations for turbines and
+Kynema-SGF offers some stand-alone ADM implementations for turbines and
 ALM pathways for individual wings, the primary methods for turbine
 simulations rely on coupling with the modular, open-source,
 multifidelity wind-energy tool
 OpenFAST :cite:p:`jonkman2018full,openfast-ref` for blade
-motion and turbine behavior while AMR-Wind calculates aerodynamic
+motion and turbine behavior while Kynema-SGF calculates aerodynamic
 interactions.
 
 Actuator disk model
@@ -58,7 +58,7 @@ different spreading kernels along the three principal coordinates
 (:math:`e_1`, :math:`e_2`, and :math:`e_3`) of an orthogonal coordinate
 system.
 
-AMR-Wind offers the traditional Gaussian along with a set of projections
+Kynema-SGF offers the traditional Gaussian along with a set of projections
 constructed from products of normalized linear basis functions,
 :math:`\xi`, similar to finite-elements, where the principal directions
 of the spreading functions align with the cylindrical coordinates of the
@@ -75,7 +75,7 @@ where :math:`\Delta h` is the distance between the actuator points in
 the associated principal direction and :math:`\tilde{x}` is the
 principal direction’s abscissa.
 
-Employing the linear basis function, AMR-Wind offers a spreading
+Employing the linear basis function, Kynema-SGF offers a spreading
 function that is uniform in the :math:`\theta` direction:
 
 .. math:: \Gamma_i(x_j) = \frac{\xi_r(r, \Delta r)}{2 \pi r_i} \:  \frac{1}{\epsilon \sqrt{\pi}} \exp^{-\frac{\left(\tilde{z}_i-\tilde{z}_j\right)^2}{\epsilon^2}},
@@ -101,7 +101,7 @@ spreading-function approaches.
    dots indicate the location of the actuator points and the color bar
    shows the strength of a normalized force.
 
-In conjunction with these spreading function options, AMR-Wind includes
+In conjunction with these spreading function options, Kynema-SGF includes
 three implementations of the ADM, and in each case the wind speed is
 sampled at discrete points, spaced evenly across the disk. To accurately
 estimate the freestream velocity, sample points are also placed upstream
@@ -112,7 +112,7 @@ discrete disk points. This means that the number of points for the wind
 speed sampling and the modeled body force can be independently
 configured for optimal sampling based on the chosen model and scenario.
 
-The simplest of the ADM options in AMR-Wind is the uniform :math:`C_t`
+The simplest of the ADM options in Kynema-SGF is the uniform :math:`C_t`
 model, which employs coefficients of thrust specified by the user at
 different wind speeds. To represent the loading on the blades, which
 directly translates to the force of the blades on the flow, the uniform
@@ -125,15 +125,15 @@ hub and tip effects, providing analytical expressions for axial and
 azimuthal force distributions. The Joukowsky disk approach has been
 validated for different wind turbines in diverse operating regimes and,
 as an analytical model, offers notable computational efficiency.
-Finally, AMR-Wind features an ADM approach coupled to OpenFAST
+Finally, Kynema-SGF features an ADM approach coupled to OpenFAST
 :cite:p:`Cheung_2023`, whereby OpenFAST modules use the
 sampled wind speeds to calculate wind turbine dynamics, including the
 aerodynamics of the turbine blades. After calculating the resulting body
-forces, these are distributed back to the fluid domain within AMR-Wind
+forces, these are distributed back to the fluid domain within Kynema-SGF
 by applying an isotropic smoothing kernel.
 
 In some scenarios, the first two approaches may be more expedient, and
-they have the advantage of being fully contained within AMR-Wind.
+they have the advantage of being fully contained within Kynema-SGF.
 However, by coupling to OpenFAST, additional aspects of turbine behavior
 are included in the modeling framework, such as structural dynamics, and
 controllers can be easily incorporated to govern turbine behavior during
@@ -200,7 +200,7 @@ values over the entire domain, and it is defined using
    0 & \textrm{otherwise}
    \end{matrix}\right. .
 
-The Godunov-based time discretization of AMR-Wind specifies that forcing
+The Godunov-based time discretization of Kynema-SGF specifies that forcing
 terms, such as :math:`\boldsymbol{S}_i` should be calculated at the half
 time step, :math:`n+1/2`. Calculating :math:`\boldsymbol{S}_i` consists
 of two parts: the point-force vector :math:`\boldsymbol{f}_i` and the
@@ -233,21 +233,21 @@ force placement influences the accuracy of the method. Accuracy issues,
 such as dependence of the actuator force on the time step size and
 incorrect power estimation for the turbine, arise when
 `[eq:alm_loc] <#eq:alm_loc>`__ is not used for the location of the
-actuator force, neglecting the time-staggered nature of AMR-Wind.
+actuator force, neglecting the time-staggered nature of Kynema-SGF.
 
-To simulate wind turbines using ALM, AMR-Wind relies on OpenFAST for the
-turbine representation. In this coupled framework, AMR-Wind supplies
+To simulate wind turbines using ALM, Kynema-SGF relies on OpenFAST for the
+turbine representation. In this coupled framework, Kynema-SGF supplies
 sampled velocities at actuator points to OpenFAST at the beginning of
 every time step, and OpenFAST returns updated actuator point forces and
 locations after progressing the turbine model forward in time. These
-forces and locations are incorporated into the AMR-Wind numerical
+forces and locations are incorporated into the Kynema-SGF numerical
 algorithm through the actuator force implementation. By using OpenFAST,
 including aero-elastic deformations and changes in wind turbine operation
 is straightforward. These effects are computed by OpenFAST modules as
-the simulation evolves and are passed on to AMR-Wind as changes to the
+the simulation evolves and are passed on to Kynema-SGF as changes to the
 actuator point locations.
 
-AMR-Wind offers a test bed for advanced actuator lines, providing
+Kynema-SGF offers a test bed for advanced actuator lines, providing
 variations to force distribution and point placement. The advanced ALM
 features include anisotropic Gaussian body forces to better represent
 wind turbine blades :cite:p:`churchfield2012large` and the

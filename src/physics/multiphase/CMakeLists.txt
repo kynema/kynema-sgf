@@ -1,0 +1,13 @@
+target_sources(${kynema_sgf_lib_name}
+  PRIVATE
+  MultiPhase.cpp
+  VortexPatch.cpp
+  VortexPatchScalarVel.cpp
+  ZalesakDisk.cpp
+  ZalesakDiskScalarVel.cpp
+  DamBreak.cpp
+  SloshingTank.cpp
+  RainDrop.cpp
+  BreakingWaves.cpp
+  ChannelBuilder.cpp 
+  )

@@ -1,17 +1,17 @@
-#include "aw_test_utils/MeshTest.H"
+#include "ks_test_utils/MeshTest.H"
 #include "test_act_utils.H"
 
-#include "amr-wind/wind_energy/actuator/turbine/fast/TurbineFast.H"
-#include "amr-wind/wind_energy/actuator/turbine/fast/turbine_fast_ops.H"
-#include "amr-wind/wind_energy/actuator/ActParser.H"
-#include "amr-wind/wind_energy/actuator/Actuator.H"
+#include "src/wind_energy/actuator/turbine/fast/TurbineFast.H"
+#include "src/wind_energy/actuator/turbine/fast/turbine_fast_ops.H"
+#include "src/wind_energy/actuator/ActParser.H"
+#include "src/wind_energy/actuator/Actuator.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-#define AW_ENABLE_OPENFAST_UTEST 0
+#define KS_ENABLE_OPENFAST_UTEST 0
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 
 template <typename T>
@@ -68,25 +68,25 @@ protected:
     }
 };
 
-class ActTurbPhyTest : public ::amr_wind::actuator::Actuator
+class ActTurbPhyTest : public ::kynema_sgf::actuator::Actuator
 {
 public:
-    explicit ActTurbPhyTest(::amr_wind::CFDSim& sim)
-        : ::amr_wind::actuator::Actuator(sim)
+    explicit ActTurbPhyTest(::kynema_sgf::CFDSim& sim)
+        : ::kynema_sgf::actuator::Actuator(sim)
     {}
 
 protected:
     void prepare_outputs() override {}
 };
 
-namespace act = ::amr_wind::actuator;
+namespace act = ::kynema_sgf::actuator;
 using MyTypes = ::testing::Types<act::ActSrcLine, act::ActSrcDisk>;
 
 TYPED_TEST_SUITE(ActTurbineFastTest, MyTypes, );
 
 TYPED_TEST(ActTurbineFastTest, test_ops)
 {
-    namespace act = ::amr_wind::actuator;
+    namespace act = ::kynema_sgf::actuator;
     MeshTest::initialize_mesh();
     act::utils::ActParser pp(
         "Actuator.TurbineFast" + TypeParam::identifier(), "Actuator.T1");
@@ -100,7 +100,7 @@ TYPED_TEST(ActTurbineFastTest, test_ops)
     amrex::Vector<int> act_proc_count(::amrex::ParallelDescriptor::NProcs(), 0);
     act::ops::determine_root_proc<act::TurbineFast>(data, act_proc_count);
 
-#if AW_ENABLE_OPENFAST_UTEST
+#if KS_ENABLE_OPENFAST_UTEST
     {
         using InitOp = act::ops::InitDataOp<act::TurbineFast, TypeParam>;
         InitOp op;
@@ -144,7 +144,7 @@ TYPED_TEST(ActTurbineFastTest, fast_turbine)
 
     ActTurbPhyTest act(MeshTest::sim());
     act.pre_init_actions();
-#if AW_ENABLE_OPENFAST_UTEST
+#if KS_ENABLE_OPENFAST_UTEST
     act.post_init_actions();
 #else
     GTEST_SKIP();
@@ -152,4 +152,4 @@ TYPED_TEST(ActTurbineFastTest, fast_turbine)
 }
 } // namespace
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -3,16 +3,16 @@
 
 #include <string>
 
-#include "amr-wind/core/Physics.H"
+#include "src/core/Physics.H"
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
-class PhysicsEx : public amr_wind::Physics::Register<PhysicsEx>
+class PhysicsEx : public kynema_sgf::Physics::Register<PhysicsEx>
 {
 public:
     static std::string identifier() { return "PhysicsEx"; }
 
-    explicit PhysicsEx(amr_wind::CFDSim& /*unused*/);
+    explicit PhysicsEx(kynema_sgf::CFDSim& /*unused*/);
 
     ~PhysicsEx() override = default;
 
@@ -24,6 +24,6 @@ public:
     void post_advance_work() override;
 };
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
 
 #endif /* PHYSICS_TEST_UTILS_H */

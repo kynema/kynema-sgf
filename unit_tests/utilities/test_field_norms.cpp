@@ -1,17 +1,17 @@
-#include "aw_test_utils/MeshTest.H"
-#include "amr-wind/utilities/IOManager.H"
-#include "amr-wind/utilities/sampling/FieldNorms.H"
-#include "amr-wind/utilities/tagging/FieldRefinement.H"
+#include "ks_test_utils/MeshTest.H"
+#include "src/utilities/IOManager.H"
+#include "src/utilities/sampling/FieldNorms.H"
+#include "src/utilities/tagging/FieldRefinement.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
 void init_velocity(
-    amr_wind::Field& vel_fld,
+    kynema_sgf::Field& vel_fld,
     amrex::Real u,
     amrex::Real v,
     amrex::Real w,
@@ -38,7 +38,7 @@ void init_velocity(
 
 void init_velocity(
     const amrex::Real var_f,
-    amr_wind::Field& vel_fld,
+    kynema_sgf::Field& vel_fld,
     const amrex::Real u,
     const amrex::Real v,
     const amrex::Real w)
@@ -66,7 +66,8 @@ void init_velocity(
 class FNRefinemesh : public AmrTestMesh
 {
 public:
-    FNRefinemesh() : m_mesh_refiner(new amr_wind::RefineCriteriaManager(m_sim))
+    FNRefinemesh()
+        : m_mesh_refiner(new kynema_sgf::RefineCriteriaManager(m_sim))
     {}
     void init_refiner() { m_mesh_refiner->initialize(); }
     void remesh() { regrid(0, 0.0_rt); }
@@ -117,14 +118,14 @@ protected:
     }
 
 private:
-    std::unique_ptr<amr_wind::RefineCriteriaManager> m_mesh_refiner;
+    std::unique_ptr<kynema_sgf::RefineCriteriaManager> m_mesh_refiner;
 };
 
-class FieldNormsImpl : public amr_wind::field_norms::FieldNorms
+class FieldNormsImpl : public kynema_sgf::field_norms::FieldNorms
 {
 public:
-    FieldNormsImpl(amr_wind::CFDSim& sim, const std::string& label)
-        : amr_wind::field_norms::FieldNorms(sim, label)
+    FieldNormsImpl(kynema_sgf::CFDSim& sim, const std::string& label)
+        : kynema_sgf::field_norms::FieldNorms(sim, label)
     {}
     void check_output(
         amrex::Real check_val0, amrex::Real check_val1, amrex::Real check_val2);
@@ -146,7 +147,7 @@ void FieldNormsImpl::check_output(
     EXPECT_EQ(var_names()[1], (std::string) "velocityy");
     EXPECT_EQ(var_names()[2], (std::string) "velocityz");
     // Loop through norm values and check them
-    const amrex::Real tol = amr_wind::constants::TIGHT_TOL;
+    const amrex::Real tol = kynema_sgf::constants::TIGHT_TOL;
     EXPECT_NEAR(field_norms()[0], check_val0, tol);
     EXPECT_NEAR(field_norms()[1], check_val1, tol);
     EXPECT_NEAR(field_norms()[2], check_val2, tol);
@@ -156,7 +157,7 @@ void FieldNormsImpl::check_output(amrex::Real check_val)
 {
     // Get variable names and check
     EXPECT_EQ(var_names()[0], (std::string) "velocity");
-    EXPECT_NEAR(field_norms()[0], check_val, amr_wind::constants::TIGHT_TOL);
+    EXPECT_NEAR(field_norms()[0], check_val, kynema_sgf::constants::TIGHT_TOL);
 }
 
 void FieldNormsImpl::check_output4(amrex::Real check_val)
@@ -167,7 +168,7 @@ void FieldNormsImpl::check_output4(amrex::Real check_val)
     EXPECT_EQ(var_names()[2], (std::string) "v_mac");
     EXPECT_EQ(var_names()[3], (std::string) "w_mac");
     // Loop through norm values and check them
-    const amrex::Real tol = amr_wind::constants::TIGHT_TOL;
+    const amrex::Real tol = kynema_sgf::constants::TIGHT_TOL;
     for (int n = 0; n < 4; ++n) {
         EXPECT_NEAR(field_norms()[n], check_val, tol * check_val * 0.1_rt);
     }
@@ -718,4 +719,4 @@ TEST_F(FieldNormsTest, norm_vector_magnitude)
     tool_linf.check_output(vmag_norm);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -1,24 +1,24 @@
 #include <algorithm>
 
-#include "aw_test_utils/MeshTest.H"
+#include "ks_test_utils/MeshTest.H"
 #include "test_act_utils.H"
 
-#include "amr-wind/wind_energy/actuator/Actuator.H"
-#include "amr-wind/wind_energy/actuator/ActuatorContainer.H"
-#include "amr-wind/wind_energy/actuator/ActuatorModel.H"
-#include "amr-wind/wind_energy/actuator/ActParser.H"
-#include "amr-wind/wind_energy/actuator/ActSrcLineOp.H"
-#include "amr-wind/wind_energy/actuator/actuator_types.H"
-#include "amr-wind/wind_energy/actuator/wing/ActuatorWing.H"
-#include "amr-wind/wind_energy/actuator/wing/wing_ops.H"
-#include "amr-wind/core/gpu_utils.H"
-#include "amr-wind/core/vs/vector_space.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/wind_energy/actuator/Actuator.H"
+#include "src/wind_energy/actuator/ActuatorContainer.H"
+#include "src/wind_energy/actuator/ActuatorModel.H"
+#include "src/wind_energy/actuator/ActParser.H"
+#include "src/wind_energy/actuator/ActSrcLineOp.H"
+#include "src/wind_energy/actuator/actuator_types.H"
+#include "src/wind_energy/actuator/wing/ActuatorWing.H"
+#include "src/wind_energy/actuator/wing/wing_ops.H"
+#include "src/core/gpu_utils.H"
+#include "src/core/vs/vector_space.H"
+#include "src/utilities/trig_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 class ActFlatPlateTest : public MeshTest
 {
@@ -45,8 +45,8 @@ protected:
     }
 };
 
-namespace act = amr_wind::actuator;
-namespace vs = amr_wind::vs;
+namespace act = kynema_sgf::actuator;
+namespace vs = kynema_sgf::vs;
 
 struct FlatPlate : public act::WingType
 {
@@ -60,16 +60,16 @@ struct FlatPlate : public act::WingType
 
 } // namespace
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 
 namespace ops {
 
 template <>
 struct UseDefaultOp<
-    ::amr_wind_tests::FlatPlate,
-    ::amr_wind::actuator::ActSrcLine>
+    ::kynema_sgf_tests::FlatPlate,
+    ::kynema_sgf::actuator::ActSrcLine>
 {
     static constexpr bool update_pos = true;
     static constexpr bool update_vel = false;
@@ -78,11 +78,11 @@ struct UseDefaultOp<
 };
 
 template <typename SrcTrait>
-struct ReadInputsOp<::amr_wind_tests::FlatPlate, SrcTrait>
+struct ReadInputsOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 {
     void operator()(
-        ::amr_wind_tests::FlatPlate::DataType& data,
-        const amr_wind::actuator::utils::ActParser& pp)
+        ::kynema_sgf_tests::FlatPlate::DataType& data,
+        const kynema_sgf::actuator::utils::ActParser& pp)
     {
         // Copied from flat_plate_ops, but with unit chord assumed
         auto& wdata = data.meta();
@@ -111,14 +111,14 @@ struct ReadInputsOp<::amr_wind_tests::FlatPlate, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct InitDataOp<::amr_wind_tests::FlatPlate, SrcTrait>
+struct InitDataOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 {
-    void operator()(::amr_wind_tests::FlatPlate::DataType& data)
+    void operator()(::kynema_sgf_tests::FlatPlate::DataType& data)
     {
         auto& grid = data.grid();
         auto& wdata = data.meta();
 
-        amr_wind::actuator::wing::init_data_structures(wdata, grid);
+        kynema_sgf::actuator::wing::init_data_structures(wdata, grid);
 
         {
             // Check that the wing coordinates were initialized correctly
@@ -128,7 +128,7 @@ struct InitDataOp<::amr_wind_tests::FlatPlate, SrcTrait>
             auto angle2 = std::asin(
                 (grid.orientation[0].x().unit() ^ vs::Vector::ihat()) &
                 vs::Vector::jhat());
-            auto angle_gold = ::amr_wind::utils::radians(wdata.pitch);
+            auto angle_gold = ::kynema_sgf::utils::radians(wdata.pitch);
             EXPECT_NEAR(
                 wing_len, 8.0_rt,
                 std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
@@ -146,9 +146,9 @@ struct InitDataOp<::amr_wind_tests::FlatPlate, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct UpdateVelOp<::amr_wind_tests::FlatPlate, SrcTrait>
+struct UpdateVelOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 {
-    void operator()(::amr_wind_tests::FlatPlate::DataType& data)
+    void operator()(::kynema_sgf_tests::FlatPlate::DataType& data)
     {
         const auto& grid = data.grid();
         const auto& pos = grid.vel_pos;
@@ -166,9 +166,9 @@ struct UpdateVelOp<::amr_wind_tests::FlatPlate, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct ComputeForceOp<::amr_wind_tests::FlatPlate, SrcTrait>
+struct ComputeForceOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 {
-    void operator()(::amr_wind_tests::FlatPlate::DataType& data)
+    void operator()(::kynema_sgf_tests::FlatPlate::DataType& data)
     {
         auto& grid = data.grid();
         const int npts = data.meta().num_pts;
@@ -184,7 +184,7 @@ struct ComputeForceOp<::amr_wind_tests::FlatPlate, SrcTrait>
             const auto aoa = std::atan2(wvel.z(), wvel.x());
 
             // Make up some Cl, Cd values
-            const auto cl = amr_wind::utils::two_pi() * aoa;
+            const auto cl = kynema_sgf::utils::two_pi() * aoa;
             const auto cd = cl * std::sin(aoa);
 
             // Assume unit chord
@@ -204,17 +204,17 @@ struct ComputeForceOp<::amr_wind_tests::FlatPlate, SrcTrait>
 
 } // namespace ops
 
-template class ::amr_wind::actuator::
-    ActModel<::amr_wind_tests::FlatPlate, ::amr_wind::actuator::ActSrcLine>;
-} // namespace amr_wind::actuator
+template class ::kynema_sgf::actuator::
+    ActModel<::kynema_sgf_tests::FlatPlate, ::kynema_sgf::actuator::ActSrcLine>;
+} // namespace kynema_sgf::actuator
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
-class ActPhysicsTest : public ::amr_wind::actuator::Actuator
+class ActPhysicsTest : public ::kynema_sgf::actuator::Actuator
 {
 public:
-    explicit ActPhysicsTest(::amr_wind::CFDSim& sim)
-        : ::amr_wind::actuator::Actuator(sim)
+    explicit ActPhysicsTest(::kynema_sgf::CFDSim& sim)
+        : ::kynema_sgf::actuator::Actuator(sim)
     {}
 
 protected:
@@ -225,7 +225,7 @@ TEST_F(ActFlatPlateTest, act_model_init)
 {
     initialize_mesh();
     sim().repo().declare_field("actuator_src_term", 3, 0);
-    amr_wind::actuator::ActuatorContainer::ParticleType::NextID(1U);
+    kynema_sgf::actuator::ActuatorContainer::ParticleType::NextID(1U);
     {
         amrex::ParmParse pp("Actuator.TestFlatPlateLine");
         pp.add("num_points", 11);
@@ -237,9 +237,9 @@ TEST_F(ActFlatPlateTest, act_model_init)
         pp.add("pitch", 6.0_rt);
     }
 
-    ::amr_wind::actuator::ActModel<FlatPlate> flat_plate(sim(), "F1", 0);
+    ::kynema_sgf::actuator::ActModel<FlatPlate> flat_plate(sim(), "F1", 0);
     {
-        amr_wind::actuator::utils::ActParser pp(
+        kynema_sgf::actuator::utils::ActParser pp(
             "Actuator.TestFlatPlateLine", "Actuator.F1");
         flat_plate.read_inputs(pp);
     }
@@ -260,7 +260,7 @@ TEST_F(ActFlatPlateTest, actuator_init)
     auto& density = sim().repo().declare_field("density", 1, 3);
     density.setVal(1.0_rt);
     init_field(vel);
-    amr_wind::actuator::ActuatorContainer::ParticleType::NextID(1U);
+    kynema_sgf::actuator::ActuatorContainer::ParticleType::NextID(1U);
 
     amrex::Vector<std::string> actuators{"T1", "T2"};
     {
@@ -298,7 +298,7 @@ TEST_F(ActFlatPlateTest, flat_plate_init)
     auto& density = sim().repo().declare_field("density", 1, 3);
     density.setVal(1.0_rt);
     vel.setVal(10.0_rt, 0, 1, 3);
-    amr_wind::actuator::ActuatorContainer::ParticleType::NextID(1U);
+    kynema_sgf::actuator::ActuatorContainer::ParticleType::NextID(1U);
 
     amrex::Vector<std::string> actuators{"T1", "T2"};
     {
@@ -328,4 +328,4 @@ TEST_F(ActFlatPlateTest, flat_plate_init)
     act.pre_init_actions();
     act.post_init_actions();
 }
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
