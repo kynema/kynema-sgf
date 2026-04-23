@@ -46,13 +46,13 @@ Building from source
 
    .. code-block:: console
 
-      git clone --recursive https://github.com/exawind/amr-wind.git
+      git clone --recursive https://github.com/kynema/kynema-sgf.git
 
 #. Configure and build
 
    .. code-block:: console
 
-      mkdir amr-wind/build && cd amr-wind/build
+      mkdir kynema-sgf/build && cd kynema-sgf/build
       cmake -DKYNEMA_SGF_ENABLE_TESTS:BOOL=ON ../
       make
 
