@@ -1,6 +1,6 @@
 target_sources(
   ${kynema_sgf_unit_test_exe_name} PRIVATE
-  test_channel_builder_shapes.cpp
+  test_channel_builder.cpp
   test_vof_plic.cpp
   test_vof_cons.cpp
   test_vof_tools.cpp
