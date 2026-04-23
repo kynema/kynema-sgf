@@ -1,16 +1,16 @@
 #ifndef CHANNELBUILDER_H
 #define CHANNELBUILDER_H
 
-#include "amr-wind/core/Physics.H"
-#include "amr-wind/core/Field.H"
-#include "amr-wind/CFDSim.H"
+#include "src/core/Physics.H"
+#include "src/core/Field.H"
+#include "src/CFDSim.H"
 #include "AMReX_Gpu.H"
 
 enum class ChannelSegmentType : std::uint8_t { Ellipse, Trapezoid };
 
 enum class ChannelVelocityProfile : std::uint8_t { Uniform, Linear, Parabolic };
 
-namespace amr_wind::channelbuilder {
+namespace kynema_sgf::channelbuilder {
 
 [[nodiscard]] bool trapezoid(
     const amrex::Real& top,
@@ -129,6 +129,6 @@ private:
 
     bool is_multiphase;
 };
-} // namespace amr_wind::channelbuilder
+} // namespace kynema_sgf::channelbuilder
 
 #endif

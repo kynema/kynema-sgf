@@ -1,15 +1,15 @@
-#include "amr-wind/physics/multiphase/ChannelBuilder.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
-#include "amr-wind/CFDSim.H"
+#include "src/physics/multiphase/ChannelBuilder.H"
+#include "src/physics/multiphase/MultiPhase.H"
+#include "src/CFDSim.H"
 #include "AMReX_ParmParse.H"
-#include "amr-wind/utilities/IOManager.H"
+#include "src/utilities/IOManager.H"
 #include "AMReX_iMultiFab.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind::channelbuilder {
+namespace kynema_sgf::channelbuilder {
 
 [[nodiscard]] bool trapezoid(
     const amrex::Real& top,
@@ -431,4 +431,4 @@ void ChannelBuilder::post_regrid_actions()
     }
 }
 
-} // namespace amr_wind::channelbuilder
+} // namespace kynema_sgf::channelbuilder
