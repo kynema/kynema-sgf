@@ -1,6 +1,6 @@
 .. _compiling:
 
-Compiling using Spack, with Exawind-Manager
+Compiling using Spack, with Kynema-Manager
 ===========================================
 
 The first step before using Kynema-SGF is compilation of the software on the computing resources
@@ -9,8 +9,8 @@ to handle code dependencies and keep track of hardware variations.
 
 Spack is a "package management tool designed to support multiple versions and configurations of 
 software on a wide variety of platforms and environments." To make it easier for users to harness
-Spack, we provide the repository `Exawind-Manager <https://github.com/Exawind/kynema-manager>`_.
-Exawind-Manager is a custom application of the Spack-Manager tool, which uses Spack environments 
+Spack, we provide the repository `Kynema-Manager <https://github.com/Kynema/kynema-manager>`_.
+Kynema-Manager is a custom application of the Spack-Manager tool, which uses Spack environments 
 to manage software builds. From the 
 `Spack-Manager documentation <https://sandialabs.github.io/spack-manager/user_profiles/developers/developer_spack_minimum.html>`_,
 "These environments are similar to 
@@ -19,7 +19,7 @@ As such it is recommended that you maintain a single instance of Spack-Manager t
 and create new environments when you want to start a new development project." 
 
 This walkthrough is meant for common Kynema-SGF workflows, and to avoid verbosity we provide limited 
-details about the functionality of Spack and Exawind-Manager. Some additional details are included in 
+details about the functionality of Spack and Kynema-Manager. Some additional details are included in 
 dropdown sections, but these can be ignored if they are hard to understand.
 If you would rather avoid the use of Spack and handle dependencies manually, please refer to
 the section of the user manual outlining the process of building from the source code using CMake: :doc:`../user/build`.
@@ -29,21 +29,21 @@ the section of the user manual outlining the process of building from the source
     Further installation examples are provided in the Spack-Manager documentation, 
     including `Snapshot Developer Workflow Example <https://sandialabs.github.io/spack-manager/user_profiles/developers/snapshot_workflow.html>`_
     and `Spack-Manager abbreviated example <https://sandialabs.github.io/spack-manager/user_profiles/developers/developer_workflow.html#quick-start>`_.
-    However, it should be noted that when using Exawind-Manager, the environment variable EXAWIND_MANAGER should be used in place of
-    the SPACK_MANAGER variable, pointing to the location of the Exawind-Manager directory.
+    However, it should be noted that when using Kynema-Manager, the environment variable EXAWIND_MANAGER should be used in place of
+    the SPACK_MANAGER variable, pointing to the location of the Kynema-Manager directory.
 
 |
 
-Set up Exawind-Manager
+Set up Kynema-Manager
 ----------------------
 
-To begin the process, clone Exawind-Manager using the following command, which includes its submodules through the ``--recursive`` option.
+To begin the process, clone Kynema-Manager using the following command, which includes its submodules through the ``--recursive`` option.
 
 .. code-block:: console
 
     export REPO_DEST=<fill in the directory>
     cd ${REPO_DEST}
-    git clone --recursive https://github.com/Exawind/kynema-manager.git
+    git clone --recursive https://github.com/Kynema/kynema-manager.git
 
 Because the kynema-manager directory will house any dependencies that need to be downloaded, it is best to put it in a
 location with sufficient memory.
@@ -94,9 +94,9 @@ and the Kynema-SGF and OpenFAST repositories are cloned to the environment direc
 
     Environments can be associated with directories (using the ``-d`` *option) or with a name (using the*
     ``-n`` option). Environments associated with directories tend to be more navigable for development 
-    because named environments create and use directories within the Exawind-Manager directory.
+    because named environments create and use directories within the Kynema-Manager directory.
 
-    The repositories cloned by Exawind-Manager are shallow clones, and do not automatically have any commit 
+    The repositories cloned by Kynema-Manager are shallow clones, and do not automatically have any commit 
     history. If you would like to compile an older version of a code using a different commit, you can retrieve
     the commit history using the command ``git fetch --unshallow`` within the repository and then check out 
     any past commit that you may need. After choosing a different commit, be sure to run ``git submodule update``

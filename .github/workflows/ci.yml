@@ -134,7 +134,7 @@ jobs:
     - name: Reference Checkout
       if: ${{matrix.build_type == 'Release' && github.event_name != 'push'}}
       run : |
-        git remote add reference https://github.com/Exawind/amr-wind.git
+        git remote add reference https://github.com/Kynema/amr-wind.git
         git fetch reference main --depth=1
         git checkout reference/main
         git submodule update --recursive --depth=1

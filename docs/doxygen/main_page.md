@@ -61,6 +61,6 @@ bug-fixes, documentation updates, etc.
 ## License
 
 Kynema-SGF is licensed under BSD 3-clause license. Please see the
-[LICENSE](https://github.com/Exawind/kynema-sgf/blob/development/LICENSE) included in
+[LICENSE](https://github.com/Kynema/kynema-sgf/blob/development/LICENSE) included in
 the source code repository for more details.
 

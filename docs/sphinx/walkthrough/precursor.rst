@@ -14,7 +14,7 @@ and the second simulation will serve as a "precursor" for a turbine simulation.
 Before simulating anything, we first need to set up the :doc:`input file <../user/inputs>`. This 
 is a text file, and its filename traditionally ends with ``.inp``. There are generally two approaches to 
 set one up: manually through a text editor, often beginning with an example file as a starting point,
-or with the use of `amr-wind-frontend <https://github.com/Exawind/amr-wind-frontend>`_. For larger 
+or with the use of `amr-wind-frontend <https://github.com/Kynema/amr-wind-frontend>`_. For larger 
 simulations, with many turbines and refinement zones, amr-wind-frontend is the ideal approach for 
 input-file setup. This tool shows the locations of the turbines and refinements, providing a great 
 sanity check for expensive simulations. For simpler simulations, with one or a handful of turbines,

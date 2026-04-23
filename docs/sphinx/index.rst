@@ -23,7 +23,7 @@ perform blade-resolved simulations of multiple wind turbines within a wind farm.
 For offshore applications, the ability to model the air-sea interaction effects
 and its impact on the ABL characteristics is another focus for the code
 development effort. As with other codes in the
-`Exawind <https://github.com/kynema>`_ ecosystem, AMR-wind shares the following
+`Kynema <https://github.com/kynema>`_ ecosystem, AMR-wind shares the following
 objectives:
 
 - an open, well-documented implementation of the state-of-the-art

@@ -67,7 +67,7 @@ Steps to reproduce the behavior:
   No additional third-party libraries enabled
 
            This software is released under the BSD 3-clause license.
- See https://github.com/Exawind/kynema-sgf/blob/development/LICENSE for details.
+ See https://github.com/Kynema/kynema-sgf/blob/development/LICENSE for details.
 ------------------------------------------------------------------------------
 ```
 

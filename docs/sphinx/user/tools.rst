@@ -17,7 +17,7 @@ folder within ``tools/utilities/`` there.
 
 These capabilities are not meant to be exhaustive and are not maintained as actively as the
 solver source code. More tools for interacting with Kynema-SGF data (pre- and post-processing)
-can be found in `amr-wind-frontend <https://github.com/Exawind/amr-wind-frontend>`_.
+can be found in `amr-wind-frontend <https://github.com/Kynema/amr-wind-frontend>`_.
 
 Python scripts
 --------------

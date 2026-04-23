@@ -7,12 +7,12 @@ Kynema-SGF comes with a suite of regression tests to ensure that the relevant
 parts of the code are working correctly, and any code modifications do not
 introduce errors. These tests are run nightly using an automated system and the
 results are published on a `public dashboard
-<https://my.cdash.org/index.php?project=Exawind>`_. We ensure that the testing
+<https://my.cdash.org/index.php?project=Kynema>`_. We ensure that the testing
 covers multiple operating systems (currently Linux and MacOS), different
 compilers (GCC, Intel, LLVM Clang, and NVIDIA CUDA), as well as two different
 versions of AMReX library -- a stable monthly snapshot, and the
 version-of-the-day (VOTD) development branch. In addition to the nightly
-testing, `continuous integration (CI) capability <https://github.com/Exawind/kynema-sgf/actions?query=workflow%3AKynema-SGF-CI>`_ is used to test pull-requests to
+testing, `continuous integration (CI) capability <https://github.com/Kynema/kynema-sgf/actions?query=workflow%3AKynema-SGF-CI>`_ is used to test pull-requests to
 ensure that they pass all tests before they are merged to the mainline codebase.
 
 Enabling and running regression tests

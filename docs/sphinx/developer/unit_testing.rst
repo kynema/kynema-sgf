@@ -442,18 +442,18 @@ Example unit tests
 Following are a list of unit tests available within Kynema-SGF repository that can
 be used as starting points for users to write new tests:
 
-`test_simtime.cpp <https://github.com/Exawind/kynema-sgf/blob/development/unit_tests/core/test_simtime.cpp>`_
+`test_simtime.cpp <https://github.com/Kynema/kynema-sgf/blob/development/unit_tests/core/test_simtime.cpp>`_
 
    Simple unit test example that tests the behavior of
    `kynema_sgf::SimTime`. This test only relies on :class:`AmrexTest` and
    does not require a mesh.
 
-`test_abl_init.cpp <https://github.com/Exawind/kynema-sgf/blob/development/unit_tests/wind_energy/test_abl_init.cpp>`_
+`test_abl_init.cpp <https://github.com/Kynema/kynema-sgf/blob/development/unit_tests/wind_energy/test_abl_init.cpp>`_
 
    This is an example that uses :class:`MeshTest` to generate a test mesh and
    test the ABL initial conditions generator algorithms.
 
-`test_refinement.cpp <https://github.com/Exawind/kynema-sgf/blob/development/unit_tests/utilities/test_refinement.cpp>`_
+`test_refinement.cpp <https://github.com/Kynema/kynema-sgf/blob/development/unit_tests/utilities/test_refinement.cpp>`_
 
    This is an advanced example that test the user-defined nested mesh refinement
    algorithm by creating a test fixture that is capable of adaptive mesh
