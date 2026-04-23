@@ -59,8 +59,8 @@ a scratch directory as the active directory during a simulation run. In that con
 Please consult the user manual of your cluster to design such a script properly. 
 
 Here are a few tips for submitting an Kynema-SGF run. If you used a Spack environment to compile
-Kynema-SGF, it is easiest to reference the amr-wind executable by activating Spack, activating the environment, and then using
-the command ``spack load amr-wind`` to have the correct executable available without needing to specify its full path. Finally,
+Kynema-SGF, it is easiest to reference the kynema-sgf executable by activating Spack, activating the environment, and then using
+the command ``spack load kynema-sgf`` to have the correct executable available without needing to specify its full path. Finally,
 the syntax of the Kynema-SGF command looks like
 
 .. code-block:: console

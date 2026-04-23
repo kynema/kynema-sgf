@@ -65,7 +65,7 @@ Before installing anything, we can obtain info about the codes that Spack suppor
 
 .. code-block:: console
     
-    spack info amr-wind
+    spack info kynema-sgf
 
 and 
 
@@ -83,7 +83,7 @@ that rely on the actuator-line method (ALM). The next step is to create the envi
 .. code-block:: console
 
     mkdir ${REPO_DEST}/env_amrwind_openfast && cd ${REPO_DEST}/env_amrwind_openfast
-    quick-create-dev -d . -s amr-wind@main+openfast+netcdf%compiler openfast@3.5.3+rosco%compiler
+    quick-create-dev -d . -s kynema-sgf@main+openfast+netcdf%compiler openfast@3.5.3+rosco%compiler
 
 This ``quick-create-dev`` command has flags selected so that that Kynema-SGF will work with OpenFAST,
 Kynema-SGF can save certain files using NetCDF, and OpenFAST will compile with
@@ -162,7 +162,7 @@ same process of activating the environment and repeating the install command.
     as ``spack concretize`` will perform this part of the installation by itself. If the specifications (specs) of an environment
     are changed after concretization, this step may need to be forced to overwrite the preexisting environment using ``spack concretize -f``.
     Environments can be modified by editing the spack.yaml file or by using the ``spack rm <spec>`` command to remove specs (e.g., 
-    ``amr-wind@main``) and ``spack add <spec>`` to add specs (e.g., ``amr-wind@main+hypre``).
+    ``kynema-sgf@main``) and ``spack add <spec>`` to add specs (e.g., ``kynema-sgf@main+hypre``).
 
 After the code is compiled, the executables can be located within build-spack directories inside the package directories, and each
 package build has its own hash. Instead of referencing these locations directly to use the executables, Spack provides a command
@@ -170,7 +170,7 @@ to add them to the path, enabling the executable to be used directly. When the s
 
 .. code-block:: console
 
-    spack load amr-wind
+    spack load kynema-sgf
 
 to make executables from Kynema-SGF directly available. To verify that the package was loaded correctly, type
 

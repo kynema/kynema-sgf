@@ -1,7 +1,7 @@
 .. _run:
 
 Running Kynema-SGF
-=================
+==================
 
 To run :program:`kynema_sgf`, the user must provide a text file containing inputs
 describing the problem and any additional command-line arguments that override
@@ -17,7 +17,7 @@ executable.
 See :ref:`input file description <inputs>` for a list of Kynema-SGF input flags and proper syntax.
 
 Restarting Kynema-SGF
---------------------
+---------------------
 
 To restart a case, an initial simulation must be run with Kynema-SGF checkpoints. These checkpoints 
 are a slice of the solution, and solution settings, that will provide initial input for a restart. Check the
@@ -28,7 +28,7 @@ are a slice of the solution, and solution settings, that will provide initial in
 #. Re-submit case as above
 
 Restarting Kynema-SGF with OpenFAST Turbines
--------------------------------------------
+--------------------------------------------
 
 .. note::
    Kynema-SGF supports OpenFAST version 3.5 and 4.1 (and the patched versions of these). Updates to OpenFAST input files should follow the `OpenFAST documentation <https://openfast.readthedocs.io/en/dev/source/user/api_change.html>`_ on the matter.

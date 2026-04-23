@@ -141,9 +141,9 @@ fixtures extensively to perform actions like creating a mesh and generating some
 test fields that will be used to perform the tests.
 
 Unit testing in Kynema-SGF
--------------------------
+--------------------------
 
-Unit test files are in :file:`amr-wind/unit_tests` directory. All unit test code
+Unit test files are in :file:`kynema-sgf/unit_tests` directory. All unit test code
 is written within the ``kynema_sgf_tests`` namespace. This section describes the
 scaffolding available to create unit tests and provides a few examples of unit
 tests to help developers write new ones.
@@ -162,7 +162,7 @@ reset between each test to ensure a clean environment for each test. Kynema-SGF
 provides a few classes that provide the necessary scaffolding to quickly setup
 and run tests.
 
-Within the :file:`amr-wind/unit_tests` directory, the scaffolding utilities
+Within the :file:`kynema-sgf/unit_tests` directory, the scaffolding utilities
 related to testing are in :file:`ks_test_utils` directory. This section provides
 a brief overview of the core classes and their purpose.
 
@@ -442,18 +442,18 @@ Example unit tests
 Following are a list of unit tests available within Kynema-SGF repository that can
 be used as starting points for users to write new tests:
 
-`test_simtime.cpp <https://github.com/Exawind/amr-wind/blob/development/unit_tests/core/test_simtime.cpp>`_
+`test_simtime.cpp <https://github.com/Exawind/kynema-sgf/blob/development/unit_tests/core/test_simtime.cpp>`_
 
    Simple unit test example that tests the behavior of
    `kynema_sgf::SimTime`. This test only relies on :class:`AmrexTest` and
    does not require a mesh.
 
-`test_abl_init.cpp <https://github.com/Exawind/amr-wind/blob/development/unit_tests/wind_energy/test_abl_init.cpp>`_
+`test_abl_init.cpp <https://github.com/Exawind/kynema-sgf/blob/development/unit_tests/wind_energy/test_abl_init.cpp>`_
 
    This is an example that uses :class:`MeshTest` to generate a test mesh and
    test the ABL initial conditions generator algorithms.
 
-`test_refinement.cpp <https://github.com/Exawind/amr-wind/blob/development/unit_tests/utilities/test_refinement.cpp>`_
+`test_refinement.cpp <https://github.com/Exawind/kynema-sgf/blob/development/unit_tests/utilities/test_refinement.cpp>`_
 
    This is an advanced example that test the user-defined nested mesh refinement
    algorithm by creating a test fixture that is capable of adaptive mesh

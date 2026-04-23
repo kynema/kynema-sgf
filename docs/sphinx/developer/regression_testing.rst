@@ -12,7 +12,7 @@ covers multiple operating systems (currently Linux and MacOS), different
 compilers (GCC, Intel, LLVM Clang, and NVIDIA CUDA), as well as two different
 versions of AMReX library -- a stable monthly snapshot, and the
 version-of-the-day (VOTD) development branch. In addition to the nightly
-testing, `continuous integration (CI) capability <https://github.com/Exawind/amr-wind/actions?query=workflow%3AKynema-SGF-CI>`_ is used to test pull-requests to
+testing, `continuous integration (CI) capability <https://github.com/Exawind/kynema-sgf/actions?query=workflow%3AKynema-SGF-CI>`_ is used to test pull-requests to
 ensure that they pass all tests before they are merged to the mainline codebase.
 
 Enabling and running regression tests
@@ -33,7 +33,7 @@ CMake configure phase: :cmakeval:`KYNEMA_SGF_ENABLE_TESTS` as shown below:
 .. code-block:: console
 
    # Switch to AMR-wind source code
-   cd ${HOME}/exawind/source/amr-wind
+   cd ${HOME}/exawind/source/kynema-sgf
    # Create a build directory
    mkdir build-test
    cd build-test
@@ -94,7 +94,7 @@ additional flags during the CMake configure phase:
 .. code-block:: console
 
    # Switch to AMR-wind source code
-   cd ${HOME}/exawind/source/amr-wind
+   cd ${HOME}/exawind/source/kynema-sgf
    # Create a build directory
    mkdir build-test
    cd build-test
@@ -127,11 +127,11 @@ phase, as shown below:
    -- CMAKE_CXX_COMPILER_ID = AppleClang
    -- CMAKE_CXX_COMPILER_VERSION = 15.0.0.15000100
    -- CMAKE_BUILD_TYPE = Release
-   -- Test golds directory for fcompare: ${HOME}/exawind/source/amr-wind/build-test/golds/current/Darwin/AppleClang/15.0.0.15000100
-   -- Gold files will be saved to: ${HOME}/exawind/source/amr-wind/build-test/golds/tmp/Darwin/AppleClang/15.0.0.15000100
+   -- Test golds directory for fcompare: ${HOME}/exawind/source/kynema-sgf/build-test/golds/current/Darwin/AppleClang/15.0.0.15000100
+   -- Gold files will be saved to: ${HOME}/exawind/source/kynema-sgf/build-test/golds/tmp/Darwin/AppleClang/15.0.0.15000100
    -- Configuring done (1.3s)
    -- Generating done (0.6s)
-   -- Build files have been written to: ${HOME}/exawind/source/amr-wind/build-test
+   -- Build files have been written to: ${HOME}/exawind/source/kynema-sgf/build-test
 
 The gold files directory is organized by ``${OS}/${COMPILER}/${COMPILER_VERSION}``. The reference gold files must first be created with a reference branch of Kynema-SGF, then saved in the reference gold directory:
 
@@ -172,7 +172,7 @@ by ``fcompare`` that can be used for diagnostics.
 .. code-block:: console
 
   ❯ ctest -R abl_godunov$ --output-on-failure
-  Test project ~/exawind/source/amr-wind/build-test
+  Test project ~/exawind/source/kynema-sgf/build-test
       Start 7: abl_godunov
   1/1 Test #7: abl_godunov ......................***Failed    9.73 sec
 
@@ -212,10 +212,10 @@ Test file organization
 ----------------------
 
 The regression tests are organized in the directory
-:file:`amr-wind/tests/test_files` and are arranged in directories corresponding
+:file:`kynema-sgf/tests/test_files` and are arranged in directories corresponding
 to the name of the test. Each directory contains the input file
 :file:`<test-name.i>` and any other files necessary to run the test case. The
-test definitions are added to :file:`amr-wind/tests/CTestList.cmake`.
+test definitions are added to :file:`kynema-sgf/tests/CTestList.cmake`.
 
 Creating new regression tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

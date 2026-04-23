@@ -51,7 +51,7 @@ installing MASA is as easy as:
    $ spack install masa
 
 Linking MASA to Kynema-SGF
-########################
+##########################
 
 The following CMake options enable MASA in Kynema-SGF:
 

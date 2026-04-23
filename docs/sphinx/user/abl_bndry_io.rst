@@ -1,7 +1,7 @@
 .. _amrwind-abl-bndry-io:
 
 Kynema-SGF ABL Boundary I/O
-=========================
+===========================
 
 Wind farm simulations typically require ABL inflow conditions. As
 such, a precursor ABL simulation is often performed to collect inflow

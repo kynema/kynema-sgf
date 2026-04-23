@@ -1,7 +1,7 @@
 .. _inputs:
 
 Kynema-SGF inputs file
-=====================
+======================
 
 To run :program:`kynema_sgf`, the user must provide a text file containing inputs
 describing the problem and any additional command-line arguments that override
