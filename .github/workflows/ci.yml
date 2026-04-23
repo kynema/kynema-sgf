@@ -594,9 +594,9 @@ jobs:
     needs: Formatting
     runs-on: ubuntu-24.04
     container:
-      image: ecpe4s/exawind-snapshot
+      image: ecpe4s/kynema-snapshot
       env:
-          EXAWIND_MANAGER: /exawind-manager
+          EXAWIND_MANAGER: /kynema-manager
           E4S_MACHINE: true
     steps:
       - name: Clone
@@ -611,7 +611,7 @@ jobs:
             cd ${EXAWIND_MANAGER}/environments/e4s-build && \
             ln -s ${GITHUB_WORKSPACE} amr-wind && \
             spack develop --no-modify-concrete-specs --no-clone amr-wind@=main && \
-            spack rm exawind && \
+            spack rm kynema && \
             spack add amr-wind@main && \
             spack concretize -f && \
             spack install && \

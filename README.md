@@ -1,6 +1,6 @@
 # Kynema-SGF 
 
-[Documentation](https://exawind.github.io/amr-wind) | [Nightly test dashboard](http://my.cdash.org/index.php?project=Exawind) 
+[Documentation](https://kynema.github.io/amr-wind) | [Nightly test dashboard](http://my.cdash.org/index.php?project=Exawind) 
 
 [![Powered by AMReX](https://amrex-codes.github.io/badges/powered%20by-AMReX-red.svg)](https://amrex-codes.github.io/amrex/) [![Build Status](https://github.com/Exawind/amr-wind/workflows/Kynema-SGF-CI/badge.svg)](https://github.com/Exawind/amr-wind/actions) [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9284/badge)](https://www.bestpractices.dev/projects/9284)
 
@@ -20,12 +20,12 @@ The primary applications for Kynema-SGF are: performing large-eddy simulations
 (LES) of atmospheric boundary layer (ABL) flows, simulating wind farm
 turbine-wake interactions using actuator disk or actuator line models for
 turbines, and as a background solver when coupled with a near-body solver (e.g.,
-[Nalu-Wind](https://github.com/exawind/nalu-wind)) with overset methodology to
+[Nalu-Wind](https://github.com/kynema/nalu-wind)) with overset methodology to
 perform blade-resolved simulations of multiple wind turbines within a wind farm.
 For offshore applications, the ability to model the air-sea interaction effects
 and its impact on the ABL characteristics is another focus for the code
 development effort. As with other codes in the
-[Exawind](https://github.com/exawind) ecosystem, AMR-wind shares the following
+[Exawind](https://github.com/kynema) ecosystem, AMR-wind shares the following
 objectives:
 
 - an open, well-documented implementation of the state-of-the-art computational
@@ -78,7 +78,7 @@ To cite Kynema-SGF and to learn more about the methodology, use the following [j
 
 ## Documentation
 
-Documentation is available at https://exawind.github.io/amr-wind, which 
+Documentation is available at https://kynema.github.io/amr-wind, which 
 includes a walkthrough tutorial, a user manual, notes on theory,
 and tips for developers. We also provide a developer-focused API
 documentation at the same link. You can either
@@ -105,7 +105,7 @@ issue](https://github.com/Exawind/amr-wind/issues/new) on GitHub.
 We welcome contributions from the community in form of bug fixes, feature
 enhancements, documentation updates, etc. All contributions are processed
 through pull-requests on GitHub. Please refer to the 
-[coding guidelines](https://exawind.github.io/amr-wind/developer/coding_guidelines.html) as
+[coding guidelines](https://kynema.github.io/amr-wind/developer/coding_guidelines.html) as
 a reference for the best practices currently used to develop Kynema-SGF.
 
 To pass the code format checking, use this command with a new version of `clang-format`:

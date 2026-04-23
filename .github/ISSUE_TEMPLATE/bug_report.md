@@ -50,7 +50,7 @@ Steps to reproduce the behavior:
 
 ```
 ==============================================================================
-                Kynema-SGF (https://github.com/exawind/kynema-sgf)
+                Kynema-SGF (https://github.com/kynema/kynema-sgf)
 
   Kynema-SGF version :: v1.4.0-17-g250778a3-DIRTY
   Kynema-SGF Git SHA :: 250778a3306e96b46afc117fc722491acaeb6176-DIRTY

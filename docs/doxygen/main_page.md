@@ -54,7 +54,7 @@ are also a good way to explore the usage of individual components of the code.
 
 Kynema-SGF is an open-source code and we welcome contributions from the community.
 Please consult the [developer
-documentation](https://exawind.github.io/kynema-sgf/developer/index.html) section
+documentation](https://kynema.github.io/kynema-sgf/developer/index.html) section
 of the user manual to learn about the process of submitting code enhancements,
 bug-fixes, documentation updates, etc.
 

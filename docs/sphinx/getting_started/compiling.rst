@@ -9,7 +9,7 @@ to handle code dependencies and keep track of hardware variations.
 
 Spack is a "package management tool designed to support multiple versions and configurations of 
 software on a wide variety of platforms and environments." To make it easier for users to harness
-Spack, we provide the repository `Exawind-Manager <https://github.com/Exawind/exawind-manager>`_.
+Spack, we provide the repository `Exawind-Manager <https://github.com/Exawind/kynema-manager>`_.
 Exawind-Manager is a custom application of the Spack-Manager tool, which uses Spack environments 
 to manage software builds. From the 
 `Spack-Manager documentation <https://sandialabs.github.io/spack-manager/user_profiles/developers/developer_spack_minimum.html>`_,
@@ -43,9 +43,9 @@ To begin the process, clone Exawind-Manager using the following command, which i
 
     export REPO_DEST=<fill in the directory>
     cd ${REPO_DEST}
-    git clone --recursive https://github.com/Exawind/exawind-manager.git
+    git clone --recursive https://github.com/Exawind/kynema-manager.git
 
-Because the exawind-manager directory will house any dependencies that need to be downloaded, it is best to put it in a
+Because the kynema-manager directory will house any dependencies that need to be downloaded, it is best to put it in a
 location with sufficient memory.
 
 Set up Spack environment
@@ -55,7 +55,7 @@ Then activate it:
 
 .. code-block:: console
 
-    export EXAWIND_MANAGER=${REPO_DEST}/exawind-manager
+    export EXAWIND_MANAGER=${REPO_DEST}/kynema-manager
     source ${EXAWIND_MANAGER}/start.sh && spack-start
 
 It is helpful to put the above commands as a function in your bash environment so they can be easily 
@@ -135,7 +135,7 @@ To activate the Spack environment now, first activate Spack by repeating these c
 
 .. code-block:: console
 
-    export EXAWIND_MANAGER=${REPO_DEST}/exawind-manager
+    export EXAWIND_MANAGER=${REPO_DEST}/kynema-manager
     source ${EXAWIND_MANAGER}/start.sh && spack-start
 
 Now, the Spack environment can be activated.
