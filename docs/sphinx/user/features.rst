@@ -104,7 +104,7 @@ Flow physics
 
    * Wall models (e.g., wall functions, stress) [:ref:`doc <wall_models>`, :ref:`inp <inputs_abl>`]
 
-   * Inflow planes from precursor simulations [:ref:`doc <amrwind-abl-bndry-io>`, :ref:`inp <inputs_abl>`]
+   * Inflow planes from precursor simulations [:ref:`doc <kynemasgf-abl-bndry-io>`, :ref:`inp <inputs_abl>`]
 
    * Mesoscale forcing [:ref:`doc <mesoscale_forcing>`, :ref:`inp <inputs_meso_forcing>`]
 

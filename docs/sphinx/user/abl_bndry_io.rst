@@ -1,4 +1,4 @@
-.. _amrwind-abl-bndry-io:
+.. _kynemasgf-abl-bndry-io:
 
 Kynema-SGF ABL Boundary I/O
 ===========================

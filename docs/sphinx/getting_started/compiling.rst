@@ -82,7 +82,7 @@ that rely on the actuator-line method (ALM). The next step is to create the envi
 
 .. code-block:: console
 
-    mkdir ${REPO_DEST}/env_amrwind_openfast && cd ${REPO_DEST}/env_amrwind_openfast
+    mkdir ${REPO_DEST}/env_kynemasgf_openfast && cd ${REPO_DEST}/env_kynemasgf_openfast
     quick-create-dev -d . -s kynema-sgf@main+openfast+netcdf%compiler openfast@3.5.3+rosco%compiler
 
 This ``quick-create-dev`` command has flags selected so that that Kynema-SGF will work with OpenFAST,
@@ -112,7 +112,7 @@ and the Kynema-SGF and OpenFAST repositories are cloned to the environment direc
     The fact we specified
     main and develop branches when we created the environment does not mean that the code in these repositories 
     must be on the main and develop branches, respectively. These references communicate to Spack a grouping of 
-    dependencies for each code. In many cases, using different commits or even your own fork for ExaWind codes will 
+    dependencies for each code. In many cases, using different commits or even your own fork for Kynema codes will 
     not change their dependencies, and so the specification of main or master is typically the correct spec for 
     whatever version of the code you are using. OpenFAST compatibility can vary more from version to version, though.
 
@@ -142,7 +142,7 @@ Now, the Spack environment can be activated.
 
 .. code-block:: console
 
-    cd ${REPO_DEST}/env_amrwind_openfast
+    cd ${REPO_DEST}/env_kynemasgf_openfast
     quick-activate .
 
 Finally, the Spack compilation is

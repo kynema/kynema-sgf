@@ -4,8 +4,8 @@
  *  Generated at @KYNEMA_SGF_VERSION_TIMESTAMP@
  *
  */
-#ifndef AMRWINDVERSION_H
-#define AMRWINDVERSION_H
+#ifndef KYNEMASGFVERSION_H
+#define KYNEMASGFVERSION_H
 
 namespace kynema_sgf::version {
 
@@ -23,4 +23,4 @@ const std::string kynema_sgf_dirty_repo = "UNKNOWN";
 
 } // namespace kynema_sgf::version
 
-#endif /* AMRWINDVERSION_H */
+#endif /* KYNEMASGFVERSION_H */

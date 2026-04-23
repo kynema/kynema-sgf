@@ -58,8 +58,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Kynema-SGF'
-copyright = u'ExaWind team'
-author = u'ExaWind team'
+copyright = u'Kynema team'
+author = u'Kynema team'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
