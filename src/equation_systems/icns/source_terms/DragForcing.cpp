@@ -216,12 +216,12 @@ void DragForcing::operator()(
     const auto& drag = has_terrain_drag != 0
                            ? (*m_terrain_drag)(lev).const_array(mfi)
                            : amrex::Array4<int>();
-    auto* const m_terrainz0 =
-        has_terrainz0 != 0 ? &this->m_sim.repo().get_field("terrainz0")
-                           : nullptr;
-    const auto& terrainz0 =
-        has_terrainz0 != 0 ? (*m_terrainz0)(lev).const_array(mfi)
-                           : amrex::Array4<amrex::Real>();
+    auto* const m_terrainz0 = has_terrainz0 != 0
+                                  ? &this->m_sim.repo().get_field("terrainz0")
+                                  : nullptr;
+    const auto& terrainz0 = has_terrainz0 != 0
+                                ? (*m_terrainz0)(lev).const_array(mfi)
+                                : amrex::Array4<amrex::Real>();
     auto* const m_terrain_damping =
         has_terrain_damping != 0
             ? &this->m_sim.repo().get_field("terrain_damping")
@@ -233,9 +233,9 @@ void DragForcing::operator()(
         has_terrain_height != 0
             ? &this->m_sim.repo().get_field("terrain_height")
             : nullptr;
-    const auto& terrain_height =
-        has_terrain_height != 0 ? (*m_terrain_height)(lev).const_array(mfi)
-                                : amrex::Array4<amrex::Real>();
+    const auto& terrain_height = has_terrain_height != 0
+                                     ? (*m_terrain_height)(lev).const_array(mfi)
+                                     : amrex::Array4<amrex::Real>();
 
     const int is_waves = m_terrain_is_waves ? 1 : 0;
     const int model_form_drag = m_apply_MOSD ? 1 : 0;
@@ -271,9 +271,9 @@ void DragForcing::operator()(
     const amrex::Real time_factor = m_forcing_time_factor;
     const amrex::Real min_z = m_min_z;
     const amrex::Real scale_factor = (dx[2] < 1.0_rt) ? 1.0_rt : 1.0_rt / dx[2];
-    const amrex::Real Cd =
-        (is_laminar != 0 && dx[2] < 1) ? drag_coefficient
-                           : drag_coefficient / dx[2];
+    const amrex::Real Cd = (is_laminar != 0 && dx[2] < 1)
+                               ? drag_coefficient
+                               : drag_coefficient / dx[2];
     const amrex::Real kappa = m_kappa;
     const amrex::Real z0_min = 1.0e-4_rt;
     const amrex::Real cd_max = 1000.0_rt;
