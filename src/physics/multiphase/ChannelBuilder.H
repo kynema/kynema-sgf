@@ -12,14 +12,14 @@ enum class ChannelVelocityProfile : std::uint8_t { Uniform, Linear, Parabolic };
 
 namespace kynema_sgf::channelbuilder {
 
-[[nodiscard]] bool trapezoid(
+[[nodiscard]] AMREX_GPU_HOST_DEVICE bool trapezoid(
     const amrex::Real& top,
     const amrex::Real& bottom,
     const amrex::Real& height,
     const amrex::Real& hcoord,
     const amrex::Real& vcoord);
 
-[[nodiscard]] bool ellipse(
+[[nodiscard]] AMREX_GPU_HOST_DEVICE bool ellipse(
     const amrex::Real& ax_horz,
     const amrex::Real& ax_vert,
     const amrex::Real& hcoord,

@@ -12,7 +12,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::channelbuilder {
 
-[[nodiscard]] bool trapezoid(
+[[nodiscard]] AMREX_GPU_HOST_DEVICE bool trapezoid(
     const amrex::Real& top,
     const amrex::Real& bottom,
     const amrex::Real& height,
@@ -26,7 +26,7 @@ namespace kynema_sgf::channelbuilder {
             ((top + bottom) / 2.0_rt - ((bottom - top) / height) * vcoord));
 }
 
-[[nodiscard]] bool ellipse(
+[[nodiscard]] AMREX_GPU_HOST_DEVICE bool ellipse(
     const amrex::Real& ax_horz,
     const amrex::Real& ax_vert,
     const amrex::Real& hcoord,
