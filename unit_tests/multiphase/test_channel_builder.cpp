@@ -6,14 +6,14 @@ using namespace amrex::literals;
 
 namespace kynema_sgf_tests {
 
-class ChannelBuilderShapes : public ::testing::Test
+class ChannelBuilderTest : public ::testing::Test
 {
 public:
     const amrex::Real m_tol =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 };
 
-TEST_F(ChannelBuilderShapes, trapezoid_inside_outside)
+TEST_F(ChannelBuilderTest, trapezoid_inside_outside)
 {
     const amrex::Real top = 2.0_rt;
     const amrex::Real bottom = 4.0_rt;
@@ -41,7 +41,7 @@ TEST_F(ChannelBuilderShapes, trapezoid_inside_outside)
             top, bottom, height, 0.0_rt, 3.1_rt));
 }
 
-TEST_F(ChannelBuilderShapes, ellipse_inside_outside)
+TEST_F(ChannelBuilderTest, ellipse_inside_outside)
 {
     const amrex::Real ax_horz = 6.0_rt;
     const amrex::Real ax_vert = 4.0_rt;
@@ -63,7 +63,7 @@ TEST_F(ChannelBuilderShapes, ellipse_inside_outside)
         kynema_sgf::channelbuilder::ellipse(ax_horz, ax_vert, 2.5_rt, 1.5_rt));
 }
 
-TEST_F(ChannelBuilderShapes, is_point_within_planes)
+TEST_F(ChannelBuilderTest, is_point_within_planes)
 {
     // Define a simple segment from (0, 0, 0) to (10, 0, 0)
     const amrex::Real start_x = 0.0_rt;
@@ -100,7 +100,7 @@ TEST_F(ChannelBuilderShapes, is_point_within_planes)
             end_z));
 }
 
-TEST_F(ChannelBuilderShapes, interpolate_to_get_local_dimensions)
+TEST_F(ChannelBuilderTest, interpolate_to_get_local_dimensions)
 {
     // Define a simple segment from (0, 0, 0) to (10, 0, 0)
     const amrex::Real start_x = 0.0_rt;
@@ -124,7 +124,7 @@ TEST_F(ChannelBuilderShapes, interpolate_to_get_local_dimensions)
     EXPECT_NEAR(local_dims[2], 4.5_rt, m_tol);
 }
 
-TEST_F(ChannelBuilderShapes, transform_to_local_coordinates)
+TEST_F(ChannelBuilderTest, transform_to_local_coordinates)
 {
     const amrex::Vector<amrex::Real> start{2.0_rt, 3.0_rt, 5.0_rt};
     amrex::Vector<amrex::Real> end{10.0_rt, 3.0_rt, 5.0_rt};
