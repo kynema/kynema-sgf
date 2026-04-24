@@ -183,7 +183,6 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
     for (const auto& lbl : labels) {
         const std::string key = identifier() + "." + lbl;
         amrex::ParmParse pp1(key);
-        ChannelSegmentType type = ChannelSegmentType::Ellipse;
         amrex::Real dim0_s = 0.0_rt;
         amrex::Real dim1_s = 0.0_rt;
         amrex::Real dim2_s = 0.0_rt;
@@ -349,6 +348,7 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     const amrex::Real* flow_speed_ptr = m_flow_speed.data();
     const bool multiphase = is_multiphase;
     const amrex::Real land_level = m_land_level;
+    const amrex::Real water_level = m_water_level;
 
     // Set all velocity to 0 for the sake of blanked cells
     velocity.setVal(0.0_rt);
@@ -436,6 +436,10 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
                                         (dim1 * zloc) / (2.0_rt * d), 2));
                                 speed_factor -= utils::powi(d / d_ext, 2);
                             } // Uniform case is default (else)
+                            if (multiphase && z > water_level) {
+                                // Above water level means 0 velocity
+                                speed_factor = 0.0_rt;
+                            }
                             vel_arrs[nbx](i, j, k, 0) = uloc * speed_factor;
                             vel_arrs[nbx](i, j, k, 1) = vloc * speed_factor;
                             vel_arrs[nbx](i, j, k, 2) = wloc * speed_factor;
@@ -447,14 +451,34 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
                         // Stick with 2D velocity profile for trapezoid
                         if (inside_channel_segment) {
                             amrex::Real speed_factor = 1.0_rt;
+                            amrex::Real zmod = zloc;
+                            amrex::Real dim = 0.5_rt * dim2;
+                            if (multiphase && z <= water_level) {
+                                const auto water_level_loc =
+                                    transform_to_local_coordinates(
+                                        true, false, 0.0_rt, 0.0_rt,
+                                        water_level, start[0], start[1],
+                                        start[2], end[0], end[1], end[2]);
+                                // Make maximum velocity at water surface
+                                // for multiphase case
+                                zmod = amrex::min<amrex::Real>(
+                                    water_level_loc[2] - zloc,
+                                    0.5_rt * dim2 - zloc);
+                                dim = amrex::min<amrex::Real>(
+                                    0.5_rt * dim2 + water_level_loc[2], dim2);
+                            }
                             if (velocity_profile ==
                                 ChannelVelocityProfile::Linear) {
-                                speed_factor -= (std::abs(zloc) / dim2);
+                                speed_factor -= (std::abs(zmod) / dim);
                             } else if (
                                 velocity_profile ==
                                 ChannelVelocityProfile::Parabolic) {
-                                speed_factor -= utils::powi(zloc / dim2, 2);
+                                speed_factor -= utils::powi(zmod / dim, 2);
                             } // Uniform case is default (else)
+                            if (multiphase && z > water_level) {
+                                // Above water level means 0 velocity
+                                speed_factor = 0.0_rt;
+                            }
                             vel_arrs[nbx](i, j, k, 0) = uloc * speed_factor;
                             vel_arrs[nbx](i, j, k, 1) = vloc * speed_factor;
                             vel_arrs[nbx](i, j, k, 2) = wloc * speed_factor;
