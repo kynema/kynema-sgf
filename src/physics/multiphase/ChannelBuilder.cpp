@@ -441,8 +441,24 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
                             vel_arrs[nbx](i, j, k, 2) = wloc * speed_factor;
                         }
                     } else if (seg_type == ChannelSegmentType::Trapezoid) {
-                        outside_channel &=
-                            !trapezoid(dim0, dim1, dim2, yloc, zloc);
+                        const bool inside_channel_segment =
+                            trapezoid(dim0, dim1, dim2, yloc, zloc);
+                        outside_channel &= !inside_channel_segment;
+                        // Stick with 2D velocity profile for trapezoid
+                        if (inside_channel_segment) {
+                            amrex::Real speed_factor = 1.0_rt;
+                            if (velocity_profile ==
+                                ChannelVelocityProfile::Linear) {
+                                speed_factor -= (std::abs(zloc) / dim2);
+                            } else if (
+                                velocity_profile ==
+                                ChannelVelocityProfile::Parabolic) {
+                                speed_factor -= utils::powi(zloc / dim2, 2);
+                            } // Uniform case is default (else)
+                            vel_arrs[nbx](i, j, k, 0) = uloc * speed_factor;
+                            vel_arrs[nbx](i, j, k, 1) = vloc * speed_factor;
+                            vel_arrs[nbx](i, j, k, 2) = wloc * speed_factor;
+                        }
                     }
                 }
             }
