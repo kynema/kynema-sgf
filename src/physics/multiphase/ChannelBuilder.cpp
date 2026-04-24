@@ -163,8 +163,8 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
     m_terrain_blank.setVal(0);
     amrex::Vector<std::string> labels;
     amrex::ParmParse pp(identifier());
-    is_multiphase = pp.contains("water_level");
-    if (is_multiphase) {
+    m_is_multiphase = pp.contains("water_level");
+    if (m_is_multiphase) {
         pp.get("water_level", m_water_level);
         pp.get("land_level", m_land_level);
         amrex::ParmParse pp_multiphase("MultiPhase");
@@ -319,7 +319,7 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
 void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
 {
     // if multiphase, check for multiphase physics
-    if (is_multiphase && !m_sim.physics_manager().contains("MultiPhase")) {
+    if (m_is_multiphase && !m_sim.physics_manager().contains("MultiPhase")) {
         amrex::Abort(
             "ChannelBuilder: MultiPhase physics must be enabled to use "
             "multiphase channel builder");
@@ -345,7 +345,7 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     const ChannelVelocityProfile* velocity_profile_ptr =
         m_velocity_profile.data();
     const amrex::Real* flow_speed_ptr = m_flow_speed.data();
-    const bool multiphase = is_multiphase;
+    const bool multiphase = m_is_multiphase;
     const amrex::Real land_level = m_land_level;
     const amrex::Real water_level = m_water_level;
 

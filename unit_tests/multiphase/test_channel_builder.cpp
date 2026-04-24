@@ -146,8 +146,8 @@ TEST(ChannelBuilderShapes, transform_to_local_coordinates)
     end[2] = 5.0_rt;
 
     auto both_xy = kynema_sgf::channelbuilder::transform_to_local_coordinates(
-        true, false, 2.0_rt + 2.0_rt / sqrt(2.0_rt), 3.0_rt, 5.0_rt, start[0],
-        start[1], start[2], end[0], end[1], end[2]);
+        true, false, 2.0_rt + 2.0_rt / std::sqrt(2.0_rt), 3.0_rt, 5.0_rt,
+        start[0], start[1], start[2], end[0], end[1], end[2]);
     EXPECT_NEAR(both_xy[0], 1.0_rt, 1.0e-8_rt);
     EXPECT_NEAR(both_xy[1], -1.0_rt, 1.0e-8_rt);
     EXPECT_NEAR(both_xy[2], 0.0_rt, 1.0e-8_rt);
@@ -157,8 +157,8 @@ TEST(ChannelBuilderShapes, transform_to_local_coordinates)
     end[2] = 10.0_rt;
 
     auto both_xz = kynema_sgf::channelbuilder::transform_to_local_coordinates(
-        true, false, 2.0_rt + 2.0_rt / sqrt(2.0_rt), 3.0_rt, 5.0_rt, start[0],
-        start[1], start[2], end[0], end[1], end[2]);
+        true, false, 2.0_rt + 2.0_rt / std::sqrt(2.0_rt), 3.0_rt, 5.0_rt,
+        start[0], start[1], start[2], end[0], end[1], end[2]);
     EXPECT_NEAR(both_xz[0], 1.0_rt, 1.0e-8_rt);
     EXPECT_NEAR(both_xz[1], 0.0_rt, 1.0e-8_rt);
     EXPECT_NEAR(both_xz[2], -1.0_rt, 1.0e-8_rt);

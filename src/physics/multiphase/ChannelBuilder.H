@@ -129,7 +129,7 @@ private:
     amrex::Gpu::DeviceVector<ChannelVelocityProfile> m_velocity_profile;
     amrex::Gpu::DeviceVector<amrex::Real> m_flow_speed;
 
-    bool is_multiphase;
+    bool m_is_multiphase;
 };
 } // namespace kynema_sgf::channelbuilder
 
