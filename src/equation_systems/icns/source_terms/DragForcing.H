@@ -66,6 +66,7 @@ private:
     bool m_is_laminar{false};
     bool m_terrain_is_waves{false};
     bool m_apply_MOSD{false};
+    bool m_blank_other_forces{false};
     std::string m_wall_het_model{"none"};
     amrex::Real m_monin_obukhov_length{constants::LARGE_NUM};
     amrex::Real m_kappa{0.41_rt};

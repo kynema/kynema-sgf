@@ -25,6 +25,7 @@ turbulence.model = Laminar
 
 incflo.physics = ChannelBuilder
 ICNS.source_terms = BodyForce DragForcing
+DragForcing.blank_other_forces = true
 BodyForce.magnitude = 0.1 0 0
 ChannelBuilder.segment_labels = s1 s2 s3 s4 s5
 

@@ -95,6 +95,7 @@ DragForcing::DragForcing(const CFDSim& sim)
     , m_velocity(sim.repo().get_field("velocity"))
 {
     amrex::ParmParse pp("DragForcing");
+    pp.query("blank_other_forces", m_blank_other_forces);
     pp.query("drag_coefficient", m_drag_coefficient);
     pp.query("sponge_strength", m_sponge_strength);
     pp.query("bc_forcing_time_factor", m_forcing_time_factor);
@@ -103,6 +104,12 @@ DragForcing::DragForcing(const CFDSim& sim)
     pp.query("sponge_east", m_sponge_east);
     pp.query("sponge_south", m_sponge_south);
     pp.query("sponge_north", m_sponge_north);
+    if (m_blank_other_forces) {
+        amrex::Print()
+            << " WARNING: DragForcing: blank_other_forces is true. This "
+               "functionality only works properly if DragForcing is the final "
+               "entry in the list of ICNS source terms.\n";
+    }
     if (m_sponge_west) {
         pp.get("sponge_distance_west", m_sponge_distance_west);
     }
@@ -199,6 +206,8 @@ void DragForcing::operator()(
     auto* const m_terrain_blank =
         &this->m_sim.repo().get_int_field("terrain_blank");
     const auto& blank = (*m_terrain_blank)(lev).const_array(mfi);
+
+    const int blank_other_forces = m_blank_other_forces ? 1 : 0;
 
     const int has_terrain_drag =
         this->m_sim.repo().int_field_exists("terrain_drag") ? 1 : 0;
@@ -401,6 +410,14 @@ void DragForcing::operator()(
         }
         const amrex::Real CdM = amrex::min<amrex::Real>(
             Cd / (m + kynema_sgf::constants::EPS), cd_max / scale_factor);
+
+        if (blank_other_forces == 1 && blank(i, j, k) == 1) {
+            // If blank_other_forces is true, then we set the source term to
+            // only be the drag forcing in blank cells
+            src_term(i, j, k, 0) = 0.0_rt;
+            src_term(i, j, k, 1) = 0.0_rt;
+            src_term(i, j, k, 2) = 0.0_rt;
+        }
 
         // Force terms for blanked cells (inside terrain)
         src_term(i, j, k, 0) -= (CdM * m * (ux1 - target_u) * blank(i, j, k));
