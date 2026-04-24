@@ -327,7 +327,6 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
 
     const auto& dx = geom.CellSizeArray();
     const auto& prob_lo = geom.ProbLoArray();
-    const auto& prob_hi = geom.ProbHiArray();
     auto& velocity = m_repo.get_field("velocity");
     auto vel_arrs = velocity(level).arrays();
     auto& blank_mfab = m_terrain_blank(level);
