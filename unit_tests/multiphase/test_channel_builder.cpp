@@ -6,7 +6,14 @@ using namespace amrex::literals;
 
 namespace kynema_sgf_tests {
 
-TEST(ChannelBuilderShapes, trapezoid_inside_outside)
+class ChannelBuilderShapes : public ::testing::Test
+{
+public:
+    const amrex::Real m_tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+};
+
+TEST_F(ChannelBuilderShapes, trapezoid_inside_outside)
 {
     const amrex::Real top = 2.0_rt;
     const amrex::Real bottom = 4.0_rt;
@@ -34,7 +41,7 @@ TEST(ChannelBuilderShapes, trapezoid_inside_outside)
             top, bottom, height, 0.0_rt, 3.1_rt));
 }
 
-TEST(ChannelBuilderShapes, ellipse_inside_outside)
+TEST_F(ChannelBuilderShapes, ellipse_inside_outside)
 {
     const amrex::Real ax_horz = 6.0_rt;
     const amrex::Real ax_vert = 4.0_rt;
@@ -56,7 +63,7 @@ TEST(ChannelBuilderShapes, ellipse_inside_outside)
         kynema_sgf::channelbuilder::ellipse(ax_horz, ax_vert, 2.5_rt, 1.5_rt));
 }
 
-TEST(ChannelBuilderShapes, is_point_within_planes)
+TEST_F(ChannelBuilderShapes, is_point_within_planes)
 {
     // Define a simple segment from (0, 0, 0) to (10, 0, 0)
     const amrex::Real start_x = 0.0_rt;
@@ -93,7 +100,7 @@ TEST(ChannelBuilderShapes, is_point_within_planes)
             end_z));
 }
 
-TEST(ChannelBuilderShapes, interpolate_to_get_local_dimensions)
+TEST_F(ChannelBuilderShapes, interpolate_to_get_local_dimensions)
 {
     // Define a simple segment from (0, 0, 0) to (10, 0, 0)
     const amrex::Real start_x = 0.0_rt;
@@ -112,12 +119,12 @@ TEST(ChannelBuilderShapes, interpolate_to_get_local_dimensions)
     auto local_dims = kynema_sgf::channelbuilder::get_local_dimensions(
         5.0_rt, 4.0_rt, 3.0_rt, start_x, start_y, start_z, end_x, end_y, end_z,
         dim0_s, dim1_s, dim2_s, dim0_e, dim1_e, dim2_e);
-    EXPECT_NEAR(local_dims[0], 2.5_rt, 1e-8_rt);
-    EXPECT_NEAR(local_dims[1], 3.5_rt, 1e-8_rt);
-    EXPECT_NEAR(local_dims[2], 4.5_rt, 1e-8_rt);
+    EXPECT_NEAR(local_dims[0], 2.5_rt, m_tol);
+    EXPECT_NEAR(local_dims[1], 3.5_rt, m_tol);
+    EXPECT_NEAR(local_dims[2], 4.5_rt, m_tol);
 }
 
-TEST(ChannelBuilderShapes, transform_to_local_coordinates)
+TEST_F(ChannelBuilderShapes, transform_to_local_coordinates)
 {
     const amrex::Vector<amrex::Real> start{2.0_rt, 3.0_rt, 5.0_rt};
     amrex::Vector<amrex::Real> end{10.0_rt, 3.0_rt, 5.0_rt};
@@ -126,9 +133,9 @@ TEST(ChannelBuilderShapes, transform_to_local_coordinates)
     auto translate = kynema_sgf::channelbuilder::transform_to_local_coordinates(
         true, false, 0.0_rt, 0.0_rt, 0.0_rt, start[0], start[1], start[2],
         end[0], end[1], end[2]);
-    EXPECT_NEAR(translate[0], -2.0_rt, 1.0e-8_rt);
-    EXPECT_NEAR(translate[1], -3.0_rt, 1.0e-8_rt);
-    EXPECT_NEAR(translate[2], -5.0_rt, 1.0e-8_rt);
+    EXPECT_NEAR(translate[0], -2.0_rt, m_tol);
+    EXPECT_NEAR(translate[1], -3.0_rt, m_tol);
+    EXPECT_NEAR(translate[2], -5.0_rt, m_tol);
 
     // Test rotation
     end[0] = 7.0_rt;
@@ -138,9 +145,9 @@ TEST(ChannelBuilderShapes, transform_to_local_coordinates)
     auto rotate = kynema_sgf::channelbuilder::transform_to_local_coordinates(
         true, false, end[0], end[1], end[2], start[0], start[1], start[2],
         end[0], end[1], end[2]);
-    EXPECT_NEAR(rotate[0], std::sqrt(75.0_rt), 1.0e-8_rt);
-    EXPECT_NEAR(rotate[1], 0.0_rt, 1.0e-8_rt);
-    EXPECT_NEAR(rotate[2], 0.0_rt, 1.0e-8_rt);
+    EXPECT_NEAR(rotate[0], std::sqrt(75.0_rt), m_tol);
+    EXPECT_NEAR(rotate[1], 0.0_rt, m_tol);
+    EXPECT_NEAR(rotate[2], 0.0_rt, m_tol);
 
     // Test both in 2D - xy
     end[2] = 5.0_rt;
@@ -148,9 +155,9 @@ TEST(ChannelBuilderShapes, transform_to_local_coordinates)
     auto both_xy = kynema_sgf::channelbuilder::transform_to_local_coordinates(
         true, false, 2.0_rt + 2.0_rt / std::sqrt(2.0_rt), 3.0_rt, 5.0_rt,
         start[0], start[1], start[2], end[0], end[1], end[2]);
-    EXPECT_NEAR(both_xy[0], 1.0_rt, 1.0e-8_rt);
-    EXPECT_NEAR(both_xy[1], -1.0_rt, 1.0e-8_rt);
-    EXPECT_NEAR(both_xy[2], 0.0_rt, 1.0e-8_rt);
+    EXPECT_NEAR(both_xy[0], 1.0_rt, m_tol);
+    EXPECT_NEAR(both_xy[1], -1.0_rt, m_tol);
+    EXPECT_NEAR(both_xy[2], 0.0_rt, m_tol);
 
     // Test both in 2D - xz
     end[1] = 3.0_rt;
@@ -159,9 +166,9 @@ TEST(ChannelBuilderShapes, transform_to_local_coordinates)
     auto both_xz = kynema_sgf::channelbuilder::transform_to_local_coordinates(
         true, false, 2.0_rt + 2.0_rt / std::sqrt(2.0_rt), 3.0_rt, 5.0_rt,
         start[0], start[1], start[2], end[0], end[1], end[2]);
-    EXPECT_NEAR(both_xz[0], 1.0_rt, 1.0e-8_rt);
-    EXPECT_NEAR(both_xz[1], 0.0_rt, 1.0e-8_rt);
-    EXPECT_NEAR(both_xz[2], -1.0_rt, 1.0e-8_rt);
+    EXPECT_NEAR(both_xz[0], 1.0_rt, m_tol);
+    EXPECT_NEAR(both_xz[1], 0.0_rt, m_tol);
+    EXPECT_NEAR(both_xz[2], -1.0_rt, m_tol);
 }
 
 } // namespace kynema_sgf_tests
