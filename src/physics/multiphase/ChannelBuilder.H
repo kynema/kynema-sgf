@@ -66,6 +66,8 @@ get_local_dimensions(
  */
 [[nodiscard]] AMREX_GPU_HOST_DEVICE amrex::GpuArray<amrex::Real, 3>
 transform_to_local_coordinates(
+    const bool& do_translation,
+    const bool& is_active,
     const amrex::Real& x,
     const amrex::Real& y,
     const amrex::Real& z,

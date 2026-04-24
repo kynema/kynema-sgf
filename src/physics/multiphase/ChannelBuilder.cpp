@@ -1,8 +1,9 @@
 #include "src/physics/multiphase/ChannelBuilder.H"
 #include "src/physics/multiphase/MultiPhase.H"
+#include "src/utilities/math_ops.H"
+#include "src/utilities/IOManager.H"
 #include "src/CFDSim.H"
 #include "AMReX_ParmParse.H"
-#include "src/utilities/IOManager.H"
 #include "AMReX_iMultiFab.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_REAL.H"
@@ -34,7 +35,7 @@ namespace kynema_sgf::channelbuilder {
     return (
         (hcoord * hcoord) / (ax_horz * ax_horz) +
             (vcoord * vcoord) / (ax_vert * ax_vert) <=
-        1.0_rt);
+        0.25_rt);
 }
 
 [[nodiscard]] AMREX_GPU_HOST_DEVICE bool is_point_within_planes(
@@ -99,6 +100,8 @@ get_local_dimensions(
 
 [[nodiscard]] AMREX_GPU_HOST_DEVICE amrex::GpuArray<amrex::Real, 3>
 transform_to_local_coordinates(
+    const bool& do_translation,
+    const bool& is_active,
     const amrex::Real& x,
     const amrex::Real& y,
     const amrex::Real& z,
@@ -115,17 +118,25 @@ transform_to_local_coordinates(
     const amrex::Real c = end_z - start_z;
 
     // Translate point relative to segment start
-    const amrex::Real xp = x - start_x;
-    const amrex::Real yp = y - start_y;
-    const amrex::Real zp = z - start_z;
+    amrex::Real xp = x;
+    amrex::Real yp = y;
+    amrex::Real zp = z;
+    if (do_translation) {
+        xp -= start_x;
+        yp -= start_y;
+        zp -= start_z;
+    }
+
+    // Switch sign for active vs passive rotation
+    const amrex::Real s = is_active ? 1.0_rt : -1.0_rt;
 
     // Rotate around z-axis based on xy component of direction
     const amrex::Real mag_xy = std::sqrt(a * a + b * b);
     const amrex::Real cos_theta_xy = a / mag_xy;
     const amrex::Real sin_theta_xy = b / mag_xy;
 
-    const amrex::Real xpp = xp * cos_theta_xy + yp * sin_theta_xy;
-    const amrex::Real ypp = -xp * sin_theta_xy + yp * cos_theta_xy;
+    const amrex::Real xpp = xp * cos_theta_xy - s * yp * sin_theta_xy;
+    const amrex::Real ypp = s * xp * sin_theta_xy + yp * cos_theta_xy;
 
     // Rotate around y-axis based on z component
     const amrex::Real mag = std::sqrt(a * a + b * b + c * c);
@@ -133,8 +144,8 @@ transform_to_local_coordinates(
     const amrex::Real sin_theta_xpz = c / mag;
 
     // Local coordinates: xloc along segment, yloc lateral, zloc vertical
-    const amrex::Real xloc = xpp * cos_theta_xpz + zp * sin_theta_xpz;
-    const amrex::Real zloc = -xpp * sin_theta_xpz + zp * cos_theta_xpz;
+    const amrex::Real xloc = xpp * cos_theta_xpz - s * zp * sin_theta_xpz;
+    const amrex::Real zloc = s * xpp * sin_theta_xpz + zp * cos_theta_xpz;
     const amrex::Real yloc = ypp;
 
     return amrex::GpuArray<amrex::Real, 3>{{xloc, yloc, zloc}};
@@ -318,8 +329,8 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     const auto& dx = geom.CellSizeArray();
     const auto& prob_lo = geom.ProbLoArray();
     const auto& prob_hi = geom.ProbHiArray();
-    auto& velocity_mfab = m_repo.get_field("velocity")(level);
-    auto vel_arrs = velocity_mfab.arrays();
+    auto& velocity = m_repo.get_field("velocity");
+    auto vel_arrs = velocity(level).arrays();
     auto& blank_mfab = m_terrain_blank(level);
     auto blank_arrs = blank_mfab.arrays();
 
@@ -333,10 +344,14 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     const amrex::Real* dim2_e_ptr = m_dim2_e.data();
     const amrex::Array<amrex::Real, 3>* start_ptr = m_segment_start.data();
     const amrex::Array<amrex::Real, 3>* end_ptr = m_segment_end.data();
-    const ChannelVelocityProfile* velocity_profile_ptr = m_velocity_profile.data();
+    const ChannelVelocityProfile* velocity_profile_ptr =
+        m_velocity_profile.data();
     const amrex::Real* flow_speed_ptr = m_flow_speed.data();
     const bool multiphase = is_multiphase;
     const amrex::Real land_level = m_land_level;
+
+    // Set all velocity to 0 for the sake of blanked cells
+    velocity.setVal(0.0_rt);
 
     amrex::ParallelFor(
         blank_mfab, m_terrain_blank.num_grow(),
@@ -379,26 +394,51 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
 
                     // Transform to local segment coordinates
                     const auto local_coords = transform_to_local_coordinates(
-                        x, y, z, start[0], start[1], start[2], end[0], end[1],
-                        end[2]);
+                        true, false, x, y, z, start[0], start[1], start[2],
+                        end[0], end[1], end[2]);
                     const amrex::Real yloc = local_coords[1];
                     const amrex::Real zloc = local_coords[2];
 
                     // Transform flow speed to channel-aligned velocity vector
+                    const auto local_flow = transform_to_local_coordinates(
+                        false, true, flow_speed, 0.0_rt, 0.0_rt, start[0],
+                        start[1], start[2], end[0], end[1], end[2]);
+                    const amrex::Real uloc = local_flow[0];
+                    const amrex::Real vloc = local_flow[1];
+                    const amrex::Real wloc = local_flow[2];
 
                     if (seg_type == ChannelSegmentType::Ellipse) {
-                        outside_channel &= !ellipse(dim0, dim1, yloc, zloc);
-                        if (!outside_channel) {
-                            if (velocity_profile == ChannelVelocityProfile::Uniform) {
-                                vel_arrs[nbx](i, j, k, 0) = flow_speed;
-                            } else if (velocity_profile == ChannelVelocityProfile::Linear) {
-                                vel_arrs[nbx](i, j, k, 0) =
-                                    flow_speed * (1.0_rt - std::abs(yloc) / (dim1 / 2.0_rt));
-                            } else if (velocity_profile == ChannelVelocityProfile::Parabolic) {
-                                const amrex::Real y_norm = yloc / (dim1 / 2.0_rt);
-                                vel_arrs[nbx](i, j, k, 0) =
-                                    flow_speed * (1.0_rt - y_norm * y_norm);
-                            }
+                        const bool inside_channel_segment =
+                            ellipse(dim0, dim1, yloc, zloc);
+                        outside_channel &= !inside_channel_segment;
+                        // Set velocity according to profile if within channel
+                        if (inside_channel_segment) {
+                            amrex::Real speed_factor = 1.0_rt;
+                            if (velocity_profile ==
+                                ChannelVelocityProfile::Linear) {
+                                const auto d =
+                                    std::sqrt(yloc * yloc + zloc * zloc);
+                                const auto d_ext = std::sqrt(
+                                    utils::powi(
+                                        (dim0 * yloc) / (2.0_rt * d), 2) +
+                                    utils::powi(
+                                        (dim1 * zloc) / (2.0_rt * d), 2));
+                                speed_factor -= (d / d_ext);
+                            } else if (
+                                velocity_profile ==
+                                ChannelVelocityProfile::Parabolic) {
+                                const auto d =
+                                    std::sqrt(yloc * yloc + zloc * zloc);
+                                const auto d_ext = std::sqrt(
+                                    utils::powi(
+                                        (dim0 * yloc) / (2.0_rt * d), 2) +
+                                    utils::powi(
+                                        (dim1 * zloc) / (2.0_rt * d), 2));
+                                speed_factor -= utils::powi(d / d_ext, 2);
+                            } // Uniform case is default (else)
+                            vel_arrs[nbx](i, j, k, 0) = uloc * speed_factor;
+                            vel_arrs[nbx](i, j, k, 1) = vloc * speed_factor;
+                            vel_arrs[nbx](i, j, k, 2) = wloc * speed_factor;
                         }
                     } else if (seg_type == ChannelSegmentType::Trapezoid) {
                         outside_channel &=
