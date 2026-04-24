@@ -1,0 +1,79 @@
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#            SIMULATION STOP            #
+#.......................................#
+time.stop_time               =  -1.     # Max (simulated) time to evolve
+time.max_step                =  6          # Max number of time steps
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#         TIME STEP COMPUTATION         #
+#.......................................#
+time.fixed_dt         =   0.5        # Use this constant dt if > 0
+time.cfl              =   0.95       # CFL factor
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#            INPUT AND OUTPUT           #
+#.......................................#
+time.plot_interval            =   6       # Steps between plot files
+time.checkpoint_interval      =  -1        # Steps between checkpoint files
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#               PHYSICS                 #
+#.......................................#
+incflo.density        = 1.225
+
+transport.model = ConstTransport
+transport.viscosity = 1e-5
+turbulence.model = Laminar
+
+incflo.physics = ChannelBuilder
+ICNS.source_terms = BodyForce DragForcing
+BodyForce.magnitude = 0.1 0 0
+ChannelBuilder.segment_labels = s1 s2 s3 s4 s5
+
+ChannelBuilder.s1.flow_speed = 1.0
+ChannelBuilder.s1.velocity_profile = Parabolic
+ChannelBuilder.s1.diameter_start = 100
+ChannelBuilder.s1.diameter_end = 80
+ChannelBuilder.s1.segment_start_point = 0. 200. 0.
+ChannelBuilder.s1.segment_end_point = 200. 200. 0.
+
+ChannelBuilder.s2.flow_speed = 0.5
+ChannelBuilder.s2.diameter_start = 70
+ChannelBuilder.s2.diameter_end = 50
+ChannelBuilder.s2.segment_start_point = 200. 200. 0.
+ChannelBuilder.s2.segment_end_point = 300. 100. 0. 
+
+ChannelBuilder.s3.flow_speed = 0.5
+ChannelBuilder.s3.diameter_start = 70
+ChannelBuilder.s3.diameter_end = 50
+ChannelBuilder.s3.segment_start_point = 200. 200. 0.
+ChannelBuilder.s3.segment_end_point = 300. 300. 0. 
+
+ChannelBuilder.s4.flow_speed = 0.5
+ChannelBuilder.s4.diameter_start = 50
+ChannelBuilder.s4.diameter_end = 70
+ChannelBuilder.s4.segment_start_point = 300. 100. 0.
+ChannelBuilder.s4.segment_end_point = 400. 200. 0. 
+
+ChannelBuilder.s5.flow_speed = 0.5
+ChannelBuilder.s5.diameter_start = 50
+ChannelBuilder.s5.diameter_end = 70
+ChannelBuilder.s5.segment_start_point = 300. 300. 0.
+ChannelBuilder.s5.segment_end_point = 400. 200. 0. 
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#        ADAPTIVE MESH REFINEMENT       #
+#.......................................#
+amr.n_cell              = 64 64 32 # Grid cells at coarsest AMRlevel
+amr.max_level           = 0           # Max AMR level in hierarchy
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#              GEOMETRY                 #
+#.......................................#
+geometry.prob_lo        =   0.       0.  -100.  # Lo corner coordinates
+geometry.prob_hi        =   400.   400.   100.  # Hi corner coordinates
+geometry.is_periodic    =   1   0   0   # Periodicity x y z (0/1)
+# Boundary conditions
+ylo.type =   "slip_wall"
+yhi.type =   "slip_wall"
+zlo.type =   "slip_wall"
+zhi.type =   "slip_wall"
+

@@ -286,6 +286,7 @@ add_test_re(abl_specifiedmol_neutral)
 add_test_re(abl_specifiedmol_stable)
 add_test_re(abl_specifiedmol_unstable)
 add_test_re(udf_refinement)
+add_test_re(channel_builder_single_phase_periodic)
 
 if("${KYNEMA_SGF_PRECISION}" STREQUAL "DOUBLE")
   add_test_re(rankine)
