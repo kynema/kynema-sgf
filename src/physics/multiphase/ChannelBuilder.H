@@ -111,6 +111,8 @@ private:
     //! Blanking field for terrain or buildings
     IntField& m_terrain_blank;
 
+    bool m_is_multiphase{false};
+    amrex::Real m_rho_init{1.0_rt};
     amrex::Real m_water_level{0.0_rt};
     amrex::Real m_land_level{0.0_rt};
 
@@ -128,8 +130,6 @@ private:
     //! Quantities for setting velocity in channels
     amrex::Gpu::DeviceVector<ChannelVelocityProfile> m_velocity_profile;
     amrex::Gpu::DeviceVector<amrex::Real> m_flow_speed;
-
-    bool m_is_multiphase;
 };
 } // namespace kynema_sgf::channelbuilder
 

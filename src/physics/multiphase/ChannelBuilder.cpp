@@ -169,6 +169,10 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
         pp.get("land_level", m_land_level);
         amrex::ParmParse pp_multiphase("MultiPhase");
         pp_multiphase.add("water_level", m_water_level);
+    } else {
+        // Initialize density for single-phase case
+        amrex::ParmParse pp_incflo("incflo");
+        pp_incflo.get("density", m_rho_init);
     }
     pp.getarr("segment_labels", labels);
 
@@ -351,6 +355,10 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
 
     // Set all velocity to 0 for the sake of blanked cells
     velocity.setVal(0.0_rt);
+    // Set density in single-phase case
+    if (!multiphase) {
+        m_repo.get_field("density").setVal(m_rho_init);
+    }
 
     amrex::ParallelFor(
         blank_mfab, m_terrain_blank.num_grow(),
