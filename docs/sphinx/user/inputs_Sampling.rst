@@ -207,6 +207,12 @@ such as during wave breaking. This parameter defaults to 1, and the sampler will
 automatically select the highest position along the search direction when the interface
 location is multi-valued.
 
+A third optional parameter is ``phase_field``. By default, the free surface is located
+using the vof field, and in most cases, this is the only field that makes sense. However,
+when using the OceanWaves physics class, a target vof field, called ow_vof, is also
+created, and it can also be useful to use the sampler to output the location of the interface
+according to this target field.
+
 The free surface location is calculated with
 a geometric approach using the reconstruction of the interface in a computational
 cell. However, within the numerical beach of a wave simulation, the volume fraction distribution
