@@ -90,7 +90,8 @@ private:
     CFDSim& m_sim;
 
     //! reference to VOF
-    const Field& m_vof;
+    const Field* m_vof{nullptr};
+    std::string m_vof_str{"vof"};
 
     //! Number or points on 2D grid in each direction
     amrex::Vector<int> m_npts_dir;

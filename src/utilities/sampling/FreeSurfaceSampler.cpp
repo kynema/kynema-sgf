@@ -11,9 +11,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::sampling {
 
-FreeSurfaceSampler::FreeSurfaceSampler(CFDSim& sim)
-    : m_sim(sim), m_vof(sim.repo().get_field("vof"))
-{}
+FreeSurfaceSampler::FreeSurfaceSampler(CFDSim& sim) : m_sim(sim) {}
 
 FreeSurfaceSampler::~FreeSurfaceSampler() = default;
 
@@ -29,6 +27,7 @@ void FreeSurfaceSampler::initialize(const std::string& key)
         pp.query("search_direction", m_coorddir);
         pp.query("num_instances", m_ninst);
         pp.query("max_sample_points_per_cell", m_ncmax);
+        pp.query("phase_field", m_vof_str);
         m_use_linear = pp.contains("linear_interp_extent_from_xhi");
         if (m_use_linear) {
             pp.get("linear_interp_extent_from_xhi", m_lx_linear);
@@ -37,6 +36,14 @@ void FreeSurfaceSampler::initialize(const std::string& key)
         AMREX_ALWAYS_ASSERT(static_cast<int>(m_end.size()) == AMREX_SPACEDIM);
         AMREX_ALWAYS_ASSERT(static_cast<int>(m_npts_dir.size()) == 2);
         check_bounds();
+
+        if (m_vof_str != "vof" && m_vof_str != "ow_vof") {
+            amrex::Print()
+                << "Phase field input not among the recognized options of "
+                   "ow_vof and vof. Locations and resulting outputs of "
+                   "FreeSurfaceSampler may be garbage.\n";
+        }
+        m_vof = &(m_sim.repo().get_field(m_vof_str));
 
         switch (m_coorddir) {
         case 0: {
@@ -105,7 +112,7 @@ void FreeSurfaceSampler::initialize(const std::string& key)
 
     // Determine number of components necessary for working fields
     int ncomp = 0;
-    const int finest_level = m_vof.repo().num_active_levels() - 1;
+    const int finest_level = (*m_vof).repo().num_active_levels() - 1;
     for (int lev = 0; lev <= finest_level; lev++) {
         // Use level_mask to only count finest level present
         amrex::iMultiFab level_mask;
@@ -434,7 +441,7 @@ bool FreeSurfaceSampler::update_sampling_locations()
     auto& fidx = m_sim.repo().get_int_field("sample_idx_" + m_label);
     auto& floc = m_sim.repo().get_field("sample_loc_" + m_label);
 
-    const int finest_level = m_vof.repo().num_active_levels() - 1;
+    const int finest_level = (*m_vof).repo().num_active_levels() - 1;
 
     // Capture integers for device
     const int dir = m_coorddir;
@@ -470,7 +477,7 @@ bool FreeSurfaceSampler::update_sampling_locations()
             for (amrex::MFIter mfi(floc(lev)); mfi.isValid(); ++mfi) {
                 auto loc_arr = floc(lev).const_array(mfi);
                 auto idx_arr = fidx(lev).const_array(mfi);
-                auto vof_arr = m_vof(lev).const_array(mfi);
+                auto vof_arr = (*m_vof)(lev).const_array(mfi);
                 auto ibl_arr = has_overset ? (*iblank_ptr)(lev).const_array(mfi)
                                            : amrex::Array4<int>();
                 const auto& vbx = mfi.validbox();
@@ -751,7 +758,7 @@ void FreeSurfaceSampler::post_regrid_actions()
         (m_end[m_gc1] - m_start[m_gc1]) / amrex::max(m_npts_dir[1] - 1, 1);
 
     // Store locations and indices in fields
-    const int finest_level = m_vof.repo().num_active_levels() - 1;
+    const int finest_level = (*m_vof).repo().num_active_levels() - 1;
     for (int lev = 0; lev <= finest_level; lev++) {
         // Use level_mask to only count finest level present
         amrex::iMultiFab level_mask;
