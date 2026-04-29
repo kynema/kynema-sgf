@@ -1,6 +1,8 @@
 #include "ks_test_utils/AmrexTest.H"
 #include "src/physics/multiphase/ChannelBuilder.H"
 #include "AMReX_REAL.H"
+#include <cmath>
+#include <limits>
 
 using namespace amrex::literals;
 

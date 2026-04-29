@@ -6,12 +6,11 @@
 #include "src/CFDSim.H"
 #include "AMReX_Gpu.H"
 
+namespace kynema_sgf::channelbuilder {
+
 enum class ChannelSegmentType : std::uint8_t { Ellipse, Trapezoid };
 
 enum class ChannelVelocityProfile : std::uint8_t { Uniform, Linear, Parabolic };
-
-namespace kynema_sgf::channelbuilder {
-
 [[nodiscard]] AMREX_GPU_HOST_DEVICE bool trapezoid(
     const amrex::Real& top,
     const amrex::Real& bottom,
@@ -66,8 +65,8 @@ get_local_dimensions(
  */
 [[nodiscard]] AMREX_GPU_HOST_DEVICE amrex::GpuArray<amrex::Real, 3>
 transform_to_local_coordinates(
-    const bool& do_translation,
-    const bool& is_active,
+    bool do_translation,
+    bool is_active,
     const amrex::Real& x,
     const amrex::Real& y,
     const amrex::Real& z,
@@ -78,7 +77,7 @@ transform_to_local_coordinates(
     const amrex::Real& end_y,
     const amrex::Real& end_z);
 
-/** Terraindrag Flow physics
+/** Channel segment geometry and velocity initialization physics.
  *  \ingroup physics
  */
 
