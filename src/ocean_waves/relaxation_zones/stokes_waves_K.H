@@ -6,6 +6,7 @@
 #include <numbers>
 #include "AMReX_FArrayBox.H"
 #include "src/utilities/math_ops.H"
+#include "src/utilities/constants.H"
 
 using namespace amrex::literals;
 
@@ -361,13 +362,17 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void stokes_waves(
     for (int n = 1; n <= stokes_order; ++n) {
         // Upper bound for deep water case
         // This ensure finite values of velocity for large kd's
-        amrex::Real nkdz = n * wavenumber * (water_depth + (z - zsl));
-        nkdz = amrex::min<amrex::Real>(
-            nkdz, 50.0_rt * std::numbers::pi_v<amrex::Real>);
+        const amrex::Real nkdz = n * wavenumber * (water_depth + (z - zsl));
+        // Limit the output of hyperbolic functions instead of the output
+        amrex::Real cosh_nkdz = std::cosh(nkdz);
+        amrex::Real sinh_nkdz = std::sinh(nkdz);
+        cosh_nkdz = amrex::min<amrex::Real>(constants::LARGE_NUM, amrex::max<amrex::Real>(constants::LOW_NUM, cosh_nkdz));
+        sinh_nkdz = amrex::min<amrex::Real>(constants::LARGE_NUM, amrex::max<amrex::Real>(constants::LOW_NUM, sinh_nkdz));
+        // Contributions to velocity
         u_w += utils::powi(eps, n) * static_cast<amrex::Real>(n) * a[n - 1] *
-               std::cosh(nkdz) * std::cos(static_cast<amrex::Real>(n) * phase);
+               cosh_nkdz * std::cos(static_cast<amrex::Real>(n) * phase);
         w_w += utils::powi(eps, n) * static_cast<amrex::Real>(n) * a[n - 1] *
-               std::sinh(nkdz) * std::sin(static_cast<amrex::Real>(n) * phase);
+               sinh_nkdz * std::sin(static_cast<amrex::Real>(n) * phase);
     }
     u_w *= (c0 * std::sqrt(g / wavenumber));
     w_w *= (c0 * std::sqrt(g / wavenumber));
