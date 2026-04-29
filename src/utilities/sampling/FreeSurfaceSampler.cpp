@@ -112,7 +112,7 @@ void FreeSurfaceSampler::initialize(const std::string& key)
 
     // Determine number of components necessary for working fields
     int ncomp = 0;
-    const int finest_level = (*m_vof).repo().num_active_levels() - 1;
+    const int finest_level = m_vof->repo().num_active_levels() - 1;
     for (int lev = 0; lev <= finest_level; lev++) {
         // Use level_mask to only count finest level present
         amrex::iMultiFab level_mask;
@@ -441,7 +441,7 @@ bool FreeSurfaceSampler::update_sampling_locations()
     auto& fidx = m_sim.repo().get_int_field("sample_idx_" + m_label);
     auto& floc = m_sim.repo().get_field("sample_loc_" + m_label);
 
-    const int finest_level = (*m_vof).repo().num_active_levels() - 1;
+    const int finest_level = m_vof->repo().num_active_levels() - 1;
 
     // Capture integers for device
     const int dir = m_coorddir;
@@ -758,7 +758,7 @@ void FreeSurfaceSampler::post_regrid_actions()
         (m_end[m_gc1] - m_start[m_gc1]) / amrex::max(m_npts_dir[1] - 1, 1);
 
     // Store locations and indices in fields
-    const int finest_level = (*m_vof).repo().num_active_levels() - 1;
+    const int finest_level = m_vof->repo().num_active_levels() - 1;
     for (int lev = 0; lev <= finest_level; lev++) {
         // Use level_mask to only count finest level present
         amrex::iMultiFab level_mask;
