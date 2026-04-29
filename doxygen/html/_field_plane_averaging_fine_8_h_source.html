@@ -1,0 +1,415 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/FieldPlaneAveragingFine.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/FieldPlaneAveragingFine.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_field_plane_averaging_fine_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-utilities-fieldplaneaveragingfine-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/FieldPlaneAveragingFine.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-utilities-fieldplaneaveragingfine-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/FieldPlaneAveragingFine.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_d59b7dddc6cfeb8ed243c8310c362d19.html">utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">FieldPlaneAveragingFine.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_field_plane_averaging_fine_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef FIELDPLANEAVERAGINGFINE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define FIELDPLANEAVERAGINGFINE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_direction_selector_8_h.html">src/utilities/DirectionSelector.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_field_8_h.html">src/core/Field.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_sim_time_8_h.html">src/core/SimTime.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> FType&gt;</div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html">   30</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#abd624e54bd72660a52566756795d42f9">FPlaneAveragingFine</a></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#abd624e54bd72660a52566756795d42f9">   40</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#abd624e54bd72660a52566756795d42f9">FPlaneAveragingFine</a>(</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keyword">const</span> FType&amp; field_in,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a>&amp; time,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordtype">int</span> axis_in,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordtype">bool</span> compute_deriv = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab3fa9a882d26191f4584c6a2712dd21e">   46</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab3fa9a882d26191f4584c6a2712dd21e">~FPlaneAveragingFine</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a23be72fb25fe79fa703d201ab46a0188">   48</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a23be72fb25fe79fa703d201ab46a0188">operator()</a>();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a9dbe72424802bebf17675a38655a7475">   50</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a9dbe72424802bebf17675a38655a7475">convert_x_to_ind</a>(amrex::Real x, <span class="keywordtype">int</span>&amp; ind, amrex::Real&amp; c) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    [[nodiscard]] amrex::Real</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac64bf421c3697222e9713dc035a6d9f2">   54</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac64bf421c3697222e9713dc035a6d9f2">line_average_interpolated</a>(amrex::Real x, <span class="keywordtype">int</span> comp) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a17782fed8950d36c0a8bd03c39138d9d">   56</a></span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a17782fed8950d36c0a8bd03c39138d9d">line_average_cell</a>(<span class="keywordtype">int</span> ind, <span class="keywordtype">int</span> comp) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    [[nodiscard]] amrex::Real</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a8bbeda4c5bc37d8040ec7318fdbaae1e">   61</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a8bbeda4c5bc37d8040ec7318fdbaae1e">line_derivative_interpolated</a>(amrex::Real x, <span class="keywordtype">int</span> comp) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    [[nodiscard]] amrex::Real</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac8bb12e534fac55b3476a7ad0d21a74c">   65</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac8bb12e534fac55b3476a7ad0d21a74c">line_derivative_of_average_cell</a>(<span class="keywordtype">int</span> ind, <span class="keywordtype">int</span> comp) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac423eca819f3096789d20ee4f87dfdf4">   67</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac423eca819f3096789d20ee4f87dfdf4">output_line_average_ascii</a>(</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keyword">const</span> std::string&amp; filename, <span class="keywordtype">int</span> step, amrex::Real time);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ace3c0010939f0addb669f981e8529b63">   69</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ace3c0010939f0addb669f981e8529b63">output_line_average_ascii</a>(<span class="keywordtype">int</span> step, amrex::Real time);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac135bd3aa7c1462823ddbb5253e1e4e4">   72</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac135bd3aa7c1462823ddbb5253e1e4e4">set_precision</a>(<span class="keywordtype">int</span> p) { <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a1758c50011a144a95cb16d09f0a5399d">m_precision</a> = p; };</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#acb8f30d4582b65136fb8247d36d9e891">   74</a></span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#acb8f30d4582b65136fb8247d36d9e891">dx</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac14f83d09b8f8d72c4b5d4e4688380db">m_dx</a>; };</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab1fe8555bc0c6a03ff8c556c8d7e26c7">   75</a></span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab1fe8555bc0c6a03ff8c556c8d7e26c7">xlo</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a875e3a70df5dff75b85a0d826508a6e2">m_xlo</a>; };</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a43ce9e21aa5e6aa4a50ab85fa82f5faa">   77</a></span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a43ce9e21aa5e6aa4a50ab85fa82f5faa">axis</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a58725248b08b3fe82c267d72e5d19931">m_axis</a>; };</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a952bfc8db788f4879469c8a15f33cb27">   78</a></span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a952bfc8db788f4879469c8a15f33cb27">ncomp</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a8982db3c60c400277f2976fad5aac0c5">m_ncomp</a>; };</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ae59861e90e46a109faa47991d0140d07">   79</a></span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ae59861e90e46a109faa47991d0140d07">ncell_line</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#abce9d7f0862bfdfce0b1faf43dd44f17">m_ncell_line</a>; };</div>
+<div class="foldopen" id="foldopen00080" data-start="{" data-end="}">
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ae630fb4805d64ec68d487bbca538a766">   80</a></span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ae630fb4805d64ec68d487bbca538a766">last_updated_index</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a182b595ab6e693fce24b314efd972487">m_last_updated_index</a>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    };</div>
+</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="foldopen" id="foldopen00085" data-start="{" data-end="}">
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#acc93a9f2a0cd6d34c7a8160c5cb57b58">   85</a></span>    [[nodiscard]] <span class="keyword">const</span> amrex::Vector&lt;amrex::Real&gt;&amp; <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#acc93a9f2a0cd6d34c7a8160c5cb57b58">line_average</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a1c91be23020ce818912e85babfdbb986">m_line_average</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    };</div>
+</div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="}">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a8ab088084da60e35a1cc5bd08c70cb08">   89</a></span>    [[nodiscard]] <span class="keyword">const</span> amrex::Vector&lt;amrex::Real&gt;&amp; <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a8ab088084da60e35a1cc5bd08c70cb08">line_deriv</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab63751e2253ed5d94457c3bf0a0b5ffb">m_line_deriv</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    };</div>
+</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab352eaf2ba8cb50a0573f9d66423a0f9">   93</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab352eaf2ba8cb50a0573f9d66423a0f9">line_average</a>(<span class="keywordtype">int</span> comp, amrex::Vector&lt;amrex::Real&gt;&amp; l_vec);</div>
+<div class="foldopen" id="foldopen00094" data-start="{" data-end="}">
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#aeeeb794653bba30673e6b23e01a402b0">   94</a></span>    [[nodiscard]] <span class="keyword">const</span> amrex::Vector&lt;amrex::Real&gt;&amp; <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#aeeeb794653bba30673e6b23e01a402b0">line_centroids</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a9e13caae8c118cc2b0639eafec7651dc">m_line_xcentroid</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    };</div>
+</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ae8855876db90cdba84dafac44692e98d">   99</a></span>    [[nodiscard]] <span class="keyword">const</span> FType&amp; <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ae8855876db90cdba84dafac44692e98d">field</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac2fee2123ba51497e6a7549f25900f8d">m_field</a>; };</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a8982db3c60c400277f2976fad5aac0c5">  102</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a8982db3c60c400277f2976fad5aac0c5">m_ncomp</a>; </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    amrex::Vector&lt;amrex::Real&gt;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a1c91be23020ce818912e85babfdbb986">  105</a></span>        <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a1c91be23020ce818912e85babfdbb986">m_line_average</a>; </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab63751e2253ed5d94457c3bf0a0b5ffb">  108</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab63751e2253ed5d94457c3bf0a0b5ffb">m_line_deriv</a>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a9e13caae8c118cc2b0639eafec7651dc">  110</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a9e13caae8c118cc2b0639eafec7651dc">m_line_xcentroid</a>; </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac14f83d09b8f8d72c4b5d4e4688380db">  113</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac14f83d09b8f8d72c4b5d4e4688380db">m_dx</a>;  </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a875e3a70df5dff75b85a0d826508a6e2">  114</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a875e3a70df5dff75b85a0d826508a6e2">m_xlo</a>; </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a4146e98820440efb5df997b331aee7e3">  115</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a4146e98820440efb5df997b331aee7e3">m_xhi</a>; </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#abce9d7f0862bfdfce0b1faf43dd44f17">  117</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#abce9d7f0862bfdfce0b1faf43dd44f17">m_ncell_line</a>; </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a1758c50011a144a95cb16d09f0a5399d">  119</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a1758c50011a144a95cb16d09f0a5399d">m_precision</a> = 6;           </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a182b595ab6e693fce24b314efd972487">  120</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a182b595ab6e693fce24b314efd972487">m_last_updated_index</a> = -1; </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac2fee2123ba51497e6a7549f25900f8d">  123</a></span>    <span class="keyword">const</span> FType&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac2fee2123ba51497e6a7549f25900f8d">m_field</a>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#abc242ed7aefa1c983ca38081d170a07e">  124</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#abc242ed7aefa1c983ca38081d170a07e">m_time</a>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a58725248b08b3fe82c267d72e5d19931">  125</a></span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a58725248b08b3fe82c267d72e5d19931">m_axis</a>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a6946b9527c7a72e271cabe1d3c737f6f">  126</a></span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a6946b9527c7a72e271cabe1d3c737f6f">m_comp_deriv</a>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keyword">public</span>: <span class="comment">// public for GPU</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> IndexSelector&gt;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a51fb9671567899b0849e01ac96f8a13a">  131</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a51fb9671567899b0849e01ac96f8a13a">compute_averages</a>(<span class="keyword">const</span> IndexSelector&amp; idxOp);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab74774c62862a8d7a3aa2177b824cb27">  134</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab74774c62862a8d7a3aa2177b824cb27">compute_line_derivatives</a>();</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>};</div>
+</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="namespacekynema__sgf.html#a8c8e6d5091635786c7f1da8075a837a9">  137</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacekynema__sgf.html#a8c8e6d5091635786c7f1da8075a837a9">FieldPlaneAveragingFine</a> = <a class="code hl_class" href="classkynema__sgf_1_1_f_plane_averaging_fine.html">FPlaneAveragingFine&lt;Field&gt;</a>;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="namespacekynema__sgf.html#ae8f6c4ed258fe312540f3228f515fcb3">  138</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacekynema__sgf.html#ae8f6c4ed258fe312540f3228f515fcb3">ScratchFieldPlaneAveragingFine</a> = <a class="code hl_class" href="classkynema__sgf_1_1_f_plane_averaging_fine.html">FPlaneAveragingFine&lt;ScratchField&gt;</a>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span></div>
+<div class="foldopen" id="foldopen00143" data-start="{" data-end="};">
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html">  143</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#aa07f928cd72b0db3a5a161832c0f6bd6">VelPlaneAveragingFine</a> : <span class="keyword">public</span> <a class="code hl_typedef" href="namespacekynema__sgf.html#a8c8e6d5091635786c7f1da8075a837a9">FieldPlaneAveragingFine</a></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>{</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <a class="code hl_function" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#aa07f928cd72b0db3a5a161832c0f6bd6">VelPlaneAveragingFine</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim, <span class="keywordtype">int</span> axis_in);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#a48e6fa91f656de9b775d1ca232ef234a">  148</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#a48e6fa91f656de9b775d1ca232ef234a">~VelPlaneAveragingFine</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#aa364739cba24a33dbdd886cb4885b709">operator()</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    amrex::Vector&lt;amrex::Real&gt;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#a535be1a72547cec7105b2e73299b4609">  154</a></span>        <a class="code hl_variable" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#a535be1a72547cec7105b2e73299b4609">m_line_hvelmag_average</a>; </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    amrex::Vector&lt;amrex::Real&gt;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#a18d239ea2c71b670daf9be1be9b9832e">  157</a></span>        <a class="code hl_variable" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#a18d239ea2c71b670daf9be1be9b9832e">m_line_Su_average</a>; </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    amrex::Vector&lt;amrex::Real&gt;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#a6e681d79d755cb6f8aa339aa989542b6">  161</a></span>        <a class="code hl_variable" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#a6e681d79d755cb6f8aa339aa989542b6">m_line_Sv_average</a>; </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="keyword">public</span>: <span class="comment">// public for GPU</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> IndexSelector&gt;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#aa9ec1171419a5ccf3a1a36b35b879d71">compute_hvelmag_averages</a>(<span class="keyword">const</span> IndexSelector&amp; idxOp);</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    [[nodiscard]] amrex::Real</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <a class="code hl_function" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#acdc6c9c2478f2730a2af61a3c6fe5539">line_hvelmag_average_interpolated</a>(amrex::Real x) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#afb22f8f11d2a7ac092a09240a923f321">line_su_average_interpolated</a>(amrex::Real x) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#abbdedc401a57ae61d433c5321973fa03">line_sv_average_interpolated</a>(amrex::Real x) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>};</div>
+</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="preprocessor">#endif </span><span class="comment">/* FieldPlaneAveragingFine_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_direction_selector_8_h_html"><div class="ttname"><a href="_direction_selector_8_h.html">DirectionSelector.H</a></div></div>
+<div class="ttc" id="a_field_8_h_html"><div class="ttname"><a href="_field_8_h.html">Field.H</a></div></div>
+<div class="ttc" id="a_sim_time_8_h_html"><div class="ttname"><a href="_sim_time_8_h.html">SimTime.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html">kynema_sgf::FPlaneAveragingFine</a></div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:31</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a1758c50011a144a95cb16d09f0a5399d"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a1758c50011a144a95cb16d09f0a5399d">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;::m_precision</a></div><div class="ttdeci">int m_precision</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:119</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a17782fed8950d36c0a8bd03c39138d9d"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a17782fed8950d36c0a8bd03c39138d9d">kynema_sgf::FPlaneAveragingFine::line_average_cell</a></div><div class="ttdeci">amrex::Real line_average_cell(int ind, int comp) const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:165</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a182b595ab6e693fce24b314efd972487"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a182b595ab6e693fce24b314efd972487">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;::m_last_updated_index</a></div><div class="ttdeci">int m_last_updated_index</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:120</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a1c91be23020ce818912e85babfdbb986"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a1c91be23020ce818912e85babfdbb986">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;::m_line_average</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_line_average</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:105</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a23be72fb25fe79fa703d201ab46a0188"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a23be72fb25fe79fa703d201ab46a0188">kynema_sgf::FPlaneAveragingFine::operator()</a></div><div class="ttdeci">virtual void operator()()</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:176</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a4146e98820440efb5df997b331aee7e3"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a4146e98820440efb5df997b331aee7e3">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;::m_xhi</a></div><div class="ttdeci">amrex::Real m_xhi</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:115</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a43ce9e21aa5e6aa4a50ab85fa82f5faa"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a43ce9e21aa5e6aa4a50ab85fa82f5faa">kynema_sgf::FPlaneAveragingFine::axis</a></div><div class="ttdeci">int axis() const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:77</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a51fb9671567899b0849e01ac96f8a13a"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a51fb9671567899b0849e01ac96f8a13a">kynema_sgf::FPlaneAveragingFine::compute_averages</a></div><div class="ttdeci">void compute_averages(const IndexSelector &amp;idxOp)</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:206</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a58725248b08b3fe82c267d72e5d19931"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a58725248b08b3fe82c267d72e5d19931">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;::m_axis</a></div><div class="ttdeci">const int m_axis</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:125</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a6946b9527c7a72e271cabe1d3c737f6f"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a6946b9527c7a72e271cabe1d3c737f6f">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;::m_comp_deriv</a></div><div class="ttdeci">const bool m_comp_deriv</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:126</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a875e3a70df5dff75b85a0d826508a6e2"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a875e3a70df5dff75b85a0d826508a6e2">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;::m_xlo</a></div><div class="ttdeci">amrex::Real m_xlo</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:114</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a8982db3c60c400277f2976fad5aac0c5"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a8982db3c60c400277f2976fad5aac0c5">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;::m_ncomp</a></div><div class="ttdeci">int m_ncomp</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:102</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a8ab088084da60e35a1cc5bd08c70cb08"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a8ab088084da60e35a1cc5bd08c70cb08">kynema_sgf::FPlaneAveragingFine::line_deriv</a></div><div class="ttdeci">const amrex::Vector&lt; amrex::Real &gt; &amp; line_deriv() const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:89</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a8bbeda4c5bc37d8040ec7318fdbaae1e"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a8bbeda4c5bc37d8040ec7318fdbaae1e">kynema_sgf::FPlaneAveragingFine::line_derivative_interpolated</a></div><div class="ttdeci">amrex::Real line_derivative_interpolated(amrex::Real x, int comp) const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:436</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a952bfc8db788f4879469c8a15f33cb27"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a952bfc8db788f4879469c8a15f33cb27">kynema_sgf::FPlaneAveragingFine::ncomp</a></div><div class="ttdeci">int ncomp() const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:78</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a9dbe72424802bebf17675a38655a7475"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a9dbe72424802bebf17675a38655a7475">kynema_sgf::FPlaneAveragingFine::convert_x_to_ind</a></div><div class="ttdeci">void convert_x_to_ind(amrex::Real x, int &amp;ind, amrex::Real &amp;c) const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:63</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_a9e13caae8c118cc2b0639eafec7651dc"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a9e13caae8c118cc2b0639eafec7651dc">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;::m_line_xcentroid</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_line_xcentroid</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:110</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_ab1fe8555bc0c6a03ff8c556c8d7e26c7"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab1fe8555bc0c6a03ff8c556c8d7e26c7">kynema_sgf::FPlaneAveragingFine::xlo</a></div><div class="ttdeci">amrex::Real xlo() const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:75</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_ab352eaf2ba8cb50a0573f9d66423a0f9"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab352eaf2ba8cb50a0573f9d66423a0f9">kynema_sgf::FPlaneAveragingFine::line_average</a></div><div class="ttdeci">void line_average(int comp, amrex::Vector&lt; amrex::Real &gt; &amp;l_vec)</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:151</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_ab3fa9a882d26191f4584c6a2712dd21e"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab3fa9a882d26191f4584c6a2712dd21e">kynema_sgf::FPlaneAveragingFine::~FPlaneAveragingFine</a></div><div class="ttdeci">virtual ~FPlaneAveragingFine()=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_ab63751e2253ed5d94457c3bf0a0b5ffb"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab63751e2253ed5d94457c3bf0a0b5ffb">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;::m_line_deriv</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_line_deriv</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:108</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_ab74774c62862a8d7a3aa2177b824cb27"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab74774c62862a8d7a3aa2177b824cb27">kynema_sgf::FPlaneAveragingFine::compute_line_derivatives</a></div><div class="ttdeci">void compute_line_derivatives()</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:394</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_abc242ed7aefa1c983ca38081d170a07e"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#abc242ed7aefa1c983ca38081d170a07e">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;::m_time</a></div><div class="ttdeci">const SimTime &amp; m_time</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:124</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_abce9d7f0862bfdfce0b1faf43dd44f17"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#abce9d7f0862bfdfce0b1faf43dd44f17">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;::m_ncell_line</a></div><div class="ttdeci">int m_ncell_line</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:117</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_abd624e54bd72660a52566756795d42f9"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#abd624e54bd72660a52566756795d42f9">kynema_sgf::FPlaneAveragingFine::FPlaneAveragingFine</a></div><div class="ttdeci">FPlaneAveragingFine(const FType &amp;field_in, const kynema_sgf::SimTime &amp;time, int axis_in, bool compute_deriv=false)</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:13</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_ac135bd3aa7c1462823ddbb5253e1e4e4"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac135bd3aa7c1462823ddbb5253e1e4e4">kynema_sgf::FPlaneAveragingFine::set_precision</a></div><div class="ttdeci">void set_precision(int p)</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:72</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_ac14f83d09b8f8d72c4b5d4e4688380db"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac14f83d09b8f8d72c4b5d4e4688380db">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;::m_dx</a></div><div class="ttdeci">amrex::Real m_dx</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:113</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_ac2fee2123ba51497e6a7549f25900f8d"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac2fee2123ba51497e6a7549f25900f8d">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;::m_field</a></div><div class="ttdeci">const Field &amp; m_field</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:123</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_ac423eca819f3096789d20ee4f87dfdf4"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac423eca819f3096789d20ee4f87dfdf4">kynema_sgf::FPlaneAveragingFine::output_line_average_ascii</a></div><div class="ttdeci">void output_line_average_ascii(const std::string &amp;filename, int step, amrex::Real time)</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:84</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_ac64bf421c3697222e9713dc035a6d9f2"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac64bf421c3697222e9713dc035a6d9f2">kynema_sgf::FPlaneAveragingFine::line_average_interpolated</a></div><div class="ttdeci">amrex::Real line_average_interpolated(amrex::Real x, int comp) const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:135</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_ac8bb12e534fac55b3476a7ad0d21a74c"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac8bb12e534fac55b3476a7ad0d21a74c">kynema_sgf::FPlaneAveragingFine::line_derivative_of_average_cell</a></div><div class="ttdeci">amrex::Real line_derivative_of_average_cell(int ind, int comp) const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:406</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_acb8f30d4582b65136fb8247d36d9e891"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#acb8f30d4582b65136fb8247d36d9e891">kynema_sgf::FPlaneAveragingFine::dx</a></div><div class="ttdeci">amrex::Real dx() const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:74</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_acc93a9f2a0cd6d34c7a8160c5cb57b58"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#acc93a9f2a0cd6d34c7a8160c5cb57b58">kynema_sgf::FPlaneAveragingFine::line_average</a></div><div class="ttdeci">const amrex::Vector&lt; amrex::Real &gt; &amp; line_average() const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:85</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_ace3c0010939f0addb669f981e8529b63"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ace3c0010939f0addb669f981e8529b63">kynema_sgf::FPlaneAveragingFine::output_line_average_ascii</a></div><div class="ttdeci">void output_line_average_ascii(int step, amrex::Real time)</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:127</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_ae59861e90e46a109faa47991d0140d07"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ae59861e90e46a109faa47991d0140d07">kynema_sgf::FPlaneAveragingFine::ncell_line</a></div><div class="ttdeci">int ncell_line() const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:79</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_ae630fb4805d64ec68d487bbca538a766"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ae630fb4805d64ec68d487bbca538a766">kynema_sgf::FPlaneAveragingFine::last_updated_index</a></div><div class="ttdeci">int last_updated_index() const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:80</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_ae8855876db90cdba84dafac44692e98d"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ae8855876db90cdba84dafac44692e98d">kynema_sgf::FPlaneAveragingFine::field</a></div><div class="ttdeci">const FType &amp; field() const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:99</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_f_plane_averaging_fine_html_aeeeb794653bba30673e6b23e01a402b0"><div class="ttname"><a href="classkynema__sgf_1_1_f_plane_averaging_fine.html#aeeeb794653bba30673e6b23e01a402b0">kynema_sgf::FPlaneAveragingFine::line_centroids</a></div><div class="ttdeci">const amrex::Vector&lt; amrex::Real &gt; &amp; line_centroids() const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:94</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a></div><div class="ttdef"><b>Definition</b> SimTime.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_vel_plane_averaging_fine_html_a18d239ea2c71b670daf9be1be9b9832e"><div class="ttname"><a href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#a18d239ea2c71b670daf9be1be9b9832e">kynema_sgf::VelPlaneAveragingFine::m_line_Su_average</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_line_Su_average</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:157</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_vel_plane_averaging_fine_html_a48e6fa91f656de9b775d1ca232ef234a"><div class="ttname"><a href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#a48e6fa91f656de9b775d1ca232ef234a">kynema_sgf::VelPlaneAveragingFine::~VelPlaneAveragingFine</a></div><div class="ttdeci">~VelPlaneAveragingFine() override=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_vel_plane_averaging_fine_html_a535be1a72547cec7105b2e73299b4609"><div class="ttname"><a href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#a535be1a72547cec7105b2e73299b4609">kynema_sgf::VelPlaneAveragingFine::m_line_hvelmag_average</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_line_hvelmag_average</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:154</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_vel_plane_averaging_fine_html_a6e681d79d755cb6f8aa339aa989542b6"><div class="ttname"><a href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#a6e681d79d755cb6f8aa339aa989542b6">kynema_sgf::VelPlaneAveragingFine::m_line_Sv_average</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_line_Sv_average</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:161</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_vel_plane_averaging_fine_html_aa07f928cd72b0db3a5a161832c0f6bd6"><div class="ttname"><a href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#aa07f928cd72b0db3a5a161832c0f6bd6">kynema_sgf::VelPlaneAveragingFine::VelPlaneAveragingFine</a></div><div class="ttdeci">VelPlaneAveragingFine(CFDSim &amp;sim, int axis_in)</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:455</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_vel_plane_averaging_fine_html_aa364739cba24a33dbdd886cb4885b709"><div class="ttname"><a href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#aa364739cba24a33dbdd886cb4885b709">kynema_sgf::VelPlaneAveragingFine::operator()</a></div><div class="ttdeci">void operator()() override</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:465</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_vel_plane_averaging_fine_html_aa9ec1171419a5ccf3a1a36b35b879d71"><div class="ttname"><a href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#aa9ec1171419a5ccf3a1a36b35b879d71">kynema_sgf::VelPlaneAveragingFine::compute_hvelmag_averages</a></div><div class="ttdeci">void compute_hvelmag_averages(const IndexSelector &amp;idxOp)</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:494</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_vel_plane_averaging_fine_html_abbdedc401a57ae61d433c5321973fa03"><div class="ttname"><a href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#abbdedc401a57ae61d433c5321973fa03">kynema_sgf::VelPlaneAveragingFine::line_sv_average_interpolated</a></div><div class="ttdeci">amrex::Real line_sv_average_interpolated(amrex::Real x) const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:684</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_vel_plane_averaging_fine_html_acdc6c9c2478f2730a2af61a3c6fe5539"><div class="ttname"><a href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#acdc6c9c2478f2730a2af61a3c6fe5539">kynema_sgf::VelPlaneAveragingFine::line_hvelmag_average_interpolated</a></div><div class="ttdeci">amrex::Real line_hvelmag_average_interpolated(amrex::Real x) const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:662</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_vel_plane_averaging_fine_html_afb22f8f11d2a7ac092a09240a923f321"><div class="ttname"><a href="classkynema__sgf_1_1_vel_plane_averaging_fine.html#afb22f8f11d2a7ac092a09240a923f321">kynema_sgf::VelPlaneAveragingFine::line_su_average_interpolated</a></div><div class="ttdeci">amrex::Real line_su_average_interpolated(amrex::Real x) const</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.cpp:673</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html_a8c8e6d5091635786c7f1da8075a837a9"><div class="ttname"><a href="namespacekynema__sgf.html#a8c8e6d5091635786c7f1da8075a837a9">kynema_sgf::FieldPlaneAveragingFine</a></div><div class="ttdeci">FPlaneAveragingFine&lt; Field &gt; FieldPlaneAveragingFine</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:137</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html_ae8f6c4ed258fe312540f3228f515fcb3"><div class="ttname"><a href="namespacekynema__sgf.html#ae8f6c4ed258fe312540f3228f515fcb3">kynema_sgf::ScratchFieldPlaneAveragingFine</a></div><div class="ttdeci">FPlaneAveragingFine&lt; ScratchField &gt; ScratchFieldPlaneAveragingFine</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:138</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

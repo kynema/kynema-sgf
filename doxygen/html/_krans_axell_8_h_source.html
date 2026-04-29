@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/tke/source_terms/KransAxell.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/tke/source_terms/KransAxell.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_krans_axell_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-tke-source-terms-kransaxell-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/tke/source_terms/KransAxell.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-tke-source-terms-kransaxell-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/tke/source_terms/KransAxell.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_0a302c6baedf52e9cfdc9fc1cbccbefa.html">equation_systems</a></li><li class="navelem"><a href="dir_e7c621d6a285c809e26b1e992d95e02d.html">tke</a></li><li class="navelem"><a href="dir_41d3919735b9e9ee5e223c19395b84fa.html">source_terms</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">KransAxell.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_krans_axell_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef KRANSAXELL_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define KRANSAXELL_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_transport_model_8_h.html">src/transport_models/TransportModel.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_t_k_e_source_8_h.html">src/equation_systems/tke/TKESource.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="constants_8_h.html">src/utilities/constants.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1pde_1_1tke.html">kynema_sgf::pde::tke</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html">   19</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a27557cb0d304009133b470ddc555cab0">KransAxell</a> : <span class="keyword">public</span> TKESource::Register&lt;KransAxell&gt;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#af3ed0ee380ea5ec5d6e4c1ef923d8789">   22</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#af3ed0ee380ea5ec5d6e4c1ef923d8789">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;KransAxell&quot;</span>; }</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a27557cb0d304009133b470ddc555cab0">KransAxell</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <span class="comment">/*sim*/</span>);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#aa6d150cec25ad59b5436f9c75fe53441">   26</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#aa6d150cec25ad59b5436f9c75fe53441">~KransAxell</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a6eee558f5cc1d3e433eed940893744f5">operator()</a>(</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordtype">int</span> lev,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keyword">const</span> amrex::MFIter&amp; mfi,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keyword">const</span> amrex::Box&amp; bx,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keyword">const</span> amrex::Array4&lt;amrex::Real&gt;&amp; src_term) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a4bc94d3c6c3bc948db0da4b2aa426d30">   36</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a4bc94d3c6c3bc948db0da4b2aa426d30">m_turb_lscale</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a3bfe3a615e8f827b52dd262443001a61">   37</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a3bfe3a615e8f827b52dd262443001a61">m_shear_prod</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#aee0d137d105cba5d62b10383bcbaf40a">   38</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#aee0d137d105cba5d62b10383bcbaf40a">m_buoy_prod</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#aba5e889dec484d5e567a13a1bdf45f10">   39</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#aba5e889dec484d5e567a13a1bdf45f10">m_dissip</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a6867bebac27c366a7c1013f5c66d85c1">   40</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a6867bebac27c366a7c1013f5c66d85c1">m_tke</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a7afbb550bf62536f8d49c124cdc9a8d8">   41</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a7afbb550bf62536f8d49c124cdc9a8d8">m_Cmu</a>{0.556_rt};</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a8511ca6a10546f37017aa389eff0c540">   42</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a8511ca6a10546f37017aa389eff0c540">m_heat_flux</a>{0.0_rt};</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#ad537c6ef943e285611bf255bf37e6bf5">   43</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#ad537c6ef943e285611bf255bf37e6bf5">m_z0</a>{0.1_rt};</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a537729a006a791143b5975fed81e738a">   44</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a537729a006a791143b5975fed81e738a">m_kappa</a>{0.41_rt};</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a6dd62f85975c37604e9e993bab4b37cf">   45</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a6dd62f85975c37604e9e993bab4b37cf">m_meso_start</a>{600.0_rt};</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a42fa2f91fce2193878ac902d540c92a5">   46</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a42fa2f91fce2193878ac902d540c92a5">m_forcing_time_factor</a>{5.0_rt};</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a3e558b66acc9c649a79f5436ab10e030">   47</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a3e558b66acc9c649a79f5436ab10e030">m_gravity</a>{0.0_rt, 0.0_rt, -9.81_rt};</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#aa2fd35a1d88f7583c0918ea7b125abc7">   48</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#aa2fd35a1d88f7583c0918ea7b125abc7">m_time</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a67f2386adcb5f3c42fa5df08b62c3b12">   49</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a67f2386adcb5f3c42fa5df08b62c3b12">m_sim</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a8c6110309fc7e536c855f0f5d9df9798">   50</a></span>    <span class="keyword">const</span> amrex::AmrCore&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a8c6110309fc7e536c855f0f5d9df9798">m_mesh</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a700faa48922cd72c10cb6e6f341dc05a">   51</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a700faa48922cd72c10cb6e6f341dc05a">m_velocity</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#ad889e81836eca6322397407e0c5df9ef">   52</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#ad889e81836eca6322397407e0c5df9ef">m_1d_rans</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a42c07a501c49b33acae8e6ff0a824781">   53</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a42c07a501c49b33acae8e6ff0a824781">m_wind_heights</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#aaf66c70f6b5de76fe8814619107975c4">   54</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#aaf66c70f6b5de76fe8814619107975c4">m_tke_values</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#afccd2f6c0d93f53c6c93fbd6ce9d7638">   55</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#afccd2f6c0d93f53c6c93fbd6ce9d7638">m_wind_heights_d</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#af07c98b23439837e7681b56a5bf14b09">   56</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#af07c98b23439837e7681b56a5bf14b09">m_tke_values_d</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a2760ff30e40a50ed024f0e5a36394e9d">   58</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1transport_1_1_transport_model.html">transport::TransportModel</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a2760ff30e40a50ed024f0e5a36394e9d">m_transport</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#ac86d26c07a7773a5323b59c0b0ffefe1">   61</a></span>    std::unique_ptr&lt;ScratchField&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#ac86d26c07a7773a5323b59c0b0ffefe1">m_ref_theta</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a5a0268d62e68d260d5d7bc9926138bcf">   62</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a5a0268d62e68d260d5d7bc9926138bcf">m_horizontal_sponge</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a6ffcb044cc68852d73ed6b3ab25e2c6a">   63</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a6ffcb044cc68852d73ed6b3ab25e2c6a">m_sponge_strength</a>{1.0_rt};</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#af5e519c59bc113b555831a0a92963e4f">   64</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#af5e519c59bc113b555831a0a92963e4f">m_sponge_distance_west</a>{0.0_rt};</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a9a41792d02888feca5bbf65fb7482aca">   65</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a9a41792d02888feca5bbf65fb7482aca">m_sponge_distance_east</a>{0.0_rt};</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a1304b136131c657e8d425563b742cad2">   66</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a1304b136131c657e8d425563b742cad2">m_sponge_distance_south</a>{0.0_rt};</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a8ee1327df67e91392cc97e6b03b795df">   67</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a8ee1327df67e91392cc97e6b03b795df">m_sponge_distance_north</a>{0.0_rt};</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#ac73e794e7d3307899354a4854188fbc1">   68</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#ac73e794e7d3307899354a4854188fbc1">m_sponge_west</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#ad5e7fcfc49a86a82adf1c12abc92bf34">   69</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#ad5e7fcfc49a86a82adf1c12abc92bf34">m_sponge_east</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a60a42947b9acb91bad6d4970feb6bd83">   70</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a60a42947b9acb91bad6d4970feb6bd83">m_sponge_south</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a71045bab62837cd21664339d984b0390">   71</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a71045bab62837cd21664339d984b0390">m_sponge_north</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#abb7f3948ede14e864af8bdf01aa37098">   72</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#abb7f3948ede14e864af8bdf01aa37098">m_wall_het_model</a>{<span class="stringliteral">&quot;none&quot;</span>};</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a39eb518423509ae55dd8e6d278472f89">   73</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a39eb518423509ae55dd8e6d278472f89">m_monin_obukhov_length</a>{<a class="code hl_variable" href="namespacekynema__sgf_1_1constants.html#a522e4cd8367efc48dae9370906ea304f">constants::LARGE_NUM</a>};</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a1cb1ce3a7a7321fc4bdc5a8f694c78a8">   74</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a1cb1ce3a7a7321fc4bdc5a8f694c78a8">m_gamma_m</a>{5.0_rt};</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a16c7c8110410c2989d07d54e577ed326">   75</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a16c7c8110410c2989d07d54e577ed326">m_beta_m</a>{16.0_rt};</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>};</div>
+</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>} <span class="comment">// namespace kynema_sgf::pde::tke</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">#endif </span><span class="comment">/* KRANSAXELL_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_t_k_e_source_8_h_html"><div class="ttname"><a href="_t_k_e_source_8_h.html">TKESource.H</a></div></div>
+<div class="ttc" id="a_transport_model_8_h_html"><div class="ttname"><a href="_transport_model_8_h.html">TransportModel.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a></div><div class="ttdef"><b>Definition</b> SimTime.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a1304b136131c657e8d425563b742cad2"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a1304b136131c657e8d425563b742cad2">kynema_sgf::pde::tke::KransAxell::m_sponge_distance_south</a></div><div class="ttdeci">amrex::Real m_sponge_distance_south</div><div class="ttdef"><b>Definition</b> KransAxell.H:66</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a16c7c8110410c2989d07d54e577ed326"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a16c7c8110410c2989d07d54e577ed326">kynema_sgf::pde::tke::KransAxell::m_beta_m</a></div><div class="ttdeci">amrex::Real m_beta_m</div><div class="ttdef"><b>Definition</b> KransAxell.H:75</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a1cb1ce3a7a7321fc4bdc5a8f694c78a8"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a1cb1ce3a7a7321fc4bdc5a8f694c78a8">kynema_sgf::pde::tke::KransAxell::m_gamma_m</a></div><div class="ttdeci">amrex::Real m_gamma_m</div><div class="ttdef"><b>Definition</b> KransAxell.H:74</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a27557cb0d304009133b470ddc555cab0"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a27557cb0d304009133b470ddc555cab0">kynema_sgf::pde::tke::KransAxell::KransAxell</a></div><div class="ttdeci">KransAxell(const CFDSim &amp;)</div><div class="ttdef"><b>Definition</b> KransAxell.cpp:14</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a2760ff30e40a50ed024f0e5a36394e9d"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a2760ff30e40a50ed024f0e5a36394e9d">kynema_sgf::pde::tke::KransAxell::m_transport</a></div><div class="ttdeci">const transport::TransportModel &amp; m_transport</div><div class="ttdoc">Transport model.</div><div class="ttdef"><b>Definition</b> KransAxell.H:58</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a39eb518423509ae55dd8e6d278472f89"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a39eb518423509ae55dd8e6d278472f89">kynema_sgf::pde::tke::KransAxell::m_monin_obukhov_length</a></div><div class="ttdeci">amrex::Real m_monin_obukhov_length</div><div class="ttdef"><b>Definition</b> KransAxell.H:73</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a3bfe3a615e8f827b52dd262443001a61"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a3bfe3a615e8f827b52dd262443001a61">kynema_sgf::pde::tke::KransAxell::m_shear_prod</a></div><div class="ttdeci">Field &amp; m_shear_prod</div><div class="ttdef"><b>Definition</b> KransAxell.H:37</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a3e558b66acc9c649a79f5436ab10e030"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a3e558b66acc9c649a79f5436ab10e030">kynema_sgf::pde::tke::KransAxell::m_gravity</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_gravity</div><div class="ttdef"><b>Definition</b> KransAxell.H:47</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a42c07a501c49b33acae8e6ff0a824781"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a42c07a501c49b33acae8e6ff0a824781">kynema_sgf::pde::tke::KransAxell::m_wind_heights</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_wind_heights</div><div class="ttdef"><b>Definition</b> KransAxell.H:53</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a42fa2f91fce2193878ac902d540c92a5"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a42fa2f91fce2193878ac902d540c92a5">kynema_sgf::pde::tke::KransAxell::m_forcing_time_factor</a></div><div class="ttdeci">amrex::Real m_forcing_time_factor</div><div class="ttdef"><b>Definition</b> KransAxell.H:46</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a4bc94d3c6c3bc948db0da4b2aa426d30"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a4bc94d3c6c3bc948db0da4b2aa426d30">kynema_sgf::pde::tke::KransAxell::m_turb_lscale</a></div><div class="ttdeci">Field &amp; m_turb_lscale</div><div class="ttdef"><b>Definition</b> KransAxell.H:36</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a537729a006a791143b5975fed81e738a"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a537729a006a791143b5975fed81e738a">kynema_sgf::pde::tke::KransAxell::m_kappa</a></div><div class="ttdeci">amrex::Real m_kappa</div><div class="ttdef"><b>Definition</b> KransAxell.H:44</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a5a0268d62e68d260d5d7bc9926138bcf"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a5a0268d62e68d260d5d7bc9926138bcf">kynema_sgf::pde::tke::KransAxell::m_horizontal_sponge</a></div><div class="ttdeci">bool m_horizontal_sponge</div><div class="ttdef"><b>Definition</b> KransAxell.H:62</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a60a42947b9acb91bad6d4970feb6bd83"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a60a42947b9acb91bad6d4970feb6bd83">kynema_sgf::pde::tke::KransAxell::m_sponge_south</a></div><div class="ttdeci">bool m_sponge_south</div><div class="ttdef"><b>Definition</b> KransAxell.H:70</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a67f2386adcb5f3c42fa5df08b62c3b12"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a67f2386adcb5f3c42fa5df08b62c3b12">kynema_sgf::pde::tke::KransAxell::m_sim</a></div><div class="ttdeci">const CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> KransAxell.H:49</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a6867bebac27c366a7c1013f5c66d85c1"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a6867bebac27c366a7c1013f5c66d85c1">kynema_sgf::pde::tke::KransAxell::m_tke</a></div><div class="ttdeci">Field &amp; m_tke</div><div class="ttdef"><b>Definition</b> KransAxell.H:40</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a6dd62f85975c37604e9e993bab4b37cf"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a6dd62f85975c37604e9e993bab4b37cf">kynema_sgf::pde::tke::KransAxell::m_meso_start</a></div><div class="ttdeci">amrex::Real m_meso_start</div><div class="ttdef"><b>Definition</b> KransAxell.H:45</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a6eee558f5cc1d3e433eed940893744f5"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a6eee558f5cc1d3e433eed940893744f5">kynema_sgf::pde::tke::KransAxell::operator()</a></div><div class="ttdeci">void operator()(int lev, const amrex::MFIter &amp;mfi, const amrex::Box &amp;bx, FieldState fstate, const amrex::Array4&lt; amrex::Real &gt; &amp;src_term) const override</div><div class="ttdef"><b>Definition</b> KransAxell.cpp:88</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a6ffcb044cc68852d73ed6b3ab25e2c6a"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a6ffcb044cc68852d73ed6b3ab25e2c6a">kynema_sgf::pde::tke::KransAxell::m_sponge_strength</a></div><div class="ttdeci">amrex::Real m_sponge_strength</div><div class="ttdef"><b>Definition</b> KransAxell.H:63</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a700faa48922cd72c10cb6e6f341dc05a"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a700faa48922cd72c10cb6e6f341dc05a">kynema_sgf::pde::tke::KransAxell::m_velocity</a></div><div class="ttdeci">const Field &amp; m_velocity</div><div class="ttdef"><b>Definition</b> KransAxell.H:51</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a71045bab62837cd21664339d984b0390"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a71045bab62837cd21664339d984b0390">kynema_sgf::pde::tke::KransAxell::m_sponge_north</a></div><div class="ttdeci">bool m_sponge_north</div><div class="ttdef"><b>Definition</b> KransAxell.H:71</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a7afbb550bf62536f8d49c124cdc9a8d8"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a7afbb550bf62536f8d49c124cdc9a8d8">kynema_sgf::pde::tke::KransAxell::m_Cmu</a></div><div class="ttdeci">amrex::Real m_Cmu</div><div class="ttdef"><b>Definition</b> KransAxell.H:41</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a8511ca6a10546f37017aa389eff0c540"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a8511ca6a10546f37017aa389eff0c540">kynema_sgf::pde::tke::KransAxell::m_heat_flux</a></div><div class="ttdeci">amrex::Real m_heat_flux</div><div class="ttdef"><b>Definition</b> KransAxell.H:42</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a8c6110309fc7e536c855f0f5d9df9798"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a8c6110309fc7e536c855f0f5d9df9798">kynema_sgf::pde::tke::KransAxell::m_mesh</a></div><div class="ttdeci">const amrex::AmrCore &amp; m_mesh</div><div class="ttdef"><b>Definition</b> KransAxell.H:50</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a8ee1327df67e91392cc97e6b03b795df"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a8ee1327df67e91392cc97e6b03b795df">kynema_sgf::pde::tke::KransAxell::m_sponge_distance_north</a></div><div class="ttdeci">amrex::Real m_sponge_distance_north</div><div class="ttdef"><b>Definition</b> KransAxell.H:67</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_a9a41792d02888feca5bbf65fb7482aca"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#a9a41792d02888feca5bbf65fb7482aca">kynema_sgf::pde::tke::KransAxell::m_sponge_distance_east</a></div><div class="ttdeci">amrex::Real m_sponge_distance_east</div><div class="ttdef"><b>Definition</b> KransAxell.H:65</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_aa2fd35a1d88f7583c0918ea7b125abc7"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#aa2fd35a1d88f7583c0918ea7b125abc7">kynema_sgf::pde::tke::KransAxell::m_time</a></div><div class="ttdeci">const SimTime &amp; m_time</div><div class="ttdef"><b>Definition</b> KransAxell.H:48</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_aa6d150cec25ad59b5436f9c75fe53441"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#aa6d150cec25ad59b5436f9c75fe53441">kynema_sgf::pde::tke::KransAxell::~KransAxell</a></div><div class="ttdeci">~KransAxell() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_aaf66c70f6b5de76fe8814619107975c4"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#aaf66c70f6b5de76fe8814619107975c4">kynema_sgf::pde::tke::KransAxell::m_tke_values</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_tke_values</div><div class="ttdef"><b>Definition</b> KransAxell.H:54</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_aba5e889dec484d5e567a13a1bdf45f10"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#aba5e889dec484d5e567a13a1bdf45f10">kynema_sgf::pde::tke::KransAxell::m_dissip</a></div><div class="ttdeci">Field &amp; m_dissip</div><div class="ttdef"><b>Definition</b> KransAxell.H:39</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_abb7f3948ede14e864af8bdf01aa37098"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#abb7f3948ede14e864af8bdf01aa37098">kynema_sgf::pde::tke::KransAxell::m_wall_het_model</a></div><div class="ttdeci">std::string m_wall_het_model</div><div class="ttdef"><b>Definition</b> KransAxell.H:72</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_ac73e794e7d3307899354a4854188fbc1"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#ac73e794e7d3307899354a4854188fbc1">kynema_sgf::pde::tke::KransAxell::m_sponge_west</a></div><div class="ttdeci">bool m_sponge_west</div><div class="ttdef"><b>Definition</b> KransAxell.H:68</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_ac86d26c07a7773a5323b59c0b0ffefe1"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#ac86d26c07a7773a5323b59c0b0ffefe1">kynema_sgf::pde::tke::KransAxell::m_ref_theta</a></div><div class="ttdeci">std::unique_ptr&lt; ScratchField &gt; m_ref_theta</div><div class="ttdoc">Reference temperature.</div><div class="ttdef"><b>Definition</b> KransAxell.H:61</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_ad537c6ef943e285611bf255bf37e6bf5"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#ad537c6ef943e285611bf255bf37e6bf5">kynema_sgf::pde::tke::KransAxell::m_z0</a></div><div class="ttdeci">amrex::Real m_z0</div><div class="ttdef"><b>Definition</b> KransAxell.H:43</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_ad5e7fcfc49a86a82adf1c12abc92bf34"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#ad5e7fcfc49a86a82adf1c12abc92bf34">kynema_sgf::pde::tke::KransAxell::m_sponge_east</a></div><div class="ttdeci">bool m_sponge_east</div><div class="ttdef"><b>Definition</b> KransAxell.H:69</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_ad889e81836eca6322397407e0c5df9ef"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#ad889e81836eca6322397407e0c5df9ef">kynema_sgf::pde::tke::KransAxell::m_1d_rans</a></div><div class="ttdeci">std::string m_1d_rans</div><div class="ttdef"><b>Definition</b> KransAxell.H:52</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_aee0d137d105cba5d62b10383bcbaf40a"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#aee0d137d105cba5d62b10383bcbaf40a">kynema_sgf::pde::tke::KransAxell::m_buoy_prod</a></div><div class="ttdeci">Field &amp; m_buoy_prod</div><div class="ttdef"><b>Definition</b> KransAxell.H:38</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_af07c98b23439837e7681b56a5bf14b09"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#af07c98b23439837e7681b56a5bf14b09">kynema_sgf::pde::tke::KransAxell::m_tke_values_d</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_tke_values_d</div><div class="ttdef"><b>Definition</b> KransAxell.H:56</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_af3ed0ee380ea5ec5d6e4c1ef923d8789"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#af3ed0ee380ea5ec5d6e4c1ef923d8789">kynema_sgf::pde::tke::KransAxell::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> KransAxell.H:22</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_af5e519c59bc113b555831a0a92963e4f"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#af5e519c59bc113b555831a0a92963e4f">kynema_sgf::pde::tke::KransAxell::m_sponge_distance_west</a></div><div class="ttdeci">amrex::Real m_sponge_distance_west</div><div class="ttdef"><b>Definition</b> KransAxell.H:64</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1tke_1_1_krans_axell_html_afccd2f6c0d93f53c6c93fbd6ce9d7638"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1tke_1_1_krans_axell.html#afccd2f6c0d93f53c6c93fbd6ce9d7638">kynema_sgf::pde::tke::KransAxell::m_wind_heights_d</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_wind_heights_d</div><div class="ttdef"><b>Definition</b> KransAxell.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1transport_1_1_transport_model_html"><div class="ttname"><a href="classkynema__sgf_1_1transport_1_1_transport_model.html">kynema_sgf::transport::TransportModel</a></div><div class="ttdef"><b>Definition</b> TransportModel.H:32</div></div>
+<div class="ttc" id="aconstants_8_h_html"><div class="ttname"><a href="constants_8_h.html">constants.H</a></div></div>
+<div class="ttc" id="agroup__fields_html_ga73fcb43d320747f8ced022629f36af1f"><div class="ttname"><a href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">kynema_sgf::FieldState</a></div><div class="ttdeci">FieldState</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:16</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1constants_html_a522e4cd8367efc48dae9370906ea304f"><div class="ttname"><a href="namespacekynema__sgf_1_1constants.html#a522e4cd8367efc48dae9370906ea304f">kynema_sgf::constants::LARGE_NUM</a></div><div class="ttdeci">static constexpr amrex::Real LARGE_NUM</div><div class="ttdoc">A large positive number.</div><div class="ttdef"><b>Definition</b> constants.H:29</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1pde_1_1tke_html"><div class="ttname"><a href="namespacekynema__sgf_1_1pde_1_1tke.html">kynema_sgf::pde::tke</a></div><div class="ttdef"><b>Definition</b> SDRSrc.cpp:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

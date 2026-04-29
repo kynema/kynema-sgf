@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/DragForcing.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/DragForcing.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_drag_forcing_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-icns-source-terms-dragforcing-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/DragForcing.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-icns-source-terms-dragforcing-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/DragForcing.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_0a302c6baedf52e9cfdc9fc1cbccbefa.html">equation_systems</a></li><li class="navelem"><a href="dir_6b3b25f1da48ef8ca65a8f7d03836280.html">icns</a></li><li class="navelem"><a href="dir_281a8f2a1daeda6ff9d3c6f4bca9a040.html">source_terms</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">DragForcing.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_drag_forcing_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef DRAGFORCING_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define DRAGFORCING_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_momentum_source_8_h.html">src/equation_systems/icns/MomentumSource.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_sim_time_8_h.html">src/core/SimTime.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="constants_8_h.html">src/utilities/constants.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1pde_1_1icns.html">kynema_sgf::pde::icns</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span></div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html">   20</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a3410b70cba92372eaacce97a03eb4443">DragForcing</a> : <span class="keyword">public</span> MomentumSource::Register&lt;DragForcing&gt;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a01acae178df0d2ba582f1264813df01e">   23</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a01acae178df0d2ba582f1264813df01e">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;DragForcing&quot;</span>; }</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a3410b70cba92372eaacce97a03eb4443">DragForcing</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#af5f7357fda75b067d942e2caeae3afed">   27</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#af5f7357fda75b067d942e2caeae3afed">~DragForcing</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aaae15f646616b49aa694a55db642449e">operator()</a>(</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordtype">int</span> lev,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keyword">const</span> amrex::MFIter&amp; mfi,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keyword">const</span> amrex::Box&amp; bx,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keyword">const</span> amrex::Array4&lt;amrex::Real&gt;&amp; src_term) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#adf3d3271795a9b570e2c50a19fccb0dd">   37</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#adf3d3271795a9b570e2c50a19fccb0dd">m_time</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a4dfc08d3f06867de3bce0651c4fece72">   38</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a4dfc08d3f06867de3bce0651c4fece72">m_sim</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a19d3412660f10b0a2fd10ba04ab01215">   39</a></span>    <span class="keyword">const</span> amrex::AmrCore&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a19d3412660f10b0a2fd10ba04ab01215">m_mesh</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a388c1896c013e62f27dc55df58ccb528">   40</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a388c1896c013e62f27dc55df58ccb528">m_velocity</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a2242c8735698a0685bfe4ae42614f304">   41</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>* <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a2242c8735698a0685bfe4ae42614f304">m_target_vel</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#ac41f4c7bfd8951633836c3f40275960c">   42</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>* <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#ac41f4c7bfd8951633836c3f40275960c">m_target_levelset</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#ab2ca2233c282a188509484b98bb6655f">   43</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#ab2ca2233c282a188509484b98bb6655f">m_1d_rans</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a0e58a034733a556088dfe6224a90d38e">   44</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a0e58a034733a556088dfe6224a90d38e">m_wind_heights</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a53a17f9e9e6f83e0e4cd28a052b30c00">   45</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a53a17f9e9e6f83e0e4cd28a052b30c00">m_u_values</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a856c3aae8b97ccf14e68f37dbc035c75">   46</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a856c3aae8b97ccf14e68f37dbc035c75">m_v_values</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a27e3bd57528bcd94f58a05f3694ef33c">   47</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a27e3bd57528bcd94f58a05f3694ef33c">m_w_values</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aba96864162123114152b1253dd84ea89">   48</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aba96864162123114152b1253dd84ea89">m_windht_d</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a2c6ebfef0d431c95dcf2f9795996274f">   49</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a2c6ebfef0d431c95dcf2f9795996274f">m_prof_u_d</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#ace518372e62a34fe929a8583f3987131">   50</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#ace518372e62a34fe929a8583f3987131">m_prof_v_d</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a3ab936c5b8a1d541adc1f3f44a9a62d5">   51</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a3ab936c5b8a1d541adc1f3f44a9a62d5">m_prof_w_d</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a9d5a9ecea4f22036174710a214608c61">   53</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a9d5a9ecea4f22036174710a214608c61">m_drag_coefficient</a>{10.0_rt};</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a9c181477398f4e4b162e372f280dab35">   54</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a9c181477398f4e4b162e372f280dab35">m_sponge_strength</a>{1.0_rt};</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a88d7a09e903acda0c72ea4de8b50bd6f">   55</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a88d7a09e903acda0c72ea4de8b50bd6f">m_sponge_density</a>{1.0_rt};</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#af656a9682a25b77052b647474435c615">   56</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#af656a9682a25b77052b647474435c615">m_forcing_time_factor</a>{5.0_rt};</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a301e6b244682aed3ec7ef1f4d9e0a41d">   57</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a301e6b244682aed3ec7ef1f4d9e0a41d">m_sponge_distance_west</a>{0.0_rt};</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a2eb70da79b174538eadc700d74db6358">   58</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a2eb70da79b174538eadc700d74db6358">m_sponge_distance_east</a>{0.0_rt};</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#af6a01bd485a4b447e1b78b5530c464db">   59</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#af6a01bd485a4b447e1b78b5530c464db">m_sponge_distance_south</a>{0.0_rt};</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a144a7295e7fa5b7ca50ded65f8c0b759">   60</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a144a7295e7fa5b7ca50ded65f8c0b759">m_sponge_distance_north</a>{0.0_rt};</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a5417832ed3fb7231b8f74fa55e72da69">   61</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a5417832ed3fb7231b8f74fa55e72da69">m_min_z</a>{0.1_rt};</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a2ac69de898c2b4eec0e8191c5f3d7aa7">   62</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a2ac69de898c2b4eec0e8191c5f3d7aa7">m_sponge_west</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a10a73d58a7191005999eec542a0a779a">   63</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a10a73d58a7191005999eec542a0a779a">m_sponge_east</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aeb0517dcdfc9b1c2b6bc21855ffb1bc5">   64</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aeb0517dcdfc9b1c2b6bc21855ffb1bc5">m_sponge_south</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aa5560a1bfbd5eddff1a50fe5618405dd">   65</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aa5560a1bfbd5eddff1a50fe5618405dd">m_sponge_north</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a6d0a1193b7c1f38cfa31e40e57ce9878">   66</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a6d0a1193b7c1f38cfa31e40e57ce9878">m_is_laminar</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a5103724b580e78475c0edff4c827507d">   67</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a5103724b580e78475c0edff4c827507d">m_terrain_is_waves</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a9d4393273f7a530532da3240d16d7ba3">   68</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a9d4393273f7a530532da3240d16d7ba3">m_apply_MOSD</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a179686c4876f4e9a474599a0cf2cd0fb">   69</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a179686c4876f4e9a474599a0cf2cd0fb">m_wall_het_model</a>{<span class="stringliteral">&quot;none&quot;</span>};</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aa0b5e54f6372dfe1926908b36791a1f2">   70</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aa0b5e54f6372dfe1926908b36791a1f2">m_monin_obukhov_length</a>{<a class="code hl_variable" href="namespacekynema__sgf_1_1constants.html#a522e4cd8367efc48dae9370906ea304f">constants::LARGE_NUM</a>};</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a272177980745c083458c0d48c4ecbe56">   71</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a272177980745c083458c0d48c4ecbe56">m_kappa</a>{0.41_rt};</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aa1e9b122a6f252f05856891021172fe9">   72</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aa1e9b122a6f252f05856891021172fe9">m_gamma_m</a>{5.0_rt};</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a4c813f962c5596cd75c3bfee76ee4273">   73</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a4c813f962c5596cd75c3bfee76ee4273">m_beta_m</a>{16.0_rt};</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>};</div>
+</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>} <span class="comment">// namespace kynema_sgf::pde::icns</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_momentum_source_8_h_html"><div class="ttname"><a href="_momentum_source_8_h.html">MomentumSource.H</a></div></div>
+<div class="ttc" id="a_sim_time_8_h_html"><div class="ttname"><a href="_sim_time_8_h.html">SimTime.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a></div><div class="ttdef"><b>Definition</b> SimTime.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a01acae178df0d2ba582f1264813df01e"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a01acae178df0d2ba582f1264813df01e">kynema_sgf::pde::icns::DragForcing::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> DragForcing.H:23</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a0e58a034733a556088dfe6224a90d38e"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a0e58a034733a556088dfe6224a90d38e">kynema_sgf::pde::icns::DragForcing::m_wind_heights</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_wind_heights</div><div class="ttdef"><b>Definition</b> DragForcing.H:44</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a10a73d58a7191005999eec542a0a779a"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a10a73d58a7191005999eec542a0a779a">kynema_sgf::pde::icns::DragForcing::m_sponge_east</a></div><div class="ttdeci">bool m_sponge_east</div><div class="ttdef"><b>Definition</b> DragForcing.H:63</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a144a7295e7fa5b7ca50ded65f8c0b759"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a144a7295e7fa5b7ca50ded65f8c0b759">kynema_sgf::pde::icns::DragForcing::m_sponge_distance_north</a></div><div class="ttdeci">amrex::Real m_sponge_distance_north</div><div class="ttdef"><b>Definition</b> DragForcing.H:60</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a179686c4876f4e9a474599a0cf2cd0fb"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a179686c4876f4e9a474599a0cf2cd0fb">kynema_sgf::pde::icns::DragForcing::m_wall_het_model</a></div><div class="ttdeci">std::string m_wall_het_model</div><div class="ttdef"><b>Definition</b> DragForcing.H:69</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a19d3412660f10b0a2fd10ba04ab01215"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a19d3412660f10b0a2fd10ba04ab01215">kynema_sgf::pde::icns::DragForcing::m_mesh</a></div><div class="ttdeci">const amrex::AmrCore &amp; m_mesh</div><div class="ttdef"><b>Definition</b> DragForcing.H:39</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a2242c8735698a0685bfe4ae42614f304"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a2242c8735698a0685bfe4ae42614f304">kynema_sgf::pde::icns::DragForcing::m_target_vel</a></div><div class="ttdeci">const Field * m_target_vel</div><div class="ttdef"><b>Definition</b> DragForcing.H:41</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a272177980745c083458c0d48c4ecbe56"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a272177980745c083458c0d48c4ecbe56">kynema_sgf::pde::icns::DragForcing::m_kappa</a></div><div class="ttdeci">amrex::Real m_kappa</div><div class="ttdef"><b>Definition</b> DragForcing.H:71</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a27e3bd57528bcd94f58a05f3694ef33c"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a27e3bd57528bcd94f58a05f3694ef33c">kynema_sgf::pde::icns::DragForcing::m_w_values</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_w_values</div><div class="ttdef"><b>Definition</b> DragForcing.H:47</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a2ac69de898c2b4eec0e8191c5f3d7aa7"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a2ac69de898c2b4eec0e8191c5f3d7aa7">kynema_sgf::pde::icns::DragForcing::m_sponge_west</a></div><div class="ttdeci">bool m_sponge_west</div><div class="ttdef"><b>Definition</b> DragForcing.H:62</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a2c6ebfef0d431c95dcf2f9795996274f"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a2c6ebfef0d431c95dcf2f9795996274f">kynema_sgf::pde::icns::DragForcing::m_prof_u_d</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_prof_u_d</div><div class="ttdef"><b>Definition</b> DragForcing.H:49</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a2eb70da79b174538eadc700d74db6358"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a2eb70da79b174538eadc700d74db6358">kynema_sgf::pde::icns::DragForcing::m_sponge_distance_east</a></div><div class="ttdeci">amrex::Real m_sponge_distance_east</div><div class="ttdef"><b>Definition</b> DragForcing.H:58</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a301e6b244682aed3ec7ef1f4d9e0a41d"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a301e6b244682aed3ec7ef1f4d9e0a41d">kynema_sgf::pde::icns::DragForcing::m_sponge_distance_west</a></div><div class="ttdeci">amrex::Real m_sponge_distance_west</div><div class="ttdef"><b>Definition</b> DragForcing.H:57</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a3410b70cba92372eaacce97a03eb4443"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a3410b70cba92372eaacce97a03eb4443">kynema_sgf::pde::icns::DragForcing::DragForcing</a></div><div class="ttdeci">DragForcing(const CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> DragForcing.cpp:91</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a388c1896c013e62f27dc55df58ccb528"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a388c1896c013e62f27dc55df58ccb528">kynema_sgf::pde::icns::DragForcing::m_velocity</a></div><div class="ttdeci">const Field &amp; m_velocity</div><div class="ttdef"><b>Definition</b> DragForcing.H:40</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a3ab936c5b8a1d541adc1f3f44a9a62d5"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a3ab936c5b8a1d541adc1f3f44a9a62d5">kynema_sgf::pde::icns::DragForcing::m_prof_w_d</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_prof_w_d</div><div class="ttdef"><b>Definition</b> DragForcing.H:51</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a4c813f962c5596cd75c3bfee76ee4273"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a4c813f962c5596cd75c3bfee76ee4273">kynema_sgf::pde::icns::DragForcing::m_beta_m</a></div><div class="ttdeci">amrex::Real m_beta_m</div><div class="ttdef"><b>Definition</b> DragForcing.H:73</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a4dfc08d3f06867de3bce0651c4fece72"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a4dfc08d3f06867de3bce0651c4fece72">kynema_sgf::pde::icns::DragForcing::m_sim</a></div><div class="ttdeci">const CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> DragForcing.H:38</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a5103724b580e78475c0edff4c827507d"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a5103724b580e78475c0edff4c827507d">kynema_sgf::pde::icns::DragForcing::m_terrain_is_waves</a></div><div class="ttdeci">bool m_terrain_is_waves</div><div class="ttdef"><b>Definition</b> DragForcing.H:67</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a53a17f9e9e6f83e0e4cd28a052b30c00"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a53a17f9e9e6f83e0e4cd28a052b30c00">kynema_sgf::pde::icns::DragForcing::m_u_values</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_u_values</div><div class="ttdef"><b>Definition</b> DragForcing.H:45</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a5417832ed3fb7231b8f74fa55e72da69"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a5417832ed3fb7231b8f74fa55e72da69">kynema_sgf::pde::icns::DragForcing::m_min_z</a></div><div class="ttdeci">amrex::Real m_min_z</div><div class="ttdef"><b>Definition</b> DragForcing.H:61</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a6d0a1193b7c1f38cfa31e40e57ce9878"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a6d0a1193b7c1f38cfa31e40e57ce9878">kynema_sgf::pde::icns::DragForcing::m_is_laminar</a></div><div class="ttdeci">bool m_is_laminar</div><div class="ttdef"><b>Definition</b> DragForcing.H:66</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a856c3aae8b97ccf14e68f37dbc035c75"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a856c3aae8b97ccf14e68f37dbc035c75">kynema_sgf::pde::icns::DragForcing::m_v_values</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_v_values</div><div class="ttdef"><b>Definition</b> DragForcing.H:46</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a88d7a09e903acda0c72ea4de8b50bd6f"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a88d7a09e903acda0c72ea4de8b50bd6f">kynema_sgf::pde::icns::DragForcing::m_sponge_density</a></div><div class="ttdeci">amrex::Real m_sponge_density</div><div class="ttdef"><b>Definition</b> DragForcing.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a9c181477398f4e4b162e372f280dab35"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a9c181477398f4e4b162e372f280dab35">kynema_sgf::pde::icns::DragForcing::m_sponge_strength</a></div><div class="ttdeci">amrex::Real m_sponge_strength</div><div class="ttdef"><b>Definition</b> DragForcing.H:54</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a9d4393273f7a530532da3240d16d7ba3"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a9d4393273f7a530532da3240d16d7ba3">kynema_sgf::pde::icns::DragForcing::m_apply_MOSD</a></div><div class="ttdeci">bool m_apply_MOSD</div><div class="ttdef"><b>Definition</b> DragForcing.H:68</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_a9d5a9ecea4f22036174710a214608c61"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#a9d5a9ecea4f22036174710a214608c61">kynema_sgf::pde::icns::DragForcing::m_drag_coefficient</a></div><div class="ttdeci">amrex::Real m_drag_coefficient</div><div class="ttdef"><b>Definition</b> DragForcing.H:53</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_aa0b5e54f6372dfe1926908b36791a1f2"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aa0b5e54f6372dfe1926908b36791a1f2">kynema_sgf::pde::icns::DragForcing::m_monin_obukhov_length</a></div><div class="ttdeci">amrex::Real m_monin_obukhov_length</div><div class="ttdef"><b>Definition</b> DragForcing.H:70</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_aa1e9b122a6f252f05856891021172fe9"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aa1e9b122a6f252f05856891021172fe9">kynema_sgf::pde::icns::DragForcing::m_gamma_m</a></div><div class="ttdeci">amrex::Real m_gamma_m</div><div class="ttdef"><b>Definition</b> DragForcing.H:72</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_aa5560a1bfbd5eddff1a50fe5618405dd"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aa5560a1bfbd5eddff1a50fe5618405dd">kynema_sgf::pde::icns::DragForcing::m_sponge_north</a></div><div class="ttdeci">bool m_sponge_north</div><div class="ttdef"><b>Definition</b> DragForcing.H:65</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_aaae15f646616b49aa694a55db642449e"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aaae15f646616b49aa694a55db642449e">kynema_sgf::pde::icns::DragForcing::operator()</a></div><div class="ttdeci">void operator()(int lev, const amrex::MFIter &amp;mfi, const amrex::Box &amp;bx, FieldState fstate, const amrex::Array4&lt; amrex::Real &gt; &amp;src_term) const override</div><div class="ttdef"><b>Definition</b> DragForcing.cpp:185</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_ab2ca2233c282a188509484b98bb6655f"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#ab2ca2233c282a188509484b98bb6655f">kynema_sgf::pde::icns::DragForcing::m_1d_rans</a></div><div class="ttdeci">std::string m_1d_rans</div><div class="ttdef"><b>Definition</b> DragForcing.H:43</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_aba96864162123114152b1253dd84ea89"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aba96864162123114152b1253dd84ea89">kynema_sgf::pde::icns::DragForcing::m_windht_d</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_windht_d</div><div class="ttdef"><b>Definition</b> DragForcing.H:48</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_ac41f4c7bfd8951633836c3f40275960c"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#ac41f4c7bfd8951633836c3f40275960c">kynema_sgf::pde::icns::DragForcing::m_target_levelset</a></div><div class="ttdeci">const Field * m_target_levelset</div><div class="ttdef"><b>Definition</b> DragForcing.H:42</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_ace518372e62a34fe929a8583f3987131"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#ace518372e62a34fe929a8583f3987131">kynema_sgf::pde::icns::DragForcing::m_prof_v_d</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_prof_v_d</div><div class="ttdef"><b>Definition</b> DragForcing.H:50</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_adf3d3271795a9b570e2c50a19fccb0dd"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#adf3d3271795a9b570e2c50a19fccb0dd">kynema_sgf::pde::icns::DragForcing::m_time</a></div><div class="ttdeci">const SimTime &amp; m_time</div><div class="ttdef"><b>Definition</b> DragForcing.H:37</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_aeb0517dcdfc9b1c2b6bc21855ffb1bc5"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#aeb0517dcdfc9b1c2b6bc21855ffb1bc5">kynema_sgf::pde::icns::DragForcing::m_sponge_south</a></div><div class="ttdeci">bool m_sponge_south</div><div class="ttdef"><b>Definition</b> DragForcing.H:64</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_af5f7357fda75b067d942e2caeae3afed"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#af5f7357fda75b067d942e2caeae3afed">kynema_sgf::pde::icns::DragForcing::~DragForcing</a></div><div class="ttdeci">~DragForcing() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_af656a9682a25b77052b647474435c615"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#af656a9682a25b77052b647474435c615">kynema_sgf::pde::icns::DragForcing::m_forcing_time_factor</a></div><div class="ttdeci">amrex::Real m_forcing_time_factor</div><div class="ttdef"><b>Definition</b> DragForcing.H:56</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_drag_forcing_html_af6a01bd485a4b447e1b78b5530c464db"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_drag_forcing.html#af6a01bd485a4b447e1b78b5530c464db">kynema_sgf::pde::icns::DragForcing::m_sponge_distance_south</a></div><div class="ttdeci">amrex::Real m_sponge_distance_south</div><div class="ttdef"><b>Definition</b> DragForcing.H:59</div></div>
+<div class="ttc" id="aconstants_8_h_html"><div class="ttname"><a href="constants_8_h.html">constants.H</a></div></div>
+<div class="ttc" id="agroup__fields_html_ga73fcb43d320747f8ced022629f36af1f"><div class="ttname"><a href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">kynema_sgf::FieldState</a></div><div class="ttdeci">FieldState</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:16</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1constants_html_a522e4cd8367efc48dae9370906ea304f"><div class="ttname"><a href="namespacekynema__sgf_1_1constants.html#a522e4cd8367efc48dae9370906ea304f">kynema_sgf::constants::LARGE_NUM</a></div><div class="ttdeci">static constexpr amrex::Real LARGE_NUM</div><div class="ttdoc">A large positive number.</div><div class="ttdef"><b>Definition</b> constants.H:29</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1pde_1_1icns_html"><div class="ttname"><a href="namespacekynema__sgf_1_1pde_1_1icns.html">kynema_sgf::pde::icns</a></div><div class="ttdef"><b>Definition</b> ABLForcing.cpp:14</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

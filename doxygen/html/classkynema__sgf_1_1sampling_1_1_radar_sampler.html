@@ -1,0 +1,2498 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::sampling::RadarSampler Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::sampling::RadarSampler Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1sampling_1_1_radar_sampler.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="radarsampler-class-reference">
+<h1>RadarSampler Class Reference<a class="headerlink" href="#radarsampler-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::sampling::RadarSampler Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1sampling.html">sampling</a></li><li class="navelem"><a href="classkynema__sgf_1_1sampling_1_1_radar_sampler.html">RadarSampler</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classkynema__sgf_1_1sampling_1_1_radar_sampler-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::sampling::RadarSampler Class Reference<div class="ingroups"><a class="el" href="group__utilities.html">Utilities</a> &raquo; <a class="el" href="group__sampling.html">Data-sampling utilities</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_radar_sampler_8_h_source.html">RadarSampler.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::sampling::RadarSampler:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1sampling_1_1_radar_sampler__inherit__graph.svg" width="182" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::sampling::RadarSampler:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1sampling_1_1_radar_sampler__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a93d7d0a8c4bc732fe6b1ea5b71d59d96" id="r_a93d7d0a8c4bc732fe6b1ea5b71d59d96"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93d7d0a8c4bc732fe6b1ea5b71d59d96">phase</a> : std::uint8_t { <a class="el" href="#a93d7d0a8c4bc732fe6b1ea5b71d59d96abfec72bb37910c61f36b6c29a1f7ec31">FORWARD</a>
+, <a class="el" href="#a93d7d0a8c4bc732fe6b1ea5b71d59d96a4f7c97f138973e69f73d9fb3d32c8e5c">FORWARD_PAUSE</a>
+, <a class="el" href="#a93d7d0a8c4bc732fe6b1ea5b71d59d96a642e0b6684e6165e142c074f1cd8d55c">REVERSE</a>
+, <a class="el" href="#a93d7d0a8c4bc732fe6b1ea5b71d59d96a3f1ce1635f9321dac210544340dabfc4">REVERSE_PAUSE</a>
+ }</td></tr>
+<tr class="memitem:aabe8923894f4ac945d56ac67b06b4e29" id="r_aabe8923894f4ac945d56ac67b06b4e29"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aabe8923894f4ac945d56ac67b06b4e29">LosRotType</a> = amrex::Vector&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a>&gt;</td></tr>
+<tr class="memitem:a383bb12379b1783df4c6987d4e0319fe" id="r_a383bb12379b1783df4c6987d4e0319fe"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a383bb12379b1783df4c6987d4e0319fe">LosUnitType</a> = amrex::Vector&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&gt;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a7d1eabc9c7c9f0157439a877c9eed33b" id="r_a7d1eabc9c7c9f0157439a877c9eed33b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d1eabc9c7c9f0157439a877c9eed33b">RadarSampler</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;)</td></tr>
+<tr class="memitem:a985ef74f9967394d35f05a35b1b49beb" id="r_a985ef74f9967394d35f05a35b1b49beb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a985ef74f9967394d35f05a35b1b49beb">~RadarSampler</a> () override</td></tr>
+<tr class="memitem:ac7d08b6542eb6f49cc7c6ffe76eeedbc" id="r_ac7d08b6542eb6f49cc7c6ffe76eeedbc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7d08b6542eb6f49cc7c6ffe76eeedbc">initialize</a> (const std::string &amp;key) override</td></tr>
+<tr class="memitem:aa563dd58c3cb9632ce77f5a221db45fc" id="r_aa563dd58c3cb9632ce77f5a221db45fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa563dd58c3cb9632ce77f5a221db45fc">check_bounds</a> () override</td></tr>
+<tr class="memdesc:aa563dd58c3cb9632ce77f5a221db45fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check and fix the bounds of the sampler so the probes are in the domain.  <br /></td></tr>
+<tr class="memitem:a09b1103d0a4ff2e22cbad63edaf95827" id="r_a09b1103d0a4ff2e22cbad63edaf95827"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09b1103d0a4ff2e22cbad63edaf95827">new_cone</a> ()</td></tr>
+<tr class="memitem:a4a1bf912f2a207008403a8ee1e2994f2" id="r_a4a1bf912f2a207008403a8ee1e2994f2"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a1bf912f2a207008403a8ee1e2994f2">total_sweep_time</a> () const</td></tr>
+<tr class="memitem:ac69ef58762954891891426337f9ff701" id="r_ac69ef58762954891891426337f9ff701"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac69ef58762954891891426337f9ff701">periodic_time</a> ()</td></tr>
+<tr class="memitem:a2f094e325fad8d4f6141740ec6071910" id="r_a2f094e325fad8d4f6141740ec6071910"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f094e325fad8d4f6141740ec6071910">sweep_count</a> () const</td></tr>
+<tr class="memitem:a02c49e2c2a83f0469c705972be17eecd" id="r_a02c49e2c2a83f0469c705972be17eecd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a93d7d0a8c4bc732fe6b1ea5b71d59d96">phase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02c49e2c2a83f0469c705972be17eecd">determine_operation_phase</a> () const</td></tr>
+<tr class="memitem:a78467a9a15c49d8aa83271f700cc7c24" id="r_a78467a9a15c49d8aa83271f700cc7c24"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78467a9a15c49d8aa83271f700cc7c24">determine_current_sweep_angle</a> () const</td></tr>
+<tr class="memitem:a16c9da57c90310176f9abad620fc941a" id="r_a16c9da57c90310176f9abad620fc941a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16c9da57c90310176f9abad620fc941a">sampling_locations</a> (<a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;) const override</td></tr>
+<tr class="memdesc:a16c9da57c90310176f9abad620fc941a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populate and return a vector of probe locations to be sampled.  <br /></td></tr>
+<tr class="memitem:a81a4e06a160a88d1eca12f4059971952" id="r_a81a4e06a160a88d1eca12f4059971952"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81a4e06a160a88d1eca12f4059971952">sampling_locations</a> (<a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;, const amrex::Box &amp;) const override</td></tr>
+<tr class="memdesc:a81a4e06a160a88d1eca12f4059971952"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populate the vector with coordinates of the sampling locations inside a box.  <br /></td></tr>
+<tr class="memitem:a9d044446dc30bcc69e7ddfa31267de39" id="r_a9d044446dc30bcc69e7ddfa31267de39"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d044446dc30bcc69e7ddfa31267de39">update_sampling_locations</a> () override</td></tr>
+<tr class="memitem:a12c51e66be4cd13db4c3a4bf6d9f530b" id="r_a12c51e66be4cd13db4c3a4bf6d9f530b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12c51e66be4cd13db4c3a4bf6d9f530b">cone_axis_locations</a> (<a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;) const</td></tr>
+<tr class="memitem:a93cf34657d87bd65592e2f6ec6e3360d" id="r_a93cf34657d87bd65592e2f6ec6e3360d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93cf34657d87bd65592e2f6ec6e3360d">output_locations</a> (<a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;sample_locs) const override</td></tr>
+<tr class="memitem:a76e8d4d80623fdde62677e05cbd0b499" id="r_a76e8d4d80623fdde62677e05cbd0b499"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76e8d4d80623fdde62677e05cbd0b499">post_sample_actions</a> () override</td></tr>
+<tr class="memitem:a813bf527f618f6784c549b939ce5e8d2" id="r_a813bf527f618f6784c549b939ce5e8d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a813bf527f618f6784c549b939ce5e8d2">define_netcdf_metadata</a> (const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;) const override</td></tr>
+<tr class="memitem:a20c49c8767e5c0cb56132bd94a1bf860" id="r_a20c49c8767e5c0cb56132bd94a1bf860"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20c49c8767e5c0cb56132bd94a1bf860">populate_netcdf_metadata</a> (const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;) const override</td></tr>
+<tr class="memitem:af6d39e6f5738371859fc19c1caf79e95" id="r_af6d39e6f5738371859fc19c1caf79e95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6d39e6f5738371859fc19c1caf79e95">output_netcdf_data</a> (const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;, size_t) const override</td></tr>
+<tr class="memitem:a1b9cbe6de10c0401da2d69d54edb4035" id="r_a1b9cbe6de10c0401da2d69d54edb4035"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b9cbe6de10c0401da2d69d54edb4035">output_netcdf_field</a> (const std::vector&lt; amrex::Real &gt; &amp;output_buffer, <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;grp, size_t nt) override</td></tr>
+<tr class="memitem:affcf4b3162999f2e33e1f5077e69358a" id="r_affcf4b3162999f2e33e1f5077e69358a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affcf4b3162999f2e33e1f5077e69358a">label</a> () const override</td></tr>
+<tr class="memdesc:affcf4b3162999f2e33e1f5077e69358a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of this sampling object.  <br /></td></tr>
+<tr class="memitem:a2379db50f7a10601d5524332b533b2ad" id="r_a2379db50f7a10601d5524332b533b2ad"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2379db50f7a10601d5524332b533b2ad">label</a> () override</td></tr>
+<tr class="memitem:a15c84ed9b7ffb8e97665ec77f2eff913" id="r_a15c84ed9b7ffb8e97665ec77f2eff913"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15c84ed9b7ffb8e97665ec77f2eff913">sampletype</a> () const override</td></tr>
+<tr class="memdesc:a15c84ed9b7ffb8e97665ec77f2eff913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of this sampling object.  <br /></td></tr>
+<tr class="memitem:aefa69ec1e69ee74b2cc604210a52903e" id="r_aefa69ec1e69ee74b2cc604210a52903e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aefa69ec1e69ee74b2cc604210a52903e">id</a> () const override</td></tr>
+<tr class="memdesc:aefa69ec1e69ee74b2cc604210a52903e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for this set of probe locations.  <br /></td></tr>
+<tr class="memitem:a40d27c83d49f1c658d57685c4f8a1633" id="r_a40d27c83d49f1c658d57685c4f8a1633"><td class="memItemLeft" align="right" valign="top">int &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40d27c83d49f1c658d57685c4f8a1633">id</a> () override</td></tr>
+<tr class="memitem:a04be2ee54e17419fe3cff674caf45931" id="r_a04be2ee54e17419fe3cff674caf45931"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04be2ee54e17419fe3cff674caf45931">num_points</a> () const override</td></tr>
+<tr class="memdesc:a04be2ee54e17419fe3cff674caf45931"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of sampling container locations in a timestep.  <br /></td></tr>
+<tr class="memitem:a5495411f638f90f1e45ec5ecd78976bb" id="r_a5495411f638f90f1e45ec5ecd78976bb"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5495411f638f90f1e45ec5ecd78976bb">num_output_points</a> () const override</td></tr>
+<tr class="memdesc:a5495411f638f90f1e45ec5ecd78976bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of probe locations to output.  <br /></td></tr>
+<tr class="memitem:ae044228e2ffe91022ec3831391e2b4ee" id="r_ae044228e2ffe91022ec3831391e2b4ee"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae044228e2ffe91022ec3831391e2b4ee">num_points_scan</a> () const</td></tr>
+<tr class="memdesc:ae044228e2ffe91022ec3831391e2b4ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of sampling container locations per interp step.  <br /></td></tr>
+<tr class="memitem:aed2e3969837c6f80b279f6feac30e717" id="r_aed2e3969837c6f80b279f6feac30e717"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed2e3969837c6f80b279f6feac30e717">num_points_axis</a> () const</td></tr>
+<tr class="memdesc:aed2e3969837c6f80b279f6feac30e717"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of probe locations on Radar axis.  <br /></td></tr>
+<tr class="memitem:afa1ad75ca9e26b001db2aee808382930" id="r_afa1ad75ca9e26b001db2aee808382930"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa1ad75ca9e26b001db2aee808382930">num_points_cone</a> () const</td></tr>
+<tr class="memdesc:afa1ad75ca9e26b001db2aee808382930"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of probe locations in a cone.  <br /></td></tr>
+<tr class="memitem:af9051507bff52e37b0e33573339971a4" id="r_af9051507bff52e37b0e33573339971a4"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9051507bff52e37b0e33573339971a4">num_points_quad</a> () const</td></tr>
+<tr class="memdesc:af9051507bff52e37b0e33573339971a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of probe locations in a spherical cap.  <br /></td></tr>
+<tr class="memitem:a079dab1e4888ecba07067adc15158793" id="r_a079dab1e4888ecba07067adc15158793"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a079dab1e4888ecba07067adc15158793">do_data_modification</a> () override</td></tr>
+<tr class="memdesc:a079dab1e4888ecba07067adc15158793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run data modification for specific sampler.  <br /></td></tr>
+<tr class="memitem:af53d3914b4e7429019f873d3326cdb82" id="r_af53d3914b4e7429019f873d3326cdb82"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af53d3914b4e7429019f873d3326cdb82">do_convert_velocity_los</a> () override</td></tr>
+<tr class="memitem:a77d0034fed30afb265c563f5560a4a40" id="r_a77d0034fed30afb265c563f5560a4a40"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77d0034fed30afb265c563f5560a4a40">do_subsampling_interp</a> () override</td></tr>
+<tr class="memitem:a07b6adf99c94602f3b301f0b9d624a98" id="r_a07b6adf99c94602f3b301f0b9d624a98"><td class="memItemLeft" align="right" valign="top">std::vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07b6adf99c94602f3b301f0b9d624a98">modify_sample_data</a> (const std::vector&lt; amrex::Real &gt; &amp;sample_data, const std::string &amp;) override</td></tr>
+<tr class="memdesc:a07b6adf99c94602f3b301f0b9d624a98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modify sample buffer after sampling happens.  <br /></td></tr>
+<tr class="memitem:a86478fba7143caa3f5d23f1aeb634ffa" id="r_a86478fba7143caa3f5d23f1aeb634ffa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86478fba7143caa3f5d23f1aeb634ffa">calc_lineofsight_velocity</a> (const std::vector&lt; std::vector&lt; amrex::Real &gt; &gt; &amp;, int) override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a65b347668655d6e765e52e0c56a49cca" id="r_a65b347668655d6e765e52e0c56a49cca"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65b347668655d6e765e52e0c56a49cca">identifier</a> ()</td></tr>
+<tr class="memitem:a1e320492f7f0f6fd9c6906759526e7d2" id="r_a1e320492f7f0f6fd9c6906759526e7d2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e320492f7f0f6fd9c6906759526e7d2">line_average</a> (const std::vector&lt; amrex::Real &gt; &amp;weights, const std::vector&lt; amrex::Real &gt; &amp;values, std::vector&lt; amrex::Real &gt; &amp;reduced, long offset)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ab1afa5b8e0ce127aeeba899c2ffdca30" id="r_ab1afa5b8e0ce127aeeba899c2ffdca30"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1afa5b8e0ce127aeeba899c2ffdca30">m_sim</a></td></tr>
+<tr class="memitem:aef7324ccc50b3d893e5e1ddf028c3af2" id="r_aef7324ccc50b3d893e5e1ddf028c3af2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef7324ccc50b3d893e5e1ddf028c3af2">m_label</a></td></tr>
+<tr class="memitem:a3977ce45d9609f20ad15d3726d44eb51" id="r_a3977ce45d9609f20ad15d3726d44eb51"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3977ce45d9609f20ad15d3726d44eb51">m_id</a> {-1}</td></tr>
+<tr class="memitem:a6558b7b591178b1f3c59b52043198c75" id="r_a6558b7b591178b1f3c59b52043198c75"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6558b7b591178b1f3c59b52043198c75">m_radtodeg</a> {180.0_rt / std::numbers::pi_v&lt;amrex::Real&gt;}</td></tr>
+<tr class="memitem:a8a1601ee9c9b0154774579a4b64b2ec2" id="r_a8a1601ee9c9b0154774579a4b64b2ec2"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a1601ee9c9b0154774579a4b64b2ec2">m_start</a></td></tr>
+<tr class="memitem:aa12b40eb857c0dbcbb837c6497c8ffd0" id="r_aa12b40eb857c0dbcbb837c6497c8ffd0"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa12b40eb857c0dbcbb837c6497c8ffd0">m_end</a></td></tr>
+<tr class="memitem:a467b1333b116e3fb84729b25d7723ce0" id="r_a467b1333b116e3fb84729b25d7723ce0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html#a2364fe84ce8f843ed3475f4f8f87eb87">SampleLocType::LocType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a467b1333b116e3fb84729b25d7723ce0">m_initial_cone</a></td></tr>
+<tr class="memitem:ad139909d6f5715a654864e5e0ecf4d9f" id="r_ad139909d6f5715a654864e5e0ecf4d9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html#a2364fe84ce8f843ed3475f4f8f87eb87">SampleLocType::LocType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad139909d6f5715a654864e5e0ecf4d9f">m_current_cones</a></td></tr>
+<tr class="memitem:aab3e1375cf19e0e7a817f4cd0d02e8a9" id="r_aab3e1375cf19e0e7a817f4cd0d02e8a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html#a2364fe84ce8f843ed3475f4f8f87eb87">SampleLocType::LocType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab3e1375cf19e0e7a817f4cd0d02e8a9">m_prior_cones</a></td></tr>
+<tr class="memitem:a28805cea77fdcf477a23410817c05a70" id="r_a28805cea77fdcf477a23410817c05a70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html#a2364fe84ce8f843ed3475f4f8f87eb87">SampleLocType::LocType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28805cea77fdcf477a23410817c05a70">m_sample_cones</a></td></tr>
+<tr class="memitem:a1fbd4a6c1f7ae7ab141ee09445abc103" id="r_a1fbd4a6c1f7ae7ab141ee09445abc103"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aabe8923894f4ac945d56ac67b06b4e29">LosRotType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1fbd4a6c1f7ae7ab141ee09445abc103">m_los_proj</a></td></tr>
+<tr class="memitem:a32df15c863053a975d60c9c842520900" id="r_a32df15c863053a975d60c9c842520900"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a383bb12379b1783df4c6987d4e0319fe">LosUnitType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32df15c863053a975d60c9c842520900">m_los_unit</a></td></tr>
+<tr class="memitem:aaecb3ec864c384b2c7c8f91bbc1c5f72" id="r_aaecb3ec864c384b2c7c8f91bbc1c5f72"><td class="memItemLeft" align="right" valign="top">std::vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaecb3ec864c384b2c7c8f91bbc1c5f72">m_los_velocity</a></td></tr>
+<tr class="memitem:af4a060f756ff2b1cc7b69e6826c51fe7" id="r_af4a060f756ff2b1cc7b69e6826c51fe7"><td class="memItemLeft" align="right" valign="top">std::vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4a060f756ff2b1cc7b69e6826c51fe7">m_los_velocity_next</a></td></tr>
+<tr class="memitem:aa479e5ed672fdd5aa121535c4cb98a4a" id="r_aa479e5ed672fdd5aa121535c4cb98a4a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa479e5ed672fdd5aa121535c4cb98a4a">m_los_velocity_prior</a></td></tr>
+<tr class="memitem:ab446383af4dd75f54b1a3d601f889adb" id="r_ab446383af4dd75f54b1a3d601f889adb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab446383af4dd75f54b1a3d601f889adb">m_los_velocity_interp</a></td></tr>
+<tr class="memitem:a4fba3ad4362a8f843ffaf3ee64fc7f2c" id="r_a4fba3ad4362a8f843ffaf3ee64fc7f2c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fba3ad4362a8f843ffaf3ee64fc7f2c">m_weights</a></td></tr>
+<tr class="memitem:a9982c7fef6cfaa655ec92ae144fdc348" id="r_a9982c7fef6cfaa655ec92ae144fdc348"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9982c7fef6cfaa655ec92ae144fdc348">m_rays</a></td></tr>
+<tr class="memitem:af7000e4cb6f40d10c69c06361b65db81" id="r_af7000e4cb6f40d10c69c06361b65db81"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7000e4cb6f40d10c69c06361b65db81">m_sample_freq</a></td></tr>
+<tr class="memitem:acc89e45f6e73bde5bc98303292e91c19" id="r_acc89e45f6e73bde5bc98303292e91c19"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc89e45f6e73bde5bc98303292e91c19">m_radar_sample_freq</a></td></tr>
+<tr class="memitem:a528eeb26b3cb57097c71ecd75b2c2857" id="r_a528eeb26b3cb57097c71ecd75b2c2857"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a528eeb26b3cb57097c71ecd75b2c2857">m_npts</a> {0}</td></tr>
+<tr class="memitem:a7b15251a08c8261d2bff4e3d5c9dd10b" id="r_a7b15251a08c8261d2bff4e3d5c9dd10b"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b15251a08c8261d2bff4e3d5c9dd10b">m_cone_angle</a></td></tr>
+<tr class="memitem:aa53e898050c1cf5b9a8dbf342929529b" id="r_aa53e898050c1cf5b9a8dbf342929529b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa53e898050c1cf5b9a8dbf342929529b">m_radar_quad_type</a></td></tr>
+<tr class="memitem:a97dcaa7088e1e60df0e6bd3df28e7650" id="r_a97dcaa7088e1e60df0e6bd3df28e7650"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97dcaa7088e1e60df0e6bd3df28e7650">m_npts_azimuth</a> {0}</td></tr>
+<tr class="memitem:a71dbceb90514f87b955cb009f0a58d04" id="r_a71dbceb90514f87b955cb009f0a58d04"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71dbceb90514f87b955cb009f0a58d04">m_beam_length</a></td></tr>
+<tr class="memitem:a8f323aa3e951e98e9d2e83d6f249b728" id="r_a8f323aa3e951e98e9d2e83d6f249b728"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f323aa3e951e98e9d2e83d6f249b728">m_angular_speed</a></td></tr>
+<tr class="memitem:a78cd837d2d42e9b0ae10f311d0891ba0" id="r_a78cd837d2d42e9b0ae10f311d0891ba0"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78cd837d2d42e9b0ae10f311d0891ba0">m_axis</a></td></tr>
+<tr class="memitem:a0441c038f249cc446fe7530d99cac22c" id="r_a0441c038f249cc446fe7530d99cac22c"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0441c038f249cc446fe7530d99cac22c">m_vertical</a></td></tr>
+<tr class="memitem:aad9c6b85e7a162ece5ebcff636a43ab4" id="r_aad9c6b85e7a162ece5ebcff636a43ab4"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad9c6b85e7a162ece5ebcff636a43ab4">m_sweep_angle</a></td></tr>
+<tr class="memitem:a024b53ab88605aa2639d7dcaa5d648b7" id="r_a024b53ab88605aa2639d7dcaa5d648b7"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a024b53ab88605aa2639d7dcaa5d648b7">m_reset_time</a></td></tr>
+<tr class="memitem:a2265398a51d301c35b0baf6b7808de4b" id="r_a2265398a51d301c35b0baf6b7808de4b"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2265398a51d301c35b0baf6b7808de4b">m_elevation_angles</a></td></tr>
+<tr class="memitem:ab6e54b9a8d76da8675a42d6a5f625bd1" id="r_ab6e54b9a8d76da8675a42d6a5f625bd1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6e54b9a8d76da8675a42d6a5f625bd1">m_nphi</a> {5}</td></tr>
+<tr class="memitem:a44cf84394966155027d0fff8fced819c" id="r_a44cf84394966155027d0fff8fced819c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44cf84394966155027d0fff8fced819c">m_ntheta</a> {5}</td></tr>
+<tr class="memitem:afe668b43230b4c9301b66254a963f553" id="r_afe668b43230b4c9301b66254a963f553"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe668b43230b4c9301b66254a963f553">m_radar_rotation_axis</a></td></tr>
+<tr class="memitem:a4dda62fc1eedd89432f4bf7a2ed7b285" id="r_a4dda62fc1eedd89432f4bf7a2ed7b285"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4dda62fc1eedd89432f4bf7a2ed7b285">m_radar_iter</a> {0}</td></tr>
+<tr class="memitem:a0082a6b377005cba12d41c7a015f1c24" id="r_a0082a6b377005cba12d41c7a015f1c24"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0082a6b377005cba12d41c7a015f1c24">m_radar_time</a></td></tr>
+<tr class="memitem:ae892f8ffd8e01595b3405847432be6e0" id="r_ae892f8ffd8e01595b3405847432be6e0"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae892f8ffd8e01595b3405847432be6e0">m_periodic_time</a></td></tr>
+<tr class="memitem:a93ed24e9fd68810eec9fe1e26f61a357" id="r_a93ed24e9fd68810eec9fe1e26f61a357"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93ed24e9fd68810eec9fe1e26f61a357">m_ns</a></td></tr>
+<tr class="memitem:a4d704c5255631b6a79e0ff528a93812d" id="r_a4d704c5255631b6a79e0ff528a93812d"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d704c5255631b6a79e0ff528a93812d">m_ntotal</a></td></tr>
+<tr class="memitem:aa8ac2384af349a1d96ad317ef46e65a4" id="r_aa8ac2384af349a1d96ad317ef46e65a4"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8ac2384af349a1d96ad317ef46e65a4">m_cone_size</a></td></tr>
+<tr class="memitem:a38da2d9aa3e15f89a8dbeb4878bd3ea2" id="r_a38da2d9aa3e15f89a8dbeb4878bd3ea2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a93d7d0a8c4bc732fe6b1ea5b71d59d96">phase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38da2d9aa3e15f89a8dbeb4878bd3ea2">m_current_phase</a></td></tr>
+<tr class="memitem:ac8dc6e01977446f8814279a94e684ffd" id="r_ac8dc6e01977446f8814279a94e684ffd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8dc6e01977446f8814279a94e684ffd">m_debug_print</a> {false}</td></tr>
+<tr class="memitem:aab910d835875da2ac1f65beb0f87b1c5" id="r_aab910d835875da2ac1f65beb0f87b1c5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab910d835875da2ac1f65beb0f87b1c5">m_output_cone_points</a> {false}</td></tr>
+<tr class="memitem:a49a0afd0b508344bb6ea66fce65b1a5e" id="r_a49a0afd0b508344bb6ea66fce65b1a5e"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49a0afd0b508344bb6ea66fce65b1a5e">m_interp_steps</a> {2}</td></tr>
+<tr class="memitem:a180fc79eb2caf7fa8e92e67e6c9b4e99" id="r_a180fc79eb2caf7fa8e92e67e6c9b4e99"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a180fc79eb2caf7fa8e92e67e6c9b4e99">m_ns_prior</a></td></tr>
+<tr class="memitem:afc1d73d29882d98b4fa534ce7cc32cad" id="r_afc1d73d29882d98b4fa534ce7cc32cad"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc1d73d29882d98b4fa534ce7cc32cad">m_ntotal_prior</a></td></tr>
+<tr class="memitem:ac83cce03306489ad3c92fdfc5eb03fed" id="r_ac83cce03306489ad3c92fdfc5eb03fed"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac83cce03306489ad3c92fdfc5eb03fed">m_num_points_prior</a></td></tr>
+<tr class="memitem:a0179ba171252132302993f7d2c74ec70" id="r_a0179ba171252132302993f7d2c74ec70"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0179ba171252132302993f7d2c74ec70">m_num_output_points_prior</a></td></tr>
+<tr class="memitem:ae7eff7322049b8ba347ae8e70ae11851" id="r_ae7eff7322049b8ba347ae8e70ae11851"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7eff7322049b8ba347ae8e70ae11851">m_fill_val</a> {-99999.99_rt}</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Sample data along a line</p>
+<p>Defines probes along a line defined by <span class="tt">start</span> and <span class="tt">end</span> coordinates and divides it into equal segments as determined by <span class="tt">num_points</span>. The length of each segment is given by </p><p class="formulaDsp">
+\[ (end - start) / (num_points - 1) \]
+</p>
+ </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="aabe8923894f4ac945d56ac67b06b4e29" name="aabe8923894f4ac945d56ac67b06b4e29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabe8923894f4ac945d56ac67b06b4e29">&#9670;&#160;</a></span>LosRotType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#aabe8923894f4ac945d56ac67b06b4e29">kynema_sgf::sampling::RadarSampler::LosRotType</a> = amrex::Vector&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a383bb12379b1783df4c6987d4e0319fe" name="a383bb12379b1783df4c6987d4e0319fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a383bb12379b1783df4c6987d4e0319fe">&#9670;&#160;</a></span>LosUnitType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a383bb12379b1783df4c6987d4e0319fe">kynema_sgf::sampling::RadarSampler::LosUnitType</a> = amrex::Vector&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
+<a id="a93d7d0a8c4bc732fe6b1ea5b71d59d96" name="a93d7d0a8c4bc732fe6b1ea5b71d59d96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93d7d0a8c4bc732fe6b1ea5b71d59d96">&#9670;&#160;</a></span>phase</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a93d7d0a8c4bc732fe6b1ea5b71d59d96">kynema_sgf::sampling::RadarSampler::phase</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a93d7d0a8c4bc732fe6b1ea5b71d59d96abfec72bb37910c61f36b6c29a1f7ec31" name="a93d7d0a8c4bc732fe6b1ea5b71d59d96abfec72bb37910c61f36b6c29a1f7ec31"></a>FORWARD&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a93d7d0a8c4bc732fe6b1ea5b71d59d96a4f7c97f138973e69f73d9fb3d32c8e5c" name="a93d7d0a8c4bc732fe6b1ea5b71d59d96a4f7c97f138973e69f73d9fb3d32c8e5c"></a>FORWARD_PAUSE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a93d7d0a8c4bc732fe6b1ea5b71d59d96a642e0b6684e6165e142c074f1cd8d55c" name="a93d7d0a8c4bc732fe6b1ea5b71d59d96a642e0b6684e6165e142c074f1cd8d55c"></a>REVERSE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a93d7d0a8c4bc732fe6b1ea5b71d59d96a3f1ce1635f9321dac210544340dabfc4" name="a93d7d0a8c4bc732fe6b1ea5b71d59d96a3f1ce1635f9321dac210544340dabfc4"></a>REVERSE_PAUSE&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7d1eabc9c7c9f0157439a877c9eed33b" name="a7d1eabc9c7c9f0157439a877c9eed33b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d1eabc9c7c9f0157439a877c9eed33b">&#9670;&#160;</a></span>RadarSampler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::sampling::RadarSampler::RadarSampler </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a985ef74f9967394d35f05a35b1b49beb" name="a985ef74f9967394d35f05a35b1b49beb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a985ef74f9967394d35f05a35b1b49beb">&#9670;&#160;</a></span>~RadarSampler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::sampling::RadarSampler::~RadarSampler </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a86478fba7143caa3f5d23f1aeb634ffa" name="a86478fba7143caa3f5d23f1aeb634ffa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86478fba7143caa3f5d23f1aeb634ffa">&#9670;&#160;</a></span>calc_lineofsight_velocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::RadarSampler::calc_lineofsight_velocity </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::vector&lt; amrex::Real &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>velocity_raw</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>interp_idx</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa563dd58c3cb9632ce77f5a221db45fc" name="aa563dd58c3cb9632ce77f5a221db45fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa563dd58c3cb9632ce77f5a221db45fc">&#9670;&#160;</a></span>check_bounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::RadarSampler::check_bounds </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check and fix the bounds of the sampler so the probes are in the domain. </p>
+
+</div>
+</div>
+<a id="a12c51e66be4cd13db4c3a4bf6d9f530b" name="a12c51e66be4cd13db4c3a4bf6d9f530b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12c51e66be4cd13db4c3a4bf6d9f530b">&#9670;&#160;</a></span>cone_axis_locations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::RadarSampler::cone_axis_locations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>axis_locs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a813bf527f618f6784c549b939ce5e8d2" name="a813bf527f618f6784c549b939ce5e8d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a813bf527f618f6784c549b939ce5e8d2">&#9670;&#160;</a></span>define_netcdf_metadata()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::RadarSampler::define_netcdf_metadata </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>grp</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a78467a9a15c49d8aa83271f700cc7c24" name="a78467a9a15c49d8aa83271f700cc7c24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78467a9a15c49d8aa83271f700cc7c24">&#9670;&#160;</a></span>determine_current_sweep_angle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::sampling::RadarSampler::determine_current_sweep_angle </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a02c49e2c2a83f0469c705972be17eecd" name="a02c49e2c2a83f0469c705972be17eecd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02c49e2c2a83f0469c705972be17eecd">&#9670;&#160;</a></span>determine_operation_phase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a93d7d0a8c4bc732fe6b1ea5b71d59d96">RadarSampler::phase</a> kynema_sgf::sampling::RadarSampler::determine_operation_phase </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af53d3914b4e7429019f873d3326cdb82" name="af53d3914b4e7429019f873d3326cdb82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af53d3914b4e7429019f873d3326cdb82">&#9670;&#160;</a></span>do_convert_velocity_los()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::sampling::RadarSampler::do_convert_velocity_los </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a079dab1e4888ecba07067adc15158793" name="a079dab1e4888ecba07067adc15158793"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a079dab1e4888ecba07067adc15158793">&#9670;&#160;</a></span>do_data_modification()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::sampling::RadarSampler::do_data_modification </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Run data modification for specific sampler. </p>
+
+</div>
+</div>
+<a id="a77d0034fed30afb265c563f5560a4a40" name="a77d0034fed30afb265c563f5560a4a40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77d0034fed30afb265c563f5560a4a40">&#9670;&#160;</a></span>do_subsampling_interp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::sampling::RadarSampler::do_subsampling_interp </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aefa69ec1e69ee74b2cc604210a52903e" name="aefa69ec1e69ee74b2cc604210a52903e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefa69ec1e69ee74b2cc604210a52903e">&#9670;&#160;</a></span>id() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::RadarSampler::id </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unique identifier for this set of probe locations. </p>
+
+</div>
+</div>
+<a id="a40d27c83d49f1c658d57685c4f8a1633" name="a40d27c83d49f1c658d57685c4f8a1633"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40d27c83d49f1c658d57685c4f8a1633">&#9670;&#160;</a></span>id() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int &amp; kynema_sgf::sampling::RadarSampler::id </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a65b347668655d6e765e52e0c56a49cca" name="a65b347668655d6e765e52e0c56a49cca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65b347668655d6e765e52e0c56a49cca">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::sampling::RadarSampler::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac7d08b6542eb6f49cc7c6ffe76eeedbc" name="ac7d08b6542eb6f49cc7c6ffe76eeedbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7d08b6542eb6f49cc7c6ffe76eeedbc">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::RadarSampler::initialize </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Read user inputs and initialize the sampling object</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Prefix used to parse inputs from file </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="affcf4b3162999f2e33e1f5077e69358a" name="affcf4b3162999f2e33e1f5077e69358a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affcf4b3162999f2e33e1f5077e69358a">&#9670;&#160;</a></span>label() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::sampling::RadarSampler::label </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Name of this sampling object. </p>
+
+</div>
+</div>
+<a id="a2379db50f7a10601d5524332b533b2ad" name="a2379db50f7a10601d5524332b533b2ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2379db50f7a10601d5524332b533b2ad">&#9670;&#160;</a></span>label() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string &amp; kynema_sgf::sampling::RadarSampler::label </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e320492f7f0f6fd9c6906759526e7d2" name="a1e320492f7f0f6fd9c6906759526e7d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e320492f7f0f6fd9c6906759526e7d2">&#9670;&#160;</a></span>line_average()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::RadarSampler::line_average </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>weights</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>values</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>reduced</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a07b6adf99c94602f3b301f0b9d624a98" name="a07b6adf99c94602f3b301f0b9d624a98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07b6adf99c94602f3b301f0b9d624a98">&#9670;&#160;</a></span>modify_sample_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; amrex::Real &gt; kynema_sgf::sampling::RadarSampler::modify_sample_data </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>sample_data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Modify sample buffer after sampling happens. </p>
+
+</div>
+</div>
+<a id="a09b1103d0a4ff2e22cbad63edaf95827" name="a09b1103d0a4ff2e22cbad63edaf95827"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09b1103d0a4ff2e22cbad63edaf95827">&#9670;&#160;</a></span>new_cone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::RadarSampler::new_cone </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5495411f638f90f1e45ec5ecd78976bb" name="a5495411f638f90f1e45ec5ecd78976bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5495411f638f90f1e45ec5ecd78976bb">&#9670;&#160;</a></span>num_output_points()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::RadarSampler::num_output_points </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of probe locations to output. </p>
+
+</div>
+</div>
+<a id="a04be2ee54e17419fe3cff674caf45931" name="a04be2ee54e17419fe3cff674caf45931"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04be2ee54e17419fe3cff674caf45931">&#9670;&#160;</a></span>num_points()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::RadarSampler::num_points </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of sampling container locations in a timestep. </p>
+
+</div>
+</div>
+<a id="aed2e3969837c6f80b279f6feac30e717" name="aed2e3969837c6f80b279f6feac30e717"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed2e3969837c6f80b279f6feac30e717">&#9670;&#160;</a></span>num_points_axis()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::RadarSampler::num_points_axis </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of probe locations on Radar axis. </p>
+
+</div>
+</div>
+<a id="afa1ad75ca9e26b001db2aee808382930" name="afa1ad75ca9e26b001db2aee808382930"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa1ad75ca9e26b001db2aee808382930">&#9670;&#160;</a></span>num_points_cone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::RadarSampler::num_points_cone </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of probe locations in a cone. </p>
+
+</div>
+</div>
+<a id="af9051507bff52e37b0e33573339971a4" name="af9051507bff52e37b0e33573339971a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9051507bff52e37b0e33573339971a4">&#9670;&#160;</a></span>num_points_quad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::RadarSampler::num_points_quad </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of probe locations in a spherical cap. </p>
+
+</div>
+</div>
+<a id="ae044228e2ffe91022ec3831391e2b4ee" name="ae044228e2ffe91022ec3831391e2b4ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae044228e2ffe91022ec3831391e2b4ee">&#9670;&#160;</a></span>num_points_scan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::RadarSampler::num_points_scan </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of sampling container locations per interp step. </p>
+
+</div>
+</div>
+<a id="a93cf34657d87bd65592e2f6ec6e3360d" name="a93cf34657d87bd65592e2f6ec6e3360d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93cf34657d87bd65592e2f6ec6e3360d">&#9670;&#160;</a></span>output_locations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::RadarSampler::output_locations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sample_locs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af6d39e6f5738371859fc19c1caf79e95" name="af6d39e6f5738371859fc19c1caf79e95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6d39e6f5738371859fc19c1caf79e95">&#9670;&#160;</a></span>output_netcdf_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::RadarSampler::output_netcdf_data </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>grp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>nt</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b9cbe6de10c0401da2d69d54edb4035" name="a1b9cbe6de10c0401da2d69d54edb4035"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b9cbe6de10c0401da2d69d54edb4035">&#9670;&#160;</a></span>output_netcdf_field()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::sampling::RadarSampler::output_netcdf_field </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>output_buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>grp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>nt</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac69ef58762954891891426337f9ff701" name="ac69ef58762954891891426337f9ff701"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac69ef58762954891891426337f9ff701">&#9670;&#160;</a></span>periodic_time()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::sampling::RadarSampler::periodic_time </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a20c49c8767e5c0cb56132bd94a1bf860" name="a20c49c8767e5c0cb56132bd94a1bf860"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20c49c8767e5c0cb56132bd94a1bf860">&#9670;&#160;</a></span>populate_netcdf_metadata()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::RadarSampler::populate_netcdf_metadata </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a76e8d4d80623fdde62677e05cbd0b499" name="a76e8d4d80623fdde62677e05cbd0b499"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76e8d4d80623fdde62677e05cbd0b499">&#9670;&#160;</a></span>post_sample_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::RadarSampler::post_sample_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a15c84ed9b7ffb8e97665ec77f2eff913" name="a15c84ed9b7ffb8e97665ec77f2eff913"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15c84ed9b7ffb8e97665ec77f2eff913">&#9670;&#160;</a></span>sampletype()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::sampling::RadarSampler::sampletype </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Type of this sampling object. </p>
+
+</div>
+</div>
+<a id="a16c9da57c90310176f9abad620fc941a" name="a16c9da57c90310176f9abad620fc941a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16c9da57c90310176f9abad620fc941a">&#9670;&#160;</a></span>sampling_locations() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::RadarSampler::sampling_locations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sample_locs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Populate and return a vector of probe locations to be sampled. </p>
+
+</div>
+</div>
+<a id="a81a4e06a160a88d1eca12f4059971952" name="a81a4e06a160a88d1eca12f4059971952"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81a4e06a160a88d1eca12f4059971952">&#9670;&#160;</a></span>sampling_locations() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::RadarSampler::sampling_locations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sample_locs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Box &amp;</td>          <td class="paramname"><span class="paramname"><em>box</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Populate the vector with coordinates of the sampling locations inside a box. </p>
+
+</div>
+</div>
+<a id="a2f094e325fad8d4f6141740ec6071910" name="a2f094e325fad8d4f6141740ec6071910"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f094e325fad8d4f6141740ec6071910">&#9670;&#160;</a></span>sweep_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::RadarSampler::sweep_count </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4a1bf912f2a207008403a8ee1e2994f2" name="a4a1bf912f2a207008403a8ee1e2994f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a1bf912f2a207008403a8ee1e2994f2">&#9670;&#160;</a></span>total_sweep_time()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::sampling::RadarSampler::total_sweep_time </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9d044446dc30bcc69e7ddfa31267de39" name="a9d044446dc30bcc69e7ddfa31267de39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d044446dc30bcc69e7ddfa31267de39">&#9670;&#160;</a></span>update_sampling_locations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::sampling::RadarSampler::update_sampling_locations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a8f323aa3e951e98e9d2e83d6f249b728" name="a8f323aa3e951e98e9d2e83d6f249b728"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f323aa3e951e98e9d2e83d6f249b728">&#9670;&#160;</a></span>m_angular_speed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::sampling::RadarSampler::m_angular_speed</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a78cd837d2d42e9b0ae10f311d0891ba0" name="a78cd837d2d42e9b0ae10f311d0891ba0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78cd837d2d42e9b0ae10f311d0891ba0">&#9670;&#160;</a></span>m_axis</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::sampling::RadarSampler::m_axis</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a71dbceb90514f87b955cb009f0a58d04" name="a71dbceb90514f87b955cb009f0a58d04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71dbceb90514f87b955cb009f0a58d04">&#9670;&#160;</a></span>m_beam_length</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::sampling::RadarSampler::m_beam_length</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7b15251a08c8261d2bff4e3d5c9dd10b" name="a7b15251a08c8261d2bff4e3d5c9dd10b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b15251a08c8261d2bff4e3d5c9dd10b">&#9670;&#160;</a></span>m_cone_angle</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::sampling::RadarSampler::m_cone_angle</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa8ac2384af349a1d96ad317ef46e65a4" name="aa8ac2384af349a1d96ad317ef46e65a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8ac2384af349a1d96ad317ef46e65a4">&#9670;&#160;</a></span>m_cone_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::RadarSampler::m_cone_size</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad139909d6f5715a654864e5e0ecf4d9f" name="ad139909d6f5715a654864e5e0ecf4d9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad139909d6f5715a654864e5e0ecf4d9f">&#9670;&#160;</a></span>m_current_cones</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html#a2364fe84ce8f843ed3475f4f8f87eb87">SampleLocType::LocType</a> kynema_sgf::sampling::RadarSampler::m_current_cones</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a38da2d9aa3e15f89a8dbeb4878bd3ea2" name="a38da2d9aa3e15f89a8dbeb4878bd3ea2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38da2d9aa3e15f89a8dbeb4878bd3ea2">&#9670;&#160;</a></span>m_current_phase</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a93d7d0a8c4bc732fe6b1ea5b71d59d96">phase</a> kynema_sgf::sampling::RadarSampler::m_current_phase</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac8dc6e01977446f8814279a94e684ffd" name="ac8dc6e01977446f8814279a94e684ffd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8dc6e01977446f8814279a94e684ffd">&#9670;&#160;</a></span>m_debug_print</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::sampling::RadarSampler::m_debug_print {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2265398a51d301c35b0baf6b7808de4b" name="a2265398a51d301c35b0baf6b7808de4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2265398a51d301c35b0baf6b7808de4b">&#9670;&#160;</a></span>m_elevation_angles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::sampling::RadarSampler::m_elevation_angles</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa12b40eb857c0dbcbb837c6497c8ffd0" name="aa12b40eb857c0dbcbb837c6497c8ffd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa12b40eb857c0dbcbb837c6497c8ffd0">&#9670;&#160;</a></span>m_end</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::sampling::RadarSampler::m_end</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae7eff7322049b8ba347ae8e70ae11851" name="ae7eff7322049b8ba347ae8e70ae11851"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7eff7322049b8ba347ae8e70ae11851">&#9670;&#160;</a></span>m_fill_val</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::sampling::RadarSampler::m_fill_val {-99999.99_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3977ce45d9609f20ad15d3726d44eb51" name="a3977ce45d9609f20ad15d3726d44eb51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3977ce45d9609f20ad15d3726d44eb51">&#9670;&#160;</a></span>m_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::RadarSampler::m_id {-1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a467b1333b116e3fb84729b25d7723ce0" name="a467b1333b116e3fb84729b25d7723ce0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a467b1333b116e3fb84729b25d7723ce0">&#9670;&#160;</a></span>m_initial_cone</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html#a2364fe84ce8f843ed3475f4f8f87eb87">SampleLocType::LocType</a> kynema_sgf::sampling::RadarSampler::m_initial_cone</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a49a0afd0b508344bb6ea66fce65b1a5e" name="a49a0afd0b508344bb6ea66fce65b1a5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49a0afd0b508344bb6ea66fce65b1a5e">&#9670;&#160;</a></span>m_interp_steps</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::RadarSampler::m_interp_steps {2}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef7324ccc50b3d893e5e1ddf028c3af2" name="aef7324ccc50b3d893e5e1ddf028c3af2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef7324ccc50b3d893e5e1ddf028c3af2">&#9670;&#160;</a></span>m_label</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::sampling::RadarSampler::m_label</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1fbd4a6c1f7ae7ab141ee09445abc103" name="a1fbd4a6c1f7ae7ab141ee09445abc103"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fbd4a6c1f7ae7ab141ee09445abc103">&#9670;&#160;</a></span>m_los_proj</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#aabe8923894f4ac945d56ac67b06b4e29">LosRotType</a> kynema_sgf::sampling::RadarSampler::m_los_proj</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a32df15c863053a975d60c9c842520900" name="a32df15c863053a975d60c9c842520900"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32df15c863053a975d60c9c842520900">&#9670;&#160;</a></span>m_los_unit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a383bb12379b1783df4c6987d4e0319fe">LosUnitType</a> kynema_sgf::sampling::RadarSampler::m_los_unit</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaecb3ec864c384b2c7c8f91bbc1c5f72" name="aaecb3ec864c384b2c7c8f91bbc1c5f72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaecb3ec864c384b2c7c8f91bbc1c5f72">&#9670;&#160;</a></span>m_los_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;amrex::Real&gt; kynema_sgf::sampling::RadarSampler::m_los_velocity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab446383af4dd75f54b1a3d601f889adb" name="ab446383af4dd75f54b1a3d601f889adb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab446383af4dd75f54b1a3d601f889adb">&#9670;&#160;</a></span>m_los_velocity_interp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;amrex::Real&gt; kynema_sgf::sampling::RadarSampler::m_los_velocity_interp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af4a060f756ff2b1cc7b69e6826c51fe7" name="af4a060f756ff2b1cc7b69e6826c51fe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4a060f756ff2b1cc7b69e6826c51fe7">&#9670;&#160;</a></span>m_los_velocity_next</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;amrex::Real&gt; kynema_sgf::sampling::RadarSampler::m_los_velocity_next</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa479e5ed672fdd5aa121535c4cb98a4a" name="aa479e5ed672fdd5aa121535c4cb98a4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa479e5ed672fdd5aa121535c4cb98a4a">&#9670;&#160;</a></span>m_los_velocity_prior</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;amrex::Real&gt; kynema_sgf::sampling::RadarSampler::m_los_velocity_prior</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab6e54b9a8d76da8675a42d6a5f625bd1" name="ab6e54b9a8d76da8675a42d6a5f625bd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6e54b9a8d76da8675a42d6a5f625bd1">&#9670;&#160;</a></span>m_nphi</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::RadarSampler::m_nphi {5}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a528eeb26b3cb57097c71ecd75b2c2857" name="a528eeb26b3cb57097c71ecd75b2c2857"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a528eeb26b3cb57097c71ecd75b2c2857">&#9670;&#160;</a></span>m_npts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::RadarSampler::m_npts {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a97dcaa7088e1e60df0e6bd3df28e7650" name="a97dcaa7088e1e60df0e6bd3df28e7650"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97dcaa7088e1e60df0e6bd3df28e7650">&#9670;&#160;</a></span>m_npts_azimuth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::RadarSampler::m_npts_azimuth {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a93ed24e9fd68810eec9fe1e26f61a357" name="a93ed24e9fd68810eec9fe1e26f61a357"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93ed24e9fd68810eec9fe1e26f61a357">&#9670;&#160;</a></span>m_ns</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::RadarSampler::m_ns</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a180fc79eb2caf7fa8e92e67e6c9b4e99" name="a180fc79eb2caf7fa8e92e67e6c9b4e99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a180fc79eb2caf7fa8e92e67e6c9b4e99">&#9670;&#160;</a></span>m_ns_prior</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::RadarSampler::m_ns_prior</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a44cf84394966155027d0fff8fced819c" name="a44cf84394966155027d0fff8fced819c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44cf84394966155027d0fff8fced819c">&#9670;&#160;</a></span>m_ntheta</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::RadarSampler::m_ntheta {5}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4d704c5255631b6a79e0ff528a93812d" name="a4d704c5255631b6a79e0ff528a93812d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d704c5255631b6a79e0ff528a93812d">&#9670;&#160;</a></span>m_ntotal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::RadarSampler::m_ntotal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afc1d73d29882d98b4fa534ce7cc32cad" name="afc1d73d29882d98b4fa534ce7cc32cad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc1d73d29882d98b4fa534ce7cc32cad">&#9670;&#160;</a></span>m_ntotal_prior</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::RadarSampler::m_ntotal_prior</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0179ba171252132302993f7d2c74ec70" name="a0179ba171252132302993f7d2c74ec70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0179ba171252132302993f7d2c74ec70">&#9670;&#160;</a></span>m_num_output_points_prior</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::RadarSampler::m_num_output_points_prior</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac83cce03306489ad3c92fdfc5eb03fed" name="ac83cce03306489ad3c92fdfc5eb03fed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac83cce03306489ad3c92fdfc5eb03fed">&#9670;&#160;</a></span>m_num_points_prior</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::RadarSampler::m_num_points_prior</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab910d835875da2ac1f65beb0f87b1c5" name="aab910d835875da2ac1f65beb0f87b1c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab910d835875da2ac1f65beb0f87b1c5">&#9670;&#160;</a></span>m_output_cone_points</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::sampling::RadarSampler::m_output_cone_points {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae892f8ffd8e01595b3405847432be6e0" name="ae892f8ffd8e01595b3405847432be6e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae892f8ffd8e01595b3405847432be6e0">&#9670;&#160;</a></span>m_periodic_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::sampling::RadarSampler::m_periodic_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab3e1375cf19e0e7a817f4cd0d02e8a9" name="aab3e1375cf19e0e7a817f4cd0d02e8a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab3e1375cf19e0e7a817f4cd0d02e8a9">&#9670;&#160;</a></span>m_prior_cones</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html#a2364fe84ce8f843ed3475f4f8f87eb87">SampleLocType::LocType</a> kynema_sgf::sampling::RadarSampler::m_prior_cones</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4dda62fc1eedd89432f4bf7a2ed7b285" name="a4dda62fc1eedd89432f4bf7a2ed7b285"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dda62fc1eedd89432f4bf7a2ed7b285">&#9670;&#160;</a></span>m_radar_iter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::RadarSampler::m_radar_iter {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa53e898050c1cf5b9a8dbf342929529b" name="aa53e898050c1cf5b9a8dbf342929529b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa53e898050c1cf5b9a8dbf342929529b">&#9670;&#160;</a></span>m_radar_quad_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::sampling::RadarSampler::m_radar_quad_type</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afe668b43230b4c9301b66254a963f553" name="afe668b43230b4c9301b66254a963f553"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe668b43230b4c9301b66254a963f553">&#9670;&#160;</a></span>m_radar_rotation_axis</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::sampling::RadarSampler::m_radar_rotation_axis</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc89e45f6e73bde5bc98303292e91c19" name="acc89e45f6e73bde5bc98303292e91c19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc89e45f6e73bde5bc98303292e91c19">&#9670;&#160;</a></span>m_radar_sample_freq</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::sampling::RadarSampler::m_radar_sample_freq</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0082a6b377005cba12d41c7a015f1c24" name="a0082a6b377005cba12d41c7a015f1c24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0082a6b377005cba12d41c7a015f1c24">&#9670;&#160;</a></span>m_radar_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::sampling::RadarSampler::m_radar_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6558b7b591178b1f3c59b52043198c75" name="a6558b7b591178b1f3c59b52043198c75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6558b7b591178b1f3c59b52043198c75">&#9670;&#160;</a></span>m_radtodeg</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::sampling::RadarSampler::m_radtodeg {180.0_rt / std::numbers::pi_v&lt;amrex::Real&gt;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9982c7fef6cfaa655ec92ae144fdc348" name="a9982c7fef6cfaa655ec92ae144fdc348"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9982c7fef6cfaa655ec92ae144fdc348">&#9670;&#160;</a></span>m_rays</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&gt; kynema_sgf::sampling::RadarSampler::m_rays</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a024b53ab88605aa2639d7dcaa5d648b7" name="a024b53ab88605aa2639d7dcaa5d648b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a024b53ab88605aa2639d7dcaa5d648b7">&#9670;&#160;</a></span>m_reset_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::sampling::RadarSampler::m_reset_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a28805cea77fdcf477a23410817c05a70" name="a28805cea77fdcf477a23410817c05a70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28805cea77fdcf477a23410817c05a70">&#9670;&#160;</a></span>m_sample_cones</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html#a2364fe84ce8f843ed3475f4f8f87eb87">SampleLocType::LocType</a> kynema_sgf::sampling::RadarSampler::m_sample_cones</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af7000e4cb6f40d10c69c06361b65db81" name="af7000e4cb6f40d10c69c06361b65db81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7000e4cb6f40d10c69c06361b65db81">&#9670;&#160;</a></span>m_sample_freq</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::sampling::RadarSampler::m_sample_freq</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab1afa5b8e0ce127aeeba899c2ffdca30" name="ab1afa5b8e0ce127aeeba899c2ffdca30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1afa5b8e0ce127aeeba899c2ffdca30">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::sampling::RadarSampler::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8a1601ee9c9b0154774579a4b64b2ec2" name="a8a1601ee9c9b0154774579a4b64b2ec2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a1601ee9c9b0154774579a4b64b2ec2">&#9670;&#160;</a></span>m_start</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::sampling::RadarSampler::m_start</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aad9c6b85e7a162ece5ebcff636a43ab4" name="aad9c6b85e7a162ece5ebcff636a43ab4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad9c6b85e7a162ece5ebcff636a43ab4">&#9670;&#160;</a></span>m_sweep_angle</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::sampling::RadarSampler::m_sweep_angle</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0441c038f249cc446fe7530d99cac22c" name="a0441c038f249cc446fe7530d99cac22c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0441c038f249cc446fe7530d99cac22c">&#9670;&#160;</a></span>m_vertical</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::sampling::RadarSampler::m_vertical</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4fba3ad4362a8f843ffaf3ee64fc7f2c" name="a4fba3ad4362a8f843ffaf3ee64fc7f2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fba3ad4362a8f843ffaf3ee64fc7f2c">&#9670;&#160;</a></span>m_weights</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;amrex::Real&gt; kynema_sgf::sampling::RadarSampler::m_weights</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/<a class="el" href="_radar_sampler_8_h_source.html">RadarSampler.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/<a class="el" href="_radar_sampler_8cpp.html">RadarSampler.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

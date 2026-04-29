@@ -1,0 +1,1493 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::BoundaryPlane Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::BoundaryPlane Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_boundary_plane.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="boundaryplane-class-reference">
+<h1>BoundaryPlane Class Reference<a class="headerlink" href="#boundaryplane-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::BoundaryPlane Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_boundary_plane.html">BoundaryPlane</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_boundary_plane-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::BoundaryPlane Class Reference<div class="ingroups"><a class="el" href="group__physics.html">Physics models</a> &raquo; <a class="el" href="group__wind.html">Wind energy modeling</a> &raquo; <a class="el" href="group__we__abl.html">ABL</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_boundary_plane_8_h_source.html">BoundaryPlane.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::BoundaryPlane:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_boundary_plane__inherit__graph.svg" width="223" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::BoundaryPlane:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_boundary_plane__coll__graph.svg" width="100%" height="541"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a78828453a6cca04d7dfed12127df5b4c" id="r_a78828453a6cca04d7dfed12127df5b4c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78828453a6cca04d7dfed12127df5b4c">BoundaryPlane</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;)</td></tr>
+<tr class="memitem:a11adf54fa4a73cd8a2fbac7a03e70882" id="r_a11adf54fa4a73cd8a2fbac7a03e70882"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11adf54fa4a73cd8a2fbac7a03e70882">post_init_actions</a> () override</td></tr>
+<tr class="memitem:a0a74a087082c85421c22c63e7e7571a2" id="r_a0a74a087082c85421c22c63e7e7571a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a74a087082c85421c22c63e7e7571a2">pre_advance_work</a> () override</td></tr>
+<tr class="memitem:a577963aa09552824c93dca87c6371fde" id="r_a577963aa09552824c93dca87c6371fde"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a577963aa09552824c93dca87c6371fde">post_advance_work</a> () override</td></tr>
+<tr class="memitem:a32e3fb78282be6b9595d420786cec014" id="r_a32e3fb78282be6b9595d420786cec014"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32e3fb78282be6b9595d420786cec014">pre_predictor_work</a> () override</td></tr>
+<tr class="memitem:ab892af6f6ac987101e79f36a22740cb1" id="r_ab892af6f6ac987101e79f36a22740cb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab892af6f6ac987101e79f36a22740cb1">set_velocity</a> (int lev, amrex::Real time, const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;fld, amrex::MultiFab &amp;mfab, int dcomp=0, int orig_comp=0) const override</td></tr>
+<tr class="memitem:a02c7175e3a537c71a6ec99e158e7c839" id="r_a02c7175e3a537c71a6ec99e158e7c839"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02c7175e3a537c71a6ec99e158e7c839">pre_advance_inner_calls</a> ()</td></tr>
+<tr class="memitem:a0ce799a8a789ec31792022660a1592b7" id="r_a0ce799a8a789ec31792022660a1592b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ce799a8a789ec31792022660a1592b7">initialize_data</a> ()</td></tr>
+<tr class="memitem:a2600f5a0ea6a3be2928bf590f9ced01a" id="r_a2600f5a0ea6a3be2928bf590f9ced01a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2600f5a0ea6a3be2928bf590f9ced01a">write_header</a> ()</td></tr>
+<tr class="memitem:a4849aa3b926147bb748106a9f158930d" id="r_a4849aa3b926147bb748106a9f158930d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4849aa3b926147bb748106a9f158930d">write_bndry_native_header</a> (const std::string &amp;chkname)</td></tr>
+<tr class="memitem:a90e30f0f0b6476834bfe4244c83fdc36" id="r_a90e30f0f0b6476834bfe4244c83fdc36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90e30f0f0b6476834bfe4244c83fdc36">write_file</a> ()</td></tr>
+<tr class="memitem:a3a1eaf18bf9d0f38bc0fe1df370e822f" id="r_a3a1eaf18bf9d0f38bc0fe1df370e822f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a1eaf18bf9d0f38bc0fe1df370e822f">read_header</a> ()</td></tr>
+<tr class="memitem:ae5a449a10095d607ef8dc33a4ef6f497" id="r_ae5a449a10095d607ef8dc33a4ef6f497"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::BoxArray &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5a449a10095d607ef8dc33a4ef6f497">read_bndry_native_boxarrays</a> (const std::string &amp;chkname, const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;field) const</td></tr>
+<tr class="memitem:a354d312eb7333fdfc60c167019578778" id="r_a354d312eb7333fdfc60c167019578778"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a354d312eb7333fdfc60c167019578778">read_file</a> (bool)</td></tr>
+<tr class="memitem:aa55ea397dc5818f543464b03fa4a2a1d" id="r_aa55ea397dc5818f543464b03fa4a2a1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa55ea397dc5818f543464b03fa4a2a1d">populate_data</a> (int, amrex::Real, const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;, amrex::MultiFab &amp;, int dcomp=0, int orig_comp=0) const</td></tr>
+<tr class="memitem:a2e39ef6750d9f2d7823b8c8b1edccc4e" id="r_a2e39ef6750d9f2d7823b8c8b1edccc4e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e39ef6750d9f2d7823b8c8b1edccc4e">box_intersects_boundary</a> (const amrex::Box &amp;, int, amrex::Orientation) const</td></tr>
+<tr class="memdesc:a2e39ef6750d9f2d7823b8c8b1edccc4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if box intersects the boundary.  <br /></td></tr>
+<tr class="memitem:adb48e10b1258427477057a1589a0535d" id="r_adb48e10b1258427477057a1589a0535d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb48e10b1258427477057a1589a0535d">is_data_newer_than</a> (const amrex::Real time) const</td></tr>
+<tr class="memitem:aebcbd3d0e679a62c6fe6938d0ec3e214" id="r_aebcbd3d0e679a62c6fe6938d0ec3e214"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728a">io_mode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebcbd3d0e679a62c6fe6938d0ec3e214">mode</a> () const</td></tr>
+<tr class="memitem:a1a0b665b1c3497b23d67316840c48099" id="r_a1a0b665b1c3497b23d67316840c48099"><td class="memItemLeft" align="right" valign="top">MultiBlockContainer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a0b665b1c3497b23d67316840c48099">mbc</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a82cbd919d4cd8e03159a58f09a490b57" id="r_a82cbd919d4cd8e03159a58f09a490b57"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a82cbd919d4cd8e03159a58f09a490b57">identifier</a> ()</td></tr>
+<tr class="memitem:a7a3f160b66950c06a35b74576921ca6b" id="r_a7a3f160b66950c06a35b74576921ca6b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a3f160b66950c06a35b74576921ca6b">impl_buffer_field</a> (const amrex::Box &amp;, const int, const int, const amrex::GpuArray&lt; int, 2 &gt; &amp;, const amrex::IntVect &amp;, const amrex::Array4&lt; const amrex::Real &gt; &amp;, amrex::Gpu::ManagedVector&lt; amrex::Real &gt; &amp;)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a375d15951bafacc95dea2a97d4288d28" id="r_a375d15951bafacc95dea2a97d4288d28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a375d15951bafacc95dea2a97d4288d28">write_data</a> (const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;grp, const amrex::Orientation, const int, const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *)</td></tr>
+<tr class="memitem:a862b1ee0eb27736d1f32c20d2d1963d0" id="r_a862b1ee0eb27736d1f32c20d2d1963d0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a862b1ee0eb27736d1f32c20d2d1963d0">boundary_native_file_levels</a> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a9e66879dbebef3cfa204b12356ad05d9" id="r_a9e66879dbebef3cfa204b12356ad05d9"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e66879dbebef3cfa204b12356ad05d9">m_time</a></td></tr>
+<tr class="memitem:aa722e4f10ccf703a53b6de272f4dbe86" id="r_aa722e4f10ccf703a53b6de272f4dbe86"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa722e4f10ccf703a53b6de272f4dbe86">m_repo</a></td></tr>
+<tr class="memitem:a98cbf4b5ba82db325e401100d54a526e" id="r_a98cbf4b5ba82db325e401100d54a526e"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98cbf4b5ba82db325e401100d54a526e">m_mesh</a></td></tr>
+<tr class="memitem:ae87d94400e0d457727d13c4eb596c99d" id="r_ae87d94400e0d457727d13c4eb596c99d"><td class="memItemLeft" align="right" valign="top">MultiBlockContainer **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae87d94400e0d457727d13c4eb596c99d">m_mbc</a></td></tr>
+<tr class="memitem:ac1ed02ea992167f069133daa6568ae8f" id="r_ac1ed02ea992167f069133daa6568ae8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_read_e_r_f_function_8_h.html#a854c725972700e3da1ee7f3de488cf7e">ReadERFFunction</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1ed02ea992167f069133daa6568ae8f">m_read_erf</a> {nullptr}</td></tr>
+<tr class="memitem:ae43e4d88392914e3bbd3755b1c982ac2" id="r_ae43e4d88392914e3bbd3755b1c982ac2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae43e4d88392914e3bbd3755b1c982ac2">m_title</a> {&quot;ABL boundary planes&quot;}</td></tr>
+<tr class="memitem:a2049a89917ffe7c6b9ed739212b00503" id="r_a2049a89917ffe7c6b9ed739212b00503"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2049a89917ffe7c6b9ed739212b00503">m_write_frequency</a> {1}</td></tr>
+<tr class="memdesc:a2049a89917ffe7c6b9ed739212b00503"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normal direction for the boundary plane.  <br /></td></tr>
+<tr class="memitem:a02585101a8541939c2814cebdb0e9c17" id="r_a02585101a8541939c2814cebdb0e9c17"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02585101a8541939c2814cebdb0e9c17">m_plane_names</a></td></tr>
+<tr class="memdesc:a02585101a8541939c2814cebdb0e9c17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plane names.  <br /></td></tr>
+<tr class="memitem:aae44d14794ce3f917c12add9bfd79bcf" id="r_aae44d14794ce3f917c12add9bfd79bcf"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae44d14794ce3f917c12add9bfd79bcf">m_planes</a></td></tr>
+<tr class="memdesc:aae44d14794ce3f917c12add9bfd79bcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">IO boundary planes.  <br /></td></tr>
+<tr class="memitem:a2c3951ce2394679e1fef9e1a258bf601" id="r_a2c3951ce2394679e1fef9e1a258bf601"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c3951ce2394679e1fef9e1a258bf601">m_out_start_time</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a2c3951ce2394679e1fef9e1a258bf601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start outputting after this time.  <br /></td></tr>
+<tr class="memitem:a41c12fbd23d6e6c689d0965f0f6bdba3" id="r_a41c12fbd23d6e6c689d0965f0f6bdba3"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41c12fbd23d6e6c689d0965f0f6bdba3">m_out_counter</a> {0}</td></tr>
+<tr class="memdesc:a41c12fbd23d6e6c689d0965f0f6bdba3"><td class="mdescLeft">&#160;</td><td class="mdescRight">NetCDF time output counter.  <br /></td></tr>
+<tr class="memitem:a804b289e6d7c79a3bab4c6e3adab9c3a" id="r_a804b289e6d7c79a3bab4c6e3adab9c3a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a804b289e6d7c79a3bab4c6e3adab9c3a">m_filename</a></td></tr>
+<tr class="memdesc:a804b289e6d7c79a3bab4c6e3adab9c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">File name for IO.  <br /></td></tr>
+<tr class="memitem:a507fc5030bd6343a0cbc776d5ae7ea32" id="r_a507fc5030bd6343a0cbc776d5ae7ea32"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a507fc5030bd6343a0cbc776d5ae7ea32">m_time_file</a></td></tr>
+<tr class="memdesc:a507fc5030bd6343a0cbc776d5ae7ea32"><td class="mdescLeft">&#160;</td><td class="mdescRight">File name for Native time file.  <br /></td></tr>
+<tr class="memitem:adf07a6d6adbb1ad0bc9f777e3cb80fab" id="r_adf07a6d6adbb1ad0bc9f777e3cb80fab"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf07a6d6adbb1ad0bc9f777e3cb80fab">m_var_names</a></td></tr>
+<tr class="memdesc:adf07a6d6adbb1ad0bc9f777e3cb80fab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables for IO.  <br /></td></tr>
+<tr class="memitem:a00e8184cdf93c3481973ebe659eab3e1" id="r_a00e8184cdf93c3481973ebe659eab3e1"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00e8184cdf93c3481973ebe659eab3e1">m_fields</a></td></tr>
+<tr class="memdesc:a00e8184cdf93c3481973ebe659eab3e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of fields for IO.  <br /></td></tr>
+<tr class="memitem:a514667bab8c0f890001e97a25603aa43" id="r_a514667bab8c0f890001e97a25603aa43"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a514667bab8c0f890001e97a25603aa43">m_in_times</a></td></tr>
+<tr class="memdesc:a514667bab8c0f890001e97a25603aa43"><td class="mdescLeft">&#160;</td><td class="mdescRight">NetCDF input level time.  <br /></td></tr>
+<tr class="memitem:a63f1cf68fee8122b7c35fd555b724503" id="r_a63f1cf68fee8122b7c35fd555b724503"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63f1cf68fee8122b7c35fd555b724503">m_in_timesteps</a></td></tr>
+<tr class="memitem:a2ec50f51f722e0254cb2328fc9a70b4e" id="r_a2ec50f51f722e0254cb2328fc9a70b4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_inlet_data.html">InletData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ec50f51f722e0254cb2328fc9a70b4e">m_in_data</a></td></tr>
+<tr class="memdesc:a2ec50f51f722e0254cb2328fc9a70b4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inlet data.  <br /></td></tr>
+<tr class="memitem:ac75d2c5e85bf9dfbe33b688cf140bcda" id="r_ac75d2c5e85bf9dfbe33b688cf140bcda"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728a">io_mode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac75d2c5e85bf9dfbe33b688cf140bcda">m_io_mode</a> {<a class="el" href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728aa5e543256c480ac577d30f76f9120eb74">io_mode::undefined</a>}</td></tr>
+<tr class="memdesc:ac75d2c5e85bf9dfbe33b688cf140bcda"><td class="mdescLeft">&#160;</td><td class="mdescRight">IO mode.  <br /></td></tr>
+<tr class="memitem:a110e0eb781f0657b42a196285a50ef15" id="r_a110e0eb781f0657b42a196285a50ef15"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a110e0eb781f0657b42a196285a50ef15">m_has_overset</a> {false}</td></tr>
+<tr class="memdesc:a110e0eb781f0657b42a196285a50ef15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating if the simulation is overset &ndash; needed for complicated timing of pre_advance_work.  <br /></td></tr>
+<tr class="memitem:aa753e276ab5c8d15ad18a7ae9a0b6be0" id="r_aa753e276ab5c8d15ad18a7ae9a0b6be0"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa753e276ab5c8d15ad18a7ae9a0b6be0">m_in_rad</a> = 1</td></tr>
+<tr class="memdesc:aa753e276ab5c8d15ad18a7ae9a0b6be0"><td class="mdescLeft">&#160;</td><td class="mdescRight">controls extents on native bndry output  <br /></td></tr>
+<tr class="memitem:ad4bb9871108ad16a207ab6e8ce502480" id="r_ad4bb9871108ad16a207ab6e8ce502480"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4bb9871108ad16a207ab6e8ce502480">m_out_rad</a> = 1</td></tr>
+<tr class="memitem:a3fd6a7ff21c8d365beddb5045ad05914" id="r_a3fd6a7ff21c8d365beddb5045ad05914"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3fd6a7ff21c8d365beddb5045ad05914">m_extent_rad</a> = 0</td></tr>
+<tr class="memitem:a534b5c8c97c850d696e74ac6196db4bd" id="r_a534b5c8c97c850d696e74ac6196db4bd"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a534b5c8c97c850d696e74ac6196db4bd">m_out_fmt</a> {&quot;native&quot;}</td></tr>
+<tr class="memdesc:a534b5c8c97c850d696e74ac6196db4bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">output format for bndry output  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interface for <a class="el" href="classkynema__sgf_1_1_a_b_l.html">ABL</a> boundary plane I/O</p>
+<p>This class performs the necessary file operations to read and write boundary planes.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classkynema__sgf_1_1_plane_fill_inflow.html">PlaneFillInflow</a> </dd></dl>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a78828453a6cca04d7dfed12127df5b4c" name="a78828453a6cca04d7dfed12127df5b4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78828453a6cca04d7dfed12127df5b4c">&#9670;&#160;</a></span>BoundaryPlane()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::BoundaryPlane::BoundaryPlane </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a862b1ee0eb27736d1f32c20d2d1963d0" name="a862b1ee0eb27736d1f32c20d2d1963d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a862b1ee0eb27736d1f32c20d2d1963d0">&#9670;&#160;</a></span>boundary_native_file_levels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::BoundaryPlane::boundary_native_file_levels </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2e39ef6750d9f2d7823b8c8b1edccc4e" name="a2e39ef6750d9f2d7823b8c8b1edccc4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e39ef6750d9f2d7823b8c8b1edccc4e">&#9670;&#160;</a></span>box_intersects_boundary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::BoundaryPlane::box_intersects_boundary </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Box &amp;</td>          <td class="paramname"><span class="paramname"><em>bx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Orientation</td>          <td class="paramname"><span class="paramname"><em>ori</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True if box intersects the boundary. </p>
+
+</div>
+</div>
+<a id="a82cbd919d4cd8e03159a58f09a490b57" name="a82cbd919d4cd8e03159a58f09a490b57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82cbd919d4cd8e03159a58f09a490b57">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::BoundaryPlane::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7a3f160b66950c06a35b74576921ca6b" name="a7a3f160b66950c06a35b74576921ca6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a3f160b66950c06a35b74576921ca6b">&#9670;&#160;</a></span>impl_buffer_field()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BoundaryPlane::impl_buffer_field </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Box &amp;</td>          <td class="paramname"><span class="paramname"><em>bx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>n1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>nc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::GpuArray&lt; int, 2 &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>perp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>v_offset</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Array4&lt; const amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>fld</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Gpu::ManagedVector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0ce799a8a789ec31792022660a1592b7" name="a0ce799a8a789ec31792022660a1592b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ce799a8a789ec31792022660a1592b7">&#9670;&#160;</a></span>initialize_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BoundaryPlane::initialize_data </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adb48e10b1258427477057a1589a0535d" name="adb48e10b1258427477057a1589a0535d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb48e10b1258427477057a1589a0535d">&#9670;&#160;</a></span>is_data_newer_than()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::BoundaryPlane::is_data_newer_than </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1a0b665b1c3497b23d67316840c48099" name="a1a0b665b1c3497b23d67316840c48099"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a0b665b1c3497b23d67316840c48099">&#9670;&#160;</a></span>mbc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MultiBlockContainer * kynema_sgf::BoundaryPlane::mbc </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aebcbd3d0e679a62c6fe6938d0ec3e214" name="aebcbd3d0e679a62c6fe6938d0ec3e214"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebcbd3d0e679a62c6fe6938d0ec3e214">&#9670;&#160;</a></span>mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728a">io_mode</a> kynema_sgf::BoundaryPlane::mode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa55ea397dc5818f543464b03fa4a2a1d" name="aa55ea397dc5818f543464b03fa4a2a1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa55ea397dc5818f543464b03fa4a2a1d">&#9670;&#160;</a></span>populate_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BoundaryPlane::populate_data </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fld</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dcomp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>orig_comp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a577963aa09552824c93dca87c6371fde" name="a577963aa09552824c93dca87c6371fde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a577963aa09552824c93dca87c6371fde">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BoundaryPlane::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a11adf54fa4a73cd8a2fbac7a03e70882" name="a11adf54fa4a73cd8a2fbac7a03e70882"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11adf54fa4a73cd8a2fbac7a03e70882">&#9670;&#160;</a></span>post_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BoundaryPlane::post_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a02c7175e3a537c71a6ec99e158e7c839" name="a02c7175e3a537c71a6ec99e158e7c839"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02c7175e3a537c71a6ec99e158e7c839">&#9670;&#160;</a></span>pre_advance_inner_calls()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BoundaryPlane::pre_advance_inner_calls </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0a74a087082c85421c22c63e7e7571a2" name="a0a74a087082c85421c22c63e7e7571a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a74a087082c85421c22c63e7e7571a2">&#9670;&#160;</a></span>pre_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BoundaryPlane::pre_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a32e3fb78282be6b9595d420786cec014" name="a32e3fb78282be6b9595d420786cec014"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32e3fb78282be6b9595d420786cec014">&#9670;&#160;</a></span>pre_predictor_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BoundaryPlane::pre_predictor_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae5a449a10095d607ef8dc33a4ef6f497" name="ae5a449a10095d607ef8dc33a4ef6f497"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5a449a10095d607ef8dc33a4ef6f497">&#9670;&#160;</a></span>read_bndry_native_boxarrays()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt; amrex::BoxArray &gt; kynema_sgf::BoundaryPlane::read_bndry_native_boxarrays </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>chkname</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>field</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a354d312eb7333fdfc60c167019578778" name="a354d312eb7333fdfc60c167019578778"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a354d312eb7333fdfc60c167019578778">&#9670;&#160;</a></span>read_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BoundaryPlane::read_file </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>nph_target_time</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a1eaf18bf9d0f38bc0fe1df370e822f" name="a3a1eaf18bf9d0f38bc0fe1df370e822f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a1eaf18bf9d0f38bc0fe1df370e822f">&#9670;&#160;</a></span>read_header()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BoundaryPlane::read_header </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab892af6f6ac987101e79f36a22740cb1" name="ab892af6f6ac987101e79f36a22740cb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab892af6f6ac987101e79f36a22740cb1">&#9670;&#160;</a></span>set_velocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BoundaryPlane::set_velocity </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fld</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dcomp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>orig_comp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4849aa3b926147bb748106a9f158930d" name="a4849aa3b926147bb748106a9f158930d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4849aa3b926147bb748106a9f158930d">&#9670;&#160;</a></span>write_bndry_native_header()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BoundaryPlane::write_bndry_native_header </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>chkname</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a375d15951bafacc95dea2a97d4288d28" name="a375d15951bafacc95dea2a97d4288d28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a375d15951bafacc95dea2a97d4288d28">&#9670;&#160;</a></span>write_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BoundaryPlane::write_data </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>grp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Orientation</td>          <td class="paramname"><span class="paramname"><em>ori</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *</td>          <td class="paramname"><span class="paramname"><em>fld</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a90e30f0f0b6476834bfe4244c83fdc36" name="a90e30f0f0b6476834bfe4244c83fdc36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90e30f0f0b6476834bfe4244c83fdc36">&#9670;&#160;</a></span>write_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BoundaryPlane::write_file </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2600f5a0ea6a3be2928bf590f9ced01a" name="a2600f5a0ea6a3be2928bf590f9ced01a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2600f5a0ea6a3be2928bf590f9ced01a">&#9670;&#160;</a></span>write_header()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BoundaryPlane::write_header </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a3fd6a7ff21c8d365beddb5045ad05914" name="a3fd6a7ff21c8d365beddb5045ad05914"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fd6a7ff21c8d365beddb5045ad05914">&#9670;&#160;</a></span>m_extent_rad</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int kynema_sgf::BoundaryPlane::m_extent_rad = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a00e8184cdf93c3481973ebe659eab3e1" name="a00e8184cdf93c3481973ebe659eab3e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00e8184cdf93c3481973ebe659eab3e1">&#9670;&#160;</a></span>m_fields</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;<a class="el" href="classkynema__sgf_1_1_field.html">Field</a>*&gt; kynema_sgf::BoundaryPlane::m_fields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of fields for IO. </p>
+
+</div>
+</div>
+<a id="a804b289e6d7c79a3bab4c6e3adab9c3a" name="a804b289e6d7c79a3bab4c6e3adab9c3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a804b289e6d7c79a3bab4c6e3adab9c3a">&#9670;&#160;</a></span>m_filename</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::BoundaryPlane::m_filename</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>File name for IO. </p>
+
+</div>
+</div>
+<a id="a110e0eb781f0657b42a196285a50ef15" name="a110e0eb781f0657b42a196285a50ef15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a110e0eb781f0657b42a196285a50ef15">&#9670;&#160;</a></span>m_has_overset</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::BoundaryPlane::m_has_overset {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating if the simulation is overset &ndash; needed for complicated timing of pre_advance_work. </p>
+
+</div>
+</div>
+<a id="a2ec50f51f722e0254cb2328fc9a70b4e" name="a2ec50f51f722e0254cb2328fc9a70b4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ec50f51f722e0254cb2328fc9a70b4e">&#9670;&#160;</a></span>m_in_data</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_inlet_data.html">InletData</a> kynema_sgf::BoundaryPlane::m_in_data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Inlet data. </p>
+
+</div>
+</div>
+<a id="aa753e276ab5c8d15ad18a7ae9a0b6be0" name="aa753e276ab5c8d15ad18a7ae9a0b6be0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa753e276ab5c8d15ad18a7ae9a0b6be0">&#9670;&#160;</a></span>m_in_rad</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int kynema_sgf::BoundaryPlane::m_in_rad = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>controls extents on native bndry output </p>
+
+</div>
+</div>
+<a id="a514667bab8c0f890001e97a25603aa43" name="a514667bab8c0f890001e97a25603aa43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a514667bab8c0f890001e97a25603aa43">&#9670;&#160;</a></span>m_in_times</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::BoundaryPlane::m_in_times</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>NetCDF input level time. </p>
+
+</div>
+</div>
+<a id="a63f1cf68fee8122b7c35fd555b724503" name="a63f1cf68fee8122b7c35fd555b724503"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63f1cf68fee8122b7c35fd555b724503">&#9670;&#160;</a></span>m_in_timesteps</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;int&gt; kynema_sgf::BoundaryPlane::m_in_timesteps</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac75d2c5e85bf9dfbe33b688cf140bcda" name="ac75d2c5e85bf9dfbe33b688cf140bcda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac75d2c5e85bf9dfbe33b688cf140bcda">&#9670;&#160;</a></span>m_io_mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728a">io_mode</a> kynema_sgf::BoundaryPlane::m_io_mode {<a class="el" href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728aa5e543256c480ac577d30f76f9120eb74">io_mode::undefined</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>IO mode. </p>
+
+</div>
+</div>
+<a id="ae87d94400e0d457727d13c4eb596c99d" name="ae87d94400e0d457727d13c4eb596c99d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae87d94400e0d457727d13c4eb596c99d">&#9670;&#160;</a></span>m_mbc</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MultiBlockContainer** kynema_sgf::BoundaryPlane::m_mbc</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a98cbf4b5ba82db325e401100d54a526e" name="a98cbf4b5ba82db325e401100d54a526e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98cbf4b5ba82db325e401100d54a526e">&#9670;&#160;</a></span>m_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::AmrCore&amp; kynema_sgf::BoundaryPlane::m_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a41c12fbd23d6e6c689d0965f0f6bdba3" name="a41c12fbd23d6e6c689d0965f0f6bdba3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41c12fbd23d6e6c689d0965f0f6bdba3">&#9670;&#160;</a></span>m_out_counter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t kynema_sgf::BoundaryPlane::m_out_counter {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>NetCDF time output counter. </p>
+
+</div>
+</div>
+<a id="a534b5c8c97c850d696e74ac6196db4bd" name="a534b5c8c97c850d696e74ac6196db4bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a534b5c8c97c850d696e74ac6196db4bd">&#9670;&#160;</a></span>m_out_fmt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::BoundaryPlane::m_out_fmt {&quot;native&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>output format for bndry output </p>
+
+</div>
+</div>
+<a id="ad4bb9871108ad16a207ab6e8ce502480" name="ad4bb9871108ad16a207ab6e8ce502480"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4bb9871108ad16a207ab6e8ce502480">&#9670;&#160;</a></span>m_out_rad</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int kynema_sgf::BoundaryPlane::m_out_rad = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2c3951ce2394679e1fef9e1a258bf601" name="a2c3951ce2394679e1fef9e1a258bf601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c3951ce2394679e1fef9e1a258bf601">&#9670;&#160;</a></span>m_out_start_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::BoundaryPlane::m_out_start_time {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Start outputting after this time. </p>
+
+</div>
+</div>
+<a id="a02585101a8541939c2814cebdb0e9c17" name="a02585101a8541939c2814cebdb0e9c17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02585101a8541939c2814cebdb0e9c17">&#9670;&#160;</a></span>m_plane_names</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;std::string&gt; kynema_sgf::BoundaryPlane::m_plane_names</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{<span class="stringliteral">&quot;xlo&quot;</span>, <span class="stringliteral">&quot;ylo&quot;</span>, <span class="stringliteral">&quot;zlo&quot;</span>,</div>
+<div class="line">                                             <span class="stringliteral">&quot;xhi&quot;</span>, <span class="stringliteral">&quot;yhi&quot;</span>, <span class="stringliteral">&quot;zhi&quot;</span>}</div>
+</div><!-- fragment -->
+<p>Plane names. </p>
+
+</div>
+</div>
+<a id="aae44d14794ce3f917c12add9bfd79bcf" name="aae44d14794ce3f917c12add9bfd79bcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae44d14794ce3f917c12add9bfd79bcf">&#9670;&#160;</a></span>m_planes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;std::string&gt; kynema_sgf::BoundaryPlane::m_planes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>IO boundary planes. </p>
+
+</div>
+</div>
+<a id="ac1ed02ea992167f069133daa6568ae8f" name="ac1ed02ea992167f069133daa6568ae8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1ed02ea992167f069133daa6568ae8f">&#9670;&#160;</a></span>m_read_erf</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_read_e_r_f_function_8_h.html#a854c725972700e3da1ee7f3de488cf7e">ReadERFFunction</a>* kynema_sgf::BoundaryPlane::m_read_erf {nullptr}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa722e4f10ccf703a53b6de272f4dbe86" name="aa722e4f10ccf703a53b6de272f4dbe86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa722e4f10ccf703a53b6de272f4dbe86">&#9670;&#160;</a></span>m_repo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; kynema_sgf::BoundaryPlane::m_repo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9e66879dbebef3cfa204b12356ad05d9" name="a9e66879dbebef3cfa204b12356ad05d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e66879dbebef3cfa204b12356ad05d9">&#9670;&#160;</a></span>m_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a>&amp; kynema_sgf::BoundaryPlane::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a507fc5030bd6343a0cbc776d5ae7ea32" name="a507fc5030bd6343a0cbc776d5ae7ea32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a507fc5030bd6343a0cbc776d5ae7ea32">&#9670;&#160;</a></span>m_time_file</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::BoundaryPlane::m_time_file</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>File name for Native time file. </p>
+
+</div>
+</div>
+<a id="ae43e4d88392914e3bbd3755b1c982ac2" name="ae43e4d88392914e3bbd3755b1c982ac2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae43e4d88392914e3bbd3755b1c982ac2">&#9670;&#160;</a></span>m_title</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::BoundaryPlane::m_title {&quot;ABL boundary planes&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adf07a6d6adbb1ad0bc9f777e3cb80fab" name="adf07a6d6adbb1ad0bc9f777e3cb80fab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf07a6d6adbb1ad0bc9f777e3cb80fab">&#9670;&#160;</a></span>m_var_names</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;std::string&gt; kynema_sgf::BoundaryPlane::m_var_names</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Variables for IO. </p>
+
+</div>
+</div>
+<a id="a2049a89917ffe7c6b9ed739212b00503" name="a2049a89917ffe7c6b9ed739212b00503"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2049a89917ffe7c6b9ed739212b00503">&#9670;&#160;</a></span>m_write_frequency</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::BoundaryPlane::m_write_frequency {1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Normal direction for the boundary plane. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/<a class="el" href="_boundary_plane_8_h_source.html">BoundaryPlane.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/<a class="el" href="_boundary_plane_8cpp.html">BoundaryPlane.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

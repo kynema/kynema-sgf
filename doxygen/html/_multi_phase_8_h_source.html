@@ -1,0 +1,410 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/MultiPhase.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/MultiPhase.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_multi_phase_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-physics-multiphase-multiphase-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/MultiPhase.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-physics-multiphase-multiphase-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/MultiPhase.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_ddcea0517a7b80a55be019748a9389a4.html">physics</a></li><li class="navelem"><a href="dir_ea84defc78a3d6a93c5f3fc502908131.html">multiphase</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">MultiPhase.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_multi_phase_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef MULTIPHASE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define MULTIPHASE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_physics_8_h.html">src/core/Physics.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_field_8_h.html">src/core/Field.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_int_field_8_h.html">src/core/IntField.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="_scratch_field_8_h.html">src/core/ScratchField.H</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="namespacekynema__sgf.html#aa6d05074dd479f00d442c35440142e99">   25</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespacekynema__sgf.html#aa6d05074dd479f00d442c35440142e99">InterfaceCapturingMethod</a> : std::uint8_t {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="namespacekynema__sgf.html#aa6d05074dd479f00d442c35440142e99a4cafa20d5584f6ba1871d1b8941aa3cb">   26</a></span>    <a class="code hl_enumvalue" href="namespacekynema__sgf.html#aa6d05074dd479f00d442c35440142e99a4cafa20d5584f6ba1871d1b8941aa3cb">VOF</a>, </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="namespacekynema__sgf.html#aa6d05074dd479f00d442c35440142e99ae8280907c8d32d5af0f36e5442e84a34">   27</a></span>    <a class="code hl_enumvalue" href="namespacekynema__sgf.html#aa6d05074dd479f00d442c35440142e99ae8280907c8d32d5af0f36e5442e84a34">LS</a>   </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
+</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html">   30</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#aa78fd6dd06831fbf530d183895ec7a33">MultiPhase</a> : <span class="keyword">public</span> Physics::Register&lt;MultiPhase&gt;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a76b1bac1e8b6ab8de5a03ce577b6e16d">   33</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a76b1bac1e8b6ab8de5a03ce577b6e16d">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;MultiPhase&quot;</span>; }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#aa78fd6dd06831fbf530d183895ec7a33">MultiPhase</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a70f21b3b408cffe946cfd449f79dbc42">   37</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a70f21b3b408cffe946cfd449f79dbc42">~MultiPhase</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a98b460a7e8842ecee56b889c7c2ce328">   40</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a98b460a7e8842ecee56b889c7c2ce328">initialize_fields</a>(<span class="keywordtype">int</span> <span class="comment">/*level*/</span>, <span class="keyword">const</span> amrex::Geometry&amp; <span class="comment">/*geom*/</span>)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">    </span>{}</div>
+</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a71aaf5ca63e2888d058eb573c947b0b7">post_init_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a07815c0a962dbf4dbd8e8ef52545348a">post_regrid_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#abfe8d2121ffc324309c204d4871d7ac3">pre_advance_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a08003bb24b011334f79aded7f59222d8">post_advance_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a003a1f0e557e2c25d0e49e11500d2344">set_density_via_levelset</a>();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#ac0cf739c3f1d31a8a1484e00f4c6592a">set_density_via_vof</a>(</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">kynema_sgf::FieldState</a> fstate = <a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">kynema_sgf::FieldState::New</a>);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a345a6afa730f7d6ea973b632ddd87670">set_nph_density</a>();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a964f7aebede427cf9f69a320c8a4bad9">calculate_advected_facedensity</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a592d7bd6e9f7d5ef3554c177106124e1">levelset2vof</a>();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a592d7bd6e9f7d5ef3554c177106124e1">levelset2vof</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_int_field.html">IntField</a>&amp; iblank_cell, <a class="code hl_class" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a>&amp; vof_scr);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#ac52fa8fb270b3799a883c809be2e73a5">volume_fraction_sum</a>();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a3c2d54725cf9d96d7d8e5efb3ed239e2">momentum_sum</a>(<span class="keywordtype">int</span> n);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    [[nodiscard]] <a class="code hl_enumeration" href="namespacekynema__sgf.html#aa6d05074dd479f00d442c35440142e99">InterfaceCapturingMethod</a> <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a070346837ea07811f06b4b2b374712d8">interface_capturing_method</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a4fe12d7dc3af423f01e7d54cbd1f1834">   70</a></span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a4fe12d7dc3af423f01e7d54cbd1f1834">rho1</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#a1f7df118a61267a0450ced214be18778">m_rho1</a>; }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a67f5777563c2739c4be90e5a7bc22f9f">   72</a></span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a67f5777563c2739c4be90e5a7bc22f9f">rho2</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#aecb83a21e748f376d2437454acfa2a16">m_rho2</a>; }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="}">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a42cf1f70d4e967b38197b55a391b7377">   74</a></span>    [[nodiscard]] amrex::Vector&lt;amrex::Real&gt; <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a42cf1f70d4e967b38197b55a391b7377">gravity</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#a70666dd4f977bb09e03a5fd305fe17b4">m_gravity</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    }</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#abceed9cbb6e4276af86a289d25408dd8">   79</a></span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#abceed9cbb6e4276af86a289d25408dd8">water_level</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#a612b723178ccbf458688df0b9b42e3c4">m_water_level0</a>; }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="foldopen" id="foldopen00081" data-start="{" data-end="}">
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a37ff1c28b7ebb3efc603965ee409205d">   81</a></span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#a37ff1c28b7ebb3efc603965ee409205d">perturb_pressure</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#abb6c44e54688f38dd84da2d7782e9a06">m_use_perturb_pressure</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    }</div>
+</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="foldopen" id="foldopen00086" data-start="{" data-end="}">
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#afbcfa14cd4314625d30357307a146d2d">   86</a></span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_phase.html#afbcfa14cd4314625d30357307a146d2d">reconstruct_true_pressure</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#a75d3f2df3ff76ce77305eb4f736c33f5">m_reconstruct_true_pressure</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    }</div>
+</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#afe7d2c72fb460be71e52d36907c60707">   92</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#afe7d2c72fb460be71e52d36907c60707">m_sim</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a0a3300773727f3006f5727caed299499">   94</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#a0a3300773727f3006f5727caed299499">m_velocity</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a6434512cc73ca12c996c7f6dc84daa8f">   95</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#a6434512cc73ca12c996c7f6dc84daa8f">m_density</a>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="comment">// Pointer to the levelset</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#ab5be1d93af94c7fb7db66a1e6662b985">   98</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>* <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#ab5be1d93af94c7fb7db66a1e6662b985">m_levelset</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="comment">// Pointer to VOF</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a5a8686d5bc5fa004fdd5f7c4d7ce21db">  101</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>* <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#a5a8686d5bc5fa004fdd5f7c4d7ce21db">m_vof</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="comment">// Density value for Fluid 1</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a1f7df118a61267a0450ced214be18778">  104</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#a1f7df118a61267a0450ced214be18778">m_rho1</a>{10.0_rt};</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="comment">// Density value for Fluid 2</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#aecb83a21e748f376d2437454acfa2a16">  107</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#aecb83a21e748f376d2437454acfa2a16">m_rho2</a>{1.0_rt};</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="comment">// Bools according to ICNS settings</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="comment">// Turning on perturbational density and pressure</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#abb6c44e54688f38dd84da2d7782e9a06">  111</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#abb6c44e54688f38dd84da2d7782e9a06">m_use_perturb_pressure</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="comment">// Reconstructing true pressure field at end of timestep</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a75d3f2df3ff76ce77305eb4f736c33f5">  113</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#a75d3f2df3ff76ce77305eb4f736c33f5">m_reconstruct_true_pressure</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a607ec1d1ba23dd345dd347e5cbe03731">  115</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#a607ec1d1ba23dd345dd347e5cbe03731">m_init_p</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="comment">// Info to create rho0</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a612b723178ccbf458688df0b9b42e3c4">  118</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#a612b723178ccbf458688df0b9b42e3c4">m_water_level0</a>{0.0_rt};</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">// Info to reconstruct true pressure</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a70666dd4f977bb09e03a5fd305fe17b4">  120</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#a70666dd4f977bb09e03a5fd305fe17b4">m_gravity</a>{0.0_rt, 0.0_rt, -9.81_rt};</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// Multiphase model enum</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#aa1a11587dd5a551d8914134ac8662ef0">  123</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#aa1a11587dd5a551d8914134ac8662ef0">m_interface_model</a>{<span class="stringliteral">&quot;vof&quot;</span>};</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#afc089d46f3e937625d1789c6c0bbb339">  124</a></span>    <a class="code hl_enumeration" href="namespacekynema__sgf.html#aa6d05074dd479f00d442c35440142e99">InterfaceCapturingMethod</a> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#afc089d46f3e937625d1789c6c0bbb339">m_interface_capturing_method</a> =</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <a class="code hl_enumvalue" href="namespacekynema__sgf.html#aa6d05074dd479f00d442c35440142e99a4cafa20d5584f6ba1871d1b8941aa3cb">InterfaceCapturingMethod::VOF</a>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="comment">// Verbose flag for multiphase</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#aab4d43655526c56c5f40151a164f27de">  128</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#aab4d43655526c56c5f40151a164f27de">m_verbose</a>{0};</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="comment">// sum of volume fractions (for vof only)</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a9e96bbd6f4994834cefcac4caf8d4c43">  131</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#a9e96bbd6f4994834cefcac4caf8d4c43">m_total_volfrac</a>{0.0_rt};</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#af82a86a7605e45dbda7353d697e4e590">  133</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#af82a86a7605e45dbda7353d697e4e590">m_q0</a>{0.0_rt};</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a053542dfc0b511875e28ace09c5587be">  134</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#a053542dfc0b511875e28ace09c5587be">m_q1</a>{0.0_rt};</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#acf5d4d2af2de552321009be2a2a467cb">  135</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#acf5d4d2af2de552321009be2a2a467cb">m_q2</a>{0.0_rt};</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_phase.html#a089d0d782bc2c1fedb4813d170c08cd1">  136</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_multi_phase.html#a089d0d782bc2c1fedb4813d170c08cd1">m_sumvof0</a>{0.0_rt};</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>};</div>
+</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">#endif </span><span class="comment">/* MULTIPHASE_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_field_8_h_html"><div class="ttname"><a href="_field_8_h.html">Field.H</a></div></div>
+<div class="ttc" id="a_int_field_8_h_html"><div class="ttname"><a href="_int_field_8_h.html">IntField.H</a></div></div>
+<div class="ttc" id="a_physics_8_h_html"><div class="ttname"><a href="_physics_8_h.html">Physics.H</a></div></div>
+<div class="ttc" id="a_scratch_field_8_h_html"><div class="ttname"><a href="_scratch_field_8_h.html">ScratchField.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_int_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_int_field.html">kynema_sgf::IntField</a></div><div class="ttdef"><b>Definition</b> IntField.H:20</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a003a1f0e557e2c25d0e49e11500d2344"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a003a1f0e557e2c25d0e49e11500d2344">kynema_sgf::MultiPhase::set_density_via_levelset</a></div><div class="ttdeci">void set_density_via_levelset()</div><div class="ttdef"><b>Definition</b> MultiPhase.cpp:299</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a053542dfc0b511875e28ace09c5587be"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a053542dfc0b511875e28ace09c5587be">kynema_sgf::MultiPhase::m_q1</a></div><div class="ttdeci">amrex::Real m_q1</div><div class="ttdef"><b>Definition</b> MultiPhase.H:134</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a070346837ea07811f06b4b2b374712d8"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a070346837ea07811f06b4b2b374712d8">kynema_sgf::MultiPhase::interface_capturing_method</a></div><div class="ttdeci">InterfaceCapturingMethod interface_capturing_method() const</div><div class="ttdef"><b>Definition</b> MultiPhase.cpp:87</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a07815c0a962dbf4dbd8e8ef52545348a"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a07815c0a962dbf4dbd8e8ef52545348a">kynema_sgf::MultiPhase::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdef"><b>Definition</b> MultiPhase.cpp:156</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a08003bb24b011334f79aded7f59222d8"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a08003bb24b011334f79aded7f59222d8">kynema_sgf::MultiPhase::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> MultiPhase.cpp:177</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a089d0d782bc2c1fedb4813d170c08cd1"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a089d0d782bc2c1fedb4813d170c08cd1">kynema_sgf::MultiPhase::m_sumvof0</a></div><div class="ttdeci">amrex::Real m_sumvof0</div><div class="ttdef"><b>Definition</b> MultiPhase.H:136</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a0a3300773727f3006f5727caed299499"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a0a3300773727f3006f5727caed299499">kynema_sgf::MultiPhase::m_velocity</a></div><div class="ttdeci">Field &amp; m_velocity</div><div class="ttdef"><b>Definition</b> MultiPhase.H:94</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a1f7df118a61267a0450ced214be18778"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a1f7df118a61267a0450ced214be18778">kynema_sgf::MultiPhase::m_rho1</a></div><div class="ttdeci">amrex::Real m_rho1</div><div class="ttdef"><b>Definition</b> MultiPhase.H:104</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a345a6afa730f7d6ea973b632ddd87670"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a345a6afa730f7d6ea973b632ddd87670">kynema_sgf::MultiPhase::set_nph_density</a></div><div class="ttdeci">void set_nph_density()</div><div class="ttdef"><b>Definition</b> MultiPhase.cpp:363</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a37ff1c28b7ebb3efc603965ee409205d"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a37ff1c28b7ebb3efc603965ee409205d">kynema_sgf::MultiPhase::perturb_pressure</a></div><div class="ttdeci">bool perturb_pressure() const</div><div class="ttdef"><b>Definition</b> MultiPhase.H:81</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a3c2d54725cf9d96d7d8e5efb3ed239e2"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a3c2d54725cf9d96d7d8e5efb3ed239e2">kynema_sgf::MultiPhase::momentum_sum</a></div><div class="ttdeci">amrex::Real momentum_sum(int n)</div><div class="ttdef"><b>Definition</b> MultiPhase.cpp:251</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a42cf1f70d4e967b38197b55a391b7377"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a42cf1f70d4e967b38197b55a391b7377">kynema_sgf::MultiPhase::gravity</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; gravity() const</div><div class="ttdef"><b>Definition</b> MultiPhase.H:74</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a4fe12d7dc3af423f01e7d54cbd1f1834"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a4fe12d7dc3af423f01e7d54cbd1f1834">kynema_sgf::MultiPhase::rho1</a></div><div class="ttdeci">amrex::Real rho1() const</div><div class="ttdef"><b>Definition</b> MultiPhase.H:70</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a592d7bd6e9f7d5ef3554c177106124e1"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a592d7bd6e9f7d5ef3554c177106124e1">kynema_sgf::MultiPhase::levelset2vof</a></div><div class="ttdeci">void levelset2vof()</div><div class="ttdef"><b>Definition</b> MultiPhase.cpp:420</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a5a8686d5bc5fa004fdd5f7c4d7ce21db"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a5a8686d5bc5fa004fdd5f7c4d7ce21db">kynema_sgf::MultiPhase::m_vof</a></div><div class="ttdeci">Field * m_vof</div><div class="ttdef"><b>Definition</b> MultiPhase.H:101</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a607ec1d1ba23dd345dd347e5cbe03731"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a607ec1d1ba23dd345dd347e5cbe03731">kynema_sgf::MultiPhase::m_init_p</a></div><div class="ttdeci">bool m_init_p</div><div class="ttdef"><b>Definition</b> MultiPhase.H:115</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a612b723178ccbf458688df0b9b42e3c4"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a612b723178ccbf458688df0b9b42e3c4">kynema_sgf::MultiPhase::m_water_level0</a></div><div class="ttdeci">amrex::Real m_water_level0</div><div class="ttdef"><b>Definition</b> MultiPhase.H:118</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a6434512cc73ca12c996c7f6dc84daa8f"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a6434512cc73ca12c996c7f6dc84daa8f">kynema_sgf::MultiPhase::m_density</a></div><div class="ttdeci">Field &amp; m_density</div><div class="ttdef"><b>Definition</b> MultiPhase.H:95</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a67f5777563c2739c4be90e5a7bc22f9f"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a67f5777563c2739c4be90e5a7bc22f9f">kynema_sgf::MultiPhase::rho2</a></div><div class="ttdeci">amrex::Real rho2() const</div><div class="ttdef"><b>Definition</b> MultiPhase.H:72</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a70666dd4f977bb09e03a5fd305fe17b4"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a70666dd4f977bb09e03a5fd305fe17b4">kynema_sgf::MultiPhase::m_gravity</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_gravity</div><div class="ttdef"><b>Definition</b> MultiPhase.H:120</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a70f21b3b408cffe946cfd449f79dbc42"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a70f21b3b408cffe946cfd449f79dbc42">kynema_sgf::MultiPhase::~MultiPhase</a></div><div class="ttdeci">~MultiPhase() override=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a71aaf5ca63e2888d058eb573c947b0b7"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a71aaf5ca63e2888d058eb573c947b0b7">kynema_sgf::MultiPhase::post_init_actions</a></div><div class="ttdeci">void post_init_actions() override</div><div class="ttdef"><b>Definition</b> MultiPhase.cpp:92</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a75d3f2df3ff76ce77305eb4f736c33f5"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a75d3f2df3ff76ce77305eb4f736c33f5">kynema_sgf::MultiPhase::m_reconstruct_true_pressure</a></div><div class="ttdeci">bool m_reconstruct_true_pressure</div><div class="ttdef"><b>Definition</b> MultiPhase.H:113</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a76b1bac1e8b6ab8de5a03ce577b6e16d"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a76b1bac1e8b6ab8de5a03ce577b6e16d">kynema_sgf::MultiPhase::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> MultiPhase.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a964f7aebede427cf9f69a320c8a4bad9"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a964f7aebede427cf9f69a320c8a4bad9">kynema_sgf::MultiPhase::calculate_advected_facedensity</a></div><div class="ttdeci">void calculate_advected_facedensity()</div><div class="ttdef"><b>Definition</b> MultiPhase.cpp:373</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a98b460a7e8842ecee56b889c7c2ce328"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a98b460a7e8842ecee56b889c7c2ce328">kynema_sgf::MultiPhase::initialize_fields</a></div><div class="ttdeci">void initialize_fields(int, const amrex::Geometry &amp;) override</div><div class="ttdef"><b>Definition</b> MultiPhase.H:40</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_a9e96bbd6f4994834cefcac4caf8d4c43"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#a9e96bbd6f4994834cefcac4caf8d4c43">kynema_sgf::MultiPhase::m_total_volfrac</a></div><div class="ttdeci">amrex::Real m_total_volfrac</div><div class="ttdef"><b>Definition</b> MultiPhase.H:131</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_aa1a11587dd5a551d8914134ac8662ef0"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#aa1a11587dd5a551d8914134ac8662ef0">kynema_sgf::MultiPhase::m_interface_model</a></div><div class="ttdeci">std::string m_interface_model</div><div class="ttdef"><b>Definition</b> MultiPhase.H:123</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_aa78fd6dd06831fbf530d183895ec7a33"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#aa78fd6dd06831fbf530d183895ec7a33">kynema_sgf::MultiPhase::MultiPhase</a></div><div class="ttdeci">MultiPhase(CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> MultiPhase.cpp:18</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_aab4d43655526c56c5f40151a164f27de"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#aab4d43655526c56c5f40151a164f27de">kynema_sgf::MultiPhase::m_verbose</a></div><div class="ttdeci">int m_verbose</div><div class="ttdef"><b>Definition</b> MultiPhase.H:128</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_ab5be1d93af94c7fb7db66a1e6662b985"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#ab5be1d93af94c7fb7db66a1e6662b985">kynema_sgf::MultiPhase::m_levelset</a></div><div class="ttdeci">Field * m_levelset</div><div class="ttdef"><b>Definition</b> MultiPhase.H:98</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_abb6c44e54688f38dd84da2d7782e9a06"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#abb6c44e54688f38dd84da2d7782e9a06">kynema_sgf::MultiPhase::m_use_perturb_pressure</a></div><div class="ttdeci">bool m_use_perturb_pressure</div><div class="ttdef"><b>Definition</b> MultiPhase.H:111</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_abceed9cbb6e4276af86a289d25408dd8"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#abceed9cbb6e4276af86a289d25408dd8">kynema_sgf::MultiPhase::water_level</a></div><div class="ttdeci">amrex::Real water_level() const</div><div class="ttdef"><b>Definition</b> MultiPhase.H:79</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_abfe8d2121ffc324309c204d4871d7ac3"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#abfe8d2121ffc324309c204d4871d7ac3">kynema_sgf::MultiPhase::pre_advance_work</a></div><div class="ttdeci">void pre_advance_work() override</div><div class="ttdef"><b>Definition</b> MultiPhase.cpp:175</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_ac0cf739c3f1d31a8a1484e00f4c6592a"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#ac0cf739c3f1d31a8a1484e00f4c6592a">kynema_sgf::MultiPhase::set_density_via_vof</a></div><div class="ttdeci">void set_density_via_vof(kynema_sgf::FieldState fstate=kynema_sgf::FieldState::New)</div><div class="ttdef"><b>Definition</b> MultiPhase.cpp:340</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_ac52fa8fb270b3799a883c809be2e73a5"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#ac52fa8fb270b3799a883c809be2e73a5">kynema_sgf::MultiPhase::volume_fraction_sum</a></div><div class="ttdeci">amrex::Real volume_fraction_sum()</div><div class="ttdef"><b>Definition</b> MultiPhase.cpp:206</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_acf5d4d2af2de552321009be2a2a467cb"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#acf5d4d2af2de552321009be2a2a467cb">kynema_sgf::MultiPhase::m_q2</a></div><div class="ttdeci">amrex::Real m_q2</div><div class="ttdef"><b>Definition</b> MultiPhase.H:135</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_aecb83a21e748f376d2437454acfa2a16"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#aecb83a21e748f376d2437454acfa2a16">kynema_sgf::MultiPhase::m_rho2</a></div><div class="ttdeci">amrex::Real m_rho2</div><div class="ttdef"><b>Definition</b> MultiPhase.H:107</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_af82a86a7605e45dbda7353d697e4e590"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#af82a86a7605e45dbda7353d697e4e590">kynema_sgf::MultiPhase::m_q0</a></div><div class="ttdeci">amrex::Real m_q0</div><div class="ttdef"><b>Definition</b> MultiPhase.H:133</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_afbcfa14cd4314625d30357307a146d2d"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#afbcfa14cd4314625d30357307a146d2d">kynema_sgf::MultiPhase::reconstruct_true_pressure</a></div><div class="ttdeci">bool reconstruct_true_pressure() const</div><div class="ttdef"><b>Definition</b> MultiPhase.H:86</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_afc089d46f3e937625d1789c6c0bbb339"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#afc089d46f3e937625d1789c6c0bbb339">kynema_sgf::MultiPhase::m_interface_capturing_method</a></div><div class="ttdeci">InterfaceCapturingMethod m_interface_capturing_method</div><div class="ttdef"><b>Definition</b> MultiPhase.H:124</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html_afe7d2c72fb460be71e52d36907c60707"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html#afe7d2c72fb460be71e52d36907c60707">kynema_sgf::MultiPhase::m_sim</a></div><div class="ttdeci">const CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> MultiPhase.H:92</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_scratch_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_scratch_field.html">kynema_sgf::ScratchField</a></div><div class="ttdef"><b>Definition</b> ScratchField.H:30</div></div>
+<div class="ttc" id="agroup__fields_html_ga73fcb43d320747f8ced022629f36af1f"><div class="ttname"><a href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">kynema_sgf::FieldState</a></div><div class="ttdeci">FieldState</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:16</div></div>
+<div class="ttc" id="agroup__fields_html_gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e"><div class="ttname"><a href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">kynema_sgf::FieldState::New</a></div><div class="ttdeci">@ New</div><div class="ttdoc">Same as FieldState::NP1.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:22</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html_aa6d05074dd479f00d442c35440142e99"><div class="ttname"><a href="namespacekynema__sgf.html#aa6d05074dd479f00d442c35440142e99">kynema_sgf::InterfaceCapturingMethod</a></div><div class="ttdeci">InterfaceCapturingMethod</div><div class="ttdef"><b>Definition</b> MultiPhase.H:25</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html_aa6d05074dd479f00d442c35440142e99a4cafa20d5584f6ba1871d1b8941aa3cb"><div class="ttname"><a href="namespacekynema__sgf.html#aa6d05074dd479f00d442c35440142e99a4cafa20d5584f6ba1871d1b8941aa3cb">kynema_sgf::InterfaceCapturingMethod::VOF</a></div><div class="ttdeci">@ VOF</div><div class="ttdoc">Volume of fluid.</div><div class="ttdef"><b>Definition</b> MultiPhase.H:26</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html_aa6d05074dd479f00d442c35440142e99ae8280907c8d32d5af0f36e5442e84a34"><div class="ttname"><a href="namespacekynema__sgf.html#aa6d05074dd479f00d442c35440142e99ae8280907c8d32d5af0f36e5442e84a34">kynema_sgf::InterfaceCapturingMethod::LS</a></div><div class="ttdeci">@ LS</div><div class="ttdoc">Levelset.</div><div class="ttdef"><b>Definition</b> MultiPhase.H:27</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

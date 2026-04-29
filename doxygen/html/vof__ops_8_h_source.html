@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/vof/vof_ops.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/vof/vof_ops.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/vof__ops_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-vof-vof-ops-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/vof/vof_ops.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-vof-vof-ops-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/vof/vof_ops.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_0a302c6baedf52e9cfdc9fc1cbccbefa.html">equation_systems</a></li><li class="navelem"><a href="dir_ee5d0d120b8f5263c662e34f596e7036.html">vof</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">vof_ops.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="vof__ops_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef VOF_OPS_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define VOF_OPS_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="vof_8_h.html">src/equation_systems/vof/vof.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_multi_phase_8_h.html">src/physics/multiphase/MultiPhase.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1pde.html">kynema_sgf::pde</a> {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Scheme&gt;</div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html">   13</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html#a390de96c57e1df0bfed6a2840ab77a16">FieldRegOp</a>&lt;<a class="code hl_struct" href="structkynema__sgf_1_1pde_1_1_v_o_f.html">VOF</a>, Scheme&gt;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html#a390de96c57e1df0bfed6a2840ab77a16">   15</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html#a390de96c57e1df0bfed6a2840ab77a16">FieldRegOp</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim_in) : <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html#a992442f258e65df67e43b5aeb579437a">sim</a>(sim_in) {}</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html#afe5b9be56ccbe388f936c938212ee218">   17</a></span>    <a class="code hl_struct" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a> <a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html#afe5b9be56ccbe388f936c938212ee218">operator()</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&amp; time)</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keyword">auto</span>&amp; repo = <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html#a992442f258e65df67e43b5aeb579437a">sim</a>.repo();</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="keyword">auto</span> fields = <a class="code hl_function" href="namespacekynema__sgf_1_1pde.html#a119ffff49ddb512ff2dc2d1bb4dadd77">create_fields_instance&lt;VOF, Scheme&gt;</a>(time, repo);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keyword">auto</span>&amp; levelset = repo.declare_cc_field(<span class="stringliteral">&quot;levelset&quot;</span>, 1, 3, 1);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">auto</span>&amp; curvature = repo.declare_cc_field(<span class="stringliteral">&quot;interface_curvature&quot;</span>, 1, 1, 1);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        levelset.set_default_fillpatch_bc(<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html#a992442f258e65df67e43b5aeb579437a">sim</a>.time());</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        curvature.set_default_fillpatch_bc(<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html#a992442f258e65df67e43b5aeb579437a">sim</a>.time());</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="comment">// Register fields for output/restart</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keyword">auto</span>&amp; iomgr = <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html#a992442f258e65df67e43b5aeb579437a">sim</a>.io_manager();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        iomgr.register_io_var(fields.field.name());</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordflow">return</span> fields;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    }</div>
+</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html#a992442f258e65df67e43b5aeb579437a">   35</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html#a992442f258e65df67e43b5aeb579437a">sim</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>};</div>
+</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Scheme&gt;</div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html">   41</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#ac28f9559efd3c8240ee2318d03fb90d5">ComputeRHSOp</a>&lt;<a class="code hl_struct" href="structkynema__sgf_1_1pde_1_1_v_o_f.html">VOF</a>, Scheme&gt;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#ac28f9559efd3c8240ee2318d03fb90d5">   43</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#ac28f9559efd3c8240ee2318d03fb90d5">ComputeRHSOp</a>(<a class="code hl_struct" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a>&amp; fields_in) : <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#a0dd4723319ccfffc8747b8ee3ef96f75">fields</a>(fields_in) {}</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#adedc816b03701c1085f779f3d7e95d74">   45</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#adedc816b03701c1085f779f3d7e95d74">predictor_rhs</a>(</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keyword">const</span> <a class="code hl_enumeration" href="incflo__enums_8_h.html#a85b1059d3f82fd0319fd63b07f3c1500">DiffusionType</a> <span class="comment">/*unused*/</span>,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keyword">const</span> amrex::Real <span class="comment">/*unused*/</span>,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordtype">bool</span> <span class="comment">/*unused*/</span>)</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    {}</div>
+</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#a9165a0692dfebcf6a6535cc81d4c9715">   51</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#a9165a0692dfebcf6a6535cc81d4c9715">corrector_rhs</a>(</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keyword">const</span> <a class="code hl_enumeration" href="incflo__enums_8_h.html#a85b1059d3f82fd0319fd63b07f3c1500">DiffusionType</a> <span class="comment">/*unused*/</span>,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keyword">const</span> amrex::Real <span class="comment">/*unused*/</span>,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordtype">bool</span> <span class="comment">/*unused*/</span>)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    {}</div>
+</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#a1bab28cfa895e4d8719575ff4b3d640f">   57</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#a1bab28cfa895e4d8719575ff4b3d640f">improve_explicit_diff</a>(<span class="keyword">const</span> amrex::Real <span class="comment">/*unused*/</span>) {}</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="comment">// data members</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#a0dd4723319ccfffc8747b8ee3ef96f75">   60</a></span>    <a class="code hl_struct" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a>&amp; <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#a0dd4723319ccfffc8747b8ee3ef96f75">fields</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>};</div>
+</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00068" data-start="{" data-end="};">
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html">   68</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#a7ae5384bc7d3ea0895ed88b42f3fa8a6">PostSolveOp</a>&lt;<a class="code hl_struct" href="structkynema__sgf_1_1pde_1_1_v_o_f.html">VOF</a>&gt;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>{</div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="}">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#a7ae5384bc7d3ea0895ed88b42f3fa8a6">   70</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#a7ae5384bc7d3ea0895ed88b42f3fa8a6">PostSolveOp</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim, <a class="code hl_struct" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a>&amp; fields) : <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#aa1e1aa77ac2684c7cbf36d94fa4bcf48">m_sim</a>(sim), <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#ae0e60fd22b3af36fa5fecaabdab649bd">m_fields</a>(fields)</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    {}</div>
+</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="foldopen" id="foldopen00073" data-start="{" data-end="}">
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#af381b4b5442d6bff9c49cd1853c6db13">   73</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#af381b4b5442d6bff9c49cd1853c6db13">operator()</a>(<span class="keyword">const</span> amrex::Real <span class="comment">/*unused*/</span>)</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#ae0e60fd22b3af36fa5fecaabdab649bd">m_fields</a>.field.fillpatch(<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#aa1e1aa77ac2684c7cbf36d94fa4bcf48">m_sim</a>.time().new_time());</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keyword">auto</span>&amp; <a class="code hl_namespace" href="namespacekynema__sgf_1_1multiphase.html">multiphase</a> = <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#aa1e1aa77ac2684c7cbf36d94fa4bcf48">m_sim</a>.physics_manager().get&lt;<a class="code hl_class" href="classkynema__sgf_1_1_multi_phase.html">MultiPhase</a>&gt;();</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <a class="code hl_namespace" href="namespacekynema__sgf_1_1multiphase.html">multiphase</a>.set_density_via_vof();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="comment">// Calculate n+1/2 density</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <a class="code hl_namespace" href="namespacekynema__sgf_1_1multiphase.html">multiphase</a>.set_nph_density();</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="comment">// Convert advalpha to advrho</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <a class="code hl_namespace" href="namespacekynema__sgf_1_1multiphase.html">multiphase</a>.calculate_advected_facedensity();</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
+</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#aa1e1aa77ac2684c7cbf36d94fa4bcf48">   85</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#aa1e1aa77ac2684c7cbf36d94fa4bcf48">m_sim</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#ae0e60fd22b3af36fa5fecaabdab649bd">   86</a></span>    <a class="code hl_struct" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a>&amp; <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#ae0e60fd22b3af36fa5fecaabdab649bd">m_fields</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>};</div>
+</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>} <span class="comment">// namespace kynema_sgf::pde</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#endif </span><span class="comment">/* VOF_OPS_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_multi_phase_8_h_html"><div class="ttname"><a href="_multi_phase_8_h.html">MultiPhase.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_phase_html"><div class="ttname"><a href="classkynema__sgf_1_1_multi_phase.html">kynema_sgf::MultiPhase</a></div><div class="ttdef"><b>Definition</b> MultiPhase.H:31</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a></div><div class="ttdef"><b>Definition</b> SimTime.H:33</div></div>
+<div class="ttc" id="aincflo__enums_8_h_html_a85b1059d3f82fd0319fd63b07f3c1500"><div class="ttname"><a href="incflo__enums_8_h.html#a85b1059d3f82fd0319fd63b07f3c1500">DiffusionType</a></div><div class="ttdeci">DiffusionType</div><div class="ttdef"><b>Definition</b> incflo_enums.H:6</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1multiphase_html"><div class="ttname"><a href="namespacekynema__sgf_1_1multiphase.html">kynema_sgf::multiphase</a></div><div class="ttdef"><b>Definition</b> height_functions.H:8</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1pde_html"><div class="ttname"><a href="namespacekynema__sgf_1_1pde.html">kynema_sgf::pde</a></div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:21</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1pde_html_a119ffff49ddb512ff2dc2d1bb4dadd77"><div class="ttname"><a href="namespacekynema__sgf_1_1pde.html#a119ffff49ddb512ff2dc2d1bb4dadd77">kynema_sgf::pde::create_fields_instance</a></div><div class="ttdeci">PDEFields create_fields_instance(const SimTime &amp;time, FieldRepo &amp;repo, const FieldInterpolator itype=FieldInterpolator::CellConsLinear)</div><div class="ttdef"><b>Definition</b> PDEHelpers.H:52</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4_html_a0dd4723319ccfffc8747b8ee3ef96f75"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#a0dd4723319ccfffc8747b8ee3ef96f75">kynema_sgf::pde::ComputeRHSOp&lt; VOF, Scheme &gt;::fields</a></div><div class="ttdeci">PDEFields &amp; fields</div><div class="ttdef"><b>Definition</b> vof_ops.H:60</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4_html_a1bab28cfa895e4d8719575ff4b3d640f"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#a1bab28cfa895e4d8719575ff4b3d640f">kynema_sgf::pde::ComputeRHSOp&lt; VOF, Scheme &gt;::improve_explicit_diff</a></div><div class="ttdeci">void improve_explicit_diff(const amrex::Real)</div><div class="ttdef"><b>Definition</b> vof_ops.H:57</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4_html_a9165a0692dfebcf6a6535cc81d4c9715"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#a9165a0692dfebcf6a6535cc81d4c9715">kynema_sgf::pde::ComputeRHSOp&lt; VOF, Scheme &gt;::corrector_rhs</a></div><div class="ttdeci">void corrector_rhs(const DiffusionType, const amrex::Real, bool)</div><div class="ttdef"><b>Definition</b> vof_ops.H:51</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4_html_ac28f9559efd3c8240ee2318d03fb90d5"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#ac28f9559efd3c8240ee2318d03fb90d5">kynema_sgf::pde::ComputeRHSOp&lt; VOF, Scheme &gt;::ComputeRHSOp</a></div><div class="ttdeci">ComputeRHSOp(PDEFields &amp;fields_in)</div><div class="ttdef"><b>Definition</b> vof_ops.H:43</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4_html_adedc816b03701c1085f779f3d7e95d74"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_compute_r_h_s_op_3_01_v_o_f_00_01_scheme_01_4.html#adedc816b03701c1085f779f3d7e95d74">kynema_sgf::pde::ComputeRHSOp&lt; VOF, Scheme &gt;::predictor_rhs</a></div><div class="ttdeci">void predictor_rhs(const DiffusionType, const amrex::Real, bool)</div><div class="ttdef"><b>Definition</b> vof_ops.H:45</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4_html_a390de96c57e1df0bfed6a2840ab77a16"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html#a390de96c57e1df0bfed6a2840ab77a16">kynema_sgf::pde::FieldRegOp&lt; VOF, Scheme &gt;::FieldRegOp</a></div><div class="ttdeci">FieldRegOp(CFDSim &amp;sim_in)</div><div class="ttdef"><b>Definition</b> vof_ops.H:15</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4_html_a992442f258e65df67e43b5aeb579437a"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html#a992442f258e65df67e43b5aeb579437a">kynema_sgf::pde::FieldRegOp&lt; VOF, Scheme &gt;::sim</a></div><div class="ttdeci">CFDSim &amp; sim</div><div class="ttdef"><b>Definition</b> vof_ops.H:35</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4_html_afe5b9be56ccbe388f936c938212ee218"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_field_reg_op_3_01_v_o_f_00_01_scheme_01_4.html#afe5b9be56ccbe388f936c938212ee218">kynema_sgf::pde::FieldRegOp&lt; VOF, Scheme &gt;::operator()</a></div><div class="ttdeci">PDEFields operator()(const SimTime &amp;time)</div><div class="ttdef"><b>Definition</b> vof_ops.H:17</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_p_d_e_fields_html"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">kynema_sgf::pde::PDEFields</a></div><div class="ttdef"><b>Definition</b> PDEFields.H:27</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4_html_a7ae5384bc7d3ea0895ed88b42f3fa8a6"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#a7ae5384bc7d3ea0895ed88b42f3fa8a6">kynema_sgf::pde::PostSolveOp&lt; VOF &gt;::PostSolveOp</a></div><div class="ttdeci">PostSolveOp(CFDSim &amp;sim, PDEFields &amp;fields)</div><div class="ttdef"><b>Definition</b> vof_ops.H:70</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4_html_aa1e1aa77ac2684c7cbf36d94fa4bcf48"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#aa1e1aa77ac2684c7cbf36d94fa4bcf48">kynema_sgf::pde::PostSolveOp&lt; VOF &gt;::m_sim</a></div><div class="ttdeci">CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> vof_ops.H:85</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4_html_ae0e60fd22b3af36fa5fecaabdab649bd"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#ae0e60fd22b3af36fa5fecaabdab649bd">kynema_sgf::pde::PostSolveOp&lt; VOF &gt;::m_fields</a></div><div class="ttdeci">PDEFields &amp; m_fields</div><div class="ttdef"><b>Definition</b> vof_ops.H:86</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4_html_af381b4b5442d6bff9c49cd1853c6db13"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_post_solve_op_3_01_v_o_f_01_4.html#af381b4b5442d6bff9c49cd1853c6db13">kynema_sgf::pde::PostSolveOp&lt; VOF &gt;::operator()</a></div><div class="ttdeci">void operator()(const amrex::Real)</div><div class="ttdef"><b>Definition</b> vof_ops.H:73</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_v_o_f_html"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_v_o_f.html">kynema_sgf::pde::VOF</a></div><div class="ttdef"><b>Definition</b> vof.H:20</div></div>
+<div class="ttc" id="avof_8_h_html"><div class="ttname"><a href="vof_8_h.html">vof.H</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

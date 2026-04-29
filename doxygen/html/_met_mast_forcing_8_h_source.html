@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/MetMastForcing.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/MetMastForcing.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_met_mast_forcing_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-icns-source-terms-metmastforcing-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/MetMastForcing.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-icns-source-terms-metmastforcing-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/MetMastForcing.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_0a302c6baedf52e9cfdc9fc1cbccbefa.html">equation_systems</a></li><li class="navelem"><a href="dir_6b3b25f1da48ef8ca65a8f7d03836280.html">icns</a></li><li class="navelem"><a href="dir_281a8f2a1daeda6ff9d3c6f4bca9a040.html">source_terms</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">MetMastForcing.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_met_mast_forcing_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef METMASTFORCING_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define METMASTFORCING_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_momentum_source_8_h.html">src/equation_systems/icns/MomentumSource.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_sim_time_8_h.html">src/core/SimTime.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1pde_1_1icns.html">kynema_sgf::pde::icns</a> {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html">   10</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a7e24df50cf02cbf6a5c6c3f0c7737000">MetMastForcing</a> : <span class="keyword">public</span> MomentumSource::Register&lt;MetMastForcing&gt;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a8c0d5e0ba0a009d63ac9310d74e6a893">   13</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a8c0d5e0ba0a009d63ac9310d74e6a893">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;MetMastForcing&quot;</span>; }</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a7e24df50cf02cbf6a5c6c3f0c7737000">MetMastForcing</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a46c8620d02326f610ab3cee38657824b">   17</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a46c8620d02326f610ab3cee38657824b">~MetMastForcing</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#ac24d8e5b7a0c7b62029b925c2883aa38">operator()</a>(</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> lev,</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keyword">const</span> amrex::MFIter&amp; mfi,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keyword">const</span> amrex::Box&amp; bx,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">const</span> <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> <span class="comment">/*fstate*/</span>,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keyword">const</span> amrex::Array4&lt;amrex::Real&gt;&amp; src_term) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a998f4f5b17e53b4a055144a9f94360ce">   27</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a998f4f5b17e53b4a055144a9f94360ce">m_time</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#aec42d53b38bbd8d5c7abe4a493ff8194">   28</a></span>    <span class="keyword">const</span> amrex::AmrCore&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#aec42d53b38bbd8d5c7abe4a493ff8194">m_mesh</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#aa3b6c6556f17cb1732fb490b197a586b">   29</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#aa3b6c6556f17cb1732fb490b197a586b">m_1d_metmast</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a7e7ace2387196267bae77a3a18da96b7">   30</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a7e7ace2387196267bae77a3a18da96b7">m_velocity</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a9860cf8c828cf5a029b518babc5dc59b">   31</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a9860cf8c828cf5a029b518babc5dc59b">m_metmast_x</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#ad3768639f1aef09d69c1fe155495d20f">   32</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#ad3768639f1aef09d69c1fe155495d20f">m_metmast_y</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#ae9976c50b71bdbed0f0cb7557a6e34ec">   33</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#ae9976c50b71bdbed0f0cb7557a6e34ec">m_metmast_z</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a3b72c4c4fab99afce019751c85f9e312">   34</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a3b72c4c4fab99afce019751c85f9e312">m_u_values</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a17ebbd0e5085ceef84d47a7cf8069b6d">   35</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a17ebbd0e5085ceef84d47a7cf8069b6d">m_v_values</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a3426f7ff3ff57d0c2c5e4f54105aa3f6">   36</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a3426f7ff3ff57d0c2c5e4f54105aa3f6">m_w_values</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a69d0e14ae69d5713a960c03181feb1ce">   37</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a69d0e14ae69d5713a960c03181feb1ce">m_metmast_x_d</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#af5504eed1640f257a72ca43563e03bcb">   38</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#af5504eed1640f257a72ca43563e03bcb">m_metmast_y_d</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#ac797e2f0e473c68a3778127cb765d4e4">   39</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#ac797e2f0e473c68a3778127cb765d4e4">m_metmast_z_d</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#acc546657b9e47170b089d5edd4415bc7">   40</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#acc546657b9e47170b089d5edd4415bc7">m_u_values_d</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a235eb0a6df3b1558468a4b0e25d43301">   41</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a235eb0a6df3b1558468a4b0e25d43301">m_v_values_d</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#ae39f63860cd4a35a481bff5c1ec7af3c">   42</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#ae39f63860cd4a35a481bff5c1ec7af3c">m_w_values_d</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#af6ed647212071815fa05c63b5b5a71fe">   43</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#af6ed647212071815fa05c63b5b5a71fe">m_meso_timescale</a>{30};</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a45b6af8be772c03af0b369b21a7a9f4f">   44</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a45b6af8be772c03af0b369b21a7a9f4f">m_long_radius</a>{500};</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a521b523e0cd5349835d0ff095cf4ce8d">   45</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a521b523e0cd5349835d0ff095cf4ce8d">m_vertical_radius</a>{25};</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a28e7095b97716519d3a82d4b70737986">   46</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a28e7095b97716519d3a82d4b70737986">m_damping_radius</a>{1400};</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a578d96b43da626039f7b9a222cfa769c">   47</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a578d96b43da626039f7b9a222cfa769c">m_sim</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>};</div>
+</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>} <span class="comment">// namespace kynema_sgf::pde::icns</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_momentum_source_8_h_html"><div class="ttname"><a href="_momentum_source_8_h.html">MomentumSource.H</a></div></div>
+<div class="ttc" id="a_sim_time_8_h_html"><div class="ttname"><a href="_sim_time_8_h.html">SimTime.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a></div><div class="ttdef"><b>Definition</b> SimTime.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_a17ebbd0e5085ceef84d47a7cf8069b6d"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a17ebbd0e5085ceef84d47a7cf8069b6d">kynema_sgf::pde::icns::MetMastForcing::m_v_values</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_v_values</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:35</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_a235eb0a6df3b1558468a4b0e25d43301"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a235eb0a6df3b1558468a4b0e25d43301">kynema_sgf::pde::icns::MetMastForcing::m_v_values_d</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_v_values_d</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:41</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_a28e7095b97716519d3a82d4b70737986"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a28e7095b97716519d3a82d4b70737986">kynema_sgf::pde::icns::MetMastForcing::m_damping_radius</a></div><div class="ttdeci">amrex::Real m_damping_radius</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:46</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_a3426f7ff3ff57d0c2c5e4f54105aa3f6"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a3426f7ff3ff57d0c2c5e4f54105aa3f6">kynema_sgf::pde::icns::MetMastForcing::m_w_values</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_w_values</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:36</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_a3b72c4c4fab99afce019751c85f9e312"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a3b72c4c4fab99afce019751c85f9e312">kynema_sgf::pde::icns::MetMastForcing::m_u_values</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_u_values</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:34</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_a45b6af8be772c03af0b369b21a7a9f4f"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a45b6af8be772c03af0b369b21a7a9f4f">kynema_sgf::pde::icns::MetMastForcing::m_long_radius</a></div><div class="ttdeci">amrex::Real m_long_radius</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:44</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_a46c8620d02326f610ab3cee38657824b"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a46c8620d02326f610ab3cee38657824b">kynema_sgf::pde::icns::MetMastForcing::~MetMastForcing</a></div><div class="ttdeci">~MetMastForcing() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_a521b523e0cd5349835d0ff095cf4ce8d"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a521b523e0cd5349835d0ff095cf4ce8d">kynema_sgf::pde::icns::MetMastForcing::m_vertical_radius</a></div><div class="ttdeci">amrex::Real m_vertical_radius</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:45</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_a578d96b43da626039f7b9a222cfa769c"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a578d96b43da626039f7b9a222cfa769c">kynema_sgf::pde::icns::MetMastForcing::m_sim</a></div><div class="ttdeci">const CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:47</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_a69d0e14ae69d5713a960c03181feb1ce"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a69d0e14ae69d5713a960c03181feb1ce">kynema_sgf::pde::icns::MetMastForcing::m_metmast_x_d</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_metmast_x_d</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:37</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_a7e24df50cf02cbf6a5c6c3f0c7737000"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a7e24df50cf02cbf6a5c6c3f0c7737000">kynema_sgf::pde::icns::MetMastForcing::MetMastForcing</a></div><div class="ttdeci">MetMastForcing(const CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> MetMastForcing.cpp:14</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_a7e7ace2387196267bae77a3a18da96b7"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a7e7ace2387196267bae77a3a18da96b7">kynema_sgf::pde::icns::MetMastForcing::m_velocity</a></div><div class="ttdeci">const Field &amp; m_velocity</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:30</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_a8c0d5e0ba0a009d63ac9310d74e6a893"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a8c0d5e0ba0a009d63ac9310d74e6a893">kynema_sgf::pde::icns::MetMastForcing::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:13</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_a9860cf8c828cf5a029b518babc5dc59b"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a9860cf8c828cf5a029b518babc5dc59b">kynema_sgf::pde::icns::MetMastForcing::m_metmast_x</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_metmast_x</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:31</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_a998f4f5b17e53b4a055144a9f94360ce"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a998f4f5b17e53b4a055144a9f94360ce">kynema_sgf::pde::icns::MetMastForcing::m_time</a></div><div class="ttdeci">const SimTime &amp; m_time</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:27</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_aa3b6c6556f17cb1732fb490b197a586b"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#aa3b6c6556f17cb1732fb490b197a586b">kynema_sgf::pde::icns::MetMastForcing::m_1d_metmast</a></div><div class="ttdeci">std::string m_1d_metmast</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:29</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_ac24d8e5b7a0c7b62029b925c2883aa38"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#ac24d8e5b7a0c7b62029b925c2883aa38">kynema_sgf::pde::icns::MetMastForcing::operator()</a></div><div class="ttdeci">void operator()(const int lev, const amrex::MFIter &amp;mfi, const amrex::Box &amp;bx, const FieldState, const amrex::Array4&lt; amrex::Real &gt; &amp;src_term) const override</div><div class="ttdef"><b>Definition</b> MetMastForcing.cpp:74</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_ac797e2f0e473c68a3778127cb765d4e4"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#ac797e2f0e473c68a3778127cb765d4e4">kynema_sgf::pde::icns::MetMastForcing::m_metmast_z_d</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_metmast_z_d</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:39</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_acc546657b9e47170b089d5edd4415bc7"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#acc546657b9e47170b089d5edd4415bc7">kynema_sgf::pde::icns::MetMastForcing::m_u_values_d</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_u_values_d</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:40</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_ad3768639f1aef09d69c1fe155495d20f"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#ad3768639f1aef09d69c1fe155495d20f">kynema_sgf::pde::icns::MetMastForcing::m_metmast_y</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_metmast_y</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:32</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_ae39f63860cd4a35a481bff5c1ec7af3c"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#ae39f63860cd4a35a481bff5c1ec7af3c">kynema_sgf::pde::icns::MetMastForcing::m_w_values_d</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_w_values_d</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:42</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_ae9976c50b71bdbed0f0cb7557a6e34ec"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#ae9976c50b71bdbed0f0cb7557a6e34ec">kynema_sgf::pde::icns::MetMastForcing::m_metmast_z</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_metmast_z</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_aec42d53b38bbd8d5c7abe4a493ff8194"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#aec42d53b38bbd8d5c7abe4a493ff8194">kynema_sgf::pde::icns::MetMastForcing::m_mesh</a></div><div class="ttdeci">const amrex::AmrCore &amp; m_mesh</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:28</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_af5504eed1640f257a72ca43563e03bcb"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#af5504eed1640f257a72ca43563e03bcb">kynema_sgf::pde::icns::MetMastForcing::m_metmast_y_d</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_metmast_y_d</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:38</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing_html_af6ed647212071815fa05c63b5b5a71fe"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#af6ed647212071815fa05c63b5b5a71fe">kynema_sgf::pde::icns::MetMastForcing::m_meso_timescale</a></div><div class="ttdeci">amrex::Real m_meso_timescale</div><div class="ttdef"><b>Definition</b> MetMastForcing.H:43</div></div>
+<div class="ttc" id="agroup__fields_html_ga73fcb43d320747f8ced022629f36af1f"><div class="ttname"><a href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">kynema_sgf::FieldState</a></div><div class="ttdeci">FieldState</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:16</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1pde_1_1icns_html"><div class="ttname"><a href="namespacekynema__sgf_1_1pde_1_1icns.html">kynema_sgf::pde::icns</a></div><div class="ttdef"><b>Definition</b> ABLForcing.cpp:14</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

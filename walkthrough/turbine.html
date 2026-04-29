@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Turbine simulation walkthrough &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LES with Terrain" href="terrain.html" />
+    <link rel="prev" title="Precursor (ABL) walkthrough" href="precursor.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Walkthrough</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="precursor.html">Precursor (ABL) walkthrough</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Turbine simulation walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terrain.html">LES with Terrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rans.html">Wall-Modeled RANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noprecursorrans.html">External Driven Terrain Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration.html">Actuator Line Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Walkthrough</a></li>
+      <li class="breadcrumb-item active">Turbine simulation walkthrough</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/walkthrough/turbine.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="turbine-simulation-walkthrough">
+<span id="turbine"></span><h1>Turbine simulation walkthrough<a class="headerlink" href="#turbine-simulation-walkthrough" title="Link to this heading"></a></h1>
+<p>Now that we have run our precursor simulation and saved inflow boundary condition data, we can run a turbine simulation. Here is the input file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c1">#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#</span>
+<span class="linenos">  2</span><span class="c1">#            SIMULATION CONTROL         #</span>
+<span class="linenos">  3</span><span class="c1">#.......................................#</span>
+<span class="linenos">  4</span><span class="n">time</span><span class="o">.</span><span class="n">stop_time</span>                           <span class="o">=</span> <span class="mf">7800.0</span>       <span class="c1"># Max (simulated) time to evolve [s]</span>
+<span class="linenos">  5</span><span class="n">time</span><span class="o">.</span><span class="n">max_step</span>                            <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>           <span class="c1"># Max number of time steps; -1 means termination set by timestamps</span>
+<span class="linenos">  6</span><span class="n">time</span><span class="o">.</span><span class="n">fixed_dt</span>                            <span class="o">=</span> <span class="mf">0.12</span>         <span class="c1"># Use this constant dt if &gt; 0</span>
+<span class="linenos">  7</span><span class="n">time</span><span class="o">.</span><span class="n">cfl</span>                                 <span class="o">=</span> <span class="mf">0.95</span>         <span class="c1"># CFL factor</span>
+<span class="linenos">  8</span>
+<span class="linenos">  9</span><span class="n">time</span><span class="o">.</span><span class="n">plot_interval</span>                       <span class="o">=</span> <span class="mi">1250</span>         <span class="c1"># Steps between plot files</span>
+<span class="linenos"> 10</span><span class="n">time</span><span class="o">.</span><span class="n">checkpoint_interval</span>                 <span class="o">=</span> <span class="mi">1250</span>         <span class="c1"># Steps between checkpoint files</span>
+<span class="linenos"> 11</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_file</span>                           <span class="o">=</span> <span class="o">../</span><span class="n">precursor</span><span class="o">/</span><span class="n">bndry_file</span><span class="o">.</span><span class="n">native</span>
+<span class="linenos"> 12</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_io_mode</span>                        <span class="o">=</span> <span class="mi">1</span>            <span class="c1"># 0 = write, 1 = read</span>
+<span class="linenos"> 13</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_planes</span>                         <span class="o">=</span> <span class="n">xlo</span>
+<span class="linenos"> 14</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_output_start_time</span>              <span class="o">=</span> <span class="mf">7200.0</span>
+<span class="linenos"> 15</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_var_names</span>                      <span class="o">=</span> <span class="n">velocity</span> <span class="n">temperature</span> <span class="n">tke</span>
+<span class="linenos"> 16</span>
+<span class="linenos"> 17</span><span class="n">incflo</span><span class="o">.</span><span class="n">physics</span>                           <span class="o">=</span> <span class="n">ABL</span> <span class="n">Actuator</span>
+<span class="linenos"> 18</span><span class="n">io</span><span class="o">.</span><span class="n">restart_file</span>                          <span class="o">=</span> <span class="o">../</span><span class="n">spinup</span><span class="o">/</span><span class="n">chk14400</span>
+<span class="linenos"> 19</span><span class="n">io</span><span class="o">.</span><span class="n">outputs</span>                               <span class="o">=</span> <span class="s2">&quot;actuator_src_term&quot;</span>
+<span class="linenos"> 20</span><span class="n">turbulence</span><span class="o">.</span><span class="n">model</span>                         <span class="o">=</span> <span class="n">OneEqKsgsM84</span> <span class="c1"># For neutral ABL, use &quot;Smagorinsky&quot;</span>
+<span class="linenos"> 21</span><span class="n">TKE</span><span class="o">.</span><span class="n">source_terms</span>                         <span class="o">=</span> <span class="n">KsgsM84Src</span>
+<span class="linenos"> 22</span><span class="n">incflo</span><span class="o">.</span><span class="n">gravity</span>                           <span class="o">=</span> <span class="mf">0.</span>  <span class="mf">0.</span> <span class="o">-</span><span class="mf">9.81</span> <span class="c1"># Gravitational force (3D)</span>
+<span class="linenos"> 23</span><span class="n">incflo</span><span class="o">.</span><span class="n">density</span>                           <span class="o">=</span> <span class="mf">1.225</span>        <span class="c1"># Reference density; make sure this agrees with OpenFAST values</span>
+<span class="linenos"> 24</span><span class="n">transport</span><span class="o">.</span><span class="n">viscosity</span>                      <span class="o">=</span> <span class="mf">1.0e-5</span>       <span class="c1"># Dynamic viscosity [N-s/m^2]</span>
+<span class="linenos"> 25</span><span class="n">transport</span><span class="o">.</span><span class="n">laminar_prandtl</span>                <span class="o">=</span> <span class="mf">0.7</span>
+<span class="linenos"> 26</span><span class="n">transport</span><span class="o">.</span><span class="n">turbulent_prandtl</span>              <span class="o">=</span> <span class="mf">0.3333</span>
+<span class="linenos"> 27</span><span class="n">transport</span><span class="o">.</span><span class="n">reference_temperature</span>          <span class="o">=</span> <span class="mf">290.0</span>
+<span class="linenos"> 28</span>
+<span class="linenos"> 29</span><span class="c1">#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#</span>
+<span class="linenos"> 30</span><span class="c1">#            GEOMETRY &amp; BCs             #</span>
+<span class="linenos"> 31</span><span class="c1">#.......................................#</span>
+<span class="linenos"> 32</span><span class="n">geometry</span><span class="o">.</span><span class="n">prob_lo</span>                         <span class="o">=</span> <span class="mf">0.</span>       <span class="mf">0.</span>     <span class="mf">0.</span>   <span class="c1"># Lo corner coordinates</span>
+<span class="linenos"> 33</span><span class="n">geometry</span><span class="o">.</span><span class="n">prob_hi</span>                         <span class="o">=</span> <span class="mf">2560.</span>  <span class="mf">2560.</span>  <span class="mf">1280.</span>  <span class="c1"># Hi corner coordinates</span>
+<span class="linenos"> 34</span><span class="n">amr</span><span class="o">.</span><span class="n">n_cell</span>                               <span class="o">=</span> <span class="mi">128</span> <span class="mi">128</span> <span class="mi">64</span>           <span class="c1"># Grid cells at coarsest AMRlevel</span>
+<span class="linenos"> 35</span><span class="n">amr</span><span class="o">.</span><span class="n">max_level</span>                            <span class="o">=</span> <span class="mi">2</span>                    <span class="c1"># Max AMR level in hierarchy</span>
+<span class="linenos"> 36</span><span class="n">geometry</span><span class="o">.</span><span class="n">is_periodic</span>                     <span class="o">=</span> <span class="mi">0</span>   <span class="mi">0</span>   <span class="mi">0</span>            <span class="c1"># Periodicity x y z (0/1)</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span><span class="n">xlo</span><span class="o">.</span><span class="n">type</span>                                 <span class="o">=</span> <span class="n">mass_inflow</span>
+<span class="linenos"> 39</span><span class="n">xlo</span><span class="o">.</span><span class="n">density</span>                              <span class="o">=</span> <span class="mf">1.225</span>
+<span class="linenos"> 40</span><span class="n">xlo</span><span class="o">.</span><span class="n">temperature</span>                          <span class="o">=</span> <span class="mf">290.0</span>
+<span class="linenos"> 41</span><span class="n">xlo</span><span class="o">.</span><span class="n">tke</span>                                  <span class="o">=</span> <span class="mf">0.0</span>
+<span class="linenos"> 42</span><span class="n">xhi</span><span class="o">.</span><span class="n">type</span>                                 <span class="o">=</span> <span class="n">pressure_outflow</span>
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span><span class="n">ylo</span><span class="o">.</span><span class="n">type</span>                                 <span class="o">=</span> <span class="n">slip_wall</span>
+<span class="linenos"> 45</span><span class="n">yhi</span><span class="o">.</span><span class="n">type</span>                                 <span class="o">=</span> <span class="n">slip_wall</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span><span class="n">zlo</span><span class="o">.</span><span class="n">type</span>                                 <span class="o">=</span> <span class="n">wall_model</span>
+<span class="linenos"> 48</span><span class="n">zhi</span><span class="o">.</span><span class="n">type</span>                                 <span class="o">=</span> <span class="n">slip_wall</span>
+<span class="linenos"> 49</span><span class="n">zhi</span><span class="o">.</span><span class="n">temperature_type</span>                     <span class="o">=</span> <span class="n">fixed_gradient</span>
+<span class="linenos"> 50</span><span class="n">zhi</span><span class="o">.</span><span class="n">temperature</span>                          <span class="o">=</span> <span class="mf">0.003</span>
+<span class="linenos"> 51</span>
+<span class="linenos"> 52</span><span class="c1">#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#</span>
+<span class="linenos"> 53</span><span class="c1">#               PHYSICS                 #</span>
+<span class="linenos"> 54</span><span class="c1">#.......................................#</span>
+<span class="linenos"> 55</span><span class="n">ICNS</span><span class="o">.</span><span class="n">source_terms</span>                        <span class="o">=</span> <span class="n">BoussinesqBuoyancy</span> <span class="n">CoriolisForcing</span> <span class="n">BodyForce</span> <span class="n">ABLMeanBoussinesq</span> <span class="n">ActuatorForcing</span>
+<span class="linenos"> 56</span><span class="c1">##--------- Additions by calc_inflow_stats.py ---------#</span>
+<span class="linenos"> 57</span><span class="n">ABL</span><span class="o">.</span><span class="n">wall_shear_stress_type</span> <span class="o">=</span> <span class="s2">&quot;local&quot;</span>
+<span class="linenos"> 58</span><span class="n">ABL</span><span class="o">.</span><span class="n">inflow_outflow_mode</span> <span class="o">=</span> <span class="n">true</span>
+<span class="linenos"> 59</span><span class="n">ABL</span><span class="o">.</span><span class="n">wf_velocity</span> <span class="o">=</span> <span class="mf">7.612874161922772</span> <span class="mf">0.05167978610261268</span>
+<span class="linenos"> 60</span><span class="n">ABL</span><span class="o">.</span><span class="n">wf_vmag</span> <span class="o">=</span> <span class="mf">7.655337919472146</span>
+<span class="linenos"> 61</span><span class="n">ABL</span><span class="o">.</span><span class="n">wf_theta</span> <span class="o">=</span> <span class="mf">291.0187046202964</span>
+<span class="linenos"> 62</span><span class="c1"># BodyForce.magnitude = 0.00034839850789284793 0.0009712494385077595 0.0</span>
+<span class="linenos"> 63</span><span class="c1">##-----------------------------------------------------#</span>
+<span class="linenos"> 64</span><span class="n">BodyForce</span><span class="o">.</span><span class="n">uniform_timetable_file</span> <span class="o">=</span> <span class="s2">&quot;../precursor/abl_forces.txt&quot;</span>
+<span class="linenos"> 65</span><span class="n">incflo</span><span class="o">.</span><span class="n">velocity</span>                          <span class="o">=</span> <span class="mf">10.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="linenos"> 66</span><span class="n">ABLForcing</span><span class="o">.</span><span class="n">abl_forcing_height</span>            <span class="o">=</span> <span class="mf">86.5</span>
+<span class="linenos"> 67</span><span class="n">CoriolisForcing</span><span class="o">.</span><span class="n">latitude</span>                 <span class="o">=</span> <span class="mf">36.607322</span>                 <span class="c1"># Southern Great Plains</span>
+<span class="linenos"> 68</span><span class="n">CoriolisForcing</span><span class="o">.</span><span class="n">north_vector</span>             <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">1.0</span> <span class="mf">0.0</span>
+<span class="linenos"> 69</span><span class="n">CoriolisForcing</span><span class="o">.</span><span class="n">east_vector</span>              <span class="o">=</span> <span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="linenos"> 70</span><span class="n">ABL</span><span class="o">.</span><span class="n">temperature_heights</span>                  <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">600.0</span> <span class="mf">700.0</span> <span class="mf">1700.0</span>    <span class="c1"># Make sure top height &gt;= the domain height</span>
+<span class="linenos"> 71</span><span class="n">ABL</span><span class="o">.</span><span class="n">temperature_values</span>                   <span class="o">=</span> <span class="mf">290.0</span> <span class="mf">290.0</span> <span class="mf">298.0</span> <span class="mf">301.0</span>
+<span class="linenos"> 72</span><span class="n">ABL</span><span class="o">.</span><span class="n">perturb_temperature</span>                  <span class="o">=</span> <span class="n">true</span>
+<span class="linenos"> 73</span><span class="n">ABL</span><span class="o">.</span><span class="n">cutoff_height</span>                        <span class="o">=</span> <span class="mf">50.0</span>
+<span class="linenos"> 74</span><span class="n">ABL</span><span class="o">.</span><span class="n">perturb_velocity</span>                     <span class="o">=</span> <span class="n">true</span>
+<span class="linenos"> 75</span><span class="n">ABL</span><span class="o">.</span><span class="n">perturb_ref_height</span>                   <span class="o">=</span> <span class="mf">50.0</span>
+<span class="linenos"> 76</span><span class="n">ABL</span><span class="o">.</span><span class="n">Uperiods</span>                             <span class="o">=</span> <span class="mf">4.0</span>
+<span class="linenos"> 77</span><span class="n">ABL</span><span class="o">.</span><span class="n">Vperiods</span>                             <span class="o">=</span> <span class="mf">4.0</span>
+<span class="linenos"> 78</span><span class="n">ABL</span><span class="o">.</span><span class="n">deltaU</span>                               <span class="o">=</span> <span class="mf">1.0</span>
+<span class="linenos"> 79</span><span class="n">ABL</span><span class="o">.</span><span class="n">deltaV</span>                               <span class="o">=</span> <span class="mf">1.0</span>
+<span class="linenos"> 80</span><span class="n">ABL</span><span class="o">.</span><span class="n">kappa</span>                                <span class="o">=</span> <span class="mf">.40</span>
+<span class="linenos"> 81</span><span class="n">ABL</span><span class="o">.</span><span class="n">surface_roughness_z0</span>                 <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># [m]</span>
+<span class="linenos"> 82</span><span class="n">ABL</span><span class="o">.</span><span class="n">surface_temp_flux</span>                    <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># Surface temperature flux [K-m/s]</span>
+<span class="linenos"> 83</span><span class="n">ABLMeanBoussinesq</span><span class="o">.</span><span class="n">read_temperature_profile</span> <span class="o">=</span> <span class="n">true</span>
+<span class="linenos"> 84</span><span class="n">ABLMeanBoussinesq</span><span class="o">.</span><span class="n">temperature_profile_filename</span> <span class="o">=</span> <span class="n">avg_theta</span><span class="o">.</span><span class="n">dat</span>
+<span class="linenos"> 85</span>
+<span class="linenos"> 86</span><span class="c1">#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#</span>
+<span class="linenos"> 87</span><span class="c1">#          POST-Processing              #</span>
+<span class="linenos"> 88</span><span class="c1">#.......................................#</span>
+<span class="linenos"> 89</span><span class="n">incflo</span><span class="o">.</span><span class="n">post_processing</span>                   <span class="o">=</span> <span class="n">sampling</span> <span class="n">averaging</span>
+<span class="linenos"> 90</span>
+<span class="linenos"> 91</span><span class="c1"># --- Sampling parameters ---</span>
+<span class="linenos"> 92</span><span class="n">sampling</span><span class="o">.</span><span class="n">output_interval</span>                <span class="o">=</span> <span class="mi">100</span>
+<span class="linenos"> 93</span><span class="n">sampling</span><span class="o">.</span><span class="n">fields</span>                          <span class="o">=</span> <span class="n">velocity</span> <span class="n">temperature</span>
+<span class="linenos"> 94</span>
+<span class="linenos"> 95</span><span class="c1">#---- sample defs ----</span>
+<span class="linenos"> 96</span><span class="n">sampling</span><span class="o">.</span><span class="n">labels</span>                          <span class="o">=</span> <span class="n">xy</span><span class="o">-</span><span class="n">domain</span> <span class="n">xz</span><span class="o">-</span><span class="n">domain</span>
+<span class="linenos"> 97</span>
+<span class="linenos"> 98</span><span class="n">sampling</span><span class="o">.</span><span class="n">xy</span><span class="o">-</span><span class="n">domain</span><span class="o">.</span><span class="n">type</span>                  <span class="o">=</span> <span class="n">PlaneSampler</span>
+<span class="linenos"> 99</span><span class="n">sampling</span><span class="o">.</span><span class="n">xy</span><span class="o">-</span><span class="n">domain</span><span class="o">.</span><span class="n">num_points</span>            <span class="o">=</span> <span class="mi">256</span> <span class="mi">256</span>
+<span class="linenos">100</span><span class="n">sampling</span><span class="o">.</span><span class="n">xy</span><span class="o">-</span><span class="n">domain</span><span class="o">.</span><span class="n">origin</span>                <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">91.0</span>
+<span class="linenos">101</span><span class="n">sampling</span><span class="o">.</span><span class="n">xy</span><span class="o">-</span><span class="n">domain</span><span class="o">.</span><span class="n">axis1</span>                 <span class="o">=</span> <span class="mf">2550.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="linenos">102</span><span class="n">sampling</span><span class="o">.</span><span class="n">xy</span><span class="o">-</span><span class="n">domain</span><span class="o">.</span><span class="n">axis2</span>                 <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">2550.0</span> <span class="mf">0.0</span>
+<span class="linenos">103</span><span class="n">sampling</span><span class="o">.</span><span class="n">xy</span><span class="o">-</span><span class="n">domain</span><span class="o">.</span><span class="n">offset_vector</span>         <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="linenos">104</span><span class="n">sampling</span><span class="o">.</span><span class="n">xy</span><span class="o">-</span><span class="n">domain</span><span class="o">.</span><span class="n">offsets</span>               <span class="o">=</span> <span class="o">-</span><span class="mf">63.45</span> <span class="mf">0.0</span> <span class="mf">63.45</span>
+<span class="linenos">105</span>
+<span class="linenos">106</span><span class="n">sampling</span><span class="o">.</span><span class="n">xz</span><span class="o">-</span><span class="n">domain</span><span class="o">.</span><span class="n">type</span>                  <span class="o">=</span> <span class="n">PlaneSampler</span>
+<span class="linenos">107</span><span class="n">sampling</span><span class="o">.</span><span class="n">xz</span><span class="o">-</span><span class="n">domain</span><span class="o">.</span><span class="n">num_points</span>            <span class="o">=</span> <span class="mi">256</span> <span class="mi">128</span>
+<span class="linenos">108</span><span class="n">sampling</span><span class="o">.</span><span class="n">xz</span><span class="o">-</span><span class="n">domain</span><span class="o">.</span><span class="n">origin</span>                <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">1280.0</span> <span class="mf">0.0</span>
+<span class="linenos">109</span><span class="n">sampling</span><span class="o">.</span><span class="n">xz</span><span class="o">-</span><span class="n">domain</span><span class="o">.</span><span class="n">axis1</span>                 <span class="o">=</span> <span class="mf">2550.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="linenos">110</span><span class="n">sampling</span><span class="o">.</span><span class="n">xz</span><span class="o">-</span><span class="n">domain</span><span class="o">.</span><span class="n">axis2</span>                 <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">1270.0</span>
+<span class="linenos">111</span>
+<span class="linenos">112</span><span class="c1">#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#</span>
+<span class="linenos">113</span><span class="c1">#              AVERAGING                #</span>
+<span class="linenos">114</span><span class="c1">#.......................................#</span>
+<span class="linenos">115</span><span class="n">averaging</span><span class="o">.</span><span class="n">type</span>                           <span class="o">=</span> <span class="n">TimeAveraging</span>
+<span class="linenos">116</span><span class="n">averaging</span><span class="o">.</span><span class="n">labels</span>                         <span class="o">=</span> <span class="n">means</span> <span class="n">stress</span>
+<span class="linenos">117</span>
+<span class="linenos">118</span><span class="n">averaging</span><span class="o">.</span><span class="n">averaging_window</span>               <span class="o">=</span> <span class="mf">60.0</span>
+<span class="linenos">119</span><span class="n">averaging</span><span class="o">.</span><span class="n">averaging_start_time</span>           <span class="o">=</span> <span class="mf">7200.0</span>
+<span class="linenos">120</span>
+<span class="linenos">121</span><span class="n">averaging</span><span class="o">.</span><span class="n">means</span><span class="o">.</span><span class="n">fields</span>                   <span class="o">=</span> <span class="n">velocity</span>
+<span class="linenos">122</span><span class="n">averaging</span><span class="o">.</span><span class="n">means</span><span class="o">.</span><span class="n">averaging_type</span>           <span class="o">=</span> <span class="n">ReAveraging</span>
+<span class="linenos">123</span>
+<span class="linenos">124</span><span class="n">averaging</span><span class="o">.</span><span class="n">stress</span><span class="o">.</span><span class="n">fields</span>                  <span class="o">=</span> <span class="n">velocity</span>
+<span class="linenos">125</span><span class="n">averaging</span><span class="o">.</span><span class="n">stress</span><span class="o">.</span><span class="n">averaging_type</span>          <span class="o">=</span> <span class="n">ReynoldsStress</span>
+<span class="linenos">126</span>
+<span class="linenos">127</span><span class="c1">#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#</span>
+<span class="linenos">128</span><span class="c1">#            MESH REFINEMENT            #</span>
+<span class="linenos">129</span><span class="c1">#.......................................#</span>
+<span class="linenos">130</span><span class="n">tagging</span><span class="o">.</span><span class="n">labels</span>                           <span class="o">=</span> <span class="n">T0_level_0_zone</span> <span class="n">T1_level_0_zone</span> <span class="n">T2_level_0_zone</span> <span class="n">T0_level_1_zone</span> <span class="n">T1_level_1_zone</span> <span class="n">T2_level_1_zone</span>
+<span class="linenos">131</span>
+<span class="linenos">132</span><span class="c1"># 1st refinement level</span>
+<span class="linenos">133</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_0_zone</span><span class="o">.</span><span class="n">type</span>             <span class="o">=</span> <span class="n">GeometryRefinement</span>
+<span class="linenos">134</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_0_zone</span><span class="o">.</span><span class="n">shapes</span>           <span class="o">=</span> <span class="n">T0_level_0_zone</span>
+<span class="linenos">135</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_0_zone</span><span class="o">.</span><span class="n">level</span>            <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">136</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_0_zone</span><span class="o">.</span><span class="n">T0_level_0_zone</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">box</span>
+<span class="linenos">137</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_0_zone</span><span class="o">.</span><span class="n">T0_level_0_zone</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="mf">520.0</span> <span class="mf">1040.0</span> <span class="mf">0.0</span>  <span class="c1"># -1D, -2D</span>
+<span class="linenos">138</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_0_zone</span><span class="o">.</span><span class="n">T0_level_0_zone</span><span class="o">.</span><span class="n">xaxis</span> <span class="o">=</span> <span class="mf">360.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="linenos">139</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_0_zone</span><span class="o">.</span><span class="n">T0_level_0_zone</span><span class="o">.</span><span class="n">yaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">480.0</span> <span class="mf">0.0</span>
+<span class="linenos">140</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_0_zone</span><span class="o">.</span><span class="n">T0_level_0_zone</span><span class="o">.</span><span class="n">zaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">360.0</span>
+<span class="linenos">141</span>
+<span class="linenos">142</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_0_zone</span><span class="o">.</span><span class="n">type</span>             <span class="o">=</span> <span class="n">GeometryRefinement</span>
+<span class="linenos">143</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_0_zone</span><span class="o">.</span><span class="n">shapes</span>           <span class="o">=</span> <span class="n">T1_level_0_zone</span>
+<span class="linenos">144</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_0_zone</span><span class="o">.</span><span class="n">level</span>            <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">145</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_0_zone</span><span class="o">.</span><span class="n">T1_level_0_zone</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">box</span>
+<span class="linenos">146</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_0_zone</span><span class="o">.</span><span class="n">T1_level_0_zone</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="mf">1160.0</span> <span class="mf">1040.0</span> <span class="mf">0.0</span>  <span class="c1"># -1D, -2D</span>
+<span class="linenos">147</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_0_zone</span><span class="o">.</span><span class="n">T1_level_0_zone</span><span class="o">.</span><span class="n">xaxis</span> <span class="o">=</span> <span class="mf">360.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="linenos">148</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_0_zone</span><span class="o">.</span><span class="n">T1_level_0_zone</span><span class="o">.</span><span class="n">yaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">480.0</span> <span class="mf">0.0</span>
+<span class="linenos">149</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_0_zone</span><span class="o">.</span><span class="n">T1_level_0_zone</span><span class="o">.</span><span class="n">zaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">360.0</span>
+<span class="linenos">150</span>
+<span class="linenos">151</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_0_zone</span><span class="o">.</span><span class="n">type</span>             <span class="o">=</span> <span class="n">GeometryRefinement</span>
+<span class="linenos">152</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_0_zone</span><span class="o">.</span><span class="n">shapes</span>           <span class="o">=</span> <span class="n">T2_level_0_zone</span>
+<span class="linenos">153</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_0_zone</span><span class="o">.</span><span class="n">level</span>            <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">154</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_0_zone</span><span class="o">.</span><span class="n">T2_level_0_zone</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">box</span>
+<span class="linenos">155</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_0_zone</span><span class="o">.</span><span class="n">T2_level_0_zone</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="mf">1800.0</span> <span class="mf">1040.0</span> <span class="mf">0.0</span>  <span class="c1"># -1D, -2D</span>
+<span class="linenos">156</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_0_zone</span><span class="o">.</span><span class="n">T2_level_0_zone</span><span class="o">.</span><span class="n">xaxis</span> <span class="o">=</span> <span class="mf">360.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="linenos">157</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_0_zone</span><span class="o">.</span><span class="n">T2_level_0_zone</span><span class="o">.</span><span class="n">yaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">480.0</span> <span class="mf">0.0</span>
+<span class="linenos">158</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_0_zone</span><span class="o">.</span><span class="n">T2_level_0_zone</span><span class="o">.</span><span class="n">zaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">360.0</span>
+<span class="linenos">159</span>
+<span class="linenos">160</span><span class="c1"># 2nd refinement level</span>
+<span class="linenos">161</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_1_zone</span><span class="o">.</span><span class="n">type</span>             <span class="o">=</span> <span class="n">GeometryRefinement</span>
+<span class="linenos">162</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_1_zone</span><span class="o">.</span><span class="n">shapes</span>           <span class="o">=</span> <span class="n">T0_level_1_zone</span>
+<span class="linenos">163</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_1_zone</span><span class="o">.</span><span class="n">level</span>            <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">164</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_1_zone</span><span class="o">.</span><span class="n">T0_level_1_zone</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">box</span>
+<span class="linenos">165</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_1_zone</span><span class="o">.</span><span class="n">T0_level_1_zone</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="mf">580.0</span> <span class="mf">1100.0</span> <span class="mf">20.0</span>  <span class="c1"># -0.5D, -1.5D</span>
+<span class="linenos">166</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_1_zone</span><span class="o">.</span><span class="n">T0_level_1_zone</span><span class="o">.</span><span class="n">xaxis</span> <span class="o">=</span> <span class="mf">180.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="linenos">167</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_1_zone</span><span class="o">.</span><span class="n">T0_level_1_zone</span><span class="o">.</span><span class="n">yaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">360.0</span> <span class="mf">0.0</span>
+<span class="linenos">168</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_1_zone</span><span class="o">.</span><span class="n">T0_level_1_zone</span><span class="o">.</span><span class="n">zaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">180.0</span>
+<span class="linenos">169</span>
+<span class="linenos">170</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_1_zone</span><span class="o">.</span><span class="n">type</span>             <span class="o">=</span> <span class="n">GeometryRefinement</span>
+<span class="linenos">171</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_1_zone</span><span class="o">.</span><span class="n">shapes</span>           <span class="o">=</span> <span class="n">T1_level_1_zone</span>
+<span class="linenos">172</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_1_zone</span><span class="o">.</span><span class="n">level</span>            <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">173</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_1_zone</span><span class="o">.</span><span class="n">T1_level_1_zone</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">box</span>
+<span class="linenos">174</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_1_zone</span><span class="o">.</span><span class="n">T1_level_1_zone</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="mf">1220.0</span> <span class="mf">1100.0</span> <span class="mf">20.0</span>  <span class="c1"># -0.5D, -1.5D</span>
+<span class="linenos">175</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_1_zone</span><span class="o">.</span><span class="n">T1_level_1_zone</span><span class="o">.</span><span class="n">xaxis</span> <span class="o">=</span> <span class="mf">180.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="linenos">176</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_1_zone</span><span class="o">.</span><span class="n">T1_level_1_zone</span><span class="o">.</span><span class="n">yaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">360.0</span> <span class="mf">0.0</span>
+<span class="linenos">177</span><span class="n">tagging</span><span class="o">.</span><span class="n">T1_level_1_zone</span><span class="o">.</span><span class="n">T1_level_1_zone</span><span class="o">.</span><span class="n">zaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">180.0</span>
+<span class="linenos">178</span>
+<span class="linenos">179</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_1_zone</span><span class="o">.</span><span class="n">type</span>             <span class="o">=</span> <span class="n">GeometryRefinement</span>
+<span class="linenos">180</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_1_zone</span><span class="o">.</span><span class="n">shapes</span>           <span class="o">=</span> <span class="n">T2_level_1_zone</span>
+<span class="linenos">181</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_1_zone</span><span class="o">.</span><span class="n">level</span>            <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">182</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_1_zone</span><span class="o">.</span><span class="n">T2_level_1_zone</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">box</span>
+<span class="linenos">183</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_1_zone</span><span class="o">.</span><span class="n">T2_level_1_zone</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="mf">1860.0</span> <span class="mf">1100.0</span> <span class="mf">20.0</span>  <span class="c1"># -0.5D, -1.5D</span>
+<span class="linenos">184</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_1_zone</span><span class="o">.</span><span class="n">T2_level_1_zone</span><span class="o">.</span><span class="n">xaxis</span> <span class="o">=</span> <span class="mf">180.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="linenos">185</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_1_zone</span><span class="o">.</span><span class="n">T2_level_1_zone</span><span class="o">.</span><span class="n">yaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">360.0</span> <span class="mf">0.0</span>
+<span class="linenos">186</span><span class="n">tagging</span><span class="o">.</span><span class="n">T2_level_1_zone</span><span class="o">.</span><span class="n">T2_level_1_zone</span><span class="o">.</span><span class="n">zaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">180.0</span>
+<span class="linenos">187</span>
+<span class="linenos">188</span><span class="c1">#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#</span>
+<span class="linenos">189</span><span class="c1">#               TURBINES                #</span>
+<span class="linenos">190</span><span class="c1">#.......................................#</span>
+<span class="linenos">191</span><span class="n">Actuator</span><span class="o">.</span><span class="n">labels</span>                          <span class="o">=</span> <span class="n">T0</span> <span class="n">T1</span> <span class="n">T2</span>
+<span class="linenos">192</span>
+<span class="linenos">193</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastDisk</span><span class="o">.</span><span class="n">density</span>         <span class="o">=</span> <span class="mf">1.225</span>  <span class="c1"># AirDens in OpenFAST models</span>
+<span class="linenos">194</span>
+<span class="linenos">195</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">type</span>                         <span class="o">=</span> <span class="n">TurbineFastDisk</span>
+<span class="linenos">196</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">openfast_input_file</span>          <span class="o">=</span> <span class="n">T0_OpenFAST</span><span class="o">/</span><span class="n">NREL</span><span class="o">-</span><span class="mi">2</span><span class="n">p8</span><span class="o">-</span><span class="mf">127.</span><span class="n">fst</span>
+<span class="linenos">197</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">base_position</span>                <span class="o">=</span> <span class="mf">640.0</span> <span class="mf">1280.0</span> <span class="mf">0.0</span>
+<span class="linenos">198</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">rotor_diameter</span>               <span class="o">=</span> <span class="mf">126.9</span>
+<span class="linenos">199</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">hub_height</span>                   <span class="o">=</span> <span class="mf">86.5</span>
+<span class="linenos">200</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">num_points_blade</span>             <span class="o">=</span> <span class="mi">64</span>
+<span class="linenos">201</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">num_points_tower</span>             <span class="o">=</span> <span class="mi">12</span>
+<span class="linenos">202</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">epsilon</span>                      <span class="o">=</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span>
+<span class="linenos">203</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">epsilon_tower</span>                <span class="o">=</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span>
+<span class="linenos">204</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">openfast_start_time</span>          <span class="o">=</span> <span class="mf">0.0</span>
+<span class="linenos">205</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">openfast_stop_time</span>           <span class="o">=</span> <span class="mf">99999.0</span>
+<span class="linenos">206</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">nacelle_drag_coeff</span>           <span class="o">=</span> <span class="mf">0.0</span>
+<span class="linenos">207</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">nacelle_area</span>                 <span class="o">=</span> <span class="mf">0.0</span>
+<span class="linenos">208</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">yaw</span>                          <span class="o">=</span> <span class="mf">0.0</span>
+<span class="linenos">209</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">output_frequency</span>             <span class="o">=</span> <span class="mi">10</span>
+<span class="linenos">210</span>
+<span class="linenos">211</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">type</span>                         <span class="o">=</span> <span class="n">TurbineFastDisk</span>
+<span class="linenos">212</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">openfast_input_file</span>          <span class="o">=</span> <span class="n">T1_OpenFAST</span><span class="o">/</span><span class="n">NREL</span><span class="o">-</span><span class="mi">2</span><span class="n">p8</span><span class="o">-</span><span class="mf">127.</span><span class="n">fst</span>
+<span class="linenos">213</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">base_position</span>                <span class="o">=</span> <span class="mf">1280.0</span> <span class="mf">1280.0</span> <span class="mf">0.0</span>
+<span class="linenos">214</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">rotor_diameter</span>               <span class="o">=</span> <span class="mf">126.9</span>
+<span class="linenos">215</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">hub_height</span>                   <span class="o">=</span> <span class="mf">86.5</span>
+<span class="linenos">216</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">num_points_blade</span>             <span class="o">=</span> <span class="mi">64</span>
+<span class="linenos">217</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">num_points_tower</span>             <span class="o">=</span> <span class="mi">12</span>
+<span class="linenos">218</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">epsilon</span>                      <span class="o">=</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span>
+<span class="linenos">219</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">epsilon_tower</span>                <span class="o">=</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span>
+<span class="linenos">220</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">openfast_start_time</span>          <span class="o">=</span> <span class="mf">0.0</span>
+<span class="linenos">221</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">openfast_stop_time</span>           <span class="o">=</span> <span class="mf">99999.0</span>
+<span class="linenos">222</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">nacelle_drag_coeff</span>           <span class="o">=</span> <span class="mf">0.0</span>
+<span class="linenos">223</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">nacelle_area</span>                 <span class="o">=</span> <span class="mf">0.0</span>
+<span class="linenos">224</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">yaw</span>                          <span class="o">=</span> <span class="mf">0.0</span>
+<span class="linenos">225</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">output_frequency</span>             <span class="o">=</span> <span class="mi">10</span>
+<span class="linenos">226</span>
+<span class="linenos">227</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T2</span><span class="o">.</span><span class="n">type</span>                         <span class="o">=</span> <span class="n">TurbineFastDisk</span>
+<span class="linenos">228</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T2</span><span class="o">.</span><span class="n">openfast_input_file</span>          <span class="o">=</span> <span class="n">T2_OpenFAST</span><span class="o">/</span><span class="n">NREL</span><span class="o">-</span><span class="mi">2</span><span class="n">p8</span><span class="o">-</span><span class="mf">127.</span><span class="n">fst</span>
+<span class="linenos">229</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T2</span><span class="o">.</span><span class="n">base_position</span>                <span class="o">=</span> <span class="mf">1920.0</span> <span class="mf">1280.0</span> <span class="mf">0.0</span>
+<span class="linenos">230</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T2</span><span class="o">.</span><span class="n">rotor_diameter</span>               <span class="o">=</span> <span class="mf">126.9</span>
+<span class="linenos">231</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T2</span><span class="o">.</span><span class="n">hub_height</span>                   <span class="o">=</span> <span class="mf">86.5</span>
+<span class="linenos">232</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T2</span><span class="o">.</span><span class="n">num_points_blade</span>             <span class="o">=</span> <span class="mi">64</span>
+<span class="linenos">233</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T2</span><span class="o">.</span><span class="n">num_points_tower</span>             <span class="o">=</span> <span class="mi">12</span>
+<span class="linenos">234</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T2</span><span class="o">.</span><span class="n">epsilon</span>                      <span class="o">=</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span>
+<span class="linenos">235</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T2</span><span class="o">.</span><span class="n">epsilon_tower</span>                <span class="o">=</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span>
+<span class="linenos">236</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T2</span><span class="o">.</span><span class="n">openfast_start_time</span>          <span class="o">=</span> <span class="mf">0.0</span>
+<span class="linenos">237</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T2</span><span class="o">.</span><span class="n">openfast_stop_time</span>           <span class="o">=</span> <span class="mf">99999.0</span>
+<span class="linenos">238</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T2</span><span class="o">.</span><span class="n">nacelle_drag_coeff</span>           <span class="o">=</span> <span class="mf">0.0</span>
+<span class="linenos">239</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T2</span><span class="o">.</span><span class="n">nacelle_area</span>                 <span class="o">=</span> <span class="mf">0.0</span>
+<span class="linenos">240</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T2</span><span class="o">.</span><span class="n">yaw</span>                          <span class="o">=</span> <span class="mf">0.0</span>
+<span class="linenos">241</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T2</span><span class="o">.</span><span class="n">output_frequency</span>             <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>This file looks like the precursor input file, except for the following changes:</p>
+<ul class="simple">
+<li><p>We are now reading in boundary condition data, not writing it out. Similarly, the x- and y- boundaries are no longer periodic, requiring
+us to specify some extra characteristics about the inflow.</p></li>
+<li><p>We added the line <code class="docutils literal notranslate"><span class="pre">io.outputs=&quot;actuator_src_term&quot;</span></code> to output relevant information about the location of the turbines for plotting purposes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">incflo.physics</span></code> now includes <code class="docutils literal notranslate"><span class="pre">Actuator</span></code> so that turbine-related calculations can take place.</p></li>
+<li><p>Similarly, we remove <code class="docutils literal notranslate"><span class="pre">ABLForcing</span></code> from <code class="docutils literal notranslate"><span class="pre">ICNS.source_terms</span></code>, and we replace it with three new forces:
+<code class="docutils literal notranslate"><span class="pre">BodyForce</span> <span class="pre">ABLMeanBoussinesq</span> <span class="pre">ActuatorForcing</span></code>. We then provide extra information about these forces.
+More on how to calculate these values down below.</p></li>
+<li><p>We also add details under <code class="docutils literal notranslate"><span class="pre">ABL</span></code> to inform the wall function.</p></li>
+<li><p>We add information about the turbines and surrounding mesh refinements into the input file. Because of the finer mesh, the small dt is
+required for this simulation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time.fixed_dt</span></code> is changed from 0.125 to 0.12. Although 0.125 is sufficient for the finer mesh in this simulation, there is an
+additional constraint of compatibility with the OpenFAST turbine model. The Kynema-SGF time step size must be an integer multiple of
+the recommended time step size of the turbine model (written as <code class="docutils literal notranslate"><span class="pre">DT</span></code> in the <code class="docutils literal notranslate"><span class="pre">.fst</span></code> OpenFAST input). For this turbine model,
+the recommended DT is 0.01, requiring a change to the Kynema-SGF dt. Due to this change in the time step size, we have also adjusted
+the plotting, checkpoint, and sampling intervals.</p></li>
+</ul>
+<details class="summary-further-details-about-these-source-terms-and-wall-function-wf-specifications">
+<summary>Further details about these source terms and wall function (wf) specifications</summary><p>Now that this simulation is not periodic and will feature turbine wakes, the previous approach to forcing the velocity field
+(ABLForcing) is not viable. In addition to the inflow information from the precursor simulation, we also want to mimic
+the forcing terms. This is the purpose of BodyForce.</p>
+<p>ABLMeanBoussinesq modifies the BoussinesqBuoyancy term to make it reference a profile of average temperature values instead of
+a single reference temperature. Instead of modifying the physics, this term is intended to modify the pressure distribution
+to make it more compatible with the outflow condition.</p>
+<p>ActuatorForcing indicates to the momentum equation that terms from the actuator turbine model should be included. Both the
+Actuator physics instance and the source_term specification need to be present for the simulation to run as intended.</p>
+<p>Similar to how ABLForcing is not a viable option in an inflow-outflow simulation with turbines,
+wall function implementations that rely on planar averages are not viable either. Instead, time averages of planar-averaged
+precursor data from is passed to the inflow-outflow simulation to inform that wall model.</p>
+</details><p>When running an inflow-outflow simulation, information must be provided for the new source terms and the wall function. These
+values are intended to be statistical data calculated from the precursor simulation. During the precursor, ABL Stats
+output planar-averaged data at discrete times. To average this data in time and obtain values for the input arguments,
+applying a script is the most direct approach. For this step, run the <code class="docutils literal notranslate"><span class="pre">calc_inflowoutflow_stats.py</span></code> script, provided in
+the tools directory of the Kynema-SGF repo, as follows:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python &lt;path to kynema-sgf repo&gt;/tools/calc_inflowoutflow_stats.py -sf &lt;path to precursor directory&gt;/post_processing/abl_statistics14400.nc -ts 7200 -te 7800</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">-ts</span></code> and <code class="docutils literal notranslate"><span class="pre">-te</span></code> arguments communicate the start time and end time for the time averaging, respectively. Running the
+script provides two important things:</p>
+<ul class="simple">
+<li><p>Complete input lines to be copy-pasted into the turbine input file, which feature time-averaged information</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">avg_theta.dat</span></code> file with an average temperature profile for <code class="docutils literal notranslate"><span class="pre">ABLMeanBoussinesq</span></code>. It is critical that this file
+is available where the job will run; otherwise, Kynema-SGF will fail by not being able to find the file.</p></li>
+</ul>
+<p>Although the script provides a value for the <code class="docutils literal notranslate"><span class="pre">BodyForce.magnitude</span></code>, this has been commented out after being pasted into the
+input file. This is because we prefer to use a timetable for the body force, which was output by the precursor simulation.
+If the <code class="docutils literal notranslate"><span class="pre">forcing_timetable_output_file</span></code> argument is not used in a precursor simulation setup, this timetable file will not be available.
+In that case, using a constant, uniform body force vector is the standard approach, and this script provides the
+time-averaged value from the precursor to populate <code class="docutils literal notranslate"><span class="pre">BodyForce.magnitude</span></code>.</p>
+<p>Because we are simulating turbines, OpenFAST files need to be included for each of the turbines. In this walkthrough, we use
+2.8 MW turbines from NREL’s <a class="reference external" href="https://github.com/NREL/openfast-turbine-models">open source turbine repository</a>, and the specific
+turbine model is <a class="reference external" href="https://github.com/NREL/openfast-turbine-models/tree/main/IEA-scaled/NREL-2.8-127/20_monolithic_opt2/OpenFAST">here</a>.</p>
+<p>Instead of cloning the entire repository of OpenFAST turbine models, we can clone only what is needed to run the full turbine simulation and then
+copy it to the run directory.</p>
+<p>First, clone the repository as empty and enter its directory.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone -n --depth=1 --filter=tree:0 https://github.com/NREL/openfast-turbine-models.git &amp;&amp; cd openfast-turbine-models</span>
+</pre></div>
+</div>
+<p>Then, check out only the path that we need.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git sparse-checkout set --no-cone IEA-scaled/NREL-2.8-127/20_monolithic_opt2/OpenFAST &amp;&amp; git checkout</span>
+<span class="go">cd IEA-scaled/NREL-2.8-127/20_monolithic_opt2/OpenFAST/</span>
+</pre></div>
+</div>
+<p>Note that, when simulating OpenFAST turbines through Kynema-SGF instead of directly through OpenFAST, it is important to make the
+following changes to the OpenFAST files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NREL-2p8-127_AeroDyn15.dat</span></code>: Make sure <code class="docutils literal notranslate"><span class="pre">WakeMod</span></code> is <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NREL-2p8-127_ElastoDyn.dat</span></code>: Set the initial RPM <code class="docutils literal notranslate"><span class="pre">RotSpeed</span></code> and initial yaw angle <code class="docutils literal notranslate"><span class="pre">NacYaw</span></code> to reasonable values (in this walkthrough we use <code class="docutils literal notranslate"><span class="pre">13.5</span></code> RPM and <code class="docutils literal notranslate"><span class="pre">0</span></code> degrees, respectively)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NREL-2p8-127.fst</span></code>: Set <code class="docutils literal notranslate"><span class="pre">CompInflow</span></code> to be <code class="docutils literal notranslate"><span class="pre">2</span></code> and <code class="docutils literal notranslate"><span class="pre">OutFileFmt</span></code> to be <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NREL-2p8-127_ServoDyn.dat</span></code>: Make sure <code class="docutils literal notranslate"><span class="pre">DLL_FileName</span></code> points to a <code class="docutils literal notranslate"><span class="pre">libdiscon.so</span></code> (on Linux) or <code class="docutils literal notranslate"><span class="pre">libdiscon.dylib</span></code> (on Mac) file from ROSCO. If you compiled using kynema-manager,
+see the <a class="reference internal" href="../getting_started/compiling.html#rosco-dyn-lib"><span class="std std-ref">section of the documentation</span></a> that discusses how to determine the correct path to this ROSCO library file.</p></li>
+</ul>
+<p>After performing these changes, copy the OpenFAST model to the run directory using the names in the Kynema-SGF input file.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ..</span>
+<span class="go">cp -r OpenFAST/ &lt;path to turbine run directory&gt;/T0_OpenFAST</span>
+<span class="go">cp -r OpenFAST/ &lt;path to turbine run directory&gt;/T1_OpenFAST</span>
+<span class="go">cp -r OpenFAST/ &lt;path to turbine run directory&gt;/T2_OpenFAST</span>
+</pre></div>
+</div>
+<p>When all of these steps are complete, the job directory for running the turbine simulation includes</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">avg_theta.dat  T0_OpenFAST/  T1_OpenFAST/  T2_OpenFAST/  turbines.inp</span>
+</pre></div>
+</div>
+<p>and the turbine inflow-outflow simulation is ready to be submitted using</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">kynema_sgf turbines.inp</span>
+</pre></div>
+</div>
+<p>which should follow after an <code class="docutils literal notranslate"><span class="pre">srun</span></code> or <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> or a similar command to take advantage of parallelization.</p>
+<p>Below we show the magnitude of the velocity at t=7350s (top) and at the final time
+(bottom) of the simulation. In both images, the three turbines are displayed as 3D
+contours of the <code class="docutils literal notranslate"><span class="pre">actuator_src_termx</span></code> field. Note the turbine-induced wakes
+and their impact on the incoming flow for the downstream turbines.</p>
+<a class="reference internal image-reference" href="../_images/turbines_simulation_velocityx_w_turbines_timestep_15650.png"><img alt="../_images/turbines_simulation_velocityx_w_turbines_timestep_15650.png" src="../_images/turbines_simulation_velocityx_w_turbines_timestep_15650.png" style="width: 100%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/turbines_simulation_velocityx_w_turbines_timestep_19400.png"><img alt="../_images/turbines_simulation_velocityx_w_turbines_timestep_19400.png" src="../_images/turbines_simulation_velocityx_w_turbines_timestep_19400.png" style="width: 100%;" />
+</a>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="precursor.html" class="btn btn-neutral float-left" title="Precursor (ABL) walkthrough" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="terrain.html" class="btn btn-neutral float-right" title="LES with Terrain" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

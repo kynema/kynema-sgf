@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: Field management &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: Field management</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/group__fields.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="field-management">
+<h1>Field management<a class="headerlink" href="#field-management" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: Field management</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#groups">Topics</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
+  <div class="headertitle"><div class="title">Field management <div class="ingroups"><a class="el" href="group__core.html">Kynema-SGF core</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Collaboration diagram for Field management:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__fields.svg" width="544" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-groups" class="groupheader"><a id="groups" name="groups"></a>
+Topics</h2></td></tr>
+<tr class="memitem:field_5Fbc" id="r_field_5Fbc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__field__bc.html">Boundary conditions management</a></td></tr>
+<tr class="memitem:field_5Fops" id="r_field_5Fops"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__field__ops.html">Field operations</a></td></tr>
+<tr class="memitem:field_5Ffillpatch" id="r_field_5Ffillpatch"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__field__fillpatch.html">Fillpatch operators</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3AFieldInfo" id="r_kynema_5Fsgf_3A_3AFieldInfo"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_field_info.html">kynema_sgf::FieldInfo</a></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3AField" id="r_kynema_5Fsgf_3A_3AField"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3AFieldRepo" id="r_kynema_5Fsgf_3A_3AFieldRepo"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3AIntField" id="r_kynema_5Fsgf_3A_3AIntField"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_int_field.html">kynema_sgf::IntField</a></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3AScratchField" id="r_kynema_5Fsgf_3A_3AScratchField"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_scratch_field.html">kynema_sgf::ScratchField</a></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3AViewField_3C_20T_20_3E" id="r_kynema_5Fsgf_3A_3AViewField_3C_20T_20_3E"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_view_field.html">kynema_sgf::ViewField&lt; T &gt;</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga73fcb43d320747f8ced022629f36af1f" id="r_ga73fcb43d320747f8ced022629f36af1f"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga73fcb43d320747f8ced022629f36af1f">kynema_sgf::FieldState</a> : std::uint8_t { <br />
+&#160;&#160;<a class="el" href="#gga73fcb43d320747f8ced022629f36af1fa06bfddc759bcbdcc8f363807685ee11f">kynema_sgf::FieldState::NP1</a> = 0
+, <a class="el" href="#gga73fcb43d320747f8ced022629f36af1fa8d9c307cb7f3c4a32822a51922d1ceaa">kynema_sgf::FieldState::N</a> = 1
+, <a class="el" href="#gga73fcb43d320747f8ced022629f36af1fabf90e680ecd3cfbf725ceb5c8c82634e">kynema_sgf::FieldState::NM1</a> = 2
+, <a class="el" href="#gga73fcb43d320747f8ced022629f36af1fa2328beac24e42bfd30c5226cad8e0834">kynema_sgf::FieldState::NPH</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="#gga73fcb43d320747f8ced022629f36af1fa116840c962286eda0e4dbed9dfbfa3fc">kynema_sgf::FieldState::NMH</a> = 4
+, <a class="el" href="#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">kynema_sgf::FieldState::New</a> = NP1
+, <a class="el" href="#gga73fcb43d320747f8ced022629f36af1fac7268757fbabf48019f4984933539d8a">kynema_sgf::FieldState::Old</a> = N
+<br />
+ }</td></tr>
+<tr class="memitem:ga6012c66c4b909364fdfaa58954157f75" id="r_ga6012c66c4b909364fdfaa58954157f75"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga6012c66c4b909364fdfaa58954157f75">kynema_sgf::FieldLoc</a> : std::uint8_t { <br />
+&#160;&#160;<a class="el" href="#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">kynema_sgf::FieldLoc::CELL</a>
+, <a class="el" href="#gga6012c66c4b909364fdfaa58954157f75a0cc25b606fe928a0c9a58f7f209c4495">kynema_sgf::FieldLoc::NODE</a>
+, <a class="el" href="#gga6012c66c4b909364fdfaa58954157f75a51c3bc3d73817cc48bd1a42aa76cd48b">kynema_sgf::FieldLoc::XFACE</a>
+, <a class="el" href="#gga6012c66c4b909364fdfaa58954157f75aed363f72ca243318ee54c948cab94805">kynema_sgf::FieldLoc::YFACE</a>
+, <br />
+&#160;&#160;<a class="el" href="#gga6012c66c4b909364fdfaa58954157f75a37f44a8aa4feca119902d6930c4c849f">kynema_sgf::FieldLoc::ZFACE</a>
+<br />
+ }</td></tr>
+<tr class="memitem:ga7a6cb530fb551873a19ab6954617782e" id="r_ga7a6cb530fb551873a19ab6954617782e"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga7a6cb530fb551873a19ab6954617782e">kynema_sgf::FieldInterpolator</a> : std::uint8_t { <br />
+&#160;&#160;<a class="el" href="#gga7a6cb530fb551873a19ab6954617782ea024734d5cb842d82979ddb770d8e7e2a">kynema_sgf::FieldInterpolator::PiecewiseConstant</a>
+, <a class="el" href="#gga7a6cb530fb551873a19ab6954617782eaef706a0ad0437ced3c3cb11c7fcb9fc3">kynema_sgf::FieldInterpolator::CellConsLinear</a>
+, <a class="el" href="#gga7a6cb530fb551873a19ab6954617782ea8c83efc1cd144441076dcaee421cc286">kynema_sgf::FieldInterpolator::NodeBilinear</a>
+, <a class="el" href="#gga7a6cb530fb551873a19ab6954617782eae3103fbe6b552f90be5056482f4d01f2">kynema_sgf::FieldInterpolator::FaceDivFree</a>
+, <br />
+&#160;&#160;<a class="el" href="#gga7a6cb530fb551873a19ab6954617782eaa2e0693c2b7477910343b6caafeba3ed">kynema_sgf::FieldInterpolator::FaceLinear</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:ga7a6cb530fb551873a19ab6954617782e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coarse-to-fine field interpolation options.  <a href="#ga7a6cb530fb551873a19ab6954617782e">More...</a><br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<p><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> management infrastructure</p>
+<p><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> is at the core of Kynema-SGF implementation that handles all the data used during the simulation. <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> manages a collection of fields and is responsible for all memory allocation and reinitialization during regrid process. <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> provides a higher-level interface than MultiFabs and also provides a unified interface to manage boundary conditions and states. </p>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga7a6cb530fb551873a19ab6954617782e" name="ga7a6cb530fb551873a19ab6954617782e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7a6cb530fb551873a19ab6954617782e">&#9670;&#160;</a></span>FieldInterpolator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#ga7a6cb530fb551873a19ab6954617782e">kynema_sgf::FieldInterpolator</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Coarse-to-fine field interpolation options. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga7a6cb530fb551873a19ab6954617782ea024734d5cb842d82979ddb770d8e7e2a" name="gga7a6cb530fb551873a19ab6954617782ea024734d5cb842d82979ddb770d8e7e2a"></a>PiecewiseConstant&#160;</td><td class="fielddoc"><p>Constant across cell. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga7a6cb530fb551873a19ab6954617782eaef706a0ad0437ced3c3cb11c7fcb9fc3" name="gga7a6cb530fb551873a19ab6954617782eaef706a0ad0437ced3c3cb11c7fcb9fc3"></a>CellConsLinear&#160;</td><td class="fielddoc"><p>Linear interpolation. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga7a6cb530fb551873a19ab6954617782ea8c83efc1cd144441076dcaee421cc286" name="gga7a6cb530fb551873a19ab6954617782ea8c83efc1cd144441076dcaee421cc286"></a>NodeBilinear&#160;</td><td class="fielddoc"><p>Bilinear nodal interpolation. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga7a6cb530fb551873a19ab6954617782eae3103fbe6b552f90be5056482f4d01f2" name="gga7a6cb530fb551873a19ab6954617782eae3103fbe6b552f90be5056482f4d01f2"></a>FaceDivFree&#160;</td><td class="fielddoc"><p>Divergence free face interpolation. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga7a6cb530fb551873a19ab6954617782eaa2e0693c2b7477910343b6caafeba3ed" name="gga7a6cb530fb551873a19ab6954617782eaa2e0693c2b7477910343b6caafeba3ed"></a>FaceLinear&#160;</td><td class="fielddoc"><p>Linear face interpolation. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga6012c66c4b909364fdfaa58954157f75" name="ga6012c66c4b909364fdfaa58954157f75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6012c66c4b909364fdfaa58954157f75">&#9670;&#160;</a></span>FieldLoc</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#ga6012c66c4b909364fdfaa58954157f75">kynema_sgf::FieldLoc</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Possible locations for a field in a structured mesh </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e" name="gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e"></a>CELL&#160;</td><td class="fielddoc"><p>Cell-centered (default) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6012c66c4b909364fdfaa58954157f75a0cc25b606fe928a0c9a58f7f209c4495" name="gga6012c66c4b909364fdfaa58954157f75a0cc25b606fe928a0c9a58f7f209c4495"></a>NODE&#160;</td><td class="fielddoc"><p>Node-centered (e.g., for pressure) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6012c66c4b909364fdfaa58954157f75a51c3bc3d73817cc48bd1a42aa76cd48b" name="gga6012c66c4b909364fdfaa58954157f75a51c3bc3d73817cc48bd1a42aa76cd48b"></a>XFACE&#160;</td><td class="fielddoc"><p>Face-centered in x-direction (e.g., face normal velocity) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6012c66c4b909364fdfaa58954157f75aed363f72ca243318ee54c948cab94805" name="gga6012c66c4b909364fdfaa58954157f75aed363f72ca243318ee54c948cab94805"></a>YFACE&#160;</td><td class="fielddoc"><p>Face-centered in y-direction. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga6012c66c4b909364fdfaa58954157f75a37f44a8aa4feca119902d6930c4c849f" name="gga6012c66c4b909364fdfaa58954157f75a37f44a8aa4feca119902d6930c4c849f"></a>ZFACE&#160;</td><td class="fielddoc"><p>Face-centered in z-direction. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga73fcb43d320747f8ced022629f36af1f" name="ga73fcb43d320747f8ced022629f36af1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga73fcb43d320747f8ced022629f36af1f">&#9670;&#160;</a></span>FieldState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#ga73fcb43d320747f8ced022629f36af1f">kynema_sgf::FieldState</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Possible time states for a given <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> instance</p>
+<p>All defined fields have at least one state, <span class="tt">New</span>, as their default state. For state variables, there are currently two states <span class="tt">New</span> and <span class="tt">Old</span>. <span class="tt">Old</span> . indicates the latest solution and <span class="tt">New</span> indicates the solution at the next timestep the solution will advance to. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga73fcb43d320747f8ced022629f36af1fa06bfddc759bcbdcc8f363807685ee11f" name="gga73fcb43d320747f8ced022629f36af1fa06bfddc759bcbdcc8f363807685ee11f"></a>NP1&#160;</td><td class="fielddoc"><p>Latest state, also aliased to <span class="tt">New</span> </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga73fcb43d320747f8ced022629f36af1fa8d9c307cb7f3c4a32822a51922d1ceaa" name="gga73fcb43d320747f8ced022629f36af1fa8d9c307cb7f3c4a32822a51922d1ceaa"></a>N&#160;</td><td class="fielddoc"><p>Previous state, also aliased to <span class="tt">Old</span> </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga73fcb43d320747f8ced022629f36af1fabf90e680ecd3cfbf725ceb5c8c82634e" name="gga73fcb43d320747f8ced022629f36af1fabf90e680ecd3cfbf725ceb5c8c82634e"></a>NM1&#160;</td><td class="fielddoc"><p>State at <span class="tt">(n - 1)</span> th timestep. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga73fcb43d320747f8ced022629f36af1fa2328beac24e42bfd30c5226cad8e0834" name="gga73fcb43d320747f8ced022629f36af1fa2328beac24e42bfd30c5226cad8e0834"></a>NPH&#160;</td><td class="fielddoc"><p>State at <span class="tt">(n + 1/2)</span> (intermediate) timestep. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga73fcb43d320747f8ced022629f36af1fa116840c962286eda0e4dbed9dfbfa3fc" name="gga73fcb43d320747f8ced022629f36af1fa116840c962286eda0e4dbed9dfbfa3fc"></a>NMH&#160;</td><td class="fielddoc"><p>State at <span class="tt">(n - 1/2)</span> timestep. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e" name="gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e"></a>New&#160;</td><td class="fielddoc"><p>Same as <a class="el" href="#gga73fcb43d320747f8ced022629f36af1fa06bfddc759bcbdcc8f363807685ee11f" title="Latest state, also aliased to New">FieldState::NP1</a>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga73fcb43d320747f8ced022629f36af1fac7268757fbabf48019f4984933539d8a" name="gga73fcb43d320747f8ced022629f36af1fac7268757fbabf48019f4984933539d8a"></a>Old&#160;</td><td class="fielddoc"><p>Same as <a class="el" href="#gga73fcb43d320747f8ced022629f36af1fa8d9c307cb7f3c4a32822a51922d1ceaa" title="Previous state, also aliased to Old">FieldState::N</a>. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

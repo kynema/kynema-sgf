@@ -1,0 +1,748 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::enstrophy::Enstrophy Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::enstrophy::Enstrophy Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1enstrophy_1_1_enstrophy.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="enstrophy-class-reference">
+<h1>Enstrophy Class Reference<a class="headerlink" href="#enstrophy-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::enstrophy::Enstrophy Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1enstrophy.html">enstrophy</a></li><li class="navelem"><a href="classkynema__sgf_1_1enstrophy_1_1_enstrophy.html">Enstrophy</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1enstrophy_1_1_enstrophy-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::enstrophy::Enstrophy Class Reference<div class="ingroups"><a class="el" href="group__utilities.html">Utilities</a> &raquo; <a class="el" href="group__sampling.html">Data-sampling utilities</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_enstrophy_8_h_source.html">Enstrophy.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::enstrophy::Enstrophy:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1enstrophy_1_1_enstrophy__inherit__graph.svg" width="218" height="168"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::enstrophy::Enstrophy:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1enstrophy_1_1_enstrophy__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a92aca1c71728d7a67886c2322ef39dcb" id="r_a92aca1c71728d7a67886c2322ef39dcb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92aca1c71728d7a67886c2322ef39dcb">Enstrophy</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;, std::string)</td></tr>
+<tr class="memitem:acdf449608046cff1edc3b9b75acca9cc" id="r_acdf449608046cff1edc3b9b75acca9cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acdf449608046cff1edc3b9b75acca9cc">~Enstrophy</a> () override</td></tr>
+<tr class="memitem:a7fcdb07150fbd77b95976c8096851f71" id="r_a7fcdb07150fbd77b95976c8096851f71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7fcdb07150fbd77b95976c8096851f71">pre_init_actions</a> () override</td></tr>
+<tr class="memdesc:a7fcdb07150fbd77b95976c8096851f71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform actions before mesh is created.  <br /></td></tr>
+<tr class="memitem:a10c3eba5fa5c09c15a423163ac3d0881" id="r_a10c3eba5fa5c09c15a423163ac3d0881"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10c3eba5fa5c09c15a423163ac3d0881">initialize</a> () override</td></tr>
+<tr class="memdesc:a10c3eba5fa5c09c15a423163ac3d0881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read user inputs and create the different data probe instances.  <br /></td></tr>
+<tr class="memitem:adf8c62ca10b79606d1449656c02ec4f7" id="r_adf8c62ca10b79606d1449656c02ec4f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf8c62ca10b79606d1449656c02ec4f7">post_advance_work</a> () override</td></tr>
+<tr class="memitem:a22a57f4108f3988a3a9390d5aa51053f" id="r_a22a57f4108f3988a3a9390d5aa51053f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22a57f4108f3988a3a9390d5aa51053f">output_actions</a> () override</td></tr>
+<tr class="memitem:a856c5d85405ce804f09998786361ca94" id="r_a856c5d85405ce804f09998786361ca94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a856c5d85405ce804f09998786361ca94">post_regrid_actions</a> () override</td></tr>
+<tr class="memitem:af83d970fde913d8b119a6c254ab7c347" id="r_af83d970fde913d8b119a6c254ab7c347"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af83d970fde913d8b119a6c254ab7c347">calculate_enstrophy</a> ()</td></tr>
+<tr class="memdesc:af83d970fde913d8b119a6c254ab7c347"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculate the L2 norm of a given field and component  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ade9f81bf321f0dc65531eaafaf3c11db" id="r_ade9f81bf321f0dc65531eaafaf3c11db"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade9f81bf321f0dc65531eaafaf3c11db">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ae5943351b9189644a6ba5de4bb6ab8b0" id="r_ae5943351b9189644a6ba5de4bb6ab8b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5943351b9189644a6ba5de4bb6ab8b0">prepare_ascii_file</a> ()</td></tr>
+<tr class="memdesc:ae5943351b9189644a6ba5de4bb6ab8b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">prepare ASCII file and directory  <br /></td></tr>
+<tr class="memitem:a71f846d5b4dfd907c0f3d0dc5ffb2905" id="r_a71f846d5b4dfd907c0f3d0dc5ffb2905"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71f846d5b4dfd907c0f3d0dc5ffb2905">write_ascii</a> ()</td></tr>
+<tr class="memdesc:a71f846d5b4dfd907c0f3d0dc5ffb2905"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output sampled data in ASCII format.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a7daecd2a2d6e79381088ef56bc6f618b" id="r_a7daecd2a2d6e79381088ef56bc6f618b"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7daecd2a2d6e79381088ef56bc6f618b">m_total_enstrophy</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a7daecd2a2d6e79381088ef56bc6f618b"><td class="mdescLeft">&#160;</td><td class="mdescRight">store the total enstrophy  <br /></td></tr>
+<tr class="memitem:aedf87933d5fe60c5fd5f32ff45e845f6" id="r_aedf87933d5fe60c5fd5f32ff45e845f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedf87933d5fe60c5fd5f32ff45e845f6">m_sim</a></td></tr>
+<tr class="memdesc:aedf87933d5fe60c5fd5f32ff45e845f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the CFD sim.  <br /></td></tr>
+<tr class="memitem:a662ddb1d913baa0b9282a0718959c32d" id="r_a662ddb1d913baa0b9282a0718959c32d"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a662ddb1d913baa0b9282a0718959c32d">m_label</a></td></tr>
+<tr class="memitem:a0a189a198acfa0480c064aa1f3f1478d" id="r_a0a189a198acfa0480c064aa1f3f1478d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a189a198acfa0480c064aa1f3f1478d">m_velocity</a></td></tr>
+<tr class="memdesc:a0a189a198acfa0480c064aa1f3f1478d"><td class="mdescLeft">&#160;</td><td class="mdescRight">reference to velocity  <br /></td></tr>
+<tr class="memitem:a00621ef6eb459e0a0d5b1d2ff41f2211" id="r_a00621ef6eb459e0a0d5b1d2ff41f2211"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00621ef6eb459e0a0d5b1d2ff41f2211">m_density</a></td></tr>
+<tr class="memdesc:a00621ef6eb459e0a0d5b1d2ff41f2211"><td class="mdescLeft">&#160;</td><td class="mdescRight">reference to density  <br /></td></tr>
+<tr class="memitem:abe3c383a2a437d5fc7c068d5ff893b26" id="r_abe3c383a2a437d5fc7c068d5ff893b26"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe3c383a2a437d5fc7c068d5ff893b26">m_out_fname</a></td></tr>
+<tr class="memdesc:abe3c383a2a437d5fc7c068d5ff893b26"><td class="mdescLeft">&#160;</td><td class="mdescRight">filename for ASCII output  <br /></td></tr>
+<tr class="memitem:adba12ad14d58f17decdf1da8a887e6eb" id="r_adba12ad14d58f17decdf1da8a887e6eb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adba12ad14d58f17decdf1da8a887e6eb">m_width</a> {22}</td></tr>
+<tr class="memdesc:adba12ad14d58f17decdf1da8a887e6eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">width in ASCII output  <br /></td></tr>
+<tr class="memitem:a864af58952fdfcc27d4aa4284ee7d4ed" id="r_a864af58952fdfcc27d4aa4284ee7d4ed"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a864af58952fdfcc27d4aa4284ee7d4ed">m_precision</a> {12}</td></tr>
+<tr class="memdesc:a864af58952fdfcc27d4aa4284ee7d4ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">precision in ASCII output  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>enstrophy object</p>
+<p>A concrete implementation of the post-processing interface that deals with the total enstrophy </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a92aca1c71728d7a67886c2322ef39dcb" name="a92aca1c71728d7a67886c2322ef39dcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92aca1c71728d7a67886c2322ef39dcb">&#9670;&#160;</a></span>Enstrophy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::enstrophy::Enstrophy::Enstrophy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>label</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acdf449608046cff1edc3b9b75acca9cc" name="acdf449608046cff1edc3b9b75acca9cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdf449608046cff1edc3b9b75acca9cc">&#9670;&#160;</a></span>~Enstrophy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::enstrophy::Enstrophy::~Enstrophy </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="af83d970fde913d8b119a6c254ab7c347" name="af83d970fde913d8b119a6c254ab7c347"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af83d970fde913d8b119a6c254ab7c347">&#9670;&#160;</a></span>calculate_enstrophy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::enstrophy::Enstrophy::calculate_enstrophy </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>calculate the L2 norm of a given field and component </p>
+
+</div>
+</div>
+<a id="ade9f81bf321f0dc65531eaafaf3c11db" name="ade9f81bf321f0dc65531eaafaf3c11db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade9f81bf321f0dc65531eaafaf3c11db">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::enstrophy::Enstrophy::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a10c3eba5fa5c09c15a423163ac3d0881" name="a10c3eba5fa5c09c15a423163ac3d0881"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10c3eba5fa5c09c15a423163ac3d0881">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::enstrophy::Enstrophy::initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read user inputs and create the different data probe instances. </p>
+
+</div>
+</div>
+<a id="a22a57f4108f3988a3a9390d5aa51053f" name="a22a57f4108f3988a3a9390d5aa51053f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22a57f4108f3988a3a9390d5aa51053f">&#9670;&#160;</a></span>output_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::enstrophy::Enstrophy::output_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adf8c62ca10b79606d1449656c02ec4f7" name="adf8c62ca10b79606d1449656c02ec4f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf8c62ca10b79606d1449656c02ec4f7">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::enstrophy::Enstrophy::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a856c5d85405ce804f09998786361ca94" name="a856c5d85405ce804f09998786361ca94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a856c5d85405ce804f09998786361ca94">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::enstrophy::Enstrophy::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7fcdb07150fbd77b95976c8096851f71" name="a7fcdb07150fbd77b95976c8096851f71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fcdb07150fbd77b95976c8096851f71">&#9670;&#160;</a></span>pre_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::enstrophy::Enstrophy::pre_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform actions before mesh is created. </p>
+
+</div>
+</div>
+<a id="ae5943351b9189644a6ba5de4bb6ab8b0" name="ae5943351b9189644a6ba5de4bb6ab8b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5943351b9189644a6ba5de4bb6ab8b0">&#9670;&#160;</a></span>prepare_ascii_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::enstrophy::Enstrophy::prepare_ascii_file </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>prepare ASCII file and directory </p>
+
+</div>
+</div>
+<a id="a71f846d5b4dfd907c0f3d0dc5ffb2905" name="a71f846d5b4dfd907c0f3d0dc5ffb2905"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71f846d5b4dfd907c0f3d0dc5ffb2905">&#9670;&#160;</a></span>write_ascii()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::enstrophy::Enstrophy::write_ascii </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Output sampled data in ASCII format. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a00621ef6eb459e0a0d5b1d2ff41f2211" name="a00621ef6eb459e0a0d5b1d2ff41f2211"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00621ef6eb459e0a0d5b1d2ff41f2211">&#9670;&#160;</a></span>m_density</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::enstrophy::Enstrophy::m_density</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>reference to density </p>
+
+</div>
+</div>
+<a id="a662ddb1d913baa0b9282a0718959c32d" name="a662ddb1d913baa0b9282a0718959c32d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a662ddb1d913baa0b9282a0718959c32d">&#9670;&#160;</a></span>m_label</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string kynema_sgf::enstrophy::Enstrophy::m_label</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Name of this sampling object.</p>
+<p>The label is used to read user inputs from file and is also used for naming files directories depending on the output format. </p>
+
+</div>
+</div>
+<a id="abe3c383a2a437d5fc7c068d5ff893b26" name="abe3c383a2a437d5fc7c068d5ff893b26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe3c383a2a437d5fc7c068d5ff893b26">&#9670;&#160;</a></span>m_out_fname</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::enstrophy::Enstrophy::m_out_fname</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>filename for ASCII output </p>
+
+</div>
+</div>
+<a id="a864af58952fdfcc27d4aa4284ee7d4ed" name="a864af58952fdfcc27d4aa4284ee7d4ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a864af58952fdfcc27d4aa4284ee7d4ed">&#9670;&#160;</a></span>m_precision</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::enstrophy::Enstrophy::m_precision {12}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>precision in ASCII output </p>
+
+</div>
+</div>
+<a id="aedf87933d5fe60c5fd5f32ff45e845f6" name="aedf87933d5fe60c5fd5f32ff45e845f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedf87933d5fe60c5fd5f32ff45e845f6">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::enstrophy::Enstrophy::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reference to the CFD sim. </p>
+
+</div>
+</div>
+<a id="a7daecd2a2d6e79381088ef56bc6f618b" name="a7daecd2a2d6e79381088ef56bc6f618b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7daecd2a2d6e79381088ef56bc6f618b">&#9670;&#160;</a></span>m_total_enstrophy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::enstrophy::Enstrophy::m_total_enstrophy {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>store the total enstrophy </p>
+
+</div>
+</div>
+<a id="a0a189a198acfa0480c064aa1f3f1478d" name="a0a189a198acfa0480c064aa1f3f1478d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a189a198acfa0480c064aa1f3f1478d">&#9670;&#160;</a></span>m_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::enstrophy::Enstrophy::m_velocity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>reference to velocity </p>
+
+</div>
+</div>
+<a id="adba12ad14d58f17decdf1da8a887e6eb" name="adba12ad14d58f17decdf1da8a887e6eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adba12ad14d58f17decdf1da8a887e6eb">&#9670;&#160;</a></span>m_width</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::enstrophy::Enstrophy::m_width {22}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>width in ASCII output </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/<a class="el" href="_enstrophy_8_h_source.html">Enstrophy.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/<a class="el" href="_enstrophy_8cpp.html">Enstrophy.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

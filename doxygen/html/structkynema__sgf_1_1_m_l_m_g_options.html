@@ -1,0 +1,922 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::MLMGOptions Struct Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::MLMGOptions Struct Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/structkynema__sgf_1_1_m_l_m_g_options.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mlmgoptions-struct-reference">
+<h1>MLMGOptions Struct Reference<a class="headerlink" href="#mlmgoptions-struct-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::MLMGOptions Struct Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="structkynema__sgf_1_1_m_l_m_g_options.html">MLMGOptions</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="structkynema__sgf_1_1_m_l_m_g_options-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::MLMGOptions Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_m_l_m_g_options_8_h_source.html">MLMGOptions.H</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::MLMGOptions:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="structkynema__sgf_1_1_m_l_m_g_options__coll__graph.svg" width="270" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a634b7dc1c5fdc820cf47e59bd35b44f5" id="r_a634b7dc1c5fdc820cf47e59bd35b44f5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a634b7dc1c5fdc820cf47e59bd35b44f5">MLMGOptions</a> (const std::string &amp;prefix)</td></tr>
+<tr class="memitem:a3fe5382c485528f7eb84b980814c0f8c" id="r_a3fe5382c485528f7eb84b980814c0f8c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3fe5382c485528f7eb84b980814c0f8c">MLMGOptions</a> (const std::string &amp;default_prefix, const std::string &amp;custom_prefix)</td></tr>
+<tr class="memitem:ad69bad3e9d4ee2d9f569d5e2c57a2de5" id="r_ad69bad3e9d4ee2d9f569d5e2c57a2de5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad69bad3e9d4ee2d9f569d5e2c57a2de5">operator()</a> (amrex::MLMG &amp;)</td></tr>
+<tr class="memitem:ac0357bc4a7e8e2b1e0d66dfd6f23ce4d" id="r_ac0357bc4a7e8e2b1e0d66dfd6f23ce4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0357bc4a7e8e2b1e0d66dfd6f23ce4d">operator()</a> (Hydro::NodalProjector &amp;)</td></tr>
+<tr class="memitem:aef35208456a4398fd2929ffde83c704d" id="r_aef35208456a4398fd2929ffde83c704d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef35208456a4398fd2929ffde83c704d">operator()</a> (Hydro::MacProjector &amp;)</td></tr>
+<tr class="memitem:a7319ac8627a778e0c455329819692366" id="r_a7319ac8627a778e0c455329819692366"><td class="memItemLeft" align="right" valign="top">amrex::LPInfo &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7319ac8627a778e0c455329819692366">lpinfo</a> ()</td></tr>
+<tr class="memdesc:a7319ac8627a778e0c455329819692366"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linear operator options during construction.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ad3e58db098e5bffe5d46cb42d6de7c08" id="r_ad3e58db098e5bffe5d46cb42d6de7c08"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3e58db098e5bffe5d46cb42d6de7c08">max_order</a> {2}</td></tr>
+<tr class="memitem:a1c3939dde9bbbe762fc4455ea0a3392c" id="r_a1c3939dde9bbbe762fc4455ea0a3392c"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c3939dde9bbbe762fc4455ea0a3392c">rel_tol</a> {std::numeric_limits&lt;amrex::Real&gt;::epsilon() * 1.0e5_rt}</td></tr>
+<tr class="memdesc:a1c3939dde9bbbe762fc4455ea0a3392c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relative tolerance for convergence of MLMG solvers.  <br /></td></tr>
+<tr class="memitem:ade777f6427945a2ba16f46b2ad3024c2" id="r_ade777f6427945a2ba16f46b2ad3024c2"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade777f6427945a2ba16f46b2ad3024c2">abs_tol</a> {std::numeric_limits&lt;amrex::Real&gt;::epsilon() * 1.0e2_rt}</td></tr>
+<tr class="memdesc:ade777f6427945a2ba16f46b2ad3024c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Absolute tolerance for convergence checks.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ad3b1dd3220dedf3de30e039403d30c9b" id="r_ad3b1dd3220dedf3de30e039403d30c9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3b1dd3220dedf3de30e039403d30c9b">parse_options</a> (const std::string &amp;)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:abf7665c8c5745cbd9d30732fccf76847" id="r_abf7665c8c5745cbd9d30732fccf76847"><td class="memItemLeft" align="right" valign="top">amrex::LPInfo&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf7665c8c5745cbd9d30732fccf76847">m_lpinfo</a></td></tr>
+<tr class="memdesc:abf7665c8c5745cbd9d30732fccf76847"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linear operator info object.  <br /></td></tr>
+<tr class="memitem:a56b83396cc32588c3652a264e5493dda" id="r_a56b83396cc32588c3652a264e5493dda"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56b83396cc32588c3652a264e5493dda">m_bottom_solver_type</a> {&quot;bicgstab&quot;}</td></tr>
+<tr class="memdesc:a56b83396cc32588c3652a264e5493dda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bottom solver type bicgstab, cg, hypre, etc.  <br /></td></tr>
+<tr class="memitem:aa8a91b32a0af832942184949275cfe1e" id="r_aa8a91b32a0af832942184949275cfe1e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8a91b32a0af832942184949275cfe1e">m_hypre_namespace</a> {&quot;hypre&quot;}</td></tr>
+<tr class="memdesc:aa8a91b32a0af832942184949275cfe1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options namespace for hypre solvers.  <br /></td></tr>
+<tr class="memitem:a3fa3ce9fac92996cd3707965f3570d25" id="r_a3fa3ce9fac92996cd3707965f3570d25"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3fa3ce9fac92996cd3707965f3570d25">m_hypre_interface</a> {&quot;ij&quot;}</td></tr>
+<tr class="memdesc:a3fa3ce9fac92996cd3707965f3570d25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options of hypre interface.  <br /></td></tr>
+<tr class="memitem:a534eda0591a964bf45b7fd549341e60e" id="r_a534eda0591a964bf45b7fd549341e60e"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a534eda0591a964bf45b7fd549341e60e">m_bottom_rel_tol</a></td></tr>
+<tr class="memdesc:a534eda0591a964bf45b7fd549341e60e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relative tolerance for convergence of MLMG solvers.  <br /></td></tr>
+<tr class="memitem:ac843dfb7b74139ef1a1726c93eb116ee" id="r_ac843dfb7b74139ef1a1726c93eb116ee"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac843dfb7b74139ef1a1726c93eb116ee">m_bottom_abs_tol</a></td></tr>
+<tr class="memdesc:ac843dfb7b74139ef1a1726c93eb116ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Absolute tolerance for convergence checks.  <br /></td></tr>
+<tr class="memitem:a2beb5aa4615f743e964bfcda21c2945e" id="r_a2beb5aa4615f743e964bfcda21c2945e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2beb5aa4615f743e964bfcda21c2945e">m_verbose</a> {0}</td></tr>
+<tr class="memitem:ae27af96ba7bb93bfa6909f59d6e66e5d" id="r_ae27af96ba7bb93bfa6909f59d6e66e5d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae27af96ba7bb93bfa6909f59d6e66e5d">m_max_iter</a> {200}</td></tr>
+<tr class="memitem:abdbd9544c3f1ba5c21f6f3b0d31d73ef" id="r_abdbd9544c3f1ba5c21f6f3b0d31d73ef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdbd9544c3f1ba5c21f6f3b0d31d73ef">m_max_fmg_iters</a> {0}</td></tr>
+<tr class="memitem:ab84017aaad128a38278799fcf0843e87" id="r_ab84017aaad128a38278799fcf0843e87"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab84017aaad128a38278799fcf0843e87">m_num_pre_smooth</a> {2}</td></tr>
+<tr class="memitem:a81201090f5845e415937cb4cd2a40584" id="r_a81201090f5845e415937cb4cd2a40584"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81201090f5845e415937cb4cd2a40584">m_num_post_smooth</a> {2}</td></tr>
+<tr class="memitem:ac601b0944a510ef0bd7738558803e48f" id="r_ac601b0944a510ef0bd7738558803e48f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac601b0944a510ef0bd7738558803e48f">m_num_final_smooth</a> {8}</td></tr>
+<tr class="memitem:a1a74fbbb9b8aca627a403312de7957a2" id="r_a1a74fbbb9b8aca627a403312de7957a2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a74fbbb9b8aca627a403312de7957a2">m_num_bottom_smooth</a> {0}</td></tr>
+<tr class="memitem:af0863496b58bbc9f219ba3292754b8d6" id="r_af0863496b58bbc9f219ba3292754b8d6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0863496b58bbc9f219ba3292754b8d6">m_bottom_verbose</a> {0}</td></tr>
+<tr class="memitem:a52baf5344b205cd33e9207b1698d1114" id="r_a52baf5344b205cd33e9207b1698d1114"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52baf5344b205cd33e9207b1698d1114">m_bottom_max_iter</a> {200}</td></tr>
+<tr class="memdesc:a52baf5344b205cd33e9207b1698d1114"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum iterations for the bottom solver.  <br /></td></tr>
+<tr class="memitem:ab0d44af33ccb3171f713def72e23db5f" id="r_ab0d44af33ccb3171f713def72e23db5f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0d44af33ccb3171f713def72e23db5f">m_do_fixed_iters</a> {true}</td></tr>
+<tr class="memdesc:ab0d44af33ccb3171f713def72e23db5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set to true, AMReX won't abort if linear solver doesn't converge within max iterations.  <br /></td></tr>
+<tr class="memitem:af0299f78920f099090dc3e9c1d52ca6b" id="r_af0299f78920f099090dc3e9c1d52ca6b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0299f78920f099090dc3e9c1d52ca6b">m_do_nsolve</a> {false}</td></tr>
+<tr class="memdesc:af0299f78920f099090dc3e9c1d52ca6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">option to use the nsolve bottom solver added to help with overset masking  <br /></td></tr>
+<tr class="memitem:ae14f4b8adacd4445280b987e8161956f" id="r_ae14f4b8adacd4445280b987e8161956f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae14f4b8adacd4445280b987e8161956f">m_nsolve_grid_size</a> {16}</td></tr>
+<tr class="memdesc:ae14f4b8adacd4445280b987e8161956f"><td class="mdescLeft">&#160;</td><td class="mdescRight">set grid size for nsolve  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interface to control the behavior of AMReX LinearSolvers</p>
+<p><a class="el" href="structkynema__sgf_1_1_m_l_m_g_options.html">MLMGOptions</a> provides a unified interface to set options to the linear operator object, MLMG solver, external solvers (e.g., hypre), as well as MacProjector and NodalProjector objects. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a634b7dc1c5fdc820cf47e59bd35b44f5" name="a634b7dc1c5fdc820cf47e59bd35b44f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a634b7dc1c5fdc820cf47e59bd35b44f5">&#9670;&#160;</a></span>MLMGOptions() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::MLMGOptions::MLMGOptions </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>prefix</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Parse user options with a given prefix</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prefix</td><td>Prefix used to parse user inputs, e.g., mac_proj </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3fe5382c485528f7eb84b980814c0f8c" name="a3fe5382c485528f7eb84b980814c0f8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fe5382c485528f7eb84b980814c0f8c">&#9670;&#160;</a></span>MLMGOptions() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::MLMGOptions::MLMGOptions </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>default_prefix</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>custom_prefix</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Parse options in two stages</p>
+<p>This constructor parses the default options from <span class="tt">default_prefix</span> and then overrides certain options based on a custom prefix.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">default_prefix</td><td>Namespace for default options </td></tr>
+    <tr><td class="paramname">custom_prefix</td><td>Namespace for override options </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a7319ac8627a778e0c455329819692366" name="a7319ac8627a778e0c455329819692366"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7319ac8627a778e0c455329819692366">&#9670;&#160;</a></span>lpinfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::LPInfo &amp; kynema_sgf::MLMGOptions::lpinfo </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Linear operator options during construction. </p>
+
+</div>
+</div>
+<a id="ad69bad3e9d4ee2d9f569d5e2c57a2de5" name="ad69bad3e9d4ee2d9f569d5e2c57a2de5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad69bad3e9d4ee2d9f569d5e2c57a2de5">&#9670;&#160;</a></span>operator()() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::MLMGOptions::operator() </td>
+          <td>(</td>
+          <td class="paramtype">amrex::MLMG &amp;</td>          <td class="paramname"><span class="paramname"><em>mlmg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef35208456a4398fd2929ffde83c704d" name="aef35208456a4398fd2929ffde83c704d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef35208456a4398fd2929ffde83c704d">&#9670;&#160;</a></span>operator()() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::MLMGOptions::operator() </td>
+          <td>(</td>
+          <td class="paramtype">Hydro::MacProjector &amp;</td>          <td class="paramname"><span class="paramname"><em>mac_proj</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac0357bc4a7e8e2b1e0d66dfd6f23ce4d" name="ac0357bc4a7e8e2b1e0d66dfd6f23ce4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0357bc4a7e8e2b1e0d66dfd6f23ce4d">&#9670;&#160;</a></span>operator()() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::MLMGOptions::operator() </td>
+          <td>(</td>
+          <td class="paramtype">Hydro::NodalProjector &amp;</td>          <td class="paramname"><span class="paramname"><em>nodal_proj</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad3b1dd3220dedf3de30e039403d30c9b" name="ad3b1dd3220dedf3de30e039403d30c9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3b1dd3220dedf3de30e039403d30c9b">&#9670;&#160;</a></span>parse_options()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::MLMGOptions::parse_options </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>prefix</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="ade777f6427945a2ba16f46b2ad3024c2" name="ade777f6427945a2ba16f46b2ad3024c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade777f6427945a2ba16f46b2ad3024c2">&#9670;&#160;</a></span>abs_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MLMGOptions::abs_tol {std::numeric_limits&lt;amrex::Real&gt;::epsilon() * 1.0e2_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Absolute tolerance for convergence checks. </p>
+
+</div>
+</div>
+<a id="ac843dfb7b74139ef1a1726c93eb116ee" name="ac843dfb7b74139ef1a1726c93eb116ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac843dfb7b74139ef1a1726c93eb116ee">&#9670;&#160;</a></span>m_bottom_abs_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MLMGOptions::m_bottom_abs_tol</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{</div>
+<div class="line">        std::numeric_limits&lt;amrex::Real&gt;::epsilon() * 1.0e4_rt}</div>
+</div><!-- fragment -->
+<p>Absolute tolerance for convergence checks. </p>
+
+</div>
+</div>
+<a id="a52baf5344b205cd33e9207b1698d1114" name="a52baf5344b205cd33e9207b1698d1114"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52baf5344b205cd33e9207b1698d1114">&#9670;&#160;</a></span>m_bottom_max_iter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::MLMGOptions::m_bottom_max_iter {200}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Maximum iterations for the bottom solver. </p>
+
+</div>
+</div>
+<a id="a534eda0591a964bf45b7fd549341e60e" name="a534eda0591a964bf45b7fd549341e60e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a534eda0591a964bf45b7fd549341e60e">&#9670;&#160;</a></span>m_bottom_rel_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MLMGOptions::m_bottom_rel_tol</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{</div>
+<div class="line">        std::numeric_limits&lt;amrex::Real&gt;::epsilon() * 1.0e12_rt}</div>
+</div><!-- fragment -->
+<p>Relative tolerance for convergence of MLMG solvers. </p>
+
+</div>
+</div>
+<a id="a56b83396cc32588c3652a264e5493dda" name="a56b83396cc32588c3652a264e5493dda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56b83396cc32588c3652a264e5493dda">&#9670;&#160;</a></span>m_bottom_solver_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::MLMGOptions::m_bottom_solver_type {&quot;bicgstab&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bottom solver type bicgstab, cg, hypre, etc. </p>
+
+</div>
+</div>
+<a id="af0863496b58bbc9f219ba3292754b8d6" name="af0863496b58bbc9f219ba3292754b8d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0863496b58bbc9f219ba3292754b8d6">&#9670;&#160;</a></span>m_bottom_verbose</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::MLMGOptions::m_bottom_verbose {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set verbosity for AMReX bottom solvers</p>
+<p>When using hypre as the bottom solver, this option is not passed to hypre. Instead user must set <span class="tt">hypre.verbose</span> to control the hypre solver verbosity and <span class="tt">hypre.bamg_verbose</span> to control BoomerAMG verbosity (when used as a preconditioner). </p>
+
+</div>
+</div>
+<a id="ab0d44af33ccb3171f713def72e23db5f" name="ab0d44af33ccb3171f713def72e23db5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0d44af33ccb3171f713def72e23db5f">&#9670;&#160;</a></span>m_do_fixed_iters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::MLMGOptions::m_do_fixed_iters {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If set to true, AMReX won't abort if linear solver doesn't converge within max iterations. </p>
+
+</div>
+</div>
+<a id="af0299f78920f099090dc3e9c1d52ca6b" name="af0299f78920f099090dc3e9c1d52ca6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0299f78920f099090dc3e9c1d52ca6b">&#9670;&#160;</a></span>m_do_nsolve</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::MLMGOptions::m_do_nsolve {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>option to use the nsolve bottom solver added to help with overset masking </p>
+
+</div>
+</div>
+<a id="a3fa3ce9fac92996cd3707965f3570d25" name="a3fa3ce9fac92996cd3707965f3570d25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fa3ce9fac92996cd3707965f3570d25">&#9670;&#160;</a></span>m_hypre_interface</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::MLMGOptions::m_hypre_interface {&quot;ij&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Options of hypre interface. </p>
+
+</div>
+</div>
+<a id="aa8a91b32a0af832942184949275cfe1e" name="aa8a91b32a0af832942184949275cfe1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8a91b32a0af832942184949275cfe1e">&#9670;&#160;</a></span>m_hypre_namespace</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::MLMGOptions::m_hypre_namespace {&quot;hypre&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Options namespace for hypre solvers. </p>
+
+</div>
+</div>
+<a id="abf7665c8c5745cbd9d30732fccf76847" name="abf7665c8c5745cbd9d30732fccf76847"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf7665c8c5745cbd9d30732fccf76847">&#9670;&#160;</a></span>m_lpinfo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::LPInfo kynema_sgf::MLMGOptions::m_lpinfo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Linear operator info object. </p>
+
+</div>
+</div>
+<a id="abdbd9544c3f1ba5c21f6f3b0d31d73ef" name="abdbd9544c3f1ba5c21f6f3b0d31d73ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdbd9544c3f1ba5c21f6f3b0d31d73ef">&#9670;&#160;</a></span>m_max_fmg_iters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::MLMGOptions::m_max_fmg_iters {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae27af96ba7bb93bfa6909f59d6e66e5d" name="ae27af96ba7bb93bfa6909f59d6e66e5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae27af96ba7bb93bfa6909f59d6e66e5d">&#9670;&#160;</a></span>m_max_iter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::MLMGOptions::m_max_iter {200}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae14f4b8adacd4445280b987e8161956f" name="ae14f4b8adacd4445280b987e8161956f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae14f4b8adacd4445280b987e8161956f">&#9670;&#160;</a></span>m_nsolve_grid_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::MLMGOptions::m_nsolve_grid_size {16}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>set grid size for nsolve </p>
+
+</div>
+</div>
+<a id="a1a74fbbb9b8aca627a403312de7957a2" name="a1a74fbbb9b8aca627a403312de7957a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a74fbbb9b8aca627a403312de7957a2">&#9670;&#160;</a></span>m_num_bottom_smooth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::MLMGOptions::m_num_bottom_smooth {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac601b0944a510ef0bd7738558803e48f" name="ac601b0944a510ef0bd7738558803e48f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac601b0944a510ef0bd7738558803e48f">&#9670;&#160;</a></span>m_num_final_smooth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::MLMGOptions::m_num_final_smooth {8}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a81201090f5845e415937cb4cd2a40584" name="a81201090f5845e415937cb4cd2a40584"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81201090f5845e415937cb4cd2a40584">&#9670;&#160;</a></span>m_num_post_smooth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::MLMGOptions::m_num_post_smooth {2}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab84017aaad128a38278799fcf0843e87" name="ab84017aaad128a38278799fcf0843e87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab84017aaad128a38278799fcf0843e87">&#9670;&#160;</a></span>m_num_pre_smooth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::MLMGOptions::m_num_pre_smooth {2}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2beb5aa4615f743e964bfcda21c2945e" name="a2beb5aa4615f743e964bfcda21c2945e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2beb5aa4615f743e964bfcda21c2945e">&#9670;&#160;</a></span>m_verbose</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::MLMGOptions::m_verbose {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Verbosity of the MLMG and Projector interfaces </p>
+
+</div>
+</div>
+<a id="ad3e58db098e5bffe5d46cb42d6de7c08" name="ad3e58db098e5bffe5d46cb42d6de7c08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3e58db098e5bffe5d46cb42d6de7c08">&#9670;&#160;</a></span>max_order</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::MLMGOptions::max_order {2}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1c3939dde9bbbe762fc4455ea0a3392c" name="a1c3939dde9bbbe762fc4455ea0a3392c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c3939dde9bbbe762fc4455ea0a3392c">&#9670;&#160;</a></span>rel_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MLMGOptions::rel_tol {std::numeric_limits&lt;amrex::Real&gt;::epsilon() * 1.0e5_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Relative tolerance for convergence of MLMG solvers. </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/core/<a class="el" href="_m_l_m_g_options_8_h_source.html">MLMGOptions.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/core/<a class="el" href="_m_l_m_g_options_8cpp.html">MLMGOptions.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,896 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theory Manual &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Mapping definition" href="mapping.html" />
+    <link rel="prev" title="Tools reference" href="../user/tools.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user.html">User Manual</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Theory Manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#governing-equations">Governing equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#discretization">Discretization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#time-step-godunov">Time Step – Godunov</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#solving-physics-on-a-stretched-amrex-mesh">Solving physics on a stretched AMReX mesh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mapping.html">Mapping definition</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#multiphase-flow-modeling">Multiphase flow modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#source-terms">Source terms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gravity-forcing">Gravity Forcing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mesoscale-forcing">Mesoscale Forcing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#actuator-forcing">Actuator Forcing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#turbulence-models">Turbulence Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rans-models">RANS models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#axell-one-equation-rans-model">Axell One-Equation RANS Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#les-models-for-subgrid-scales">LES models for subgrid scales</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#smagorinsky-model">Smagorinsky model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#amdnotherm-model">AMDNoTherm model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#amd-model-for-abl">AMD model (for ABL)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#non-linear-sub-grid-scale-model">Non-linear Sub-grid Scale Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#wall-models">Wall models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#monin-obukhov-similarity-theory">Monin-Obukhov Similarity Theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#log-law-wall-model">Log-law wall model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#constant-stress-model">Constant stress model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schumann-model">Schumann model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#symmetric-wall-boundary">Symmetric wall boundary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-wall-model-wave-model">Dynamic wall model (Wave model)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#terrain-model">Terrain Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#forest-model">Forest Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#turbine-models">Turbine models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#actuator-disk-model">Actuator disk model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#actuator-line-model">Actuator line model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Theory Manual</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/theory/theory.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="theory-manual">
+<h1>Theory Manual<a class="headerlink" href="#theory-manual" title="Link to this heading"></a></h1>
+<section id="governing-equations">
+<span id="id1"></span><h2>Governing equations<a class="headerlink" href="#governing-equations" title="Link to this heading"></a></h2>
+<p>AMR-wind solves the LES formulation of the incompressible Navier-Stokes
+equations with additional source terms and a transport equation for potential
+temperature to model atmospheric boundary layer flows. With
+<span class="math notranslate nohighlight">\(\widetilde{.}\)</span> denoting the spatial filtering operator, the governing
+equations in Cartesian coordinates using Einstein notation are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+  \frac{\partial \widetilde{u_j}}{\partial x_j} &amp; = 0,\label{eqn:ns-les-cont}\\
+  \frac{\partial \widetilde{u_i}}{\partial t} +
+  \frac{\partial \widetilde{u_i} \widetilde{u_j}}{\partial x_j} &amp;=
+  - \frac{1}{\rho}{\frac{\partial \widetilde{p}}{\partial x_i}}
+  - {\frac{\partial \tau_{ij}}{\partial x_j} }
+  + \nu \frac{\partial^2 \widetilde{u_i}}{\partial x_j \partial x_j}
+  + {C_i}
+  + {B_i}
+  + {F_{i}},\label{eqn:ns-les-mom}\\
+  \frac{\partial \widetilde{\theta}}{\partial t} +
+  \frac{\partial \widetilde{u_j} \widetilde{\theta}}{\partial x_j} &amp;=
+  - \frac{\partial \tau_{\theta j}}{\partial x_j} + \frac{\nu}{\mathrm{Pr}} \frac{\partial^2 \widetilde{\theta}}{\partial x_j \partial x_j}, \label{eqn:pot-temp-les}
+\end{aligned}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(x_i\)</span> denotes the coordinate in direction <span class="math notranslate nohighlight">\(i\)</span>,
+<span class="math notranslate nohighlight">\(\widetilde{u_i}\)</span> is the filtered velocity, <span class="math notranslate nohighlight">\(\widetilde{p}\)</span> is the
+pressure, and <span class="math notranslate nohighlight">\(\widetilde{\theta}\)</span> is potential temperature; <span class="math notranslate nohighlight">\(\nu\)</span>
+is the molecular viscosity and Pr is the laminar Prandtl number;
+<span class="math notranslate nohighlight">\(\tau_{ij}\)</span> and <span class="math notranslate nohighlight">\(\tau_{\theta j}\)</span> are the subgrid stress and
+heat flux terms, representing the interaction with the unresolved
+quantities, defined as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \tau_{ij} &amp;= \widetilde{u_i u_j} - \widetilde{u_i}\widetilde{u_j} \\
+    \tau_{\theta j} &amp;= \widetilde{\theta u_j} - \widetilde{\theta}\widetilde{u_j}.
+\end{aligned}\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(C_i\)</span> is the contribution of the Coriolis forces due to Earth’s
+rotation and is modeled as</p>
+<div class="math notranslate nohighlight">
+\[C_i = -2 \epsilon_{ijk}\Omega_j{u_k},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Omega_j\)</span> is the Earth’s angular velocity. <span class="math notranslate nohighlight">\(B_i\)</span> is
+the buoyancy term, modeled using a Boussinesq approximation as</p>
+<div class="math notranslate nohighlight">
+\[B_i = -g_i \beta \left( \theta - \theta_0 \right),\]</div>
+<p>where <span class="math notranslate nohighlight">\(\theta_0\)</span> is the reference ambient temperature,
+<span class="math notranslate nohighlight">\(\beta\)</span> is thermal expansion coefficient, approximated as
+<span class="math notranslate nohighlight">\(\beta \approx 1 / \theta_0\)</span>, and <span class="math notranslate nohighlight">\(g_i\)</span> is the gravity
+vector. Through this model, the density <span class="math notranslate nohighlight">\(\rho\)</span> is constant and
+uniform in the governing equations. <span class="math notranslate nohighlight">\(F_i\)</span> represents other force
+terms that may be applied in a simulation. This includes geostrophic
+forcing, which drives the flow to a desired horizontal mean velocity.
+<span class="math notranslate nohighlight">\(F_i\)</span> also includes the forces introduced by turbines via actuator
+methods.</p>
+<p>For ease of notation, other parts of this documentation will drop the
+explicit use of filtering operator <span class="math notranslate nohighlight">\(\widetilde{.}\)</span> with the understanding
+that the discussion is on the filtered quantities. Additionally, the notation
+<span class="math notranslate nohighlight">\((x,y,z) = (x_1, x_2, x_3)\)</span> and <span class="math notranslate nohighlight">\((u,v,w) = (u_1, u_2, u_3)\)</span>,
+will be used to denote the coordinate directions and velocity components in the
+corresponding directions.</p>
+</section>
+<section id="discretization">
+<span id="id2"></span><h2>Discretization<a class="headerlink" href="#discretization" title="Link to this heading"></a></h2>
+<p>The numerical methodology used to solve the partial differential
+equations (PDEs) within Kynema-SGF is documented in <a class="reference external" href="https://ccse.lbl.gov/Publications/almgren/abchw.pdf">Almgren et
+al. (JCP 1998)</a>. Kynema-SGF uses
+<a class="reference external" href="https://amrex-fluids.github.io/amrex-hydro/docs_html/Schemes.html">AMReX-Hydro</a>
+for many advection routines. The reader is referred to their
+documentation for implementation details.</p>
+<section id="time-step-godunov">
+<h3>Time Step – Godunov<a class="headerlink" href="#time-step-godunov" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Define <span class="math notranslate nohighlight">\(U^{MAC,n+1/2}\)</span>, the MAC velocity which is used for advection. This velocity is interpolated to the cell faces and extrapolated forward in time using a Taylor expansion. Then it is projected to form a divergence-free velocity field.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}u_f^{n+1/2} = u^n \pm \frac{\Delta x}{2}\frac{\partial u}{\partial x} &amp;-
+\frac{\Delta t}{2}\left(u^n \frac{\partial u}{\partial x}
++ v^n \frac{\partial u}{\partial y} + w^n \frac{\partial u}{\partial z}\right)
+\\ &amp;+
+\frac{\Delta t}{2}\left(g + \frac{1}{\rho^n}\left(
+-\frac{\partial p^{n-1/2}}{\partial x} + \mu\nabla^2u^n\right) \right)\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\nabla \cdot \frac{\nabla \phi}{\rho^n} = \nabla \cdot \boldsymbol{u}_f^{n+1/2}\]</div>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{U}^{MAC,n+1/2} = \boldsymbol{u}_f^{n+1/2} - \frac{\nabla \phi}{\rho^n}\]</div>
+<ul class="simple">
+<li><p>Time discretization of momentum governing equation</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>The time step goes from <span class="math notranslate nohighlight">\(n\)</span> to <span class="math notranslate nohighlight">\(n+1\)</span> with the right-hand-side at <span class="math notranslate nohighlight">\(n+1/2\)</span>.</p></li>
+<li><p>The time discretization of <span class="math notranslate nohighlight">\(\boldsymbol{\tau}\)</span> depends on the method chosen to compute diffusion.</p></li>
+</ul>
+</div></blockquote>
+<div class="math notranslate nohighlight">
+\[\begin{split}(\rho \boldsymbol{U})^{n+1} = (\rho \boldsymbol{U})^n &amp;-
+\Delta t \left( \nabla \cdot (\rho \boldsymbol{U} \otimes \boldsymbol{U}^{MAC})^{n+1/2}
++ \nabla {p}^{n+1/2} \right) \\ &amp;+
+\Delta t \left( \nabla \cdot \boldsymbol{\tau} + \rho^{n+1/2} g \right)\end{split}\]</div>
+<ul class="simple">
+<li><p>Partition the discretized equation into two steps, the Predictor and Applying the Projection. The predicted state, <span class="math notranslate nohighlight">\(\ast\)</span>, is an approximation to the new-time state, <span class="math notranslate nohighlight">\(n+1\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}(\rho \boldsymbol{U})^{\ast} = (\rho \boldsymbol{U})^n &amp;-
+\Delta t \left( \nabla \cdot (\rho \boldsymbol{U} \otimes \boldsymbol{U}^{MAC})^{n+1/2}
++ \nabla {p}^{n-1/2} \right) \\ &amp;+
+\Delta t \left( \nabla \cdot \boldsymbol{\tau} + \rho^{n+1/2} g \right)\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[(\rho\boldsymbol{U})^{n+1} = (\rho\boldsymbol{U})^{\ast} + \Delta t \nabla p^{n-1/2} - \Delta t \nabla p^{n+1/2}\]</div>
+<ul class="simple">
+<li><p>In order to calculate <span class="math notranslate nohighlight">\(\rho \boldsymbol{U}^{n+1/2}\)</span> within the advection term, the momentum must be interpolated to the faces and extrapolated forward in time a half step, similar to the face velocities involved in the MAC projection. To do this for the momentum, the routine uses the momentum, pressure gradients, source terms, and diffusion terms at <span class="math notranslate nohighlight">\(n\)</span>, as well as <span class="math notranslate nohighlight">\(\boldsymbol{U}^{MAC,n+1/2}\)</span>.</p></li>
+<li><p>In the case of variable density single-phase or multiphase simulations, the density at <span class="math notranslate nohighlight">\(n+1\)</span> is found using separate scalar equations, which are solved during the predictor step. Because density has no projection step,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\rho^{n+1} = \rho^{\ast}.\]</div>
+<p>Therefore, the equation that applies the new pressure gradient becomes</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{U}^{n+1} = \boldsymbol{U}^{\ast} + \frac{1}{\rho^{n+1}}\left(\Delta t \nabla p^{n-1/2} - \Delta t \nabla p^{n+1/2}\right)\]</div>
+<ul class="simple">
+<li><p>The pressure gradient at <span class="math notranslate nohighlight">\(n+1/2\)</span> is found by solving the projection</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\nabla \cdot \frac{1}{\rho^{n+1}} \nabla p^{n+1/2} = \nabla \cdot \left( \frac{1}{\Delta t}
+\boldsymbol{U}^{\ast}+ \frac{1}{\rho^{n+1}} \nabla {p}^{n-1/2} \right)\]</div>
+</section>
+</section>
+<section id="solving-physics-on-a-stretched-amrex-mesh">
+<h2>Solving physics on a stretched AMReX mesh<a class="headerlink" href="#solving-physics-on-a-stretched-amrex-mesh" title="Link to this heading"></a></h2>
+<p>Often for simulations involving walls, (e.g., channel flows, complex terrains etc.) it is desirable to have finer mesh near the wall which gradually coarsens only in the wall-normal direction. Consequently, modifications within Kynema-SGF are underway to support solving a non-uniformly spaced mesh while still using most of AMReX’s machinery directed at uniformly-spaced Cartesian meshes. The governing equations solved on a non-uniform stretched mesh are further explained below -</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">Mapping definition</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mapping.html#handy-identities">Handy identities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping.html#governing-equations-in-stretched-mesh-space">Governing equations in stretched mesh space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping.html#mac-projection">MAC Projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping.html#nodal-projection">Nodal Projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping.html#initial-conditions-computing-the-timestep">Initial conditions &amp; computing the timestep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping.html#exceptions-to-the-current-implementation">Exceptions to the current implementation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="multiphase-flow-modeling">
+<span id="multiphase"></span><h2>Multiphase flow modeling<a class="headerlink" href="#multiphase-flow-modeling" title="Link to this heading"></a></h2>
+<p>Kynema-SGF employs the volume-of-fluid method for simulating two-phase (water-air) flows.
+More specifically, the volume fraction field is advected explicitly using a
+directional split geometric approach, and the advection of momentum is
+discretized in a mass-consistent manner. Overall, this approach conserves mass
+and momentum while remaining stable at high density ratios (typically 1000).
+Viscosities can be specified for each fluid independently, but surface tension
+is not modeled by Kynema-SGF currently. For further detail, see
+<a class="reference external" href="https://doi.org/10.1016/j.compfluid.2022.105770">Kuhn, Deskos, Sprague (Computers &amp; Fluids 2023)</a>.</p>
+</section>
+<section id="source-terms">
+<span id="id3"></span><h2>Source terms<a class="headerlink" href="#source-terms" title="Link to this heading"></a></h2>
+<section id="gravity-forcing">
+<h3>Gravity Forcing<a class="headerlink" href="#gravity-forcing" title="Link to this heading"></a></h3>
+<p>The implementation of this source term allows the user to choose the full gravity term (<span class="math notranslate nohighlight">\(\rho g\)</span>) or a perturbational form (<span class="math notranslate nohighlight">\((\rho - \rho_0) g\)</span>). By default, the full term is used, but the perturbational form can be turned on by adding <code class="docutils literal notranslate"><span class="pre">ICNS.use_perturb_pressure</span> <span class="pre">=</span> <span class="pre">true</span></code> to the input file.</p>
+<p>The reference density (<span class="math notranslate nohighlight">\(\rho_0\)</span>) is defined as <code class="docutils literal notranslate"><span class="pre">1.0</span></code> by default, can be defined as a constant through the input argument, <code class="docutils literal notranslate"><span class="pre">incflo.density</span></code>, or can be defined as a spatially varying field within the flow setup (see physics/multiphase/Multiphase.cpp).</p>
+<p>Using the perturbational form implies that the hydrostatic pressure is removed from the pressure variable, including its output. This means that the solution to the Poisson equation is actually the perturbational pressure, <span class="math notranslate nohighlight">\(p'\)</span>, not <span class="math notranslate nohighlight">\(p\)</span>. If the full pressure, <span class="math notranslate nohighlight">\(p\)</span>, is desired for analysis or postprocessing purposes, the hydrostatic pressure can be added back to the pressure field via the input argument <code class="docutils literal notranslate"><span class="pre">ICNS.reconstruct_true_pressure</span> <span class="pre">=</span> <span class="pre">true</span></code>. In order for this to operate in the code, the reference pressure field must be defined for the specific flow case being run.</p>
+<ul class="simple">
+<li><p>An example of this is in physics/multiphase/Multiphase.cpp. To construct the reference pressure field, the reference gravity term must be integrated. This particular example assumes that the reference density only varies in z (or is constant), gravity acts only in z, and the hydrostatic pressure at the high z boundary is equal to 0.</p></li>
+<li><p>In mathematical form, the derivation and calculation of the full pressure is as follows:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\nabla p = \nabla p' + \rho_0 \boldsymbol{g}\]</div>
+<ul class="simple">
+<li><p>assume <span class="math notranslate nohighlight">\(\boldsymbol{g} = g\hat{k}\)</span> and <span class="math notranslate nohighlight">\(\frac{dp_0}{dz} = g\hat{k}\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[p = p' + \int_{z_{min}}^z \rho_0 g dz + p(z = z_{min})\]</div>
+<ul class="simple">
+<li><p>change reference frame to the top boundary, and assume <span class="math notranslate nohighlight">\(p(z = z_{max}) = 0\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[p = p' - \int_z^{z_{max}} \rho_0 g dz + p(z = z_{max}) = p' - \int_z^{z_{max}} \rho_0 g dz\]</div>
+</section>
+<section id="mesoscale-forcing">
+<span id="id4"></span><h3>Mesoscale Forcing<a class="headerlink" href="#mesoscale-forcing" title="Link to this heading"></a></h3>
+<p>To incorporate larger-scale atmospheric dynamics under real conditions,
+Kynema-SGF offers two approaches. If mesoscale momentum and/or temperature
+source terms are known exactly, e.g., from a numerical weather prediction (NWP)
+model, then these may be directly applied. These mesoscale source terms would
+come from the RHS of the mesoscale equations of motion and may also include the
+effects of additional modeled physics such as radiation or moisture. This
+mesoscale forcing approach is called the “tendencies” (or “mesoscale budget
+components”) approach. For more information, see <a class="reference external" href="https://doi.org/10.1007/s10546-020-00584-z">Draxl et al. (BLM 2021)</a></p>
+<p>If the mesoscale source terms are not known a priori, they may be derived on
+the fly with a profile assimilation technique. This is an engineering approach
+that applies a proportional controller to drive the instantaneous planar
+averaged wind and/or temperature profiles towards known time–height data. This
+approach can be used with NWP model output or observational data. For more
+information, see <a class="reference external" href="https://doi.org/10.1007/s10546-020-00538-5">Allaerts et al. (BLM 2020)</a></p>
+<p>The application of these forcing approaches is detailed <a class="reference internal" href="../user/inputs_ABL_meso_forcing.html#inputs-meso-forcing"><span class="std std-ref">here</span></a>.</p>
+</section>
+<section id="actuator-forcing">
+<h3>Actuator Forcing<a class="headerlink" href="#actuator-forcing" title="Link to this heading"></a></h3>
+<p>Calculating actuator forces relies on sampling the velocity field at actuator points
+at the beginning of each time step (<em>n</em>). Actuator-based models, i.e., actuator lines
+and actuator disks, rely on internal implementations (e.g., Joukowsky disk, actuator-line wing)
+or external turbine tools (OpenFAST) that use these sampled velocities to calculate forces
+and the motion of actuator points.
+When the Godunov method is used, the motion of actuator points must be incorporated
+into the application of actuator forces. This is because the Godunov method discretizes source terms
+at the half time step (<em>n+1/2</em>). Therefore, the actuator force vectors are calculated using
+fluid velocities at <em>n</em>, and these actuator forces are applied at locations corresponding
+to <em>n+1/2</em>.</p>
+</section>
+</section>
+<section id="turbulence-models">
+<span id="turbulence"></span><h2>Turbulence Models<a class="headerlink" href="#turbulence-models" title="Link to this heading"></a></h2>
+<section id="rans-models">
+<h3>RANS models<a class="headerlink" href="#rans-models" title="Link to this heading"></a></h3>
+<p>The RANS models are available in two flavors: wall-modeled and wall-resolved. The former model is
+designed for cases with <span class="math notranslate nohighlight">\(y+ &gt; 30\)</span> while the latter requires <span class="math notranslate nohighlight">\(y+ &lt; 5\)</span>. The wall-modeled RANS
+model available in Kynema-SGF is based on the work of <a class="reference external" href="https://link.springer.com/article/10.1023/A:1011560202388">Axell and Liungman (EFM 2001 )</a>.
+The code also includes Menter’s K-Omega SST model with IDDES support.</p>
+<section id="axell-one-equation-rans-model">
+<h4>Axell One-Equation RANS Model<a class="headerlink" href="#axell-one-equation-rans-model" title="Link to this heading"></a></h4>
+<p>The one-equation model solves the transport equation for turbulent kinetic energy (TKE). The length scale is computed using algebraic equations.
+The transport equation for TKE is given by:</p>
+<div class="math notranslate nohighlight">
+\[\frac{ \partial (\rho k)}{\partial t}
++ \nabla \cdot (\rho U k)  =  P_s + P_b - \epsilon + D\]</div>
+<p>Here <span class="math notranslate nohighlight">\(P_s\)</span> is the shear production term, <span class="math notranslate nohighlight">\(P_b\)</span> is the buoyancy production/destruction term, <span class="math notranslate nohighlight">\(\epsilon\)</span> is the turbulent dissipation
+rate and <span class="math notranslate nohighlight">\(D\)</span> is the turbulent diffusion term. These terms are computed as follows</p>
+<div class="math notranslate nohighlight">
+\[P_s= \nu_t S^2\]</div>
+<div class="math notranslate nohighlight">
+\[P_b= -{\nu_t}^{'} N^2\]</div>
+<div class="math notranslate nohighlight">
+\[\epsilon= C_0 \frac{k^3/2}{L}\]</div>
+<div class="math notranslate nohighlight">
+\[D = \frac{\partial}{\partial x_j} [(\nu+\nu_t)\frac{\partial U_j}{\partial x_i}]\]</div>
+<p>Here <span class="math notranslate nohighlight">\(P_s\)</span> is the strain rate, <span class="math notranslate nohighlight">\(P_b\)</span> is the buoyancy frequency and <span class="math notranslate nohighlight">\(L\)</span> is the length scale computed algebraically.
+The strain rate and buoyancy frequency are computed using the same method used in the literature and are not repeated here. The
+length scale is computed as follows:</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{L^2} = \frac{1}{Ls^2} + \frac{1}{Lb^2}\]</div>
+<p>The shear length scale is given by <span class="math notranslate nohighlight">\(Ls=\kappa z\)</span>. An upper limit can be imposed for the shear length scale to avoid excessive values.
+In the current model, it is set to 30 and can be modified to be computed from Geostrophic wind too. The buoyancy length scale is given by</p>
+<div class="math notranslate nohighlight">
+\[Lb = Cb \frac{\sqrt{k}}{N}\]</div>
+<p>The implementation methodology is different for stable/neutral and unstable stratification and follows the recommendation in the paper. The
+turbulent viscosity is computed as follows:</p>
+<div class="math notranslate nohighlight">
+\[\nu_t = C_\mu \sqrt{k} L\]</div>
+<div class="math notranslate nohighlight">
+\[{\nu_t}^{'} = {C_\mu}^{'} \sqrt{k} L\]</div>
+<p>Here <span class="math notranslate nohighlight">\(C_\mu\)</span> and <span class="math notranslate nohighlight">\({C_\mu}^{'}\)</span> are non-uniform model constants which depend on <span class="math notranslate nohighlight">\(C_0\)</span> and turbulent Richardson number
+<span class="math notranslate nohighlight">\(Rt\)</span>. The calculations of these terms can be found in the reference. The turbulent Prandtl number also depends on the turbulent
+Richardson number and is computed using am empirical expression from the reference. The boundary condition for TKE at the lower boundary
+is given by:</p>
+<div class="math notranslate nohighlight">
+\[k = k_w ^ {(2/3)}\]</div>
+<div class="math notranslate nohighlight">
+\[k_w = \frac{{u_*}^{3}}{{C_0}^3} + \frac{\max{(Q,0)}\kappa d_1}{{C_0}^3}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(Q\)</span> is the sensible heat flux at the surface and <span class="math notranslate nohighlight">\(d_1\)</span>  is the near-wall distance. For cases with terrain, there is also
+a check for near-wall distance from the surface of the terrain. The wall boundary condition is implemented as a forcing term at the first cell
+above the lower surface and terrain.</p>
+</section>
+</section>
+<section id="les-models-for-subgrid-scales">
+<h3>LES models for subgrid scales<a class="headerlink" href="#les-models-for-subgrid-scales" title="Link to this heading"></a></h3>
+<section id="smagorinsky-model">
+<h4>Smagorinsky model<a class="headerlink" href="#smagorinsky-model" title="Link to this heading"></a></h4>
+<p>Simple eddy viscosity model, the dissipation is calculated using the
+resolved strain rate tensor and the grid resolution as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \tau_{ij} &amp;= -2 \nu_t \widetilde{S}_{ij} \\
+    \nu_t &amp;= C_s^2 \Delta^2 (2 \langle S_{ij} S_{ij} \rangle)^{\frac{1}{2}}
+\end{aligned}\end{split}\]</div>
+</section>
+<section id="amdnotherm-model">
+<h4>AMDNoTherm model<a class="headerlink" href="#amdnotherm-model" title="Link to this heading"></a></h4>
+<p>This is the implementation of the base AMD model, useful for flows without a temperature field.</p>
+<p>The eddy viscosity is calculated using an anisotropic derivative with a
+different filter width in each direction</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \hat{\partial}_i &amp;= \sqrt{C} \delta_i \partial_i \textrm{ for } i=1,2,3 \\
+    C &amp;= 1/3, \textrm{ Poincare coefficient for } 2^{nd} \textrm{ order gradient} \\
+    \delta_i &amp;= \textrm{Filter width along dimension } i \textrm{ for anisotropic grids}
+\end{aligned}\end{split}\]</div>
+<p>The anisotropic derivative is used to define the eddy viscosity as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \tau_{ij} &amp;= -2 \nu_t \widetilde{S}_{ij} \\
+    \nu_t &amp;= \frac{- (\hat{\partial}_k \widetilde{u}_i) (\hat{\partial}_k \widetilde{u}_j) \widetilde{S}_{ij}}{ (\partial_l \widetilde{u}_m) (\partial_l \widetilde{u}_m) }
+\end{aligned}\end{split}\]</div>
+</section>
+<section id="amd-model-for-abl">
+<h4>AMD model (for ABL)<a class="headerlink" href="#amd-model-for-abl" title="Link to this heading"></a></h4>
+<p>The eddy viscosity is calculated using an anisotropic derivative with a
+different filter width in each direction</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \hat{\partial}_i &amp;= \sqrt{C} \delta_i \partial_i \textrm{ for } i=1,2,3 \\
+    C &amp;= 1/3 \textrm{ Poincare coefficient for } 2^{nd} \textrm{ order gradient} \\
+    \delta_i &amp;= \textrm{Filter width along dimension } i \textrm{ for anisotropic grids}\\
+    \beta &amp;= g/\Theta_0 \textrm{ Gravity constant over reference temperature}
+\end{aligned}\end{split}\]</div>
+<p>The anisotropic derivative is used to define the eddy viscosity as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \tau_{ij} &amp;= -2 \nu_t \widetilde{S}_{ij} \\
+    \nu_t &amp;= \frac{- (\hat{\partial}_k \widetilde{u}_i) (\hat{\partial}_k \widetilde{u}_j) \widetilde{S}_{ij} +  \beta (\hat{\partial}_k \widetilde{w}) (\hat{\partial}_k (\widetilde{\Theta} - \langle {\widetilde{\Theta}} \rangle) )  }{ (\partial_l \widetilde{u}_m) (\partial_l \widetilde{u}_m) } \\
+    \tau_{\theta j} &amp;= -2 D_e \frac{\partial \widetilde{\Theta}}{\partial x_j} \\
+    D_e &amp;= \frac{- (\hat{\partial}_k \widetilde{u}_i) (\hat{\partial}_k \widetilde{\Theta}) \partial_i \widetilde{\Theta} }{(\partial_l \widetilde{\Theta}) (\partial_l \widetilde{\Theta})}
+\end{aligned}\end{split}\]</div>
+<ul class="simple">
+<li><p><strong>Unit tests</strong></p></li>
+</ul>
+<p>There is a simple unit test for both <span class="math notranslate nohighlight">\(\nu_t\)</span> and <span class="math notranslate nohighlight">\(D_e\)</span> in
+<code class="docutils literal notranslate"><span class="pre">unit_tests/turbulence/test_turbulence_LES.cpp</span></code> under
+<code class="docutils literal notranslate"><span class="pre">test_AMD_setup_calc</span></code>.</p>
+</section>
+<section id="non-linear-sub-grid-scale-model">
+<h4>Non-linear Sub-grid Scale Model<a class="headerlink" href="#non-linear-sub-grid-scale-model" title="Link to this heading"></a></h4>
+<p>The non-linear model extends the Smagorinsky model by including an extra term computed from the strain and vorticity rate.
+The modification proposed by <a class="reference external" href="https://doi.org/10.1017/S0022112096004697">Branco (JFM 1997)</a> and implemented in WRF (<a class="reference external" href="https://doi.org/10.1175/2010MWR3286.1">Mirocha et. al (MWR 2010)</a>)
+is the model considered. The sub-grid scale stress tensor is calculated as follows:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[M_{ij}= -(C_s \Delta)^2
+[
+  2(2S_{mn}S_{mn})^{1/2}S_{ij}+C_1(S_{ik}S_{kj}-\frac{1}{3}S_{mn}S_{mn} \delta_{ij})
+  +C_2(S_{ik}R_{kj}-R_{ik}S_{kj})
+]\]</div>
+</div></blockquote>
+<p>Here <span class="math notranslate nohighlight">\(S_{ij}\)</span> is the strain-rate tensor and <span class="math notranslate nohighlight">\(R_{ij}\)</span> is the vorticity rate tensor. The model constants are:
+<span class="math notranslate nohighlight">\(C_s=[8*(1+C_b)/27\pi^2]^{1/2}\)</span>, <span class="math notranslate nohighlight">\(C_1=C_2=960^{1/2}C_b/7(1+C_b)S_k\)</span>, <span class="math notranslate nohighlight">\(S_k=0.5\)</span>, and <span class="math notranslate nohighlight">\(C_b=0.36\)</span>.</p>
+<p>The default length scale of <span class="math notranslate nohighlight">\(L=C_s\Delta\)</span> causes over-prediction of the mean wind speed profiles. To avoid this over-prediction, the
+length scale is modified as follows</p>
+<div class="math notranslate nohighlight">
+\[L=(1-\exp(-z/H))^2(\frac{\kappa z}{\phi_M})^2+(\exp(-z/H))^2(C_s \Delta)^2\]</div>
+<p>Here the term <span class="math notranslate nohighlight">\(H=1.5 dz\)</span> specifies the location at which the length scale switches to <span class="math notranslate nohighlight">\(L=C_s\Delta\)</span> and <span class="math notranslate nohighlight">\(\phi_M\)</span>
+is the atmospheric stability function. Currently, the implementation for the stability function uses a single global value.
+The implementation of the non-linear model is split into two parts. The subgrid-scale viscosity term is directly used
+within the Kynema-SGF diffusion framework. The last two terms in <span class="math notranslate nohighlight">\(M_{ij}\)</span> are added as source-terms in the momentum equation.</p>
+</section>
+</section>
+</section>
+<section id="wall-models">
+<span id="id5"></span><h2>Wall models<a class="headerlink" href="#wall-models" title="Link to this heading"></a></h2>
+<p>The wall models described in this section are implemented in Kynema-SGF for
+running wall-bounded flows.</p>
+<section id="monin-obukhov-similarity-theory">
+<h3>Monin-Obukhov Similarity Theory<a class="headerlink" href="#monin-obukhov-similarity-theory" title="Link to this heading"></a></h3>
+<p>Monin-Obukhov similarity theory is used for wall boundary conditions for ABL simulations. The exact
+calculation of <span class="math notranslate nohighlight">\(\tau_{i3}\)</span> in the horizontal directions depends on the SGS model used, but the following calculations for the friction velocity <span class="math notranslate nohighlight">\(u_\tau\)</span> and surface heat flux <cite>q</cite> are common across the models.</p>
+<div class="math notranslate nohighlight">
+\[u_\tau = \frac{\kappa \overline{s}}{\ln \left(\frac{z_b}{z_0}\right) - \psi_m}\]</div>
+<p>where <span class="math notranslate nohighlight">\(s\)</span> is the horizontal wind speed <span class="math notranslate nohighlight">\(s = \sqrt{u_{1}^2+ u_{2}^2}\)</span>, <span class="math notranslate nohighlight">\(\theta_w\)</span>
+is the wall temperature, <span class="math notranslate nohighlight">\(\kappa\)</span> is the von Karman constant, and <span class="math notranslate nohighlight">\(z_0\)</span> is the surface roughness length and <span class="math notranslate nohighlight">\(z_b\)</span> is the reference height (default is the first cell center). The
+<span class="math notranslate nohighlight">\(\overline{\phantom{l}.\phantom{l}}\)</span> operator indicates a horizontal plane
+average.  The quantities <span class="math notranslate nohighlight">\(\psi_m, \psi_h\)</span> are computed using the Monin-Obukhov similarity law
+following the calculations in <a class="reference external" href="https://doi.org/10.1002/we.2017">ven der Lann et al</a> and <cite>Dyer (1974)</cite> formulation  for unstable stratification (<span class="math notranslate nohighlight">\(z_b/L &lt; 0\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+    \psi_m &amp;= 2\ln \left(\frac{1+x}{2}\right) + \ln \left(\frac{1+x^2}{2}\right) - 2 \arctan{x} + \frac{\pi}{2}, x = \left(1 - \beta_m\frac{z_b}{L}\right)^{\frac{1}{4}} \\
+    \psi_h &amp;= \ln \left( \frac{1 + y}{2}\right), y = \left(1 - \beta_h \frac{z_b}{L}\right)^{\frac{1}{2}},
+\end{align}\end{split}\]</div>
+<p>and for stable stratification (<span class="math notranslate nohighlight">\(z_b/L &gt; 0\)</span> ):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+    \psi_m &amp;= -\gamma_m \frac{z_b}{L},\\
+    \psi_h &amp;= -\gamma_h \frac{z_b}{L},
+\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(L = -\frac{u_\tau^3 \theta_0}{\kappa g q}\)</span> is the Monin-Obukhov length and <span class="math notranslate nohighlight">\(\beta_m, \beta_h, \gamma_m, \gamma_h\)</span> are model constants. Kynema-SGF uses <span class="math notranslate nohighlight">\(\beta_m = \beta_h = 16\)</span> and <span class="math notranslate nohighlight">\(\gamma_m = \gamma_h = 5\)</span>.</p>
+</section>
+<section id="log-law-wall-model">
+<h3>Log-law wall model<a class="headerlink" href="#log-law-wall-model" title="Link to this heading"></a></h3>
+<p>This wall model computes the local <span class="math notranslate nohighlight">\(u_\tau\)</span> from the velocity at
+the first grid cell, and uses this to compute the shear stress, which is
+then used as a boundary condition.</p>
+<p>The log law:</p>
+<div class="math notranslate nohighlight" id="equation-loglaw">
+<span class="eqno">(1)<a class="headerlink" href="#equation-loglaw" title="Link to this equation"></a></span>\[u_{\mathrm{mag}} = u_\tau \left(\frac{1}{\kappa}\log\left(\frac{u_\tau z}{\nu}\right) + B\right).\]</div>
+<p>Given a horizontal velocity magnitude
+<span class="math notranslate nohighlight">\(u_{\mathrm{mag}} = \sqrt{u^2 + v^2}\)</span> at
+<span class="math notranslate nohighlight">\(z = z_{\mathrm{ref}}\)</span>, <span class="math notranslate nohighlight">\(u_\tau\)</span> can be computed using a
+non-linear solve to satisfy equation <a class="reference internal" href="#equation-loglaw">(1)</a>.</p>
+<p>In Kynema-SGF Newton-Raphson iterations are used with a convergence
+criterion of <span class="math notranslate nohighlight">\(\lvert u_\tau^{n+1} - u_\tau^n \rvert &lt; 10^{-5}\)</span>.
+For this, derivative of
+<span class="math notranslate nohighlight">\(\frac{\partial u_{\mathrm{mag}}}{\partial {u_\tau}}\)</span> is used,</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial u_{\mathrm{mag}}}{\partial {u_\tau}} = \left(\frac{1}{\kappa}\left(1+\log\left(\frac{u_\tau z_{\mathrm{ref}}}{\nu}\right)\right) + B\right)\]</div>
+<div class="math notranslate nohighlight">
+\[u_\tau^{n+1} = u_\tau^{n} - \left(u_\tau^n \left(\frac{1}{\kappa}\log\left(\frac{u_\tau^n z_{\mathrm{ref}}}{\nu}\right) + B\right) - u_{\mathrm{mag}}\right)/\frac{\partial u_{\mathrm{mag}}}{\partial {u_\tau}}.\]</div>
+<p>Finally, the shear stress is calculated as,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \tau_{xz} &amp;= u_\tau^2 \frac{u}{u_\mathrm{mag}} \\
+    \tau_{yz} &amp;= u_\tau^2 \frac{v}{u_\mathrm{mag}}
+\end{aligned}\end{split}\]</div>
+</section>
+<section id="constant-stress-model">
+<h3>Constant stress model<a class="headerlink" href="#constant-stress-model" title="Link to this heading"></a></h3>
+<p>NOTE: This wall model will be ill-posed unless combined with a Dirichlet
+boundary condition on the other wall, <span class="math notranslate nohighlight">\(\langle u \rangle\)</span> can
+drift by a constant otherwise.</p>
+<p>This is a trivial wall model, where the shear stresses are specified as
+constants. For a pressure gradient driven channel,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    u_\tau^2 &amp;= -\frac{\mathrm{d} P}{\mathrm{d} x} \\
+    \tau_{xz} &amp;= u_\tau^2 \\
+    \tau_{yz} &amp;= 0
+\end{aligned}\end{split}\]</div>
+</section>
+<section id="schumann-model">
+<h3>Schumann model<a class="headerlink" href="#schumann-model" title="Link to this heading"></a></h3>
+<p>NOTE: This wall model will be ill-posed unless combined with a Dirichlet
+boundary condition on the other wall, <span class="math notranslate nohighlight">\(\langle u \rangle\)</span> can
+drift by a constant otherwise.</p>
+<p>This model is a modified version of the constant stress model, where the
+fluctuations from a reference height <span class="math notranslate nohighlight">\(z_\mathrm{ref}\)</span> are used to
+add fluctuations in the shear stress.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    u_\tau^2 &amp;= -\frac{\mathrm{d} P}{\mathrm{d} x} \\
+    \tau_{xz} &amp;= u_\tau^2 \frac{u}{\langle u_\mathrm{mag} \rangle} \\
+    \tau_{yz} &amp;= u_\tau^2 \frac{v}{\langle u_\mathrm{mag} \rangle}
+\end{aligned}\end{split}\]</div>
+<p>where, <span class="math notranslate nohighlight">\(\langle u_\mathrm{mag} \rangle\)</span> is the planar average of
+<span class="math notranslate nohighlight">\(u_{\mathrm{mag}} = \sqrt{u^2 + v^2}\)</span> at <span class="math notranslate nohighlight">\(z_\mathrm{ref}\)</span>.</p>
+</section>
+<section id="symmetric-wall-boundary">
+<h3>Symmetric wall boundary<a class="headerlink" href="#symmetric-wall-boundary" title="Link to this heading"></a></h3>
+<p>This is a boundary condition to for flows with a symmetry across the
+z direction (example: <em>half-channel</em> simulations) at the centerline.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \tau_{xz} &amp;= 0 \\
+    \tau_{yz} &amp;= 0 \\
+    w &amp;= 0
+\end{aligned}\end{split}\]</div>
+</section>
+<section id="dynamic-wall-model-wave-model">
+<h3>Dynamic wall model (Wave model)<a class="headerlink" href="#dynamic-wall-model-wave-model" title="Link to this heading"></a></h3>
+<p>This wall model is used to calculate the stress due to moving surfaces,
+like ocean waves. It aims to introduce wave phase-resolving physics
+at a cost similar to using the Log-law wall model, without the need of using
+wave adapting computational grids. The model was developed by <a class="reference external" href="https://doi.org/10.1007/s10546-024-00884-8">Ayala et al. (2024)</a>.</p>
+<div class="math notranslate nohighlight">
+\[\tau_{i3} = \frac{1}{\pi}|(\boldsymbol{u-C}) \cdot \boldsymbol{\hat{n}}|^2|\boldsymbol{\nabla} \eta|^2 \, \hat{n}_i  \, \text{H} \Bigl[ (u_j-C_j)\frac{\partial \eta}{\partial x_j} \Bigr] \, + \, \tau^{visc}_{i3}, \quad i = 1,2.\]</div>
+<p>The first component gives the form drag due to ocean waves, where <span class="math notranslate nohighlight">\(\boldsymbol{C}\)</span>
+is the wave velocity vector, <span class="math notranslate nohighlight">\(\eta\)</span> is the surface height distribution and
+<span class="math notranslate nohighlight">\(\hat{\boldsymbol n} = \boldsymbol{\nabla} \eta /|\boldsymbol{\nabla} \eta|\)</span>. The
+second component (<span class="math notranslate nohighlight">\(\tau^{visc}_{i3}\)</span>) is the stress due to unresolved effects,
+like viscous effects. For this component, the <code class="docutils literal notranslate"><span class="pre">Log-law</span> <span class="pre">wall</span> <span class="pre">model</span></code> is used.</p>
+</section>
+</section>
+<section id="terrain-model">
+<span id="terrainmodel"></span><h2>Terrain Model<a class="headerlink" href="#terrain-model" title="Link to this heading"></a></h2>
+<p>An immersed boundary forcing method (IBFM) is used to represent the terrain. In this method,
+the effect of the terrain is modeled using a forcing term in the momentum and energy equation.</p>
+<p>The forcing term in the momentum equation is given by:</p>
+<div class="math notranslate nohighlight">
+\[F_i = - \beta C_d u_i | u_i |\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\beta\)</span> is the volume fraction of the cell covered by terrain, <span class="math notranslate nohighlight">\(C_d\)</span> is a drag
+term  and <span class="math notranslate nohighlight">\(u_i\)</span> is the wind speed. Currently, the volume fraction is
+computed as a 0 or 1 using a simple nearest cell algorithm at each grid level. Future, updates
+will incorporate the partial terrain overlap using the EB capability in AMReX. The calculation
+of the drag coefficient term and the forcing term for the energy equation can be found in
+<a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2020MS002141">Muñoz‐Esparza, Domingo, et al.  (JAMS 2020)</a>.</p>
+<p>The original formulation is designed for low Reynolds number cases and does not include a
+method for applying a wall function. We propose the use of a forcing function to include
+the wall effects.</p>
+<p>First, compute the friction velocity from location k+1:</p>
+<div class="math notranslate nohighlight">
+\[u_*= |u_i[k+1]| \frac {\kappa}{\log [(z_{k+1}-z_k)/z0]}\]</div>
+<p>The expected wind speed at cell k is computed as follows:</p>
+<div class="math notranslate nohighlight">
+\[|u_n|= \frac{u_*}{\kappa} \log [0.5 (z_{k+1}-z_k)/z0]\]</div>
+<p>The methodology can be extended to include stability functions in a straight forward manner. The forcing
+term is computed as</p>
+<div class="math notranslate nohighlight">
+\[F_i= - \frac {|u[k]| \hat{c} - |u_n|\hat{l}} {\tau}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\hat{c}=(1,1,1)\)</span> is the existing normal vector from the grid and <span class="math notranslate nohighlight">\(\hat{l}=(ux,uy,0)/|u_n|\)</span> is the value
+from the log law. The calculation of <span class="math notranslate nohighlight">\(\hat{l}\)</span> and <span class="math notranslate nohighlight">\(u_*\)</span> can be modified in the future align with the normal (following
+the orange arrow below).</p>
+<a class="reference internal image-reference" href="../_images/terrain_normal.png"><img alt="../_images/terrain_normal.png" class="align-center" src="../_images/terrain_normal.png" style="width: 30%;" />
+</a>
+</section>
+<section id="forest-model">
+<h2>Forest Model<a class="headerlink" href="#forest-model" title="Link to this heading"></a></h2>
+<p>The forest model provides an option to include the drag from forested regions to be included in the momentum equation. The
+drag force is calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[F_i= - C_d L(x,y,z) U_i | U_i |\]</div>
+<p>Here <span class="math notranslate nohighlight">\(C_d\)</span> is the coefficient of drag for the forested region and <span class="math notranslate nohighlight">\(L(x,y,z)\)</span> is the leaf area density (LAD) for the
+forested region. A three-dimensional model for the LAD is usually unavailable and is also cumbersome to use if there are thousands
+of trees. Two different models are available as an alternative:</p>
+<div class="math notranslate nohighlight">
+\[L=\frac{LAI}{h}\]</div>
+<div class="math notranslate nohighlight">
+\[L(z)=L_m \left(\frac{h - z_m}{h - z}\right)^n  exp\left[n \left(1 -\frac{h - z_m}{h - z}\right )\right]\]</div>
+<p>Here <span class="math notranslate nohighlight">\(LAI\)</span> is the leaf area index and is available from measurements, <span class="math notranslate nohighlight">\(h\)</span> is the height of the tree, <span class="math notranslate nohighlight">\(z_m\)</span> is the location
+of the maximum LAD, <span class="math notranslate nohighlight">\(L_m\)</span> is the maximum value of LAD at <span class="math notranslate nohighlight">\(z_m\)</span> and <span class="math notranslate nohighlight">\(n\)</span> is a model constant with values  6 (below <span class="math notranslate nohighlight">\(z_m\)</span>) and 0.5
+(above <span class="math notranslate nohighlight">\(z_m\)</span>), respectively. <span class="math notranslate nohighlight">\(L_m\)</span> is computed by integrating the following equation:</p>
+<div class="math notranslate nohighlight">
+\[LAI = \int_{0}^{h} L(z) dz\]</div>
+<p>The simplified model with uniform LAD is recommended for forested regions with no knowledge of the individual trees. LAI values can be used from
+climate model look-up tables for different regions around the world if no local remote sensing data is available.</p>
+</section>
+<section id="turbine-models">
+<span id="id6"></span><h2>Turbine models<a class="headerlink" href="#turbine-models" title="Link to this heading"></a></h2>
+<p>The modeling approaches for turbines, namely actuator disk model (ADM)
+and actuator line model (ALM), are presented in this section. Although
+Kynema-SGF offers some stand-alone ADM implementations for turbines and
+ALM pathways for individual wings, the primary methods for turbine
+simulations rely on coupling with the modular, open-source,
+multifidelity wind-energy tool
+OpenFAST <span id="id7">[<a class="reference internal" href="../bibrefs.html#id185" title="Jason M Jonkman, Alan D Wright, Greg J Hayman, and Amy N Robertson. Full-system linearization for floating offshore wind turbines in openfast. In International Conference on Offshore Mechanics and Arctic Engineering, volume 51975, V001T01A028. American Society of Mechanical Engineers, 2018.">Jonkman <em>et al.</em>, 2018</a>, <a class="reference internal" href="../bibrefs.html#id186" title="NREL. Openfast documentation. https://openfast.readthedocs.io, 2023.">NREL, 2023</a>]</span> for blade
+motion and turbine behavior while Kynema-SGF calculates aerodynamic
+interactions.</p>
+<section id="actuator-disk-model">
+<h3>Actuator disk model<a class="headerlink" href="#actuator-disk-model" title="Link to this heading"></a></h3>
+<p>The ADM is used to represent wind turbines as forces in the momentum
+equation <span id="id8">[<a class="reference internal" href="../bibrefs.html#id202" title="H Aagaard Madsen. A cfd analysis of the actuator disc flow compared with momentum theory results. Aug 1997.">Aagaard Madsen, 1997</a>, <a class="reference internal" href="../bibrefs.html#id105" title="Marc Calaf, Charles Meneveau, and Johan Meyers. Large eddy simulation study of fully developed wind-turbine array boundary layers. Physics of Fluids, 22(1):015110, 01 2010. URL: https://doi.org/10.1063/1.3291077, arXiv:https://pubs.aip.org/aip/pof/article-pdf/doi/10.1063/1.3291077/14129557/015110\_1\_online.pdf, doi:10.1063/1.3291077.">Calaf <em>et al.</em>, 2010</a>, <a class="reference internal" href="../bibrefs.html#id102" title="A Jimenez, A Crespo, E Migoya, and J Garcia. Advances in large-eddy simulation of a wind turbine wake. Journal of Physics: Conference Series, 75(1):012041, jul 2007. URL: https://dx.doi.org/10.1088/1742-6596/75/1/012041, doi:10.1088/1742-6596/75/1/012041.">Jimenez <em>et al.</em>, 2007</a>]</span>,
+spreading the induced forces over the swept area of the rotor (the
+disk). In this approach, the overall thrust force, <span class="math notranslate nohighlight">\(F_t\)</span>, is
+generally calculated using the velocity averaged, <span class="math notranslate nohighlight">\(\overline{u}\)</span>,
+over the rotor-swept area, <span class="math notranslate nohighlight">\(\frac{\pi}{4} D^2\)</span>, and an empirically
+derived constant of thrust, <span class="math notranslate nohighlight">\(C_t\)</span>, as shown by the formula</p>
+<div class="math notranslate nohighlight">
+\[F_t = -\frac{1}{2}\rho \, C_t \overline{u}^2 \frac{\pi}{4} D^2.\]</div>
+<p>The rotation of the turbine also introduces circulation in the flow via
+an azimuthal force, which has different representations depending on the
+model variant.</p>
+<p>The forces are computed at discrete points on the disk surface using the
+actuator point <span class="math notranslate nohighlight">\(i\)</span>, and these discrete forces are then spread
+over the turbine disk via a spreading function, <span class="math notranslate nohighlight">\(\Gamma_i\)</span>, often
+a Gaussian <span id="id9">[<a class="reference internal" href="../bibrefs.html#id111" title="Luis A. Martínez-Tossas, Matthew J. Churchfield, and Stefano Leonardi. Large eddy simulations of the flow past wind turbines: actuator line and disk modeling. Wind Energy, 18(6):1047-1060, 2015.">Martínez-Tossas <em>et al.</em>, 2015</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[\Gamma_i(x_j) = \frac{1}{\epsilon^3\pi^{3/2}} \exp\bigg(-\frac{h_{i,j}^2}{\epsilon^2}\bigg),
+    \label{eq:uniform_gauss}\]</div>
+<p>where <span class="math notranslate nohighlight">\(x_j\)</span> is an arbitrary location in space, <span class="math notranslate nohighlight">\(\epsilon\)</span> is
+the characteristic width of the Gaussian kernel, and <span class="math notranslate nohighlight">\(h_{i,j}\)</span> is
+the distance between the actuator point <span class="math notranslate nohighlight">\(i\)</span> and the
+<span class="math notranslate nohighlight">\(x_j\)</span> position in space. A more general form of
+<a class="reference external" href="#eq:uniform_gauss">[eq:uniform_gauss]</a> can be rewritten as a tensor
+product of contributions from each component of an orthogonal coordinate
+system:</p>
+<div class="math notranslate nohighlight">
+\[\Gamma_i(x_j) = \eta (h_{i,1}) e_1 \otimes \psi (h_{i,2}) e_3 \otimes \vartheta  (h_{i,3} ) e_3,
+    \label{eq:nonuniform_gauss}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\eta\)</span>, <span class="math notranslate nohighlight">\(\psi\)</span>, and <span class="math notranslate nohighlight">\(\vartheta\)</span> represent
+different spreading kernels along the three principal coordinates
+(<span class="math notranslate nohighlight">\(e_1\)</span>, <span class="math notranslate nohighlight">\(e_2\)</span>, and <span class="math notranslate nohighlight">\(e_3\)</span>) of an orthogonal coordinate
+system.</p>
+<p>Kynema-SGF offers the traditional Gaussian along with a set of projections
+constructed from products of normalized linear basis functions,
+<span class="math notranslate nohighlight">\(\xi\)</span>, similar to finite-elements, where the principal directions
+of the spreading functions align with the cylindrical coordinates of the
+disk. The geometry of the disk can be resolved with far fewer points
+because the linear basis functions form a partition of unity. The linear
+basis function can be expressed as</p>
+<div class="math notranslate nohighlight">
+\[\xi_i(\tilde{x},\Delta h) = \frac{\max \left(0, 1-\frac{\vert \tilde{x}_i-\tilde{x} \vert}{\Delta h}\right)}{\Delta h},
+    \label{eq:linear-basis}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta h\)</span> is the distance between the actuator points in
+the associated principal direction and <span class="math notranslate nohighlight">\(\tilde{x}\)</span> is the
+principal direction’s abscissa.</p>
+<p>Employing the linear basis function, Kynema-SGF offers a spreading
+function that is uniform in the <span class="math notranslate nohighlight">\(\theta\)</span> direction:</p>
+<div class="math notranslate nohighlight">
+\[\Gamma_i(x_j) = \frac{\xi_r(r, \Delta r)}{2 \pi r_i} \:  \frac{1}{\epsilon \sqrt{\pi}} \exp^{-\frac{\left(\tilde{z}_i-\tilde{z}_j\right)^2}{\epsilon^2}},\]</div>
+<p>where <span class="math notranslate nohighlight">\(r\)</span> is the radial location along the disk and
+<span class="math notranslate nohighlight">\(\tilde{z}\)</span> is in the normal direction. Similarly, another option
+is available that discretizes in the <span class="math notranslate nohighlight">\(\theta\)</span> direction using arc
+length as the characteristic length scale:</p>
+<div class="math notranslate nohighlight">
+\[\Gamma_i(x_j) = \xi_r(r, \Delta r) \: \xi_\theta(r\theta, r_i\Delta \theta) \:  \frac{1}{\epsilon \sqrt{\pi}} \exp^{-\frac{\left(\tilde{z}_i-\tilde{z}_j\right)^2}{\epsilon^2}}.\]</div>
+<p>Figure <a class="reference external" href="#fig:adm-disk-projections">1</a> illustrates the different ADM
+spreading-function approaches.</p>
+<figure class="align-default" id="id19">
+<a class="reference internal image-reference" href="../_images/adm_disk_projection.png"><img alt="adm-disk-projections" src="../_images/adm_disk_projection.png" style="width: 66.0%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">2 </span><span class="caption-text">Illustration of actuator disk forcing using traditional point
+Gaussian functions (left) and using products of linear basis functions in the
+disk plane (right): (a) and (b) show the footprint of a single
+actuator point; (c) and (d) show the sum of all the points. The red
+dots indicate the location of the actuator points and the color bar
+shows the strength of a normalized force.</span><a class="headerlink" href="#id19" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>In conjunction with these spreading function options, Kynema-SGF includes
+three implementations of the ADM, and in each case the wind speed is
+sampled at discrete points, spaced evenly across the disk. To accurately
+estimate the freestream velocity, sample points are also placed upstream
+of the turbine disk. At each sample point, the sampled wind velocity is
+obtained via linear interpolation. After the body forces are calculated
+according to the chosen method, they are applied to the flow at the
+discrete disk points. This means that the number of points for the wind
+speed sampling and the modeled body force can be independently
+configured for optimal sampling based on the chosen model and scenario.</p>
+<p>The simplest of the ADM options in Kynema-SGF is the uniform <span class="math notranslate nohighlight">\(C_t\)</span>
+model, which employs coefficients of thrust specified by the user at
+different wind speeds. To represent the loading on the blades, which
+directly translates to the force of the blades on the flow, the uniform
+<span class="math notranslate nohighlight">\(C_t\)</span> model applies the forcing term uniformly over each radial
+section of the disk. Further complexity is included in the Joukowsky
+disk model, described by <span id="id10">[<a class="reference internal" href="../bibrefs.html#id106" title="Jens Nørkær Sørensen, Karl Nilsson, Stefan Ivanell, Henrik Asmuth, and Robert Flemming Mikkelsen. Analytical body forces in numerical actuator disc model of wind turbines. Renewable Energy, 147:2259-2271, 2020. URL: https://www.sciencedirect.com/science/article/pii/S0960148119314788, doi:https://doi.org/10.1016/j.renene.2019.09.134.">Sørensen <em>et al.</em>, 2020</a>]</span> and
+updated in <span id="id11">[<a class="reference internal" href="../bibrefs.html#id107" title="J. N. Sørensen. Generalized analytical body force model for actuator disc computations of wind turbines. Wind Energy Science, 8(6):1017–1027, 2023. URL: https://wes.copernicus.org/articles/8/1017/2023/, doi:10.5194/wes-8-1017-2023.">Sørensen, 2023</a>]</span>. This model relies on an
+assumption of constant circulation over the disk with corrections for
+hub and tip effects, providing analytical expressions for axial and
+azimuthal force distributions. The Joukowsky disk approach has been
+validated for different wind turbines in diverse operating regimes and,
+as an analytical model, offers notable computational efficiency.
+Finally, Kynema-SGF features an ADM approach coupled to OpenFAST
+<span id="id12">[<a class="reference internal" href="../bibrefs.html#id193" title="Lawrence Cheung, Alan Hsieh, Myra Blaylock, Thomas Herges, Nathaniel deVelder, Kenneth Brown, Philip Sakievich, Daniel Houck, David Maniaci, Collen Kaul, Raj Rai, Nicholas Hamilton, Alex Rybchuk, Ryan Scott, Regis Thedin, Michael Brazell, Matthew Churchfield, and Michael Sprague. Investigations of farm-to-farm interactions and blockage effects from awaken using large-scale numerical simulations. Journal of Physics: Conference Series, 2505(1):012023, May 2023. URL: https://dx.doi.org/10.1088/1742-6596/2505/1/012023, doi:10.1088/1742-6596/2505/1/012023.">Cheung <em>et al.</em>, 2023</a>]</span>, whereby OpenFAST modules use the
+sampled wind speeds to calculate wind turbine dynamics, including the
+aerodynamics of the turbine blades. After calculating the resulting body
+forces, these are distributed back to the fluid domain within Kynema-SGF
+by applying an isotropic smoothing kernel.</p>
+<p>In some scenarios, the first two approaches may be more expedient, and
+they have the advantage of being fully contained within Kynema-SGF.
+However, by coupling to OpenFAST, additional aspects of turbine behavior
+are included in the modeling framework, such as structural dynamics, and
+controllers can be easily incorporated to govern turbine behavior during
+the course of a simulation.</p>
+</section>
+<section id="actuator-line-model">
+<h3>Actuator line model<a class="headerlink" href="#actuator-line-model" title="Link to this heading"></a></h3>
+<p>The ALM is used to represent wings and individual wind turbine blades as
+body forces in the momentum equation
+<span id="id13">[<a class="reference internal" href="../bibrefs.html#id111" title="Luis A. Martínez-Tossas, Matthew J. Churchfield, and Stefano Leonardi. Large eddy simulations of the flow past wind turbines: actuator line and disk modeling. Wind Energy, 18(6):1047-1060, 2015.">Martínez-Tossas <em>et al.</em>, 2015</a>, <a class="reference internal" href="../bibrefs.html#id92" title="Jens Norkær Sørensen and Wen Zhong Shen. Numerical modeling of wind turbine wakes. Journal of Fluids Engineering, 124(2):393–399, 2002.">Sørensen and Shen, 2002</a>, <a class="reference internal" href="../bibrefs.html#id24" title="N. Troldborg, F. Zahle, P.-E. Réthoré, and N. Sorensen. Comparison of the wake of different types of wind turbine cfd models. In 50th AIAA Aerospace Sciences Meeting including the New Horizons Forum and Aerospace Exposition, 237. 2012.">Troldborg <em>et al.</em>, 2012</a>]</span>,
+dividing the forces along a blade or wing into forces at actuator points
+along a line. In this approach, aerodynamic forces such as lift and drag
+are computed at each actuator point using a sampled velocity from the
+fluid solver and lookup tables for lift and drag coefficients,
+<span class="math notranslate nohighlight">\(C_l\)</span> and <span class="math notranslate nohighlight">\(C_d\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[F_l = \frac{1}{2} \rho \, c \, w \, C_l (\alpha) \, U_{ rel}^2,
+    ~~~~~~~~~~~~
+    F_d = \frac{1}{2} \rho \, c \, w \, C_d (\alpha) \, U_{ rel}^2,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the angle of attack, <span class="math notranslate nohighlight">\(c\)</span> is the local
+chord, <span class="math notranslate nohighlight">\(w\)</span> is the width of the blade element, and <span class="math notranslate nohighlight">\(U_{rel}\)</span>
+is the magnitude of the relative velocity
+<span id="id14">[<a class="reference internal" href="../bibrefs.html#id111" title="Luis A. Martínez-Tossas, Matthew J. Churchfield, and Stefano Leonardi. Large eddy simulations of the flow past wind turbines: actuator line and disk modeling. Wind Energy, 18(6):1047-1060, 2015.">Martínez-Tossas <em>et al.</em>, 2015</a>, <a class="reference internal" href="../bibrefs.html#id44" title="N. N. Sørensen, J. A. Michelsen, and S. Schreck. Navier-Stokes predictions of the NREL Phase VI rotor in the NASA AMES 80 ft x 120 ft wind tunnel. Wind Energy, 5(2-3):151–169, 2002. doi:10.1002/we.64.">Sørensen <em>et al.</em>, 2002</a>]</span>. The relative velocity
+vector, which contributes to <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(U_{rel}\)</span>, is
+calculated
+<span class="math notranslate nohighlight">\(\boldsymbol{u}_{rel} = \boldsymbol{u}(\boldsymbol{x}_{i}) - \dot{\boldsymbol{x}}_{i}\)</span>,
+where <span class="math notranslate nohighlight">\(\dot{\boldsymbol{x}}_i\)</span> is the velocity of the
+actuator point <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{x}_i\)</span> is the position
+of the actuator point <span class="math notranslate nohighlight">\(i\)</span>, and
+<span class="math notranslate nohighlight">\(\boldsymbol{u}(\boldsymbol{x}_i)\)</span> is the sampled fluid velocity
+at that point. The lift force and drag force are then added in vector
+form and distributed around surrounding grid cells by using a finite
+Gaussian kernel:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{S}_i(\boldsymbol{x}_j) = \frac{\boldsymbol{f}_i} {\epsilon_c \, \epsilon_t \, \epsilon_s \, \pi^{3/2}}
+    \exp_{fin} \left(
+        - \frac{x_c^2}{\epsilon_c}
+        - \frac{x_t^2}{\epsilon_t}
+        - \frac{x_s^2}{\epsilon_s}
+          \right),
+    \label{eq:lift-coord-spreading}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{f}_i=F_{l,i}\hat{e}_l + F_{d,i}\hat{e}_d\)</span> is
+the aerodynamic force vector of an actuator point <span class="math notranslate nohighlight">\(i\)</span>,
+<span class="math notranslate nohighlight">\(x_c\)</span>, <span class="math notranslate nohighlight">\(x_t\)</span>, and <span class="math notranslate nohighlight">\(x_s\)</span> are the distances from the
+center of the actuator point <span class="math notranslate nohighlight">\(i\)</span> to the point
+<span class="math notranslate nohighlight">\(\boldsymbol{x}_j\)</span> in the chord, thickness, and spanwise
+directions, and <span class="math notranslate nohighlight">\(\epsilon_c\)</span>, <span class="math notranslate nohighlight">\(\epsilon_t\)</span>, and
+<span class="math notranslate nohighlight">\(\epsilon_s\)</span> are the thickness of the Gaussian in the
+corresponding directions <span id="id15">[<a class="reference internal" href="../bibrefs.html#id113" title="Matthew J Churchfield, Scott J Schreck, Luis A Martínez, Charles Meneveau, and Philippe R Spalart. An advanced actuator line method for wind energy applications and beyond. In 35th Wind Energy Symposium, 1998. 2017. URL: https://arc.aiaa.org/doi/abs/10.2514/6.2017-1998, arXiv:https://arc.aiaa.org/doi/pdf/10.2514/6.2017-1998, doi:10.2514/6.2017-1998.">Churchfield <em>et al.</em>, 2017</a>]</span>. A finite
+Gaussian kernel is used to avoid calculating unreasonably small force
+values over the entire domain, and it is defined using</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\exp_{fin}(-h^2) = \left\{\begin{matrix}
+\exp (-h^2) &amp; \textrm{if } h &lt; 4 \\
+0 &amp; \textrm{otherwise}
+\end{matrix}\right. .\end{split}\]</div>
+<p>The Godunov-based time discretization of Kynema-SGF specifies that forcing
+terms, such as <span class="math notranslate nohighlight">\(\boldsymbol{S}_i\)</span> should be calculated at the half
+time step, <span class="math notranslate nohighlight">\(n+1/2\)</span>. Calculating <span class="math notranslate nohighlight">\(\boldsymbol{S}_i\)</span> consists
+of two parts: the point-force vector <span class="math notranslate nohighlight">\(\boldsymbol{f}_i\)</span> and the
+Gaussian kernel centered at <span class="math notranslate nohighlight">\((x_c,x_t,x_s)\)</span>. To get an accurate
+value of <span class="math notranslate nohighlight">\(\boldsymbol{f}_i\)</span>, the velocity field must be sampled at
+the location of the actuator point, enabling the computation of the
+relative velocity <span class="math notranslate nohighlight">\(U_{rel}\)</span>. Because the velocity field at
+<span class="math notranslate nohighlight">\(n+1/2\)</span> is not available when the point force needs to be
+calculated, we use the latest available information for this step; we
+sample the velocity field <span class="math notranslate nohighlight">\(\boldsymbol{u}^n\)</span> at the location of
+the actuator point at time step <span class="math notranslate nohighlight">\(n\)</span>, which is
+<span class="math notranslate nohighlight">\((x_c,x_t,x_s)^n\)</span>. Next, the Gaussian kernel translates the point
+force to a force field, centered at the actuator point. Because of the
+time discretization, we place the Gaussian kernel at the actuator
+location at time step <span class="math notranslate nohighlight">\(n+1/2\)</span>, written as
+<span class="math notranslate nohighlight">\((x_c,x_t,x_s)^{n+1/2}\)</span>. This location is straightforward to
+obtain through the turbine model interface: after sampling the velocity
+field and computing the point force, the turbine model advances to
+<span class="math notranslate nohighlight">\(n+1\)</span>, providing the actuator point locations at <span class="math notranslate nohighlight">\(n+1\)</span>.
+Actuator point locations at <span class="math notranslate nohighlight">\(n+1/2\)</span> are calculated through a
+simple arithmetic average:</p>
+<div class="math notranslate nohighlight">
+\[(x_c,x_t,x_s)^{n+1/2} = \frac{1}{2}\left(x_c^n+x_c^{n+1},x_t^n+x_t^{n+1},x_s^n+x_s^{n+1} \right). \label{eq:alm_loc}\]</div>
+<p>Because the accuracy of ALM relies on sampling the velocity at the
+location of the bound vortex <span id="id16">[<a class="reference internal" href="../bibrefs.html#id182" title="L. A. Martínez-Tossas, M. J. Churchfield, and C. Meneveau. Optimal smoothing length scale for actuator line models of wind turbine blades based on gaussian body force distribution: wind energy, actuator line model. Wind Energy, 1 2017. URL: https://www.osti.gov/biblio/1356881, doi:10.1002/we.2081.">Martínez-Tossas <em>et al.</em>, 2017</a>]</span>, and this
+vortex is created from the inclusion of the source term
+<span class="math notranslate nohighlight">\(\boldsymbol{S}_i\)</span>, the relationship between velocity sampling and
+force placement influences the accuracy of the method. Accuracy issues,
+such as dependence of the actuator force on the time step size and
+incorrect power estimation for the turbine, arise when
+<a class="reference external" href="#eq:alm_loc">[eq:alm_loc]</a> is not used for the location of the
+actuator force, neglecting the time-staggered nature of Kynema-SGF.</p>
+<p>To simulate wind turbines using ALM, Kynema-SGF relies on OpenFAST for the
+turbine representation. In this coupled framework, Kynema-SGF supplies
+sampled velocities at actuator points to OpenFAST at the beginning of
+every time step, and OpenFAST returns updated actuator point forces and
+locations after progressing the turbine model forward in time. These
+forces and locations are incorporated into the Kynema-SGF numerical
+algorithm through the actuator force implementation. By using OpenFAST,
+including aero-elastic deformations and changes in wind turbine operation
+is straightforward. These effects are computed by OpenFAST modules as
+the simulation evolves and are passed on to Kynema-SGF as changes to the
+actuator point locations.</p>
+<p>Kynema-SGF offers a test bed for advanced actuator lines, providing
+variations to force distribution and point placement. The advanced ALM
+features include anisotropic Gaussian body forces to better represent
+wind turbine blades <span id="id17">[<a class="reference internal" href="../bibrefs.html#id98" title="Matthew Churchfield, Sang Lee, Patrick Moriarty, Luis Martinez, Stefano Leonardi, Ganesh Vijayakumar, and James Brasseur. A large-eddy simulation of wind-plant aerodynamics. In 50th AIAA Aerospace Sciences Meeting including the New Horizons Forum and Aerospace Exposition, 537. 2012.">Churchfield <em>et al.</em>, 2012</a>]</span> and the
+filtered lifting line correction to obtain consistent results across
+different grid resolutions and <span class="math notranslate nohighlight">\(\epsilon\)</span> values
+<span id="id18">[<a class="reference internal" href="../bibrefs.html#id171" title="Kaya Onur Dag and Jens Nørkær Sørensen. A new tip correction for actuator line computations. Wind Energy, 23(2):148-160, 2020. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/we.2419, arXiv:https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.2419, doi:https://doi.org/10.1002/we.2419.">Dag and Sørensen, 2020</a>, <a class="reference internal" href="../bibrefs.html#id155" title="Luis A. Martínez-Tossas and Charles Meneveau. Filtered lifting line theory and application to the actuator line model. Journal of Fluid Mechanics, 863:269–292, 2019. doi:10.1017/jfm.2018.994.">Martínez-Tossas and Meneveau, 2019</a>, <a class="reference internal" href="../bibrefs.html#id170" title="Luis A. Martínez-Tossas, Philip Sakievich, Matthew J. Churchfield, and Charles Meneveau. Generalized filtered lifting line theory for arbitrary chord lengths and application to wind turbine blades. Wind Energy, 27(1):101-106, 2024. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/we.2872, arXiv:https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.2872, doi:https://doi.org/10.1002/we.2872.">Martínez-Tossas <em>et al.</em>, 2024</a>]</span>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../user/tools.html" class="btn btn-neutral float-left" title="Tools reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mapping.html" class="btn btn-neutral float-right" title="Mapping definition" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

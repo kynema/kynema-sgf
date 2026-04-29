@@ -1,0 +1,1118 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: ext_turb::KynemaTurbine Struct Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: ext_turb::KynemaTurbine Struct Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/structext__turb_1_1_kynema_turbine.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kynematurbine-struct-reference">
+<h1>KynemaTurbine Struct Reference<a class="headerlink" href="#kynematurbine-struct-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: ext_turb::KynemaTurbine Struct Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespaceext__turb.html">ext_turb</a></li><li class="navelem"><a href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structext__turb_1_1_kynema_turbine-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">ext_turb::KynemaTurbine Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="kynema__types_8_h_source.html">kynema_types.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for ext_turb::KynemaTurbine:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="structext__turb_1_1_kynema_turbine__inherit__graph.svg" width="196" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for ext_turb::KynemaTurbine:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="structext__turb_1_1_kynema_turbine__coll__graph.svg" width="100%" height="544"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a75352b83b4ed107a016cbbe1fec82fde" id="r_a75352b83b4ed107a016cbbe1fec82fde"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75352b83b4ed107a016cbbe1fec82fde">allocate_buffers</a> ()</td></tr>
+<tr class="memitem:aae681d58fa5457e18b80c991f74aa916" id="r_aae681d58fa5457e18b80c991f74aa916"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae681d58fa5457e18b80c991f74aa916">populate_buffers</a> ()</td></tr>
+<tr class="memitem:a6ca5e4fc9faa65a8bf333de8ab695835" id="r_a6ca5e4fc9faa65a8bf333de8ab695835"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ca5e4fc9faa65a8bf333de8ab695835">pass_fluid_velocity_and_hub_load</a> ()</td></tr>
+<tr class="memitem:a6318944b56216569b930fb12ad7575fb" id="r_a6318944b56216569b930fb12ad7575fb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6318944b56216569b930fb12ad7575fb">body_index</a> (int id) const</td></tr>
+<tr class="memitem:a2b2ffef92a10f7af49586bd6ee3d59ca" id="r_a2b2ffef92a10f7af49586bd6ee3d59ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b2ffef92a10f7af49586bd6ee3d59ca">node_index</a> (int id) const</td></tr>
+<tr class="memitem:a03db1024e8b69333d73cbc0473ade7ca" id="r_a03db1024e8b69333d73cbc0473ade7ca"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03db1024e8b69333d73cbc0473ade7ca">position_at_vel</a> (int dir) const override</td></tr>
+<tr class="memitem:a363cc86c2b39f1460f41701a175eec40" id="r_a363cc86c2b39f1460f41701a175eec40"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a363cc86c2b39f1460f41701a175eec40">solid_velocity</a> (int dir) const override</td></tr>
+<tr class="memitem:ae630b5f59d368d1724f871520008ed04" id="r_ae630b5f59d368d1724f871520008ed04"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae630b5f59d368d1724f871520008ed04">fluid_velocity</a> (int dir) const override</td></tr>
+<tr class="memitem:ad4230e5978f7fb5df378171d979bde03" id="r_ad4230e5978f7fb5df378171d979bde03"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4230e5978f7fb5df378171d979bde03">force</a> (int dir) const override</td></tr>
+<tr class="memitem:a3623183954e692d291710d9cb3e8b59f" id="r_a3623183954e692d291710d9cb3e8b59f"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3623183954e692d291710d9cb3e8b59f">position_at_force</a> (int dir) const override</td></tr>
+<tr class="memitem:a5c8837925fb1b02f27be044ad8cb356b" id="r_a5c8837925fb1b02f27be044ad8cb356b"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c8837925fb1b02f27be044ad8cb356b">chord_at_force</a> () const override</td></tr>
+<tr class="memitem:a1e618166055baa73821477b6e5ed6c28" id="r_a1e618166055baa73821477b6e5ed6c28"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e618166055baa73821477b6e5ed6c28">orientation</a> () const override</td></tr>
+<tr class="memitem:a2f3442857d5ab956c6b6d5a4eb0556c9" id="r_a2f3442857d5ab956c6b6d5a4eb0556c9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f3442857d5ab956c6b6d5a4eb0556c9">length_fluid_velocity</a> (int dir) const override</td></tr>
+<tr class="memitem:a8eda42a3bcb6629c6508cae8f4e7f1b7" id="r_a8eda42a3bcb6629c6508cae8f4e7f1b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a> (int dir) const override</td></tr>
+<tr class="memitem:aca22566dcdc05cc190522bb10345f247" id="r_aca22566dcdc05cc190522bb10345f247"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca22566dcdc05cc190522bb10345f247">length_position_at_force</a> (int dir) const override</td></tr>
+<tr class="memitem:ab98204c34356467a71538d05cdbc93e3" id="r_ab98204c34356467a71538d05cdbc93e3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab98204c34356467a71538d05cdbc93e3">length_orientation</a> () const override</td></tr>
+<tr class="memitem:aa7b06cdaea5b9e6fd50f1847645d986d" id="r_aa7b06cdaea5b9e6fd50f1847645d986d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7b06cdaea5b9e6fd50f1847645d986d">num_vel_pts_blade</a> () const override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a943cb657d4fb97f9cff6db9eb0d23a9f" id="r_a943cb657d4fb97f9cff6db9eb0d23a9f"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; kynema::interfaces::TurbineInterface &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a></td></tr>
+<tr class="memitem:afc9d8b5c8ca086d2ac77f50a0f1d4449" id="r_afc9d8b5c8ca086d2ac77f50a0f1d4449"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc9d8b5c8ca086d2ac77f50a0f1d4449">fluid_density</a> {1.0_rt}</td></tr>
+<tr class="memitem:abbc319bca23ee8a20283d00c1db1c705" id="r_abbc319bca23ee8a20283d00c1db1c705"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbc319bca23ee8a20283d00c1db1c705">rotational_speed</a> {0.0_rt}</td></tr>
+<tr class="memitem:adc9f3dd5ecc2f61d0130f656da07152e" id="r_adc9f3dd5ecc2f61d0130f656da07152e"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc9f3dd5ecc2f61d0130f656da07152e">generator_power</a> {0.0_rt}</td></tr>
+<tr class="memitem:ae3883de3ab4b1eecb682bf69bbdc451b" id="r_ae3883de3ab4b1eecb682bf69bbdc451b"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3883de3ab4b1eecb682bf69bbdc451b">wind_speed</a> {0.0_rt}</td></tr>
+<tr class="memitem:a721576d5fbc3863dccc10b4101fcae0b" id="r_a721576d5fbc3863dccc10b4101fcae0b"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a721576d5fbc3863dccc10b4101fcae0b">yaw</a> {0.0_rt}</td></tr>
+<tr class="memitem:abce8eac807a1aa62666e4510610667c0" id="r_abce8eac807a1aa62666e4510610667c0"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abce8eac807a1aa62666e4510610667c0">generator_efficiency</a> {1.0_rt}</td></tr>
+<tr class="memitem:a7ed5a3e277deb105e464dee94e3e7ee2" id="r_a7ed5a3e277deb105e464dee94e3e7ee2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ed5a3e277deb105e464dee94e3e7ee2">substep_counter</a> {0}</td></tr>
+<tr class="memitem:a60b6fb89aa045471d7b0b71a4571d351" id="r_a60b6fb89aa045471d7b0b71a4571d351"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60b6fb89aa045471d7b0b71a4571d351">controller_shared_lib_path</a> {&quot;&quot;}</td></tr>
+<tr class="memitem:a5b156d0534ec6c925b2f178abbb079f0" id="r_a5b156d0534ec6c925b2f178abbb079f0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b156d0534ec6c925b2f178abbb079f0">controller_input_file</a> {&quot;&quot;}</td></tr>
+<tr class="memitem:a3d2b1d4150c4438feb964df0148ac7c4" id="r_a3d2b1d4150c4438feb964df0148ac7c4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d2b1d4150c4438feb964df0148ac7c4">buffer_cf</a></td></tr>
+<tr class="memitem:ad70b9bf1afd38fb2e374fc3796c911f8" id="r_ad70b9bf1afd38fb2e374fc3796c911f8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad70b9bf1afd38fb2e374fc3796c911f8">buffer_pv</a></td></tr>
+<tr class="memitem:ae732d767a2248d3bb84884539f81ad20" id="r_ae732d767a2248d3bb84884539f81ad20"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae732d767a2248d3bb84884539f81ad20">buffer_sv</a></td></tr>
+<tr class="memitem:a207b6e7066a54e9f3d9359b104df1e6b" id="r_a207b6e7066a54e9f3d9359b104df1e6b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a207b6e7066a54e9f3d9359b104df1e6b">buffer_fv</a></td></tr>
+<tr class="memitem:a314ccae36c7694b9a587d1a345e5fde4" id="r_a314ccae36c7694b9a587d1a345e5fde4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a314ccae36c7694b9a587d1a345e5fde4">buffer_f</a></td></tr>
+<tr class="memitem:ac3dc07e9b374ef1e49aea492c5ced160" id="r_ac3dc07e9b374ef1e49aea492c5ced160"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3dc07e9b374ef1e49aea492c5ced160">buffer_pf</a></td></tr>
+<tr class="memitem:a08df7d1cd79859cd82f1d2a73259b43c" id="r_a08df7d1cd79859cd82f1d2a73259b43c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08df7d1cd79859cd82f1d2a73259b43c">buffer_ori</a></td></tr>
+<tr class="memitem:a8001de552ae133ae4b1d3cea4b492f48" id="r_a8001de552ae133ae4b1d3cea4b492f48"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8001de552ae133ae4b1d3cea4b492f48">ptr_cf</a> {nullptr}</td></tr>
+<tr class="memitem:a5babad56c3dcea448abe997b36c49813" id="r_a5babad56c3dcea448abe997b36c49813"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5babad56c3dcea448abe997b36c49813">ptr_pv</a> {nullptr}</td></tr>
+<tr class="memitem:a211279f2abb2e34fa6547cf869a04fd5" id="r_a211279f2abb2e34fa6547cf869a04fd5"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a211279f2abb2e34fa6547cf869a04fd5">ptr_sv</a> {nullptr}</td></tr>
+<tr class="memitem:a287d3a47bb4194b1db3f86e6f2c7abb7" id="r_a287d3a47bb4194b1db3f86e6f2c7abb7"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a287d3a47bb4194b1db3f86e6f2c7abb7">ptr_fv</a> {nullptr}</td></tr>
+<tr class="memitem:a66a9ff0da5bf083eb07bba529beecbdd" id="r_a66a9ff0da5bf083eb07bba529beecbdd"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66a9ff0da5bf083eb07bba529beecbdd">ptr_f</a> {nullptr}</td></tr>
+<tr class="memitem:a1824f4be05d36dc34fd05f64089cde54" id="r_a1824f4be05d36dc34fd05f64089cde54"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1824f4be05d36dc34fd05f64089cde54">ptr_pf</a> {nullptr}</td></tr>
+<tr class="memitem:ace591b8b1be7568931f31bae12e71b8a" id="r_ace591b8b1be7568931f31bae12e71b8a"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace591b8b1be7568931f31bae12e71b8a">ptr_ori</a> {nullptr}</td></tr>
+<tr class="inherit_header pub_attribs_structext__turb_1_1_external_turbine"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_structext__turb_1_1_external_turbine')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Attributes inherited from <a class="el" href="structext__turb_1_1_external_turbine.html">ext_turb::ExternalTurbine</a></td></tr>
+<tr class="memitem:af0b89881e0a20055e353073164c37bcd inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_af0b89881e0a20055e353073164c37bcd"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#af0b89881e0a20055e353073164c37bcd">tlabel</a></td></tr>
+<tr class="memdesc:af0b89881e0a20055e353073164c37bcd inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique string identifier for this turbine.  <br /></td></tr>
+<tr class="memitem:ab69769f9f8da58a297666a8342cce2a6 inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_ab69769f9f8da58a297666a8342cce2a6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#ab69769f9f8da58a297666a8342cce2a6">tid_local</a></td></tr>
+<tr class="memdesc:ab69769f9f8da58a297666a8342cce2a6 inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local ID for this turbine (provided by external interface)  <br /></td></tr>
+<tr class="memitem:a3d0170535e43709ea333380c9be8210c inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_a3d0170535e43709ea333380c9be8210c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#a3d0170535e43709ea333380c9be8210c">tid_global</a></td></tr>
+<tr class="memdesc:a3d0170535e43709ea333380c9be8210c inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global ID for this turbine (set by Turbine instance)  <br /></td></tr>
+<tr class="memitem:aa73dd9740f1a3a005bbf72073c3e19c6 inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_aa73dd9740f1a3a005bbf72073c3e19c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#aa73dd9740f1a3a005bbf72073c3e19c6">num_pts_blade</a></td></tr>
+<tr class="memdesc:aa73dd9740f1a3a005bbf72073c3e19c6 inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of actuator points per blade.  <br /></td></tr>
+<tr class="memitem:abb9748fb857e422418bf7dfe27928b8a inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_abb9748fb857e422418bf7dfe27928b8a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#abb9748fb857e422418bf7dfe27928b8a">num_pts_tower</a></td></tr>
+<tr class="memdesc:abb9748fb857e422418bf7dfe27928b8a inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of actuator points for tower.  <br /></td></tr>
+<tr class="memitem:a7f21ab16276378fe6d9ae05235c93321 inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_a7f21ab16276378fe6d9ae05235c93321"><td class="memItemLeft" align="right" valign="top">amrex::Array&lt; float, <a class="el" href="structext__turb_1_1_external_turbine.html#a35d6b40f9f6b7a4cca19c8b3a7631615">ndim</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#a7f21ab16276378fe6d9ae05235c93321">base_pos</a></td></tr>
+<tr class="memdesc:a7f21ab16276378fe6d9ae05235c93321 inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Position of tower base in global coordinate system.  <br /></td></tr>
+<tr class="memitem:a0ce41caee955d90bbd381a8504c3c2d7 inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_a0ce41caee955d90bbd381a8504c3c2d7"><td class="memItemLeft" align="right" valign="top">amrex::Array&lt; float, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#a0ce41caee955d90bbd381a8504c3c2d7">hub_abs_pos</a></td></tr>
+<tr class="memdesc:a0ce41caee955d90bbd381a8504c3c2d7 inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hub stats for Spinner Lidar.  <br /></td></tr>
+<tr class="memitem:aa863e13f02ea094040cc68d99bdf092c inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_aa863e13f02ea094040cc68d99bdf092c"><td class="memItemLeft" align="right" valign="top">amrex::Array&lt; float, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#aa863e13f02ea094040cc68d99bdf092c">hub_rot_vel</a></td></tr>
+<tr class="memitem:aec80e5d475e27f61e2ec2a4c3601c350 inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_aec80e5d475e27f61e2ec2a4c3601c350"><td class="memItemLeft" align="right" valign="top">amrex::Array&lt; amrex::Real, 9 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#aec80e5d475e27f61e2ec2a4c3601c350">hub_orient</a></td></tr>
+<tr class="memitem:aee703969a8c20afbb9aab3bcc5878bc9 inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_aee703969a8c20afbb9aab3bcc5878bc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547">SimMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#aee703969a8c20afbb9aab3bcc5878bc9">sim_mode</a> {<a class="el" href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547ae37f0136aa3ffaf149b351f6a4c948e9">SimMode::init</a>}</td></tr>
+<tr class="memitem:ae768e3a135d778424c939d1712d24b3f inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_ae768e3a135d778424c939d1712d24b3f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#ae768e3a135d778424c939d1712d24b3f">input_file</a></td></tr>
+<tr class="memdesc:ae768e3a135d778424c939d1712d24b3f inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">External input file.  <br /></td></tr>
+<tr class="memitem:af40887f9a057c38731a2849c55e8c56f inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_af40887f9a057c38731a2849c55e8c56f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#af40887f9a057c38731a2849c55e8c56f">checkpoint_file</a></td></tr>
+<tr class="memdesc:af40887f9a057c38731a2849c55e8c56f inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checkpoint file name.  <br /></td></tr>
+<tr class="memitem:a0977be20f45a7b65284631483838b2cc inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_a0977be20f45a7b65284631483838b2cc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#a0977be20f45a7b65284631483838b2cc">num_blades</a></td></tr>
+<tr class="memdesc:a0977be20f45a7b65284631483838b2cc inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of blades.  <br /></td></tr>
+<tr class="memitem:acda67c43e9336bca91e2e18cc2d518ac inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_acda67c43e9336bca91e2e18cc2d518ac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#acda67c43e9336bca91e2e18cc2d518ac">num_blade_elem</a></td></tr>
+<tr class="memdesc:acda67c43e9336bca91e2e18cc2d518ac inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of elements along the blade.  <br /></td></tr>
+<tr class="memitem:ab4e758c6e562a5e3b4f1e4b679c00665 inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_ab4e758c6e562a5e3b4f1e4b679c00665"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#ab4e758c6e562a5e3b4f1e4b679c00665">num_tower_elem</a></td></tr>
+<tr class="memdesc:ab4e758c6e562a5e3b4f1e4b679c00665 inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of elements along the tower.  <br /></td></tr>
+<tr class="memitem:a90d67f466054a85aa894b117d3522094 inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_a90d67f466054a85aa894b117d3522094"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#a90d67f466054a85aa894b117d3522094">is_solution0</a> {true}</td></tr>
+<tr class="memitem:a8388462369254682efd35a8e0b040fe1 inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_a8388462369254682efd35a8e0b040fe1"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#a8388462369254682efd35a8e0b040fe1">start_time</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a8388462369254682efd35a8e0b040fe1 inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start time for this turbine.  <br /></td></tr>
+<tr class="memitem:a66777fca3836f167da9ffa6d88c74ee5 inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_a66777fca3836f167da9ffa6d88c74ee5"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#a66777fca3836f167da9ffa6d88c74ee5">stop_time</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:a66777fca3836f167da9ffa6d88c74ee5 inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">End time for this turbine.  <br /></td></tr>
+<tr class="memitem:a3bc43ef097d7189d5b87a7270e828308 inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_a3bc43ef097d7189d5b87a7270e828308"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#a3bc43ef097d7189d5b87a7270e828308">dt_cfd</a></td></tr>
+<tr class="memdesc:a3bc43ef097d7189d5b87a7270e828308 inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timestep for CFD.  <br /></td></tr>
+<tr class="memitem:ab67765a977601af9258ba7bb1991f8e4 inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_ab67765a977601af9258ba7bb1991f8e4"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#ab67765a977601af9258ba7bb1991f8e4">dt_ext</a></td></tr>
+<tr class="memdesc:ab67765a977601af9258ba7bb1991f8e4 inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timestep for external turbine solver.  <br /></td></tr>
+<tr class="memitem:aeeeecc3062fec88e046cde6984445ba2 inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_aeeeecc3062fec88e046cde6984445ba2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#aeeeecc3062fec88e046cde6984445ba2">num_substeps</a></td></tr>
+<tr class="memdesc:aeeeecc3062fec88e046cde6984445ba2 inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of sub-steps of external solver per CFD timestep.  <br /></td></tr>
+<tr class="memitem:a5fc4b3807afa14d498a6d9ad0c71f055 inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_a5fc4b3807afa14d498a6d9ad0c71f055"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#a5fc4b3807afa14d498a6d9ad0c71f055">time_index</a> {0}</td></tr>
+<tr class="memdesc:a5fc4b3807afa14d498a6d9ad0c71f055 inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time step index for external.  <br /></td></tr>
+<tr class="memitem:ac25c7f9b0885794fb65b2635c90e2cb5 inherit pub_attribs_structext__turb_1_1_external_turbine" id="r_ac25c7f9b0885794fb65b2635c90e2cb5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#ac25c7f9b0885794fb65b2635c90e2cb5">chkpt_interval</a></td></tr>
+<tr class="memdesc:ac25c7f9b0885794fb65b2635c90e2cb5 inherit pub_attribs_structext__turb_1_1_external_turbine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checkpoint interval for external.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_static_attribs_structext__turb_1_1_external_turbine"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_attribs_structext__turb_1_1_external_turbine')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Static Public Attributes inherited from <a class="el" href="structext__turb_1_1_external_turbine.html">ext_turb::ExternalTurbine</a></td></tr>
+<tr class="memitem:a35d6b40f9f6b7a4cca19c8b3a7631615 inherit pub_static_attribs_structext__turb_1_1_external_turbine" id="r_a35d6b40f9f6b7a4cca19c8b3a7631615"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__turb_1_1_external_turbine.html#a35d6b40f9f6b7a4cca19c8b3a7631615">ndim</a> = 3</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Representation of a turbine for exchanging data with Kynema </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a75352b83b4ed107a016cbbe1fec82fde" name="a75352b83b4ed107a016cbbe1fec82fde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75352b83b4ed107a016cbbe1fec82fde">&#9670;&#160;</a></span>allocate_buffers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ext_turb::KynemaTurbine::allocate_buffers </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6318944b56216569b930fb12ad7575fb" name="a6318944b56216569b930fb12ad7575fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6318944b56216569b930fb12ad7575fb">&#9670;&#160;</a></span>body_index()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ext_turb::KynemaTurbine::body_index </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Helper functions for navigating indices </p>
+
+</div>
+</div>
+<a id="a5c8837925fb1b02f27be044ad8cb356b" name="a5c8837925fb1b02f27be044ad8cb356b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c8837925fb1b02f27be044ad8cb356b">&#9670;&#160;</a></span>chord_at_force()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float * ext_turb::KynemaTurbine::chord_at_force </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="structext__turb_1_1_external_turbine.html#a3d2fa4f3bad3c99ffb413bd2cac2d8b5">ext_turb::ExternalTurbine</a>.</p>
+
+</div>
+</div>
+<a id="ae630b5f59d368d1724f871520008ed04" name="ae630b5f59d368d1724f871520008ed04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae630b5f59d368d1724f871520008ed04">&#9670;&#160;</a></span>fluid_velocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float * ext_turb::KynemaTurbine::fluid_velocity </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dir</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="structext__turb_1_1_external_turbine.html#a79b0244650a2c9656ba98b8590ab69e8">ext_turb::ExternalTurbine</a>.</p>
+
+</div>
+</div>
+<a id="ad4230e5978f7fb5df378171d979bde03" name="ad4230e5978f7fb5df378171d979bde03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4230e5978f7fb5df378171d979bde03">&#9670;&#160;</a></span>force()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float * ext_turb::KynemaTurbine::force </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dir</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="structext__turb_1_1_external_turbine.html#a9b234ead41a6ffd9572815786b71acce">ext_turb::ExternalTurbine</a>.</p>
+
+</div>
+</div>
+<a id="a2f3442857d5ab956c6b6d5a4eb0556c9" name="a2f3442857d5ab956c6b6d5a4eb0556c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f3442857d5ab956c6b6d5a4eb0556c9">&#9670;&#160;</a></span>length_fluid_velocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ext_turb::KynemaTurbine::length_fluid_velocity </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dir</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="structext__turb_1_1_external_turbine.html#aadfb2189562cb54ab296bc648c8d3b13">ext_turb::ExternalTurbine</a>.</p>
+
+</div>
+</div>
+<a id="a8eda42a3bcb6629c6508cae8f4e7f1b7" name="a8eda42a3bcb6629c6508cae8f4e7f1b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eda42a3bcb6629c6508cae8f4e7f1b7">&#9670;&#160;</a></span>length_force()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ext_turb::KynemaTurbine::length_force </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dir</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="structext__turb_1_1_external_turbine.html#afbd28c35d90b45c8ea0a9d6dac238750">ext_turb::ExternalTurbine</a>.</p>
+
+</div>
+</div>
+<a id="ab98204c34356467a71538d05cdbc93e3" name="ab98204c34356467a71538d05cdbc93e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab98204c34356467a71538d05cdbc93e3">&#9670;&#160;</a></span>length_orientation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ext_turb::KynemaTurbine::length_orientation </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="structext__turb_1_1_external_turbine.html#ad3e5e9e0bed6b532c6ad05d73b4b10d3">ext_turb::ExternalTurbine</a>.</p>
+
+</div>
+</div>
+<a id="aca22566dcdc05cc190522bb10345f247" name="aca22566dcdc05cc190522bb10345f247"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca22566dcdc05cc190522bb10345f247">&#9670;&#160;</a></span>length_position_at_force()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ext_turb::KynemaTurbine::length_position_at_force </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dir</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="structext__turb_1_1_external_turbine.html#ac186576711b75385579bb4ef27c17c41">ext_turb::ExternalTurbine</a>.</p>
+
+</div>
+</div>
+<a id="a2b2ffef92a10f7af49586bd6ee3d59ca" name="a2b2ffef92a10f7af49586bd6ee3d59ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b2ffef92a10f7af49586bd6ee3d59ca">&#9670;&#160;</a></span>node_index()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ext_turb::KynemaTurbine::node_index </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa7b06cdaea5b9e6fd50f1847645d986d" name="aa7b06cdaea5b9e6fd50f1847645d986d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7b06cdaea5b9e6fd50f1847645d986d">&#9670;&#160;</a></span>num_vel_pts_blade()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ext_turb::KynemaTurbine::num_vel_pts_blade </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="structext__turb_1_1_external_turbine.html#a9e6a1587960c7a001107a56b5a89be42">ext_turb::ExternalTurbine</a>.</p>
+
+</div>
+</div>
+<a id="a1e618166055baa73821477b6e5ed6c28" name="a1e618166055baa73821477b6e5ed6c28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e618166055baa73821477b6e5ed6c28">&#9670;&#160;</a></span>orientation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float * ext_turb::KynemaTurbine::orientation </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="structext__turb_1_1_external_turbine.html#a830781970c9158fc2d9d697e33e82375">ext_turb::ExternalTurbine</a>.</p>
+
+</div>
+</div>
+<a id="a6ca5e4fc9faa65a8bf333de8ab695835" name="a6ca5e4fc9faa65a8bf333de8ab695835"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ca5e4fc9faa65a8bf333de8ab695835">&#9670;&#160;</a></span>pass_fluid_velocity_and_hub_load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ext_turb::KynemaTurbine::pass_fluid_velocity_and_hub_load </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aae681d58fa5457e18b80c991f74aa916" name="aae681d58fa5457e18b80c991f74aa916"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae681d58fa5457e18b80c991f74aa916">&#9670;&#160;</a></span>populate_buffers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ext_turb::KynemaTurbine::populate_buffers </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3623183954e692d291710d9cb3e8b59f" name="a3623183954e692d291710d9cb3e8b59f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3623183954e692d291710d9cb3e8b59f">&#9670;&#160;</a></span>position_at_force()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float * ext_turb::KynemaTurbine::position_at_force </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dir</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="structext__turb_1_1_external_turbine.html#a13a8dc753fc14493c1c7c1db41e0d754">ext_turb::ExternalTurbine</a>.</p>
+
+</div>
+</div>
+<a id="a03db1024e8b69333d73cbc0473ade7ca" name="a03db1024e8b69333d73cbc0473ade7ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03db1024e8b69333d73cbc0473ade7ca">&#9670;&#160;</a></span>position_at_vel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float * ext_turb::KynemaTurbine::position_at_vel </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dir</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Data access functions needed for every turbine type </p>
+
+<p>Implements <a class="el" href="structext__turb_1_1_external_turbine.html#a2739e6e46c8c4e1b1ac404eea4c954b7">ext_turb::ExternalTurbine</a>.</p>
+
+</div>
+</div>
+<a id="a363cc86c2b39f1460f41701a175eec40" name="a363cc86c2b39f1460f41701a175eec40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a363cc86c2b39f1460f41701a175eec40">&#9670;&#160;</a></span>solid_velocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float * ext_turb::KynemaTurbine::solid_velocity </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dir</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="structext__turb_1_1_external_turbine.html#ab16c2195d08b89bb52263677b6118d31">ext_turb::ExternalTurbine</a>.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a3d2b1d4150c4438feb964df0148ac7c4" name="a3d2b1d4150c4438feb964df0148ac7c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d2b1d4150c4438feb964df0148ac7c4">&#9670;&#160;</a></span>buffer_cf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;float&gt; ext_turb::KynemaTurbine::buffer_cf</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a314ccae36c7694b9a587d1a345e5fde4" name="a314ccae36c7694b9a587d1a345e5fde4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a314ccae36c7694b9a587d1a345e5fde4">&#9670;&#160;</a></span>buffer_f</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;float&gt; ext_turb::KynemaTurbine::buffer_f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a207b6e7066a54e9f3d9359b104df1e6b" name="a207b6e7066a54e9f3d9359b104df1e6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a207b6e7066a54e9f3d9359b104df1e6b">&#9670;&#160;</a></span>buffer_fv</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;float&gt; ext_turb::KynemaTurbine::buffer_fv</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a08df7d1cd79859cd82f1d2a73259b43c" name="a08df7d1cd79859cd82f1d2a73259b43c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08df7d1cd79859cd82f1d2a73259b43c">&#9670;&#160;</a></span>buffer_ori</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;float&gt; ext_turb::KynemaTurbine::buffer_ori</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac3dc07e9b374ef1e49aea492c5ced160" name="ac3dc07e9b374ef1e49aea492c5ced160"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3dc07e9b374ef1e49aea492c5ced160">&#9670;&#160;</a></span>buffer_pf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;float&gt; ext_turb::KynemaTurbine::buffer_pf</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad70b9bf1afd38fb2e374fc3796c911f8" name="ad70b9bf1afd38fb2e374fc3796c911f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad70b9bf1afd38fb2e374fc3796c911f8">&#9670;&#160;</a></span>buffer_pv</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;float&gt; ext_turb::KynemaTurbine::buffer_pv</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae732d767a2248d3bb84884539f81ad20" name="ae732d767a2248d3bb84884539f81ad20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae732d767a2248d3bb84884539f81ad20">&#9670;&#160;</a></span>buffer_sv</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;float&gt; ext_turb::KynemaTurbine::buffer_sv</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b156d0534ec6c925b2f178abbb079f0" name="a5b156d0534ec6c925b2f178abbb079f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b156d0534ec6c925b2f178abbb079f0">&#9670;&#160;</a></span>controller_input_file</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ext_turb::KynemaTurbine::controller_input_file {&quot;&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a60b6fb89aa045471d7b0b71a4571d351" name="a60b6fb89aa045471d7b0b71a4571d351"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60b6fb89aa045471d7b0b71a4571d351">&#9670;&#160;</a></span>controller_shared_lib_path</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ext_turb::KynemaTurbine::controller_shared_lib_path {&quot;&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afc9d8b5c8ca086d2ac77f50a0f1d4449" name="afc9d8b5c8ca086d2ac77f50a0f1d4449"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc9d8b5c8ca086d2ac77f50a0f1d4449">&#9670;&#160;</a></span>fluid_density</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real ext_turb::KynemaTurbine::fluid_density {1.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abce8eac807a1aa62666e4510610667c0" name="abce8eac807a1aa62666e4510610667c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abce8eac807a1aa62666e4510610667c0">&#9670;&#160;</a></span>generator_efficiency</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real ext_turb::KynemaTurbine::generator_efficiency {1.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adc9f3dd5ecc2f61d0130f656da07152e" name="adc9f3dd5ecc2f61d0130f656da07152e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc9f3dd5ecc2f61d0130f656da07152e">&#9670;&#160;</a></span>generator_power</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real ext_turb::KynemaTurbine::generator_power {0.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a943cb657d4fb97f9cff6db9eb0d23a9f" name="a943cb657d4fb97f9cff6db9eb0d23a9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a943cb657d4fb97f9cff6db9eb0d23a9f">&#9670;&#160;</a></span>interface</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;kynema::interfaces::TurbineInterface&gt; ext_turb::KynemaTurbine::interface</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Variables exclusive to Kynema turbine type </p>
+
+</div>
+</div>
+<a id="a8001de552ae133ae4b1d3cea4b492f48" name="a8001de552ae133ae4b1d3cea4b492f48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8001de552ae133ae4b1d3cea4b492f48">&#9670;&#160;</a></span>ptr_cf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float* ext_turb::KynemaTurbine::ptr_cf {nullptr}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a66a9ff0da5bf083eb07bba529beecbdd" name="a66a9ff0da5bf083eb07bba529beecbdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66a9ff0da5bf083eb07bba529beecbdd">&#9670;&#160;</a></span>ptr_f</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float* ext_turb::KynemaTurbine::ptr_f {nullptr}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a287d3a47bb4194b1db3f86e6f2c7abb7" name="a287d3a47bb4194b1db3f86e6f2c7abb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a287d3a47bb4194b1db3f86e6f2c7abb7">&#9670;&#160;</a></span>ptr_fv</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float* ext_turb::KynemaTurbine::ptr_fv {nullptr}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ace591b8b1be7568931f31bae12e71b8a" name="ace591b8b1be7568931f31bae12e71b8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace591b8b1be7568931f31bae12e71b8a">&#9670;&#160;</a></span>ptr_ori</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float* ext_turb::KynemaTurbine::ptr_ori {nullptr}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1824f4be05d36dc34fd05f64089cde54" name="a1824f4be05d36dc34fd05f64089cde54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1824f4be05d36dc34fd05f64089cde54">&#9670;&#160;</a></span>ptr_pf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float* ext_turb::KynemaTurbine::ptr_pf {nullptr}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5babad56c3dcea448abe997b36c49813" name="a5babad56c3dcea448abe997b36c49813"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5babad56c3dcea448abe997b36c49813">&#9670;&#160;</a></span>ptr_pv</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float* ext_turb::KynemaTurbine::ptr_pv {nullptr}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a211279f2abb2e34fa6547cf869a04fd5" name="a211279f2abb2e34fa6547cf869a04fd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a211279f2abb2e34fa6547cf869a04fd5">&#9670;&#160;</a></span>ptr_sv</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float* ext_turb::KynemaTurbine::ptr_sv {nullptr}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abbc319bca23ee8a20283d00c1db1c705" name="abbc319bca23ee8a20283d00c1db1c705"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbc319bca23ee8a20283d00c1db1c705">&#9670;&#160;</a></span>rotational_speed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real ext_turb::KynemaTurbine::rotational_speed {0.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7ed5a3e277deb105e464dee94e3e7ee2" name="a7ed5a3e277deb105e464dee94e3e7ee2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ed5a3e277deb105e464dee94e3e7ee2">&#9670;&#160;</a></span>substep_counter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ext_turb::KynemaTurbine::substep_counter {0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae3883de3ab4b1eecb682bf69bbdc451b" name="ae3883de3ab4b1eecb682bf69bbdc451b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3883de3ab4b1eecb682bf69bbdc451b">&#9670;&#160;</a></span>wind_speed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real ext_turb::KynemaTurbine::wind_speed {0.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a721576d5fbc3863dccc10b4101fcae0b" name="a721576d5fbc3863dccc10b4101fcae0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a721576d5fbc3863dccc10b4101fcae0b">&#9670;&#160;</a></span>yaw</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real ext_turb::KynemaTurbine::yaw {0.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/kynema/<a class="el" href="kynema__types_8_h_source.html">kynema_types.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

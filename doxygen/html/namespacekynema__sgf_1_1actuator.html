@@ -1,0 +1,688 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::actuator Namespace Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::actuator Namespace Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/namespacekynema__sgf_1_1actuator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="actuator-namespace-reference">
+<h1>actuator Namespace Reference<a class="headerlink" href="#actuator-namespace-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::actuator Namespace Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1actuator.html">actuator</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::actuator Namespace Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:disk" id="r_disk"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1actuator_1_1disk.html">disk</a></td></tr>
+<tr class="memitem:external" id="r_external"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1actuator_1_1external.html">external</a></td></tr>
+<tr class="memitem:ops" id="r_ops"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1actuator_1_1ops.html">ops</a></td></tr>
+<tr class="memitem:utils" id="r_utils"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1actuator_1_1utils.html">utils</a></td></tr>
+<tr class="memitem:wing" id="r_wing"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1actuator_1_1wing.html">wing</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:ActDataHolder" id="r_ActDataHolder"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html">ActDataHolder</a></td></tr>
+<tr class="memitem:ActGrid" id="r_ActGrid"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_act_grid.html">ActGrid</a></td></tr>
+<tr class="memitem:ActInfo" id="r_ActInfo"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_act_info.html">ActInfo</a></td></tr>
+<tr class="memitem:ActModel" id="r_ActModel"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">ActModel</a></td></tr>
+<tr class="memitem:ActSrcDisk" id="r_ActSrcDisk"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_act_src_disk.html">ActSrcDisk</a></td></tr>
+<tr class="memitem:ActSrcLine" id="r_ActSrcLine"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_act_src_line.html">ActSrcLine</a></td></tr>
+<tr class="memitem:ActSrcType" id="r_ActSrcType"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_act_src_type.html">ActSrcType</a></td></tr>
+<tr class="memitem:Actuator" id="r_Actuator"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1actuator_1_1_actuator.html">Actuator</a></td></tr>
+<tr class="memitem:ActuatorCloud" id="r_ActuatorCloud"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_actuator_cloud.html">ActuatorCloud</a></td></tr>
+<tr class="memitem:ActuatorContainer" id="r_ActuatorContainer"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1actuator_1_1_actuator_container.html">ActuatorContainer</a></td></tr>
+<tr class="memitem:ActuatorModel" id="r_ActuatorModel"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1actuator_1_1_actuator_model.html">ActuatorModel</a></td></tr>
+<tr class="memitem:ActuatorType" id="r_ActuatorType"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_actuator_type.html">ActuatorType</a></td></tr>
+<tr class="memitem:AirfoilLoader" id="r_AirfoilLoader"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1actuator_1_1_airfoil_loader.html">AirfoilLoader</a></td></tr>
+<tr class="memitem:AirfoilTable" id="r_AirfoilTable"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html">AirfoilTable</a></td></tr>
+<tr class="memitem:AirfoilTraits" id="r_AirfoilTraits"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_airfoil_traits.html">AirfoilTraits</a></td></tr>
+<tr class="memitem:AirfoilTraits_3C_20FlatPlate_20_3E" id="r_AirfoilTraits_3C_20FlatPlate_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_airfoil_traits_3_01_flat_plate_01_4.html">AirfoilTraits&lt; FlatPlate &gt;</a></td></tr>
+<tr class="memitem:ComponentView" id="r_ComponentView"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_component_view.html">ComponentView</a></td></tr>
+<tr class="memitem:DiskBaseData" id="r_DiskBaseData"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_disk_base_data.html">DiskBaseData</a></td></tr>
+<tr class="memitem:DiskType" id="r_DiskType"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_disk_type.html">DiskType</a></td></tr>
+<tr class="memitem:FixedWing" id="r_FixedWing"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_fixed_wing.html">FixedWing</a></td></tr>
+<tr class="memitem:FixedWingData" id="r_FixedWingData"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_fixed_wing_data.html">FixedWingData</a></td></tr>
+<tr class="memitem:FlatPlate" id="r_FlatPlate"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_flat_plate.html">FlatPlate</a></td></tr>
+<tr class="memitem:FlatPlateData" id="r_FlatPlateData"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_flat_plate_data.html">FlatPlateData</a></td></tr>
+<tr class="memitem:FLLCData" id="r_FLLCData"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html">FLLCData</a></td></tr>
+<tr class="memitem:FLLCOp" id="r_FLLCOp"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_op.html">FLLCOp</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This struct will operate on a blade/wing. The velocity from the simulation is corrected using the Filtered Lifting Line Theory Correction from Martinez and Meneveau 2019.  <a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_op.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Joukowsky" id="r_Joukowsky"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_joukowsky.html">Joukowsky</a></td></tr>
+<tr class="memitem:JoukowskyData" id="r_JoukowskyData"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_joukowsky_data.html">JoukowskyData</a></td></tr>
+<tr class="memitem:ThinAirfoil" id="r_ThinAirfoil"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1actuator_1_1_thin_airfoil.html">ThinAirfoil</a></td></tr>
+<tr class="memitem:TurbineBaseData" id="r_TurbineBaseData"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_turbine_base_data.html">TurbineBaseData</a></td></tr>
+<tr class="memitem:TurbineExternalData" id="r_TurbineExternalData"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html">TurbineExternalData</a></td></tr>
+<tr class="memitem:TurbineFromExtSolver" id="r_TurbineFromExtSolver"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html">TurbineFromExtSolver</a></td></tr>
+<tr class="memitem:TurbineInfo" id="r_TurbineInfo"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_turbine_info.html">TurbineInfo</a></td></tr>
+<tr class="memitem:TurbineType" id="r_TurbineType"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_turbine_type.html">TurbineType</a></td></tr>
+<tr class="memitem:UniformCt" id="r_UniformCt"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_uniform_ct.html">UniformCt</a></td></tr>
+<tr class="memitem:UniformCtData" id="r_UniformCtData"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_uniform_ct_data.html">UniformCtData</a></td></tr>
+<tr class="memitem:WingBaseData" id="r_WingBaseData"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_wing_base_data.html">WingBaseData</a></td></tr>
+<tr class="memitem:WingType" id="r_WingType"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1actuator_1_1_wing_type.html">WingType</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a05a88c15cb29c1bc8314a1194c882789" id="r_a05a88c15cb29c1bc8314a1194c882789"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05a88c15cb29c1bc8314a1194c882789">RealList</a> = amrex::Vector&lt;amrex::Real&gt;</td></tr>
+<tr class="memitem:aabf768b1ed1ea7cb05893357d50d54ac" id="r_aabf768b1ed1ea7cb05893357d50d54ac"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aabf768b1ed1ea7cb05893357d50d54ac">RealSlice</a> = <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">::kynema_sgf::utils::Slice</a>&lt;amrex::Real&gt;</td></tr>
+<tr class="memitem:a39fef9a9215a0de416e46e1c858a4434" id="r_a39fef9a9215a0de416e46e1c858a4434"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39fef9a9215a0de416e46e1c858a4434">VecList</a> = amrex::Vector&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">kynema_sgf::vs::Vector</a>&gt;</td></tr>
+<tr class="memitem:a87a5ed49fe383c7bf1adeb4538ef7e45" id="r_a87a5ed49fe383c7bf1adeb4538ef7e45"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87a5ed49fe383c7bf1adeb4538ef7e45">VecSlice</a> = <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">::kynema_sgf::utils::Slice</a>&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">kynema_sgf::vs::Vector</a>&gt;</td></tr>
+<tr class="memitem:a578778d208f866e2368fe70b74274a97" id="r_a578778d208f866e2368fe70b74274a97"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a578778d208f866e2368fe70b74274a97">TensorList</a> = amrex::Vector&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">kynema_sgf::vs::Tensor</a>&gt;</td></tr>
+<tr class="memitem:a4e19501bd8d98ba14c9861a7c4ddc6d3" id="r_a4e19501bd8d98ba14c9861a7c4ddc6d3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e19501bd8d98ba14c9861a7c4ddc6d3">TensorSlice</a> = <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">::kynema_sgf::utils::Slice</a>&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">kynema_sgf::vs::Tensor</a>&gt;</td></tr>
+<tr class="memitem:a256ca88e69d08a9544611c12eace7c8b" id="r_a256ca88e69d08a9544611c12eace7c8b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a256ca88e69d08a9544611c12eace7c8b">DeviceVecList</a> = amrex::Gpu::DeviceVector&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">kynema_sgf::vs::Vector</a>&gt;</td></tr>
+<tr class="memitem:a236b2cb306d449842b2ffb0c283b9c06" id="r_a236b2cb306d449842b2ffb0c283b9c06"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a236b2cb306d449842b2ffb0c283b9c06">DeviceTensorList</a> = amrex::Gpu::DeviceVector&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">kynema_sgf::vs::Tensor</a>&gt;</td></tr>
+<tr class="memitem:a6d5eb3aafaa0798a4b1ba2e818514d07" id="r_a6d5eb3aafaa0798a4b1ba2e818514d07"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d5eb3aafaa0798a4b1ba2e818514d07">TurbineFast</a></td></tr>
+<tr class="memitem:a8bea2c4d345f2208ec2d17800fc3b6c8" id="r_a8bea2c4d345f2208ec2d17800fc3b6c8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bea2c4d345f2208ec2d17800fc3b6c8">TurbineKynema</a></td></tr>
+<tr class="memitem:a51c62aff00e252537c2fbef6ce0a47e1" id="r_a51c62aff00e252537c2fbef6ce0a47e1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51c62aff00e252537c2fbef6ce0a47e1">DeviceVecComponent</a> = amrex::Gpu::DeviceVector&lt;<a class="el" href="structkynema__sgf_1_1actuator_1_1_component_view.html">ComponentView</a>&gt;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ac6af79c2f7390dc5cad6ebe91be75c09" id="r_ac6af79c2f7390dc5cad6ebe91be75c09"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6af79c2f7390dc5cad6ebe91be75c09">FLLCType</a> : std::uint8_t { <a class="el" href="#ac6af79c2f7390dc5cad6ebe91be75c09a07713f35cdad163003e1ddcbeb41ab35">ConstantChord</a>
+, <a class="el" href="#ac6af79c2f7390dc5cad6ebe91be75c09a19c52e472009dc14176e5f3db8d40bca">VariableChord</a>
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a32880c7cd360749c1056ff04b8737ca2" id="r_a32880c7cd360749c1056ff04b8737ca2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32880c7cd360749c1056ff04b8737ca2">fllc_init</a> (<a class="el" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html">FLLCData</a> &amp;data, const <a class="el" href="structkynema__sgf_1_1actuator_1_1_component_view.html">ComponentView</a> &amp;view, amrex::Real eps_chord)</td></tr>
+<tr class="memdesc:a32880c7cd360749c1056ff04b8737ca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize FLLC data structure. This should be called at the end of the first ComputeForceOp to ensure the data is fully populated.  <br /></td></tr>
+<tr class="memitem:aa72c2fff079360686784abd54020edf5" id="r_aa72c2fff079360686784abd54020edf5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa72c2fff079360686784abd54020edf5">fllc_parse</a> (const <a class="el" href="namespacekynema__sgf_1_1actuator_1_1utils.html#a09555b2d7d3bf73e8f36553f7f5aa3ac">utils::ActParser</a> &amp;pp, <a class="el" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html">FLLCData</a> &amp;data)</td></tr>
+<tr class="memdesc:aa72c2fff079360686784abd54020edf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to capture common parsing requirements for the filtered lifting line correction.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ac92a647ca5c4d7f134b313c1419326e3" id="r_ac92a647ca5c4d7f134b313c1419326e3"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac92a647ca5c4d7f134b313c1419326e3">NumPStructReal</a> = AMREX_SPACEDIM + 1</td></tr>
+<tr class="memdesc:ac92a647ca5c4d7f134b313c1419326e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number or real entries in Array of Structs (AOS)  <br /></td></tr>
+<tr class="memitem:a32fdd15bbd8a83b8e0db45c26ca684a7" id="r_a32fdd15bbd8a83b8e0db45c26ca684a7"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32fdd15bbd8a83b8e0db45c26ca684a7">NumPStructInt</a> = 1</td></tr>
+<tr class="memdesc:a32fdd15bbd8a83b8e0db45c26ca684a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of integer entries in Array of Structs (AOS)  <br /></td></tr>
+<tr class="memitem:a406b3ae6ae0da201e42659c771caaada" id="r_a406b3ae6ae0da201e42659c771caaada"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a406b3ae6ae0da201e42659c771caaada">NumPArrayReal</a> = 0</td></tr>
+<tr class="memdesc:a406b3ae6ae0da201e42659c771caaada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of real entries in Struct of Arrays (SOA)  <br /></td></tr>
+<tr class="memitem:a678bc021c3983d114ea4d0d5ceb845b5" id="r_a678bc021c3983d114ea4d0d5ceb845b5"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a678bc021c3983d114ea4d0d5ceb845b5">NumPArrayInt</a> = 0</td></tr>
+<tr class="memdesc:a678bc021c3983d114ea4d0d5ceb845b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of int entries in Struct of Arrays (SOA)  <br /></td></tr>
+<tr class="memitem:af3b4310224dc6709f9e8f7bcaee7aa93" id="r_af3b4310224dc6709f9e8f7bcaee7aa93"><td class="memItemLeft" align="right" valign="top">static std::map&lt; std::string, <a class="el" href="#ac6af79c2f7390dc5cad6ebe91be75c09">FLLCType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3b4310224dc6709f9e8f7bcaee7aa93">FLLCTypeMap</a></td></tr>
+</table>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="a236b2cb306d449842b2ffb0c283b9c06" name="a236b2cb306d449842b2ffb0c283b9c06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a236b2cb306d449842b2ffb0c283b9c06">&#9670;&#160;</a></span>DeviceTensorList</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a236b2cb306d449842b2ffb0c283b9c06">kynema_sgf::actuator::DeviceTensorList</a> = amrex::Gpu::DeviceVector&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">kynema_sgf::vs::Tensor</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a51c62aff00e252537c2fbef6ce0a47e1" name="a51c62aff00e252537c2fbef6ce0a47e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51c62aff00e252537c2fbef6ce0a47e1">&#9670;&#160;</a></span>DeviceVecComponent</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a51c62aff00e252537c2fbef6ce0a47e1">kynema_sgf::actuator::DeviceVecComponent</a> = amrex::Gpu::DeviceVector&lt;<a class="el" href="structkynema__sgf_1_1actuator_1_1_component_view.html">ComponentView</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a256ca88e69d08a9544611c12eace7c8b" name="a256ca88e69d08a9544611c12eace7c8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a256ca88e69d08a9544611c12eace7c8b">&#9670;&#160;</a></span>DeviceVecList</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a256ca88e69d08a9544611c12eace7c8b">kynema_sgf::actuator::DeviceVecList</a> = amrex::Gpu::DeviceVector&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">kynema_sgf::vs::Vector</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a05a88c15cb29c1bc8314a1194c882789" name="a05a88c15cb29c1bc8314a1194c882789"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05a88c15cb29c1bc8314a1194c882789">&#9670;&#160;</a></span>RealList</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a05a88c15cb29c1bc8314a1194c882789">kynema_sgf::actuator::RealList</a> = amrex::Vector&lt;amrex::Real&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aabf768b1ed1ea7cb05893357d50d54ac" name="aabf768b1ed1ea7cb05893357d50d54ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabf768b1ed1ea7cb05893357d50d54ac">&#9670;&#160;</a></span>RealSlice</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#aabf768b1ed1ea7cb05893357d50d54ac">kynema_sgf::actuator::RealSlice</a> = <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">::kynema_sgf::utils::Slice</a>&lt;amrex::Real&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a578778d208f866e2368fe70b74274a97" name="a578778d208f866e2368fe70b74274a97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a578778d208f866e2368fe70b74274a97">&#9670;&#160;</a></span>TensorList</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a578778d208f866e2368fe70b74274a97">kynema_sgf::actuator::TensorList</a> = amrex::Vector&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">kynema_sgf::vs::Tensor</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e19501bd8d98ba14c9861a7c4ddc6d3" name="a4e19501bd8d98ba14c9861a7c4ddc6d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e19501bd8d98ba14c9861a7c4ddc6d3">&#9670;&#160;</a></span>TensorSlice</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a4e19501bd8d98ba14c9861a7c4ddc6d3">kynema_sgf::actuator::TensorSlice</a> = <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">::kynema_sgf::utils::Slice</a>&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">kynema_sgf::vs::Tensor</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6d5eb3aafaa0798a4b1ba2e818514d07" name="a6d5eb3aafaa0798a4b1ba2e818514d07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d5eb3aafaa0798a4b1ba2e818514d07">&#9670;&#160;</a></span>TurbineFast</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a6d5eb3aafaa0798a4b1ba2e818514d07">kynema_sgf::actuator::TurbineFast</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line"> </div>
+<div class="line">    <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html">TurbineFromExtSolver&lt;::ext_turb::FastTurbine, ::ext_turb::FastSolverData&gt;</a></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html">kynema_sgf::actuator::TurbineFromExtSolver</a></div><div class="ttdef"><b>Definition</b> TurbineExternal.H:26</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a8bea2c4d345f2208ec2d17800fc3b6c8" name="a8bea2c4d345f2208ec2d17800fc3b6c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bea2c4d345f2208ec2d17800fc3b6c8">&#9670;&#160;</a></span>TurbineKynema</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a8bea2c4d345f2208ec2d17800fc3b6c8">kynema_sgf::actuator::TurbineKynema</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line"> <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html">TurbineFromExtSolver</a>&lt;</div>
+<div class="line">    <a class="code hl_struct" href="structext__turb_1_1_kynema_turbine.html">::ext_turb::KynemaTurbine</a>,</div>
+<div class="line">    <a class="code hl_struct" href="structext__turb_1_1_kynema_solver_data.html">::ext_turb::KynemaSolverData</a>&gt;</div>
+<div class="ttc" id="astructext__turb_1_1_kynema_solver_data_html"><div class="ttname"><a href="structext__turb_1_1_kynema_solver_data.html">ext_turb::KynemaSolverData</a></div><div class="ttdef"><b>Definition</b> kynema_types.H:272</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html">ext_turb::KynemaTurbine</a></div><div class="ttdef"><b>Definition</b> kynema_types.H:16</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a39fef9a9215a0de416e46e1c858a4434" name="a39fef9a9215a0de416e46e1c858a4434"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39fef9a9215a0de416e46e1c858a4434">&#9670;&#160;</a></span>VecList</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a39fef9a9215a0de416e46e1c858a4434">kynema_sgf::actuator::VecList</a> = amrex::Vector&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">kynema_sgf::vs::Vector</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a87a5ed49fe383c7bf1adeb4538ef7e45" name="a87a5ed49fe383c7bf1adeb4538ef7e45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87a5ed49fe383c7bf1adeb4538ef7e45">&#9670;&#160;</a></span>VecSlice</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a87a5ed49fe383c7bf1adeb4538ef7e45">kynema_sgf::actuator::VecSlice</a> = <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">::kynema_sgf::utils::Slice</a>&lt;<a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">kynema_sgf::vs::Vector</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="ac6af79c2f7390dc5cad6ebe91be75c09" name="ac6af79c2f7390dc5cad6ebe91be75c09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6af79c2f7390dc5cad6ebe91be75c09">&#9670;&#160;</a></span>FLLCType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#ac6af79c2f7390dc5cad6ebe91be75c09">kynema_sgf::actuator::FLLCType</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac6af79c2f7390dc5cad6ebe91be75c09a07713f35cdad163003e1ddcbeb41ab35" name="ac6af79c2f7390dc5cad6ebe91be75c09a07713f35cdad163003e1ddcbeb41ab35"></a>ConstantChord&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac6af79c2f7390dc5cad6ebe91be75c09a19c52e472009dc14176e5f3db8d40bca" name="ac6af79c2f7390dc5cad6ebe91be75c09a19c52e472009dc14176e5f3db8d40bca"></a>VariableChord&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a32880c7cd360749c1056ff04b8737ca2" name="a32880c7cd360749c1056ff04b8737ca2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32880c7cd360749c1056ff04b8737ca2">&#9670;&#160;</a></span>fllc_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::actuator::fllc_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html">FLLCData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structkynema__sgf_1_1actuator_1_1_component_view.html">ComponentView</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>view</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>eps_chord</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize FLLC data structure. This should be called at the end of the first ComputeForceOp to ensure the data is fully populated. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>FLLC specific data and scratch fields </td></tr>
+    <tr><td class="paramname">view</td><td>Component view that has references to the grid data </td></tr>
+    <tr><td class="paramname">eps_chord</td><td>epsilon chord </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa72c2fff079360686784abd54020edf5" name="aa72c2fff079360686784abd54020edf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa72c2fff079360686784abd54020edf5">&#9670;&#160;</a></span>fllc_parse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::actuator::fllc_parse </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacekynema__sgf_1_1actuator_1_1utils.html#a09555b2d7d3bf73e8f36553f7f5aa3ac">utils::ActParser</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>pp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html">FLLCData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to capture common parsing requirements for the filtered lifting line correction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pp</td><td>Parser </td></tr>
+    <tr><td class="paramname">data</td><td>Data to be populated from parser </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="af3b4310224dc6709f9e8f7bcaee7aa93" name="af3b4310224dc6709f9e8f7bcaee7aa93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3b4310224dc6709f9e8f7bcaee7aa93">&#9670;&#160;</a></span>FLLCTypeMap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, <a class="el" href="#ac6af79c2f7390dc5cad6ebe91be75c09">FLLCType</a>&gt; kynema_sgf::actuator::FLLCTypeMap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{</div>
+<div class="line">    {<span class="stringliteral">&quot;constant_chord&quot;</span>, <a class="code hl_enumvalue" href="#ac6af79c2f7390dc5cad6ebe91be75c09a07713f35cdad163003e1ddcbeb41ab35">FLLCType::ConstantChord</a>},</div>
+<div class="line">    {<span class="stringliteral">&quot;variable_chord&quot;</span>, <a class="code hl_enumvalue" href="#ac6af79c2f7390dc5cad6ebe91be75c09a19c52e472009dc14176e5f3db8d40bca">FLLCType::VariableChord</a>}}</div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_ac6af79c2f7390dc5cad6ebe91be75c09a07713f35cdad163003e1ddcbeb41ab35"><div class="ttname"><a href="#ac6af79c2f7390dc5cad6ebe91be75c09a07713f35cdad163003e1ddcbeb41ab35">kynema_sgf::actuator::FLLCType::ConstantChord</a></div><div class="ttdeci">@ ConstantChord</div><div class="ttdef"><b>Definition</b> FLLC.H:13</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_ac6af79c2f7390dc5cad6ebe91be75c09a19c52e472009dc14176e5f3db8d40bca"><div class="ttname"><a href="#ac6af79c2f7390dc5cad6ebe91be75c09a19c52e472009dc14176e5f3db8d40bca">kynema_sgf::actuator::FLLCType::VariableChord</a></div><div class="ttdeci">@ VariableChord</div><div class="ttdef"><b>Definition</b> FLLC.H:13</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a678bc021c3983d114ea4d0d5ceb845b5" name="a678bc021c3983d114ea4d0d5ceb845b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a678bc021c3983d114ea4d0d5ceb845b5">&#9670;&#160;</a></span>NumPArrayInt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::NumPArrayInt = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of int entries in Struct of Arrays (SOA) </p>
+
+</div>
+</div>
+<a id="a406b3ae6ae0da201e42659c771caaada" name="a406b3ae6ae0da201e42659c771caaada"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a406b3ae6ae0da201e42659c771caaada">&#9670;&#160;</a></span>NumPArrayReal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::NumPArrayReal = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of real entries in Struct of Arrays (SOA) </p>
+
+</div>
+</div>
+<a id="a32fdd15bbd8a83b8e0db45c26ca684a7" name="a32fdd15bbd8a83b8e0db45c26ca684a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32fdd15bbd8a83b8e0db45c26ca684a7">&#9670;&#160;</a></span>NumPStructInt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::NumPStructInt = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of integer entries in Array of Structs (AOS) </p>
+
+</div>
+</div>
+<a id="ac92a647ca5c4d7f134b313c1419326e3" name="ac92a647ca5c4d7f134b313c1419326e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac92a647ca5c4d7f134b313c1419326e3">&#9670;&#160;</a></span>NumPStructReal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::NumPStructReal = AMREX_SPACEDIM + 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number or real entries in Array of Structs (AOS) </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::pde::ICNSDiffScalarOp Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::pde::ICNSDiffScalarOp Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1pde_1_1_i_c_n_s_diff_scalar_op.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="icnsdiffscalarop-class-reference">
+<h1>ICNSDiffScalarOp Class Reference<a class="headerlink" href="#icnsdiffscalarop-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::pde::ICNSDiffScalarOp Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1pde.html">pde</a></li><li class="navelem"><a href="classkynema__sgf_1_1pde_1_1_i_c_n_s_diff_scalar_op.html">ICNSDiffScalarOp</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classkynema__sgf_1_1pde_1_1_i_c_n_s_diff_scalar_op-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::pde::ICNSDiffScalarOp Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="icns__diffusion_8_h_source.html">icns_diffusion.H</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::pde::ICNSDiffScalarOp:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1pde_1_1_i_c_n_s_diff_scalar_op__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ae6c3c730ef18bec8051646232e44e841" id="r_ae6c3c730ef18bec8051646232e44e841"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6c3c730ef18bec8051646232e44e841">ICNSDiffScalarOp</a> (<a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a> &amp;fields, const bool has_overset, const bool mesh_mapping, const std::string &amp;prefix=&quot;diffusion&quot;)</td></tr>
+<tr class="memitem:a171158e0682b111daed3fb5836c88f5e" id="r_a171158e0682b111daed3fb5836c88f5e"><td class="memTemplParams" colspan="2">template&lt;typename Scheme&gt; </td></tr>
+<tr class="memitem:a171158e0682b111daed3fb5836c88f5e template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a171158e0682b111daed3fb5836c88f5e">compute_diff_term</a> (const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate)</td></tr>
+<tr class="memitem:af2c1969d258e52ed518b197597aa3c79" id="r_af2c1969d258e52ed518b197597aa3c79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2c1969d258e52ed518b197597aa3c79">linsys_solve</a> (const amrex::Real dt)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ae99e974159023329543ff57a908d6b6f" id="r_ae99e974159023329543ff57a908d6b6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae99e974159023329543ff57a908d6b6f">m_pdefields</a></td></tr>
+<tr class="memitem:af113c5239d2d55ce5ee88c31957bcadd" id="r_af113c5239d2d55ce5ee88c31957bcadd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af113c5239d2d55ce5ee88c31957bcadd">m_density</a></td></tr>
+<tr class="memitem:a89464bdd91df9c93a0393af52d83615c" id="r_a89464bdd91df9c93a0393af52d83615c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1_m_l_m_g_options.html">MLMGOptions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89464bdd91df9c93a0393af52d83615c">m_options</a></td></tr>
+<tr class="memitem:a3cb9bff37bc110bf6601c51de0140b9b" id="r_a3cb9bff37bc110bf6601c51de0140b9b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cb9bff37bc110bf6601c51de0140b9b">m_mesh_mapping</a> {false}</td></tr>
+<tr class="memitem:ac9b51d22bc0f5bd5a87777da056b16fc" id="r_ac9b51d22bc0f5bd5a87777da056b16fc"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; amrex::MLABecLaplacian &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac9b51d22bc0f5bd5a87777da056b16fc">m_solver_scalar</a></td></tr>
+<tr class="memitem:ae9f50cbbadb7093df65ce02d5e307031" id="r_ae9f50cbbadb7093df65ce02d5e307031"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; amrex::MLABecLaplacian &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9f50cbbadb7093df65ce02d5e307031">m_applier_scalar</a></td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae6c3c730ef18bec8051646232e44e841" name="ae6c3c730ef18bec8051646232e44e841"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6c3c730ef18bec8051646232e44e841">&#9670;&#160;</a></span>ICNSDiffScalarOp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::pde::ICNSDiffScalarOp::ICNSDiffScalarOp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fields</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>has_overset</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>mesh_mapping</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>prefix</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;diffusion&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a171158e0682b111daed3fb5836c88f5e" name="a171158e0682b111daed3fb5836c88f5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a171158e0682b111daed3fb5836c88f5e">&#9670;&#160;</a></span>compute_diff_term()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Scheme&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::ICNSDiffScalarOp::compute_diff_term </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af2c1969d258e52ed518b197597aa3c79" name="af2c1969d258e52ed518b197597aa3c79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2c1969d258e52ed518b197597aa3c79">&#9670;&#160;</a></span>linsys_solve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::ICNSDiffScalarOp::linsys_solve </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="ae9f50cbbadb7093df65ce02d5e307031" name="ae9f50cbbadb7093df65ce02d5e307031"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9f50cbbadb7093df65ce02d5e307031">&#9670;&#160;</a></span>m_applier_scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;amrex::MLABecLaplacian&gt; kynema_sgf::pde::ICNSDiffScalarOp::m_applier_scalar</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af113c5239d2d55ce5ee88c31957bcadd" name="af113c5239d2d55ce5ee88c31957bcadd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af113c5239d2d55ce5ee88c31957bcadd">&#9670;&#160;</a></span>m_density</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::pde::ICNSDiffScalarOp::m_density</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3cb9bff37bc110bf6601c51de0140b9b" name="a3cb9bff37bc110bf6601c51de0140b9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cb9bff37bc110bf6601c51de0140b9b">&#9670;&#160;</a></span>m_mesh_mapping</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::pde::ICNSDiffScalarOp::m_mesh_mapping {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a89464bdd91df9c93a0393af52d83615c" name="a89464bdd91df9c93a0393af52d83615c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89464bdd91df9c93a0393af52d83615c">&#9670;&#160;</a></span>m_options</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1_m_l_m_g_options.html">MLMGOptions</a> kynema_sgf::pde::ICNSDiffScalarOp::m_options</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae99e974159023329543ff57a908d6b6f" name="ae99e974159023329543ff57a908d6b6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae99e974159023329543ff57a908d6b6f">&#9670;&#160;</a></span>m_pdefields</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a>&amp; kynema_sgf::pde::ICNSDiffScalarOp::m_pdefields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac9b51d22bc0f5bd5a87777da056b16fc" name="ac9b51d22bc0f5bd5a87777da056b16fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9b51d22bc0f5bd5a87777da056b16fc">&#9670;&#160;</a></span>m_solver_scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;amrex::MLABecLaplacian&gt; kynema_sgf::pde::ICNSDiffScalarOp::m_solver_scalar</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/<a class="el" href="icns__diffusion_8_h_source.html">icns_diffusion.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

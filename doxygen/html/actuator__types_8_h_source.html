@@ -1,0 +1,471 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/actuator_types.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/actuator_types.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/actuator__types_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-actuator-types-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/actuator_types.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-actuator-types-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/actuator_types.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_a80d9316c48aa709b9bc78e2b746db24.html">wind_energy</a></li><li class="navelem"><a href="dir_9dcf803d990c86a52c151efe46b23ed3.html">actuator</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">actuator_types.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="actuator__types_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef ACTUATOR_TYPES_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define ACTUATOR_TYPES_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_slice_8_h.html">src/core/Slice.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="vector__space_8_h.html">src/core/vs/vector_space.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;AMReX_Gpu.H&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;AMReX_RealBox.H&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1actuator.html">actuator</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_type.html">   26</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_actuator_type.html">ActuatorType</a></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>{};</div>
+</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="};">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_src_type.html">   33</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_act_src_type.html">ActSrcType</a></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{};</div>
+</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="};">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_src_line.html">   40</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_act_src_line.html">ActSrcLine</a> : <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_act_src_type.html">ActSrcType</a></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>{</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_src_line.html#a09fe7e029c0d4374c54b04087e91ee07">   42</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1_act_src_line.html#a09fe7e029c0d4374c54b04087e91ee07">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Line&quot;</span>; }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_src_line.html#a93891dfda1321e760e867284840f9f23">   45</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_src_line.html#a93891dfda1321e760e867284840f9f23">is_line</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_src_line.html#a4b2fd81f7cdf460fe16c491fe1f7db33">   48</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_src_line.html#a4b2fd81f7cdf460fe16c491fe1f7db33">is_disk</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
+</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="foldopen" id="foldopen00055" data-start="{" data-end="};">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_src_disk.html">   55</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_act_src_disk.html">ActSrcDisk</a> : <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_act_src_type.html">ActSrcType</a></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>{</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_src_disk.html#ad6cee52d7c1358347201c42cc1a5e414">   57</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1_act_src_disk.html#ad6cee52d7c1358347201c42cc1a5e414">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Disk&quot;</span>; }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_src_disk.html#a1133ae751d48cda8ed1d30591452d117">   59</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_src_disk.html#a1133ae751d48cda8ed1d30591452d117">is_line</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_src_disk.html#aa4bd8de9227ff8cea2adfb6236e9e983">   60</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_src_disk.html#aa4bd8de9227ff8cea2adfb6236e9e983">is_disk</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>};</div>
+</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">   63</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> = amrex::Vector&lt;amrex::Real&gt;;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1actuator.html#aabf768b1ed1ea7cb05893357d50d54ac">   64</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#aabf768b1ed1ea7cb05893357d50d54ac">RealSlice</a> = <a class="code hl_struct" href="structkynema__sgf_1_1utils_1_1_slice.html">::kynema_sgf::utils::Slice&lt;amrex::Real&gt;</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">   65</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> = amrex::Vector&lt;kynema_sgf::vs::Vector&gt;;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1actuator.html#a87a5ed49fe383c7bf1adeb4538ef7e45">   66</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a87a5ed49fe383c7bf1adeb4538ef7e45">VecSlice</a> = <a class="code hl_struct" href="structkynema__sgf_1_1utils_1_1_slice.html">::kynema_sgf::utils::Slice&lt;kynema_sgf::vs::Vector&gt;</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1actuator.html#a578778d208f866e2368fe70b74274a97">   67</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a578778d208f866e2368fe70b74274a97">TensorList</a> = amrex::Vector&lt;kynema_sgf::vs::Tensor&gt;;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1actuator.html#a4e19501bd8d98ba14c9861a7c4ddc6d3">   68</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a4e19501bd8d98ba14c9861a7c4ddc6d3">TensorSlice</a> = <a class="code hl_struct" href="structkynema__sgf_1_1utils_1_1_slice.html">::kynema_sgf::utils::Slice&lt;kynema_sgf::vs::Tensor&gt;</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1actuator.html#a256ca88e69d08a9544611c12eace7c8b">   69</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a256ca88e69d08a9544611c12eace7c8b">DeviceVecList</a> = amrex::Gpu::DeviceVector&lt;kynema_sgf::vs::Vector&gt;;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1actuator.html#a236b2cb306d449842b2ffb0c283b9c06">   70</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a236b2cb306d449842b2ffb0c283b9c06">DeviceTensorList</a> = amrex::Gpu::DeviceVector&lt;kynema_sgf::vs::Tensor&gt;;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span></div>
+<div class="foldopen" id="foldopen00076" data-start="{" data-end="};">
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_grid.html">   76</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_act_grid.html">ActGrid</a></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>{</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a0d2b80bd3e36c8685c1d13c33b409c78">   79</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a0d2b80bd3e36c8685c1d13c33b409c78">pos</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a4ad4229e1d368cf43d65d0307323ef08">   82</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a4ad4229e1d368cf43d65d0307323ef08">force</a>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a484f12ac6bf3b965a105926eb87246f4">   85</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a484f12ac6bf3b965a105926eb87246f4">epsilon</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a96560c223a83fe83d82e59b6685d5d0d">   88</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a578778d208f866e2368fe70b74274a97">TensorList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a96560c223a83fe83d82e59b6685d5d0d">orientation</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a853c7344338b696cdefb0b2bb477c987">   91</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a853c7344338b696cdefb0b2bb477c987">vel_pos</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#af439c39599c9f150fb169804b05e01a0">   94</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#af439c39599c9f150fb169804b05e01a0">vel</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#ac0f47124373d96a83f17bfcfabb7564e">   97</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#ac0f47124373d96a83f17bfcfabb7564e">density</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a455e2cb3669553b5798133f7796b2c3c">  100</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a455e2cb3669553b5798133f7796b2c3c">dcoord_flags</a>{1.0_rt, 1.0_rt, 1.0_rt};</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span></div>
+<div class="foldopen" id="foldopen00107" data-start="{" data-end="}">
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#ac35db156e1e2c0e45751aaf764cc6c66">  107</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#ac35db156e1e2c0e45751aaf764cc6c66">resize</a>(<span class="keywordtype">int</span> num_force_pts, <span class="keywordtype">int</span> num_vel_pts)</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a0d2b80bd3e36c8685c1d13c33b409c78">pos</a>.resize(num_force_pts);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a4ad4229e1d368cf43d65d0307323ef08">force</a>.resize(num_force_pts);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a484f12ac6bf3b965a105926eb87246f4">epsilon</a>.resize(num_force_pts);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a96560c223a83fe83d82e59b6685d5d0d">orientation</a>.resize(num_force_pts);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a853c7344338b696cdefb0b2bb477c987">vel_pos</a>.resize(num_vel_pts);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#af439c39599c9f150fb169804b05e01a0">vel</a>.resize(num_vel_pts);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#ac0f47124373d96a83f17bfcfabb7564e">density</a>.resize(num_vel_pts);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
+</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a5d3cf3f6491c4592812091a82755dce2">  121</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a5d3cf3f6491c4592812091a82755dce2">resize</a>(<span class="keywordtype">int</span> num_pts) { <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a5d3cf3f6491c4592812091a82755dce2">resize</a>(num_pts, num_pts); }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>};</div>
+</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span></div>
+<div class="foldopen" id="foldopen00128" data-start="{" data-end="};">
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_component_view.html">  128</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_component_view.html">ComponentView</a></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>{</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_component_view.html#a61ba3babc259371d8c6596329f74d68a">  130</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a87a5ed49fe383c7bf1adeb4538ef7e45">VecSlice</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_component_view.html#a61ba3babc259371d8c6596329f74d68a">pos</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_component_view.html#a65bf5857b97e7c57d592e0ec1523685d">  131</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a87a5ed49fe383c7bf1adeb4538ef7e45">VecSlice</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_component_view.html#a65bf5857b97e7c57d592e0ec1523685d">force</a>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_component_view.html#aa9535c4d7879f6af20fa35225ebfa679">  132</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a87a5ed49fe383c7bf1adeb4538ef7e45">VecSlice</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_component_view.html#aa9535c4d7879f6af20fa35225ebfa679">epsilon</a>;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_component_view.html#a008454a2f670102918ddf7291031bc56">  133</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a4e19501bd8d98ba14c9861a7c4ddc6d3">TensorSlice</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_component_view.html#a008454a2f670102918ddf7291031bc56">orientation</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_component_view.html#a66973cf042bc9a6f3df1088054591e23">  135</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a87a5ed49fe383c7bf1adeb4538ef7e45">VecSlice</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_component_view.html#a66973cf042bc9a6f3df1088054591e23">vel_pos</a>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_component_view.html#af4b30958b31865c66e7ce9c2002e73f2">  136</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a87a5ed49fe383c7bf1adeb4538ef7e45">VecSlice</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_component_view.html#af4b30958b31865c66e7ce9c2002e73f2">vel</a>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_component_view.html#a7c17e85ee194ba8c426eabc12ef93518">  137</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a87a5ed49fe383c7bf1adeb4538ef7e45">VecSlice</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_component_view.html#a7c17e85ee194ba8c426eabc12ef93518">vel_rel</a>;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_component_view.html#a0242eab570bb391fd79f8c537d757709">  139</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#aabf768b1ed1ea7cb05893357d50d54ac">RealSlice</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_component_view.html#a0242eab570bb391fd79f8c537d757709">chord</a>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>};</div>
+</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span></div>
+<div class="foldopen" id="foldopen00146" data-start="{" data-end="};">
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_info.html">  146</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1_act_info.html#ad4b41232810d0b60a75fc587b9582d4a">ActInfo</a></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>{</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_info.html#ae5e6f04c3dcafc0b0dd41e7802d7e701">  149</a></span>    std::string <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_info.html#ae5e6f04c3dcafc0b0dd41e7802d7e701">label</a>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_info.html#a555ad3a216756d0d41ff16910b747ae0">  152</a></span>    std::set&lt;int&gt; <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_info.html#a555ad3a216756d0d41ff16910b747ae0">procs</a>;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_info.html#a88d8684e1832fdcc9a6509e24e01e7d9">  156</a></span>    amrex::RealBox <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_info.html#a88d8684e1832fdcc9a6509e24e01e7d9">bound_box</a>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_info.html#a46e82a7146ef412ee45d009b4292b355">  159</a></span>    <span class="keywordtype">int</span> <span class="keywordtype">id</span>{-1};</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_info.html#ab4ed4596abf790c8ca06c8665ab34117">  162</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_info.html#ab4ed4596abf790c8ca06c8665ab34117">root_proc</a>{-1};</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_info.html#a035438acb1805158ca3f8ceac7cf95ad">  165</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_info.html#a035438acb1805158ca3f8ceac7cf95ad">is_root_proc</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_info.html#a1c499e87db95afdc9120823f70a9aa3c">  169</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_info.html#a1c499e87db95afdc9120823f70a9aa3c">actuator_in_proc</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_info.html#a618f1da8cd2aa8ceb38f88ce7d73ada5">  173</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_info.html#a618f1da8cd2aa8ceb38f88ce7d73ada5">sample_vel_in_proc</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="foldopen" id="foldopen00175" data-start="{" data-end="}">
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_act_info.html#ad4b41232810d0b60a75fc587b9582d4a">  175</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1_act_info.html#ad4b41232810d0b60a75fc587b9582d4a">ActInfo</a>(std::string label_in, <span class="keyword">const</span> <span class="keywordtype">int</span> id_in)</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        : <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_info.html#ae5e6f04c3dcafc0b0dd41e7802d7e701">label</a>(std::move(label_in)), <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_act_info.html#a46e82a7146ef412ee45d009b4292b355">id</a>(id_in)</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    {}</div>
+</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>};</div>
+</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ActTrait&gt;</div>
+<div class="foldopen" id="foldopen00186" data-start="{" data-end="};">
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html">  186</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#aeb857daadbc71dd0bb37148cd594a0dc">ActDataHolder</a></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>{</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a97d6e6c82948c2133ed5757d69487240">  190</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a97d6e6c82948c2133ed5757d69487240">m_sim</a>;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#ac34941b4b478609b20ad9c61662ff831">  194</a></span>    <span class="keyword">typename</span> ActTrait::InfoType <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#ac34941b4b478609b20ad9c61662ff831">m_info</a>;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a05ed343d3a427490137a1f1d905f94bc">  198</a></span>    <span class="keyword">typename</span> ActTrait::GridType <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a05ed343d3a427490137a1f1d905f94bc">m_grid</a>;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a12323f0a459270260625ab8bca9f0088">  201</a></span>    <span class="keyword">typename</span> ActTrait::MetaType <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a12323f0a459270260625ab8bca9f0088">m_meta</a>;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00210" data-start="{" data-end="}">
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#aeb857daadbc71dd0bb37148cd594a0dc">  210</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#aeb857daadbc71dd0bb37148cd594a0dc">ActDataHolder</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a588e344f58be01f45bfaa0c3837954ae">sim</a>, <span class="keyword">const</span> std::string&amp; label, <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>)</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        : <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a97d6e6c82948c2133ed5757d69487240">m_sim</a>(<a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a588e344f58be01f45bfaa0c3837954ae">sim</a>), <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#ac34941b4b478609b20ad9c61662ff831">m_info</a>(label, id), <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a05ed343d3a427490137a1f1d905f94bc">m_grid</a>(), <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a12323f0a459270260625ab8bca9f0088">m_meta</a>()</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    {}</div>
+</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a588e344f58be01f45bfaa0c3837954ae">  214</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a588e344f58be01f45bfaa0c3837954ae">sim</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a97d6e6c82948c2133ed5757d69487240">m_sim</a>; }</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a393b0200bdb874a1e0fbdad33a73e08c">  215</a></span>    [[nodiscard]] <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a393b0200bdb874a1e0fbdad33a73e08c">sim</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a97d6e6c82948c2133ed5757d69487240">m_sim</a>; }</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#af6ac3b049773b2a1521aebd310b9d595">  217</a></span>    <span class="keyword">typename</span> ActTrait::InfoType&amp; <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#af6ac3b049773b2a1521aebd310b9d595">info</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#ac34941b4b478609b20ad9c61662ff831">m_info</a>; }</div>
+<div class="foldopen" id="foldopen00218" data-start="{" data-end="}">
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#ab9b69e941d229a960775791fb3bec25e">  218</a></span>    [[nodiscard]] <span class="keyword">const</span> <span class="keyword">typename</span> ActTrait::InfoType&amp; <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#ab9b69e941d229a960775791fb3bec25e">info</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#ac34941b4b478609b20ad9c61662ff831">m_info</a>;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    }</div>
+</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#ad67504bee576f76b74f8d2085df94829">  223</a></span>    <span class="keyword">typename</span> ActTrait::GridType&amp; <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#ad67504bee576f76b74f8d2085df94829">grid</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a05ed343d3a427490137a1f1d905f94bc">m_grid</a>; }</div>
+<div class="foldopen" id="foldopen00224" data-start="{" data-end="}">
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a2f90c888118d40a79d95199b75bd2d42">  224</a></span>    [[nodiscard]] <span class="keyword">const</span> <span class="keyword">typename</span> ActTrait::GridType&amp; <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a2f90c888118d40a79d95199b75bd2d42">grid</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a05ed343d3a427490137a1f1d905f94bc">m_grid</a>;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    }</div>
+</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a7db25eb9e70b4ab6bcb1a921bd1508ac">  229</a></span>    <span class="keyword">typename</span> ActTrait::MetaType&amp; <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a7db25eb9e70b4ab6bcb1a921bd1508ac">meta</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a12323f0a459270260625ab8bca9f0088">m_meta</a>; }</div>
+<div class="foldopen" id="foldopen00230" data-start="{" data-end="}">
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#afbc256af611929baf874ad04bf95de41">  230</a></span>    [[nodiscard]] <span class="keyword">const</span> <span class="keyword">typename</span> ActTrait::MetaType&amp; <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#afbc256af611929baf874ad04bf95de41">meta</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a12323f0a459270260625ab8bca9f0088">m_meta</a>;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    }</div>
+</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>};</div>
+</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>} <span class="comment">// namespace actuator</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="preprocessor">#endif </span><span class="comment">/* ACTUATOR_TYPES_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_slice_8_h_html"><div class="ttname"><a href="_slice_8_h.html">Slice.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html_a05ed343d3a427490137a1f1d905f94bc"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a05ed343d3a427490137a1f1d905f94bc">kynema_sgf::actuator::ActDataHolder&lt; Joukowsky &gt;::m_grid</a></div><div class="ttdeci">Joukowsky::GridType m_grid</div><div class="ttdef"><b>Definition</b> actuator_types.H:198</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html_a12323f0a459270260625ab8bca9f0088"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a12323f0a459270260625ab8bca9f0088">kynema_sgf::actuator::ActDataHolder&lt; Joukowsky &gt;::m_meta</a></div><div class="ttdeci">Joukowsky::MetaType m_meta</div><div class="ttdef"><b>Definition</b> actuator_types.H:201</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html_a2f90c888118d40a79d95199b75bd2d42"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a2f90c888118d40a79d95199b75bd2d42">kynema_sgf::actuator::ActDataHolder::grid</a></div><div class="ttdeci">const ActTrait::GridType &amp; grid() const</div><div class="ttdef"><b>Definition</b> actuator_types.H:224</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html_a393b0200bdb874a1e0fbdad33a73e08c"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a393b0200bdb874a1e0fbdad33a73e08c">kynema_sgf::actuator::ActDataHolder::sim</a></div><div class="ttdeci">const CFDSim &amp; sim() const</div><div class="ttdef"><b>Definition</b> actuator_types.H:215</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html_a588e344f58be01f45bfaa0c3837954ae"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a588e344f58be01f45bfaa0c3837954ae">kynema_sgf::actuator::ActDataHolder&lt; Joukowsky &gt;::sim</a></div><div class="ttdeci">CFDSim &amp; sim()</div><div class="ttdef"><b>Definition</b> actuator_types.H:214</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html_a7db25eb9e70b4ab6bcb1a921bd1508ac"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a7db25eb9e70b4ab6bcb1a921bd1508ac">kynema_sgf::actuator::ActDataHolder::meta</a></div><div class="ttdeci">ActTrait::MetaType &amp; meta()</div><div class="ttdef"><b>Definition</b> actuator_types.H:229</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html_a97d6e6c82948c2133ed5757d69487240"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a97d6e6c82948c2133ed5757d69487240">kynema_sgf::actuator::ActDataHolder&lt; Joukowsky &gt;::m_sim</a></div><div class="ttdeci">CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> actuator_types.H:190</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html_ab9b69e941d229a960775791fb3bec25e"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#ab9b69e941d229a960775791fb3bec25e">kynema_sgf::actuator::ActDataHolder::info</a></div><div class="ttdeci">const ActTrait::InfoType &amp; info() const</div><div class="ttdef"><b>Definition</b> actuator_types.H:218</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html_ac34941b4b478609b20ad9c61662ff831"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#ac34941b4b478609b20ad9c61662ff831">kynema_sgf::actuator::ActDataHolder&lt; Joukowsky &gt;::m_info</a></div><div class="ttdeci">Joukowsky::InfoType m_info</div><div class="ttdef"><b>Definition</b> actuator_types.H:194</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html_ad67504bee576f76b74f8d2085df94829"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#ad67504bee576f76b74f8d2085df94829">kynema_sgf::actuator::ActDataHolder::grid</a></div><div class="ttdeci">ActTrait::GridType &amp; grid()</div><div class="ttdef"><b>Definition</b> actuator_types.H:223</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html_aeb857daadbc71dd0bb37148cd594a0dc"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#aeb857daadbc71dd0bb37148cd594a0dc">kynema_sgf::actuator::ActDataHolder::ActDataHolder</a></div><div class="ttdeci">ActDataHolder(CFDSim &amp;sim, const std::string &amp;label, const int id)</div><div class="ttdef"><b>Definition</b> actuator_types.H:210</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html_af6ac3b049773b2a1521aebd310b9d595"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#af6ac3b049773b2a1521aebd310b9d595">kynema_sgf::actuator::ActDataHolder::info</a></div><div class="ttdeci">ActTrait::InfoType &amp; info()</div><div class="ttdef"><b>Definition</b> actuator_types.H:217</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html_afbc256af611929baf874ad04bf95de41"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#afbc256af611929baf874ad04bf95de41">kynema_sgf::actuator::ActDataHolder::meta</a></div><div class="ttdeci">const ActTrait::MetaType &amp; meta() const</div><div class="ttdef"><b>Definition</b> actuator_types.H:230</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html">kynema_sgf::actuator</a></div><div class="ttdef"><b>Definition</b> ActParser.H:6</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a05a88c15cb29c1bc8314a1194c882789"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">kynema_sgf::actuator::RealList</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; RealList</div><div class="ttdef"><b>Definition</b> actuator_types.H:63</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a236b2cb306d449842b2ffb0c283b9c06"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a236b2cb306d449842b2ffb0c283b9c06">kynema_sgf::actuator::DeviceTensorList</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; kynema_sgf::vs::Tensor &gt; DeviceTensorList</div><div class="ttdef"><b>Definition</b> actuator_types.H:70</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a256ca88e69d08a9544611c12eace7c8b"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a256ca88e69d08a9544611c12eace7c8b">kynema_sgf::actuator::DeviceVecList</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; kynema_sgf::vs::Vector &gt; DeviceVecList</div><div class="ttdef"><b>Definition</b> actuator_types.H:69</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a39fef9a9215a0de416e46e1c858a4434"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">kynema_sgf::actuator::VecList</a></div><div class="ttdeci">amrex::Vector&lt; kynema_sgf::vs::Vector &gt; VecList</div><div class="ttdef"><b>Definition</b> actuator_types.H:65</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a4e19501bd8d98ba14c9861a7c4ddc6d3"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a4e19501bd8d98ba14c9861a7c4ddc6d3">kynema_sgf::actuator::TensorSlice</a></div><div class="ttdeci">::kynema_sgf::utils::Slice&lt; kynema_sgf::vs::Tensor &gt; TensorSlice</div><div class="ttdef"><b>Definition</b> actuator_types.H:68</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a578778d208f866e2368fe70b74274a97"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a578778d208f866e2368fe70b74274a97">kynema_sgf::actuator::TensorList</a></div><div class="ttdeci">amrex::Vector&lt; kynema_sgf::vs::Tensor &gt; TensorList</div><div class="ttdef"><b>Definition</b> actuator_types.H:67</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a87a5ed49fe383c7bf1adeb4538ef7e45"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a87a5ed49fe383c7bf1adeb4538ef7e45">kynema_sgf::actuator::VecSlice</a></div><div class="ttdeci">::kynema_sgf::utils::Slice&lt; kynema_sgf::vs::Vector &gt; VecSlice</div><div class="ttdef"><b>Definition</b> actuator_types.H:66</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_aabf768b1ed1ea7cb05893357d50d54ac"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#aabf768b1ed1ea7cb05893357d50d54ac">kynema_sgf::actuator::RealSlice</a></div><div class="ttdeci">::kynema_sgf::utils::Slice&lt; amrex::Real &gt; RealSlice</div><div class="ttdef"><b>Definition</b> actuator_types.H:64</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1vs_html_a8b5875515cfa717dbeb39c7f4186ce50"><div class="ttname"><a href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">kynema_sgf::vs::Vector</a></div><div class="ttdeci">VectorT&lt; amrex::Real &gt; Vector</div><div class="ttdef"><b>Definition</b> vector.H:145</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_grid_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_grid.html">kynema_sgf::actuator::ActGrid</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:77</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_grid_html_a0d2b80bd3e36c8685c1d13c33b409c78"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a0d2b80bd3e36c8685c1d13c33b409c78">kynema_sgf::actuator::ActGrid::pos</a></div><div class="ttdeci">VecList pos</div><div class="ttdoc">Position vectors of the actuator forcing points on the grid.</div><div class="ttdef"><b>Definition</b> actuator_types.H:79</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_grid_html_a455e2cb3669553b5798133f7796b2c3c"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a455e2cb3669553b5798133f7796b2c3c">kynema_sgf::actuator::ActGrid::dcoord_flags</a></div><div class="ttdeci">vs::Vector dcoord_flags</div><div class="ttdoc">Switch for turning off distance components in Gaussian calculation.</div><div class="ttdef"><b>Definition</b> actuator_types.H:100</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_grid_html_a484f12ac6bf3b965a105926eb87246f4"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a484f12ac6bf3b965a105926eb87246f4">kynema_sgf::actuator::ActGrid::epsilon</a></div><div class="ttdeci">VecList epsilon</div><div class="ttdoc">Gaussian smearing parameter.</div><div class="ttdef"><b>Definition</b> actuator_types.H:85</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_grid_html_a4ad4229e1d368cf43d65d0307323ef08"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a4ad4229e1d368cf43d65d0307323ef08">kynema_sgf::actuator::ActGrid::force</a></div><div class="ttdeci">VecList force</div><div class="ttdoc">Force vector at the forcing points.</div><div class="ttdef"><b>Definition</b> actuator_types.H:82</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_grid_html_a5d3cf3f6491c4592812091a82755dce2"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a5d3cf3f6491c4592812091a82755dce2">kynema_sgf::actuator::ActGrid::resize</a></div><div class="ttdeci">void resize(int num_pts)</div><div class="ttdef"><b>Definition</b> actuator_types.H:121</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_grid_html_a853c7344338b696cdefb0b2bb477c987"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a853c7344338b696cdefb0b2bb477c987">kynema_sgf::actuator::ActGrid::vel_pos</a></div><div class="ttdeci">VecList vel_pos</div><div class="ttdoc">Position vectors for the points where velocity is sampled.</div><div class="ttdef"><b>Definition</b> actuator_types.H:91</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_grid_html_a96560c223a83fe83d82e59b6685d5d0d"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_grid.html#a96560c223a83fe83d82e59b6685d5d0d">kynema_sgf::actuator::ActGrid::orientation</a></div><div class="ttdeci">TensorList orientation</div><div class="ttdoc">Transformation matrix at the forcing points.</div><div class="ttdef"><b>Definition</b> actuator_types.H:88</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_grid_html_ac0f47124373d96a83f17bfcfabb7564e"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_grid.html#ac0f47124373d96a83f17bfcfabb7564e">kynema_sgf::actuator::ActGrid::density</a></div><div class="ttdeci">RealList density</div><div class="ttdoc">Density at the sampled locations.</div><div class="ttdef"><b>Definition</b> actuator_types.H:97</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_grid_html_ac35db156e1e2c0e45751aaf764cc6c66"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_grid.html#ac35db156e1e2c0e45751aaf764cc6c66">kynema_sgf::actuator::ActGrid::resize</a></div><div class="ttdeci">void resize(int num_force_pts, int num_vel_pts)</div><div class="ttdef"><b>Definition</b> actuator_types.H:107</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_grid_html_af439c39599c9f150fb169804b05e01a0"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_grid.html#af439c39599c9f150fb169804b05e01a0">kynema_sgf::actuator::ActGrid::vel</a></div><div class="ttdeci">VecList vel</div><div class="ttdoc">Velocity vector at the sampled locations.</div><div class="ttdef"><b>Definition</b> actuator_types.H:94</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_info_html_a035438acb1805158ca3f8ceac7cf95ad"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_info.html#a035438acb1805158ca3f8ceac7cf95ad">kynema_sgf::actuator::ActInfo::is_root_proc</a></div><div class="ttdeci">bool is_root_proc</div><div class="ttdoc">Flag indicating whether this is root proc.</div><div class="ttdef"><b>Definition</b> actuator_types.H:165</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_info_html_a1c499e87db95afdc9120823f70a9aa3c"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_info.html#a1c499e87db95afdc9120823f70a9aa3c">kynema_sgf::actuator::ActInfo::actuator_in_proc</a></div><div class="ttdeci">bool actuator_in_proc</div><div class="ttdoc">Flag indicating whether this actuator component is active in the current MPI rank.</div><div class="ttdef"><b>Definition</b> actuator_types.H:169</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_info_html_a46e82a7146ef412ee45d009b4292b355"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_info.html#a46e82a7146ef412ee45d009b4292b355">kynema_sgf::actuator::ActInfo::id</a></div><div class="ttdeci">int id</div><div class="ttdoc">Unique integer identifier for the turbine.</div><div class="ttdef"><b>Definition</b> actuator_types.H:159</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_info_html_a555ad3a216756d0d41ff16910b747ae0"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_info.html#a555ad3a216756d0d41ff16910b747ae0">kynema_sgf::actuator::ActInfo::procs</a></div><div class="ttdeci">std::set&lt; int &gt; procs</div><div class="ttdoc">Set of MPI ranks where this actuator source is active.</div><div class="ttdef"><b>Definition</b> actuator_types.H:152</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_info_html_a618f1da8cd2aa8ceb38f88ce7d73ada5"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_info.html#a618f1da8cd2aa8ceb38f88ce7d73ada5">kynema_sgf::actuator::ActInfo::sample_vel_in_proc</a></div><div class="ttdeci">bool sample_vel_in_proc</div><div class="ttdoc">Flag indicating whether this process requires velocities sampled at actuator point.</div><div class="ttdef"><b>Definition</b> actuator_types.H:173</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_info_html_a88d8684e1832fdcc9a6509e24e01e7d9"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_info.html#a88d8684e1832fdcc9a6509e24e01e7d9">kynema_sgf::actuator::ActInfo::bound_box</a></div><div class="ttdeci">amrex::RealBox bound_box</div><div class="ttdoc">Bounding box used to determine processes where this turbine has influence.</div><div class="ttdef"><b>Definition</b> actuator_types.H:156</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_info_html_ab4ed4596abf790c8ca06c8665ab34117"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_info.html#ab4ed4596abf790c8ca06c8665ab34117">kynema_sgf::actuator::ActInfo::root_proc</a></div><div class="ttdeci">int root_proc</div><div class="ttdoc">Root process where this turbine is active.</div><div class="ttdef"><b>Definition</b> actuator_types.H:162</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_info_html_ad4b41232810d0b60a75fc587b9582d4a"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_info.html#ad4b41232810d0b60a75fc587b9582d4a">kynema_sgf::actuator::ActInfo::ActInfo</a></div><div class="ttdeci">ActInfo(std::string label_in, const int id_in)</div><div class="ttdef"><b>Definition</b> actuator_types.H:175</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_info_html_ae5e6f04c3dcafc0b0dd41e7802d7e701"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_info.html#ae5e6f04c3dcafc0b0dd41e7802d7e701">kynema_sgf::actuator::ActInfo::label</a></div><div class="ttdeci">std::string label</div><div class="ttdoc">Unique string identifier for the actuator body (wing, turbine)</div><div class="ttdef"><b>Definition</b> actuator_types.H:149</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_src_disk_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_src_disk.html">kynema_sgf::actuator::ActSrcDisk</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:56</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_src_disk_html_a1133ae751d48cda8ed1d30591452d117"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_src_disk.html#a1133ae751d48cda8ed1d30591452d117">kynema_sgf::actuator::ActSrcDisk::is_line</a></div><div class="ttdeci">static constexpr bool is_line</div><div class="ttdef"><b>Definition</b> actuator_types.H:59</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_src_disk_html_aa4bd8de9227ff8cea2adfb6236e9e983"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_src_disk.html#aa4bd8de9227ff8cea2adfb6236e9e983">kynema_sgf::actuator::ActSrcDisk::is_disk</a></div><div class="ttdeci">static constexpr bool is_disk</div><div class="ttdef"><b>Definition</b> actuator_types.H:60</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_src_disk_html_ad6cee52d7c1358347201c42cc1a5e414"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_src_disk.html#ad6cee52d7c1358347201c42cc1a5e414">kynema_sgf::actuator::ActSrcDisk::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> actuator_types.H:57</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_src_line_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_src_line.html">kynema_sgf::actuator::ActSrcLine</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:41</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_src_line_html_a09fe7e029c0d4374c54b04087e91ee07"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_src_line.html#a09fe7e029c0d4374c54b04087e91ee07">kynema_sgf::actuator::ActSrcLine::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> actuator_types.H:42</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_src_line_html_a4b2fd81f7cdf460fe16c491fe1f7db33"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_src_line.html#a4b2fd81f7cdf460fe16c491fe1f7db33">kynema_sgf::actuator::ActSrcLine::is_disk</a></div><div class="ttdeci">static constexpr bool is_disk</div><div class="ttdoc">Flag indicating if this is a disk type.</div><div class="ttdef"><b>Definition</b> actuator_types.H:48</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_src_line_html_a93891dfda1321e760e867284840f9f23"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_src_line.html#a93891dfda1321e760e867284840f9f23">kynema_sgf::actuator::ActSrcLine::is_line</a></div><div class="ttdeci">static constexpr bool is_line</div><div class="ttdoc">Flag indicating if this is a line type.</div><div class="ttdef"><b>Definition</b> actuator_types.H:45</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_src_type_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_src_type.html">kynema_sgf::actuator::ActSrcType</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:34</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_type_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_type.html">kynema_sgf::actuator::ActuatorType</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:27</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_component_view_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_component_view.html">kynema_sgf::actuator::ComponentView</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:129</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_component_view_html_a008454a2f670102918ddf7291031bc56"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_component_view.html#a008454a2f670102918ddf7291031bc56">kynema_sgf::actuator::ComponentView::orientation</a></div><div class="ttdeci">TensorSlice orientation</div><div class="ttdef"><b>Definition</b> actuator_types.H:133</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_component_view_html_a0242eab570bb391fd79f8c537d757709"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_component_view.html#a0242eab570bb391fd79f8c537d757709">kynema_sgf::actuator::ComponentView::chord</a></div><div class="ttdeci">RealSlice chord</div><div class="ttdef"><b>Definition</b> actuator_types.H:139</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_component_view_html_a61ba3babc259371d8c6596329f74d68a"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_component_view.html#a61ba3babc259371d8c6596329f74d68a">kynema_sgf::actuator::ComponentView::pos</a></div><div class="ttdeci">VecSlice pos</div><div class="ttdef"><b>Definition</b> actuator_types.H:130</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_component_view_html_a65bf5857b97e7c57d592e0ec1523685d"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_component_view.html#a65bf5857b97e7c57d592e0ec1523685d">kynema_sgf::actuator::ComponentView::force</a></div><div class="ttdeci">VecSlice force</div><div class="ttdef"><b>Definition</b> actuator_types.H:131</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_component_view_html_a66973cf042bc9a6f3df1088054591e23"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_component_view.html#a66973cf042bc9a6f3df1088054591e23">kynema_sgf::actuator::ComponentView::vel_pos</a></div><div class="ttdeci">VecSlice vel_pos</div><div class="ttdef"><b>Definition</b> actuator_types.H:135</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_component_view_html_a7c17e85ee194ba8c426eabc12ef93518"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_component_view.html#a7c17e85ee194ba8c426eabc12ef93518">kynema_sgf::actuator::ComponentView::vel_rel</a></div><div class="ttdeci">VecSlice vel_rel</div><div class="ttdef"><b>Definition</b> actuator_types.H:137</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_component_view_html_aa9535c4d7879f6af20fa35225ebfa679"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_component_view.html#aa9535c4d7879f6af20fa35225ebfa679">kynema_sgf::actuator::ComponentView::epsilon</a></div><div class="ttdeci">VecSlice epsilon</div><div class="ttdef"><b>Definition</b> actuator_types.H:132</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_component_view_html_af4b30958b31865c66e7ce9c2002e73f2"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_component_view.html#af4b30958b31865c66e7ce9c2002e73f2">kynema_sgf::actuator::ComponentView::vel</a></div><div class="ttdeci">VecSlice vel</div><div class="ttdef"><b>Definition</b> actuator_types.H:136</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1utils_1_1_slice_html"><div class="ttname"><a href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a></div><div class="ttdef"><b>Definition</b> Slice.H:12</div></div>
+<div class="ttc" id="avector__space_8_h_html"><div class="ttname"><a href="vector__space_8_h.html">vector_space.H</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,579 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/AdvOp_Godunov.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/AdvOp_Godunov.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_adv_op___godunov_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-advop-godunov-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/AdvOp_Godunov.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-advop-godunov-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/AdvOp_Godunov.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_0a302c6baedf52e9cfdc9fc1cbccbefa.html">equation_systems</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">AdvOp_Godunov.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_adv_op___godunov_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef ADVOP_GODUNOV_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define ADVOP_GODUNOV_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_godunov_8_h.html">src/convection/Godunov.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_scheme_traits_8_h.html">src/equation_systems/SchemeTraits.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="_p_d_e_traits_8_h.html">src/equation_systems/PDETraits.H</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="_p_d_e_ops_8_h.html">src/equation_systems/PDEOps.H</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;AMReX_Gpu.H&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;AMReX_ParmParse.H&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;AMReX_MultiFabUtil.H&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;hydro_utils.H&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="vof__momentum__flux_8_h.html">src/equation_systems/vof/vof_momentum_flux.H</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="}">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1pde.html">   21</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1pde.html">kynema_sgf::pde</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> PDE&gt;</div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="};">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html">   27</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a28b64d5541f062b4163c504649e77564">AdvectionOp</a>&lt;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    PDE,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_namespace" href="namespacekynema__sgf_1_1fvm.html">fvm</a>::Godunov,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    typename std::enable_if_t&lt;std::is_base_of_v&lt;ScalarTransport, PDE&gt;&gt;&gt;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="}">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a28b64d5541f062b4163c504649e77564">   32</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a28b64d5541f062b4163c504649e77564">AdvectionOp</a>(</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <span class="comment">/* sim */</span>,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <a class="code hl_struct" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a>&amp; fields_in,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordtype">bool</span> <span class="comment">/* has_overset */</span>,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">bool</span> <span class="comment">/* variable density */</span>,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordtype">bool</span> <span class="comment">/* mesh mapping */</span>,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordtype">bool</span> <span class="comment">/* is_anelastic */</span>)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        : <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ad58f2d30231818c97546fa8baa368b53">fields</a>(fields_in)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a06590cc0365a36083da7910c0b342d21">density</a>(fields_in.repo.get_field(<span class="stringliteral">&quot;density&quot;</span>))</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#acbc994a1abc5b6cc3c66ecf775cec7bf">u_mac</a>(fields_in.repo.get_field(<span class="stringliteral">&quot;u_mac&quot;</span>))</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a4334c606ca909972ba039793525bf117">v_mac</a>(fields_in.repo.get_field(<span class="stringliteral">&quot;v_mac&quot;</span>))</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a0dc007f964830198a00f1f11322e873c">w_mac</a>(fields_in.repo.get_field(<span class="stringliteral">&quot;w_mac&quot;</span>))</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        amrex::ParmParse pp(<span class="stringliteral">&quot;incflo&quot;</span>);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        pp.query(<span class="stringliteral">&quot;godunov_type&quot;</span>, <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a39d800f030359c22bad1101a233e71a4">godunov_type</a>);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        pp.query(<span class="stringliteral">&quot;godunov_use_forces_in_trans&quot;</span>, <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ae7e9610be45ba57e6c8927edf4700070">godunov_use_forces_in_trans</a>);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">if</span> (pp.contains(<span class="stringliteral">&quot;use_ppm&quot;</span>) || pp.contains(<span class="stringliteral">&quot;use_limiter&quot;</span>)) {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            amrex::Abort(</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                <span class="stringliteral">&quot;Godunov: use_ppm and use_limiter are deprecated. Please &quot;</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                <span class="stringliteral">&quot;update input file&quot;</span>);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">if</span> (amrex::toLower(<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a39d800f030359c22bad1101a233e71a4">godunov_type</a>) == <span class="stringliteral">&quot;plm&quot;</span>) {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> = <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a7bcdc2e24170884c173aa12b9b1bdd24">godunov::scheme::PLM</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (amrex::toLower(<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a39d800f030359c22bad1101a233e71a4">godunov_type</a>) == <span class="stringliteral">&quot;ppm&quot;</span>) {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> = <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a4bb1ebdeeb70354069bc644b9c94ee5f">godunov::scheme::PPM</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (amrex::toLower(<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a39d800f030359c22bad1101a233e71a4">godunov_type</a>) == <span class="stringliteral">&quot;ppm_nolim&quot;</span>) {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> = <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3abf63f2417a0dfd326107c3c047b7cae6">godunov::scheme::PPM_NOLIM</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            amrex::Print() &lt;&lt; <span class="stringliteral">&quot;WARNING: Using advection type ppm_nolim is not &quot;</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                              <span class="stringliteral">&quot;recommended. Prefer using weno_z.&quot;</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                           &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (amrex::toLower(<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a39d800f030359c22bad1101a233e71a4">godunov_type</a>) == <span class="stringliteral">&quot;bds&quot;</span>) {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> = <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a1a8a272adb41c81f3c999b9c269816eb">godunov::scheme::BDS</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a72ef2904ee1bdbae877e2f7fc2d16882">advection_type</a> = <span class="stringliteral">&quot;BDS&quot;</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            amrex::toLower(<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a39d800f030359c22bad1101a233e71a4">godunov_type</a>) == <span class="stringliteral">&quot;weno&quot;</span> ||</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            amrex::toLower(<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a39d800f030359c22bad1101a233e71a4">godunov_type</a>) == <span class="stringliteral">&quot;weno_js&quot;</span>) {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> = <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3aa03f5c20a9b652db22f627c9da3a29bb">godunov::scheme::WENO_JS</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (amrex::toLower(<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a39d800f030359c22bad1101a233e71a4">godunov_type</a>) == <span class="stringliteral">&quot;weno_z&quot;</span>) {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> = <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3af47474bf582aab71c15995ebbdd9a372">godunov::scheme::WENOZ</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            amrex::Abort(</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                <span class="stringliteral">&quot;Invalid godunov_type specified. For godunov_type select &quot;</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                <span class="stringliteral">&quot;between plm, ppm, ppm_nolim, bds, weno_js, and weno_z. If no &quot;</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                <span class="stringliteral">&quot;godunov_type is specified, the default weno_z is used.&quot;</span>);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="comment">// Flux calculation used in multiphase portions of domain</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        pp.query(<span class="stringliteral">&quot;mflux_type&quot;</span>, <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a69563b71a2b6e2f5574bb517d5856264">mflux_type</a>);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keywordflow">if</span> (amrex::toLower(<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a69563b71a2b6e2f5574bb517d5856264">mflux_type</a>) == <span class="stringliteral">&quot;minmod&quot;</span>) {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ae1d55b6f84ae69edd1790a998ffbc4f1">mflux_scheme</a> = <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3ab016f7dc772650f8c97fdcc809dd6abb">godunov::scheme::MINMOD</a>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (amrex::toLower(<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a69563b71a2b6e2f5574bb517d5856264">mflux_type</a>) == <span class="stringliteral">&quot;upwind&quot;</span>) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ae1d55b6f84ae69edd1790a998ffbc4f1">mflux_scheme</a> = <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a72c4ca1f5cabf1a67e1efd909f6be8b8">godunov::scheme::UPWIND</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            amrex::Abort(<span class="stringliteral">&quot;Invalid argument entered for mflux_type.&quot;</span>);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        amrex::ParmParse pp_eq{fields_in.<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html#a8f529ca032578318063561e44caaafb2">field</a>.<a class="code hl_function" href="classkynema__sgf_1_1_field.html#a18c50532c5d73c3e7c03e47e93198f62">base_name</a>()};</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        pp_eq.query(</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <span class="stringliteral">&quot;allow_inflow_at_pressure_outflow&quot;</span>, <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a768a8c58a63ce2696be6c277813fed00">m_allow_inflow_on_outflow</a>);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="comment">// TODO: Need iconserv flag to be adjusted???</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a30dc484cb5461a20d57f2d2ec8dc26dd">iconserv</a>.resize(PDE::ndim, 1);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    }</div>
+</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="foldopen" id="foldopen00097" data-start="{" data-end="}">
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#acf6116021a894e0fdf89fd501cf25869">   97</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#acf6116021a894e0fdf89fd501cf25869">preadvect</a>(</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keyword">const</span> <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> <span class="comment">/*unused*/</span>,</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keyword">const</span> amrex::Real <span class="comment">/*unused*/</span>,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keyword">const</span> amrex::Real <span class="comment">/*unused*/</span>)</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    {}</div>
+</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="foldopen" id="foldopen00103" data-start="{" data-end="}">
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ae46a5851f274ae3ca0e52835cb8118e0">  103</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ae46a5851f274ae3ca0e52835cb8118e0">operator()</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate, <span class="keyword">const</span> amrex::Real dt)</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keyword">static_assert</span>(</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>            PDE::ndim == 1, <span class="stringliteral">&quot;Invalid number of components for scalar&quot;</span>);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keyword">auto</span>&amp; repo = <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ad58f2d30231818c97546fa8baa368b53">fields</a>.repo;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; geom = repo.mesh().Geom();</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; src_term = <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ad58f2d30231818c97546fa8baa368b53">fields</a>.src_term;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="comment">// cppcheck-suppress constVariableReference</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keyword">auto</span>&amp; conv_term = <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ad58f2d30231818c97546fa8baa368b53">fields</a>.conv_term;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; dof_field = <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ad58f2d30231818c97546fa8baa368b53">fields</a>.field.state(fstate);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; dof_nph = <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ad58f2d30231818c97546fa8baa368b53">fields</a>.field.state(<a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa2328beac24e42bfd30c5226cad8e0834">kynema_sgf::FieldState::NPH</a>);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="keyword">auto</span> flux_x = repo.create_scratch_field(</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            PDE::ndim, 0, <a class="code hl_enumvalue" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75a51c3bc3d73817cc48bd1a42aa76cd48b">kynema_sgf::FieldLoc::XFACE</a>);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keyword">auto</span> flux_y = repo.create_scratch_field(</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            PDE::ndim, 0, <a class="code hl_enumvalue" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75aed363f72ca243318ee54c948cab94805">kynema_sgf::FieldLoc::YFACE</a>);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="keyword">auto</span> flux_z = repo.create_scratch_field(</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            PDE::ndim, 0, <a class="code hl_enumvalue" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75a37f44a8aa4feca119902d6930c4c849f">kynema_sgf::FieldLoc::ZFACE</a>);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keyword">auto</span> face_x = repo.create_scratch_field(</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            PDE::ndim, 0, <a class="code hl_enumvalue" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75a51c3bc3d73817cc48bd1a42aa76cd48b">kynema_sgf::FieldLoc::XFACE</a>);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keyword">auto</span> face_y = repo.create_scratch_field(</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            PDE::ndim, 0, <a class="code hl_enumvalue" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75aed363f72ca243318ee54c948cab94805">kynema_sgf::FieldLoc::YFACE</a>);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keyword">auto</span> face_z = repo.create_scratch_field(</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            PDE::ndim, 0, <a class="code hl_enumvalue" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75a37f44a8aa4feca119902d6930c4c849f">kynema_sgf::FieldLoc::ZFACE</a>);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="comment">// only needed if multiplying by rho below</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; den = <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a06590cc0365a36083da7910c0b342d21">density</a>.state(fstate);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; den_nph = <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a06590cc0365a36083da7910c0b342d21">density</a>.state(<a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa2328beac24e42bfd30c5226cad8e0834">kynema_sgf::FieldState::NPH</a>);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <span class="keyword">const</span> <span class="keywordtype">bool</span> mphase_vof = repo.field_exists(<span class="stringliteral">&quot;vof&quot;</span>);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> lev = 0; lev &lt; repo.num_active_levels(); ++lev) {</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            amrex::MFItInfo mfi_info;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            <span class="keywordflow">if</span> (amrex::Gpu::notInLaunchRegion()) {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>                mfi_info.EnableTiling(amrex::IntVect(1024, 1024, 1024))</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                    .SetDynamic(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>            }</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">#ifdef AMREX_USE_OMP</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">#pragma omp parallel if (amrex::Gpu::notInLaunchRegion())</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>            <span class="keywordflow">for</span> (amrex::MFIter mfi(dof_field(lev), mfi_info); mfi.isValid();</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>                 ++mfi) {</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>                <span class="keyword">const</span> <span class="keyword">auto</span>&amp; bx = mfi.tilebox();</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>                <span class="keyword">auto</span> rho_arr = den(lev).array(mfi);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                <span class="keyword">auto</span> rho_nph_arr = den_nph(lev).array(mfi);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                <span class="keyword">auto</span> tra_arr = dof_field(lev).array(mfi);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                <span class="keyword">auto</span> tra_nph_arr = dof_nph(lev).array(mfi);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                amrex::FArrayBox rhotracfab;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                amrex::Array4&lt;amrex::Real&gt; rhotrac;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                amrex::FArrayBox rhotrac_nph_fab;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                amrex::Array4&lt;amrex::Real&gt; rhotrac_nph;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>                amrex::FArrayBox srctrac_over_rho_fab;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>                amrex::Array4&lt;amrex::Real&gt; srctrac_over_rho;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                <span class="keyword">const</span> <span class="keyword">auto</span>&amp; src_arr = src_term(lev).const_array(mfi);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                <span class="keywordflow">if</span> (PDE::multiply_rho) {</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                    <span class="keyword">auto</span> rhotrac_box =</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>                        amrex::grow(bx, <a class="code hl_variable" href="structkynema__sgf_1_1fvm_1_1_godunov.html#a6a655620485e997901669295f9231f02">fvm::Godunov::nghost_state</a>);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                    <span class="keyword">auto</span> srctrac_box =</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>                        amrex::grow(bx, <a class="code hl_variable" href="structkynema__sgf_1_1fvm_1_1_godunov.html#a381dca2b8f4b79a916ad6275510407d6">fvm::Godunov::nghost_src</a>);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>                    rhotracfab.resize(</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>                        rhotrac_box, PDE::ndim, amrex::The_Async_Arena());</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>                    rhotrac = rhotracfab.array();</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>                    rhotrac_nph_fab.resize(</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>                        rhotrac_box, PDE::ndim, amrex::The_Async_Arena());</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>                    rhotrac_nph = rhotrac_nph_fab.array();</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>                    <span class="keywordflow">if</span> (mphase_vof) {</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>                        srctrac_over_rho_fab.resize(</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>                            rhotrac_box, PDE::ndim, amrex::The_Async_Arena());</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>                        srctrac_over_rho = srctrac_over_rho_fab.array();</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>                    }</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>                    amrex::ParallelFor(</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>                        rhotrac_box, PDE::ndim,</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>                        [=] AMREX_GPU_DEVICE(<span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j, <span class="keywordtype">int</span> k, <span class="keywordtype">int</span> n) {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>                            rhotrac(i, j, k, n) =</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>                                rho_arr(i, j, k) * tra_arr(i, j, k, n);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>                            rhotrac_nph(i, j, k, n) =</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>                                rho_nph_arr(i, j, k) * tra_nph_arr(i, j, k, n);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>                            <span class="keywordflow">if</span> (mphase_vof &amp;&amp; srctrac_box.contains(i, j, k)) {</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>                                <span class="comment">// Need to remove the effect of the multiply_rho</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>                                <span class="comment">// routine -- the setup is different for</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>                                <span class="comment">// mass-consistent multiphase advection</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>                                srctrac_over_rho(i, j, k, n) =</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>                                    src_arr(i, j, k, n) / rho_nph_arr(i, j, k);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                            }</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>                        });</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>                }</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>                <span class="keywordflow">if</span> ((<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> == <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a4bb1ebdeeb70354069bc644b9c94ee5f">godunov::scheme::PPM</a>) ||</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>                    (<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> == <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3abf63f2417a0dfd326107c3c047b7cae6">godunov::scheme::PPM_NOLIM</a>) ||</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>                    (<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> == <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a7bcdc2e24170884c173aa12b9b1bdd24">godunov::scheme::PLM</a>) ||</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                    (<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> == <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3af47474bf582aab71c15995ebbdd9a372">godunov::scheme::WENOZ</a>) ||</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>                    (<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> == <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3aa03f5c20a9b652db22f627c9da3a29bb">godunov::scheme::WENO_JS</a>) ||</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>                    (<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> == <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a1a8a272adb41c81f3c999b9c269816eb">godunov::scheme::BDS</a>)) {</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>                    amrex::FArrayBox tmpfab(</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>                        amrex::grow(bx, 1), 1, amrex::The_Async_Arena());</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>                    tmpfab.setVal&lt;amrex::RunOn::Device&gt;(0.0_rt);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>                    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; divu = tmpfab.array();</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>                    <span class="keyword">const</span> <span class="keywordtype">bool</span> is_velocity = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>                    <span class="keyword">const</span> <span class="keywordtype">bool</span> known_edge_state = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>                    <span class="keyword">const</span> <span class="keywordtype">bool</span> godunov_use_ppm =</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>                        ((<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> != <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a7bcdc2e24170884c173aa12b9b1bdd24">godunov::scheme::PLM</a>) &amp;&amp;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>                         (<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> != <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a1a8a272adb41c81f3c999b9c269816eb">godunov::scheme::BDS</a>));</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>                    <span class="keywordtype">int</span> limiter_type;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>                    <span class="keywordflow">if</span> (<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> == <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3abf63f2417a0dfd326107c3c047b7cae6">godunov::scheme::PPM_NOLIM</a>) {</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>                        limiter_type = PPM::NoLimiter;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>                    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> == <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3af47474bf582aab71c15995ebbdd9a372">godunov::scheme::WENOZ</a>) {</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>                        limiter_type = PPM::WENOZ;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>                    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> == <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3aa03f5c20a9b652db22f627c9da3a29bb">godunov::scheme::WENO_JS</a>) {</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                        limiter_type = PPM::WENO_JS;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>                        limiter_type = PPM::default_limiter;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                    }</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>                    <span class="comment">// if state is NPH, then n and n+1 are known, and only</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>                    <span class="comment">// spatial extrapolation is performed</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>                    <span class="keyword">const</span> amrex::Real dt_extrap =</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>                        (fstate == <a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa2328beac24e42bfd30c5226cad8e0834">FieldState::NPH</a>) ? 0.0_rt : dt;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>                    HydroUtils::ComputeFluxesOnBoxFromState(</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>                        bx, PDE::ndim, mfi,</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>                        ((PDE::multiply_rho &amp;&amp; !mphase_vof) ? rhotrac</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>                                                            : tra_arr),</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>                        ((PDE::multiply_rho &amp;&amp; !mphase_vof) ? rhotrac_nph</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>                                                            : tra_nph_arr),</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                        (*flux_x)(lev).array(mfi), (*flux_y)(lev).array(mfi),</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                        (*flux_z)(lev).array(mfi), (*face_x)(lev).array(mfi),</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>                        (*face_y)(lev).array(mfi), (*face_z)(lev).array(mfi),</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>                        known_edge_state, <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#acbc994a1abc5b6cc3c66ecf775cec7bf">u_mac</a>(lev).const_array(mfi),</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>                        <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a4334c606ca909972ba039793525bf117">v_mac</a>(lev).const_array(mfi),</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>                        <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a0dc007f964830198a00f1f11322e873c">w_mac</a>(lev).const_array(mfi), divu,</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                        ((PDE::multiply_rho &amp;&amp; mphase_vof)</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                             ? srctrac_over_rho</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>                             : src_term(lev).const_array(mfi)),</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>                        geom[lev], dt_extrap, dof_field.bcrec(),</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>                        dof_field.bcrec_device().data(), <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a30dc484cb5461a20d57f2d2ec8dc26dd">iconserv</a>.data(),</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>                        godunov_use_ppm, <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ae7e9610be45ba57e6c8927edf4700070">godunov_use_forces_in_trans</a>,</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                        is_velocity, <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#aa4e487d399b95b7950077c7f5b811c71">fluxes_are_area_weighted</a>, <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a72ef2904ee1bdbae877e2f7fc2d16882">advection_type</a>,</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>                        limiter_type, <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a768a8c58a63ce2696be6c277813fed00">m_allow_inflow_on_outflow</a>);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                    amrex::Abort(<span class="stringliteral">&quot;Invalid godunov scheme&quot;</span>);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>                }</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>            }</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        }</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        <span class="comment">// Multiphase flux operations</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        <span class="keywordflow">if</span> (mphase_vof &amp;&amp; PDE::multiply_rho) {</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>            <span class="comment">// Loop levels</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>            <a class="code hl_function" href="namespacekynema__sgf_1_1multiphase.html#ad87de76c9cd9f466218213232fc47feb">multiphase::hybrid_fluxes</a>(</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                repo, PDE::ndim, <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a30dc484cb5461a20d57f2d2ec8dc26dd">iconserv</a>, (*flux_x), (*flux_y), (*flux_z),</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                dof_field, dof_nph, src_term, den, den_nph, <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#acbc994a1abc5b6cc3c66ecf775cec7bf">u_mac</a>, <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a4334c606ca909972ba039793525bf117">v_mac</a>, <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a0dc007f964830198a00f1f11322e873c">w_mac</a>,</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                dof_field.bcrec(), dof_field.bcrec_device().data(), den.bcrec(),</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                den.bcrec_device().data(), dt, <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ae1d55b6f84ae69edd1790a998ffbc4f1">mflux_scheme</a>,</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>                <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a768a8c58a63ce2696be6c277813fed00">m_allow_inflow_on_outflow</a>, <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ae7e9610be45ba57e6c8927edf4700070">godunov_use_forces_in_trans</a>, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>        }</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        amrex::Vector&lt;amrex::Array&lt;amrex::MultiFab*, AMREX_SPACEDIM&gt;&gt; fluxes(</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>            repo.num_active_levels());</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> lev = 0; lev &lt; repo.num_active_levels(); ++lev) {</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>            fluxes[lev][0] = &amp;(*flux_x)(lev);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>            fluxes[lev][1] = &amp;(*flux_y)(lev);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>            fluxes[lev][2] = &amp;(*flux_z)(lev);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>        }</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        <span class="comment">// In order to enforce conservation across coarse-fine boundaries we</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        <span class="comment">// must be sure to average down the fluxes before we use them</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> lev = repo.num_active_levels() - 1; lev &gt; 0; --lev) {</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>            amrex::IntVect rr =</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>                geom[lev].Domain().size() / geom[lev - 1].Domain().size();</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>            amrex::average_down_faces(</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>                GetArrOfConstPtrs(fluxes[lev]), fluxes[lev - 1], rr,</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>                geom[lev - 1]);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        }</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> lev = 0; lev &lt; repo.num_active_levels(); ++lev) {</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="preprocessor">#ifdef AMREX_USE_OMP</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="preprocessor">#pragma omp parallel if (amrex::Gpu::notInLaunchRegion())</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>            <span class="keywordflow">for</span> (amrex::MFIter mfi(dof_field(lev), amrex::TilingIfNotGPU());</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>                 mfi.isValid(); ++mfi) {</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>                <span class="keyword">const</span> <span class="keyword">auto</span>&amp; bx = mfi.tilebox();</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>                HydroUtils::ComputeDivergence(</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>                    bx, conv_term(lev).array(mfi), (*flux_x)(lev).array(mfi),</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>                    (*flux_y)(lev).array(mfi), (*flux_z)(lev).array(mfi),</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>                    PDE::ndim, geom[lev], amrex::Real(-1.0_rt),</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>                    <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#aa4e487d399b95b7950077c7f5b811c71">fluxes_are_area_weighted</a>);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>            }</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>        }</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    }</div>
+</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ad58f2d30231818c97546fa8baa368b53">  296</a></span>    <a class="code hl_struct" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a>&amp; <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ad58f2d30231818c97546fa8baa368b53">fields</a>;</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a06590cc0365a36083da7910c0b342d21">  297</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a06590cc0365a36083da7910c0b342d21">density</a>;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#acbc994a1abc5b6cc3c66ecf775cec7bf">  298</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#acbc994a1abc5b6cc3c66ecf775cec7bf">u_mac</a>;</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a4334c606ca909972ba039793525bf117">  299</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a4334c606ca909972ba039793525bf117">v_mac</a>;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a0dc007f964830198a00f1f11322e873c">  300</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a0dc007f964830198a00f1f11322e873c">w_mac</a>;</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a30dc484cb5461a20d57f2d2ec8dc26dd">  301</a></span>    amrex::Gpu::DeviceVector&lt;int&gt; <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a30dc484cb5461a20d57f2d2ec8dc26dd">iconserv</a>;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">  303</a></span>    <a class="code hl_enumeration" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3">godunov::scheme</a> <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> = <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3af47474bf582aab71c15995ebbdd9a372">godunov::scheme::WENOZ</a>;</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ae1d55b6f84ae69edd1790a998ffbc4f1">  304</a></span>    <a class="code hl_enumeration" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3">godunov::scheme</a> <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ae1d55b6f84ae69edd1790a998ffbc4f1">mflux_scheme</a> = <a class="code hl_enumvalue" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a72c4ca1f5cabf1a67e1efd909f6be8b8">godunov::scheme::UPWIND</a>;</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a39d800f030359c22bad1101a233e71a4">  305</a></span>    std::string <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a39d800f030359c22bad1101a233e71a4">godunov_type</a>{<span class="stringliteral">&quot;weno_z&quot;</span>};</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a69563b71a2b6e2f5574bb517d5856264">  306</a></span>    std::string <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a69563b71a2b6e2f5574bb517d5856264">mflux_type</a>{<span class="stringliteral">&quot;upwind&quot;</span>};</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#aa4e487d399b95b7950077c7f5b811c71">  307</a></span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#aa4e487d399b95b7950077c7f5b811c71">fluxes_are_area_weighted</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ae7e9610be45ba57e6c8927edf4700070">  308</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ae7e9610be45ba57e6c8927edf4700070">godunov_use_forces_in_trans</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a768a8c58a63ce2696be6c277813fed00">  309</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a768a8c58a63ce2696be6c277813fed00">m_allow_inflow_on_outflow</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a72ef2904ee1bdbae877e2f7fc2d16882">  310</a></span>    std::string <a class="code hl_variable" href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a72ef2904ee1bdbae877e2f7fc2d16882">advection_type</a>{<span class="stringliteral">&quot;Godunov&quot;</span>};</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>};</div>
+</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>} <span class="comment">// namespace kynema_sgf::pde</span></div>
+</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="preprocessor">#endif </span><span class="comment">/* ADVOP_GODUNOV_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_godunov_8_h_html"><div class="ttname"><a href="_godunov_8_h.html">Godunov.H</a></div></div>
+<div class="ttc" id="a_p_d_e_ops_8_h_html"><div class="ttname"><a href="_p_d_e_ops_8_h.html">PDEOps.H</a></div></div>
+<div class="ttc" id="a_p_d_e_traits_8_h_html"><div class="ttname"><a href="_p_d_e_traits_8_h.html">PDETraits.H</a></div></div>
+<div class="ttc" id="a_scheme_traits_8_h_html"><div class="ttname"><a href="_scheme_traits_8_h.html">SchemeTraits.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html_a18c50532c5d73c3e7c03e47e93198f62"><div class="ttname"><a href="classkynema__sgf_1_1_field.html#a18c50532c5d73c3e7c03e47e93198f62">kynema_sgf::Field::base_name</a></div><div class="ttdeci">const std::string &amp; base_name() const</div><div class="ttdoc">Base name (without state information)</div><div class="ttdef"><b>Definition</b> Field.H:124</div></div>
+<div class="ttc" id="agroup__fields_html_ga73fcb43d320747f8ced022629f36af1f"><div class="ttname"><a href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">kynema_sgf::FieldState</a></div><div class="ttdeci">FieldState</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:16</div></div>
+<div class="ttc" id="agroup__fields_html_gga6012c66c4b909364fdfaa58954157f75a37f44a8aa4feca119902d6930c4c849f"><div class="ttname"><a href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75a37f44a8aa4feca119902d6930c4c849f">kynema_sgf::FieldLoc::ZFACE</a></div><div class="ttdeci">@ ZFACE</div><div class="ttdoc">Face-centered in z-direction.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:34</div></div>
+<div class="ttc" id="agroup__fields_html_gga6012c66c4b909364fdfaa58954157f75a51c3bc3d73817cc48bd1a42aa76cd48b"><div class="ttname"><a href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75a51c3bc3d73817cc48bd1a42aa76cd48b">kynema_sgf::FieldLoc::XFACE</a></div><div class="ttdeci">@ XFACE</div><div class="ttdoc">Face-centered in x-direction (e.g., face normal velocity)</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:32</div></div>
+<div class="ttc" id="agroup__fields_html_gga6012c66c4b909364fdfaa58954157f75aed363f72ca243318ee54c948cab94805"><div class="ttname"><a href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75aed363f72ca243318ee54c948cab94805">kynema_sgf::FieldLoc::YFACE</a></div><div class="ttdeci">@ YFACE</div><div class="ttdoc">Face-centered in y-direction.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:33</div></div>
+<div class="ttc" id="agroup__fields_html_gga73fcb43d320747f8ced022629f36af1fa2328beac24e42bfd30c5226cad8e0834"><div class="ttname"><a href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa2328beac24e42bfd30c5226cad8e0834">kynema_sgf::FieldState::NPH</a></div><div class="ttdeci">@ NPH</div><div class="ttdoc">State at (n + 1/2) (intermediate) timestep.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:20</div></div>
+<div class="ttc" id="anamespacegodunov_html_a0d48c9064caf98de3f1a76c4be1cb4a3"><div class="ttname"><a href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3">godunov::scheme</a></div><div class="ttdeci">scheme</div><div class="ttdef"><b>Definition</b> Godunov.H:8</div></div>
+<div class="ttc" id="anamespacegodunov_html_a0d48c9064caf98de3f1a76c4be1cb4a3a1a8a272adb41c81f3c999b9c269816eb"><div class="ttname"><a href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a1a8a272adb41c81f3c999b9c269816eb">godunov::scheme::BDS</a></div><div class="ttdeci">@ BDS</div><div class="ttdef"><b>Definition</b> Godunov.H:12</div></div>
+<div class="ttc" id="anamespacegodunov_html_a0d48c9064caf98de3f1a76c4be1cb4a3a4bb1ebdeeb70354069bc644b9c94ee5f"><div class="ttname"><a href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a4bb1ebdeeb70354069bc644b9c94ee5f">godunov::scheme::PPM</a></div><div class="ttdeci">@ PPM</div><div class="ttdef"><b>Definition</b> Godunov.H:10</div></div>
+<div class="ttc" id="anamespacegodunov_html_a0d48c9064caf98de3f1a76c4be1cb4a3a72c4ca1f5cabf1a67e1efd909f6be8b8"><div class="ttname"><a href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a72c4ca1f5cabf1a67e1efd909f6be8b8">godunov::scheme::UPWIND</a></div><div class="ttdeci">@ UPWIND</div><div class="ttdef"><b>Definition</b> Godunov.H:16</div></div>
+<div class="ttc" id="anamespacegodunov_html_a0d48c9064caf98de3f1a76c4be1cb4a3a7bcdc2e24170884c173aa12b9b1bdd24"><div class="ttname"><a href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a7bcdc2e24170884c173aa12b9b1bdd24">godunov::scheme::PLM</a></div><div class="ttdeci">@ PLM</div><div class="ttdef"><b>Definition</b> Godunov.H:9</div></div>
+<div class="ttc" id="anamespacegodunov_html_a0d48c9064caf98de3f1a76c4be1cb4a3aa03f5c20a9b652db22f627c9da3a29bb"><div class="ttname"><a href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3aa03f5c20a9b652db22f627c9da3a29bb">godunov::scheme::WENO_JS</a></div><div class="ttdeci">@ WENO_JS</div><div class="ttdef"><b>Definition</b> Godunov.H:13</div></div>
+<div class="ttc" id="anamespacegodunov_html_a0d48c9064caf98de3f1a76c4be1cb4a3ab016f7dc772650f8c97fdcc809dd6abb"><div class="ttname"><a href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3ab016f7dc772650f8c97fdcc809dd6abb">godunov::scheme::MINMOD</a></div><div class="ttdeci">@ MINMOD</div><div class="ttdef"><b>Definition</b> Godunov.H:15</div></div>
+<div class="ttc" id="anamespacegodunov_html_a0d48c9064caf98de3f1a76c4be1cb4a3abf63f2417a0dfd326107c3c047b7cae6"><div class="ttname"><a href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3abf63f2417a0dfd326107c3c047b7cae6">godunov::scheme::PPM_NOLIM</a></div><div class="ttdeci">@ PPM_NOLIM</div><div class="ttdef"><b>Definition</b> Godunov.H:11</div></div>
+<div class="ttc" id="anamespacegodunov_html_a0d48c9064caf98de3f1a76c4be1cb4a3af47474bf582aab71c15995ebbdd9a372"><div class="ttname"><a href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3af47474bf582aab71c15995ebbdd9a372">godunov::scheme::WENOZ</a></div><div class="ttdeci">@ WENOZ</div><div class="ttdef"><b>Definition</b> Godunov.H:14</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1fvm_html"><div class="ttname"><a href="namespacekynema__sgf_1_1fvm.html">kynema_sgf::fvm</a></div><div class="ttdef"><b>Definition</b> SchemeTraits.H:6</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1multiphase_html_ad87de76c9cd9f466218213232fc47feb"><div class="ttname"><a href="namespacekynema__sgf_1_1multiphase.html#ad87de76c9cd9f466218213232fc47feb">kynema_sgf::multiphase::hybrid_fluxes</a></div><div class="ttdeci">static AMREX_INLINE void hybrid_fluxes(const FieldRepo &amp;repo, const int ncomp, const amrex::Gpu::DeviceVector&lt; int &gt; &amp;iconserv, ScratchField &amp;flux_x, ScratchField &amp;flux_y, ScratchField &amp;flux_z, const Field &amp;dof_field, const Field &amp;dof_nph, const Field &amp;src_term, const Field &amp;rho_o, const Field &amp;rho_nph, const Field &amp;u_mac, const Field &amp;v_mac, const Field &amp;w_mac, amrex::Vector&lt; amrex::BCRec &gt; const &amp;velbc, amrex::BCRec const *velbc_d, amrex::Vector&lt; amrex::BCRec &gt; const &amp;rhobc, amrex::BCRec const *rhobc_d, const amrex::Real dt, godunov::scheme mflux_scheme, bool allow_inflow_on_outflow, bool use_forces_in_trans, bool pre_multiplied_src_term=false)</div><div class="ttdef"><b>Definition</b> vof_momentum_flux.H:11</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1pde_html"><div class="ttname"><a href="namespacekynema__sgf_1_1pde.html">kynema_sgf::pde</a></div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:21</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1fvm_1_1_godunov_html_a381dca2b8f4b79a916ad6275510407d6"><div class="ttname"><a href="structkynema__sgf_1_1fvm_1_1_godunov.html#a381dca2b8f4b79a916ad6275510407d6">kynema_sgf::fvm::Godunov::nghost_src</a></div><div class="ttdeci">static constexpr int nghost_src</div><div class="ttdoc">Number of ghost cells in the source term variable.</div><div class="ttdef"><b>Definition</b> SchemeTraits.H:21</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1fvm_1_1_godunov_html_a6a655620485e997901669295f9231f02"><div class="ttname"><a href="structkynema__sgf_1_1fvm_1_1_godunov.html#a6a655620485e997901669295f9231f02">kynema_sgf::fvm::Godunov::nghost_state</a></div><div class="ttdeci">static constexpr int nghost_state</div><div class="ttdoc">Number of ghost in the state variable.</div><div class="ttdef"><b>Definition</b> SchemeTraits.H:19</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_a06590cc0365a36083da7910c0b342d21"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a06590cc0365a36083da7910c0b342d21">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::density</a></div><div class="ttdeci">Field &amp; density</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:297</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_a0dc007f964830198a00f1f11322e873c"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a0dc007f964830198a00f1f11322e873c">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::w_mac</a></div><div class="ttdeci">Field &amp; w_mac</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:300</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_a28b64d5541f062b4163c504649e77564"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a28b64d5541f062b4163c504649e77564">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::AdvectionOp</a></div><div class="ttdeci">AdvectionOp(CFDSim &amp;, PDEFields &amp;fields_in, bool, bool, bool, bool)</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:32</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_a30dc484cb5461a20d57f2d2ec8dc26dd"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a30dc484cb5461a20d57f2d2ec8dc26dd">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::iconserv</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; int &gt; iconserv</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:301</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_a39d800f030359c22bad1101a233e71a4"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a39d800f030359c22bad1101a233e71a4">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::godunov_type</a></div><div class="ttdeci">std::string godunov_type</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:305</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_a4334c606ca909972ba039793525bf117"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a4334c606ca909972ba039793525bf117">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::v_mac</a></div><div class="ttdeci">Field &amp; v_mac</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:299</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_a69563b71a2b6e2f5574bb517d5856264"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a69563b71a2b6e2f5574bb517d5856264">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::mflux_type</a></div><div class="ttdeci">std::string mflux_type</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:306</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_a6dd35c0a3045eec36397a140c0d426fd"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a6dd35c0a3045eec36397a140c0d426fd">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::godunov_scheme</a></div><div class="ttdeci">godunov::scheme godunov_scheme</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:303</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_a72ef2904ee1bdbae877e2f7fc2d16882"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a72ef2904ee1bdbae877e2f7fc2d16882">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::advection_type</a></div><div class="ttdeci">std::string advection_type</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:310</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_a768a8c58a63ce2696be6c277813fed00"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#a768a8c58a63ce2696be6c277813fed00">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::m_allow_inflow_on_outflow</a></div><div class="ttdeci">bool m_allow_inflow_on_outflow</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:309</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_aa4e487d399b95b7950077c7f5b811c71"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#aa4e487d399b95b7950077c7f5b811c71">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::fluxes_are_area_weighted</a></div><div class="ttdeci">const bool fluxes_are_area_weighted</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:307</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_acbc994a1abc5b6cc3c66ecf775cec7bf"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#acbc994a1abc5b6cc3c66ecf775cec7bf">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::u_mac</a></div><div class="ttdeci">Field &amp; u_mac</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:298</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_acf6116021a894e0fdf89fd501cf25869"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#acf6116021a894e0fdf89fd501cf25869">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::preadvect</a></div><div class="ttdeci">void preadvect(const FieldState, const amrex::Real, const amrex::Real)</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:97</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_ad58f2d30231818c97546fa8baa368b53"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ad58f2d30231818c97546fa8baa368b53">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::fields</a></div><div class="ttdeci">PDEFields &amp; fields</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:296</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_ae1d55b6f84ae69edd1790a998ffbc4f1"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ae1d55b6f84ae69edd1790a998ffbc4f1">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::mflux_scheme</a></div><div class="ttdeci">godunov::scheme mflux_scheme</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:304</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_ae46a5851f274ae3ca0e52835cb8118e0"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ae46a5851f274ae3ca0e52835cb8118e0">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::operator()</a></div><div class="ttdeci">void operator()(const FieldState fstate, const amrex::Real dt)</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:103</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b_html_ae7e9610be45ba57e6c8927edf4700070"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html#ae7e9610be45ba57e6c8927edf4700070">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;::godunov_use_forces_in_trans</a></div><div class="ttdeci">bool godunov_use_forces_in_trans</div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:308</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_p_d_e_fields_html"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">kynema_sgf::pde::PDEFields</a></div><div class="ttdef"><b>Definition</b> PDEFields.H:27</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_p_d_e_fields_html_a8f529ca032578318063561e44caaafb2"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html#a8f529ca032578318063561e44caaafb2">kynema_sgf::pde::PDEFields::field</a></div><div class="ttdeci">Field &amp; field</div><div class="ttdoc">Solution variable (e.g., velocity, temperature)</div><div class="ttdef"><b>Definition</b> PDEFields.H:34</div></div>
+<div class="ttc" id="avof__momentum__flux_8_h_html"><div class="ttname"><a href="vof__momentum__flux_8_h.html">vof_momentum_flux.H</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

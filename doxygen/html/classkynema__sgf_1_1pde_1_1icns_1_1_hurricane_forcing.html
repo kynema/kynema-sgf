@@ -1,0 +1,634 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::pde::icns::HurricaneForcing Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::pde::icns::HurricaneForcing Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1pde_1_1icns_1_1_hurricane_forcing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hurricaneforcing-class-reference">
+<h1>HurricaneForcing Class Reference<a class="headerlink" href="#hurricaneforcing-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::pde::icns::HurricaneForcing Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1pde.html">pde</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1pde_1_1icns.html">icns</a></li><li class="navelem"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_hurricane_forcing.html">HurricaneForcing</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1pde_1_1icns_1_1_hurricane_forcing-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::pde::icns::HurricaneForcing Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_hurricane_forcing_8_h_source.html">HurricaneForcing.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::pde::icns::HurricaneForcing:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1pde_1_1icns_1_1_hurricane_forcing__inherit__graph.svg" width="210" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::pde::icns::HurricaneForcing:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1pde_1_1icns_1_1_hurricane_forcing__coll__graph.svg" width="210" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a7da76046bab28e3f45f614eef8d2fcf6" id="r_a7da76046bab28e3f45f614eef8d2fcf6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7da76046bab28e3f45f614eef8d2fcf6">HurricaneForcing</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:aeb2bce2e654893d9ce4ed5026860bb91" id="r_aeb2bce2e654893d9ce4ed5026860bb91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb2bce2e654893d9ce4ed5026860bb91">~HurricaneForcing</a> () override</td></tr>
+<tr class="memitem:a5ed4bae1dfd3bb6d697e2ea7dc64a3e9" id="r_a5ed4bae1dfd3bb6d697e2ea7dc64a3e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ed4bae1dfd3bb6d697e2ea7dc64a3e9">operator()</a> (int lev, const amrex::MFIter &amp;mfi, const amrex::Box &amp;bx, <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate, const amrex::Array4&lt; amrex::Real &gt; &amp;src_term) const override</td></tr>
+<tr class="memitem:aa904a6d770ef2df3c3adfbcbb2a9e52b" id="r_aa904a6d770ef2df3c3adfbcbb2a9e52b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa904a6d770ef2df3c3adfbcbb2a9e52b">mean_velocity_init</a> (const <a class="el" href="classkynema__sgf_1_1_vel_plane_averaging.html">VelPlaneAveraging</a> &amp;)</td></tr>
+<tr class="memitem:a2f849ce4bd129c7d6a9998a942af0e79" id="r_a2f849ce4bd129c7d6a9998a942af0e79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f849ce4bd129c7d6a9998a942af0e79">mean_velocity_update</a> (const <a class="el" href="classkynema__sgf_1_1_vel_plane_averaging.html">VelPlaneAveraging</a> &amp;)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a00a0c254e59c6453be86d2c3d7d22a7e" id="r_a00a0c254e59c6453be86d2c3d7d22a7e"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00a0c254e59c6453be86d2c3d7d22a7e">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac749cacff4d275c4783e573b0631527d" id="r_ac749cacff4d275c4783e573b0631527d"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac749cacff4d275c4783e573b0631527d">m_mesh</a></td></tr>
+<tr class="memdesc:ac749cacff4d275c4783e573b0631527d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mesh.  <br /></td></tr>
+<tr class="memitem:ac11d3b563ea04754c909e84730deb5e7" id="r_ac11d3b563ea04754c909e84730deb5e7"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac11d3b563ea04754c909e84730deb5e7">m_vel_ht</a></td></tr>
+<tr class="memitem:a8f2169e59f6a226926e4a2f2b00b5949" id="r_a8f2169e59f6a226926e4a2f2b00b5949"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f2169e59f6a226926e4a2f2b00b5949">m_vel_vals</a></td></tr>
+<tr class="memitem:a6bf10af012a7edbdb4daefd9e0020866" id="r_a6bf10af012a7edbdb4daefd9e0020866"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bf10af012a7edbdb4daefd9e0020866">m_axis</a> {2}</td></tr>
+<tr class="memdesc:a6bf10af012a7edbdb4daefd9e0020866"><td class="mdescLeft">&#160;</td><td class="mdescRight">Axis over which averages are computed.  <br /></td></tr>
+<tr class="memitem:adf4add55b959607bfff1ac33e76adbcc" id="r_adf4add55b959607bfff1ac33e76adbcc"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf4add55b959607bfff1ac33e76adbcc">m_V</a> {40.0_rt}</td></tr>
+<tr class="memdesc:adf4add55b959607bfff1ac33e76adbcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gradient velocity.  <br /></td></tr>
+<tr class="memitem:ad0fc3edafd19ee8b427682ed2abe72a4" id="r_ad0fc3edafd19ee8b427682ed2abe72a4"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0fc3edafd19ee8b427682ed2abe72a4">m_dVdR</a> {-0.0008_rt}</td></tr>
+<tr class="memdesc:ad0fc3edafd19ee8b427682ed2abe72a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gradient wind radial decay.  <br /></td></tr>
+<tr class="memitem:ac8a1e1bf0877199188fe8d0d89c3668e" id="r_ac8a1e1bf0877199188fe8d0d89c3668e"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8a1e1bf0877199188fe8d0d89c3668e">m_Vzh</a> {18000.}</td></tr>
+<tr class="memdesc:ac8a1e1bf0877199188fe8d0d89c3668e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference gradient wind zero height in metres.  <br /></td></tr>
+<tr class="memitem:a8597a6c8f88043652e2db21d2202d676" id="r_a8597a6c8f88043652e2db21d2202d676"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8597a6c8f88043652e2db21d2202d676">m_R</a> {40000.0_rt}</td></tr>
+<tr class="memdesc:a8597a6c8f88043652e2db21d2202d676"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eye-wall radial distance.  <br /></td></tr>
+<tr class="memitem:a60962217c02a953e2d8c08181a15a3bc" id="r_a60962217c02a953e2d8c08181a15a3bc"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60962217c02a953e2d8c08181a15a3bc">m_coriolis_factor</a> {0.0005_rt}</td></tr>
+<tr class="memdesc:a60962217c02a953e2d8c08181a15a3bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coriolis factor.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Idealized Hurricane forcing source term Apply mesoscale tendency source term to drive the flow and match the hurricane cyclic/rotational forcing at large distances from the eye-wall. This implements the "Simple" method of George Bryan. Details can be found in: "A simple Method for Simulating Wind Profiles in the Boundary Layer of Tropical Cyclones. Bryant et al. Boundary-Layer Meteorol (2017) DOI 10.1007/s10546-016-0207-0 </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7da76046bab28e3f45f614eef8d2fcf6" name="a7da76046bab28e3f45f614eef8d2fcf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7da76046bab28e3f45f614eef8d2fcf6">&#9670;&#160;</a></span>HurricaneForcing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::pde::icns::HurricaneForcing::HurricaneForcing </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeb2bce2e654893d9ce4ed5026860bb91" name="aeb2bce2e654893d9ce4ed5026860bb91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb2bce2e654893d9ce4ed5026860bb91">&#9670;&#160;</a></span>~HurricaneForcing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::pde::icns::HurricaneForcing::~HurricaneForcing </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a00a0c254e59c6453be86d2c3d7d22a7e" name="a00a0c254e59c6453be86d2c3d7d22a7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00a0c254e59c6453be86d2c3d7d22a7e">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::pde::icns::HurricaneForcing::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa904a6d770ef2df3c3adfbcbb2a9e52b" name="aa904a6d770ef2df3c3adfbcbb2a9e52b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa904a6d770ef2df3c3adfbcbb2a9e52b">&#9670;&#160;</a></span>mean_velocity_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::icns::HurricaneForcing::mean_velocity_init </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_vel_plane_averaging.html">VelPlaneAveraging</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>vavg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2f849ce4bd129c7d6a9998a942af0e79" name="a2f849ce4bd129c7d6a9998a942af0e79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f849ce4bd129c7d6a9998a942af0e79">&#9670;&#160;</a></span>mean_velocity_update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::icns::HurricaneForcing::mean_velocity_update </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_vel_plane_averaging.html">VelPlaneAveraging</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>vavg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5ed4bae1dfd3bb6d697e2ea7dc64a3e9" name="a5ed4bae1dfd3bb6d697e2ea7dc64a3e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ed4bae1dfd3bb6d697e2ea7dc64a3e9">&#9670;&#160;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::icns::HurricaneForcing::operator() </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::MFIter &amp;</td>          <td class="paramname"><span class="paramname"><em>mfi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Box &amp;</td>          <td class="paramname"><span class="paramname"><em>bx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Array4&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>src_term</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a6bf10af012a7edbdb4daefd9e0020866" name="a6bf10af012a7edbdb4daefd9e0020866"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bf10af012a7edbdb4daefd9e0020866">&#9670;&#160;</a></span>m_axis</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::pde::icns::HurricaneForcing::m_axis {2}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Axis over which averages are computed. </p>
+
+</div>
+</div>
+<a id="a60962217c02a953e2d8c08181a15a3bc" name="a60962217c02a953e2d8c08181a15a3bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60962217c02a953e2d8c08181a15a3bc">&#9670;&#160;</a></span>m_coriolis_factor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::pde::icns::HurricaneForcing::m_coriolis_factor {0.0005_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Coriolis factor. </p>
+
+</div>
+</div>
+<a id="ad0fc3edafd19ee8b427682ed2abe72a4" name="ad0fc3edafd19ee8b427682ed2abe72a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0fc3edafd19ee8b427682ed2abe72a4">&#9670;&#160;</a></span>m_dVdR</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::pde::icns::HurricaneForcing::m_dVdR {-0.0008_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gradient wind radial decay. </p>
+
+</div>
+</div>
+<a id="ac749cacff4d275c4783e573b0631527d" name="ac749cacff4d275c4783e573b0631527d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac749cacff4d275c4783e573b0631527d">&#9670;&#160;</a></span>m_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::AmrCore&amp; kynema_sgf::pde::icns::HurricaneForcing::m_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Mesh. </p>
+
+</div>
+</div>
+<a id="a8597a6c8f88043652e2db21d2202d676" name="a8597a6c8f88043652e2db21d2202d676"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8597a6c8f88043652e2db21d2202d676">&#9670;&#160;</a></span>m_R</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::pde::icns::HurricaneForcing::m_R {40000.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Eye-wall radial distance. </p>
+
+</div>
+</div>
+<a id="adf4add55b959607bfff1ac33e76adbcc" name="adf4add55b959607bfff1ac33e76adbcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf4add55b959607bfff1ac33e76adbcc">&#9670;&#160;</a></span>m_V</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::pde::icns::HurricaneForcing::m_V {40.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gradient velocity. </p>
+
+</div>
+</div>
+<a id="ac11d3b563ea04754c909e84730deb5e7" name="ac11d3b563ea04754c909e84730deb5e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac11d3b563ea04754c909e84730deb5e7">&#9670;&#160;</a></span>m_vel_ht</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;amrex::Real&gt; kynema_sgf::pde::icns::HurricaneForcing::m_vel_ht</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8f2169e59f6a226926e4a2f2b00b5949" name="a8f2169e59f6a226926e4a2f2b00b5949"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f2169e59f6a226926e4a2f2b00b5949">&#9670;&#160;</a></span>m_vel_vals</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;amrex::Real&gt; kynema_sgf::pde::icns::HurricaneForcing::m_vel_vals</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac8a1e1bf0877199188fe8d0d89c3668e" name="ac8a1e1bf0877199188fe8d0d89c3668e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8a1e1bf0877199188fe8d0d89c3668e">&#9670;&#160;</a></span>m_Vzh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::pde::icns::HurricaneForcing::m_Vzh {18000.}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reference gradient wind zero height in metres. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/<a class="el" href="_hurricane_forcing_8_h_source.html">HurricaneForcing.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/<a class="el" href="_hurricane_forcing_8cpp.html">HurricaneForcing.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

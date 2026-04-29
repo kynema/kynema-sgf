@@ -1,0 +1,846 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf Namespace Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf Namespace Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/namespacekynema__sgf.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kynema-sgf-namespace-reference">
+<h1>kynema_sgf Namespace Reference<a class="headerlink" href="#kynema-sgf-namespace-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf Namespace Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf Namespace Reference<div class="ingroups"><a class="el" href="group__multiphase__physics.html">Multiphase physics</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>This test case is intended as an evaluation of the momentum advection scheme.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:actuator" id="r_actuator"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1actuator.html">actuator</a></td></tr>
+<tr class="memitem:ascent_5Fint" id="r_ascent_5Fint"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1ascent__int.html">ascent_int</a></td></tr>
+<tr class="memitem:averaging" id="r_averaging"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1averaging.html">averaging</a></td></tr>
+<tr class="memitem:burggraf" id="r_burggraf"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1burggraf.html">burggraf</a></td></tr>
+<tr class="memitem:channel_5Fflow" id="r_channel_5Fflow"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1channel__flow.html">channel_flow</a></td></tr>
+<tr class="memitem:channel_5Fmap" id="r_channel_5Fmap"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1channel__map.html">channel_map</a></td></tr>
+<tr class="memitem:const_5Fmap" id="r_const_5Fmap"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1const__map.html">const_map</a></td></tr>
+<tr class="memitem:constants" id="r_constants"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1constants.html">constants</a></td></tr>
+<tr class="memitem:ctv" id="r_ctv"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1ctv.html">ctv</a></td></tr>
+<tr class="memitem:derived" id="r_derived"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1derived.html">derived</a></td></tr>
+<tr class="memitem:diagnostics" id="r_diagnostics"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1diagnostics.html">diagnostics</a></td></tr>
+<tr class="memitem:enstrophy" id="r_enstrophy"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1enstrophy.html">enstrophy</a></td></tr>
+<tr class="memitem:eos" id="r_eos"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1eos.html">eos</a></td></tr>
+<tr class="memitem:field_5Fimpl" id="r_field_5Fimpl"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1field__impl.html">field_impl</a></td></tr>
+<tr class="memitem:field_5Fnorms" id="r_field_5Fnorms"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1field__norms.html">field_norms</a></td></tr>
+<tr class="memitem:field_5Fops" id="r_field_5Fops"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1field__ops.html">field_ops</a></td></tr>
+<tr class="memitem:forestdrag" id="r_forestdrag"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1forestdrag.html">forestdrag</a></td></tr>
+<tr class="memitem:fvm" id="r_fvm"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1fvm.html">fvm</a></td></tr>
+<tr class="memitem:gpu" id="r_gpu"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1gpu.html">gpu</a></td></tr>
+<tr class="memitem:hybrid_5Frans_5Fles_5Fabl" id="r_hybrid_5Frans_5Fles_5Fabl"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1hybrid__rans__les__abl.html">hybrid_rans_les_abl</a></td></tr>
+<tr class="memitem:hydrostatic" id="r_hydrostatic"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1hydrostatic.html">hydrostatic</a></td></tr>
+<tr class="memitem:ib" id="r_ib"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1ib.html">ib</a></td></tr>
+<tr class="memitem:interp" id="r_interp"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html">interp</a></td></tr>
+<tr class="memitem:io" id="r_io"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1io.html">io</a></td></tr>
+<tr class="memitem:ioutils" id="r_ioutils"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1ioutils.html">ioutils</a></td></tr>
+<tr class="memitem:kinetic_5Fenergy" id="r_kinetic_5Fenergy"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1kinetic__energy.html">kinetic_energy</a></td></tr>
+<tr class="memitem:mms" id="r_mms"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1mms.html">mms</a></td></tr>
+<tr class="memitem:multiphase" id="r_multiphase"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1multiphase.html">multiphase</a></td></tr>
+<tr class="memitem:nodal_5Fprojection" id="r_nodal_5Fprojection"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1nodal__projection.html">nodal_projection</a></td></tr>
+<tr class="memitem:ocean_5Fwaves" id="r_ocean_5Fwaves"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1ocean__waves.html">ocean_waves</a></td></tr>
+<tr class="memitem:overset_5Fops" id="r_overset_5Fops"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1overset__ops.html">overset_ops</a></td></tr>
+<tr class="memitem:pde" id="r_pde"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1pde.html">pde</a></td></tr>
+<tr class="memitem:pde_5Fimpl" id="r_pde_5Fimpl"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1pde__impl.html">pde_impl</a></td></tr>
+<tr class="memitem:sampling" id="r_sampling"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1sampling.html">sampling</a></td></tr>
+<tr class="memitem:scalar_5Fbc" id="r_scalar_5Fbc"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1scalar__bc.html">scalar_bc</a></td></tr>
+<tr class="memitem:subvolume" id="r_subvolume"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1subvolume.html">subvolume</a></td></tr>
+<tr class="memitem:synth_5Fturb" id="r_synth_5Fturb"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1synth__turb.html">synth_turb</a></td></tr>
+<tr class="memitem:tagging" id="r_tagging"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1tagging.html">tagging</a></td></tr>
+<tr class="memitem:terraindrag" id="r_terraindrag"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1terraindrag.html">terraindrag</a></td></tr>
+<tr class="memitem:tioga_5Fiface" id="r_tioga_5Fiface"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1tioga__iface.html">tioga_iface</a></td></tr>
+<tr class="memitem:transport" id="r_transport"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1transport.html">transport</a></td></tr>
+<tr class="memitem:turbulence" id="r_turbulence"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1turbulence.html">turbulence</a></td></tr>
+<tr class="memitem:udf" id="r_udf"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1udf.html">udf</a></td></tr>
+<tr class="memitem:utils" id="r_utils"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1utils.html">utils</a></td></tr>
+<tr class="memitem:vel_5Fbc" id="r_vel_5Fbc"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1vel__bc.html">vel_bc</a></td></tr>
+<tr class="memitem:vs" id="r_vs"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1vs.html">vs</a></td></tr>
+<tr class="memitem:wave_5Fenergy" id="r_wave_5Fenergy"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1wave__energy.html">wave_energy</a></td></tr>
+<tr class="memitem:zds" id="r_zds"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1zds.html">zds</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:ABL" id="r_ABL"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_a_b_l.html">ABL</a></td></tr>
+<tr class="memitem:ABLAnelastic" id="r_ABLAnelastic"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_a_b_l_anelastic.html">ABLAnelastic</a></td></tr>
+<tr class="memitem:ABLFieldInit" id="r_ABLFieldInit"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_a_b_l_field_init.html">ABLFieldInit</a></td></tr>
+<tr class="memitem:ABLFieldInitFile" id="r_ABLFieldInitFile"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_a_b_l_field_init_file.html">ABLFieldInitFile</a></td></tr>
+<tr class="memitem:ABLMesoscaleForcing" id="r_ABLMesoscaleForcing"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html">ABLMesoscaleForcing</a></td></tr>
+<tr class="memitem:ABLMesoscaleInput" id="r_ABLMesoscaleInput"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_a_b_l_mesoscale_input.html">ABLMesoscaleInput</a></td></tr>
+<tr class="memitem:ABLStats" id="r_ABLStats"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_a_b_l_stats.html">ABLStats</a></td></tr>
+<tr class="memitem:ABLStatsBase" id="r_ABLStatsBase"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_a_b_l_stats_base.html">ABLStatsBase</a></td></tr>
+<tr class="memitem:ABLTempWallFunc" id="r_ABLTempWallFunc"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html">ABLTempWallFunc</a></td></tr>
+<tr class="memitem:ABLVelWallFunc" id="r_ABLVelWallFunc"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html">ABLVelWallFunc</a></td></tr>
+<tr class="memitem:ABLWallFunction" id="r_ABLWallFunction"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_a_b_l_wall_function.html">ABLWallFunction</a></td></tr>
+<tr class="memitem:ActuatorSourceTagging" id="r_ActuatorSourceTagging"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_actuator_source_tagging.html">ActuatorSourceTagging</a></td></tr>
+<tr class="memitem:AMROversetInfo" id="r_AMROversetInfo"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_a_m_r_overset_info.html">AMROversetInfo</a></td></tr>
+<tr class="memitem:BCDensityMod" id="r_BCDensityMod"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_density_mod.html">BCDensityMod</a></td></tr>
+<tr class="memitem:BCFillPatchExtrap" id="r_BCFillPatchExtrap"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_fill_patch_extrap.html">BCFillPatchExtrap</a></td></tr>
+<tr class="memitem:BCIface" id="r_BCIface"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_iface.html">BCIface</a></td></tr>
+<tr class="memitem:BCOpCreator" id="r_BCOpCreator"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_b_c_op_creator.html">BCOpCreator</a></td></tr>
+<tr class="memitem:BCPressure" id="r_BCPressure"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_pressure.html">BCPressure</a></td></tr>
+<tr class="memitem:BCScalar" id="r_BCScalar"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_scalar.html">BCScalar</a></td></tr>
+<tr class="memitem:BCSrcTerm" id="r_BCSrcTerm"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_src_term.html">BCSrcTerm</a></td></tr>
+<tr class="memitem:BCVelocity" id="r_BCVelocity"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_velocity.html">BCVelocity</a></td></tr>
+<tr class="memitem:BCVOF" id="r_BCVOF"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_v_o_f.html">BCVOF</a></td></tr>
+<tr class="memitem:BoundaryPlane" id="r_BoundaryPlane"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_boundary_plane.html">BoundaryPlane</a></td></tr>
+<tr class="memitem:BoussinesqBubble" id="r_BoussinesqBubble"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_boussinesq_bubble.html">BoussinesqBubble</a></td></tr>
+<tr class="memitem:BoussinesqBubbleFieldInit" id="r_BoussinesqBubbleFieldInit"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_boussinesq_bubble_field_init.html">BoussinesqBubbleFieldInit</a></td></tr>
+<tr class="memitem:BreakingWaves" id="r_BreakingWaves"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_breaking_waves.html">BreakingWaves</a></td></tr>
+<tr class="memitem:BufferData" id="r_BufferData"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_buffer_data.html">BufferData</a></td></tr>
+<tr class="memitem:CartBoxRefinement" id="r_CartBoxRefinement"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_cart_box_refinement.html">CartBoxRefinement</a></td></tr>
+<tr class="memitem:CFDSim" id="r_CFDSim"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a></td></tr>
+<tr class="memitem:CollidingRings" id="r_CollidingRings"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_colliding_rings.html">CollidingRings</a></td></tr>
+<tr class="memitem:CollMgr" id="r_CollMgr"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html">CollMgr</a></td></tr>
+<tr class="memitem:ConstDirichlet" id="r_ConstDirichlet"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_const_dirichlet.html">ConstDirichlet</a></td></tr>
+<tr class="memitem:CurvatureRefinement" id="r_CurvatureRefinement"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_curvature_refinement.html">CurvatureRefinement</a></td></tr>
+<tr class="memitem:DamBreak" id="r_DamBreak"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_dam_break.html">DamBreak</a></td></tr>
+<tr class="memitem:DerivedQty" id="r_DerivedQty"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_derived_qty.html">DerivedQty</a></td></tr>
+<tr class="memitem:DerivedQtyMgr" id="r_DerivedQtyMgr"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_derived_qty_mgr.html">DerivedQtyMgr</a></td></tr>
+<tr class="memitem:DirichletOp" id="r_DirichletOp"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_dirichlet_op.html">DirichletOp</a></td></tr>
+<tr class="memitem:EkmanSpiral" id="r_EkmanSpiral"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_ekman_spiral.html">EkmanSpiral</a></td></tr>
+<tr class="memitem:ExtSolver" id="r_ExtSolver"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_ext_solver.html">ExtSolver</a></td></tr>
+<tr class="memitem:ExtSolverMgr" id="r_ExtSolverMgr"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_ext_solver_mgr.html">ExtSolverMgr</a></td></tr>
+<tr class="memitem:Factory" id="r_Factory"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html">Factory</a></td></tr>
+<tr class="memitem:FatCore" id="r_FatCore"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_fat_core.html">FatCore</a></td></tr>
+<tr class="memitem:Field" id="r_Field"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a></td></tr>
+<tr class="memitem:FieldBCDirichlet" id="r_FieldBCDirichlet"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_field_b_c_dirichlet.html">FieldBCDirichlet</a></td></tr>
+<tr class="memitem:FieldBCIface" id="r_FieldBCIface"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_b_c_iface.html">FieldBCIface</a></td></tr>
+<tr class="memitem:FieldBCNoOp" id="r_FieldBCNoOp"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_field_b_c_no_op.html">FieldBCNoOp</a></td></tr>
+<tr class="memitem:FieldBoundary" id="r_FieldBoundary"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_boundary.html">FieldBoundary</a></td></tr>
+<tr class="memitem:FieldBoundaryMgr" id="r_FieldBoundaryMgr"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_boundary_mgr.html">FieldBoundaryMgr</a></td></tr>
+<tr class="memitem:FieldFillConstScalar" id="r_FieldFillConstScalar"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_const_scalar.html">FieldFillConstScalar</a></td></tr>
+<tr class="memitem:FieldFillPatchOps" id="r_FieldFillPatchOps"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html">FieldFillPatchOps</a></td></tr>
+<tr class="memitem:FieldFillPatchOpsBase" id="r_FieldFillPatchOpsBase"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops_base.html">FieldFillPatchOpsBase</a></td></tr>
+<tr class="memitem:FieldInfo" id="r_FieldInfo"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_field_info.html">FieldInfo</a></td></tr>
+<tr class="memitem:FieldRefinement" id="r_FieldRefinement"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_refinement.html">FieldRefinement</a></td></tr>
+<tr class="memitem:FieldRepo" id="r_FieldRepo"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a></td></tr>
+<tr class="memitem:FillMPL" id="r_FillMPL"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_fill_m_p_l.html">FillMPL</a></td></tr>
+<tr class="memitem:FixedGradientBC" id="r_FixedGradientBC"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_fixed_gradient_b_c.html">FixedGradientBC</a></td></tr>
+<tr class="memitem:FPlaneAveraging" id="r_FPlaneAveraging"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging.html">FPlaneAveraging</a></td></tr>
+<tr class="memitem:FPlaneAveragingFine" id="r_FPlaneAveragingFine"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html">FPlaneAveragingFine</a></td></tr>
+<tr class="memitem:FreeStream" id="r_FreeStream"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_free_stream.html">FreeStream</a></td></tr>
+<tr class="memitem:GaussianPulseFV" id="r_GaussianPulseFV"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_gaussian_pulse_f_v.html">GaussianPulseFV</a></td></tr>
+<tr class="memitem:GaussianWavePacket" id="r_GaussianWavePacket"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_gaussian_wave_packet.html">GaussianWavePacket</a></td></tr>
+<tr class="memitem:GaussianWavePacketFV" id="r_GaussianWavePacketFV"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_gaussian_wave_packet_f_v.html">GaussianWavePacketFV</a></td></tr>
+<tr class="memitem:GeometryRefinement" id="r_GeometryRefinement"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_geometry_refinement.html">GeometryRefinement</a></td></tr>
+<tr class="memitem:GradientMagRefinement" id="r_GradientMagRefinement"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_gradient_mag_refinement.html">GradientMagRefinement</a></td></tr>
+<tr class="memitem:HelicsStorage" id="r_HelicsStorage"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_helics_storage.html">HelicsStorage</a></td></tr>
+<tr class="memitem:InletData" id="r_InletData"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_inlet_data.html">InletData</a></td></tr>
+<tr class="memitem:Intermittency" id="r_Intermittency"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_intermittency.html">Intermittency</a></td></tr>
+<tr class="memitem:InterpWeights" id="r_InterpWeights"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_interp_weights.html">InterpWeights</a></td></tr>
+<tr class="memitem:IntField" id="r_IntField"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_int_field.html">IntField</a></td></tr>
+<tr class="memitem:IntScratchField" id="r_IntScratchField"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_int_scratch_field.html">IntScratchField</a></td></tr>
+<tr class="memitem:IOManager" id="r_IOManager"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_i_o_manager.html">IOManager</a></td></tr>
+<tr class="memitem:LevelDataHolder" id="r_LevelDataHolder"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_level_data_holder.html">LevelDataHolder</a></td></tr>
+<tr class="memitem:LogLaw" id="r_LogLaw"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_log_law.html">LogLaw</a></td></tr>
+<tr class="memitem:MassInflowOutflowBC" id="r_MassInflowOutflowBC"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_mass_inflow_outflow_b_c.html">MassInflowOutflowBC</a></td></tr>
+<tr class="memitem:MeshMap" id="r_MeshMap"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_mesh_map.html">MeshMap</a></td></tr>
+<tr class="memitem:MLMGOptions" id="r_MLMGOptions"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_m_l_m_g_options.html">MLMGOptions</a></td></tr>
+<tr class="memitem:MOData" id="r_MOData"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_m_o_data.html">MOData</a></td></tr>
+<tr class="memitem:ModulatedPowerLaw" id="r_ModulatedPowerLaw"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_modulated_power_law.html">ModulatedPowerLaw</a></td></tr>
+<tr class="memitem:MOSD" id="r_MOSD"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_m_o_s_d.html">MOSD</a></td></tr>
+<tr class="memitem:MultiLevelVector" id="r_MultiLevelVector"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a></td></tr>
+<tr class="memitem:MultiPhase" id="r_MultiPhase"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_multi_phase.html">MultiPhase</a></td></tr>
+<tr class="memitem:OceanWavesBoundary" id="r_OceanWavesBoundary"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_ocean_waves_boundary.html">OceanWavesBoundary</a></td></tr>
+<tr class="memitem:OceanWavesFillInflow" id="r_OceanWavesFillInflow"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_ocean_waves_fill_inflow.html">OceanWavesFillInflow</a></td></tr>
+<tr class="memitem:OversetManager" id="r_OversetManager"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_overset_manager.html">OversetManager</a></td></tr>
+<tr class="memitem:OversetOps" id="r_OversetOps"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_overset_ops.html">OversetOps</a></td></tr>
+<tr class="memitem:OversetRefinement" id="r_OversetRefinement"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_overset_refinement.html">OversetRefinement</a></td></tr>
+<tr class="memitem:Physics" id="r_Physics"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_physics.html">Physics</a></td></tr>
+<tr class="memitem:PhysicsMgr" id="r_PhysicsMgr"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_physics_mgr.html">PhysicsMgr</a></td></tr>
+<tr class="memitem:PhysicsOld" id="r_PhysicsOld"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_physics_old.html">PhysicsOld</a></td></tr>
+<tr class="memitem:PlaneFillInflow" id="r_PlaneFillInflow"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_plane_fill_inflow.html">PlaneFillInflow</a></td></tr>
+<tr class="memitem:PostProcessBase" id="r_PostProcessBase"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_post_process_base.html">PostProcessBase</a></td></tr>
+<tr class="memitem:PostProcessManager" id="r_PostProcessManager"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_post_process_manager.html">PostProcessManager</a></td></tr>
+<tr class="memitem:QCriterionRefinement" id="r_QCriterionRefinement"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_q_criterion_refinement.html">QCriterionRefinement</a></td></tr>
+<tr class="memitem:RainDrop" id="r_RainDrop"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_rain_drop.html">RainDrop</a></td></tr>
+<tr class="memitem:RayleighTaylor" id="r_RayleighTaylor"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_rayleigh_taylor.html">RayleighTaylor</a></td></tr>
+<tr class="memitem:RayleighTaylorFieldInit" id="r_RayleighTaylorFieldInit"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_rayleigh_taylor_field_init.html">RayleighTaylorFieldInit</a></td></tr>
+<tr class="memitem:RefineCriteriaManager" id="r_RefineCriteriaManager"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_refine_criteria_manager.html">RefineCriteriaManager</a></td></tr>
+<tr class="memitem:RefinementCriteria" id="r_RefinementCriteria"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_refinement_criteria.html">RefinementCriteria</a></td></tr>
+<tr class="memitem:ScalarAdvection" id="r_ScalarAdvection"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_scalar_advection.html">ScalarAdvection</a></td></tr>
+<tr class="memitem:ScratchField" id="r_ScratchField"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a></td></tr>
+<tr class="memitem:SecondMomentAveraging" id="r_SecondMomentAveraging"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_second_moment_averaging.html">SecondMomentAveraging</a></td></tr>
+<tr class="memitem:ShearStressConstant" id="r_ShearStressConstant"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_shear_stress_constant.html">ShearStressConstant</a></td></tr>
+<tr class="memitem:ShearStressDonelan" id="r_ShearStressDonelan"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_shear_stress_donelan.html">ShearStressDonelan</a></td></tr>
+<tr class="memitem:ShearStressLocal" id="r_ShearStressLocal"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_shear_stress_local.html">ShearStressLocal</a></td></tr>
+<tr class="memitem:ShearStressMoeng" id="r_ShearStressMoeng"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_shear_stress_moeng.html">ShearStressMoeng</a></td></tr>
+<tr class="memitem:ShearStressSchumann" id="r_ShearStressSchumann"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_shear_stress_schumann.html">ShearStressSchumann</a></td></tr>
+<tr class="memitem:SimpleShearLogLaw" id="r_SimpleShearLogLaw"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_simple_shear_log_law.html">SimpleShearLogLaw</a></td></tr>
+<tr class="memitem:SimpleShearMOSD" id="r_SimpleShearMOSD"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_simple_shear_m_o_s_d.html">SimpleShearMOSD</a></td></tr>
+<tr class="memitem:SimpleShearSchumann" id="r_SimpleShearSchumann"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_simple_shear_schumann.html">SimpleShearSchumann</a></td></tr>
+<tr class="memitem:SimTime" id="r_SimTime"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a></td></tr>
+<tr class="memitem:SloshingTank" id="r_SloshingTank"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_sloshing_tank.html">SloshingTank</a></td></tr>
+<tr class="memitem:SquarePulseFV" id="r_SquarePulseFV"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_square_pulse_f_v.html">SquarePulseFV</a></td></tr>
+<tr class="memitem:SyntheticTurbulence" id="r_SyntheticTurbulence"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_synthetic_turbulence.html">SyntheticTurbulence</a></td></tr>
+<tr class="memitem:SynthTurbData" id="r_SynthTurbData"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_synth_turb_data.html">SynthTurbData</a></td></tr>
+<tr class="memitem:SynthTurbDeviceData" id="r_SynthTurbDeviceData"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_synth_turb_device_data.html">SynthTurbDeviceData</a></td></tr>
+<tr class="memitem:TaylorGreenVortex" id="r_TaylorGreenVortex"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_taylor_green_vortex.html">TaylorGreenVortex</a></td></tr>
+<tr class="memitem:ThirdMomentAveraging" id="r_ThirdMomentAveraging"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_third_moment_averaging.html">ThirdMomentAveraging</a></td></tr>
+<tr class="memitem:TiogaInterface" id="r_TiogaInterface"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_tioga_interface.html">TiogaInterface</a></td></tr>
+<tr class="memitem:TwoDimGaussianPulseFV" id="r_TwoDimGaussianPulseFV"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_two_dim_gaussian_pulse_f_v.html">TwoDimGaussianPulseFV</a></td></tr>
+<tr class="memitem:VelPlaneAveraging" id="r_VelPlaneAveraging"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_vel_plane_averaging.html">VelPlaneAveraging</a></td></tr>
+<tr class="memitem:VelPlaneAveragingFine" id="r_VelPlaneAveragingFine"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html">VelPlaneAveragingFine</a></td></tr>
+<tr class="memitem:VelWallFunc" id="r_VelWallFunc"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_vel_wall_func.html">VelWallFunc</a></td></tr>
+<tr class="memitem:ViewField" id="r_ViewField"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_view_field.html">ViewField</a></td></tr>
+<tr class="memitem:VortexDipole" id="r_VortexDipole"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_vortex_dipole.html">VortexDipole</a></td></tr>
+<tr class="memitem:VortexPatch" id="r_VortexPatch"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_vortex_patch.html">VortexPatch</a></td></tr>
+<tr class="memitem:VortexPatchScalarVel" id="r_VortexPatchScalarVel"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_vortex_patch_scalar_vel.html">VortexPatchScalarVel</a></td></tr>
+<tr class="memitem:VortexRing" id="r_VortexRing"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_vortex_ring.html">VortexRing</a></td></tr>
+<tr class="memitem:VorticityMagRefinement" id="r_VorticityMagRefinement"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_vorticity_mag_refinement.html">VorticityMagRefinement</a></td></tr>
+<tr class="memitem:WallFunction" id="r_WallFunction"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_wall_function.html">WallFunction</a></td></tr>
+<tr class="memitem:ZalesakDisk" id="r_ZalesakDisk"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_zalesak_disk.html">ZalesakDisk</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a4a11a6c59bbe4964af3356eebaa22364" id="r_a4a11a6c59bbe4964af3356eebaa22364"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a> = <a class="el" href="classkynema__sgf_1_1_f_plane_averaging.html">FPlaneAveraging</a>&lt;<a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&gt;</td></tr>
+<tr class="memitem:a6ebaf20dc11f00b2074eaf1d53856ab9" id="r_a6ebaf20dc11f00b2074eaf1d53856ab9"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ebaf20dc11f00b2074eaf1d53856ab9">ScratchFieldPlaneAveraging</a> = <a class="el" href="classkynema__sgf_1_1_f_plane_averaging.html">FPlaneAveraging</a>&lt;<a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a>&gt;</td></tr>
+<tr class="memitem:a8c8e6d5091635786c7f1da8075a837a9" id="r_a8c8e6d5091635786c7f1da8075a837a9"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c8e6d5091635786c7f1da8075a837a9">FieldPlaneAveragingFine</a> = <a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html">FPlaneAveragingFine</a>&lt;<a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&gt;</td></tr>
+<tr class="memitem:ae8f6c4ed258fe312540f3228f515fcb3" id="r_ae8f6c4ed258fe312540f3228f515fcb3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8f6c4ed258fe312540f3228f515fcb3">ScratchFieldPlaneAveragingFine</a> = <a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html">FPlaneAveragingFine</a>&lt;<a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a>&gt;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a9b9073f4f89e5eec90b79c74235d728a" id="r_a9b9073f4f89e5eec90b79c74235d728a"><td class="memItemLeft" align="right" valign="top">enum struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b9073f4f89e5eec90b79c74235d728a">io_mode</a> : std::uint8_t { <a class="el" href="#a9b9073f4f89e5eec90b79c74235d728aa78e6221f6393d1356681db398f14ce6d">output</a>
+, <a class="el" href="#a9b9073f4f89e5eec90b79c74235d728aaa43c1b0aa53a0c908810c06ab1ff3967">input</a>
+, <a class="el" href="#a9b9073f4f89e5eec90b79c74235d728aa5e543256c480ac577d30f76f9120eb74">undefined</a>
+ }</td></tr>
+<tr class="memitem:ga73fcb43d320747f8ced022629f36af1f" id="r_ga73fcb43d320747f8ced022629f36af1f"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> : std::uint8_t { <br />
+&#160;&#160;<a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa06bfddc759bcbdcc8f363807685ee11f">FieldState::NP1</a> = 0
+, <a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa8d9c307cb7f3c4a32822a51922d1ceaa">FieldState::N</a> = 1
+, <a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fabf90e680ecd3cfbf725ceb5c8c82634e">FieldState::NM1</a> = 2
+, <a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa2328beac24e42bfd30c5226cad8e0834">FieldState::NPH</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa116840c962286eda0e4dbed9dfbfa3fc">FieldState::NMH</a> = 4
+, <a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">FieldState::New</a> = NP1
+, <a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fac7268757fbabf48019f4984933539d8a">FieldState::Old</a> = N
+<br />
+ }</td></tr>
+<tr class="memitem:ga6012c66c4b909364fdfaa58954157f75" id="r_ga6012c66c4b909364fdfaa58954157f75"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a> : std::uint8_t { <br />
+&#160;&#160;<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>
+, <a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75a0cc25b606fe928a0c9a58f7f209c4495">FieldLoc::NODE</a>
+, <a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75a51c3bc3d73817cc48bd1a42aa76cd48b">FieldLoc::XFACE</a>
+, <a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75aed363f72ca243318ee54c948cab94805">FieldLoc::YFACE</a>
+, <br />
+&#160;&#160;<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75a37f44a8aa4feca119902d6930c4c849f">FieldLoc::ZFACE</a>
+<br />
+ }</td></tr>
+<tr class="memitem:ga7a6cb530fb551873a19ab6954617782e" id="r_ga7a6cb530fb551873a19ab6954617782e"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fields.html#ga7a6cb530fb551873a19ab6954617782e">FieldInterpolator</a> : std::uint8_t { <br />
+&#160;&#160;<a class="el" href="group__fields.html#gga7a6cb530fb551873a19ab6954617782ea024734d5cb842d82979ddb770d8e7e2a">FieldInterpolator::PiecewiseConstant</a>
+, <a class="el" href="group__fields.html#gga7a6cb530fb551873a19ab6954617782eaef706a0ad0437ced3c3cb11c7fcb9fc3">FieldInterpolator::CellConsLinear</a>
+, <a class="el" href="group__fields.html#gga7a6cb530fb551873a19ab6954617782ea8c83efc1cd144441076dcaee421cc286">FieldInterpolator::NodeBilinear</a>
+, <a class="el" href="group__fields.html#gga7a6cb530fb551873a19ab6954617782eae3103fbe6b552f90be5056482f4d01f2">FieldInterpolator::FaceDivFree</a>
+, <br />
+&#160;&#160;<a class="el" href="group__fields.html#gga7a6cb530fb551873a19ab6954617782eaa2e0693c2b7477910343b6caafeba3ed">FieldInterpolator::FaceLinear</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:ga7a6cb530fb551873a19ab6954617782e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coarse-to-fine field interpolation options.  <a href="group__fields.html#ga7a6cb530fb551873a19ab6954617782e">More...</a><br /></td></tr>
+<tr class="memitem:aa6d05074dd479f00d442c35440142e99" id="r_aa6d05074dd479f00d442c35440142e99"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6d05074dd479f00d442c35440142e99">InterfaceCapturingMethod</a> : std::uint8_t { <a class="el" href="#aa6d05074dd479f00d442c35440142e99a4cafa20d5584f6ba1871d1b8941aa3cb">VOF</a>
+, <a class="el" href="#aa6d05074dd479f00d442c35440142e99ae8280907c8d32d5af0f36e5442e84a34">LS</a>
+ }</td></tr>
+<tr class="memitem:ac0d5dd9c66ecadb7fee8459488257ae0" id="r_ac0d5dd9c66ecadb7fee8459488257ae0"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0d5dd9c66ecadb7fee8459488257ae0">ABLStatsMode</a> : std::uint8_t { <a class="el" href="#ac0d5dd9c66ecadb7fee8459488257ae0a5a317d3dd3f7a2f675975a6d0c11c629">computed</a> = 0
+, <a class="el" href="#ac0d5dd9c66ecadb7fee8459488257ae0a4ccc1a73ee7610fd67682f74941b06ae">prescribed</a>
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aebc808fe5f9fd584913895e09d6a5e64" id="r_aebc808fe5f9fd584913895e09d6a5e64"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebc808fe5f9fd584913895e09d6a5e64">INSTANTIATE_TURBULENCE_MODEL</a> (Laminar)</td></tr>
+<tr class="memitem:a06cf2a069a6c86b4e31db1b491f7c20d" id="r_a06cf2a069a6c86b4e31db1b491f7c20d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06cf2a069a6c86b4e31db1b491f7c20d">INSTANTIATE_TURBULENCE_MODEL</a> (AMD)</td></tr>
+<tr class="memitem:a0b9f96c7905726c1fe401339809a2fcd" id="r_a0b9f96c7905726c1fe401339809a2fcd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b9f96c7905726c1fe401339809a2fcd">INSTANTIATE_TURBULENCE_MODEL</a> (AMDNoTherm)</td></tr>
+<tr class="memitem:a61189aa31fc9316fafc049624e9e70e3" id="r_a61189aa31fc9316fafc049624e9e70e3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61189aa31fc9316fafc049624e9e70e3">INSTANTIATE_TURBULENCE_MODEL</a> (Kosovic)</td></tr>
+<tr class="memitem:af33dcf2ef7889e878ddc63ddd7de9242" id="r_af33dcf2ef7889e878ddc63ddd7de9242"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af33dcf2ef7889e878ddc63ddd7de9242">INSTANTIATE_TURBULENCE_MODEL</a> (OneEqKsgsM84)</td></tr>
+<tr class="memitem:a74b3d62d10fb828c53d7954b848c9ada" id="r_a74b3d62d10fb828c53d7954b848c9ada"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74b3d62d10fb828c53d7954b848c9ada">INSTANTIATE_TURBULENCE_MODEL</a> (OneEqKsgsS94)</td></tr>
+<tr class="memitem:abaa524a39e991bb77e322d38449e5415" id="r_abaa524a39e991bb77e322d38449e5415"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abaa524a39e991bb77e322d38449e5415">INSTANTIATE_TURBULENCE_MODEL</a> (Smagorinsky)</td></tr>
+<tr class="memitem:a44ccbc0095f98029d11fd076c7976d5f" id="r_a44ccbc0095f98029d11fd076c7976d5f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44ccbc0095f98029d11fd076c7976d5f">INSTANTIATE_TURBULENCE_MODEL</a> (KLAxell)</td></tr>
+<tr class="memitem:ad8757f25f55a5e62effe1aff467ab0b6" id="r_ad8757f25f55a5e62effe1aff467ab0b6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8757f25f55a5e62effe1aff467ab0b6">INSTANTIATE_TURBULENCE_MODEL</a> (KOmegaSST)</td></tr>
+<tr class="memitem:a174d3d1ece17930e497449f736fcb4b2" id="r_a174d3d1ece17930e497449f736fcb4b2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a174d3d1ece17930e497449f736fcb4b2">INSTANTIATE_TURBULENCE_MODEL</a> (KOmegaSSTIDDES)</td></tr>
+<tr class="memitem:accdd8c7e41b28926eab21f714da4ada7" id="r_accdd8c7e41b28926eab21f714da4ada7"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_DEVICE AMREX_FORCE_INLINE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#accdd8c7e41b28926eab21f714da4ada7">direction_selector</a> (const int i, const int j, const int k, const int dir)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:acb3c77539cf778a860dda5954b55bfe8" id="r_acb3c77539cf778a860dda5954b55bfe8"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
+<tr class="memitem:acb3c77539cf778a860dda5954b55bfe8 template"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb3c77539cf778a860dda5954b55bfe8">Factory&lt; Base, Args... &gt;::Register&lt; T &gt;::registered</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This test case is intended as an evaluation of the momentum advection scheme. </p>
+<p>Kynema-SGF</p>
+<p>All C++ code in Kynema-SGF is organized within the <a class="el" href="namespacekynema__sgf.html" title="This test case is intended as an evaluation of the momentum advection scheme.">kynema_sgf</a> namespace.</p>
+<p>Multiphase Dam break physics</p>
+<p>Multiphase falling raindrop physics</p>
+<p>Multiphase Sloshing Tank 3D physics</p>
+<p>Multiphase vortex patch physics</p>
+<p>Multiphase vortex patch scalar velocity physics</p>
+<p>The cell-centered velocity field is treated as a scalar, initialized as a smooth function crossing the interface. The advection velocities at the faces are prescribed as functions of time and space, and do not depend on the changing cell-centered velocity field.</p>
+<p>Multiphase Zalesak disk physics</p>
+<p>Ascent In-situ Integration </p>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="a4a11a6c59bbe4964af3356eebaa22364" name="a4a11a6c59bbe4964af3356eebaa22364"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a11a6c59bbe4964af3356eebaa22364">&#9670;&#160;</a></span>FieldPlaneAveraging</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a4a11a6c59bbe4964af3356eebaa22364">kynema_sgf::FieldPlaneAveraging</a> = <a class="el" href="classkynema__sgf_1_1_f_plane_averaging.html">FPlaneAveraging</a>&lt;<a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8c8e6d5091635786c7f1da8075a837a9" name="a8c8e6d5091635786c7f1da8075a837a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c8e6d5091635786c7f1da8075a837a9">&#9670;&#160;</a></span>FieldPlaneAveragingFine</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a8c8e6d5091635786c7f1da8075a837a9">kynema_sgf::FieldPlaneAveragingFine</a> = <a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html">FPlaneAveragingFine</a>&lt;<a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ebaf20dc11f00b2074eaf1d53856ab9" name="a6ebaf20dc11f00b2074eaf1d53856ab9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ebaf20dc11f00b2074eaf1d53856ab9">&#9670;&#160;</a></span>ScratchFieldPlaneAveraging</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a6ebaf20dc11f00b2074eaf1d53856ab9">kynema_sgf::ScratchFieldPlaneAveraging</a> = <a class="el" href="classkynema__sgf_1_1_f_plane_averaging.html">FPlaneAveraging</a>&lt;<a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae8f6c4ed258fe312540f3228f515fcb3" name="ae8f6c4ed258fe312540f3228f515fcb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8f6c4ed258fe312540f3228f515fcb3">&#9670;&#160;</a></span>ScratchFieldPlaneAveragingFine</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#ae8f6c4ed258fe312540f3228f515fcb3">kynema_sgf::ScratchFieldPlaneAveragingFine</a> = <a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html">FPlaneAveragingFine</a>&lt;<a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="ac0d5dd9c66ecadb7fee8459488257ae0" name="ac0d5dd9c66ecadb7fee8459488257ae0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0d5dd9c66ecadb7fee8459488257ae0">&#9670;&#160;</a></span>ABLStatsMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#ac0d5dd9c66ecadb7fee8459488257ae0">kynema_sgf::ABLStatsMode</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac0d5dd9c66ecadb7fee8459488257ae0a5a317d3dd3f7a2f675975a6d0c11c629" name="ac0d5dd9c66ecadb7fee8459488257ae0a5a317d3dd3f7a2f675975a6d0c11c629"></a>computed&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac0d5dd9c66ecadb7fee8459488257ae0a4ccc1a73ee7610fd67682f74941b06ae" name="ac0d5dd9c66ecadb7fee8459488257ae0a4ccc1a73ee7610fd67682f74941b06ae"></a>prescribed&#160;</td><td class="fielddoc"><p>! Computed using planar averages </p>
+<p>! Prescribed as user inputs </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="aa6d05074dd479f00d442c35440142e99" name="aa6d05074dd479f00d442c35440142e99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6d05074dd479f00d442c35440142e99">&#9670;&#160;</a></span>InterfaceCapturingMethod</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#aa6d05074dd479f00d442c35440142e99">kynema_sgf::InterfaceCapturingMethod</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa6d05074dd479f00d442c35440142e99a4cafa20d5584f6ba1871d1b8941aa3cb" name="aa6d05074dd479f00d442c35440142e99a4cafa20d5584f6ba1871d1b8941aa3cb"></a>VOF&#160;</td><td class="fielddoc"><p>Volume of fluid. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa6d05074dd479f00d442c35440142e99ae8280907c8d32d5af0f36e5442e84a34" name="aa6d05074dd479f00d442c35440142e99ae8280907c8d32d5af0f36e5442e84a34"></a>LS&#160;</td><td class="fielddoc"><p>Levelset. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a9b9073f4f89e5eec90b79c74235d728a" name="a9b9073f4f89e5eec90b79c74235d728a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b9073f4f89e5eec90b79c74235d728a">&#9670;&#160;</a></span>io_mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum struct <a class="el" href="#a9b9073f4f89e5eec90b79c74235d728a">kynema_sgf::io_mode</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a9b9073f4f89e5eec90b79c74235d728aa78e6221f6393d1356681db398f14ce6d" name="a9b9073f4f89e5eec90b79c74235d728aa78e6221f6393d1356681db398f14ce6d"></a>output&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9b9073f4f89e5eec90b79c74235d728aaa43c1b0aa53a0c908810c06ab1ff3967" name="a9b9073f4f89e5eec90b79c74235d728aaa43c1b0aa53a0c908810c06ab1ff3967"></a>input&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a9b9073f4f89e5eec90b79c74235d728aa5e543256c480ac577d30f76f9120eb74" name="a9b9073f4f89e5eec90b79c74235d728aa5e543256c480ac577d30f76f9120eb74"></a>undefined&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="accdd8c7e41b28926eab21f714da4ada7" name="accdd8c7e41b28926eab21f714da4ada7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accdd8c7e41b28926eab21f714da4ada7">&#9670;&#160;</a></span>direction_selector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_DEVICE AMREX_FORCE_INLINE int kynema_sgf::direction_selector </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>i</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>j</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>k</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>dir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a06cf2a069a6c86b4e31db1b491f7c20d" name="a06cf2a069a6c86b4e31db1b491f7c20d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06cf2a069a6c86b4e31db1b491f7c20d">&#9670;&#160;</a></span>INSTANTIATE_TURBULENCE_MODEL() <span class="overload">[1/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::INSTANTIATE_TURBULENCE_MODEL </td>
+          <td>(</td>
+          <td class="paramtype">AMD</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0b9f96c7905726c1fe401339809a2fcd" name="a0b9f96c7905726c1fe401339809a2fcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b9f96c7905726c1fe401339809a2fcd">&#9670;&#160;</a></span>INSTANTIATE_TURBULENCE_MODEL() <span class="overload">[2/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::INSTANTIATE_TURBULENCE_MODEL </td>
+          <td>(</td>
+          <td class="paramtype">AMDNoTherm</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a44ccbc0095f98029d11fd076c7976d5f" name="a44ccbc0095f98029d11fd076c7976d5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44ccbc0095f98029d11fd076c7976d5f">&#9670;&#160;</a></span>INSTANTIATE_TURBULENCE_MODEL() <span class="overload">[3/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::INSTANTIATE_TURBULENCE_MODEL </td>
+          <td>(</td>
+          <td class="paramtype">KLAxell</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad8757f25f55a5e62effe1aff467ab0b6" name="ad8757f25f55a5e62effe1aff467ab0b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8757f25f55a5e62effe1aff467ab0b6">&#9670;&#160;</a></span>INSTANTIATE_TURBULENCE_MODEL() <span class="overload">[4/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::INSTANTIATE_TURBULENCE_MODEL </td>
+          <td>(</td>
+          <td class="paramtype">KOmegaSST</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a174d3d1ece17930e497449f736fcb4b2" name="a174d3d1ece17930e497449f736fcb4b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a174d3d1ece17930e497449f736fcb4b2">&#9670;&#160;</a></span>INSTANTIATE_TURBULENCE_MODEL() <span class="overload">[5/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::INSTANTIATE_TURBULENCE_MODEL </td>
+          <td>(</td>
+          <td class="paramtype">KOmegaSSTIDDES</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a61189aa31fc9316fafc049624e9e70e3" name="a61189aa31fc9316fafc049624e9e70e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61189aa31fc9316fafc049624e9e70e3">&#9670;&#160;</a></span>INSTANTIATE_TURBULENCE_MODEL() <span class="overload">[6/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::INSTANTIATE_TURBULENCE_MODEL </td>
+          <td>(</td>
+          <td class="paramtype">Kosovic</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aebc808fe5f9fd584913895e09d6a5e64" name="aebc808fe5f9fd584913895e09d6a5e64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebc808fe5f9fd584913895e09d6a5e64">&#9670;&#160;</a></span>INSTANTIATE_TURBULENCE_MODEL() <span class="overload">[7/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::INSTANTIATE_TURBULENCE_MODEL </td>
+          <td>(</td>
+          <td class="paramtype">Laminar</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af33dcf2ef7889e878ddc63ddd7de9242" name="af33dcf2ef7889e878ddc63ddd7de9242"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af33dcf2ef7889e878ddc63ddd7de9242">&#9670;&#160;</a></span>INSTANTIATE_TURBULENCE_MODEL() <span class="overload">[8/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::INSTANTIATE_TURBULENCE_MODEL </td>
+          <td>(</td>
+          <td class="paramtype">OneEqKsgsM84</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a74b3d62d10fb828c53d7954b848c9ada" name="a74b3d62d10fb828c53d7954b848c9ada"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74b3d62d10fb828c53d7954b848c9ada">&#9670;&#160;</a></span>INSTANTIATE_TURBULENCE_MODEL() <span class="overload">[9/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::INSTANTIATE_TURBULENCE_MODEL </td>
+          <td>(</td>
+          <td class="paramtype">OneEqKsgsS94</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abaa524a39e991bb77e322d38449e5415" name="abaa524a39e991bb77e322d38449e5415"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaa524a39e991bb77e322d38449e5415">&#9670;&#160;</a></span>INSTANTIATE_TURBULENCE_MODEL() <span class="overload">[10/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::INSTANTIATE_TURBULENCE_MODEL </td>
+          <td>(</td>
+          <td class="paramtype">Smagorinsky</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="acb3c77539cf778a860dda5954b55bfe8" name="acb3c77539cf778a860dda5954b55bfe8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb3c77539cf778a860dda5954b55bfe8">&#9670;&#160;</a></span>Factory&lt; Base, Args... &gt;::Register&lt; T &gt;::registered</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory</a>&lt; Base, Args... &gt;::Register&lt; T &gt;::registered</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">    <a class="code hl_function" href="structkynema__sgf_1_1_factory_1_1_register.html#a96ebea3e6ef4c8bab3df888445dcb36f">Factory&lt;Base, Args...&gt;::Register&lt;T&gt;::add_sub_type</a>()</div>
+<div class="ttc" id="astructkynema__sgf_1_1_factory_1_1_register_html_a96ebea3e6ef4c8bab3df888445dcb36f"><div class="ttname"><a href="structkynema__sgf_1_1_factory_1_1_register.html#a96ebea3e6ef4c8bab3df888445dcb36f">kynema_sgf::Factory::Register::add_sub_type</a></div><div class="ttdeci">static bool add_sub_type()</div><div class="ttdef"><b>Definition</b> Factory.H:100</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

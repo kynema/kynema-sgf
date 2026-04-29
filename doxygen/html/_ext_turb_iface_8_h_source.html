@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/external/ExtTurbIface.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/external/ExtTurbIface.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_ext_turb_iface_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-turbine-external-extturbiface-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/external/ExtTurbIface.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-turbine-external-extturbiface-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/external/ExtTurbIface.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_a80d9316c48aa709b9bc78e2b746db24.html">wind_energy</a></li><li class="navelem"><a href="dir_9dcf803d990c86a52c151efe46b23ed3.html">actuator</a></li><li class="navelem"><a href="dir_0761b4eef8ed7bf1817548a27f87065f.html">turbine</a></li><li class="navelem"><a href="dir_371234d37c121e6264844507a1100215.html">external</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">ExtTurbIface.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_ext_turb_iface_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef EXTTURBIFACE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define EXTTURBIFACE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_ext_solver_8_h.html">src/core/ExtSolver.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="external__base__types_8_h.html">src/wind_energy/actuator/turbine/external/external_base_types.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacencutils.html">ncutils</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">class </span><a class="code hl_class" href="classncutils_1_1_n_c_file.html">NCFile</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>}</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceext__turb.html">ext_turb</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> SolverTurbine, <span class="keyword">typename</span> SolverData&gt;</div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html">   23</a></span><span class="keyword">class </span><a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a1f265bfb3da7f10b600634e6172fc688">ExtTurbIface</a></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    : <span class="keyword">public</span> ::kynema_sgf::ExtSolver::Register&lt;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>          ExtTurbIface&lt;SolverTurbine, SolverData&gt;&gt;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#ab3c886c745a8e14bc4f9603b403a0a19">   28</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#ab3c886c745a8e14bc4f9603b403a0a19">identifier</a>() { <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceext__turb.html#ac520da0211acd9814d4c5a8c403d99d8">ext_id&lt;SolverData&gt;</a>(); }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a1f265bfb3da7f10b600634e6172fc688">ExtTurbIface</a>(const ::kynema_sgf::CFDSim&amp; sim);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="comment">/* -- General for all external turbines -- */</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a9fc1c83eb2b55114c31bf21982294b4b">register_turbine</a>(SolverTurbine&amp; data);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#af5ca65c71eba7ae7151b49650f2b7d2a">init_turbine</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> local_id);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a70c96377114111fb54ed2950cb913d00">advance_turbine</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> local_id);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a2c18daf66cffd536e2e9fd5d4fa53225">   39</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a2c18daf66cffd536e2e9fd5d4fa53225">num_local_turbines</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a30c16fe7634909d00985ea00377647d5">m_turbine_data</a>.size());</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
+</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">/* -- Specific to each type of external turbine -- */</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a96f34f0a16dd26472d1966cd21d29e96">   46</a></span>    <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a96f34f0a16dd26472d1966cd21d29e96">~ExtTurbIface</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a0ef7d2aed1c8799d37fb25b72b908b1d">   48</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a0ef7d2aed1c8799d37fb25b72b908b1d">parse_inputs</a>(</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a>&amp; <span class="comment">/*sim*/</span>, <span class="keyword">const</span> std::string&amp; <span class="comment">/*inp_name*/</span>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a002d61ffc31651df136505bb53b10141">   51</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a002d61ffc31651df136505bb53b10141">init_solution</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> local_id);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a2ece59d7da6245474d725b5f81dd0dc7">   53</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a2ece59d7da6245474d725b5f81dd0dc7">get_hub_stats</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> local_id);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a27726e965201c08c1961f6a12e7cb43a">   55</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a27726e965201c08c1961f6a12e7cb43a">do_turbine_step</a>(SolverTurbine&amp; fi);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#ae1429b3951c998578af62668edda6850">   57</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#ae1429b3951c998578af62668edda6850">write_turbine_checkpoint</a>(<span class="keywordtype">int</span>&amp; tid);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a9b0cc5f19f9ec9aac9c09f4c090182da">   60</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a9b0cc5f19f9ec9aac9c09f4c090182da">allocate_ext_turbines</a>();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#aa4be7a492f4dfefc35d91b69022eb110">   62</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#aa4be7a492f4dfefc35d91b69022eb110">ext_init_turbine</a>(SolverTurbine&amp; <span class="comment">/*fi*/</span>);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#aea083d16fbf7ca78fb81b797f85e6f82">   64</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#aea083d16fbf7ca78fb81b797f85e6f82">ext_restart_turbine</a>(SolverTurbine&amp; <span class="comment">/*fi*/</span>);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a1f6560f296938632710714c407c004b2">   66</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a1f6560f296938632710714c407c004b2">ext_replay_turbine</a>(SolverTurbine&amp; <span class="comment">/*fi*/</span>);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a785b70675f4f6de32a37dbdf9faae1f8">   68</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a785b70675f4f6de32a37dbdf9faae1f8">prepare_netcdf_file</a>(SolverTurbine&amp; <span class="comment">/*unused*/</span>);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a07675f8040a25084aba23fe209717f00">   70</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a07675f8040a25084aba23fe209717f00">write_velocity_data</a>(<span class="keyword">const</span> SolverTurbine&amp; <span class="comment">/*unused*/</span>);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a3cc4d47399b6ca0368487e04037d2258">   72</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a3cc4d47399b6ca0368487e04037d2258">read_velocity_data</a>(</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        SolverTurbine&amp; <span class="comment">/*unused*/</span>,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keyword">const</span> <a class="code hl_class" href="classncutils_1_1_n_c_file.html">ncutils::NCFile</a>&amp; <span class="comment">/*unused*/</span>,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keyword">const</span> <span class="keywordtype">size_t</span> tid);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a1a6bc41c8928b8b0ea11ca9bf3466ae8">   78</a></span>    std::map&lt;int, int&gt; <a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a1a6bc41c8928b8b0ea11ca9bf3466ae8">m_turbine_map</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a30c16fe7634909d00985ea00377647d5">   80</a></span>    std::vector&lt;SolverTurbine*&gt; <a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a30c16fe7634909d00985ea00377647d5">m_turbine_data</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#af6c657e3cfc4b2be9e6e771ae6482d21">   82</a></span>    amrex::Real <a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#af6c657e3cfc4b2be9e6e771ae6482d21">m_dt_cfd</a>{0.0_rt};</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a10bca156003b9d6141dbcda497540a38">   83</a></span>    amrex::Real <a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a10bca156003b9d6141dbcda497540a38">m_start_time</a>{0.0_rt};</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a06bf82057d3585639286307d860b8079">   84</a></span>    amrex::Real <a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a06bf82057d3585639286307d860b8079">m_stop_time</a>{-1.0_rt};</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a4cb8801a5cec179891009ab094401d72">   85</a></span>    <a class="code hl_enumeration" href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547">::ext_turb::SimMode</a> <a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a4cb8801a5cec179891009ab094401d72">m_sim_mode</a>{<a class="code hl_enumvalue" href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547ae37f0136aa3ffaf149b351f6a4c948e9">::ext_turb::SimMode::init</a>};</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#adc3b1b107f7f78ca703c35d8946ccd5b">   87</a></span>    SolverData <a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#adc3b1b107f7f78ca703c35d8946ccd5b">m_solver_data</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a7aedff07b766294217672c0e02d1e300">   89</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a7aedff07b766294217672c0e02d1e300">m_is_initialized</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>};</div>
+</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">// General implementations of some functions</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> SolverTurbine, <span class="keyword">typename</span> SolverData&gt;</div>
+<div class="foldopen" id="foldopen00094" data-start="{" data-end="}">
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a1f265bfb3da7f10b600634e6172fc688">   94</a></span><a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a1f265bfb3da7f10b600634e6172fc688">ExtTurbIface&lt;SolverTurbine, SolverData&gt;::ExtTurbIface</a>(</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a>&amp; <span class="comment">/*unused*/</span>)</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>{}</div>
+</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> SolverTurbine, <span class="keyword">typename</span> SolverData&gt;</div>
+<div class="foldopen" id="foldopen00099" data-start="{" data-end="}">
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a9fc1c83eb2b55114c31bf21982294b4b">   99</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a9fc1c83eb2b55114c31bf21982294b4b">ExtTurbIface&lt;SolverTurbine, SolverData&gt;::register_turbine</a>(</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    SolverTurbine&amp; data)</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>{</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    BL_PROFILE(<span class="stringliteral">&quot;kynema-sgf::ExtTurbIface::register_turbine&quot;</span>);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    AMREX_ALWAYS_ASSERT(!<a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a7aedff07b766294217672c0e02d1e300">m_is_initialized</a>);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> local_id = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a30c16fe7634909d00985ea00377647d5">m_turbine_data</a>.size());</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> gid = data.tid_global;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a1a6bc41c8928b8b0ea11ca9bf3466ae8">m_turbine_map</a>[gid] = local_id;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    data.tid_local = local_id;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a30c16fe7634909d00985ea00377647d5">m_turbine_data</a>.emplace_back(&amp;data);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordflow">return</span> local_id;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>}</div>
+</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> SolverTurbine, <span class="keyword">typename</span> SolverData&gt;</div>
+<div class="foldopen" id="foldopen00114" data-start="{" data-end="}">
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#af5ca65c71eba7ae7151b49650f2b7d2a">  114</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#af5ca65c71eba7ae7151b49650f2b7d2a">ExtTurbIface&lt;SolverTurbine, SolverData&gt;::init_turbine</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> local_id)</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>{</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    AMREX_ALWAYS_ASSERT(local_id &lt; <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a30c16fe7634909d00985ea00377647d5">m_turbine_data</a>.size()));</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a7aedff07b766294217672c0e02d1e300">m_is_initialized</a>) {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a9b0cc5f19f9ec9aac9c09f4c090182da">allocate_ext_turbines</a>();</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keyword">auto</span>&amp; fi = *<a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a30c16fe7634909d00985ea00377647d5">m_turbine_data</a>[local_id];</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordflow">switch</span> (fi.sim_mode) {</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    case ::ext_turb::SimMode::init: {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#aa4be7a492f4dfefc35d91b69022eb110">ext_init_turbine</a>(fi);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a785b70675f4f6de32a37dbdf9faae1f8">prepare_netcdf_file</a>(fi);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    }</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    case ::ext_turb::SimMode::replay: {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#aa4be7a492f4dfefc35d91b69022eb110">ext_init_turbine</a>(fi);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a1f6560f296938632710714c407c004b2">ext_replay_turbine</a>(fi);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    case ::ext_turb::SimMode::restart: {</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#aea083d16fbf7ca78fb81b797f85e6f82">ext_restart_turbine</a>(fi);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a785b70675f4f6de32a37dbdf9faae1f8">prepare_netcdf_file</a>(fi);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    }</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    }</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>}</div>
+</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> SolverTurbine, <span class="keyword">typename</span> SolverData&gt;</div>
+<div class="foldopen" id="foldopen00144" data-start="{" data-end="}">
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classext__turb_1_1_ext_turb_iface.html#a70c96377114111fb54ed2950cb913d00">  144</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a70c96377114111fb54ed2950cb913d00">ExtTurbIface&lt;SolverTurbine, SolverData&gt;::advance_turbine</a>(</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> local_id)</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>{</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    BL_PROFILE(<span class="stringliteral">&quot;kynema-sgf::ExtTurbIface::advance_turbine&quot;</span>);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    AMREX_ASSERT(local_id &lt; <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a30c16fe7634909d00985ea00377647d5">m_turbine_data</a>.size()));</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keyword">auto</span>&amp; fi = *<a class="code hl_variable" href="classext__turb_1_1_ext_turb_iface.html#a30c16fe7634909d00985ea00377647d5">m_turbine_data</a>[local_id];</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    AMREX_ASSERT(!fi.is_solution0);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    {</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="comment">// Default is off, unless a turbine model reads, populates stop_time</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; tmax = fi.stop_time;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; telapsed = (fi.time_index + fi.num_substeps) * fi.dt_ext;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keywordflow">if</span> (telapsed &gt; (tmax + std::numeric_limits&lt;float&gt;::epsilon()) &amp;&amp;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            fi.stop_time &gt; 0.0_rt) {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            <span class="comment">// clang-format off</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>            amrex::OutStream()</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                &lt;&lt; <span class="stringliteral">&quot;\nWARNING: ExtTurbIface:\n&quot;</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>                &lt;&lt; <span class="stringliteral">&quot;  Elapsed simulation time will exceed max &quot;</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                &lt;&lt; <span class="stringliteral">&quot;time set for External Turbine Solver&quot;</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>                &lt;&lt; std::endl &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>            <span class="comment">// clang-format on</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        }</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    }</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a07675f8040a25084aba23fe209717f00">write_velocity_data</a>(fi);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; fi.num_substeps; ++i, ++fi.time_index) {</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#a27726e965201c08c1961f6a12e7cb43a">do_turbine_step</a>(fi);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    }</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordflow">if</span> (fi.chkpt_interval &gt; 0 &amp;&amp;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        (fi.time_index / fi.num_substeps) % fi.chkpt_interval == 0) {</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        <a class="code hl_function" href="classext__turb_1_1_ext_turb_iface.html#ae1429b3951c998578af62668edda6850">write_turbine_checkpoint</a>(fi.tid_local);</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    }</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>}</div>
+</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>} <span class="comment">// namespace ext_turb</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">#endif </span><span class="comment">/* EXTTURBIFACE_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_ext_solver_8_h_html"><div class="ttname"><a href="_ext_solver_8_h.html">ExtSolver.H</a></div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a002d61ffc31651df136505bb53b10141"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a002d61ffc31651df136505bb53b10141">ext_turb::ExtTurbIface::init_solution</a></div><div class="ttdeci">void init_solution(const int local_id)</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a06bf82057d3585639286307d860b8079"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a06bf82057d3585639286307d860b8079">ext_turb::ExtTurbIface::m_stop_time</a></div><div class="ttdeci">amrex::Real m_stop_time</div><div class="ttdef"><b>Definition</b> ExtTurbIface.H:84</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a07675f8040a25084aba23fe209717f00"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a07675f8040a25084aba23fe209717f00">ext_turb::ExtTurbIface::write_velocity_data</a></div><div class="ttdeci">void write_velocity_data(const SolverTurbine &amp;)</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a0ef7d2aed1c8799d37fb25b72b908b1d"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a0ef7d2aed1c8799d37fb25b72b908b1d">ext_turb::ExtTurbIface::parse_inputs</a></div><div class="ttdeci">void parse_inputs(const kynema_sgf::CFDSim &amp;, const std::string &amp;)</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a10bca156003b9d6141dbcda497540a38"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a10bca156003b9d6141dbcda497540a38">ext_turb::ExtTurbIface::m_start_time</a></div><div class="ttdeci">amrex::Real m_start_time</div><div class="ttdef"><b>Definition</b> ExtTurbIface.H:83</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a1a6bc41c8928b8b0ea11ca9bf3466ae8"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a1a6bc41c8928b8b0ea11ca9bf3466ae8">ext_turb::ExtTurbIface::m_turbine_map</a></div><div class="ttdeci">std::map&lt; int, int &gt; m_turbine_map</div><div class="ttdoc">Global to local index lookup map.</div><div class="ttdef"><b>Definition</b> ExtTurbIface.H:78</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a1f265bfb3da7f10b600634e6172fc688"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a1f265bfb3da7f10b600634e6172fc688">ext_turb::ExtTurbIface::ExtTurbIface</a></div><div class="ttdeci">ExtTurbIface(const ::kynema_sgf::CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> ExtTurbIface.H:94</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a1f6560f296938632710714c407c004b2"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a1f6560f296938632710714c407c004b2">ext_turb::ExtTurbIface::ext_replay_turbine</a></div><div class="ttdeci">void ext_replay_turbine(SolverTurbine &amp;)</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a27726e965201c08c1961f6a12e7cb43a"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a27726e965201c08c1961f6a12e7cb43a">ext_turb::ExtTurbIface::do_turbine_step</a></div><div class="ttdeci">void do_turbine_step(SolverTurbine &amp;fi)</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a2c18daf66cffd536e2e9fd5d4fa53225"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a2c18daf66cffd536e2e9fd5d4fa53225">ext_turb::ExtTurbIface::num_local_turbines</a></div><div class="ttdeci">int num_local_turbines() const</div><div class="ttdef"><b>Definition</b> ExtTurbIface.H:39</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a2ece59d7da6245474d725b5f81dd0dc7"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a2ece59d7da6245474d725b5f81dd0dc7">ext_turb::ExtTurbIface::get_hub_stats</a></div><div class="ttdeci">void get_hub_stats(const int local_id)</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a30c16fe7634909d00985ea00377647d5"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a30c16fe7634909d00985ea00377647d5">ext_turb::ExtTurbIface::m_turbine_data</a></div><div class="ttdeci">std::vector&lt; SolverTurbine * &gt; m_turbine_data</div><div class="ttdef"><b>Definition</b> ExtTurbIface.H:80</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a3cc4d47399b6ca0368487e04037d2258"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a3cc4d47399b6ca0368487e04037d2258">ext_turb::ExtTurbIface::read_velocity_data</a></div><div class="ttdeci">static void read_velocity_data(SolverTurbine &amp;, const ncutils::NCFile &amp;, const size_t tid)</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a4cb8801a5cec179891009ab094401d72"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a4cb8801a5cec179891009ab094401d72">ext_turb::ExtTurbIface::m_sim_mode</a></div><div class="ttdeci">::ext_turb::SimMode m_sim_mode</div><div class="ttdef"><b>Definition</b> ExtTurbIface.H:85</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a70c96377114111fb54ed2950cb913d00"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a70c96377114111fb54ed2950cb913d00">ext_turb::ExtTurbIface::advance_turbine</a></div><div class="ttdeci">void advance_turbine(const int local_id)</div><div class="ttdef"><b>Definition</b> ExtTurbIface.H:144</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a785b70675f4f6de32a37dbdf9faae1f8"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a785b70675f4f6de32a37dbdf9faae1f8">ext_turb::ExtTurbIface::prepare_netcdf_file</a></div><div class="ttdeci">void prepare_netcdf_file(SolverTurbine &amp;)</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a7aedff07b766294217672c0e02d1e300"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a7aedff07b766294217672c0e02d1e300">ext_turb::ExtTurbIface::m_is_initialized</a></div><div class="ttdeci">bool m_is_initialized</div><div class="ttdef"><b>Definition</b> ExtTurbIface.H:89</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a96f34f0a16dd26472d1966cd21d29e96"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a96f34f0a16dd26472d1966cd21d29e96">ext_turb::ExtTurbIface::~ExtTurbIface</a></div><div class="ttdeci">~ExtTurbIface() override</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a9b0cc5f19f9ec9aac9c09f4c090182da"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a9b0cc5f19f9ec9aac9c09f4c090182da">ext_turb::ExtTurbIface::allocate_ext_turbines</a></div><div class="ttdeci">void allocate_ext_turbines()</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_a9fc1c83eb2b55114c31bf21982294b4b"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#a9fc1c83eb2b55114c31bf21982294b4b">ext_turb::ExtTurbIface::register_turbine</a></div><div class="ttdeci">int register_turbine(SolverTurbine &amp;data)</div><div class="ttdef"><b>Definition</b> ExtTurbIface.H:99</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_aa4be7a492f4dfefc35d91b69022eb110"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#aa4be7a492f4dfefc35d91b69022eb110">ext_turb::ExtTurbIface::ext_init_turbine</a></div><div class="ttdeci">void ext_init_turbine(SolverTurbine &amp;)</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_ab3c886c745a8e14bc4f9603b403a0a19"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#ab3c886c745a8e14bc4f9603b403a0a19">ext_turb::ExtTurbIface::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> ExtTurbIface.H:28</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_adc3b1b107f7f78ca703c35d8946ccd5b"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#adc3b1b107f7f78ca703c35d8946ccd5b">ext_turb::ExtTurbIface::m_solver_data</a></div><div class="ttdeci">SolverData m_solver_data</div><div class="ttdef"><b>Definition</b> ExtTurbIface.H:87</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_ae1429b3951c998578af62668edda6850"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#ae1429b3951c998578af62668edda6850">ext_turb::ExtTurbIface::write_turbine_checkpoint</a></div><div class="ttdeci">void write_turbine_checkpoint(int &amp;tid)</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_aea083d16fbf7ca78fb81b797f85e6f82"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#aea083d16fbf7ca78fb81b797f85e6f82">ext_turb::ExtTurbIface::ext_restart_turbine</a></div><div class="ttdeci">void ext_restart_turbine(SolverTurbine &amp;)</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_af5ca65c71eba7ae7151b49650f2b7d2a"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#af5ca65c71eba7ae7151b49650f2b7d2a">ext_turb::ExtTurbIface::init_turbine</a></div><div class="ttdeci">void init_turbine(const int local_id)</div><div class="ttdef"><b>Definition</b> ExtTurbIface.H:114</div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html_af6c657e3cfc4b2be9e6e771ae6482d21"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html#af6c657e3cfc4b2be9e6e771ae6482d21">ext_turb::ExtTurbIface::m_dt_cfd</a></div><div class="ttdeci">amrex::Real m_dt_cfd</div><div class="ttdef"><b>Definition</b> ExtTurbIface.H:82</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclassncutils_1_1_n_c_file_html"><div class="ttname"><a href="classncutils_1_1_n_c_file.html">ncutils::NCFile</a></div><div class="ttdef"><b>Definition</b> nc_interface.H:285</div></div>
+<div class="ttc" id="aexternal__base__types_8_h_html"><div class="ttname"><a href="external__base__types_8_h.html">external_base_types.H</a></div></div>
+<div class="ttc" id="anamespaceext__turb_html"><div class="ttname"><a href="namespaceext__turb.html">ext_turb</a></div><div class="ttdef"><b>Definition</b> external_base_types.H:10</div></div>
+<div class="ttc" id="anamespaceext__turb_html_ac3ac74f4ee27c2fc64b11460d653f547"><div class="ttname"><a href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547">ext_turb::SimMode</a></div><div class="ttdeci">SimMode</div><div class="ttdef"><b>Definition</b> external_base_types.H:12</div></div>
+<div class="ttc" id="anamespaceext__turb_html_ac3ac74f4ee27c2fc64b11460d653f547ae37f0136aa3ffaf149b351f6a4c948e9"><div class="ttname"><a href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547ae37f0136aa3ffaf149b351f6a4c948e9">ext_turb::SimMode::init</a></div><div class="ttdeci">@ init</div><div class="ttdoc">Clean start.</div><div class="ttdef"><b>Definition</b> external_base_types.H:13</div></div>
+<div class="ttc" id="anamespaceext__turb_html_ac520da0211acd9814d4c5a8c403d99d8"><div class="ttname"><a href="namespaceext__turb.html#ac520da0211acd9814d4c5a8c403d99d8">ext_turb::ext_id</a></div><div class="ttdeci">std::string ext_id()</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+<div class="ttc" id="anamespacencutils_html"><div class="ttname"><a href="namespacencutils.html">ncutils</a></div><div class="ttdef"><b>Definition</b> nc_interface.cpp:12</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

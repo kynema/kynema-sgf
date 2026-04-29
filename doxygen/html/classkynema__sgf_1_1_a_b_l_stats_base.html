@@ -1,0 +1,631 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::ABLStatsBase Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::ABLStatsBase Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_a_b_l_stats_base.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ablstatsbase-class-reference">
+<h1>ABLStatsBase Class Reference<a class="headerlink" href="#ablstatsbase-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::ABLStatsBase Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_a_b_l_stats_base.html">ABLStatsBase</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="classkynema__sgf_1_1_a_b_l_stats_base-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::ABLStatsBase Class Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_a_b_l_stats_base_8_h_source.html">ABLStatsBase.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::ABLStatsBase:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_a_b_l_stats_base__inherit__graph.svg" width="284" height="306"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::ABLStatsBase:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_a_b_l_stats_base__coll__graph.svg" width="284" height="306"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:afe726f026777bba39e26541eda62091b" id="r_afe726f026777bba39e26541eda62091b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe726f026777bba39e26541eda62091b">ABLStatsBase</a> ()=default</td></tr>
+<tr class="memitem:a0e5646cb1a8cb26f39adfb23d3bd1aaa" id="r_a0e5646cb1a8cb26f39adfb23d3bd1aaa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e5646cb1a8cb26f39adfb23d3bd1aaa">~ABLStatsBase</a> () override=default</td></tr>
+<tr class="memitem:a0fbde1afc436dddb58c4b133afe6bdce" id="r_a0fbde1afc436dddb58c4b133afe6bdce"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacekynema__sgf.html#ac0d5dd9c66ecadb7fee8459488257ae0">ABLStatsMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fbde1afc436dddb58c4b133afe6bdce">abl_mode</a> () const =0</td></tr>
+<tr class="memdesc:a0fbde1afc436dddb58c4b133afe6bdce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating <a class="el" href="classkynema__sgf_1_1_a_b_l.html">ABL</a> simulation mode.  <br /></td></tr>
+<tr class="memitem:a85bd9ab16b74915cc7068a69d36240e7" id="r_a85bd9ab16b74915cc7068a69d36240e7"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="classkynema__sgf_1_1_vel_plane_averaging.html">VelPlaneAveraging</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85bd9ab16b74915cc7068a69d36240e7">vel_profile_coarse</a> () const =0</td></tr>
+<tr class="memdesc:a85bd9ab16b74915cc7068a69d36240e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolating object for vertical velocity profile.  <br /></td></tr>
+<tr class="memitem:a0a7c9d602e49cfb0087b7cf8e662bb07" id="r_a0a7c9d602e49cfb0087b7cf8e662bb07"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html">VelPlaneAveragingFine</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a7c9d602e49cfb0087b7cf8e662bb07">vel_profile</a> () const =0</td></tr>
+<tr class="memitem:a881f7689798ad4eb7894549bdfca4bfe" id="r_a881f7689798ad4eb7894549bdfca4bfe"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a881f7689798ad4eb7894549bdfca4bfe">theta_profile</a> () const =0</td></tr>
+<tr class="memdesc:a881f7689798ad4eb7894549bdfca4bfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolating object for vertical temperature profile.  <br /></td></tr>
+<tr class="memitem:a2a0ccf8a796d6831b79215ac660466fe" id="r_a2a0ccf8a796d6831b79215ac660466fe"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="namespacekynema__sgf.html#a8c8e6d5091635786c7f1da8075a837a9">FieldPlaneAveragingFine</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a0ccf8a796d6831b79215ac660466fe">theta_profile_fine</a> () const =0</td></tr>
+<tr class="memitem:a620759d7cd4e28548105d95ed2472a67" id="r_a620759d7cd4e28548105d95ed2472a67"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a620759d7cd4e28548105d95ed2472a67">post_init_actions</a> ()=0</td></tr>
+<tr class="memdesc:a620759d7cd4e28548105d95ed2472a67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform initialization actions after the mesh has been created.  <br /></td></tr>
+<tr class="memitem:ac1ce2b6f6182ad90cd1fcdce1b7c8a72" id="r_ac1ce2b6f6182ad90cd1fcdce1b7c8a72"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1ce2b6f6182ad90cd1fcdce1b7c8a72">pre_advance_work</a> ()=0</td></tr>
+<tr class="memdesc:ac1ce2b6f6182ad90cd1fcdce1b7c8a72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform actions at the beginning of a timestep.  <br /></td></tr>
+<tr class="memitem:a286718e4928bd4472bd70dcd563f41e9" id="r_a286718e4928bd4472bd70dcd563f41e9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a286718e4928bd4472bd70dcd563f41e9">post_advance_work</a> ()=0</td></tr>
+<tr class="memdesc:a286718e4928bd4472bd70dcd563f41e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform actions at the end of a timestep.  <br /></td></tr>
+<tr class="memitem:aac8e6fd8b4474bd6dbe1c105123cf41d" id="r_aac8e6fd8b4474bd6dbe1c105123cf41d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac8e6fd8b4474bd6dbe1c105123cf41d">register_forcing_term</a> (<a class="el" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_forcing.html">pde::icns::ABLForcing</a> *forcing) const =0</td></tr>
+<tr class="memitem:a792f5529a1a4fe23048eea742e00fcd9" id="r_a792f5529a1a4fe23048eea742e00fcd9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a792f5529a1a4fe23048eea742e00fcd9">register_meso_mom_forcing</a> (<a class="el" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html">pde::icns::ABLMesoForcingMom</a> *forcing) const =0</td></tr>
+<tr class="memitem:a73dbaa2bc78566f4fd2db1841be099c8" id="r_a73dbaa2bc78566f4fd2db1841be099c8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73dbaa2bc78566f4fd2db1841be099c8">register_meso_temp_forcing</a> (<a class="el" href="classkynema__sgf_1_1pde_1_1temperature_1_1_a_b_l_meso_forcing_temp.html">pde::temperature::ABLMesoForcingTemp</a> *forcing) const =0</td></tr>
+<tr class="inherit_header pub_methods_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; ABLStatsBase, CFDSim &amp;, ABLWallFunction &amp;, int &gt;</a></td></tr>
+<tr class="memitem:ac34efe50a093c87b829083168775bc5f inherit pub_methods_structkynema__sgf_1_1_factory" id="r_ac34efe50a093c87b829083168775bc5f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#ac34efe50a093c87b829083168775bc5f">~Factory</a> ()=default</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:af38caa46d1534c3ad423a8c4ed5a1855" id="r_af38caa46d1534c3ad423a8c4ed5a1855"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af38caa46d1534c3ad423a8c4ed5a1855">base_identifier</a> ()</td></tr>
+<tr class="inherit_header pub_static_methods_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Static Public Member Functions inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; ABLStatsBase, CFDSim &amp;, ABLWallFunction &amp;, int &gt;</a></td></tr>
+<tr class="memitem:aa73d3b8dc6633292bb32e05d3b8e7120 inherit pub_static_methods_structkynema__sgf_1_1_factory" id="r_aa73d3b8dc6633292bb32e05d3b8e7120"><td class="memItemLeft" align="right" valign="top">static std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_a_b_l_stats_base.html">ABLStatsBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#aa73d3b8dc6633292bb32e05d3b8e7120">create</a> (const std::string &amp;key, Args... args)</td></tr>
+<tr class="memitem:a5e56671505c53a0862e25adeddea669f inherit pub_static_methods_structkynema__sgf_1_1_factory" id="r_a5e56671505c53a0862e25adeddea669f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#a5e56671505c53a0862e25adeddea669f">print</a> (std::ostream &amp;os)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Attributes inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; ABLStatsBase, CFDSim &amp;, ABLWallFunction &amp;, int &gt;</a></td></tr>
+<tr class="memitem:a3f41ef21adfa37f9abb5c8cc52769974 inherit pub_attribs_structkynema__sgf_1_1_factory" id="r_a3f41ef21adfa37f9abb5c8cc52769974"><td class="memItemLeft" align="right" valign="top">friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#a3f41ef21adfa37f9abb5c8cc52769974">Base</a></td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="afe726f026777bba39e26541eda62091b" name="afe726f026777bba39e26541eda62091b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe726f026777bba39e26541eda62091b">&#9670;&#160;</a></span>ABLStatsBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::ABLStatsBase::ABLStatsBase </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0e5646cb1a8cb26f39adfb23d3bd1aaa" name="a0e5646cb1a8cb26f39adfb23d3bd1aaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e5646cb1a8cb26f39adfb23d3bd1aaa">&#9670;&#160;</a></span>~ABLStatsBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::ABLStatsBase::~ABLStatsBase </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a0fbde1afc436dddb58c4b133afe6bdce" name="a0fbde1afc436dddb58c4b133afe6bdce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fbde1afc436dddb58c4b133afe6bdce">&#9670;&#160;</a></span>abl_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespacekynema__sgf.html#ac0d5dd9c66ecadb7fee8459488257ae0">ABLStatsMode</a> kynema_sgf::ABLStatsBase::abl_mode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating <a class="el" href="classkynema__sgf_1_1_a_b_l.html">ABL</a> simulation mode. </p>
+
+</div>
+</div>
+<a id="af38caa46d1534c3ad423a8c4ed5a1855" name="af38caa46d1534c3ad423a8c4ed5a1855"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af38caa46d1534c3ad423a8c4ed5a1855">&#9670;&#160;</a></span>base_identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::ABLStatsBase::base_identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a286718e4928bd4472bd70dcd563f41e9" name="a286718e4928bd4472bd70dcd563f41e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a286718e4928bd4472bd70dcd563f41e9">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::ABLStatsBase::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform actions at the end of a timestep. </p>
+
+</div>
+</div>
+<a id="a620759d7cd4e28548105d95ed2472a67" name="a620759d7cd4e28548105d95ed2472a67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a620759d7cd4e28548105d95ed2472a67">&#9670;&#160;</a></span>post_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::ABLStatsBase::post_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform initialization actions after the mesh has been created. </p>
+
+</div>
+</div>
+<a id="ac1ce2b6f6182ad90cd1fcdce1b7c8a72" name="ac1ce2b6f6182ad90cd1fcdce1b7c8a72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1ce2b6f6182ad90cd1fcdce1b7c8a72">&#9670;&#160;</a></span>pre_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::ABLStatsBase::pre_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform actions at the beginning of a timestep. </p>
+
+</div>
+</div>
+<a id="aac8e6fd8b4474bd6dbe1c105123cf41d" name="aac8e6fd8b4474bd6dbe1c105123cf41d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac8e6fd8b4474bd6dbe1c105123cf41d">&#9670;&#160;</a></span>register_forcing_term()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::ABLStatsBase::register_forcing_term </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_forcing.html">pde::icns::ABLForcing</a> *</td>          <td class="paramname"><span class="paramname"><em>forcing</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a792f5529a1a4fe23048eea742e00fcd9" name="a792f5529a1a4fe23048eea742e00fcd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a792f5529a1a4fe23048eea742e00fcd9">&#9670;&#160;</a></span>register_meso_mom_forcing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::ABLStatsBase::register_meso_mom_forcing </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html">pde::icns::ABLMesoForcingMom</a> *</td>          <td class="paramname"><span class="paramname"><em>forcing</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a73dbaa2bc78566f4fd2db1841be099c8" name="a73dbaa2bc78566f4fd2db1841be099c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73dbaa2bc78566f4fd2db1841be099c8">&#9670;&#160;</a></span>register_meso_temp_forcing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::ABLStatsBase::register_meso_temp_forcing </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1pde_1_1temperature_1_1_a_b_l_meso_forcing_temp.html">pde::temperature::ABLMesoForcingTemp</a> *</td>          <td class="paramname"><span class="paramname"><em>forcing</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a881f7689798ad4eb7894549bdfca4bfe" name="a881f7689798ad4eb7894549bdfca4bfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a881f7689798ad4eb7894549bdfca4bfe">&#9670;&#160;</a></span>theta_profile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a> &amp; kynema_sgf::ABLStatsBase::theta_profile </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Interpolating object for vertical temperature profile. </p>
+
+</div>
+</div>
+<a id="a2a0ccf8a796d6831b79215ac660466fe" name="a2a0ccf8a796d6831b79215ac660466fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a0ccf8a796d6831b79215ac660466fe">&#9670;&#160;</a></span>theta_profile_fine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="namespacekynema__sgf.html#a8c8e6d5091635786c7f1da8075a837a9">FieldPlaneAveragingFine</a> &amp; kynema_sgf::ABLStatsBase::theta_profile_fine </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0a7c9d602e49cfb0087b7cf8e662bb07" name="a0a7c9d602e49cfb0087b7cf8e662bb07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a7c9d602e49cfb0087b7cf8e662bb07">&#9670;&#160;</a></span>vel_profile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html">VelPlaneAveragingFine</a> &amp; kynema_sgf::ABLStatsBase::vel_profile </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a85bd9ab16b74915cc7068a69d36240e7" name="a85bd9ab16b74915cc7068a69d36240e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85bd9ab16b74915cc7068a69d36240e7">&#9670;&#160;</a></span>vel_profile_coarse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="classkynema__sgf_1_1_vel_plane_averaging.html">VelPlaneAveraging</a> &amp; kynema_sgf::ABLStatsBase::vel_profile_coarse </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Interpolating object for vertical velocity profile. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/<a class="el" href="_a_b_l_stats_base_8_h_source.html">ABLStatsBase.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

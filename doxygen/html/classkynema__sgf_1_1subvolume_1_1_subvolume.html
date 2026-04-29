@@ -1,0 +1,759 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::subvolume::Subvolume Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::subvolume::Subvolume Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1subvolume_1_1_subvolume.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="subvolume-class-reference">
+<h1>Subvolume Class Reference<a class="headerlink" href="#subvolume-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::subvolume::Subvolume Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1subvolume.html">subvolume</a></li><li class="navelem"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html">Subvolume</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1subvolume_1_1_subvolume-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::subvolume::Subvolume Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_subvolume_8_h_source.html">Subvolume.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::subvolume::Subvolume:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1subvolume_1_1_subvolume__inherit__graph.svg" width="218" height="168"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::subvolume::Subvolume:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1subvolume_1_1_subvolume__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a0c8cb196ee84667cac64a66367037e7b" id="r_a0c8cb196ee84667cac64a66367037e7b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c8cb196ee84667cac64a66367037e7b">Subvolume</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;, std::string)</td></tr>
+<tr class="memitem:a40b83249ff2d81fc46cfe69262c663c6" id="r_a40b83249ff2d81fc46cfe69262c663c6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40b83249ff2d81fc46cfe69262c663c6">~Subvolume</a> () override</td></tr>
+<tr class="memitem:a8228c8c96578dcd8f84462eeeed5ce0d" id="r_a8228c8c96578dcd8f84462eeeed5ce0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8228c8c96578dcd8f84462eeeed5ce0d">pre_init_actions</a> () override</td></tr>
+<tr class="memdesc:a8228c8c96578dcd8f84462eeeed5ce0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform actions before mesh is created.  <br /></td></tr>
+<tr class="memitem:a074e773cfedb74dd72ee0affe706dcc8" id="r_a074e773cfedb74dd72ee0affe706dcc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a074e773cfedb74dd72ee0affe706dcc8">initialize</a> () override</td></tr>
+<tr class="memdesc:a074e773cfedb74dd72ee0affe706dcc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read user inputs for chunks, output timing.  <br /></td></tr>
+<tr class="memitem:af04d59823eb005d32fec1848c69eacf4" id="r_af04d59823eb005d32fec1848c69eacf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af04d59823eb005d32fec1848c69eacf4">post_regrid_actions</a> () override</td></tr>
+<tr class="memdesc:af04d59823eb005d32fec1848c69eacf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do any work that needs to happen after regrid.  <br /></td></tr>
+<tr class="memitem:af074ac5ed7de4010e5426f726031c384" id="r_af074ac5ed7de4010e5426f726031c384"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af074ac5ed7de4010e5426f726031c384">output_actions</a> () override</td></tr>
+<tr class="memdesc:af074ac5ed7de4010e5426f726031c384"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get chunks and output to disk.  <br /></td></tr>
+<tr class="memitem:ab7506eb9516c2f3484dcae3fbdb835d8" id="r_ab7506eb9516c2f3484dcae3fbdb835d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7506eb9516c2f3484dcae3fbdb835d8">post_advance_work</a> () override</td></tr>
+<tr class="memdesc:ab7506eb9516c2f3484dcae3fbdb835d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actions to do at end of every time step.  <br /></td></tr>
+<tr class="memitem:a36b96dbc3ba8d663142566237f87729d" id="r_a36b96dbc3ba8d663142566237f87729d"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36b96dbc3ba8d663142566237f87729d">var_names</a> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a2302395d5355357e058395b9ced6698c" id="r_a2302395d5355357e058395b9ced6698c"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2302395d5355357e058395b9ced6698c">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aa8d3b6683f8510eecea3e3585fa86133" id="r_aa8d3b6683f8510eecea3e3585fa86133"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8d3b6683f8510eecea3e3585fa86133">m_sim</a></td></tr>
+<tr class="memitem:a21586e8b3f09335affa04fb699d6d62b" id="r_a21586e8b3f09335affa04fb699d6d62b"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1subvolume_1_1_subvolume_base.html">SubvolumeBase</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21586e8b3f09335affa04fb699d6d62b">m_subvolumes</a></td></tr>
+<tr class="memitem:ab72ec3135cdeed7b187b4189bab61ad2" id="r_ab72ec3135cdeed7b187b4189bab61ad2"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab72ec3135cdeed7b187b4189bab61ad2">m_var_names</a></td></tr>
+<tr class="memdesc:ab72ec3135cdeed7b187b4189bab61ad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of variable names for output.  <br /></td></tr>
+<tr class="memitem:acb4b07dcfe6157a237a218d6196daf5c" id="r_acb4b07dcfe6157a237a218d6196daf5c"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb4b07dcfe6157a237a218d6196daf5c">m_fields</a></td></tr>
+<tr class="memdesc:acb4b07dcfe6157a237a218d6196daf5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of fields to be sampled for this collection of probes.  <br /></td></tr>
+<tr class="memitem:abf5cd137983667cf402d02c927cce5e5" id="r_abf5cd137983667cf402d02c927cce5e5"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; <a class="el" href="classkynema__sgf_1_1_int_field.html">IntField</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf5cd137983667cf402d02c927cce5e5">m_int_fields</a></td></tr>
+<tr class="memdesc:abf5cd137983667cf402d02c927cce5e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of IntFields to be sampled for this collection of probes.  <br /></td></tr>
+<tr class="memitem:a41dd2a4ce6fe86c4d25d7e5117cb93fe" id="r_a41dd2a4ce6fe86c4d25d7e5117cb93fe"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_derived_qty_mgr.html">DerivedQtyMgr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41dd2a4ce6fe86c4d25d7e5117cb93fe">m_derived_mgr</a></td></tr>
+<tr class="memdesc:a41dd2a4ce6fe86c4d25d7e5117cb93fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of derived fields to be sampled for this collection of probes.  <br /></td></tr>
+<tr class="memitem:a61d74668c391da295a238303d60d3d3e" id="r_a61d74668c391da295a238303d60d3d3e"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61d74668c391da295a238303d60d3d3e">m_label</a></td></tr>
+<tr class="memitem:aaff418dcd7fefb297edb7403c98d5d58" id="r_aaff418dcd7fefb297edb7403c98d5d58"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaff418dcd7fefb297edb7403c98d5d58">m_label_out</a></td></tr>
+<tr class="memitem:a53c951f9057c8e19e1113806421a684d" id="r_a53c951f9057c8e19e1113806421a684d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53c951f9057c8e19e1113806421a684d">m_ncomp</a> {0}</td></tr>
+<tr class="memitem:aa98b10ed11c79c2083de018a74dff601" id="r_aa98b10ed11c79c2083de018a74dff601"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa98b10ed11c79c2083de018a74dff601">m_nicomp</a> {0}</td></tr>
+<tr class="memitem:a479a95a205c3c4475614ff26a65db354" id="r_a479a95a205c3c4475614ff26a65db354"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a479a95a205c3c4475614ff26a65db354">m_ndcomp</a> {0}</td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a0c8cb196ee84667cac64a66367037e7b" name="a0c8cb196ee84667cac64a66367037e7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c8cb196ee84667cac64a66367037e7b">&#9670;&#160;</a></span>Subvolume()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::subvolume::Subvolume::Subvolume </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>label</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a40b83249ff2d81fc46cfe69262c663c6" name="a40b83249ff2d81fc46cfe69262c663c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40b83249ff2d81fc46cfe69262c663c6">&#9670;&#160;</a></span>~Subvolume()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::subvolume::Subvolume::~Subvolume </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a2302395d5355357e058395b9ced6698c" name="a2302395d5355357e058395b9ced6698c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2302395d5355357e058395b9ced6698c">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::subvolume::Subvolume::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a074e773cfedb74dd72ee0affe706dcc8" name="a074e773cfedb74dd72ee0affe706dcc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a074e773cfedb74dd72ee0affe706dcc8">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::subvolume::Subvolume::initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read user inputs for chunks, output timing. </p>
+
+</div>
+</div>
+<a id="af074ac5ed7de4010e5426f726031c384" name="af074ac5ed7de4010e5426f726031c384"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af074ac5ed7de4010e5426f726031c384">&#9670;&#160;</a></span>output_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::subvolume::Subvolume::output_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get chunks and output to disk. </p>
+
+</div>
+</div>
+<a id="ab7506eb9516c2f3484dcae3fbdb835d8" name="ab7506eb9516c2f3484dcae3fbdb835d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7506eb9516c2f3484dcae3fbdb835d8">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::subvolume::Subvolume::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Actions to do at end of every time step. </p>
+
+</div>
+</div>
+<a id="af04d59823eb005d32fec1848c69eacf4" name="af04d59823eb005d32fec1848c69eacf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af04d59823eb005d32fec1848c69eacf4">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::subvolume::Subvolume::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Do any work that needs to happen after regrid. </p>
+
+</div>
+</div>
+<a id="a8228c8c96578dcd8f84462eeeed5ce0d" name="a8228c8c96578dcd8f84462eeeed5ce0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8228c8c96578dcd8f84462eeeed5ce0d">&#9670;&#160;</a></span>pre_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::subvolume::Subvolume::pre_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform actions before mesh is created. </p>
+
+</div>
+</div>
+<a id="a36b96dbc3ba8d663142566237f87729d" name="a36b96dbc3ba8d663142566237f87729d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36b96dbc3ba8d663142566237f87729d">&#9670;&#160;</a></span>var_names()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::Vector&lt; std::string &gt; &amp; kynema_sgf::subvolume::Subvolume::var_names </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a41dd2a4ce6fe86c4d25d7e5117cb93fe" name="a41dd2a4ce6fe86c4d25d7e5117cb93fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41dd2a4ce6fe86c4d25d7e5117cb93fe">&#9670;&#160;</a></span>m_derived_mgr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1_derived_qty_mgr.html">DerivedQtyMgr</a>&gt; kynema_sgf::subvolume::Subvolume::m_derived_mgr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of derived fields to be sampled for this collection of probes. </p>
+
+</div>
+</div>
+<a id="acb4b07dcfe6157a237a218d6196daf5c" name="acb4b07dcfe6157a237a218d6196daf5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb4b07dcfe6157a237a218d6196daf5c">&#9670;&#160;</a></span>m_fields</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;<a class="el" href="classkynema__sgf_1_1_field.html">Field</a>*&gt; kynema_sgf::subvolume::Subvolume::m_fields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of fields to be sampled for this collection of probes. </p>
+
+</div>
+</div>
+<a id="abf5cd137983667cf402d02c927cce5e5" name="abf5cd137983667cf402d02c927cce5e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf5cd137983667cf402d02c927cce5e5">&#9670;&#160;</a></span>m_int_fields</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;<a class="el" href="classkynema__sgf_1_1_int_field.html">IntField</a>*&gt; kynema_sgf::subvolume::Subvolume::m_int_fields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of IntFields to be sampled for this collection of probes. </p>
+
+</div>
+</div>
+<a id="a61d74668c391da295a238303d60d3d3e" name="a61d74668c391da295a238303d60d3d3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61d74668c391da295a238303d60d3d3e">&#9670;&#160;</a></span>m_label</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string kynema_sgf::subvolume::Subvolume::m_label</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Name of this subvolume object.</p>
+<p>The label is used to read user inputs from file and is also used for naming files directories. </p>
+
+</div>
+</div>
+<a id="aaff418dcd7fefb297edb7403c98d5d58" name="aaff418dcd7fefb297edb7403c98d5d58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaff418dcd7fefb297edb7403c98d5d58">&#9670;&#160;</a></span>m_label_out</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::subvolume::Subvolume::m_label_out</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Name of this subvolume object when writing outputs.</p>
+<p>This label can be specified to manually override the true label of this subvolume instance. Intended for unified top-level naming of different subvolume instances, but it is up to the user to ensure that the bottom-level names are distinct when this is used. </p>
+
+</div>
+</div>
+<a id="a53c951f9057c8e19e1113806421a684d" name="a53c951f9057c8e19e1113806421a684d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53c951f9057c8e19e1113806421a684d">&#9670;&#160;</a></span>m_ncomp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::subvolume::Subvolume::m_ncomp {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a479a95a205c3c4475614ff26a65db354" name="a479a95a205c3c4475614ff26a65db354"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a479a95a205c3c4475614ff26a65db354">&#9670;&#160;</a></span>m_ndcomp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::subvolume::Subvolume::m_ndcomp {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa98b10ed11c79c2083de018a74dff601" name="aa98b10ed11c79c2083de018a74dff601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa98b10ed11c79c2083de018a74dff601">&#9670;&#160;</a></span>m_nicomp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::subvolume::Subvolume::m_nicomp {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa8d3b6683f8510eecea3e3585fa86133" name="aa8d3b6683f8510eecea3e3585fa86133"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8d3b6683f8510eecea3e3585fa86133">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::subvolume::Subvolume::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a21586e8b3f09335affa04fb699d6d62b" name="a21586e8b3f09335affa04fb699d6d62b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21586e8b3f09335affa04fb699d6d62b">&#9670;&#160;</a></span>m_subvolumes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1subvolume_1_1_subvolume_base.html">SubvolumeBase</a>&gt; &gt; kynema_sgf::subvolume::Subvolume::m_subvolumes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab72ec3135cdeed7b187b4189bab61ad2" name="ab72ec3135cdeed7b187b4189bab61ad2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab72ec3135cdeed7b187b4189bab61ad2">&#9670;&#160;</a></span>m_var_names</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;std::string&gt; kynema_sgf::subvolume::Subvolume::m_var_names</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of variable names for output. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/subvolume/<a class="el" href="_subvolume_8_h_source.html">Subvolume.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/subvolume/<a class="el" href="_subvolume_8cpp.html">Subvolume.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wall-Modeled RANS &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="External Driven Terrain Simulations" href="noprecursorrans.html" />
+    <link rel="prev" title="LES with Terrain" href="terrain.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Walkthrough</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="precursor.html">Precursor (ABL) walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turbine.html">Turbine simulation walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terrain.html">LES with Terrain</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Wall-Modeled RANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noprecursorrans.html">External Driven Terrain Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration.html">Actuator Line Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Walkthrough</a></li>
+      <li class="breadcrumb-item active">Wall-Modeled RANS</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/walkthrough/rans.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="wall-modeled-rans">
+<span id="rans"></span><h1>Wall-Modeled RANS<a class="headerlink" href="#wall-modeled-rans" title="Link to this heading"></a></h1>
+<p>Most RANS simulations are run in steady or pseudo-steady mode. However, as Kynema-SGF is a unsteady solver,
+we try to mimic pseudo-steady mode to ensure faster convergence of the simulations. The precursor input
+file for RANS is very similar to LES. The only modifications required are</p>
+<p><code class="docutils literal notranslate"><span class="pre">turbulence.model</span>&#160; <span class="pre">=</span> <span class="pre">KLAxell</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">TKE.source_terms</span> <span class="pre">=</span> <span class="pre">KransAxell</span></code></p>
+<p>However, a LES like setup takes a lot of time to convergence and is not required. It is recommended to use
+a more realistic vertical profile to start the RANS simulations to speed up convergence.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ABL.temperature_heights</span> <span class="pre">=</span> <span class="pre">0</span>&#160; <span class="pre">8.03137</span>&#160; <span class="pre">16.0627</span>&#160; <span class="pre">24.0941...</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">ABL.temperature_values</span> <span class="pre">=</span> <span class="pre">300.001</span>&#160; <span class="pre">300.001</span>&#160; <span class="pre">300.001</span> <span class="pre">...</span></code></p>
+<p>There are also additional changes that can be made to speed-up the convergence. This is done by including the
+following variables in the input file:</p>
+<p><code class="docutils literal notranslate"><span class="pre">ABL.initial_wind_profile</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">=</span> <span class="pre">true</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">ABL.rans_1dprofile_file</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">=</span> <span class="pre">&quot;rans_1d.info&quot;</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">ABL.meso_sponge_start</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">=</span> <span class="pre">650.0</span></code></p>
+<p>The first variable looks for a <code class="docutils literal notranslate"><span class="pre">rans_1dprofile_file</span></code>. The file contains <cite>z u v tke</cite> (in that order, column format). The initial sounding can be
+provided from some external source. The profile is read  and used to create the initial profile for simulations.
+Changing the initial condition speeds up the convergence of the precursor simulation. The last term
+<code class="docutils literal notranslate"><span class="pre">meso_sponge_start</span></code> is a forcing term to provide a speed-up of computation. The turbulent kinetic energy in the upper atmosphere
+is small and can oscillate before reaching a converged state. This term forces the convergence faster by removing the oscillation.
+The forcing is enabled only for the turbulent kinetic energy and temperature terms. The wind speed uses the Rayleigh damping.</p>
+<p>The RANS model can be used with terrain using the same method from LES with terrain by making the changes discussed above.
+It is recommended for terrain RANS simulations to setup the grid as follows:</p>
+<a class="reference internal image-reference" href="../_images/RANSSetup.png"><img alt="../_images/RANSSetup.png" src="../_images/RANSSetup.png" style="width: 100%;" />
+</a>
+<p>The above setup is experimental and may need fine tuning in the future.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="terrain.html" class="btn btn-neutral float-left" title="LES with Terrain" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="noprecursorrans.html" class="btn btn-neutral float-right" title="External Driven Terrain Simulations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

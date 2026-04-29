@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/core/FieldUtils.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/core/FieldUtils.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_field_utils_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-core-fieldutils-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/core/FieldUtils.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-core-fieldutils-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/core/FieldUtils.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_b275fe914c86728e4bacb4b0e2726274.html">core</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">FieldUtils.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_field_utils_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef FIELDUTILS_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define FIELDUTILS_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_field_desc_types_8_h.html">src/core/FieldDescTypes.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;AMReX_MultiFab.H&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;AMReX_Interpolater.H&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="}">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1field__impl.html">    8</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1field__impl.html">kynema_sgf::field_impl</a> {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="}">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="group__field__ops.html#gaa125e6a2b581cbf96626116e9e34771e">   13</a></span>AMREX_INLINE amrex::IndexType <a class="code hl_function" href="group__field__ops.html#gaa125e6a2b581cbf96626116e9e34771e">index_type</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a> floc)</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordflow">switch</span> (floc) {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="keywordflow">return</span> amrex::IndexType::TheCellType();</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75a0cc25b606fe928a0c9a58f7f209c4495">FieldLoc::NODE</a>:</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="keywordflow">return</span> amrex::IndexType::TheNodeType();</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75a51c3bc3d73817cc48bd1a42aa76cd48b">FieldLoc::XFACE</a>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keywordflow">return</span> amrex::IndexType(amrex::IntVect::TheDimensionVector(0));</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75aed363f72ca243318ee54c948cab94805">FieldLoc::YFACE</a>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keywordflow">return</span> amrex::IndexType(amrex::IntVect::TheDimensionVector(1));</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75a37f44a8aa4feca119902d6930c4c849f">FieldLoc::ZFACE</a>:</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordflow">return</span> amrex::IndexType(amrex::IntVect::TheDimensionVector(2));</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="comment">// Suppress warnings when compiling with CUDA</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">return</span> amrex::IndexType::TheCellType();</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
+</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>AMREX_INLINE std::string</div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="group__field__ops.html#ga54e999fda9a37707476e986c6c6dd4a7">   41</a></span><a class="code hl_function" href="group__field__ops.html#ga54e999fda9a37707476e986c6c6dd4a7">field_name_with_state</a>(<span class="keyword">const</span> std::string&amp; fname, <span class="keyword">const</span> <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate)</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">switch</span> (fstate) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa06bfddc759bcbdcc8f363807685ee11f">FieldState::NP1</a>:</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">return</span> fname;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa8d9c307cb7f3c4a32822a51922d1ceaa">FieldState::N</a>:</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">return</span> fname + <span class="stringliteral">&quot;__FS_Old&quot;</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fabf90e680ecd3cfbf725ceb5c8c82634e">FieldState::NM1</a>:</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">return</span> fname + <span class="stringliteral">&quot;__FS_NM1&quot;</span>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa2328beac24e42bfd30c5226cad8e0834">FieldState::NPH</a>:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">return</span> fname + <span class="stringliteral">&quot;__FS_NPH&quot;</span>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa116840c962286eda0e4dbed9dfbfa3fc">FieldState::NMH</a>:</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> fname + <span class="stringliteral">&quot;__FS_NMH&quot;</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// Suppress warnings when compiling with CUDA</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">return</span> fname;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span></div>
+<div class="foldopen" id="foldopen00073" data-start="{" data-end="}">
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="group__field__ops.html#ga6e986bc0bffb691eb1cb642e45c830db">   73</a></span>AMREX_INLINE <span class="keywordtype">bool</span> <a class="code hl_function" href="group__field__ops.html#ga6e986bc0bffb691eb1cb642e45c830db">is_valid_field_name</a>(<span class="keyword">const</span> std::string&amp; name)</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>{</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// Else make sure that our guard is not in the last 8 characters</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">auto</span> found = name.rfind(<span class="stringliteral">&quot;__FS_&quot;</span>);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordflow">return</span> found == std::string::npos;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>}</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>AMREX_INLINE amrex::Interpolater*</div>
+<div class="foldopen" id="foldopen00085" data-start="{" data-end="}">
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="group__field__ops.html#ga861c95ed005acf6adee1cfaad13a4812">   85</a></span><a class="code hl_function" href="group__field__ops.html#ga861c95ed005acf6adee1cfaad13a4812">get_interpolation_operator</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="group__fields.html#ga7a6cb530fb551873a19ab6954617782e">FieldInterpolator</a> itype)</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>{</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordflow">switch</span> (itype) {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group__fields.html#gga7a6cb530fb551873a19ab6954617782ea024734d5cb842d82979ddb770d8e7e2a">FieldInterpolator::PiecewiseConstant</a>:</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordflow">return</span> &amp;amrex::pc_interp;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group__fields.html#gga7a6cb530fb551873a19ab6954617782eaef706a0ad0437ced3c3cb11c7fcb9fc3">FieldInterpolator::CellConsLinear</a>:</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordflow">return</span> &amp;amrex::cell_cons_interp;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group__fields.html#gga7a6cb530fb551873a19ab6954617782ea8c83efc1cd144441076dcaee421cc286">FieldInterpolator::NodeBilinear</a>:</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">return</span> &amp;amrex::node_bilinear_interp;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group__fields.html#gga7a6cb530fb551873a19ab6954617782eae3103fbe6b552f90be5056482f4d01f2">FieldInterpolator::FaceDivFree</a>:</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">return</span> &amp;amrex::face_divfree_interp;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group__fields.html#gga7a6cb530fb551873a19ab6954617782eaa2e0693c2b7477910343b6caafeba3ed">FieldInterpolator::FaceLinear</a>:</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordflow">return</span> &amp;amrex::face_linear_interp;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        amrex::Abort(<span class="stringliteral">&quot;Unrecognized FieldInterpolator type&quot;</span>);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    }</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordflow">return</span> &amp;amrex::cell_cons_interp;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>}</div>
+</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="foldopen" id="foldopen00110" data-start="{" data-end="}">
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1field__impl.html#a4fc172e197ceed6e1c4675cc7d91c7d4">  110</a></span>AMREX_INLINE <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> <a class="code hl_function" href="namespacekynema__sgf_1_1field__impl.html#a4fc172e197ceed6e1c4675cc7d91c7d4">dof_state</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate)</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>{</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">return</span> (fstate == <a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">FieldState::New</a>) ? <a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">FieldState::New</a> : <a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fac7268757fbabf48019f4984933539d8a">FieldState::Old</a>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>}</div>
+</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="foldopen" id="foldopen00115" data-start="{" data-end="}">
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1field__impl.html#aea9c6f6180619527a6ad5ebcaebe2c0a">  115</a></span>AMREX_INLINE <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> <a class="code hl_function" href="namespacekynema__sgf_1_1field__impl.html#aea9c6f6180619527a6ad5ebcaebe2c0a">phi_state</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate)</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>{</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordflow">return</span> (fstate == <a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fac7268757fbabf48019f4984933539d8a">FieldState::Old</a>) ? <a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fac7268757fbabf48019f4984933539d8a">FieldState::Old</a> : <a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa2328beac24e42bfd30c5226cad8e0834">FieldState::NPH</a>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>}</div>
+</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>} <span class="comment">// namespace kynema_sgf::field_impl</span></div>
+</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">#endif </span><span class="comment">/* FIELDUTILS_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_field_desc_types_8_h_html"><div class="ttname"><a href="_field_desc_types_8_h.html">FieldDescTypes.H</a></div></div>
+<div class="ttc" id="agroup__field__ops_html_ga54e999fda9a37707476e986c6c6dd4a7"><div class="ttname"><a href="group__field__ops.html#ga54e999fda9a37707476e986c6c6dd4a7">kynema_sgf::field_impl::field_name_with_state</a></div><div class="ttdeci">AMREX_INLINE std::string field_name_with_state(const std::string &amp;fname, const FieldState fstate)</div><div class="ttdef"><b>Definition</b> FieldUtils.H:41</div></div>
+<div class="ttc" id="agroup__field__ops_html_ga6e986bc0bffb691eb1cb642e45c830db"><div class="ttname"><a href="group__field__ops.html#ga6e986bc0bffb691eb1cb642e45c830db">kynema_sgf::field_impl::is_valid_field_name</a></div><div class="ttdeci">AMREX_INLINE bool is_valid_field_name(const std::string &amp;name)</div><div class="ttdef"><b>Definition</b> FieldUtils.H:73</div></div>
+<div class="ttc" id="agroup__field__ops_html_ga861c95ed005acf6adee1cfaad13a4812"><div class="ttname"><a href="group__field__ops.html#ga861c95ed005acf6adee1cfaad13a4812">kynema_sgf::field_impl::get_interpolation_operator</a></div><div class="ttdeci">AMREX_INLINE amrex::Interpolater * get_interpolation_operator(const FieldInterpolator itype)</div><div class="ttdef"><b>Definition</b> FieldUtils.H:85</div></div>
+<div class="ttc" id="agroup__field__ops_html_gaa125e6a2b581cbf96626116e9e34771e"><div class="ttname"><a href="group__field__ops.html#gaa125e6a2b581cbf96626116e9e34771e">kynema_sgf::field_impl::index_type</a></div><div class="ttdeci">AMREX_INLINE amrex::IndexType index_type(const FieldLoc floc)</div><div class="ttdef"><b>Definition</b> FieldUtils.H:13</div></div>
+<div class="ttc" id="agroup__fields_html_ga6012c66c4b909364fdfaa58954157f75"><div class="ttname"><a href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">kynema_sgf::FieldLoc</a></div><div class="ttdeci">FieldLoc</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:29</div></div>
+<div class="ttc" id="agroup__fields_html_ga73fcb43d320747f8ced022629f36af1f"><div class="ttname"><a href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">kynema_sgf::FieldState</a></div><div class="ttdeci">FieldState</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:16</div></div>
+<div class="ttc" id="agroup__fields_html_ga7a6cb530fb551873a19ab6954617782e"><div class="ttname"><a href="group__fields.html#ga7a6cb530fb551873a19ab6954617782e">kynema_sgf::FieldInterpolator</a></div><div class="ttdeci">FieldInterpolator</div><div class="ttdoc">Coarse-to-fine field interpolation options.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:39</div></div>
+<div class="ttc" id="agroup__fields_html_gga6012c66c4b909364fdfaa58954157f75a0cc25b606fe928a0c9a58f7f209c4495"><div class="ttname"><a href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75a0cc25b606fe928a0c9a58f7f209c4495">kynema_sgf::FieldLoc::NODE</a></div><div class="ttdeci">@ NODE</div><div class="ttdoc">Node-centered (e.g., for pressure)</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:31</div></div>
+<div class="ttc" id="agroup__fields_html_gga6012c66c4b909364fdfaa58954157f75a37f44a8aa4feca119902d6930c4c849f"><div class="ttname"><a href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75a37f44a8aa4feca119902d6930c4c849f">kynema_sgf::FieldLoc::ZFACE</a></div><div class="ttdeci">@ ZFACE</div><div class="ttdoc">Face-centered in z-direction.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:34</div></div>
+<div class="ttc" id="agroup__fields_html_gga6012c66c4b909364fdfaa58954157f75a51c3bc3d73817cc48bd1a42aa76cd48b"><div class="ttname"><a href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75a51c3bc3d73817cc48bd1a42aa76cd48b">kynema_sgf::FieldLoc::XFACE</a></div><div class="ttdeci">@ XFACE</div><div class="ttdoc">Face-centered in x-direction (e.g., face normal velocity)</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:32</div></div>
+<div class="ttc" id="agroup__fields_html_gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e"><div class="ttname"><a href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">kynema_sgf::FieldLoc::CELL</a></div><div class="ttdeci">@ CELL</div><div class="ttdoc">Cell-centered (default)</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:30</div></div>
+<div class="ttc" id="agroup__fields_html_gga6012c66c4b909364fdfaa58954157f75aed363f72ca243318ee54c948cab94805"><div class="ttname"><a href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75aed363f72ca243318ee54c948cab94805">kynema_sgf::FieldLoc::YFACE</a></div><div class="ttdeci">@ YFACE</div><div class="ttdoc">Face-centered in y-direction.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:33</div></div>
+<div class="ttc" id="agroup__fields_html_gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e"><div class="ttname"><a href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">kynema_sgf::FieldState::New</a></div><div class="ttdeci">@ New</div><div class="ttdoc">Same as FieldState::NP1.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:22</div></div>
+<div class="ttc" id="agroup__fields_html_gga73fcb43d320747f8ced022629f36af1fa06bfddc759bcbdcc8f363807685ee11f"><div class="ttname"><a href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa06bfddc759bcbdcc8f363807685ee11f">kynema_sgf::FieldState::NP1</a></div><div class="ttdeci">@ NP1</div><div class="ttdoc">Latest state, also aliased to New</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:17</div></div>
+<div class="ttc" id="agroup__fields_html_gga73fcb43d320747f8ced022629f36af1fa116840c962286eda0e4dbed9dfbfa3fc"><div class="ttname"><a href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa116840c962286eda0e4dbed9dfbfa3fc">kynema_sgf::FieldState::NMH</a></div><div class="ttdeci">@ NMH</div><div class="ttdoc">State at (n - 1/2) timestep.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:21</div></div>
+<div class="ttc" id="agroup__fields_html_gga73fcb43d320747f8ced022629f36af1fa2328beac24e42bfd30c5226cad8e0834"><div class="ttname"><a href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa2328beac24e42bfd30c5226cad8e0834">kynema_sgf::FieldState::NPH</a></div><div class="ttdeci">@ NPH</div><div class="ttdoc">State at (n + 1/2) (intermediate) timestep.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:20</div></div>
+<div class="ttc" id="agroup__fields_html_gga73fcb43d320747f8ced022629f36af1fa8d9c307cb7f3c4a32822a51922d1ceaa"><div class="ttname"><a href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa8d9c307cb7f3c4a32822a51922d1ceaa">kynema_sgf::FieldState::N</a></div><div class="ttdeci">@ N</div><div class="ttdoc">Previous state, also aliased to Old</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:18</div></div>
+<div class="ttc" id="agroup__fields_html_gga73fcb43d320747f8ced022629f36af1fabf90e680ecd3cfbf725ceb5c8c82634e"><div class="ttname"><a href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fabf90e680ecd3cfbf725ceb5c8c82634e">kynema_sgf::FieldState::NM1</a></div><div class="ttdeci">@ NM1</div><div class="ttdoc">State at (n - 1) th timestep.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:19</div></div>
+<div class="ttc" id="agroup__fields_html_gga73fcb43d320747f8ced022629f36af1fac7268757fbabf48019f4984933539d8a"><div class="ttname"><a href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fac7268757fbabf48019f4984933539d8a">kynema_sgf::FieldState::Old</a></div><div class="ttdeci">@ Old</div><div class="ttdoc">Same as FieldState::N.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:23</div></div>
+<div class="ttc" id="agroup__fields_html_gga7a6cb530fb551873a19ab6954617782ea024734d5cb842d82979ddb770d8e7e2a"><div class="ttname"><a href="group__fields.html#gga7a6cb530fb551873a19ab6954617782ea024734d5cb842d82979ddb770d8e7e2a">kynema_sgf::FieldInterpolator::PiecewiseConstant</a></div><div class="ttdeci">@ PiecewiseConstant</div><div class="ttdoc">Constant across cell.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:40</div></div>
+<div class="ttc" id="agroup__fields_html_gga7a6cb530fb551873a19ab6954617782ea8c83efc1cd144441076dcaee421cc286"><div class="ttname"><a href="group__fields.html#gga7a6cb530fb551873a19ab6954617782ea8c83efc1cd144441076dcaee421cc286">kynema_sgf::FieldInterpolator::NodeBilinear</a></div><div class="ttdeci">@ NodeBilinear</div><div class="ttdoc">Bilinear nodal interpolation.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:42</div></div>
+<div class="ttc" id="agroup__fields_html_gga7a6cb530fb551873a19ab6954617782eaa2e0693c2b7477910343b6caafeba3ed"><div class="ttname"><a href="group__fields.html#gga7a6cb530fb551873a19ab6954617782eaa2e0693c2b7477910343b6caafeba3ed">kynema_sgf::FieldInterpolator::FaceLinear</a></div><div class="ttdeci">@ FaceLinear</div><div class="ttdoc">Linear face interpolation.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:44</div></div>
+<div class="ttc" id="agroup__fields_html_gga7a6cb530fb551873a19ab6954617782eae3103fbe6b552f90be5056482f4d01f2"><div class="ttname"><a href="group__fields.html#gga7a6cb530fb551873a19ab6954617782eae3103fbe6b552f90be5056482f4d01f2">kynema_sgf::FieldInterpolator::FaceDivFree</a></div><div class="ttdeci">@ FaceDivFree</div><div class="ttdoc">Divergence free face interpolation.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:43</div></div>
+<div class="ttc" id="agroup__fields_html_gga7a6cb530fb551873a19ab6954617782eaef706a0ad0437ced3c3cb11c7fcb9fc3"><div class="ttname"><a href="group__fields.html#gga7a6cb530fb551873a19ab6954617782eaef706a0ad0437ced3c3cb11c7fcb9fc3">kynema_sgf::FieldInterpolator::CellConsLinear</a></div><div class="ttdeci">@ CellConsLinear</div><div class="ttdoc">Linear interpolation.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:41</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1field__impl_html"><div class="ttname"><a href="namespacekynema__sgf_1_1field__impl.html">kynema_sgf::field_impl</a></div><div class="ttdef"><b>Definition</b> FieldUtils.H:8</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1field__impl_html_a4fc172e197ceed6e1c4675cc7d91c7d4"><div class="ttname"><a href="namespacekynema__sgf_1_1field__impl.html#a4fc172e197ceed6e1c4675cc7d91c7d4">kynema_sgf::field_impl::dof_state</a></div><div class="ttdeci">AMREX_INLINE FieldState dof_state(const FieldState fstate)</div><div class="ttdef"><b>Definition</b> FieldUtils.H:110</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1field__impl_html_aea9c6f6180619527a6ad5ebcaebe2c0a"><div class="ttname"><a href="namespacekynema__sgf_1_1field__impl.html#aea9c6f6180619527a6ad5ebcaebe2c0a">kynema_sgf::field_impl::phi_state</a></div><div class="ttdeci">AMREX_INLINE FieldState phi_state(const FieldState fstate)</div><div class="ttdef"><b>Definition</b> FieldUtils.H:115</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,999 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::transport::TwoPhaseTransport Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::transport::TwoPhaseTransport Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1transport_1_1_two_phase_transport.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="twophasetransport-class-reference">
+<h1>TwoPhaseTransport Class Reference<a class="headerlink" href="#twophasetransport-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::transport::TwoPhaseTransport Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1transport.html">transport</a></li><li class="navelem"><a href="classkynema__sgf_1_1transport_1_1_two_phase_transport.html">TwoPhaseTransport</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1transport_1_1_two_phase_transport-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::transport::TwoPhaseTransport Class Reference<div class="ingroups"><a class="el" href="group__transport.html">Transport models</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_two_phase_transport_8_h_source.html">TwoPhaseTransport.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::transport::TwoPhaseTransport:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1transport_1_1_two_phase_transport__inherit__graph.svg" width="191" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::transport::TwoPhaseTransport:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1transport_1_1_two_phase_transport__coll__graph.svg" width="100%" height="498"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a6cdbe35db06b050527b36eaaa1148208" id="r_a6cdbe35db06b050527b36eaaa1148208"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6cdbe35db06b050527b36eaaa1148208">TwoPhaseTransport</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a066543445bb71cc87c860ab2a852e700" id="r_a066543445bb71cc87c860ab2a852e700"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a066543445bb71cc87c860ab2a852e700">~TwoPhaseTransport</a> () override=default</td></tr>
+<tr class="memitem:a3486843cb892d827a0d4f2dfda13b2b9" id="r_a3486843cb892d827a0d4f2dfda13b2b9"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3486843cb892d827a0d4f2dfda13b2b9">laminar_prandtl1</a> () const</td></tr>
+<tr class="memitem:ae92b96fc9b029185579741b38607d641" id="r_ae92b96fc9b029185579741b38607d641"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae92b96fc9b029185579741b38607d641">laminar_prandtl2</a> () const</td></tr>
+<tr class="memitem:a84773b87e41aa73ae288ce95186cdd95" id="r_a84773b87e41aa73ae288ce95186cdd95"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84773b87e41aa73ae288ce95186cdd95">turbulent_prandtl</a> () const</td></tr>
+<tr class="memitem:a510c8ec4adc54073232e2f8e430816fa" id="r_a510c8ec4adc54073232e2f8e430816fa"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a510c8ec4adc54073232e2f8e430816fa">mu</a> () override</td></tr>
+<tr class="memdesc:a510c8ec4adc54073232e2f8e430816fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the dynamic visocity field.  <br /></td></tr>
+<tr class="memitem:a55bd36857d1914c1d55662bc2158ab12" id="r_a55bd36857d1914c1d55662bc2158ab12"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55bd36857d1914c1d55662bc2158ab12">alpha</a> () override</td></tr>
+<tr class="memdesc:a55bd36857d1914c1d55662bc2158ab12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the thermal diffusivity field (later divided by density, though)  <br /></td></tr>
+<tr class="memitem:ac5c5a48d4cbeb8e221b69c1768c3da08" id="r_ac5c5a48d4cbeb8e221b69c1768c3da08"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5c5a48d4cbeb8e221b69c1768c3da08">scalar_diffusivity</a> (const std::string &amp;scalar_name) override</td></tr>
+<tr class="memitem:a276c26b014891a3d4b773d9d69556e23" id="r_a276c26b014891a3d4b773d9d69556e23"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a276c26b014891a3d4b773d9d69556e23">beta</a> () const override</td></tr>
+<tr class="memdesc:a276c26b014891a3d4b773d9d69556e23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the thermal expansion coefficient.  <br /></td></tr>
+<tr class="memitem:ac26df0ac4bacc8ae5dddbd2f3dd991cb" id="r_ac26df0ac4bacc8ae5dddbd2f3dd991cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac26df0ac4bacc8ae5dddbd2f3dd991cb">beta_impl</a> (const int lev, const amrex::MFIter &amp;mfi, const amrex::Box &amp;bx, const amrex::Array4&lt; amrex::Real &gt; &amp;<a class="el" href="#a276c26b014891a3d4b773d9d69556e23">beta</a>) const override</td></tr>
+<tr class="memdesc:ac26df0ac4bacc8ae5dddbd2f3dd991cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the thermal expansion coefficient.  <br /></td></tr>
+<tr class="memitem:a1906dbe1e845da72c12362787eee3163" id="r_a1906dbe1e845da72c12362787eee3163"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1906dbe1e845da72c12362787eee3163">reference_temperature</a> () const override</td></tr>
+<tr class="memitem:a99a6c8f4c4b1fad6ef3c6b38f9ba0313" id="r_a99a6c8f4c4b1fad6ef3c6b38f9ba0313"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99a6c8f4c4b1fad6ef3c6b38f9ba0313">ref_theta</a> () const override</td></tr>
+<tr class="memdesc:a99a6c8f4c4b1fad6ef3c6b38f9ba0313"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the reference temperature.  <br /></td></tr>
+<tr class="memitem:a56117493c31eea206fecaaa84245bacb" id="r_a56117493c31eea206fecaaa84245bacb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56117493c31eea206fecaaa84245bacb">ref_theta_impl</a> (const int lev, const amrex::MFIter &amp;mfi, const amrex::Box &amp;bx, const amrex::Array4&lt; amrex::Real &gt; &amp;<a class="el" href="#a99a6c8f4c4b1fad6ef3c6b38f9ba0313">ref_theta</a>) const override</td></tr>
+<tr class="memdesc:a56117493c31eea206fecaaa84245bacb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the reference temperature.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aa55693b95f6581fce815b434f0a02bce" id="r_aa55693b95f6581fce815b434f0a02bce"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa55693b95f6581fce815b434f0a02bce">identifier</a> ()</td></tr>
+<tr class="memitem:aaa4b438cbb281fd6deaac98474ac449f" id="r_aaa4b438cbb281fd6deaac98474ac449f"><td class="memItemLeft" align="right" valign="top">static amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa4b438cbb281fd6deaac98474ac449f">laminar_schmidt</a> (const std::string &amp;scalar_name)</td></tr>
+<tr class="memitem:a02f855857d27e3a1005e58640d99395a" id="r_a02f855857d27e3a1005e58640d99395a"><td class="memItemLeft" align="right" valign="top">static amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02f855857d27e3a1005e58640d99395a">turbulent_schmidt</a> (const std::string &amp;scalar_name)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:aca41a7c85091630c1b1213814b102214" id="r_aca41a7c85091630c1b1213814b102214"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca41a7c85091630c1b1213814b102214">constant_properties</a> = false</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a1436ad52b17d560e05feb8fec8465eb1" id="r_a1436ad52b17d560e05feb8fec8465eb1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf.html#aa6d05074dd479f00d442c35440142e99">InterfaceCapturingMethod</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1436ad52b17d560e05feb8fec8465eb1">get_iface_method</a> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a5865a46605c6ac49708bed7f2e1bdd75" id="r_a5865a46605c6ac49708bed7f2e1bdd75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5865a46605c6ac49708bed7f2e1bdd75">m_repo</a></td></tr>
+<tr class="memdesc:a5865a46605c6ac49708bed7f2e1bdd75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the field repository (for creating scratch fields)  <br /></td></tr>
+<tr class="memitem:a800e23cf17cfd0387ff0e78f580e760d" id="r_a800e23cf17cfd0387ff0e78f580e760d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_physics_mgr.html">PhysicsMgr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a800e23cf17cfd0387ff0e78f580e760d">m_physics_mgr</a></td></tr>
+<tr class="memdesc:a800e23cf17cfd0387ff0e78f580e760d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the physics manager.  <br /></td></tr>
+<tr class="memitem:ab8d62cd0ff3b442f31dc7564650738e8" id="r_ab8d62cd0ff3b442f31dc7564650738e8"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8d62cd0ff3b442f31dc7564650738e8">m_mu1</a> {1.0e-3_rt}</td></tr>
+<tr class="memdesc:ab8d62cd0ff3b442f31dc7564650738e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Phase 1 (liquid) dynamic molecular viscosity.  <br /></td></tr>
+<tr class="memitem:aa7f6df7f8d77278bf517cc46fd11c253" id="r_aa7f6df7f8d77278bf517cc46fd11c253"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7f6df7f8d77278bf517cc46fd11c253">m_mu2</a> {1.0e-5_rt}</td></tr>
+<tr class="memdesc:aa7f6df7f8d77278bf517cc46fd11c253"><td class="mdescLeft">&#160;</td><td class="mdescRight">Phase 2 (gas) dynamic molecular viscosity.  <br /></td></tr>
+<tr class="memitem:a43c89851d2fd07b2da522c693248f3c0" id="r_a43c89851d2fd07b2da522c693248f3c0"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43c89851d2fd07b2da522c693248f3c0">m_Pr1</a> {7.2_rt}</td></tr>
+<tr class="memdesc:a43c89851d2fd07b2da522c693248f3c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Phase 1 (liquid) Prandtl number.  <br /></td></tr>
+<tr class="memitem:acabd74fbfc0f4eefdf6fb60be0cd3dc5" id="r_acabd74fbfc0f4eefdf6fb60be0cd3dc5"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acabd74fbfc0f4eefdf6fb60be0cd3dc5">m_Pr2</a> {0.7_rt}</td></tr>
+<tr class="memdesc:acabd74fbfc0f4eefdf6fb60be0cd3dc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Phase 2 (gas) Prandtl number.  <br /></td></tr>
+<tr class="memitem:af19aed5c78e28e581b8243a1e6930fc1" id="r_af19aed5c78e28e581b8243a1e6930fc1"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af19aed5c78e28e581b8243a1e6930fc1">m_Prt</a> {1.0_rt}</td></tr>
+<tr class="memdesc:af19aed5c78e28e581b8243a1e6930fc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turbulent Prandtl number.  <br /></td></tr>
+<tr class="memitem:a833035a341e45c4c34fd176a4743727e" id="r_a833035a341e45c4c34fd176a4743727e"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a833035a341e45c4c34fd176a4743727e">m_constant_beta</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a833035a341e45c4c34fd176a4743727e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant thermal expansion coefficient.  <br /></td></tr>
+<tr class="memitem:a97872bcb8ebb24b68f3d3fa8963a28d8" id="r_a97872bcb8ebb24b68f3d3fa8963a28d8"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97872bcb8ebb24b68f3d3fa8963a28d8">m_reference_temperature</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:a97872bcb8ebb24b68f3d3fa8963a28d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference temperature.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Two-phase fluid transport model with piece-wise constant properties </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a6cdbe35db06b050527b36eaaa1148208" name="a6cdbe35db06b050527b36eaaa1148208"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cdbe35db06b050527b36eaaa1148208">&#9670;&#160;</a></span>TwoPhaseTransport()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::transport::TwoPhaseTransport::TwoPhaseTransport </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a066543445bb71cc87c860ab2a852e700" name="a066543445bb71cc87c860ab2a852e700"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a066543445bb71cc87c860ab2a852e700">&#9670;&#160;</a></span>~TwoPhaseTransport()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::transport::TwoPhaseTransport::~TwoPhaseTransport </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a55bd36857d1914c1d55662bc2158ab12" name="a55bd36857d1914c1d55662bc2158ab12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55bd36857d1914c1d55662bc2158ab12">&#9670;&#160;</a></span>alpha()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt; kynema_sgf::transport::TwoPhaseTransport::alpha </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the thermal diffusivity field (later divided by density, though) </p>
+
+</div>
+</div>
+<a id="a276c26b014891a3d4b773d9d69556e23" name="a276c26b014891a3d4b773d9d69556e23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a276c26b014891a3d4b773d9d69556e23">&#9670;&#160;</a></span>beta()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt; kynema_sgf::transport::TwoPhaseTransport::beta </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the thermal expansion coefficient. </p>
+
+</div>
+</div>
+<a id="ac26df0ac4bacc8ae5dddbd2f3dd991cb" name="ac26df0ac4bacc8ae5dddbd2f3dd991cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac26df0ac4bacc8ae5dddbd2f3dd991cb">&#9670;&#160;</a></span>beta_impl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::transport::TwoPhaseTransport::beta_impl </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::MFIter &amp;</td>          <td class="paramname"><span class="paramname"><em>mfi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Box &amp;</td>          <td class="paramname"><span class="paramname"><em>bx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Array4&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>beta</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the thermal expansion coefficient. </p>
+
+</div>
+</div>
+<a id="a1436ad52b17d560e05feb8fec8465eb1" name="a1436ad52b17d560e05feb8fec8465eb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1436ad52b17d560e05feb8fec8465eb1">&#9670;&#160;</a></span>get_iface_method()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf.html#aa6d05074dd479f00d442c35440142e99">InterfaceCapturingMethod</a> kynema_sgf::transport::TwoPhaseTransport::get_iface_method </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa55693b95f6581fce815b434f0a02bce" name="aa55693b95f6581fce815b434f0a02bce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa55693b95f6581fce815b434f0a02bce">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::transport::TwoPhaseTransport::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3486843cb892d827a0d4f2dfda13b2b9" name="a3486843cb892d827a0d4f2dfda13b2b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3486843cb892d827a0d4f2dfda13b2b9">&#9670;&#160;</a></span>laminar_prandtl1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::transport::TwoPhaseTransport::laminar_prandtl1 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae92b96fc9b029185579741b38607d641" name="ae92b96fc9b029185579741b38607d641"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae92b96fc9b029185579741b38607d641">&#9670;&#160;</a></span>laminar_prandtl2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::transport::TwoPhaseTransport::laminar_prandtl2 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaa4b438cbb281fd6deaac98474ac449f" name="aaa4b438cbb281fd6deaac98474ac449f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa4b438cbb281fd6deaac98474ac449f">&#9670;&#160;</a></span>laminar_schmidt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::transport::TwoPhaseTransport::laminar_schmidt </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>scalar_name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a510c8ec4adc54073232e2f8e430816fa" name="a510c8ec4adc54073232e2f8e430816fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a510c8ec4adc54073232e2f8e430816fa">&#9670;&#160;</a></span>mu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt; kynema_sgf::transport::TwoPhaseTransport::mu </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the dynamic visocity field. </p>
+
+</div>
+</div>
+<a id="a99a6c8f4c4b1fad6ef3c6b38f9ba0313" name="a99a6c8f4c4b1fad6ef3c6b38f9ba0313"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99a6c8f4c4b1fad6ef3c6b38f9ba0313">&#9670;&#160;</a></span>ref_theta()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt; kynema_sgf::transport::TwoPhaseTransport::ref_theta </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the reference temperature. </p>
+
+</div>
+</div>
+<a id="a56117493c31eea206fecaaa84245bacb" name="a56117493c31eea206fecaaa84245bacb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56117493c31eea206fecaaa84245bacb">&#9670;&#160;</a></span>ref_theta_impl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::transport::TwoPhaseTransport::ref_theta_impl </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::MFIter &amp;</td>          <td class="paramname"><span class="paramname"><em>mfi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Box &amp;</td>          <td class="paramname"><span class="paramname"><em>bx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Array4&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>ref_theta</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the reference temperature. </p>
+
+</div>
+</div>
+<a id="a1906dbe1e845da72c12362787eee3163" name="a1906dbe1e845da72c12362787eee3163"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1906dbe1e845da72c12362787eee3163">&#9670;&#160;</a></span>reference_temperature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::transport::TwoPhaseTransport::reference_temperature </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac5c5a48d4cbeb8e221b69c1768c3da08" name="ac5c5a48d4cbeb8e221b69c1768c3da08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5c5a48d4cbeb8e221b69c1768c3da08">&#9670;&#160;</a></span>scalar_diffusivity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt; kynema_sgf::transport::TwoPhaseTransport::scalar_diffusivity </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>scalar_name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a84773b87e41aa73ae288ce95186cdd95" name="a84773b87e41aa73ae288ce95186cdd95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84773b87e41aa73ae288ce95186cdd95">&#9670;&#160;</a></span>turbulent_prandtl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::transport::TwoPhaseTransport::turbulent_prandtl </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a02f855857d27e3a1005e58640d99395a" name="a02f855857d27e3a1005e58640d99395a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02f855857d27e3a1005e58640d99395a">&#9670;&#160;</a></span>turbulent_schmidt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::transport::TwoPhaseTransport::turbulent_schmidt </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>scalar_name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="aca41a7c85091630c1b1213814b102214" name="aca41a7c85091630c1b1213814b102214"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca41a7c85091630c1b1213814b102214">&#9670;&#160;</a></span>constant_properties</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::transport::TwoPhaseTransport::constant_properties = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a833035a341e45c4c34fd176a4743727e" name="a833035a341e45c4c34fd176a4743727e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a833035a341e45c4c34fd176a4743727e">&#9670;&#160;</a></span>m_constant_beta</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::transport::TwoPhaseTransport::m_constant_beta {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constant thermal expansion coefficient. </p>
+
+</div>
+</div>
+<a id="ab8d62cd0ff3b442f31dc7564650738e8" name="ab8d62cd0ff3b442f31dc7564650738e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8d62cd0ff3b442f31dc7564650738e8">&#9670;&#160;</a></span>m_mu1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::transport::TwoPhaseTransport::m_mu1 {1.0e-3_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Phase 1 (liquid) dynamic molecular viscosity. </p>
+
+</div>
+</div>
+<a id="aa7f6df7f8d77278bf517cc46fd11c253" name="aa7f6df7f8d77278bf517cc46fd11c253"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7f6df7f8d77278bf517cc46fd11c253">&#9670;&#160;</a></span>m_mu2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::transport::TwoPhaseTransport::m_mu2 {1.0e-5_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Phase 2 (gas) dynamic molecular viscosity. </p>
+
+</div>
+</div>
+<a id="a800e23cf17cfd0387ff0e78f580e760d" name="a800e23cf17cfd0387ff0e78f580e760d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a800e23cf17cfd0387ff0e78f580e760d">&#9670;&#160;</a></span>m_physics_mgr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_physics_mgr.html">PhysicsMgr</a>&amp; kynema_sgf::transport::TwoPhaseTransport::m_physics_mgr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reference to the physics manager. </p>
+
+</div>
+</div>
+<a id="a43c89851d2fd07b2da522c693248f3c0" name="a43c89851d2fd07b2da522c693248f3c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43c89851d2fd07b2da522c693248f3c0">&#9670;&#160;</a></span>m_Pr1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::transport::TwoPhaseTransport::m_Pr1 {7.2_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Phase 1 (liquid) Prandtl number. </p>
+
+</div>
+</div>
+<a id="acabd74fbfc0f4eefdf6fb60be0cd3dc5" name="acabd74fbfc0f4eefdf6fb60be0cd3dc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acabd74fbfc0f4eefdf6fb60be0cd3dc5">&#9670;&#160;</a></span>m_Pr2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::transport::TwoPhaseTransport::m_Pr2 {0.7_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Phase 2 (gas) Prandtl number. </p>
+
+</div>
+</div>
+<a id="af19aed5c78e28e581b8243a1e6930fc1" name="af19aed5c78e28e581b8243a1e6930fc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af19aed5c78e28e581b8243a1e6930fc1">&#9670;&#160;</a></span>m_Prt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::transport::TwoPhaseTransport::m_Prt {1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Turbulent Prandtl number. </p>
+
+</div>
+</div>
+<a id="a97872bcb8ebb24b68f3d3fa8963a28d8" name="a97872bcb8ebb24b68f3d3fa8963a28d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97872bcb8ebb24b68f3d3fa8963a28d8">&#9670;&#160;</a></span>m_reference_temperature</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::transport::TwoPhaseTransport::m_reference_temperature {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reference temperature. </p>
+
+</div>
+</div>
+<a id="a5865a46605c6ac49708bed7f2e1bdd75" name="a5865a46605c6ac49708bed7f2e1bdd75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5865a46605c6ac49708bed7f2e1bdd75">&#9670;&#160;</a></span>m_repo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; kynema_sgf::transport::TwoPhaseTransport::m_repo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reference to the field repository (for creating scratch fields) </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/transport_models/<a class="el" href="_two_phase_transport_8_h_source.html">TwoPhaseTransport.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

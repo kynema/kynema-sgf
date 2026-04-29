@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::BCScalar Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::BCScalar Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_b_c_scalar.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bcscalar-class-reference">
+<h1>BCScalar Class Reference<a class="headerlink" href="#bcscalar-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::BCScalar Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_b_c_scalar.html">BCScalar</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="classkynema__sgf_1_1_b_c_scalar-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::BCScalar Class Reference<div class="ingroups"><a class="el" href="group__core.html">Kynema-SGF core</a> &raquo; <a class="el" href="group__fields.html">Field management</a> &raquo; <a class="el" href="group__field__bc.html">Boundary conditions management</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_b_c_interface_8_h_source.html">BCInterface.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::BCScalar:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_b_c_scalar__inherit__graph.svg" width="194" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::BCScalar:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_b_c_scalar__coll__graph.svg" width="100%" height="560"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a6c7a98b5cf0bf6c202aef3f2645f1018" id="r_a6c7a98b5cf0bf6c202aef3f2645f1018"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c7a98b5cf0bf6c202aef3f2645f1018">BCScalar</a> (<a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;field)</td></tr>
+<tr class="inherit_header pub_methods_classkynema__sgf_1_1_b_c_iface"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classkynema__sgf_1_1_b_c_iface')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classkynema__sgf_1_1_b_c_iface.html">kynema_sgf::BCIface</a></td></tr>
+<tr class="memitem:aca86108fc1aa28582e729be532ee4701 inherit pub_methods_classkynema__sgf_1_1_b_c_iface" id="r_aca86108fc1aa28582e729be532ee4701"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_iface.html#aca86108fc1aa28582e729be532ee4701">BCIface</a> (<a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;field)</td></tr>
+<tr class="memitem:a8f14bc3b87ec211bd899fa113ba0dda0 inherit pub_methods_classkynema__sgf_1_1_b_c_iface" id="r_a8f14bc3b87ec211bd899fa113ba0dda0"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_iface.html#a8f14bc3b87ec211bd899fa113ba0dda0">~BCIface</a> ()=default</td></tr>
+<tr class="memitem:a847fa854bf0641e0fb4bcf4520336a4b inherit pub_methods_classkynema__sgf_1_1_b_c_iface" id="r_a847fa854bf0641e0fb4bcf4520336a4b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_iface.html#a847fa854bf0641e0fb4bcf4520336a4b">operator()</a> (amrex::Real value=0.0_rt)</td></tr>
+<tr class="memdesc:a847fa854bf0641e0fb4bcf4520336a4b inherit pub_methods_classkynema__sgf_1_1_b_c_iface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator that performs init actions and syncs the <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> data to device.  <br /></td></tr>
+<tr class="memitem:a2ce6ed2e4c432ee9f7f77606e29c769e inherit pub_methods_classkynema__sgf_1_1_b_c_iface" id="r_a2ce6ed2e4c432ee9f7f77606e29c769e"><td class="memItemLeft" align="right" valign="top">amrex::Array&lt; const std::string, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_iface.html#a2ce6ed2e4c432ee9f7f77606e29c769e">get_dirichlet_udfs</a> ()</td></tr>
+<tr class="memdesc:a2ce6ed2e4c432ee9f7f77606e29c769e inherit pub_methods_classkynema__sgf_1_1_b_c_iface"><td class="mdescLeft">&#160;</td><td class="mdescRight">User-defined functions for Dirichlet-type boundaries.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:abed7872ff02252702ba5ade398072c11" id="r_abed7872ff02252702ba5ade398072c11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abed7872ff02252702ba5ade398072c11">set_bcrec</a> () override</td></tr>
+<tr class="memdesc:abed7872ff02252702ba5ade398072c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup AMReX mathematical <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> types.  <br /></td></tr>
+<tr class="memitem:ae1fb9b0ab069e0a0e08e274bd2c405ac" id="r_ae1fb9b0ab069e0a0e08e274bd2c405ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1fb9b0ab069e0a0e08e274bd2c405ac">read_values</a> () override</td></tr>
+<tr class="memdesc:ae1fb9b0ab069e0a0e08e274bd2c405ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read input data for specific fields based on <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> types.  <br /></td></tr>
+<tr class="inherit_header pro_methods_classkynema__sgf_1_1_b_c_iface"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classkynema__sgf_1_1_b_c_iface')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="classkynema__sgf_1_1_b_c_iface.html">kynema_sgf::BCIface</a></td></tr>
+<tr class="memitem:a7901d68c38846b35048f5b47667abffe inherit pro_methods_classkynema__sgf_1_1_b_c_iface" id="r_a7901d68c38846b35048f5b47667abffe"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_iface.html#a7901d68c38846b35048f5b47667abffe">read_bctype</a> ()</td></tr>
+<tr class="memdesc:a7901d68c38846b35048f5b47667abffe inherit pro_methods_classkynema__sgf_1_1_b_c_iface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse custom BCs specified for this field.  <br /></td></tr>
+<tr class="memitem:ab118428456661616094c479f70047279 inherit pro_methods_classkynema__sgf_1_1_b_c_iface" id="r_ab118428456661616094c479f70047279"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_iface.html#ab118428456661616094c479f70047279">set_bcfuncs</a> ()</td></tr>
+<tr class="memdesc:ab118428456661616094c479f70047279 inherit pro_methods_classkynema__sgf_1_1_b_c_iface"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> functions for Neumann type boundaries.  <br /></td></tr>
+<tr class="memitem:aa5aeb86d7005d08127867c28d1d04710 inherit pro_methods_classkynema__sgf_1_1_b_c_iface" id="r_aa5aeb86d7005d08127867c28d1d04710"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_iface.html#aa5aeb86d7005d08127867c28d1d04710">set_default_value</a> (amrex::Real value)</td></tr>
+<tr class="memdesc:aa5aeb86d7005d08127867c28d1d04710 inherit pro_methods_classkynema__sgf_1_1_b_c_iface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set default <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> values for the field.  <br /></td></tr>
+<tr class="memitem:a2f92611f890739af06a0057206949ed3 inherit pro_methods_classkynema__sgf_1_1_b_c_iface" id="r_a2f92611f890739af06a0057206949ed3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_iface.html#a2f92611f890739af06a0057206949ed3">set_bcrec_lo</a> (int dir, amrex::BCType::mathematicalBndryTypes bcrec)</td></tr>
+<tr class="memdesc:a2f92611f890739af06a0057206949ed3 inherit pro_methods_classkynema__sgf_1_1_b_c_iface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set AMReX mathematical boundary types for the lower boundaries.  <br /></td></tr>
+<tr class="memitem:a16cb5ec5f4a3047c5ddae63526a46246 inherit pro_methods_classkynema__sgf_1_1_b_c_iface" id="r_a16cb5ec5f4a3047c5ddae63526a46246"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_iface.html#a16cb5ec5f4a3047c5ddae63526a46246">set_bcrec_hi</a> (int dir, amrex::BCType::mathematicalBndryTypes bcrec)</td></tr>
+<tr class="memdesc:a16cb5ec5f4a3047c5ddae63526a46246 inherit pro_methods_classkynema__sgf_1_1_b_c_iface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set AMReX mathematical boundary types for the upper boundaries.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_types_classkynema__sgf_1_1_b_c_iface"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_types_classkynema__sgf_1_1_b_c_iface')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Types inherited from <a class="el" href="classkynema__sgf_1_1_b_c_iface.html">kynema_sgf::BCIface</a></td></tr>
+<tr class="memitem:a75018daf6e88d10aa7fce3eededd0231 inherit pub_types_classkynema__sgf_1_1_b_c_iface" id="r_a75018daf6e88d10aa7fce3eededd0231"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_iface.html#a75018daf6e88d10aa7fce3eededd0231">IncfloBC</a> = amrex::GpuArray&lt;<a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a>, AMREX_SPACEDIM * 2&gt;</td></tr>
+<tr class="inherit_header pro_attribs_classkynema__sgf_1_1_b_c_iface"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classkynema__sgf_1_1_b_c_iface')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classkynema__sgf_1_1_b_c_iface.html">kynema_sgf::BCIface</a></td></tr>
+<tr class="memitem:a30a15a4a95cc00bade2e9801f79f79c6 inherit pro_attribs_classkynema__sgf_1_1_b_c_iface" id="r_a30a15a4a95cc00bade2e9801f79f79c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_b_c_iface.html#a30a15a4a95cc00bade2e9801f79f79c6">m_field</a></td></tr>
+<tr class="memdesc:a30a15a4a95cc00bade2e9801f79f79c6 inherit pro_attribs_classkynema__sgf_1_1_b_c_iface"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> instance where <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> is being set.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Boundary condition initialization for scalar transport variables </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a6c7a98b5cf0bf6c202aef3f2645f1018" name="a6c7a98b5cf0bf6c202aef3f2645f1018"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c7a98b5cf0bf6c202aef3f2645f1018">&#9670;&#160;</a></span>BCScalar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::BCScalar::BCScalar </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>field</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="ae1fb9b0ab069e0a0e08e274bd2c405ac" name="ae1fb9b0ab069e0a0e08e274bd2c405ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1fb9b0ab069e0a0e08e274bd2c405ac">&#9670;&#160;</a></span>read_values()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BCScalar::read_values </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read input data for specific fields based on <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> types. </p>
+
+<p>Implements <a class="el" href="classkynema__sgf_1_1_b_c_iface.html#ae4bd07817b5744a96e8b93b7c97a020b">kynema_sgf::BCIface</a>.</p>
+
+</div>
+</div>
+<a id="abed7872ff02252702ba5ade398072c11" name="abed7872ff02252702ba5ade398072c11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abed7872ff02252702ba5ade398072c11">&#9670;&#160;</a></span>set_bcrec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BCScalar::set_bcrec </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setup AMReX mathematical <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> types. </p>
+
+<p>Implements <a class="el" href="classkynema__sgf_1_1_b_c_iface.html#a3c526cb306d8bd501bb755b07c262bfa">kynema_sgf::BCIface</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/<a class="el" href="_b_c_interface_8_h_source.html">BCInterface.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/<a class="el" href="_b_c_interface_8cpp.html">BCInterface.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

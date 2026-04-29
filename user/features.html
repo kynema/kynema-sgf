@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capabilities &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Compiling Kynema-SGF" href="build.html" />
+    <link rel="prev" title="User Manual" href="user.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Capabilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#methods-and-models">Methods and models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flow-physics">Flow physics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#high-performance-computing">High performance computing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+      <li class="breadcrumb-item active">Capabilities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/features.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="capabilities">
+<span id="id1"></span><h1>Capabilities<a class="headerlink" href="#capabilities" title="Link to this heading"></a></h1>
+<p>This section documents a non-exhaustive list of current Kynema-SGF
+capabilities.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If your project relies on a capability that is not yet present in
+Kynema-SGF, please create an issue on the code project page.</p>
+<p>Please acknowledge as a publication co-author any developer that
+has significantly contributed to implementing or improving specific
+capability that was used for that publication.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The capabilities are linked to the relevant input file references
+(keyword <cite>inp</cite>) and documentation (keyword <cite>doc</cite>). Searching for
+those keywords in the <cite>test/test_files</cite> directory will give
+concrete examples of the feature usage.</p>
+</div>
+<section id="methods-and-models">
+<h2>Methods and models<a class="headerlink" href="#methods-and-models" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Numerical methods</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Advection: second order, piecewise parabolic, piecewise linear, WENO, Bell-Dawson-Shubin [<a class="reference internal" href="../theory/theory.html#discretization"><span class="std std-ref">doc</span></a>, <a class="reference internal" href="inputs_incflo.html#inputs-incflo-advection"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Diffusion: second order, explicit, Crank-Nicolson, and implicit [<a class="reference internal" href="../theory/theory.html#discretization"><span class="std std-ref">doc</span></a>, <a class="reference internal" href="inputs_incflo.html#inputs-incflo-diffusion"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Mesh refinement: static refinement for specified regions [<a class="reference internal" href="inputs_tagging.html#inputs-static-refinement"><span class="std std-ref">inp</span></a>], adaptive mesh refinement [<a class="reference internal" href="inputs_amr.html#inputs-amr"><span class="std std-ref">inp</span></a>] (e.g., field based, curvature, q-criterion, vorticity [<a class="reference internal" href="inputs_tagging.html#inputs-tagging"><span class="std std-ref">inp</span></a>])</p></li>
+<li><p>Mesh mapping for non-uniform cartesian grids [<a class="reference internal" href="../theory/mapping.html#mapping"><span class="std std-ref">doc</span></a>, <a class="reference internal" href="inputs_geometry.html#inputs-geometry"><span class="std std-ref">inp</span></a>]</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Equations systems</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Incompressible and low Mach formulations of Navier-Stokes <a class="reference internal" href="../theory/theory.html#governing-equations"><span class="std std-ref">[doc]</span></a></p></li>
+<li><p>Temperature</p></li>
+<li><p>Level set</p></li>
+<li><p>Subgrid scale kinetic energy <a class="reference internal" href="../theory/theory.html#turbulence"><span class="std std-ref">[doc]</span></a></p></li>
+<li><p>Specific dissipation rate <a class="reference internal" href="../theory/theory.html#turbulence"><span class="std std-ref">[doc]</span></a></p></li>
+<li><p>Passive scalar</p></li>
+<li><p>Source terms for these PDEs [<a class="reference internal" href="../theory/theory.html#source-terms"><span class="std std-ref">doc</span></a>, <a class="reference internal" href="inputs_Momentum_Sources.html#inputs-momentum-sources"><span class="std std-ref">inp</span></a>]</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Turbulence modeling</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Large Eddy Simulation: constant Smagorinsky,  AMD, one equation <span class="math notranslate nohighlight">\(k_{sgs}\)</span>, Kosovic [<a class="reference internal" href="../theory/theory.html#turbulence"><span class="std std-ref">doc</span></a>, <a class="reference internal" href="inputs_turbulence.html#inputs-turbulence"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Wall models: log-law, constant stress, Schumann [<a class="reference internal" href="../theory/theory.html#wall-models"><span class="std std-ref">doc</span></a>, <a class="reference internal" href="inputs_ABL.html#inputs-abl"><span class="std std-ref">inp</span></a>], dynamic (wave model) [<a class="reference internal" href="../theory/theory.html#wall-models"><span class="std std-ref">doc</span></a>, <a class="reference internal" href="inputs_Boundary_conditions.html#inputs-boundary-conditions"><span class="std std-ref">inp</span></a></p></li>
+<li><p>Reynolds-Average Navier-Stokes: <span class="math notranslate nohighlight">\(k\)</span>-<span class="math notranslate nohighlight">\(\omega\)</span> SST (and IDDES variant) and One-equation TKE model of Axell and Liungman [<a class="reference internal" href="../theory/theory.html#turbulence"><span class="std std-ref">doc</span></a>, <a class="reference internal" href="inputs_turbulence.html#inputs-turbulence"><span class="std std-ref">inp</span></a>]</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Transport models</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Constant transport coefficients [<a class="reference internal" href="inputs_transport.html#inputs-transport"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Two phase transport (separate coefficients for each material) [<a class="reference internal" href="inputs_transport.html#inputs-transport"><span class="std std-ref">inp</span></a>]</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="flow-physics">
+<h2>Flow physics<a class="headerlink" href="#flow-physics" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Wind energy physics</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Atmospheric boundary layer (ABL): various stability states (stable, unstable, neutral), precursor simulations with inflow boundary planes for wind farm simulations, anelastic formulation, mesoscale forcing, geostrophic forcing, Coriolis forcing, Monin-Obukhov similarity theory, gravity forcing, gravity wave damping [<a class="reference internal" href="inputs_ABL.html#inputs-abl"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Actuator turbine representations: Joukowsky disks, uniform disks, actuator line [<a class="reference internal" href="../theory/theory.html#turbine-models"><span class="std std-ref">doc</span></a>, <a class="reference internal" href="inputs_Actuator.html#inputs-actuator"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Coupling with OpenFAST</p></li>
+<li><p>Coupling with Nalu-Wind for blade resolved simulations</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Multiphase flows [<a class="reference internal" href="../theory/theory.html#multiphase"><span class="std std-ref">doc</span></a>]</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Prescribed flow cases for verification of volume-of-fluid transport: Zalesak disk, vortex patch</p></li>
+<li><p>Prescribed flow cases for verification of momentum equation coupled to volume-of-fluid transport: Zalesak disk scalar vel, vortex patch scalar vel</p></li>
+<li><p>Validation and demonstration cases: sloshing tank, dam break, breaking waves, falling or inertial droplet</p></li>
+<li><p>Methods to initialize volume-of-fluid field from an initial levelset field</p></li>
+<li><p>Monitors conservation of mass and momentum</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Ocean wave forcing (for multiphase flows) [<a class="reference internal" href="inputs_ocean_waves.html#inputs-ocean-waves"><span class="std std-ref">inp</span></a>]</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Wave types: linear (monochromatic), Stokes (second to fifth order), irregular (input by modes files from HOS-Ocean or HOS-NWT)</p></li>
+<li><p>Relaxation zones force wave profile to generate waves at lower x boundary or force toward quiescent flat interface at upper x boundary. Wave profile can also be enforced (instead of numerical beach) at upper x boundary for periodic simulations.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Boundary conditions</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Periodic, outflow, inflow, walls, user-defined inflows [<a class="reference internal" href="inputs_Boundary_conditions.html#inputs-boundary-conditions"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Wall models (e.g., wall functions, stress) [<a class="reference internal" href="../theory/theory.html#wall-models"><span class="std std-ref">doc</span></a>, <a class="reference internal" href="inputs_ABL.html#inputs-abl"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Inflow planes from precursor simulations [<a class="reference internal" href="abl_bndry_io.html#kynemasgf-abl-bndry-io"><span class="std std-ref">doc</span></a>, <a class="reference internal" href="inputs_ABL.html#inputs-abl"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Mesoscale forcing [<a class="reference internal" href="../theory/theory.html#mesoscale-forcing"><span class="std std-ref">doc</span></a>, <a class="reference internal" href="inputs_ABL_meso_forcing.html#inputs-meso-forcing"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Synthetic turbulence [<a class="reference internal" href="inputs_SyntheticTurbulence.html#inputs-synthetic-turbulence"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Arbitrarily spatially and time varying boundary conditions using Python tools [<a class="reference internal" href="abl_bndry_io.html#inputs-native-boundary-plane"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Sponge layer driven ABL simulations</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Geometry</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Immersed boundary forcing method with stair-case type terrain and wall function [<a class="reference internal" href="../walkthrough/terrain.html#terrain"><span class="std std-ref">doc</span></a>]</p></li>
+<li><p>Coupling with Nalu-Wind for body-conforming meshes with overset methodology</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Miscellaneous cases</p>
+<ul class="simple">
+<li><p>Verification and validation cases: method of manufactured solutions, convecting Taylor-Vortex, Rayleigh-Taylor, passive scalar, Burggraf flow, channel flow, Ekman spiral, vortex dipole, vortex ring</p></li>
+</ul>
+</li>
+<li><p>Postprocessing</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Visualization with VisIt, Paraview, yt</p></li>
+<li><p>Sampling of fields with planes, point probes, lines, volumes, lidar, and radar [<a class="reference internal" href="post_processing_examples.html#post-processing"><span class="std std-ref">doc</span></a>, <a class="reference internal" href="inputs_Sampling.html#inputs-sampling"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Sampling of fields at probes that follow free surface of liquid-gas flows [<a class="reference internal" href="sampling_freesurfacesampler.html#inputs-sampling-freesurface-sampler"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Scalar outputs such as kinetic energy, enstrophy, total wave energy, and norms [<a class="reference internal" href="post_processing_examples.html#post-processing"><span class="std std-ref">doc</span></a>, <a class="reference internal" href="inputs_Sampling.html#inputs-sampling"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Turbulence averaging quantities such as Reynolds stresses [<a class="reference internal" href="inputs_Averaging.html#inputs-averaging"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>Field plane averaging and second and third order moments</p></li>
+<li><p>Derived fields and field operators such as vorticity, q-criterion, strain-rates, gradients, divergence, Laplacian [<a class="reference internal" href="inputs_io.html#inputs-io-derived"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>In-situ post-processing with Ascent</p></li>
+<li><p>Compression for field files [<a class="reference internal" href="compression.html#compression"><span class="std std-ref">doc</span></a>, <a class="reference internal" href="inputs_io.html#inputs-io"><span class="std std-ref">inp</span></a>]</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="high-performance-computing">
+<h2>High performance computing<a class="headerlink" href="#high-performance-computing" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Highly parallelized and performance portable</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Shared memory parallelism with OpenMP threading</p></li>
+<li><p>Distributed memory parallelism with MPI</p></li>
+<li><p>Supports all major compilers (e.g., GCC, Intel, LLVM)</p></li>
+<li><p>Runs on all major GPU vendors (NVIDIA, AMD, Intel)</p></li>
+<li><p>Supported build systems: cmake, spack</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Supported linear solvers</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>native AMReX solvers such as MLMG [<a class="reference internal" href="inputs_MLMG.html#inputs-mlmg"><span class="std std-ref">inp</span></a>]</p></li>
+<li><p>hypre</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="user.html" class="btn btn-neutral float-left" title="User Manual" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="build.html" class="btn btn-neutral float-right" title="Compiling Kynema-SGF" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

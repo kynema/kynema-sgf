@@ -1,0 +1,1040 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::ABLMesoscaleForcing Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::ABLMesoscaleForcing Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_a_b_l_mesoscale_forcing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ablmesoscaleforcing-class-reference">
+<h1>ABLMesoscaleForcing Class Reference<a class="headerlink" href="#ablmesoscaleforcing-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::ABLMesoscaleForcing Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html">ABLMesoscaleForcing</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::ABLMesoscaleForcing Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_a_b_l_mesoscale_forcing_8_h_source.html">ABLMesoscaleForcing.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::ABLMesoscaleForcing:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_a_b_l_mesoscale_forcing__inherit__graph.svg" width="483" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::ABLMesoscaleForcing:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_a_b_l_mesoscale_forcing__coll__graph.svg" width="391" height="470"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a77163b3c0e0b645e1b616a05c09c97a1" id="r_a77163b3c0e0b645e1b616a05c09c97a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77163b3c0e0b645e1b616a05c09c97a1">ABLMesoscaleForcing</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim, const std::string &amp;identifier)</td></tr>
+<tr class="memitem:ae20fdb3aea4f46dc87a095057cb17402" id="r_ae20fdb3aea4f46dc87a095057cb17402"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae20fdb3aea4f46dc87a095057cb17402">indirect_forcing_init</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a3e2f743109dce0118416c73f49bfcd0c" id="r_a3e2f743109dce0118416c73f49bfcd0c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e2f743109dce0118416c73f49bfcd0c">invert_mat</a> (const amrex::Array2D&lt; amrex::Real, 0, 3, 0, 3 &gt; &amp;m, amrex::Array2D&lt; amrex::Real, 0, 3, 0, 3 &gt; &amp;im)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a806c88c6022921f4f0d09457e8c473f6" id="r_a806c88c6022921f4f0d09457e8c473f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a806c88c6022921f4f0d09457e8c473f6">set_transition_weighting</a> ()</td></tr>
+<tr class="memitem:ae12c401155b109f74d2b903949c80399" id="r_ae12c401155b109f74d2b903949c80399"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae12c401155b109f74d2b903949c80399">update_weights</a> ()</td></tr>
+<tr class="memitem:a1212648400127e4c597ee64c294bf22a" id="r_a1212648400127e4c597ee64c294bf22a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1212648400127e4c597ee64c294bf22a">have_forcing_transition</a> ()</td></tr>
+<tr class="memitem:a07dd74a3fbcd86c55aa9c5dc1347a78c" id="r_a07dd74a3fbcd86c55aa9c5dc1347a78c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07dd74a3fbcd86c55aa9c5dc1347a78c">forcing_to_constant</a> ()</td></tr>
+<tr class="memitem:a151e9ecf53c1cd03381d47f3c44520df" id="r_a151e9ecf53c1cd03381d47f3c44520df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a151e9ecf53c1cd03381d47f3c44520df">constant_forcing_transition</a> (amrex::Vector&lt; amrex::Real &gt; &amp;error)</td></tr>
+<tr class="memitem:a64d50ee8604effbead4fa3648a0ef4c6" id="r_a64d50ee8604effbead4fa3648a0ef4c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64d50ee8604effbead4fa3648a0ef4c6">blend_forcings</a> (const amrex::Vector&lt; amrex::Real &gt; &amp;lower, const amrex::Vector&lt; amrex::Real &gt; &amp;upper, amrex::Vector&lt; amrex::Real &gt; &amp;error)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ad2e8157c0d45112137ae2fd436b0c4ec" id="r_ad2e8157c0d45112137ae2fd436b0c4ec"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2e8157c0d45112137ae2fd436b0c4ec">m_time</a></td></tr>
+<tr class="memitem:a454aeb424de7ee50217c202584985d54" id="r_a454aeb424de7ee50217c202584985d54"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a454aeb424de7ee50217c202584985d54">m_mesh</a></td></tr>
+<tr class="memitem:a975c53dab6ba434d50ec819aceba667a" id="r_a975c53dab6ba434d50ec819aceba667a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a975c53dab6ba434d50ec819aceba667a">m_idx_time</a> {0}</td></tr>
+<tr class="memitem:a175cbf9be5d1058af31bc34b40c2c9c3" id="r_a175cbf9be5d1058af31bc34b40c2c9c3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a175cbf9be5d1058af31bc34b40c2c9c3">m_axis</a> {2}</td></tr>
+<tr class="memitem:a0ff337175b16528324ec392cc4649341" id="r_a0ff337175b16528324ec392cc4649341"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ff337175b16528324ec392cc4649341">m_forcing_scheme</a></td></tr>
+<tr class="memitem:a561abccc9599a8fab22e5c6640d45a41" id="r_a561abccc9599a8fab22e5c6640d45a41"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a561abccc9599a8fab22e5c6640d45a41">m_gain_coeff</a></td></tr>
+<tr class="memitem:a6b6ee50a26c96f82679f20bfa0fb67a4" id="r_a6b6ee50a26c96f82679f20bfa0fb67a4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b6ee50a26c96f82679f20bfa0fb67a4">m_debug</a> {false}</td></tr>
+<tr class="memitem:a36fafdc6e09214f32a920daddf7a7ea6" id="r_a36fafdc6e09214f32a920daddf7a7ea6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36fafdc6e09214f32a920daddf7a7ea6">m_tendency</a> {false}</td></tr>
+<tr class="memitem:a459015150946d41937043e3ece92cd6e" id="r_a459015150946d41937043e3ece92cd6e"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a459015150946d41937043e3ece92cd6e">m_zht</a></td></tr>
+<tr class="memitem:a67ba09ffd7eb78badf0ce01fe56a68a4" id="r_a67ba09ffd7eb78badf0ce01fe56a68a4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67ba09ffd7eb78badf0ce01fe56a68a4">m_nht</a> {0}</td></tr>
+<tr class="memitem:a5811cc432af165ddb6cde728cf9b9f2a" id="r_a5811cc432af165ddb6cde728cf9b9f2a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5811cc432af165ddb6cde728cf9b9f2a">m_norm_zmax</a> = 0</td></tr>
+<tr class="memitem:a71228cf021273f6e48364fb3d4734c19" id="r_a71228cf021273f6e48364fb3d4734c19"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71228cf021273f6e48364fb3d4734c19">m_scaleFact</a></td></tr>
+<tr class="memitem:adc2a010da868bc4254a7db95db9fcb1e" id="r_adc2a010da868bc4254a7db95db9fcb1e"><td class="memItemLeft" align="right" valign="top">amrex::Array2D&lt; amrex::Real, 0, 3, 0, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc2a010da868bc4254a7db95db9fcb1e">m_im_zTz</a></td></tr>
+<tr class="memitem:a1dec6788eb6f205f0a54585c457e19f7" id="r_a1dec6788eb6f205f0a54585c457e19f7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1dec6788eb6f205f0a54585c457e19f7">m_forcing_transition</a></td></tr>
+<tr class="memitem:a380cdccfd689e7fc3566201a2ccb4a40" id="r_a380cdccfd689e7fc3566201a2ccb4a40"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a380cdccfd689e7fc3566201a2ccb4a40">m_transition_height</a></td></tr>
+<tr class="memitem:af7c4d2f60a8733b639bea041a349d944" id="r_af7c4d2f60a8733b639bea041a349d944"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7c4d2f60a8733b639bea041a349d944">m_update_transition_height</a> {false}</td></tr>
+<tr class="memitem:afe91f7a90ebe5eb5936ca8acca165942" id="r_afe91f7a90ebe5eb5936ca8acca165942"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe91f7a90ebe5eb5936ca8acca165942">m_transition_thickness</a></td></tr>
+<tr class="memitem:a18c00adbd49535d04481ef882aabd755" id="r_a18c00adbd49535d04481ef882aabd755"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18c00adbd49535d04481ef882aabd755">m_weighting_heights</a></td></tr>
+<tr class="memitem:a0564d06e162295e8d28527591f9f4c6e" id="r_a0564d06e162295e8d28527591f9f4c6e"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0564d06e162295e8d28527591f9f4c6e">m_weighting_values</a></td></tr>
+<tr class="memitem:a261bbbbf41febc3221f176c86f686fb1" id="r_a261bbbbf41febc3221f176c86f686fb1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a261bbbbf41febc3221f176c86f686fb1">m_user_specified_weighting</a> {false}</td></tr>
+<tr class="memitem:a90c9557ba9994a6fc69be5644b5b465f" id="r_a90c9557ba9994a6fc69be5644b5b465f"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90c9557ba9994a6fc69be5644b5b465f">m_W</a></td></tr>
+<tr class="memitem:ac0b141bd6e37611d94c837e094fabaaa" id="r_ac0b141bd6e37611d94c837e094fabaaa"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0b141bd6e37611d94c837e094fabaaa">m_blending_heights</a></td></tr>
+<tr class="memitem:ad29bfb4f7c65d89ab790942ad299fa1d" id="r_ad29bfb4f7c65d89ab790942ad299fa1d"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad29bfb4f7c65d89ab790942ad299fa1d">m_blending_values</a></td></tr>
+<tr class="memitem:af80aa53f1a10fe0c1ccee82ebb64f923" id="r_af80aa53f1a10fe0c1ccee82ebb64f923"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af80aa53f1a10fe0c1ccee82ebb64f923">m_blend</a></td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a77163b3c0e0b645e1b616a05c09c97a1" name="a77163b3c0e0b645e1b616a05c09c97a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77163b3c0e0b645e1b616a05c09c97a1">&#9670;&#160;</a></span>ABLMesoscaleForcing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::ABLMesoscaleForcing::ABLMesoscaleForcing </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>identifier</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a64d50ee8604effbead4fa3648a0ef4c6" name="a64d50ee8604effbead4fa3648a0ef4c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64d50ee8604effbead4fa3648a0ef4c6">&#9670;&#160;</a></span>blend_forcings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ABLMesoscaleForcing::blend_forcings </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>lower</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>upper</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>error</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a151e9ecf53c1cd03381d47f3c44520df" name="a151e9ecf53c1cd03381d47f3c44520df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a151e9ecf53c1cd03381d47f3c44520df">&#9670;&#160;</a></span>constant_forcing_transition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ABLMesoscaleForcing::constant_forcing_transition </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>error</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a07dd74a3fbcd86c55aa9c5dc1347a78c" name="a07dd74a3fbcd86c55aa9c5dc1347a78c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07dd74a3fbcd86c55aa9c5dc1347a78c">&#9670;&#160;</a></span>forcing_to_constant()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::ABLMesoscaleForcing::forcing_to_constant </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1212648400127e4c597ee64c294bf22a" name="a1212648400127e4c597ee64c294bf22a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1212648400127e4c597ee64c294bf22a">&#9670;&#160;</a></span>have_forcing_transition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::ABLMesoscaleForcing::have_forcing_transition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae20fdb3aea4f46dc87a095057cb17402" name="ae20fdb3aea4f46dc87a095057cb17402"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae20fdb3aea4f46dc87a095057cb17402">&#9670;&#160;</a></span>indirect_forcing_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ABLMesoscaleForcing::indirect_forcing_init </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e2f743109dce0118416c73f49bfcd0c" name="a3e2f743109dce0118416c73f49bfcd0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e2f743109dce0118416c73f49bfcd0c">&#9670;&#160;</a></span>invert_mat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ABLMesoscaleForcing::invert_mat </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Array2D&lt; amrex::Real, 0, 3, 0, 3 &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>m</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Array2D&lt; amrex::Real, 0, 3, 0, 3 &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>im</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a806c88c6022921f4f0d09457e8c473f6" name="a806c88c6022921f4f0d09457e8c473f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a806c88c6022921f4f0d09457e8c473f6">&#9670;&#160;</a></span>set_transition_weighting()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ABLMesoscaleForcing::set_transition_weighting </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae12c401155b109f74d2b903949c80399" name="ae12c401155b109f74d2b903949c80399"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae12c401155b109f74d2b903949c80399">&#9670;&#160;</a></span>update_weights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ABLMesoscaleForcing::update_weights </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a175cbf9be5d1058af31bc34b40c2c9c3" name="a175cbf9be5d1058af31bc34b40c2c9c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a175cbf9be5d1058af31bc34b40c2c9c3">&#9670;&#160;</a></span>m_axis</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::ABLMesoscaleForcing::m_axis {2}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af80aa53f1a10fe0c1ccee82ebb64f923" name="af80aa53f1a10fe0c1ccee82ebb64f923"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af80aa53f1a10fe0c1ccee82ebb64f923">&#9670;&#160;</a></span>m_blend</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ABLMesoscaleForcing::m_blend</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac0b141bd6e37611d94c837e094fabaaa" name="ac0b141bd6e37611d94c837e094fabaaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0b141bd6e37611d94c837e094fabaaa">&#9670;&#160;</a></span>m_blending_heights</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ABLMesoscaleForcing::m_blending_heights</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad29bfb4f7c65d89ab790942ad299fa1d" name="ad29bfb4f7c65d89ab790942ad299fa1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad29bfb4f7c65d89ab790942ad299fa1d">&#9670;&#160;</a></span>m_blending_values</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ABLMesoscaleForcing::m_blending_values</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6b6ee50a26c96f82679f20bfa0fb67a4" name="a6b6ee50a26c96f82679f20bfa0fb67a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b6ee50a26c96f82679f20bfa0fb67a4">&#9670;&#160;</a></span>m_debug</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::ABLMesoscaleForcing::m_debug {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0ff337175b16528324ec392cc4649341" name="a0ff337175b16528324ec392cc4649341"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ff337175b16528324ec392cc4649341">&#9670;&#160;</a></span>m_forcing_scheme</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::ABLMesoscaleForcing::m_forcing_scheme</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1dec6788eb6f205f0a54585c457e19f7" name="a1dec6788eb6f205f0a54585c457e19f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dec6788eb6f205f0a54585c457e19f7">&#9670;&#160;</a></span>m_forcing_transition</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::ABLMesoscaleForcing::m_forcing_transition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a561abccc9599a8fab22e5c6640d45a41" name="a561abccc9599a8fab22e5c6640d45a41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a561abccc9599a8fab22e5c6640d45a41">&#9670;&#160;</a></span>m_gain_coeff</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ABLMesoscaleForcing::m_gain_coeff</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{</div>
+<div class="line">        0.2_rt}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a975c53dab6ba434d50ec819aceba667a" name="a975c53dab6ba434d50ec819aceba667a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a975c53dab6ba434d50ec819aceba667a">&#9670;&#160;</a></span>m_idx_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::ABLMesoscaleForcing::m_idx_time {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adc2a010da868bc4254a7db95db9fcb1e" name="adc2a010da868bc4254a7db95db9fcb1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc2a010da868bc4254a7db95db9fcb1e">&#9670;&#160;</a></span>m_im_zTz</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Array2D&lt;amrex::Real, 0, 3, 0, 3&gt; kynema_sgf::ABLMesoscaleForcing::m_im_zTz</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a454aeb424de7ee50217c202584985d54" name="a454aeb424de7ee50217c202584985d54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a454aeb424de7ee50217c202584985d54">&#9670;&#160;</a></span>m_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::AmrCore&amp; kynema_sgf::ABLMesoscaleForcing::m_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a67ba09ffd7eb78badf0ce01fe56a68a4" name="a67ba09ffd7eb78badf0ce01fe56a68a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67ba09ffd7eb78badf0ce01fe56a68a4">&#9670;&#160;</a></span>m_nht</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::ABLMesoscaleForcing::m_nht {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5811cc432af165ddb6cde728cf9b9f2a" name="a5811cc432af165ddb6cde728cf9b9f2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5811cc432af165ddb6cde728cf9b9f2a">&#9670;&#160;</a></span>m_norm_zmax</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::ABLMesoscaleForcing::m_norm_zmax = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a71228cf021273f6e48364fb3d4734c19" name="a71228cf021273f6e48364fb3d4734c19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71228cf021273f6e48364fb3d4734c19">&#9670;&#160;</a></span>m_scaleFact</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ABLMesoscaleForcing::m_scaleFact</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">        1.0e-3_rt</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a36fafdc6e09214f32a920daddf7a7ea6" name="a36fafdc6e09214f32a920daddf7a7ea6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36fafdc6e09214f32a920daddf7a7ea6">&#9670;&#160;</a></span>m_tendency</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::ABLMesoscaleForcing::m_tendency {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad2e8157c0d45112137ae2fd436b0c4ec" name="ad2e8157c0d45112137ae2fd436b0c4ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2e8157c0d45112137ae2fd436b0c4ec">&#9670;&#160;</a></span>m_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&amp; kynema_sgf::ABLMesoscaleForcing::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a380cdccfd689e7fc3566201a2ccb4a40" name="a380cdccfd689e7fc3566201a2ccb4a40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a380cdccfd689e7fc3566201a2ccb4a40">&#9670;&#160;</a></span>m_transition_height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ABLMesoscaleForcing::m_transition_height</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afe91f7a90ebe5eb5936ca8acca165942" name="afe91f7a90ebe5eb5936ca8acca165942"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe91f7a90ebe5eb5936ca8acca165942">&#9670;&#160;</a></span>m_transition_thickness</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ABLMesoscaleForcing::m_transition_thickness</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af7c4d2f60a8733b639bea041a349d944" name="af7c4d2f60a8733b639bea041a349d944"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7c4d2f60a8733b639bea041a349d944">&#9670;&#160;</a></span>m_update_transition_height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::ABLMesoscaleForcing::m_update_transition_height {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a261bbbbf41febc3221f176c86f686fb1" name="a261bbbbf41febc3221f176c86f686fb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a261bbbbf41febc3221f176c86f686fb1">&#9670;&#160;</a></span>m_user_specified_weighting</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::ABLMesoscaleForcing::m_user_specified_weighting {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a90c9557ba9994a6fc69be5644b5b465f" name="a90c9557ba9994a6fc69be5644b5b465f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90c9557ba9994a6fc69be5644b5b465f">&#9670;&#160;</a></span>m_W</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ABLMesoscaleForcing::m_W</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a18c00adbd49535d04481ef882aabd755" name="a18c00adbd49535d04481ef882aabd755"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18c00adbd49535d04481ef882aabd755">&#9670;&#160;</a></span>m_weighting_heights</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ABLMesoscaleForcing::m_weighting_heights</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0564d06e162295e8d28527591f9f4c6e" name="a0564d06e162295e8d28527591f9f4c6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0564d06e162295e8d28527591f9f4c6e">&#9670;&#160;</a></span>m_weighting_values</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ABLMesoscaleForcing::m_weighting_values</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a459015150946d41937043e3ece92cd6e" name="a459015150946d41937043e3ece92cd6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a459015150946d41937043e3ece92cd6e">&#9670;&#160;</a></span>m_zht</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ABLMesoscaleForcing::m_zht</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/<a class="el" href="_a_b_l_mesoscale_forcing_8_h_source.html">ABLMesoscaleForcing.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/<a class="el" href="_a_b_l_mesoscale_forcing_8cpp.html">ABLMesoscaleForcing.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

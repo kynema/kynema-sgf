@@ -1,0 +1,771 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::pde::icns::BodyForce Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::pde::icns::BodyForce Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1pde_1_1icns_1_1_body_force.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bodyforce-class-reference">
+<h1>BodyForce Class Reference<a class="headerlink" href="#bodyforce-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::pde::icns::BodyForce Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1pde.html">pde</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1pde_1_1icns.html">icns</a></li><li class="navelem"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html">BodyForce</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::pde::icns::BodyForce Class Reference<div class="ingroups"><a class="el" href="group__eqsys.html">Equation Systems</a> &raquo; <a class="el" href="group__icns.html">Incompressible Navier-Stokes</a> &raquo; <a class="el" href="group__icns__src.html">ICNS Source terms</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="icns_2source__terms_2_body_force_8_h_source.html">BodyForce.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::pde::icns::BodyForce:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1pde_1_1icns_1_1_body_force__inherit__graph.svg" width="210" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::pde::icns::BodyForce:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1pde_1_1icns_1_1_body_force__coll__graph.svg" width="100%" height="454"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a1e79f9a808ffff20d1ebc0dce049fc2f" id="r_a1e79f9a808ffff20d1ebc0dce049fc2f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e79f9a808ffff20d1ebc0dce049fc2f">BodyForce</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;)</td></tr>
+<tr class="memitem:a067b07927caba9c5a9b4fe2be87184aa" id="r_a067b07927caba9c5a9b4fe2be87184aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a067b07927caba9c5a9b4fe2be87184aa">~BodyForce</a> () override</td></tr>
+<tr class="memitem:a4a82c70269ed92508831de2b1ce7901e" id="r_a4a82c70269ed92508831de2b1ce7901e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a82c70269ed92508831de2b1ce7901e">operator()</a> (int lev, const amrex::MFIter &amp;mfi, const amrex::Box &amp;bx, <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate, const amrex::Array4&lt; amrex::Real &gt; &amp;src_term) const override</td></tr>
+<tr class="memitem:a148508effebfa1f5d326f03e0fe43720" id="r_a148508effebfa1f5d326f03e0fe43720"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a148508effebfa1f5d326f03e0fe43720">read_bforce_profile</a> (const std::string &amp;filename)</td></tr>
+<tr class="memitem:a15cb1e31d4d9d107136aae2da834dd63" id="r_a15cb1e31d4d9d107136aae2da834dd63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15cb1e31d4d9d107136aae2da834dd63">read_bforce_timetable</a> (const std::string &amp;filename)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:afb137847a1f2b68f14b6c62b17fa9a95" id="r_afb137847a1f2b68f14b6c62b17fa9a95"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb137847a1f2b68f14b6c62b17fa9a95">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a6c4f992f881b7b0320f33a82b6c87b8a" id="r_a6c4f992f881b7b0320f33a82b6c87b8a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c4f992f881b7b0320f33a82b6c87b8a">m_time</a></td></tr>
+<tr class="memdesc:a6c4f992f881b7b0320f33a82b6c87b8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time.  <br /></td></tr>
+<tr class="memitem:a3568761aae65c7e4fe3b6a0e0f67438f" id="r_a3568761aae65c7e4fe3b6a0e0f67438f"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3568761aae65c7e4fe3b6a0e0f67438f">m_mesh</a></td></tr>
+<tr class="memitem:a408aecb3fb5cc16ad097668b5203e642" id="r_a408aecb3fb5cc16ad097668b5203e642"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a408aecb3fb5cc16ad097668b5203e642">m_body_force</a> {0.0_rt, 0.0_rt, 0.0_rt}</td></tr>
+<tr class="memdesc:a408aecb3fb5cc16ad097668b5203e642"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forcing source term (pressure gradient)  <br /></td></tr>
+<tr class="memitem:a1d7290e977ae727f5b308a13c43e5eb0" id="r_a1d7290e977ae727f5b308a13c43e5eb0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d7290e977ae727f5b308a13c43e5eb0">m_type</a> {&quot;uniform_constant&quot;}</td></tr>
+<tr class="memdesc:a1d7290e977ae727f5b308a13c43e5eb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Body Force Type.  <br /></td></tr>
+<tr class="memitem:a5ee6487f55ef9efce44b151030ecd82a" id="r_a5ee6487f55ef9efce44b151030ecd82a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ee6487f55ef9efce44b151030ecd82a">m_utt_file</a></td></tr>
+<tr class="memdesc:a5ee6487f55ef9efce44b151030ecd82a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uniform time table file.  <br /></td></tr>
+<tr class="memitem:a46f7a0d32189d808f36af1b8f26ab8e7" id="r_a46f7a0d32189d808f36af1b8f26ab8e7"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46f7a0d32189d808f36af1b8f26ab8e7">m_omega</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a46f7a0d32189d808f36af1b8f26ab8e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Angular frequency used in the oscillatory forcing.  <br /></td></tr>
+<tr class="memitem:a6c2cf1b4b48033e74ce725b3eb0407d7" id="r_a6c2cf1b4b48033e74ce725b3eb0407d7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c2cf1b4b48033e74ce725b3eb0407d7">m_bforce_file</a></td></tr>
+<tr class="memitem:a1eba0479fd3664659a22d5b1935cc710" id="r_a1eba0479fd3664659a22d5b1935cc710"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1eba0479fd3664659a22d5b1935cc710">m_bforce_profile_nhts</a></td></tr>
+<tr class="memitem:a5a26e2a0df276264768c4fc6598ebcd8" id="r_a5a26e2a0df276264768c4fc6598ebcd8"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a26e2a0df276264768c4fc6598ebcd8">m_prof_x</a></td></tr>
+<tr class="memitem:afca11cf2933d30fbedd09a11ef8ef0dc" id="r_afca11cf2933d30fbedd09a11ef8ef0dc"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afca11cf2933d30fbedd09a11ef8ef0dc">m_prof_y</a></td></tr>
+<tr class="memitem:accc7511e34214fcc6e7d93e4e9d63c75" id="r_accc7511e34214fcc6e7d93e4e9d63c75"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#accc7511e34214fcc6e7d93e4e9d63c75">m_ht</a></td></tr>
+<tr class="memitem:ae7cf51c69608d552cd52bbff1155bc48" id="r_ae7cf51c69608d552cd52bbff1155bc48"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7cf51c69608d552cd52bbff1155bc48">m_time_table</a></td></tr>
+<tr class="memdesc:ae7cf51c69608d552cd52bbff1155bc48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vectors for storing uniform_timetable inputs.  <br /></td></tr>
+<tr class="memitem:a816cc6b0e13b5221256632e09845ab2a" id="r_a816cc6b0e13b5221256632e09845ab2a"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a816cc6b0e13b5221256632e09845ab2a">m_fx_table</a></td></tr>
+<tr class="memitem:ad2ba9e435c94ff6c8717d23fc3a3290d" id="r_ad2ba9e435c94ff6c8717d23fc3a3290d"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2ba9e435c94ff6c8717d23fc3a3290d">m_fy_table</a></td></tr>
+<tr class="memitem:ac047dff407a818d938734a49ae357eda" id="r_ac047dff407a818d938734a49ae357eda"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac047dff407a818d938734a49ae357eda">m_fz_table</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Apply a user-defined body force as a source term</p>
+<p>The implementation can apply either a constant source term, or a sinusoidal term as a function of time. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a1e79f9a808ffff20d1ebc0dce049fc2f" name="a1e79f9a808ffff20d1ebc0dce049fc2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e79f9a808ffff20d1ebc0dce049fc2f">&#9670;&#160;</a></span>BodyForce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::pde::icns::BodyForce::BodyForce </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Body Force </p>
+
+</div>
+</div>
+<a id="a067b07927caba9c5a9b4fe2be87184aa" name="a067b07927caba9c5a9b4fe2be87184aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a067b07927caba9c5a9b4fe2be87184aa">&#9670;&#160;</a></span>~BodyForce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::pde::icns::BodyForce::~BodyForce </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="afb137847a1f2b68f14b6c62b17fa9a95" name="afb137847a1f2b68f14b6c62b17fa9a95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb137847a1f2b68f14b6c62b17fa9a95">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::pde::icns::BodyForce::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4a82c70269ed92508831de2b1ce7901e" name="a4a82c70269ed92508831de2b1ce7901e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a82c70269ed92508831de2b1ce7901e">&#9670;&#160;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::icns::BodyForce::operator() </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::MFIter &amp;</td>          <td class="paramname"><span class="paramname"><em>mfi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Box &amp;</td>          <td class="paramname"><span class="paramname"><em>bx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Array4&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>src_term</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a148508effebfa1f5d326f03e0fe43720" name="a148508effebfa1f5d326f03e0fe43720"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a148508effebfa1f5d326f03e0fe43720">&#9670;&#160;</a></span>read_bforce_profile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::icns::BodyForce::read_bforce_profile </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>filename</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a15cb1e31d4d9d107136aae2da834dd63" name="a15cb1e31d4d9d107136aae2da834dd63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15cb1e31d4d9d107136aae2da834dd63">&#9670;&#160;</a></span>read_bforce_timetable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::icns::BodyForce::read_bforce_timetable </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>filename</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a6c2cf1b4b48033e74ce725b3eb0407d7" name="a6c2cf1b4b48033e74ce725b3eb0407d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c2cf1b4b48033e74ce725b3eb0407d7">&#9670;&#160;</a></span>m_bforce_file</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::pde::icns::BodyForce::m_bforce_file</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1eba0479fd3664659a22d5b1935cc710" name="a1eba0479fd3664659a22d5b1935cc710"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1eba0479fd3664659a22d5b1935cc710">&#9670;&#160;</a></span>m_bforce_profile_nhts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t kynema_sgf::pde::icns::BodyForce::m_bforce_profile_nhts</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a408aecb3fb5cc16ad097668b5203e642" name="a408aecb3fb5cc16ad097668b5203e642"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a408aecb3fb5cc16ad097668b5203e642">&#9670;&#160;</a></span>m_body_force</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::pde::icns::BodyForce::m_body_force {0.0_rt, 0.0_rt, 0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Forcing source term (pressure gradient) </p>
+
+</div>
+</div>
+<a id="a816cc6b0e13b5221256632e09845ab2a" name="a816cc6b0e13b5221256632e09845ab2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a816cc6b0e13b5221256632e09845ab2a">&#9670;&#160;</a></span>m_fx_table</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::pde::icns::BodyForce::m_fx_table</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad2ba9e435c94ff6c8717d23fc3a3290d" name="ad2ba9e435c94ff6c8717d23fc3a3290d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2ba9e435c94ff6c8717d23fc3a3290d">&#9670;&#160;</a></span>m_fy_table</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::pde::icns::BodyForce::m_fy_table</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac047dff407a818d938734a49ae357eda" name="ac047dff407a818d938734a49ae357eda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac047dff407a818d938734a49ae357eda">&#9670;&#160;</a></span>m_fz_table</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::pde::icns::BodyForce::m_fz_table</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="accc7511e34214fcc6e7d93e4e9d63c75" name="accc7511e34214fcc6e7d93e4e9d63c75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accc7511e34214fcc6e7d93e4e9d63c75">&#9670;&#160;</a></span>m_ht</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;amrex::Real&gt; kynema_sgf::pde::icns::BodyForce::m_ht</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3568761aae65c7e4fe3b6a0e0f67438f" name="a3568761aae65c7e4fe3b6a0e0f67438f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3568761aae65c7e4fe3b6a0e0f67438f">&#9670;&#160;</a></span>m_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::AmrCore&amp; kynema_sgf::pde::icns::BodyForce::m_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a46f7a0d32189d808f36af1b8f26ab8e7" name="a46f7a0d32189d808f36af1b8f26ab8e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46f7a0d32189d808f36af1b8f26ab8e7">&#9670;&#160;</a></span>m_omega</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::pde::icns::BodyForce::m_omega {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Angular frequency used in the oscillatory forcing. </p>
+
+</div>
+</div>
+<a id="a5a26e2a0df276264768c4fc6598ebcd8" name="a5a26e2a0df276264768c4fc6598ebcd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a26e2a0df276264768c4fc6598ebcd8">&#9670;&#160;</a></span>m_prof_x</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;amrex::Real&gt; kynema_sgf::pde::icns::BodyForce::m_prof_x</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afca11cf2933d30fbedd09a11ef8ef0dc" name="afca11cf2933d30fbedd09a11ef8ef0dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afca11cf2933d30fbedd09a11ef8ef0dc">&#9670;&#160;</a></span>m_prof_y</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;amrex::Real&gt; kynema_sgf::pde::icns::BodyForce::m_prof_y</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6c4f992f881b7b0320f33a82b6c87b8a" name="a6c4f992f881b7b0320f33a82b6c87b8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c4f992f881b7b0320f33a82b6c87b8a">&#9670;&#160;</a></span>m_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&amp; kynema_sgf::pde::icns::BodyForce::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time. </p>
+
+</div>
+</div>
+<a id="ae7cf51c69608d552cd52bbff1155bc48" name="ae7cf51c69608d552cd52bbff1155bc48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7cf51c69608d552cd52bbff1155bc48">&#9670;&#160;</a></span>m_time_table</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::pde::icns::BodyForce::m_time_table</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vectors for storing uniform_timetable inputs. </p>
+
+</div>
+</div>
+<a id="a1d7290e977ae727f5b308a13c43e5eb0" name="a1d7290e977ae727f5b308a13c43e5eb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d7290e977ae727f5b308a13c43e5eb0">&#9670;&#160;</a></span>m_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::pde::icns::BodyForce::m_type {&quot;uniform_constant&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Body Force Type. </p>
+
+</div>
+</div>
+<a id="a5ee6487f55ef9efce44b151030ecd82a" name="a5ee6487f55ef9efce44b151030ecd82a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ee6487f55ef9efce44b151030ecd82a">&#9670;&#160;</a></span>m_utt_file</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::pde::icns::BodyForce::m_utt_file</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Uniform time table file. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/<a class="el" href="icns_2source__terms_2_body_force_8_h_source.html">BodyForce.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/<a class="el" href="icns_2source__terms_2_body_force_8cpp.html">BodyForce.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

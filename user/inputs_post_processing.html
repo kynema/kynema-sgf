@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Section: Post-processing &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Section: Sampling" href="inputs_Sampling.html" />
+    <link rel="prev" title="Section: MLMG options" href="inputs_MLMG.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="inputs.html#input-file-reference">Input file reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="inputs_geometry.html">Section: geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_amr.html">Section: AMReX and AMR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_tagging.html">Section: tagging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_time.html">Section: time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_io.html">Section: io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_incflo.html">Section: incflo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_transport.html">Section: transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_turbulence.html">Section: turbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Momentum_Sources.html">Section: Momentum Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Temperature_Sources.html">Section: Temperature Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_TKE_Sources.html">Section: TKE Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL.html">Section: ABL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL_meso_forcing.html">Section: ABLMesoForcing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_SyntheticTurbulence.html">Section: SyntheticTurbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Boundary_conditions.html">Section: Boundary conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_MLMG.html">Section: MLMG options</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Section: Post-processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Sampling.html">Section: Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Subvolume.html">Section: Subvolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Averaging.html">Section: Averaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_KineticEnergy.html">Section: KineticEnergy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Enstrophy.html">Section: Enstrophy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FieldNorms.html">Section: FieldNorms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Actuator.html">Section: Actuator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_multiphase.html">Section: MultiPhase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ocean_waves.html">Section: Ocean Waves</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+          <li class="breadcrumb-item"><a href="inputs.html">Kynema-SGF inputs file</a></li>
+      <li class="breadcrumb-item active">Section: Post-processing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/inputs_post_processing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-post-processing">
+<span id="inputs-post-processing"></span><h1>Section: Post-processing<a class="headerlink" href="#section-post-processing" title="Link to this heading"></a></h1>
+<p>This section controls post-processing routines supported within
+AMR-wind, which include Sampling, Subvolume, Reynolds Averaging (ReAveraging),
+ReynoldsStress, TimeAveraging, Enstrophy, FieldNorms, KineticEnergy, and WaveEnergy.</p>
+<p>Note that while the input parameters use the keyword <code class="docutils literal notranslate"><span class="pre">postproc</span></code>, the
+actual keyword is determined by the labels provided to
+<a class="reference internal" href="inputs_incflo.html#input_param-incflo.post_processing"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">incflo.post_processing</span></code></a>. So for example, if
+<code class="docutils literal notranslate"><span class="pre">incflo.post_processing</span> <span class="pre">=</span> <span class="pre">my_postproc</span></code>, then the options must be prefixed with
+<code class="docutils literal notranslate"><span class="pre">my_postproc.</span></code>.</p>
+<dl class="simple">
+<dt>For post-processing If plotfile output is active,</dt><dd><p>a plotfile will be written at the end of a simulation (when
+<a class="reference internal" href="inputs_time.html#input_param-time.stop_time"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">time.stop_time</span></code></a> or <a class="reference internal" href="inputs_time.html#input_param-time.max_step"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">time.max_step</span></code></a> is reached), regardless
+of the output timing parameters.</p>
+</dd>
+</dl>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-postproc.type">
+<span class="sig-name descname"><span class="pre">postproc.type</span></span><a class="headerlink" href="#input_param-postproc.type" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = Sampling</p>
+<p>Specify the type of post-processing routine to apply to this label.</p>
+</dd></dl>
+
+<p>Averaging types (ReAveraging, ReynoldsStress, and TimeAveraging) provide
+data via fields that are output to plotfiles; therefore, these types do
+not have specific outputs to files in the post_processing directory. However,
+for the rest of these routines, which do output data to post-processing files,
+there are general input arguments to designate when to write these files,
+and these arguments are described below. Note that for these post-processing types,
+output will automatically occur at the end of a simulation (when
+<a class="reference internal" href="inputs_time.html#input_param-time.stop_time"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">time.stop_time</span></code></a> or <a class="reference internal" href="inputs_time.html#input_param-time.max_step"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">time.max_step</span></code></a> is reached), regardless
+of the output timing parameters.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-postproc.output_interval">
+<span class="sig-name descname"><span class="pre">postproc.output_interval</span></span><a class="headerlink" href="#input_param-postproc.output_interval" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 10</p>
+<p>Specify the output interval (in time steps) when post-processing is performed
+and output to disk. This quantity can instead be specified as <code class="docutils literal notranslate"><span class="pre">output_frequency</span></code>,
+which was the legacy input argument. Because <code class="docutils literal notranslate"><span class="pre">output_interval</span></code> is a more
+accurate name, this is the preferred input argument.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-postproc.output_time_interval">
+<span class="sig-name descname"><span class="pre">postproc.output_time_interval</span></span><a class="headerlink" href="#input_param-postproc.output_time_interval" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>Specify the output interval (in seconds of simulation time) when post-processing is
+performed and output to disk. The output interval must be specified either in
+simulation time (using this argument) or in time steps.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-postproc.output_delay">
+<span class="sig-name descname"><span class="pre">postproc.output_delay</span></span><a class="headerlink" href="#input_param-postproc.output_delay" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 0</p>
+<p>Specify the output delay (in time steps) when post-processing and output will begin
+during a simulation. E.g., a delay of 100 will wait until the hundredth timestep to
+check if, according to the output interval, post-processing should be output to disk.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-postproc.output_time_delay">
+<span class="sig-name descname"><span class="pre">postproc.output_time_delay</span></span><a class="headerlink" href="#input_param-postproc.output_time_delay" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 0.</p>
+<p>Specify the output delay (in seconds of simulation time) when post-processing and output will begin
+during a simulation. This parameter is only active in conjunction with an output time interval.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-postproc.enforce_output_time_dt">
+<span class="sig-name descname"><span class="pre">postproc.enforce_output_time_dt</span></span><a class="headerlink" href="#input_param-postproc.enforce_output_time_dt" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = false</p>
+<p>In the case of a variable dt simulation, the simulation time will not likely correspond
+exactly to the post-processing time interval. However, by setting this parameter to true, the time step size (dt)
+will be shortened when necessary to enforce the simulation time to match the output time interval.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-postproc.enforce_output_time_dt_reltol">
+<span class="sig-name descname"><span class="pre">postproc.enforce_output_time_dt_reltol</span></span><a class="headerlink" href="#input_param-postproc.enforce_output_time_dt_reltol" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real number, optional, default = 1e-3</p>
+<p>When <a class="reference internal" href="#input_param-postproc.enforce_output_time_dt"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">postproc.enforce_output_time_dt</span></code></a> is true, a tolerance is needed to determine when
+it is necessary to shrink the time step size. This tolerance is relative to the output time interval.
+In most cases, this parameter need not be modified, but it can be changed by the user.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-postproc.output_from_restart">
+<span class="sig-name descname"><span class="pre">postproc.output_from_restart</span></span><a class="headerlink" href="#input_param-postproc.output_from_restart" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = false</p>
+<p>By default, outputs will take place when the total time or time step matches up with
+the specified time or time step interval. However, when restarting a simulation,
+activating this option allows the relative time to be used, considering the time or time step
+when the current simulation began. This option is not compatible with specifying
+<a class="reference internal" href="#input_param-postproc.output_start"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">postproc.output_start</span></code></a> or <a class="reference internal" href="#input_param-postproc.output_start_time"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">postproc.output_start_time</span></code></a> directly.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-postproc.output_start">
+<span class="sig-name descname"><span class="pre">postproc.output_start</span></span><a class="headerlink" href="#input_param-postproc.output_start" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional</p>
+<p>When <a class="reference internal" href="#input_param-postproc.output_interval"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">postproc.output_interval</span></code></a> is active, outputs will take place when the difference
+between the current time step and the initial time step matches up with the specified interval.
+By default, the initial time step used in this calculation is 0. This input argument
+allows the user to override the default behavior by manually specifying
+the initial time step to consider.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-postproc.output_start_time">
+<span class="sig-name descname"><span class="pre">postproc.output_start_time</span></span><a class="headerlink" href="#input_param-postproc.output_start_time" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real number, optional</p>
+<p>When <a class="reference internal" href="#input_param-postproc.output_time_interval"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">postproc.output_time_interval</span></code></a> is active, outputs will take place when the difference
+between the current time and the initial time matches up with the specified time interval.
+By default, the initial time used in this calculation is 0. This input argument
+allows the user to override the default behavior by manually specifying
+the initial time to consider.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-postproc.output_after_final_step">
+<span class="sig-name descname"><span class="pre">postproc.output_after_final_step</span></span><a class="headerlink" href="#input_param-postproc.output_after_final_step" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = false</p>
+<p>Similar to checkpoint and plot files, the code can write post-processing
+outputs at the conclusion of a simulation, i.e., after its final step.
+However, unlike checkpoint and plot files, this behavior is off by default.
+To turn on the final output, the user must specify this input as true.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inputs_MLMG.html" class="btn btn-neutral float-left" title="Section: MLMG options" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inputs_Sampling.html" class="btn btn-neutral float-right" title="Section: Sampling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

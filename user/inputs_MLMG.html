@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Section: MLMG options &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Section: Post-processing" href="inputs_post_processing.html" />
+    <link rel="prev" title="Section: Boundary conditions" href="inputs_Boundary_conditions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="inputs.html#input-file-reference">Input file reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="inputs_geometry.html">Section: geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_amr.html">Section: AMReX and AMR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_tagging.html">Section: tagging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_time.html">Section: time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_io.html">Section: io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_incflo.html">Section: incflo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_transport.html">Section: transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_turbulence.html">Section: turbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Momentum_Sources.html">Section: Momentum Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Temperature_Sources.html">Section: Temperature Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_TKE_Sources.html">Section: TKE Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL.html">Section: ABL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL_meso_forcing.html">Section: ABLMesoForcing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_SyntheticTurbulence.html">Section: SyntheticTurbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Boundary_conditions.html">Section: Boundary conditions</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Section: MLMG options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_post_processing.html">Section: Post-processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Sampling.html">Section: Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Subvolume.html">Section: Subvolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Averaging.html">Section: Averaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_KineticEnergy.html">Section: KineticEnergy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Enstrophy.html">Section: Enstrophy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FieldNorms.html">Section: FieldNorms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Actuator.html">Section: Actuator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_multiphase.html">Section: MultiPhase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ocean_waves.html">Section: Ocean Waves</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+          <li class="breadcrumb-item"><a href="inputs.html">Kynema-SGF inputs file</a></li>
+      <li class="breadcrumb-item active">Section: MLMG options</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/inputs_MLMG.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-mlmg-options">
+<span id="inputs-mlmg"></span><h1>Section: MLMG options<a class="headerlink" href="#section-mlmg-options" title="Link to this heading"></a></h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For further information the user is directed to the <a class="reference external" href="https://amrex-codes.github.io/amrex/docs_html/LinearSolvers_Chapter.html">AMReX linear
+solver documentation</a>
+and other <a class="reference external" href="https://amrex-codes.github.io/amrex/docs_html/RuntimeParameters.html">AMReX runtime parameters</a></p>
+</div>
+<p>This section specifies the Multi-Level Multi-Grid (MLMG) options for each type
+of linear solve. There are three types of linear solves performed in Kynema-SGF
+“diffusion” which is a cell based Helmholtz like solve to advance the momentum
+equations, “nodal_proj” is a node based pressure projection, and “mac_proj”
+projects velocities to faces. The options are the same for each and the prefix
+determines which MLMG option is being specified. Below the diffusion options are
+described but the same options apply to “nodal_proj” and “mac_proj”. It is also
+possible to specify diffusion solver options for specific equations such as
+temperature, to do that use “temperature_diffusion” as your prefix.</p>
+<p><strong>Linear operator options</strong></p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.max_coarsening_level">
+<span class="sig-name descname"><span class="pre">diffusion.max_coarsening_level</span></span><a class="headerlink" href="#input_param-diffusion.max_coarsening_level" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 100</p>
+<p>This parameter sets the max number of multigrid coarsening allowed at the lowest amr
+level to the solver.
+Typically setting to a large number means coarsen as much as possible until the grid
+can not be coarsened anymore.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.max_order">
+<span class="sig-name descname"><span class="pre">diffusion.max_order</span></span><a class="headerlink" href="#input_param-diffusion.max_order" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 2</p>
+<p>Order of the one-sided stencil applied near physical boundaries and fine/coarse boundaries.</p>
+</dd></dl>
+
+<p><strong>MLMG options</strong></p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.verbose">
+<span class="sig-name descname"><span class="pre">diffusion.verbose</span></span><a class="headerlink" href="#input_param-diffusion.verbose" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 0</p>
+<p>Sets the verbosity of the MLMG solver.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.maxiter">
+<span class="sig-name descname"><span class="pre">diffusion.maxiter</span></span><a class="headerlink" href="#input_param-diffusion.maxiter" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 200</p>
+<p>Sets the max number of multigrid iterations. If <a class="reference internal" href="#input_param-diffusion.do_fixed_iters"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">diffusion.do_fixed_iters</span></code></a>
+is set to True, then AMReX will not abort if specified tolerance is not met
+after max iterations, otherwise it will abort.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.do_fixed_iters">
+<span class="sig-name descname"><span class="pre">diffusion.do_fixed_iters</span></span><a class="headerlink" href="#input_param-diffusion.do_fixed_iters" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = true</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">true</span></code>, then AMReX will not abort if the specified tolerance is not met
+even after <a class="reference internal" href="#input_param-diffusion.maxiter"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">diffusion.maxiter</span></code></a> iterations have completed.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.mg_rtol">
+<span class="sig-name descname"><span class="pre">diffusion.mg_rtol</span></span><a class="headerlink" href="#input_param-diffusion.mg_rtol" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1.0e-11</p>
+<p>Set the relative tolerance for the linear solver</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.mg_atol">
+<span class="sig-name descname"><span class="pre">diffusion.mg_atol</span></span><a class="headerlink" href="#input_param-diffusion.mg_atol" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1.0e-14</p>
+<p>Set the absolute tolerance for the linear solver</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.fmg_maxiter">
+<span class="sig-name descname"><span class="pre">diffusion.fmg_maxiter</span></span><a class="headerlink" href="#input_param-diffusion.fmg_maxiter" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 0</p>
+<p>Sets the number of F-cycle MG iterations to perform before switching to V-cycle MG.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.num_pre_smooth">
+<span class="sig-name descname"><span class="pre">diffusion.num_pre_smooth</span></span><a class="headerlink" href="#input_param-diffusion.num_pre_smooth" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 2</p>
+<p>Number of pre smoothing steps</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.num_post_smooth">
+<span class="sig-name descname"><span class="pre">diffusion.num_post_smooth</span></span><a class="headerlink" href="#input_param-diffusion.num_post_smooth" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 2</p>
+<p>Number of post smoothing steps</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.num_final_smooth">
+<span class="sig-name descname"><span class="pre">diffusion.num_final_smooth</span></span><a class="headerlink" href="#input_param-diffusion.num_final_smooth" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 8</p>
+<p>Number of final smoother steps applied</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.num_bottom_smooth">
+<span class="sig-name descname"><span class="pre">diffusion.num_bottom_smooth</span></span><a class="headerlink" href="#input_param-diffusion.num_bottom_smooth" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 0</p>
+<p>Number of smoother steps applied during bottom solve.</p>
+</dd></dl>
+
+<p><strong>Bottom solver options</strong></p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.bottom_solver">
+<span class="sig-name descname"><span class="pre">diffusion.bottom_solver</span></span><a class="headerlink" href="#input_param-diffusion.bottom_solver" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = “bicgstab”</p>
+<p>Set the bottom solver type. Current bottom solver options
+include: smoother, bicgstab, cg, bicgcg, cgbicg, hypre, and petsc.
+The hyper and petsc options will require compiling with those libraries.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.bottom_verbose">
+<span class="sig-name descname"><span class="pre">diffusion.bottom_verbose</span></span><a class="headerlink" href="#input_param-diffusion.bottom_verbose" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 0</p>
+<p>Sets the verbosity of the bottom solver within MLMG.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.bottom_rtol">
+<span class="sig-name descname"><span class="pre">diffusion.bottom_rtol</span></span><a class="headerlink" href="#input_param-diffusion.bottom_rtol" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1.0e-4</p>
+<p>Set the relative tolerance for the bottom solver for convergence.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.bottom_atol">
+<span class="sig-name descname"><span class="pre">diffusion.bottom_atol</span></span><a class="headerlink" href="#input_param-diffusion.bottom_atol" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = -1.0</p>
+<p>Set the absolute tolerance for the bottom solve. Setting a negative number
+disables absolute tolerance check.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.bottom_maxiter">
+<span class="sig-name descname"><span class="pre">diffusion.bottom_maxiter</span></span><a class="headerlink" href="#input_param-diffusion.bottom_maxiter" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 200</p>
+<p>Maximum number of iterations for the bottom solver</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.hypre_interface">
+<span class="sig-name descname"><span class="pre">diffusion.hypre_interface</span></span><a class="headerlink" href="#input_param-diffusion.hypre_interface" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = <code class="docutils literal notranslate"><span class="pre">ij</span></code></p>
+<p>The hypre interface to use when <a class="reference internal" href="#input_param-diffusion.bottom_solver"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">diffusion.bottom_solver</span></code></a> is set
+to <code class="docutils literal notranslate"><span class="pre">hypre</span></code>. Valid choices are: <code class="docutils literal notranslate"><span class="pre">ij</span></code>, <code class="docutils literal notranslate"><span class="pre">semi_structured</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">structured</span></code>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-diffusion.hypre_namespace">
+<span class="sig-name descname"><span class="pre">diffusion.hypre_namespace</span></span><a class="headerlink" href="#input_param-diffusion.hypre_namespace" title="Link to this definition"></a></dt>
+<dd><p>The ParmParse <code class="docutils literal notranslate"><span class="pre">prefix</span></code> where the hypre options must be read from for this
+solver. For example, to set hypre options for NodalProjector</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inputs_Boundary_conditions.html" class="btn btn-neutral float-left" title="Section: Boundary conditions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inputs_post_processing.html" class="btn btn-neutral float-right" title="Section: Post-processing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/ABLMesoForcingMom.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/ABLMesoForcingMom.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_a_b_l_meso_forcing_mom_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-icns-source-terms-ablmesoforcingmom-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/ABLMesoForcingMom.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-icns-source-terms-ablmesoforcingmom-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/ABLMesoForcingMom.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_0a302c6baedf52e9cfdc9fc1cbccbefa.html">equation_systems</a></li><li class="navelem"><a href="dir_6b3b25f1da48ef8ca65a8f7d03836280.html">icns</a></li><li class="navelem"><a href="dir_281a8f2a1daeda6ff9d3c6f4bca9a040.html">source_terms</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">ABLMesoForcingMom.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_a_b_l_meso_forcing_mom_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef ABLMESOFORCINGMOM_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define ABLMESOFORCINGMOM_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;AMReX_Vector.H&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_field_repo_8_h.html">src/core/FieldRepo.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="_momentum_source_8_h.html">src/equation_systems/icns/MomentumSource.H</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="_sim_time_8_h.html">src/core/SimTime.H</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="_field_plane_averaging_fine_8_h.html">src/utilities/FieldPlaneAveragingFine.H</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="nc__interface_8_h.html">src/utilities/ncutils/nc_interface.H</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="_a_b_l_mesoscale_forcing_8_h.html">src/wind_energy/ABLMesoscaleForcing.H</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="_a_b_l_mesoscale_input_8_h.html">src/wind_energy/ABLMesoscaleInput.H</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1pde_1_1icns.html">kynema_sgf::pde::icns</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html">   23</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a10e62588f86b998eeb3fb8f797d4d0de">ABLMesoForcingMom</a></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    : <span class="keyword">public</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a77163b3c0e0b645e1b616a05c09c97a1">ABLMesoscaleForcing</a></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    , <span class="keyword">public</span> MomentumSource::Register&lt;ABLMesoForcingMom&gt;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a908523a4508b5fda4f7eb7f8e21ca454">   28</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a908523a4508b5fda4f7eb7f8e21ca454">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;ABLMesoForcingMom&quot;</span>; }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a10e62588f86b998eeb3fb8f797d4d0de">ABLMesoForcingMom</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a8fbc2b3e9316da357bbf4152f3d9d7bf">   32</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a8fbc2b3e9316da357bbf4152f3d9d7bf">~ABLMesoForcingMom</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#af1e669779fa3f5f23bce6fa0722ba5db">operator()</a>(</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordtype">int</span> lev,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keyword">const</span> amrex::MFIter&amp; mfi,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keyword">const</span> amrex::Box&amp; bx,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keyword">const</span> amrex::Array4&lt;amrex::Real&gt;&amp; src_term) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a9d83c65aa40f722d711131164ef8264e">mean_velocity_init</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_a_b_l_mesoscale_input.html">ABLMesoscaleInput</a>&amp; ncfile);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a9d83c65aa40f722d711131164ef8264e">mean_velocity_init</a>(</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html">VelPlaneAveragingFine</a>&amp; vavg, <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_a_b_l_mesoscale_input.html">ABLMesoscaleInput</a>&amp; ncfile);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a9e55f9f620fb65191f7470e51792ae8f">mean_velocity_heights</a>(std::unique_ptr&lt;ABLMesoscaleInput&gt; <span class="keyword">const</span>&amp; ncfile);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a9e55f9f620fb65191f7470e51792ae8f">mean_velocity_heights</a>(</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html">VelPlaneAveragingFine</a>&amp; vavg,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        std::unique_ptr&lt;ABLMesoscaleInput&gt; <span class="keyword">const</span>&amp; ncfile);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a901c914694adf35d018801849ddf3abc">   53</a></span>    amrex::Vector&lt;amrex::Real&gt;&amp; <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a901c914694adf35d018801849ddf3abc">mom_u_error</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a00fcc7d835d03405a1909cfde7c90f3a">m_err_U</a>; }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#af4eef555969a91fdda54181233e6d90b">   54</a></span>    amrex::Vector&lt;amrex::Real&gt;&amp; <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#af4eef555969a91fdda54181233e6d90b">mom_v_error</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#af9dc6603696489918d76f01103ee5a98">m_err_V</a>; }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// these are inputs</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a757a2ca37dc2a7ec16a8c5a42df30050">   58</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a757a2ca37dc2a7ec16a8c5a42df30050">m_meso_ht</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a45e0fea91eb9730928f225fcb2738e03">   59</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a45e0fea91eb9730928f225fcb2738e03">m_meso_u_vals</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a8bceb7fce04a4b1ddf9749b081c0e1b9">   60</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a8bceb7fce04a4b1ddf9749b081c0e1b9">m_meso_v_vals</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// these are the instantaneous planar averages</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a7a68b282269c7daa2577290bb2877c79">   63</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a7a68b282269c7daa2577290bb2877c79">m_vavg_ht</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="comment">// these specify the source term</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a64fcebde64c593bc050718b7c35ba729">   66</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a64fcebde64c593bc050718b7c35ba729">m_error_meso_avg_U</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a46bc76b07ac4af135141206a3ee4becf">   67</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a46bc76b07ac4af135141206a3ee4becf">m_error_meso_avg_V</a>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a00fcc7d835d03405a1909cfde7c90f3a">   69</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a00fcc7d835d03405a1909cfde7c90f3a">m_err_U</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#af9dc6603696489918d76f01103ee5a98">   70</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#af9dc6603696489918d76f01103ee5a98">m_err_V</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">// these should be m_ind_polyOrder+1 (currently, cubic polynomials are</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// assumed)</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a246451e05a425da7697ab2e8d2748fa8">   74</a></span>    amrex::Array&lt;amrex::Real, 4&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a246451e05a425da7697ab2e8d2748fa8">m_poly_coeff_U</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a0a9ca909d062f4bdafb29a54dc78297d">   75</a></span>    amrex::Array&lt;amrex::Real, 4&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a0a9ca909d062f4bdafb29a54dc78297d">m_poly_coeff_V</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>};</div>
+</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>} <span class="comment">// namespace kynema_sgf::pde::icns</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">#endif </span><span class="comment">// ABLMESOFORCINGMOM_H</span></div>
+<div class="ttc" id="a_a_b_l_mesoscale_forcing_8_h_html"><div class="ttname"><a href="_a_b_l_mesoscale_forcing_8_h.html">ABLMesoscaleForcing.H</a></div></div>
+<div class="ttc" id="a_a_b_l_mesoscale_input_8_h_html"><div class="ttname"><a href="_a_b_l_mesoscale_input_8_h.html">ABLMesoscaleInput.H</a></div></div>
+<div class="ttc" id="a_field_plane_averaging_fine_8_h_html"><div class="ttname"><a href="_field_plane_averaging_fine_8_h.html">FieldPlaneAveragingFine.H</a></div></div>
+<div class="ttc" id="a_field_repo_8_h_html"><div class="ttname"><a href="_field_repo_8_h.html">FieldRepo.H</a></div></div>
+<div class="ttc" id="a_momentum_source_8_h_html"><div class="ttname"><a href="_momentum_source_8_h.html">MomentumSource.H</a></div></div>
+<div class="ttc" id="a_sim_time_8_h_html"><div class="ttname"><a href="_sim_time_8_h.html">SimTime.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a77163b3c0e0b645e1b616a05c09c97a1"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a77163b3c0e0b645e1b616a05c09c97a1">kynema_sgf::ABLMesoscaleForcing::ABLMesoscaleForcing</a></div><div class="ttdeci">ABLMesoscaleForcing(const CFDSim &amp;sim, const std::string &amp;identifier)</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.cpp:14</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_input_html"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_input.html">kynema_sgf::ABLMesoscaleInput</a></div><div class="ttdef"><b>Definition</b> ABLMesoscaleInput.H:11</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_vel_plane_averaging_fine_html"><div class="ttname"><a href="classkynema__sgf_1_1_vel_plane_averaging_fine.html">kynema_sgf::VelPlaneAveragingFine</a></div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:144</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_a00fcc7d835d03405a1909cfde7c90f3a"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a00fcc7d835d03405a1909cfde7c90f3a">kynema_sgf::pde::icns::ABLMesoForcingMom::m_err_U</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_err_U</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.H:69</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_a0a9ca909d062f4bdafb29a54dc78297d"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a0a9ca909d062f4bdafb29a54dc78297d">kynema_sgf::pde::icns::ABLMesoForcingMom::m_poly_coeff_V</a></div><div class="ttdeci">amrex::Array&lt; amrex::Real, 4 &gt; m_poly_coeff_V</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.H:75</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_a10e62588f86b998eeb3fb8f797d4d0de"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a10e62588f86b998eeb3fb8f797d4d0de">kynema_sgf::pde::icns::ABLMesoForcingMom::ABLMesoForcingMom</a></div><div class="ttdeci">ABLMesoForcingMom(const CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.cpp:17</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_a246451e05a425da7697ab2e8d2748fa8"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a246451e05a425da7697ab2e8d2748fa8">kynema_sgf::pde::icns::ABLMesoForcingMom::m_poly_coeff_U</a></div><div class="ttdeci">amrex::Array&lt; amrex::Real, 4 &gt; m_poly_coeff_U</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.H:74</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_a45e0fea91eb9730928f225fcb2738e03"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a45e0fea91eb9730928f225fcb2738e03">kynema_sgf::pde::icns::ABLMesoForcingMom::m_meso_u_vals</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_meso_u_vals</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.H:59</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_a46bc76b07ac4af135141206a3ee4becf"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a46bc76b07ac4af135141206a3ee4becf">kynema_sgf::pde::icns::ABLMesoForcingMom::m_error_meso_avg_V</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_error_meso_avg_V</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.H:67</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_a64fcebde64c593bc050718b7c35ba729"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a64fcebde64c593bc050718b7c35ba729">kynema_sgf::pde::icns::ABLMesoForcingMom::m_error_meso_avg_U</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_error_meso_avg_U</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.H:66</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_a757a2ca37dc2a7ec16a8c5a42df30050"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a757a2ca37dc2a7ec16a8c5a42df30050">kynema_sgf::pde::icns::ABLMesoForcingMom::m_meso_ht</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_meso_ht</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.H:58</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_a7a68b282269c7daa2577290bb2877c79"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a7a68b282269c7daa2577290bb2877c79">kynema_sgf::pde::icns::ABLMesoForcingMom::m_vavg_ht</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_vavg_ht</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.H:63</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_a8bceb7fce04a4b1ddf9749b081c0e1b9"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a8bceb7fce04a4b1ddf9749b081c0e1b9">kynema_sgf::pde::icns::ABLMesoForcingMom::m_meso_v_vals</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_meso_v_vals</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.H:60</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_a8fbc2b3e9316da357bbf4152f3d9d7bf"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a8fbc2b3e9316da357bbf4152f3d9d7bf">kynema_sgf::pde::icns::ABLMesoForcingMom::~ABLMesoForcingMom</a></div><div class="ttdeci">~ABLMesoForcingMom() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_a901c914694adf35d018801849ddf3abc"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a901c914694adf35d018801849ddf3abc">kynema_sgf::pde::icns::ABLMesoForcingMom::mom_u_error</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; &amp; mom_u_error()</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.H:53</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_a908523a4508b5fda4f7eb7f8e21ca454"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a908523a4508b5fda4f7eb7f8e21ca454">kynema_sgf::pde::icns::ABLMesoForcingMom::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.H:28</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_a9d83c65aa40f722d711131164ef8264e"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a9d83c65aa40f722d711131164ef8264e">kynema_sgf::pde::icns::ABLMesoForcingMom::mean_velocity_init</a></div><div class="ttdeci">void mean_velocity_init(const ABLMesoscaleInput &amp;ncfile)</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.cpp:41</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_a9e55f9f620fb65191f7470e51792ae8f"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a9e55f9f620fb65191f7470e51792ae8f">kynema_sgf::pde::icns::ABLMesoForcingMom::mean_velocity_heights</a></div><div class="ttdeci">void mean_velocity_heights(std::unique_ptr&lt; ABLMesoscaleInput &gt; const &amp;ncfile)</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.cpp:88</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_af1e669779fa3f5f23bce6fa0722ba5db"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#af1e669779fa3f5f23bce6fa0722ba5db">kynema_sgf::pde::icns::ABLMesoForcingMom::operator()</a></div><div class="ttdeci">void operator()(int lev, const amrex::MFIter &amp;mfi, const amrex::Box &amp;bx, FieldState fstate, const amrex::Array4&lt; amrex::Real &gt; &amp;src_term) const override</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.cpp:262</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_af4eef555969a91fdda54181233e6d90b"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#af4eef555969a91fdda54181233e6d90b">kynema_sgf::pde::icns::ABLMesoForcingMom::mom_v_error</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; &amp; mom_v_error()</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.H:54</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html_af9dc6603696489918d76f01103ee5a98"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#af9dc6603696489918d76f01103ee5a98">kynema_sgf::pde::icns::ABLMesoForcingMom::m_err_V</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_err_V</div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.H:70</div></div>
+<div class="ttc" id="agroup__fields_html_ga73fcb43d320747f8ced022629f36af1f"><div class="ttname"><a href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">kynema_sgf::FieldState</a></div><div class="ttdeci">FieldState</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:16</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1pde_1_1icns_html"><div class="ttname"><a href="namespacekynema__sgf_1_1pde_1_1icns.html">kynema_sgf::pde::icns</a></div><div class="ttdef"><b>Definition</b> ABLForcing.cpp:14</div></div>
+<div class="ttc" id="anc__interface_8_h_html"><div class="ttname"><a href="nc__interface_8_h.html">nc_interface.H</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

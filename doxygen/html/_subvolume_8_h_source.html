@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/subvolume/Subvolume.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/subvolume/Subvolume.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_subvolume_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-utilities-subvolume-subvolume-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/subvolume/Subvolume.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-utilities-subvolume-subvolume-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/subvolume/Subvolume.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_d59b7dddc6cfeb8ed243c8310c362d19.html">utilities</a></li><li class="navelem"><a href="dir_e5d553f465f8a90b79542fff164c7530.html">subvolume</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">Subvolume.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_subvolume_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SUBVOLUME_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SUBVOLUME_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_derived_quantity_8_h.html">src/utilities/DerivedQuantity.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="_post_processing_8_h.html">src/utilities/PostProcessing.H</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="_subvolume_base_8_h.html">src/utilities/subvolume/SubvolumeBase.H</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;AMReX_PlotFileUtil.H&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1subvolume.html">kynema_sgf::subvolume</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html">   28</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a0c8cb196ee84667cac64a66367037e7b">Subvolume</a> : <span class="keyword">public</span> PostProcessBase::Register&lt;Subvolume&gt;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a2302395d5355357e058395b9ced6698c">   31</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a2302395d5355357e058395b9ced6698c">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Subvolume&quot;</span>; }</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_function" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a0c8cb196ee84667cac64a66367037e7b">Subvolume</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <span class="comment">/*sim*/</span>, std::string <span class="comment">/*label*/</span>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a40b83249ff2d81fc46cfe69262c663c6">   35</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a40b83249ff2d81fc46cfe69262c663c6">~Subvolume</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a8228c8c96578dcd8f84462eeeed5ce0d">   38</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a8228c8c96578dcd8f84462eeeed5ce0d">pre_init_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a074e773cfedb74dd72ee0affe706dcc8">initialize</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#af04d59823eb005d32fec1848c69eacf4">post_regrid_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#af074ac5ed7de4010e5426f726031c384">output_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#ab7506eb9516c2f3484dcae3fbdb835d8">   50</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#ab7506eb9516c2f3484dcae3fbdb835d8">post_advance_work</a>()<span class="keyword"> override </span>{};</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a36b96dbc3ba8d663142566237f87729d">   52</a></span>    [[nodiscard]] <span class="keyword">const</span> amrex::Vector&lt;std::string&gt;&amp; <a class="code hl_function" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a36b96dbc3ba8d663142566237f87729d">var_names</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#ab72ec3135cdeed7b187b4189bab61ad2">m_var_names</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
+</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#aa8d3b6683f8510eecea3e3585fa86133">   59</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#aa8d3b6683f8510eecea3e3585fa86133">m_sim</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a21586e8b3f09335affa04fb699d6d62b">   61</a></span>    amrex::Vector&lt;std::unique_ptr&lt;SubvolumeBase&gt;&gt; <a class="code hl_variable" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a21586e8b3f09335affa04fb699d6d62b">m_subvolumes</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#ab72ec3135cdeed7b187b4189bab61ad2">   64</a></span>    amrex::Vector&lt;std::string&gt; <a class="code hl_variable" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#ab72ec3135cdeed7b187b4189bab61ad2">m_var_names</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#acb4b07dcfe6157a237a218d6196daf5c">   67</a></span>    amrex::Vector&lt;Field*&gt; <a class="code hl_variable" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#acb4b07dcfe6157a237a218d6196daf5c">m_fields</a>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#abf5cd137983667cf402d02c927cce5e5">   70</a></span>    amrex::Vector&lt;IntField*&gt; <a class="code hl_variable" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#abf5cd137983667cf402d02c927cce5e5">m_int_fields</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a41dd2a4ce6fe86c4d25d7e5117cb93fe">   73</a></span>    std::unique_ptr&lt;DerivedQtyMgr&gt; <a class="code hl_variable" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a41dd2a4ce6fe86c4d25d7e5117cb93fe">m_derived_mgr</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a61d74668c391da295a238303d60d3d3e">   80</a></span>    <span class="keyword">const</span> std::string <a class="code hl_variable" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a61d74668c391da295a238303d60d3d3e">m_label</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#aaff418dcd7fefb297edb7403c98d5d58">   89</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#aaff418dcd7fefb297edb7403c98d5d58">m_label_out</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// number of field components</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a53c951f9057c8e19e1113806421a684d">   92</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a53c951f9057c8e19e1113806421a684d">m_ncomp</a>{0};</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// number of int field components</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#aa98b10ed11c79c2083de018a74dff601">   95</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#aa98b10ed11c79c2083de018a74dff601">m_nicomp</a>{0};</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="comment">// number of derived field components</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a479a95a205c3c4475614ff26a65db354">   98</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a479a95a205c3c4475614ff26a65db354">m_ndcomp</a>{0};</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>};</div>
+</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>} <span class="comment">// namespace kynema_sgf::subvolume</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">#endif </span><span class="comment">/* SUBVOLUME_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_derived_quantity_8_h_html"><div class="ttname"><a href="_derived_quantity_8_h.html">DerivedQuantity.H</a></div></div>
+<div class="ttc" id="a_post_processing_8_h_html"><div class="ttname"><a href="_post_processing_8_h.html">PostProcessing.H</a></div></div>
+<div class="ttc" id="a_subvolume_base_8_h_html"><div class="ttname"><a href="_subvolume_base_8_h.html">SubvolumeBase.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_a074e773cfedb74dd72ee0affe706dcc8"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a074e773cfedb74dd72ee0affe706dcc8">kynema_sgf::subvolume::Subvolume::initialize</a></div><div class="ttdeci">void initialize() override</div><div class="ttdoc">Read user inputs for chunks, output timing.</div><div class="ttdef"><b>Definition</b> Subvolume.cpp:21</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_a0c8cb196ee84667cac64a66367037e7b"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a0c8cb196ee84667cac64a66367037e7b">kynema_sgf::subvolume::Subvolume::Subvolume</a></div><div class="ttdeci">Subvolume(CFDSim &amp;, std::string)</div><div class="ttdef"><b>Definition</b> Subvolume.cpp:13</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_a21586e8b3f09335affa04fb699d6d62b"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a21586e8b3f09335affa04fb699d6d62b">kynema_sgf::subvolume::Subvolume::m_subvolumes</a></div><div class="ttdeci">amrex::Vector&lt; std::unique_ptr&lt; SubvolumeBase &gt; &gt; m_subvolumes</div><div class="ttdef"><b>Definition</b> Subvolume.H:61</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_a2302395d5355357e058395b9ced6698c"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a2302395d5355357e058395b9ced6698c">kynema_sgf::subvolume::Subvolume::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> Subvolume.H:31</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_a36b96dbc3ba8d663142566237f87729d"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a36b96dbc3ba8d663142566237f87729d">kynema_sgf::subvolume::Subvolume::var_names</a></div><div class="ttdeci">const amrex::Vector&lt; std::string &gt; &amp; var_names() const</div><div class="ttdef"><b>Definition</b> Subvolume.H:52</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_a40b83249ff2d81fc46cfe69262c663c6"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a40b83249ff2d81fc46cfe69262c663c6">kynema_sgf::subvolume::Subvolume::~Subvolume</a></div><div class="ttdeci">~Subvolume() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_a41dd2a4ce6fe86c4d25d7e5117cb93fe"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a41dd2a4ce6fe86c4d25d7e5117cb93fe">kynema_sgf::subvolume::Subvolume::m_derived_mgr</a></div><div class="ttdeci">std::unique_ptr&lt; DerivedQtyMgr &gt; m_derived_mgr</div><div class="ttdoc">List of derived fields to be sampled for this collection of probes.</div><div class="ttdef"><b>Definition</b> Subvolume.H:73</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_a479a95a205c3c4475614ff26a65db354"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a479a95a205c3c4475614ff26a65db354">kynema_sgf::subvolume::Subvolume::m_ndcomp</a></div><div class="ttdeci">int m_ndcomp</div><div class="ttdef"><b>Definition</b> Subvolume.H:98</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_a53c951f9057c8e19e1113806421a684d"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a53c951f9057c8e19e1113806421a684d">kynema_sgf::subvolume::Subvolume::m_ncomp</a></div><div class="ttdeci">int m_ncomp</div><div class="ttdef"><b>Definition</b> Subvolume.H:92</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_a61d74668c391da295a238303d60d3d3e"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a61d74668c391da295a238303d60d3d3e">kynema_sgf::subvolume::Subvolume::m_label</a></div><div class="ttdeci">const std::string m_label</div><div class="ttdef"><b>Definition</b> Subvolume.H:80</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_a8228c8c96578dcd8f84462eeeed5ce0d"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#a8228c8c96578dcd8f84462eeeed5ce0d">kynema_sgf::subvolume::Subvolume::pre_init_actions</a></div><div class="ttdeci">void pre_init_actions() override</div><div class="ttdoc">Perform actions before mesh is created.</div><div class="ttdef"><b>Definition</b> Subvolume.H:38</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_aa8d3b6683f8510eecea3e3585fa86133"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#aa8d3b6683f8510eecea3e3585fa86133">kynema_sgf::subvolume::Subvolume::m_sim</a></div><div class="ttdeci">CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> Subvolume.H:59</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_aa98b10ed11c79c2083de018a74dff601"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#aa98b10ed11c79c2083de018a74dff601">kynema_sgf::subvolume::Subvolume::m_nicomp</a></div><div class="ttdeci">int m_nicomp</div><div class="ttdef"><b>Definition</b> Subvolume.H:95</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_aaff418dcd7fefb297edb7403c98d5d58"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#aaff418dcd7fefb297edb7403c98d5d58">kynema_sgf::subvolume::Subvolume::m_label_out</a></div><div class="ttdeci">std::string m_label_out</div><div class="ttdef"><b>Definition</b> Subvolume.H:89</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_ab72ec3135cdeed7b187b4189bab61ad2"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#ab72ec3135cdeed7b187b4189bab61ad2">kynema_sgf::subvolume::Subvolume::m_var_names</a></div><div class="ttdeci">amrex::Vector&lt; std::string &gt; m_var_names</div><div class="ttdoc">List of variable names for output.</div><div class="ttdef"><b>Definition</b> Subvolume.H:64</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_ab7506eb9516c2f3484dcae3fbdb835d8"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#ab7506eb9516c2f3484dcae3fbdb835d8">kynema_sgf::subvolume::Subvolume::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdoc">Actions to do at end of every time step.</div><div class="ttdef"><b>Definition</b> Subvolume.H:50</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_abf5cd137983667cf402d02c927cce5e5"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#abf5cd137983667cf402d02c927cce5e5">kynema_sgf::subvolume::Subvolume::m_int_fields</a></div><div class="ttdeci">amrex::Vector&lt; IntField * &gt; m_int_fields</div><div class="ttdoc">List of IntFields to be sampled for this collection of probes.</div><div class="ttdef"><b>Definition</b> Subvolume.H:70</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_acb4b07dcfe6157a237a218d6196daf5c"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#acb4b07dcfe6157a237a218d6196daf5c">kynema_sgf::subvolume::Subvolume::m_fields</a></div><div class="ttdeci">amrex::Vector&lt; Field * &gt; m_fields</div><div class="ttdoc">List of fields to be sampled for this collection of probes.</div><div class="ttdef"><b>Definition</b> Subvolume.H:67</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_af04d59823eb005d32fec1848c69eacf4"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#af04d59823eb005d32fec1848c69eacf4">kynema_sgf::subvolume::Subvolume::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdoc">Do any work that needs to happen after regrid.</div><div class="ttdef"><b>Definition</b> Subvolume.cpp:124</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1subvolume_1_1_subvolume_html_af074ac5ed7de4010e5426f726031c384"><div class="ttname"><a href="classkynema__sgf_1_1subvolume_1_1_subvolume.html#af074ac5ed7de4010e5426f726031c384">kynema_sgf::subvolume::Subvolume::output_actions</a></div><div class="ttdeci">void output_actions() override</div><div class="ttdoc">Get chunks and output to disk.</div><div class="ttdef"><b>Definition</b> Subvolume.cpp:133</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1subvolume_html"><div class="ttname"><a href="namespacekynema__sgf_1_1subvolume.html">kynema_sgf::subvolume</a></div><div class="ttdef"><b>Definition</b> RectangularSubvolume.cpp:7</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

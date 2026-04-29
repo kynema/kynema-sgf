@@ -1,0 +1,536 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::VelPlaneAveragingFine Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::VelPlaneAveragingFine Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_vel_plane_averaging_fine.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="velplaneaveragingfine-class-reference">
+<h1>VelPlaneAveragingFine Class Reference<a class="headerlink" href="#velplaneaveragingfine-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::VelPlaneAveragingFine Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_vel_plane_averaging_fine.html">VelPlaneAveragingFine</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_vel_plane_averaging_fine-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::VelPlaneAveragingFine Class Reference<div class="ingroups"><a class="el" href="group__utilities.html">Utilities</a> &raquo; <a class="el" href="group__statistics.html">Field statistics</a> &#124; <a class="el" href="group__physics.html">Physics models</a> &raquo; <a class="el" href="group__wind.html">Wind energy modeling</a> &raquo; <a class="el" href="group__we__abl.html">ABL</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_field_plane_averaging_fine_8_h_source.html">FieldPlaneAveragingFine.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::VelPlaneAveragingFine:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_vel_plane_averaging_fine__inherit__graph.svg" width="267" height="222"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::VelPlaneAveragingFine:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_vel_plane_averaging_fine__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:aa07f928cd72b0db3a5a161832c0f6bd6" id="r_aa07f928cd72b0db3a5a161832c0f6bd6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa07f928cd72b0db3a5a161832c0f6bd6">VelPlaneAveragingFine</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim, int axis_in)</td></tr>
+<tr class="memitem:a48e6fa91f656de9b775d1ca232ef234a" id="r_a48e6fa91f656de9b775d1ca232ef234a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48e6fa91f656de9b775d1ca232ef234a">~VelPlaneAveragingFine</a> () override=default</td></tr>
+<tr class="memitem:aa364739cba24a33dbdd886cb4885b709" id="r_aa364739cba24a33dbdd886cb4885b709"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa364739cba24a33dbdd886cb4885b709">operator()</a> () override</td></tr>
+<tr class="memitem:aa9ec1171419a5ccf3a1a36b35b879d71" id="r_aa9ec1171419a5ccf3a1a36b35b879d71"><td class="memTemplParams" colspan="2">template&lt;typename IndexSelector&gt; </td></tr>
+<tr class="memitem:aa9ec1171419a5ccf3a1a36b35b879d71 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9ec1171419a5ccf3a1a36b35b879d71">compute_hvelmag_averages</a> (const IndexSelector &amp;idxOp)</td></tr>
+<tr class="memitem:acdc6c9c2478f2730a2af61a3c6fe5539" id="r_acdc6c9c2478f2730a2af61a3c6fe5539"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acdc6c9c2478f2730a2af61a3c6fe5539">line_hvelmag_average_interpolated</a> (amrex::Real x) const</td></tr>
+<tr class="memitem:afb22f8f11d2a7ac092a09240a923f321" id="r_afb22f8f11d2a7ac092a09240a923f321"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb22f8f11d2a7ac092a09240a923f321">line_su_average_interpolated</a> (amrex::Real x) const</td></tr>
+<tr class="memitem:abbdedc401a57ae61d433c5321973fa03" id="r_abbdedc401a57ae61d433c5321973fa03"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbdedc401a57ae61d433c5321973fa03">line_sv_average_interpolated</a> (amrex::Real x) const</td></tr>
+<tr class="inherit_header pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;</a></td></tr>
+<tr class="memitem:abd624e54bd72660a52566756795d42f9 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_abd624e54bd72660a52566756795d42f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#abd624e54bd72660a52566756795d42f9">FPlaneAveragingFine</a> (const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;field_in, const <a class="el" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a> &amp;time, int axis_in, bool compute_deriv=false)</td></tr>
+<tr class="memitem:ab3fa9a882d26191f4584c6a2712dd21e inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_ab3fa9a882d26191f4584c6a2712dd21e"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab3fa9a882d26191f4584c6a2712dd21e">~FPlaneAveragingFine</a> ()=default</td></tr>
+<tr class="memitem:a9dbe72424802bebf17675a38655a7475 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a9dbe72424802bebf17675a38655a7475"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a9dbe72424802bebf17675a38655a7475">convert_x_to_ind</a> (amrex::Real x, int &amp;ind, amrex::Real &amp;c) const</td></tr>
+<tr class="memitem:ac64bf421c3697222e9713dc035a6d9f2 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_ac64bf421c3697222e9713dc035a6d9f2"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac64bf421c3697222e9713dc035a6d9f2">line_average_interpolated</a> (amrex::Real x, int comp) const</td></tr>
+<tr class="memitem:a17782fed8950d36c0a8bd03c39138d9d inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a17782fed8950d36c0a8bd03c39138d9d"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a17782fed8950d36c0a8bd03c39138d9d">line_average_cell</a> (int ind, int comp) const</td></tr>
+<tr class="memitem:a8bbeda4c5bc37d8040ec7318fdbaae1e inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a8bbeda4c5bc37d8040ec7318fdbaae1e"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a8bbeda4c5bc37d8040ec7318fdbaae1e">line_derivative_interpolated</a> (amrex::Real x, int comp) const</td></tr>
+<tr class="memitem:ac8bb12e534fac55b3476a7ad0d21a74c inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_ac8bb12e534fac55b3476a7ad0d21a74c"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac8bb12e534fac55b3476a7ad0d21a74c">line_derivative_of_average_cell</a> (int ind, int comp) const</td></tr>
+<tr class="memitem:ac423eca819f3096789d20ee4f87dfdf4 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_ac423eca819f3096789d20ee4f87dfdf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac423eca819f3096789d20ee4f87dfdf4">output_line_average_ascii</a> (const std::string &amp;filename, int step, amrex::Real time)</td></tr>
+<tr class="memitem:ace3c0010939f0addb669f981e8529b63 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_ace3c0010939f0addb669f981e8529b63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ace3c0010939f0addb669f981e8529b63">output_line_average_ascii</a> (int step, amrex::Real time)</td></tr>
+<tr class="memitem:ac135bd3aa7c1462823ddbb5253e1e4e4 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_ac135bd3aa7c1462823ddbb5253e1e4e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac135bd3aa7c1462823ddbb5253e1e4e4">set_precision</a> (int p)</td></tr>
+<tr class="memitem:acb8f30d4582b65136fb8247d36d9e891 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_acb8f30d4582b65136fb8247d36d9e891"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#acb8f30d4582b65136fb8247d36d9e891">dx</a> () const</td></tr>
+<tr class="memitem:ab1fe8555bc0c6a03ff8c556c8d7e26c7 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_ab1fe8555bc0c6a03ff8c556c8d7e26c7"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab1fe8555bc0c6a03ff8c556c8d7e26c7">xlo</a> () const</td></tr>
+<tr class="memitem:a43ce9e21aa5e6aa4a50ab85fa82f5faa inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a43ce9e21aa5e6aa4a50ab85fa82f5faa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a43ce9e21aa5e6aa4a50ab85fa82f5faa">axis</a> () const</td></tr>
+<tr class="memitem:a952bfc8db788f4879469c8a15f33cb27 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a952bfc8db788f4879469c8a15f33cb27"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a952bfc8db788f4879469c8a15f33cb27">ncomp</a> () const</td></tr>
+<tr class="memitem:ae59861e90e46a109faa47991d0140d07 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_ae59861e90e46a109faa47991d0140d07"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ae59861e90e46a109faa47991d0140d07">ncell_line</a> () const</td></tr>
+<tr class="memitem:ae630fb4805d64ec68d487bbca538a766 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_ae630fb4805d64ec68d487bbca538a766"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ae630fb4805d64ec68d487bbca538a766">last_updated_index</a> () const</td></tr>
+<tr class="memitem:acc93a9f2a0cd6d34c7a8160c5cb57b58 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_acc93a9f2a0cd6d34c7a8160c5cb57b58"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; amrex::Real &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#acc93a9f2a0cd6d34c7a8160c5cb57b58">line_average</a> () const</td></tr>
+<tr class="memitem:a8ab088084da60e35a1cc5bd08c70cb08 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a8ab088084da60e35a1cc5bd08c70cb08"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; amrex::Real &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a8ab088084da60e35a1cc5bd08c70cb08">line_deriv</a> () const</td></tr>
+<tr class="memitem:ab352eaf2ba8cb50a0573f9d66423a0f9 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_ab352eaf2ba8cb50a0573f9d66423a0f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab352eaf2ba8cb50a0573f9d66423a0f9">line_average</a> (int comp, amrex::Vector&lt; amrex::Real &gt; &amp;l_vec)</td></tr>
+<tr class="memitem:aeeeb794653bba30673e6b23e01a402b0 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_aeeeb794653bba30673e6b23e01a402b0"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; amrex::Real &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#aeeeb794653bba30673e6b23e01a402b0">line_centroids</a> () const</td></tr>
+<tr class="memitem:ae8855876db90cdba84dafac44692e98d inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_ae8855876db90cdba84dafac44692e98d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ae8855876db90cdba84dafac44692e98d">field</a> () const</td></tr>
+<tr class="memitem:a51fb9671567899b0849e01ac96f8a13a inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a51fb9671567899b0849e01ac96f8a13a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a51fb9671567899b0849e01ac96f8a13a">compute_averages</a> (const IndexSelector &amp;idxOp)</td></tr>
+<tr class="memitem:ab74774c62862a8d7a3aa2177b824cb27 inherit pub_methods_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_ab74774c62862a8d7a3aa2177b824cb27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab74774c62862a8d7a3aa2177b824cb27">compute_line_derivatives</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a535be1a72547cec7105b2e73299b4609" id="r_a535be1a72547cec7105b2e73299b4609"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a535be1a72547cec7105b2e73299b4609">m_line_hvelmag_average</a></td></tr>
+<tr class="memitem:a18d239ea2c71b670daf9be1be9b9832e" id="r_a18d239ea2c71b670daf9be1be9b9832e"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18d239ea2c71b670daf9be1be9b9832e">m_line_Su_average</a></td></tr>
+<tr class="memitem:a6e681d79d755cb6f8aa339aa989542b6" id="r_a6e681d79d755cb6f8aa339aa989542b6"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e681d79d755cb6f8aa339aa989542b6">m_line_Sv_average</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;</a></td></tr>
+<tr class="memitem:a8982db3c60c400277f2976fad5aac0c5 inherit pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a8982db3c60c400277f2976fad5aac0c5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a8982db3c60c400277f2976fad5aac0c5">m_ncomp</a></td></tr>
+<tr class="memitem:a1c91be23020ce818912e85babfdbb986 inherit pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a1c91be23020ce818912e85babfdbb986"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a1c91be23020ce818912e85babfdbb986">m_line_average</a></td></tr>
+<tr class="memitem:ab63751e2253ed5d94457c3bf0a0b5ffb inherit pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_ab63751e2253ed5d94457c3bf0a0b5ffb"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ab63751e2253ed5d94457c3bf0a0b5ffb">m_line_deriv</a></td></tr>
+<tr class="memdesc:ab63751e2253ed5d94457c3bf0a0b5ffb inherit pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine"><td class="mdescLeft">&#160;</td><td class="mdescRight">line storage for the derivative of average field  <br /></td></tr>
+<tr class="memitem:a9e13caae8c118cc2b0639eafec7651dc inherit pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a9e13caae8c118cc2b0639eafec7651dc"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a9e13caae8c118cc2b0639eafec7651dc">m_line_xcentroid</a></td></tr>
+<tr class="memitem:ac14f83d09b8f8d72c4b5d4e4688380db inherit pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_ac14f83d09b8f8d72c4b5d4e4688380db"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac14f83d09b8f8d72c4b5d4e4688380db">m_dx</a></td></tr>
+<tr class="memitem:a875e3a70df5dff75b85a0d826508a6e2 inherit pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a875e3a70df5dff75b85a0d826508a6e2"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a875e3a70df5dff75b85a0d826508a6e2">m_xlo</a></td></tr>
+<tr class="memitem:a4146e98820440efb5df997b331aee7e3 inherit pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a4146e98820440efb5df997b331aee7e3"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a4146e98820440efb5df997b331aee7e3">m_xhi</a></td></tr>
+<tr class="memitem:abce9d7f0862bfdfce0b1faf43dd44f17 inherit pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_abce9d7f0862bfdfce0b1faf43dd44f17"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#abce9d7f0862bfdfce0b1faf43dd44f17">m_ncell_line</a></td></tr>
+<tr class="memitem:a1758c50011a144a95cb16d09f0a5399d inherit pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a1758c50011a144a95cb16d09f0a5399d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a1758c50011a144a95cb16d09f0a5399d">m_precision</a></td></tr>
+<tr class="memitem:a182b595ab6e693fce24b314efd972487 inherit pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a182b595ab6e693fce24b314efd972487"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a182b595ab6e693fce24b314efd972487">m_last_updated_index</a></td></tr>
+<tr class="memitem:ac2fee2123ba51497e6a7549f25900f8d inherit pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_ac2fee2123ba51497e6a7549f25900f8d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#ac2fee2123ba51497e6a7549f25900f8d">m_field</a></td></tr>
+<tr class="memitem:abc242ed7aefa1c983ca38081d170a07e inherit pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_abc242ed7aefa1c983ca38081d170a07e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#abc242ed7aefa1c983ca38081d170a07e">m_time</a></td></tr>
+<tr class="memitem:a58725248b08b3fe82c267d72e5d19931 inherit pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a58725248b08b3fe82c267d72e5d19931"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a58725248b08b3fe82c267d72e5d19931">m_axis</a></td></tr>
+<tr class="memitem:a6946b9527c7a72e271cabe1d3c737f6f inherit pro_attribs_classkynema__sgf_1_1_f_plane_averaging_fine" id="r_a6946b9527c7a72e271cabe1d3c737f6f"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a6946b9527c7a72e271cabe1d3c737f6f">m_comp_deriv</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Specific application of <a class="el" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a> to the velocity field </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aa07f928cd72b0db3a5a161832c0f6bd6" name="aa07f928cd72b0db3a5a161832c0f6bd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa07f928cd72b0db3a5a161832c0f6bd6">&#9670;&#160;</a></span>VelPlaneAveragingFine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::VelPlaneAveragingFine::VelPlaneAveragingFine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>axis_in</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a48e6fa91f656de9b775d1ca232ef234a" name="a48e6fa91f656de9b775d1ca232ef234a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48e6fa91f656de9b775d1ca232ef234a">&#9670;&#160;</a></span>~VelPlaneAveragingFine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::VelPlaneAveragingFine::~VelPlaneAveragingFine </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="aa9ec1171419a5ccf3a1a36b35b879d71" name="aa9ec1171419a5ccf3a1a36b35b879d71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9ec1171419a5ccf3a1a36b35b879d71">&#9670;&#160;</a></span>compute_hvelmag_averages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename IndexSelector&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::VelPlaneAveragingFine::compute_hvelmag_averages </td>
+          <td>(</td>
+          <td class="paramtype">const IndexSelector &amp;</td>          <td class="paramname"><span class="paramname"><em>idxOp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>line storage for the average horizontal velocity magnitude time y-velocity fill line storage with horizontal velocity magnitude averages </p>
+
+</div>
+</div>
+<a id="acdc6c9c2478f2730a2af61a3c6fe5539" name="acdc6c9c2478f2730a2af61a3c6fe5539"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdc6c9c2478f2730a2af61a3c6fe5539">&#9670;&#160;</a></span>line_hvelmag_average_interpolated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::VelPlaneAveragingFine::line_hvelmag_average_interpolated </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>evaluate line haverage at specific location for horizontal velocity magnitude </p>
+
+</div>
+</div>
+<a id="afb22f8f11d2a7ac092a09240a923f321" name="afb22f8f11d2a7ac092a09240a923f321"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb22f8f11d2a7ac092a09240a923f321">&#9670;&#160;</a></span>line_su_average_interpolated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::VelPlaneAveragingFine::line_su_average_interpolated </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>evaluate line haverage at specific location for horizontal velocity magnitude times x-velocity </p>
+
+</div>
+</div>
+<a id="abbdedc401a57ae61d433c5321973fa03" name="abbdedc401a57ae61d433c5321973fa03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbdedc401a57ae61d433c5321973fa03">&#9670;&#160;</a></span>line_sv_average_interpolated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::VelPlaneAveragingFine::line_sv_average_interpolated </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>evaluate line haverage at specific location for horizontal velocity magnitude times y-velocity </p>
+
+</div>
+</div>
+<a id="aa364739cba24a33dbdd886cb4885b709" name="aa364739cba24a33dbdd886cb4885b709"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa364739cba24a33dbdd886cb4885b709">&#9670;&#160;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::VelPlaneAveragingFine::operator() </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classkynema__sgf_1_1_f_plane_averaging_fine.html#a23be72fb25fe79fa703d201ab46a0188">kynema_sgf::FPlaneAveragingFine&lt; Field &gt;</a>.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a535be1a72547cec7105b2e73299b4609" name="a535be1a72547cec7105b2e73299b4609"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a535be1a72547cec7105b2e73299b4609">&#9670;&#160;</a></span>m_line_hvelmag_average</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::VelPlaneAveragingFine::m_line_hvelmag_average</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a18d239ea2c71b670daf9be1be9b9832e" name="a18d239ea2c71b670daf9be1be9b9832e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18d239ea2c71b670daf9be1be9b9832e">&#9670;&#160;</a></span>m_line_Su_average</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::VelPlaneAveragingFine::m_line_Su_average</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>line storage for the average horizontal velocity magnitude </p>
+
+</div>
+</div>
+<a id="a6e681d79d755cb6f8aa339aa989542b6" name="a6e681d79d755cb6f8aa339aa989542b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e681d79d755cb6f8aa339aa989542b6">&#9670;&#160;</a></span>m_line_Sv_average</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::VelPlaneAveragingFine::m_line_Sv_average</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>line storage for the average horizontal velocity magnitude time x-velocity </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/<a class="el" href="_field_plane_averaging_fine_8_h_source.html">FieldPlaneAveragingFine.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/<a class="el" href="_field_plane_averaging_fine_8cpp.html">FieldPlaneAveragingFine.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

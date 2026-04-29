@@ -1,0 +1,794 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::pde::PDEMgr Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::pde::PDEMgr Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1pde_1_1_p_d_e_mgr.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pdemgr-class-reference">
+<h1>PDEMgr Class Reference<a class="headerlink" href="#pdemgr-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::pde::PDEMgr Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1pde.html">pde</a></li><li class="navelem"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html">PDEMgr</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::pde::PDEMgr Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_p_d_e_base_8_h_source.html">PDEBase.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::pde::PDEMgr:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1pde_1_1_p_d_e_mgr__inherit__graph.svg" width="263" height="251"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::pde::PDEMgr:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1pde_1_1_p_d_e_mgr__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ae5410a193e346960fe6bc318260cb3c5" id="r_ae5410a193e346960fe6bc318260cb3c5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5410a193e346960fe6bc318260cb3c5">PDEMgr</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a320d5eaaaa00c623331c999bed4e3ac8" id="r_a320d5eaaaa00c623331c999bed4e3ac8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a320d5eaaaa00c623331c999bed4e3ac8">~PDEMgr</a> ()=default</td></tr>
+<tr class="memitem:a2af91196e5daa7d48a2b959c66bb8444" id="r_a2af91196e5daa7d48a2b959c66bb8444"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2af91196e5daa7d48a2b959c66bb8444">icns</a> ()</td></tr>
+<tr class="memdesc:a2af91196e5daa7d48a2b959c66bb8444"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the incompressible Navier-Stokes instance.  <br /></td></tr>
+<tr class="memitem:a5d8b9329b31c5fcc53bcf116d6ee80bf" id="r_a5d8b9329b31c5fcc53bcf116d6ee80bf"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d8b9329b31c5fcc53bcf116d6ee80bf">icns</a> () const</td></tr>
+<tr class="memitem:a48e813aa8194be4a003779d533092785" id="r_a48e813aa8194be4a003779d533092785"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48e813aa8194be4a003779d533092785">register_icns</a> ()</td></tr>
+<tr class="memdesc:a48e813aa8194be4a003779d533092785"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the incompressible Navier-Stokes instance and return its reference.  <br /></td></tr>
+<tr class="memitem:a2dde63b4be46c07acc447d4afdddcac2" id="r_a2dde63b4be46c07acc447d4afdddcac2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2dde63b4be46c07acc447d4afdddcac2">register_transport_pde</a> (const std::string &amp;pde_name)</td></tr>
+<tr class="memdesc:a2dde63b4be46c07acc447d4afdddcac2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a new PDE instance and return its reference.  <br /></td></tr>
+<tr class="memitem:ad18f1ea3d5a85b86c0a5999660ba1d7b" id="r_ad18f1ea3d5a85b86c0a5999660ba1d7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad18f1ea3d5a85b86c0a5999660ba1d7b">advance_states</a> ()</td></tr>
+<tr class="memdesc:ad18f1ea3d5a85b86c0a5999660ba1d7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advance states for all registered PDEs at the beginning of a timestep.  <br /></td></tr>
+<tr class="memitem:ad9b16f9c21b93d80b2cab748c968edbd" id="r_ad9b16f9c21b93d80b2cab748c968edbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9b16f9c21b93d80b2cab748c968edbd">prepare_boundaries</a> ()</td></tr>
+<tr class="memdesc:ad9b16f9c21b93d80b2cab748c968edbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare boundaries for registered PDEs at the beginning of a timestep: &ndash; intended for when boundaries rely on intermediate time states (nph)  <br /></td></tr>
+<tr class="memitem:ab3b9b1b5afdac004d51cd95fa36324fc" id="r_ab3b9b1b5afdac004d51cd95fa36324fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3b9b1b5afdac004d51cd95fa36324fc">density_check</a> ()</td></tr>
+<tr class="memdesc:ab3b9b1b5afdac004d51cd95fa36324fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check that the bounds of density correspond to the expected values &ndash; only applies to two-phase and constant-density single-phase &ndash; performed once in post_init, will abort if density is unexpected.  <br /></td></tr>
+<tr class="memitem:a864fa3b5c332df6e7a6a7482e1c34adc" id="r_a864fa3b5c332df6e7a6a7482e1c34adc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a864fa3b5c332df6e7a6a7482e1c34adc">fillpatch_state_fields</a> (amrex::Real time, <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate=<a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">FieldState::New</a>)</td></tr>
+<tr class="memdesc:a864fa3b5c332df6e7a6a7482e1c34adc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call fillpatch operator on state variables for all registered PDEs.  <br /></td></tr>
+<tr class="memitem:adc84caaaf5cabfb19930da69d13c9491" id="r_adc84caaaf5cabfb19930da69d13c9491"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc84caaaf5cabfb19930da69d13c9491">scalar_eqns</a> ()</td></tr>
+<tr class="memitem:a8fc8a31af7e1353c21ce4fbabbf358a9" id="r_a8fc8a31af7e1353c21ce4fbabbf358a9"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8fc8a31af7e1353c21ce4fbabbf358a9">scalar_eqns</a> () const</td></tr>
+<tr class="memitem:a257fd50cbefe4f110e8209f556427a14" id="r_a257fd50cbefe4f110e8209f556427a14"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a257fd50cbefe4f110e8209f556427a14">has_pde</a> (const std::string &amp;pde_name) const</td></tr>
+<tr class="memdesc:a257fd50cbefe4f110e8209f556427a14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query if a PDE has already been registered.  <br /></td></tr>
+<tr class="memitem:adf9a5936424a4853b4697cdc5673b0f9" id="r_adf9a5936424a4853b4697cdc5673b0f9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf9a5936424a4853b4697cdc5673b0f9">num_ghost_state</a> () const</td></tr>
+<tr class="memitem:a1450116d4dad7f3e32a0bbed88e8ac1f" id="r_a1450116d4dad7f3e32a0bbed88e8ac1f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1450116d4dad7f3e32a0bbed88e8ac1f">constant_density</a> () const</td></tr>
+<tr class="memitem:a4a629c6bf230c6f00721e0674f31fa49" id="r_a4a629c6bf230c6f00721e0674f31fa49"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a629c6bf230c6f00721e0674f31fa49">scheme</a> () const</td></tr>
+<tr class="inherit_header pub_methods_classkynema__sgf_1_1_coll_mgr"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classkynema__sgf_1_1_coll_mgr')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr&lt; PDEMgr, PDEBase &gt;</a></td></tr>
+<tr class="memitem:a31ea0b233fa84d05bcf72b8462af3e96 inherit pub_methods_classkynema__sgf_1_1_coll_mgr" id="r_a31ea0b233fa84d05bcf72b8462af3e96"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#a31ea0b233fa84d05bcf72b8462af3e96">~CollMgr</a> ()=default</td></tr>
+<tr class="memitem:a84c37c0fa1c5ac33bc59be730a3bbc4c inherit pub_methods_classkynema__sgf_1_1_coll_mgr" id="r_a84c37c0fa1c5ac33bc59be730a3bbc4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html">CollMgr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#a84c37c0fa1c5ac33bc59be730a3bbc4c">operator=</a> (const <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">CollMgr</a> &amp;)=delete</td></tr>
+<tr class="memitem:ab6ff4d344cb935a2e3b8b14481c9b969 inherit pub_methods_classkynema__sgf_1_1_coll_mgr" id="r_ab6ff4d344cb935a2e3b8b14481c9b969"><td class="memItemLeft" align="right" valign="top">PDEBase &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ab6ff4d344cb935a2e3b8b14481c9b969">create</a> (const std::string &amp;key, Args &amp;&amp;... args)</td></tr>
+<tr class="memitem:a6ec1cec65c45726d2b2e60763518a6f1 inherit pub_methods_classkynema__sgf_1_1_coll_mgr" id="r_a6ec1cec65c45726d2b2e60763518a6f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#a6ec1cec65c45726d2b2e60763518a6f1">objects</a> ()</td></tr>
+<tr class="memdesc:a6ec1cec65c45726d2b2e60763518a6f1 inherit pub_methods_classkynema__sgf_1_1_coll_mgr"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a vector of the registered objects.  <br /></td></tr>
+<tr class="memitem:a5c00aeaeb965abce00787074f9e528c8 inherit pub_methods_classkynema__sgf_1_1_coll_mgr" id="r_a5c00aeaeb965abce00787074f9e528c8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#a5c00aeaeb965abce00787074f9e528c8">contains</a> (const std::string &amp;key) const</td></tr>
+<tr class="memdesc:a5c00aeaeb965abce00787074f9e528c8 inherit pub_methods_classkynema__sgf_1_1_coll_mgr"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query if an object exists using the lookup key.  <br /></td></tr>
+<tr class="memitem:ae7f0988e9cfec93e12582048db08cf11 inherit pub_methods_classkynema__sgf_1_1_coll_mgr" id="r_ae7f0988e9cfec93e12582048db08cf11"><td class="memItemLeft" align="right" valign="top">PDEBase &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ae7f0988e9cfec93e12582048db08cf11">operator()</a> (const std::string &amp;key)</td></tr>
+<tr class="memdesc:ae7f0988e9cfec93e12582048db08cf11 inherit pub_methods_classkynema__sgf_1_1_coll_mgr"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the object corresponding to a lookup key.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ae6a41ebc220d646ed64a7a8dab262677" id="r_ae6a41ebc220d646ed64a7a8dab262677"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6a41ebc220d646ed64a7a8dab262677">m_sim</a></td></tr>
+<tr class="memdesc:ae6a41ebc220d646ed64a7a8dab262677"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instance of the CFD simulation controller.  <br /></td></tr>
+<tr class="memitem:a7b0f00c7b1779cd8fde4f663d5420aa2" id="r_a7b0f00c7b1779cd8fde4f663d5420aa2"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b0f00c7b1779cd8fde4f663d5420aa2">m_icns</a></td></tr>
+<tr class="memdesc:a7b0f00c7b1779cd8fde4f663d5420aa2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structkynema__sgf_1_1pde_1_1_i_c_n_s.html">ICNS</a> instance.  <br /></td></tr>
+<tr class="memitem:a48b20a15cc2f978ce56fbf0c96cd5ea1" id="r_a48b20a15cc2f978ce56fbf0c96cd5ea1"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48b20a15cc2f978ce56fbf0c96cd5ea1">m_scheme</a></td></tr>
+<tr class="memdesc:a48b20a15cc2f978ce56fbf0c96cd5ea1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the numerical scheme.  <br /></td></tr>
+<tr class="memitem:ac0444d88c59d5b177cb14beb6e7dac81" id="r_ac0444d88c59d5b177cb14beb6e7dac81"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0444d88c59d5b177cb14beb6e7dac81">m_use_godunov</a> {true}</td></tr>
+<tr class="memdesc:ac0444d88c59d5b177cb14beb6e7dac81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether Godunov scheme is active.  <br /></td></tr>
+<tr class="memitem:a13eb34508df202bdc62dc3f34bf59ad5" id="r_a13eb34508df202bdc62dc3f34bf59ad5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13eb34508df202bdc62dc3f34bf59ad5">m_constant_density</a> {true}</td></tr>
+<tr class="memdesc:a13eb34508df202bdc62dc3f34bf59ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether density is constant for this simulation.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_types_classkynema__sgf_1_1_coll_mgr"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_types_classkynema__sgf_1_1_coll_mgr')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Types inherited from <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr&lt; PDEMgr, PDEBase &gt;</a></td></tr>
+<tr class="memitem:ad9a10ac8495d2b7ac5ab5a153484eb91 inherit pub_types_classkynema__sgf_1_1_coll_mgr" id="r_ad9a10ac8495d2b7ac5ab5a153484eb91"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ad9a10ac8495d2b7ac5ab5a153484eb91">TypePtr</a></td></tr>
+<tr class="memitem:ac8acc7ec0f7401f1377a985f580298ae inherit pub_types_classkynema__sgf_1_1_coll_mgr" id="r_ac8acc7ec0f7401f1377a985f580298ae"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a></td></tr>
+<tr class="inherit_header pro_attribs_classkynema__sgf_1_1_coll_mgr"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classkynema__sgf_1_1_coll_mgr')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr&lt; PDEMgr, PDEBase &gt;</a></td></tr>
+<tr class="memitem:aca9f58210b96fbb66c30e72c611e2726 inherit pro_attribs_classkynema__sgf_1_1_coll_mgr" id="r_aca9f58210b96fbb66c30e72c611e2726"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#aca9f58210b96fbb66c30e72c611e2726">m_obj_vec</a></td></tr>
+<tr class="memdesc:aca9f58210b96fbb66c30e72c611e2726 inherit pro_attribs_classkynema__sgf_1_1_coll_mgr"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collection of objects registered so far.  <br /></td></tr>
+<tr class="memitem:a800762c836ebac85d8a49efc79ad6d01 inherit pro_attribs_classkynema__sgf_1_1_coll_mgr" id="r_a800762c836ebac85d8a49efc79ad6d01"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#a800762c836ebac85d8a49efc79ad6d01">m_obj_map</a></td></tr>
+<tr class="memdesc:a800762c836ebac85d8a49efc79ad6d01 inherit pro_attribs_classkynema__sgf_1_1_coll_mgr"><td class="mdescLeft">&#160;</td><td class="mdescRight">Key word based lookup.  <br /></td></tr>
+<tr class="memitem:a375b9dd5bf6301df39835bda65e6849c inherit pro_attribs_classkynema__sgf_1_1_coll_mgr" id="r_a375b9dd5bf6301df39835bda65e6849c"><td class="memItemLeft" align="right" valign="top">friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#a375b9dd5bf6301df39835bda65e6849c">Collection</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>PDE systems manager</p>
+<p>This class manages a collection of PDEs and provides an interface to register PDEs. An incompressible N-S equation is always registered and treated as a special case. The remaining PDEs are created on-demand and are accessed through the equation systems vector. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae5410a193e346960fe6bc318260cb3c5" name="ae5410a193e346960fe6bc318260cb3c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5410a193e346960fe6bc318260cb3c5">&#9670;&#160;</a></span>PDEMgr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::pde::PDEMgr::PDEMgr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a320d5eaaaa00c623331c999bed4e3ac8" name="a320d5eaaaa00c623331c999bed4e3ac8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a320d5eaaaa00c623331c999bed4e3ac8">&#9670;&#160;</a></span>~PDEMgr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::pde::PDEMgr::~PDEMgr </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="ad18f1ea3d5a85b86c0a5999660ba1d7b" name="ad18f1ea3d5a85b86c0a5999660ba1d7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad18f1ea3d5a85b86c0a5999660ba1d7b">&#9670;&#160;</a></span>advance_states()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::PDEMgr::advance_states </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Advance states for all registered PDEs at the beginning of a timestep. </p>
+
+</div>
+</div>
+<a id="a1450116d4dad7f3e32a0bbed88e8ac1f" name="a1450116d4dad7f3e32a0bbed88e8ac1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1450116d4dad7f3e32a0bbed88e8ac1f">&#9670;&#160;</a></span>constant_density()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::pde::PDEMgr::constant_density </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab3b9b1b5afdac004d51cd95fa36324fc" name="ab3b9b1b5afdac004d51cd95fa36324fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3b9b1b5afdac004d51cd95fa36324fc">&#9670;&#160;</a></span>density_check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::PDEMgr::density_check </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check that the bounds of density correspond to the expected values &ndash; only applies to two-phase and constant-density single-phase &ndash; performed once in post_init, will abort if density is unexpected. </p>
+
+</div>
+</div>
+<a id="a864fa3b5c332df6e7a6a7482e1c34adc" name="a864fa3b5c332df6e7a6a7482e1c34adc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a864fa3b5c332df6e7a6a7482e1c34adc">&#9670;&#160;</a></span>fillpatch_state_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::PDEMgr::fillpatch_state_fields </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">FieldState::New</a></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call fillpatch operator on state variables for all registered PDEs. </p>
+
+</div>
+</div>
+<a id="a257fd50cbefe4f110e8209f556427a14" name="a257fd50cbefe4f110e8209f556427a14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a257fd50cbefe4f110e8209f556427a14">&#9670;&#160;</a></span>has_pde()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::pde::PDEMgr::has_pde </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pde_name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Query if a PDE has already been registered. </p>
+
+</div>
+</div>
+<a id="a2af91196e5daa7d48a2b959c66bb8444" name="a2af91196e5daa7d48a2b959c66bb8444"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2af91196e5daa7d48a2b959c66bb8444">&#9670;&#160;</a></span>icns() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a> &amp; kynema_sgf::pde::PDEMgr::icns </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the incompressible Navier-Stokes instance. </p>
+
+</div>
+</div>
+<a id="a5d8b9329b31c5fcc53bcf116d6ee80bf" name="a5d8b9329b31c5fcc53bcf116d6ee80bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d8b9329b31c5fcc53bcf116d6ee80bf">&#9670;&#160;</a></span>icns() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a> &amp; kynema_sgf::pde::PDEMgr::icns </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adf9a5936424a4853b4697cdc5673b0f9" name="adf9a5936424a4853b4697cdc5673b0f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf9a5936424a4853b4697cdc5673b0f9">&#9670;&#160;</a></span>num_ghost_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::pde::PDEMgr::num_ghost_state </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9b16f9c21b93d80b2cab748c968edbd" name="ad9b16f9c21b93d80b2cab748c968edbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9b16f9c21b93d80b2cab748c968edbd">&#9670;&#160;</a></span>prepare_boundaries()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::PDEMgr::prepare_boundaries </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prepare boundaries for registered PDEs at the beginning of a timestep: &ndash; intended for when boundaries rely on intermediate time states (nph) </p>
+
+</div>
+</div>
+<a id="a48e813aa8194be4a003779d533092785" name="a48e813aa8194be4a003779d533092785"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48e813aa8194be4a003779d533092785">&#9670;&#160;</a></span>register_icns()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a> &amp; kynema_sgf::pde::PDEMgr::register_icns </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create the incompressible Navier-Stokes instance and return its reference. </p>
+
+</div>
+</div>
+<a id="a2dde63b4be46c07acc447d4afdddcac2" name="a2dde63b4be46c07acc447d4afdddcac2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dde63b4be46c07acc447d4afdddcac2">&#9670;&#160;</a></span>register_transport_pde()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a> &amp; kynema_sgf::pde::PDEMgr::register_transport_pde </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pde_name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Register a new PDE instance and return its reference. </p>
+
+</div>
+</div>
+<a id="adc84caaaf5cabfb19930da69d13c9491" name="adc84caaaf5cabfb19930da69d13c9491"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc84caaaf5cabfb19930da69d13c9491">&#9670;&#160;</a></span>scalar_eqns() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a> &amp; kynema_sgf::pde::PDEMgr::scalar_eqns </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Return the vector containing all registered PDE instances</p>
+<p>Note that this does not contain the <a class="el" href="structkynema__sgf_1_1pde_1_1_i_c_n_s.html">ICNS</a> system as it is treated separately for algorithmic reasons. </p>
+
+</div>
+</div>
+<a id="a8fc8a31af7e1353c21ce4fbabbf358a9" name="a8fc8a31af7e1353c21ce4fbabbf358a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fc8a31af7e1353c21ce4fbabbf358a9">&#9670;&#160;</a></span>scalar_eqns() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a> &amp; kynema_sgf::pde::PDEMgr::scalar_eqns </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4a629c6bf230c6f00721e0674f31fa49" name="a4a629c6bf230c6f00721e0674f31fa49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a629c6bf230c6f00721e0674f31fa49">&#9670;&#160;</a></span>scheme()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::pde::PDEMgr::scheme </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a13eb34508df202bdc62dc3f34bf59ad5" name="a13eb34508df202bdc62dc3f34bf59ad5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13eb34508df202bdc62dc3f34bf59ad5">&#9670;&#160;</a></span>m_constant_density</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::pde::PDEMgr::m_constant_density {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating whether density is constant for this simulation. </p>
+
+</div>
+</div>
+<a id="a7b0f00c7b1779cd8fde4f663d5420aa2" name="a7b0f00c7b1779cd8fde4f663d5420aa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b0f00c7b1779cd8fde4f663d5420aa2">&#9670;&#160;</a></span>m_icns</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a>&gt; kynema_sgf::pde::PDEMgr::m_icns</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="structkynema__sgf_1_1pde_1_1_i_c_n_s.html">ICNS</a> instance. </p>
+
+</div>
+</div>
+<a id="a48b20a15cc2f978ce56fbf0c96cd5ea1" name="a48b20a15cc2f978ce56fbf0c96cd5ea1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48b20a15cc2f978ce56fbf0c96cd5ea1">&#9670;&#160;</a></span>m_scheme</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::pde::PDEMgr::m_scheme</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unique identifier for the numerical scheme. </p>
+
+</div>
+</div>
+<a id="ae6a41ebc220d646ed64a7a8dab262677" name="ae6a41ebc220d646ed64a7a8dab262677"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6a41ebc220d646ed64a7a8dab262677">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::pde::PDEMgr::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Instance of the CFD simulation controller. </p>
+
+</div>
+</div>
+<a id="ac0444d88c59d5b177cb14beb6e7dac81" name="ac0444d88c59d5b177cb14beb6e7dac81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0444d88c59d5b177cb14beb6e7dac81">&#9670;&#160;</a></span>m_use_godunov</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::pde::PDEMgr::m_use_godunov {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating whether Godunov scheme is active. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/<a class="el" href="_p_d_e_base_8_h_source.html">PDEBase.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/<a class="el" href="_p_d_e_base_8cpp.html">PDEBase.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

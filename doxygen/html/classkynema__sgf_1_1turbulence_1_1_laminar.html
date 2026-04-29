@@ -1,0 +1,742 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::turbulence::Laminar&amp;lt; Transport &amp;gt; Class Template Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::turbulence::Laminar&amp;lt; Transport &amp;gt; Class Template Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1turbulence_1_1_laminar.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="laminar-lt-transport-gt-class-template-reference">
+<h1>Laminar&amp;lt; Transport &amp;gt; Class Template Reference<a class="headerlink" href="#laminar-lt-transport-gt-class-template-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::turbulence::Laminar&lt; Transport &gt; Class Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1turbulence.html">turbulence</a></li><li class="navelem"><a href="classkynema__sgf_1_1turbulence_1_1_laminar.html">Laminar</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="classkynema__sgf_1_1turbulence_1_1_laminar-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::turbulence::Laminar&lt; Transport &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__turb__model.html">Turbulence models</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_laminar_model_8_h_source.html">LaminarModel.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::turbulence::Laminar&lt; Transport &gt;:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1turbulence_1_1_laminar__inherit__graph.svg" width="267" height="450"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::turbulence::Laminar&lt; Transport &gt;:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1turbulence_1_1_laminar__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a3b9b26e4051a4ed3d0515559bbf723cb" id="r_a3b9b26e4051a4ed3d0515559bbf723cb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b9b26e4051a4ed3d0515559bbf723cb">Laminar</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a095ff7f7cb9414c47c0aa782aa5cd315" id="r_a095ff7f7cb9414c47c0aa782aa5cd315"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a095ff7f7cb9414c47c0aa782aa5cd315">~Laminar</a> () override=default</td></tr>
+<tr class="memitem:a7980844fe41776cc594e7a073a50599d" id="r_a7980844fe41776cc594e7a073a50599d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7980844fe41776cc594e7a073a50599d">model_name</a> () const override</td></tr>
+<tr class="memdesc:a7980844fe41776cc594e7a073a50599d"><td class="mdescLeft">&#160;</td><td class="mdescRight">String representation of this model for I/O.  <br /></td></tr>
+<tr class="memitem:a196c90c58569c54b0e9f49945579ccd6" id="r_a196c90c58569c54b0e9f49945579ccd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a196c90c58569c54b0e9f49945579ccd6">update_turbulent_viscosity</a> (<a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate, <a class="el" href="incflo__enums_8_h.html#a85b1059d3f82fd0319fd63b07f3c1500">DiffusionType</a> diff_type) override</td></tr>
+<tr class="memdesc:a196c90c58569c54b0e9f49945579ccd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the effective/turbulent viscosity field.  <br /></td></tr>
+<tr class="memitem:a1465e6caae8e04727019ff366c527561" id="r_a1465e6caae8e04727019ff366c527561"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1465e6caae8e04727019ff366c527561">post_advance_work</a> () override</td></tr>
+<tr class="memdesc:a1465e6caae8e04727019ff366c527561"><td class="mdescLeft">&#160;</td><td class="mdescRight">No post advance work for this model.  <br /></td></tr>
+<tr class="memitem:add32d83be61d8bb464ea73a92e88f8e5" id="r_add32d83be61d8bb464ea73a92e88f8e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add32d83be61d8bb464ea73a92e88f8e5">parse_model_coeffs</a> () override</td></tr>
+<tr class="memdesc:add32d83be61d8bb464ea73a92e88f8e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">No model specific coefficient for this model.  <br /></td></tr>
+<tr class="memitem:a37365abe74cf97f71a7bc3edfb2957d6" id="r_a37365abe74cf97f71a7bc3edfb2957d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37365abe74cf97f71a7bc3edfb2957d6">mu_turb</a> () override</td></tr>
+<tr class="memdesc:a37365abe74cf97f71a7bc3edfb2957d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the turbulent viscosity field (just the same as the effective field)  <br /></td></tr>
+<tr class="memitem:aa8b8dd96bd10f8ebb0256ec15f22d40e" id="r_aa8b8dd96bd10f8ebb0256ec15f22d40e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8b8dd96bd10f8ebb0256ec15f22d40e">alpha_turb</a> () override</td></tr>
+<tr class="memdesc:aa8b8dd96bd10f8ebb0256ec15f22d40e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the thermal diffusivity field (just the same as effective field)  <br /></td></tr>
+<tr class="memitem:a783f3cc8991bda3bbc815259851a11eb" id="r_a783f3cc8991bda3bbc815259851a11eb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a783f3cc8991bda3bbc815259851a11eb">is_turbulent</a> () const override</td></tr>
+<tr class="memdesc:a783f3cc8991bda3bbc815259851a11eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicate that this model is not a turbulent model type.  <br /></td></tr>
+<tr class="memitem:a9677a2fa1802b0dec715c607fa07e590" id="r_a9677a2fa1802b0dec715c607fa07e590"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9677a2fa1802b0dec715c607fa07e590">update_mueff</a> (<a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;<a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a9aed9da5e7286b0256a51148f3d4f954">mueff</a>) override</td></tr>
+<tr class="memdesc:a9677a2fa1802b0dec715c607fa07e590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface to update effective viscosity (mu_eff = mu + mu_t)  <br /></td></tr>
+<tr class="memitem:a3ec3f5603acaa9b5d58bbb49cce40ea7" id="r_a3ec3f5603acaa9b5d58bbb49cce40ea7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ec3f5603acaa9b5d58bbb49cce40ea7">update_alphaeff</a> (<a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;<a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a272e20cd19889c4ca535722b319d9b3b">alphaeff</a>) override</td></tr>
+<tr class="memdesc:a3ec3f5603acaa9b5d58bbb49cce40ea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface to update effective thermal diffusivity.  <br /></td></tr>
+<tr class="memitem:aba1f6e5950dc5ef4b2f5ff757d919c6f" id="r_aba1f6e5950dc5ef4b2f5ff757d919c6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba1f6e5950dc5ef4b2f5ff757d919c6f">update_scalar_diff</a> (<a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;deff, const std::string &amp;name) override</td></tr>
+<tr class="memdesc:aba1f6e5950dc5ef4b2f5ff757d919c6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface to update scalar diffusivity based on Schmidt number.  <br /></td></tr>
+<tr class="memitem:a154c109a07ffeca2e0bb781c8f7c726e" id="r_a154c109a07ffeca2e0bb781c8f7c726e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a0875f86a33930dd2d2297f30739da297">TurbulenceModel::CoeffsDictType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a154c109a07ffeca2e0bb781c8f7c726e">model_coeffs</a> () const override</td></tr>
+<tr class="memdesc:a154c109a07ffeca2e0bb781c8f7c726e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return model coefficients dictionary.  <br /></td></tr>
+<tr class="inherit_header pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html">kynema_sgf::turbulence::TurbModel&lt; Transport &gt;</a></td></tr>
+<tr class="memitem:a0c4f63b0590d90573c49418371e9d289 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_a0c4f63b0590d90573c49418371e9d289"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a0c4f63b0590d90573c49418371e9d289">TurbModel</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a8f83cf40c49c031fbfbed935c4d65348 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_a8f83cf40c49c031fbfbed935c4d65348"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a8f83cf40c49c031fbfbed935c4d65348">register_mueff_field</a> (<a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;<a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a9aed9da5e7286b0256a51148f3d4f954">mueff</a>) override</td></tr>
+<tr class="memdesc:a8f83cf40c49c031fbfbed935c4d65348 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register the effective viscosity (for momentum field)  <br /></td></tr>
+<tr class="memitem:acdce8c60dea52fab91150aba904f7875 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_acdce8c60dea52fab91150aba904f7875"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#acdce8c60dea52fab91150aba904f7875">register_alphaeff_field</a> (<a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;<a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a272e20cd19889c4ca535722b319d9b3b">alphaeff</a>) override</td></tr>
+<tr class="memdesc:acdce8c60dea52fab91150aba904f7875 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register the thermal diffusivity field.  <br /></td></tr>
+<tr class="memitem:af27bbc39eb4fa74a68a8a6dac9439e0b inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_af27bbc39eb4fa74a68a8a6dac9439e0b"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#af27bbc39eb4fa74a68a8a6dac9439e0b">mu</a> () override</td></tr>
+<tr class="memdesc:af27bbc39eb4fa74a68a8a6dac9439e0b inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the dynamic viscosity field.  <br /></td></tr>
+<tr class="memitem:aacc5ced5bebb3a1ff9305333bc57ae5c inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_aacc5ced5bebb3a1ff9305333bc57ae5c"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#aacc5ced5bebb3a1ff9305333bc57ae5c">alpha</a> () override</td></tr>
+<tr class="memdesc:aacc5ced5bebb3a1ff9305333bc57ae5c inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the thermal diffusivity field.  <br /></td></tr>
+<tr class="memitem:ad6c02eaff76c4aa28fb6c96148938e37 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_ad6c02eaff76c4aa28fb6c96148938e37"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#ad6c02eaff76c4aa28fb6c96148938e37">scalar_diffusivity</a> (const std::string &amp;name) override</td></tr>
+<tr class="memdesc:ad6c02eaff76c4aa28fb6c96148938e37 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the scalar diffusivity field.  <br /></td></tr>
+<tr class="memitem:a9aed9da5e7286b0256a51148f3d4f954 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_a9aed9da5e7286b0256a51148f3d4f954"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a9aed9da5e7286b0256a51148f3d4f954">mueff</a> () override</td></tr>
+<tr class="memdesc:a9aed9da5e7286b0256a51148f3d4f954 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the effective dynamic viscosity field.  <br /></td></tr>
+<tr class="memitem:a272e20cd19889c4ca535722b319d9b3b inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_a272e20cd19889c4ca535722b319d9b3b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a272e20cd19889c4ca535722b319d9b3b">alphaeff</a> () override</td></tr>
+<tr class="memdesc:a272e20cd19889c4ca535722b319d9b3b inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the effective thermal diffusivity field.  <br /></td></tr>
+<tr class="inherit_header pub_methods_classkynema__sgf_1_1turbulence_1_1_turbulence_model"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classkynema__sgf_1_1turbulence_1_1_turbulence_model')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html">kynema_sgf::turbulence::TurbulenceModel</a></td></tr>
+<tr class="memitem:afd11cea4eaa44c1979a0d07e1892cd2b inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turbulence_model" id="r_afd11cea4eaa44c1979a0d07e1892cd2b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#afd11cea4eaa44c1979a0d07e1892cd2b">~TurbulenceModel</a> () override=default</td></tr>
+<tr class="inherit_header pub_methods_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; TurbulenceModel, CFDSim &amp; &gt;</a></td></tr>
+<tr class="memitem:ac34efe50a093c87b829083168775bc5f inherit pub_methods_structkynema__sgf_1_1_factory" id="r_ac34efe50a093c87b829083168775bc5f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#ac34efe50a093c87b829083168775bc5f">~Factory</a> ()=default</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a5fafdad7d0a78d524a17698407924bf0" id="r_a5fafdad7d0a78d524a17698407924bf0"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fafdad7d0a78d524a17698407924bf0">identifier</a> ()</td></tr>
+<tr class="inherit_header pub_static_methods_classkynema__sgf_1_1turbulence_1_1_turbulence_model"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_classkynema__sgf_1_1turbulence_1_1_turbulence_model')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Static Public Member Functions inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html">kynema_sgf::turbulence::TurbulenceModel</a></td></tr>
+<tr class="memitem:a5bd8a05b139bbb374fb427f415a84ebc inherit pub_static_methods_classkynema__sgf_1_1turbulence_1_1_turbulence_model" id="r_a5bd8a05b139bbb374fb427f415a84ebc"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a5bd8a05b139bbb374fb427f415a84ebc">base_identifier</a> ()</td></tr>
+<tr class="inherit_header pub_static_methods_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Static Public Member Functions inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; TurbulenceModel, CFDSim &amp; &gt;</a></td></tr>
+<tr class="memitem:aa73d3b8dc6633292bb32e05d3b8e7120 inherit pub_static_methods_structkynema__sgf_1_1_factory" id="r_aa73d3b8dc6633292bb32e05d3b8e7120"><td class="memItemLeft" align="right" valign="top">static std::unique_ptr&lt; TurbulenceModel &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#aa73d3b8dc6633292bb32e05d3b8e7120">create</a> (const std::string &amp;key, Args... args)</td></tr>
+<tr class="memitem:a5e56671505c53a0862e25adeddea669f inherit pub_static_methods_structkynema__sgf_1_1_factory" id="r_a5e56671505c53a0862e25adeddea669f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#a5e56671505c53a0862e25adeddea669f">print</a> (std::ostream &amp;os)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_types_classkynema__sgf_1_1turbulence_1_1_turb_model"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_types_classkynema__sgf_1_1turbulence_1_1_turb_model')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Types inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html">kynema_sgf::turbulence::TurbModel&lt; Transport &gt;</a></td></tr>
+<tr class="memitem:ad7b18bf1548ab4b6399ae953c23bc1e1 inherit pub_types_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_ad7b18bf1548ab4b6399ae953c23bc1e1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#ad7b18bf1548ab4b6399ae953c23bc1e1">TransportType</a> = Transport</td></tr>
+<tr class="inherit_header pub_types_classkynema__sgf_1_1turbulence_1_1_turbulence_model"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_types_classkynema__sgf_1_1turbulence_1_1_turbulence_model')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Types inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html">kynema_sgf::turbulence::TurbulenceModel</a></td></tr>
+<tr class="memitem:a0875f86a33930dd2d2297f30739da297 inherit pub_types_classkynema__sgf_1_1turbulence_1_1_turbulence_model" id="r_a0875f86a33930dd2d2297f30739da297"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a0875f86a33930dd2d2297f30739da297">CoeffsDictType</a> = std::unordered_map&lt;std::string, amrex::Real&gt;</td></tr>
+<tr class="memdesc:a0875f86a33930dd2d2297f30739da297 inherit pub_types_classkynema__sgf_1_1turbulence_1_1_turbulence_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default identifier used by factor methods.  <br /></td></tr>
+<tr class="inherit_header pub_attribs_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Attributes inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; TurbulenceModel, CFDSim &amp; &gt;</a></td></tr>
+<tr class="memitem:a3f41ef21adfa37f9abb5c8cc52769974 inherit pub_attribs_structkynema__sgf_1_1_factory" id="r_a3f41ef21adfa37f9abb5c8cc52769974"><td class="memItemLeft" align="right" valign="top">friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#a3f41ef21adfa37f9abb5c8cc52769974">Base</a></td></tr>
+<tr class="inherit_header pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html">kynema_sgf::turbulence::TurbModel&lt; Transport &gt;</a></td></tr>
+<tr class="memitem:a4584671ceb2b0baf1adb0d8d2f84ad4f inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_a4584671ceb2b0baf1adb0d8d2f84ad4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a4584671ceb2b0baf1adb0d8d2f84ad4f">m_sim</a></td></tr>
+<tr class="memitem:a312066a614d52d44b98ce03629457302 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_a312066a614d52d44b98ce03629457302"><td class="memItemLeft" align="right" valign="top">Transport&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a312066a614d52d44b98ce03629457302">m_transport</a></td></tr>
+<tr class="memdesc:a312066a614d52d44b98ce03629457302 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transport properties instance.  <br /></td></tr>
+<tr class="memitem:aef5a0db74ad0cd5dbba155a0ba5fdfd0 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_aef5a0db74ad0cd5dbba155a0ba5fdfd0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#aef5a0db74ad0cd5dbba155a0ba5fdfd0">m_mueff</a> {nullptr}</td></tr>
+<tr class="memdesc:aef5a0db74ad0cd5dbba155a0ba5fdfd0 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the effective viscosity field.  <br /></td></tr>
+<tr class="memitem:a02c878e386327c420ae78895d10ead4c inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_a02c878e386327c420ae78895d10ead4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a02c878e386327c420ae78895d10ead4c">m_alphaeff</a> {nullptr}</td></tr>
+<tr class="memdesc:a02c878e386327c420ae78895d10ead4c inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the thermal diffusivity field.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Transport&gt;<br />
+class kynema_sgf::turbulence::Laminar&lt; Transport &gt;</div><p><a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">Laminar</a> model</p>
+<p>Implementation of laminar flow model </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a3b9b26e4051a4ed3d0515559bbf723cb" name="a3b9b26e4051a4ed3d0515559bbf723cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b9b26e4051a4ed3d0515559bbf723cb">&#9670;&#160;</a></span>Laminar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">kynema_sgf::turbulence::Laminar</a>&lt; Transport &gt;::Laminar </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a095ff7f7cb9414c47c0aa782aa5cd315" name="a095ff7f7cb9414c47c0aa782aa5cd315"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a095ff7f7cb9414c47c0aa782aa5cd315">&#9670;&#160;</a></span>~Laminar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">kynema_sgf::turbulence::Laminar</a>&lt; Transport &gt;::~<a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">Laminar</a> </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="aa8b8dd96bd10f8ebb0256ec15f22d40e" name="aa8b8dd96bd10f8ebb0256ec15f22d40e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8b8dd96bd10f8ebb0256ec15f22d40e">&#9670;&#160;</a></span>alpha_turb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp; <a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">kynema_sgf::turbulence::Laminar</a>&lt; Transport &gt;::alpha_turb </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the thermal diffusivity field (just the same as effective field) </p>
+
+<p>Implements <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#ae07bc81b4dbbe88b0fef404664a901e5">kynema_sgf::turbulence::TurbulenceModel</a>.</p>
+
+</div>
+</div>
+<a id="a5fafdad7d0a78d524a17698407924bf0" name="a5fafdad7d0a78d524a17698407924bf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fafdad7d0a78d524a17698407924bf0">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">kynema_sgf::turbulence::Laminar</a>&lt; Transport &gt;::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a783f3cc8991bda3bbc815259851a11eb" name="a783f3cc8991bda3bbc815259851a11eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a783f3cc8991bda3bbc815259851a11eb">&#9670;&#160;</a></span>is_turbulent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">kynema_sgf::turbulence::Laminar</a>&lt; Transport &gt;::is_turbulent </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicate that this model is not a turbulent model type. </p>
+
+<p>Reimplemented from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#ad90c0084b0932af213bc73768cfaaf91">kynema_sgf::turbulence::TurbulenceModel</a>.</p>
+
+</div>
+</div>
+<a id="a154c109a07ffeca2e0bb781c8f7c726e" name="a154c109a07ffeca2e0bb781c8f7c726e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a154c109a07ffeca2e0bb781c8f7c726e">&#9670;&#160;</a></span>model_coeffs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a0875f86a33930dd2d2297f30739da297">TurbulenceModel::CoeffsDictType</a> <a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">kynema_sgf::turbulence::Laminar</a>&lt; Transport &gt;::model_coeffs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return model coefficients dictionary. </p>
+
+<p>Implements <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#ad37b21344df328aea2493c827b06b4a7">kynema_sgf::turbulence::TurbulenceModel</a>.</p>
+
+</div>
+</div>
+<a id="a7980844fe41776cc594e7a073a50599d" name="a7980844fe41776cc594e7a073a50599d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7980844fe41776cc594e7a073a50599d">&#9670;&#160;</a></span>model_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">kynema_sgf::turbulence::Laminar</a>&lt; Transport &gt;::model_name </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>String representation of this model for I/O. </p>
+
+<p>Implements <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a2f09dc0e20f6c0db72c3fbfdd64b3369">kynema_sgf::turbulence::TurbulenceModel</a>.</p>
+
+</div>
+</div>
+<a id="a37365abe74cf97f71a7bc3edfb2957d6" name="a37365abe74cf97f71a7bc3edfb2957d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37365abe74cf97f71a7bc3edfb2957d6">&#9670;&#160;</a></span>mu_turb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp; <a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">kynema_sgf::turbulence::Laminar</a>&lt; Transport &gt;::mu_turb </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the turbulent viscosity field (just the same as the effective field) </p>
+
+<p>Implements <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#ad514762c7ac32293f6966e09e9dd1cdd">kynema_sgf::turbulence::TurbulenceModel</a>.</p>
+
+</div>
+</div>
+<a id="add32d83be61d8bb464ea73a92e88f8e5" name="add32d83be61d8bb464ea73a92e88f8e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add32d83be61d8bb464ea73a92e88f8e5">&#9670;&#160;</a></span>parse_model_coeffs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">kynema_sgf::turbulence::Laminar</a>&lt; Transport &gt;::parse_model_coeffs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>No model specific coefficient for this model. </p>
+
+<p>Implements <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#ae72217a756289c971be9c0e11e63d107">kynema_sgf::turbulence::TurbulenceModel</a>.</p>
+
+</div>
+</div>
+<a id="a1465e6caae8e04727019ff366c527561" name="a1465e6caae8e04727019ff366c527561"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1465e6caae8e04727019ff366c527561">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">kynema_sgf::turbulence::Laminar</a>&lt; Transport &gt;::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>No post advance work for this model. </p>
+
+<p>Implements <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a9ae66429e327242474987c6b71bd8a58">kynema_sgf::turbulence::TurbulenceModel</a>.</p>
+
+</div>
+</div>
+<a id="a3ec3f5603acaa9b5d58bbb49cce40ea7" name="a3ec3f5603acaa9b5d58bbb49cce40ea7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ec3f5603acaa9b5d58bbb49cce40ea7">&#9670;&#160;</a></span>update_alphaeff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">kynema_sgf::turbulence::Laminar</a>&lt; Transport &gt;::update_alphaeff </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>alphaeff</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Interface to update effective thermal diffusivity. </p>
+
+<p>Implements <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a96af113d9ad11b578942eff233ff8f56">kynema_sgf::turbulence::TurbulenceModel</a>.</p>
+
+</div>
+</div>
+<a id="a9677a2fa1802b0dec715c607fa07e590" name="a9677a2fa1802b0dec715c607fa07e590"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9677a2fa1802b0dec715c607fa07e590">&#9670;&#160;</a></span>update_mueff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">kynema_sgf::turbulence::Laminar</a>&lt; Transport &gt;::update_mueff </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>mueff</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Interface to update effective viscosity (mu_eff = mu + mu_t) </p>
+
+<p>Implements <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a603ed0d79ef66b816a6fa2e38c126192">kynema_sgf::turbulence::TurbulenceModel</a>.</p>
+
+</div>
+</div>
+<a id="aba1f6e5950dc5ef4b2f5ff757d919c6f" name="aba1f6e5950dc5ef4b2f5ff757d919c6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba1f6e5950dc5ef4b2f5ff757d919c6f">&#9670;&#160;</a></span>update_scalar_diff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">kynema_sgf::turbulence::Laminar</a>&lt; Transport &gt;::update_scalar_diff </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>deff</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Interface to update scalar diffusivity based on Schmidt number. </p>
+
+<p>Implements <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a55074244d4270875b1cb5b4d91b1b471">kynema_sgf::turbulence::TurbulenceModel</a>.</p>
+
+</div>
+</div>
+<a id="a196c90c58569c54b0e9f49945579ccd6" name="a196c90c58569c54b0e9f49945579ccd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a196c90c58569c54b0e9f49945579ccd6">&#9670;&#160;</a></span>update_turbulent_viscosity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html">kynema_sgf::turbulence::Laminar</a>&lt; Transport &gt;::update_turbulent_viscosity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="incflo__enums_8_h.html#a85b1059d3f82fd0319fd63b07f3c1500">DiffusionType</a></td>          <td class="paramname"><span class="paramname"><em>diff_type</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update the effective/turbulent viscosity field. </p>
+
+<p>Implements <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a405704903824303b6aac9aa8a6d0e20b">kynema_sgf::turbulence::TurbulenceModel</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/turbulence/<a class="el" href="_laminar_model_8_h_source.html">LaminarModel.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/turbulence/<a class="el" href="_laminar_model_8cpp.html">LaminarModel.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

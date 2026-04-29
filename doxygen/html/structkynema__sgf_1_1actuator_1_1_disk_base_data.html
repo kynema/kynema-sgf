@@ -1,0 +1,565 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::actuator::DiskBaseData Struct Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::actuator::DiskBaseData Struct Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/structkynema__sgf_1_1actuator_1_1_disk_base_data.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="diskbasedata-struct-reference">
+<h1>DiskBaseData Struct Reference<a class="headerlink" href="#diskbasedata-struct-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::actuator::DiskBaseData Struct Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1actuator.html">actuator</a></li><li class="navelem"><a href="structkynema__sgf_1_1actuator_1_1_disk_base_data.html">DiskBaseData</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structkynema__sgf_1_1actuator_1_1_disk_base_data-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::actuator::DiskBaseData Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_actuator_disk_8_h_source.html">ActuatorDisk.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::actuator::DiskBaseData:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="structkynema__sgf_1_1actuator_1_1_disk_base_data__inherit__graph.svg" width="360" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::actuator::DiskBaseData:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="structkynema__sgf_1_1actuator_1_1_disk_base_data__coll__graph.svg" width="202" height="236"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ade2f997b84aa26f7c576bc9457fb7956" id="r_ade2f997b84aa26f7c576bc9457fb7956"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade2f997b84aa26f7c576bc9457fb7956">radius</a> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:aa6bb6fa1ec7cc2bbe109114b02ff5107" id="r_aa6bb6fa1ec7cc2bbe109114b02ff5107"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6bb6fa1ec7cc2bbe109114b02ff5107">num_force_pts</a></td></tr>
+<tr class="memitem:a28216c426c283baf560feee6909e4da5" id="r_a28216c426c283baf560feee6909e4da5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28216c426c283baf560feee6909e4da5">num_force_theta_pts</a> {1}</td></tr>
+<tr class="memitem:aebae68a4411b7760978977aba206c97b" id="r_aebae68a4411b7760978977aba206c97b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebae68a4411b7760978977aba206c97b">num_vel_pts</a> {1}</td></tr>
+<tr class="memitem:a9ae03b73992f02b200031ce144a122c4" id="r_a9ae03b73992f02b200031ce144a122c4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ae03b73992f02b200031ce144a122c4">num_vel_pts_r</a> {1}</td></tr>
+<tr class="memitem:a122a855812495765353bb64254bd7e7c" id="r_a122a855812495765353bb64254bd7e7c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a122a855812495765353bb64254bd7e7c">num_vel_pts_t</a> {1}</td></tr>
+<tr class="memitem:aad708edcc7f5d8f662442a24675ed933" id="r_aad708edcc7f5d8f662442a24675ed933"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad708edcc7f5d8f662442a24675ed933">center</a></td></tr>
+<tr class="memitem:a49138e7e5eb1783ec616e44760e00043" id="r_a49138e7e5eb1783ec616e44760e00043"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49138e7e5eb1783ec616e44760e00043">normal_vec</a> {0, 1, 0}</td></tr>
+<tr class="memitem:a490613e11c1b7fe9077d681f364a2136" id="r_a490613e11c1b7fe9077d681f364a2136"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a490613e11c1b7fe9077d681f364a2136">coplanar_vec</a> {1, 0, 0}</td></tr>
+<tr class="memitem:a8dd6daac4fb6d8c05ea70a834409ce06" id="r_a8dd6daac4fb6d8c05ea70a834409ce06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8dd6daac4fb6d8c05ea70a834409ce06">sample_vec</a> {0, 1, 0}</td></tr>
+<tr class="memitem:ae16b7aaa02363bf8950818fa4e274da7" id="r_ae16b7aaa02363bf8950818fa4e274da7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae16b7aaa02363bf8950818fa4e274da7">reference_velocity</a></td></tr>
+<tr class="memitem:a74ffb05ca102101415e97bd9f436e43e" id="r_a74ffb05ca102101415e97bd9f436e43e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74ffb05ca102101415e97bd9f436e43e">mean_disk_velocity</a></td></tr>
+<tr class="memitem:ad4112c9d1d12f35e447296a88e4f10fc" id="r_ad4112c9d1d12f35e447296a88e4f10fc"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4112c9d1d12f35e447296a88e4f10fc">epsilon</a></td></tr>
+<tr class="memitem:a977ccea64278651047f5a7f465f9f7cc" id="r_a977ccea64278651047f5a7f465f9f7cc"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a977ccea64278651047f5a7f465f9f7cc">diameter</a></td></tr>
+<tr class="memitem:a095cc4cb59e14ed1f6d92f09051ee7e5" id="r_a095cc4cb59e14ed1f6d92f09051ee7e5"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a095cc4cb59e14ed1f6d92f09051ee7e5">dr</a></td></tr>
+<tr class="memitem:a4a4c6f3e41ed81fd419efc6f1ff06cb1" id="r_a4a4c6f3e41ed81fd419efc6f1ff06cb1"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a4c6f3e41ed81fd419efc6f1ff06cb1">density</a></td></tr>
+<tr class="memitem:a078cb4027d25af27f22e161e570b0e5a" id="r_a078cb4027d25af27f22e161e570b0e5a"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a078cb4027d25af27f22e161e570b0e5a">current_ct</a></td></tr>
+<tr class="memitem:a6da7bca776ed12a09e8022aa6a8169da" id="r_a6da7bca776ed12a09e8022aa6a8169da"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6da7bca776ed12a09e8022aa6a8169da">diameters_to_sample</a> {0.0_rt}</td></tr>
+<tr class="memitem:a2c02b267c050693ceabc9924e8cfed43" id="r_a2c02b267c050693ceabc9924e8cfed43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c02b267c050693ceabc9924e8cfed43">thrust_coeff</a></td></tr>
+<tr class="memitem:a439eec4f8a4fcee3752fec538bf9ae4f" id="r_a439eec4f8a4fcee3752fec538bf9ae4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a439eec4f8a4fcee3752fec538bf9ae4f">table_velocity</a></td></tr>
+<tr class="memitem:aa2d51444f91a5d09ee308518245799a1" id="r_aa2d51444f91a5d09ee308518245799a1"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2d51444f91a5d09ee308518245799a1">spreading_type</a> {&quot;LinearBasis&quot;}</td></tr>
+</table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="ade2f997b84aa26f7c576bc9457fb7956" name="ade2f997b84aa26f7c576bc9457fb7956"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade2f997b84aa26f7c576bc9457fb7956">&#9670;&#160;</a></span>radius()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real kynema_sgf::actuator::DiskBaseData::radius </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="aad708edcc7f5d8f662442a24675ed933" name="aad708edcc7f5d8f662442a24675ed933"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad708edcc7f5d8f662442a24675ed933">&#9670;&#160;</a></span>center</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::DiskBaseData::center</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a490613e11c1b7fe9077d681f364a2136" name="a490613e11c1b7fe9077d681f364a2136"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a490613e11c1b7fe9077d681f364a2136">&#9670;&#160;</a></span>coplanar_vec</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::DiskBaseData::coplanar_vec {1, 0, 0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a078cb4027d25af27f22e161e570b0e5a" name="a078cb4027d25af27f22e161e570b0e5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a078cb4027d25af27f22e161e570b0e5a">&#9670;&#160;</a></span>current_ct</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::actuator::DiskBaseData::current_ct</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4a4c6f3e41ed81fd419efc6f1ff06cb1" name="a4a4c6f3e41ed81fd419efc6f1ff06cb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a4c6f3e41ed81fd419efc6f1ff06cb1">&#9670;&#160;</a></span>density</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::actuator::DiskBaseData::density</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a977ccea64278651047f5a7f465f9f7cc" name="a977ccea64278651047f5a7f465f9f7cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a977ccea64278651047f5a7f465f9f7cc">&#9670;&#160;</a></span>diameter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::actuator::DiskBaseData::diameter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6da7bca776ed12a09e8022aa6a8169da" name="a6da7bca776ed12a09e8022aa6a8169da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6da7bca776ed12a09e8022aa6a8169da">&#9670;&#160;</a></span>diameters_to_sample</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::actuator::DiskBaseData::diameters_to_sample {0.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a095cc4cb59e14ed1f6d92f09051ee7e5" name="a095cc4cb59e14ed1f6d92f09051ee7e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a095cc4cb59e14ed1f6d92f09051ee7e5">&#9670;&#160;</a></span>dr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::actuator::DiskBaseData::dr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad4112c9d1d12f35e447296a88e4f10fc" name="ad4112c9d1d12f35e447296a88e4f10fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4112c9d1d12f35e447296a88e4f10fc">&#9670;&#160;</a></span>epsilon</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::actuator::DiskBaseData::epsilon</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a74ffb05ca102101415e97bd9f436e43e" name="a74ffb05ca102101415e97bd9f436e43e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74ffb05ca102101415e97bd9f436e43e">&#9670;&#160;</a></span>mean_disk_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::DiskBaseData::mean_disk_velocity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a49138e7e5eb1783ec616e44760e00043" name="a49138e7e5eb1783ec616e44760e00043"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49138e7e5eb1783ec616e44760e00043">&#9670;&#160;</a></span>normal_vec</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::DiskBaseData::normal_vec {0, 1, 0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa6bb6fa1ec7cc2bbe109114b02ff5107" name="aa6bb6fa1ec7cc2bbe109114b02ff5107"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6bb6fa1ec7cc2bbe109114b02ff5107">&#9670;&#160;</a></span>num_force_pts</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::DiskBaseData::num_force_pts</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a28216c426c283baf560feee6909e4da5" name="a28216c426c283baf560feee6909e4da5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28216c426c283baf560feee6909e4da5">&#9670;&#160;</a></span>num_force_theta_pts</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::DiskBaseData::num_force_theta_pts {1}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aebae68a4411b7760978977aba206c97b" name="aebae68a4411b7760978977aba206c97b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebae68a4411b7760978977aba206c97b">&#9670;&#160;</a></span>num_vel_pts</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::DiskBaseData::num_vel_pts {1}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9ae03b73992f02b200031ce144a122c4" name="a9ae03b73992f02b200031ce144a122c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ae03b73992f02b200031ce144a122c4">&#9670;&#160;</a></span>num_vel_pts_r</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::DiskBaseData::num_vel_pts_r {1}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a122a855812495765353bb64254bd7e7c" name="a122a855812495765353bb64254bd7e7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a122a855812495765353bb64254bd7e7c">&#9670;&#160;</a></span>num_vel_pts_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::DiskBaseData::num_vel_pts_t {1}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae16b7aaa02363bf8950818fa4e274da7" name="ae16b7aaa02363bf8950818fa4e274da7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae16b7aaa02363bf8950818fa4e274da7">&#9670;&#160;</a></span>reference_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::DiskBaseData::reference_velocity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8dd6daac4fb6d8c05ea70a834409ce06" name="a8dd6daac4fb6d8c05ea70a834409ce06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dd6daac4fb6d8c05ea70a834409ce06">&#9670;&#160;</a></span>sample_vec</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::DiskBaseData::sample_vec {0, 1, 0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa2d51444f91a5d09ee308518245799a1" name="aa2d51444f91a5d09ee308518245799a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2d51444f91a5d09ee308518245799a1">&#9670;&#160;</a></span>spreading_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::actuator::DiskBaseData::spreading_type {&quot;LinearBasis&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a439eec4f8a4fcee3752fec538bf9ae4f" name="a439eec4f8a4fcee3752fec538bf9ae4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a439eec4f8a4fcee3752fec538bf9ae4f">&#9670;&#160;</a></span>table_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> kynema_sgf::actuator::DiskBaseData::table_velocity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2c02b267c050693ceabc9924e8cfed43" name="a2c02b267c050693ceabc9924e8cfed43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c02b267c050693ceabc9924e8cfed43">&#9670;&#160;</a></span>thrust_coeff</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> kynema_sgf::actuator::DiskBaseData::thrust_coeff</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/disk/<a class="el" href="_actuator_disk_8_h_source.html">ActuatorDisk.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

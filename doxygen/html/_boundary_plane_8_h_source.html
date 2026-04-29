@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/BoundaryPlane.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/BoundaryPlane.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_boundary_plane_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-boundary-conditions-field-boundary-fill-boundaryplane-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/BoundaryPlane.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-boundary-conditions-field-boundary-fill-boundaryplane-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/BoundaryPlane.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_1e81ec2858f8c09f6adc44292f32a0c3.html">boundary_conditions</a></li><li class="navelem"><a href="dir_d01a4f955544b9b6bff1cf5efa9fe538.html">field_boundary_fill</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">BoundaryPlane.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_boundary_plane_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef BOUNDARYPLANE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define BOUNDARYPLANE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_field_8_h.html">src/core/Field.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="nc__interface_8_h.html">src/utilities/ncutils/nc_interface.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="io__utils_8_h.html">src/utilities/io_utils.H</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="_read_e_r_f_function_8_h.html">src/boundary_conditions/field_boundary_fill/ReadERFFunction.H</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;AMReX_Gpu.H&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;AMReX_BndryRegister.H&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">class </span>MultiBlockContainer;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728aaa43c1b0aa53a0c908810c06ab1ff3967">   18</a></span><span class="keyword">enum struct</span> <a class="code hl_enumeration" href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728a">io_mode</a> : std::uint8_t { <a class="code hl_enumvalue" href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728aa78e6221f6393d1356681db398f14ce6d">output</a>, <a class="code hl_enumvalue" href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728aaa43c1b0aa53a0c908810c06ab1ff3967">input</a>, <a class="code hl_enumvalue" href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728aa5e543256c480ac577d30f76f9120eb74">undefined</a> };</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_buffer_data.html">   20</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1_buffer_data.html">BufferData</a></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_buffer_data.html#a00f7c1a0f2e4b7666d470242b043ed03">   22</a></span>    amrex::Gpu::ManagedVector&lt;amrex::Real&gt; <a class="code hl_variable" href="structkynema__sgf_1_1_buffer_data.html#a00f7c1a0f2e4b7666d470242b043ed03">data</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_buffer_data.html#ac90eac15ac0a54cd9c86ddeea9ee17b6">   23</a></span>    amrex::Vector&lt;size_t&gt; <a class="code hl_variable" href="structkynema__sgf_1_1_buffer_data.html#ac90eac15ac0a54cd9c86ddeea9ee17b6">start</a>{0, 0, 0, 0};</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_buffer_data.html#a27b183f142f4b0218c4f37d4bbe3aba8">   24</a></span>    amrex::Vector&lt;size_t&gt; <a class="code hl_variable" href="structkynema__sgf_1_1_buffer_data.html#a27b183f142f4b0218c4f37d4bbe3aba8">count</a>{0, 0, 0, 0};</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>};</div>
+</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span></div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="};">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html">   33</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#ae78303b1d454c638812349015d5145b3">InletData</a></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#af8a10cc824d12a0ec210d19a204350ea">   35</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="classkynema__sgf_1_1_inlet_data.html#af8a10cc824d12a0ec210d19a204350ea">PlaneVector</a> = amrex::Vector&lt;amrex::FArrayBox&gt;;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#ae78303b1d454c638812349015d5145b3">   38</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#ae78303b1d454c638812349015d5145b3">InletData</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#a5f78ae1d8a63ed07f30d11e255ee0f38">resize</a>(<span class="keywordtype">int</span> <span class="comment">/*size*/</span>);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#a897ac8c50e9294dd5dfb07c4986624aa">define_plane</a>(amrex::Orientation <span class="comment">/*ori*/</span>);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#ac41f9ad33ab24b008ab8067346e4efc4">define_level_data</a>(</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        amrex::Orientation <span class="comment">/*ori*/</span>, <span class="keyword">const</span> amrex::Box&amp; <span class="comment">/*bx*/</span>, <span class="keywordtype">size_t</span> <span class="comment">/*nc*/</span>);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#ifdef KYNEMA_SGF_USE_NETCDF</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#a956922cdbeef5c38d9704ef71da4fcd4">read_data</a>(</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <a class="code hl_class" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a>&amp; <span class="comment">/*grp*/</span>,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keyword">const</span> amrex::Orientation <span class="comment">/*ori*/</span>,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*lev*/</span>,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>* <span class="comment">/*fld*/</span>,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keyword">const</span> amrex::Real <span class="comment">/*time*/</span>,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keyword">const</span> amrex::Vector&lt;amrex::Real&gt;&amp; <span class="comment">/*times*/</span>);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#a83f3d2cfb4a063f27368dd4babbf3e4c">read_data_native</a>(</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        amrex::OrientationIter oit,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        amrex::BndryRegister&amp; bndry_n,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        amrex::BndryRegister&amp; bndry_np1,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordtype">int</span> lev,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>* <span class="comment">/*fld*/</span>,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        amrex::Real time,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keyword">const</span> amrex::Vector&lt;amrex::Real&gt;&amp; <span class="comment">/*times*/</span>);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#aebd8afff34ec5a402d97283481398546">interpolate</a>(amrex::Real <span class="comment">/*time*/</span>);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#a4a6459dcea46eb21daab6074fd191421">is_populated</a>(amrex::Orientation <span class="comment">/*ori*/</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    [[nodiscard]] <span class="keyword">const</span> amrex::FArrayBox&amp;</div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#addd1d4402b60456ab6fd18ec5216d55f">   69</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#addd1d4402b60456ab6fd18ec5216d55f">interpolate_data</a>(<span class="keyword">const</span> amrex::Orientation ori, <span class="keyword">const</span> <span class="keywordtype">int</span> lev)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordflow">return</span> (*<a class="code hl_variable" href="classkynema__sgf_1_1_inlet_data.html#aa78c733fc9b41bc53d5e8d82f9a4ddaf">m_data_interp</a>[ori])[lev];</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
+</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#a4d8186528839cd3b70e5189733dab85a">   74</a></span>    <span class="keywordtype">int</span>&amp; <a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#a4d8186528839cd3b70e5189733dab85a">component</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>) { <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_inlet_data.html#a1814b8adb7e75221c744f3fc9426f0f9">m_components</a>[id]; }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="foldopen" id="foldopen00076" data-start="{" data-end="}">
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#ad411e84e7f7d25c83d3e28b8de2b5d33">   76</a></span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#ad411e84e7f7d25c83d3e28b8de2b5d33">component</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_inlet_data.html#a1814b8adb7e75221c744f3fc9426f0f9">m_components</a>.at(<span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
+</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="foldopen" id="foldopen00081" data-start="{" data-end="}">
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#ab62387fe9d8b2bb4f4bc01f53e3a372e">   81</a></span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#ab62387fe9d8b2bb4f4bc01f53e3a372e">nlevels</a>(<span class="keyword">const</span> amrex::Orientation ori)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>((*<a class="code hl_variable" href="classkynema__sgf_1_1_inlet_data.html#aa78c733fc9b41bc53d5e8d82f9a4ddaf">m_data_interp</a>[ori]).size());</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    }</div>
+</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#aa67b8db9353cd866fc38b252a0e2788c">   86</a></span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#aa67b8db9353cd866fc38b252a0e2788c">tn</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_inlet_data.html#ad6d4bb518ee8b2a6ae960637ca540463">m_tn</a>; }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#a52324df899be62aeb79fba01fb4ae049">   87</a></span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#a52324df899be62aeb79fba01fb4ae049">tnp1</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_inlet_data.html#ad8e6269851294ce43774db23086c7ec1">m_tnp1</a>; }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#a0fb156d6db75ef4eb5cbb0010506da7d">   88</a></span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_inlet_data.html#a0fb156d6db75ef4eb5cbb0010506da7d">tinterp</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_inlet_data.html#a5cb832099bda360f7d69bac6cd981883">m_tinterp</a>; }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#a96bae3e5214a4f388d84701d65221553">   91</a></span>    amrex::Vector&lt;std::unique_ptr&lt;PlaneVector&gt;&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_inlet_data.html#a96bae3e5214a4f388d84701d65221553">m_data_n</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#a1ab3feac5e49bfedbf3295937b38d59a">   92</a></span>    amrex::Vector&lt;std::unique_ptr&lt;PlaneVector&gt;&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_inlet_data.html#a1ab3feac5e49bfedbf3295937b38d59a">m_data_np1</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#aa78c733fc9b41bc53d5e8d82f9a4ddaf">   93</a></span>    amrex::Vector&lt;std::unique_ptr&lt;PlaneVector&gt;&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_inlet_data.html#aa78c733fc9b41bc53d5e8d82f9a4ddaf">m_data_interp</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#ad6d4bb518ee8b2a6ae960637ca540463">   96</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_inlet_data.html#ad6d4bb518ee8b2a6ae960637ca540463">m_tn</a>{-1.0_rt};</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#ad8e6269851294ce43774db23086c7ec1">   99</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_inlet_data.html#ad8e6269851294ce43774db23086c7ec1">m_tnp1</a>{-1.0_rt};</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#a5cb832099bda360f7d69bac6cd981883">  102</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_inlet_data.html#a5cb832099bda360f7d69bac6cd981883">m_tinterp</a>{-1.0_rt};</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_inlet_data.html#a1814b8adb7e75221c744f3fc9426f0f9">  105</a></span>    std::unordered_map&lt;int, int&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_inlet_data.html#a1814b8adb7e75221c744f3fc9426f0f9">m_components</a>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>};</div>
+</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span></div>
+<div class="foldopen" id="foldopen00116" data-start="{" data-end="};">
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html">  116</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a78828453a6cca04d7dfed12127df5b4c">BoundaryPlane</a> : <span class="keyword">public</span> kynema_sgf::FieldBoundary::Register&lt;BoundaryPlane&gt;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>{</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">static_assert</span>(AMREX_SPACEDIM == 3, <span class="stringliteral">&quot;ABL requires 3 dimensional mesh&quot;</span>);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a82cbd919d4cd8e03159a58f09a490b57">  121</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a82cbd919d4cd8e03159a58f09a490b57">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;BoundaryPlane&quot;</span>; }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a78828453a6cca04d7dfed12127df5b4c">BoundaryPlane</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <span class="comment">/*sim*/</span>);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a11adf54fa4a73cd8a2fbac7a03e70882">post_init_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a0a74a087082c85421c22c63e7e7571a2">pre_advance_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a577963aa09552824c93dca87c6371fde">post_advance_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a32e3fb78282be6b9595d420786cec014">pre_predictor_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#ab892af6f6ac987101e79f36a22740cb1">set_velocity</a>(</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keywordtype">int</span> lev,</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        amrex::Real time,</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; fld,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        amrex::MultiFab&amp; mfab,</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        <span class="keywordtype">int</span> dcomp = 0,</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="keywordtype">int</span> orig_comp = 0) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="comment">// Non-inherited public methods</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a02c7175e3a537c71a6ec99e158e7c839">pre_advance_inner_calls</a>();</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a0ce799a8a789ec31792022660a1592b7">initialize_data</a>();</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a2600f5a0ea6a3be2928bf590f9ced01a">write_header</a>();</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a4849aa3b926147bb748106a9f158930d">write_bndry_native_header</a>(<span class="keyword">const</span> std::string&amp; chkname);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a90e30f0f0b6476834bfe4244c83fdc36">write_file</a>();</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a3a1eaf18bf9d0f38bc0fe1df370e822f">read_header</a>();</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    [[nodiscard]] amrex::Vector&lt;amrex::BoxArray&gt; <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#ae5a449a10095d607ef8dc33a4ef6f497">read_bndry_native_boxarrays</a>(</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keyword">const</span> std::string&amp; chkname, <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; field) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a354d312eb7333fdfc60c167019578778">read_file</a>(<span class="keywordtype">bool</span> <span class="comment">/* nph_target_time*/</span>);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#aa55ea397dc5818f543464b03fa4a2a1d">populate_data</a>(</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keywordtype">int</span> <span class="comment">/*lev*/</span>,</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        amrex::Real <span class="comment">/*time*/</span>,</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <span class="comment">/*fld*/</span>,</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        amrex::MultiFab&amp; <span class="comment">/*mfab*/</span>,</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <span class="keywordtype">int</span> dcomp = 0,</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <span class="keywordtype">int</span> orig_comp = 0) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">#ifdef KYNEMA_SGF_USE_NETCDF</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a7a3f160b66950c06a35b74576921ca6b">impl_buffer_field</a>(</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        <span class="keyword">const</span> amrex::Box&amp; <span class="comment">/*bx*/</span>,</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*n1*/</span>,</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*nc*/</span>,</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <span class="keyword">const</span> amrex::GpuArray&lt;int, 2&gt;&amp; <span class="comment">/*perp*/</span>,</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        <span class="keyword">const</span> amrex::IntVect&amp; <span class="comment">/*v_offset*/</span>,</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        <span class="keyword">const</span> amrex::Array4&lt;const amrex::Real&gt;&amp; <span class="comment">/*fld*/</span>,</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        amrex::Gpu::ManagedVector&lt;amrex::Real&gt;&amp; <span class="comment">/*buffer*/</span>);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a2e39ef6750d9f2d7823b8c8b1edccc4e">box_intersects_boundary</a>(</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <span class="keyword">const</span> amrex::Box&amp; <span class="comment">/*bx*/</span>,</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <span class="keywordtype">int</span> <span class="comment">/*lev*/</span>,</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        amrex::Orientation <span class="comment">/*ori*/</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="foldopen" id="foldopen00184" data-start="{" data-end="}">
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#adb48e10b1258427477057a1589a0535d">  184</a></span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#adb48e10b1258427477057a1589a0535d">is_data_newer_than</a>(<span class="keyword">const</span> amrex::Real time)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        <span class="keywordflow">return</span> (</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>            <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a2ec50f51f722e0254cb2328fc9a70b4e">m_in_data</a>.tinterp() - time &gt;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>            std::numeric_limits&lt;amrex::Real&gt;::epsilon() * 1.0e4_rt);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    }</div>
+</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#aebcbd3d0e679a62c6fe6938d0ec3e214">  191</a></span>    [[nodiscard]] <a class="code hl_enumeration" href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728a">io_mode</a> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#aebcbd3d0e679a62c6fe6938d0ec3e214">mode</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#ac75d2c5e85bf9dfbe33b688cf140bcda">m_io_mode</a>; }</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="foldopen" id="foldopen00193" data-start="{" data-end="}">
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a1a0b665b1c3497b23d67316840c48099">  193</a></span>    MultiBlockContainer* <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a1a0b665b1c3497b23d67316840c48099">mbc</a>()</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    {</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="comment">// Make sure that the double pointer m_mbc</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <span class="comment">// does not point to a nullptr</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <span class="comment">// before passing *m_mbc for use</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keywordflow">if</span> ((*<a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#ae87d94400e0d457727d13c4eb596c99d">m_mbc</a>) == <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            amrex::Abort(<span class="stringliteral">&quot;Passing a null pointer for use!&quot;</span>);</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        }</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        <span class="keywordflow">return</span> *<a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#ae87d94400e0d457727d13c4eb596c99d">m_mbc</a>;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    }</div>
+</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a9e66879dbebef3cfa204b12356ad05d9">  205</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a9e66879dbebef3cfa204b12356ad05d9">m_time</a>;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#aa722e4f10ccf703a53b6de272f4dbe86">  206</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#aa722e4f10ccf703a53b6de272f4dbe86">m_repo</a>;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a98cbf4b5ba82db325e401100d54a526e">  207</a></span>    <span class="keyword">const</span> amrex::AmrCore&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a98cbf4b5ba82db325e401100d54a526e">m_mesh</a>;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="comment">// pointer to pointer : when ABL boundary plane gets initialized, kynema-sgf</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="comment">// CFDsim does not yet have the up to date pointer to the mbc or the</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="comment">// read_erf function, hence the use of double pointers</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#ae87d94400e0d457727d13c4eb596c99d">  212</a></span>    MultiBlockContainer** <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#ae87d94400e0d457727d13c4eb596c99d">m_mbc</a>;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#ac1ed02ea992167f069133daa6568ae8f">  213</a></span>    <a class="code hl_typedef" href="_read_e_r_f_function_8_h.html#a854c725972700e3da1ee7f3de488cf7e">ReadERFFunction</a>* <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#ac1ed02ea992167f069133daa6568ae8f">m_read_erf</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="preprocessor">#ifdef KYNEMA_SGF_USE_NETCDF</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a375d15951bafacc95dea2a97d4288d28">write_data</a>(</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <span class="keyword">const</span> <a class="code hl_class" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a>&amp; grp,</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        <span class="keyword">const</span> amrex::Orientation <span class="comment">/*ori*/</span>,</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="comment">/*lev*/</span>,</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>* <span class="comment">/*fld*/</span>);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1_boundary_plane.html#a862b1ee0eb27736d1f32c20d2d1963d0">boundary_native_file_levels</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#ae43e4d88392914e3bbd3755b1c982ac2">  224</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#ae43e4d88392914e3bbd3755b1c982ac2">m_title</a>{<span class="stringliteral">&quot;ABL boundary planes&quot;</span>};</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a2049a89917ffe7c6b9ed739212b00503">  227</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a2049a89917ffe7c6b9ed739212b00503">m_write_frequency</a>{1};</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span></div>
+<div class="foldopen" id="foldopen00230" data-start="{" data-end="};">
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a02585101a8541939c2814cebdb0e9c17">  230</a></span>    amrex::Vector&lt;std::string&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a02585101a8541939c2814cebdb0e9c17">m_plane_names</a>{<span class="stringliteral">&quot;xlo&quot;</span>, <span class="stringliteral">&quot;ylo&quot;</span>, <span class="stringliteral">&quot;zlo&quot;</span>,</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                                             <span class="stringliteral">&quot;xhi&quot;</span>, <span class="stringliteral">&quot;yhi&quot;</span>, <span class="stringliteral">&quot;zhi&quot;</span>};</div>
+</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#aae44d14794ce3f917c12add9bfd79bcf">  234</a></span>    amrex::Vector&lt;std::string&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#aae44d14794ce3f917c12add9bfd79bcf">m_planes</a>;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a2c3951ce2394679e1fef9e1a258bf601">  237</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a2c3951ce2394679e1fef9e1a258bf601">m_out_start_time</a>{0.0_rt};</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="preprocessor">#ifdef KYNEMA_SGF_USE_NETCDF</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a41c12fbd23d6e6c689d0965f0f6bdba3">  241</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a41c12fbd23d6e6c689d0965f0f6bdba3">m_out_counter</a>{0};</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a804b289e6d7c79a3bab4c6e3adab9c3a">  245</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a804b289e6d7c79a3bab4c6e3adab9c3a">m_filename</a>;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a507fc5030bd6343a0cbc776d5ae7ea32">  248</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a507fc5030bd6343a0cbc776d5ae7ea32">m_time_file</a>;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#adf07a6d6adbb1ad0bc9f777e3cb80fab">  251</a></span>    amrex::Vector&lt;std::string&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#adf07a6d6adbb1ad0bc9f777e3cb80fab">m_var_names</a>;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a00e8184cdf93c3481973ebe659eab3e1">  254</a></span>    amrex::Vector&lt;Field*&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a00e8184cdf93c3481973ebe659eab3e1">m_fields</a>;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a514667bab8c0f890001e97a25603aa43">  257</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a514667bab8c0f890001e97a25603aa43">m_in_times</a>;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a63f1cf68fee8122b7c35fd555b724503">  258</a></span>    amrex::Vector&lt;int&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a63f1cf68fee8122b7c35fd555b724503">m_in_timesteps</a>;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a2ec50f51f722e0254cb2328fc9a70b4e">  261</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_inlet_data.html">InletData</a> <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a2ec50f51f722e0254cb2328fc9a70b4e">m_in_data</a>;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#ac75d2c5e85bf9dfbe33b688cf140bcda">  264</a></span>    <a class="code hl_enumeration" href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728a">io_mode</a> <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#ac75d2c5e85bf9dfbe33b688cf140bcda">m_io_mode</a>{<a class="code hl_enumvalue" href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728aa5e543256c480ac577d30f76f9120eb74">io_mode::undefined</a>};</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a110e0eb781f0657b42a196285a50ef15">  268</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a110e0eb781f0657b42a196285a50ef15">m_has_overset</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#aa753e276ab5c8d15ad18a7ae9a0b6be0">  271</a></span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#aa753e276ab5c8d15ad18a7ae9a0b6be0">m_in_rad</a> = 1;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#ad4bb9871108ad16a207ab6e8ce502480">  272</a></span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#ad4bb9871108ad16a207ab6e8ce502480">m_out_rad</a> = 1;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a3fd6a7ff21c8d365beddb5045ad05914">  273</a></span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a3fd6a7ff21c8d365beddb5045ad05914">m_extent_rad</a> = 0;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_boundary_plane.html#a534b5c8c97c850d696e74ac6196db4bd">  276</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1_boundary_plane.html#a534b5c8c97c850d696e74ac6196db4bd">m_out_fmt</a>{<span class="stringliteral">&quot;native&quot;</span>};</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>};</div>
+</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="preprocessor">#endif </span><span class="comment">/* BOUNDARYPLANE_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_field_8_h_html"><div class="ttname"><a href="_field_8_h.html">Field.H</a></div></div>
+<div class="ttc" id="a_read_e_r_f_function_8_h_html"><div class="ttname"><a href="_read_e_r_f_function_8_h.html">ReadERFFunction.H</a></div></div>
+<div class="ttc" id="a_read_e_r_f_function_8_h_html_a854c725972700e3da1ee7f3de488cf7e"><div class="ttname"><a href="_read_e_r_f_function_8_h.html#a854c725972700e3da1ee7f3de488cf7e">ReadERFFunction</a></div><div class="ttdeci">std::function&lt; void( const amrex::Real time, amrex::Vector&lt; amrex::Real &gt; &amp;, kynema_sgf::InletData &amp;, const amrex::Vector&lt; kynema_sgf::Field * &gt; &amp;, MultiBlockContainer *)&gt; ReadERFFunction</div><div class="ttdef"><b>Definition</b> ReadERFFunction.H:10</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a00e8184cdf93c3481973ebe659eab3e1"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a00e8184cdf93c3481973ebe659eab3e1">kynema_sgf::BoundaryPlane::m_fields</a></div><div class="ttdeci">amrex::Vector&lt; Field * &gt; m_fields</div><div class="ttdoc">List of fields for IO.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:254</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a02585101a8541939c2814cebdb0e9c17"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a02585101a8541939c2814cebdb0e9c17">kynema_sgf::BoundaryPlane::m_plane_names</a></div><div class="ttdeci">amrex::Vector&lt; std::string &gt; m_plane_names</div><div class="ttdoc">Plane names.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:230</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a02c7175e3a537c71a6ec99e158e7c839"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a02c7175e3a537c71a6ec99e158e7c839">kynema_sgf::BoundaryPlane::pre_advance_inner_calls</a></div><div class="ttdeci">void pre_advance_inner_calls()</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:382</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a0a74a087082c85421c22c63e7e7571a2"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a0a74a087082c85421c22c63e7e7571a2">kynema_sgf::BoundaryPlane::pre_advance_work</a></div><div class="ttdeci">void pre_advance_work() override</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:373</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a0ce799a8a789ec31792022660a1592b7"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a0ce799a8a789ec31792022660a1592b7">kynema_sgf::BoundaryPlane::initialize_data</a></div><div class="ttdeci">void initialize_data()</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:390</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a110e0eb781f0657b42a196285a50ef15"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a110e0eb781f0657b42a196285a50ef15">kynema_sgf::BoundaryPlane::m_has_overset</a></div><div class="ttdeci">bool m_has_overset</div><div class="ttdoc">Flag indicating if the simulation is overset – needed for complicated timing of pre_advance_work.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:268</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a11adf54fa4a73cd8a2fbac7a03e70882"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a11adf54fa4a73cd8a2fbac7a03e70882">kynema_sgf::BoundaryPlane::post_init_actions</a></div><div class="ttdeci">void post_init_actions() override</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:362</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a1a0b665b1c3497b23d67316840c48099"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a1a0b665b1c3497b23d67316840c48099">kynema_sgf::BoundaryPlane::mbc</a></div><div class="ttdeci">MultiBlockContainer * mbc()</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:193</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a2049a89917ffe7c6b9ed739212b00503"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a2049a89917ffe7c6b9ed739212b00503">kynema_sgf::BoundaryPlane::m_write_frequency</a></div><div class="ttdeci">int m_write_frequency</div><div class="ttdoc">Normal direction for the boundary plane.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:227</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a2600f5a0ea6a3be2928bf590f9ced01a"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a2600f5a0ea6a3be2928bf590f9ced01a">kynema_sgf::BoundaryPlane::write_header</a></div><div class="ttdeci">void write_header()</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:410</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a2c3951ce2394679e1fef9e1a258bf601"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a2c3951ce2394679e1fef9e1a258bf601">kynema_sgf::BoundaryPlane::m_out_start_time</a></div><div class="ttdeci">amrex::Real m_out_start_time</div><div class="ttdoc">Start outputting after this time.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:237</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a2e39ef6750d9f2d7823b8c8b1edccc4e"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a2e39ef6750d9f2d7823b8c8b1edccc4e">kynema_sgf::BoundaryPlane::box_intersects_boundary</a></div><div class="ttdeci">bool box_intersects_boundary(const amrex::Box &amp;, int, amrex::Orientation) const</div><div class="ttdoc">True if box intersects the boundary.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:1597</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a2ec50f51f722e0254cb2328fc9a70b4e"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a2ec50f51f722e0254cb2328fc9a70b4e">kynema_sgf::BoundaryPlane::m_in_data</a></div><div class="ttdeci">InletData m_in_data</div><div class="ttdoc">Inlet data.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:261</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a32e3fb78282be6b9595d420786cec014"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a32e3fb78282be6b9595d420786cec014">kynema_sgf::BoundaryPlane::pre_predictor_work</a></div><div class="ttdeci">void pre_predictor_work() override</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:386</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a354d312eb7333fdfc60c167019578778"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a354d312eb7333fdfc60c167019578778">kynema_sgf::BoundaryPlane::read_file</a></div><div class="ttdeci">void read_file(bool)</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:1158</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a375d15951bafacc95dea2a97d4288d28"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a375d15951bafacc95dea2a97d4288d28">kynema_sgf::BoundaryPlane::write_data</a></div><div class="ttdeci">void write_data(const ncutils::NCGroup &amp;grp, const amrex::Orientation, const int, const Field *)</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:1437</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a3a1eaf18bf9d0f38bc0fe1df370e822f"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a3a1eaf18bf9d0f38bc0fe1df370e822f">kynema_sgf::BoundaryPlane::read_header</a></div><div class="ttdeci">void read_header()</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:748</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a3fd6a7ff21c8d365beddb5045ad05914"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a3fd6a7ff21c8d365beddb5045ad05914">kynema_sgf::BoundaryPlane::m_extent_rad</a></div><div class="ttdeci">const int m_extent_rad</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:273</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a41c12fbd23d6e6c689d0965f0f6bdba3"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a41c12fbd23d6e6c689d0965f0f6bdba3">kynema_sgf::BoundaryPlane::m_out_counter</a></div><div class="ttdeci">size_t m_out_counter</div><div class="ttdoc">NetCDF time output counter.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:241</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a4849aa3b926147bb748106a9f158930d"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a4849aa3b926147bb748106a9f158930d">kynema_sgf::BoundaryPlane::write_bndry_native_header</a></div><div class="ttdeci">void write_bndry_native_header(const std::string &amp;chkname)</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:542</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a507fc5030bd6343a0cbc776d5ae7ea32"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a507fc5030bd6343a0cbc776d5ae7ea32">kynema_sgf::BoundaryPlane::m_time_file</a></div><div class="ttdeci">std::string m_time_file</div><div class="ttdoc">File name for Native time file.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:248</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a514667bab8c0f890001e97a25603aa43"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a514667bab8c0f890001e97a25603aa43">kynema_sgf::BoundaryPlane::m_in_times</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_in_times</div><div class="ttdoc">NetCDF input level time.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:257</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a534b5c8c97c850d696e74ac6196db4bd"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a534b5c8c97c850d696e74ac6196db4bd">kynema_sgf::BoundaryPlane::m_out_fmt</a></div><div class="ttdeci">std::string m_out_fmt</div><div class="ttdoc">output format for bndry output</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:276</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a577963aa09552824c93dca87c6371fde"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a577963aa09552824c93dca87c6371fde">kynema_sgf::BoundaryPlane::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:388</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a63f1cf68fee8122b7c35fd555b724503"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a63f1cf68fee8122b7c35fd555b724503">kynema_sgf::BoundaryPlane::m_in_timesteps</a></div><div class="ttdeci">amrex::Vector&lt; int &gt; m_in_timesteps</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:258</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a78828453a6cca04d7dfed12127df5b4c"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a78828453a6cca04d7dfed12127df5b4c">kynema_sgf::BoundaryPlane::BoundaryPlane</a></div><div class="ttdeci">BoundaryPlane(CFDSim &amp;)</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:287</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a7a3f160b66950c06a35b74576921ca6b"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a7a3f160b66950c06a35b74576921ca6b">kynema_sgf::BoundaryPlane::impl_buffer_field</a></div><div class="ttdeci">static void impl_buffer_field(const amrex::Box &amp;, const int, const int, const amrex::GpuArray&lt; int, 2 &gt; &amp;, const amrex::IntVect &amp;, const amrex::Array4&lt; const amrex::Real &gt; &amp;, amrex::Gpu::ManagedVector&lt; amrex::Real &gt; &amp;)</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:1556</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a804b289e6d7c79a3bab4c6e3adab9c3a"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a804b289e6d7c79a3bab4c6e3adab9c3a">kynema_sgf::BoundaryPlane::m_filename</a></div><div class="ttdeci">std::string m_filename</div><div class="ttdoc">File name for IO.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:245</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a82cbd919d4cd8e03159a58f09a490b57"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a82cbd919d4cd8e03159a58f09a490b57">kynema_sgf::BoundaryPlane::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:121</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a862b1ee0eb27736d1f32c20d2d1963d0"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a862b1ee0eb27736d1f32c20d2d1963d0">kynema_sgf::BoundaryPlane::boundary_native_file_levels</a></div><div class="ttdeci">int boundary_native_file_levels() const</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:1580</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a90e30f0f0b6476834bfe4244c83fdc36"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a90e30f0f0b6476834bfe4244c83fdc36">kynema_sgf::BoundaryPlane::write_file</a></div><div class="ttdeci">void write_file()</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:632</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a98cbf4b5ba82db325e401100d54a526e"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a98cbf4b5ba82db325e401100d54a526e">kynema_sgf::BoundaryPlane::m_mesh</a></div><div class="ttdeci">const amrex::AmrCore &amp; m_mesh</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:207</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_a9e66879dbebef3cfa204b12356ad05d9"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#a9e66879dbebef3cfa204b12356ad05d9">kynema_sgf::BoundaryPlane::m_time</a></div><div class="ttdeci">const kynema_sgf::SimTime &amp; m_time</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:205</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_aa55ea397dc5818f543464b03fa4a2a1d"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#aa55ea397dc5818f543464b03fa4a2a1d">kynema_sgf::BoundaryPlane::populate_data</a></div><div class="ttdeci">void populate_data(int, amrex::Real, const Field &amp;, amrex::MultiFab &amp;, int dcomp=0, int orig_comp=0) const</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:1315</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_aa722e4f10ccf703a53b6de272f4dbe86"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#aa722e4f10ccf703a53b6de272f4dbe86">kynema_sgf::BoundaryPlane::m_repo</a></div><div class="ttdeci">const FieldRepo &amp; m_repo</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:206</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_aa753e276ab5c8d15ad18a7ae9a0b6be0"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#aa753e276ab5c8d15ad18a7ae9a0b6be0">kynema_sgf::BoundaryPlane::m_in_rad</a></div><div class="ttdeci">const int m_in_rad</div><div class="ttdoc">controls extents on native bndry output</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:271</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_aae44d14794ce3f917c12add9bfd79bcf"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#aae44d14794ce3f917c12add9bfd79bcf">kynema_sgf::BoundaryPlane::m_planes</a></div><div class="ttdeci">amrex::Vector&lt; std::string &gt; m_planes</div><div class="ttdoc">IO boundary planes.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:234</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_ab892af6f6ac987101e79f36a22740cb1"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#ab892af6f6ac987101e79f36a22740cb1">kynema_sgf::BoundaryPlane::set_velocity</a></div><div class="ttdeci">void set_velocity(int lev, amrex::Real time, const Field &amp;fld, amrex::MultiFab &amp;mfab, int dcomp=0, int orig_comp=0) const override</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:1414</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_ac1ed02ea992167f069133daa6568ae8f"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#ac1ed02ea992167f069133daa6568ae8f">kynema_sgf::BoundaryPlane::m_read_erf</a></div><div class="ttdeci">ReadERFFunction * m_read_erf</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:213</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_ac75d2c5e85bf9dfbe33b688cf140bcda"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#ac75d2c5e85bf9dfbe33b688cf140bcda">kynema_sgf::BoundaryPlane::m_io_mode</a></div><div class="ttdeci">io_mode m_io_mode</div><div class="ttdoc">IO mode.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:264</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_ad4bb9871108ad16a207ab6e8ce502480"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#ad4bb9871108ad16a207ab6e8ce502480">kynema_sgf::BoundaryPlane::m_out_rad</a></div><div class="ttdeci">const int m_out_rad</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:272</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_adb48e10b1258427477057a1589a0535d"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#adb48e10b1258427477057a1589a0535d">kynema_sgf::BoundaryPlane::is_data_newer_than</a></div><div class="ttdeci">bool is_data_newer_than(const amrex::Real time) const</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:184</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_adf07a6d6adbb1ad0bc9f777e3cb80fab"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#adf07a6d6adbb1ad0bc9f777e3cb80fab">kynema_sgf::BoundaryPlane::m_var_names</a></div><div class="ttdeci">amrex::Vector&lt; std::string &gt; m_var_names</div><div class="ttdoc">Variables for IO.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:251</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_ae43e4d88392914e3bbd3755b1c982ac2"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#ae43e4d88392914e3bbd3755b1c982ac2">kynema_sgf::BoundaryPlane::m_title</a></div><div class="ttdeci">std::string m_title</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:224</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_ae5a449a10095d607ef8dc33a4ef6f497"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#ae5a449a10095d607ef8dc33a4ef6f497">kynema_sgf::BoundaryPlane::read_bndry_native_boxarrays</a></div><div class="ttdeci">amrex::Vector&lt; amrex::BoxArray &gt; read_bndry_native_boxarrays(const std::string &amp;chkname, const Field &amp;field) const</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:962</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_ae87d94400e0d457727d13c4eb596c99d"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#ae87d94400e0d457727d13c4eb596c99d">kynema_sgf::BoundaryPlane::m_mbc</a></div><div class="ttdeci">MultiBlockContainer ** m_mbc</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:212</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_boundary_plane_html_aebcbd3d0e679a62c6fe6938d0ec3e214"><div class="ttname"><a href="classkynema__sgf_1_1_boundary_plane.html#aebcbd3d0e679a62c6fe6938d0ec3e214">kynema_sgf::BoundaryPlane::mode</a></div><div class="ttdeci">io_mode mode() const</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:191</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_repo_html"><div class="ttname"><a href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a></div><div class="ttdef"><b>Definition</b> FieldRepo.H:86</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html">kynema_sgf::InletData</a></div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:34</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_a0fb156d6db75ef4eb5cbb0010506da7d"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#a0fb156d6db75ef4eb5cbb0010506da7d">kynema_sgf::InletData::tinterp</a></div><div class="ttdeci">amrex::Real tinterp() const</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:88</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_a1814b8adb7e75221c744f3fc9426f0f9"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#a1814b8adb7e75221c744f3fc9426f0f9">kynema_sgf::InletData::m_components</a></div><div class="ttdeci">std::unordered_map&lt; int, int &gt; m_components</div><div class="ttdoc">Map of {variableId : component}</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:105</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_a1ab3feac5e49bfedbf3295937b38d59a"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#a1ab3feac5e49bfedbf3295937b38d59a">kynema_sgf::InletData::m_data_np1</a></div><div class="ttdeci">amrex::Vector&lt; std::unique_ptr&lt; PlaneVector &gt; &gt; m_data_np1</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:92</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_a4a6459dcea46eb21daab6074fd191421"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#a4a6459dcea46eb21daab6074fd191421">kynema_sgf::InletData::is_populated</a></div><div class="ttdeci">bool is_populated(amrex::Orientation) const</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:282</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_a4d8186528839cd3b70e5189733dab85a"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#a4d8186528839cd3b70e5189733dab85a">kynema_sgf::InletData::component</a></div><div class="ttdeci">int &amp; component(const int id)</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:74</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_a52324df899be62aeb79fba01fb4ae049"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#a52324df899be62aeb79fba01fb4ae049">kynema_sgf::InletData::tnp1</a></div><div class="ttdeci">amrex::Real tnp1() const</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:87</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_a5cb832099bda360f7d69bac6cd981883"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#a5cb832099bda360f7d69bac6cd981883">kynema_sgf::InletData::m_tinterp</a></div><div class="ttdeci">amrex::Real m_tinterp</div><div class="ttdoc">Time for plane at interpolation.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:102</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_a5f78ae1d8a63ed07f30d11e255ee0f38"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#a5f78ae1d8a63ed07f30d11e255ee0f38">kynema_sgf::InletData::resize</a></div><div class="ttdeci">void resize(int)</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:48</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_a83f3d2cfb4a063f27368dd4babbf3e4c"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#a83f3d2cfb4a063f27368dd4babbf3e4c">kynema_sgf::InletData::read_data_native</a></div><div class="ttdeci">void read_data_native(amrex::OrientationIter oit, amrex::BndryRegister &amp;bndry_n, amrex::BndryRegister &amp;bndry_np1, int lev, const Field *, amrex::Real time, const amrex::Vector&lt; amrex::Real &gt; &amp;)</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:158</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_a897ac8c50e9294dd5dfb07c4986624aa"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#a897ac8c50e9294dd5dfb07c4986624aa">kynema_sgf::InletData::define_plane</a></div><div class="ttdeci">void define_plane(amrex::Orientation)</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_a956922cdbeef5c38d9704ef71da4fcd4"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#a956922cdbeef5c38d9704ef71da4fcd4">kynema_sgf::InletData::read_data</a></div><div class="ttdeci">void read_data(ncutils::NCGroup &amp;, const amrex::Orientation, const int, const Field *, const amrex::Real, const amrex::Vector&lt; amrex::Real &gt; &amp;)</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:74</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_a96bae3e5214a4f388d84701d65221553"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#a96bae3e5214a4f388d84701d65221553">kynema_sgf::InletData::m_data_n</a></div><div class="ttdeci">amrex::Vector&lt; std::unique_ptr&lt; PlaneVector &gt; &gt; m_data_n</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:91</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_aa67b8db9353cd866fc38b252a0e2788c"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#aa67b8db9353cd866fc38b252a0e2788c">kynema_sgf::InletData::tn</a></div><div class="ttdeci">amrex::Real tn() const</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:86</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_aa78c733fc9b41bc53d5e8d82f9a4ddaf"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#aa78c733fc9b41bc53d5e8d82f9a4ddaf">kynema_sgf::InletData::m_data_interp</a></div><div class="ttdeci">amrex::Vector&lt; std::unique_ptr&lt; PlaneVector &gt; &gt; m_data_interp</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:93</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_ab62387fe9d8b2bb4f4bc01f53e3a372e"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#ab62387fe9d8b2bb4f4bc01f53e3a372e">kynema_sgf::InletData::nlevels</a></div><div class="ttdeci">int nlevels(const amrex::Orientation ori) const</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:81</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_ac41f9ad33ab24b008ab8067346e4efc4"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#ac41f9ad33ab24b008ab8067346e4efc4">kynema_sgf::InletData::define_level_data</a></div><div class="ttdeci">void define_level_data(amrex::Orientation, const amrex::Box &amp;, size_t)</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:62</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_ad411e84e7f7d25c83d3e28b8de2b5d33"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#ad411e84e7f7d25c83d3e28b8de2b5d33">kynema_sgf::InletData::component</a></div><div class="ttdeci">int component(const int id) const</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:76</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_ad6d4bb518ee8b2a6ae960637ca540463"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#ad6d4bb518ee8b2a6ae960637ca540463">kynema_sgf::InletData::m_tn</a></div><div class="ttdeci">amrex::Real m_tn</div><div class="ttdoc">Time for plane at n.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:96</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_ad8e6269851294ce43774db23086c7ec1"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#ad8e6269851294ce43774db23086c7ec1">kynema_sgf::InletData::m_tnp1</a></div><div class="ttdeci">amrex::Real m_tnp1</div><div class="ttdoc">Time for plane at n + 1.</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:99</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_addd1d4402b60456ab6fd18ec5216d55f"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#addd1d4402b60456ab6fd18ec5216d55f">kynema_sgf::InletData::interpolate_data</a></div><div class="ttdeci">const amrex::FArrayBox &amp; interpolate_data(const amrex::Orientation ori, const int lev) const</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:69</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_ae78303b1d454c638812349015d5145b3"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#ae78303b1d454c638812349015d5145b3">kynema_sgf::InletData::InletData</a></div><div class="ttdeci">InletData()=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_aebd8afff34ec5a402d97283481398546"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#aebd8afff34ec5a402d97283481398546">kynema_sgf::InletData::interpolate</a></div><div class="ttdeci">void interpolate(amrex::Real)</div><div class="ttdef"><b>Definition</b> BoundaryPlane.cpp:260</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_inlet_data_html_af8a10cc824d12a0ec210d19a204350ea"><div class="ttname"><a href="classkynema__sgf_1_1_inlet_data.html#af8a10cc824d12a0ec210d19a204350ea">kynema_sgf::InletData::PlaneVector</a></div><div class="ttdeci">amrex::Vector&lt; amrex::FArrayBox &gt; PlaneVector</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:35</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a></div><div class="ttdef"><b>Definition</b> SimTime.H:33</div></div>
+<div class="ttc" id="aclassncutils_1_1_n_c_group_html"><div class="ttname"><a href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a></div><div class="ttdoc">Representation of a NetCDF group.</div><div class="ttdef"><b>Definition</b> nc_interface.H:162</div></div>
+<div class="ttc" id="aio__utils_8_h_html"><div class="ttname"><a href="io__utils_8_h.html">io_utils.H</a></div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html_a9b9073f4f89e5eec90b79c74235d728a"><div class="ttname"><a href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728a">kynema_sgf::io_mode</a></div><div class="ttdeci">io_mode</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:18</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html_a9b9073f4f89e5eec90b79c74235d728aa5e543256c480ac577d30f76f9120eb74"><div class="ttname"><a href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728aa5e543256c480ac577d30f76f9120eb74">kynema_sgf::io_mode::undefined</a></div><div class="ttdeci">@ undefined</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:18</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html_a9b9073f4f89e5eec90b79c74235d728aa78e6221f6393d1356681db398f14ce6d"><div class="ttname"><a href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728aa78e6221f6393d1356681db398f14ce6d">kynema_sgf::io_mode::output</a></div><div class="ttdeci">@ output</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:18</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html_a9b9073f4f89e5eec90b79c74235d728aaa43c1b0aa53a0c908810c06ab1ff3967"><div class="ttname"><a href="namespacekynema__sgf.html#a9b9073f4f89e5eec90b79c74235d728aaa43c1b0aa53a0c908810c06ab1ff3967">kynema_sgf::io_mode::input</a></div><div class="ttdeci">@ input</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:18</div></div>
+<div class="ttc" id="anc__interface_8_h_html"><div class="ttname"><a href="nc__interface_8_h.html">nc_interface.H</a></div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_buffer_data_html"><div class="ttname"><a href="structkynema__sgf_1_1_buffer_data.html">kynema_sgf::BufferData</a></div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:21</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_buffer_data_html_a00f7c1a0f2e4b7666d470242b043ed03"><div class="ttname"><a href="structkynema__sgf_1_1_buffer_data.html#a00f7c1a0f2e4b7666d470242b043ed03">kynema_sgf::BufferData::data</a></div><div class="ttdeci">amrex::Gpu::ManagedVector&lt; amrex::Real &gt; data</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:22</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_buffer_data_html_a27b183f142f4b0218c4f37d4bbe3aba8"><div class="ttname"><a href="structkynema__sgf_1_1_buffer_data.html#a27b183f142f4b0218c4f37d4bbe3aba8">kynema_sgf::BufferData::count</a></div><div class="ttdeci">amrex::Vector&lt; size_t &gt; count</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:24</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_buffer_data_html_ac90eac15ac0a54cd9c86ddeea9ee17b6"><div class="ttname"><a href="structkynema__sgf_1_1_buffer_data.html#ac90eac15ac0a54cd9c86ddeea9ee17b6">kynema_sgf::BufferData::start</a></div><div class="ttdeci">amrex::Vector&lt; size_t &gt; start</div><div class="ttdef"><b>Definition</b> BoundaryPlane.H:23</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regression testing &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Verification" href="verification.html" />
+    <link rel="prev" title="Unit testing" href="unit_testing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../doxygen/html/index.html">Kynema-SGF API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Regression testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#enabling-and-running-regression-tests">Enabling and running regression tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-against-gold-files">Testing against gold files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-output-for-a-failed-test">Example output for a failed test</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#test-file-organization">Test file organization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#creating-new-regression-tests">Creating new regression tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test-outputs-and-troubleshooting">Test outputs and troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="verification.html">Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coding_guidelines.html">Coding Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer Documentation</a></li>
+      <li class="breadcrumb-item active">Regression testing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/developer/regression_testing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="regression-testing">
+<span id="dev-reg-tests"></span><h1>Regression testing<a class="headerlink" href="#regression-testing" title="Link to this heading"></a></h1>
+<p>Kynema-SGF comes with a suite of regression tests to ensure that the relevant
+parts of the code are working correctly, and any code modifications do not
+introduce errors. These tests are run nightly using an automated system and the
+results are published on a <a class="reference external" href="https://my.cdash.org/index.php?project=Kynema">public dashboard</a>. We ensure that the testing
+covers multiple operating systems (currently Linux and MacOS), different
+compilers (GCC, Intel, LLVM Clang, and NVIDIA CUDA), as well as two different
+versions of AMReX library – a stable monthly snapshot, and the
+version-of-the-day (VOTD) development branch. In addition to the nightly
+testing, <a class="reference external" href="https://github.com/Kynema/kynema-sgf/actions?query=workflow%3AKynema-SGF-CI">continuous integration (CI) capability</a> is used to test pull-requests to
+ensure that they pass all tests before they are merged to the mainline codebase.</p>
+<section id="enabling-and-running-regression-tests">
+<h2>Enabling and running regression tests<a class="headerlink" href="#enabling-and-running-regression-tests" title="Link to this heading"></a></h2>
+<p>Kynema-SGF uses <a class="reference external" href="https://cmake.org/cmake/help/latest/manual/ctest.1.html">CTest</a> and its
+integration with <a class="reference external" href="https://cmake.org/cmake/help/latest/manual/cmake.1.html">CMake</a> for the
+nightly regression test suite. Developers can enable and use the tests
+locally on their machine to assist development of new features and
+ensuring that the modifications do not break current
+capabilities. Regression testing is not enabled by default in a CMake
+build and must be enabled explicitly by the user.  To enable
+regression testing, the user must enable additional flags during the
+CMake configure phase: <a class="reference internal" href="../user/build.html#cmakeval-KYNEMA_SGF_ENABLE_TESTS"><code class="xref std std-cmakeval docutils literal notranslate"><span class="pre">KYNEMA_SGF_ENABLE_TESTS</span></code></a> as shown below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Switch<span class="w"> </span>to<span class="w"> </span>AMR-wind<span class="w"> </span><span class="nb">source</span><span class="w"> </span>code
+<span class="go">cd ${HOME}/kynema/source/kynema-sgf</span>
+<span class="gp"># </span>Create<span class="w"> </span>a<span class="w"> </span>build<span class="w"> </span>directory
+<span class="go">mkdir build-test</span>
+<span class="go">cd build-test</span>
+<span class="gp"># </span>Run<span class="w"> </span>configure<span class="w"> </span>with<span class="w"> </span>testing<span class="w"> </span>flags
+<span class="go">cmake -DKYNEMA_SGF_ENABLE_TESTS=ON ../</span>
+<span class="gp"># </span>Build<span class="w"> </span>code
+<span class="go">make -j 4</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The flag <code class="docutils literal notranslate"><span class="pre">KYNEMA_SGF_ENABLE_TESTS</span></code> activates CTest facility and
+enables the use of CTest to run the regression test
+facility. Running <strong class="program">ctest</strong> in this mode runs the tests but
+the results of the tests are not compared to any reference (i.e.,
+gold) files. A successful test in this mode indicates that the test
+completed without error but it does not imply correctness. For
+that, the reader is referred to the section on <a class="reference internal" href="#testing-against-gold-files">Testing against
+gold files</a>.</p>
+</div>
+<p>Upon successful build, you will notice CTest has been enabled.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>List<span class="w"> </span>available<span class="w"> </span>tests
+<span class="go">ctest -N</span>
+
+<span class="gp"># </span>Run<span class="w"> </span>available<span class="w"> </span>tests<span class="w"> </span><span class="o">(</span>using<span class="w"> </span><span class="m">8</span><span class="w"> </span>parallel<span class="w"> </span>processes<span class="o">)</span>
+<span class="gp"># </span>show<span class="w"> </span>output<span class="w"> </span><span class="k">if</span><span class="w"> </span>a<span class="w"> </span><span class="nb">test</span><span class="w"> </span>fails<span class="w"> </span>otherwise<span class="w"> </span>suppress<span class="w"> </span>output
+<span class="go">ctest -j 8 --output-on-failure</span>
+
+<span class="gp"># </span>Run<span class="w"> </span>tests<span class="w"> </span>with<span class="w"> </span>that<span class="w"> </span>match<span class="w"> </span>a<span class="w"> </span>particular<span class="w"> </span>regex
+<span class="go">ctest -R abl_godunov --output-on-failure -j 8</span>
+
+<span class="gp"># </span>Rerun<span class="w"> </span>only<span class="w"> </span>tests<span class="w"> </span>that<span class="w"> </span>failed<span class="w"> </span>previously
+<span class="go">ctest --rerun-failed --output-on-failure -j 8</span>
+</pre></div>
+</div>
+</section>
+<section id="testing-against-gold-files">
+<h2>Testing against gold files<a class="headerlink" href="#testing-against-gold-files" title="Link to this heading"></a></h2>
+<p>To use <strong class="program">fcompare</strong> to determine if the code has been built properly and
+generates the correct results, we must provide <em>gold solutions</em> for the tests.
+Currently, the gold files are not released with the code, so a local copy must
+be generated by the user. The recommended process is to download the appropriate
+version of Kynema-SGF, build and run the executable once to generate the gold
+files and copy it into the appropriate directory and use them during the
+development process. This is not an ideal setup and will be rectified in future.
+We recommend running the unit tests to ensure that the build process worked
+correctly to generate the correct executable.</p>
+<p>To enable regression testing with gold files, the user must enable
+additional flags during the CMake configure phase:
+<a class="reference internal" href="../user/build.html#cmakeval-KYNEMA_SGF_ENABLE_TESTS"><code class="xref std std-cmakeval docutils literal notranslate"><span class="pre">KYNEMA_SGF_ENABLE_TESTS</span></code></a>,
+<a class="reference internal" href="../user/build.html#cmakeval-KYNEMA_SGF_TEST_WITH_FCOMPARE"><code class="xref std std-cmakeval docutils literal notranslate"><span class="pre">KYNEMA_SGF_TEST_WITH_FCOMPARE</span></code></a>,
+<a class="reference internal" href="../user/build.html#cmakeval-KYNEMA_SGF_REFERENCE_GOLDS_DIRECTORY"><code class="xref std std-cmakeval docutils literal notranslate"><span class="pre">KYNEMA_SGF_REFERENCE_GOLDS_DIRECTORY</span></code></a>,
+<a class="reference internal" href="../user/build.html#cmakeval-KYNEMA_SGF_SAVE_GOLDS"><code class="xref std std-cmakeval docutils literal notranslate"><span class="pre">KYNEMA_SGF_SAVE_GOLDS</span></code></a>, and
+<a class="reference internal" href="../user/build.html#cmakeval-KYNEMA_SGF_SAVED_GOLDS_DIRECTORY"><code class="xref std std-cmakeval docutils literal notranslate"><span class="pre">KYNEMA_SGF_SAVED_GOLDS_DIRECTORY</span></code></a> as shown below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Switch<span class="w"> </span>to<span class="w"> </span>AMR-wind<span class="w"> </span><span class="nb">source</span><span class="w"> </span>code
+<span class="go">cd ${HOME}/kynema/source/kynema-sgf</span>
+<span class="gp"># </span>Create<span class="w"> </span>a<span class="w"> </span>build<span class="w"> </span>directory
+<span class="go">mkdir build-test</span>
+<span class="go">cd build-test</span>
+<span class="gp"># </span>Create<span class="w"> </span>the<span class="w"> </span>directory<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>new<span class="w"> </span>gold<span class="w"> </span>files
+<span class="go">mkdir -p golds/tmp</span>
+<span class="gp"># </span>Run<span class="w"> </span>configure<span class="w"> </span>with<span class="w"> </span>testing<span class="w"> </span>flags
+<span class="gp"># </span>KYNEMA_SGF_REFERENCE_GOLDS_DIRECTORY<span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>directory<span class="w"> </span>where<span class="w"> </span>the<span class="w"> </span>reference<span class="w"> </span>gold<span class="w"> </span>files<span class="w"> </span>are<span class="w"> </span>stored
+<span class="gp"># </span>KYNEMA_SGF_SAVE_GOLDS<span class="w"> </span>indicates<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>gold<span class="w"> </span>files<span class="w"> </span>should<span class="w"> </span>be<span class="w"> </span>saved
+<span class="gp"># </span>KYNEMA_SGF_SAVED_GOLDS_DIRECTORY<span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>directory<span class="w"> </span>where<span class="w"> </span>the<span class="w"> </span>gold<span class="w"> </span>file<span class="w"> </span>are<span class="w"> </span>saved,<span class="w"> </span>it<span class="w"> </span>must<span class="w"> </span>exist
+<span class="go">cmake -DKYNEMA_SGF_ENABLE_TESTS=ON \</span>
+<span class="go">      -DKYNEMA_SGF_TEST_WITH_FCOMPARE=ON \</span>
+<span class="go">      -DKYNEMA_SGF_REFERENCE_GOLDS_DIRECTORY=$(pwd)/golds/current \</span>
+<span class="go">      -DKYNEMA_SGF_SAVE_GOLDS:BOOL=ON \</span>
+<span class="go">      -DKYNEMA_SGF_SAVED_GOLDS_DIRECTORY=$(pwd)/golds/tmp \</span>
+<span class="go">      ../</span>
+<span class="gp"># </span>Build<span class="w"> </span>code
+<span class="go">make -j 4</span>
+</pre></div>
+</div>
+<p>The flag <code class="docutils literal notranslate"><span class="pre">KYNEMA_SGF_TEST_WITH_FCOMPARE</span></code> uses AMReX
+<strong class="program">fcompare</strong> utility to test the plotfile outputs against <em>gold
+files</em> to ensure that the results haven’t changed. Upon successful
+build, you will notice that a new executable <strong class="program">fcompare</strong> is
+built. The gold files directory is printed out during the configure
+phase, as shown below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">-- Kynema-SGF Information:</span>
+<span class="go">-- CMAKE_SYSTEM_NAME = Darwin</span>
+<span class="go">-- CMAKE_CXX_COMPILER_ID = AppleClang</span>
+<span class="go">-- CMAKE_CXX_COMPILER_VERSION = 15.0.0.15000100</span>
+<span class="go">-- CMAKE_BUILD_TYPE = Release</span>
+<span class="go">-- Test golds directory for fcompare: ${HOME}/kynema/source/kynema-sgf/build-test/golds/current/Darwin/AppleClang/15.0.0.15000100</span>
+<span class="go">-- Gold files will be saved to: ${HOME}/kynema/source/kynema-sgf/build-test/golds/tmp/Darwin/AppleClang/15.0.0.15000100</span>
+<span class="go">-- Configuring done (1.3s)</span>
+<span class="go">-- Generating done (0.6s)</span>
+<span class="go">-- Build files have been written to: ${HOME}/kynema/source/kynema-sgf/build-test</span>
+</pre></div>
+</div>
+<p>The gold files directory is organized by <code class="docutils literal notranslate"><span class="pre">${OS}/${COMPILER}/${COMPILER_VERSION}</span></code>. The reference gold files must first be created with a reference branch of Kynema-SGF, then saved in the reference gold directory:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Ensure<span class="w"> </span>that<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>build<span class="w"> </span>directory
+<span class="gp"># </span>Run<span class="w"> </span>CTest<span class="w"> </span>first<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>all<span class="w"> </span>tests<span class="w"> </span>will<span class="w"> </span>fail<span class="w"> </span>as<span class="w"> </span>there<span class="w"> </span>are<span class="w"> </span>no<span class="w"> </span>golds<span class="w"> </span>to<span class="w"> </span>compare<span class="w"> </span>with<span class="o">)</span>
+<span class="gp"># </span>The<span class="w"> </span>tests<span class="w"> </span>will<span class="w"> </span>fail<span class="w"> </span>with<span class="w"> </span><span class="s2">&quot;amrex::Error::0::Couldn&#39;t open file:&quot;</span>
+<span class="go">ctest -j 8</span>
+
+<span class="gp"># </span>Create<span class="w"> </span>the<span class="w"> </span>reference<span class="w"> </span>version<span class="w"> </span>of<span class="w"> </span>Golds<span class="w"> </span><span class="o">(</span>following<span class="w"> </span>the<span class="w"> </span>directory<span class="w"> </span>convention<span class="w"> </span>used<span class="w"> </span>above<span class="o">)</span>
+<span class="go">cp -R golds/tmp/ golds/current/</span>
+
+<span class="gp"># </span>Because<span class="w"> </span>of<span class="w"> </span><span class="nb">test</span><span class="w"> </span>dependencies,<span class="w"> </span>this<span class="w"> </span>needs<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span><span class="k">done</span><span class="w"> </span>twice
+<span class="go">ctest -j 8</span>
+<span class="go">rsync -a --delete golds/tmp/ golds/current/</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The tests failing with “amrex::Error::0::Couldn’t open file:” means
+that the test simulation completed successfully but that no
+comparison was made with <strong class="program">fcompare</strong> because the reference
+gold files are missing.</p>
+</div>
+<p>Once that is done (and it should only need to be done once), the test suite can be run with the following:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Rerun<span class="w"> </span>CTest<span class="w"> </span>again<span class="w"> </span>and<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span>should<span class="w"> </span>pass
+<span class="go">ctest -j 8</span>
+</pre></div>
+</div>
+<section id="example-output-for-a-failed-test">
+<h3>Example output for a failed test<a class="headerlink" href="#example-output-for-a-failed-test" title="Link to this heading"></a></h3>
+<p>The following shows an example of a failed test and the typical output generated
+by <code class="docutils literal notranslate"><span class="pre">fcompare</span></code> that can be used for diagnostics.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">❯ ctest -R abl_godunov$ --output-on-failure</span>
+<span class="go">Test project ~/kynema/source/kynema-sgf/build-test</span>
+<span class="go">    Start 7: abl_godunov</span>
+<span class="go">1/1 Test #7: abl_godunov ......................***Failed    9.73 sec</span>
+
+<span class="go">            variable name            absolute error            relative error</span>
+<span class="go">                                        (||A - B||)         (||A - B||/||A||)</span>
+<span class="go"> ----------------------------------------------------------------------------</span>
+<span class="go"> level = 0</span>
+<span class="go"> velx                               0.0009695495942           0.0001370997978</span>
+<span class="go"> vely                               0.0009397088188           0.0001544075933</span>
+<span class="go"> velz                               0.0001684407299             0.00408613285</span>
+<span class="go"> gpx                                5.837947396e-05            0.003916799182</span>
+<span class="go"> gpy                                5.947263951e-05            0.003794860517</span>
+<span class="go"> gpz                                5.148686593e-05           0.0001801671463</span>
+<span class="go"> density                                          0                         0</span>
+<span class="go"> tracer0                            1.591615728e-12           5.155552515e-15</span>
+<span class="go"> vort                               0.0001047506059            0.002168282324</span>
+
+
+<span class="go">0% tests passed, 1 tests failed out of 1</span>
+
+<span class="go">Label Time Summary:</span>
+<span class="go">regression    =  38.90 sec*proc (1 test)</span>
+
+<span class="go">Total Test time (real) =   9.76 sec</span>
+
+<span class="go">The following tests FAILED:</span>
+<span class="go">        7 - abl_godunov (Failed)</span>
+<span class="go">Errors while running CTest</span>
+</pre></div>
+</div>
+<p>During testing, <strong class="program">fcompare</strong> will calculate the differences for each
+field in the plot file against gold files. Currently any difference is flagged
+as an error and causes the test to fail as seen from the above example. The test
+can also fail if the grids don’t match (e.g., due to different regrid based on
+refinement criteria) or if certain fields are missing in the plot file.</p>
+</section>
+</section>
+<section id="test-file-organization">
+<h2>Test file organization<a class="headerlink" href="#test-file-organization" title="Link to this heading"></a></h2>
+<p>The regression tests are organized in the directory
+<code class="file docutils literal notranslate"><span class="pre">kynema-sgf/tests/test_files</span></code> and are arranged in directories corresponding
+to the name of the test. Each directory contains the input file
+<code class="file docutils literal notranslate"><span class="pre">&lt;test-name.i&gt;</span></code> and any other files necessary to run the test case. The
+test definitions are added to <code class="file docutils literal notranslate"><span class="pre">kynema-sgf/tests/CTestList.cmake</span></code>.</p>
+<section id="creating-new-regression-tests">
+<h3>Creating new regression tests<a class="headerlink" href="#creating-new-regression-tests" title="Link to this heading"></a></h3>
+<p>New tests can be added using the following steps:</p>
+<ul class="simple">
+<li><p>Create a new directory with the desired test name within the tests directory.</p></li>
+<li><p>Add appropriate input files necessary to run the tests</p></li>
+<li><p>Add a new entry into <code class="file docutils literal notranslate"><span class="pre">CTestList.cmake</span></code></p></li>
+<li><p>Rerun CMake configure to allow CMake to detect the new tests</p></li>
+<li><p>Build, test, refine the feature</p></li>
+<li><p>Commit the new test directory along with relevant source code updates to Git</p></li>
+</ul>
+<p>For example, to create a new test called <code class="docutils literal notranslate"><span class="pre">abl_godnov</span></code> (ABL simulation using
+Godunov numerical scheme). The entry in the test file is shown below</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">add_test_re(abl_godunov 4)</span>
+</pre></div>
+</div>
+<p>The second argument to <code class="docutils literal notranslate"><span class="pre">add_test_re</span></code> indicates the number of parallel
+processes used to run the test. Currently it is recommended that the tests be
+run using 4 MPI ranks.</p>
+</section>
+<section id="test-outputs-and-troubleshooting">
+<h3>Test outputs and troubleshooting<a class="headerlink" href="#test-outputs-and-troubleshooting" title="Link to this heading"></a></h3>
+<p>During development, it is likely that some tests fail and it is necessary to
+examine the outputs and plot files for troubleshooting. CTest stores all outputs
+in the same directory structure as the test file but within the build directory.
+For example, if the build directory is <code class="file docutils literal notranslate"><span class="pre">build-test</span></code> then the outputs for
+the test <cite>abl_godunov</cite> will be stored in the directory
+<code class="file docutils literal notranslate"><span class="pre">build-test/test/test_files/abl_godunov/</span></code>. At least two outputs are always
+generated: a log file (e.g., <code class="file docutils literal notranslate"><span class="pre">abl_godunov.log</span></code>) that contains the output
+usually printed to the console during <strong class="program">kynema_sgf</strong> execution, and plot
+file output.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="unit_testing.html" class="btn btn-neutral float-left" title="Unit testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="verification.html" class="btn btn-neutral float-right" title="Verification" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,462 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF inputs file &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Section: geometry" href="inputs_geometry.html" />
+    <link rel="prev" title="Compiling Kynema-SGF" href="build.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Kynema-SGF inputs file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#input-file-reference">Input file reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inputs_geometry.html">Section: geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_amr.html">Section: AMReX and AMR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_tagging.html">Section: tagging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_time.html">Section: time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_io.html">Section: io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_incflo.html">Section: incflo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_transport.html">Section: transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_turbulence.html">Section: turbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Momentum_Sources.html">Section: Momentum Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Temperature_Sources.html">Section: Temperature Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_TKE_Sources.html">Section: TKE Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL.html">Section: ABL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL_meso_forcing.html">Section: ABLMesoForcing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_SyntheticTurbulence.html">Section: SyntheticTurbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Boundary_conditions.html">Section: Boundary conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_MLMG.html">Section: MLMG options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_post_processing.html">Section: Post-processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Sampling.html">Section: Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Subvolume.html">Section: Subvolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Averaging.html">Section: Averaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_KineticEnergy.html">Section: KineticEnergy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Enstrophy.html">Section: Enstrophy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FieldNorms.html">Section: FieldNorms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Actuator.html">Section: Actuator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_multiphase.html">Section: MultiPhase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ocean_waves.html">Section: Ocean Waves</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+      <li class="breadcrumb-item active">Kynema-SGF inputs file</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/inputs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kynema-sgf-inputs-file">
+<span id="inputs"></span><h1>Kynema-SGF inputs file<a class="headerlink" href="#kynema-sgf-inputs-file" title="Link to this heading"></a></h1>
+<p>To run <strong class="program">kynema_sgf</strong>, the user must provide a text file containing inputs
+describing the problem and any additional command-line arguments that override
+the parameters in the input file for that particular invocation of the
+executable.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Parse<span class="w"> </span>input<span class="w"> </span>parameters<span class="w"> </span>from<span class="w"> </span><span class="sb">`</span>inputs.abl<span class="sb">`</span><span class="w"> </span>but<span class="w"> </span>change<span class="w"> </span>max_step<span class="w"> </span>to<span class="w"> </span><span class="m">20</span>
+<span class="gp">$ </span>./kynema_sgf<span class="w"> </span>inputs.abl<span class="w"> </span>time.max_step<span class="o">=</span><span class="m">20</span>
+</pre></div>
+</div>
+<p>The input file is a simple text file containing <code class="docutils literal notranslate"><span class="pre">key</span> <span class="pre">=</span> <span class="pre">value</span></code>
+entries for the input parameters. The text file can include comments,
+any text beginning with <code class="docutils literal notranslate"><span class="pre">#</span></code> till the end of line (EOF) is
+interpreted as comments and ignored by the parser. Input file
+processing is handled by <a class="reference external" href="https://amrex-codes.github.io/amrex/docs_html/Basics.html#parmparse">AMReX ParmParse library</a>. This
+section documents the common input file parameters and their default
+values (if available). The focus is on Kynema-SGF specific input options
+and some common AMReX options (these are fully documented in <a class="reference external" href="https://amrex-codes.github.io/amrex/docs_html/RuntimeParameters.html">AMReX</a>).</p>
+<p>Note that AMReX input files may also include the <code class="docutils literal notranslate"><span class="pre">FILE</span> <span class="pre">=</span> <span class="pre">/path/to/other_file.inp</span></code>
+directive, which allows users to combine multiple input files. Adding this
+directive to an input file (or on the command line) is equivalent to
+copying and pasting the contents of <code class="docutils literal notranslate"><span class="pre">other_file.inp</span></code> onto that line of the
+input file. Unlike standard input file keywords, the directive is applied each
+time it is included, rather than only the last having an effect.</p>
+<p>In <strong class="program">kynema_sgf</strong>, the input file
+is broken into <em>sections</em> indicated by a namespace prefix. For
+example, all inputs related to the problem domain are prefixed with
+<code class="docutils literal notranslate"><span class="pre">geometry.</span></code> and so on. A sample input file is shown below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c1"># Kynema-SGF example input file</span>
+<span class="linenos">  2</span><span class="c1">#</span>
+<span class="linenos">  3</span><span class="c1"># Atmospheric boundary layer (precursor) simulation</span>
+<span class="linenos">  4</span><span class="c1">#</span>
+<span class="linenos">  5</span>
+<span class="linenos">  6</span><span class="c1"># Problem domain definition</span>
+<span class="linenos">  7</span><span class="n">geometry</span><span class="o">.</span><span class="n">prob_lo</span>                            <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="linenos">  8</span><span class="n">geometry</span><span class="o">.</span><span class="n">prob_hi</span>                            <span class="o">=</span> <span class="mf">5120.0</span> <span class="mf">5120.0</span> <span class="mf">1280.0</span>
+<span class="linenos">  9</span><span class="n">geometry</span><span class="o">.</span><span class="n">is_periodic</span>                        <span class="o">=</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span>
+<span class="linenos"> 10</span>
+<span class="linenos"> 11</span><span class="c1"># Mesh resolution and AMR definitions</span>
+<span class="linenos"> 12</span><span class="n">amr</span><span class="o">.</span><span class="n">n_cell</span>                                  <span class="o">=</span> <span class="mi">512</span> <span class="mi">512</span> <span class="mi">128</span>
+<span class="linenos"> 13</span><span class="n">amr</span><span class="o">.</span><span class="n">max_level</span>                               <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span><span class="c1"># Simulation control parameters</span>
+<span class="linenos"> 16</span><span class="n">time</span><span class="o">.</span><span class="n">stop_time</span>                              <span class="o">=</span> <span class="mf">20000.0</span>
+<span class="linenos"> 17</span><span class="n">time</span><span class="o">.</span><span class="n">max_step</span>                               <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="linenos"> 18</span><span class="n">time</span><span class="o">.</span><span class="n">fixed_dt</span>                               <span class="o">=</span> <span class="mf">0.5</span>
+<span class="linenos"> 19</span><span class="n">time</span><span class="o">.</span><span class="n">cfl</span>                                    <span class="o">=</span> <span class="mf">0.95</span>
+<span class="linenos"> 20</span><span class="n">time</span><span class="o">.</span><span class="n">init_shrink</span>                            <span class="o">=</span> <span class="mf">0.1</span>
+<span class="linenos"> 21</span><span class="n">time</span><span class="o">.</span><span class="n">regrid_interval</span>                        <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="linenos"> 22</span><span class="n">time</span><span class="o">.</span><span class="n">plot_interval</span>                          <span class="o">=</span> <span class="mi">1000</span>
+<span class="linenos"> 23</span><span class="n">time</span><span class="o">.</span><span class="n">checkpoint_interval</span>                    <span class="o">=</span> <span class="mi">10000</span>
+<span class="linenos"> 24</span><span class="n">time</span><span class="o">.</span><span class="n">use_force_cfl</span>                          <span class="o">=</span> <span class="n">false</span>
+<span class="linenos"> 25</span>
+<span class="linenos"> 26</span><span class="c1"># input/output settings</span>
+<span class="linenos"> 27</span><span class="n">io</span><span class="o">.</span><span class="n">check_file</span>                               <span class="o">=</span> <span class="s2">&quot;chk&quot;</span>
+<span class="linenos"> 28</span><span class="n">io</span><span class="o">.</span><span class="n">plot_file</span>                                <span class="o">=</span> <span class="s2">&quot;plt&quot;</span>
+<span class="linenos"> 29</span><span class="n">io</span><span class="o">.</span><span class="n">restart_file</span>                             <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="linenos"> 30</span>
+<span class="linenos"> 31</span><span class="c1"># incflo</span>
+<span class="linenos"> 32</span><span class="n">incflo</span><span class="o">.</span><span class="n">physics</span>                              <span class="o">=</span> <span class="n">ABL</span>
+<span class="linenos"> 33</span><span class="n">incflo</span><span class="o">.</span><span class="n">density</span>                              <span class="o">=</span> <span class="mf">1.225</span>
+<span class="linenos"> 34</span><span class="n">incflo</span><span class="o">.</span><span class="n">velocity</span>                             <span class="o">=</span> <span class="mf">6.0</span> <span class="mf">5.0</span> <span class="mf">0.0</span>
+<span class="linenos"> 35</span><span class="n">incflo</span><span class="o">.</span><span class="n">verbose</span>                              <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 36</span><span class="n">incflo</span><span class="o">.</span><span class="n">initial_iterations</span>                   <span class="o">=</span> <span class="mi">3</span>
+<span class="linenos"> 37</span><span class="n">incflo</span><span class="o">.</span><span class="n">do_initial_proj</span>                      <span class="o">=</span> <span class="n">true</span>
+<span class="linenos"> 38</span><span class="n">incflo</span><span class="o">.</span><span class="n">constant_density</span>                     <span class="o">=</span> <span class="n">true</span>
+<span class="linenos"> 39</span><span class="n">incflo</span><span class="o">.</span><span class="n">use_godunov</span>                          <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 40</span><span class="n">incflow</span><span class="o">.</span><span class="n">godunov_type</span>                        <span class="o">=</span> <span class="s2">&quot;ppm&quot;</span>
+<span class="linenos"> 41</span><span class="n">incflo</span><span class="o">.</span><span class="n">godunov_use_forces_in_trans</span>          <span class="o">=</span> <span class="n">false</span>
+<span class="linenos"> 42</span><span class="n">incflo</span><span class="o">.</span><span class="n">diffusion_type</span>                       <span class="o">=</span> <span class="mi">2</span>
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span><span class="c1"># transport equation parameters</span>
+<span class="linenos"> 45</span><span class="n">transport</span><span class="o">.</span><span class="n">model</span>                             <span class="o">=</span> <span class="n">ConstTransport</span>
+<span class="linenos"> 46</span><span class="n">transport</span><span class="o">.</span><span class="n">viscosity</span>                         <span class="o">=</span> <span class="mf">1.0e-5</span>
+<span class="linenos"> 47</span><span class="n">transport</span><span class="o">.</span><span class="n">laminar_prandtl</span>                   <span class="o">=</span> <span class="mf">0.7</span>
+<span class="linenos"> 48</span><span class="n">transport</span><span class="o">.</span><span class="n">turbulent_prandtl</span>                 <span class="o">=</span> <span class="mf">0.333</span>
+<span class="linenos"> 49</span><span class="n">transport</span><span class="o">.</span><span class="n">reference_temperature</span>                   <span class="o">=</span> <span class="mf">290.0</span>
+<span class="linenos"> 50</span>
+<span class="linenos"> 51</span><span class="c1"># turbulence equation parameters</span>
+<span class="linenos"> 52</span><span class="n">turbulence</span><span class="o">.</span><span class="n">model</span>                            <span class="o">=</span> <span class="n">OneEqKsgsM84</span>
+<span class="linenos"> 53</span>
+<span class="linenos"> 54</span><span class="c1"># Atmospheric boundary layer</span>
+<span class="linenos"> 55</span><span class="n">ABL</span><span class="o">.</span><span class="n">Uperiods</span>                                <span class="o">=</span> <span class="mf">4.0</span>
+<span class="linenos"> 56</span><span class="n">ABL</span><span class="o">.</span><span class="n">Vperiods</span>                                <span class="o">=</span> <span class="mf">4.0</span>
+<span class="linenos"> 57</span><span class="n">ABL</span><span class="o">.</span><span class="n">cutoff_height</span>                           <span class="o">=</span> <span class="mf">50.0</span>
+<span class="linenos"> 58</span><span class="n">ABL</span><span class="o">.</span><span class="n">deltaU</span>                                  <span class="o">=</span> <span class="mf">1.0</span>
+<span class="linenos"> 59</span><span class="n">ABL</span><span class="o">.</span><span class="n">deltaV</span>                                  <span class="o">=</span> <span class="mf">1.0</span>
+<span class="linenos"> 60</span><span class="n">ABL</span><span class="o">.</span><span class="n">kappa</span>                                   <span class="o">=</span> <span class="mf">.41</span>
+<span class="linenos"> 61</span><span class="n">ABL</span><span class="o">.</span><span class="n">normal_direction</span>                        <span class="o">=</span> <span class="mi">2</span>
+<span class="linenos"> 62</span><span class="n">ABL</span><span class="o">.</span><span class="n">perturb_ref_height</span>                      <span class="o">=</span> <span class="mf">50.0</span>
+<span class="linenos"> 63</span><span class="n">ABL</span><span class="o">.</span><span class="n">perturb_temperature</span>                     <span class="o">=</span> <span class="n">true</span>
+<span class="linenos"> 64</span><span class="n">ABL</span><span class="o">.</span><span class="n">perturb_velocity</span>                        <span class="o">=</span> <span class="n">true</span>
+<span class="linenos"> 65</span><span class="n">ABL</span><span class="o">.</span><span class="n">stats_output_format</span>                     <span class="o">=</span> <span class="n">netcdf</span>
+<span class="linenos"> 66</span><span class="n">ABL</span><span class="o">.</span><span class="n">stats_output_frequency</span>                  <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 67</span><span class="n">ABL</span><span class="o">.</span><span class="n">surface_roughness_z0</span>                    <span class="o">=</span> <span class="mf">0.01</span>
+<span class="linenos"> 68</span><span class="n">ABL</span><span class="o">.</span><span class="n">surface_temp_flux</span>                       <span class="o">=</span> <span class="mf">0.005</span>
+<span class="linenos"> 69</span><span class="n">ABL</span><span class="o">.</span><span class="n">temperature_heights</span>                     <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">2000.0</span>
+<span class="linenos"> 70</span><span class="n">ABL</span><span class="o">.</span><span class="n">temperature_values</span>                      <span class="o">=</span> <span class="mf">290.0</span> <span class="mf">296.0</span>
+<span class="linenos"> 71</span>
+<span class="linenos"> 72</span><span class="c1"># momentum source term parameters</span>
+<span class="linenos"> 73</span><span class="n">ICNS</span><span class="o">.</span><span class="n">source_terms</span>                           <span class="o">=</span> <span class="n">BoussinesqBuoyancy</span> <span class="n">CoriolisForcing</span> <span class="n">ABLForcing</span>
+<span class="linenos"> 74</span><span class="n">ABLForcing</span><span class="o">.</span><span class="n">abl_forcing_height</span>               <span class="o">=</span> <span class="mf">90.0</span>
+<span class="linenos"> 75</span><span class="n">CoriolisForcing</span><span class="o">.</span><span class="n">east_vector</span>                 <span class="o">=</span> <span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="linenos"> 76</span><span class="n">CoriolisForcing</span><span class="o">.</span><span class="n">latitude</span>                    <span class="o">=</span> <span class="mf">41.3</span>
+<span class="linenos"> 77</span><span class="n">CoriolisForcing</span><span class="o">.</span><span class="n">north_vector</span>                <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">1.0</span> <span class="mf">0.0</span>
+<span class="linenos"> 78</span><span class="n">CoriolisForcing</span><span class="o">.</span><span class="n">rotational_time_period</span>      <span class="o">=</span> <span class="mf">86400.0</span>
+<span class="linenos"> 79</span><span class="n">GeostrophicForcing</span><span class="o">.</span><span class="n">geostrophic_wind</span>         <span class="o">=</span> <span class="mf">10.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="linenos"> 80</span>
+<span class="linenos"> 81</span><span class="c1"># Boundary conditions</span>
+<span class="linenos"> 82</span><span class="n">zhi</span><span class="o">.</span><span class="n">type</span>                                    <span class="o">=</span> <span class="s2">&quot;slip_wall&quot;</span>
+<span class="linenos"> 83</span><span class="n">zhi</span><span class="o">.</span><span class="n">temperature_type</span>                        <span class="o">=</span> <span class="s2">&quot;fixed_gradient&quot;</span>
+<span class="linenos"> 84</span><span class="n">zhi</span><span class="o">.</span><span class="n">temperature</span>                             <span class="o">=</span> <span class="mf">0.003</span>
+<span class="linenos"> 85</span><span class="n">zlo</span><span class="o">.</span><span class="n">type</span>                                    <span class="o">=</span> <span class="s2">&quot;wall_model&quot;</span>
+<span class="linenos"> 86</span><span class="n">zlo</span><span class="o">.</span><span class="n">tke_type</span>                                <span class="o">=</span> <span class="s2">&quot;fixed_gradient&quot;</span>
+<span class="linenos"> 87</span>
+<span class="linenos"> 88</span><span class="c1"># MLMG options for cell-centered diffusion solve</span>
+<span class="linenos"> 89</span><span class="n">diffusion</span><span class="o">.</span><span class="n">mg_verbose</span>                        <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 90</span><span class="n">diffusion</span><span class="o">.</span><span class="n">mg_cg_verbose</span>                     <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 91</span><span class="n">diffusion</span><span class="o">.</span><span class="n">mg_max_iter</span>                       <span class="o">=</span> <span class="mi">200</span>
+<span class="linenos"> 92</span><span class="n">diffusion</span><span class="o">.</span><span class="n">mg_cg_max_iter</span>                    <span class="o">=</span> <span class="mi">200</span>
+<span class="linenos"> 93</span><span class="n">diffusion</span><span class="o">.</span><span class="n">mg_fmg_max_iter</span>                   <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 94</span><span class="n">diffusion</span><span class="o">.</span><span class="n">mg_max_coarsening_level</span>           <span class="o">=</span> <span class="mi">100</span>
+<span class="linenos"> 95</span><span class="n">diffusion</span><span class="o">.</span><span class="n">mg_max_order</span>                      <span class="o">=</span> <span class="mi">2</span>
+<span class="linenos"> 96</span><span class="n">diffusion</span><span class="o">.</span><span class="n">mg_rtol</span>                           <span class="o">=</span> <span class="mf">1.0e-6</span>
+<span class="linenos"> 97</span><span class="n">diffusion</span><span class="o">.</span><span class="n">mg_atol</span>                           <span class="o">=</span> <span class="mf">1.0e-12</span>
+<span class="linenos"> 98</span><span class="n">diffusion</span><span class="o">.</span><span class="n">bottom_solver</span>                     <span class="o">=</span> <span class="s2">&quot;bicgstab&quot;</span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span><span class="c1"># MLMG options for MAC Projection</span>
+<span class="linenos">101</span><span class="n">mac_proj</span><span class="o">.</span><span class="n">mg_rtol</span>                            <span class="o">=</span> <span class="mf">1.0e-6</span>
+<span class="linenos">102</span><span class="n">mac_proj</span><span class="o">.</span><span class="n">mg_atol</span>                            <span class="o">=</span> <span class="mf">1.0e-12</span>
+<span class="linenos">103</span>
+<span class="linenos">104</span><span class="c1"># MLMG options for Nodal Projection</span>
+<span class="linenos">105</span><span class="n">nodal_proj</span><span class="o">.</span><span class="n">mg_rtol</span>                          <span class="o">=</span> <span class="mf">1.0e-6</span>
+<span class="linenos">106</span><span class="n">nodal_proj</span><span class="o">.</span><span class="n">mg_atol</span>                          <span class="o">=</span> <span class="mf">1.0e-12</span>
+<span class="linenos">107</span>
+<span class="linenos">108</span><span class="c1"># Post processing algorithms</span>
+<span class="linenos">109</span><span class="n">incflo</span><span class="o">.</span><span class="n">post_processing</span> <span class="o">=</span> <span class="n">sampling</span> <span class="n">enstrophy</span> <span class="n">ke</span>
+<span class="linenos">110</span>
+<span class="linenos">111</span><span class="c1"># Data probe sampling</span>
+<span class="linenos">112</span><span class="n">sampling</span><span class="o">.</span><span class="n">output_interval</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">113</span><span class="n">sampling</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">l_v11</span> <span class="n">p_h</span>
+<span class="linenos">114</span><span class="n">sampling</span><span class="o">.</span><span class="n">fields</span> <span class="o">=</span> <span class="n">velocity</span> <span class="n">temperature</span>
+<span class="linenos">115</span>
+<span class="linenos">116</span><span class="c1"># sampling along a line</span>
+<span class="linenos">117</span><span class="n">sampling</span><span class="o">.</span><span class="n">l_v11</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">LineSampler</span>
+<span class="linenos">118</span><span class="n">sampling</span><span class="o">.</span><span class="n">l_v11</span><span class="o">.</span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">192</span>
+<span class="linenos">119</span><span class="n">sampling</span><span class="o">.</span><span class="n">l_v11</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="mf">500.0</span> <span class="mf">500.0</span> <span class="mf">5.0</span>
+<span class="linenos">120</span><span class="n">sampling</span><span class="o">.</span><span class="n">l_v11</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="mf">500.0</span> <span class="mf">500.0</span> <span class="mf">1995.0</span>
+<span class="linenos">121</span>
+<span class="linenos">122</span><span class="c1"># Sampling on a plane</span>
+<span class="linenos">123</span><span class="n">sampling</span><span class="o">.</span><span class="n">p_h</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">PlaneSampler</span>
+<span class="linenos">124</span><span class="n">sampling</span><span class="o">.</span><span class="n">p_h</span><span class="o">.</span><span class="n">axis1</span> <span class="o">=</span> <span class="mf">5210.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="linenos">125</span><span class="n">sampling</span><span class="o">.</span><span class="n">p_h</span><span class="o">.</span><span class="n">axis2</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">5210.0</span> <span class="mf">0.0</span>
+<span class="linenos">126</span><span class="n">sampling</span><span class="o">.</span><span class="n">p_h</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">50.0</span>
+<span class="linenos">127</span><span class="n">sampling</span><span class="o">.</span><span class="n">p_h</span><span class="o">.</span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">288</span> <span class="mi">288</span>
+<span class="linenos">128</span><span class="n">sampling</span><span class="o">.</span><span class="n">p_h</span><span class="o">.</span><span class="n">normal</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="linenos">129</span><span class="n">sampling</span><span class="o">.</span><span class="n">p_h</span><span class="o">.</span><span class="n">offsets</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">50.0</span> <span class="mf">150.0</span>
+<span class="linenos">130</span>
+<span class="linenos">131</span><span class="c1"># kinetic energy and enstrophy integration</span>
+<span class="linenos">132</span><span class="n">ke</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">KineticEnergy</span>
+<span class="linenos">133</span><span class="n">ke</span><span class="o">.</span><span class="n">output_interval</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">134</span><span class="n">enstrophy</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">Enstrophy</span>
+<span class="linenos">135</span><span class="n">enstrophy</span><span class="o">.</span><span class="n">output_interval</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<section id="input-file-reference">
+<span id="input-file-ref"></span><h2>Input file reference<a class="headerlink" href="#input-file-reference" title="Link to this heading"></a></h2>
+<p>The Kynema-SGF input file is organized in the following sections</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Section</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">geometry</span></code></p></td>
+<td><p>Computational domain information</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">amr</span></code></p></td>
+<td><p>Mesh refinement controls</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tagging</span></code></p></td>
+<td><p>Static and dynamic refinement options</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+<td><p>Simulation time controls</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">io</span></code></p></td>
+<td><p>Input/Output controls</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">incflo</span></code></p></td>
+<td><p>CFD algorithm and physics controls</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transport</span></code></p></td>
+<td><p>Transport equation controls</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">turbulence</span></code></p></td>
+<td><p>Turbulence model controls</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ABL</span></code></p></td>
+<td><p>Atmospheric boundary layer (ABL) controls</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ABLMesoForcing</span></code></p></td>
+<td><p>Mesoscale ABL forcing controls</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SyntheticTurbulence</span></code></p></td>
+<td><p>Inject turbulence using body forces</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Momentum</span> <span class="pre">sources</span></code></p></td>
+<td><p>Activate Momentum source terms and their parameters</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Boundary</span> <span class="pre">conditions</span></code></p></td>
+<td><p>Boundary condition types and gradients</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MLMG</span> <span class="pre">options</span></code></p></td>
+<td><p>Multi-Level Multi-Grid Linear solver options</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Sampling</span></code></p></td>
+<td><p>Data probes to sample field data during simulations</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Averaging</span></code></p></td>
+<td><p>Time averaging and correlations</p></td>
+</tr>
+</tbody>
+</table>
+<p>This section documents the parameters available within each section. Please
+note that the documentation provided here is for the latest major release of
+Kynema-SGF. While input file specifications rarely change, major releases of
+Kynema-SGF (e.g <code class="docutils literal notranslate"><span class="pre">2.x</span></code> to <code class="docutils literal notranslate"><span class="pre">3.x</span></code>) might have breaking changes and the
+documentation provided here might not work with older releases.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Boolean flags (<code class="docutils literal notranslate"><span class="pre">true/false</span></code>) can also be indicated using integers in the text file
+and uses the convention <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">=</span> <span class="pre">False</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">=</span> <span class="pre">True</span></code>.</p></li>
+<li><p>Quotes around strings are optional.</p></li>
+<li><p>If an input is repeated only the last one is used.</p></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inputs_geometry.html">Section: geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_amr.html">Section: AMReX and AMR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_tagging.html">Section: tagging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inputs_tagging.html#refinement-using-cartesian-boxes">Refinement using Cartesian boxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_tagging.html#refinement-using-field-error-criteria">Refinement using field error criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_tagging.html#refinement-using-geometry">Refinement using geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_tagging.html#refinement-using-q-criterion">Refinement using Q-Criterion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_tagging.html#static-refinement">Static refinement</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_time.html">Section: time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_io.html">Section: io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_incflo.html">Section: incflo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_transport.html">Section: transport</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_turbulence.html">Section: turbulence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_Momentum_Sources.html">Section: Momentum Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_Temperature_Sources.html">Section: Temperature Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_TKE_Sources.html">Section: TKE Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_ABL.html">Section: ABL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_ABL_meso_forcing.html">Section: ABLMesoForcing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inputs_ABL_meso_forcing.html#indirect-profile-assimilation">Indirect Profile Assimilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_ABL_meso_forcing.html#partial-profile-assimilation">Partial Profile Assimilation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_SyntheticTurbulence.html">Section: SyntheticTurbulence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_Boundary_conditions.html">Section: Boundary conditions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Boundary_conditions.html#mass-inflow-boundary-conditions">Mass inflow boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Boundary_conditions.html#mass-inflow-outflow-boundary-conditions">Mass inflow-outflow boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Boundary_conditions.html#dynamic-wall-model-wave-model">Dynamic wall model (Wave model)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Boundary_conditions.html#pressure-outflow-boundary-conditions">Pressure outflow boundary conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_MLMG.html">Section: MLMG options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_post_processing.html">Section: Post-processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_Sampling.html">Section: Sampling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Sampling.html#amrex-particle-binary-format">AMReX particle binary format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Sampling.html#sampling-along-a-line">Sampling along a line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Sampling.html#sampling-along-a-line-moving-in-time-virtual-lidar">Sampling along a line moving in time (virtual lidar)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Sampling.html#sampling-on-one-or-more-planes">Sampling on one or more planes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Sampling.html#sampling-at-arbitrary-locations">Sampling at arbitrary locations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Sampling.html#sampling-on-a-volume">Sampling on a volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Sampling.html#sampling-on-the-air-water-interface">Sampling on the air-water interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_Subvolume.html">Section: Subvolume</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_Averaging.html">Section: Averaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_KineticEnergy.html">Section: KineticEnergy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_Enstrophy.html">Section: Enstrophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_FieldNorms.html">Section: FieldNorms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_Actuator.html">Section: Actuator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Actuator.html#fixedwingline">FixedWingLine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Actuator.html#turbinefastline">TurbineFastLine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Actuator.html#turbinekynemaline">TurbineKynemaLine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Actuator.html#active-wake-control-with-joukowsky-disk">Active Wake Control with Joukowsky Disk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs_Actuator.html#actuatorsourcetagging">ActuatorSourceTagging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_multiphase.html">Section: MultiPhase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_ocean_waves.html">Section: Ocean Waves</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="build.html" class="btn btn-neutral float-left" title="Compiling Kynema-SGF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inputs_geometry.html" class="btn btn-neutral float-right" title="Section: geometry" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

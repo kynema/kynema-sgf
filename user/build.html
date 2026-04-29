@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compiling Kynema-SGF &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Kynema-SGF inputs file" href="inputs.html" />
+    <link rel="prev" title="Capabilities" href="features.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Compiling Kynema-SGF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#building-from-source">Building from source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cmake-configuration-reference">CMake configuration reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#architecture-options">Architecture options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-kynema-sgf-specific-options">Other Kynema-SGF specific options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#general-cmake-options">General CMake options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+      <li class="breadcrumb-item active">Compiling Kynema-SGF</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/build.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="compiling-kynema-sgf">
+<span id="build"></span><h1>Compiling Kynema-SGF<a class="headerlink" href="#compiling-kynema-sgf" title="Link to this heading"></a></h1>
+<p>Kynema-SGF is primarily written in C++ and requires a modern C++ compiler (that
+supports C++14 standard) to build. This section describes the dependencies of
+Kynema-SGF as well as the general procedure to compile and execute Kynema-SGF on
+your system. The main dependencies are listed below:</p>
+<ol class="arabic simple">
+<li><p>Operating system – Kynema-SGF has been tested on Linux and MacOS operating systems.</p></li>
+<li><p>C++ compiler – Kynema-SGF requires a C++ compiler that supports the C++14
+standard. The code has been tested on GCC v5.x and higher, LLVM Clang v7.x,
+and Intel 2019 compiler suites.</p></li>
+<li><p>MPI – <a class="reference external" href="https://www.open-mpi.org/">OpenMPI</a>, <a class="reference external" href="https://www.mpich.org/">MPICH</a>, or Intel-MPI.</p></li>
+<li><p><a class="reference external" href="https://cmake.org/">CMake</a> – Configure and build the code</p></li>
+<li><p><a class="reference external" href="https://python.org">Python</a> A recent version of python</p></li>
+</ol>
+<p><strong>Optional dependencies</strong></p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://developer.nvidia.com/cuda-zone">NVIDIA CUDA</a> version 10 or higher
+required to run on GPUs.</p></li>
+<li><p><a class="reference external" href="https://software.intel.com/content/www/us/en/develop/tools/oneapi.html">Intel OneAPI</a>
+for building with SyCL.</p></li>
+<li><p><a class="reference external" href="https://www.amd.com/en/products/software/rocm.html">AMD GPU</a>
+for building with ROCM.</p></li>
+</ol>
+<section id="building-from-source">
+<h2>Building from source<a class="headerlink" href="#building-from-source" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>If you are on an HPC system that provides Modules Environment, load the
+necessary compiler, MPI, and CMake modules. If targeting GPUs, load CUDA
+modules.</p></li>
+<li><p>Clone a local copy of the git repository</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone --recursive https://github.com/kynema/kynema-sgf.git</span>
+</pre></div>
+</div>
+</li>
+<li><p>Configure and build</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir kynema-sgf/build &amp;&amp; cd kynema-sgf/build</span>
+<span class="go">cmake -DKYNEMA_SGF_ENABLE_TESTS:BOOL=ON ../</span>
+<span class="go">make</span>
+</pre></div>
+</div>
+<p>Upon successful build, you will end up with an executable <code class="file docutils literal notranslate"><span class="pre">kynema_sgf</span></code> in
+your build directory.</p>
+</li>
+<li><p>(Optional) Test your build</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ctest --output-on-failure</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="cmake-configuration-reference">
+<h2>CMake configuration reference<a class="headerlink" href="#cmake-configuration-reference" title="Link to this heading"></a></h2>
+<section id="architecture-options">
+<h3>Architecture options<a class="headerlink" href="#architecture-options" title="Link to this heading"></a></h3>
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_ENABLE_MPI">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_ENABLE_MPI</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_ENABLE_MPI" title="Link to this definition"></a></dt>
+<dd><p>Enable MPI support for parallel executions. Default: OFF</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_ENABLE_OPENMP">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_ENABLE_OPENMP</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_ENABLE_OPENMP" title="Link to this definition"></a></dt>
+<dd><p>Enable OpenMP threading support for CPU builds. It is not recommended to
+combine this with GPU builds. Default: OFF</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_ENABLE_CUDA">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_ENABLE_CUDA</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_ENABLE_CUDA" title="Link to this definition"></a></dt>
+<dd><p>Enable <a class="reference external" href="https://developer.nvidia.com/cuda-zone">NVIDIA CUDA GPU</a> builds. Default: OFF</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_ENABLE_SYCL">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_ENABLE_SYCL</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_ENABLE_SYCL" title="Link to this definition"></a></dt>
+<dd><p>Enable <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/tools/oneapi.html">Intel OneAPI SyCL</a> builds. Default: OFF</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_ENABLE_ROCM">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_ENABLE_ROCM</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_ENABLE_ROCM" title="Link to this definition"></a></dt>
+<dd><p>Enable <a class="reference external" href="https://www.amd.com/en/products/software/rocm.html">AMD ROCM GPU</a> builds. Default: OFF</p>
+</dd></dl>
+
+</section>
+<section id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h3>
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_ENABLE_MASA">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_ENABLE_MASA</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_ENABLE_MASA" title="Link to this definition"></a></dt>
+<dd><p>Enable MASA library. Default: OFF</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_ENABLE_NETCDF">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_ENABLE_NETCDF</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_ENABLE_NETCDF" title="Link to this definition"></a></dt>
+<dd><p>Enable NetCDF outputs. Default: OFF</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_ENABLE_OPENFAST">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_ENABLE_OPENFAST</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_ENABLE_OPENFAST" title="Link to this definition"></a></dt>
+<dd><p>Enable OpenFAST coupling. Default: OFF</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_OPENFAST_VERSION">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_OPENFAST_VERSION</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_OPENFAST_VERSION" title="Link to this definition"></a></dt>
+<dd><p>OpenFAST version. Default: 3</p>
+</dd></dl>
+
+</section>
+<section id="other-kynema-sgf-specific-options">
+<h3>Other Kynema-SGF specific options<a class="headerlink" href="#other-kynema-sgf-specific-options" title="Link to this heading"></a></h3>
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_ENABLE_DOCUMENTATION">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_ENABLE_DOCUMENTATION</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_ENABLE_DOCUMENTATION" title="Link to this definition"></a></dt>
+<dd><p>Enable documentation. Default: OFF</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_ENABLE_TESTS">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_ENABLE_TESTS</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_ENABLE_TESTS" title="Link to this definition"></a></dt>
+<dd><p>Enable CTest testing. Default: OFF</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_TEST_WITH_FCOMPARE">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_TEST_WITH_FCOMPARE</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_TEST_WITH_FCOMPARE" title="Link to this definition"></a></dt>
+<dd><p>Enable checking test results against gold files using <strong class="program">fcompare</strong>. Default: OFF</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_REFERENCE_GOLDS_DIRECTORY">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_REFERENCE_GOLDS_DIRECTORY</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_REFERENCE_GOLDS_DIRECTORY" title="Link to this definition"></a></dt>
+<dd><p>Directory for reference gold files when using <strong class="program">fcompare</strong>. Default: “”</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_SAVE_GOLDS">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_SAVE_GOLDS</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_SAVE_GOLDS" title="Link to this definition"></a></dt>
+<dd><p>Enable saving of the gold files. Default: OFF</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_SAVED_GOLDS_DIRECTORY">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_SAVED_GOLDS_DIRECTORY</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_SAVED_GOLDS_DIRECTORY" title="Link to this definition"></a></dt>
+<dd><p>Directory for saving gold files when using <strong class="program">fcompare</strong>. Default: “”</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-KYNEMA_SGF_TEST_WITH_PYTHON">
+<span class="sig-name descname"><span class="pre">KYNEMA_SGF_TEST_WITH_PYTHON</span></span><a class="headerlink" href="#cmakeval-KYNEMA_SGF_TEST_WITH_PYTHON" title="Link to this definition"></a></dt>
+<dd><p>Enable performing tests that rely on python, primarily consists of checks
+for post-processing scripts in tools directory. Default: OFF</p>
+</dd></dl>
+
+</section>
+<section id="general-cmake-options">
+<h3>General CMake options<a class="headerlink" href="#general-cmake-options" title="Link to this heading"></a></h3>
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-CMAKE_INSTALL_PREFIX">
+<span class="sig-name descname"><span class="pre">CMAKE_INSTALL_PREFIX</span></span><a class="headerlink" href="#cmakeval-CMAKE_INSTALL_PREFIX" title="Link to this definition"></a></dt>
+<dd><p>The directory where the compiled executables and libraries as well as headers
+are installed. For example, passing
+<code class="docutils literal notranslate"><span class="pre">-DCMAKE_INSTALL_PREFIX=${HOME}/software</span></code> will install the executables in
+<code class="docutils literal notranslate"><span class="pre">${HOME}/software/bin</span></code> when the user executes the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> command.</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-CMAKE_BUILD_TYPE">
+<span class="sig-name descname"><span class="pre">CMAKE_BUILD_TYPE</span></span><a class="headerlink" href="#cmakeval-CMAKE_BUILD_TYPE" title="Link to this definition"></a></dt>
+<dd><p>Controls the optimization levels for compilation. This variable can take the
+following values:</p>
+<blockquote>
+<div><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Typical flags</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>RELEASE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-O2</span> <span class="pre">-DNDEBUG</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>DEBUG</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-g</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>RelWithDebInfo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-O2</span> <span class="pre">-g</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">-DCMAKE_BUILD_TYPE:STRING=RELEASE</span></code></p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-CMAKE_CXX_COMPILER">
+<span class="sig-name descname"><span class="pre">CMAKE_CXX_COMPILER</span></span><a class="headerlink" href="#cmakeval-CMAKE_CXX_COMPILER" title="Link to this definition"></a></dt>
+<dd><p>Set the C++ compiler used for compiling the code.</p>
+<p>For Intel SyCL builds (see <a class="reference internal" href="#cmakeval-KYNEMA_SGF_ENABLE_SYCL"><code class="xref std std-cmakeval docutils literal notranslate"><span class="pre">KYNEMA_SGF_ENABLE_SYCL</span></code></a>) this should be
+set to <cite>icpx</cite>.</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-CMAKE_C_COMPILER">
+<span class="sig-name descname"><span class="pre">CMAKE_C_COMPILER</span></span><a class="headerlink" href="#cmakeval-CMAKE_C_COMPILER" title="Link to this definition"></a></dt>
+<dd><p>Set the C compiler used for compiling the code</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-CMAKE_Fortran_COMPILER">
+<span class="sig-name descname"><span class="pre">CMAKE_Fortran_COMPILER</span></span><a class="headerlink" href="#cmakeval-CMAKE_Fortran_COMPILER" title="Link to this definition"></a></dt>
+<dd><p>Set the Fortran compiler used for compiling the code</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-CMAKE_CXX_FLAGS">
+<span class="sig-name descname"><span class="pre">CMAKE_CXX_FLAGS</span></span><a class="headerlink" href="#cmakeval-CMAKE_CXX_FLAGS" title="Link to this definition"></a></dt>
+<dd><p>Additional flags to be passed to the C++ compiler during compilation.</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-CMAKE_C_FLAGS">
+<span class="sig-name descname"><span class="pre">CMAKE_C_FLAGS</span></span><a class="headerlink" href="#cmakeval-CMAKE_C_FLAGS" title="Link to this definition"></a></dt>
+<dd><p>Additional flags to be passed to the C compiler during compilation.</p>
+</dd></dl>
+
+<dl class="std cmakeval">
+<dt class="sig sig-object std" id="cmakeval-CMAKE_Fortran_FLAGS">
+<span class="sig-name descname"><span class="pre">CMAKE_Fortran_FLAGS</span></span><a class="headerlink" href="#cmakeval-CMAKE_Fortran_FLAGS" title="Link to this definition"></a></dt>
+<dd><p>Additional flags to be passed to the Fortran compiler during compilation.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="features.html" class="btn btn-neutral float-left" title="Capabilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inputs.html" class="btn btn-neutral float-right" title="Kynema-SGF inputs file" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

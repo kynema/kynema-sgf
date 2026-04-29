@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/MultiLevelVector.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/MultiLevelVector.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_multi_level_vector_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-utilities-multilevelvector-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/MultiLevelVector.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-utilities-multilevelvector-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/MultiLevelVector.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_d59b7dddc6cfeb8ed243c8310c362d19.html">utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">MultiLevelVector.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_multi_level_vector_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef MULTILEVELVECTOR_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define MULTILEVELVECTOR_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;AMReX_Geometry.H&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;AMReX_Vector.H&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;AMReX_GpuContainers.H&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;AMReX_MFParallelFor.H&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="_field_desc_types_8_h.html">src/core/FieldDescTypes.H</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="_field_8_h.html">src/core/Field.H</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="_field_repo_8_h.html">src/core/FieldRepo.H</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span></div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_level_vector.html">   22</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_multi_level_vector.html#a3246ef0435e6c3c0673b5068981d1a37">MultiLevelVector</a></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_level_vector.html#a3246ef0435e6c3c0673b5068981d1a37">   25</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_multi_level_vector.html#a3246ef0435e6c3c0673b5068981d1a37">MultiLevelVector</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a> floc = <a class="code hl_enumvalue" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>) : <a class="code hl_variable" href="classkynema__sgf_1_1_multi_level_vector.html#a7a85bd2c49c13d274acfbbd5431cf476">m_floc</a>(floc) {};</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_level_vector.html#a07e6c7248757bbb4e2a258c5591a421b">resize</a>(<span class="keywordtype">int</span> axis, <span class="keyword">const</span> amrex::Vector&lt;amrex::Geometry&gt;&amp; geom);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    [[nodiscard]] <span class="keyword">const</span> amrex::Vector&lt;amrex::Real&gt;&amp;</div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="}">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_level_vector.html#acae92447f01eaf04d6eacc917e2fbb26">   30</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_multi_level_vector.html#acae92447f01eaf04d6eacc917e2fbb26">host_data</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> lev)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_level_vector.html#a8e3b411d0ab376ca1842e7d8f0bb0552">m_data_h</a>[lev];</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    };</div>
+</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_level_vector.html#ad141dbc8ba114e1dc8b896f059376de7">   35</a></span>    amrex::Vector&lt;amrex::Real&gt;&amp; <a class="code hl_function" href="classkynema__sgf_1_1_multi_level_vector.html#ad141dbc8ba114e1dc8b896f059376de7">host_data</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> lev)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_level_vector.html#a8e3b411d0ab376ca1842e7d8f0bb0552">m_data_h</a>[lev];</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    };</div>
+</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    [[nodiscard]] <span class="keyword">const</span> amrex::Gpu::DeviceVector&lt;amrex::Real&gt;&amp;</div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_level_vector.html#a3382a66ac2d5ae3aac0aa562646aa009">   41</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_multi_level_vector.html#a3382a66ac2d5ae3aac0aa562646aa009">device_data</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> lev)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_level_vector.html#a4b8c7df07bae7950c4cdf805894d5111">m_data_d</a>[lev];</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    };</div>
+</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_level_vector.html#afcb0d190432f0c3d2bad569a212460eb">copy_host_to_device</a>();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_level_vector.html#afc82bb3db6a52e1eacce8adb1084201b">copy_to_field</a>(<a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; fld);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_level_vector.html#a61beb211980e6511e6889fab1f2a4592">   50</a></span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_level_vector.html#a61beb211980e6511e6889fab1f2a4592">size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="classkynema__sgf_1_1_multi_level_vector.html#a8e3b411d0ab376ca1842e7d8f0bb0552">m_data_h</a>.size()); }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_level_vector.html#afa0e3f59ab1f1b35cca96904cee9128e">   52</a></span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1_multi_level_vector.html#afa0e3f59ab1f1b35cca96904cee9128e">ncells</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> lev)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="classkynema__sgf_1_1_multi_level_vector.html#a8e3b411d0ab376ca1842e7d8f0bb0552">m_data_h</a>[lev].size());</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
+</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_level_vector.html#a7a85bd2c49c13d274acfbbd5431cf476">   58</a></span>    <span class="keyword">const</span> <a class="code hl_enumeration" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_level_vector.html#a7a85bd2c49c13d274acfbbd5431cf476">m_floc</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_level_vector.html#a59d79c17203acbdd92b8b4bfec0d0804">   59</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_multi_level_vector.html#a59d79c17203acbdd92b8b4bfec0d0804">m_axis</a>{2};</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_level_vector.html#a4b8c7df07bae7950c4cdf805894d5111">   60</a></span>    amrex::Vector&lt;amrex::Gpu::DeviceVector&lt;amrex::Real&gt;&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_multi_level_vector.html#a4b8c7df07bae7950c4cdf805894d5111">m_data_d</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_multi_level_vector.html#a8e3b411d0ab376ca1842e7d8f0bb0552">   61</a></span>    amrex::Vector&lt;amrex::Vector&lt;amrex::Real&gt;&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_multi_level_vector.html#a8e3b411d0ab376ca1842e7d8f0bb0552">m_data_h</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>};</div>
+</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_field_8_h_html"><div class="ttname"><a href="_field_8_h.html">Field.H</a></div></div>
+<div class="ttc" id="a_field_desc_types_8_h_html"><div class="ttname"><a href="_field_desc_types_8_h.html">FieldDescTypes.H</a></div></div>
+<div class="ttc" id="a_field_repo_8_h_html"><div class="ttname"><a href="_field_repo_8_h.html">FieldRepo.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_level_vector_html_a07e6c7248757bbb4e2a258c5591a421b"><div class="ttname"><a href="classkynema__sgf_1_1_multi_level_vector.html#a07e6c7248757bbb4e2a258c5591a421b">kynema_sgf::MultiLevelVector::resize</a></div><div class="ttdeci">void resize(int axis, const amrex::Vector&lt; amrex::Geometry &gt; &amp;geom)</div><div class="ttdef"><b>Definition</b> MultiLevelVector.cpp:5</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_level_vector_html_a3246ef0435e6c3c0673b5068981d1a37"><div class="ttname"><a href="classkynema__sgf_1_1_multi_level_vector.html#a3246ef0435e6c3c0673b5068981d1a37">kynema_sgf::MultiLevelVector::MultiLevelVector</a></div><div class="ttdeci">MultiLevelVector(const FieldLoc floc=FieldLoc::CELL)</div><div class="ttdef"><b>Definition</b> MultiLevelVector.H:25</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_level_vector_html_a3382a66ac2d5ae3aac0aa562646aa009"><div class="ttname"><a href="classkynema__sgf_1_1_multi_level_vector.html#a3382a66ac2d5ae3aac0aa562646aa009">kynema_sgf::MultiLevelVector::device_data</a></div><div class="ttdeci">const amrex::Gpu::DeviceVector&lt; amrex::Real &gt; &amp; device_data(const int lev) const</div><div class="ttdef"><b>Definition</b> MultiLevelVector.H:41</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_level_vector_html_a4b8c7df07bae7950c4cdf805894d5111"><div class="ttname"><a href="classkynema__sgf_1_1_multi_level_vector.html#a4b8c7df07bae7950c4cdf805894d5111">kynema_sgf::MultiLevelVector::m_data_d</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Gpu::DeviceVector&lt; amrex::Real &gt; &gt; m_data_d</div><div class="ttdef"><b>Definition</b> MultiLevelVector.H:60</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_level_vector_html_a59d79c17203acbdd92b8b4bfec0d0804"><div class="ttname"><a href="classkynema__sgf_1_1_multi_level_vector.html#a59d79c17203acbdd92b8b4bfec0d0804">kynema_sgf::MultiLevelVector::m_axis</a></div><div class="ttdeci">int m_axis</div><div class="ttdef"><b>Definition</b> MultiLevelVector.H:59</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_level_vector_html_a61beb211980e6511e6889fab1f2a4592"><div class="ttname"><a href="classkynema__sgf_1_1_multi_level_vector.html#a61beb211980e6511e6889fab1f2a4592">kynema_sgf::MultiLevelVector::size</a></div><div class="ttdeci">int size() const</div><div class="ttdef"><b>Definition</b> MultiLevelVector.H:50</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_level_vector_html_a7a85bd2c49c13d274acfbbd5431cf476"><div class="ttname"><a href="classkynema__sgf_1_1_multi_level_vector.html#a7a85bd2c49c13d274acfbbd5431cf476">kynema_sgf::MultiLevelVector::m_floc</a></div><div class="ttdeci">const FieldLoc m_floc</div><div class="ttdef"><b>Definition</b> MultiLevelVector.H:58</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_level_vector_html_a8e3b411d0ab376ca1842e7d8f0bb0552"><div class="ttname"><a href="classkynema__sgf_1_1_multi_level_vector.html#a8e3b411d0ab376ca1842e7d8f0bb0552">kynema_sgf::MultiLevelVector::m_data_h</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Vector&lt; amrex::Real &gt; &gt; m_data_h</div><div class="ttdef"><b>Definition</b> MultiLevelVector.H:61</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_level_vector_html_acae92447f01eaf04d6eacc917e2fbb26"><div class="ttname"><a href="classkynema__sgf_1_1_multi_level_vector.html#acae92447f01eaf04d6eacc917e2fbb26">kynema_sgf::MultiLevelVector::host_data</a></div><div class="ttdeci">const amrex::Vector&lt; amrex::Real &gt; &amp; host_data(const int lev) const</div><div class="ttdef"><b>Definition</b> MultiLevelVector.H:30</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_level_vector_html_ad141dbc8ba114e1dc8b896f059376de7"><div class="ttname"><a href="classkynema__sgf_1_1_multi_level_vector.html#ad141dbc8ba114e1dc8b896f059376de7">kynema_sgf::MultiLevelVector::host_data</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; &amp; host_data(const int lev)</div><div class="ttdef"><b>Definition</b> MultiLevelVector.H:35</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_level_vector_html_afa0e3f59ab1f1b35cca96904cee9128e"><div class="ttname"><a href="classkynema__sgf_1_1_multi_level_vector.html#afa0e3f59ab1f1b35cca96904cee9128e">kynema_sgf::MultiLevelVector::ncells</a></div><div class="ttdeci">int ncells(const int lev) const</div><div class="ttdef"><b>Definition</b> MultiLevelVector.H:52</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_level_vector_html_afc82bb3db6a52e1eacce8adb1084201b"><div class="ttname"><a href="classkynema__sgf_1_1_multi_level_vector.html#afc82bb3db6a52e1eacce8adb1084201b">kynema_sgf::MultiLevelVector::copy_to_field</a></div><div class="ttdeci">void copy_to_field(Field &amp;fld)</div><div class="ttdef"><b>Definition</b> MultiLevelVector.cpp:32</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_multi_level_vector_html_afcb0d190432f0c3d2bad569a212460eb"><div class="ttname"><a href="classkynema__sgf_1_1_multi_level_vector.html#afcb0d190432f0c3d2bad569a212460eb">kynema_sgf::MultiLevelVector::copy_host_to_device</a></div><div class="ttdeci">void copy_host_to_device()</div><div class="ttdef"><b>Definition</b> MultiLevelVector.cpp:23</div></div>
+<div class="ttc" id="agroup__fields_html_ga6012c66c4b909364fdfaa58954157f75"><div class="ttname"><a href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">kynema_sgf::FieldLoc</a></div><div class="ttdeci">FieldLoc</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:29</div></div>
+<div class="ttc" id="agroup__fields_html_gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e"><div class="ttname"><a href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">kynema_sgf::FieldLoc::CELL</a></div><div class="ttdeci">@ CELL</div><div class="ttdoc">Cell-centered (default)</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:30</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

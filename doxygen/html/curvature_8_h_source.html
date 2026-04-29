@@ -1,0 +1,383 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/fvm/curvature.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/fvm/curvature.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/curvature_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-fvm-curvature-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/fvm/curvature.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-fvm-curvature-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/fvm/curvature.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_7407723fafe4509a43b392903c8f7fbf.html">fvm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">curvature.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="curvature_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef CURVATURE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define CURVATURE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="fvm__utils_8_h.html">src/fvm/fvm_utils.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1fvm.html">kynema_sgf::fvm</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> FTypeIn, <span class="keyword">typename</span> FTypeOut&gt;</div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1fvm_1_1_curvature.html">   15</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1fvm_1_1_curvature.html#ad4bb6cbd232b3e96877cc803c61ba9e5">Curvature</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1fvm_1_1_curvature.html#ad4bb6cbd232b3e96877cc803c61ba9e5">   17</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1fvm_1_1_curvature.html#ad4bb6cbd232b3e96877cc803c61ba9e5">Curvature</a>(FTypeOut&amp; curphi, <span class="keyword">const</span> FTypeIn&amp; phi)</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        : <a class="code hl_variable" href="structkynema__sgf_1_1fvm_1_1_curvature.html#af96e7bfb54555bbf51263776f2a5a9dc">m_curphi</a>(curphi), <a class="code hl_variable" href="structkynema__sgf_1_1fvm_1_1_curvature.html#af16127138fc4263cff5d36cdc78b4214">m_phi</a>(phi)</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        AMREX_ALWAYS_ASSERT(<a class="code hl_variable" href="structkynema__sgf_1_1fvm_1_1_curvature.html#af16127138fc4263cff5d36cdc78b4214">m_phi</a>.num_comp() == <a class="code hl_variable" href="structkynema__sgf_1_1fvm_1_1_curvature.html#af96e7bfb54555bbf51263776f2a5a9dc">m_curphi</a>.num_comp());</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        AMREX_ALWAYS_ASSERT(<a class="code hl_variable" href="structkynema__sgf_1_1fvm_1_1_curvature.html#af16127138fc4263cff5d36cdc78b4214">m_phi</a>.num_grow() &gt; amrex::IntVect(0));</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    }</div>
+</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Stencil&gt;</div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="}">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1fvm_1_1_curvature.html#a428996764d35e2780add140ac4992ed0">   25</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1fvm_1_1_curvature.html#a428996764d35e2780add140ac4992ed0">apply</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> lev, <span class="keyword">const</span> amrex::MFIter&amp; mfi)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; geom = <a class="code hl_variable" href="structkynema__sgf_1_1fvm_1_1_curvature.html#af16127138fc4263cff5d36cdc78b4214">m_phi</a>.repo().mesh().Geom(lev);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; idx = geom.InvCellSizeArray();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; curphi = <a class="code hl_variable" href="structkynema__sgf_1_1fvm_1_1_curvature.html#af96e7bfb54555bbf51263776f2a5a9dc">m_curphi</a>(lev).array(mfi);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; phi = <a class="code hl_variable" href="structkynema__sgf_1_1fvm_1_1_curvature.html#af16127138fc4263cff5d36cdc78b4214">m_phi</a>(lev).const_array(mfi);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; bx_in = mfi.tilebox();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; bx = Stencil::box(bx_in, geom);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">if</span> (bx.isEmpty()) {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        amrex::ParallelFor(</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            bx, <a class="code hl_variable" href="structkynema__sgf_1_1fvm_1_1_curvature.html#af16127138fc4263cff5d36cdc78b4214">m_phi</a>.num_comp(),</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            [=] AMREX_GPU_DEVICE(<span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j, <span class="keywordtype">int</span> k, <span class="keywordtype">int</span> n) {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                amrex::Real cp1, c, cm1;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                amrex::Real sp1, s, sm1;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                sp1 = Stencil::s00;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                s = Stencil::s01;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                sm1 = Stencil::s02;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                <span class="keyword">const</span> amrex::Real phixx =</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                    (sp1 * phi(i + 1, j, k, n) + s * phi(i, j, k, n) +</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                     sm1 * phi(i - 1, j, k, n)) *</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                    idx[0] * idx[0];</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                sp1 = Stencil::s10;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                s = Stencil::s11;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                sm1 = Stencil::s12;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                <span class="keyword">const</span> amrex::Real phiyy =</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                    (sp1 * phi(i, j + 1, k, n) + s * phi(i, j, k, n) +</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                     sm1 * phi(i, j - 1, k, n)) *</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                    idx[1] * idx[1];</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                sp1 = Stencil::s20;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                s = Stencil::s21;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                sm1 = Stencil::s22;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                <span class="keyword">const</span> amrex::Real phizz =</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                    (sp1 * phi(i, j, k + 1, n) + s * phi(i, j, k, n) +</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                     sm1 * phi(i, j, k - 1, n)) *</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                    idx[2] * idx[2];</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                cp1 = Stencil::c20;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                c = Stencil::c21;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                cm1 = Stencil::c22;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                <span class="keyword">const</span> amrex::Real phiz =</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                    (cp1 * phi(i, j, k + 1, n) + c * phi(i, j, k, n) +</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                     cm1 * phi(i, j, k - 1, n)) *</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                    idx[2];</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                <span class="keyword">const</span> amrex::Real phiz_ip1 =</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                    (cp1 * phi(i + 1, j, k + 1, n) + c * phi(i + 1, j, k, n) +</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                     cm1 * phi(i + 1, j, k - 1, n)) *</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                    idx[2];</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                <span class="keyword">const</span> amrex::Real phiz_im1 =</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                    (cp1 * phi(i - 1, j, k + 1, n) + c * phi(i - 1, j, k, n) +</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                     cm1 * phi(i - 1, j, k - 1, n)) *</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                    idx[2];</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                <span class="keyword">const</span> amrex::Real phiz_jp1 =</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                    (cp1 * phi(i, j + 1, k + 1, n) + c * phi(i, j + 1, k, n) +</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                     cm1 * phi(i, j + 1, k - 1, n)) *</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                    idx[2];</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                <span class="keyword">const</span> amrex::Real phiz_jm1 =</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                    (cp1 * phi(i, j - 1, k + 1, n) + c * phi(i, j - 1, k, n) +</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                     cm1 * phi(i, j - 1, k - 1, n)) *</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                    idx[2];</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                cp1 = Stencil::c10;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                c = Stencil::c11;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                cm1 = Stencil::c12;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                <span class="keyword">const</span> amrex::Real phiy =</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                    (cp1 * phi(i, j + 1, k, n) + c * phi(i, j, k, n) +</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                     cm1 * phi(i, j - 1, k, n)) *</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                    idx[1];</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                <span class="keyword">const</span> amrex::Real phiy_ip1 =</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                    (cp1 * phi(i + 1, j + 1, k, n) + c * phi(i + 1, j, k, n) +</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                     cm1 * phi(i + 1, j - 1, k, n)) *</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                    idx[1];</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                <span class="keyword">const</span> amrex::Real phiy_im1 =</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                    (cp1 * phi(i - 1, j + 1, k, n) + c * phi(i - 1, j, k, n) +</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                     cm1 * phi(i - 1, j - 1, k, n)) *</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                    idx[1];</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                <span class="keyword">const</span> amrex::Real phiyz =</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                    (cp1 * phiz_jp1 + c * phiz + cm1 * phiz_jm1) * idx[1];</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                cp1 = Stencil::c00;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                c = Stencil::c01;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                cm1 = Stencil::c02;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                <span class="keyword">const</span> amrex::Real phix =</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                    (cp1 * phi(i + 1, j, k, n) + c * phi(i, j, k, n) +</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                     cm1 * phi(i - 1, j, k, n)) *</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                    idx[0];</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                <span class="keyword">const</span> amrex::Real phixy =</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                    (cp1 * phiy_ip1 + c * phiy + cm1 * phiy_im1) * idx[0];</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                <span class="keyword">const</span> amrex::Real phixz =</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                    (cp1 * phiz_ip1 + c * phiz + cm1 * phiz_im1) * idx[0];</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                curphi(i, j, k, n) =</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                    -((phix * phix * phiyy) - (2.0_rt * phix * phiy * phixy) +</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                      (phiy * phiy * phixx) + (phix * phix * phizz) -</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                      (2.0_rt * phix * phiz * phixz) + (phiz * phiz * phixx) +</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                      (phiy * phiy * phizz) - (2.0_rt * phiy * phiz * phiyz) +</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                      (phiz * phiz * phiyy)) /</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>                    std::pow(</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                        (phix * phix) + (phiy * phiy) + (phiz * phiz), 1.5_rt);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            });</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    }</div>
+</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1fvm_1_1_curvature.html#af96e7bfb54555bbf51263776f2a5a9dc">  133</a></span>    FTypeOut&amp; <a class="code hl_variable" href="structkynema__sgf_1_1fvm_1_1_curvature.html#af96e7bfb54555bbf51263776f2a5a9dc">m_curphi</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1fvm_1_1_curvature.html#af16127138fc4263cff5d36cdc78b4214">  134</a></span>    <span class="keyword">const</span> FTypeIn&amp; <a class="code hl_variable" href="structkynema__sgf_1_1fvm_1_1_curvature.html#af16127138fc4263cff5d36cdc78b4214">m_phi</a>;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>};</div>
+</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> FTypeIn, <span class="keyword">typename</span> FTypeOut&gt;</div>
+<div class="foldopen" id="foldopen00141" data-start="{" data-end="}">
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="group__fvm.html#ga4bf1cc2202b680bb1a36de211d898d56">  141</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__fvm.html#ga4bf1cc2202b680bb1a36de211d898d56">curvature</a>(FTypeOut&amp; curphi, <span class="keyword">const</span> FTypeIn&amp; phi)</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>{</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    BL_PROFILE(<span class="stringliteral">&quot;kynema-sgf::fvm::curvature&quot;</span>);</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <a class="code hl_struct" href="structkynema__sgf_1_1fvm_1_1_curvature.html">Curvature&lt;FTypeIn, FTypeOut&gt;</a> cur(curphi, phi);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <a class="code hl_function" href="namespacekynema__sgf_1_1fvm_1_1impl.html#a500d9217597ba349fee91d1bc732dc30">impl::apply</a>(cur, phi);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>}</div>
+</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> FType&gt;</div>
+<div class="foldopen" id="foldopen00152" data-start="{" data-end="}">
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="group__fvm.html#gab210bfb8e4d17614b2eb64969ecd36d5">  152</a></span>std::unique_ptr&lt;ScratchField&gt; <a class="code hl_function" href="group__fvm.html#ga4bf1cc2202b680bb1a36de211d898d56">curvature</a>(<span class="keyword">const</span> FType&amp; phi)</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>{</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keyword">const</span> std::string gname = phi.name() + <span class="stringliteral">&quot;_curvature&quot;</span>;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keyword">auto</span> curphi = phi.repo().create_scratch_field(gname, phi.num_comp());</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <a class="code hl_function" href="group__fvm.html#ga4bf1cc2202b680bb1a36de211d898d56">curvature</a>(*curphi, phi);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordflow">return</span> curphi;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>}</div>
+</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>} <span class="comment">// namespace kynema_sgf::fvm</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="preprocessor">#endif </span><span class="comment">/* CURVATURE_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="afvm__utils_8_h_html"><div class="ttname"><a href="fvm__utils_8_h.html">fvm_utils.H</a></div></div>
+<div class="ttc" id="agroup__fvm_html_ga4bf1cc2202b680bb1a36de211d898d56"><div class="ttname"><a href="group__fvm.html#ga4bf1cc2202b680bb1a36de211d898d56">kynema_sgf::fvm::curvature</a></div><div class="ttdeci">void curvature(FTypeOut &amp;curphi, const FTypeIn &amp;phi)</div><div class="ttdef"><b>Definition</b> curvature.H:141</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1fvm_1_1impl_html_a500d9217597ba349fee91d1bc732dc30"><div class="ttname"><a href="namespacekynema__sgf_1_1fvm_1_1impl.html#a500d9217597ba349fee91d1bc732dc30">kynema_sgf::fvm::impl::apply</a></div><div class="ttdeci">AMREX_INLINE void apply(const FvmOp &amp;fvmop, const FType &amp;fld)</div><div class="ttdef"><b>Definition</b> fvm_utils.H:15</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1fvm_html"><div class="ttname"><a href="namespacekynema__sgf_1_1fvm.html">kynema_sgf::fvm</a></div><div class="ttdef"><b>Definition</b> SchemeTraits.H:6</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1fvm_1_1_curvature_html"><div class="ttname"><a href="structkynema__sgf_1_1fvm_1_1_curvature.html">kynema_sgf::fvm::Curvature</a></div><div class="ttdef"><b>Definition</b> curvature.H:16</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1fvm_1_1_curvature_html_a428996764d35e2780add140ac4992ed0"><div class="ttname"><a href="structkynema__sgf_1_1fvm_1_1_curvature.html#a428996764d35e2780add140ac4992ed0">kynema_sgf::fvm::Curvature::apply</a></div><div class="ttdeci">void apply(const int lev, const amrex::MFIter &amp;mfi) const</div><div class="ttdef"><b>Definition</b> curvature.H:25</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1fvm_1_1_curvature_html_ad4bb6cbd232b3e96877cc803c61ba9e5"><div class="ttname"><a href="structkynema__sgf_1_1fvm_1_1_curvature.html#ad4bb6cbd232b3e96877cc803c61ba9e5">kynema_sgf::fvm::Curvature::Curvature</a></div><div class="ttdeci">Curvature(FTypeOut &amp;curphi, const FTypeIn &amp;phi)</div><div class="ttdef"><b>Definition</b> curvature.H:17</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1fvm_1_1_curvature_html_af16127138fc4263cff5d36cdc78b4214"><div class="ttname"><a href="structkynema__sgf_1_1fvm_1_1_curvature.html#af16127138fc4263cff5d36cdc78b4214">kynema_sgf::fvm::Curvature::m_phi</a></div><div class="ttdeci">const FTypeIn &amp; m_phi</div><div class="ttdef"><b>Definition</b> curvature.H:134</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1fvm_1_1_curvature_html_af96e7bfb54555bbf51263776f2a5a9dc"><div class="ttname"><a href="structkynema__sgf_1_1fvm_1_1_curvature.html#af96e7bfb54555bbf51263776f2a5a9dc">kynema_sgf::fvm::Curvature::m_curphi</a></div><div class="ttdeci">FTypeOut &amp; m_curphi</div><div class="ttdef"><b>Definition</b> curvature.H:133</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

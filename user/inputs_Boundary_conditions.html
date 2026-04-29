@@ -1,0 +1,501 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Section: Boundary conditions &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Section: MLMG options" href="inputs_MLMG.html" />
+    <link rel="prev" title="Section: SyntheticTurbulence" href="inputs_SyntheticTurbulence.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="inputs.html#input-file-reference">Input file reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="inputs_geometry.html">Section: geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_amr.html">Section: AMReX and AMR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_tagging.html">Section: tagging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_time.html">Section: time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_io.html">Section: io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_incflo.html">Section: incflo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_transport.html">Section: transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_turbulence.html">Section: turbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Momentum_Sources.html">Section: Momentum Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Temperature_Sources.html">Section: Temperature Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_TKE_Sources.html">Section: TKE Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL.html">Section: ABL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL_meso_forcing.html">Section: ABLMesoForcing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_SyntheticTurbulence.html">Section: SyntheticTurbulence</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Section: Boundary conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_MLMG.html">Section: MLMG options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_post_processing.html">Section: Post-processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Sampling.html">Section: Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Subvolume.html">Section: Subvolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Averaging.html">Section: Averaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_KineticEnergy.html">Section: KineticEnergy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Enstrophy.html">Section: Enstrophy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FieldNorms.html">Section: FieldNorms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Actuator.html">Section: Actuator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_multiphase.html">Section: MultiPhase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ocean_waves.html">Section: Ocean Waves</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+          <li class="breadcrumb-item"><a href="inputs.html">Kynema-SGF inputs file</a></li>
+      <li class="breadcrumb-item active">Section: Boundary conditions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/inputs_Boundary_conditions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-boundary-conditions">
+<span id="inputs-boundary-conditions"></span><h1>Section: Boundary conditions<a class="headerlink" href="#section-boundary-conditions" title="Link to this heading"></a></h1>
+<p>This section controls the boundary conditions. Only non-periodic BC’s need to be defined here.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-xlo.type-or-ylo.type-zlo.type-xhi.type-yhi.type-zhi.type">
+<span class="sig-name descname"><span class="pre">xlo.type</span> <span class="pre">(or</span> <span class="pre">ylo.type,</span> <span class="pre">zlo.type,</span> <span class="pre">xhi.type,</span> <span class="pre">yhi.type,</span> <span class="pre">zhi.type)</span></span><a class="headerlink" href="#input_param-xlo.type-or-ylo.type-zlo.type-xhi.type-yhi.type-zhi.type" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, mandatory if non-periodic</p>
+<p>Boundary condition type on the lo (or hi) side of the domain.
+Current options are: periodic, pressure_outflow, mass_inflow,
+mass_inflow_outflow, no_slip_wall, slip_wall, symmetric_wall and wall_model.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-xlo.temperature-or-ylo.temperature-etc">
+<span class="sig-name descname"><span class="pre">xlo.temperature</span> <span class="pre">(or</span> <span class="pre">ylo.temperature,</span> <span class="pre">etc)</span></span><a class="headerlink" href="#input_param-xlo.temperature-or-ylo.temperature-etc" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.0</p>
+<p>Specifies a temperature gradient at the wall, only activated for slip_wall and wall_model BC types.</p>
+</dd></dl>
+
+<section id="mass-inflow-boundary-conditions">
+<h2>Mass inflow boundary conditions<a class="headerlink" href="#mass-inflow-boundary-conditions" title="Link to this heading"></a></h2>
+<p>For the mass_inflow boundary condition type, the user can specify constant values in the input file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xlo</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;mass_inflow&quot;</span>
+<span class="n">xlo</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">0.0</span>
+<span class="n">xlo</span><span class="o">.</span><span class="n">temperature</span> <span class="o">=</span> <span class="mf">300.0</span>
+</pre></div>
+</div>
+<p>In addition to being able to specify constant values, the user has access to a variety of included complex boundary conditions (e.g., LinearProfile, PowerLawProfile, Rankine) that are activated in the input file. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xlo</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;mass_inflow&quot;</span>
+<span class="n">xlo</span><span class="o">.</span><span class="n">density</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">xlo</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">0.0</span>
+<span class="n">xlo</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">inflow_type</span> <span class="o">=</span> <span class="n">LinearProfile</span>
+</pre></div>
+</div>
+<section id="linearprofile">
+<h3>LinearProfile<a class="headerlink" href="#linearprofile" title="Link to this heading"></a></h3>
+<p>The linear profile uses the following input parameters. The linear profile can be use for multiple fields and therefore the input file option should contain the <code class="docutils literal notranslate"><span class="pre">field_name</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">LinearProfile.velocity.direction</span> <span class="pre">=</span> <span class="pre">1</span></code>. It sets up the following profile.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(x_i) =  \begin{cases}
+   f_{\text{min}} &amp; \text{if } x_i &lt; x_{\text{min}}\\
+   f_{\text{max}} &amp; \text{if } x_i &gt; x_{\text{max}}\\
+   f_{\text{min}} + (f_{\text{max}}-f_{\text{min}}) \frac{x_i-x_{\text{min}}}{x_{\text{max}}-x_{\text{min}}} &amp; \text{otherwise}
+ \end{cases}\end{split}\]</div>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-LinearProfile.-field_name-.direction">
+<span class="sig-name descname"><span class="pre">LinearProfile.&lt;field_name&gt;.direction</span></span><a class="headerlink" href="#input_param-LinearProfile.-field_name-.direction" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> int, optional, default = 2</p>
+<p>The coordinate direction along which this profile should be initialized (wall normal direction). <span class="math notranslate nohighlight">\(i\)</span> value in the equation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-LinearProfile.-field_name-.start">
+<span class="sig-name descname"><span class="pre">LinearProfile.&lt;field_name&gt;.start</span></span><a class="headerlink" href="#input_param-LinearProfile.-field_name-.start" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = minimum of domain in the <code class="docutils literal notranslate"><span class="pre">direction</span></code> direction</p>
+<p>Start location of the linear profile. <span class="math notranslate nohighlight">\(x_{\text{min}}\)</span> value in the equation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-LinearProfile.-field_name-.stop">
+<span class="sig-name descname"><span class="pre">LinearProfile.&lt;field_name&gt;.stop</span></span><a class="headerlink" href="#input_param-LinearProfile.-field_name-.stop" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = maximum of domain in the <code class="docutils literal notranslate"><span class="pre">direction</span></code> direction</p>
+<p>Stop location of the linear profile. <span class="math notranslate nohighlight">\(x_{\text{max}}\)</span> value in the equation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-LinearProfile.-field_name-.start_val">
+<span class="sig-name descname"><span class="pre">LinearProfile.&lt;field_name&gt;.start_val</span></span><a class="headerlink" href="#input_param-LinearProfile.-field_name-.start_val" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, required (length = number of components of <code class="docutils literal notranslate"><span class="pre">field_name</span></code>)</p>
+<p>Start value of field. <span class="math notranslate nohighlight">\(f_{\text{min}}\)</span> value in the equation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-LinearProfile.-field_name-.stop_val">
+<span class="sig-name descname"><span class="pre">LinearProfile.&lt;field_name&gt;.stop_val</span></span><a class="headerlink" href="#input_param-LinearProfile.-field_name-.stop_val" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, required (length = number of components of <code class="docutils literal notranslate"><span class="pre">field_name</span></code>)</p>
+<p>Stop value of field. <span class="math notranslate nohighlight">\(f_{\text{max}}\)</span> value in the equation.</p>
+</dd></dl>
+
+</section>
+<section id="rankine">
+<h3>Rankine<a class="headerlink" href="#rankine" title="Link to this heading"></a></h3>
+<p>The Rankine boundary condition uses the following input parameters. It is used for velocity fields only and the reference velocity is specified by <code class="docutils literal notranslate"><span class="pre">incflo.velocity</span></code>.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Rankine.Umax">
+<span class="sig-name descname"><span class="pre">Rankine.Umax</span></span><a class="headerlink" href="#input_param-Rankine.Umax" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 15.0</p>
+<p>The maximum velocity.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Rankine.Rmax">
+<span class="sig-name descname"><span class="pre">Rankine.Rmax</span></span><a class="headerlink" href="#input_param-Rankine.Rmax" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 125.0</p>
+<p>The maximum radius.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Rankine.start_location">
+<span class="sig-name descname"><span class="pre">Rankine.start_location</span></span><a class="headerlink" href="#input_param-Rankine.start_location" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of Real, optional, default = [-10 * <code class="docutils literal notranslate"><span class="pre">Rmax</span></code>, 0.0, 0.0]</p>
+<p>The start location.</p>
+</dd></dl>
+
+</section>
+<section id="powerlawprofile">
+<h3>PowerLawProfile<a class="headerlink" href="#powerlawprofile" title="Link to this heading"></a></h3>
+<p>The power law profile uses the following input parameters. This one is only for velocity so there is no need to insert the field name in the input line. This is the equation describing this boundary condition.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+p_f &amp;= \text{min}\left(\text{max}\left(\left(\frac{x_i - x_o}{x_r}\right)^s, \frac{u_{\text{min}}}{u_r}\right), \frac{u_{\text{max}}}{u_r}\right) \\
+f(x_i, n) &amp;= u_n  p_f
+\end{align}\end{split}\]</div>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-PowerLawProfile.direction">
+<span class="sig-name descname"><span class="pre">PowerLawProfile.direction</span></span><a class="headerlink" href="#input_param-PowerLawProfile.direction" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> int, optional, default = 2</p>
+<p>The coordinate direction along which this profile should be initialized (wall normal direction). <span class="math notranslate nohighlight">\(i\)</span> value in the equation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-PowerLawProfile.zref">
+<span class="sig-name descname"><span class="pre">PowerLawProfile.zref</span></span><a class="headerlink" href="#input_param-PowerLawProfile.zref" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, required</p>
+<p>The reference height. <span class="math notranslate nohighlight">\(x_r\)</span> in the equation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-PowerLawProfile.shear_exponent">
+<span class="sig-name descname"><span class="pre">PowerLawProfile.shear_exponent</span></span><a class="headerlink" href="#input_param-PowerLawProfile.shear_exponent" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, required</p>
+<p>The shear exponent value. <span class="math notranslate nohighlight">\(s\)</span> in the equation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-PowerLawProfile.uref">
+<span class="sig-name descname"><span class="pre">PowerLawProfile.uref</span></span><a class="headerlink" href="#input_param-PowerLawProfile.uref" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real list, required</p>
+<p>The reference value of the velocity vector used to propagate the plane. <span class="math notranslate nohighlight">\(u_r\)</span> in the equation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-PowerLawProfile.zoffset">
+<span class="sig-name descname"><span class="pre">PowerLawProfile.zoffset</span></span><a class="headerlink" href="#input_param-PowerLawProfile.zoffset" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.0</p>
+<p>The offset in the direction (should be zero for a boundary condition). <span class="math notranslate nohighlight">\(x_o\)</span> in the equation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-PowerLawProfile.umin">
+<span class="sig-name descname"><span class="pre">PowerLawProfile.umin</span></span><a class="headerlink" href="#input_param-PowerLawProfile.umin" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, default = 0.0</p>
+<p>The minimum velocity cutoff in the mean power law profile. <span class="math notranslate nohighlight">\(u_{\text{min}}\)</span> in the equation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-PowerLawProfile.umax">
+<span class="sig-name descname"><span class="pre">PowerLawProfile.umax</span></span><a class="headerlink" href="#input_param-PowerLawProfile.umax" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, default = 0.0</p>
+<p>The maximum velocity cutoff in the mean power law profile. <span class="math notranslate nohighlight">\(u_{\text{max}}\)</span> in the equation.</p>
+</dd></dl>
+
+</section>
+<section id="custom-boundary-conditions">
+<h3>Custom boundary conditions<a class="headerlink" href="#custom-boundary-conditions" title="Link to this heading"></a></h3>
+<p>If the user wants to define their own boundary conditions, this is done by editing <cite>CustomScalar</cite> and <cite>CustomVelocity</cite> source and header files in the <cite>udfs</cite> folder. <cite>CustomScalar</cite> is used for scalar fields and <cite>CustomVelocity</cite> is used for velocity fields. These can then be activated in the input file as such:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xlo</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;mass_inflow&quot;</span>
+<span class="n">xlo</span><span class="o">.</span><span class="n">temperature</span><span class="o">.</span><span class="n">inflow_type</span> <span class="o">=</span> <span class="n">CustomScalar</span>
+<span class="n">CustomScalar</span><span class="o">.</span><span class="n">foo</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">xlo</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">inflow_type</span> <span class="o">=</span> <span class="n">CustomVelocity</span>
+<span class="n">CustomVelocity</span><span class="o">.</span><span class="n">foo</span> <span class="o">=</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>They do not both need to be defined at the same time. It is the user’s responsibility to ensure that the source files are appropriately edited for their use case. Examples of how these files can be edited are found through comparison of the other mass_inflow functions in the <cite>udfs</cite> folder.</p>
+</section>
+</section>
+<section id="mass-inflow-outflow-boundary-conditions">
+<h2>Mass inflow-outflow boundary conditions<a class="headerlink" href="#mass-inflow-outflow-boundary-conditions" title="Link to this heading"></a></h2>
+<p>The mass_inflow_outflow boundary condition is designed to handle both inflow and outflow at the same boundary.
+For the advection schemes, it implements a Neumann type behavior at the outflow cells and a Dirichlet behavior at the inflow cells.
+It uses Neumann conditions for the MAC and nodal projections and
+enforces solvability before the projections
+by correcting the outflow to match with the inflow within the specified mass_inflow_outflow boundaries.
+It uses a Dirichlet condition for the diffusion solver.</p>
+<p>Both the approaches mentioned above for the mass inflow condition,
+constant values and UDFs, can be used to specify the boundary values.
+The outflow values will be automatically replaced by a value from the interior cell
+to enforce the Neumann type behavior.
+See the <code class="docutils literal notranslate"><span class="pre">freestream_godunov_inout</span></code> test for an example that uses the TwoLayer UDF.
+This test involves two z-layers of the flow along opposite x-directions.
+The input file options are copied here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geometry</span><span class="o">.</span><span class="n">is_periodic</span>  <span class="o">=</span>  <span class="mi">0</span>   <span class="mi">1</span>   <span class="mi">0</span>   <span class="c1"># Periodic in y</span>
+
+<span class="c1"># Boundary conditions</span>
+<span class="n">TwoLayer</span><span class="o">.</span><span class="n">bottom_vel</span>   <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="n">TwoLayer</span><span class="o">.</span><span class="n">top_vel</span>      <span class="o">=</span>  <span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="n">TwoLayer</span><span class="o">.</span><span class="n">init_perturb</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">TwoLayer</span><span class="o">.</span><span class="n">z_partition</span>  <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="n">xlo</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;mass_inflow_outflow&quot;</span>
+<span class="n">xlo</span><span class="o">.</span><span class="n">density</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">xlo</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">inflow_outflow_type</span> <span class="o">=</span> <span class="n">TwoLayer</span>
+
+<span class="n">xhi</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;mass_inflow_outflow&quot;</span>
+<span class="n">xhi</span><span class="o">.</span><span class="n">density</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">xhi</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">inflow_outflow_type</span> <span class="o">=</span> <span class="n">TwoLayer</span>
+
+<span class="n">zlo</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;slip_wall&quot;</span>
+<span class="n">zhi</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s2">&quot;slip_wall&quot;</span>
+</pre></div>
+</div>
+<p>The most applicable use case for this boundary condition is with the
+<a class="reference internal" href="abl_bndry_io.html#kynemasgf-abl-bndry-io"><span class="std std-ref">Kynema-SGF ABL Boundary I/O</span></a> for flows that change directions
+across the vertical coordinate or with time.
+See the <code class="docutils literal notranslate"><span class="pre">abl_bndry_input_native_inout</span></code> test for an example,
+the relevant inputs are included below.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ABL.bndry_file = &quot;../abl_bndry_output_native/bndry_files&quot;
+ABL.bndry_io_mode = 1
+ABL.bndry_var_names = velocity temperature
+ABL.bndry_output_format = native
+
+xlo.type = &quot;mass_inflow_outflow&quot;
+xlo.density = 1.0
+xlo.temperature = 0.0   # dummy
+
+xhi.type = &quot;mass_inflow_outflow&quot;
+xhi.density = 1.0
+xhi.temperature = 0.0
+
+ylo.type = &quot;mass_inflow_outflow&quot;
+ylo.density = 1.0
+ylo.temperature = 0.0
+
+yhi.type = &quot;mass_inflow_outflow&quot;
+yhi.density = 1.0
+yhi.temperature = 0.0
+</pre></div>
+</div>
+<p>If the inflow files do not include a specific field or plane,
+then the relevant BC can be specified in the input file.
+Note that if unspecified, the velocities at a boundary would default to zero,
+which implements a Dirichlet type behavior.
+If an outflow is expected at that boundary, any non-zero outflow velocity may be specified,
+which would implement a Neumann type behavior as the
+boundary cell velocity will be overwritten by the inner cell velocity.</p>
+<section id="twolayer">
+<h3>TwoLayer<a class="headerlink" href="#twolayer" title="Link to this heading"></a></h3>
+<p>The two layer boundary condition uses the following input options. It is only used for velocity.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-TwoLayer.top_vel">
+<span class="sig-name descname"><span class="pre">TwoLayer.top_vel</span></span><a class="headerlink" href="#input_param-TwoLayer.top_vel" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of Real, required</p>
+<p>The velocity in the top of the domain.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-TwoLayer.bottom_vel">
+<span class="sig-name descname"><span class="pre">TwoLayer.bottom_vel</span></span><a class="headerlink" href="#input_param-TwoLayer.bottom_vel" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of Real, required</p>
+<p>The velocity in the bottom of the domain.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-TwoLayer.init_perturb">
+<span class="sig-name descname"><span class="pre">TwoLayer.init_perturb</span></span><a class="headerlink" href="#input_param-TwoLayer.init_perturb" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1.0</p>
+<p>The initial perturbation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-TwoLayer.z_partition">
+<span class="sig-name descname"><span class="pre">TwoLayer.z_partition</span></span><a class="headerlink" href="#input_param-TwoLayer.z_partition" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.5</p>
+<p>The z-coordinate for the top and bottom.</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="dynamic-wall-model-wave-model">
+<h2>Dynamic wall model (Wave model)<a class="headerlink" href="#dynamic-wall-model-wave-model" title="Link to this heading"></a></h2>
+<p>The Moving Surface Drag (MOSD) model developed by <a class="reference external" href="https://doi.org/10.1007/s10546-024-00884-8">Ayala et al (2024)</a> is used as the dynamic wall model. The model calculates the stress (form drag) imparted by a moving wave. The model enables wave phase-resolving physics without the use of wave-phase adapting computational grids.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-wave_mosd.amplitude">
+<span class="sig-name descname"><span class="pre">wave_mosd.amplitude</span></span><a class="headerlink" href="#input_param-wave_mosd.amplitude" title="Link to this definition"></a></dt>
+<dt class="sig sig-object std" id="input_param-type-Real-required-default-0.05">
+<span class="sig-name descname"><span class="pre">**type:**</span> <span class="pre">Real,</span> <span class="pre">required,</span> <span class="pre">default</span> <span class="pre">=</span> <span class="pre">0.05</span></span><a class="headerlink" href="#input_param-type-Real-required-default-0.05" title="Link to this definition"></a></dt>
+<dd><p>Specifies the amplitude of the wave, only activated if <code class="docutils literal notranslate"><span class="pre">WallFunction.wall_shear_stress_type</span> <span class="pre">=</span> <span class="pre">mosd</span></code></p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-wave_mosd.wavenumber">
+<span class="sig-name descname"><span class="pre">wave_mosd.wavenumber</span></span><a class="headerlink" href="#input_param-wave_mosd.wavenumber" title="Link to this definition"></a></dt>
+<dt class="sig sig-object std" id="input_param-type-Real-required-default-4">
+<span class="sig-name descname"><span class="pre">**type:**</span> <span class="pre">Real,</span> <span class="pre">required,</span> <span class="pre">default</span> <span class="pre">=</span> <span class="pre">4</span></span><a class="headerlink" href="#input_param-type-Real-required-default-4" title="Link to this definition"></a></dt>
+<dd><p>Specifies the wave number of the wave, only activated if <code class="docutils literal notranslate"><span class="pre">WallFunction.wall_shear_stress_type</span> <span class="pre">=</span> <span class="pre">mosd</span></code></p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-wave_mosd.frequency">
+<span class="sig-name descname"><span class="pre">wave_mosd.frequency</span></span><a class="headerlink" href="#input_param-wave_mosd.frequency" title="Link to this definition"></a></dt>
+<dt class="sig sig-object std" id="input_param-type-Real-required-default-0.8">
+<span class="sig-name descname"><span class="pre">**type:**</span> <span class="pre">Real,</span> <span class="pre">required,</span> <span class="pre">default</span> <span class="pre">=</span> <span class="pre">0.8</span></span><a class="headerlink" href="#input_param-type-Real-required-default-0.8" title="Link to this definition"></a></dt>
+<dd><p>Specifies the frequency of the wave, only activated if <code class="docutils literal notranslate"><span class="pre">WallFunction.wall_shear_stress_type</span> <span class="pre">=</span> <span class="pre">mosd</span></code></p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zlo</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span>   <span class="s2">&quot;wall_model&quot;</span>
+<span class="n">WallFunction</span><span class="o">.</span><span class="n">wall_shear_stress_type</span> <span class="o">=</span> <span class="n">mosd</span>
+<span class="n">wave_mosd</span><span class="o">.</span><span class="n">amplitude</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">wave_mosd</span><span class="o">.</span><span class="n">wavenumber</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">wave_mosd</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="mf">0.8</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This wall model is only applicable for the lower boundary <code class="docutils literal notranslate"><span class="pre">zlo.type</span></code>. Also, it is set for only monochromatic waves.</p>
+</div>
+<p>Currently, the dynamic wall model is only available for <code class="docutils literal notranslate"><span class="pre">incflo.physics</span> <span class="pre">=</span> <span class="pre">ChannelFlow</span></code>. The work to integrate this condition with the ABL class is under progress. See the <code class="docutils literal notranslate"><span class="pre">channel_mosd</span></code> test for an example that uses the dynamic wall model.</p>
+</section>
+<section id="pressure-outflow-boundary-conditions">
+<h2>Pressure outflow boundary conditions<a class="headerlink" href="#pressure-outflow-boundary-conditions" title="Link to this heading"></a></h2>
+<p>The pressure_outflow boundary condition is the most common boundary condition used
+when flow out of a boundary is desired. By default, this sets the pressure at the outflow
+plane to 0 and assumes a zero gradient for other flow quantities (e.g., velocity and
+scalars). Also by default, this boundary condition clips fluxes that would be advected
+into the domain, which is for the sake of stability.</p>
+<p>Having a uniform pressure value at the outflow is not often physically valid for
+flows of interest, such as stratified ABLs and ocean waves. However, instead of changing
+the target pressure of the boundary condition, it is typically more useful to change the
+formulation of the source terms, transforming the pressure variable into the difference
+between the true pressure and some constant, non-uniform reference pressure profile.
+In the context of stratified ABLs, which typically apply gravity through the
+BoussinesqBuoyancy source term, this pressure modification is realized with the
+additional source term ABLMeanBoussinesq. In the context of ocean waves, which typically
+apply gravity through the GravityForcing source term, this pressure modification is
+realized through the input option “ICNS.use_perturb_pressure”.</p>
+<p>Finally, the default clipping of inflow at pressure_outflow boundaries can be disabled.
+This is not recommended, but it is possible with the input option
+“allow_inflow_at_pressure_outflow”. This input argument is appended to the PDE name
+where it should be applied (e.g., ICNS, temperature, or tke).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inputs_SyntheticTurbulence.html" class="btn btn-neutral float-left" title="Section: SyntheticTurbulence" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inputs_MLMG.html" class="btn btn-neutral float-right" title="Section: MLMG options" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

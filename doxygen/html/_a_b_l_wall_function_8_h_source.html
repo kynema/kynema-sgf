@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ABLWallFunction.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ABLWallFunction.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_a_b_l_wall_function_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-ablwallfunction-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ABLWallFunction.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-ablwallfunction-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ABLWallFunction.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_a80d9316c48aa709b9bc78e2b746db24.html">wind_energy</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">ABLWallFunction.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_a_b_l_wall_function_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef ABLWALLFUNCTION_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define ABLWALLFUNCTION_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_field_plane_averaging_8_h.html">src/utilities/FieldPlaneAveraging.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_field_plane_averaging_fine_8_h.html">src/utilities/FieldPlaneAveragingFine.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_field_b_c_ops_8_h.html">src/core/FieldBCOps.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="_m_o_data_8_h.html">src/wind_energy/MOData.H</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="constants_8_h.html">src/utilities/constants.H</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span></div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html">   23</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a022b7924d952870cdbf7e6b756b3b6cf">ABLWallFunction</a></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a022b7924d952870cdbf7e6b756b3b6cf">ABLWallFunction</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a2ca6b0f342f81b0e458370c5f5afc7b0">   28</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a2ca6b0f342f81b0e458370c5f5afc7b0">~ABLWallFunction</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a6b3c19899549f142c3afb34ba7403c6d">   30</a></span>    <a class="code hl_struct" href="structkynema__sgf_1_1_m_o_data.html">MOData</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a6b3c19899549f142c3afb34ba7403c6d">mo</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a4a6d39862f677128840c42da4fb3d9d5">m_mo</a>; }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a73c35d1bf19bfdfc86f4cd534ac4499c">   31</a></span>    [[nodiscard]] <span class="keyword">const</span> <a class="code hl_struct" href="structkynema__sgf_1_1_m_o_data.html">MOData</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a73c35d1bf19bfdfc86f4cd534ac4499c">mo</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a4a6d39862f677128840c42da4fb3d9d5">m_mo</a>; }</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#ad33616312143945296ca3f40f3c1ca89">   35</a></span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_wall_function.html#ad33616312143945296ca3f40f3c1ca89">utau</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a4a6d39862f677128840c42da4fb3d9d5">m_mo</a>.utau; }</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a8fac5cc2a4ae847af4bf3b805c0051e1">init_log_law_height</a>();</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a249f80dde841a03357016b24eac261ac">update_umean</a>(</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_vel_plane_averaging_fine.html">VelPlaneAveragingFine</a>&amp; vpa, <span class="keyword">const</span> <a class="code hl_typedef" href="namespacekynema__sgf.html#a8c8e6d5091635786c7f1da8075a837a9">FieldPlaneAveragingFine</a>&amp; tpa);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a14fc92e4c3944879fb147475607d9c26">update_tflux</a>(amrex::Real tflux);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#ab8eee9f06f8e4d9effe3f215c949c700">   47</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#ab8eee9f06f8e4d9effe3f215c949c700">m_sim</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#af1fb96220213b63cbba06960cfc95a87">   49</a></span>    <span class="keyword">const</span> amrex::AmrCore&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#af1fb96220213b63cbba06960cfc95a87">m_mesh</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a4a6d39862f677128840c42da4fb3d9d5">   52</a></span>    <a class="code hl_struct" href="structkynema__sgf_1_1_m_o_data.html">MOData</a> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a4a6d39862f677128840c42da4fb3d9d5">m_mo</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a94f29494c796c0e24bd91b2453a2447d">   54</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a94f29494c796c0e24bd91b2453a2447d">m_direction</a>{2};   </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a494dd87b74fb683d19fd8bb8c70c9137">   55</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a494dd87b74fb683d19fd8bb8c70c9137">m_use_fch</a>{<span class="keyword">true</span>}; </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a567a83efcbfe6914d87f30ffa2b451ff">   57</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a567a83efcbfe6914d87f30ffa2b451ff">m_gravity</a>{0.0_rt, 0.0_rt, -9.81_rt};</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a65986d04a9acf9f14f83358308542976">   60</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a65986d04a9acf9f14f83358308542976">m_surf_temp_timetable</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a801896541d3fbed96614480e21f89bf7">   61</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a801896541d3fbed96614480e21f89bf7">m_surf_temp_time</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#ad32c03490a376f9405acd56d61e6f0ea">   62</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#ad32c03490a376f9405acd56d61e6f0ea">m_surf_temp_value</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a121f4c6639277ff0f91c12489f5138c0">   64</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a121f4c6639277ff0f91c12489f5138c0">m_tempflux</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a121cf96d9ea1de3d014df00f91f55c03">   65</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a121cf96d9ea1de3d014df00f91f55c03">m_temp_table</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#afc1ddfd63867fe492c2a840fd7f986be">   66</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#afc1ddfd63867fe492c2a840fd7f986be">m_surf_temp_rate</a>{0.0_rt};</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#af93517d80bead8e91e8aad587bf02b40">   67</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#af93517d80bead8e91e8aad587bf02b40">m_surf_temp_rate_tstart</a>{0.0_rt};</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#acf838cae282f8873c7289efbd3f5da8c">   68</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#acf838cae282f8873c7289efbd3f5da8c">m_surf_temp_init</a>{300.0_rt};</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a2400eaf9e9a4313cef8cd588a13e4c99">   70</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a2400eaf9e9a4313cef8cd588a13e4c99">m_inflow_outflow</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#afb8e7e4442f0822d4ed3021f7b7040d1">   71</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#afb8e7e4442f0822d4ed3021f7b7040d1">m_wf_vmag</a>{0.0_rt};</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a8d7a55dc5e2420bdf82270748d143b2f">   72</a></span>    amrex::Array&lt;amrex::Real, 2&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a8d7a55dc5e2420bdf82270748d143b2f">m_wf_vel</a>{0.0_rt, 0.0_rt};</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a18358c4b9ac818b99ec6ddea1d13b448">   73</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a18358c4b9ac818b99ec6ddea1d13b448">m_wf_theta</a>{300.0_rt};</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>};</div>
+</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span></div>
+<div class="foldopen" id="foldopen00081" data-start="{" data-end="};">
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html">   81</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#a4fbead0e199ee90d587b83aa19f2077c">ABLVelWallFunc</a> : <span class="keyword">public</span> <a class="code hl_class" href="classkynema__sgf_1_1_field_b_c_iface.html">FieldBCIface</a></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>{</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#a4fbead0e199ee90d587b83aa19f2077c">ABLVelWallFunc</a>(<a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; velocity, <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_a_b_l_wall_function.html">ABLWallFunction</a>&amp; wall_func);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#a137eae4cc98c1eb1a076e415d5d6af2c">operator()</a>(<a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; velocity, <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> rho_state) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ShearStress&gt;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <a class="code hl_enumvalue" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292a6e55e2ee14d93d50c4bc849a21816201">wall_model</a>(<a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; velocity, <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> rho_state, <span class="keyword">const</span> ShearStress&amp; tau);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#a6590b569b6b20291c7ddcbe98d048cd2">   93</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_a_b_l_wall_function.html">ABLWallFunction</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#a6590b569b6b20291c7ddcbe98d048cd2">m_wall_func</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#aa8db0a5ca2d054ea8757ea6c9588c8b1">   94</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#aa8db0a5ca2d054ea8757ea6c9588c8b1">m_wall_shear_stress_type</a>{<span class="stringliteral">&quot;moeng&quot;</span>};</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#a16c957b223f8c3ec13390c79572c8581">   95</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#a16c957b223f8c3ec13390c79572c8581">m_wall_het_model</a>{<span class="stringliteral">&quot;none&quot;</span>};</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#aec14fc03dd2e59f76a451301bda1693a">   96</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#aec14fc03dd2e59f76a451301bda1693a">m_monin_obukhov_length</a>{<a class="code hl_variable" href="namespacekynema__sgf_1_1constants.html#a522e4cd8367efc48dae9370906ea304f">constants::LARGE_NUM</a>};</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>};</div>
+</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="foldopen" id="foldopen00099" data-start="{" data-end="};">
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html">   99</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#a02119173a47f0729d3d8892490204f88">ABLTempWallFunc</a> : <span class="keyword">public</span> <a class="code hl_class" href="classkynema__sgf_1_1_field_b_c_iface.html">FieldBCIface</a></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>{</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#a02119173a47f0729d3d8892490204f88">ABLTempWallFunc</a>(<a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; temperature, <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_a_b_l_wall_function.html">ABLWallFunction</a>&amp; wall_fuc);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#a5e659a8b6be2cdbe84dc5a22a3a3f524">operator()</a>(<a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; temperature, <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> rho_state) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> HeatFlux&gt;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <a class="code hl_enumvalue" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292a6e55e2ee14d93d50c4bc849a21816201">wall_model</a>(<a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; temperature, <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> rho_state, <span class="keyword">const</span> HeatFlux&amp; tau);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#aac7346ee168b42a2a37a0c46c0bf8d68">  111</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_a_b_l_wall_function.html">ABLWallFunction</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#aac7346ee168b42a2a37a0c46c0bf8d68">m_wall_func</a>;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#af464015eec980093c747c805d22785b8">  112</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#af464015eec980093c747c805d22785b8">m_wall_shear_stress_type</a>{<span class="stringliteral">&quot;moeng&quot;</span>};</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#a4225f00d2d2728bddb0fb5fb07034120">  113</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#a4225f00d2d2728bddb0fb5fb07034120">m_wall_het_model</a>{<span class="stringliteral">&quot;none&quot;</span>};</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#a507b60b0e6292b1e997ec303a5f7fa62">  114</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#a507b60b0e6292b1e997ec303a5f7fa62">m_monin_obukhov_length</a>{<a class="code hl_variable" href="namespacekynema__sgf_1_1constants.html#a522e4cd8367efc48dae9370906ea304f">constants::LARGE_NUM</a>};</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>};</div>
+</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">#endif </span><span class="comment">/* ABLWALLFUNCTION_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_field_b_c_ops_8_h_html"><div class="ttname"><a href="_field_b_c_ops_8_h.html">FieldBCOps.H</a></div></div>
+<div class="ttc" id="a_field_plane_averaging_8_h_html"><div class="ttname"><a href="_field_plane_averaging_8_h.html">FieldPlaneAveraging.H</a></div></div>
+<div class="ttc" id="a_field_plane_averaging_fine_8_h_html"><div class="ttname"><a href="_field_plane_averaging_fine_8_h.html">FieldPlaneAveragingFine.H</a></div></div>
+<div class="ttc" id="a_m_o_data_8_h_html"><div class="ttname"><a href="_m_o_data_8_h.html">MOData.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_temp_wall_func_html_a02119173a47f0729d3d8892490204f88"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#a02119173a47f0729d3d8892490204f88">kynema_sgf::ABLTempWallFunc::ABLTempWallFunc</a></div><div class="ttdeci">ABLTempWallFunc(Field &amp;temperature, const ABLWallFunction &amp;wall_fuc)</div><div class="ttdef"><b>Definition</b> ABLWallFunction.cpp:374</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_temp_wall_func_html_a4225f00d2d2728bddb0fb5fb07034120"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#a4225f00d2d2728bddb0fb5fb07034120">kynema_sgf::ABLTempWallFunc::m_wall_het_model</a></div><div class="ttdeci">std::string m_wall_het_model</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:113</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_temp_wall_func_html_a507b60b0e6292b1e997ec303a5f7fa62"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#a507b60b0e6292b1e997ec303a5f7fa62">kynema_sgf::ABLTempWallFunc::m_monin_obukhov_length</a></div><div class="ttdeci">amrex::Real m_monin_obukhov_length</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:114</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_temp_wall_func_html_a5e659a8b6be2cdbe84dc5a22a3a3f524"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#a5e659a8b6be2cdbe84dc5a22a3a3f524">kynema_sgf::ABLTempWallFunc::operator()</a></div><div class="ttdeci">void operator()(Field &amp;temperature, FieldState rho_state) override</div><div class="ttdef"><b>Definition</b> ABLWallFunction.cpp:496</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_temp_wall_func_html_aac7346ee168b42a2a37a0c46c0bf8d68"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#aac7346ee168b42a2a37a0c46c0bf8d68">kynema_sgf::ABLTempWallFunc::m_wall_func</a></div><div class="ttdeci">const ABLWallFunction &amp; m_wall_func</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:111</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_temp_wall_func_html_af464015eec980093c747c805d22785b8"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_temp_wall_func.html#af464015eec980093c747c805d22785b8">kynema_sgf::ABLTempWallFunc::m_wall_shear_stress_type</a></div><div class="ttdeci">std::string m_wall_shear_stress_type</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_vel_wall_func_html_a137eae4cc98c1eb1a076e415d5d6af2c"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#a137eae4cc98c1eb1a076e415d5d6af2c">kynema_sgf::ABLVelWallFunc::operator()</a></div><div class="ttdeci">void operator()(Field &amp;velocity, FieldState rho_state) override</div><div class="ttdef"><b>Definition</b> ABLWallFunction.cpp:343</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_vel_wall_func_html_a16c957b223f8c3ec13390c79572c8581"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#a16c957b223f8c3ec13390c79572c8581">kynema_sgf::ABLVelWallFunc::m_wall_het_model</a></div><div class="ttdeci">std::string m_wall_het_model</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:95</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_vel_wall_func_html_a4fbead0e199ee90d587b83aa19f2077c"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#a4fbead0e199ee90d587b83aa19f2077c">kynema_sgf::ABLVelWallFunc::ABLVelWallFunc</a></div><div class="ttdeci">ABLVelWallFunc(Field &amp;velocity, const ABLWallFunction &amp;wall_func)</div><div class="ttdef"><b>Definition</b> ABLWallFunction.cpp:207</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_vel_wall_func_html_a6590b569b6b20291c7ddcbe98d048cd2"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#a6590b569b6b20291c7ddcbe98d048cd2">kynema_sgf::ABLVelWallFunc::m_wall_func</a></div><div class="ttdeci">const ABLWallFunction &amp; m_wall_func</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:93</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_vel_wall_func_html_aa8db0a5ca2d054ea8757ea6c9588c8b1"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#aa8db0a5ca2d054ea8757ea6c9588c8b1">kynema_sgf::ABLVelWallFunc::m_wall_shear_stress_type</a></div><div class="ttdeci">std::string m_wall_shear_stress_type</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:94</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_vel_wall_func_html_aec14fc03dd2e59f76a451301bda1693a"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_vel_wall_func.html#aec14fc03dd2e59f76a451301bda1693a">kynema_sgf::ABLVelWallFunc::m_monin_obukhov_length</a></div><div class="ttdeci">amrex::Real m_monin_obukhov_length</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:96</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html">kynema_sgf::ABLWallFunction</a></div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:24</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a022b7924d952870cdbf7e6b756b3b6cf"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a022b7924d952870cdbf7e6b756b3b6cf">kynema_sgf::ABLWallFunction::ABLWallFunction</a></div><div class="ttdeci">ABLWallFunction(const CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> ABLWallFunction.cpp:22</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a121cf96d9ea1de3d014df00f91f55c03"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a121cf96d9ea1de3d014df00f91f55c03">kynema_sgf::ABLWallFunction::m_temp_table</a></div><div class="ttdeci">bool m_temp_table</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:65</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a121f4c6639277ff0f91c12489f5138c0"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a121f4c6639277ff0f91c12489f5138c0">kynema_sgf::ABLWallFunction::m_tempflux</a></div><div class="ttdeci">bool m_tempflux</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:64</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a14fc92e4c3944879fb147475607d9c26"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a14fc92e4c3944879fb147475607d9c26">kynema_sgf::ABLWallFunction::update_tflux</a></div><div class="ttdeci">void update_tflux(amrex::Real tflux)</div><div class="ttdef"><b>Definition</b> ABLWallFunction.cpp:202</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a18358c4b9ac818b99ec6ddea1d13b448"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a18358c4b9ac818b99ec6ddea1d13b448">kynema_sgf::ABLWallFunction::m_wf_theta</a></div><div class="ttdeci">amrex::Real m_wf_theta</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:73</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a2400eaf9e9a4313cef8cd588a13e4c99"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a2400eaf9e9a4313cef8cd588a13e4c99">kynema_sgf::ABLWallFunction::m_inflow_outflow</a></div><div class="ttdeci">bool m_inflow_outflow</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:70</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a249f80dde841a03357016b24eac261ac"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a249f80dde841a03357016b24eac261ac">kynema_sgf::ABLWallFunction::update_umean</a></div><div class="ttdeci">void update_umean(const VelPlaneAveragingFine &amp;vpa, const FieldPlaneAveragingFine &amp;tpa)</div><div class="ttdoc">Update the mean velocity at a given timestep.</div><div class="ttdef"><b>Definition</b> ABLWallFunction.cpp:162</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a2ca6b0f342f81b0e458370c5f5afc7b0"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a2ca6b0f342f81b0e458370c5f5afc7b0">kynema_sgf::ABLWallFunction::~ABLWallFunction</a></div><div class="ttdeci">~ABLWallFunction()=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a494dd87b74fb683d19fd8bb8c70c9137"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a494dd87b74fb683d19fd8bb8c70c9137">kynema_sgf::ABLWallFunction::m_use_fch</a></div><div class="ttdeci">bool m_use_fch</div><div class="ttdoc">Use first cell height?</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a4a6d39862f677128840c42da4fb3d9d5"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a4a6d39862f677128840c42da4fb3d9d5">kynema_sgf::ABLWallFunction::m_mo</a></div><div class="ttdeci">MOData m_mo</div><div class="ttdoc">Monin-Obukhov instance.</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:52</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a567a83efcbfe6914d87f30ffa2b451ff"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a567a83efcbfe6914d87f30ffa2b451ff">kynema_sgf::ABLWallFunction::m_gravity</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_gravity</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:57</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a65986d04a9acf9f14f83358308542976"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a65986d04a9acf9f14f83358308542976">kynema_sgf::ABLWallFunction::m_surf_temp_timetable</a></div><div class="ttdeci">std::string m_surf_temp_timetable</div><div class="ttdoc">Ability to read in a table of surface temperature versus time.</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:60</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a6b3c19899549f142c3afb34ba7403c6d"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a6b3c19899549f142c3afb34ba7403c6d">kynema_sgf::ABLWallFunction::mo</a></div><div class="ttdeci">MOData &amp; mo()</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:30</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a73c35d1bf19bfdfc86f4cd534ac4499c"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a73c35d1bf19bfdfc86f4cd534ac4499c">kynema_sgf::ABLWallFunction::mo</a></div><div class="ttdeci">const MOData &amp; mo() const</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:31</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a801896541d3fbed96614480e21f89bf7"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a801896541d3fbed96614480e21f89bf7">kynema_sgf::ABLWallFunction::m_surf_temp_time</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_surf_temp_time</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:61</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a8d7a55dc5e2420bdf82270748d143b2f"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a8d7a55dc5e2420bdf82270748d143b2f">kynema_sgf::ABLWallFunction::m_wf_vel</a></div><div class="ttdeci">amrex::Array&lt; amrex::Real, 2 &gt; m_wf_vel</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:72</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a8fac5cc2a4ae847af4bf3b805c0051e1"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a8fac5cc2a4ae847af4bf3b805c0051e1">kynema_sgf::ABLWallFunction::init_log_law_height</a></div><div class="ttdeci">void init_log_law_height()</div><div class="ttdoc">Initialize the log-law height based on user inputs.</div><div class="ttdef"><b>Definition</b> ABLWallFunction.cpp:154</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_a94f29494c796c0e24bd91b2453a2447d"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#a94f29494c796c0e24bd91b2453a2447d">kynema_sgf::ABLWallFunction::m_direction</a></div><div class="ttdeci">int m_direction</div><div class="ttdoc">Direction normal to wall.</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:54</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_ab8eee9f06f8e4d9effe3f215c949c700"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#ab8eee9f06f8e4d9effe3f215c949c700">kynema_sgf::ABLWallFunction::m_sim</a></div><div class="ttdeci">const CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:47</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_acf838cae282f8873c7289efbd3f5da8c"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#acf838cae282f8873c7289efbd3f5da8c">kynema_sgf::ABLWallFunction::m_surf_temp_init</a></div><div class="ttdeci">amrex::Real m_surf_temp_init</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:68</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_ad32c03490a376f9405acd56d61e6f0ea"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#ad32c03490a376f9405acd56d61e6f0ea">kynema_sgf::ABLWallFunction::m_surf_temp_value</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_surf_temp_value</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:62</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_ad33616312143945296ca3f40f3c1ca89"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#ad33616312143945296ca3f40f3c1ca89">kynema_sgf::ABLWallFunction::utau</a></div><div class="ttdeci">amrex::Real utau() const</div><div class="ttdoc">Return the plane-averaged computed friction velocity at any given instance.</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:35</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_af1fb96220213b63cbba06960cfc95a87"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#af1fb96220213b63cbba06960cfc95a87">kynema_sgf::ABLWallFunction::m_mesh</a></div><div class="ttdeci">const amrex::AmrCore &amp; m_mesh</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:49</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_af93517d80bead8e91e8aad587bf02b40"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#af93517d80bead8e91e8aad587bf02b40">kynema_sgf::ABLWallFunction::m_surf_temp_rate_tstart</a></div><div class="ttdeci">amrex::Real m_surf_temp_rate_tstart</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:67</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_afb8e7e4442f0822d4ed3021f7b7040d1"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#afb8e7e4442f0822d4ed3021f7b7040d1">kynema_sgf::ABLWallFunction::m_wf_vmag</a></div><div class="ttdeci">amrex::Real m_wf_vmag</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:71</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html_afc1ddfd63867fe492c2a840fd7f986be"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html#afc1ddfd63867fe492c2a840fd7f986be">kynema_sgf::ABLWallFunction::m_surf_temp_rate</a></div><div class="ttdeci">amrex::Real m_surf_temp_rate</div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:66</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_b_c_iface_html"><div class="ttname"><a href="classkynema__sgf_1_1_field_b_c_iface.html">kynema_sgf::FieldBCIface</a></div><div class="ttdef"><b>Definition</b> FieldBCOps.H:32</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_vel_plane_averaging_fine_html"><div class="ttname"><a href="classkynema__sgf_1_1_vel_plane_averaging_fine.html">kynema_sgf::VelPlaneAveragingFine</a></div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:144</div></div>
+<div class="ttc" id="aconstants_8_h_html"><div class="ttname"><a href="constants_8_h.html">constants.H</a></div></div>
+<div class="ttc" id="agroup__fields_html_ga73fcb43d320747f8ced022629f36af1f"><div class="ttname"><a href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">kynema_sgf::FieldState</a></div><div class="ttdeci">FieldState</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:16</div></div>
+<div class="ttc" id="aincflo__enums_8_h_html_a682a1815cce6afdf9ccb32fedc064292a6e55e2ee14d93d50c4bc849a21816201"><div class="ttname"><a href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292a6e55e2ee14d93d50c4bc849a21816201">BC::wall_model</a></div><div class="ttdeci">@ wall_model</div><div class="ttdef"><b>Definition</b> incflo_enums.H:20</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1constants_html_a522e4cd8367efc48dae9370906ea304f"><div class="ttname"><a href="namespacekynema__sgf_1_1constants.html#a522e4cd8367efc48dae9370906ea304f">kynema_sgf::constants::LARGE_NUM</a></div><div class="ttdeci">static constexpr amrex::Real LARGE_NUM</div><div class="ttdoc">A large positive number.</div><div class="ttdef"><b>Definition</b> constants.H:29</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html_a8c8e6d5091635786c7f1da8075a837a9"><div class="ttname"><a href="namespacekynema__sgf.html#a8c8e6d5091635786c7f1da8075a837a9">kynema_sgf::FieldPlaneAveragingFine</a></div><div class="ttdeci">FPlaneAveragingFine&lt; Field &gt; FieldPlaneAveragingFine</div><div class="ttdef"><b>Definition</b> FieldPlaneAveragingFine.H:137</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_m_o_data_html"><div class="ttname"><a href="structkynema__sgf_1_1_m_o_data.html">kynema_sgf::MOData</a></div><div class="ttdef"><b>Definition</b> MOData.H:25</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

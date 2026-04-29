@@ -1,0 +1,1542 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: ext_turb::ExtTurbIface&amp;lt; SolverTurbine, SolverData &amp;gt; Class Template Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: ext_turb::ExtTurbIface&amp;lt; SolverTurbine, SolverData &amp;gt; Class Template Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classext__turb_1_1_ext_turb_iface.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="extturbiface-lt-solverturbine-solverdata-gt-class-template-reference">
+<h1>ExtTurbIface&amp;lt; SolverTurbine, SolverData &amp;gt; Class Template Reference<a class="headerlink" href="#extturbiface-lt-solverturbine-solverdata-gt-class-template-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: ext_turb::ExtTurbIface&lt; SolverTurbine, SolverData &gt; Class Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespaceext__turb.html">ext_turb</a></li><li class="navelem"><a href="classext__turb_1_1_ext_turb_iface.html">ExtTurbIface</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classext__turb_1_1_ext_turb_iface-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">ext_turb::ExtTurbIface&lt; SolverTurbine, SolverData &gt; Class Template Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_ext_turb_iface_8_h_source.html">ExtTurbIface.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for ext_turb::ExtTurbIface&lt; SolverTurbine, SolverData &gt;:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classext__turb_1_1_ext_turb_iface__inherit__graph.svg" width="246" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for ext_turb::ExtTurbIface&lt; SolverTurbine, SolverData &gt;:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classext__turb_1_1_ext_turb_iface__coll__graph.svg" width="100%" height="426"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a1f265bfb3da7f10b600634e6172fc688" id="r_a1f265bfb3da7f10b600634e6172fc688"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f265bfb3da7f10b600634e6172fc688">ExtTurbIface</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">::kynema_sgf::CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a9fc1c83eb2b55114c31bf21982294b4b" id="r_a9fc1c83eb2b55114c31bf21982294b4b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fc1c83eb2b55114c31bf21982294b4b">register_turbine</a> (SolverTurbine &amp;data)</td></tr>
+<tr class="memitem:af5ca65c71eba7ae7151b49650f2b7d2a" id="r_af5ca65c71eba7ae7151b49650f2b7d2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5ca65c71eba7ae7151b49650f2b7d2a">init_turbine</a> (const int local_id)</td></tr>
+<tr class="memitem:a70c96377114111fb54ed2950cb913d00" id="r_a70c96377114111fb54ed2950cb913d00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70c96377114111fb54ed2950cb913d00">advance_turbine</a> (const int local_id)</td></tr>
+<tr class="memitem:a2c18daf66cffd536e2e9fd5d4fa53225" id="r_a2c18daf66cffd536e2e9fd5d4fa53225"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c18daf66cffd536e2e9fd5d4fa53225">num_local_turbines</a> () const</td></tr>
+<tr class="memitem:a96f34f0a16dd26472d1966cd21d29e96" id="r_a96f34f0a16dd26472d1966cd21d29e96"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96f34f0a16dd26472d1966cd21d29e96">~ExtTurbIface</a> () override</td></tr>
+<tr class="memitem:a0ef7d2aed1c8799d37fb25b72b908b1d" id="r_a0ef7d2aed1c8799d37fb25b72b908b1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ef7d2aed1c8799d37fb25b72b908b1d">parse_inputs</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a> &amp;, const std::string &amp;)</td></tr>
+<tr class="memitem:a002d61ffc31651df136505bb53b10141" id="r_a002d61ffc31651df136505bb53b10141"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a002d61ffc31651df136505bb53b10141">init_solution</a> (const int local_id)</td></tr>
+<tr class="memitem:a2ece59d7da6245474d725b5f81dd0dc7" id="r_a2ece59d7da6245474d725b5f81dd0dc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ece59d7da6245474d725b5f81dd0dc7">get_hub_stats</a> (const int local_id)</td></tr>
+<tr class="memitem:a27726e965201c08c1961f6a12e7cb43a" id="r_a27726e965201c08c1961f6a12e7cb43a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27726e965201c08c1961f6a12e7cb43a">do_turbine_step</a> (SolverTurbine &amp;fi)</td></tr>
+<tr class="memitem:ae1429b3951c998578af62668edda6850" id="r_ae1429b3951c998578af62668edda6850"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1429b3951c998578af62668edda6850">write_turbine_checkpoint</a> (int &amp;tid)</td></tr>
+<tr class="memitem:a80b57fa7b042c0c882084f1ce35c38df" id="r_a80b57fa7b042c0c882084f1ce35c38df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80b57fa7b042c0c882084f1ce35c38df">~ExtTurbIface</a> ()</td></tr>
+<tr class="memitem:a5029266d5b4b978c23a455712c0514a8" id="r_a5029266d5b4b978c23a455712c0514a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5029266d5b4b978c23a455712c0514a8">parse_inputs</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a> &amp;sim, const std::string &amp;inp_name)</td></tr>
+<tr class="memitem:aeee48eb4f91bcec8f7fe3e0d42bbdc7b" id="r_aeee48eb4f91bcec8f7fe3e0d42bbdc7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeee48eb4f91bcec8f7fe3e0d42bbdc7b">init_solution</a> (const int local_id)</td></tr>
+<tr class="memitem:af27c91679927f0f753bb8e886fef7a8c" id="r_af27c91679927f0f753bb8e886fef7a8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af27c91679927f0f753bb8e886fef7a8c">get_hub_stats</a> (const int local_id)</td></tr>
+<tr class="memitem:a4ae43b59ae3a71460ba6549057ee4f2e" id="r_a4ae43b59ae3a71460ba6549057ee4f2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ae43b59ae3a71460ba6549057ee4f2e">do_turbine_step</a> (<a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a> &amp;fi)</td></tr>
+<tr class="memitem:aab35f1e37cf3041dce2b718d17ed73c1" id="r_aab35f1e37cf3041dce2b718d17ed73c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab35f1e37cf3041dce2b718d17ed73c1">write_turbine_checkpoint</a> (int &amp;tid)</td></tr>
+<tr class="memitem:afe54fbc86794d265425975e5e8b34384" id="r_afe54fbc86794d265425975e5e8b34384"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe54fbc86794d265425975e5e8b34384">~ExtTurbIface</a> ()</td></tr>
+<tr class="memitem:a29c2a9ae8cb42cca1879ca8a3e2e4989" id="r_a29c2a9ae8cb42cca1879ca8a3e2e4989"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29c2a9ae8cb42cca1879ca8a3e2e4989">parse_inputs</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a> &amp;sim, const std::string &amp;inp_name)</td></tr>
+<tr class="memitem:a1b5632c842d405a5738fd6e56f8aa12e" id="r_a1b5632c842d405a5738fd6e56f8aa12e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b5632c842d405a5738fd6e56f8aa12e">init_solution</a> (const int local_id)</td></tr>
+<tr class="memitem:a72516685efab1a43ff3ae2b0142a2cc0" id="r_a72516685efab1a43ff3ae2b0142a2cc0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72516685efab1a43ff3ae2b0142a2cc0">get_hub_stats</a> (const int local_id)</td></tr>
+<tr class="memitem:a740b0e5cb8abfa92f4b61493755fc22c" id="r_a740b0e5cb8abfa92f4b61493755fc22c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a740b0e5cb8abfa92f4b61493755fc22c">do_turbine_step</a> (<a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a> &amp;fi)</td></tr>
+<tr class="memitem:af7b73db697234ffecbd173669646b955" id="r_af7b73db697234ffecbd173669646b955"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7b73db697234ffecbd173669646b955">write_turbine_checkpoint</a> (int &amp;tid)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ab3c886c745a8e14bc4f9603b403a0a19" id="r_ab3c886c745a8e14bc4f9603b403a0a19"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3c886c745a8e14bc4f9603b403a0a19">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a9b0cc5f19f9ec9aac9c09f4c090182da" id="r_a9b0cc5f19f9ec9aac9c09f4c090182da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b0cc5f19f9ec9aac9c09f4c090182da">allocate_ext_turbines</a> ()</td></tr>
+<tr class="memitem:aa4be7a492f4dfefc35d91b69022eb110" id="r_aa4be7a492f4dfefc35d91b69022eb110"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4be7a492f4dfefc35d91b69022eb110">ext_init_turbine</a> (SolverTurbine &amp;)</td></tr>
+<tr class="memitem:aea083d16fbf7ca78fb81b797f85e6f82" id="r_aea083d16fbf7ca78fb81b797f85e6f82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea083d16fbf7ca78fb81b797f85e6f82">ext_restart_turbine</a> (SolverTurbine &amp;)</td></tr>
+<tr class="memitem:a1f6560f296938632710714c407c004b2" id="r_a1f6560f296938632710714c407c004b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f6560f296938632710714c407c004b2">ext_replay_turbine</a> (SolverTurbine &amp;)</td></tr>
+<tr class="memitem:a785b70675f4f6de32a37dbdf9faae1f8" id="r_a785b70675f4f6de32a37dbdf9faae1f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a785b70675f4f6de32a37dbdf9faae1f8">prepare_netcdf_file</a> (SolverTurbine &amp;)</td></tr>
+<tr class="memitem:a07675f8040a25084aba23fe209717f00" id="r_a07675f8040a25084aba23fe209717f00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07675f8040a25084aba23fe209717f00">write_velocity_data</a> (const SolverTurbine &amp;)</td></tr>
+<tr class="memitem:a38b456d653040140c704374302cde639" id="r_a38b456d653040140c704374302cde639"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38b456d653040140c704374302cde639">allocate_ext_turbines</a> ()</td></tr>
+<tr class="memitem:a8b864483ded12174c51fd6ea0dc167ae" id="r_a8b864483ded12174c51fd6ea0dc167ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b864483ded12174c51fd6ea0dc167ae">prepare_netcdf_file</a> (<a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a> &amp;)</td></tr>
+<tr class="memitem:a3cdb46d3a9c3e2df3dea4cfd52820011" id="r_a3cdb46d3a9c3e2df3dea4cfd52820011"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cdb46d3a9c3e2df3dea4cfd52820011">write_velocity_data</a> (const <a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a> &amp;)</td></tr>
+<tr class="memitem:a8a089423ea9186f425ed9e9e35dcd737" id="r_a8a089423ea9186f425ed9e9e35dcd737"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a089423ea9186f425ed9e9e35dcd737">read_velocity_data</a> (<a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a> &amp;, const <a class="el" href="classncutils_1_1_n_c_file.html">ncutils::NCFile</a> &amp;, const size_t)</td></tr>
+<tr class="memitem:ae550152ca2d3fb23003c927f9c65efc1" id="r_ae550152ca2d3fb23003c927f9c65efc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae550152ca2d3fb23003c927f9c65efc1">ext_init_turbine</a> (<a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a> &amp;fi)</td></tr>
+<tr class="memitem:a857b2198186a94f5bef9a3f04d46b4a6" id="r_a857b2198186a94f5bef9a3f04d46b4a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a857b2198186a94f5bef9a3f04d46b4a6">ext_replay_turbine</a> (<a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a> &amp;fi)</td></tr>
+<tr class="memitem:a13779ef0af976ca088382d3336b83b3a" id="r_a13779ef0af976ca088382d3336b83b3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13779ef0af976ca088382d3336b83b3a">ext_restart_turbine</a> (<a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a> &amp;fi)</td></tr>
+<tr class="memitem:a20077593aaed9fbe5cbf8f1bd11ab389" id="r_a20077593aaed9fbe5cbf8f1bd11ab389"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20077593aaed9fbe5cbf8f1bd11ab389">allocate_ext_turbines</a> ()</td></tr>
+<tr class="memitem:a323f8eae1b1185f552ae057062ad35b3" id="r_a323f8eae1b1185f552ae057062ad35b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a323f8eae1b1185f552ae057062ad35b3">prepare_netcdf_file</a> (<a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a> &amp;)</td></tr>
+<tr class="memitem:a5029c19551e73c3c9e72b40d21ff2324" id="r_a5029c19551e73c3c9e72b40d21ff2324"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5029c19551e73c3c9e72b40d21ff2324">write_velocity_data</a> (const <a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a> &amp;)</td></tr>
+<tr class="memitem:a097994f9694056c5cec1fccf5116c596" id="r_a097994f9694056c5cec1fccf5116c596"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a097994f9694056c5cec1fccf5116c596">read_velocity_data</a> (<a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a> &amp;, const <a class="el" href="classncutils_1_1_n_c_file.html">ncutils::NCFile</a> &amp;, const size_t)</td></tr>
+<tr class="memitem:a519d09428a387e293586eb1516bdc237" id="r_a519d09428a387e293586eb1516bdc237"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a519d09428a387e293586eb1516bdc237">ext_init_turbine</a> (<a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a> &amp;fi)</td></tr>
+<tr class="memitem:ac4d03e53d74778e75e774ea9dc5b818b" id="r_ac4d03e53d74778e75e774ea9dc5b818b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4d03e53d74778e75e774ea9dc5b818b">ext_replay_turbine</a> (<a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a> &amp;fi)</td></tr>
+<tr class="memitem:af62a9d83504b33d0d295c1a38d36033e" id="r_af62a9d83504b33d0d295c1a38d36033e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af62a9d83504b33d0d295c1a38d36033e">ext_restart_turbine</a> (<a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a> &amp;fi)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-static-methods" class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
+Static Protected Member Functions</h2></td></tr>
+<tr class="memitem:a3cc4d47399b6ca0368487e04037d2258" id="r_a3cc4d47399b6ca0368487e04037d2258"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cc4d47399b6ca0368487e04037d2258">read_velocity_data</a> (SolverTurbine &amp;, const <a class="el" href="classncutils_1_1_n_c_file.html">ncutils::NCFile</a> &amp;, const size_t tid)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a1a6bc41c8928b8b0ea11ca9bf3466ae8" id="r_a1a6bc41c8928b8b0ea11ca9bf3466ae8"><td class="memItemLeft" align="right" valign="top">std::map&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a6bc41c8928b8b0ea11ca9bf3466ae8">m_turbine_map</a></td></tr>
+<tr class="memdesc:a1a6bc41c8928b8b0ea11ca9bf3466ae8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global to local index lookup map.  <br /></td></tr>
+<tr class="memitem:a30c16fe7634909d00985ea00377647d5" id="r_a30c16fe7634909d00985ea00377647d5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; SolverTurbine * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30c16fe7634909d00985ea00377647d5">m_turbine_data</a></td></tr>
+<tr class="memitem:af6c657e3cfc4b2be9e6e771ae6482d21" id="r_af6c657e3cfc4b2be9e6e771ae6482d21"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6c657e3cfc4b2be9e6e771ae6482d21">m_dt_cfd</a> {0.0_rt}</td></tr>
+<tr class="memitem:a10bca156003b9d6141dbcda497540a38" id="r_a10bca156003b9d6141dbcda497540a38"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10bca156003b9d6141dbcda497540a38">m_start_time</a> {0.0_rt}</td></tr>
+<tr class="memitem:a06bf82057d3585639286307d860b8079" id="r_a06bf82057d3585639286307d860b8079"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06bf82057d3585639286307d860b8079">m_stop_time</a> {-1.0_rt}</td></tr>
+<tr class="memitem:a4cb8801a5cec179891009ab094401d72" id="r_a4cb8801a5cec179891009ab094401d72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547">::ext_turb::SimMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4cb8801a5cec179891009ab094401d72">m_sim_mode</a> {<a class="el" href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547ae37f0136aa3ffaf149b351f6a4c948e9">::ext_turb::SimMode::init</a>}</td></tr>
+<tr class="memitem:adc3b1b107f7f78ca703c35d8946ccd5b" id="r_adc3b1b107f7f78ca703c35d8946ccd5b"><td class="memItemLeft" align="right" valign="top">SolverData&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc3b1b107f7f78ca703c35d8946ccd5b">m_solver_data</a></td></tr>
+<tr class="memitem:a7aedff07b766294217672c0e02d1e300" id="r_a7aedff07b766294217672c0e02d1e300"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7aedff07b766294217672c0e02d1e300">m_is_initialized</a> {false}</td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a1f265bfb3da7f10b600634e6172fc688" name="a1f265bfb3da7f10b600634e6172fc688"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f265bfb3da7f10b600634e6172fc688">&#9670;&#160;</a></span>ExtTurbIface()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::ExtTurbIface </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">::kynema_sgf::CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a96f34f0a16dd26472d1966cd21d29e96" name="a96f34f0a16dd26472d1966cd21d29e96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96f34f0a16dd26472d1966cd21d29e96">&#9670;&#160;</a></span>~ExtTurbIface() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::~<a class="el" href="classext__turb_1_1_ext_turb_iface.html">ExtTurbIface</a> </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a80b57fa7b042c0c882084f1ce35c38df" name="a80b57fa7b042c0c882084f1ce35c38df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80b57fa7b042c0c882084f1ce35c38df">&#9670;&#160;</a></span>~ExtTurbIface() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a>, <a class="el" href="structext__turb_1_1_fast_solver_data.html">FastSolverData</a> &gt;::~<a class="el" href="classext__turb_1_1_ext_turb_iface.html">ExtTurbIface</a> </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afe54fbc86794d265425975e5e8b34384" name="afe54fbc86794d265425975e5e8b34384"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe54fbc86794d265425975e5e8b34384">&#9670;&#160;</a></span>~ExtTurbIface() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a>, <a class="el" href="structext__turb_1_1_kynema_solver_data.html">KynemaSolverData</a> &gt;::~<a class="el" href="classext__turb_1_1_ext_turb_iface.html">ExtTurbIface</a> </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a70c96377114111fb54ed2950cb913d00" name="a70c96377114111fb54ed2950cb913d00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70c96377114111fb54ed2950cb913d00">&#9670;&#160;</a></span>advance_turbine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::advance_turbine </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>local_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9b0cc5f19f9ec9aac9c09f4c090182da" name="a9b0cc5f19f9ec9aac9c09f4c090182da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b0cc5f19f9ec9aac9c09f4c090182da">&#9670;&#160;</a></span>allocate_ext_turbines() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::allocate_ext_turbines </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a38b456d653040140c704374302cde639" name="a38b456d653040140c704374302cde639"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38b456d653040140c704374302cde639">&#9670;&#160;</a></span>allocate_ext_turbines() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a>, <a class="el" href="structext__turb_1_1_fast_solver_data.html">FastSolverData</a> &gt;::allocate_ext_turbines </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a20077593aaed9fbe5cbf8f1bd11ab389" name="a20077593aaed9fbe5cbf8f1bd11ab389"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20077593aaed9fbe5cbf8f1bd11ab389">&#9670;&#160;</a></span>allocate_ext_turbines() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a>, <a class="el" href="structext__turb_1_1_kynema_solver_data.html">KynemaSolverData</a> &gt;::allocate_ext_turbines </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4ae43b59ae3a71460ba6549057ee4f2e" name="a4ae43b59ae3a71460ba6549057ee4f2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ae43b59ae3a71460ba6549057ee4f2e">&#9670;&#160;</a></span>do_turbine_step() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a>, <a class="el" href="structext__turb_1_1_fast_solver_data.html">FastSolverData</a> &gt;::do_turbine_step </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a740b0e5cb8abfa92f4b61493755fc22c" name="a740b0e5cb8abfa92f4b61493755fc22c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a740b0e5cb8abfa92f4b61493755fc22c">&#9670;&#160;</a></span>do_turbine_step() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a>, <a class="el" href="structext__turb_1_1_kynema_solver_data.html">KynemaSolverData</a> &gt;::do_turbine_step </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a27726e965201c08c1961f6a12e7cb43a" name="a27726e965201c08c1961f6a12e7cb43a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27726e965201c08c1961f6a12e7cb43a">&#9670;&#160;</a></span>do_turbine_step() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::do_turbine_step </td>
+          <td>(</td>
+          <td class="paramtype">SolverTurbine &amp;</td>          <td class="paramname"><span class="paramname"><em>fi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae550152ca2d3fb23003c927f9c65efc1" name="ae550152ca2d3fb23003c927f9c65efc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae550152ca2d3fb23003c927f9c65efc1">&#9670;&#160;</a></span>ext_init_turbine() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a>, <a class="el" href="structext__turb_1_1_fast_solver_data.html">FastSolverData</a> &gt;::ext_init_turbine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a519d09428a387e293586eb1516bdc237" name="a519d09428a387e293586eb1516bdc237"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a519d09428a387e293586eb1516bdc237">&#9670;&#160;</a></span>ext_init_turbine() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a>, <a class="el" href="structext__turb_1_1_kynema_solver_data.html">KynemaSolverData</a> &gt;::ext_init_turbine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa4be7a492f4dfefc35d91b69022eb110" name="aa4be7a492f4dfefc35d91b69022eb110"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4be7a492f4dfefc35d91b69022eb110">&#9670;&#160;</a></span>ext_init_turbine() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::ext_init_turbine </td>
+          <td>(</td>
+          <td class="paramtype">SolverTurbine &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a857b2198186a94f5bef9a3f04d46b4a6" name="a857b2198186a94f5bef9a3f04d46b4a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a857b2198186a94f5bef9a3f04d46b4a6">&#9670;&#160;</a></span>ext_replay_turbine() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a>, <a class="el" href="structext__turb_1_1_fast_solver_data.html">FastSolverData</a> &gt;::ext_replay_turbine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac4d03e53d74778e75e774ea9dc5b818b" name="ac4d03e53d74778e75e774ea9dc5b818b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4d03e53d74778e75e774ea9dc5b818b">&#9670;&#160;</a></span>ext_replay_turbine() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a>, <a class="el" href="structext__turb_1_1_kynema_solver_data.html">KynemaSolverData</a> &gt;::ext_replay_turbine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1f6560f296938632710714c407c004b2" name="a1f6560f296938632710714c407c004b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f6560f296938632710714c407c004b2">&#9670;&#160;</a></span>ext_replay_turbine() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::ext_replay_turbine </td>
+          <td>(</td>
+          <td class="paramtype">SolverTurbine &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a13779ef0af976ca088382d3336b83b3a" name="a13779ef0af976ca088382d3336b83b3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13779ef0af976ca088382d3336b83b3a">&#9670;&#160;</a></span>ext_restart_turbine() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a>, <a class="el" href="structext__turb_1_1_fast_solver_data.html">FastSolverData</a> &gt;::ext_restart_turbine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af62a9d83504b33d0d295c1a38d36033e" name="af62a9d83504b33d0d295c1a38d36033e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af62a9d83504b33d0d295c1a38d36033e">&#9670;&#160;</a></span>ext_restart_turbine() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a>, <a class="el" href="structext__turb_1_1_kynema_solver_data.html">KynemaSolverData</a> &gt;::ext_restart_turbine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aea083d16fbf7ca78fb81b797f85e6f82" name="aea083d16fbf7ca78fb81b797f85e6f82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea083d16fbf7ca78fb81b797f85e6f82">&#9670;&#160;</a></span>ext_restart_turbine() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::ext_restart_turbine </td>
+          <td>(</td>
+          <td class="paramtype">SolverTurbine &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2ece59d7da6245474d725b5f81dd0dc7" name="a2ece59d7da6245474d725b5f81dd0dc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ece59d7da6245474d725b5f81dd0dc7">&#9670;&#160;</a></span>get_hub_stats() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::get_hub_stats </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>local_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af27c91679927f0f753bb8e886fef7a8c" name="af27c91679927f0f753bb8e886fef7a8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af27c91679927f0f753bb8e886fef7a8c">&#9670;&#160;</a></span>get_hub_stats() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a>, <a class="el" href="structext__turb_1_1_fast_solver_data.html">FastSolverData</a> &gt;::get_hub_stats </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>local_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a72516685efab1a43ff3ae2b0142a2cc0" name="a72516685efab1a43ff3ae2b0142a2cc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72516685efab1a43ff3ae2b0142a2cc0">&#9670;&#160;</a></span>get_hub_stats() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a>, <a class="el" href="structext__turb_1_1_kynema_solver_data.html">KynemaSolverData</a> &gt;::get_hub_stats </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>local_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab3c886c745a8e14bc4f9603b403a0a19" name="ab3c886c745a8e14bc4f9603b403a0a19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3c886c745a8e14bc4f9603b403a0a19">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a002d61ffc31651df136505bb53b10141" name="a002d61ffc31651df136505bb53b10141"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a002d61ffc31651df136505bb53b10141">&#9670;&#160;</a></span>init_solution() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::init_solution </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>local_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeee48eb4f91bcec8f7fe3e0d42bbdc7b" name="aeee48eb4f91bcec8f7fe3e0d42bbdc7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeee48eb4f91bcec8f7fe3e0d42bbdc7b">&#9670;&#160;</a></span>init_solution() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a>, <a class="el" href="structext__turb_1_1_fast_solver_data.html">FastSolverData</a> &gt;::init_solution </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>local_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b5632c842d405a5738fd6e56f8aa12e" name="a1b5632c842d405a5738fd6e56f8aa12e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b5632c842d405a5738fd6e56f8aa12e">&#9670;&#160;</a></span>init_solution() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a>, <a class="el" href="structext__turb_1_1_kynema_solver_data.html">KynemaSolverData</a> &gt;::init_solution </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>local_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af5ca65c71eba7ae7151b49650f2b7d2a" name="af5ca65c71eba7ae7151b49650f2b7d2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5ca65c71eba7ae7151b49650f2b7d2a">&#9670;&#160;</a></span>init_turbine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::init_turbine </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>local_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2c18daf66cffd536e2e9fd5d4fa53225" name="a2c18daf66cffd536e2e9fd5d4fa53225"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c18daf66cffd536e2e9fd5d4fa53225">&#9670;&#160;</a></span>num_local_turbines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::num_local_turbines </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0ef7d2aed1c8799d37fb25b72b908b1d" name="a0ef7d2aed1c8799d37fb25b72b908b1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ef7d2aed1c8799d37fb25b72b908b1d">&#9670;&#160;</a></span>parse_inputs() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::parse_inputs </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5029266d5b4b978c23a455712c0514a8" name="a5029266d5b4b978c23a455712c0514a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5029266d5b4b978c23a455712c0514a8">&#9670;&#160;</a></span>parse_inputs() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a>, <a class="el" href="structext__turb_1_1_fast_solver_data.html">FastSolverData</a> &gt;::parse_inputs </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>inp_name</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a29c2a9ae8cb42cca1879ca8a3e2e4989" name="a29c2a9ae8cb42cca1879ca8a3e2e4989"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29c2a9ae8cb42cca1879ca8a3e2e4989">&#9670;&#160;</a></span>parse_inputs() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a>, <a class="el" href="structext__turb_1_1_kynema_solver_data.html">KynemaSolverData</a> &gt;::parse_inputs </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>inp_name</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8b864483ded12174c51fd6ea0dc167ae" name="a8b864483ded12174c51fd6ea0dc167ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b864483ded12174c51fd6ea0dc167ae">&#9670;&#160;</a></span>prepare_netcdf_file() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a>, <a class="el" href="structext__turb_1_1_fast_solver_data.html">FastSolverData</a> &gt;::prepare_netcdf_file </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a323f8eae1b1185f552ae057062ad35b3" name="a323f8eae1b1185f552ae057062ad35b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a323f8eae1b1185f552ae057062ad35b3">&#9670;&#160;</a></span>prepare_netcdf_file() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a>, <a class="el" href="structext__turb_1_1_kynema_solver_data.html">KynemaSolverData</a> &gt;::prepare_netcdf_file </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a785b70675f4f6de32a37dbdf9faae1f8" name="a785b70675f4f6de32a37dbdf9faae1f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a785b70675f4f6de32a37dbdf9faae1f8">&#9670;&#160;</a></span>prepare_netcdf_file() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::prepare_netcdf_file </td>
+          <td>(</td>
+          <td class="paramtype">SolverTurbine &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8a089423ea9186f425ed9e9e35dcd737" name="a8a089423ea9186f425ed9e9e35dcd737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a089423ea9186f425ed9e9e35dcd737">&#9670;&#160;</a></span>read_velocity_data() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a>, <a class="el" href="structext__turb_1_1_fast_solver_data.html">FastSolverData</a> &gt;::read_velocity_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classncutils_1_1_n_c_file.html">ncutils::NCFile</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a097994f9694056c5cec1fccf5116c596" name="a097994f9694056c5cec1fccf5116c596"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a097994f9694056c5cec1fccf5116c596">&#9670;&#160;</a></span>read_velocity_data() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a>, <a class="el" href="structext__turb_1_1_kynema_solver_data.html">KynemaSolverData</a> &gt;::read_velocity_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classncutils_1_1_n_c_file.html">ncutils::NCFile</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3cc4d47399b6ca0368487e04037d2258" name="a3cc4d47399b6ca0368487e04037d2258"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cc4d47399b6ca0368487e04037d2258">&#9670;&#160;</a></span>read_velocity_data() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::read_velocity_data </td>
+          <td>(</td>
+          <td class="paramtype">SolverTurbine &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classncutils_1_1_n_c_file.html">ncutils::NCFile</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>tid</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9fc1c83eb2b55114c31bf21982294b4b" name="a9fc1c83eb2b55114c31bf21982294b4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fc1c83eb2b55114c31bf21982294b4b">&#9670;&#160;</a></span>register_turbine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::register_turbine </td>
+          <td>(</td>
+          <td class="paramtype">SolverTurbine &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae1429b3951c998578af62668edda6850" name="ae1429b3951c998578af62668edda6850"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1429b3951c998578af62668edda6850">&#9670;&#160;</a></span>write_turbine_checkpoint() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::write_turbine_checkpoint </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>tid</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab35f1e37cf3041dce2b718d17ed73c1" name="aab35f1e37cf3041dce2b718d17ed73c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab35f1e37cf3041dce2b718d17ed73c1">&#9670;&#160;</a></span>write_turbine_checkpoint() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a>, <a class="el" href="structext__turb_1_1_fast_solver_data.html">FastSolverData</a> &gt;::write_turbine_checkpoint </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>tid</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af7b73db697234ffecbd173669646b955" name="af7b73db697234ffecbd173669646b955"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7b73db697234ffecbd173669646b955">&#9670;&#160;</a></span>write_turbine_checkpoint() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a>, <a class="el" href="structext__turb_1_1_kynema_solver_data.html">KynemaSolverData</a> &gt;::write_turbine_checkpoint </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>tid</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3cdb46d3a9c3e2df3dea4cfd52820011" name="a3cdb46d3a9c3e2df3dea4cfd52820011"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cdb46d3a9c3e2df3dea4cfd52820011">&#9670;&#160;</a></span>write_velocity_data() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a>, <a class="el" href="structext__turb_1_1_fast_solver_data.html">FastSolverData</a> &gt;::write_velocity_data </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structext__turb_1_1_fast_turbine.html">FastTurbine</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5029c19551e73c3c9e72b40d21ff2324" name="a5029c19551e73c3c9e72b40d21ff2324"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5029c19551e73c3c9e72b40d21ff2324">&#9670;&#160;</a></span>write_velocity_data() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; <a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a>, <a class="el" href="structext__turb_1_1_kynema_solver_data.html">KynemaSolverData</a> &gt;::write_velocity_data </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a07675f8040a25084aba23fe209717f00" name="a07675f8040a25084aba23fe209717f00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07675f8040a25084aba23fe209717f00">&#9670;&#160;</a></span>write_velocity_data() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::write_velocity_data </td>
+          <td>(</td>
+          <td class="paramtype">const SolverTurbine &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="af6c657e3cfc4b2be9e6e771ae6482d21" name="af6c657e3cfc4b2be9e6e771ae6482d21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6c657e3cfc4b2be9e6e771ae6482d21">&#9670;&#160;</a></span>m_dt_cfd</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::m_dt_cfd {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7aedff07b766294217672c0e02d1e300" name="a7aedff07b766294217672c0e02d1e300"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aedff07b766294217672c0e02d1e300">&#9670;&#160;</a></span>m_is_initialized</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::m_is_initialized {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4cb8801a5cec179891009ab094401d72" name="a4cb8801a5cec179891009ab094401d72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cb8801a5cec179891009ab094401d72">&#9670;&#160;</a></span>m_sim_mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547">::ext_turb::SimMode</a> <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::m_sim_mode {<a class="el" href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547ae37f0136aa3ffaf149b351f6a4c948e9">::ext_turb::SimMode::init</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adc3b1b107f7f78ca703c35d8946ccd5b" name="adc3b1b107f7f78ca703c35d8946ccd5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc3b1b107f7f78ca703c35d8946ccd5b">&#9670;&#160;</a></span>m_solver_data</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SolverData <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::m_solver_data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a10bca156003b9d6141dbcda497540a38" name="a10bca156003b9d6141dbcda497540a38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10bca156003b9d6141dbcda497540a38">&#9670;&#160;</a></span>m_start_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::m_start_time {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a06bf82057d3585639286307d860b8079" name="a06bf82057d3585639286307d860b8079"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06bf82057d3585639286307d860b8079">&#9670;&#160;</a></span>m_stop_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::m_stop_time {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a30c16fe7634909d00985ea00377647d5" name="a30c16fe7634909d00985ea00377647d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30c16fe7634909d00985ea00377647d5">&#9670;&#160;</a></span>m_turbine_data</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;SolverTurbine*&gt; <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::m_turbine_data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1a6bc41c8928b8b0ea11ca9bf3466ae8" name="a1a6bc41c8928b8b0ea11ca9bf3466ae8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a6bc41c8928b8b0ea11ca9bf3466ae8">&#9670;&#160;</a></span>m_turbine_map</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SolverTurbine, typename SolverData&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;int, int&gt; <a class="el" href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a>&lt; SolverTurbine, SolverData &gt;::m_turbine_map</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Global to local index lookup map. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/external/<a class="el" href="_ext_turb_iface_8_h_source.html">ExtTurbIface.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

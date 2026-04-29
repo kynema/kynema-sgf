@@ -1,0 +1,2578 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::SimTime Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::SimTime Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_sim_time.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="simtime-class-reference">
+<h1>SimTime Class Reference<a class="headerlink" href="#simtime-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::SimTime Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_sim_time.html">SimTime</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_sim_time-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::SimTime Class Reference<div class="ingroups"><a class="el" href="group__core.html">Kynema-SGF core</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_sim_time_8_h_source.html">SimTime.H</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::SimTime:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_sim_time__coll__graph.svg" width="278" height="324"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a00da6c6e89df5d97dec91791ca1fa19f" id="r_a00da6c6e89df5d97dec91791ca1fa19f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00da6c6e89df5d97dec91791ca1fa19f">SimTime</a> ()=default</td></tr>
+<tr class="memitem:a1484bdac01a2427ac6da9282c7d0e877" id="r_a1484bdac01a2427ac6da9282c7d0e877"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1484bdac01a2427ac6da9282c7d0e877">~SimTime</a> ()=default</td></tr>
+<tr class="memitem:ad465921e385be4472a27bd18602f3da2" id="r_ad465921e385be4472a27bd18602f3da2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad465921e385be4472a27bd18602f3da2">new_timestep</a> ()</td></tr>
+<tr class="memitem:adec1863eb9831cc5e4ba53bcb36c7568" id="r_adec1863eb9831cc5e4ba53bcb36c7568"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adec1863eb9831cc5e4ba53bcb36c7568">continue_simulation</a> () const</td></tr>
+<tr class="memitem:a347b6f00ccb49fdbcd2c6652f13aab98" id="r_a347b6f00ccb49fdbcd2c6652f13aab98"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a347b6f00ccb49fdbcd2c6652f13aab98">do_regrid</a> () const</td></tr>
+<tr class="memitem:a233de5f4faeacaedc5af8686129ce2c4" id="r_a233de5f4faeacaedc5af8686129ce2c4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a233de5f4faeacaedc5af8686129ce2c4">write_plot_file</a> () const</td></tr>
+<tr class="memitem:a8b03684a42880873386549c51877df10" id="r_a8b03684a42880873386549c51877df10"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b03684a42880873386549c51877df10">write_checkpoint</a> () const</td></tr>
+<tr class="memitem:a47b2a03f3264843978fed17058447862" id="r_a47b2a03f3264843978fed17058447862"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47b2a03f3264843978fed17058447862">write_last_plot_file</a> () const</td></tr>
+<tr class="memitem:a791ee13e05f7d79f2e125ccaa67ac1cb" id="r_a791ee13e05f7d79f2e125ccaa67ac1cb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a791ee13e05f7d79f2e125ccaa67ac1cb">write_last_checkpoint</a> () const</td></tr>
+<tr class="memitem:ac1fc46b85fbb35bda294869b6aa13713" id="r_ac1fc46b85fbb35bda294869b6aa13713"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1fc46b85fbb35bda294869b6aa13713">set_current_cfl</a> (amrex::Real conv_cfl, amrex::Real diff_cfl, amrex::Real src_cfl)</td></tr>
+<tr class="memitem:a827e7d452032ab4e4e18c781b93101f6" id="r_a827e7d452032ab4e4e18c781b93101f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a827e7d452032ab4e4e18c781b93101f6">advance_time</a> ()</td></tr>
+<tr class="memitem:a6dec05dd058bdf1f6a4efd62f7ae0ef5" id="r_a6dec05dd058bdf1f6a4efd62f7ae0ef5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6dec05dd058bdf1f6a4efd62f7ae0ef5">set_restart_time</a> (int tidx, amrex::Real time)</td></tr>
+<tr class="memitem:a32cd21c192803ea79007c2e37ebe5b86" id="r_a32cd21c192803ea79007c2e37ebe5b86"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32cd21c192803ea79007c2e37ebe5b86">delta_t</a> () const</td></tr>
+<tr class="memitem:a45fb1d1e9d082763f490acca598ce94b" id="r_a45fb1d1e9d082763f490acca598ce94b"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE amrex::Real &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45fb1d1e9d082763f490acca598ce94b">delta_t</a> ()</td></tr>
+<tr class="memitem:ad0856ef14b32c94d17b2d4f126c0e32e" id="r_ad0856ef14b32c94d17b2d4f126c0e32e"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0856ef14b32c94d17b2d4f126c0e32e">delta_t_nm1</a> () const</td></tr>
+<tr class="memitem:aa1f0a7108fcb2d9c5c5318698e861bcd" id="r_aa1f0a7108fcb2d9c5c5318698e861bcd"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1f0a7108fcb2d9c5c5318698e861bcd">delta_t_nm2</a> () const</td></tr>
+<tr class="memitem:a726eaa772899bdb1ef9a054beb23b9ea" id="r_a726eaa772899bdb1ef9a054beb23b9ea"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE amrex::Real &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a726eaa772899bdb1ef9a054beb23b9ea">delta_t_nm1</a> ()</td></tr>
+<tr class="memitem:aee2498f438f45dc14f9fe0e2fc0fa9df" id="r_aee2498f438f45dc14f9fe0e2fc0fa9df"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE amrex::Real &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee2498f438f45dc14f9fe0e2fc0fa9df">delta_t_nm2</a> ()</td></tr>
+<tr class="memitem:af80d8e20dd65cc3b935829f73a7f932a" id="r_af80d8e20dd65cc3b935829f73a7f932a"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af80d8e20dd65cc3b935829f73a7f932a">current_time</a> () const</td></tr>
+<tr class="memitem:a26241950cd9bbd698def9cd9c144a742" id="r_a26241950cd9bbd698def9cd9c144a742"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE amrex::Real &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26241950cd9bbd698def9cd9c144a742">current_time</a> ()</td></tr>
+<tr class="memitem:a9a2700c635d4090f4a1aedc024afb64c" id="r_a9a2700c635d4090f4a1aedc024afb64c"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a2700c635d4090f4a1aedc024afb64c">new_time</a> () const</td></tr>
+<tr class="memitem:a8a400b6b6fd880137722a25cda270343" id="r_a8a400b6b6fd880137722a25cda270343"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a400b6b6fd880137722a25cda270343">max_cfl</a> () const</td></tr>
+<tr class="memitem:a6b90869c3bc335fc7f64cc532eea70ee" id="r_a6b90869c3bc335fc7f64cc532eea70ee"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b90869c3bc335fc7f64cc532eea70ee">get_minimum_enforce_dt_abs_tol</a> () const</td></tr>
+<tr class="memitem:adf38fd5a1c335746f3a514d2ba58732f" id="r_adf38fd5a1c335746f3a514d2ba58732f"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf38fd5a1c335746f3a514d2ba58732f">time_index</a> () const</td></tr>
+<tr class="memitem:a41c55dc85a454116e6d87edda0c71958" id="r_a41c55dc85a454116e6d87edda0c71958"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE int &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41c55dc85a454116e6d87edda0c71958">time_index</a> ()</td></tr>
+<tr class="memitem:a0dc66aded963c07a13ab66b04a7e0909" id="r_a0dc66aded963c07a13ab66b04a7e0909"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0dc66aded963c07a13ab66b04a7e0909">adaptive_timestep</a> () const</td></tr>
+<tr class="memitem:ab839b47f4f407929ab37830614026d57" id="r_ab839b47f4f407929ab37830614026d57"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab839b47f4f407929ab37830614026d57">use_force_cfl</a> () const</td></tr>
+<tr class="memitem:ab9970daf05453d428b867c28320a67a4" id="r_ab9970daf05453d428b867c28320a67a4"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9970daf05453d428b867c28320a67a4">regrid_interval</a> () const</td></tr>
+<tr class="memitem:a5dfedc8ff8375161cea3e9ac82a07d76" id="r_a5dfedc8ff8375161cea3e9ac82a07d76"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5dfedc8ff8375161cea3e9ac82a07d76">start_time</a> () const</td></tr>
+<tr class="memitem:a3fbc8100ab07e9aa933c8e3b65c62af2" id="r_a3fbc8100ab07e9aa933c8e3b65c62af2"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3fbc8100ab07e9aa933c8e3b65c62af2">stop_time</a> () const</td></tr>
+<tr class="memitem:abf989d3e77c8d0265ec5cc6861750ef4" id="r_abf989d3e77c8d0265ec5cc6861750ef4"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf989d3e77c8d0265ec5cc6861750ef4">start_time_index</a> () const</td></tr>
+<tr class="memitem:a68c2c030fda7545444de8112b46b84cb" id="r_a68c2c030fda7545444de8112b46b84cb"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68c2c030fda7545444de8112b46b84cb">stop_time_index</a> () const</td></tr>
+<tr class="memitem:a3112935684b03d82c60dd9aa3c5fc5bd" id="r_a3112935684b03d82c60dd9aa3c5fc5bd"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3112935684b03d82c60dd9aa3c5fc5bd">chkpt_interval</a> () const</td></tr>
+<tr class="memitem:a505778f8c30a3aca804e5e2b23a0c4a5" id="r_a505778f8c30a3aca804e5e2b23a0c4a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a505778f8c30a3aca804e5e2b23a0c4a5">parse_parameters</a> ()</td></tr>
+<tr class="memdesc:a505778f8c30a3aca804e5e2b23a0c4a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read user defined options from input file.  <br /></td></tr>
+<tr class="memitem:adbf0a3401d7af821eec47c47df9e70e1" id="r_adbf0a3401d7af821eec47c47df9e70e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbf0a3401d7af821eec47c47df9e70e1">add_postproc_dt_parameters</a> (const bool enforce_dt_flag, const amrex::Real enforce_dt_tol, const amrex::Real time_interval, const amrex::Real time_delay)</td></tr>
+<tr class="memdesc:adbf0a3401d7af821eec47c47df9e70e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get timestep considerations from postprocessing instances.  <br /></td></tr>
+<tr class="memitem:a540ce63d9a8c349ddd4277c1a8590da7" id="r_a540ce63d9a8c349ddd4277c1a8590da7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a540ce63d9a8c349ddd4277c1a8590da7">calculate_minimum_enforce_dt_abs_tol</a> ()</td></tr>
+<tr class="memdesc:a540ce63d9a8c349ddd4277c1a8590da7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate minimum enforce dt tolerance based on all considerations.  <br /></td></tr>
+<tr class="memitem:a8f560f1a17a5ab07370ae707362b6e91" id="r_a8f560f1a17a5ab07370ae707362b6e91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f560f1a17a5ab07370ae707362b6e91">override_simulation_end_parameters</a> ()</td></tr>
+<tr class="memdesc:a8f560f1a17a5ab07370ae707362b6e91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deactivate ending parameters (overset should be externally controlled)  <br /></td></tr>
+<tr class="memitem:a8e48a97361d37c6bb63bb73ff220f895" id="r_a8e48a97361d37c6bb63bb73ff220f895"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e48a97361d37c6bb63bb73ff220f895">output_profiling_info</a> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a7f2e0f0dd274ec8d53af57bf113b1d09" id="r_a7f2e0f0dd274ec8d53af57bf113b1d09"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f2e0f0dd274ec8d53af57bf113b1d09">max_time_states</a> = 3</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a0220a795df5fce05b6ca56d2398c1a54" id="r_a0220a795df5fce05b6ca56d2398c1a54"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0220a795df5fce05b6ca56d2398c1a54">m_dt</a></td></tr>
+<tr class="memdesc:a0220a795df5fce05b6ca56d2398c1a54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timestep sizes.  <br /></td></tr>
+<tr class="memitem:a6c5e299ddbfb5960545f8ab56ff78d42" id="r_a6c5e299ddbfb5960545f8ab56ff78d42"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c5e299ddbfb5960545f8ab56ff78d42">m_cur_time</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a6c5e299ddbfb5960545f8ab56ff78d42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current simulation time.  <br /></td></tr>
+<tr class="memitem:a402e9afcefef510136fce46951a99b78" id="r_a402e9afcefef510136fce46951a99b78"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a402e9afcefef510136fce46951a99b78">m_new_time</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a402e9afcefef510136fce46951a99b78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time where a new timestep will advance to.  <br /></td></tr>
+<tr class="memitem:aa4014f8c077349c4f4b1678965056399" id="r_aa4014f8c077349c4f4b1678965056399"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4014f8c077349c4f4b1678965056399">m_start_time</a> {0.0_rt}</td></tr>
+<tr class="memdesc:aa4014f8c077349c4f4b1678965056399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starting simulation time (to track restart)  <br /></td></tr>
+<tr class="memitem:ac9d639bf597cb7de649589316722d050" id="r_ac9d639bf597cb7de649589316722d050"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac9d639bf597cb7de649589316722d050">m_stop_time</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:ac9d639bf597cb7de649589316722d050"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max time for simulation.  <br /></td></tr>
+<tr class="memitem:a9b8fd9eee006d9e5b3faf1b871cca7b2" id="r_a9b8fd9eee006d9e5b3faf1b871cca7b2"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b8fd9eee006d9e5b3faf1b871cca7b2">m_delay_time</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:a9b8fd9eee006d9e5b3faf1b871cca7b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delayed adaptive stepping.  <br /></td></tr>
+<tr class="memitem:aea754123ab32cf29fc86458923c56057" id="r_aea754123ab32cf29fc86458923c56057"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea754123ab32cf29fc86458923c56057">m_max_cfl</a> {1.0_rt}</td></tr>
+<tr class="memdesc:aea754123ab32cf29fc86458923c56057"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum CFL constraint.  <br /></td></tr>
+<tr class="memitem:a6531b5188b0b74a77c2850fe2ab53d00" id="r_a6531b5188b0b74a77c2850fe2ab53d00"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6531b5188b0b74a77c2850fe2ab53d00">m_fixed_dt</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:a6531b5188b0b74a77c2850fe2ab53d00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fixed delta_t indicated by user.  <br /></td></tr>
+<tr class="memitem:ad2ba4cc847077f83422e2fe7dbc966fd" id="r_ad2ba4cc847077f83422e2fe7dbc966fd"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2ba4cc847077f83422e2fe7dbc966fd">m_initial_dt</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:ad2ba4cc847077f83422e2fe7dbc966fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial delta_t indicated by user.  <br /></td></tr>
+<tr class="memitem:a9c3a25d5582f8edc5806d626fa7a7aff" id="r_a9c3a25d5582f8edc5806d626fa7a7aff"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c3a25d5582f8edc5806d626fa7a7aff">m_max_dt</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:a9c3a25d5582f8edc5806d626fa7a7aff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum delta_t indicated by user.  <br /></td></tr>
+<tr class="memitem:a20bfa4931eeccd9b20e0903aac8d6946" id="r_a20bfa4931eeccd9b20e0903aac8d6946"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20bfa4931eeccd9b20e0903aac8d6946">m_min_dt</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:a20bfa4931eeccd9b20e0903aac8d6946"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum delta_t indicated by user.  <br /></td></tr>
+<tr class="memitem:a3812309cefa578c756ef5ab68fe21407" id="r_a3812309cefa578c756ef5ab68fe21407"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3812309cefa578c756ef5ab68fe21407">m_current_cfl</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a3812309cefa578c756ef5ab68fe21407"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current CFL.  <br /></td></tr>
+<tr class="memitem:ae906266db551c0f95a08b4a1ed034ffc" id="r_ae906266db551c0f95a08b4a1ed034ffc"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae906266db551c0f95a08b4a1ed034ffc">m_conv_cfl</a> {0.0_rt}</td></tr>
+<tr class="memdesc:ae906266db551c0f95a08b4a1ed034ffc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current CFL categories.  <br /></td></tr>
+<tr class="memitem:a0cf49c31deb033f7fc3a70b6a062a82b" id="r_a0cf49c31deb033f7fc3a70b6a062a82b"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cf49c31deb033f7fc3a70b6a062a82b">m_diff_cfl</a> {0.0_rt}</td></tr>
+<tr class="memitem:a430db732b8f9f363c660b5145a137f84" id="r_a430db732b8f9f363c660b5145a137f84"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a430db732b8f9f363c660b5145a137f84">m_src_cfl</a> {0.0_rt}</td></tr>
+<tr class="memitem:a5f537322b464da919e27da76001556fc" id="r_a5f537322b464da919e27da76001556fc"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f537322b464da919e27da76001556fc">m_dt_calc</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a5f537322b464da919e27da76001556fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">delta_t calculated using CFL constraint  <br /></td></tr>
+<tr class="memitem:a62a22131ffd21da14ef553272eeab9ca" id="r_a62a22131ffd21da14ef553272eeab9ca"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62a22131ffd21da14ef553272eeab9ca">m_init_shrink</a> {0.1_rt}</td></tr>
+<tr class="memdesc:a62a22131ffd21da14ef553272eeab9ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial reduction in timestep size for startup.  <br /></td></tr>
+<tr class="memitem:a50899da0c68ad813b031ba7cd347b8f1" id="r_a50899da0c68ad813b031ba7cd347b8f1"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50899da0c68ad813b031ba7cd347b8f1">m_dt_growth</a> {0.1_rt}</td></tr>
+<tr class="memdesc:a50899da0c68ad813b031ba7cd347b8f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum growth of dt between timesteps.  <br /></td></tr>
+<tr class="memitem:a4e1bf137658138497605f1902452f417" id="r_a4e1bf137658138497605f1902452f417"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e1bf137658138497605f1902452f417">m_chkpt_t_interval</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:a4e1bf137658138497605f1902452f417"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time interval for writing checkpoint/restart files.  <br /></td></tr>
+<tr class="memitem:a97902dfa6c72808efdab8010d0a90b65" id="r_a97902dfa6c72808efdab8010d0a90b65"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97902dfa6c72808efdab8010d0a90b65">m_chkpt_t_delay</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a97902dfa6c72808efdab8010d0a90b65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time delay for checkpoint/restart output.  <br /></td></tr>
+<tr class="memitem:a739575667fa666e4c53184e0f2b5104b" id="r_a739575667fa666e4c53184e0f2b5104b"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a739575667fa666e4c53184e0f2b5104b">m_chkpt_t_tol</a> {1.0e-2_rt}</td></tr>
+<tr class="memdesc:a739575667fa666e4c53184e0f2b5104b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relative (to dt) tolerance for checkpoint time interval output.  <br /></td></tr>
+<tr class="memitem:ad46c03b6951b7efe1206653790be7b1e" id="r_ad46c03b6951b7efe1206653790be7b1e"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad46c03b6951b7efe1206653790be7b1e">m_force_chkpt_tol</a> {1.0e-3_rt}</td></tr>
+<tr class="memdesc:ad46c03b6951b7efe1206653790be7b1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relative (to chkpt_t_interval) tolerance for enforcing dt.  <br /></td></tr>
+<tr class="memitem:aee1a6c39774bae3fe09fde5bea68b5fc" id="r_aee1a6c39774bae3fe09fde5bea68b5fc"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee1a6c39774bae3fe09fde5bea68b5fc">m_plt_t_interval</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:aee1a6c39774bae3fe09fde5bea68b5fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time interval for plot file output.  <br /></td></tr>
+<tr class="memitem:aed4ea6817fda6dd08919d91719fb59ae" id="r_aed4ea6817fda6dd08919d91719fb59ae"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed4ea6817fda6dd08919d91719fb59ae">m_plt_t_delay</a> {0.0_rt}</td></tr>
+<tr class="memdesc:aed4ea6817fda6dd08919d91719fb59ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time delay for plot file output.  <br /></td></tr>
+<tr class="memitem:a2b087d73556406149e6064122506e8d4" id="r_a2b087d73556406149e6064122506e8d4"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b087d73556406149e6064122506e8d4">m_plt_t_tol</a> {1.0e-2_rt}</td></tr>
+<tr class="memdesc:a2b087d73556406149e6064122506e8d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relative (to dt) tolerance for plot time interval output.  <br /></td></tr>
+<tr class="memitem:a1231cb618226bb1210ca6331d5e6821e" id="r_a1231cb618226bb1210ca6331d5e6821e"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1231cb618226bb1210ca6331d5e6821e">m_force_plt_tol</a> {1.0e-3_rt}</td></tr>
+<tr class="memdesc:a1231cb618226bb1210ca6331d5e6821e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relative (to plt_t_interval) tolerance for enforcing dt.  <br /></td></tr>
+<tr class="memitem:a975c3b4b4ff96b07de8ebe3ef0e26aca" id="r_a975c3b4b4ff96b07de8ebe3ef0e26aca"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a975c3b4b4ff96b07de8ebe3ef0e26aca">m_force_dt_abs_tol</a> {1.0e8_rt}</td></tr>
+<tr class="memdesc:a975c3b4b4ff96b07de8ebe3ef0e26aca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Smallest absolute tolerance for enforcing dt, considering all tolerance criteria.  <br /></td></tr>
+<tr class="memitem:ac1161367c5b417433ccb36fc35204c0f" id="r_ac1161367c5b417433ccb36fc35204c0f"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1161367c5b417433ccb36fc35204c0f">m_chkpt_start_time</a> {0.0_rt}</td></tr>
+<tr class="memdesc:ac1161367c5b417433ccb36fc35204c0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial starting time for generating checkpoint files (time-based)  <br /></td></tr>
+<tr class="memitem:a3b6a8fe9873d438a600782305ec47297" id="r_a3b6a8fe9873d438a600782305ec47297"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b6a8fe9873d438a600782305ec47297">m_plt_start_time</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a3b6a8fe9873d438a600782305ec47297"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial starting time for generating output files (time-based)  <br /></td></tr>
+<tr class="memitem:a30e3a66b5cfb79ff86bcc25b21bf8b26" id="r_a30e3a66b5cfb79ff86bcc25b21bf8b26"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30e3a66b5cfb79ff86bcc25b21bf8b26">m_time_index</a> {0}</td></tr>
+<tr class="memdesc:a30e3a66b5cfb79ff86bcc25b21bf8b26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counter for the number of timesteps since start of simulation.  <br /></td></tr>
+<tr class="memitem:ac536efd111cef1def9c9e62dcfa88035" id="r_ac536efd111cef1def9c9e62dcfa88035"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac536efd111cef1def9c9e62dcfa88035">m_start_time_index</a> {0}</td></tr>
+<tr class="memdesc:ac536efd111cef1def9c9e62dcfa88035"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial starting time index.  <br /></td></tr>
+<tr class="memitem:a19747f4f40328c6fbd9aeac5d25e6f14" id="r_a19747f4f40328c6fbd9aeac5d25e6f14"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19747f4f40328c6fbd9aeac5d25e6f14">m_chkpt_start_index</a> {0}</td></tr>
+<tr class="memdesc:a19747f4f40328c6fbd9aeac5d25e6f14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial starting time index for generating checkpoint files.  <br /></td></tr>
+<tr class="memitem:a56140b1fb70a85237c592a92b6cd23dc" id="r_a56140b1fb70a85237c592a92b6cd23dc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56140b1fb70a85237c592a92b6cd23dc">m_plt_start_index</a> {0}</td></tr>
+<tr class="memdesc:a56140b1fb70a85237c592a92b6cd23dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial starting time index for generating output files.  <br /></td></tr>
+<tr class="memitem:a216f61581d75d5591ded040ed32ccdde" id="r_a216f61581d75d5591ded040ed32ccdde"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a216f61581d75d5591ded040ed32ccdde">m_regrid_start_index</a> {0}</td></tr>
+<tr class="memdesc:a216f61581d75d5591ded040ed32ccdde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial starting time index for regriding.  <br /></td></tr>
+<tr class="memitem:aea6a38528150cf33047318a607ec560a" id="r_aea6a38528150cf33047318a607ec560a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea6a38528150cf33047318a607ec560a">m_stop_time_index</a> {-1}</td></tr>
+<tr class="memdesc:aea6a38528150cf33047318a607ec560a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum timesteps for simulation.  <br /></td></tr>
+<tr class="memitem:aeb50097d5a1602238991841479951097" id="r_aeb50097d5a1602238991841479951097"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb50097d5a1602238991841479951097">m_chkpt_interval</a> {-1}</td></tr>
+<tr class="memdesc:aeb50097d5a1602238991841479951097"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time step interval for writing checkpoint/restart files.  <br /></td></tr>
+<tr class="memitem:a4f8151ca2b0458bd05f153e04e5f8982" id="r_a4f8151ca2b0458bd05f153e04e5f8982"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f8151ca2b0458bd05f153e04e5f8982">m_chkpt_delay</a> {0}</td></tr>
+<tr class="memdesc:a4f8151ca2b0458bd05f153e04e5f8982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time step delay for checkpoint/restart output (this means that output only happens after the delay)  <br /></td></tr>
+<tr class="memitem:af2360cb4cd0fce2405117400e0a9fc90" id="r_af2360cb4cd0fce2405117400e0a9fc90"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2360cb4cd0fce2405117400e0a9fc90">m_plt_interval</a> {-1}</td></tr>
+<tr class="memdesc:af2360cb4cd0fce2405117400e0a9fc90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time step interval for plot file output.  <br /></td></tr>
+<tr class="memitem:aac16590a5a629e2fad4ac35f46c919f2" id="r_aac16590a5a629e2fad4ac35f46c919f2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac16590a5a629e2fad4ac35f46c919f2">m_plt_delay</a> {0}</td></tr>
+<tr class="memdesc:aac16590a5a629e2fad4ac35f46c919f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time step delay for plot file output.  <br /></td></tr>
+<tr class="memitem:a9ba246c4673bc61ffa07ae43472b54dc" id="r_a9ba246c4673bc61ffa07ae43472b54dc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ba246c4673bc61ffa07ae43472b54dc">m_regrid_interval</a> {-1}</td></tr>
+<tr class="memdesc:a9ba246c4673bc61ffa07ae43472b54dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time interval for regridding.  <br /></td></tr>
+<tr class="memitem:a5dd8699ed3e7a3750d80fd92a1c14ba5" id="r_a5dd8699ed3e7a3750d80fd92a1c14ba5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5dd8699ed3e7a3750d80fd92a1c14ba5">m_profiling_interval</a> {-1}</td></tr>
+<tr class="memdesc:a5dd8699ed3e7a3750d80fd92a1c14ba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time step interval for profiling output.  <br /></td></tr>
+<tr class="memitem:a30b27e54cbb7b1fe03e49dd081f78fc2" id="r_a30b27e54cbb7b1fe03e49dd081f78fc2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30b27e54cbb7b1fe03e49dd081f78fc2">m_verbose</a> {0}</td></tr>
+<tr class="memdesc:a30b27e54cbb7b1fe03e49dd081f78fc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verbosity.  <br /></td></tr>
+<tr class="memitem:a62cad5c3543554a4e5f3fa6001ebdcad" id="r_a62cad5c3543554a4e5f3fa6001ebdcad"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62cad5c3543554a4e5f3fa6001ebdcad">m_adaptive</a> {false}</td></tr>
+<tr class="memdesc:a62cad5c3543554a4e5f3fa6001ebdcad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether timestep is adaptive.  <br /></td></tr>
+<tr class="memitem:afecfb6ad620b79248d8f3e00dab2159e" id="r_afecfb6ad620b79248d8f3e00dab2159e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afecfb6ad620b79248d8f3e00dab2159e">m_is_init</a> {true}</td></tr>
+<tr class="memdesc:afecfb6ad620b79248d8f3e00dab2159e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating if this is initialization.  <br /></td></tr>
+<tr class="memitem:a9d31f26de53e72cbef27487e52fda5b4" id="r_a9d31f26de53e72cbef27487e52fda5b4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d31f26de53e72cbef27487e52fda5b4">m_use_force_cfl</a> {true}</td></tr>
+<tr class="memdesc:a9d31f26de53e72cbef27487e52fda5b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating if forcing should be included in CFL calculation.  <br /></td></tr>
+<tr class="memitem:a9cded017f628174e98fd3078fb99b0a2" id="r_a9cded017f628174e98fd3078fb99b0a2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9cded017f628174e98fd3078fb99b0a2">m_force_chkpt_dt</a> {false}</td></tr>
+<tr class="memdesc:a9cded017f628174e98fd3078fb99b0a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bool for if checkpoint time interval should be forced.  <br /></td></tr>
+<tr class="memitem:a4721624ffb6556967c3e77c385deee03" id="r_a4721624ffb6556967c3e77c385deee03"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4721624ffb6556967c3e77c385deee03">m_force_plt_dt</a> {false}</td></tr>
+<tr class="memdesc:a4721624ffb6556967c3e77c385deee03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bool for if plt time interval should be forced.  <br /></td></tr>
+<tr class="memitem:a4ea0c676b596d7fbefe7cbe0d2cbb0c0" id="r_a4ea0c676b596d7fbefe7cbe0d2cbb0c0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ea0c676b596d7fbefe7cbe0d2cbb0c0">m_postprocess_enforce_dt</a></td></tr>
+<tr class="memdesc:a4ea0c676b596d7fbefe7cbe0d2cbb0c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timestep considerations from postprocessing instances.  <br /></td></tr>
+<tr class="memitem:aa80c41c7684a5c66a939f726a59c6b1c" id="r_aa80c41c7684a5c66a939f726a59c6b1c"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa80c41c7684a5c66a939f726a59c6b1c">m_postprocess_enforce_dt_tol</a></td></tr>
+<tr class="memitem:a74a0c7cf6eb3192d2abba5667593b54a" id="r_a74a0c7cf6eb3192d2abba5667593b54a"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74a0c7cf6eb3192d2abba5667593b54a">m_postprocess_time_interval</a></td></tr>
+<tr class="memitem:a8d85afdb84f8270adee67ab3e596562b" id="r_a8d85afdb84f8270adee67ab3e596562b"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d85afdb84f8270adee67ab3e596562b">m_postprocess_time_delay</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Time manager for simulations </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a00da6c6e89df5d97dec91791ca1fa19f" name="a00da6c6e89df5d97dec91791ca1fa19f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00da6c6e89df5d97dec91791ca1fa19f">&#9670;&#160;</a></span>SimTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::SimTime::SimTime </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1484bdac01a2427ac6da9282c7d0e877" name="a1484bdac01a2427ac6da9282c7d0e877"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1484bdac01a2427ac6da9282c7d0e877">&#9670;&#160;</a></span>~SimTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::SimTime::~SimTime </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a0dc66aded963c07a13ab66b04a7e0909" name="a0dc66aded963c07a13ab66b04a7e0909"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dc66aded963c07a13ab66b04a7e0909">&#9670;&#160;</a></span>adaptive_timestep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE bool kynema_sgf::SimTime::adaptive_timestep </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adbf0a3401d7af821eec47c47df9e70e1" name="adbf0a3401d7af821eec47c47df9e70e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbf0a3401d7af821eec47c47df9e70e1">&#9670;&#160;</a></span>add_postproc_dt_parameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SimTime::add_postproc_dt_parameters </td>
+          <td>(</td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>enforce_dt_flag</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>enforce_dt_tol</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time_interval</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time_delay</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get timestep considerations from postprocessing instances. </p>
+
+</div>
+</div>
+<a id="a827e7d452032ab4e4e18c781b93101f6" name="a827e7d452032ab4e4e18c781b93101f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a827e7d452032ab4e4e18c781b93101f6">&#9670;&#160;</a></span>advance_time()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SimTime::advance_time </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Use results of CFL and timestepping parameters to advance time to new, output time information </p>
+
+</div>
+</div>
+<a id="a540ce63d9a8c349ddd4277c1a8590da7" name="a540ce63d9a8c349ddd4277c1a8590da7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a540ce63d9a8c349ddd4277c1a8590da7">&#9670;&#160;</a></span>calculate_minimum_enforce_dt_abs_tol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SimTime::calculate_minimum_enforce_dt_abs_tol </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculate minimum enforce dt tolerance based on all considerations. </p>
+
+</div>
+</div>
+<a id="a3112935684b03d82c60dd9aa3c5fc5bd" name="a3112935684b03d82c60dd9aa3c5fc5bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3112935684b03d82c60dd9aa3c5fc5bd">&#9670;&#160;</a></span>chkpt_interval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE int kynema_sgf::SimTime::chkpt_interval </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adec1863eb9831cc5e4ba53bcb36c7568" name="adec1863eb9831cc5e4ba53bcb36c7568"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adec1863eb9831cc5e4ba53bcb36c7568">&#9670;&#160;</a></span>continue_simulation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::SimTime::continue_simulation </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Return true if simulation should continue </p>
+
+</div>
+</div>
+<a id="a26241950cd9bbd698def9cd9c144a742" name="a26241950cd9bbd698def9cd9c144a742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26241950cd9bbd698def9cd9c144a742">&#9670;&#160;</a></span>current_time() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE amrex::Real &amp; kynema_sgf::SimTime::current_time </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af80d8e20dd65cc3b935829f73a7f932a" name="af80d8e20dd65cc3b935829f73a7f932a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af80d8e20dd65cc3b935829f73a7f932a">&#9670;&#160;</a></span>current_time() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE amrex::Real kynema_sgf::SimTime::current_time </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a45fb1d1e9d082763f490acca598ce94b" name="a45fb1d1e9d082763f490acca598ce94b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45fb1d1e9d082763f490acca598ce94b">&#9670;&#160;</a></span>delta_t() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE amrex::Real &amp; kynema_sgf::SimTime::delta_t </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a32cd21c192803ea79007c2e37ebe5b86" name="a32cd21c192803ea79007c2e37ebe5b86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32cd21c192803ea79007c2e37ebe5b86">&#9670;&#160;</a></span>delta_t() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE amrex::Real kynema_sgf::SimTime::delta_t </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a726eaa772899bdb1ef9a054beb23b9ea" name="a726eaa772899bdb1ef9a054beb23b9ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a726eaa772899bdb1ef9a054beb23b9ea">&#9670;&#160;</a></span>delta_t_nm1() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE amrex::Real &amp; kynema_sgf::SimTime::delta_t_nm1 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad0856ef14b32c94d17b2d4f126c0e32e" name="ad0856ef14b32c94d17b2d4f126c0e32e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0856ef14b32c94d17b2d4f126c0e32e">&#9670;&#160;</a></span>delta_t_nm1() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE amrex::Real kynema_sgf::SimTime::delta_t_nm1 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aee2498f438f45dc14f9fe0e2fc0fa9df" name="aee2498f438f45dc14f9fe0e2fc0fa9df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee2498f438f45dc14f9fe0e2fc0fa9df">&#9670;&#160;</a></span>delta_t_nm2() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE amrex::Real &amp; kynema_sgf::SimTime::delta_t_nm2 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa1f0a7108fcb2d9c5c5318698e861bcd" name="aa1f0a7108fcb2d9c5c5318698e861bcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1f0a7108fcb2d9c5c5318698e861bcd">&#9670;&#160;</a></span>delta_t_nm2() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE amrex::Real kynema_sgf::SimTime::delta_t_nm2 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a347b6f00ccb49fdbcd2c6652f13aab98" name="a347b6f00ccb49fdbcd2c6652f13aab98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a347b6f00ccb49fdbcd2c6652f13aab98">&#9670;&#160;</a></span>do_regrid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::SimTime::do_regrid </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Return true if mesh refinement should be performed at this timestep </p>
+
+</div>
+</div>
+<a id="a6b90869c3bc335fc7f64cc532eea70ee" name="a6b90869c3bc335fc7f64cc532eea70ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b90869c3bc335fc7f64cc532eea70ee">&#9670;&#160;</a></span>get_minimum_enforce_dt_abs_tol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE amrex::Real kynema_sgf::SimTime::get_minimum_enforce_dt_abs_tol </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8a400b6b6fd880137722a25cda270343" name="a8a400b6b6fd880137722a25cda270343"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a400b6b6fd880137722a25cda270343">&#9670;&#160;</a></span>max_cfl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE amrex::Real kynema_sgf::SimTime::max_cfl </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9a2700c635d4090f4a1aedc024afb64c" name="a9a2700c635d4090f4a1aedc024afb64c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a2700c635d4090f4a1aedc024afb64c">&#9670;&#160;</a></span>new_time()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE amrex::Real kynema_sgf::SimTime::new_time </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad465921e385be4472a27bd18602f3da2" name="ad465921e385be4472a27bd18602f3da2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad465921e385be4472a27bd18602f3da2">&#9670;&#160;</a></span>new_timestep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::SimTime::new_timestep </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Advance to a new time state and update internal time states</p>
+<p>Return a boolean flag indicating if the simulation should continue. </p>
+
+</div>
+</div>
+<a id="a8e48a97361d37c6bb63bb73ff220f895" name="a8e48a97361d37c6bb63bb73ff220f895"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e48a97361d37c6bb63bb73ff220f895">&#9670;&#160;</a></span>output_profiling_info()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::SimTime::output_profiling_info </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Return true if TinyProfiler output should be sent to the log file at this timestep </p>
+
+</div>
+</div>
+<a id="a8f560f1a17a5ab07370ae707362b6e91" name="a8f560f1a17a5ab07370ae707362b6e91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f560f1a17a5ab07370ae707362b6e91">&#9670;&#160;</a></span>override_simulation_end_parameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SimTime::override_simulation_end_parameters </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deactivate ending parameters (overset should be externally controlled) </p>
+
+</div>
+</div>
+<a id="a505778f8c30a3aca804e5e2b23a0c4a5" name="a505778f8c30a3aca804e5e2b23a0c4a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a505778f8c30a3aca804e5e2b23a0c4a5">&#9670;&#160;</a></span>parse_parameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SimTime::parse_parameters </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read user defined options from input file. </p>
+
+</div>
+</div>
+<a id="ab9970daf05453d428b867c28320a67a4" name="ab9970daf05453d428b867c28320a67a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9970daf05453d428b867c28320a67a4">&#9670;&#160;</a></span>regrid_interval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE int kynema_sgf::SimTime::regrid_interval </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac1fc46b85fbb35bda294869b6aa13713" name="ac1fc46b85fbb35bda294869b6aa13713"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1fc46b85fbb35bda294869b6aa13713">&#9670;&#160;</a></span>set_current_cfl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SimTime::set_current_cfl </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>conv_cfl</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>diff_cfl</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>src_cfl</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set current CFL and update timestep based on CFL components </p>
+
+</div>
+</div>
+<a id="a6dec05dd058bdf1f6a4efd62f7ae0ef5" name="a6dec05dd058bdf1f6a4efd62f7ae0ef5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dec05dd058bdf1f6a4efd62f7ae0ef5">&#9670;&#160;</a></span>set_restart_time()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SimTime::set_restart_time </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>tidx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set start time and index based on checkpoint/restart file</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tidx</td><td>Time index from checkpoint file </td></tr>
+    <tr><td class="paramname">time</td><td>Time read from checkpoint file </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5dfedc8ff8375161cea3e9ac82a07d76" name="a5dfedc8ff8375161cea3e9ac82a07d76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dfedc8ff8375161cea3e9ac82a07d76">&#9670;&#160;</a></span>start_time()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE amrex::Real kynema_sgf::SimTime::start_time </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abf989d3e77c8d0265ec5cc6861750ef4" name="abf989d3e77c8d0265ec5cc6861750ef4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf989d3e77c8d0265ec5cc6861750ef4">&#9670;&#160;</a></span>start_time_index()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE int kynema_sgf::SimTime::start_time_index </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3fbc8100ab07e9aa933c8e3b65c62af2" name="a3fbc8100ab07e9aa933c8e3b65c62af2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fbc8100ab07e9aa933c8e3b65c62af2">&#9670;&#160;</a></span>stop_time()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE amrex::Real kynema_sgf::SimTime::stop_time </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a68c2c030fda7545444de8112b46b84cb" name="a68c2c030fda7545444de8112b46b84cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68c2c030fda7545444de8112b46b84cb">&#9670;&#160;</a></span>stop_time_index()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE int kynema_sgf::SimTime::stop_time_index </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a41c55dc85a454116e6d87edda0c71958" name="a41c55dc85a454116e6d87edda0c71958"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41c55dc85a454116e6d87edda0c71958">&#9670;&#160;</a></span>time_index() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE int &amp; kynema_sgf::SimTime::time_index </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adf38fd5a1c335746f3a514d2ba58732f" name="adf38fd5a1c335746f3a514d2ba58732f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf38fd5a1c335746f3a514d2ba58732f">&#9670;&#160;</a></span>time_index() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE int kynema_sgf::SimTime::time_index </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab839b47f4f407929ab37830614026d57" name="ab839b47f4f407929ab37830614026d57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab839b47f4f407929ab37830614026d57">&#9670;&#160;</a></span>use_force_cfl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE bool kynema_sgf::SimTime::use_force_cfl </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8b03684a42880873386549c51877df10" name="a8b03684a42880873386549c51877df10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b03684a42880873386549c51877df10">&#9670;&#160;</a></span>write_checkpoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::SimTime::write_checkpoint </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Return true if checkpoint files should be written at this timestep </p>
+
+</div>
+</div>
+<a id="a791ee13e05f7d79f2e125ccaa67ac1cb" name="a791ee13e05f7d79f2e125ccaa67ac1cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a791ee13e05f7d79f2e125ccaa67ac1cb">&#9670;&#160;</a></span>write_last_checkpoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::SimTime::write_last_checkpoint </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Return true if checkpoint files should be written at this timestep </p>
+
+</div>
+</div>
+<a id="a47b2a03f3264843978fed17058447862" name="a47b2a03f3264843978fed17058447862"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47b2a03f3264843978fed17058447862">&#9670;&#160;</a></span>write_last_plot_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::SimTime::write_last_plot_file </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Return true if plot files should be written at this timestep </p>
+
+</div>
+</div>
+<a id="a233de5f4faeacaedc5af8686129ce2c4" name="a233de5f4faeacaedc5af8686129ce2c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a233de5f4faeacaedc5af8686129ce2c4">&#9670;&#160;</a></span>write_plot_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::SimTime::write_plot_file </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Return true if plot files should be written at this timestep </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a62cad5c3543554a4e5f3fa6001ebdcad" name="a62cad5c3543554a4e5f3fa6001ebdcad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62cad5c3543554a4e5f3fa6001ebdcad">&#9670;&#160;</a></span>m_adaptive</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::SimTime::m_adaptive {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating whether timestep is adaptive. </p>
+
+</div>
+</div>
+<a id="a4f8151ca2b0458bd05f153e04e5f8982" name="a4f8151ca2b0458bd05f153e04e5f8982"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f8151ca2b0458bd05f153e04e5f8982">&#9670;&#160;</a></span>m_chkpt_delay</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::SimTime::m_chkpt_delay {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time step delay for checkpoint/restart output (this means that output only happens after the delay) </p>
+
+</div>
+</div>
+<a id="aeb50097d5a1602238991841479951097" name="aeb50097d5a1602238991841479951097"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb50097d5a1602238991841479951097">&#9670;&#160;</a></span>m_chkpt_interval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::SimTime::m_chkpt_interval {-1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time step interval for writing checkpoint/restart files. </p>
+
+</div>
+</div>
+<a id="a19747f4f40328c6fbd9aeac5d25e6f14" name="a19747f4f40328c6fbd9aeac5d25e6f14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19747f4f40328c6fbd9aeac5d25e6f14">&#9670;&#160;</a></span>m_chkpt_start_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::SimTime::m_chkpt_start_index {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial starting time index for generating checkpoint files. </p>
+
+</div>
+</div>
+<a id="ac1161367c5b417433ccb36fc35204c0f" name="ac1161367c5b417433ccb36fc35204c0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1161367c5b417433ccb36fc35204c0f">&#9670;&#160;</a></span>m_chkpt_start_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_chkpt_start_time {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial starting time for generating checkpoint files (time-based) </p>
+
+</div>
+</div>
+<a id="a97902dfa6c72808efdab8010d0a90b65" name="a97902dfa6c72808efdab8010d0a90b65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97902dfa6c72808efdab8010d0a90b65">&#9670;&#160;</a></span>m_chkpt_t_delay</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_chkpt_t_delay {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time delay for checkpoint/restart output. </p>
+
+</div>
+</div>
+<a id="a4e1bf137658138497605f1902452f417" name="a4e1bf137658138497605f1902452f417"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e1bf137658138497605f1902452f417">&#9670;&#160;</a></span>m_chkpt_t_interval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_chkpt_t_interval {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time interval for writing checkpoint/restart files. </p>
+
+</div>
+</div>
+<a id="a739575667fa666e4c53184e0f2b5104b" name="a739575667fa666e4c53184e0f2b5104b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a739575667fa666e4c53184e0f2b5104b">&#9670;&#160;</a></span>m_chkpt_t_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_chkpt_t_tol {1.0e-2_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Relative (to dt) tolerance for checkpoint time interval output. </p>
+
+</div>
+</div>
+<a id="ae906266db551c0f95a08b4a1ed034ffc" name="ae906266db551c0f95a08b4a1ed034ffc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae906266db551c0f95a08b4a1ed034ffc">&#9670;&#160;</a></span>m_conv_cfl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_conv_cfl {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current CFL categories. </p>
+
+</div>
+</div>
+<a id="a6c5e299ddbfb5960545f8ab56ff78d42" name="a6c5e299ddbfb5960545f8ab56ff78d42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c5e299ddbfb5960545f8ab56ff78d42">&#9670;&#160;</a></span>m_cur_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_cur_time {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current simulation time. </p>
+
+</div>
+</div>
+<a id="a3812309cefa578c756ef5ab68fe21407" name="a3812309cefa578c756ef5ab68fe21407"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3812309cefa578c756ef5ab68fe21407">&#9670;&#160;</a></span>m_current_cfl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_current_cfl {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current CFL. </p>
+
+</div>
+</div>
+<a id="a9b8fd9eee006d9e5b3faf1b871cca7b2" name="a9b8fd9eee006d9e5b3faf1b871cca7b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b8fd9eee006d9e5b3faf1b871cca7b2">&#9670;&#160;</a></span>m_delay_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_delay_time {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Delayed adaptive stepping. </p>
+
+</div>
+</div>
+<a id="a0cf49c31deb033f7fc3a70b6a062a82b" name="a0cf49c31deb033f7fc3a70b6a062a82b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cf49c31deb033f7fc3a70b6a062a82b">&#9670;&#160;</a></span>m_diff_cfl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_diff_cfl {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0220a795df5fce05b6ca56d2398c1a54" name="a0220a795df5fce05b6ca56d2398c1a54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0220a795df5fce05b6ca56d2398c1a54">&#9670;&#160;</a></span>m_dt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::SimTime::m_dt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">        amrex::Vector&lt;amrex::Real&gt;(<a class="code hl_variable" href="#a7f2e0f0dd274ec8d53af57bf113b1d09">max_time_states</a>, 0.0_rt)</div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a7f2e0f0dd274ec8d53af57bf113b1d09"><div class="ttname"><a href="#a7f2e0f0dd274ec8d53af57bf113b1d09">kynema_sgf::SimTime::max_time_states</a></div><div class="ttdeci">static constexpr int max_time_states</div><div class="ttdef"><b>Definition</b> SimTime.H:35</div></div>
+</div><!-- fragment -->
+<p>Timestep sizes. </p>
+
+</div>
+</div>
+<a id="a5f537322b464da919e27da76001556fc" name="a5f537322b464da919e27da76001556fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f537322b464da919e27da76001556fc">&#9670;&#160;</a></span>m_dt_calc</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_dt_calc {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>delta_t calculated using CFL constraint </p>
+
+</div>
+</div>
+<a id="a50899da0c68ad813b031ba7cd347b8f1" name="a50899da0c68ad813b031ba7cd347b8f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50899da0c68ad813b031ba7cd347b8f1">&#9670;&#160;</a></span>m_dt_growth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_dt_growth {0.1_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Maximum growth of dt between timesteps. </p>
+
+</div>
+</div>
+<a id="a6531b5188b0b74a77c2850fe2ab53d00" name="a6531b5188b0b74a77c2850fe2ab53d00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6531b5188b0b74a77c2850fe2ab53d00">&#9670;&#160;</a></span>m_fixed_dt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_fixed_dt {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fixed delta_t indicated by user. </p>
+
+</div>
+</div>
+<a id="a9cded017f628174e98fd3078fb99b0a2" name="a9cded017f628174e98fd3078fb99b0a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cded017f628174e98fd3078fb99b0a2">&#9670;&#160;</a></span>m_force_chkpt_dt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::SimTime::m_force_chkpt_dt {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bool for if checkpoint time interval should be forced. </p>
+
+</div>
+</div>
+<a id="ad46c03b6951b7efe1206653790be7b1e" name="ad46c03b6951b7efe1206653790be7b1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad46c03b6951b7efe1206653790be7b1e">&#9670;&#160;</a></span>m_force_chkpt_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_force_chkpt_tol {1.0e-3_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Relative (to chkpt_t_interval) tolerance for enforcing dt. </p>
+
+</div>
+</div>
+<a id="a975c3b4b4ff96b07de8ebe3ef0e26aca" name="a975c3b4b4ff96b07de8ebe3ef0e26aca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a975c3b4b4ff96b07de8ebe3ef0e26aca">&#9670;&#160;</a></span>m_force_dt_abs_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_force_dt_abs_tol {1.0e8_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Smallest absolute tolerance for enforcing dt, considering all tolerance criteria. </p>
+<p>This is simply a high initial value; the code calculates the actual tolerance with min() operations </p>
+
+</div>
+</div>
+<a id="a4721624ffb6556967c3e77c385deee03" name="a4721624ffb6556967c3e77c385deee03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4721624ffb6556967c3e77c385deee03">&#9670;&#160;</a></span>m_force_plt_dt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::SimTime::m_force_plt_dt {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bool for if plt time interval should be forced. </p>
+
+</div>
+</div>
+<a id="a1231cb618226bb1210ca6331d5e6821e" name="a1231cb618226bb1210ca6331d5e6821e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1231cb618226bb1210ca6331d5e6821e">&#9670;&#160;</a></span>m_force_plt_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_force_plt_tol {1.0e-3_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Relative (to plt_t_interval) tolerance for enforcing dt. </p>
+
+</div>
+</div>
+<a id="a62a22131ffd21da14ef553272eeab9ca" name="a62a22131ffd21da14ef553272eeab9ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62a22131ffd21da14ef553272eeab9ca">&#9670;&#160;</a></span>m_init_shrink</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_init_shrink {0.1_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial reduction in timestep size for startup. </p>
+
+</div>
+</div>
+<a id="ad2ba4cc847077f83422e2fe7dbc966fd" name="ad2ba4cc847077f83422e2fe7dbc966fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2ba4cc847077f83422e2fe7dbc966fd">&#9670;&#160;</a></span>m_initial_dt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_initial_dt {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial delta_t indicated by user. </p>
+
+</div>
+</div>
+<a id="afecfb6ad620b79248d8f3e00dab2159e" name="afecfb6ad620b79248d8f3e00dab2159e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afecfb6ad620b79248d8f3e00dab2159e">&#9670;&#160;</a></span>m_is_init</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::SimTime::m_is_init {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating if this is initialization. </p>
+
+</div>
+</div>
+<a id="aea754123ab32cf29fc86458923c56057" name="aea754123ab32cf29fc86458923c56057"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea754123ab32cf29fc86458923c56057">&#9670;&#160;</a></span>m_max_cfl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_max_cfl {1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Maximum CFL constraint. </p>
+
+</div>
+</div>
+<a id="a9c3a25d5582f8edc5806d626fa7a7aff" name="a9c3a25d5582f8edc5806d626fa7a7aff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c3a25d5582f8edc5806d626fa7a7aff">&#9670;&#160;</a></span>m_max_dt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_max_dt {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Maximum delta_t indicated by user. </p>
+
+</div>
+</div>
+<a id="a20bfa4931eeccd9b20e0903aac8d6946" name="a20bfa4931eeccd9b20e0903aac8d6946"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20bfa4931eeccd9b20e0903aac8d6946">&#9670;&#160;</a></span>m_min_dt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_min_dt {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Minimum delta_t indicated by user. </p>
+
+</div>
+</div>
+<a id="a402e9afcefef510136fce46951a99b78" name="a402e9afcefef510136fce46951a99b78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a402e9afcefef510136fce46951a99b78">&#9670;&#160;</a></span>m_new_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_new_time {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time where a new timestep will advance to. </p>
+
+</div>
+</div>
+<a id="aac16590a5a629e2fad4ac35f46c919f2" name="aac16590a5a629e2fad4ac35f46c919f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac16590a5a629e2fad4ac35f46c919f2">&#9670;&#160;</a></span>m_plt_delay</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::SimTime::m_plt_delay {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time step delay for plot file output. </p>
+
+</div>
+</div>
+<a id="af2360cb4cd0fce2405117400e0a9fc90" name="af2360cb4cd0fce2405117400e0a9fc90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2360cb4cd0fce2405117400e0a9fc90">&#9670;&#160;</a></span>m_plt_interval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::SimTime::m_plt_interval {-1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time step interval for plot file output. </p>
+
+</div>
+</div>
+<a id="a56140b1fb70a85237c592a92b6cd23dc" name="a56140b1fb70a85237c592a92b6cd23dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56140b1fb70a85237c592a92b6cd23dc">&#9670;&#160;</a></span>m_plt_start_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::SimTime::m_plt_start_index {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial starting time index for generating output files. </p>
+
+</div>
+</div>
+<a id="a3b6a8fe9873d438a600782305ec47297" name="a3b6a8fe9873d438a600782305ec47297"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b6a8fe9873d438a600782305ec47297">&#9670;&#160;</a></span>m_plt_start_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_plt_start_time {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial starting time for generating output files (time-based) </p>
+
+</div>
+</div>
+<a id="aed4ea6817fda6dd08919d91719fb59ae" name="aed4ea6817fda6dd08919d91719fb59ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed4ea6817fda6dd08919d91719fb59ae">&#9670;&#160;</a></span>m_plt_t_delay</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_plt_t_delay {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time delay for plot file output. </p>
+
+</div>
+</div>
+<a id="aee1a6c39774bae3fe09fde5bea68b5fc" name="aee1a6c39774bae3fe09fde5bea68b5fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee1a6c39774bae3fe09fde5bea68b5fc">&#9670;&#160;</a></span>m_plt_t_interval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_plt_t_interval {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time interval for plot file output. </p>
+
+</div>
+</div>
+<a id="a2b087d73556406149e6064122506e8d4" name="a2b087d73556406149e6064122506e8d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b087d73556406149e6064122506e8d4">&#9670;&#160;</a></span>m_plt_t_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_plt_t_tol {1.0e-2_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Relative (to dt) tolerance for plot time interval output. </p>
+
+</div>
+</div>
+<a id="a4ea0c676b596d7fbefe7cbe0d2cbb0c0" name="a4ea0c676b596d7fbefe7cbe0d2cbb0c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ea0c676b596d7fbefe7cbe0d2cbb0c0">&#9670;&#160;</a></span>m_postprocess_enforce_dt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;bool&gt; kynema_sgf::SimTime::m_postprocess_enforce_dt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Timestep considerations from postprocessing instances. </p>
+
+</div>
+</div>
+<a id="aa80c41c7684a5c66a939f726a59c6b1c" name="aa80c41c7684a5c66a939f726a59c6b1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa80c41c7684a5c66a939f726a59c6b1c">&#9670;&#160;</a></span>m_postprocess_enforce_dt_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::SimTime::m_postprocess_enforce_dt_tol</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8d85afdb84f8270adee67ab3e596562b" name="a8d85afdb84f8270adee67ab3e596562b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d85afdb84f8270adee67ab3e596562b">&#9670;&#160;</a></span>m_postprocess_time_delay</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::SimTime::m_postprocess_time_delay</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a74a0c7cf6eb3192d2abba5667593b54a" name="a74a0c7cf6eb3192d2abba5667593b54a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74a0c7cf6eb3192d2abba5667593b54a">&#9670;&#160;</a></span>m_postprocess_time_interval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::SimTime::m_postprocess_time_interval</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5dd8699ed3e7a3750d80fd92a1c14ba5" name="a5dd8699ed3e7a3750d80fd92a1c14ba5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dd8699ed3e7a3750d80fd92a1c14ba5">&#9670;&#160;</a></span>m_profiling_interval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::SimTime::m_profiling_interval {-1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time step interval for profiling output. </p>
+
+</div>
+</div>
+<a id="a9ba246c4673bc61ffa07ae43472b54dc" name="a9ba246c4673bc61ffa07ae43472b54dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ba246c4673bc61ffa07ae43472b54dc">&#9670;&#160;</a></span>m_regrid_interval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::SimTime::m_regrid_interval {-1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time interval for regridding. </p>
+
+</div>
+</div>
+<a id="a216f61581d75d5591ded040ed32ccdde" name="a216f61581d75d5591ded040ed32ccdde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a216f61581d75d5591ded040ed32ccdde">&#9670;&#160;</a></span>m_regrid_start_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::SimTime::m_regrid_start_index {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial starting time index for regriding. </p>
+
+</div>
+</div>
+<a id="a430db732b8f9f363c660b5145a137f84" name="a430db732b8f9f363c660b5145a137f84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a430db732b8f9f363c660b5145a137f84">&#9670;&#160;</a></span>m_src_cfl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_src_cfl {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa4014f8c077349c4f4b1678965056399" name="aa4014f8c077349c4f4b1678965056399"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4014f8c077349c4f4b1678965056399">&#9670;&#160;</a></span>m_start_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_start_time {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Starting simulation time (to track restart) </p>
+
+</div>
+</div>
+<a id="ac536efd111cef1def9c9e62dcfa88035" name="ac536efd111cef1def9c9e62dcfa88035"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac536efd111cef1def9c9e62dcfa88035">&#9670;&#160;</a></span>m_start_time_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::SimTime::m_start_time_index {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial starting time index. </p>
+
+</div>
+</div>
+<a id="ac9d639bf597cb7de649589316722d050" name="ac9d639bf597cb7de649589316722d050"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9d639bf597cb7de649589316722d050">&#9670;&#160;</a></span>m_stop_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SimTime::m_stop_time {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Max time for simulation. </p>
+
+</div>
+</div>
+<a id="aea6a38528150cf33047318a607ec560a" name="aea6a38528150cf33047318a607ec560a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea6a38528150cf33047318a607ec560a">&#9670;&#160;</a></span>m_stop_time_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::SimTime::m_stop_time_index {-1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Maximum timesteps for simulation. </p>
+
+</div>
+</div>
+<a id="a30e3a66b5cfb79ff86bcc25b21bf8b26" name="a30e3a66b5cfb79ff86bcc25b21bf8b26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30e3a66b5cfb79ff86bcc25b21bf8b26">&#9670;&#160;</a></span>m_time_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::SimTime::m_time_index {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Counter for the number of timesteps since start of simulation. </p>
+
+</div>
+</div>
+<a id="a9d31f26de53e72cbef27487e52fda5b4" name="a9d31f26de53e72cbef27487e52fda5b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d31f26de53e72cbef27487e52fda5b4">&#9670;&#160;</a></span>m_use_force_cfl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::SimTime::m_use_force_cfl {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating if forcing should be included in CFL calculation. </p>
+
+</div>
+</div>
+<a id="a30b27e54cbb7b1fe03e49dd081f78fc2" name="a30b27e54cbb7b1fe03e49dd081f78fc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30b27e54cbb7b1fe03e49dd081f78fc2">&#9670;&#160;</a></span>m_verbose</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::SimTime::m_verbose {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Verbosity. </p>
+
+</div>
+</div>
+<a id="a7f2e0f0dd274ec8d53af57bf113b1d09" name="a7f2e0f0dd274ec8d53af57bf113b1d09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f2e0f0dd274ec8d53af57bf113b1d09">&#9670;&#160;</a></span>max_time_states</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::SimTime::max_time_states = 3</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/core/<a class="el" href="_sim_time_8_h_source.html">SimTime.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/core/<a class="el" href="_sim_time_8cpp.html">SimTime.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

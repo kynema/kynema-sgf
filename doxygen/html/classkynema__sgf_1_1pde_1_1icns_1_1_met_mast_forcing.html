@@ -1,0 +1,851 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::pde::icns::MetMastForcing Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::pde::icns::MetMastForcing Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="metmastforcing-class-reference">
+<h1>MetMastForcing Class Reference<a class="headerlink" href="#metmastforcing-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::pde::icns::MetMastForcing Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1pde.html">pde</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1pde_1_1icns.html">icns</a></li><li class="navelem"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html">MetMastForcing</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::pde::icns::MetMastForcing Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_met_mast_forcing_8_h_source.html">MetMastForcing.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::pde::icns::MetMastForcing:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing__inherit__graph.svg" width="210" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::pde::icns::MetMastForcing:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a7e24df50cf02cbf6a5c6c3f0c7737000" id="r_a7e24df50cf02cbf6a5c6c3f0c7737000"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e24df50cf02cbf6a5c6c3f0c7737000">MetMastForcing</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a46c8620d02326f610ab3cee38657824b" id="r_a46c8620d02326f610ab3cee38657824b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46c8620d02326f610ab3cee38657824b">~MetMastForcing</a> () override</td></tr>
+<tr class="memitem:ac24d8e5b7a0c7b62029b925c2883aa38" id="r_ac24d8e5b7a0c7b62029b925c2883aa38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac24d8e5b7a0c7b62029b925c2883aa38">operator()</a> (const int lev, const amrex::MFIter &amp;mfi, const amrex::Box &amp;bx, const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a>, const amrex::Array4&lt; amrex::Real &gt; &amp;src_term) const override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a8c0d5e0ba0a009d63ac9310d74e6a893" id="r_a8c0d5e0ba0a009d63ac9310d74e6a893"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c0d5e0ba0a009d63ac9310d74e6a893">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a998f4f5b17e53b4a055144a9f94360ce" id="r_a998f4f5b17e53b4a055144a9f94360ce"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a998f4f5b17e53b4a055144a9f94360ce">m_time</a></td></tr>
+<tr class="memitem:aec42d53b38bbd8d5c7abe4a493ff8194" id="r_aec42d53b38bbd8d5c7abe4a493ff8194"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec42d53b38bbd8d5c7abe4a493ff8194">m_mesh</a></td></tr>
+<tr class="memitem:aa3b6c6556f17cb1732fb490b197a586b" id="r_aa3b6c6556f17cb1732fb490b197a586b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3b6c6556f17cb1732fb490b197a586b">m_1d_metmast</a></td></tr>
+<tr class="memitem:a7e7ace2387196267bae77a3a18da96b7" id="r_a7e7ace2387196267bae77a3a18da96b7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e7ace2387196267bae77a3a18da96b7">m_velocity</a></td></tr>
+<tr class="memitem:a9860cf8c828cf5a029b518babc5dc59b" id="r_a9860cf8c828cf5a029b518babc5dc59b"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9860cf8c828cf5a029b518babc5dc59b">m_metmast_x</a></td></tr>
+<tr class="memitem:ad3768639f1aef09d69c1fe155495d20f" id="r_ad3768639f1aef09d69c1fe155495d20f"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3768639f1aef09d69c1fe155495d20f">m_metmast_y</a></td></tr>
+<tr class="memitem:ae9976c50b71bdbed0f0cb7557a6e34ec" id="r_ae9976c50b71bdbed0f0cb7557a6e34ec"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9976c50b71bdbed0f0cb7557a6e34ec">m_metmast_z</a></td></tr>
+<tr class="memitem:a3b72c4c4fab99afce019751c85f9e312" id="r_a3b72c4c4fab99afce019751c85f9e312"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b72c4c4fab99afce019751c85f9e312">m_u_values</a></td></tr>
+<tr class="memitem:a17ebbd0e5085ceef84d47a7cf8069b6d" id="r_a17ebbd0e5085ceef84d47a7cf8069b6d"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17ebbd0e5085ceef84d47a7cf8069b6d">m_v_values</a></td></tr>
+<tr class="memitem:a3426f7ff3ff57d0c2c5e4f54105aa3f6" id="r_a3426f7ff3ff57d0c2c5e4f54105aa3f6"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3426f7ff3ff57d0c2c5e4f54105aa3f6">m_w_values</a></td></tr>
+<tr class="memitem:a69d0e14ae69d5713a960c03181feb1ce" id="r_a69d0e14ae69d5713a960c03181feb1ce"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69d0e14ae69d5713a960c03181feb1ce">m_metmast_x_d</a></td></tr>
+<tr class="memitem:af5504eed1640f257a72ca43563e03bcb" id="r_af5504eed1640f257a72ca43563e03bcb"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5504eed1640f257a72ca43563e03bcb">m_metmast_y_d</a></td></tr>
+<tr class="memitem:ac797e2f0e473c68a3778127cb765d4e4" id="r_ac797e2f0e473c68a3778127cb765d4e4"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac797e2f0e473c68a3778127cb765d4e4">m_metmast_z_d</a></td></tr>
+<tr class="memitem:acc546657b9e47170b089d5edd4415bc7" id="r_acc546657b9e47170b089d5edd4415bc7"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc546657b9e47170b089d5edd4415bc7">m_u_values_d</a></td></tr>
+<tr class="memitem:a235eb0a6df3b1558468a4b0e25d43301" id="r_a235eb0a6df3b1558468a4b0e25d43301"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a235eb0a6df3b1558468a4b0e25d43301">m_v_values_d</a></td></tr>
+<tr class="memitem:ae39f63860cd4a35a481bff5c1ec7af3c" id="r_ae39f63860cd4a35a481bff5c1ec7af3c"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae39f63860cd4a35a481bff5c1ec7af3c">m_w_values_d</a></td></tr>
+<tr class="memitem:af6ed647212071815fa05c63b5b5a71fe" id="r_af6ed647212071815fa05c63b5b5a71fe"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6ed647212071815fa05c63b5b5a71fe">m_meso_timescale</a> {30}</td></tr>
+<tr class="memitem:a45b6af8be772c03af0b369b21a7a9f4f" id="r_a45b6af8be772c03af0b369b21a7a9f4f"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45b6af8be772c03af0b369b21a7a9f4f">m_long_radius</a> {500}</td></tr>
+<tr class="memitem:a521b523e0cd5349835d0ff095cf4ce8d" id="r_a521b523e0cd5349835d0ff095cf4ce8d"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a521b523e0cd5349835d0ff095cf4ce8d">m_vertical_radius</a> {25}</td></tr>
+<tr class="memitem:a28e7095b97716519d3a82d4b70737986" id="r_a28e7095b97716519d3a82d4b70737986"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28e7095b97716519d3a82d4b70737986">m_damping_radius</a> {1400}</td></tr>
+<tr class="memitem:a578d96b43da626039f7b9a222cfa769c" id="r_a578d96b43da626039f7b9a222cfa769c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a578d96b43da626039f7b9a222cfa769c">m_sim</a></td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7e24df50cf02cbf6a5c6c3f0c7737000" name="a7e24df50cf02cbf6a5c6c3f0c7737000"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e24df50cf02cbf6a5c6c3f0c7737000">&#9670;&#160;</a></span>MetMastForcing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::pde::icns::MetMastForcing::MetMastForcing </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a46c8620d02326f610ab3cee38657824b" name="a46c8620d02326f610ab3cee38657824b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46c8620d02326f610ab3cee38657824b">&#9670;&#160;</a></span>~MetMastForcing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::pde::icns::MetMastForcing::~MetMastForcing </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a8c0d5e0ba0a009d63ac9310d74e6a893" name="a8c0d5e0ba0a009d63ac9310d74e6a893"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c0d5e0ba0a009d63ac9310d74e6a893">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::pde::icns::MetMastForcing::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac24d8e5b7a0c7b62029b925c2883aa38" name="ac24d8e5b7a0c7b62029b925c2883aa38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac24d8e5b7a0c7b62029b925c2883aa38">&#9670;&#160;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::icns::MetMastForcing::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::MFIter &amp;</td>          <td class="paramname"><span class="paramname"><em>mfi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Box &amp;</td>          <td class="paramname"><span class="paramname"><em>bx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Array4&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>src_term</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="aa3b6c6556f17cb1732fb490b197a586b" name="aa3b6c6556f17cb1732fb490b197a586b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3b6c6556f17cb1732fb490b197a586b">&#9670;&#160;</a></span>m_1d_metmast</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::pde::icns::MetMastForcing::m_1d_metmast</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a28e7095b97716519d3a82d4b70737986" name="a28e7095b97716519d3a82d4b70737986"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28e7095b97716519d3a82d4b70737986">&#9670;&#160;</a></span>m_damping_radius</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::pde::icns::MetMastForcing::m_damping_radius {1400}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a45b6af8be772c03af0b369b21a7a9f4f" name="a45b6af8be772c03af0b369b21a7a9f4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45b6af8be772c03af0b369b21a7a9f4f">&#9670;&#160;</a></span>m_long_radius</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::pde::icns::MetMastForcing::m_long_radius {500}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aec42d53b38bbd8d5c7abe4a493ff8194" name="aec42d53b38bbd8d5c7abe4a493ff8194"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec42d53b38bbd8d5c7abe4a493ff8194">&#9670;&#160;</a></span>m_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::AmrCore&amp; kynema_sgf::pde::icns::MetMastForcing::m_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af6ed647212071815fa05c63b5b5a71fe" name="af6ed647212071815fa05c63b5b5a71fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6ed647212071815fa05c63b5b5a71fe">&#9670;&#160;</a></span>m_meso_timescale</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::pde::icns::MetMastForcing::m_meso_timescale {30}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9860cf8c828cf5a029b518babc5dc59b" name="a9860cf8c828cf5a029b518babc5dc59b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9860cf8c828cf5a029b518babc5dc59b">&#9670;&#160;</a></span>m_metmast_x</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::pde::icns::MetMastForcing::m_metmast_x</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a69d0e14ae69d5713a960c03181feb1ce" name="a69d0e14ae69d5713a960c03181feb1ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69d0e14ae69d5713a960c03181feb1ce">&#9670;&#160;</a></span>m_metmast_x_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;amrex::Real&gt; kynema_sgf::pde::icns::MetMastForcing::m_metmast_x_d</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad3768639f1aef09d69c1fe155495d20f" name="ad3768639f1aef09d69c1fe155495d20f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3768639f1aef09d69c1fe155495d20f">&#9670;&#160;</a></span>m_metmast_y</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::pde::icns::MetMastForcing::m_metmast_y</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af5504eed1640f257a72ca43563e03bcb" name="af5504eed1640f257a72ca43563e03bcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5504eed1640f257a72ca43563e03bcb">&#9670;&#160;</a></span>m_metmast_y_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;amrex::Real&gt; kynema_sgf::pde::icns::MetMastForcing::m_metmast_y_d</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae9976c50b71bdbed0f0cb7557a6e34ec" name="ae9976c50b71bdbed0f0cb7557a6e34ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9976c50b71bdbed0f0cb7557a6e34ec">&#9670;&#160;</a></span>m_metmast_z</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::pde::icns::MetMastForcing::m_metmast_z</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac797e2f0e473c68a3778127cb765d4e4" name="ac797e2f0e473c68a3778127cb765d4e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac797e2f0e473c68a3778127cb765d4e4">&#9670;&#160;</a></span>m_metmast_z_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;amrex::Real&gt; kynema_sgf::pde::icns::MetMastForcing::m_metmast_z_d</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a578d96b43da626039f7b9a222cfa769c" name="a578d96b43da626039f7b9a222cfa769c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a578d96b43da626039f7b9a222cfa769c">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::pde::icns::MetMastForcing::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a998f4f5b17e53b4a055144a9f94360ce" name="a998f4f5b17e53b4a055144a9f94360ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a998f4f5b17e53b4a055144a9f94360ce">&#9670;&#160;</a></span>m_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&amp; kynema_sgf::pde::icns::MetMastForcing::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3b72c4c4fab99afce019751c85f9e312" name="a3b72c4c4fab99afce019751c85f9e312"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b72c4c4fab99afce019751c85f9e312">&#9670;&#160;</a></span>m_u_values</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::pde::icns::MetMastForcing::m_u_values</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc546657b9e47170b089d5edd4415bc7" name="acc546657b9e47170b089d5edd4415bc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc546657b9e47170b089d5edd4415bc7">&#9670;&#160;</a></span>m_u_values_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;amrex::Real&gt; kynema_sgf::pde::icns::MetMastForcing::m_u_values_d</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a17ebbd0e5085ceef84d47a7cf8069b6d" name="a17ebbd0e5085ceef84d47a7cf8069b6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17ebbd0e5085ceef84d47a7cf8069b6d">&#9670;&#160;</a></span>m_v_values</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::pde::icns::MetMastForcing::m_v_values</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a235eb0a6df3b1558468a4b0e25d43301" name="a235eb0a6df3b1558468a4b0e25d43301"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a235eb0a6df3b1558468a4b0e25d43301">&#9670;&#160;</a></span>m_v_values_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;amrex::Real&gt; kynema_sgf::pde::icns::MetMastForcing::m_v_values_d</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7e7ace2387196267bae77a3a18da96b7" name="a7e7ace2387196267bae77a3a18da96b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e7ace2387196267bae77a3a18da96b7">&#9670;&#160;</a></span>m_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::pde::icns::MetMastForcing::m_velocity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a521b523e0cd5349835d0ff095cf4ce8d" name="a521b523e0cd5349835d0ff095cf4ce8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a521b523e0cd5349835d0ff095cf4ce8d">&#9670;&#160;</a></span>m_vertical_radius</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::pde::icns::MetMastForcing::m_vertical_radius {25}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3426f7ff3ff57d0c2c5e4f54105aa3f6" name="a3426f7ff3ff57d0c2c5e4f54105aa3f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3426f7ff3ff57d0c2c5e4f54105aa3f6">&#9670;&#160;</a></span>m_w_values</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::pde::icns::MetMastForcing::m_w_values</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae39f63860cd4a35a481bff5c1ec7af3c" name="ae39f63860cd4a35a481bff5c1ec7af3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae39f63860cd4a35a481bff5c1ec7af3c">&#9670;&#160;</a></span>m_w_values_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;amrex::Real&gt; kynema_sgf::pde::icns::MetMastForcing::m_w_values_d</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/<a class="el" href="_met_mast_forcing_8_h_source.html">MetMastForcing.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/<a class="el" href="_met_mast_forcing_8cpp.html">MetMastForcing.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

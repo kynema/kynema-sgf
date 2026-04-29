@@ -1,0 +1,1311 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::channel_flow::ChannelFlow Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::channel_flow::ChannelFlow Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1channel__flow_1_1_channel_flow.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="channelflow-class-reference">
+<h1>ChannelFlow Class Reference<a class="headerlink" href="#channelflow-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::channel_flow::ChannelFlow Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1channel__flow.html">channel_flow</a></li><li class="navelem"><a href="classkynema__sgf_1_1channel__flow_1_1_channel_flow.html">ChannelFlow</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1channel__flow_1_1_channel_flow-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::channel_flow::ChannelFlow Class Reference<div class="ingroups"><a class="el" href="group__physics.html">Physics models</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_channel_flow_8_h_source.html">ChannelFlow.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::channel_flow::ChannelFlow:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1channel__flow_1_1_channel_flow__inherit__graph.svg" width="171" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::channel_flow::ChannelFlow:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1channel__flow_1_1_channel_flow__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a9d25a9f84d8c6e1097916b273afea5b8" id="r_a9d25a9f84d8c6e1097916b273afea5b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d25a9f84d8c6e1097916b273afea5b8">ChannelFlow</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:ac15ad24ec7f6819f22dfe106ba16f46f" id="r_ac15ad24ec7f6819f22dfe106ba16f46f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac15ad24ec7f6819f22dfe106ba16f46f">~ChannelFlow</a> () override=default</td></tr>
+<tr class="memitem:a35e961582ea6e6f99490ed92b3f6c80e" id="r_a35e961582ea6e6f99490ed92b3f6c80e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35e961582ea6e6f99490ed92b3f6c80e">initialize_fields</a> (int level, const amrex::Geometry &amp;geom) override</td></tr>
+<tr class="memitem:a7a6409d67211dc6dc6670a0be196c766" id="r_a7a6409d67211dc6dc6670a0be196c766"><td class="memTemplParams" colspan="2">template&lt;typename IndexSelector&gt; </td></tr>
+<tr class="memitem:a7a6409d67211dc6dc6670a0be196c766 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a6409d67211dc6dc6670a0be196c766">initialize_fields</a> (int level, const amrex::Geometry &amp;geom, const IndexSelector &amp;idxOp, int n_idx)</td></tr>
+<tr class="memdesc:a7a6409d67211dc6dc6670a0be196c766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use Reichardt function to initialize velocity profile.  <br /></td></tr>
+<tr class="memitem:a9e023b2c4b6d1ec66a8b56da86b357fb" id="r_a9e023b2c4b6d1ec66a8b56da86b357fb"><td class="memTemplParams" colspan="2">template&lt;typename IndexSelector&gt; </td></tr>
+<tr class="memitem:a9e023b2c4b6d1ec66a8b56da86b357fb template"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e023b2c4b6d1ec66a8b56da86b357fb">compute_error</a> (const IndexSelector &amp;idxOp)</td></tr>
+<tr class="memitem:abd313beca36435d61cab7ca76f8b587b" id="r_abd313beca36435d61cab7ca76f8b587b"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd313beca36435d61cab7ca76f8b587b">compute_analytical_smagorinsky_error</a> ()</td></tr>
+<tr class="memitem:af632d246ff91be028562d97fdfcf2d26" id="r_af632d246ff91be028562d97fdfcf2d26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af632d246ff91be028562d97fdfcf2d26">output_error</a> ()</td></tr>
+<tr class="memitem:a6aa51866ff5934e74be74b9ce2f12699" id="r_a6aa51866ff5934e74be74b9ce2f12699"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6aa51866ff5934e74be74b9ce2f12699">post_init_actions</a> () override</td></tr>
+<tr class="memitem:a838c6a3011b00213fdf4ac59caf81938" id="r_a838c6a3011b00213fdf4ac59caf81938"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a838c6a3011b00213fdf4ac59caf81938">post_regrid_actions</a> () override</td></tr>
+<tr class="memitem:af4cbaff290467140c52e0b9d63c88ea3" id="r_af4cbaff290467140c52e0b9d63c88ea3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4cbaff290467140c52e0b9d63c88ea3">pre_advance_work</a> () override</td></tr>
+<tr class="memitem:a67c80ad5d4cff5ebec1de05fcb7e3b53" id="r_a67c80ad5d4cff5ebec1de05fcb7e3b53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67c80ad5d4cff5ebec1de05fcb7e3b53">post_advance_work</a> () override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ad906bf2f4a7ef85b88ca8f1e640df249" id="r_ad906bf2f4a7ef85b88ca8f1e640df249"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad906bf2f4a7ef85b88ca8f1e640df249">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a470c7a5587c3666507bd28e388efb2e8" id="r_a470c7a5587c3666507bd28e388efb2e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a470c7a5587c3666507bd28e388efb2e8">m_sim</a></td></tr>
+<tr class="memdesc:a470c7a5587c3666507bd28e388efb2e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">CFD simulation controller instance.  <br /></td></tr>
+<tr class="memitem:a1f3b756fac50de7f4472fdc34e4f6600" id="r_a1f3b756fac50de7f4472fdc34e4f6600"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f3b756fac50de7f4472fdc34e4f6600">m_time</a></td></tr>
+<tr class="memitem:ad49e389f2668b78fdacde6bab3bc63ec" id="r_ad49e389f2668b78fdacde6bab3bc63ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad49e389f2668b78fdacde6bab3bc63ec">m_repo</a></td></tr>
+<tr class="memitem:a4f6373168877358b6543684c2f53db04" id="r_a4f6373168877358b6543684c2f53db04"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f6373168877358b6543684c2f53db04">m_mesh</a></td></tr>
+<tr class="memitem:a3e39b96dd70291880b146e288a316c06" id="r_a3e39b96dd70291880b146e288a316c06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_wall_function.html">WallFunction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e39b96dd70291880b146e288a316c06">m_wall_func</a></td></tr>
+<tr class="memitem:a7b060a3f0f10dfb44574f0e5187c78ce" id="r_a7b060a3f0f10dfb44574f0e5187c78ce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b060a3f0f10dfb44574f0e5187c78ce">m_norm_dir</a> {1}</td></tr>
+<tr class="memdesc:a7b060a3f0f10dfb44574f0e5187c78ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wall normal direction - Default y direction.  <br /></td></tr>
+<tr class="memitem:ae0457521059f2482751121e890efde2e" id="r_ae0457521059f2482751121e890efde2e"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0457521059f2482751121e890efde2e">m_rho</a> {1.0_rt}</td></tr>
+<tr class="memdesc:ae0457521059f2482751121e890efde2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">initial density value  <br /></td></tr>
+<tr class="memitem:a75fe9cf853de425b5beb307a264612b6" id="r_a75fe9cf853de425b5beb307a264612b6"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75fe9cf853de425b5beb307a264612b6">m_mu</a> {1.0_rt}</td></tr>
+<tr class="memdesc:a75fe9cf853de425b5beb307a264612b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">viscosity  <br /></td></tr>
+<tr class="memitem:a3643771eab711e5ad402fcad781a01f0" id="r_a3643771eab711e5ad402fcad781a01f0"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3643771eab711e5ad402fcad781a01f0">m_re_tau</a> {1000.0_rt}</td></tr>
+<tr class="memdesc:a3643771eab711e5ad402fcad781a01f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Re_tau.  <br /></td></tr>
+<tr class="memitem:a6ea1ce5ff47e922fbe52dcb1d533853f" id="r_a6ea1ce5ff47e922fbe52dcb1d533853f"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ea1ce5ff47e922fbe52dcb1d533853f">m_utau</a> {0.01_rt}</td></tr>
+<tr class="memdesc:a6ea1ce5ff47e922fbe52dcb1d533853f"><td class="mdescLeft">&#160;</td><td class="mdescRight">u_tau  <br /></td></tr>
+<tr class="memitem:a6e3f8e9f64d7ae582bbb6224bc567cc0" id="r_a6e3f8e9f64d7ae582bbb6224bc567cc0"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e3f8e9f64d7ae582bbb6224bc567cc0">m_ytau</a> {0.001_rt}</td></tr>
+<tr class="memdesc:a6e3f8e9f64d7ae582bbb6224bc567cc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">y_tau  <br /></td></tr>
+<tr class="memitem:a2f7f2fa67f282e0dcfca70bbb3becfad" id="r_a2f7f2fa67f282e0dcfca70bbb3becfad"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f7f2fa67f282e0dcfca70bbb3becfad">m_tke0</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a2f7f2fa67f282e0dcfca70bbb3becfad"><td class="mdescLeft">&#160;</td><td class="mdescRight">initial tke value  <br /></td></tr>
+<tr class="memitem:a54a465c888f10e35cf40a26aeef24714" id="r_a54a465c888f10e35cf40a26aeef24714"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54a465c888f10e35cf40a26aeef24714">m_sdr0</a> {1000.0_rt}</td></tr>
+<tr class="memdesc:a54a465c888f10e35cf40a26aeef24714"><td class="mdescLeft">&#160;</td><td class="mdescRight">initial sdr value  <br /></td></tr>
+<tr class="memitem:a93bbc57b85b6051f5c25f5f5ea3bc6bd" id="r_a93bbc57b85b6051f5c25f5f5ea3bc6bd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93bbc57b85b6051f5c25f5f5ea3bc6bd">m_perturb_vel</a> {false}</td></tr>
+<tr class="memdesc:a93bbc57b85b6051f5c25f5f5ea3bc6bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag for perturbations of the initial condition  <br /></td></tr>
+<tr class="memitem:a705f153620e5a3a6d88575032833f9ec" id="r_a705f153620e5a3a6d88575032833f9ec"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a705f153620e5a3a6d88575032833f9ec">m_perturb_y_period</a> {1.0_rt}</td></tr>
+<tr class="memdesc:a705f153620e5a3a6d88575032833f9ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">perturbation period (y-direction)  <br /></td></tr>
+<tr class="memitem:a23c8de33403e1c18f808aad0ee0bb74c" id="r_a23c8de33403e1c18f808aad0ee0bb74c"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23c8de33403e1c18f808aad0ee0bb74c">m_perturb_z_period</a> {1.0_rt}</td></tr>
+<tr class="memdesc:a23c8de33403e1c18f808aad0ee0bb74c"><td class="mdescLeft">&#160;</td><td class="mdescRight">perturbation period (z-direction)  <br /></td></tr>
+<tr class="memitem:abd0cff7b8ffd153f128f6f5d4aa6a6fe" id="r_abd0cff7b8ffd153f128f6f5d4aa6a6fe"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd0cff7b8ffd153f128f6f5d4aa6a6fe">m_perturb_fac</a> {0.1_rt}</td></tr>
+<tr class="memdesc:abd0cff7b8ffd153f128f6f5d4aa6a6fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">perturbation factor (fraction of utau)  <br /></td></tr>
+<tr class="memitem:ac5c7cc0358344b3a64637fead31b88fd" id="r_ac5c7cc0358344b3a64637fead31b88fd"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5c7cc0358344b3a64637fead31b88fd">m_kappa</a> {0.41_rt}</td></tr>
+<tr class="memdesc:ac5c7cc0358344b3a64637fead31b88fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Von-Karman constant.  <br /></td></tr>
+<tr class="memitem:af25f653b319f393cc7eb10e3fdcbacf5" id="r_af25f653b319f393cc7eb10e3fdcbacf5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af25f653b319f393cc7eb10e3fdcbacf5">m_turbulence_model</a></td></tr>
+<tr class="memdesc:af25f653b319f393cc7eb10e3fdcbacf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turbulence model.  <br /></td></tr>
+<tr class="memitem:a81092fa2beffdefe1f9ba4caf8fec421" id="r_a81092fa2beffdefe1f9ba4caf8fec421"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81092fa2beffdefe1f9ba4caf8fec421">m_laminar</a> {false}</td></tr>
+<tr class="memitem:a981dbc3b64482c56808c80985c87ca05" id="r_a981dbc3b64482c56808c80985c87ca05"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a981dbc3b64482c56808c80985c87ca05">m_mesh_mapping</a> {false}</td></tr>
+<tr class="memitem:a21bbd07b619c198a2f053050f7cdb148" id="r_a21bbd07b619c198a2f053050f7cdb148"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21bbd07b619c198a2f053050f7cdb148">m_mean_vel</a></td></tr>
+<tr class="memitem:a6904bf7c5640a6e4ee88557c5c095f39" id="r_a6904bf7c5640a6e4ee88557c5c095f39"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6904bf7c5640a6e4ee88557c5c095f39">m_half</a> {false}</td></tr>
+<tr class="memitem:a8b1d8669433ff8d046014f1b73c2dbc1" id="r_a8b1d8669433ff8d046014f1b73c2dbc1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b1d8669433ff8d046014f1b73c2dbc1">m_analytical_smagorinsky_test</a> {false}</td></tr>
+<tr class="memdesc:a8b1d8669433ff8d046014f1b73c2dbc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag for analytical smagorinsky test  <br /></td></tr>
+<tr class="memitem:a7a9aa1c0095d1f4280d90e7a8de4a0c2" id="r_a7a9aa1c0095d1f4280d90e7a8de4a0c2"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a9aa1c0095d1f4280d90e7a8de4a0c2">m_C0</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a7a9aa1c0095d1f4280d90e7a8de4a0c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analytical Smagorinsky first coefficient.  <br /></td></tr>
+<tr class="memitem:a07fe41ef38abaa73cdf4435e6d899fb3" id="r_a07fe41ef38abaa73cdf4435e6d899fb3"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07fe41ef38abaa73cdf4435e6d899fb3">m_C1</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a07fe41ef38abaa73cdf4435e6d899fb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analytical Smagorinsky second coefficient.  <br /></td></tr>
+<tr class="memitem:ae2f04e7d64ccbea773f319fb43988f26" id="r_ae2f04e7d64ccbea773f319fb43988f26"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2f04e7d64ccbea773f319fb43988f26">m_dpdx</a> {0.0_rt}</td></tr>
+<tr class="memdesc:ae2f04e7d64ccbea773f319fb43988f26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Body forcing (x direction)  <br /></td></tr>
+<tr class="memitem:a4fb6bcfde8eadae7f24fa953b9f00c7c" id="r_a4fb6bcfde8eadae7f24fa953b9f00c7c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fb6bcfde8eadae7f24fa953b9f00c7c">m_mean_vel_dir</a> {0}</td></tr>
+<tr class="memdesc:a4fb6bcfde8eadae7f24fa953b9f00c7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">direction of mean velocity  <br /></td></tr>
+<tr class="memitem:a8a872b3fddd14d3eed29043e7e3fe883" id="r_a8a872b3fddd14d3eed29043e7e3fe883"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a872b3fddd14d3eed29043e7e3fe883">m_w</a> {18}</td></tr>
+<tr class="memdesc:a8a872b3fddd14d3eed29043e7e3fe883"><td class="mdescLeft">&#160;</td><td class="mdescRight">output precision  <br /></td></tr>
+<tr class="memitem:abfd32f2d7592b31cf09fdefae311e400" id="r_abfd32f2d7592b31cf09fdefae311e400"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfd32f2d7592b31cf09fdefae311e400">m_output_fname</a> {&quot;channel_flow.log&quot;}</td></tr>
+<tr class="memdesc:abfd32f2d7592b31cf09fdefae311e400"><td class="mdescLeft">&#160;</td><td class="mdescRight">error log file  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Channel Flow physics </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a9d25a9f84d8c6e1097916b273afea5b8" name="a9d25a9f84d8c6e1097916b273afea5b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d25a9f84d8c6e1097916b273afea5b8">&#9670;&#160;</a></span>ChannelFlow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::channel_flow::ChannelFlow::ChannelFlow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac15ad24ec7f6819f22dfe106ba16f46f" name="ac15ad24ec7f6819f22dfe106ba16f46f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac15ad24ec7f6819f22dfe106ba16f46f">&#9670;&#160;</a></span>~ChannelFlow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::channel_flow::ChannelFlow::~ChannelFlow </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="abd313beca36435d61cab7ca76f8b587b" name="abd313beca36435d61cab7ca76f8b587b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd313beca36435d61cab7ca76f8b587b">&#9670;&#160;</a></span>compute_analytical_smagorinsky_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::compute_analytical_smagorinsky_error </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9e023b2c4b6d1ec66a8b56da86b357fb" name="a9e023b2c4b6d1ec66a8b56da86b357fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e023b2c4b6d1ec66a8b56da86b357fb">&#9670;&#160;</a></span>compute_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename IndexSelector&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::compute_error </td>
+          <td>(</td>
+          <td class="paramtype">const IndexSelector &amp;</td>          <td class="paramname"><span class="paramname"><em>idxOp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad906bf2f4a7ef85b88ca8f1e640df249" name="ad906bf2f4a7ef85b88ca8f1e640df249"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad906bf2f4a7ef85b88ca8f1e640df249">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::channel_flow::ChannelFlow::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a35e961582ea6e6f99490ed92b3f6c80e" name="a35e961582ea6e6f99490ed92b3f6c80e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35e961582ea6e6f99490ed92b3f6c80e">&#9670;&#160;</a></span>initialize_fields() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::channel_flow::ChannelFlow::initialize_fields </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Initialize the velocity, density, tke and sdr fields at the beginning of the simulation. </p>
+
+</div>
+</div>
+<a id="a7a6409d67211dc6dc6670a0be196c766" name="a7a6409d67211dc6dc6670a0be196c766"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a6409d67211dc6dc6670a0be196c766">&#9670;&#160;</a></span>initialize_fields() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename IndexSelector&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::channel_flow::ChannelFlow::initialize_fields </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const IndexSelector &amp;</td>          <td class="paramname"><span class="paramname"><em>idxOp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>n_idx</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Use Reichardt function to initialize velocity profile. </p>
+
+</div>
+</div>
+<a id="af632d246ff91be028562d97fdfcf2d26" name="af632d246ff91be028562d97fdfcf2d26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af632d246ff91be028562d97fdfcf2d26">&#9670;&#160;</a></span>output_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::channel_flow::ChannelFlow::output_error </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a67c80ad5d4cff5ebec1de05fcb7e3b53" name="a67c80ad5d4cff5ebec1de05fcb7e3b53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67c80ad5d4cff5ebec1de05fcb7e3b53">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::channel_flow::ChannelFlow::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6aa51866ff5934e74be74b9ce2f12699" name="a6aa51866ff5934e74be74b9ce2f12699"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6aa51866ff5934e74be74b9ce2f12699">&#9670;&#160;</a></span>post_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::channel_flow::ChannelFlow::post_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a838c6a3011b00213fdf4ac59caf81938" name="a838c6a3011b00213fdf4ac59caf81938"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a838c6a3011b00213fdf4ac59caf81938">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::channel_flow::ChannelFlow::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af4cbaff290467140c52e0b9d63c88ea3" name="af4cbaff290467140c52e0b9d63c88ea3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4cbaff290467140c52e0b9d63c88ea3">&#9670;&#160;</a></span>pre_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::channel_flow::ChannelFlow::pre_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a8b1d8669433ff8d046014f1b73c2dbc1" name="a8b1d8669433ff8d046014f1b73c2dbc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b1d8669433ff8d046014f1b73c2dbc1">&#9670;&#160;</a></span>m_analytical_smagorinsky_test</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::channel_flow::ChannelFlow::m_analytical_smagorinsky_test {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>flag for analytical smagorinsky test </p>
+
+</div>
+</div>
+<a id="a7a9aa1c0095d1f4280d90e7a8de4a0c2" name="a7a9aa1c0095d1f4280d90e7a8de4a0c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a9aa1c0095d1f4280d90e7a8de4a0c2">&#9670;&#160;</a></span>m_C0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::m_C0 {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Analytical Smagorinsky first coefficient. </p>
+
+</div>
+</div>
+<a id="a07fe41ef38abaa73cdf4435e6d899fb3" name="a07fe41ef38abaa73cdf4435e6d899fb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07fe41ef38abaa73cdf4435e6d899fb3">&#9670;&#160;</a></span>m_C1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::m_C1 {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Analytical Smagorinsky second coefficient. </p>
+
+</div>
+</div>
+<a id="ae2f04e7d64ccbea773f319fb43988f26" name="ae2f04e7d64ccbea773f319fb43988f26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2f04e7d64ccbea773f319fb43988f26">&#9670;&#160;</a></span>m_dpdx</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::m_dpdx {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Body forcing (x direction) </p>
+
+</div>
+</div>
+<a id="a6904bf7c5640a6e4ee88557c5c095f39" name="a6904bf7c5640a6e4ee88557c5c095f39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6904bf7c5640a6e4ee88557c5c095f39">&#9670;&#160;</a></span>m_half</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::channel_flow::ChannelFlow::m_half {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac5c7cc0358344b3a64637fead31b88fd" name="ac5c7cc0358344b3a64637fead31b88fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5c7cc0358344b3a64637fead31b88fd">&#9670;&#160;</a></span>m_kappa</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::m_kappa {0.41_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Von-Karman constant. </p>
+
+</div>
+</div>
+<a id="a81092fa2beffdefe1f9ba4caf8fec421" name="a81092fa2beffdefe1f9ba4caf8fec421"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81092fa2beffdefe1f9ba4caf8fec421">&#9670;&#160;</a></span>m_laminar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::channel_flow::ChannelFlow::m_laminar {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a21bbd07b619c198a2f053050f7cdb148" name="a21bbd07b619c198a2f053050f7cdb148"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21bbd07b619c198a2f053050f7cdb148">&#9670;&#160;</a></span>m_mean_vel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::m_mean_vel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4fb6bcfde8eadae7f24fa953b9f00c7c" name="a4fb6bcfde8eadae7f24fa953b9f00c7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fb6bcfde8eadae7f24fa953b9f00c7c">&#9670;&#160;</a></span>m_mean_vel_dir</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::channel_flow::ChannelFlow::m_mean_vel_dir {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>direction of mean velocity </p>
+
+</div>
+</div>
+<a id="a4f6373168877358b6543684c2f53db04" name="a4f6373168877358b6543684c2f53db04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f6373168877358b6543684c2f53db04">&#9670;&#160;</a></span>m_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::AmrCore&amp; kynema_sgf::channel_flow::ChannelFlow::m_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a981dbc3b64482c56808c80985c87ca05" name="a981dbc3b64482c56808c80985c87ca05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a981dbc3b64482c56808c80985c87ca05">&#9670;&#160;</a></span>m_mesh_mapping</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::channel_flow::ChannelFlow::m_mesh_mapping {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a75fe9cf853de425b5beb307a264612b6" name="a75fe9cf853de425b5beb307a264612b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75fe9cf853de425b5beb307a264612b6">&#9670;&#160;</a></span>m_mu</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::m_mu {1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>viscosity </p>
+
+</div>
+</div>
+<a id="a7b060a3f0f10dfb44574f0e5187c78ce" name="a7b060a3f0f10dfb44574f0e5187c78ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b060a3f0f10dfb44574f0e5187c78ce">&#9670;&#160;</a></span>m_norm_dir</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::channel_flow::ChannelFlow::m_norm_dir {1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wall normal direction - Default y direction. </p>
+
+</div>
+</div>
+<a id="abfd32f2d7592b31cf09fdefae311e400" name="abfd32f2d7592b31cf09fdefae311e400"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfd32f2d7592b31cf09fdefae311e400">&#9670;&#160;</a></span>m_output_fname</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::channel_flow::ChannelFlow::m_output_fname {&quot;channel_flow.log&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>error log file </p>
+
+</div>
+</div>
+<a id="abd0cff7b8ffd153f128f6f5d4aa6a6fe" name="abd0cff7b8ffd153f128f6f5d4aa6a6fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd0cff7b8ffd153f128f6f5d4aa6a6fe">&#9670;&#160;</a></span>m_perturb_fac</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::m_perturb_fac {0.1_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>perturbation factor (fraction of utau) </p>
+
+</div>
+</div>
+<a id="a93bbc57b85b6051f5c25f5f5ea3bc6bd" name="a93bbc57b85b6051f5c25f5f5ea3bc6bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93bbc57b85b6051f5c25f5f5ea3bc6bd">&#9670;&#160;</a></span>m_perturb_vel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::channel_flow::ChannelFlow::m_perturb_vel {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>flag for perturbations of the initial condition </p>
+
+</div>
+</div>
+<a id="a705f153620e5a3a6d88575032833f9ec" name="a705f153620e5a3a6d88575032833f9ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a705f153620e5a3a6d88575032833f9ec">&#9670;&#160;</a></span>m_perturb_y_period</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::m_perturb_y_period {1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>perturbation period (y-direction) </p>
+
+</div>
+</div>
+<a id="a23c8de33403e1c18f808aad0ee0bb74c" name="a23c8de33403e1c18f808aad0ee0bb74c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23c8de33403e1c18f808aad0ee0bb74c">&#9670;&#160;</a></span>m_perturb_z_period</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::m_perturb_z_period {1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>perturbation period (z-direction) </p>
+
+</div>
+</div>
+<a id="a3643771eab711e5ad402fcad781a01f0" name="a3643771eab711e5ad402fcad781a01f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3643771eab711e5ad402fcad781a01f0">&#9670;&#160;</a></span>m_re_tau</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::m_re_tau {1000.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Re_tau. </p>
+
+</div>
+</div>
+<a id="ad49e389f2668b78fdacde6bab3bc63ec" name="ad49e389f2668b78fdacde6bab3bc63ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad49e389f2668b78fdacde6bab3bc63ec">&#9670;&#160;</a></span>m_repo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; kynema_sgf::channel_flow::ChannelFlow::m_repo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae0457521059f2482751121e890efde2e" name="ae0457521059f2482751121e890efde2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0457521059f2482751121e890efde2e">&#9670;&#160;</a></span>m_rho</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::m_rho {1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>initial density value </p>
+
+</div>
+</div>
+<a id="a54a465c888f10e35cf40a26aeef24714" name="a54a465c888f10e35cf40a26aeef24714"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54a465c888f10e35cf40a26aeef24714">&#9670;&#160;</a></span>m_sdr0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::m_sdr0 {1000.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>initial sdr value </p>
+
+</div>
+</div>
+<a id="a470c7a5587c3666507bd28e388efb2e8" name="a470c7a5587c3666507bd28e388efb2e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a470c7a5587c3666507bd28e388efb2e8">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::channel_flow::ChannelFlow::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>CFD simulation controller instance. </p>
+
+</div>
+</div>
+<a id="a1f3b756fac50de7f4472fdc34e4f6600" name="a1f3b756fac50de7f4472fdc34e4f6600"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f3b756fac50de7f4472fdc34e4f6600">&#9670;&#160;</a></span>m_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a>&amp; kynema_sgf::channel_flow::ChannelFlow::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2f7f2fa67f282e0dcfca70bbb3becfad" name="a2f7f2fa67f282e0dcfca70bbb3becfad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f7f2fa67f282e0dcfca70bbb3becfad">&#9670;&#160;</a></span>m_tke0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::m_tke0 {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>initial tke value </p>
+
+</div>
+</div>
+<a id="af25f653b319f393cc7eb10e3fdcbacf5" name="af25f653b319f393cc7eb10e3fdcbacf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af25f653b319f393cc7eb10e3fdcbacf5">&#9670;&#160;</a></span>m_turbulence_model</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::channel_flow::ChannelFlow::m_turbulence_model</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Turbulence model. </p>
+
+</div>
+</div>
+<a id="a6ea1ce5ff47e922fbe52dcb1d533853f" name="a6ea1ce5ff47e922fbe52dcb1d533853f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ea1ce5ff47e922fbe52dcb1d533853f">&#9670;&#160;</a></span>m_utau</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::m_utau {0.01_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>u_tau </p>
+
+</div>
+</div>
+<a id="a8a872b3fddd14d3eed29043e7e3fe883" name="a8a872b3fddd14d3eed29043e7e3fe883"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a872b3fddd14d3eed29043e7e3fe883">&#9670;&#160;</a></span>m_w</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int kynema_sgf::channel_flow::ChannelFlow::m_w {18}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>output precision </p>
+
+</div>
+</div>
+<a id="a3e39b96dd70291880b146e288a316c06" name="a3e39b96dd70291880b146e288a316c06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e39b96dd70291880b146e288a316c06">&#9670;&#160;</a></span>m_wall_func</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_wall_function.html">WallFunction</a> kynema_sgf::channel_flow::ChannelFlow::m_wall_func</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6e3f8e9f64d7ae582bbb6224bc567cc0" name="a6e3f8e9f64d7ae582bbb6224bc567cc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e3f8e9f64d7ae582bbb6224bc567cc0">&#9670;&#160;</a></span>m_ytau</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::channel_flow::ChannelFlow::m_ytau {0.001_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>y_tau </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/<a class="el" href="_channel_flow_8_h_source.html">ChannelFlow.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/<a class="el" href="_channel_flow_8cpp.html">ChannelFlow.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LES with Terrain &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Wall-Modeled RANS" href="rans.html" />
+    <link rel="prev" title="Turbine simulation walkthrough" href="turbine.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Walkthrough</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="precursor.html">Precursor (ABL) walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turbine.html">Turbine simulation walkthrough</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LES with Terrain</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setup-using-python-tools">Setup using Python Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rans.html">Wall-Modeled RANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noprecursorrans.html">External Driven Terrain Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration.html">Actuator Line Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Walkthrough</a></li>
+      <li class="breadcrumb-item active">LES with Terrain</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/walkthrough/terrain.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="les-with-terrain">
+<span id="terrain"></span><h1>LES with Terrain<a class="headerlink" href="#les-with-terrain" title="Link to this heading"></a></h1>
+<p>In this walkthrough, we discuss the steps to setup a terrain simulation using the newly implemented
+immersed boundary forcing method (IBFM). The theory for the technique can be found at
+<a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2020MS002141">this link</a>.</p>
+<p>The setup for the terrain follows the typical simulation of the atmospheric boundary layer (ABL) using
+large eddy simulation or Reynolds-averaged Navier Stokes turbulence models. The IBFM can be used with
+periodic or inflow-outflow boundary conditions with few modifications.</p>
+<p>The first step in including the terrain is to set the terrain
+variables. This is accomplished by modifying the ABL physics to
+include the <code class="docutils literal notranslate"><span class="pre">TerrainDrag</span></code> flow physics: <code class="docutils literal notranslate"><span class="pre">incflo.physics</span> <span class="pre">=</span> <span class="pre">ABL</span>
+<span class="pre">TerrainDrag</span></code>.  This looks for the <code class="docutils literal notranslate"><span class="pre">terrain.amrwind</span></code> text file in
+the case folder (this is the default name, the user can modify the
+file it searches for by specifying the <code class="docutils literal notranslate"><span class="pre">TerrainDrag.terrain_file</span></code>
+input parameter). The file contains the terrain height as a single
+column organized as: <code class="docutils literal notranslate"><span class="pre">nx,</span> <span class="pre">ny,</span> <span class="pre">x</span> <span class="pre">values</span> <span class="pre">(of</span> <span class="pre">length</span> <span class="pre">nx),</span> <span class="pre">y</span> <span class="pre">values</span> <span class="pre">(of</span>
+<span class="pre">length</span> <span class="pre">ny),</span> <span class="pre">terrain</span> <span class="pre">height</span> <span class="pre">values</span> <span class="pre">(of</span> <span class="pre">length</span> <span class="pre">nx</span> <span class="pre">x</span> <span class="pre">ny)</span></code>.</p>
+<p>The second step is the inclusion of the terrain forcing in the momentum and energy equations. This is
+accomplished by adding <code class="docutils literal notranslate"><span class="pre">DragForcing</span></code> and <code class="docutils literal notranslate"><span class="pre">DragTempForcing</span></code> terms to <code class="docutils literal notranslate"><span class="pre">ICNS.source_terms</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Temperature.source_terms</span></code>, respectively. The terrain simulations requires adding a sponge layer
+at the outflow and Rayleigh damping at top of the domain. Rayleigh damping is already available from
+the existing forcing terms and can be used directly. The sponge-layer is implemented by specifying the boundary
+and the span. For example, a sponge layer of size 1000 m at the east (+x) boundary,
+we need to include <code class="docutils literal notranslate"><span class="pre">DragForcing.sponge_east=1</span></code> and <code class="docutils literal notranslate"><span class="pre">DragForcing.sponge_distance_east=1000</span></code> in the input file.
+The sponge layer is not required for periodic boundary boundary conditions. The only input recommended for the
+energy equation source term is the specification of the internal temperature of the terrain. This is
+set as <code class="docutils literal notranslate"><span class="pre">transport.reference_temperature=300</span></code>. The current terrain setup can only
+be used for the simulation of neutral ABL. A future release will update this calculation to automatically use
+the values from a precursor simulation for both neutral and  non-neutral stratification.
+The terrain can be visualized by including <code class="docutils literal notranslate"><span class="pre">io.int_outputs</span> <span class="pre">=</span> <span class="pre">terrain_blank</span></code> in the input file.</p>
+<p>It is recommended to use the <code class="docutils literal notranslate"><span class="pre">ProbeSampler</span></code> to create the terrain-aligned output planes. The easiest method
+to generate the text file for <code class="docutils literal notranslate"><span class="pre">ProbeSampler</span></code> is to write the STL as a text file and then use offsets in
+postprocessing to write the planes at different heights above the terrain. The terrain-aware output can
+also be used with FAST.Farm and FLORIS.</p>
+<p>An example paraview visualization of the terrain is shown below (with three levels of refinement):</p>
+<a class="reference internal image-reference" href="../_images/terrain_blank.png"><img alt="../_images/terrain_blank.png" src="../_images/terrain_blank.png" style="width: 100%;" />
+</a>
+<p>Here is a sample content of precursor and inflow-outflow input files to drive terrain simulations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Generating the precursor file</span>
+<span class="linenos"> 2</span><span class="c1"># Geometry</span>
+<span class="linenos"> 3</span><span class="n">geometry</span><span class="o">.</span><span class="n">prob_lo</span> 			 <span class="o">=</span> <span class="mi">708751</span> <span class="mf">5.00187e+06</span> <span class="mf">446.15</span> 
+<span class="linenos"> 4</span><span class="n">geometry</span><span class="o">.</span><span class="n">prob_hi</span> 			 <span class="o">=</span> <span class="mi">723151</span> <span class="mf">5.016e+06</span> <span class="mf">2041.56</span> 
+<span class="linenos"> 5</span><span class="n">geometry</span><span class="o">.</span><span class="n">is_periodic</span> 			 <span class="o">=</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span>
+<span class="linenos"> 6</span><span class="c1"># Grid </span>
+<span class="linenos"> 7</span><span class="n">amr</span><span class="o">.</span><span class="n">n_cell</span> 			 <span class="o">=</span> <span class="mi">232</span> <span class="mi">224</span> <span class="mi">40</span>
+<span class="linenos"> 8</span><span class="n">amr</span><span class="o">.</span><span class="n">max_level</span> 			 <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 9</span><span class="n">time</span><span class="o">.</span><span class="n">stop_time</span> 			 <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="linenos">10</span><span class="n">time</span><span class="o">.</span><span class="n">max_step</span> 			 <span class="o">=</span> <span class="mi">10000</span>
+<span class="linenos">11</span><span class="n">time</span><span class="o">.</span><span class="n">initial_dt</span> 			 <span class="o">=</span> <span class="mf">0.1</span>
+<span class="linenos">12</span><span class="n">time</span><span class="o">.</span><span class="n">fixed_dt</span> 			 <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="linenos">13</span><span class="n">time</span><span class="o">.</span><span class="n">cfl</span> 			 <span class="o">=</span> <span class="mf">0.9</span>
+<span class="linenos">14</span><span class="n">time</span><span class="o">.</span><span class="n">plot_interval</span> 			 <span class="o">=</span> <span class="mi">5000</span>
+<span class="linenos">15</span><span class="n">time</span><span class="o">.</span><span class="n">checkpoint_interval</span> 			 <span class="o">=</span> <span class="mi">2000</span>
+<span class="linenos">16</span><span class="c1"># incflo </span>
+<span class="linenos">17</span><span class="n">incflo</span><span class="o">.</span><span class="n">physics</span> 			 <span class="o">=</span> <span class="n">ABL</span>
+<span class="linenos">18</span><span class="n">incflo</span><span class="o">.</span><span class="n">density</span> 			 <span class="o">=</span> <span class="mf">1.225</span>
+<span class="linenos">19</span><span class="n">incflo</span><span class="o">.</span><span class="n">gravity</span> 			 <span class="o">=</span> <span class="mf">0.</span>  <span class="mf">0.</span> <span class="o">-</span><span class="mf">9.81</span>  <span class="c1"># Gravitational force (3D)</span>
+<span class="linenos">20</span><span class="n">incflo</span><span class="o">.</span><span class="n">velocity</span> 			 <span class="o">=</span> <span class="mi">10</span> <span class="mi">0</span> <span class="mi">0</span> 
+<span class="linenos">21</span><span class="n">incflo</span><span class="o">.</span><span class="n">verbose</span>  			 <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">22</span><span class="n">incflo</span><span class="o">.</span><span class="n">initial_iterations</span> 			 <span class="o">=</span> <span class="mi">8</span>
+<span class="linenos">23</span><span class="n">incflo</span><span class="o">.</span><span class="n">do_initial_proj</span> 			 <span class="o">=</span> <span class="n">true</span>
+<span class="linenos">24</span><span class="n">incflo</span><span class="o">.</span><span class="n">constant_density</span> 			 <span class="o">=</span> <span class="n">true</span>
+<span class="linenos">25</span><span class="n">incflo</span><span class="o">.</span><span class="n">use_godunov</span> 			 <span class="o">=</span> <span class="n">true</span>
+<span class="linenos">26</span><span class="n">incflo</span><span class="o">.</span><span class="n">godunov_type</span> 			 <span class="o">=</span> <span class="s2">&quot;weno_z&quot;</span>
+<span class="linenos">27</span><span class="n">incflo</span><span class="o">.</span><span class="n">diffusion_type</span> 			 <span class="o">=</span> <span class="mi">2</span>
+<span class="linenos">28</span><span class="c1"># transport equation parameters </span>
+<span class="linenos">29</span><span class="n">transport</span><span class="o">.</span><span class="n">model</span> 			 <span class="o">=</span> <span class="n">ConstTransport</span>
+<span class="linenos">30</span><span class="n">transport</span><span class="o">.</span><span class="n">viscosity</span> 			 <span class="o">=</span> <span class="mf">1e-5</span>
+<span class="linenos">31</span><span class="n">transport</span><span class="o">.</span><span class="n">laminar_prandtl</span> 			 <span class="o">=</span> <span class="mf">0.7</span>
+<span class="linenos">32</span><span class="n">transport</span><span class="o">.</span><span class="n">turbulent_prandtl</span> 			 <span class="o">=</span> <span class="mf">0.333</span>
+<span class="linenos">33</span><span class="n">transport</span><span class="o">.</span><span class="n">reference_temperature</span> 		 <span class="o">=</span> <span class="mi">300</span>
+<span class="linenos">34</span><span class="n">transport</span><span class="o">.</span><span class="n">thermal_expansion_coefficient</span>		 <span class="o">=</span> <span class="mf">0.00333333</span>
+<span class="linenos">35</span><span class="c1"># turbulence equation parameters </span>
+<span class="linenos">36</span><span class="n">turbulence</span><span class="o">.</span><span class="n">model</span> 			 <span class="o">=</span> <span class="n">Kosovic</span>
+<span class="linenos">37</span><span class="n">Kosovic</span><span class="o">.</span><span class="n">refMOL</span> 			 <span class="o">=</span> <span class="o">-</span><span class="mf">1e30</span>
+<span class="linenos">38</span><span class="c1"># Atmospheric boundary layer</span>
+<span class="linenos">39</span><span class="n">ABL</span><span class="o">.</span><span class="n">Uperiods</span> 			 <span class="o">=</span> <span class="mi">72</span>
+<span class="linenos">40</span><span class="n">ABL</span><span class="o">.</span><span class="n">Vperiods</span> 			 <span class="o">=</span> <span class="mi">72</span>
+<span class="linenos">41</span><span class="n">ABL</span><span class="o">.</span><span class="n">cutoff_height</span> 			 <span class="o">=</span> <span class="mf">50.0</span>
+<span class="linenos">42</span><span class="n">ABL</span><span class="o">.</span><span class="n">deltaU</span> 			 <span class="o">=</span> <span class="mf">1.0</span>
+<span class="linenos">43</span><span class="n">ABL</span><span class="o">.</span><span class="n">deltaV</span> 			 <span class="o">=</span> <span class="mf">1.0</span>
+<span class="linenos">44</span><span class="n">ABL</span><span class="o">.</span><span class="n">perturb_ref_height</span> 			 <span class="o">=</span> <span class="mf">50.0</span>
+<span class="linenos">45</span><span class="n">ABL</span><span class="o">.</span><span class="n">perturb_velocity</span> 			 <span class="o">=</span> <span class="n">true</span>
+<span class="linenos">46</span><span class="n">ABL</span><span class="o">.</span><span class="n">perturb_temperature</span> 			 <span class="o">=</span> <span class="n">false</span>
+<span class="linenos">47</span><span class="n">ABL</span><span class="o">.</span><span class="n">kappa</span> 			 <span class="o">=</span> <span class="mf">.41</span>
+<span class="linenos">48</span><span class="n">ABL</span><span class="o">.</span><span class="n">normal_direction</span> 			 <span class="o">=</span> <span class="mi">2</span>
+<span class="linenos">49</span><span class="n">ABL</span><span class="o">.</span><span class="n">stats_output_format</span> 			 <span class="o">=</span> <span class="n">netcdf</span>
+<span class="linenos">50</span><span class="n">ABL</span><span class="o">.</span><span class="n">surface_roughness_z0</span> 			 <span class="o">=</span> <span class="mf">0.1</span>
+<span class="linenos">51</span><span class="n">ABL</span><span class="o">.</span><span class="n">temperature_heights</span> 			 <span class="o">=</span> <span class="mi">0</span>  <span class="mi">800</span> <span class="mi">900</span> <span class="mi">1900</span>
+<span class="linenos">52</span><span class="n">ABL</span><span class="o">.</span><span class="n">temperature_values</span>  			 <span class="o">=</span> <span class="mi">300</span> <span class="mi">300</span> <span class="mi">308</span> <span class="mi">311</span>
+<span class="linenos">53</span><span class="n">ABL</span><span class="o">.</span><span class="n">wall_shear_stress_type</span> 			 <span class="o">=</span> <span class="n">local</span>
+<span class="linenos">54</span><span class="n">ABL</span><span class="o">.</span><span class="n">surface_temp_flux</span> 			 <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">55</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_file</span> 			 <span class="o">=</span> <span class="s2">&quot;bndry_files&quot;</span>
+<span class="linenos">56</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_write_frequency</span> 			 <span class="o">=</span> <span class="mi">100</span>
+<span class="linenos">57</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_io_mode</span> 			 <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">58</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_planes</span> 			 <span class="o">=</span> <span class="n">xlo</span> <span class="n">ylo</span> 
+<span class="linenos">59</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_output_start_time</span> 			 <span class="o">=</span> <span class="mf">434.028</span>
+<span class="linenos">60</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_var_names</span> 			 <span class="o">=</span> <span class="n">velocity</span> <span class="n">temperature</span>
+<span class="linenos">61</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_output_format</span> 			 <span class="o">=</span> <span class="n">native</span>
+<span class="linenos">62</span><span class="c1"># Source</span>
+<span class="linenos">63</span><span class="n">ICNS</span><span class="o">.</span><span class="n">source_terms</span> 			 <span class="o">=</span> <span class="n">BoussinesqBuoyancy</span> <span class="n">CoriolisForcing</span> <span class="n">GeostrophicForcing</span> <span class="n">RayleighDamping</span> <span class="n">NonLinearSGSTerm</span>
+<span class="linenos">64</span><span class="n">CoriolisForcing</span><span class="o">.</span><span class="n">east_vector</span> 			 <span class="o">=</span> <span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span> 
+<span class="linenos">65</span><span class="n">CoriolisForcing</span><span class="o">.</span><span class="n">north_vector</span> 			 <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">1.0</span> <span class="mf">0.0</span> 
+<span class="linenos">66</span><span class="n">CoriolisForcing</span><span class="o">.</span><span class="n">latitude</span> 			 <span class="o">=</span> <span class="mi">90</span> 
+<span class="linenos">67</span><span class="n">CoriolisForcing</span><span class="o">.</span><span class="n">rotational_time_period</span> 			 <span class="o">=</span> <span class="mi">125664</span> 
+<span class="linenos">68</span><span class="n">GeostrophicForcing</span><span class="o">.</span><span class="n">geostrophic_wind</span> 			 <span class="o">=</span> <span class="mi">10</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="linenos">69</span><span class="n">RayleighDamping</span><span class="o">.</span><span class="n">reference_velocity</span> 			 <span class="o">=</span> <span class="mi">10</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="linenos">70</span><span class="n">RayleighDamping</span><span class="o">.</span><span class="n">length_sloped_damping</span> 			 <span class="o">=</span> <span class="mi">400</span>
+<span class="linenos">71</span><span class="n">RayleighDamping</span><span class="o">.</span><span class="n">length_complete_damping</span> 			 <span class="o">=</span> <span class="mi">200</span>
+<span class="linenos">72</span><span class="n">RayleighDamping</span><span class="o">.</span><span class="n">time_scale</span> 			 <span class="o">=</span> <span class="mf">5.0</span>
+<span class="linenos">73</span><span class="c1"># BC </span>
+<span class="linenos">74</span><span class="n">zhi</span><span class="o">.</span><span class="n">type</span> 			 <span class="o">=</span> <span class="s2">&quot;slip_wall&quot;</span>
+<span class="linenos">75</span><span class="n">zhi</span><span class="o">.</span><span class="n">temperature_type</span> 			 <span class="o">=</span> <span class="s2">&quot;fixed_gradient&quot;</span>
+<span class="linenos">76</span><span class="n">zhi</span><span class="o">.</span><span class="n">temperature</span> 			 <span class="o">=</span>  <span class="mf">0.003</span>
+<span class="linenos">77</span><span class="n">zlo</span><span class="o">.</span><span class="n">type</span> 			 <span class="o">=</span> <span class="s2">&quot;wall_model&quot;</span>
+<span class="linenos">78</span><span class="n">mac_proj</span><span class="o">.</span><span class="n">mg_rtol</span> 			 <span class="o">=</span> <span class="mf">1.0e-4</span> 
+<span class="linenos">79</span><span class="n">mac_proj</span><span class="o">.</span><span class="n">mg_atol</span> 			 <span class="o">=</span> <span class="mf">1.0e-8</span> 
+<span class="linenos">80</span><span class="n">mac_proj</span><span class="o">.</span><span class="n">maxiter</span> 			 <span class="o">=</span> <span class="mi">360</span> 
+<span class="linenos">81</span><span class="n">nodal_proj</span><span class="o">.</span><span class="n">mg_rtol</span> 			 <span class="o">=</span> <span class="mf">1.0e-4</span> 
+<span class="linenos">82</span><span class="n">nodal_proj</span><span class="o">.</span><span class="n">mg_atol</span> 			 <span class="o">=</span> <span class="mf">1.0e-8</span> 
+<span class="linenos">83</span><span class="n">diffusion</span><span class="o">.</span><span class="n">mg_rtol</span> 			 <span class="o">=</span> <span class="mf">1.0e-4</span> 
+<span class="linenos">84</span><span class="n">diffusion</span><span class="o">.</span><span class="n">mg_atol</span> 			 <span class="o">=</span> <span class="mf">1.0e-8</span> 
+<span class="linenos">85</span><span class="n">temperature_diffusion</span><span class="o">.</span><span class="n">mg_rtol</span> 			 <span class="o">=</span> <span class="mf">1.0e-4</span> 
+<span class="linenos">86</span><span class="n">temperature_diffusion</span><span class="o">.</span><span class="n">mg_atol</span> 			 <span class="o">=</span> <span class="mf">1.0e-8</span> 
+<span class="linenos">87</span><span class="n">nodal_proj</span><span class="o">.</span><span class="n">maxiter</span> 			 <span class="o">=</span> <span class="mi">360</span> 
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Generating the terrain file</span>
+<span class="linenos"> 2</span><span class="c1"># Geometry</span>
+<span class="linenos"> 3</span><span class="n">geometry</span><span class="o">.</span><span class="n">prob_lo</span> 			 <span class="o">=</span> <span class="mi">708751</span> <span class="mf">5.00187e+06</span> <span class="mf">446.15</span> 
+<span class="linenos"> 4</span><span class="n">geometry</span><span class="o">.</span><span class="n">prob_hi</span> 			 <span class="o">=</span> <span class="mi">723151</span> <span class="mf">5.016e+06</span> <span class="mf">2041.56</span> 
+<span class="linenos"> 5</span><span class="n">geometry</span><span class="o">.</span><span class="n">is_periodic</span> 			 <span class="o">=</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="linenos"> 6</span><span class="c1"># Grid </span>
+<span class="linenos"> 7</span><span class="n">amr</span><span class="o">.</span><span class="n">n_cell</span> 			 <span class="o">=</span> <span class="mi">232</span> <span class="mi">224</span> <span class="mi">40</span>
+<span class="linenos"> 8</span><span class="n">amr</span><span class="o">.</span><span class="n">max_level</span> 			 <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos"> 9</span><span class="n">time</span><span class="o">.</span><span class="n">stop_time</span> 			 <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="linenos">10</span><span class="n">time</span><span class="o">.</span><span class="n">max_step</span> 			 <span class="o">=</span> <span class="mi">10000</span>
+<span class="linenos">11</span><span class="n">time</span><span class="o">.</span><span class="n">initial_dt</span> 			 <span class="o">=</span> <span class="mf">0.1</span>
+<span class="linenos">12</span><span class="n">time</span><span class="o">.</span><span class="n">fixed_dt</span> 			 <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="linenos">13</span><span class="n">time</span><span class="o">.</span><span class="n">cfl</span> 			 <span class="o">=</span> <span class="mf">0.9</span>
+<span class="linenos">14</span><span class="n">time</span><span class="o">.</span><span class="n">plot_interval</span> 			 <span class="o">=</span> <span class="mi">5000</span>
+<span class="linenos">15</span><span class="n">time</span><span class="o">.</span><span class="n">checkpoint_interval</span> 			 <span class="o">=</span> <span class="mi">2000</span>
+<span class="linenos">16</span><span class="c1"># incflo </span>
+<span class="linenos">17</span><span class="n">incflo</span><span class="o">.</span><span class="n">physics</span> 			 <span class="o">=</span> <span class="n">ABL</span> <span class="n">TerrainDrag</span>
+<span class="linenos">18</span><span class="n">incflo</span><span class="o">.</span><span class="n">density</span> 			 <span class="o">=</span> <span class="mf">1.225</span>
+<span class="linenos">19</span><span class="n">incflo</span><span class="o">.</span><span class="n">gravity</span> 			 <span class="o">=</span> <span class="mf">0.</span>  <span class="mf">0.</span> <span class="o">-</span><span class="mf">9.81</span>  <span class="c1"># Gravitational force (3D)</span>
+<span class="linenos">20</span><span class="n">incflo</span><span class="o">.</span><span class="n">velocity</span> 			 <span class="o">=</span> <span class="mi">10</span> <span class="mi">0</span> <span class="mi">0</span> 
+<span class="linenos">21</span><span class="n">incflo</span><span class="o">.</span><span class="n">verbose</span>  			 <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">22</span><span class="n">incflo</span><span class="o">.</span><span class="n">initial_iterations</span> 			 <span class="o">=</span> <span class="mi">8</span>
+<span class="linenos">23</span><span class="n">incflo</span><span class="o">.</span><span class="n">do_initial_proj</span> 			 <span class="o">=</span> <span class="n">true</span>
+<span class="linenos">24</span><span class="n">incflo</span><span class="o">.</span><span class="n">constant_density</span> 			 <span class="o">=</span> <span class="n">true</span>
+<span class="linenos">25</span><span class="n">incflo</span><span class="o">.</span><span class="n">use_godunov</span> 			 <span class="o">=</span> <span class="n">true</span>
+<span class="linenos">26</span><span class="n">incflo</span><span class="o">.</span><span class="n">godunov_type</span> 			 <span class="o">=</span> <span class="s2">&quot;weno_z&quot;</span>
+<span class="linenos">27</span><span class="n">incflo</span><span class="o">.</span><span class="n">diffusion_type</span> 			 <span class="o">=</span> <span class="mi">2</span>
+<span class="linenos">28</span><span class="c1"># transport equation parameters </span>
+<span class="linenos">29</span><span class="n">transport</span><span class="o">.</span><span class="n">model</span> 			 <span class="o">=</span> <span class="n">ConstTransport</span>
+<span class="linenos">30</span><span class="n">transport</span><span class="o">.</span><span class="n">viscosity</span> 			 <span class="o">=</span> <span class="mf">1e-5</span>
+<span class="linenos">31</span><span class="n">transport</span><span class="o">.</span><span class="n">laminar_prandtl</span> 			 <span class="o">=</span> <span class="mf">0.7</span>
+<span class="linenos">32</span><span class="n">transport</span><span class="o">.</span><span class="n">turbulent_prandtl</span> 			 <span class="o">=</span> <span class="mf">0.333</span>
+<span class="linenos">33</span><span class="n">transport</span><span class="o">.</span><span class="n">reference_temperature</span> 		 <span class="o">=</span> <span class="mi">300</span>
+<span class="linenos">34</span><span class="n">transport</span><span class="o">.</span><span class="n">thermal_expansion_coefficient</span>		 <span class="o">=</span> <span class="mf">0.00333333</span>
+<span class="linenos">35</span><span class="c1"># turbulence equation parameters </span>
+<span class="linenos">36</span><span class="n">turbulence</span><span class="o">.</span><span class="n">model</span> 			 <span class="o">=</span> <span class="n">Kosovic</span>
+<span class="linenos">37</span><span class="n">Kosovic</span><span class="o">.</span><span class="n">refMOL</span> 			 <span class="o">=</span> <span class="o">-</span><span class="mf">1e30</span>
+<span class="linenos">38</span><span class="c1"># Atmospheric boundary layer</span>
+<span class="linenos">39</span><span class="n">ABL</span><span class="o">.</span><span class="n">kappa</span> 			 <span class="o">=</span> <span class="mf">.41</span>
+<span class="linenos">40</span><span class="n">ABL</span><span class="o">.</span><span class="n">normal_direction</span> 			 <span class="o">=</span> <span class="mi">2</span>
+<span class="linenos">41</span><span class="n">ABL</span><span class="o">.</span><span class="n">stats_output_format</span> 			 <span class="o">=</span> <span class="n">netcdf</span>
+<span class="linenos">42</span><span class="n">ABL</span><span class="o">.</span><span class="n">surface_roughness_z0</span> 			 <span class="o">=</span> <span class="mf">0.1</span>
+<span class="linenos">43</span><span class="n">ABL</span><span class="o">.</span><span class="n">temperature_heights</span> 			 <span class="o">=</span> <span class="mi">0</span>  <span class="mi">800</span> <span class="mi">900</span> <span class="mi">1900</span>
+<span class="linenos">44</span><span class="n">ABL</span><span class="o">.</span><span class="n">temperature_values</span>  			 <span class="o">=</span> <span class="mi">300</span> <span class="mi">300</span> <span class="mi">308</span> <span class="mi">311</span>
+<span class="linenos">45</span><span class="n">ABL</span><span class="o">.</span><span class="n">wall_shear_stress_type</span> 			 <span class="o">=</span> <span class="n">local</span>
+<span class="linenos">46</span><span class="n">ABL</span><span class="o">.</span><span class="n">surface_temp_flux</span> 			 <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">47</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_file</span> 			 <span class="o">=</span> <span class="s2">&quot;../precursor/bndry_files&quot;</span>
+<span class="linenos">48</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_io_mode</span> 			 <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">49</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_var_names</span> 			 <span class="o">=</span> <span class="n">velocity</span> <span class="n">temperature</span>
+<span class="linenos">50</span><span class="n">ABL</span><span class="o">.</span><span class="n">bndry_output_format</span> 			 <span class="o">=</span> <span class="n">native</span>
+<span class="linenos">51</span><span class="c1"># Source</span>
+<span class="linenos">52</span><span class="n">ICNS</span><span class="o">.</span><span class="n">source_terms</span> 			 <span class="o">=</span> <span class="n">BoussinesqBuoyancy</span> <span class="n">CoriolisForcing</span> <span class="n">GeostrophicForcing</span> <span class="n">RayleighDamping</span> <span class="n">NonLinearSGSTerm</span> <span class="n">DragForcing</span>
+<span class="linenos">53</span><span class="n">CoriolisForcing</span><span class="o">.</span><span class="n">east_vector</span> 			 <span class="o">=</span> <span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span> 
+<span class="linenos">54</span><span class="n">CoriolisForcing</span><span class="o">.</span><span class="n">north_vector</span> 			 <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">1.0</span> <span class="mf">0.0</span> 
+<span class="linenos">55</span><span class="n">CoriolisForcing</span><span class="o">.</span><span class="n">latitude</span> 			 <span class="o">=</span> <span class="mi">90</span> 
+<span class="linenos">56</span><span class="n">CoriolisForcing</span><span class="o">.</span><span class="n">rotational_time_period</span> 			 <span class="o">=</span> <span class="mi">125664</span> 
+<span class="linenos">57</span><span class="n">GeostrophicForcing</span><span class="o">.</span><span class="n">geostrophic_wind</span> 			 <span class="o">=</span> <span class="mi">10</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="linenos">58</span><span class="n">RayleighDamping</span><span class="o">.</span><span class="n">reference_velocity</span> 			 <span class="o">=</span> <span class="mi">10</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="linenos">59</span><span class="n">RayleighDamping</span><span class="o">.</span><span class="n">length_sloped_damping</span> 			 <span class="o">=</span> <span class="mi">400</span>
+<span class="linenos">60</span><span class="n">RayleighDamping</span><span class="o">.</span><span class="n">length_complete_damping</span> 			 <span class="o">=</span> <span class="mi">200</span>
+<span class="linenos">61</span><span class="n">RayleighDamping</span><span class="o">.</span><span class="n">time_scale</span> 			 <span class="o">=</span> <span class="mf">5.0</span>
+<span class="linenos">62</span><span class="c1"># BC </span>
+<span class="linenos">63</span><span class="n">xlo</span><span class="o">.</span><span class="n">type</span> 			 <span class="o">=</span> <span class="s2">&quot;mass_inflow&quot;</span>
+<span class="linenos">64</span><span class="n">xlo</span><span class="o">.</span><span class="n">density</span> 			 <span class="o">=</span> <span class="mf">1.225</span>
+<span class="linenos">65</span><span class="n">xlo</span><span class="o">.</span><span class="n">temperature</span> 			 <span class="o">=</span> <span class="mi">300</span>
+<span class="linenos">66</span><span class="n">xhi</span><span class="o">.</span><span class="n">type</span> 			 <span class="o">=</span> <span class="s2">&quot;pressure_outflow&quot;</span>
+<span class="linenos">67</span><span class="n">ylo</span><span class="o">.</span><span class="n">type</span> 			 <span class="o">=</span> <span class="s2">&quot;mass_inflow&quot;</span>
+<span class="linenos">68</span><span class="n">ylo</span><span class="o">.</span><span class="n">density</span> 			 <span class="o">=</span> <span class="mf">1.225</span>
+<span class="linenos">69</span><span class="n">ylo</span><span class="o">.</span><span class="n">temperature</span> 			 <span class="o">=</span> <span class="mi">300</span>
+<span class="linenos">70</span><span class="n">yhi</span><span class="o">.</span><span class="n">type</span> 			 <span class="o">=</span> <span class="s2">&quot;pressure_outflow&quot;</span>
+<span class="linenos">71</span><span class="n">zhi</span><span class="o">.</span><span class="n">type</span> 			 <span class="o">=</span> <span class="s2">&quot;slip_wall&quot;</span>
+<span class="linenos">72</span><span class="n">zhi</span><span class="o">.</span><span class="n">temperature_type</span> 			 <span class="o">=</span> <span class="s2">&quot;fixed_gradient&quot;</span>
+<span class="linenos">73</span><span class="n">zhi</span><span class="o">.</span><span class="n">temperature</span> 			 <span class="o">=</span>  <span class="mf">0.003</span>
+<span class="linenos">74</span><span class="n">zlo</span><span class="o">.</span><span class="n">type</span> 			 <span class="o">=</span> <span class="s2">&quot;wall_model&quot;</span>
+<span class="linenos">75</span><span class="n">mac_proj</span><span class="o">.</span><span class="n">mg_rtol</span> 			 <span class="o">=</span> <span class="mf">1.0e-4</span> 
+<span class="linenos">76</span><span class="n">mac_proj</span><span class="o">.</span><span class="n">mg_atol</span> 			 <span class="o">=</span> <span class="mf">1.0e-8</span> 
+<span class="linenos">77</span><span class="n">mac_proj</span><span class="o">.</span><span class="n">maxiter</span> 			 <span class="o">=</span> <span class="mi">360</span> 
+<span class="linenos">78</span><span class="n">nodal_proj</span><span class="o">.</span><span class="n">mg_rtol</span> 			 <span class="o">=</span> <span class="mf">1.0e-4</span> 
+<span class="linenos">79</span><span class="n">nodal_proj</span><span class="o">.</span><span class="n">mg_atol</span> 			 <span class="o">=</span> <span class="mf">1.0e-8</span> 
+<span class="linenos">80</span><span class="n">diffusion</span><span class="o">.</span><span class="n">mg_rtol</span> 			 <span class="o">=</span> <span class="mf">1.0e-4</span> 
+<span class="linenos">81</span><span class="n">diffusion</span><span class="o">.</span><span class="n">mg_atol</span> 			 <span class="o">=</span> <span class="mf">1.0e-8</span> 
+<span class="linenos">82</span><span class="n">temperature_diffusion</span><span class="o">.</span><span class="n">mg_rtol</span> 			 <span class="o">=</span> <span class="mf">1.0e-4</span> 
+<span class="linenos">83</span><span class="n">temperature_diffusion</span><span class="o">.</span><span class="n">mg_atol</span> 			 <span class="o">=</span> <span class="mf">1.0e-8</span> 
+<span class="linenos">84</span><span class="n">nodal_proj</span><span class="o">.</span><span class="n">maxiter</span> 			 <span class="o">=</span> <span class="mi">360</span> 
+<span class="linenos">85</span><span class="c1">#io </span>
+<span class="linenos">86</span><span class="n">io</span><span class="o">.</span><span class="n">restart_file</span> 			 <span class="o">=</span> <span class="s2">&quot;../precursor/chk02000&quot;</span>
+</pre></div>
+</div>
+<section id="setup-using-python-tools">
+<h2>Setup using Python Tools<a class="headerlink" href="#setup-using-python-tools" title="Link to this heading"></a></h2>
+<p>The setup of the terrain files can be cumbersome to do by hand. A set of python tools are made available at
+<a class="reference external" href="https://github.com/hgopalan/amrTerrain/tree/main/src/backend">amrTerrain</a>. A more comprehensive set of tools
+will be available in future at: <a class="reference external" href="https://github.com/rthedin/windtools">windtools</a>.</p>
+<p>The python code is executed as follows:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python backendinterface.py nameofyamlfile.yaml</span>
+</pre></div>
+</div>
+<p>Sample input files are available in the GitHub repository. A typical sample file looks as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">solver</span><span class="p">:</span> <span class="s2">&quot;amrWind&quot;</span>
+<span class="linenos"> 2</span><span class="n">caseParent</span><span class="p">:</span> <span class="s2">&quot;/Users/hgopalan/Documents/P101_Kynema-SGF/Data/tempGUI&quot;</span>
+<span class="linenos"> 3</span><span class="n">caseFolder</span><span class="p">:</span> <span class="s2">&quot;WFIP2_test&quot;</span>
+<span class="linenos"> 4</span><span class="n">caseType</span><span class="p">:</span> <span class="s2">&quot;terrainTurbine&quot;</span>
+<span class="linenos"> 5</span><span class="n">caseInitial</span><span class="p">:</span> <span class="s2">&quot;amr&quot;</span>
+<span class="linenos"> 6</span><span class="n">centerLat</span><span class="p">:</span> <span class="mf">45.63374</span>
+<span class="linenos"> 7</span><span class="n">centerLon</span><span class="p">:</span> <span class="o">-</span><span class="mf">120.66047</span>
+<span class="linenos"> 8</span><span class="n">refHeight</span><span class="p">:</span> <span class="mi">2184</span>
+<span class="linenos"> 9</span><span class="n">west</span><span class="p">:</span> <span class="mi">5000</span>
+<span class="linenos">10</span><span class="n">east</span><span class="p">:</span> <span class="mi">5000</span>
+<span class="linenos">11</span><span class="n">south</span><span class="p">:</span> <span class="mi">5000</span>
+<span class="linenos">12</span><span class="n">north</span><span class="p">:</span> <span class="mi">5000</span>
+<span class="linenos">13</span><span class="n">cellSize</span><span class="p">:</span> <span class="mi">128</span>
+<span class="linenos">14</span><span class="n">verticalAR</span><span class="p">:</span> <span class="mi">4</span>
+<span class="linenos">15</span><span class="n">timeMethod</span><span class="p">:</span> <span class="s2">&quot;step&quot;</span>
+<span class="linenos">16</span><span class="n">numOfSteps</span><span class="p">:</span> <span class="mi">5000</span>
+<span class="linenos">17</span><span class="n">plotOutput</span><span class="p">:</span> <span class="mi">1000</span>
+<span class="linenos">18</span><span class="n">restartOutput</span><span class="p">:</span> <span class="mi">1000</span>
+<span class="linenos">19</span><span class="n">forcingHeight</span><span class="p">:</span> <span class="mf">10.0</span>
+<span class="linenos">20</span><span class="n">windX</span><span class="p">:</span> <span class="mf">13.5</span>
+<span class="linenos">21</span><span class="n">windY</span><span class="p">:</span> <span class="mf">0.0</span> 
+<span class="linenos">22</span><span class="n">windZ</span><span class="p">:</span> <span class="mf">0.0</span> 
+<span class="linenos">23</span><span class="n">refTemperature</span><span class="p">:</span> <span class="mf">300.0</span>
+<span class="linenos">24</span><span class="n">refRoughness</span><span class="p">:</span> <span class="mf">0.1</span>
+<span class="linenos">25</span><span class="n">refHeatflux</span><span class="p">:</span> <span class="mf">0.0</span> 
+<span class="linenos">26</span><span class="n">refLat</span><span class="p">:</span> <span class="mf">45.63374</span>
+<span class="linenos">27</span><span class="n">refPeriod</span><span class="p">:</span> <span class="mf">125663.706143592</span>
+<span class="linenos">28</span><span class="n">includeCoriolis</span><span class="p">:</span> <span class="kc">True</span>
+<span class="linenos">29</span><span class="n">turbineMarkType</span><span class="p">:</span> <span class="s2">&quot;database&quot;</span>
+<span class="linenos">30</span><span class="n">turbineType</span><span class="p">:</span> <span class="s2">&quot;UniformCtDisk&quot;</span>
+</pre></div>
+</div>
+<p>The variable <code class="docutils literal notranslate"><span class="pre">caseType</span></code> takes three kinds of inputs: <code class="docutils literal notranslate"><span class="pre">precursor</span></code> or <code class="docutils literal notranslate"><span class="pre">terrain</span></code> or <code class="docutils literal notranslate"><span class="pre">terrainTurbine</span></code>. For
+running terrain simulations, it is recommended to use <code class="docutils literal notranslate"><span class="pre">caseType:terrain</span></code>. The use of <code class="docutils literal notranslate"><span class="pre">caseType:terrainTurbine</span></code>
+also creates turbines aligned with the terrain height using the turbine latitude and longitude in the file <code class="docutils literal notranslate"><span class="pre">turbine.csv</span></code>.</p>
+<p>The python code first reads the <code class="docutils literal notranslate"><span class="pre">centerLat</span></code> and <code class="docutils literal notranslate"><span class="pre">centerLon</span></code> and creates a domain of size specified by
+<code class="docutils literal notranslate"><span class="pre">west</span></code>, <code class="docutils literal notranslate"><span class="pre">east</span></code>, <code class="docutils literal notranslate"><span class="pre">south</span></code>, and <code class="docutils literal notranslate"><span class="pre">north</span></code>. For the example shown above, a domain size of 10 km is created
+around <code class="docutils literal notranslate"><span class="pre">centerLat</span></code> and <code class="docutils literal notranslate"><span class="pre">centerLon</span></code>. The terrain module uses the SRTM 30 m database to create the terrain.
+It is possible to add a user-defined file to define the terrain by modifying the python code.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">cellSize:</span> <span class="pre">128</span></code> sets a grid resolution of 128 m at level 0.The variable <code class="docutils literal notranslate"><span class="pre">verticalAR:</span> <span class="pre">4</span></code>  sets <code class="docutils literal notranslate"><span class="pre">dz=4dx=4dy</span></code>.
+You do not need <code class="docutils literal notranslate"><span class="pre">Hypre</span></code> to run the high aspect ratio simulations. User has to manually edit the
+input file to create refinement regions in area of interest around the terrain.</p>
+<p>All other inputs in the yaml file are for creating dummy inputs to the Kynema-SGF simulations and user can
+modify them manually to fit their needs. The inputs <code class="docutils literal notranslate"><span class="pre">caseType:</span> <span class="pre">&quot;terrainTurbine&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">turbineType:</span> <span class="pre">&quot;UniformCtDisk&quot;</span></code>
+are useful for aligning the turbine vertically with the terrain. The file includes all the turbines within the continental
+US and have to be modified for other locations. The turbine type information is ad-hoc and has to be manually modified by
+the user for the specific turbine type. A future update to the code will include options to specify the turbine information
+from a text file.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="turbine.html" class="btn btn-neutral float-left" title="Turbine simulation walkthrough" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rans.html" class="btn btn-neutral float-right" title="Wall-Modeled RANS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

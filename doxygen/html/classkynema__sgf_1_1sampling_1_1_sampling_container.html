@@ -1,0 +1,652 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::sampling::SamplingContainer Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::sampling::SamplingContainer Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1sampling_1_1_sampling_container.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="samplingcontainer-class-reference">
+<h1>SamplingContainer Class Reference<a class="headerlink" href="#samplingcontainer-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::sampling::SamplingContainer Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1sampling.html">sampling</a></li><li class="navelem"><a href="classkynema__sgf_1_1sampling_1_1_sampling_container.html">SamplingContainer</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1sampling_1_1_sampling_container-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::sampling::SamplingContainer Class Reference<div class="ingroups"><a class="el" href="group__utilities.html">Utilities</a> &raquo; <a class="el" href="group__sampling.html">Data-sampling utilities</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_sampling_container_8_h_source.html">SamplingContainer.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::sampling::SamplingContainer:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1sampling_1_1_sampling_container__inherit__graph.svg" width="438" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::sampling::SamplingContainer:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1sampling_1_1_sampling_container__coll__graph.svg" width="438" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a27a82f33708e41ac4dbcc63af6ab6f16" id="r_a27a82f33708e41ac4dbcc63af6ab6f16"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27a82f33708e41ac4dbcc63af6ab6f16">SamplingContainer</a> (amrex::AmrCore &amp;mesh)</td></tr>
+<tr class="memitem:a62fc99966c2becdc909e827f9bfda605" id="r_a62fc99966c2becdc909e827f9bfda605"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62fc99966c2becdc909e827f9bfda605">setup_container</a> (int num_real_components, int num_int_components=0)</td></tr>
+<tr class="memitem:a4023731e1669b9a96c4dc47b879976bc" id="r_a4023731e1669b9a96c4dc47b879976bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4023731e1669b9a96c4dc47b879976bc">initialize_particles</a> (const amrex::Vector&lt; std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1sampling_1_1_sampler_base.html">SamplerBase</a> &gt; &gt; &amp;)</td></tr>
+<tr class="memitem:a7b1a415858662f6d1d0800cb6d9e3fd2" id="r_a7b1a415858662f6d1d0800cb6d9e3fd2"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:a7b1a415858662f6d1d0800cb6d9e3fd2 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b1a415858662f6d1d0800cb6d9e3fd2">interpolate_fields</a> (const amrex::Vector&lt; FType &gt; &amp;fields, const int scomp)</td></tr>
+<tr class="memdesc:a7b1a415858662f6d1d0800cb6d9e3fd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform field interpolation to sampling locations.  <br /></td></tr>
+<tr class="memitem:ab44f66ea9fb05a108e0103cc690fb529" id="r_ab44f66ea9fb05a108e0103cc690fb529"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab44f66ea9fb05a108e0103cc690fb529">interpolate_derived_fields</a> (const <a class="el" href="classkynema__sgf_1_1_derived_qty_mgr.html">DerivedQtyMgr</a> &amp;derived_mgr, const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;repo, int scomp)</td></tr>
+<tr class="memdesc:ab44f66ea9fb05a108e0103cc690fb529"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform derived field interpolation to sampling locations.  <br /></td></tr>
+<tr class="memitem:ab12f7ba83f687843d1fe05f128e0e5ff" id="r_ab12f7ba83f687843d1fe05f128e0e5ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab12f7ba83f687843d1fe05f128e0e5ff">populate_buffer</a> (std::vector&lt; amrex::Real &gt; &amp;buf)</td></tr>
+<tr class="memdesc:ab12f7ba83f687843d1fe05f128e0e5ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populate the buffer with data for all the particles.  <br /></td></tr>
+<tr class="memitem:a2df39b5a449b700cf15e1f8f1ed47b8d" id="r_a2df39b5a449b700cf15e1f8f1ed47b8d"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2df39b5a449b700cf15e1f8f1ed47b8d">num_sampling_particles</a> () const</td></tr>
+<tr class="memitem:addf1d4b67d220aa7bbeedd13d8e64552" id="r_addf1d4b67d220aa7bbeedd13d8e64552"><td class="memItemLeft" align="right" valign="top">long &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addf1d4b67d220aa7bbeedd13d8e64552">num_sampling_particles</a> ()</td></tr>
+<tr class="memitem:a4fac08da9e141a3d0c483f3c0074f80e" id="r_a4fac08da9e141a3d0c483f3c0074f80e"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:a4fac08da9e141a3d0c483f3c0074f80e template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fac08da9e141a3d0c483f3c0074f80e">sample_field</a> (const int np, const int ic, SamplingContainer::ParticleVector &amp;pvec, SamplingContainer::RealVector &amp;pavec, const FType &amp;farr, const amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; &amp;problo, const amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; &amp;dxi, const amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; &amp;dx, const amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; &amp;offset)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a734832dbd7474478303263a59a5cc9de" id="r_a734832dbd7474478303263a59a5cc9de"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:a734832dbd7474478303263a59a5cc9de template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a734832dbd7474478303263a59a5cc9de">interpolate</a> (const ParIterType &amp;pti, const FType &amp;farr, const int lev, const <a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a> floc, const int ncomp, const int scomp)</td></tr>
+<tr class="memdesc:a734832dbd7474478303263a59a5cc9de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolate from an array4 onto particles.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a3d37db91746d5499436f67343c4fb452" id="r_a3d37db91746d5499436f67343c4fb452"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d37db91746d5499436f67343c4fb452">m_mesh</a></td></tr>
+<tr class="memitem:a59901bd3ca2765151df920f096daf7ea" id="r_a59901bd3ca2765151df920f096daf7ea"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59901bd3ca2765151df920f096daf7ea">m_total_particles</a> {0}</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Specialization of the AMReX ParticleContainer object for sampling data</p>
+<p>Represents the data probes as a collection of particles that are uniquely identified by three integer identifiers:</p>
+<ul>
+<li>a universal identifier (UID) that is unique to each particle,</li>
+<li>a set identifier that represents a group (e.g., line, plane) of particles</li>
+<li>a node identifier that represents indexing of this particle within the group</li>
+</ul>
+<p>The quantities of interest are themselves stored as runtime components based on user-defined inputs.</p>
+<p>Notes:</p>
+<ul>
+<li>The implementation uses linear interpolation in three directions to determine the data at a given probe location</li>
+<li>For non-nodal fields, the current implementation requires at-least one ghost cell to allow linear interpolation.</li>
+<li>Interpolation near domain boundaries does not currently handle <span class="tt">hoextrap</span> </li>
+</ul>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a27a82f33708e41ac4dbcc63af6ab6f16" name="a27a82f33708e41ac4dbcc63af6ab6f16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27a82f33708e41ac4dbcc63af6ab6f16">&#9670;&#160;</a></span>SamplingContainer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::sampling::SamplingContainer::SamplingContainer </td>
+          <td>(</td>
+          <td class="paramtype">amrex::AmrCore &amp;</td>          <td class="paramname"><span class="paramname"><em>mesh</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a4023731e1669b9a96c4dc47b879976bc" name="a4023731e1669b9a96c4dc47b879976bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4023731e1669b9a96c4dc47b879976bc">&#9670;&#160;</a></span>initialize_particles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::SamplingContainer::initialize_particles </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Vector&lt; std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1sampling_1_1_sampler_base.html">SamplerBase</a> &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>samplers</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Create particle information for all the sampling locations </p>
+
+</div>
+</div>
+<a id="a734832dbd7474478303263a59a5cc9de" name="a734832dbd7474478303263a59a5cc9de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a734832dbd7474478303263a59a5cc9de">&#9670;&#160;</a></span>interpolate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::SamplingContainer::interpolate </td>
+          <td>(</td>
+          <td class="paramtype">const ParIterType &amp;</td>          <td class="paramname"><span class="paramname"><em>pti</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FType &amp;</td>          <td class="paramname"><span class="paramname"><em>farr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a></td>          <td class="paramname"><span class="paramname"><em>floc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ncomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>scomp</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Interpolate from an array4 onto particles. </p>
+
+</div>
+</div>
+<a id="ab44f66ea9fb05a108e0103cc690fb529" name="ab44f66ea9fb05a108e0103cc690fb529"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab44f66ea9fb05a108e0103cc690fb529">&#9670;&#160;</a></span>interpolate_derived_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::SamplingContainer::interpolate_derived_fields </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_derived_qty_mgr.html">DerivedQtyMgr</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>derived_mgr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>repo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>scomp</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perform derived field interpolation to sampling locations. </p>
+
+</div>
+</div>
+<a id="a7b1a415858662f6d1d0800cb6d9e3fd2" name="a7b1a415858662f6d1d0800cb6d9e3fd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b1a415858662f6d1d0800cb6d9e3fd2">&#9670;&#160;</a></span>interpolate_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::SamplingContainer::interpolate_fields </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Vector&lt; FType &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>fields</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>scomp</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform field interpolation to sampling locations. </p>
+
+</div>
+</div>
+<a id="addf1d4b67d220aa7bbeedd13d8e64552" name="addf1d4b67d220aa7bbeedd13d8e64552"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addf1d4b67d220aa7bbeedd13d8e64552">&#9670;&#160;</a></span>num_sampling_particles() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long &amp; kynema_sgf::sampling::SamplingContainer::num_sampling_particles </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2df39b5a449b700cf15e1f8f1ed47b8d" name="a2df39b5a449b700cf15e1f8f1ed47b8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2df39b5a449b700cf15e1f8f1ed47b8d">&#9670;&#160;</a></span>num_sampling_particles() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::SamplingContainer::num_sampling_particles </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab12f7ba83f687843d1fe05f128e0e5ff" name="ab12f7ba83f687843d1fe05f128e0e5ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab12f7ba83f687843d1fe05f128e0e5ff">&#9670;&#160;</a></span>populate_buffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::SamplingContainer::populate_buffer </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>buf</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Populate the buffer with data for all the particles. </p>
+
+</div>
+</div>
+<a id="a4fac08da9e141a3d0c483f3c0074f80e" name="a4fac08da9e141a3d0c483f3c0074f80e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fac08da9e141a3d0c483f3c0074f80e">&#9670;&#160;</a></span>sample_field()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::SamplingContainer::sample_field </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>np</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ic</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SamplingContainer::ParticleVector &amp;</td>          <td class="paramname"><span class="paramname"><em>pvec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SamplingContainer::RealVector &amp;</td>          <td class="paramname"><span class="paramname"><em>pavec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FType &amp;</td>          <td class="paramname"><span class="paramname"><em>farr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>problo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>dxi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>dx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Interpolate a field to the sampling locations</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">np</td><td>Number of particles in the container </td></tr>
+    <tr><td class="paramname">ic</td><td>Component of the field to be interpolated </td></tr>
+    <tr><td class="paramname">pvec</td><td>Vector containing particle info </td></tr>
+    <tr><td class="paramname">pavec</td><td>Array information for the real component data </td></tr>
+    <tr><td class="paramname">farr</td><td>Array of field data for this multifab </td></tr>
+    <tr><td class="paramname">problo</td><td>Problem low values </td></tr>
+    <tr><td class="paramname">dxi</td><td>Inverse cell size array </td></tr>
+    <tr><td class="paramname">dx</td><td>Cell size array </td></tr>
+    <tr><td class="paramname">offset</td><td>Offsets for cell/node/face fields </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a62fc99966c2becdc909e827f9bfda605" name="a62fc99966c2becdc909e827f9bfda605"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62fc99966c2becdc909e827f9bfda605">&#9670;&#160;</a></span>setup_container()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::SamplingContainer::setup_container </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>num_real_components</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>num_int_components</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Define the container and allocate memory for runtime components </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a3d37db91746d5499436f67343c4fb452" name="a3d37db91746d5499436f67343c4fb452"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d37db91746d5499436f67343c4fb452">&#9670;&#160;</a></span>m_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::AmrCore&amp; kynema_sgf::sampling::SamplingContainer::m_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a59901bd3ca2765151df920f096daf7ea" name="a59901bd3ca2765151df920f096daf7ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59901bd3ca2765151df920f096daf7ea">&#9670;&#160;</a></span>m_total_particles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::SamplingContainer::m_total_particles {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/<a class="el" href="_sampling_container_8_h_source.html">SamplingContainer.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/<a class="el" href="_sampling_container_8cpp.html">SamplingContainer.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

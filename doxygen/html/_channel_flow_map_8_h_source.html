@@ -1,0 +1,260 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/mesh_mapping_models/ChannelFlowMap.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/mesh_mapping_models/ChannelFlowMap.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_channel_flow_map_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-mesh-mapping-models-channelflowmap-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/mesh_mapping_models/ChannelFlowMap.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-mesh-mapping-models-channelflowmap-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/mesh_mapping_models/ChannelFlowMap.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_84abca3a45012c13dcc0d180997dec60.html">mesh_mapping_models</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">ChannelFlowMap.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_channel_flow_map_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef CHANNELFLOWMAP_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define CHANNELFLOWMAP_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_mesh_map_8_h.html">src/core/MeshMap.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1channel__map.html">kynema_sgf::channel_map</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span></div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html">   14</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#acbe146e9cb836447e42a84d607b22125">ChannelFlowMap</a> : <span class="keyword">public</span> MeshMap::Register&lt;ChannelFlowMap&gt;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#ae654afe310c1319daf4678f78a90f05b">   17</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#ae654afe310c1319daf4678f78a90f05b">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;ChannelFlowMap&quot;</span>; }</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#acbe146e9cb836447e42a84d607b22125">ChannelFlowMap</a>();</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#aefef4d4050acae2ed5069e191a1b15af">   21</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#aefef4d4050acae2ed5069e191a1b15af">~ChannelFlowMap</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#a2a7b4dcf9a1579679828d85fe903519d">create_map</a>(<span class="keywordtype">int</span> <span class="comment">/*lev*/</span>, <span class="keyword">const</span> amrex::Geometry&amp; <span class="comment">/*geom*/</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#ad66eee800ba0c1d3ce547aeebd3a2acc">create_cell_node_map</a>(<span class="keywordtype">int</span> <span class="comment">/*lev*/</span>, <span class="keyword">const</span> amrex::Geometry&amp; <span class="comment">/*geom*/</span>);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#a7092699cde75615ecb5ad572eddd0676">create_face_map</a>(<span class="keywordtype">int</span> <span class="comment">/*lev*/</span>, <span class="keyword">const</span> amrex::Geometry&amp; <span class="comment">/*geom*/</span>);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#aa428c27ee5db28a6370e68cea494ebae">create_non_uniform_mesh</a>(<span class="keywordtype">int</span> <span class="comment">/*lev*/</span>, <span class="keyword">const</span> amrex::Geometry&amp; <span class="comment">/*geom*/</span>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#a5ea8c71cbef1c9ddce676a914bd3819d">   37</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#a5ea8c71cbef1c9ddce676a914bd3819d">m_beta</a>{0.0_rt, 3.0_rt, 0.0_rt};</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#aba24e4162db74077cbf5a5dc57d7163f">   39</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#aba24e4162db74077cbf5a5dc57d7163f">m_eps</a>{std::numeric_limits&lt;amrex::Real&gt;::epsilon() * 1.0e5_rt};</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
+</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>} <span class="comment">// namespace kynema_sgf::channel_map</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif </span><span class="comment">/* CHANNELFLOWMAP_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_mesh_map_8_h_html"><div class="ttname"><a href="_mesh_map_8_h.html">MeshMap.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channel__map_1_1_channel_flow_map_html_a2a7b4dcf9a1579679828d85fe903519d"><div class="ttname"><a href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#a2a7b4dcf9a1579679828d85fe903519d">kynema_sgf::channel_map::ChannelFlowMap::create_map</a></div><div class="ttdeci">void create_map(int, const amrex::Geometry &amp;) override</div><div class="ttdoc">Construct the mesh scaling field.</div><div class="ttdef"><b>Definition</b> ChannelFlowMap.cpp:56</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channel__map_1_1_channel_flow_map_html_a5ea8c71cbef1c9ddce676a914bd3819d"><div class="ttname"><a href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#a5ea8c71cbef1c9ddce676a914bd3819d">kynema_sgf::channel_map::ChannelFlowMap::m_beta</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_beta</div><div class="ttdoc">User input parameters.</div><div class="ttdef"><b>Definition</b> ChannelFlowMap.H:37</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channel__map_1_1_channel_flow_map_html_a7092699cde75615ecb5ad572eddd0676"><div class="ttname"><a href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#a7092699cde75615ecb5ad572eddd0676">kynema_sgf::channel_map::ChannelFlowMap::create_face_map</a></div><div class="ttdeci">void create_face_map(int, const amrex::Geometry &amp;)</div><div class="ttdoc">Construct mesh scaling field on cell faces.</div><div class="ttdef"><b>Definition</b> ChannelFlowMap.cpp:145</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channel__map_1_1_channel_flow_map_html_aa428c27ee5db28a6370e68cea494ebae"><div class="ttname"><a href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#aa428c27ee5db28a6370e68cea494ebae">kynema_sgf::channel_map::ChannelFlowMap::create_non_uniform_mesh</a></div><div class="ttdeci">void create_non_uniform_mesh(int, const amrex::Geometry &amp;)</div><div class="ttdoc">Construct the non-uniform mesh field.</div><div class="ttdef"><b>Definition</b> ChannelFlowMap.cpp:248</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channel__map_1_1_channel_flow_map_html_aba24e4162db74077cbf5a5dc57d7163f"><div class="ttname"><a href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#aba24e4162db74077cbf5a5dc57d7163f">kynema_sgf::channel_map::ChannelFlowMap::m_eps</a></div><div class="ttdeci">amrex::Real m_eps</div><div class="ttdef"><b>Definition</b> ChannelFlowMap.H:39</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channel__map_1_1_channel_flow_map_html_acbe146e9cb836447e42a84d607b22125"><div class="ttname"><a href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#acbe146e9cb836447e42a84d607b22125">kynema_sgf::channel_map::ChannelFlowMap::ChannelFlowMap</a></div><div class="ttdeci">ChannelFlowMap()</div><div class="ttdef"><b>Definition</b> ChannelFlowMap.cpp:48</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channel__map_1_1_channel_flow_map_html_ad66eee800ba0c1d3ce547aeebd3a2acc"><div class="ttname"><a href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#ad66eee800ba0c1d3ce547aeebd3a2acc">kynema_sgf::channel_map::ChannelFlowMap::create_cell_node_map</a></div><div class="ttdeci">void create_cell_node_map(int, const amrex::Geometry &amp;)</div><div class="ttdoc">Construct mesh scaling field on cell centers and nodes.</div><div class="ttdef"><b>Definition</b> ChannelFlowMap.cpp:65</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channel__map_1_1_channel_flow_map_html_ae654afe310c1319daf4678f78a90f05b"><div class="ttname"><a href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#ae654afe310c1319daf4678f78a90f05b">kynema_sgf::channel_map::ChannelFlowMap::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> ChannelFlowMap.H:17</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channel__map_1_1_channel_flow_map_html_aefef4d4050acae2ed5069e191a1b15af"><div class="ttname"><a href="classkynema__sgf_1_1channel__map_1_1_channel_flow_map.html#aefef4d4050acae2ed5069e191a1b15af">kynema_sgf::channel_map::ChannelFlowMap::~ChannelFlowMap</a></div><div class="ttdeci">~ChannelFlowMap() override=default</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1channel__map_html"><div class="ttname"><a href="namespacekynema__sgf_1_1channel__map.html">kynema_sgf::channel_map</a></div><div class="ttdef"><b>Definition</b> ChannelFlowMap.cpp:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

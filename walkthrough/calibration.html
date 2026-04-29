@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actuator Line Model Calibration &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="User Manual" href="../user/user.html" />
+    <link rel="prev" title="External Driven Terrain Simulations" href="noprecursorrans.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Walkthrough</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="precursor.html">Precursor (ABL) walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turbine.html">Turbine simulation walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terrain.html">LES with Terrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rans.html">Wall-Modeled RANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noprecursorrans.html">External Driven Terrain Simulations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Actuator Line Model Calibration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#calibrating-epsilon">Calibrating Epsilon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filtered-lifting-line-correction">Filtered Lifting Line Correction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#timestep-considerations">Timestep considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#input-file">Input File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Walkthrough</a></li>
+      <li class="breadcrumb-item active">Actuator Line Model Calibration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/walkthrough/calibration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="actuator-line-model-calibration">
+<span id="calibration"></span><h1>Actuator Line Model Calibration<a class="headerlink" href="#actuator-line-model-calibration" title="Link to this heading"></a></h1>
+<p>This walkthrough provides an overview of important considerations for calibrating an Actuator Line Model (ALM) for wind turbine large eddy simulation (LES). The primary focus is on calibrating the <span class="math notranslate nohighlight">\(\epsilon\)</span> parameter, which controls the spreading of turbine aerodynamic forces into body forces, effectively determining how these forces are distributed to the surrounding fluid. Also discussed are considerations regarding the simulation time step <span class="math notranslate nohighlight">\(\Delta t\)</span>, the filtered lifting line correction (FLLC), the number of actuator node points, and the near-turbine resolution <span class="math notranslate nohighlight">\(\Delta x\)</span>. The <a class="reference external" href="https://github.com/IEAWindTask37/IEA-15-240-RWT">IEA-15MW-240</a> turbine model will be used here as an example.</p>
+<section id="calibrating-epsilon">
+<span id="id1"></span><h2>Calibrating Epsilon<a class="headerlink" href="#calibrating-epsilon" title="Link to this heading"></a></h2>
+<p>In this tutorial, we will focus on calibrating the epsilon parameter to align the ALM results with those obtained from a stand-alone OpenFAST simulation in uniform flow conditions. These ideal conditions are where OpenFAST turbine models are typically designed and trusted, so the OpenFAST turbine performance can be used to help tune the ALM, despite generally being a lower fidelity model. An overview of the general process is provided below.</p>
+<ol class="arabic simple">
+<li><p><strong>Run OpenFAST Simulations</strong>: Execute OpenFAST simulations under uniform flow conditions over a range of wind speeds to obtain baseline aerodynamic data.</p></li>
+<li><p><strong>Kynema-SGF Setup</strong>: Construct a simple single-turbine mesh in Kynema-SGF that can be used to efficiently run several uniform flow simulations over a range of <span class="math notranslate nohighlight">\(\epsilon\)</span> parameters. Refinement zones can be useful for speeding up the calibration process, especially since there is no turbulence in the inflow. The important consideration is the near-turbine mesh size, since the <span class="math notranslate nohighlight">\(\epsilon\)</span> parameter will be tuned according to this resolution. The near-turbine resolution may depend, for example, on computational cost, desired fidelity, or the spacing between actuator node points. Here, an isotropic near-turbine resolution of <span class="math notranslate nohighlight">\(\Delta x= 2.5m\)</span> is used, with four levels of refinement that range from a 20m background mesh to the 2.5m near-turbine mesh, as shown in the following figure:</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/calibration_mesh.png"><img alt="../_images/calibration_mesh.png" src="../_images/calibration_mesh.png" style="width: 100%;" />
+</a>
+<p>In this case, 50 actuator node points are used along the 120m blade, leading to a spacing of 2.4m or nearly <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p>
+<ol class="arabic simple" start="3">
+<li><p><strong>Adjust Epsilon</strong>: Run a series of Kynema-SGF simulations over a range of epsilon values and wind speeds. Prior studies may be useful for choosing initial values. For instance, a general rule-of-thumb is that <span class="math notranslate nohighlight">\(\epsilon / \Delta x \approx 2\)</span> seems to perform well for a variety of turbine models, however, this is not always true as seen for the IEA-15MW-240 model here. To adjust epsilon, change the actuator epsilon parameter(s) in the Kynema-SGF input file:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Actuator.T0.epsilon                      = 5.0 5.0 5.0</span>
+</pre></div>
+</div>
+<p>For isotropic values of <span class="math notranslate nohighlight">\(\epsilon\)</span>, a single number can be used:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Actuator.T0.epsilon                      = 5.0</span>
+</pre></div>
+</div>
+<p>Five different wind speeds of 5 m/s, 6.5 m/s, 9 m/s, 11 m/s, and 14 m/s are included in the calibration here to cover regions 1, 2, and 3 performance, and six different epsilon values are tested including <span class="math notranslate nohighlight">\(\epsilon = 1, 2, 3, 4, 5, 10\)</span>. The initial calibrations are focused primarily at 9.0m/s, and the optimal epsilon value(s) are then tested at the other wind speeds.</p>
+<ol class="arabic simple" start="4">
+<li><p><strong>Compare Results</strong>: Run the ALM simulations and compare the results with those obtained from OpenFAST. Focus on key performance metrics. The following figures show the results from OpenFAST and the Kynema-SGF simulations at six different <span class="math notranslate nohighlight">\(\epsilon\)</span> values for generated power, blade pitch, rotor speed, and rotor torque.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/ALM_Openfast_Comparison.png"><img alt="../_images/ALM_Openfast_Comparison.png" src="../_images/ALM_Openfast_Comparison.png" style="width: 100%;" />
+</a>
+<p>The best agreement between the OpenFAST and ALM simulations is found for <span class="math notranslate nohighlight">\(\epsilon = 2.0\)</span>, which leads to a 0.3% relative error in generated power at 9.0m/s. This value was also found to perform well at the other wind speeds.</p>
+<p>In addition to comparing turbine performance metrics, it is important to make sure the ALM has not introduced non-physical oscillations in the blade loading. The mean axial and tangential blade loading curves are shown below at 9.0m/s and 6.5m/s across a range of different epsilon values. Again, the value of  <span class="math notranslate nohighlight">\(\epsilon = 2.0\)</span> agrees well with the OpenFAST curve and does not have significant oscillations along the blade span.</p>
+<a class="reference internal image-reference" href="../_images/ALM_Openfast_blade_loading_9.0.png"><img alt="../_images/ALM_Openfast_blade_loading_9.0.png" src="../_images/ALM_Openfast_blade_loading_9.0.png" style="width: 100%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/ALM_Openfast_blade_loading_6.5.png"><img alt="../_images/ALM_Openfast_blade_loading_6.5.png" src="../_images/ALM_Openfast_blade_loading_6.5.png" style="width: 100%;" />
+</a>
+<p>5. <strong>Iterate</strong>: Repeat the process, adjusting epsilon as necessary until the ALM results align closely with the OpenFAST data.
+Based on the results shown here, <span class="math notranslate nohighlight">\(\epsilon = 2.0\)</span> is the recommended setting for the IEA-15MW-240 turbine model at 2.5m resolutions or equivalently <span class="math notranslate nohighlight">\(\epsilon / \Delta x = 0.8\)</span>.</p>
+</section>
+<section id="filtered-lifting-line-correction">
+<h2>Filtered Lifting Line Correction<a class="headerlink" href="#filtered-lifting-line-correction" title="Link to this heading"></a></h2>
+<p>It has been shown that accurate predictions of the velocity field and loads along the blades are achieved with <span class="math notranslate nohighlight">\(\epsilon^{opt} / c = 0.25\)</span> where <span class="math notranslate nohighlight">\(c\)</span> is the chord length; however, this value of <span class="math notranslate nohighlight">\(\epsilon\)</span> is typically much finer than can be resolved in a practical LES. To correct potential issues with the ALM for coarse-scale LES that cannot resolve this optimal kernel size, the filtered lifting line correction (FLLC) can be used, as documented in <a class="reference external" href="https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/filtered-lifting-line-theory-and-application-to-the-actuator-line-model/EA90C34B7D48030D725B3AFDC06501DF">Martínez-Tossas et al. (JFM 2019)</a>  and <a class="reference external" href="https://onlinelibrary.wiley.com/doi/full/10.1002/we.2872">Martínez-Tossas et al. (JFM 2024)</a>. There are three steps to turning on FLLC for actuators in Kynema-SGF.</p>
+<ol class="arabic simple">
+<li><p><strong>Increase number of actuator points</strong>: FLLC involves computing gradients along the blade, which typically requires a larger number of actuator points than an ALM without FLLC. Previous studies suggest <span class="math notranslate nohighlight">\(\approx 300\)</span> AeroDyn blade points is appropriate for FLLC, which is the number used here. Therefore, the first step is to increase the number of AeroDyn blade points in the AeroDyn OpenFAST .dat file. This can be done, for example, through interpolation (see <a class="reference internal" href="#additional-resources"><span class="std std-ref">Additional Resources</span></a>). This number of actuator points must also be specified in the Kynema-SGF input file:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Actuator.T0.num_points_blade            = 300</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Set epsilon_chord and epsilon_min</strong>: In addition to epsilon, the epsilon_min and epsilon_chord parameters should be specified in the Kynema-SGF input file:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Actuator.T0.epsilon         = 2.0 2.0 2.0</span>
+<span class="go">Actuator.T0.epsilon_min     = 2.0 2.0 2.0</span>
+<span class="go">Actuator.T0.epsilon_chord   = 0.25 0.25 0.25</span>
+</pre></div>
+</div>
+<p>Here, epsilon and epsilon_min correspond to the value of <span class="math notranslate nohighlight">\(\epsilon\)</span> for the ALM without FLLC (i.e., the value found in the previous section <a class="reference internal" href="#calibrating-epsilon"><span class="std std-ref">Calibrating Epsilon</span></a>). The parameter epsilon_chord corresponds to <span class="math notranslate nohighlight">\(\epsilon^{opt} / c\)</span> and is typically set to 0.25, as mentioned above.</p>
+<ol class="arabic simple" start="3">
+<li><p><strong>Turn on FLLC</strong>: For each actuator to use FLLC, the fllc parameter must be set to true</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Actuator.T0.fllc                         = true</span>
+</pre></div>
+</div>
+<p>As shown in the figures below, FLLC generally improves the representation of the blade loading and maintains the good agreement in turbine performance metrics with OpenFAST.</p>
+<a class="reference internal image-reference" href="../_images/FLLC_ALM_Openfast_Comparison.png"><img alt="../_images/FLLC_ALM_Openfast_Comparison.png" src="../_images/FLLC_ALM_Openfast_Comparison.png" style="width: 100%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/FLLC_ALM_Openfast_blade_loading.png"><img alt="../_images/FLLC_ALM_Openfast_blade_loading.png" src="../_images/FLLC_ALM_Openfast_blade_loading.png" style="width: 100%;" />
+</a>
+<p>Note that raising the number of AeroDyn blade points may significantly increase computational cost. In the example here, there was a 1.8 times slowdown in the average solve time per timestep when using FLLC.</p>
+</section>
+<section id="timestep-considerations">
+<h2>Timestep considerations<a class="headerlink" href="#timestep-considerations" title="Link to this heading"></a></h2>
+<p>In addition to the CFL condition, there is a general rule-of-thumb that the timestep, <span class="math notranslate nohighlight">\(\Delta t\)</span>, should be set such that the blade(tip) does not rotate more than a grid cell per time step. Below, we verify this criterion is satisfied for the timestep <span class="math notranslate nohighlight">\(\Delta t=0.02\)</span> used here, based on the rotor speed output from OpenFAST.</p>
+<p>The mean rotor speed is found to range from 30.0 deg/s to 45.4 deg/s as the wind speed ranged from 5m/s to 14m/s. This means that, based on the mean rotor speeds and Kynema-SGF timestep, the blades rotate between 0.60 – 0.91 deg/timesteps on average. The circumference of the rotor disk is <span class="math notranslate nohighlight">\(240\pi\)</span> and, on average, the blades rotate between 0.0016 – 0.0025 rotations/timestep. Therefore, the blades move between 1.25 − 1.90 m/timestep or between 0.5 − 0.76 <span class="math notranslate nohighlight">\(\Delta x\)</span> m/timestep. This distance is indeed less than a grid cell per timestep.</p>
+</section>
+<section id="input-file">
+<h2>Input File<a class="headerlink" href="#input-file" title="Link to this heading"></a></h2>
+<p>An example of the Kynema-SGF input file used for the ALM calibration with <span class="math notranslate nohighlight">\(\epsilon=2.0\)</span> at a wind speed of 9.0m/s is included below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c1"># --- Simulation time control parameters ---</span>
+<span class="linenos">  2</span><span class="n">time</span><span class="o">.</span><span class="n">stop_time</span>                           <span class="o">=</span> <span class="mf">360.0</span>               <span class="c1"># Max (simulated) time to evolve [s]</span>
+<span class="linenos">  3</span><span class="n">time</span><span class="o">.</span><span class="n">max_step</span>                            <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>                  
+<span class="linenos">  4</span><span class="n">time</span><span class="o">.</span><span class="n">fixed_dt</span>                            <span class="o">=</span> <span class="mf">0.02</span>                <span class="c1"># Fixed timestep size (in seconds). If negative, then time.cfl is used</span>
+<span class="linenos">  5</span><span class="n">time</span><span class="o">.</span><span class="n">checkpoint_interval</span>                 <span class="o">=</span> <span class="mi">1000</span>                
+<span class="linenos">  6</span><span class="n">incflo</span><span class="o">.</span><span class="n">physics</span>                           <span class="o">=</span> <span class="n">FreeStream</span> <span class="n">Actuator</span> <span class="c1"># List of physics models to include in simulation.</span>
+<span class="linenos">  7</span><span class="n">incflo</span><span class="o">.</span><span class="n">verbose</span>                           <span class="o">=</span> <span class="mi">0</span>                   
+<span class="linenos">  8</span><span class="n">io</span><span class="o">.</span><span class="n">check_file</span>                            <span class="o">=</span> <span class="n">chk</span>                 
+<span class="linenos">  9</span><span class="n">incflo</span><span class="o">.</span><span class="n">use_godunov</span>                       <span class="o">=</span> <span class="n">true</span>                
+<span class="linenos"> 10</span><span class="n">incflo</span><span class="o">.</span><span class="n">godunov_type</span>                      <span class="o">=</span> <span class="n">weno_z</span>              
+<span class="linenos"> 11</span><span class="n">turbulence</span><span class="o">.</span><span class="n">model</span>                         <span class="o">=</span> <span class="n">Laminar</span>             
+<span class="linenos"> 12</span><span class="n">incflo</span><span class="o">.</span><span class="n">gravity</span>                           <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="o">-</span><span class="mf">9.81</span>       <span class="c1"># Gravitational acceleration vector (x,y,z) [m/s^2]</span>
+<span class="linenos"> 13</span><span class="n">incflo</span><span class="o">.</span><span class="n">density</span>                           <span class="o">=</span> <span class="mf">1.225</span>               <span class="c1"># Fluid density [kg/m^3]</span>
+<span class="linenos"> 14</span><span class="n">transport</span><span class="o">.</span><span class="n">viscosity</span>                      <span class="o">=</span> <span class="mf">1.872e-05</span>           <span class="c1"># Fluid dynamic viscosity [kg/m-s]</span>
+<span class="linenos"> 15</span><span class="n">transport</span><span class="o">.</span><span class="n">laminar_prandtl</span>                <span class="o">=</span> <span class="mf">0.7</span>                 <span class="c1"># Laminar prandtl number</span>
+<span class="linenos"> 16</span><span class="n">transport</span><span class="o">.</span><span class="n">turbulent_prandtl</span>              <span class="o">=</span> <span class="mf">0.3333</span>              <span class="c1"># Turbulent prandtl number</span>
+<span class="linenos"> 17</span><span class="n">ConstValue</span><span class="o">.</span><span class="n">density</span><span class="o">.</span><span class="n">value</span>                 <span class="o">=</span> <span class="mf">1.225</span>               
+<span class="linenos"> 18</span><span class="n">ConstValue</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">value</span>                <span class="o">=</span> <span class="mf">9.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>         
+<span class="linenos"> 19</span>
+<span class="linenos"> 20</span><span class="c1"># --- Geometry and Mesh ---</span>
+<span class="linenos"> 21</span><span class="n">geometry</span><span class="o">.</span><span class="n">prob_lo</span>                         <span class="o">=</span> <span class="o">-</span><span class="mf">2560.0</span> <span class="o">-</span><span class="mf">960.0</span> <span class="o">-</span><span class="mf">960.0</span>
+<span class="linenos"> 22</span><span class="n">geometry</span><span class="o">.</span><span class="n">prob_hi</span>                         <span class="o">=</span> <span class="mf">2560.0</span> <span class="mf">960.0</span> <span class="mf">960.0</span>  
+<span class="linenos"> 23</span><span class="n">amr</span><span class="o">.</span><span class="n">n_cell</span>                               <span class="o">=</span> <span class="mi">256</span> <span class="mi">96</span> <span class="mi">96</span>           <span class="c1"># Number of cells in x, y, and z directions</span>
+<span class="linenos"> 24</span><span class="n">amr</span><span class="o">.</span><span class="n">max_level</span>                            <span class="o">=</span> <span class="mi">3</span>                   
+<span class="linenos"> 25</span><span class="n">geometry</span><span class="o">.</span><span class="n">is_periodic</span>                     <span class="o">=</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span>               
+<span class="linenos"> 26</span><span class="n">xlo</span><span class="o">.</span><span class="n">type</span>                                 <span class="o">=</span> <span class="n">mass_inflow</span>         
+<span class="linenos"> 27</span><span class="n">xlo</span><span class="o">.</span><span class="n">density</span>                              <span class="o">=</span> <span class="mf">1.225</span>               
+<span class="linenos"> 28</span><span class="n">xlo</span><span class="o">.</span><span class="n">velocity</span>                             <span class="o">=</span> <span class="mf">9.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>         
+<span class="linenos"> 29</span><span class="n">xhi</span><span class="o">.</span><span class="n">type</span>                                 <span class="o">=</span> <span class="n">pressure_outflow</span>    
+<span class="linenos"> 30</span>
+<span class="linenos"> 31</span><span class="c1"># --- ABL parameters ---</span>
+<span class="linenos"> 32</span><span class="n">ICNS</span><span class="o">.</span><span class="n">source_terms</span>                        <span class="o">=</span> <span class="n">ActuatorForcing</span>     
+<span class="linenos"> 33</span><span class="n">incflo</span><span class="o">.</span><span class="n">velocity</span>                          <span class="o">=</span> <span class="mf">9.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>         
+<span class="linenos"> 34</span><span class="n">ABLForcing</span><span class="o">.</span><span class="n">abl_forcing_height</span>            <span class="o">=</span> <span class="mf">0.0</span>                 
+<span class="linenos"> 35</span><span class="n">time</span><span class="o">.</span><span class="n">plot_interval</span>                       <span class="o">=</span> <span class="mi">1000</span>                
+<span class="linenos"> 36</span><span class="n">io</span><span class="o">.</span><span class="n">plot_file</span>                             <span class="o">=</span> <span class="n">plt</span>                 
+<span class="linenos"> 37</span><span class="n">io</span><span class="o">.</span><span class="n">KE_int</span>                                <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>                  
+<span class="linenos"> 38</span><span class="n">Actuator</span><span class="o">.</span><span class="n">type</span>                            <span class="o">=</span> <span class="n">TurbineFastLine</span>     
+<span class="linenos"> 39</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">epsilon</span>         <span class="o">=</span> <span class="mf">2.0</span> <span class="mf">2.0</span> <span class="mf">2.0</span>         
+<span class="linenos"> 40</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">epsilon_tower</span>   <span class="o">=</span> <span class="mf">2.0</span> <span class="mf">2.0</span> <span class="mf">2.0</span>         
+<span class="linenos"> 41</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">fllc</span>            <span class="o">=</span> <span class="n">false</span>               
+<span class="linenos"> 42</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">density</span>         <span class="o">=</span> <span class="mf">1.225</span>               
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span><span class="c1">#---- tagging defs ----</span>
+<span class="linenos"> 45</span><span class="n">tagging</span><span class="o">.</span><span class="n">labels</span>                           <span class="o">=</span> <span class="n">Farm_level_0_zone</span> <span class="n">Farm_level_1_zone</span> <span class="n">T0_level_2_zone</span>
+<span class="linenos"> 46</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_0_zone</span><span class="o">.</span><span class="n">type</span>           <span class="o">=</span> <span class="n">GeometryRefinement</span>  
+<span class="linenos"> 47</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_0_zone</span><span class="o">.</span><span class="n">shapes</span>         <span class="o">=</span> <span class="n">Farm_level_0_zone</span>   
+<span class="linenos"> 48</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_0_zone</span><span class="o">.</span><span class="n">level</span>          <span class="o">=</span> <span class="mi">0</span>                   
+<span class="linenos"> 49</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_0_zone</span><span class="o">.</span><span class="n">Farm_level_0_zone</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">box</span>                 
+<span class="linenos"> 50</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_0_zone</span><span class="o">.</span><span class="n">Farm_level_0_zone</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2400.0</span> <span class="o">-</span><span class="mf">720.0</span> <span class="o">-</span><span class="mf">480.0</span>
+<span class="linenos"> 51</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_0_zone</span><span class="o">.</span><span class="n">Farm_level_0_zone</span><span class="o">.</span><span class="n">xaxis</span> <span class="o">=</span> <span class="mf">4800.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>      
+<span class="linenos"> 52</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_0_zone</span><span class="o">.</span><span class="n">Farm_level_0_zone</span><span class="o">.</span><span class="n">yaxis</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.0</span> <span class="mf">1440.0</span> <span class="o">-</span><span class="mf">0.0</span>    
+<span class="linenos"> 53</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_0_zone</span><span class="o">.</span><span class="n">Farm_level_0_zone</span><span class="o">.</span><span class="n">zaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">960.0</span>       
+<span class="linenos"> 54</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_1_zone</span><span class="o">.</span><span class="n">type</span>           <span class="o">=</span> <span class="n">GeometryRefinement</span>  
+<span class="linenos"> 55</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_1_zone</span><span class="o">.</span><span class="n">shapes</span>         <span class="o">=</span> <span class="n">Farm_level_1_zone</span>   
+<span class="linenos"> 56</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_1_zone</span><span class="o">.</span><span class="n">level</span>          <span class="o">=</span> <span class="mi">1</span>                   
+<span class="linenos"> 57</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_1_zone</span><span class="o">.</span><span class="n">Farm_level_1_zone</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">box</span>                 
+<span class="linenos"> 58</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_1_zone</span><span class="o">.</span><span class="n">Farm_level_1_zone</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">600.0</span> <span class="o">-</span><span class="mf">600.0</span> <span class="o">-</span><span class="mf">288.0</span>
+<span class="linenos"> 59</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_1_zone</span><span class="o">.</span><span class="n">Farm_level_1_zone</span><span class="o">.</span><span class="n">xaxis</span> <span class="o">=</span> <span class="mf">1200.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>      
+<span class="linenos"> 60</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_1_zone</span><span class="o">.</span><span class="n">Farm_level_1_zone</span><span class="o">.</span><span class="n">yaxis</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.0</span> <span class="mf">1200.0</span> <span class="o">-</span><span class="mf">0.0</span>    
+<span class="linenos"> 61</span><span class="n">tagging</span><span class="o">.</span><span class="n">Farm_level_1_zone</span><span class="o">.</span><span class="n">Farm_level_1_zone</span><span class="o">.</span><span class="n">zaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">576.0</span>       
+<span class="linenos"> 62</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_2_zone</span><span class="o">.</span><span class="n">type</span>             <span class="o">=</span> <span class="n">GeometryRefinement</span>  
+<span class="linenos"> 63</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_2_zone</span><span class="o">.</span><span class="n">shapes</span>           <span class="o">=</span> <span class="n">T0_level_2_zone</span>     
+<span class="linenos"> 64</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_2_zone</span><span class="o">.</span><span class="n">level</span>            <span class="o">=</span> <span class="mi">2</span>                   
+<span class="linenos"> 65</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_2_zone</span><span class="o">.</span><span class="n">T0_level_2_zone</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">box</span>                 
+<span class="linenos"> 66</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_2_zone</span><span class="o">.</span><span class="n">T0_level_2_zone</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">240.0</span> <span class="o">-</span><span class="mf">240.0</span> <span class="o">-</span><span class="mf">240.0</span>
+<span class="linenos"> 67</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_2_zone</span><span class="o">.</span><span class="n">T0_level_2_zone</span><span class="o">.</span><span class="n">xaxis</span> <span class="o">=</span> <span class="mf">480.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>       
+<span class="linenos"> 68</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_2_zone</span><span class="o">.</span><span class="n">T0_level_2_zone</span><span class="o">.</span><span class="n">yaxis</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.0</span> <span class="mf">480.0</span> <span class="o">-</span><span class="mf">0.0</span>     
+<span class="linenos"> 69</span><span class="n">tagging</span><span class="o">.</span><span class="n">T0_level_2_zone</span><span class="o">.</span><span class="n">T0_level_2_zone</span><span class="o">.</span><span class="n">zaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">480.0</span>       
+<span class="linenos"> 70</span>
+<span class="linenos"> 71</span><span class="c1">#---- actuator defs ----</span>
+<span class="linenos"> 72</span><span class="n">Actuator</span><span class="o">.</span><span class="n">labels</span>                          <span class="o">=</span> <span class="n">T0</span>                  
+<span class="linenos"> 73</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">type</span>                         <span class="o">=</span> <span class="n">TurbineFastLine</span>     
+<span class="linenos"> 74</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">openfast_input_file</span>          <span class="o">=</span> <span class="n">T0_AMR_OpenFAST3p4_IEA15MW</span><span class="o">/</span><span class="n">IEA</span><span class="o">-</span><span class="mi">15</span><span class="o">-</span><span class="mi">240</span><span class="o">-</span><span class="n">RWT</span><span class="o">-</span><span class="n">Monopile</span><span class="o">/</span><span class="n">IEA</span><span class="o">-</span><span class="mi">15</span><span class="o">-</span><span class="mi">240</span><span class="o">-</span><span class="n">RWT</span><span class="o">-</span><span class="n">Monopile</span><span class="o">.</span><span class="n">fst</span>
+<span class="linenos"> 75</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">base_position</span>                <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="o">-</span><span class="mf">150.0</span>      
+<span class="linenos"> 76</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">rotor_diameter</span>               <span class="o">=</span> <span class="mf">240.0</span>               
+<span class="linenos"> 77</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">hub_height</span>                   <span class="o">=</span> <span class="mf">150.0</span>               
+<span class="linenos"> 78</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">num_points_blade</span>             <span class="o">=</span> <span class="mi">50</span>                  
+<span class="linenos"> 79</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">num_points_tower</span>             <span class="o">=</span> <span class="mi">12</span>                  
+<span class="linenos"> 80</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">openfast_start_time</span>          <span class="o">=</span> <span class="mf">0.0</span>                 
+<span class="linenos"> 81</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">openfast_stop_time</span>           <span class="o">=</span> <span class="mf">10000.0</span>             
+<span class="linenos"> 82</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">fllc</span>                         <span class="o">=</span> <span class="n">false</span>               
+<span class="linenos"> 83</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">nacelle_drag_coeff</span>           <span class="o">=</span> <span class="mf">0.0</span>                 
+<span class="linenos"> 84</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">nacelle_area</span>                 <span class="o">=</span> <span class="mf">0.0</span>                 
+<span class="linenos"> 85</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">yaw</span>                          <span class="o">=</span> <span class="mf">270.0</span>               
+<span class="linenos"> 86</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">output_frequency</span>             <span class="o">=</span> <span class="mi">10</span>                  
+<span class="linenos"> 87</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">num_blades</span>                   <span class="o">=</span> <span class="mi">3</span>                   
+<span class="linenos"> 88</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">use_tip_correction</span>           <span class="o">=</span> <span class="n">true</span>                
+<span class="linenos"> 89</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">use_root_correction</span>          <span class="o">=</span> <span class="n">true</span>                
+<span class="linenos"> 90</span>
+<span class="linenos"> 91</span><span class="c1">#---- postprocessing defs ----</span>
+<span class="linenos"> 92</span><span class="n">incflo</span><span class="o">.</span><span class="n">post_processing</span>                   <span class="o">=</span> <span class="n">sampling</span>            
+<span class="linenos"> 93</span><span class="n">sampling</span><span class="o">.</span><span class="n">type</span>                            <span class="o">=</span> <span class="n">Sampling</span>            
+<span class="linenos"> 94</span><span class="n">sampling</span><span class="o">.</span><span class="n">output_interval</span>                <span class="o">=</span> <span class="mi">100</span>                 
+<span class="linenos"> 95</span><span class="n">sampling</span><span class="o">.</span><span class="n">fields</span>                          <span class="o">=</span> <span class="n">velocity</span>            
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span><span class="c1">#---- sample defs ----</span>
+<span class="linenos"> 98</span><span class="n">sampling</span><span class="o">.</span><span class="n">labels</span>                          <span class="o">=</span> <span class="n">Farm_hh</span>             
+<span class="linenos"> 99</span><span class="n">sampling</span><span class="o">.</span><span class="n">Farm_hh</span><span class="o">.</span><span class="n">type</span>                    <span class="o">=</span> <span class="n">PlaneSampler</span>        
+<span class="linenos">100</span><span class="n">sampling</span><span class="o">.</span><span class="n">Farm_hh</span><span class="o">.</span><span class="n">num_points</span>              <span class="o">=</span> <span class="mi">513</span> <span class="mi">193</span>             
+<span class="linenos">101</span><span class="n">sampling</span><span class="o">.</span><span class="n">Farm_hh</span><span class="o">.</span><span class="n">origin</span>                  <span class="o">=</span> <span class="o">-</span><span class="mf">2560.0</span> <span class="o">-</span><span class="mf">960.0</span> <span class="mf">0.0</span>  
+<span class="linenos">102</span><span class="n">sampling</span><span class="o">.</span><span class="n">Farm_hh</span><span class="o">.</span><span class="n">axis1</span>                   <span class="o">=</span> <span class="mf">5120.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>      
+<span class="linenos">103</span><span class="n">sampling</span><span class="o">.</span><span class="n">Farm_hh</span><span class="o">.</span><span class="n">axis2</span>                   <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">1920.0</span> <span class="mf">0.0</span>      
+<span class="linenos">104</span><span class="n">sampling</span><span class="o">.</span><span class="n">Farm_hh</span><span class="o">.</span><span class="n">normal</span>                  <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>         
+<span class="linenos">105</span>
+<span class="linenos">106</span><span class="c1">#---- extra params ----</span>
+<span class="linenos">107</span><span class="c1">#== END AMR-WIND INPUT ==</span>
+</pre></div>
+</div>
+</section>
+<section id="additional-resources">
+<span id="id2"></span><h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>A Jupyter notebook for comparing Kynema-SGF ALM results to OpenFAST data for the purpose of calibrating <span class="math notranslate nohighlight">\(\epsilon\)</span> can be found on GitHub: <a class="reference external" href="https://github.com/gyalla/ALM_Calibrations/blob/main/ALM_Calibration_Notebook.ipynb">https://github.com/gyalla/ALM_Calibrations/blob/main/ALM_Calibration_Notebook.ipynb</a>. This notebook was used to make the figures shown here.</p></li>
+<li><p>A python script for interpolating AeroDyn OpenFAST .dat files to an arbitrary number of blade points can be on GitHub: <a class="reference external" href="https://github.com/gyalla/ALM_Calibrations/blob/main/interpolate_aerodyn.py">https://github.com/gyalla/ALM_Calibrations/blob/main/interpolate_aerodyn.py</a>.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="noprecursorrans.html" class="btn btn-neutral float-left" title="External Driven Terrain Simulations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../user/user.html" class="btn btn-neutral float-right" title="User Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

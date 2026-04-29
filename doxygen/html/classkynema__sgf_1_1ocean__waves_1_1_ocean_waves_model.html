@@ -1,0 +1,573 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::ocean_waves::OceanWavesModel Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::ocean_waves::OceanWavesModel Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1ocean__waves_1_1_ocean_waves_model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="oceanwavesmodel-class-reference">
+<h1>OceanWavesModel Class Reference<a class="headerlink" href="#oceanwavesmodel-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::ocean_waves::OceanWavesModel Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1ocean__waves.html">ocean_waves</a></li><li class="navelem"><a href="classkynema__sgf_1_1ocean__waves_1_1_ocean_waves_model.html">OceanWavesModel</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="classkynema__sgf_1_1ocean__waves_1_1_ocean_waves_model-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::ocean_waves::OceanWavesModel Class Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span><div class="ingroups"><a class="el" href="group__ocean__waves.html">Ocean Waves module</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_ocean_waves_model_8_h_source.html">OceanWavesModel.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::ocean_waves::OceanWavesModel:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1ocean__waves_1_1_ocean_waves_model__inherit__graph.svg" width="276" height="320"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::ocean_waves::OceanWavesModel:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1ocean__waves_1_1_ocean_waves_model__coll__graph.svg" width="276" height="320"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a352b062a7cc5a463a8797c79518ae3d5" id="r_a352b062a7cc5a463a8797c79518ae3d5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a352b062a7cc5a463a8797c79518ae3d5">~OceanWavesModel</a> () override=default</td></tr>
+<tr class="memitem:aa5abd772072a691d3ebd35989829f4d3" id="r_aa5abd772072a691d3ebd35989829f4d3"><td class="memItemLeft" align="right" valign="top">virtual const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5abd772072a691d3ebd35989829f4d3">label</a> () const =0</td></tr>
+<tr class="memitem:acb53fffe3a3e1f22cdb9f0f230cc2f4b" id="r_acb53fffe3a3e1f22cdb9f0f230cc2f4b"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb53fffe3a3e1f22cdb9f0f230cc2f4b">id</a> () const =0</td></tr>
+<tr class="memitem:a2150608d6e20d5c1ebf51a6ea0007b5f" id="r_a2150608d6e20d5c1ebf51a6ea0007b5f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2150608d6e20d5c1ebf51a6ea0007b5f">read_inputs</a> (const <a class="el" href="classkynema__sgf_1_1utils_1_1_multi_parser.html">::kynema_sgf::utils::MultiParser</a> &amp;)=0</td></tr>
+<tr class="memitem:ad14cff37f48a7a7d838f7996de59d946" id="r_ad14cff37f48a7a7d838f7996de59d946"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad14cff37f48a7a7d838f7996de59d946">init_waves</a> (int, const amrex::Geometry &amp;, bool)=0</td></tr>
+<tr class="memitem:a79779eb95866c79ccdfcc9e031d733a1" id="r_a79779eb95866c79ccdfcc9e031d733a1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79779eb95866c79ccdfcc9e031d733a1">update_target_fields</a> (amrex::Real)=0</td></tr>
+<tr class="memitem:a78536df00d23895e27d2fd9cc8373fe8" id="r_a78536df00d23895e27d2fd9cc8373fe8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78536df00d23895e27d2fd9cc8373fe8">apply_relax_zones</a> ()=0</td></tr>
+<tr class="memitem:a4c5299cfc6d00782dbf69ee2daeaf660" id="r_a4c5299cfc6d00782dbf69ee2daeaf660"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c5299cfc6d00782dbf69ee2daeaf660">prepare_outputs</a> (const std::string &amp;)=0</td></tr>
+<tr class="memitem:a57383c09a6613ae646c2a8a60d3e46c4" id="r_a57383c09a6613ae646c2a8a60d3e46c4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57383c09a6613ae646c2a8a60d3e46c4">write_outputs</a> ()=0</td></tr>
+<tr class="memitem:a6fabefe5ba76da14e99f959b36c213d3" id="r_a6fabefe5ba76da14e99f959b36c213d3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fabefe5ba76da14e99f959b36c213d3">record_regrid_flag</a> ()=0</td></tr>
+<tr class="memitem:a816fdadd4a7e3ce4a7c108be666c1ec1" id="r_a816fdadd4a7e3ce4a7c108be666c1ec1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a816fdadd4a7e3ce4a7c108be666c1ec1">reset_regrid_flag</a> ()=0</td></tr>
+<tr class="inherit_header pub_methods_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; OceanWavesModel, CFDSim &amp;, const std::string &amp;, const int &gt;</a></td></tr>
+<tr class="memitem:ac34efe50a093c87b829083168775bc5f inherit pub_methods_structkynema__sgf_1_1_factory" id="r_ac34efe50a093c87b829083168775bc5f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#ac34efe50a093c87b829083168775bc5f">~Factory</a> ()=default</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a4afbe8ac01b470aada1d46c912c55764" id="r_a4afbe8ac01b470aada1d46c912c55764"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4afbe8ac01b470aada1d46c912c55764">base_identifier</a> ()</td></tr>
+<tr class="inherit_header pub_static_methods_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Static Public Member Functions inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; OceanWavesModel, CFDSim &amp;, const std::string &amp;, const int &gt;</a></td></tr>
+<tr class="memitem:aa73d3b8dc6633292bb32e05d3b8e7120 inherit pub_static_methods_structkynema__sgf_1_1_factory" id="r_aa73d3b8dc6633292bb32e05d3b8e7120"><td class="memItemLeft" align="right" valign="top">static std::unique_ptr&lt; OceanWavesModel &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#aa73d3b8dc6633292bb32e05d3b8e7120">create</a> (const std::string &amp;key, Args... args)</td></tr>
+<tr class="memitem:a5e56671505c53a0862e25adeddea669f inherit pub_static_methods_structkynema__sgf_1_1_factory" id="r_a5e56671505c53a0862e25adeddea669f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#a5e56671505c53a0862e25adeddea669f">print</a> (std::ostream &amp;os)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Attributes inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; OceanWavesModel, CFDSim &amp;, const std::string &amp;, const int &gt;</a></td></tr>
+<tr class="memitem:a3f41ef21adfa37f9abb5c8cc52769974 inherit pub_attribs_structkynema__sgf_1_1_factory" id="r_a3f41ef21adfa37f9abb5c8cc52769974"><td class="memItemLeft" align="right" valign="top">friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#a3f41ef21adfa37f9abb5c8cc52769974">Base</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Abstract representation of a wave model used for wave generation</p>
+<p>This class is intended to represent a single wave model </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a352b062a7cc5a463a8797c79518ae3d5" name="a352b062a7cc5a463a8797c79518ae3d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a352b062a7cc5a463a8797c79518ae3d5">&#9670;&#160;</a></span>~OceanWavesModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::ocean_waves::OceanWavesModel::~OceanWavesModel </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a78536df00d23895e27d2fd9cc8373fe8" name="a78536df00d23895e27d2fd9cc8373fe8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78536df00d23895e27d2fd9cc8373fe8">&#9670;&#160;</a></span>apply_relax_zones()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::ocean_waves::OceanWavesModel::apply_relax_zones </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4afbe8ac01b470aada1d46c912c55764" name="a4afbe8ac01b470aada1d46c912c55764"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4afbe8ac01b470aada1d46c912c55764">&#9670;&#160;</a></span>base_identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::ocean_waves::OceanWavesModel::base_identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acb53fffe3a3e1f22cdb9f0f230cc2f4b" name="acb53fffe3a3e1f22cdb9f0f230cc2f4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb53fffe3a3e1f22cdb9f0f230cc2f4b">&#9670;&#160;</a></span>id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int kynema_sgf::ocean_waves::OceanWavesModel::id </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad14cff37f48a7a7d838f7996de59d946" name="ad14cff37f48a7a7d838f7996de59d946"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad14cff37f48a7a7d838f7996de59d946">&#9670;&#160;</a></span>init_waves()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::ocean_waves::OceanWavesModel::init_waves </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa5abd772072a691d3ebd35989829f4d3" name="aa5abd772072a691d3ebd35989829f4d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5abd772072a691d3ebd35989829f4d3">&#9670;&#160;</a></span>label()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const std::string &amp; kynema_sgf::ocean_waves::OceanWavesModel::label </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4c5299cfc6d00782dbf69ee2daeaf660" name="a4c5299cfc6d00782dbf69ee2daeaf660"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c5299cfc6d00782dbf69ee2daeaf660">&#9670;&#160;</a></span>prepare_outputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::ocean_waves::OceanWavesModel::prepare_outputs </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2150608d6e20d5c1ebf51a6ea0007b5f" name="a2150608d6e20d5c1ebf51a6ea0007b5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2150608d6e20d5c1ebf51a6ea0007b5f">&#9670;&#160;</a></span>read_inputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::ocean_waves::OceanWavesModel::read_inputs </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1utils_1_1_multi_parser.html">::kynema_sgf::utils::MultiParser</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6fabefe5ba76da14e99f959b36c213d3" name="a6fabefe5ba76da14e99f959b36c213d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fabefe5ba76da14e99f959b36c213d3">&#9670;&#160;</a></span>record_regrid_flag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::ocean_waves::OceanWavesModel::record_regrid_flag </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a816fdadd4a7e3ce4a7c108be666c1ec1" name="a816fdadd4a7e3ce4a7c108be666c1ec1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a816fdadd4a7e3ce4a7c108be666c1ec1">&#9670;&#160;</a></span>reset_regrid_flag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::ocean_waves::OceanWavesModel::reset_regrid_flag </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a79779eb95866c79ccdfcc9e031d733a1" name="a79779eb95866c79ccdfcc9e031d733a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79779eb95866c79ccdfcc9e031d733a1">&#9670;&#160;</a></span>update_target_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::ocean_waves::OceanWavesModel::update_target_fields </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a57383c09a6613ae646c2a8a60d3e46c4" name="a57383c09a6613ae646c2a8a60d3e46c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57383c09a6613ae646c2a8a60d3e46c4">&#9670;&#160;</a></span>write_outputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::ocean_waves::OceanWavesModel::write_outputs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/ocean_waves/<a class="el" href="_ocean_waves_model_8_h_source.html">OceanWavesModel.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

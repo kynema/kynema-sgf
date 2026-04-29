@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ABL.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ABL.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_a_b_l_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-abl-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ABL.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-abl-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ABL.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_a80d9316c48aa709b9bc78e2b746db24.html">wind_energy</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">ABL.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_a_b_l_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef ABL_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define ABL_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_physics_8_h.html">src/core/Physics.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_a_b_l_field_init_8_h.html">src/wind_energy/ABLFieldInit.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="_a_b_l_field_init_file_8_h.html">src/wind_energy/ABLFieldInitFile.H</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="_a_b_l_wall_function_8_h.html">src/wind_energy/ABLWallFunction.H</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="_field_boundary_8_h.html">src/boundary_conditions/field_boundary_fill/FieldBoundary.H</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="_boundary_plane_8_h.html">src/boundary_conditions/field_boundary_fill/BoundaryPlane.H</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="_modulated_power_law_8_h.html">src/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="_sim_time_8_h.html">src/core/SimTime.H</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="_field_plane_averaging_8_h.html">src/utilities/FieldPlaneAveraging.H</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="_a_b_l_stats_base_8_h.html">src/wind_energy/ABLStatsBase.H</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="_a_b_l_anelastic_8_h.html">src/wind_energy/ABLAnelastic.H</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">class </span><a class="code hl_class" href="classincflo.html">incflo</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1_a_b_l_mesoscale_input.html">ABLMesoscaleInput</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1pde_1_1icns.html">pde::icns</a> {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_forcing.html">ABLForcing</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_mean_boussinesq.html">ABLMeanBoussinesq</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html">ABLMesoForcingMom</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1pde_1_1icns_1_1_hurricane_forcing.html">HurricaneForcing</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>} <span class="comment">// namespace pde::icns</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1pde_1_1temperature.html">pde::temperature</a> {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1pde_1_1temperature_1_1_a_b_l_meso_forcing_temp.html">ABLMesoForcingTemp</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1pde_1_1temperature_1_1_hurricane_temp_forcing.html">HurricaneTempForcing</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>} <span class="comment">// namespace pde::temperature</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
+<div class="foldopen" id="foldopen00068" data-start="{" data-end="};">
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html">   68</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#a931e187e7afa8d5f61ddedb46ac3a2ae">ABL</a> : <span class="keyword">public</span> Physics::Register&lt;ABL&gt;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>{</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a73144304940501d534e6e07f8afcb99f">   71</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#a73144304940501d534e6e07f8afcb99f">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;ABL&quot;</span>; }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#a931e187e7afa8d5f61ddedb46ac3a2ae">ABL</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a4f979490d382c2c2f03567093b5efa3a">   75</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#a4f979490d382c2c2f03567093b5efa3a">~ABL</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#ac5d404dd4951d2fa04d53727ce57c91c">   77</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_a_b_l_wall_function.html">ABLWallFunction</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#ac5d404dd4951d2fa04d53727ce57c91c">abl_wall_function</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a4229559da4072f4d8eb787d8090ac7a8">m_abl_wall_func</a>; }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#ac30cd91b2e93ea2e941630a0f7656551">post_init_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#a794babdaf7c34df7789f0c6e69f12e34">post_regrid_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#a623f8b899db4487945ceaaaf8d6e10cb">initialize_fields</a>(<span class="keywordtype">int</span> level, <span class="keyword">const</span> amrex::Geometry&amp; geom) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#a54359349102a38b38a8eae625e6125af">pre_advance_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#a2013574534d90ddda6bbbff438d505c2">post_advance_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="}">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#aa8f680d83ba5ea8e9595c481045ee267">   89</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#aa8f680d83ba5ea8e9595c481045ee267">register_forcing_term</a>(<a class="code hl_class" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_forcing.html">pde::icns::ABLForcing</a>* forcing)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a0675805363da9e9dd041450bb1cf6e54">m_abl_forcing</a> = forcing;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
+</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="foldopen" id="foldopen00094" data-start="{" data-end="}">
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#ad88c6e757da12cb750f12f1896cf19f5">   94</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#ad88c6e757da12cb750f12f1896cf19f5">register_mean_boussinesq_term</a>(<a class="code hl_class" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_mean_boussinesq.html">pde::icns::ABLMeanBoussinesq</a>* term)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a6077a4a1508cb4022c160aa05bf0552e">m_abl_mean_bous</a> = term;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    }</div>
+</div>
+<div class="foldopen" id="foldopen00098" data-start="{" data-end="}">
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#afe6c3f087d986235eb4eae40bf9aaaea">   98</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#afe6c3f087d986235eb4eae40bf9aaaea">register_meso_mom_forcing</a>(<a class="code hl_class" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html">pde::icns::ABLMesoForcingMom</a>* forcing)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a2494428a0835c82fe503ed3200e4009d">m_abl_meso_mom_forcing</a> = forcing;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    }</div>
+</div>
+<div class="foldopen" id="foldopen00102" data-start="{" data-end="}">
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a46f15cb5f660a0294b032d84473bed7d">  102</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#a46f15cb5f660a0294b032d84473bed7d">register_meso_temp_forcing</a>(</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <a class="code hl_class" href="classkynema__sgf_1_1pde_1_1temperature_1_1_a_b_l_meso_forcing_temp.html">pde::temperature::ABLMesoForcingTemp</a>* forcing)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#acebda8b90837406728fcc24bcc379932">m_abl_meso_temp_forcing</a> = forcing;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    }</div>
+</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="foldopen" id="foldopen00108" data-start="{" data-end="}">
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a846e942b4112f96c58ce9b04c66ecedc">  108</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#a846e942b4112f96c58ce9b04c66ecedc">register_hurricane_forcing</a>(<a class="code hl_class" href="classkynema__sgf_1_1pde_1_1icns_1_1_hurricane_forcing.html">pde::icns::HurricaneForcing</a>* forcing)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#ad5e71f042e5fb3f9691525b5127b48b2">m_hurricane_forcing</a> = forcing;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
+</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="foldopen" id="foldopen00113" data-start="{" data-end="}">
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a442ba9d319407ae59d54673ad22a9c0d">  113</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#a442ba9d319407ae59d54673ad22a9c0d">register_hurricane_temp_forcing</a>(</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <a class="code hl_class" href="classkynema__sgf_1_1pde_1_1temperature_1_1_hurricane_temp_forcing.html">pde::temperature::HurricaneTempForcing</a>* forcing)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#ae46e06839294cf12b875a348998fad54">m_hurricane_temp_forcing</a> = forcing;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
+</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a9e88c81100a317333966569d8ce7ad15">  120</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_a_b_l_stats_base.html">ABLStatsBase</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#a9e88c81100a317333966569d8ce7ad15">abl_statistics</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> *<a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a17f260167576d606743c1a6c1a00e455">m_stats</a>; }</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a8fb0c70a437c9888ccf9117f4323a79e">  122</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_a_b_l_mesoscale_input.html">ABLMesoscaleInput</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#a8fb0c70a437c9888ccf9117f4323a79e">abl_meso_file</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> *<a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a80238de437654fbd8cc756238addc775">m_meso_file</a>; }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#aa5f463edd12c6a984b89a6797492ef44">  124</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_a_b_l_anelastic.html">ABLAnelastic</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l.html#aa5f463edd12c6a984b89a6797492ef44">anelastic</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> *<a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a7bab99bfddf6734201732118880e1be0">m_abl_anelastic</a>; }</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a954e181fc42426080041e010dca916fc">  127</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a954e181fc42426080041e010dca916fc">m_sim</a>;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a596dcfaa1b09e4e8d1f226fa888e5f82">  129</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a596dcfaa1b09e4e8d1f226fa888e5f82">m_velocity</a>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a32fc94270f7f6ec23127a352cf9da201">  130</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a32fc94270f7f6ec23127a352cf9da201">m_mueff</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a7fc865b674e8e0cb8b4f0d0fe44ddfa0">  131</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a7fc865b674e8e0cb8b4f0d0fe44ddfa0">m_density</a>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#acb688ee35ab601b56ab852203c1de672">  132</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>* <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#acb688ee35ab601b56ab852203c1de672">m_temperature</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a85054f65b154025de4defdec2bde79b6">  133</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>* <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a85054f65b154025de4defdec2bde79b6">m_tke</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a3e6bba454304ed025de447dcefaca4f5">  134</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>* <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a3e6bba454304ed025de447dcefaca4f5">m_sdr</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a4229559da4072f4d8eb787d8090ac7a8">  136</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_a_b_l_wall_function.html">ABLWallFunction</a> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a4229559da4072f4d8eb787d8090ac7a8">m_abl_wall_func</a>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a9b5818fd0d24032b2c2141e3d98330d2">  139</a></span>    std::unique_ptr&lt;ABLFieldInit&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a9b5818fd0d24032b2c2141e3d98330d2">m_field_init</a>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a0675805363da9e9dd041450bb1cf6e54">  142</a></span>    <span class="keyword">mutable</span> <a class="code hl_class" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_forcing.html">pde::icns::ABLForcing</a>* <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a0675805363da9e9dd041450bb1cf6e54">m_abl_forcing</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a17f260167576d606743c1a6c1a00e455">  145</a></span>    std::unique_ptr&lt;ABLStatsBase&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a17f260167576d606743c1a6c1a00e455">m_stats</a>;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a7bab99bfddf6734201732118880e1be0">  148</a></span>    std::unique_ptr&lt;ABLAnelastic&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a7bab99bfddf6734201732118880e1be0">m_abl_anelastic</a>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a6077a4a1508cb4022c160aa05bf0552e">  150</a></span>    <span class="keyword">mutable</span> <a class="code hl_class" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_mean_boussinesq.html">pde::icns::ABLMeanBoussinesq</a>* <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a6077a4a1508cb4022c160aa05bf0552e">m_abl_mean_bous</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a2494428a0835c82fe503ed3200e4009d">  152</a></span>    <span class="keyword">mutable</span> <a class="code hl_class" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html">pde::icns::ABLMesoForcingMom</a>* <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a2494428a0835c82fe503ed3200e4009d">m_abl_meso_mom_forcing</a>{<span class="keyword">nullptr</span>};</div>
+<div class="foldopen" id="foldopen00153" data-start="{" data-end="};">
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#acebda8b90837406728fcc24bcc379932">  153</a></span>    <span class="keyword">mutable</span> <a class="code hl_class" href="classkynema__sgf_1_1pde_1_1temperature_1_1_a_b_l_meso_forcing_temp.html">pde::temperature::ABLMesoForcingTemp</a>* <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#acebda8b90837406728fcc24bcc379932">m_abl_meso_temp_forcing</a>{</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="keyword">nullptr</span>};</div>
+</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a80238de437654fbd8cc756238addc775">  156</a></span>    std::unique_ptr&lt;ABLMesoscaleInput&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a80238de437654fbd8cc756238addc775">m_meso_file</a>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#ad5e71f042e5fb3f9691525b5127b48b2">  158</a></span>    <span class="keyword">mutable</span> <a class="code hl_class" href="classkynema__sgf_1_1pde_1_1icns_1_1_hurricane_forcing.html">pde::icns::HurricaneForcing</a>* <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#ad5e71f042e5fb3f9691525b5127b48b2">m_hurricane_forcing</a>{<span class="keyword">nullptr</span>};</div>
+<div class="foldopen" id="foldopen00159" data-start="{" data-end="};">
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#ae46e06839294cf12b875a348998fad54">  159</a></span>    <span class="keyword">mutable</span> <a class="code hl_class" href="classkynema__sgf_1_1pde_1_1temperature_1_1_hurricane_temp_forcing.html">pde::temperature::HurricaneTempForcing</a>* <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#ae46e06839294cf12b875a348998fad54">m_hurricane_temp_forcing</a>{</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keyword">nullptr</span>};</div>
+</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a868326ca5f6fbbb74d7b0edaa29ef868">  162</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a868326ca5f6fbbb74d7b0edaa29ef868">m_init_sdr</a>{25.0_rt};</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#abe99f6d10bd48bf08b8a70411addfc56">  165</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#abe99f6d10bd48bf08b8a70411addfc56">m_hybrid_rl</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a2693600f395fe7cf852b9afc79b778e9">  168</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a2693600f395fe7cf852b9afc79b778e9">m_file_input</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l.html#a332c5e244d4381d54eab007cbc11216f">  170</a></span>    std::unique_ptr&lt;ABLFieldInitFile&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l.html#a332c5e244d4381d54eab007cbc11216f">m_field_init_file</a>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>};</div>
+</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="preprocessor">#endif </span><span class="comment">/* ABL_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_a_b_l_anelastic_8_h_html"><div class="ttname"><a href="_a_b_l_anelastic_8_h.html">ABLAnelastic.H</a></div></div>
+<div class="ttc" id="a_a_b_l_field_init_8_h_html"><div class="ttname"><a href="_a_b_l_field_init_8_h.html">ABLFieldInit.H</a></div></div>
+<div class="ttc" id="a_a_b_l_field_init_file_8_h_html"><div class="ttname"><a href="_a_b_l_field_init_file_8_h.html">ABLFieldInitFile.H</a></div></div>
+<div class="ttc" id="a_a_b_l_stats_base_8_h_html"><div class="ttname"><a href="_a_b_l_stats_base_8_h.html">ABLStatsBase.H</a></div></div>
+<div class="ttc" id="a_a_b_l_wall_function_8_h_html"><div class="ttname"><a href="_a_b_l_wall_function_8_h.html">ABLWallFunction.H</a></div></div>
+<div class="ttc" id="a_boundary_plane_8_h_html"><div class="ttname"><a href="_boundary_plane_8_h.html">BoundaryPlane.H</a></div></div>
+<div class="ttc" id="a_field_boundary_8_h_html"><div class="ttname"><a href="_field_boundary_8_h.html">FieldBoundary.H</a></div></div>
+<div class="ttc" id="a_field_plane_averaging_8_h_html"><div class="ttname"><a href="_field_plane_averaging_8_h.html">FieldPlaneAveraging.H</a></div></div>
+<div class="ttc" id="a_modulated_power_law_8_h_html"><div class="ttname"><a href="_modulated_power_law_8_h.html">ModulatedPowerLaw.H</a></div></div>
+<div class="ttc" id="a_physics_8_h_html"><div class="ttname"><a href="_physics_8_h.html">Physics.H</a></div></div>
+<div class="ttc" id="a_sim_time_8_h_html"><div class="ttname"><a href="_sim_time_8_h.html">SimTime.H</a></div></div>
+<div class="ttc" id="aclassincflo_html"><div class="ttname"><a href="classincflo.html">incflo</a></div><div class="ttdef"><b>Definition</b> incflo.H:52</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_anelastic_html"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_anelastic.html">kynema_sgf::ABLAnelastic</a></div><div class="ttdef"><b>Definition</b> ABLAnelastic.H:22</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a0675805363da9e9dd041450bb1cf6e54"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a0675805363da9e9dd041450bb1cf6e54">kynema_sgf::ABL::m_abl_forcing</a></div><div class="ttdeci">pde::icns::ABLForcing * m_abl_forcing</div><div class="ttdoc">Reference to ABL forcing term if present.</div><div class="ttdef"><b>Definition</b> ABL.H:142</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a17f260167576d606743c1a6c1a00e455"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a17f260167576d606743c1a6c1a00e455">kynema_sgf::ABL::m_stats</a></div><div class="ttdeci">std::unique_ptr&lt; ABLStatsBase &gt; m_stats</div><div class="ttdoc">ABL integrated statistics object.</div><div class="ttdef"><b>Definition</b> ABL.H:145</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a2013574534d90ddda6bbbff438d505c2"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a2013574534d90ddda6bbbff438d505c2">kynema_sgf::ABL::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> ABL.cpp:287</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a2494428a0835c82fe503ed3200e4009d"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a2494428a0835c82fe503ed3200e4009d">kynema_sgf::ABL::m_abl_meso_mom_forcing</a></div><div class="ttdeci">pde::icns::ABLMesoForcingMom * m_abl_meso_mom_forcing</div><div class="ttdef"><b>Definition</b> ABL.H:152</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a2693600f395fe7cf852b9afc79b778e9"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a2693600f395fe7cf852b9afc79b778e9">kynema_sgf::ABL::m_file_input</a></div><div class="ttdeci">bool m_file_input</div><div class="ttdoc">File input flag.</div><div class="ttdef"><b>Definition</b> ABL.H:168</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a32fc94270f7f6ec23127a352cf9da201"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a32fc94270f7f6ec23127a352cf9da201">kynema_sgf::ABL::m_mueff</a></div><div class="ttdeci">Field &amp; m_mueff</div><div class="ttdef"><b>Definition</b> ABL.H:130</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a332c5e244d4381d54eab007cbc11216f"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a332c5e244d4381d54eab007cbc11216f">kynema_sgf::ABL::m_field_init_file</a></div><div class="ttdeci">std::unique_ptr&lt; ABLFieldInitFile &gt; m_field_init_file</div><div class="ttdoc">File input initializer.</div><div class="ttdef"><b>Definition</b> ABL.H:170</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a3e6bba454304ed025de447dcefaca4f5"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a3e6bba454304ed025de447dcefaca4f5">kynema_sgf::ABL::m_sdr</a></div><div class="ttdeci">Field * m_sdr</div><div class="ttdef"><b>Definition</b> ABL.H:134</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a4229559da4072f4d8eb787d8090ac7a8"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a4229559da4072f4d8eb787d8090ac7a8">kynema_sgf::ABL::m_abl_wall_func</a></div><div class="ttdeci">ABLWallFunction m_abl_wall_func</div><div class="ttdef"><b>Definition</b> ABL.H:136</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a442ba9d319407ae59d54673ad22a9c0d"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a442ba9d319407ae59d54673ad22a9c0d">kynema_sgf::ABL::register_hurricane_temp_forcing</a></div><div class="ttdeci">void register_hurricane_temp_forcing(pde::temperature::HurricaneTempForcing *forcing) const</div><div class="ttdef"><b>Definition</b> ABL.H:113</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a46f15cb5f660a0294b032d84473bed7d"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a46f15cb5f660a0294b032d84473bed7d">kynema_sgf::ABL::register_meso_temp_forcing</a></div><div class="ttdeci">void register_meso_temp_forcing(pde::temperature::ABLMesoForcingTemp *forcing) const</div><div class="ttdef"><b>Definition</b> ABL.H:102</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a4f979490d382c2c2f03567093b5efa3a"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a4f979490d382c2c2f03567093b5efa3a">kynema_sgf::ABL::~ABL</a></div><div class="ttdeci">~ABL() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a54359349102a38b38a8eae625e6125af"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a54359349102a38b38a8eae625e6125af">kynema_sgf::ABL::pre_advance_work</a></div><div class="ttdeci">void pre_advance_work() override</div><div class="ttdef"><b>Definition</b> ABL.cpp:210</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a596dcfaa1b09e4e8d1f226fa888e5f82"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a596dcfaa1b09e4e8d1f226fa888e5f82">kynema_sgf::ABL::m_velocity</a></div><div class="ttdeci">Field &amp; m_velocity</div><div class="ttdef"><b>Definition</b> ABL.H:129</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a6077a4a1508cb4022c160aa05bf0552e"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a6077a4a1508cb4022c160aa05bf0552e">kynema_sgf::ABL::m_abl_mean_bous</a></div><div class="ttdeci">pde::icns::ABLMeanBoussinesq * m_abl_mean_bous</div><div class="ttdef"><b>Definition</b> ABL.H:150</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a623f8b899db4487945ceaaaf8d6e10cb"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a623f8b899db4487945ceaaaf8d6e10cb">kynema_sgf::ABL::initialize_fields</a></div><div class="ttdeci">void initialize_fields(int level, const amrex::Geometry &amp;geom) override</div><div class="ttdef"><b>Definition</b> ABL.cpp:134</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a73144304940501d534e6e07f8afcb99f"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a73144304940501d534e6e07f8afcb99f">kynema_sgf::ABL::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> ABL.H:71</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a794babdaf7c34df7789f0c6e69f12e34"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a794babdaf7c34df7789f0c6e69f12e34">kynema_sgf::ABL::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdef"><b>Definition</b> ABL.cpp:198</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a7bab99bfddf6734201732118880e1be0"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a7bab99bfddf6734201732118880e1be0">kynema_sgf::ABL::m_abl_anelastic</a></div><div class="ttdeci">std::unique_ptr&lt; ABLAnelastic &gt; m_abl_anelastic</div><div class="ttdoc">ABL anelastic instance.</div><div class="ttdef"><b>Definition</b> ABL.H:148</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a7fc865b674e8e0cb8b4f0d0fe44ddfa0"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a7fc865b674e8e0cb8b4f0d0fe44ddfa0">kynema_sgf::ABL::m_density</a></div><div class="ttdeci">Field &amp; m_density</div><div class="ttdef"><b>Definition</b> ABL.H:131</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a80238de437654fbd8cc756238addc775"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a80238de437654fbd8cc756238addc775">kynema_sgf::ABL::m_meso_file</a></div><div class="ttdeci">std::unique_ptr&lt; ABLMesoscaleInput &gt; m_meso_file</div><div class="ttdef"><b>Definition</b> ABL.H:156</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a846e942b4112f96c58ce9b04c66ecedc"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a846e942b4112f96c58ce9b04c66ecedc">kynema_sgf::ABL::register_hurricane_forcing</a></div><div class="ttdeci">void register_hurricane_forcing(pde::icns::HurricaneForcing *forcing) const</div><div class="ttdef"><b>Definition</b> ABL.H:108</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a85054f65b154025de4defdec2bde79b6"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a85054f65b154025de4defdec2bde79b6">kynema_sgf::ABL::m_tke</a></div><div class="ttdeci">Field * m_tke</div><div class="ttdef"><b>Definition</b> ABL.H:133</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a868326ca5f6fbbb74d7b0edaa29ef868"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a868326ca5f6fbbb74d7b0edaa29ef868">kynema_sgf::ABL::m_init_sdr</a></div><div class="ttdeci">amrex::Real m_init_sdr</div><div class="ttdoc">Default value set based on https://turbmodels.larc.nasa.gov/sst.html.</div><div class="ttdef"><b>Definition</b> ABL.H:162</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a8fb0c70a437c9888ccf9117f4323a79e"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a8fb0c70a437c9888ccf9117f4323a79e">kynema_sgf::ABL::abl_meso_file</a></div><div class="ttdeci">const ABLMesoscaleInput &amp; abl_meso_file() const</div><div class="ttdef"><b>Definition</b> ABL.H:122</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a931e187e7afa8d5f61ddedb46ac3a2ae"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a931e187e7afa8d5f61ddedb46ac3a2ae">kynema_sgf::ABL::ABL</a></div><div class="ttdeci">ABL(CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> ABL.cpp:25</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a954e181fc42426080041e010dca916fc"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a954e181fc42426080041e010dca916fc">kynema_sgf::ABL::m_sim</a></div><div class="ttdeci">const CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> ABL.H:127</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a9b5818fd0d24032b2c2141e3d98330d2"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a9b5818fd0d24032b2c2141e3d98330d2">kynema_sgf::ABL::m_field_init</a></div><div class="ttdeci">std::unique_ptr&lt; ABLFieldInit &gt; m_field_init</div><div class="ttdoc">ABL field initializer instance.</div><div class="ttdef"><b>Definition</b> ABL.H:139</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_a9e88c81100a317333966569d8ce7ad15"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#a9e88c81100a317333966569d8ce7ad15">kynema_sgf::ABL::abl_statistics</a></div><div class="ttdeci">const ABLStatsBase &amp; abl_statistics() const</div><div class="ttdoc">Return the ABL statistics calculator.</div><div class="ttdef"><b>Definition</b> ABL.H:120</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_aa5f463edd12c6a984b89a6797492ef44"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#aa5f463edd12c6a984b89a6797492ef44">kynema_sgf::ABL::anelastic</a></div><div class="ttdeci">const ABLAnelastic &amp; anelastic() const</div><div class="ttdef"><b>Definition</b> ABL.H:124</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_aa8f680d83ba5ea8e9595c481045ee267"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#aa8f680d83ba5ea8e9595c481045ee267">kynema_sgf::ABL::register_forcing_term</a></div><div class="ttdeci">void register_forcing_term(pde::icns::ABLForcing *forcing) const</div><div class="ttdef"><b>Definition</b> ABL.H:89</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_abe99f6d10bd48bf08b8a70411addfc56"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#abe99f6d10bd48bf08b8a70411addfc56">kynema_sgf::ABL::m_hybrid_rl</a></div><div class="ttdeci">bool m_hybrid_rl</div><div class="ttdoc">Hybrid RANS-LES with Nalu-wind.</div><div class="ttdef"><b>Definition</b> ABL.H:165</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_ac30cd91b2e93ea2e941630a0f7656551"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#ac30cd91b2e93ea2e941630a0f7656551">kynema_sgf::ABL::post_init_actions</a></div><div class="ttdeci">void post_init_actions() override</div><div class="ttdef"><b>Definition</b> ABL.cpp:177</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_ac5d404dd4951d2fa04d53727ce57c91c"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#ac5d404dd4951d2fa04d53727ce57c91c">kynema_sgf::ABL::abl_wall_function</a></div><div class="ttdeci">const ABLWallFunction &amp; abl_wall_function() const</div><div class="ttdef"><b>Definition</b> ABL.H:77</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_acb688ee35ab601b56ab852203c1de672"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#acb688ee35ab601b56ab852203c1de672">kynema_sgf::ABL::m_temperature</a></div><div class="ttdeci">Field * m_temperature</div><div class="ttdef"><b>Definition</b> ABL.H:132</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_acebda8b90837406728fcc24bcc379932"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#acebda8b90837406728fcc24bcc379932">kynema_sgf::ABL::m_abl_meso_temp_forcing</a></div><div class="ttdeci">pde::temperature::ABLMesoForcingTemp * m_abl_meso_temp_forcing</div><div class="ttdef"><b>Definition</b> ABL.H:153</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_ad5e71f042e5fb3f9691525b5127b48b2"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#ad5e71f042e5fb3f9691525b5127b48b2">kynema_sgf::ABL::m_hurricane_forcing</a></div><div class="ttdeci">pde::icns::HurricaneForcing * m_hurricane_forcing</div><div class="ttdef"><b>Definition</b> ABL.H:158</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_ad88c6e757da12cb750f12f1896cf19f5"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#ad88c6e757da12cb750f12f1896cf19f5">kynema_sgf::ABL::register_mean_boussinesq_term</a></div><div class="ttdeci">void register_mean_boussinesq_term(pde::icns::ABLMeanBoussinesq *term) const</div><div class="ttdef"><b>Definition</b> ABL.H:94</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_ae46e06839294cf12b875a348998fad54"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#ae46e06839294cf12b875a348998fad54">kynema_sgf::ABL::m_hurricane_temp_forcing</a></div><div class="ttdeci">pde::temperature::HurricaneTempForcing * m_hurricane_temp_forcing</div><div class="ttdef"><b>Definition</b> ABL.H:159</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_html_afe6c3f087d986235eb4eae40bf9aaaea"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l.html#afe6c3f087d986235eb4eae40bf9aaaea">kynema_sgf::ABL::register_meso_mom_forcing</a></div><div class="ttdeci">void register_meso_mom_forcing(pde::icns::ABLMesoForcingMom *forcing) const</div><div class="ttdef"><b>Definition</b> ABL.H:98</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_input_html"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_input.html">kynema_sgf::ABLMesoscaleInput</a></div><div class="ttdef"><b>Definition</b> ABLMesoscaleInput.H:11</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_stats_base_html"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_stats_base.html">kynema_sgf::ABLStatsBase</a></div><div class="ttdef"><b>Definition</b> ABLStatsBase.H:25</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_wall_function_html"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_wall_function.html">kynema_sgf::ABLWallFunction</a></div><div class="ttdef"><b>Definition</b> ABLWallFunction.H:24</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_forcing_html"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_forcing.html">kynema_sgf::pde::icns::ABLForcing</a></div><div class="ttdef"><b>Definition</b> ABLForcing.H:20</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_mean_boussinesq_html"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_mean_boussinesq.html">kynema_sgf::pde::icns::ABLMeanBoussinesq</a></div><div class="ttdef"><b>Definition</b> ABLMeanBoussinesq.H:22</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom_html"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html">kynema_sgf::pde::icns::ABLMesoForcingMom</a></div><div class="ttdef"><b>Definition</b> ABLMesoForcingMom.H:26</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_hurricane_forcing_html"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_hurricane_forcing.html">kynema_sgf::pde::icns::HurricaneForcing</a></div><div class="ttdef"><b>Definition</b> HurricaneForcing.H:25</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1temperature_1_1_a_b_l_meso_forcing_temp_html"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1temperature_1_1_a_b_l_meso_forcing_temp.html">kynema_sgf::pde::temperature::ABLMesoForcingTemp</a></div><div class="ttdef"><b>Definition</b> ABLMesoForcingTemp.H:19</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1temperature_1_1_hurricane_temp_forcing_html"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1temperature_1_1_hurricane_temp_forcing.html">kynema_sgf::pde::temperature::HurricaneTempForcing</a></div><div class="ttdef"><b>Definition</b> HurricaneTempForcing.H:15</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1pde_1_1icns_html"><div class="ttname"><a href="namespacekynema__sgf_1_1pde_1_1icns.html">kynema_sgf::pde::icns</a></div><div class="ttdef"><b>Definition</b> ABLForcing.cpp:14</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1pde_1_1temperature_html"><div class="ttname"><a href="namespacekynema__sgf_1_1pde_1_1temperature.html">kynema_sgf::pde::temperature</a></div><div class="ttdef"><b>Definition</b> ABLMesoForcingTemp.cpp:15</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

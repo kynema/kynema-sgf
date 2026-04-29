@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/BodyForce.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/BodyForce.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/icns_2source__terms_2_body_force_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-icns-source-terms-bodyforce-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/BodyForce.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-icns-source-terms-bodyforce-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/source_terms/BodyForce.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_0a302c6baedf52e9cfdc9fc1cbccbefa.html">equation_systems</a></li><li class="navelem"><a href="dir_6b3b25f1da48ef8ca65a8f7d03836280.html">icns</a></li><li class="navelem"><a href="dir_281a8f2a1daeda6ff9d3c6f4bca9a040.html">source_terms</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">BodyForce.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="icns_2source__terms_2_body_force_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef BODYFORCE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define BODYFORCE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_momentum_source_8_h.html">src/equation_systems/icns/MomentumSource.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_sim_time_8_h.html">src/core/SimTime.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;AMReX_GpuContainers.H&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;AMReX_Vector.H&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1pde_1_1icns.html">kynema_sgf::pde::icns</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html">   21</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a1e79f9a808ffff20d1ebc0dce049fc2f">BodyForce</a> : <span class="keyword">public</span> MomentumSource::Register&lt;BodyForce&gt;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>{</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#afb137847a1f2b68f14b6c62b17fa9a95">   24</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#afb137847a1f2b68f14b6c62b17fa9a95">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;BodyForce&quot;</span>; }</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a1e79f9a808ffff20d1ebc0dce049fc2f">BodyForce</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <span class="comment">/*sim*/</span>);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a067b07927caba9c5a9b4fe2be87184aa">   28</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a067b07927caba9c5a9b4fe2be87184aa">~BodyForce</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a4a82c70269ed92508831de2b1ce7901e">operator()</a>(</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordtype">int</span> lev,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keyword">const</span> amrex::MFIter&amp; mfi,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keyword">const</span> amrex::Box&amp; bx,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keyword">const</span> amrex::Array4&lt;amrex::Real&gt;&amp; src_term) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a148508effebfa1f5d326f03e0fe43720">read_bforce_profile</a>(<span class="keyword">const</span> std::string&amp; filename);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a15cb1e31d4d9d107136aae2da834dd63">read_bforce_timetable</a>(<span class="keyword">const</span> std::string&amp; filename);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a6c4f992f881b7b0320f33a82b6c87b8a">   42</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a6c4f992f881b7b0320f33a82b6c87b8a">m_time</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a3568761aae65c7e4fe3b6a0e0f67438f">   44</a></span>    <span class="keyword">const</span> amrex::AmrCore&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a3568761aae65c7e4fe3b6a0e0f67438f">m_mesh</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a408aecb3fb5cc16ad097668b5203e642">   47</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a408aecb3fb5cc16ad097668b5203e642">m_body_force</a>{0.0_rt, 0.0_rt, 0.0_rt};</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a1d7290e977ae727f5b308a13c43e5eb0">   50</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a1d7290e977ae727f5b308a13c43e5eb0">m_type</a>{<span class="stringliteral">&quot;uniform_constant&quot;</span>};</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a5ee6487f55ef9efce44b151030ecd82a">   52</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a5ee6487f55ef9efce44b151030ecd82a">m_utt_file</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a46f7a0d32189d808f36af1b8f26ab8e7">   55</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a46f7a0d32189d808f36af1b8f26ab8e7">m_omega</a>{0.0_rt};</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a6c2cf1b4b48033e74ce725b3eb0407d7">   56</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a6c2cf1b4b48033e74ce725b3eb0407d7">m_bforce_file</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a1eba0479fd3664659a22d5b1935cc710">   57</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a1eba0479fd3664659a22d5b1935cc710">m_bforce_profile_nhts</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a5a26e2a0df276264768c4fc6598ebcd8">   59</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a5a26e2a0df276264768c4fc6598ebcd8">m_prof_x</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#afca11cf2933d30fbedd09a11ef8ef0dc">   60</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#afca11cf2933d30fbedd09a11ef8ef0dc">m_prof_y</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#accc7511e34214fcc6e7d93e4e9d63c75">   61</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#accc7511e34214fcc6e7d93e4e9d63c75">m_ht</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#ae7cf51c69608d552cd52bbff1155bc48">   64</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#ae7cf51c69608d552cd52bbff1155bc48">m_time_table</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a816cc6b0e13b5221256632e09845ab2a">   65</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a816cc6b0e13b5221256632e09845ab2a">m_fx_table</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#ad2ba9e435c94ff6c8717d23fc3a3290d">   66</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#ad2ba9e435c94ff6c8717d23fc3a3290d">m_fy_table</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#ac047dff407a818d938734a49ae357eda">   67</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#ac047dff407a818d938734a49ae357eda">m_fz_table</a>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>};</div>
+</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>} <span class="comment">// namespace kynema_sgf::pde::icns</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#endif </span><span class="comment">/* BODYFORCE_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_momentum_source_8_h_html"><div class="ttname"><a href="_momentum_source_8_h.html">MomentumSource.H</a></div></div>
+<div class="ttc" id="a_sim_time_8_h_html"><div class="ttname"><a href="_sim_time_8_h.html">SimTime.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a></div><div class="ttdef"><b>Definition</b> SimTime.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_a067b07927caba9c5a9b4fe2be87184aa"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a067b07927caba9c5a9b4fe2be87184aa">kynema_sgf::pde::icns::BodyForce::~BodyForce</a></div><div class="ttdeci">~BodyForce() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_a148508effebfa1f5d326f03e0fe43720"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a148508effebfa1f5d326f03e0fe43720">kynema_sgf::pde::icns::BodyForce::read_bforce_profile</a></div><div class="ttdeci">void read_bforce_profile(const std::string &amp;filename)</div><div class="ttdef"><b>Definition</b> BodyForce.cpp:61</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_a15cb1e31d4d9d107136aae2da834dd63"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a15cb1e31d4d9d107136aae2da834dd63">kynema_sgf::pde::icns::BodyForce::read_bforce_timetable</a></div><div class="ttdeci">void read_bforce_timetable(const std::string &amp;filename)</div><div class="ttdef"><b>Definition</b> BodyForce.cpp:95</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_a1d7290e977ae727f5b308a13c43e5eb0"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a1d7290e977ae727f5b308a13c43e5eb0">kynema_sgf::pde::icns::BodyForce::m_type</a></div><div class="ttdeci">std::string m_type</div><div class="ttdoc">Body Force Type.</div><div class="ttdef"><b>Definition</b> BodyForce.H:50</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_a1e79f9a808ffff20d1ebc0dce049fc2f"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a1e79f9a808ffff20d1ebc0dce049fc2f">kynema_sgf::pde::icns::BodyForce::BodyForce</a></div><div class="ttdeci">BodyForce(const CFDSim &amp;)</div><div class="ttdef"><b>Definition</b> BodyForce.cpp:20</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_a1eba0479fd3664659a22d5b1935cc710"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a1eba0479fd3664659a22d5b1935cc710">kynema_sgf::pde::icns::BodyForce::m_bforce_profile_nhts</a></div><div class="ttdeci">size_t m_bforce_profile_nhts</div><div class="ttdef"><b>Definition</b> BodyForce.H:57</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_a3568761aae65c7e4fe3b6a0e0f67438f"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a3568761aae65c7e4fe3b6a0e0f67438f">kynema_sgf::pde::icns::BodyForce::m_mesh</a></div><div class="ttdeci">const amrex::AmrCore &amp; m_mesh</div><div class="ttdef"><b>Definition</b> BodyForce.H:44</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_a408aecb3fb5cc16ad097668b5203e642"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a408aecb3fb5cc16ad097668b5203e642">kynema_sgf::pde::icns::BodyForce::m_body_force</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_body_force</div><div class="ttdoc">Forcing source term (pressure gradient)</div><div class="ttdef"><b>Definition</b> BodyForce.H:47</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_a46f7a0d32189d808f36af1b8f26ab8e7"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a46f7a0d32189d808f36af1b8f26ab8e7">kynema_sgf::pde::icns::BodyForce::m_omega</a></div><div class="ttdeci">amrex::Real m_omega</div><div class="ttdoc">Angular frequency used in the oscillatory forcing.</div><div class="ttdef"><b>Definition</b> BodyForce.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_a4a82c70269ed92508831de2b1ce7901e"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a4a82c70269ed92508831de2b1ce7901e">kynema_sgf::pde::icns::BodyForce::operator()</a></div><div class="ttdeci">void operator()(int lev, const amrex::MFIter &amp;mfi, const amrex::Box &amp;bx, FieldState fstate, const amrex::Array4&lt; amrex::Real &gt; &amp;src_term) const override</div><div class="ttdef"><b>Definition</b> BodyForce.cpp:117</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_a5a26e2a0df276264768c4fc6598ebcd8"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a5a26e2a0df276264768c4fc6598ebcd8">kynema_sgf::pde::icns::BodyForce::m_prof_x</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_prof_x</div><div class="ttdef"><b>Definition</b> BodyForce.H:59</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_a5ee6487f55ef9efce44b151030ecd82a"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a5ee6487f55ef9efce44b151030ecd82a">kynema_sgf::pde::icns::BodyForce::m_utt_file</a></div><div class="ttdeci">std::string m_utt_file</div><div class="ttdoc">Uniform time table file.</div><div class="ttdef"><b>Definition</b> BodyForce.H:52</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_a6c2cf1b4b48033e74ce725b3eb0407d7"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a6c2cf1b4b48033e74ce725b3eb0407d7">kynema_sgf::pde::icns::BodyForce::m_bforce_file</a></div><div class="ttdeci">std::string m_bforce_file</div><div class="ttdef"><b>Definition</b> BodyForce.H:56</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_a6c4f992f881b7b0320f33a82b6c87b8a"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a6c4f992f881b7b0320f33a82b6c87b8a">kynema_sgf::pde::icns::BodyForce::m_time</a></div><div class="ttdeci">const SimTime &amp; m_time</div><div class="ttdoc">Time.</div><div class="ttdef"><b>Definition</b> BodyForce.H:42</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_a816cc6b0e13b5221256632e09845ab2a"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#a816cc6b0e13b5221256632e09845ab2a">kynema_sgf::pde::icns::BodyForce::m_fx_table</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_fx_table</div><div class="ttdef"><b>Definition</b> BodyForce.H:65</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_ac047dff407a818d938734a49ae357eda"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#ac047dff407a818d938734a49ae357eda">kynema_sgf::pde::icns::BodyForce::m_fz_table</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_fz_table</div><div class="ttdef"><b>Definition</b> BodyForce.H:67</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_accc7511e34214fcc6e7d93e4e9d63c75"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#accc7511e34214fcc6e7d93e4e9d63c75">kynema_sgf::pde::icns::BodyForce::m_ht</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_ht</div><div class="ttdef"><b>Definition</b> BodyForce.H:61</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_ad2ba9e435c94ff6c8717d23fc3a3290d"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#ad2ba9e435c94ff6c8717d23fc3a3290d">kynema_sgf::pde::icns::BodyForce::m_fy_table</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_fy_table</div><div class="ttdef"><b>Definition</b> BodyForce.H:66</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_ae7cf51c69608d552cd52bbff1155bc48"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#ae7cf51c69608d552cd52bbff1155bc48">kynema_sgf::pde::icns::BodyForce::m_time_table</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_time_table</div><div class="ttdoc">Vectors for storing uniform_timetable inputs.</div><div class="ttdef"><b>Definition</b> BodyForce.H:64</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_afb137847a1f2b68f14b6c62b17fa9a95"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#afb137847a1f2b68f14b6c62b17fa9a95">kynema_sgf::pde::icns::BodyForce::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> BodyForce.H:24</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1icns_1_1_body_force_html_afca11cf2933d30fbedd09a11ef8ef0dc"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1icns_1_1_body_force.html#afca11cf2933d30fbedd09a11ef8ef0dc">kynema_sgf::pde::icns::BodyForce::m_prof_y</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_prof_y</div><div class="ttdef"><b>Definition</b> BodyForce.H:60</div></div>
+<div class="ttc" id="agroup__fields_html_ga73fcb43d320747f8ced022629f36af1f"><div class="ttname"><a href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">kynema_sgf::FieldState</a></div><div class="ttdeci">FieldState</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:16</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1pde_1_1icns_html"><div class="ttname"><a href="namespacekynema__sgf_1_1pde_1_1icns.html">kynema_sgf::pde::icns</a></div><div class="ttdef"><b>Definition</b> ABLForcing.cpp:14</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

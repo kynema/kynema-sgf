@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Section: Sampling &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Section: Subvolume" href="inputs_Subvolume.html" />
+    <link rel="prev" title="Section: Post-processing" href="inputs_post_processing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="inputs.html#input-file-reference">Input file reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="inputs_geometry.html">Section: geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_amr.html">Section: AMReX and AMR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_tagging.html">Section: tagging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_time.html">Section: time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_io.html">Section: io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_incflo.html">Section: incflo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_transport.html">Section: transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_turbulence.html">Section: turbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Momentum_Sources.html">Section: Momentum Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Temperature_Sources.html">Section: Temperature Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_TKE_Sources.html">Section: TKE Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL.html">Section: ABL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL_meso_forcing.html">Section: ABLMesoForcing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_SyntheticTurbulence.html">Section: SyntheticTurbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Boundary_conditions.html">Section: Boundary conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_MLMG.html">Section: MLMG options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_post_processing.html">Section: Post-processing</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Section: Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Subvolume.html">Section: Subvolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Averaging.html">Section: Averaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_KineticEnergy.html">Section: KineticEnergy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Enstrophy.html">Section: Enstrophy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FieldNorms.html">Section: FieldNorms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Actuator.html">Section: Actuator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_multiphase.html">Section: MultiPhase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ocean_waves.html">Section: Ocean Waves</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+          <li class="breadcrumb-item"><a href="inputs.html">Kynema-SGF inputs file</a></li>
+      <li class="breadcrumb-item active">Section: Sampling</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/inputs_Sampling.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-sampling">
+<span id="inputs-sampling"></span><h1>Section: Sampling<a class="headerlink" href="#section-sampling" title="Link to this heading"></a></h1>
+<p>This section controls data-sampling actions supported within
+Kynema-SGF. The input parameters below use the label <code class="docutils literal notranslate"><span class="pre">sampling</span></code> as an example,
+as if this was provided to <a class="reference internal" href="inputs_incflo.html#input_param-incflo.post_processing"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">incflo.post_processing</span></code></a> in the input file.
+For more information on specifying
+when sampled data is output to a file, see the <a class="reference internal" href="inputs_post_processing.html#inputs-post-processing"><span class="std std-ref">post-processing
+inputs</span></a></p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-sampling.output_format">
+<span class="sig-name descname"><span class="pre">sampling.output_format</span></span><a class="headerlink" href="#input_param-sampling.output_format" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = “native”</p>
+<p>Specify the format of the data outputs. Currently the code supports the
+following formats</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">native</span></code></dt><dd><p>AMReX particle binary format. This is the preferred output format for performance.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ascii</span></code></dt><dd><p>AMReX particle ASCII format. Note, this can have significant impact
+on performance and must be used for debugging only.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">netcdf</span></code></dt><dd><p>This requires linking to the netcdf library. If netcdf is linked to Kynema-SGF and output format
+is not specified then netcdf is chosen by default.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-sampling.labels">
+<span class="sig-name descname"><span class="pre">sampling.labels</span></span><a class="headerlink" href="#input_param-sampling.labels" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of one or more names</p>
+<p>Labels indicate the names of the different types of samplers (e.g., line,
+plane, probes) that are used to sample data from the flow field.</p>
+<p>For example, if the user uses</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sampling</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">line1</span> <span class="n">lidar1</span> <span class="n">plane1</span> <span class="n">probe1</span>
+</pre></div>
+</div>
+<p>Then the code expects to read <code class="docutils literal notranslate"><span class="pre">sampling.line1,</span> <span class="pre">sampling.plane1,</span>
+<span class="pre">sampling.probe1</span></code> sections to determine the specific sampling probe information.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-sampling.fields">
+<span class="sig-name descname"><span class="pre">sampling.fields</span></span><a class="headerlink" href="#input_param-sampling.fields" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of one or more strings</p>
+<p>List of CFD simulation fields to sample and output</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-sampling.int_fields">
+<span class="sig-name descname"><span class="pre">sampling.int_fields</span></span><a class="headerlink" href="#input_param-sampling.int_fields" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of one or more strings</p>
+<p>List of CFD simulation int fields to sample and output (e.g. mask_cell)</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-sampling.derived_fields">
+<span class="sig-name descname"><span class="pre">sampling.derived_fields</span></span><a class="headerlink" href="#input_param-sampling.derived_fields" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of one or more strings</p>
+<p>List of CFD simulation derived fields to sample and output (e.g. mag_vorticity)</p>
+</dd></dl>
+
+<section id="amrex-particle-binary-format">
+<h2>AMReX particle binary format<a class="headerlink" href="#amrex-particle-binary-format" title="Link to this heading"></a></h2>
+<p>The native format can be read by ParaView or using Python scripts. We
+provide an example in the source code and the <a class="reference internal" href="post_processing_examples.html#post-processing"><span class="std std-ref">post processing
+documentation</span></a>. A typical data frame might look
+like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>       <span class="n">uid</span>  <span class="n">set_id</span>  <span class="n">probe_id</span>          <span class="n">xco</span>     <span class="n">yco</span>    <span class="n">zco</span>  <span class="n">velocityx</span>  <span class="n">velocityy</span>  <span class="n">velocityz</span>
+  <span class="mi">0</span>      <span class="mi">0</span>       <span class="mi">0</span>         <span class="mi">0</span>   <span class="mf">200.000000</span>   <span class="mf">200.0</span>  <span class="mf">200.0</span>   <span class="mf">6.129077</span>   <span class="mf">5.143022</span>        <span class="mf">0.0</span>
+  <span class="mi">1</span>      <span class="mi">1</span>       <span class="mi">0</span>         <span class="mi">1</span>   <span class="mf">244.444444</span>   <span class="mf">200.0</span>  <span class="mf">200.0</span>   <span class="mf">6.129077</span>   <span class="mf">5.144596</span>        <span class="mf">0.0</span>
+ <span class="o">..</span>    <span class="o">...</span>     <span class="o">...</span>       <span class="o">...</span>          <span class="o">...</span>     <span class="o">...</span>    <span class="o">...</span>        <span class="o">...</span>        <span class="o">...</span>        <span class="o">...</span>
+<span class="mi">595</span>    <span class="mi">595</span>       <span class="mi">1</span>       <span class="mi">195</span>   <span class="mf">555.555556</span>  <span class="mf">1000.0</span>  <span class="mf">999.0</span>   <span class="mf">6.128356</span>   <span class="mf">5.142301</span>        <span class="mf">0.0</span>
+<span class="mi">596</span>    <span class="mi">596</span>       <span class="mi">1</span>       <span class="mi">196</span>   <span class="mf">666.666667</span>  <span class="mf">1000.0</span>  <span class="mf">999.0</span>   <span class="mf">6.128356</span>   <span class="mf">5.142301</span>        <span class="mf">0.0</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">uid</span></code> is the global probe id, <code class="docutils literal notranslate"><span class="pre">set_id</span></code> is the label id
+(e.g., <code class="docutils literal notranslate"><span class="pre">plane_sampling.labels</span> <span class="pre">=</span> <span class="pre">plane1</span> <span class="pre">plane2</span></code>, numbered as the user
+input order), <code class="docutils literal notranslate"><span class="pre">probe_id</span></code> is the local probe id to this label,
+<code class="docutils literal notranslate"><span class="pre">*co</span></code> are the coordinates of the probe, and the other columns are
+the user requested sampled fields. The same labels are seen by other
+visualization tools such as ParaView. The directory also contains a
+<code class="docutils literal notranslate"><span class="pre">sampling_info.yaml</span></code> YAML file where additional information (e.g., time) is
+stored. This file is automatically parsed by the provided particle
+reader tool and the information is stored in a dictionary that is a
+member variable of the class.</p>
+</section>
+<section id="sampling-along-a-line">
+<h2>Sampling along a line<a class="headerlink" href="#sampling-along-a-line" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">LineSampler</span></code> allows the user to sample the flow-field along a line
+defined by <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code> coordinates with <code class="docutils literal notranslate"><span class="pre">num_points</span></code> equidistant
+nodes.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sampling</span><span class="o">.</span><span class="n">line1</span><span class="o">.</span><span class="n">type</span>       <span class="o">=</span> <span class="n">LineSampler</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">line1</span><span class="o">.</span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">21</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">line1</span><span class="o">.</span><span class="n">start</span>      <span class="o">=</span> <span class="mf">250.0</span> <span class="mf">250.0</span> <span class="mf">10.0</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">line1</span><span class="o">.</span><span class="n">end</span>        <span class="o">=</span> <span class="mf">250.0</span> <span class="mf">250.0</span> <span class="mf">210.0</span>
+</pre></div>
+</div>
+</section>
+<section id="sampling-along-a-line-moving-in-time-virtual-lidar">
+<h2>Sampling along a line moving in time (virtual lidar)<a class="headerlink" href="#sampling-along-a-line-moving-in-time-virtual-lidar" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">LidarSampler</span></code> allows the user to sample the flow-field along a line
+defined by <code class="docutils literal notranslate"><span class="pre">origin</span></code> and spanning to <code class="docutils literal notranslate"><span class="pre">length</span></code>
+with <code class="docutils literal notranslate"><span class="pre">num_points</span></code> equidistant nodes.
+Location of the line is given by the time histories
+<code class="docutils literal notranslate"><span class="pre">azimuth_table</span></code> and <code class="docutils literal notranslate"><span class="pre">elevation_table</span></code>.
+Angles are given in degrees with 0 azimuth and 0 elevation being the
+x direction. Lidar measurements may also be collected at a constant location
+by specifying only one entry to the tables.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sampling</span><span class="o">.</span><span class="n">lidar1</span><span class="o">.</span><span class="n">type</span>            <span class="o">=</span> <span class="n">LidarSampler</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">lidar1</span><span class="o">.</span><span class="n">num_points</span>      <span class="o">=</span> <span class="mi">21</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">lidar1</span><span class="o">.</span><span class="n">origin</span>          <span class="o">=</span> <span class="mf">250.0</span> <span class="mf">250.0</span> <span class="mf">10.0</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">lidar1</span><span class="o">.</span><span class="n">length</span>          <span class="o">=</span> <span class="mf">500.0</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">lidar1</span><span class="o">.</span><span class="n">time_table</span>      <span class="o">=</span> <span class="mi">0</span> <span class="mf">10.0</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">lidar1</span><span class="o">.</span><span class="n">azimuth_table</span>   <span class="o">=</span> <span class="mi">0</span> <span class="mf">90.0</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">lidar1</span><span class="o">.</span><span class="n">elevation_table</span> <span class="o">=</span> <span class="mi">0</span> <span class="mf">45.0</span>
+</pre></div>
+</div>
+</section>
+<section id="sampling-on-one-or-more-planes">
+<h2>Sampling on one or more planes<a class="headerlink" href="#sampling-on-one-or-more-planes" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">PlaneSampler</span></code> samples the flow-field on two-dimensional planes defined by
+two axes: <code class="docutils literal notranslate"><span class="pre">axis1</span></code> and <code class="docutils literal notranslate"><span class="pre">axis2</span></code> with the bottom corner located at <code class="docutils literal notranslate"><span class="pre">origin</span></code>
+and is divided into equally spaced nodes defined by the two entries in
+<code class="docutils literal notranslate"><span class="pre">num_points</span></code> vector. Multiple planes parallel to the reference planes can be
+sampled by specifying the <code class="docutils literal notranslate"><span class="pre">offset_vector</span></code> vector along which the planes are
+offset for as many planes as there are entries in the <code class="docutils literal notranslate"><span class="pre">offset</span></code> array.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sampling</span><span class="o">.</span><span class="n">plane1</span><span class="o">.</span><span class="n">type</span>          <span class="o">=</span> <span class="n">PlaneSampler</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">plane1</span><span class="o">.</span><span class="n">axis1</span>         <span class="o">=</span> <span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">plane1</span><span class="o">.</span><span class="n">axis2</span>         <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">plane1</span><span class="o">.</span><span class="n">origin</span>        <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">plane1</span><span class="o">.</span><span class="n">num_points</span>    <span class="o">=</span> <span class="mi">10</span> <span class="mi">10</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">plane1</span><span class="o">.</span><span class="n">offset_vector</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">plane1</span><span class="o">.</span><span class="n">offsets</span>       <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">2.0</span> <span class="mf">3.0</span>
+</pre></div>
+</div>
+<p>Illustration of this example:</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/planesampler.png"><img alt="PlaneSampler" src="../_images/planesampler.png" style="width: 800px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">1 </span><span class="caption-text">Example of sampling on planes.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="sampling-at-arbitrary-locations">
+<h2>Sampling at arbitrary locations<a class="headerlink" href="#sampling-at-arbitrary-locations" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ProbeSampler</span></code> allows the user to sample the flow field at arbitrary
+locations read from a text file (default: <code class="docutils literal notranslate"><span class="pre">probe_locations.txt</span></code>).</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sampling</span><span class="o">.</span><span class="n">probe1</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">ProbeSampler</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">probe1</span><span class="o">.</span><span class="n">probe_location_file</span> <span class="o">=</span> <span class="s2">&quot;probe_locations.txt&quot;</span>
+</pre></div>
+</div>
+<p>The first line of the file contains the total number of probes for this set.
+This is followed by the coordinates (three real numbers), one line per probe.
+This type of sampler also supports the <code class="docutils literal notranslate"><span class="pre">offset_vector</span></code> and <code class="docutils literal notranslate"><span class="pre">offsets</span></code> options
+implemented with the plane sampler, shown above. For the probe sampler,
+these options apply offsets to the positions of all the points provided in the
+probe location file.</p>
+</section>
+<section id="sampling-on-a-volume">
+<h2>Sampling on a volume<a class="headerlink" href="#sampling-on-a-volume" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">VolumeSampler</span></code> samples a 3D volume that starts at <code class="docutils literal notranslate"><span class="pre">lo</span></code> and
+extends to <code class="docutils literal notranslate"><span class="pre">hi</span></code>. The resolution in all directions is specified by
+<code class="docutils literal notranslate"><span class="pre">num_points</span></code>.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sampling</span><span class="o">.</span><span class="n">volume1</span><span class="o">.</span><span class="n">type</span>        <span class="o">=</span> <span class="n">VolumeSampler</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">volume1</span><span class="o">.</span><span class="n">hi</span>        <span class="o">=</span> <span class="mf">3.0</span> <span class="mf">1.0</span> <span class="mf">0.5</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">volume1</span><span class="o">.</span><span class="n">lo</span>      <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="o">-</span><span class="mf">0.5</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">volume1</span><span class="o">.</span><span class="n">num_points</span>  <span class="o">=</span> <span class="mi">30</span> <span class="mi">10</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</section>
+<section id="sampling-on-the-air-water-interface">
+<h2>Sampling on the air-water interface<a class="headerlink" href="#sampling-on-the-air-water-interface" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">FreeSurfaceSampler</span></code> samples on the air-water interface, and it requires the
+vof (volume-of-fluid) field to be present in order to function. The sample locations
+are specified using a grid that starts at <code class="docutils literal notranslate"><span class="pre">plane_start</span></code> and
+extends to <code class="docutils literal notranslate"><span class="pre">plane_end</span></code>. The resolution in each direction is specified by
+<code class="docutils literal notranslate"><span class="pre">plane_num_points</span></code>. The coordinates of the sampling
+locations are determined by the location of the air-water interface in the search
+direction, specified by <code class="docutils literal notranslate"><span class="pre">search_direction</span></code>, and the other coordinates are
+determined by the <code class="docutils literal notranslate"><span class="pre">plane_</span></code> parameters. The default search direction parameter
+is 2, indicating the samplers will search for the interface along the z-direction.
+Due to this design, it is best to specify a plane that is normal to the intended
+search direction.</p>
+<p>Another optional parameter is <code class="docutils literal notranslate"><span class="pre">num_instances</span></code>, which is available
+for cases where the interface location is multi-valued along the search direction,
+such as during wave breaking. This parameter defaults to 1, and the sampler will
+automatically select the highest position along the search direction when the interface
+location is multi-valued.</p>
+<p>A third optional parameter is <code class="docutils literal notranslate"><span class="pre">phase_field</span></code>. By default, the free surface is located
+using the vof field, and in most cases, this is the only field that makes sense. However,
+when using the OceanWaves physics class, a target vof field, called ow_vof, is also
+created, and it can also be useful to use the sampler to output the location of the interface
+according to this target field.</p>
+<p>The free surface location is calculated with
+a geometric approach using the reconstruction of the interface in a computational
+cell. However, within the numerical beach of a wave simulation, the volume fraction distribution
+can become noisy, and the geometric approach produce noisy results. To avoid this,
+there is an option to use a linear interpolation approach instead within the beach,
+which helps to reduce the noise. This can be turned on using the argument
+<code class="docutils literal notranslate"><span class="pre">linear_interp_extent_from_xhi</span></code>, which specifies the extent from the upper domain boundary (in x)
+where linear interpolation should be used instead of the standard geometric approach. This
+input parameter should be set to the length of the numerical beach.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sampling</span><span class="o">.</span><span class="n">fs1</span><span class="o">.</span><span class="n">type</span>             <span class="o">=</span> <span class="n">FreeSurfaceSampler</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">fs1</span><span class="o">.</span><span class="n">plane_start</span>      <span class="o">=</span> <span class="mf">4.0</span> <span class="o">-</span><span class="mf">1.0</span> <span class="mf">0.0</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">fs1</span><span class="o">.</span><span class="n">plane_end</span>        <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">1.0</span>  <span class="mf">0.0</span>
+<span class="n">sampling</span><span class="o">.</span><span class="n">fs1</span><span class="o">.</span><span class="n">plane_num_points</span> <span class="o">=</span> <span class="mi">20</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inputs_post_processing.html" class="btn btn-neutral float-left" title="Section: Post-processing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inputs_Subvolume.html" class="btn btn-neutral float-right" title="Section: Subvolume" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

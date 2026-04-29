@@ -1,0 +1,728 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::BreakingWaves Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::BreakingWaves Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_breaking_waves.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="breakingwaves-class-reference">
+<h1>BreakingWaves Class Reference<a class="headerlink" href="#breakingwaves-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::BreakingWaves Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_breaking_waves.html">BreakingWaves</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_breaking_waves-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::BreakingWaves Class Reference<div class="ingroups"><a class="el" href="group__physics.html">Physics models</a> &raquo; <a class="el" href="group__wind.html">Wind energy modeling</a> &raquo; <a class="el" href="group__we__abl.html">ABL</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_breaking_waves_8_h_source.html">BreakingWaves.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::BreakingWaves:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_breaking_waves__inherit__graph.svg" width="220" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::BreakingWaves:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_breaking_waves__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:aeac98c53f58476397a19ccdf01bf9f0f" id="r_aeac98c53f58476397a19ccdf01bf9f0f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeac98c53f58476397a19ccdf01bf9f0f">BreakingWaves</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a9079e7941b7d3a348ae03b092ff1728d" id="r_a9079e7941b7d3a348ae03b092ff1728d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9079e7941b7d3a348ae03b092ff1728d">~BreakingWaves</a> () override</td></tr>
+<tr class="memitem:a207d11e7bceb30dfd3e71e0e026634f4" id="r_a207d11e7bceb30dfd3e71e0e026634f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a207d11e7bceb30dfd3e71e0e026634f4">initialize_fields</a> (int level, const amrex::Geometry &amp;geom) override</td></tr>
+<tr class="memitem:a661ce35caf9ed5b633b7bb53826041eb" id="r_a661ce35caf9ed5b633b7bb53826041eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a661ce35caf9ed5b633b7bb53826041eb">post_init_actions</a> () override</td></tr>
+<tr class="memitem:a2ec7e2a0f9a389c39b77f9dd9a268d33" id="r_a2ec7e2a0f9a389c39b77f9dd9a268d33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ec7e2a0f9a389c39b77f9dd9a268d33">post_regrid_actions</a> () override</td></tr>
+<tr class="memitem:a191481bad854ae1a8b867c0fdfab31fe" id="r_a191481bad854ae1a8b867c0fdfab31fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a191481bad854ae1a8b867c0fdfab31fe">pre_advance_work</a> () override</td></tr>
+<tr class="memitem:ae7cd75b42b161333c9105c07f4a8b0db" id="r_ae7cd75b42b161333c9105c07f4a8b0db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7cd75b42b161333c9105c07f4a8b0db">post_advance_work</a> () override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a527542f538af2e3794e3b33b7dfcbe06" id="r_a527542f538af2e3794e3b33b7dfcbe06"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a527542f538af2e3794e3b33b7dfcbe06">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a722eeecee9d046e2a21ce4d1af0f38d9" id="r_a722eeecee9d046e2a21ce4d1af0f38d9"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a722eeecee9d046e2a21ce4d1af0f38d9">m_sim</a></td></tr>
+<tr class="memitem:a3d51229df9c2179668bcfab7d116ad29" id="r_a3d51229df9c2179668bcfab7d116ad29"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d51229df9c2179668bcfab7d116ad29">m_velocity</a></td></tr>
+<tr class="memitem:a309038699ec3e61b320a53209231020d" id="r_a309038699ec3e61b320a53209231020d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a309038699ec3e61b320a53209231020d">m_levelset</a></td></tr>
+<tr class="memitem:a80fb9f0b6786e1fc958bbb6f9be98119" id="r_a80fb9f0b6786e1fc958bbb6f9be98119"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80fb9f0b6786e1fc958bbb6f9be98119">m_density</a></td></tr>
+<tr class="memitem:a6161a738878dcc7ecf575830a374080c" id="r_a6161a738878dcc7ecf575830a374080c"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6161a738878dcc7ecf575830a374080c">m_tke0</a> {0.000001_rt}</td></tr>
+<tr class="memdesc:a6161a738878dcc7ecf575830a374080c"><td class="mdescLeft">&#160;</td><td class="mdescRight">initial tke value  <br /></td></tr>
+<tr class="memitem:a3cdb03da8223bcca2866a5785a8af949" id="r_a3cdb03da8223bcca2866a5785a8af949"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cdb03da8223bcca2866a5785a8af949">m_sdr0</a> {1.0_rt}</td></tr>
+<tr class="memdesc:a3cdb03da8223bcca2866a5785a8af949"><td class="mdescLeft">&#160;</td><td class="mdescRight">initial sdr value  <br /></td></tr>
+<tr class="memitem:a275130b0ad27e0c71ac4eb5ebbdcaa1f" id="r_a275130b0ad27e0c71ac4eb5ebbdcaa1f"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a275130b0ad27e0c71ac4eb5ebbdcaa1f">m_amplitude</a> {0.1_rt}</td></tr>
+<tr class="memdesc:a275130b0ad27e0c71ac4eb5ebbdcaa1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial free surface amplitude magnitude.  <br /></td></tr>
+<tr class="memitem:a771f992592fafcaa4be5d9ac7e5e0c8c" id="r_a771f992592fafcaa4be5d9ac7e5e0c8c"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a771f992592fafcaa4be5d9ac7e5e0c8c">m_air_vel_shear_rate</a> {0.1_rt}</td></tr>
+<tr class="memitem:a3961c0ab2ed7ba7c2852c920782d46cf" id="r_a3961c0ab2ed7ba7c2852c920782d46cf"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3961c0ab2ed7ba7c2852c920782d46cf">m_wavelength</a> {2.0_rt}</td></tr>
+<tr class="memdesc:a3961c0ab2ed7ba7c2852c920782d46cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial free surface wavelength.  <br /></td></tr>
+<tr class="memitem:aef61211eee446f63f6f60160ab03ec46" id="r_aef61211eee446f63f6f60160ab03ec46"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef61211eee446f63f6f60160ab03ec46">m_waterlevel</a> {0.0_rt}</td></tr>
+<tr class="memdesc:aef61211eee446f63f6f60160ab03ec46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial zero-level free-surface water depth.  <br /></td></tr>
+<tr class="memitem:a86fcd4618b24cc768fcbe319b7a24fe8" id="r_a86fcd4618b24cc768fcbe319b7a24fe8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86fcd4618b24cc768fcbe319b7a24fe8">m_laminar</a> {false}</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Numerical Wave Basin physics </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aeac98c53f58476397a19ccdf01bf9f0f" name="aeac98c53f58476397a19ccdf01bf9f0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeac98c53f58476397a19ccdf01bf9f0f">&#9670;&#160;</a></span>BreakingWaves()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::BreakingWaves::BreakingWaves </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9079e7941b7d3a348ae03b092ff1728d" name="a9079e7941b7d3a348ae03b092ff1728d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9079e7941b7d3a348ae03b092ff1728d">&#9670;&#160;</a></span>~BreakingWaves()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::BreakingWaves::~BreakingWaves </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a527542f538af2e3794e3b33b7dfcbe06" name="a527542f538af2e3794e3b33b7dfcbe06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a527542f538af2e3794e3b33b7dfcbe06">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::BreakingWaves::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a207d11e7bceb30dfd3e71e0e026634f4" name="a207d11e7bceb30dfd3e71e0e026634f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a207d11e7bceb30dfd3e71e0e026634f4">&#9670;&#160;</a></span>initialize_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BreakingWaves::initialize_fields </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Initialize the velocity and vof fields at the beginning of the simulation. </p>
+
+</div>
+</div>
+<a id="ae7cd75b42b161333c9105c07f4a8b0db" name="ae7cd75b42b161333c9105c07f4a8b0db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7cd75b42b161333c9105c07f4a8b0db">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BreakingWaves::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a661ce35caf9ed5b633b7bb53826041eb" name="a661ce35caf9ed5b633b7bb53826041eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a661ce35caf9ed5b633b7bb53826041eb">&#9670;&#160;</a></span>post_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BreakingWaves::post_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2ec7e2a0f9a389c39b77f9dd9a268d33" name="a2ec7e2a0f9a389c39b77f9dd9a268d33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ec7e2a0f9a389c39b77f9dd9a268d33">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BreakingWaves::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a191481bad854ae1a8b867c0fdfab31fe" name="a191481bad854ae1a8b867c0fdfab31fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a191481bad854ae1a8b867c0fdfab31fe">&#9670;&#160;</a></span>pre_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::BreakingWaves::pre_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a771f992592fafcaa4be5d9ac7e5e0c8c" name="a771f992592fafcaa4be5d9ac7e5e0c8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a771f992592fafcaa4be5d9ac7e5e0c8c">&#9670;&#160;</a></span>m_air_vel_shear_rate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::BreakingWaves::m_air_vel_shear_rate {0.1_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a275130b0ad27e0c71ac4eb5ebbdcaa1f" name="a275130b0ad27e0c71ac4eb5ebbdcaa1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a275130b0ad27e0c71ac4eb5ebbdcaa1f">&#9670;&#160;</a></span>m_amplitude</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::BreakingWaves::m_amplitude {0.1_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial free surface amplitude magnitude. </p>
+
+</div>
+</div>
+<a id="a80fb9f0b6786e1fc958bbb6f9be98119" name="a80fb9f0b6786e1fc958bbb6f9be98119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80fb9f0b6786e1fc958bbb6f9be98119">&#9670;&#160;</a></span>m_density</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::BreakingWaves::m_density</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a86fcd4618b24cc768fcbe319b7a24fe8" name="a86fcd4618b24cc768fcbe319b7a24fe8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86fcd4618b24cc768fcbe319b7a24fe8">&#9670;&#160;</a></span>m_laminar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::BreakingWaves::m_laminar {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a309038699ec3e61b320a53209231020d" name="a309038699ec3e61b320a53209231020d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a309038699ec3e61b320a53209231020d">&#9670;&#160;</a></span>m_levelset</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::BreakingWaves::m_levelset</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3cdb03da8223bcca2866a5785a8af949" name="a3cdb03da8223bcca2866a5785a8af949"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cdb03da8223bcca2866a5785a8af949">&#9670;&#160;</a></span>m_sdr0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::BreakingWaves::m_sdr0 {1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>initial sdr value </p>
+
+</div>
+</div>
+<a id="a722eeecee9d046e2a21ce4d1af0f38d9" name="a722eeecee9d046e2a21ce4d1af0f38d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a722eeecee9d046e2a21ce4d1af0f38d9">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::BreakingWaves::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6161a738878dcc7ecf575830a374080c" name="a6161a738878dcc7ecf575830a374080c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6161a738878dcc7ecf575830a374080c">&#9670;&#160;</a></span>m_tke0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::BreakingWaves::m_tke0 {0.000001_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>initial tke value </p>
+
+</div>
+</div>
+<a id="a3d51229df9c2179668bcfab7d116ad29" name="a3d51229df9c2179668bcfab7d116ad29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d51229df9c2179668bcfab7d116ad29">&#9670;&#160;</a></span>m_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::BreakingWaves::m_velocity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef61211eee446f63f6f60160ab03ec46" name="aef61211eee446f63f6f60160ab03ec46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef61211eee446f63f6f60160ab03ec46">&#9670;&#160;</a></span>m_waterlevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::BreakingWaves::m_waterlevel {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial zero-level free-surface water depth. </p>
+
+</div>
+</div>
+<a id="a3961c0ab2ed7ba7c2852c920782d46cf" name="a3961c0ab2ed7ba7c2852c920782d46cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3961c0ab2ed7ba7c2852c920782d46cf">&#9670;&#160;</a></span>m_wavelength</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::BreakingWaves::m_wavelength {2.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial free surface wavelength. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/<a class="el" href="_breaking_waves_8_h_source.html">BreakingWaves.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/<a class="el" href="_breaking_waves_8cpp.html">BreakingWaves.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

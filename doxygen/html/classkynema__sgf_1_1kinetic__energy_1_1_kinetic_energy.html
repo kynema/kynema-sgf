@@ -1,0 +1,748 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::kinetic_energy::KineticEnergy Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::kinetic_energy::KineticEnergy Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kineticenergy-class-reference">
+<h1>KineticEnergy Class Reference<a class="headerlink" href="#kineticenergy-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::kinetic_energy::KineticEnergy Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1kinetic__energy.html">kinetic_energy</a></li><li class="navelem"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html">KineticEnergy</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::kinetic_energy::KineticEnergy Class Reference<div class="ingroups"><a class="el" href="group__utilities.html">Utilities</a> &raquo; <a class="el" href="group__sampling.html">Data-sampling utilities</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_kinetic_energy_8_h_source.html">KineticEnergy.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::kinetic_energy::KineticEnergy:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy__inherit__graph.svg" width="218" height="168"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::kinetic_energy::KineticEnergy:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a423c6df228a189e4dc9acc7f4bedb146" id="r_a423c6df228a189e4dc9acc7f4bedb146"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a423c6df228a189e4dc9acc7f4bedb146">KineticEnergy</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;, std::string)</td></tr>
+<tr class="memitem:a807be403b8761920554364ab5d548ec7" id="r_a807be403b8761920554364ab5d548ec7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a807be403b8761920554364ab5d548ec7">~KineticEnergy</a> () override</td></tr>
+<tr class="memitem:ac4cfc0d1c44768deb200d4fc3b211794" id="r_ac4cfc0d1c44768deb200d4fc3b211794"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4cfc0d1c44768deb200d4fc3b211794">pre_init_actions</a> () override</td></tr>
+<tr class="memdesc:ac4cfc0d1c44768deb200d4fc3b211794"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform actions before mesh is created.  <br /></td></tr>
+<tr class="memitem:a8f5bd8b5c912a5f3f805b812b556978c" id="r_a8f5bd8b5c912a5f3f805b812b556978c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f5bd8b5c912a5f3f805b812b556978c">initialize</a> () override</td></tr>
+<tr class="memdesc:a8f5bd8b5c912a5f3f805b812b556978c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read user inputs and create the different data probe instances.  <br /></td></tr>
+<tr class="memitem:afac0e93d3118060a7f8e451d5fe0716f" id="r_afac0e93d3118060a7f8e451d5fe0716f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afac0e93d3118060a7f8e451d5fe0716f">post_advance_work</a> () override</td></tr>
+<tr class="memitem:a73c38294ada827f3665e327ab268024e" id="r_a73c38294ada827f3665e327ab268024e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73c38294ada827f3665e327ab268024e">output_actions</a> () override</td></tr>
+<tr class="memitem:ae0a43efe528812269cfde07390f6c3a3" id="r_ae0a43efe528812269cfde07390f6c3a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0a43efe528812269cfde07390f6c3a3">post_regrid_actions</a> () override</td></tr>
+<tr class="memitem:a608e59f1608257159ecfc47b9d98c82e" id="r_a608e59f1608257159ecfc47b9d98c82e"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a608e59f1608257159ecfc47b9d98c82e">calculate_kinetic_energy</a> ()</td></tr>
+<tr class="memdesc:a608e59f1608257159ecfc47b9d98c82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculate the L2 norm of a given field and component  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a188fb474ea5a12480911d69f14a70679" id="r_a188fb474ea5a12480911d69f14a70679"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a188fb474ea5a12480911d69f14a70679">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a99c30f16c1e70e1e5669880d8c700ac3" id="r_a99c30f16c1e70e1e5669880d8c700ac3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99c30f16c1e70e1e5669880d8c700ac3">prepare_ascii_file</a> ()</td></tr>
+<tr class="memdesc:a99c30f16c1e70e1e5669880d8c700ac3"><td class="mdescLeft">&#160;</td><td class="mdescRight">prepare ASCII file and directory  <br /></td></tr>
+<tr class="memitem:ae75fb4e4026a9fc6b58bda6576159d06" id="r_ae75fb4e4026a9fc6b58bda6576159d06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae75fb4e4026a9fc6b58bda6576159d06">write_ascii</a> ()</td></tr>
+<tr class="memdesc:ae75fb4e4026a9fc6b58bda6576159d06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output sampled data in ASCII format.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:abce575b79cebef29d5de79ac191a7ead" id="r_abce575b79cebef29d5de79ac191a7ead"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abce575b79cebef29d5de79ac191a7ead">m_total_kinetic_energy</a> {0.0_rt}</td></tr>
+<tr class="memdesc:abce575b79cebef29d5de79ac191a7ead"><td class="mdescLeft">&#160;</td><td class="mdescRight">store the total kinetic energy  <br /></td></tr>
+<tr class="memitem:a2258b633c9f9e9797d418872eb615061" id="r_a2258b633c9f9e9797d418872eb615061"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2258b633c9f9e9797d418872eb615061">m_sim</a></td></tr>
+<tr class="memdesc:a2258b633c9f9e9797d418872eb615061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the CFD sim.  <br /></td></tr>
+<tr class="memitem:a4f7719d5a49b634e7f779a2475509ffd" id="r_a4f7719d5a49b634e7f779a2475509ffd"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f7719d5a49b634e7f779a2475509ffd">m_label</a></td></tr>
+<tr class="memitem:a0972baedf65ff2949711a3cf554ff7eb" id="r_a0972baedf65ff2949711a3cf554ff7eb"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0972baedf65ff2949711a3cf554ff7eb">m_velocity</a></td></tr>
+<tr class="memdesc:a0972baedf65ff2949711a3cf554ff7eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">reference to velocity  <br /></td></tr>
+<tr class="memitem:a752a8853085a71c5f00f5072ca881eac" id="r_a752a8853085a71c5f00f5072ca881eac"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a752a8853085a71c5f00f5072ca881eac">m_density</a></td></tr>
+<tr class="memdesc:a752a8853085a71c5f00f5072ca881eac"><td class="mdescLeft">&#160;</td><td class="mdescRight">reference to density  <br /></td></tr>
+<tr class="memitem:a7de93675b2861a22da8176d7a354b388" id="r_a7de93675b2861a22da8176d7a354b388"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7de93675b2861a22da8176d7a354b388">m_out_fname</a></td></tr>
+<tr class="memdesc:a7de93675b2861a22da8176d7a354b388"><td class="mdescLeft">&#160;</td><td class="mdescRight">filename for ASCII output  <br /></td></tr>
+<tr class="memitem:a63b133f40d14bc495a4f914d3d556444" id="r_a63b133f40d14bc495a4f914d3d556444"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63b133f40d14bc495a4f914d3d556444">m_width</a> {22}</td></tr>
+<tr class="memdesc:a63b133f40d14bc495a4f914d3d556444"><td class="mdescLeft">&#160;</td><td class="mdescRight">width in ASCII output  <br /></td></tr>
+<tr class="memitem:a08b8e27394cdc0a12973c12440b5faa5" id="r_a08b8e27394cdc0a12973c12440b5faa5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08b8e27394cdc0a12973c12440b5faa5">m_precision</a> {12}</td></tr>
+<tr class="memdesc:a08b8e27394cdc0a12973c12440b5faa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">precision in ASCII output  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>kinetic energy object</p>
+<p>A concrete implementation of the post-processing interface that deals with integrating total kinetic energy </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a423c6df228a189e4dc9acc7f4bedb146" name="a423c6df228a189e4dc9acc7f4bedb146"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a423c6df228a189e4dc9acc7f4bedb146">&#9670;&#160;</a></span>KineticEnergy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::kinetic_energy::KineticEnergy::KineticEnergy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>label</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a807be403b8761920554364ab5d548ec7" name="a807be403b8761920554364ab5d548ec7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a807be403b8761920554364ab5d548ec7">&#9670;&#160;</a></span>~KineticEnergy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::kinetic_energy::KineticEnergy::~KineticEnergy </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a608e59f1608257159ecfc47b9d98c82e" name="a608e59f1608257159ecfc47b9d98c82e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a608e59f1608257159ecfc47b9d98c82e">&#9670;&#160;</a></span>calculate_kinetic_energy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::kinetic_energy::KineticEnergy::calculate_kinetic_energy </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>calculate the L2 norm of a given field and component </p>
+
+</div>
+</div>
+<a id="a188fb474ea5a12480911d69f14a70679" name="a188fb474ea5a12480911d69f14a70679"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a188fb474ea5a12480911d69f14a70679">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::kinetic_energy::KineticEnergy::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8f5bd8b5c912a5f3f805b812b556978c" name="a8f5bd8b5c912a5f3f805b812b556978c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f5bd8b5c912a5f3f805b812b556978c">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::kinetic_energy::KineticEnergy::initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read user inputs and create the different data probe instances. </p>
+
+</div>
+</div>
+<a id="a73c38294ada827f3665e327ab268024e" name="a73c38294ada827f3665e327ab268024e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73c38294ada827f3665e327ab268024e">&#9670;&#160;</a></span>output_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::kinetic_energy::KineticEnergy::output_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afac0e93d3118060a7f8e451d5fe0716f" name="afac0e93d3118060a7f8e451d5fe0716f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afac0e93d3118060a7f8e451d5fe0716f">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::kinetic_energy::KineticEnergy::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae0a43efe528812269cfde07390f6c3a3" name="ae0a43efe528812269cfde07390f6c3a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0a43efe528812269cfde07390f6c3a3">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::kinetic_energy::KineticEnergy::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac4cfc0d1c44768deb200d4fc3b211794" name="ac4cfc0d1c44768deb200d4fc3b211794"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4cfc0d1c44768deb200d4fc3b211794">&#9670;&#160;</a></span>pre_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::kinetic_energy::KineticEnergy::pre_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform actions before mesh is created. </p>
+
+</div>
+</div>
+<a id="a99c30f16c1e70e1e5669880d8c700ac3" name="a99c30f16c1e70e1e5669880d8c700ac3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99c30f16c1e70e1e5669880d8c700ac3">&#9670;&#160;</a></span>prepare_ascii_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::kinetic_energy::KineticEnergy::prepare_ascii_file </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>prepare ASCII file and directory </p>
+
+</div>
+</div>
+<a id="ae75fb4e4026a9fc6b58bda6576159d06" name="ae75fb4e4026a9fc6b58bda6576159d06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae75fb4e4026a9fc6b58bda6576159d06">&#9670;&#160;</a></span>write_ascii()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::kinetic_energy::KineticEnergy::write_ascii </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Output sampled data in ASCII format. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a752a8853085a71c5f00f5072ca881eac" name="a752a8853085a71c5f00f5072ca881eac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a752a8853085a71c5f00f5072ca881eac">&#9670;&#160;</a></span>m_density</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::kinetic_energy::KineticEnergy::m_density</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>reference to density </p>
+
+</div>
+</div>
+<a id="a4f7719d5a49b634e7f779a2475509ffd" name="a4f7719d5a49b634e7f779a2475509ffd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f7719d5a49b634e7f779a2475509ffd">&#9670;&#160;</a></span>m_label</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string kynema_sgf::kinetic_energy::KineticEnergy::m_label</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Name of this sampling object.</p>
+<p>The label is used to read user inputs from file and is also used for naming files directories depending on the output format. </p>
+
+</div>
+</div>
+<a id="a7de93675b2861a22da8176d7a354b388" name="a7de93675b2861a22da8176d7a354b388"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7de93675b2861a22da8176d7a354b388">&#9670;&#160;</a></span>m_out_fname</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::kinetic_energy::KineticEnergy::m_out_fname</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>filename for ASCII output </p>
+
+</div>
+</div>
+<a id="a08b8e27394cdc0a12973c12440b5faa5" name="a08b8e27394cdc0a12973c12440b5faa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08b8e27394cdc0a12973c12440b5faa5">&#9670;&#160;</a></span>m_precision</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::kinetic_energy::KineticEnergy::m_precision {12}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>precision in ASCII output </p>
+
+</div>
+</div>
+<a id="a2258b633c9f9e9797d418872eb615061" name="a2258b633c9f9e9797d418872eb615061"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2258b633c9f9e9797d418872eb615061">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::kinetic_energy::KineticEnergy::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reference to the CFD sim. </p>
+
+</div>
+</div>
+<a id="abce575b79cebef29d5de79ac191a7ead" name="abce575b79cebef29d5de79ac191a7ead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abce575b79cebef29d5de79ac191a7ead">&#9670;&#160;</a></span>m_total_kinetic_energy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::kinetic_energy::KineticEnergy::m_total_kinetic_energy {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>store the total kinetic energy </p>
+
+</div>
+</div>
+<a id="a0972baedf65ff2949711a3cf554ff7eb" name="a0972baedf65ff2949711a3cf554ff7eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0972baedf65ff2949711a3cf554ff7eb">&#9670;&#160;</a></span>m_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::kinetic_energy::KineticEnergy::m_velocity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>reference to velocity </p>
+
+</div>
+</div>
+<a id="a63b133f40d14bc495a4f914d3d556444" name="a63b133f40d14bc495a4f914d3d556444"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63b133f40d14bc495a4f914d3d556444">&#9670;&#160;</a></span>m_width</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::kinetic_energy::KineticEnergy::m_width {22}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>width in ASCII output </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/<a class="el" href="_kinetic_energy_8_h_source.html">KineticEnergy.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/<a class="el" href="_kinetic_energy_8cpp.html">KineticEnergy.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

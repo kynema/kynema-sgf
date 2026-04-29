@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/averaging/ReynoldsStress.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/averaging/ReynoldsStress.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_reynolds_stress_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-utilities-averaging-reynoldsstress-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/averaging/ReynoldsStress.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-utilities-averaging-reynoldsstress-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/averaging/ReynoldsStress.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_d59b7dddc6cfeb8ed243c8310c362d19.html">utilities</a></li><li class="navelem"><a href="dir_e4d5b79ef26780d1cda81af5a58fc77c.html">averaging</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">ReynoldsStress.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_reynolds_stress_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef REYNOLDSSTRESS_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define REYNOLDSSTRESS_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_time_averaging_8_h.html">src/utilities/averaging/TimeAveraging.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1averaging.html">kynema_sgf::averaging</a> {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span></div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html">   14</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#afee92686b07c191e91445fc400a43866">ReynoldsStress</a> : <span class="keyword">public</span> FieldTimeAverage::Register&lt;ReynoldsStress&gt;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a414ac24025cc5998b2284950e8b6eb7c">   17</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a414ac24025cc5998b2284950e8b6eb7c">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;ReynoldsStress&quot;</span>; }</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#afee92686b07c191e91445fc400a43866">ReynoldsStress</a>(</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <span class="comment">/*sim*/</span>, <span class="keyword">const</span> std::string&amp; avgname, <span class="keyword">const</span> std::string&amp; fname);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a5c0fe51575b29f32049387e2fa3f137b">operator()</a>(</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&amp; <span class="comment">/*time*/</span>,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        amrex::Real <span class="comment">/*filter_width*/</span>,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        amrex::Real <span class="comment">/*avg_time_interval*/</span>,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        amrex::Real <span class="comment">/*elapsed_time*/</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a44eac9d3caedeede8d18e791a9a7c59d">average_field_name</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">static</span> std::string</div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a91cbc6a506819e585ee5a0abe0845f9a">   41</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a91cbc6a506819e585ee5a0abe0845f9a">stress_name</a>(<span class="keyword">const</span> std::string&amp; fname, <span class="keyword">const</span> std::string&amp; avgname)</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">return</span> fname + <span class="stringliteral">&quot;_&quot;</span> + <span class="stringliteral">&quot;stress&quot;</span> + <span class="stringliteral">&quot;_&quot;</span> + avgname;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
+</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">static</span> std::string</div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="}">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#ab2e34a0559078470ce4fb8058247ca1d">   47</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#ab2e34a0559078470ce4fb8058247ca1d">re_stress_name</a>(<span class="keyword">const</span> std::string&amp; fname, <span class="keyword">const</span> std::string&amp; avgname)</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordflow">return</span> fname + <span class="stringliteral">&quot;_&quot;</span> + <span class="stringliteral">&quot;reynolds_stress&quot;</span> + <span class="stringliteral">&quot;_&quot;</span> + avgname;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    }</div>
+</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a6bc0d093b4f516abf31c6f273feddcab">   53</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a6bc0d093b4f516abf31c6f273feddcab">m_field</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a688025f99bb0c37583c1d2f44a847bd4">   56</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a688025f99bb0c37583c1d2f44a847bd4">m_average</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#afd10a5b19b96163236cb4be7a83278fe">   59</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#afd10a5b19b96163236cb4be7a83278fe">m_stress</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a5282f191fcdca3c7de3b9e68ebef3d3d">   62</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a5282f191fcdca3c7de3b9e68ebef3d3d">m_re_stress</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>};</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>} <span class="comment">// namespace kynema_sgf::averaging</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#endif </span><span class="comment">/* REYNOLDSSTRESS_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_time_averaging_8_h_html"><div class="ttname"><a href="_time_averaging_8_h.html">TimeAveraging.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a></div><div class="ttdef"><b>Definition</b> SimTime.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_reynolds_stress_html_a414ac24025cc5998b2284950e8b6eb7c"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a414ac24025cc5998b2284950e8b6eb7c">kynema_sgf::averaging::ReynoldsStress::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> ReynoldsStress.H:17</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_reynolds_stress_html_a44eac9d3caedeede8d18e791a9a7c59d"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a44eac9d3caedeede8d18e791a9a7c59d">kynema_sgf::averaging::ReynoldsStress::average_field_name</a></div><div class="ttdeci">const std::string &amp; average_field_name() override</div><div class="ttdef"><b>Definition</b> ReynoldsStress.cpp:46</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_reynolds_stress_html_a5282f191fcdca3c7de3b9e68ebef3d3d"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a5282f191fcdca3c7de3b9e68ebef3d3d">kynema_sgf::averaging::ReynoldsStress::m_re_stress</a></div><div class="ttdeci">Field &amp; m_re_stress</div><div class="ttdoc">The reynolds stresses &lt; ab &gt; = &lt; AB &gt; - &lt; A &gt; &lt; B &gt;</div><div class="ttdef"><b>Definition</b> ReynoldsStress.H:62</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_reynolds_stress_html_a5c0fe51575b29f32049387e2fa3f137b"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a5c0fe51575b29f32049387e2fa3f137b">kynema_sgf::averaging::ReynoldsStress::operator()</a></div><div class="ttdeci">void operator()(const SimTime &amp;, amrex::Real, amrex::Real, amrex::Real) override</div><div class="ttdef"><b>Definition</b> ReynoldsStress.cpp:51</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_reynolds_stress_html_a688025f99bb0c37583c1d2f44a847bd4"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a688025f99bb0c37583c1d2f44a847bd4">kynema_sgf::averaging::ReynoldsStress::m_average</a></div><div class="ttdeci">const Field &amp; m_average</div><div class="ttdoc">Reynolds averaged field.</div><div class="ttdef"><b>Definition</b> ReynoldsStress.H:56</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_reynolds_stress_html_a6bc0d093b4f516abf31c6f273feddcab"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a6bc0d093b4f516abf31c6f273feddcab">kynema_sgf::averaging::ReynoldsStress::m_field</a></div><div class="ttdeci">const Field &amp; m_field</div><div class="ttdoc">Fluctuating field.</div><div class="ttdef"><b>Definition</b> ReynoldsStress.H:53</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_reynolds_stress_html_a91cbc6a506819e585ee5a0abe0845f9a"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#a91cbc6a506819e585ee5a0abe0845f9a">kynema_sgf::averaging::ReynoldsStress::stress_name</a></div><div class="ttdeci">static std::string stress_name(const std::string &amp;fname, const std::string &amp;avgname)</div><div class="ttdoc">Generate the Reynolds stress field name based on the field name and label.</div><div class="ttdef"><b>Definition</b> ReynoldsStress.H:41</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_reynolds_stress_html_ab2e34a0559078470ce4fb8058247ca1d"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#ab2e34a0559078470ce4fb8058247ca1d">kynema_sgf::averaging::ReynoldsStress::re_stress_name</a></div><div class="ttdeci">static std::string re_stress_name(const std::string &amp;fname, const std::string &amp;avgname)</div><div class="ttdef"><b>Definition</b> ReynoldsStress.H:47</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_reynolds_stress_html_afd10a5b19b96163236cb4be7a83278fe"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#afd10a5b19b96163236cb4be7a83278fe">kynema_sgf::averaging::ReynoldsStress::m_stress</a></div><div class="ttdeci">Field &amp; m_stress</div><div class="ttdoc">The stresses &lt; AB &gt;</div><div class="ttdef"><b>Definition</b> ReynoldsStress.H:59</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_reynolds_stress_html_afee92686b07c191e91445fc400a43866"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_reynolds_stress.html#afee92686b07c191e91445fc400a43866">kynema_sgf::averaging::ReynoldsStress::ReynoldsStress</a></div><div class="ttdeci">ReynoldsStress(CFDSim &amp;, const std::string &amp;avgname, const std::string &amp;fname)</div><div class="ttdef"><b>Definition</b> ReynoldsStress.cpp:12</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1averaging_html"><div class="ttname"><a href="namespacekynema__sgf_1_1averaging.html">kynema_sgf::averaging</a></div><div class="ttdef"><b>Definition</b> ReAveraging.cpp:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

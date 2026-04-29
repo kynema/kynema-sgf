@@ -1,0 +1,476 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Section: tagging &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Section: time" href="inputs_time.html" />
+    <link rel="prev" title="Section: AMReX and AMR" href="inputs_amr.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="inputs.html#input-file-reference">Input file reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="inputs_geometry.html">Section: geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_amr.html">Section: AMReX and AMR</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Section: tagging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_time.html">Section: time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_io.html">Section: io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_incflo.html">Section: incflo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_transport.html">Section: transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_turbulence.html">Section: turbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Momentum_Sources.html">Section: Momentum Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Temperature_Sources.html">Section: Temperature Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_TKE_Sources.html">Section: TKE Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL.html">Section: ABL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL_meso_forcing.html">Section: ABLMesoForcing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_SyntheticTurbulence.html">Section: SyntheticTurbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Boundary_conditions.html">Section: Boundary conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_MLMG.html">Section: MLMG options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_post_processing.html">Section: Post-processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Sampling.html">Section: Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Subvolume.html">Section: Subvolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Averaging.html">Section: Averaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_KineticEnergy.html">Section: KineticEnergy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Enstrophy.html">Section: Enstrophy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FieldNorms.html">Section: FieldNorms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Actuator.html">Section: Actuator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_multiphase.html">Section: MultiPhase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ocean_waves.html">Section: Ocean Waves</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+          <li class="breadcrumb-item"><a href="inputs.html">Kynema-SGF inputs file</a></li>
+      <li class="breadcrumb-item active">Section: tagging</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/inputs_tagging.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-tagging">
+<span id="inputs-tagging"></span><h1>Section: tagging<a class="headerlink" href="#section-tagging" title="Link to this heading"></a></h1>
+<p>This section manages the various mesh refinement criteria that can be used to
+activate either static or adaptive mesh refinement during simulations. The
+parameters are read from the prefix <code class="docutils literal notranslate"><span class="pre">tagging</span></code> and can contain different types
+of tagging logic. Note that this section is only active if
+<a class="reference internal" href="inputs_amr.html#input_param-amr.max_level"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">amr.max_level</span></code></a> is greater than zero. Regridding interval is controlled by <a class="reference internal" href="inputs_time.html#input_param-time.regrid_interval"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">time.regrid_interval</span></code></a> .</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tagging</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">s1</span> <span class="n">f1</span> <span class="n">g1</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">s1</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">CartBoxRefinement</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">s1</span><span class="o">.</span><span class="n">static_refinement_def</span> <span class="o">=</span> <span class="n">static_box</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="n">tagging</span><span class="o">.</span><span class="n">f1</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">FieldRefinement</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">f1</span><span class="o">.</span><span class="n">field_name</span> <span class="o">=</span> <span class="n">density</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">f1</span><span class="o">.</span><span class="n">grad_error</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">.</span> <span class="mf">0.1</span> <span class="mf">0.1</span>
+
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">GeometryRefinement</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">shapes</span> <span class="o">=</span> <span class="n">c1</span> <span class="n">b1</span>
+
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">c1</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">cylinder</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">c1</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="mf">500.0</span> <span class="mf">500.0</span> <span class="mf">250.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">c1</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="mf">500.0</span> <span class="mf">500.0</span> <span class="mf">750.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">c1</span><span class="o">.</span><span class="n">outer_radius</span> <span class="o">=</span> <span class="mf">300.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">c1</span><span class="o">.</span><span class="n">inner_radius</span> <span class="o">=</span> <span class="mf">275.0</span>
+
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">b1</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">box</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">b1</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="mf">300.0</span> <span class="mf">150.0</span> <span class="mf">250.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">b1</span><span class="o">.</span><span class="n">xaxis</span> <span class="o">=</span>  <span class="mf">450.0</span> <span class="mf">600.0</span> <span class="mf">0.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">b1</span><span class="o">.</span><span class="n">yaxis</span> <span class="o">=</span>  <span class="o">-</span><span class="mf">150.0</span> <span class="mf">100.0</span> <span class="mf">0.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">b1</span><span class="o">.</span><span class="n">zaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">500.0</span>
+</pre></div>
+</div>
+<p>Each section must contain the keyword <code class="docutils literal notranslate"><span class="pre">type</span></code> that is one of the refinement types:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CartBoxRefinement</span></code></p></td>
+<td><p>Nested refinement using Cartesian boxes</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FieldRefinement</span></code></p></td>
+<td><p>Refinement based on error metric for field or its gradient</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OversetRefinement</span></code></p></td>
+<td><p>Refinement around fringe/field interface</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">GeometryRefinement</span></code></p></td>
+<td><p>Refinement using geometric shapes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">QCriterionRefinement</span></code></p></td>
+<td><p>Refinement using Q-Criterion</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VorticityMagRefinement</span></code></p></td>
+<td><p>Refinement using vorticity</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.labels">
+<span class="sig-name descname"><span class="pre">tagging.labels</span></span><a class="headerlink" href="#input_param-tagging.labels" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of one or more names</p>
+<p>Labels indicate a list of prefixes for different types of refinement criteria
+active during the simulation.</p>
+</dd></dl>
+
+<p>The parameters for the subsections are determined by the type of refinement being performed.</p>
+<section id="refinement-using-cartesian-boxes">
+<h2>Refinement using Cartesian boxes<a class="headerlink" href="#refinement-using-cartesian-boxes" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">CartBoxRefinement</span></code> allows refining boxes (aligned with the principal axes).</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tagging</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">static</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">static</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">CartBoxRefinement</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">static</span><span class="o">.</span><span class="n">static_refinement_def</span> <span class="o">=</span> <span class="n">static_box</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.CartBoxRefinement.static_refinement_def">
+<span class="sig-name descname"><span class="pre">tagging.CartBoxRefinement.static_refinement_def</span></span><a class="headerlink" href="#input_param-tagging.CartBoxRefinement.static_refinement_def" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, required</p>
+<p>The text file that contains a list of bounding boxes used to perform
+refinement at various levels.</p>
+</dd></dl>
+
+</section>
+<section id="refinement-using-field-error-criteria">
+<h2>Refinement using field error criteria<a class="headerlink" href="#refinement-using-field-error-criteria" title="Link to this heading"></a></h2>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tagging</span><span class="o">.</span><span class="n">f1</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">FieldRefinement</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">f1</span><span class="o">.</span><span class="n">field_name</span> <span class="o">=</span> <span class="n">density</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">f1</span><span class="o">.</span><span class="n">grad_error</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">.</span> <span class="mf">0.1</span> <span class="mf">0.1</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">f1</span><span class="o">.</span><span class="n">box_lo</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="mf">10.0</span> <span class="mf">10.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">f1</span><span class="o">.</span><span class="n">box_hi</span> <span class="o">=</span> <span class="mf">20.0</span> <span class="mf">20.0</span> <span class="mf">20.0</span>
+</pre></div>
+</div>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.FieldRefinement.field_name">
+<span class="sig-name descname"><span class="pre">tagging.FieldRefinement.field_name</span></span><a class="headerlink" href="#input_param-tagging.FieldRefinement.field_name" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, required</p>
+<p>The name of the field used to tag cells</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.FieldRefinement.field_error">
+<span class="sig-name descname"><span class="pre">tagging.FieldRefinement.field_error</span></span><a class="headerlink" href="#input_param-tagging.FieldRefinement.field_error" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Vector&lt;Real&gt;, optional</p>
+<p>List of field error values at each level. The user must specify a value for
+each level desired.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.FieldRefinement.grad_error">
+<span class="sig-name descname"><span class="pre">tagging.FieldRefinement.grad_error</span></span><a class="headerlink" href="#input_param-tagging.FieldRefinement.grad_error" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Vector&lt;Real&gt;, optional</p>
+<p>List of gradient error values at each level. The user must specify a value for
+each level desired.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.FieldRefinement.box_lo">
+<span class="sig-name descname"><span class="pre">tagging.FieldRefinement.box_lo</span></span><a class="headerlink" href="#input_param-tagging.FieldRefinement.box_lo" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Vector&lt;Real&gt;, optional</p>
+<p>List of the low corner values for a bounding box where the tagging
+will be active. By default the bounding box will span the entire domain.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.FieldRefinement.box_hi">
+<span class="sig-name descname"><span class="pre">tagging.FieldRefinement.box_hi</span></span><a class="headerlink" href="#input_param-tagging.FieldRefinement.box_hi" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Vector&lt;Real&gt;, optional</p>
+<p>List of the high corner values for a bounding box where the tagging
+will be active. By default the bounding box will span the entire domain.</p>
+</dd></dl>
+
+</section>
+<section id="refinement-using-geometry">
+<h2>Refinement using geometry<a class="headerlink" href="#refinement-using-geometry" title="Link to this heading"></a></h2>
+<p>This section controls refinement using pre-defined geometric shapes. Currently,
+two options are supported: 1. <code class="docutils literal notranslate"><span class="pre">box</span></code> – refines the region inside a hexahedral
+block, 2. <code class="docutils literal notranslate"><span class="pre">cylinder</span></code> – refines the region inside a cylindrical block, and
+3. <code class="docutils literal notranslate"><span class="pre">udf</span></code> – refines along an analytical function depending on time and spatial coordinate.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.GeometryRefinement.shapes">
+<span class="sig-name descname"><span class="pre">tagging.GeometryRefinement.shapes</span></span><a class="headerlink" href="#input_param-tagging.GeometryRefinement.shapes" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of strings, required</p>
+<p>Names of the input subsections that define specific geometries for refinement.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.GeoemtryRefinement.level">
+<span class="sig-name descname"><span class="pre">tagging.GeoemtryRefinement.level</span></span><a class="headerlink" href="#input_param-tagging.GeoemtryRefinement.level" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong>  Integer, optional, default: -1</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">level</span></code> is provided and is greater than or equal to 0, then the
+refinement based on geometries defined for this section is only performed at
+that level.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.GeometryRefinement.min_level">
+<span class="sig-name descname"><span class="pre">tagging.GeometryRefinement.min_level</span></span><a class="headerlink" href="#input_param-tagging.GeometryRefinement.min_level" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong>  Integer, optional, default: 0</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">level</span></code> is not specified, then this option specifies the minimum level
+where this refinement is active.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.GeometryRefinement.max_level">
+<span class="sig-name descname"><span class="pre">tagging.GeometryRefinement.max_level</span></span><a class="headerlink" href="#input_param-tagging.GeometryRefinement.max_level" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong>  Integer, optional, default: <code class="docutils literal notranslate"><span class="pre">mesh.maxLevel()</span></code></p>
+<p>If <code class="docutils literal notranslate"><span class="pre">level</span></code> is not specified, then this option specifies the maximum level
+where this refinement is active.</p>
+</dd></dl>
+
+<p>Note that the specification of <code class="docutils literal notranslate"><span class="pre">level</span></code> overrides, <code class="docutils literal notranslate"><span class="pre">min_level</span></code> and
+<code class="docutils literal notranslate"><span class="pre">max_level</span></code> specifications. This can be used to control the different levels
+where refinement regions are active.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">GeometryRefinement</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">shapes</span> <span class="o">=</span> <span class="n">b1</span> <span class="n">b2</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">b1</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">box</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">b1</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="mf">300.0</span> <span class="mf">150.0</span> <span class="mf">250.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">b1</span><span class="o">.</span><span class="n">xaxis</span> <span class="o">=</span>  <span class="mf">450.0</span> <span class="mf">600.0</span> <span class="mf">0.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">b1</span><span class="o">.</span><span class="n">yaxis</span> <span class="o">=</span>  <span class="o">-</span><span class="mf">150.0</span> <span class="mf">100.0</span> <span class="mf">0.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">b1</span><span class="o">.</span><span class="n">zaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">500.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">b2</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">box</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">b2</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="mf">600.0</span> <span class="mf">350.0</span> <span class="mf">250.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">b2</span><span class="o">.</span><span class="n">xaxis</span> <span class="o">=</span>  <span class="mf">50.0</span> <span class="mf">30.0</span> <span class="mf">0.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">b2</span><span class="o">.</span><span class="n">yaxis</span> <span class="o">=</span>  <span class="o">-</span><span class="mf">50.0</span> <span class="mf">60.0</span> <span class="mf">0.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">b2</span><span class="o">.</span><span class="n">zaxis</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">500.0</span>
+
+<span class="n">tagging</span><span class="o">.</span><span class="n">g2</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">GeometryRefinement</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g2</span><span class="o">.</span><span class="n">shapes</span> <span class="o">=</span> <span class="n">c1</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g2</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g2</span><span class="o">.</span><span class="n">c1</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">cylinder</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g2</span><span class="o">.</span><span class="n">c1</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="mf">500.0</span> <span class="mf">500.0</span> <span class="mf">250.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g2</span><span class="o">.</span><span class="n">c1</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="mf">500.0</span> <span class="mf">500.0</span> <span class="mf">750.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g2</span><span class="o">.</span><span class="n">c1</span><span class="o">.</span><span class="n">outer_radius</span> <span class="o">=</span> <span class="mf">300.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g2</span><span class="o">.</span><span class="n">c1</span><span class="o">.</span><span class="n">inner_radius</span> <span class="o">=</span> <span class="mf">275.0</span>
+
+<span class="n">tagging</span><span class="o">.</span><span class="n">g3</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">GeometryRefinement</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g3</span><span class="o">.</span><span class="n">shapes</span> <span class="o">=</span> <span class="n">udf0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g3</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g3</span><span class="o">.</span><span class="n">udf0</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">udf</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g3</span><span class="o">.</span><span class="n">udf0</span><span class="o">.</span><span class="n">udf</span> <span class="o">=</span> <span class="s2">&quot;if(x &gt; 500, 1.0, 0.0)&quot;</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g3</span><span class="o">.</span><span class="n">udf0</span><span class="o">.</span><span class="n">box_lo</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">g3</span><span class="o">.</span><span class="n">udf0</span><span class="o">.</span><span class="n">box_hi</span> <span class="o">=</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">500.0</span>
+</pre></div>
+</div>
+<p>This example defines three different refinement definitions acting on
+levels 0, 1 and 0 respectively. The first refinement at level 0
+(<code class="docutils literal notranslate"><span class="pre">g1</span></code>) contains two box regions, whereas the refinement at level 1
+(<code class="docutils literal notranslate"><span class="pre">g2</span></code>) only contains one cylinder definition. The second refinement
+at level 0 (<code class="docutils literal notranslate"><span class="pre">g3</span></code>) uses a user defined function (UDF) to specify a
+geometrical refinement region.</p>
+<p><strong>Refinement using hexahedral block definitions</strong></p>
+<p>To perform <code class="docutils literal notranslate"><span class="pre">box</span></code> refinement, the user specifies the <code class="docutils literal notranslate"><span class="pre">origin</span></code> of the box and
+three vectors: <code class="docutils literal notranslate"><span class="pre">xaxis,</span> <span class="pre">yaxis,</span> <span class="pre">zaxis</span></code> that defines the directions and the
+extents of the hexahedral block. Denoting <span class="math notranslate nohighlight">\(\mathbf{O}\)</span> as origin vector
+and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> as the three
+vectors given by the user, the position vectors of the eight corners of the
+hexahedral box are given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{x}_0 &amp;= \mathbf{O} &amp;&amp; \mathbf{x}_4 &amp;= \mathbf{O} + \mathbf{z} \\
+\mathbf{x}_1 &amp;= \mathbf{O} + \mathbf{x} &amp;&amp; \mathbf{x}_5 &amp;= \mathbf{O} + \mathbf{z} + \mathbf{x} \\
+\mathbf{x}_2 &amp;= \mathbf{O} + \mathbf{x} + \mathbf{y} \qquad &amp;&amp; \mathbf{x}_6 &amp;= \mathbf{O} + \mathbf{z} + \mathbf{x} + \mathbf{y} \\
+\mathbf{x}_3 &amp;= \mathbf{O} + \mathbf{y} &amp;&amp; \mathbf{x}_7 &amp;= \mathbf{O} + \mathbf{z} + \mathbf{y} \\\end{split}\]</div>
+<p><strong>Refinement using cylindrical block definitions</strong></p>
+<p>The axis and the extents along the axis are defined by two position vectors
+<code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code>. The radial extent is specified by <code class="docutils literal notranslate"><span class="pre">outer_radius</span></code>. An
+optional <code class="docutils literal notranslate"><span class="pre">inner_radius</span></code> can be specified to restrict tagging to an annulus
+between the inner and outer radii.</p>
+<p><strong>Refinement using a user specified function</strong></p>
+<p>The UDF uses AMReX’s Parser class to parse a string in the input file,
+<code class="docutils literal notranslate"><span class="pre">udf</span></code> key in the input file. For more information on the AMReX
+Parser and supported functions, consult the <a class="reference external" href="https://amrex-codes.github.io/amrex/docs_html/Basics.html#parser">AMReX Parser
+documentation</a>.
+The UDF can be (almost) arbitrarily complex, leveraging standard
+functions, boolean operators, local variables, etc. The following
+assumptions are imposed on the UDF: 1. it must evaluate to 0 (tagging
+off) or 1 (tagging on) (the return value of the UDF is cast to a
+boolean and that is used to set the tags), 2. the allowed variables
+are <code class="docutils literal notranslate"><span class="pre">t</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, and <code class="docutils literal notranslate"><span class="pre">z</span></code>.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.GeometryRefinement.UDFRefiner.udf">
+<span class="sig-name descname"><span class="pre">tagging.GeometryRefinement.UDFRefiner.udf</span></span><a class="headerlink" href="#input_param-tagging.GeometryRefinement.UDFRefiner.udf" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, required</p>
+<p>String specifying the user defined function.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.GeometryRefinement.UDFRefiner.box_lo">
+<span class="sig-name descname"><span class="pre">tagging.GeometryRefinement.UDFRefiner.box_lo</span></span><a class="headerlink" href="#input_param-tagging.GeometryRefinement.UDFRefiner.box_lo" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Vector&lt;Real&gt;, optional</p>
+<p>List of the low corner values for a bounding box where the tagging
+will be active. By default the bounding box will span the entire domain.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.GeometryRefinement.UDFRefiner.box_hi">
+<span class="sig-name descname"><span class="pre">tagging.GeometryRefinement.UDFRefiner.box_hi</span></span><a class="headerlink" href="#input_param-tagging.GeometryRefinement.UDFRefiner.box_hi" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Vector&lt;Real&gt;, optional</p>
+<p>List of the high corner values for a bounding box where the tagging
+will be active. By default the bounding box will span the entire domain.</p>
+</dd></dl>
+
+</section>
+<section id="refinement-using-q-criterion">
+<h2>Refinement using Q-Criterion<a class="headerlink" href="#refinement-using-q-criterion" title="Link to this heading"></a></h2>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tagging</span><span class="o">.</span><span class="n">qc1</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">QCriterionRefinement</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">qc1</span><span class="o">.</span><span class="n">nondim</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">tagging</span><span class="o">.</span><span class="n">qc1</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="mf">20.0</span> <span class="mf">20.0</span>
+</pre></div>
+</div>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.QCriterionRefinement.nondim">
+<span class="sig-name descname"><span class="pre">tagging.QCriterionRefinement.nondim</span></span><a class="headerlink" href="#input_param-tagging.QCriterionRefinement.nondim" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = true</p>
+<p>Boolean determining if the dimensional or non-dimensional form
+of Q-criterion should be used. Dimensional version may require
+modifying values depending on physical scales. For the non-dimensional
+form positive thresholds indicate regions where the rotational strength is
+larger than the shear rate strength. A threshold of unity indicates
+that the rotational strength is equal to the background shear strength.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.QCriterionRefinement.values">
+<span class="sig-name descname"><span class="pre">tagging.QCriterionRefinement.values</span></span><a class="headerlink" href="#input_param-tagging.QCriterionRefinement.values" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Vector&lt;Real&gt;, optional</p>
+<p>List of Q-criterion values at each level.
+If the absolute value of Q-criterion exceeds this value
+the cell is tagged for refinement.
+The user must specify a value for each level desired.</p>
+</dd></dl>
+
+</section>
+<section id="static-refinement">
+<span id="inputs-static-refinement"></span><h2>Static refinement<a class="headerlink" href="#static-refinement" title="Link to this heading"></a></h2>
+<p>This section is for controlling the static mesh refinement of the
+grid. This is done a bit differently than the tagging criteria above
+in that an external file species the refinement regions.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.static_refinement">
+<span class="sig-name descname"><span class="pre">tagging.static_refinement</span></span><a class="headerlink" href="#input_param-tagging.static_refinement" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = false</p>
+<p>Static refinement with Cartesian-aligned bounding boxes.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-tagging.static_refinement_def">
+<span class="sig-name descname"><span class="pre">tagging.static_refinement_def</span></span><a class="headerlink" href="#input_param-tagging.static_refinement_def" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String</p>
+<p>Static refinement with Cartesian-aligned bounding boxes input file name.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inputs_amr.html" class="btn btn-neutral float-left" title="Section: AMReX and AMR" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inputs_time.html" class="btn btn-neutral float-right" title="Section: time" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

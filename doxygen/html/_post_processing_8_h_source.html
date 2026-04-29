@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/PostProcessing.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/PostProcessing.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_post_processing_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-utilities-postprocessing-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/PostProcessing.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-utilities-postprocessing-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/PostProcessing.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_d59b7dddc6cfeb8ed243c8310c362d19.html">utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">PostProcessing.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_post_processing_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef POSTPROCESSING_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define POSTPROCESSING_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_factory_8_h.html">src/core/Factory.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;AMReX_ParmParse.H&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span></div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html">   31</a></span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1_post_process_base.html">PostProcessBase</a></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    : <span class="keyword">public</span> <a class="code hl_function" href="structkynema__sgf_1_1_factory.html#a91304216d59ae6834fc0da187ec512c6">Factory</a>&lt;PostProcessBase, CFDSim&amp;, const std::string&amp;&gt;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#a3f6577c645bca20f388f053f0d643270">   35</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1_post_process_base.html#a3f6577c645bca20f388f053f0d643270">base_identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;PostProcessBase&quot;</span>; }</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#acee8b67bae6f255916dd5edb6771701f">   37</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_post_process_base.html#acee8b67bae6f255916dd5edb6771701f">~PostProcessBase</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#a0fa81d31603a9f9ab3c4a48d03ee40a5">   39</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_post_process_base.html#a0fa81d31603a9f9ab3c4a48d03ee40a5">pre_init_actions</a>() = 0;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#a77a46e1c41f2cd6ac7a7cea5b7b729a3">   46</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_post_process_base.html#a77a46e1c41f2cd6ac7a7cea5b7b729a3">initialize</a>() = 0;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#a955ed9331e5e2469d091afe670b69b4c">   50</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_post_process_base.html#a955ed9331e5e2469d091afe670b69b4c">post_advance_work</a>() = 0;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#a39946d5d4040ccbe994d94bcabdeca6f">   54</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_post_process_base.html#a39946d5d4040ccbe994d94bcabdeca6f">output_actions</a>() = 0;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#a87f29b7e8171b867daf00951b5d8fd89">   57</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_post_process_base.html#a87f29b7e8171b867daf00951b5d8fd89">post_regrid_actions</a>() = 0;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#a22588cbc6bb8d4a8d5f10895a5f93e39">   59</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_post_process_base.html#a22588cbc6bb8d4a8d5f10895a5f93e39">populate_output_parameters</a>(amrex::ParmParse&amp; pp)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        pp.query(<span class="stringliteral">&quot;output_interval&quot;</span>, <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#ab07ac1561ea1af8f1b6d7f3fadbb99d5">m_out_interval</a>);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        pp.query(<span class="stringliteral">&quot;output_time_interval&quot;</span>, <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a0e6135a891826e0308ebf9a904309c9c">m_out_time_interval</a>);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        pp.query(<span class="stringliteral">&quot;output_delay&quot;</span>, <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#affc954ec3c4ce4f3141cab27acbfb4b8">m_out_delay</a>);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        pp.query(<span class="stringliteral">&quot;output_time_delay&quot;</span>, <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#ad8408d9ffaaaf07399b01d131e164413">m_out_time_delay</a>);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        pp.query(<span class="stringliteral">&quot;output_from_restart&quot;</span>, <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a1bfe4e712e6604f0eb95a4f76c520619">m_out_from_restart</a>);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        pp.query(<span class="stringliteral">&quot;output_start&quot;</span>, <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#abc596487aa1e6b32b37d7196c3cf09cc">m_out_start_index</a>);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        pp.query(<span class="stringliteral">&quot;output_start_time&quot;</span>, <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a130bef4e3b15b242d4003e2014a5fc7c">m_out_start_time</a>);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        pp.query(<span class="stringliteral">&quot;enforce_output_time_dt&quot;</span>, <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#afbc4df0d8cdf815e0720dafa280c5a43">m_enforce_dt</a>);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        pp.query(<span class="stringliteral">&quot;enforce_output_time_dt_reltol&quot;</span>, <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#af3e08074303ca82b328e3ad14a6c2d66">m_enforce_dt_tol</a>);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        pp.query(<span class="stringliteral">&quot;output_after_final_step&quot;</span>, <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a742f567bf7d20c15f866994584a24e29">m_do_final_output</a>);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="comment">// Check for presence of arguments</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keyword">const</span> <span class="keywordtype">bool</span> has_interval = pp.contains(<span class="stringliteral">&quot;output_interval&quot;</span>);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keyword">const</span> <span class="keywordtype">bool</span> has_time_int = pp.contains(<span class="stringliteral">&quot;output_time_interval&quot;</span>);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keyword">const</span> <span class="keywordtype">bool</span> has_frequency = pp.contains(<span class="stringliteral">&quot;output_frequency&quot;</span>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keywordflow">if</span> (has_frequency) {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            <span class="keywordflow">if</span> (has_interval) {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                amrex::Print()</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                    &lt;&lt; <span class="stringliteral">&quot;WARNING: output_interval and output_frequency &quot;</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                       <span class="stringliteral">&quot;(legacy argument) are both specified; &quot;</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                       <span class="stringliteral">&quot;output_frequency will be ignored.\n&quot;</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                pp.get(<span class="stringliteral">&quot;output_frequency&quot;</span>, <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#ab07ac1561ea1af8f1b6d7f3fadbb99d5">m_out_interval</a>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                amrex::Print()</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                    &lt;&lt; <span class="stringliteral">&quot;WARNING: legacy input argument of output_frequency has &quot;</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                       <span class="stringliteral">&quot;been specified; the code will function as normal, but &quot;</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                       <span class="stringliteral">&quot;the new input argument of output_interval is &quot;</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                       <span class="stringliteral">&quot;preferred.\n&quot;</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        }</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a1bfe4e712e6604f0eb95a4f76c520619">m_out_from_restart</a> &amp;&amp;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            (pp.contains(<span class="stringliteral">&quot;output_start&quot;</span>) || pp.contains(<span class="stringliteral">&quot;output_start_time&quot;</span>))) {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            amrex::Abort(</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                <span class="stringliteral">&quot;Conflict in output parameters. output_from_restart is true, &quot;</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                <span class="stringliteral">&quot;designating that output timing calculations consider the &quot;</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                <span class="stringliteral">&quot;restart time or time step, but the output_start or &quot;</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                <span class="stringliteral">&quot;output_start_time is specified, which manually overwrites the &quot;</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                <span class="stringliteral">&quot;stored restart time or time step.\n&quot;</span>);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="comment">// Because of default, interval is valid unless turned off;</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="comment">// time_interval is invalid unless turned on</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keyword">const</span> <span class="keywordtype">bool</span> has_valid_interval =</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>            (has_interval || has_frequency) ? <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#ab07ac1561ea1af8f1b6d7f3fadbb99d5">m_out_interval</a> &gt; 0 : <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keyword">const</span> <span class="keywordtype">bool</span> has_valid_interval_present =</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            (has_interval || has_frequency) ? <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#ab07ac1561ea1af8f1b6d7f3fadbb99d5">m_out_interval</a> &gt; 0 : <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="keyword">const</span> <span class="keywordtype">bool</span> has_valid_time_int =</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>            has_time_int ? <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a0e6135a891826e0308ebf9a904309c9c">m_out_time_interval</a> &gt; 0. : <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordflow">if</span> (!(has_valid_interval || has_valid_time_int)) {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            amrex::Abort(</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                <span class="stringliteral">&quot;post_processing output timing parameters are specified, but &quot;</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                <span class="stringliteral">&quot;none are valid. Please specify an output_interval (or &quot;</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                <span class="stringliteral">&quot;output_frequency) greater than 0 or an output_time_interval &quot;</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                <span class="stringliteral">&quot;greater than 0.0_rt, or rely on the default output_interval.&quot;</span>);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        }</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="keywordflow">if</span> (has_valid_interval_present &amp;&amp; has_valid_time_int) {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            amrex::Abort(</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                <span class="stringliteral">&quot;output_interval (or output_frequency) and &quot;</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                <span class="stringliteral">&quot;output_time_interval are both specified. timestep- and &quot;</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                <span class="stringliteral">&quot;time-based output parameters should not be used together; &quot;</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                <span class="stringliteral">&quot;please only specify one.&quot;</span>);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="keywordflow">if</span> (!has_valid_time_int &amp;&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#afbc4df0d8cdf815e0720dafa280c5a43">m_enforce_dt</a>) {</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>            amrex::Abort(</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                <span class="stringliteral">&quot;enforce_output_time_dt is true, but output_time_interval &quot;</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>                <span class="stringliteral">&quot;has not been specified.&quot;</span>);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        }</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="comment">// Because of default, turn off step interval when time interval is</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="comment">// meant to replace it</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keywordflow">if</span> (has_valid_time_int &amp;&amp; !(has_interval || has_frequency)) {</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#ab07ac1561ea1af8f1b6d7f3fadbb99d5">m_out_interval</a> = -1;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        }</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    }</div>
+</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span></div>
+<div class="foldopen" id="foldopen00142" data-start="{" data-end="}">
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#a44b3f9e42dc2ccffbe2ad09b21aa6723">  142</a></span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_post_process_base.html#a44b3f9e42dc2ccffbe2ad09b21aa6723">do_output_now</a>(</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> ntime,</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> ntime0_in,</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        <span class="keyword">const</span> amrex::Real time,</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <span class="keyword">const</span> amrex::Real time0_in,</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        <span class="keyword">const</span> amrex::Real dt,</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        amrex::Real tol)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="comment">// Choose smallest tolerance between incoming and local</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        tol = amrex::min&lt;amrex::Real&gt;(tol, <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#ae01af1ea6fd6ad4e1093eae3e8836724">m_out_time_tol</a> * dt);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="comment">// Should the restart time always be used</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="keywordtype">int</span> ntime0 = <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a1bfe4e712e6604f0eb95a4f76c520619">m_out_from_restart</a> ? ntime0_in : 0;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        amrex::Real time0 = <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a1bfe4e712e6604f0eb95a4f76c520619">m_out_from_restart</a> ? time0_in : 0_rt;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="comment">// Has the manual start been specified</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        ntime0 = <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#abc596487aa1e6b32b37d7196c3cf09cc">m_out_start_index</a> &gt;= 0 ? <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#abc596487aa1e6b32b37d7196c3cf09cc">m_out_start_index</a> : ntime0;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        time0 = <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a130bef4e3b15b242d4003e2014a5fc7c">m_out_start_time</a> &gt; -0.5_rt ? <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a130bef4e3b15b242d4003e2014a5fc7c">m_out_start_time</a> : time0;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keyword">const</span> <span class="keywordtype">bool</span> step_based =</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>            (<a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#ab07ac1561ea1af8f1b6d7f3fadbb99d5">m_out_interval</a> &gt; 0) &amp;&amp; ((ntime - <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#affc954ec3c4ce4f3141cab27acbfb4b8">m_out_delay</a> &gt;= 0) &amp;&amp;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                                     ((ntime - ntime0) % <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#ab07ac1561ea1af8f1b6d7f3fadbb99d5">m_out_interval</a> == 0));</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        <span class="keyword">const</span> <span class="keywordtype">bool</span> time_based =</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>            (<a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a0e6135a891826e0308ebf9a904309c9c">m_out_time_interval</a> &gt; 0.0_rt) &amp;&amp;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>            ((time + tol - <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#ad8408d9ffaaaf07399b01d131e164413">m_out_time_delay</a> &gt;= 0.0_rt) &amp;&amp;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>             (time - time0 + tol -</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>                  (std::floor((time - time0 + tol) / <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a0e6135a891826e0308ebf9a904309c9c">m_out_time_interval</a>) *</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>                   <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a0e6135a891826e0308ebf9a904309c9c">m_out_time_interval</a>) &lt;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>              dt));</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        <span class="keywordflow">return</span> (step_based || time_based);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    }</div>
+</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="foldopen" id="foldopen00174" data-start="{" data-end="}">
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#a216ade5106462248378dd37ae93d9970">  174</a></span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_post_process_base.html#a216ade5106462248378dd37ae93d9970">output_time_interval</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a0e6135a891826e0308ebf9a904309c9c">m_out_time_interval</a>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    }</div>
+</div>
+<div class="foldopen" id="foldopen00178" data-start="{" data-end="}">
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#a28930586928f094b85d40845774ae587">  178</a></span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_post_process_base.html#a28930586928f094b85d40845774ae587">output_time_delay</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#ad8408d9ffaaaf07399b01d131e164413">m_out_time_delay</a>;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    }</div>
+</div>
+<div class="foldopen" id="foldopen00182" data-start="{" data-end="}">
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#a2aaed191fc498b23f5578a38a13c94cb">  182</a></span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_post_process_base.html#a2aaed191fc498b23f5578a38a13c94cb">enforce_dt_tolerance</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#af3e08074303ca82b328e3ad14a6c2d66">m_enforce_dt_tol</a>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    }</div>
+</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#ac8f8f472cd6c82ef8f755f4f1700ed42">  186</a></span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_post_process_base.html#ac8f8f472cd6c82ef8f755f4f1700ed42">enforce_dt</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#afbc4df0d8cdf815e0720dafa280c5a43">m_enforce_dt</a>; }</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#ae5c8789121d46341d23fa9fa9ddbe5ca">  187</a></span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_post_process_base.html#ae5c8789121d46341d23fa9fa9ddbe5ca">do_final_output</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a742f567bf7d20c15f866994584a24e29">m_do_final_output</a>; }</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#ab07ac1561ea1af8f1b6d7f3fadbb99d5">  191</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#ab07ac1561ea1af8f1b6d7f3fadbb99d5">m_out_interval</a>{10};</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#a0e6135a891826e0308ebf9a904309c9c">  193</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a0e6135a891826e0308ebf9a904309c9c">m_out_time_interval</a>{-1.0_rt};</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#affc954ec3c4ce4f3141cab27acbfb4b8">  195</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#affc954ec3c4ce4f3141cab27acbfb4b8">m_out_delay</a>{0};</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#ad8408d9ffaaaf07399b01d131e164413">  197</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#ad8408d9ffaaaf07399b01d131e164413">m_out_time_delay</a>{0.0_rt};</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#a1bfe4e712e6604f0eb95a4f76c520619">  199</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a1bfe4e712e6604f0eb95a4f76c520619">m_out_from_restart</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#abc596487aa1e6b32b37d7196c3cf09cc">  201</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#abc596487aa1e6b32b37d7196c3cf09cc">m_out_start_index</a>{-1};</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#a130bef4e3b15b242d4003e2014a5fc7c">  203</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a130bef4e3b15b242d4003e2014a5fc7c">m_out_start_time</a>{-1.0_rt};</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#ae01af1ea6fd6ad4e1093eae3e8836724">  205</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#ae01af1ea6fd6ad4e1093eae3e8836724">m_out_time_tol</a>{1.0e-2_rt};</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#af3e08074303ca82b328e3ad14a6c2d66">  207</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#af3e08074303ca82b328e3ad14a6c2d66">m_enforce_dt_tol</a>{1.0e-3_rt};</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#afbc4df0d8cdf815e0720dafa280c5a43">  209</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#afbc4df0d8cdf815e0720dafa280c5a43">m_enforce_dt</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_base.html#a742f567bf7d20c15f866994584a24e29">  211</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_base.html#a742f567bf7d20c15f866994584a24e29">m_do_final_output</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>};</div>
+</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span></div>
+<div class="foldopen" id="foldopen00223" data-start="{" data-end="};">
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_manager.html">  223</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_post_process_manager.html#aebf53d1ec2592feb510502db9a5866f5">PostProcessManager</a></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>{</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1_post_process_manager.html#aebf53d1ec2592feb510502db9a5866f5">PostProcessManager</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_manager.html#afc2e944af6f59743387f3572f66b6867">  228</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_post_process_manager.html#afc2e944af6f59743387f3572f66b6867">~PostProcessManager</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_post_process_manager.html#a5210616aa1317884714ce96c30ba8026">pre_init_actions</a>();</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_post_process_manager.html#aeca703065f561b1e9e441f3c3e74a68c">post_init_actions</a>();</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_post_process_manager.html#a8e000560bf2578e044def3ec493d657d">post_advance_work</a>();</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_post_process_manager.html#a8fd240ddb78f307a652da1f29348a8b9">final_output</a>();</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_post_process_manager.html#a30584298f895f6c91159ddd65c9a5d08">post_regrid_actions</a>();</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_manager.html#a6d86765c054fc6afe7dcbb5b7fe30a62">  249</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_manager.html#a6d86765c054fc6afe7dcbb5b7fe30a62">m_sim</a>;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_post_process_manager.html#ac26fcfbe2b820048d339acf4f3ecb39e">  251</a></span>    amrex::Vector&lt;std::unique_ptr&lt;PostProcessBase&gt;&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_post_process_manager.html#ac26fcfbe2b820048d339acf4f3ecb39e">m_post</a>;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>};</div>
+</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="preprocessor">#endif </span><span class="comment">/* POSTPROCESSING_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_factory_8_h_html"><div class="ttname"><a href="_factory_8_h.html">Factory.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html">kynema_sgf::PostProcessBase</a></div><div class="ttdef"><b>Definition</b> PostProcessing.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_a0e6135a891826e0308ebf9a904309c9c"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#a0e6135a891826e0308ebf9a904309c9c">kynema_sgf::PostProcessBase::m_out_time_interval</a></div><div class="ttdeci">amrex::Real m_out_time_interval</div><div class="ttdoc">Time interval for output.</div><div class="ttdef"><b>Definition</b> PostProcessing.H:193</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_a0fa81d31603a9f9ab3c4a48d03ee40a5"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#a0fa81d31603a9f9ab3c4a48d03ee40a5">kynema_sgf::PostProcessBase::pre_init_actions</a></div><div class="ttdeci">virtual void pre_init_actions()=0</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_a130bef4e3b15b242d4003e2014a5fc7c"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#a130bef4e3b15b242d4003e2014a5fc7c">kynema_sgf::PostProcessBase::m_out_start_time</a></div><div class="ttdeci">amrex::Real m_out_start_time</div><div class="ttdoc">Time start for calculating time interval (restarts)</div><div class="ttdef"><b>Definition</b> PostProcessing.H:203</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_a1bfe4e712e6604f0eb95a4f76c520619"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#a1bfe4e712e6604f0eb95a4f76c520619">kynema_sgf::PostProcessBase::m_out_from_restart</a></div><div class="ttdeci">bool m_out_from_restart</div><div class="ttdoc">Always consider restart time for calculating output.</div><div class="ttdef"><b>Definition</b> PostProcessing.H:199</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_a216ade5106462248378dd37ae93d9970"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#a216ade5106462248378dd37ae93d9970">kynema_sgf::PostProcessBase::output_time_interval</a></div><div class="ttdeci">amrex::Real output_time_interval() const</div><div class="ttdef"><b>Definition</b> PostProcessing.H:174</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_a22588cbc6bb8d4a8d5f10895a5f93e39"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#a22588cbc6bb8d4a8d5f10895a5f93e39">kynema_sgf::PostProcessBase::populate_output_parameters</a></div><div class="ttdeci">void populate_output_parameters(amrex::ParmParse &amp;pp)</div><div class="ttdef"><b>Definition</b> PostProcessing.H:59</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_a28930586928f094b85d40845774ae587"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#a28930586928f094b85d40845774ae587">kynema_sgf::PostProcessBase::output_time_delay</a></div><div class="ttdeci">amrex::Real output_time_delay() const</div><div class="ttdef"><b>Definition</b> PostProcessing.H:178</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_a2aaed191fc498b23f5578a38a13c94cb"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#a2aaed191fc498b23f5578a38a13c94cb">kynema_sgf::PostProcessBase::enforce_dt_tolerance</a></div><div class="ttdeci">amrex::Real enforce_dt_tolerance() const</div><div class="ttdef"><b>Definition</b> PostProcessing.H:182</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_a39946d5d4040ccbe994d94bcabdeca6f"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#a39946d5d4040ccbe994d94bcabdeca6f">kynema_sgf::PostProcessBase::output_actions</a></div><div class="ttdeci">virtual void output_actions()=0</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_a3f6577c645bca20f388f053f0d643270"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#a3f6577c645bca20f388f053f0d643270">kynema_sgf::PostProcessBase::base_identifier</a></div><div class="ttdeci">static std::string base_identifier()</div><div class="ttdef"><b>Definition</b> PostProcessing.H:35</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_a44b3f9e42dc2ccffbe2ad09b21aa6723"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#a44b3f9e42dc2ccffbe2ad09b21aa6723">kynema_sgf::PostProcessBase::do_output_now</a></div><div class="ttdeci">bool do_output_now(const int ntime, const int ntime0_in, const amrex::Real time, const amrex::Real time0_in, const amrex::Real dt, amrex::Real tol) const</div><div class="ttdoc">Determine if output will happen this time step.</div><div class="ttdef"><b>Definition</b> PostProcessing.H:142</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_a742f567bf7d20c15f866994584a24e29"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#a742f567bf7d20c15f866994584a24e29">kynema_sgf::PostProcessBase::m_do_final_output</a></div><div class="ttdeci">bool m_do_final_output</div><div class="ttdoc">Flag for output at simulation end - off by default.</div><div class="ttdef"><b>Definition</b> PostProcessing.H:211</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_a77a46e1c41f2cd6ac7a7cea5b7b729a3"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#a77a46e1c41f2cd6ac7a7cea5b7b729a3">kynema_sgf::PostProcessBase::initialize</a></div><div class="ttdeci">virtual void initialize()=0</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_a87f29b7e8171b867daf00951b5d8fd89"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#a87f29b7e8171b867daf00951b5d8fd89">kynema_sgf::PostProcessBase::post_regrid_actions</a></div><div class="ttdeci">virtual void post_regrid_actions()=0</div><div class="ttdoc">Actions to perform post regrid.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_a955ed9331e5e2469d091afe670b69b4c"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#a955ed9331e5e2469d091afe670b69b4c">kynema_sgf::PostProcessBase::post_advance_work</a></div><div class="ttdeci">virtual void post_advance_work()=0</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_ab07ac1561ea1af8f1b6d7f3fadbb99d5"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#ab07ac1561ea1af8f1b6d7f3fadbb99d5">kynema_sgf::PostProcessBase::m_out_interval</a></div><div class="ttdeci">int m_out_interval</div><div class="ttdoc">Time step interval for output.</div><div class="ttdef"><b>Definition</b> PostProcessing.H:191</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_abc596487aa1e6b32b37d7196c3cf09cc"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#abc596487aa1e6b32b37d7196c3cf09cc">kynema_sgf::PostProcessBase::m_out_start_index</a></div><div class="ttdeci">int m_out_start_index</div><div class="ttdoc">Time step start for calculating step interval (restarts)</div><div class="ttdef"><b>Definition</b> PostProcessing.H:201</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_ac8f8f472cd6c82ef8f755f4f1700ed42"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#ac8f8f472cd6c82ef8f755f4f1700ed42">kynema_sgf::PostProcessBase::enforce_dt</a></div><div class="ttdeci">bool enforce_dt() const</div><div class="ttdef"><b>Definition</b> PostProcessing.H:186</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_acee8b67bae6f255916dd5edb6771701f"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#acee8b67bae6f255916dd5edb6771701f">kynema_sgf::PostProcessBase::~PostProcessBase</a></div><div class="ttdeci">~PostProcessBase() override=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_ad8408d9ffaaaf07399b01d131e164413"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#ad8408d9ffaaaf07399b01d131e164413">kynema_sgf::PostProcessBase::m_out_time_delay</a></div><div class="ttdeci">amrex::Real m_out_time_delay</div><div class="ttdoc">Time delay for output.</div><div class="ttdef"><b>Definition</b> PostProcessing.H:197</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_ae01af1ea6fd6ad4e1093eae3e8836724"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#ae01af1ea6fd6ad4e1093eae3e8836724">kynema_sgf::PostProcessBase::m_out_time_tol</a></div><div class="ttdeci">amrex::Real m_out_time_tol</div><div class="ttdoc">Relative (to dt) tolerance for time interval output.</div><div class="ttdef"><b>Definition</b> PostProcessing.H:205</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_ae5c8789121d46341d23fa9fa9ddbe5ca"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#ae5c8789121d46341d23fa9fa9ddbe5ca">kynema_sgf::PostProcessBase::do_final_output</a></div><div class="ttdeci">bool do_final_output() const</div><div class="ttdef"><b>Definition</b> PostProcessing.H:187</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_af3e08074303ca82b328e3ad14a6c2d66"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#af3e08074303ca82b328e3ad14a6c2d66">kynema_sgf::PostProcessBase::m_enforce_dt_tol</a></div><div class="ttdeci">amrex::Real m_enforce_dt_tol</div><div class="ttdoc">Relative (to m_out_time_interval) tolerance for enforcing dt.</div><div class="ttdef"><b>Definition</b> PostProcessing.H:207</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_afbc4df0d8cdf815e0720dafa280c5a43"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#afbc4df0d8cdf815e0720dafa280c5a43">kynema_sgf::PostProcessBase::m_enforce_dt</a></div><div class="ttdeci">bool m_enforce_dt</div><div class="ttdoc">Flag for enforcing time step based on output time.</div><div class="ttdef"><b>Definition</b> PostProcessing.H:209</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_base_html_affc954ec3c4ce4f3141cab27acbfb4b8"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_base.html#affc954ec3c4ce4f3141cab27acbfb4b8">kynema_sgf::PostProcessBase::m_out_delay</a></div><div class="ttdeci">int m_out_delay</div><div class="ttdoc">Time step delay for output.</div><div class="ttdef"><b>Definition</b> PostProcessing.H:195</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_manager_html_a30584298f895f6c91159ddd65c9a5d08"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_manager.html#a30584298f895f6c91159ddd65c9a5d08">kynema_sgf::PostProcessManager::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions()</div><div class="ttdef"><b>Definition</b> PostProcessing.cpp:100</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_manager_html_a5210616aa1317884714ce96c30ba8026"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_manager.html#a5210616aa1317884714ce96c30ba8026">kynema_sgf::PostProcessManager::pre_init_actions</a></div><div class="ttdeci">void pre_init_actions()</div><div class="ttdef"><b>Definition</b> PostProcessing.cpp:26</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_manager_html_a6d86765c054fc6afe7dcbb5b7fe30a62"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_manager.html#a6d86765c054fc6afe7dcbb5b7fe30a62">kynema_sgf::PostProcessManager::m_sim</a></div><div class="ttdeci">CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> PostProcessing.H:249</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_manager_html_a8e000560bf2578e044def3ec493d657d"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_manager.html#a8e000560bf2578e044def3ec493d657d">kynema_sgf::PostProcessManager::post_advance_work</a></div><div class="ttdeci">void post_advance_work()</div><div class="ttdoc">Call all registered utilities to perform actions after a timestep.</div><div class="ttdef"><b>Definition</b> PostProcessing.cpp:69</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_manager_html_a8fd240ddb78f307a652da1f29348a8b9"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_manager.html#a8fd240ddb78f307a652da1f29348a8b9">kynema_sgf::PostProcessManager::final_output</a></div><div class="ttdeci">void final_output()</div><div class="ttdoc">Call all registered utilities to output at final time.</div><div class="ttdef"><b>Definition</b> PostProcessing.cpp:84</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_manager_html_ac26fcfbe2b820048d339acf4f3ecb39e"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_manager.html#ac26fcfbe2b820048d339acf4f3ecb39e">kynema_sgf::PostProcessManager::m_post</a></div><div class="ttdeci">amrex::Vector&lt; std::unique_ptr&lt; PostProcessBase &gt; &gt; m_post</div><div class="ttdef"><b>Definition</b> PostProcessing.H:251</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_manager_html_aebf53d1ec2592feb510502db9a5866f5"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_manager.html#aebf53d1ec2592feb510502db9a5866f5">kynema_sgf::PostProcessManager::PostProcessManager</a></div><div class="ttdeci">PostProcessManager(CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> PostProcessing.cpp:24</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_manager_html_aeca703065f561b1e9e441f3c3e74a68c"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_manager.html#aeca703065f561b1e9e441f3c3e74a68c">kynema_sgf::PostProcessManager::post_init_actions</a></div><div class="ttdeci">void post_init_actions()</div><div class="ttdef"><b>Definition</b> PostProcessing.cpp:47</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_post_process_manager_html_afc2e944af6f59743387f3572f66b6867"><div class="ttname"><a href="classkynema__sgf_1_1_post_process_manager.html#afc2e944af6f59743387f3572f66b6867">kynema_sgf::PostProcessManager::~PostProcessManager</a></div><div class="ttdeci">~PostProcessManager()=default</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_factory_html_a91304216d59ae6834fc0da187ec512c6"><div class="ttname"><a href="structkynema__sgf_1_1_factory.html#a91304216d59ae6834fc0da187ec512c6">kynema_sgf::Factory&lt; PostProcessBase, CFDSim &amp;, const std::string &amp; &gt;::Factory</a></div><div class="ttdeci">Factory()=default</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

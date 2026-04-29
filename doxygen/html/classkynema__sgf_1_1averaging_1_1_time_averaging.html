@@ -1,0 +1,704 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::averaging::TimeAveraging Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::averaging::TimeAveraging Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1averaging_1_1_time_averaging.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="timeaveraging-class-reference">
+<h1>TimeAveraging Class Reference<a class="headerlink" href="#timeaveraging-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::averaging::TimeAveraging Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1averaging.html">averaging</a></li><li class="navelem"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html">TimeAveraging</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1averaging_1_1_time_averaging-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::averaging::TimeAveraging Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_time_averaging_8_h_source.html">TimeAveraging.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::averaging::TimeAveraging:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1averaging_1_1_time_averaging__inherit__graph.svg" width="218" height="168"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::averaging::TimeAveraging:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1averaging_1_1_time_averaging__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:abd2d01c048d580f0969a161c5f0911ec" id="r_abd2d01c048d580f0969a161c5f0911ec"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd2d01c048d580f0969a161c5f0911ec">TimeAveraging</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;, std::string)</td></tr>
+<tr class="memitem:ac56c184ac1f1b5cb40420922948c8a34" id="r_ac56c184ac1f1b5cb40420922948c8a34"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac56c184ac1f1b5cb40420922948c8a34">~TimeAveraging</a> () override</td></tr>
+<tr class="memitem:ae73801e94e9bfe85884834441cee61c3" id="r_ae73801e94e9bfe85884834441cee61c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae73801e94e9bfe85884834441cee61c3">pre_init_actions</a> () override</td></tr>
+<tr class="memdesc:ae73801e94e9bfe85884834441cee61c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform actions before mesh is created.  <br /></td></tr>
+<tr class="memitem:a1d019dc5b326c08a41a666437bab3677" id="r_a1d019dc5b326c08a41a666437bab3677"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d019dc5b326c08a41a666437bab3677">initialize</a> () override</td></tr>
+<tr class="memitem:ac218c1d2f6d18ba8a65b51d88c900525" id="r_ac218c1d2f6d18ba8a65b51d88c900525"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac218c1d2f6d18ba8a65b51d88c900525">post_advance_work</a> () override</td></tr>
+<tr class="memitem:aadfe220e96430945ddc67e43c0f77372" id="r_aadfe220e96430945ddc67e43c0f77372"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aadfe220e96430945ddc67e43c0f77372">output_actions</a> () override</td></tr>
+<tr class="memitem:a3ea9d14699152c18d9d9c7de6ee8a7cc" id="r_a3ea9d14699152c18d9d9c7de6ee8a7cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ea9d14699152c18d9d9c7de6ee8a7cc">post_regrid_actions</a> () override</td></tr>
+<tr class="memitem:ae7c5bb11919e51c3b94510cad7da897e" id="r_ae7c5bb11919e51c3b94510cad7da897e"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7c5bb11919e51c3b94510cad7da897e">add_averaging</a> (const std::string &amp;field_name, const std::string &amp;avg_type=&quot;ReAveraging&quot;)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aefcb3ab0c7389b36847da5041d0e136a" id="r_aefcb3ab0c7389b36847da5041d0e136a"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aefcb3ab0c7389b36847da5041d0e136a">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a2434a438ad8fe9037bc6833af8641893" id="r_a2434a438ad8fe9037bc6833af8641893"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2434a438ad8fe9037bc6833af8641893">m_sim</a></td></tr>
+<tr class="memitem:a51e580fa26d8bc261d73227dbf0e4e59" id="r_a51e580fa26d8bc261d73227dbf0e4e59"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51e580fa26d8bc261d73227dbf0e4e59">m_label</a></td></tr>
+<tr class="memitem:a9db56d8ee6fd7165361f1106a7f674df" id="r_a9db56d8ee6fd7165361f1106a7f674df"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1averaging_1_1_field_time_average.html">FieldTimeAverage</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9db56d8ee6fd7165361f1106a7f674df">m_averages</a></td></tr>
+<tr class="memdesc:a9db56d8ee6fd7165361f1106a7f674df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector containing all registered field averagers.  <br /></td></tr>
+<tr class="memitem:a31b09e8b1636e141b52c010e57cf328a" id="r_a31b09e8b1636e141b52c010e57cf328a"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, <a class="el" href="classkynema__sgf_1_1averaging_1_1_field_time_average.html">FieldTimeAverage</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31b09e8b1636e141b52c010e57cf328a">m_registered</a></td></tr>
+<tr class="memdesc:a31b09e8b1636e141b52c010e57cf328a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fields registered so far to avoid duplication.  <br /></td></tr>
+<tr class="memitem:abd87613376d721716b587bb82d96a65c" id="r_abd87613376d721716b587bb82d96a65c"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd87613376d721716b587bb82d96a65c">m_start_time</a> {0.0_rt}</td></tr>
+<tr class="memdesc:abd87613376d721716b587bb82d96a65c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time to start averaging the fields.  <br /></td></tr>
+<tr class="memitem:aca64bb0134d0a2214fddc51aa0a02b2e" id="r_aca64bb0134d0a2214fddc51aa0a02b2e"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca64bb0134d0a2214fddc51aa0a02b2e">m_stop_time</a> {std::numeric_limits&lt;amrex::Real&gt;::max()}</td></tr>
+<tr class="memdesc:aca64bb0134d0a2214fddc51aa0a02b2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time to stop averaging the fields.  <br /></td></tr>
+<tr class="memitem:a95d15afac47c1cc48e4bccf6ed008a62" id="r_a95d15afac47c1cc48e4bccf6ed008a62"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95d15afac47c1cc48e4bccf6ed008a62">m_filter</a> {<a class="el" href="namespacekynema__sgf_1_1constants.html#a522e4cd8367efc48dae9370906ea304f">kynema_sgf::constants::LARGE_NUM</a>}</td></tr>
+<tr class="memdesc:a95d15afac47c1cc48e4bccf6ed008a62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time averaging window (in seconds)  <br /></td></tr>
+<tr class="memitem:a7b8f036aede5b6ea2d7561ba59b46cd7" id="r_a7b8f036aede5b6ea2d7561ba59b46cd7"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b8f036aede5b6ea2d7561ba59b46cd7">m_time_interval</a> {-1.}</td></tr>
+<tr class="memdesc:a7b8f036aede5b6ea2d7561ba59b46cd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time averaging time interval (in seconds)  <br /></td></tr>
+<tr class="memitem:ab6e4e110442439747a0942fa05947a34" id="r_ab6e4e110442439747a0942fa05947a34"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6e4e110442439747a0942fa05947a34">m_accumulated_avg_time_interval</a> {0.}</td></tr>
+<tr class="memdesc:ab6e4e110442439747a0942fa05947a34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accumulated averaging time interval.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A collection of time-averaged quantities </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="abd2d01c048d580f0969a161c5f0911ec" name="abd2d01c048d580f0969a161c5f0911ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd2d01c048d580f0969a161c5f0911ec">&#9670;&#160;</a></span>TimeAveraging()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::averaging::TimeAveraging::TimeAveraging </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>label</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac56c184ac1f1b5cb40420922948c8a34" name="ac56c184ac1f1b5cb40420922948c8a34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac56c184ac1f1b5cb40420922948c8a34">&#9670;&#160;</a></span>~TimeAveraging()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::averaging::TimeAveraging::~TimeAveraging </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="ae7c5bb11919e51c3b94510cad7da897e" name="ae7c5bb11919e51c3b94510cad7da897e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7c5bb11919e51c3b94510cad7da897e">&#9670;&#160;</a></span>add_averaging()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; kynema_sgf::averaging::TimeAveraging::add_averaging </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>field_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>avg_type</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;ReAveraging&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aefcb3ab0c7389b36847da5041d0e136a" name="aefcb3ab0c7389b36847da5041d0e136a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefcb3ab0c7389b36847da5041d0e136a">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::averaging::TimeAveraging::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1d019dc5b326c08a41a666437bab3677" name="a1d019dc5b326c08a41a666437bab3677"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d019dc5b326c08a41a666437bab3677">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::averaging::TimeAveraging::initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aadfe220e96430945ddc67e43c0f77372" name="aadfe220e96430945ddc67e43c0f77372"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadfe220e96430945ddc67e43c0f77372">&#9670;&#160;</a></span>output_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::averaging::TimeAveraging::output_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac218c1d2f6d18ba8a65b51d88c900525" name="ac218c1d2f6d18ba8a65b51d88c900525"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac218c1d2f6d18ba8a65b51d88c900525">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::averaging::TimeAveraging::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3ea9d14699152c18d9d9c7de6ee8a7cc" name="a3ea9d14699152c18d9d9c7de6ee8a7cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ea9d14699152c18d9d9c7de6ee8a7cc">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::averaging::TimeAveraging::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae73801e94e9bfe85884834441cee61c3" name="ae73801e94e9bfe85884834441cee61c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae73801e94e9bfe85884834441cee61c3">&#9670;&#160;</a></span>pre_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::averaging::TimeAveraging::pre_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform actions before mesh is created. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="ab6e4e110442439747a0942fa05947a34" name="ab6e4e110442439747a0942fa05947a34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6e4e110442439747a0942fa05947a34">&#9670;&#160;</a></span>m_accumulated_avg_time_interval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::averaging::TimeAveraging::m_accumulated_avg_time_interval {0.}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Accumulated averaging time interval. </p>
+
+</div>
+</div>
+<a id="a9db56d8ee6fd7165361f1106a7f674df" name="a9db56d8ee6fd7165361f1106a7f674df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9db56d8ee6fd7165361f1106a7f674df">&#9670;&#160;</a></span>m_averages</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1averaging_1_1_field_time_average.html">FieldTimeAverage</a>&gt; &gt; kynema_sgf::averaging::TimeAveraging::m_averages</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vector containing all registered field averagers. </p>
+
+</div>
+</div>
+<a id="a95d15afac47c1cc48e4bccf6ed008a62" name="a95d15afac47c1cc48e4bccf6ed008a62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95d15afac47c1cc48e4bccf6ed008a62">&#9670;&#160;</a></span>m_filter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::averaging::TimeAveraging::m_filter {<a class="el" href="namespacekynema__sgf_1_1constants.html#a522e4cd8367efc48dae9370906ea304f">kynema_sgf::constants::LARGE_NUM</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time averaging window (in seconds) </p>
+
+</div>
+</div>
+<a id="a51e580fa26d8bc261d73227dbf0e4e59" name="a51e580fa26d8bc261d73227dbf0e4e59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51e580fa26d8bc261d73227dbf0e4e59">&#9670;&#160;</a></span>m_label</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string kynema_sgf::averaging::TimeAveraging::m_label</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a31b09e8b1636e141b52c010e57cf328a" name="a31b09e8b1636e141b52c010e57cf328a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31b09e8b1636e141b52c010e57cf328a">&#9670;&#160;</a></span>m_registered</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, <a class="el" href="classkynema__sgf_1_1averaging_1_1_field_time_average.html">FieldTimeAverage</a>*&gt; kynema_sgf::averaging::TimeAveraging::m_registered</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fields registered so far to avoid duplication. </p>
+
+</div>
+</div>
+<a id="a2434a438ad8fe9037bc6833af8641893" name="a2434a438ad8fe9037bc6833af8641893"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2434a438ad8fe9037bc6833af8641893">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::averaging::TimeAveraging::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abd87613376d721716b587bb82d96a65c" name="abd87613376d721716b587bb82d96a65c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd87613376d721716b587bb82d96a65c">&#9670;&#160;</a></span>m_start_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::averaging::TimeAveraging::m_start_time {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time to start averaging the fields. </p>
+
+</div>
+</div>
+<a id="aca64bb0134d0a2214fddc51aa0a02b2e" name="aca64bb0134d0a2214fddc51aa0a02b2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca64bb0134d0a2214fddc51aa0a02b2e">&#9670;&#160;</a></span>m_stop_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::averaging::TimeAveraging::m_stop_time {std::numeric_limits&lt;amrex::Real&gt;::max()}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time to stop averaging the fields. </p>
+
+</div>
+</div>
+<a id="a7b8f036aede5b6ea2d7561ba59b46cd7" name="a7b8f036aede5b6ea2d7561ba59b46cd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b8f036aede5b6ea2d7561ba59b46cd7">&#9670;&#160;</a></span>m_time_interval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::averaging::TimeAveraging::m_time_interval {-1.}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time averaging time interval (in seconds) </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/averaging/<a class="el" href="_time_averaging_8_h_source.html">TimeAveraging.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/averaging/<a class="el" href="_time_averaging_8cpp.html">TimeAveraging.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

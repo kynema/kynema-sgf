@@ -1,0 +1,575 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/kynema/kynema_types.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/kynema/kynema_types.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/kynema__types_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-turbine-kynema-kynema-types-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/kynema/kynema_types.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-turbine-kynema-kynema-types-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/kynema/kynema_types.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_a80d9316c48aa709b9bc78e2b746db24.html">wind_energy</a></li><li class="navelem"><a href="dir_9dcf803d990c86a52c151efe46b23ed3.html">actuator</a></li><li class="navelem"><a href="dir_0761b4eef8ed7bf1817548a27f87065f.html">turbine</a></li><li class="navelem"><a href="dir_110b80f95f5b2cd12b3271d8475b0785.html">kynema</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">kynema_types.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="kynema__types_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef KYNEMA_TYPES_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define KYNEMA_TYPES_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="kynema__wrapper_8_h.html">src/wind_energy/actuator/turbine/kynema/kynema_wrapper.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="external__base__types_8_h.html">src/wind_energy/actuator/turbine/external/external_base_types.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceext__turb.html">ext_turb</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html">   15</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structext__turb_1_1_kynema_turbine.html">KynemaTurbine</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structext__turb_1_1_external_turbine.html">ext_turb::ExternalTurbine</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">   19</a></span>    std::unique_ptr&lt;kynema::interfaces::TurbineInterface&gt; <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// Need buffers to make data contiguous to fit into coupling</span></div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a75352b83b4ed107a016cbbe1fec82fde">   22</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a75352b83b4ed107a016cbbe1fec82fde">allocate_buffers</a>()</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a3d2b1d4150c4438feb964df0148ac7c4">buffer_cf</a>.resize(<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0));</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ad70b9bf1afd38fb2e374fc3796c911f8">buffer_pv</a>.resize(</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">length_fluid_velocity</a>(0) + <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">length_fluid_velocity</a>(1) +</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">length_fluid_velocity</a>(2));</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ae732d767a2248d3bb84884539f81ad20">buffer_sv</a>.resize(</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">length_fluid_velocity</a>(0) + <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">length_fluid_velocity</a>(1) +</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">length_fluid_velocity</a>(2));</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a207b6e7066a54e9f3d9359b104df1e6b">buffer_fv</a>.resize(</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">length_fluid_velocity</a>(0) + <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">length_fluid_velocity</a>(1) +</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">length_fluid_velocity</a>(2));</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a314ccae36c7694b9a587d1a345e5fde4">buffer_f</a>.resize(<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0) + <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(1) + <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(2));</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ac3dc07e9b374ef1e49aea492c5ced160">buffer_pf</a>.resize(</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#aca22566dcdc05cc190522bb10345f247">length_position_at_force</a>(0) + <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#aca22566dcdc05cc190522bb10345f247">length_position_at_force</a>(1) +</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#aca22566dcdc05cc190522bb10345f247">length_position_at_force</a>(2));</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a08df7d1cd79859cd82f1d2a73259b43c">buffer_ori</a>.resize(<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#ab98204c34356467a71538d05cdbc93e3">length_orientation</a>());</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a8001de552ae133ae4b1d3cea4b492f48">ptr_cf</a> = &amp;<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a3d2b1d4150c4438feb964df0148ac7c4">buffer_cf</a>[0];</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a5babad56c3dcea448abe997b36c49813">ptr_pv</a> = &amp;<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ad70b9bf1afd38fb2e374fc3796c911f8">buffer_pv</a>[0];</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a211279f2abb2e34fa6547cf869a04fd5">ptr_sv</a> = &amp;<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ae732d767a2248d3bb84884539f81ad20">buffer_sv</a>[0];</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a287d3a47bb4194b1db3f86e6f2c7abb7">ptr_fv</a> = &amp;<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a207b6e7066a54e9f3d9359b104df1e6b">buffer_fv</a>[0];</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a66a9ff0da5bf083eb07bba529beecbdd">ptr_f</a> = &amp;<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a314ccae36c7694b9a587d1a345e5fde4">buffer_f</a>[0];</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a1824f4be05d36dc34fd05f64089cde54">ptr_pf</a> = &amp;<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ac3dc07e9b374ef1e49aea492c5ced160">buffer_pf</a>[0];</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ace591b8b1be7568931f31bae12e71b8a">ptr_ori</a> = &amp;<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a08df7d1cd79859cd82f1d2a73259b43c">buffer_ori</a>[0];</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
+</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="}">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#aae681d58fa5457e18b80c991f74aa916">   50</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#aae681d58fa5457e18b80c991f74aa916">populate_buffers</a>()</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="comment">// Get hub information for nacelle force</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="comment">// Chord is not used, set it to zero</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a3d2b1d4150c4438feb964df0148ac7c4">buffer_cf</a>[0] = 0.;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="comment">// Force is calculated by Kynema-SGF, passed to Kynema</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="comment">// Get position directly from node information</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ac3dc07e9b374ef1e49aea492c5ced160">buffer_pf</a>[0] = <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Turbine().hub_node.position[0];</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ac3dc07e9b374ef1e49aea492c5ced160">buffer_pf</a>[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0)] = <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Turbine().hub_node.position[1];</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ac3dc07e9b374ef1e49aea492c5ced160">buffer_pf</a>[2 * <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0)] =</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Turbine().hub_node.position[2];</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ad70b9bf1afd38fb2e374fc3796c911f8">buffer_pv</a>[0] = <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ac3dc07e9b374ef1e49aea492c5ced160">buffer_pf</a>[0];</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ad70b9bf1afd38fb2e374fc3796c911f8">buffer_pv</a>[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0)] = <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ac3dc07e9b374ef1e49aea492c5ced160">buffer_pf</a>[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0)];</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ad70b9bf1afd38fb2e374fc3796c911f8">buffer_pv</a>[2 * <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0)] = <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ac3dc07e9b374ef1e49aea492c5ced160">buffer_pf</a>[2 * <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0)];</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="comment">// Get solid velocity as well, not used at the moment though</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ae732d767a2248d3bb84884539f81ad20">buffer_sv</a>[0] = <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Turbine().hub_node.velocity[0];</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ae732d767a2248d3bb84884539f81ad20">buffer_sv</a>[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0)] = <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Turbine().hub_node.velocity[1];</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ae732d767a2248d3bb84884539f81ad20">buffer_sv</a>[2 * <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0)] =</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Turbine().hub_node.velocity[2];</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="comment">// Get blade and tower information</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordtype">int</span> idx = 0;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> dir = 0; dir &lt; AMREX_SPACEDIM; ++dir) {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <span class="comment">// Skip hub node</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            ++idx;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> n = 1; n &lt; <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0); ++n) {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                <span class="keywordflow">if</span> (dir == 0) {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                    <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a3d2b1d4150c4438feb964df0148ac7c4">buffer_cf</a>[n] = (float)<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Aerodynamics()</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                                       .bodies[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a6318944b56216569b930fb12ad7575fb">body_index</a>(n)]</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                                       .chord[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2b2ffef92a10f7af49586bd6ee3d59ca">node_index</a>(n)];</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a314ccae36c7694b9a587d1a345e5fde4">buffer_f</a>[idx] = (float)<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Aerodynamics()</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                                    .bodies[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a6318944b56216569b930fb12ad7575fb">body_index</a>(n)]</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                                    .loads[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2b2ffef92a10f7af49586bd6ee3d59ca">node_index</a>(n)][dir];</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ac3dc07e9b374ef1e49aea492c5ced160">buffer_pf</a>[idx] = (float)<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Aerodynamics()</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                                     .bodies[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a6318944b56216569b930fb12ad7575fb">body_index</a>(n)]</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                                     .x_motion[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2b2ffef92a10f7af49586bd6ee3d59ca">node_index</a>(n)][dir];</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ad70b9bf1afd38fb2e374fc3796c911f8">buffer_pv</a>[idx] = <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ac3dc07e9b374ef1e49aea492c5ced160">buffer_pf</a>[idx];</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ae732d767a2248d3bb84884539f81ad20">buffer_sv</a>[idx] = (float)<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Aerodynamics()</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                                     .bodies[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a6318944b56216569b930fb12ad7575fb">body_index</a>(n)]</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                                     .v_motion[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2b2ffef92a10f7af49586bd6ee3d59ca">node_index</a>(n)][dir];</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                ++idx;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            }</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="comment">// Orientation stores a 3x3 tensor (9 elements) for every point</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        std::array&lt;float, 4&gt; q;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> n = 0; n &lt; <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0); ++n) {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            <span class="comment">// convert quaternions to rotation matrix</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> iq = 0; iq &lt; 4; ++iq) {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                <span class="keywordflow">if</span> (n == 0) {</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                    q[iq] =</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                        (float)<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Turbine().hub_node.position[iq + 3];</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                    q[iq] = (float)<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Aerodynamics()</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                                .bodies[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a6318944b56216569b930fb12ad7575fb">body_index</a>(n)]</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                                .qqr_motion_map[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2b2ffef92a10f7af49586bd6ee3d59ca">node_index</a>(n)][iq];</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                }</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            }</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            <span class="keyword">const</span> <span class="keywordtype">int</span> idx = n * 9;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a08df7d1cd79859cd82f1d2a73259b43c">buffer_ori</a>[idx + 0] =</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                q[0] * q[0] + q[1] * q[1] - q[2] * q[2] - q[3] * q[3];</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a08df7d1cd79859cd82f1d2a73259b43c">buffer_ori</a>[idx + 1] = 2. * (q[1] * q[2] - q[0] * q[3]);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a08df7d1cd79859cd82f1d2a73259b43c">buffer_ori</a>[idx + 2] = 2. * (q[1] * q[3] + q[0] * q[2]);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a08df7d1cd79859cd82f1d2a73259b43c">buffer_ori</a>[idx + 3] = 2. * (q[1] * q[2] + q[0] * q[3]);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a08df7d1cd79859cd82f1d2a73259b43c">buffer_ori</a>[idx + 4] =</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                (q[0] * q[0] - q[1] * q[1] + q[2] * q[2] - q[3] * q[3]);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a08df7d1cd79859cd82f1d2a73259b43c">buffer_ori</a>[idx + 5] = 2. * (q[2] * q[3] - q[0] * q[1]);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a08df7d1cd79859cd82f1d2a73259b43c">buffer_ori</a>[idx + 6] = 2. * (q[1] * q[3] - q[0] * q[2]);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a08df7d1cd79859cd82f1d2a73259b43c">buffer_ori</a>[idx + 7] = 2. * (q[2] * q[3] + q[0] * q[1]);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a08df7d1cd79859cd82f1d2a73259b43c">buffer_ori</a>[idx + 8] =</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                (q[0] * q[0] - q[1] * q[1] - q[2] * q[2] + q[3] * q[3]);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    }</div>
+</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="foldopen" id="foldopen00124" data-start="{" data-end="}">
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a6ca5e4fc9faa65a8bf333de8ab695835">  124</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a6ca5e4fc9faa65a8bf333de8ab695835">pass_fluid_velocity_and_hub_load</a>()</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="comment">// Fluid velocity at hub does not need to be passed, loads computed</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="comment">// internally in Kynema-SGF</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="keywordtype">int</span> idx = 0;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> dir = 0; dir &lt; AMREX_SPACEDIM; ++dir) {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            <span class="comment">// Skip hub node</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            ++idx;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> n = 1; n &lt; <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">length_fluid_velocity</a>(0); ++n) {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Aerodynamics()</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>                    .bodies[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a6318944b56216569b930fb12ad7575fb">body_index</a>(n)]</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>                    .v_inflow[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2b2ffef92a10f7af49586bd6ee3d59ca">node_index</a>(n)][dir] = <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a207b6e7066a54e9f3d9359b104df1e6b">buffer_fv</a>[idx];</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>                ++idx;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            }</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        }</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="comment">// Hub load (also called nacelle_force) does need to be passed</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Turbine().hub_node.loads[0] = <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a314ccae36c7694b9a587d1a345e5fde4">buffer_f</a>[0];</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Turbine().hub_node.loads[1] = <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a314ccae36c7694b9a587d1a345e5fde4">buffer_f</a>[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0)];</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Turbine().hub_node.loads[2] =</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>            <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a314ccae36c7694b9a587d1a345e5fde4">buffer_f</a>[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0) + <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(1)];</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="comment">// Fluid velocity at hub is passed separately for the sake of controller</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        std::array&lt;amrex::Real, 3&gt; hub_inflow{</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>            <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a207b6e7066a54e9f3d9359b104df1e6b">buffer_fv</a>[0], <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a207b6e7066a54e9f3d9359b104df1e6b">buffer_fv</a>[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0)],</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a207b6e7066a54e9f3d9359b104df1e6b">buffer_fv</a>[<a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0) + <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(1)]};</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;SetHubInflow(hub_inflow);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    }</div>
+</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span></div>
+<div class="foldopen" id="foldopen00152" data-start="{" data-end="}">
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a6318944b56216569b930fb12ad7575fb">  152</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a6318944b56216569b930fb12ad7575fb">body_index</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="comment">// Considering hub, which is 1 node, subtract</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keywordtype">id</span> -= 1;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keywordtype">int</span> b_id = 0;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="keywordtype">int</span> id_diff = id;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> b = 0; b &lt; (int)<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Aerodynamics().bodies.size(); ++b) {</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>            id_diff -= <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Aerodynamics().bodies[b].loads.size());</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>            <span class="keywordflow">if</span> (id_diff &lt; 0) {</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                b_id = b;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>            }</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        }</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <span class="keywordflow">return</span> b_id;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    }</div>
+</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="foldopen" id="foldopen00169" data-start="{" data-end="}">
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a2b2ffef92a10f7af49586bd6ee3d59ca">  169</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2b2ffef92a10f7af49586bd6ee3d59ca">node_index</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        <span class="comment">// Considering hub, which is 1 node, subtract</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="keywordtype">id</span> -= 1;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <span class="keywordtype">int</span> n_id = 0;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        <span class="keywordtype">int</span> id_diff = id;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> b = 0; b &lt; (int)<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Aerodynamics().bodies.size(); ++b) {</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>            id_diff -= (int)<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Aerodynamics().bodies[b].loads.size();</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>            <span class="keywordflow">if</span> (id_diff &lt; 0) {</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>                n_id = id_diff +</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>                       (int)<a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Aerodynamics().bodies[b].loads.size();</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>            }</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        }</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <span class="keywordflow">return</span> n_id;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    }</div>
+</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="foldopen" id="foldopen00188" data-start="{" data-end="}">
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a03db1024e8b69333d73cbc0473ade7ca">  188</a></span>    <span class="keywordtype">float</span>* <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a03db1024e8b69333d73cbc0473ade7ca">position_at_vel</a>(<span class="keywordtype">int</span> dir)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a5babad56c3dcea448abe997b36c49813">ptr_pv</a> + dir * <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">length_fluid_velocity</a>(0);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    }</div>
+</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="foldopen" id="foldopen00193" data-start="{" data-end="}">
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a363cc86c2b39f1460f41701a175eec40">  193</a></span>    <span class="keywordtype">float</span>* <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a363cc86c2b39f1460f41701a175eec40">solid_velocity</a>(<span class="keywordtype">int</span> dir)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a211279f2abb2e34fa6547cf869a04fd5">ptr_sv</a> + dir * <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">length_fluid_velocity</a>(0);</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    }</div>
+</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="foldopen" id="foldopen00198" data-start="{" data-end="}">
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#ae630b5f59d368d1724f871520008ed04">  198</a></span>    <span class="keywordtype">float</span>* <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#ae630b5f59d368d1724f871520008ed04">fluid_velocity</a>(<span class="keywordtype">int</span> dir)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a287d3a47bb4194b1db3f86e6f2c7abb7">ptr_fv</a> + dir * <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">length_fluid_velocity</a>(0);</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    }</div>
+</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="foldopen" id="foldopen00203" data-start="{" data-end="}">
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#ad4230e5978f7fb5df378171d979bde03">  203</a></span>    <span class="keywordtype">float</span>* <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#ad4230e5978f7fb5df378171d979bde03">force</a>(<span class="keywordtype">int</span> dir)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a66a9ff0da5bf083eb07bba529beecbdd">ptr_f</a> + dir * <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    }</div>
+</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="foldopen" id="foldopen00208" data-start="{" data-end="}">
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a3623183954e692d291710d9cb3e8b59f">  208</a></span>    <span class="keywordtype">float</span>* <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a3623183954e692d291710d9cb3e8b59f">position_at_force</a>(<span class="keywordtype">int</span> dir)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a1824f4be05d36dc34fd05f64089cde54">ptr_pf</a> + dir * <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#aca22566dcdc05cc190522bb10345f247">length_position_at_force</a>(0);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    }</div>
+</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a5c8837925fb1b02f27be044ad8cb356b">  213</a></span>    <span class="keywordtype">float</span>* <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a5c8837925fb1b02f27be044ad8cb356b">chord_at_force</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a8001de552ae133ae4b1d3cea4b492f48">ptr_cf</a>; }</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a1e618166055baa73821477b6e5ed6c28">  215</a></span>    <span class="keywordtype">float</span>* <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a1e618166055baa73821477b6e5ed6c28">orientation</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ace591b8b1be7568931f31bae12e71b8a">ptr_ori</a>; }</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="foldopen" id="foldopen00217" data-start="{" data-end="}">
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">  217</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">length_fluid_velocity</a>(<span class="keywordtype">int</span> dir)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(dir);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    }</div>
+</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="foldopen" id="foldopen00222" data-start="{" data-end="}">
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">  222</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(<span class="keywordtype">int</span> dir)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n_sect{1};</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n = 0; n &lt; <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Aerodynamics().bodies.size();</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>             ++n) {</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>            n_sect += <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">interface</a>-&gt;Aerodynamics().bodies[n].loads.size();</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        }</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(n_sect);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    }</div>
+</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="foldopen" id="foldopen00232" data-start="{" data-end="}">
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#aca22566dcdc05cc190522bb10345f247">  232</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#aca22566dcdc05cc190522bb10345f247">length_position_at_force</a>(<span class="keywordtype">int</span> dir)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(dir);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    }</div>
+</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="foldopen" id="foldopen00237" data-start="{" data-end="}">
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#ab98204c34356467a71538d05cdbc93e3">  237</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#ab98204c34356467a71538d05cdbc93e3">length_orientation</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">length_force</a>(0) * AMREX_SPACEDIM * AMREX_SPACEDIM;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    }</div>
+</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#aa7b06cdaea5b9e6fd50f1847645d986d">  242</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="structext__turb_1_1_kynema_turbine.html#aa7b06cdaea5b9e6fd50f1847645d986d">num_vel_pts_blade</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="structext__turb_1_1_external_turbine.html#aa73dd9740f1a3a005bbf72073c3e19c6">num_pts_blade</a>; }</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#afc9d8b5c8ca086d2ac77f50a0f1d4449">  244</a></span>    amrex::Real <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#afc9d8b5c8ca086d2ac77f50a0f1d4449">fluid_density</a>{1.0_rt};</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#abbc319bca23ee8a20283d00c1db1c705">  245</a></span>    amrex::Real <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#abbc319bca23ee8a20283d00c1db1c705">rotational_speed</a>{0.0_rt};</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#adc9f3dd5ecc2f61d0130f656da07152e">  246</a></span>    amrex::Real <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#adc9f3dd5ecc2f61d0130f656da07152e">generator_power</a>{0.0_rt};</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#ae3883de3ab4b1eecb682bf69bbdc451b">  247</a></span>    amrex::Real <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ae3883de3ab4b1eecb682bf69bbdc451b">wind_speed</a>{0.0_rt};</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a721576d5fbc3863dccc10b4101fcae0b">  248</a></span>    amrex::Real <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a721576d5fbc3863dccc10b4101fcae0b">yaw</a>{0.0_rt};</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#abce8eac807a1aa62666e4510610667c0">  249</a></span>    amrex::Real <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#abce8eac807a1aa62666e4510610667c0">generator_efficiency</a>{1.0_rt};</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a7ed5a3e277deb105e464dee94e3e7ee2">  250</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a7ed5a3e277deb105e464dee94e3e7ee2">substep_counter</a>{0};</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a60b6fb89aa045471d7b0b71a4571d351">  252</a></span>    std::string <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a60b6fb89aa045471d7b0b71a4571d351">controller_shared_lib_path</a>{<span class="stringliteral">&quot;&quot;</span>};</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a5b156d0534ec6c925b2f178abbb079f0">  253</a></span>    std::string <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a5b156d0534ec6c925b2f178abbb079f0">controller_input_file</a>{<span class="stringliteral">&quot;&quot;</span>};</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a3d2b1d4150c4438feb964df0148ac7c4">  255</a></span>    std::vector&lt;float&gt; <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a3d2b1d4150c4438feb964df0148ac7c4">buffer_cf</a>;</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#ad70b9bf1afd38fb2e374fc3796c911f8">  256</a></span>    std::vector&lt;float&gt; <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ad70b9bf1afd38fb2e374fc3796c911f8">buffer_pv</a>;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#ae732d767a2248d3bb84884539f81ad20">  257</a></span>    std::vector&lt;float&gt; <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ae732d767a2248d3bb84884539f81ad20">buffer_sv</a>;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a207b6e7066a54e9f3d9359b104df1e6b">  258</a></span>    std::vector&lt;float&gt; <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a207b6e7066a54e9f3d9359b104df1e6b">buffer_fv</a>;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a314ccae36c7694b9a587d1a345e5fde4">  259</a></span>    std::vector&lt;float&gt; <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a314ccae36c7694b9a587d1a345e5fde4">buffer_f</a>;</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#ac3dc07e9b374ef1e49aea492c5ced160">  260</a></span>    std::vector&lt;float&gt; <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ac3dc07e9b374ef1e49aea492c5ced160">buffer_pf</a>;</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a08df7d1cd79859cd82f1d2a73259b43c">  261</a></span>    std::vector&lt;float&gt; <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a08df7d1cd79859cd82f1d2a73259b43c">buffer_ori</a>;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a8001de552ae133ae4b1d3cea4b492f48">  262</a></span>    <span class="keywordtype">float</span>* <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a8001de552ae133ae4b1d3cea4b492f48">ptr_cf</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a5babad56c3dcea448abe997b36c49813">  263</a></span>    <span class="keywordtype">float</span>* <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a5babad56c3dcea448abe997b36c49813">ptr_pv</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a211279f2abb2e34fa6547cf869a04fd5">  264</a></span>    <span class="keywordtype">float</span>* <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a211279f2abb2e34fa6547cf869a04fd5">ptr_sv</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a287d3a47bb4194b1db3f86e6f2c7abb7">  265</a></span>    <span class="keywordtype">float</span>* <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a287d3a47bb4194b1db3f86e6f2c7abb7">ptr_fv</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a66a9ff0da5bf083eb07bba529beecbdd">  266</a></span>    <span class="keywordtype">float</span>* <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a66a9ff0da5bf083eb07bba529beecbdd">ptr_f</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#a1824f4be05d36dc34fd05f64089cde54">  267</a></span>    <span class="keywordtype">float</span>* <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#a1824f4be05d36dc34fd05f64089cde54">ptr_pf</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_turbine.html#ace591b8b1be7568931f31bae12e71b8a">  268</a></span>    <span class="keywordtype">float</span>* <a class="code hl_variable" href="structext__turb_1_1_kynema_turbine.html#ace591b8b1be7568931f31bae12e71b8a">ptr_ori</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>};</div>
+</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
+<div class="foldopen" id="foldopen00271" data-start="{" data-end="};">
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_solver_data.html">  271</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structext__turb_1_1_kynema_solver_data.html">KynemaSolverData</a></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>{</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_solver_data.html#af0637eb3607450d5c5324067a98966a6">  273</a></span>    std::string <a class="code hl_variable" href="structext__turb_1_1_kynema_solver_data.html#af0637eb3607450d5c5324067a98966a6">output_dir</a>{<span class="stringliteral">&quot;kynema_velocity_data&quot;</span>};</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_solver_data.html#a5db827542c0747584895ec59434375a1">  275</a></span>    amrex::Real <a class="code hl_variable" href="structext__turb_1_1_kynema_solver_data.html#a5db827542c0747584895ec59434375a1">damping_factor</a>{0.0_rt};</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_solver_data.html#adf158f2075ddd0a74ca70a1194885c3e">  276</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structext__turb_1_1_kynema_solver_data.html#adf158f2075ddd0a74ca70a1194885c3e">nl_iter_max</a>{12};</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_solver_data.html#ab12188d511156540a25b569386bd1dab">  277</a></span>    amrex::Real <a class="code hl_variable" href="structext__turb_1_1_kynema_solver_data.html#ab12188d511156540a25b569386bd1dab">abs_err_tol</a>{1.0e-5_rt};</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_solver_data.html#ad031d58118875703ded24e35bf9d5ae8">  278</a></span>    amrex::Real <a class="code hl_variable" href="structext__turb_1_1_kynema_solver_data.html#ad031d58118875703ded24e35bf9d5ae8">rel_err_tol</a>{1.0e-4_rt};</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="structext__turb_1_1_kynema_solver_data.html#a60d3578ff8bb7d79157a9c4da4962e3f">  279</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="structext__turb_1_1_kynema_solver_data.html#a60d3578ff8bb7d79157a9c4da4962e3f">gravity</a>{0.0_rt, 0.0_rt, -9.81_rt};</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>};</div>
+</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>} <span class="comment">// namespace ext_turb</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="preprocessor">#endif </span><span class="comment">/* KYNEMA_TYPES_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aexternal__base__types_8_h_html"><div class="ttname"><a href="external__base__types_8_h.html">external_base_types.H</a></div></div>
+<div class="ttc" id="akynema__wrapper_8_h_html"><div class="ttname"><a href="kynema__wrapper_8_h.html">kynema_wrapper.H</a></div></div>
+<div class="ttc" id="anamespaceext__turb_html"><div class="ttname"><a href="namespaceext__turb.html">ext_turb</a></div><div class="ttdef"><b>Definition</b> external_base_types.H:10</div></div>
+<div class="ttc" id="astructext__turb_1_1_external_turbine_html"><div class="ttname"><a href="structext__turb_1_1_external_turbine.html">ext_turb::ExternalTurbine</a></div><div class="ttdef"><b>Definition</b> external_base_types.H:24</div></div>
+<div class="ttc" id="astructext__turb_1_1_external_turbine_html_aa73dd9740f1a3a005bbf72073c3e19c6"><div class="ttname"><a href="structext__turb_1_1_external_turbine.html#aa73dd9740f1a3a005bbf72073c3e19c6">ext_turb::ExternalTurbine::num_pts_blade</a></div><div class="ttdeci">int num_pts_blade</div><div class="ttdoc">Number of actuator points per blade.</div><div class="ttdef"><b>Definition</b> external_base_types.H:37</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_solver_data_html"><div class="ttname"><a href="structext__turb_1_1_kynema_solver_data.html">ext_turb::KynemaSolverData</a></div><div class="ttdef"><b>Definition</b> kynema_types.H:272</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_solver_data_html_a5db827542c0747584895ec59434375a1"><div class="ttname"><a href="structext__turb_1_1_kynema_solver_data.html#a5db827542c0747584895ec59434375a1">ext_turb::KynemaSolverData::damping_factor</a></div><div class="ttdeci">amrex::Real damping_factor</div><div class="ttdef"><b>Definition</b> kynema_types.H:275</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_solver_data_html_a60d3578ff8bb7d79157a9c4da4962e3f"><div class="ttname"><a href="structext__turb_1_1_kynema_solver_data.html#a60d3578ff8bb7d79157a9c4da4962e3f">ext_turb::KynemaSolverData::gravity</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; gravity</div><div class="ttdef"><b>Definition</b> kynema_types.H:279</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_solver_data_html_ab12188d511156540a25b569386bd1dab"><div class="ttname"><a href="structext__turb_1_1_kynema_solver_data.html#ab12188d511156540a25b569386bd1dab">ext_turb::KynemaSolverData::abs_err_tol</a></div><div class="ttdeci">amrex::Real abs_err_tol</div><div class="ttdef"><b>Definition</b> kynema_types.H:277</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_solver_data_html_ad031d58118875703ded24e35bf9d5ae8"><div class="ttname"><a href="structext__turb_1_1_kynema_solver_data.html#ad031d58118875703ded24e35bf9d5ae8">ext_turb::KynemaSolverData::rel_err_tol</a></div><div class="ttdeci">amrex::Real rel_err_tol</div><div class="ttdef"><b>Definition</b> kynema_types.H:278</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_solver_data_html_adf158f2075ddd0a74ca70a1194885c3e"><div class="ttname"><a href="structext__turb_1_1_kynema_solver_data.html#adf158f2075ddd0a74ca70a1194885c3e">ext_turb::KynemaSolverData::nl_iter_max</a></div><div class="ttdeci">int nl_iter_max</div><div class="ttdef"><b>Definition</b> kynema_types.H:276</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_solver_data_html_af0637eb3607450d5c5324067a98966a6"><div class="ttname"><a href="structext__turb_1_1_kynema_solver_data.html#af0637eb3607450d5c5324067a98966a6">ext_turb::KynemaSolverData::output_dir</a></div><div class="ttdeci">std::string output_dir</div><div class="ttdef"><b>Definition</b> kynema_types.H:273</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html">ext_turb::KynemaTurbine</a></div><div class="ttdef"><b>Definition</b> kynema_types.H:16</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a03db1024e8b69333d73cbc0473ade7ca"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a03db1024e8b69333d73cbc0473ade7ca">ext_turb::KynemaTurbine::position_at_vel</a></div><div class="ttdeci">float * position_at_vel(int dir) const override</div><div class="ttdef"><b>Definition</b> kynema_types.H:188</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a08df7d1cd79859cd82f1d2a73259b43c"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a08df7d1cd79859cd82f1d2a73259b43c">ext_turb::KynemaTurbine::buffer_ori</a></div><div class="ttdeci">std::vector&lt; float &gt; buffer_ori</div><div class="ttdef"><b>Definition</b> kynema_types.H:261</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a1824f4be05d36dc34fd05f64089cde54"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a1824f4be05d36dc34fd05f64089cde54">ext_turb::KynemaTurbine::ptr_pf</a></div><div class="ttdeci">float * ptr_pf</div><div class="ttdef"><b>Definition</b> kynema_types.H:267</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a1e618166055baa73821477b6e5ed6c28"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a1e618166055baa73821477b6e5ed6c28">ext_turb::KynemaTurbine::orientation</a></div><div class="ttdeci">float * orientation() const override</div><div class="ttdef"><b>Definition</b> kynema_types.H:215</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a207b6e7066a54e9f3d9359b104df1e6b"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a207b6e7066a54e9f3d9359b104df1e6b">ext_turb::KynemaTurbine::buffer_fv</a></div><div class="ttdeci">std::vector&lt; float &gt; buffer_fv</div><div class="ttdef"><b>Definition</b> kynema_types.H:258</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a211279f2abb2e34fa6547cf869a04fd5"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a211279f2abb2e34fa6547cf869a04fd5">ext_turb::KynemaTurbine::ptr_sv</a></div><div class="ttdeci">float * ptr_sv</div><div class="ttdef"><b>Definition</b> kynema_types.H:264</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a287d3a47bb4194b1db3f86e6f2c7abb7"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a287d3a47bb4194b1db3f86e6f2c7abb7">ext_turb::KynemaTurbine::ptr_fv</a></div><div class="ttdeci">float * ptr_fv</div><div class="ttdef"><b>Definition</b> kynema_types.H:265</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a2b2ffef92a10f7af49586bd6ee3d59ca"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a2b2ffef92a10f7af49586bd6ee3d59ca">ext_turb::KynemaTurbine::node_index</a></div><div class="ttdeci">int node_index(int id) const</div><div class="ttdef"><b>Definition</b> kynema_types.H:169</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a2f3442857d5ab956c6b6d5a4eb0556c9"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a2f3442857d5ab956c6b6d5a4eb0556c9">ext_turb::KynemaTurbine::length_fluid_velocity</a></div><div class="ttdeci">int length_fluid_velocity(int dir) const override</div><div class="ttdef"><b>Definition</b> kynema_types.H:217</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a314ccae36c7694b9a587d1a345e5fde4"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a314ccae36c7694b9a587d1a345e5fde4">ext_turb::KynemaTurbine::buffer_f</a></div><div class="ttdeci">std::vector&lt; float &gt; buffer_f</div><div class="ttdef"><b>Definition</b> kynema_types.H:259</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a3623183954e692d291710d9cb3e8b59f"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a3623183954e692d291710d9cb3e8b59f">ext_turb::KynemaTurbine::position_at_force</a></div><div class="ttdeci">float * position_at_force(int dir) const override</div><div class="ttdef"><b>Definition</b> kynema_types.H:208</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a363cc86c2b39f1460f41701a175eec40"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a363cc86c2b39f1460f41701a175eec40">ext_turb::KynemaTurbine::solid_velocity</a></div><div class="ttdeci">float * solid_velocity(int dir) const override</div><div class="ttdef"><b>Definition</b> kynema_types.H:193</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a3d2b1d4150c4438feb964df0148ac7c4"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a3d2b1d4150c4438feb964df0148ac7c4">ext_turb::KynemaTurbine::buffer_cf</a></div><div class="ttdeci">std::vector&lt; float &gt; buffer_cf</div><div class="ttdef"><b>Definition</b> kynema_types.H:255</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a5b156d0534ec6c925b2f178abbb079f0"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a5b156d0534ec6c925b2f178abbb079f0">ext_turb::KynemaTurbine::controller_input_file</a></div><div class="ttdeci">std::string controller_input_file</div><div class="ttdef"><b>Definition</b> kynema_types.H:253</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a5babad56c3dcea448abe997b36c49813"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a5babad56c3dcea448abe997b36c49813">ext_turb::KynemaTurbine::ptr_pv</a></div><div class="ttdeci">float * ptr_pv</div><div class="ttdef"><b>Definition</b> kynema_types.H:263</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a5c8837925fb1b02f27be044ad8cb356b"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a5c8837925fb1b02f27be044ad8cb356b">ext_turb::KynemaTurbine::chord_at_force</a></div><div class="ttdeci">float * chord_at_force() const override</div><div class="ttdef"><b>Definition</b> kynema_types.H:213</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a60b6fb89aa045471d7b0b71a4571d351"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a60b6fb89aa045471d7b0b71a4571d351">ext_turb::KynemaTurbine::controller_shared_lib_path</a></div><div class="ttdeci">std::string controller_shared_lib_path</div><div class="ttdef"><b>Definition</b> kynema_types.H:252</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a6318944b56216569b930fb12ad7575fb"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a6318944b56216569b930fb12ad7575fb">ext_turb::KynemaTurbine::body_index</a></div><div class="ttdeci">int body_index(int id) const</div><div class="ttdef"><b>Definition</b> kynema_types.H:152</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a66a9ff0da5bf083eb07bba529beecbdd"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a66a9ff0da5bf083eb07bba529beecbdd">ext_turb::KynemaTurbine::ptr_f</a></div><div class="ttdeci">float * ptr_f</div><div class="ttdef"><b>Definition</b> kynema_types.H:266</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a6ca5e4fc9faa65a8bf333de8ab695835"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a6ca5e4fc9faa65a8bf333de8ab695835">ext_turb::KynemaTurbine::pass_fluid_velocity_and_hub_load</a></div><div class="ttdeci">void pass_fluid_velocity_and_hub_load()</div><div class="ttdef"><b>Definition</b> kynema_types.H:124</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a721576d5fbc3863dccc10b4101fcae0b"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a721576d5fbc3863dccc10b4101fcae0b">ext_turb::KynemaTurbine::yaw</a></div><div class="ttdeci">amrex::Real yaw</div><div class="ttdef"><b>Definition</b> kynema_types.H:248</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a75352b83b4ed107a016cbbe1fec82fde"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a75352b83b4ed107a016cbbe1fec82fde">ext_turb::KynemaTurbine::allocate_buffers</a></div><div class="ttdeci">void allocate_buffers()</div><div class="ttdef"><b>Definition</b> kynema_types.H:22</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a7ed5a3e277deb105e464dee94e3e7ee2"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a7ed5a3e277deb105e464dee94e3e7ee2">ext_turb::KynemaTurbine::substep_counter</a></div><div class="ttdeci">int substep_counter</div><div class="ttdef"><b>Definition</b> kynema_types.H:250</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a8001de552ae133ae4b1d3cea4b492f48"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a8001de552ae133ae4b1d3cea4b492f48">ext_turb::KynemaTurbine::ptr_cf</a></div><div class="ttdeci">float * ptr_cf</div><div class="ttdef"><b>Definition</b> kynema_types.H:262</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a8eda42a3bcb6629c6508cae8f4e7f1b7"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a8eda42a3bcb6629c6508cae8f4e7f1b7">ext_turb::KynemaTurbine::length_force</a></div><div class="ttdeci">int length_force(int dir) const override</div><div class="ttdef"><b>Definition</b> kynema_types.H:222</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_a943cb657d4fb97f9cff6db9eb0d23a9f"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#a943cb657d4fb97f9cff6db9eb0d23a9f">ext_turb::KynemaTurbine::interface</a></div><div class="ttdeci">std::unique_ptr&lt; kynema::interfaces::TurbineInterface &gt; interface</div><div class="ttdef"><b>Definition</b> kynema_types.H:19</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_aa7b06cdaea5b9e6fd50f1847645d986d"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#aa7b06cdaea5b9e6fd50f1847645d986d">ext_turb::KynemaTurbine::num_vel_pts_blade</a></div><div class="ttdeci">int num_vel_pts_blade() const override</div><div class="ttdef"><b>Definition</b> kynema_types.H:242</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_aae681d58fa5457e18b80c991f74aa916"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#aae681d58fa5457e18b80c991f74aa916">ext_turb::KynemaTurbine::populate_buffers</a></div><div class="ttdeci">void populate_buffers()</div><div class="ttdef"><b>Definition</b> kynema_types.H:50</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_ab98204c34356467a71538d05cdbc93e3"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#ab98204c34356467a71538d05cdbc93e3">ext_turb::KynemaTurbine::length_orientation</a></div><div class="ttdeci">int length_orientation() const override</div><div class="ttdef"><b>Definition</b> kynema_types.H:237</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_abbc319bca23ee8a20283d00c1db1c705"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#abbc319bca23ee8a20283d00c1db1c705">ext_turb::KynemaTurbine::rotational_speed</a></div><div class="ttdeci">amrex::Real rotational_speed</div><div class="ttdef"><b>Definition</b> kynema_types.H:245</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_abce8eac807a1aa62666e4510610667c0"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#abce8eac807a1aa62666e4510610667c0">ext_turb::KynemaTurbine::generator_efficiency</a></div><div class="ttdeci">amrex::Real generator_efficiency</div><div class="ttdef"><b>Definition</b> kynema_types.H:249</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_ac3dc07e9b374ef1e49aea492c5ced160"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#ac3dc07e9b374ef1e49aea492c5ced160">ext_turb::KynemaTurbine::buffer_pf</a></div><div class="ttdeci">std::vector&lt; float &gt; buffer_pf</div><div class="ttdef"><b>Definition</b> kynema_types.H:260</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_aca22566dcdc05cc190522bb10345f247"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#aca22566dcdc05cc190522bb10345f247">ext_turb::KynemaTurbine::length_position_at_force</a></div><div class="ttdeci">int length_position_at_force(int dir) const override</div><div class="ttdef"><b>Definition</b> kynema_types.H:232</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_ace591b8b1be7568931f31bae12e71b8a"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#ace591b8b1be7568931f31bae12e71b8a">ext_turb::KynemaTurbine::ptr_ori</a></div><div class="ttdeci">float * ptr_ori</div><div class="ttdef"><b>Definition</b> kynema_types.H:268</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_ad4230e5978f7fb5df378171d979bde03"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#ad4230e5978f7fb5df378171d979bde03">ext_turb::KynemaTurbine::force</a></div><div class="ttdeci">float * force(int dir) const override</div><div class="ttdef"><b>Definition</b> kynema_types.H:203</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_ad70b9bf1afd38fb2e374fc3796c911f8"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#ad70b9bf1afd38fb2e374fc3796c911f8">ext_turb::KynemaTurbine::buffer_pv</a></div><div class="ttdeci">std::vector&lt; float &gt; buffer_pv</div><div class="ttdef"><b>Definition</b> kynema_types.H:256</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_adc9f3dd5ecc2f61d0130f656da07152e"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#adc9f3dd5ecc2f61d0130f656da07152e">ext_turb::KynemaTurbine::generator_power</a></div><div class="ttdeci">amrex::Real generator_power</div><div class="ttdef"><b>Definition</b> kynema_types.H:246</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_ae3883de3ab4b1eecb682bf69bbdc451b"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#ae3883de3ab4b1eecb682bf69bbdc451b">ext_turb::KynemaTurbine::wind_speed</a></div><div class="ttdeci">amrex::Real wind_speed</div><div class="ttdef"><b>Definition</b> kynema_types.H:247</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_ae630b5f59d368d1724f871520008ed04"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#ae630b5f59d368d1724f871520008ed04">ext_turb::KynemaTurbine::fluid_velocity</a></div><div class="ttdeci">float * fluid_velocity(int dir) const override</div><div class="ttdef"><b>Definition</b> kynema_types.H:198</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_ae732d767a2248d3bb84884539f81ad20"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#ae732d767a2248d3bb84884539f81ad20">ext_turb::KynemaTurbine::buffer_sv</a></div><div class="ttdeci">std::vector&lt; float &gt; buffer_sv</div><div class="ttdef"><b>Definition</b> kynema_types.H:257</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html_afc9d8b5c8ca086d2ac77f50a0f1d4449"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html#afc9d8b5c8ca086d2ac77f50a0f1d4449">ext_turb::KynemaTurbine::fluid_density</a></div><div class="ttdeci">amrex::Real fluid_density</div><div class="ttdef"><b>Definition</b> kynema_types.H:244</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

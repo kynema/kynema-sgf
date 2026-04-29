@@ -1,0 +1,276 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/temperature/source_terms/PerturbationForcing.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/temperature/source_terms/PerturbationForcing.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_perturbation_forcing_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-temperature-source-terms-perturbationforcing-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/temperature/source_terms/PerturbationForcing.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-temperature-source-terms-perturbationforcing-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/temperature/source_terms/PerturbationForcing.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_0a302c6baedf52e9cfdc9fc1cbccbefa.html">equation_systems</a></li><li class="navelem"><a href="dir_36d204468a6cc44ec5ffb89287d5f96b.html">temperature</a></li><li class="navelem"><a href="dir_b6f3ebf1291181f1e8d7a11553dd59c2.html">source_terms</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">PerturbationForcing.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_perturbation_forcing_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef PERTURBATIONFORCING_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define PERTURBATIONFORCING_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_temperature_source_8_h.html">src/equation_systems/temperature/TemperatureSource.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_sim_time_8_h.html">src/core/SimTime.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_transport_model_8_h.html">src/transport_models/TransportModel.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1pde_1_1temperature.html">kynema_sgf::pde::temperature</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html">   14</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a1602c420929e83e48240f1f5212a084c">PerturbationForcing</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    : <span class="keyword">public</span> TemperatureSource::Register&lt;PerturbationForcing&gt;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a9bd9c51285cc65e7c6f2240efb2c49c5">   18</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a9bd9c51285cc65e7c6f2240efb2c49c5">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;PerturbationForcing&quot;</span>; }</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a1602c420929e83e48240f1f5212a084c">PerturbationForcing</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#ab6db4c9f8d915968b6f76e0ca47fd969">   22</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#ab6db4c9f8d915968b6f76e0ca47fd969">~PerturbationForcing</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a2b90a4f5d15d83066af358655651f2ca">operator()</a>(</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keywordtype">int</span> lev,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keyword">const</span> amrex::MFIter&amp; mfi,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keyword">const</span> amrex::Box&amp; bx,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> <span class="comment">/*fstate*/</span>,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keyword">const</span> amrex::Array4&lt;amrex::Real&gt;&amp; src_term) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#ab4876a334024f1ea6521f37a2d74817e">   32</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#ab4876a334024f1ea6521f37a2d74817e">m_sim</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a47312b72c1135671ea2bb9b7f27accaa">   33</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a47312b72c1135671ea2bb9b7f27accaa">m_time</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#aa9cd49de97c4ba0b5a367eae3a6fb232">   34</a></span>    <span class="keyword">const</span> amrex::AmrCore&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#aa9cd49de97c4ba0b5a367eae3a6fb232">m_mesh</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a915392dd80fb9693d278c9c477a83b82">   35</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a915392dd80fb9693d278c9c477a83b82">m_start</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a73358f692bc05edd687b65e8d2fd9b04">   36</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a73358f692bc05edd687b65e8d2fd9b04">m_end</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a8ce9cc6d66450d5a888e3bde43e0d0ba">   37</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a8ce9cc6d66450d5a888e3bde43e0d0ba">m_time_index</a>{100};</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a1ba0f6078b8f217e51755c742c5f1be6">   38</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a1ba0f6078b8f217e51755c742c5f1be6">m_start_level</a>{0};</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#af30e242c782d44772bc4bdbf6ea073ed">   39</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#af30e242c782d44772bc4bdbf6ea073ed">m_pert_amplitude</a>{1.0_rt};</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
+</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>} <span class="comment">// namespace kynema_sgf::pde::temperature</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_sim_time_8_h_html"><div class="ttname"><a href="_sim_time_8_h.html">SimTime.H</a></div></div>
+<div class="ttc" id="a_temperature_source_8_h_html"><div class="ttname"><a href="_temperature_source_8_h.html">TemperatureSource.H</a></div></div>
+<div class="ttc" id="a_transport_model_8_h_html"><div class="ttname"><a href="_transport_model_8_h.html">TransportModel.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a></div><div class="ttdef"><b>Definition</b> SimTime.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing_html_a1602c420929e83e48240f1f5212a084c"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a1602c420929e83e48240f1f5212a084c">kynema_sgf::pde::temperature::PerturbationForcing::PerturbationForcing</a></div><div class="ttdeci">PerturbationForcing(const CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> PerturbationForcing.cpp:13</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing_html_a1ba0f6078b8f217e51755c742c5f1be6"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a1ba0f6078b8f217e51755c742c5f1be6">kynema_sgf::pde::temperature::PerturbationForcing::m_start_level</a></div><div class="ttdeci">int m_start_level</div><div class="ttdef"><b>Definition</b> PerturbationForcing.H:38</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing_html_a2b90a4f5d15d83066af358655651f2ca"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a2b90a4f5d15d83066af358655651f2ca">kynema_sgf::pde::temperature::PerturbationForcing::operator()</a></div><div class="ttdeci">void operator()(int lev, const amrex::MFIter &amp;mfi, const amrex::Box &amp;bx, FieldState, const amrex::Array4&lt; amrex::Real &gt; &amp;src_term) const override</div><div class="ttdef"><b>Definition</b> PerturbationForcing.cpp:26</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing_html_a47312b72c1135671ea2bb9b7f27accaa"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a47312b72c1135671ea2bb9b7f27accaa">kynema_sgf::pde::temperature::PerturbationForcing::m_time</a></div><div class="ttdeci">const SimTime &amp; m_time</div><div class="ttdef"><b>Definition</b> PerturbationForcing.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing_html_a73358f692bc05edd687b65e8d2fd9b04"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a73358f692bc05edd687b65e8d2fd9b04">kynema_sgf::pde::temperature::PerturbationForcing::m_end</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_end</div><div class="ttdef"><b>Definition</b> PerturbationForcing.H:36</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing_html_a8ce9cc6d66450d5a888e3bde43e0d0ba"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a8ce9cc6d66450d5a888e3bde43e0d0ba">kynema_sgf::pde::temperature::PerturbationForcing::m_time_index</a></div><div class="ttdeci">int m_time_index</div><div class="ttdef"><b>Definition</b> PerturbationForcing.H:37</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing_html_a915392dd80fb9693d278c9c477a83b82"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a915392dd80fb9693d278c9c477a83b82">kynema_sgf::pde::temperature::PerturbationForcing::m_start</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_start</div><div class="ttdef"><b>Definition</b> PerturbationForcing.H:35</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing_html_a9bd9c51285cc65e7c6f2240efb2c49c5"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#a9bd9c51285cc65e7c6f2240efb2c49c5">kynema_sgf::pde::temperature::PerturbationForcing::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> PerturbationForcing.H:18</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing_html_aa9cd49de97c4ba0b5a367eae3a6fb232"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#aa9cd49de97c4ba0b5a367eae3a6fb232">kynema_sgf::pde::temperature::PerturbationForcing::m_mesh</a></div><div class="ttdeci">const amrex::AmrCore &amp; m_mesh</div><div class="ttdef"><b>Definition</b> PerturbationForcing.H:34</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing_html_ab4876a334024f1ea6521f37a2d74817e"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#ab4876a334024f1ea6521f37a2d74817e">kynema_sgf::pde::temperature::PerturbationForcing::m_sim</a></div><div class="ttdeci">const CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> PerturbationForcing.H:32</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing_html_ab6db4c9f8d915968b6f76e0ca47fd969"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#ab6db4c9f8d915968b6f76e0ca47fd969">kynema_sgf::pde::temperature::PerturbationForcing::~PerturbationForcing</a></div><div class="ttdeci">~PerturbationForcing() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing_html_af30e242c782d44772bc4bdbf6ea073ed"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1temperature_1_1_perturbation_forcing.html#af30e242c782d44772bc4bdbf6ea073ed">kynema_sgf::pde::temperature::PerturbationForcing::m_pert_amplitude</a></div><div class="ttdeci">amrex::Real m_pert_amplitude</div><div class="ttdef"><b>Definition</b> PerturbationForcing.H:39</div></div>
+<div class="ttc" id="agroup__fields_html_ga73fcb43d320747f8ced022629f36af1f"><div class="ttname"><a href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">kynema_sgf::FieldState</a></div><div class="ttdeci">FieldState</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:16</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1pde_1_1temperature_html"><div class="ttname"><a href="namespacekynema__sgf_1_1pde_1_1temperature.html">kynema_sgf::pde::temperature</a></div><div class="ttdef"><b>Definition</b> ABLMesoForcingTemp.cpp:15</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

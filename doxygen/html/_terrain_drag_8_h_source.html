@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/TerrainDrag.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/TerrainDrag.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_terrain_drag_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-physics-terraindrag-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/TerrainDrag.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-physics-terraindrag-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/TerrainDrag.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_ddcea0517a7b80a55be019748a9389a4.html">physics</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">TerrainDrag.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_terrain_drag_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef TERRAINDRAG_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define TERRAINDRAG_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_physics_8_h.html">src/core/Physics.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_field_8_h.html">src/core/Field.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1terraindrag.html">kynema_sgf::terraindrag</a> {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html">   14</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a67963edd0a3da7885a83ad45e38bd044">TerrainDrag</a> : <span class="keyword">public</span> Physics::Register&lt;TerrainDrag&gt;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a0ddf1b9171d1d7a2f2b064540ebf2d7c">   17</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a0ddf1b9171d1d7a2f2b064540ebf2d7c">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;TerrainDrag&quot;</span>; }</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a67963edd0a3da7885a83ad45e38bd044">TerrainDrag</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a7970c159c423835b8a97498f2161722e">   21</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a7970c159c423835b8a97498f2161722e">~TerrainDrag</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#abbda4d9a0fac6214cab7cfab1161c77b">initialize_fields</a>(<span class="keywordtype">int</span> level, <span class="keyword">const</span> amrex::Geometry&amp; geom) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ab4cfc7dccabd4b34266a9d15fd4220cd">   25</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ab4cfc7dccabd4b34266a9d15fd4220cd">pre_init_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#abd4ccb48456613689bb46ecf71217d56">post_init_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ad114f3ad70fe8a500284cca3c0c517ad">post_regrid_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ac08212c6d7e0f413432cfc070252e4a4">pre_advance_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a459f1b8396479555150f52cd582f2d14">   33</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a459f1b8396479555150f52cd582f2d14">post_advance_work</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#adc424b8f0c1d31d0d5c8c05e6ce7bed0">convert_waves_to_terrain_fields</a>();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a754c33379edc915db97089b4ca477e24">   39</a></span>    [[nodiscard]] std::string <a class="code hl_function" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a754c33379edc915db97089b4ca477e24">wave_velocity_field_name</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a81ffff2ff12a5b49b02dc6df5c0bbee6">m_wave_velocity_name</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
+</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#aab7247c22a93241a49cdcdd8fcea388c">   44</a></span>    [[nodiscard]] std::string <a class="code hl_function" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#aab7247c22a93241a49cdcdd8fcea388c">wave_negative_elevation_name</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a6ee7b6d30a2f9a881116f0dec56b530a">m_wave_negative_elevation_name</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
+</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ac436e0cefaad3b10f75c0f60a5915571">   50</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ac436e0cefaad3b10f75c0f60a5915571">m_sim</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#aae143327f8a64c0bbf7d5319f77546c5">   51</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#aae143327f8a64c0bbf7d5319f77546c5">m_repo</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#acfe29d94ed1d3c1286b4f269831da373">   52</a></span>    <span class="keyword">const</span> amrex::AmrCore&amp; <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#acfe29d94ed1d3c1286b4f269831da373">m_mesh</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a5316437cdd55bf809a9cfc52ab539917">   55</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_int_field.html">IntField</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a5316437cdd55bf809a9cfc52ab539917">m_terrain_blank</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a7c36aa8ea310ff306501990692ea05bd">   57</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_int_field.html">IntField</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a7c36aa8ea310ff306501990692ea05bd">m_terrain_drag</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a0572c4a55b542a40bed016887bc1e607">   60</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a0572c4a55b542a40bed016887bc1e607">m_terrain_file</a>{<span class="stringliteral">&quot;terrain.amrwind&quot;</span>};</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a8747953d0f5706c81b61cc554f793932">   63</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a8747953d0f5706c81b61cc554f793932">m_roughness_file</a>{<span class="stringliteral">&quot;terrain.roughness&quot;</span>};</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ad1f1a2ff85b7222ccdb85df60db077ed">   66</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ad1f1a2ff85b7222ccdb85df60db077ed">m_terrainz0</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#acbcceb48e335948a83a898d46dc9842d">   67</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#acbcceb48e335948a83a898d46dc9842d">m_terrain_height</a>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a186176da6e2cb10d168b4d1709b32265">   68</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a186176da6e2cb10d168b4d1709b32265">m_terrain_damping</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ad755473cb7c0ce98bb3fe1bab72f2ee6">   71</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ad755473cb7c0ce98bb3fe1bab72f2ee6">m_damp_east_slope</a>{0.0_rt};</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a59bd0de2904cab95ac3aae7a8d49beea">   72</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a59bd0de2904cab95ac3aae7a8d49beea">m_damp_east_full</a>{0.0_rt};</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#aa7de249fa3ed01fadbf45426052ddc77">   73</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#aa7de249fa3ed01fadbf45426052ddc77">m_horizontal_tau</a>{20.0_rt};</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a92056bf52448be5823327bc34a24e1b7">   74</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a92056bf52448be5823327bc34a24e1b7">m_horizontal_abl_height</a>{1e15_rt};</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a2304458bfc304b83179925b5b51e7f3f">   75</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a2304458bfc304b83179925b5b51e7f3f">m_horizontal_slope_end</a>{1e30_rt};</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a06b7f1977b91b7e02237b5049065f3dd">   76</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a06b7f1977b91b7e02237b5049065f3dd">m_vertical_slope</a>{0.0_rt};</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a8d3c2046f87d861287ad3ae38f821d6f">   77</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a8d3c2046f87d861287ad3ae38f821d6f">m_vertical_full</a>{1e30_rt};</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a5703507c8f360ef6cc849c7e494b5c0c">   79</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a5703507c8f360ef6cc849c7e494b5c0c">m_damp_west_slope</a>{0.0_rt};</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ad23653d1c04bc7efc284cc4afa3b99af">   80</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ad23653d1c04bc7efc284cc4afa3b99af">m_damp_west_full</a>{0.0_rt};</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a37fb79f2c6b36a245d5c3eef06d6d288">   82</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a37fb79f2c6b36a245d5c3eef06d6d288">m_damp_south_slope</a>{0.0_rt};</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ae5606b5ab4d75d1787c72bf912529c68">   83</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ae5606b5ab4d75d1787c72bf912529c68">m_damp_south_full</a>{0.0_rt};</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a6797786f19e9846b573f5f41385d16b4">   85</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a6797786f19e9846b573f5f41385d16b4">m_damp_north_slope</a>{0.0_rt};</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a5b4591e5e834c5b595a5c3f89f15e8f9">   86</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a5b4591e5e834c5b595a5c3f89f15e8f9">m_damp_north_full</a>{0.0_rt};</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a197ea693bf6b5267d103edab6225e198">   89</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a197ea693bf6b5267d103edab6225e198">m_terrain_is_waves</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#af1af89eac9fb6772de352d493838df82">   90</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>* <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#af1af89eac9fb6772de352d493838df82">m_wave_volume_fraction</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#af05932fb71edff1db362eb5b1a9def9d">   91</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>* <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#af05932fb71edff1db362eb5b1a9def9d">m_wave_negative_elevation</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#aca413a8b13a341655879896b9aed15fb">   92</a></span>    <span class="keyword">const</span> std::string <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#aca413a8b13a341655879896b9aed15fb">m_wave_volume_fraction_name</a>{<span class="stringliteral">&quot;ow_vof&quot;</span>};</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a6ee7b6d30a2f9a881116f0dec56b530a">   93</a></span>    <span class="keyword">const</span> std::string <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a6ee7b6d30a2f9a881116f0dec56b530a">m_wave_negative_elevation_name</a>{<span class="stringliteral">&quot;ow_levelset&quot;</span>};</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a81ffff2ff12a5b49b02dc6df5c0bbee6">   94</a></span>    <span class="keyword">const</span> std::string <a class="code hl_variable" href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a81ffff2ff12a5b49b02dc6df5c0bbee6">m_wave_velocity_name</a>{<span class="stringliteral">&quot;ow_velocity&quot;</span>};</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>};</div>
+</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>} <span class="comment">// namespace kynema_sgf::terraindrag</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_field_8_h_html"><div class="ttname"><a href="_field_8_h.html">Field.H</a></div></div>
+<div class="ttc" id="a_physics_8_h_html"><div class="ttname"><a href="_physics_8_h.html">Physics.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_repo_html"><div class="ttname"><a href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a></div><div class="ttdef"><b>Definition</b> FieldRepo.H:86</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_int_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_int_field.html">kynema_sgf::IntField</a></div><div class="ttdef"><b>Definition</b> IntField.H:20</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a0572c4a55b542a40bed016887bc1e607"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a0572c4a55b542a40bed016887bc1e607">kynema_sgf::terraindrag::TerrainDrag::m_terrain_file</a></div><div class="ttdeci">std::string m_terrain_file</div><div class="ttdoc">Terrain file.</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:60</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a06b7f1977b91b7e02237b5049065f3dd"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a06b7f1977b91b7e02237b5049065f3dd">kynema_sgf::terraindrag::TerrainDrag::m_vertical_slope</a></div><div class="ttdeci">amrex::Real m_vertical_slope</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:76</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a0ddf1b9171d1d7a2f2b064540ebf2d7c"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a0ddf1b9171d1d7a2f2b064540ebf2d7c">kynema_sgf::terraindrag::TerrainDrag::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:17</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a186176da6e2cb10d168b4d1709b32265"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a186176da6e2cb10d168b4d1709b32265">kynema_sgf::terraindrag::TerrainDrag::m_terrain_damping</a></div><div class="ttdeci">Field &amp; m_terrain_damping</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:68</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a197ea693bf6b5267d103edab6225e198"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a197ea693bf6b5267d103edab6225e198">kynema_sgf::terraindrag::TerrainDrag::m_terrain_is_waves</a></div><div class="ttdeci">bool m_terrain_is_waves</div><div class="ttdoc">Terrain Drag for waves.</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:89</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a2304458bfc304b83179925b5b51e7f3f"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a2304458bfc304b83179925b5b51e7f3f">kynema_sgf::terraindrag::TerrainDrag::m_horizontal_slope_end</a></div><div class="ttdeci">amrex::Real m_horizontal_slope_end</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:75</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a37fb79f2c6b36a245d5c3eef06d6d288"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a37fb79f2c6b36a245d5c3eef06d6d288">kynema_sgf::terraindrag::TerrainDrag::m_damp_south_slope</a></div><div class="ttdeci">amrex::Real m_damp_south_slope</div><div class="ttdoc">Lateral Damping - (-Y)</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:82</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a459f1b8396479555150f52cd582f2d14"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a459f1b8396479555150f52cd582f2d14">kynema_sgf::terraindrag::TerrainDrag::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a5316437cdd55bf809a9cfc52ab539917"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a5316437cdd55bf809a9cfc52ab539917">kynema_sgf::terraindrag::TerrainDrag::m_terrain_blank</a></div><div class="ttdeci">IntField &amp; m_terrain_blank</div><div class="ttdoc">Blanking field for terrain or buildings.</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a5703507c8f360ef6cc849c7e494b5c0c"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a5703507c8f360ef6cc849c7e494b5c0c">kynema_sgf::terraindrag::TerrainDrag::m_damp_west_slope</a></div><div class="ttdeci">amrex::Real m_damp_west_slope</div><div class="ttdoc">Lateral Damping - (-X)</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:79</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a59bd0de2904cab95ac3aae7a8d49beea"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a59bd0de2904cab95ac3aae7a8d49beea">kynema_sgf::terraindrag::TerrainDrag::m_damp_east_full</a></div><div class="ttdeci">amrex::Real m_damp_east_full</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:72</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a5b4591e5e834c5b595a5c3f89f15e8f9"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a5b4591e5e834c5b595a5c3f89f15e8f9">kynema_sgf::terraindrag::TerrainDrag::m_damp_north_full</a></div><div class="ttdeci">amrex::Real m_damp_north_full</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:86</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a67963edd0a3da7885a83ad45e38bd044"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a67963edd0a3da7885a83ad45e38bd044">kynema_sgf::terraindrag::TerrainDrag::TerrainDrag</a></div><div class="ttdeci">TerrainDrag(CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> TerrainDrag.cpp:19</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a6797786f19e9846b573f5f41385d16b4"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a6797786f19e9846b573f5f41385d16b4">kynema_sgf::terraindrag::TerrainDrag::m_damp_north_slope</a></div><div class="ttdeci">amrex::Real m_damp_north_slope</div><div class="ttdoc">Lateral Damping - Y.</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:85</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a6ee7b6d30a2f9a881116f0dec56b530a"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a6ee7b6d30a2f9a881116f0dec56b530a">kynema_sgf::terraindrag::TerrainDrag::m_wave_negative_elevation_name</a></div><div class="ttdeci">const std::string m_wave_negative_elevation_name</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:93</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a754c33379edc915db97089b4ca477e24"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a754c33379edc915db97089b4ca477e24">kynema_sgf::terraindrag::TerrainDrag::wave_velocity_field_name</a></div><div class="ttdeci">std::string wave_velocity_field_name() const</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:39</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a7970c159c423835b8a97498f2161722e"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a7970c159c423835b8a97498f2161722e">kynema_sgf::terraindrag::TerrainDrag::~TerrainDrag</a></div><div class="ttdeci">~TerrainDrag() override=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a7c36aa8ea310ff306501990692ea05bd"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a7c36aa8ea310ff306501990692ea05bd">kynema_sgf::terraindrag::TerrainDrag::m_terrain_drag</a></div><div class="ttdeci">IntField &amp; m_terrain_drag</div><div class="ttdoc">Terrain drag force term.</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:57</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a81ffff2ff12a5b49b02dc6df5c0bbee6"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a81ffff2ff12a5b49b02dc6df5c0bbee6">kynema_sgf::terraindrag::TerrainDrag::m_wave_velocity_name</a></div><div class="ttdeci">const std::string m_wave_velocity_name</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:94</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a8747953d0f5706c81b61cc554f793932"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a8747953d0f5706c81b61cc554f793932">kynema_sgf::terraindrag::TerrainDrag::m_roughness_file</a></div><div class="ttdeci">std::string m_roughness_file</div><div class="ttdoc">Roughness file.</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:63</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a8d3c2046f87d861287ad3ae38f821d6f"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a8d3c2046f87d861287ad3ae38f821d6f">kynema_sgf::terraindrag::TerrainDrag::m_vertical_full</a></div><div class="ttdeci">amrex::Real m_vertical_full</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:77</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_a92056bf52448be5823327bc34a24e1b7"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#a92056bf52448be5823327bc34a24e1b7">kynema_sgf::terraindrag::TerrainDrag::m_horizontal_abl_height</a></div><div class="ttdeci">amrex::Real m_horizontal_abl_height</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:74</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_aa7de249fa3ed01fadbf45426052ddc77"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#aa7de249fa3ed01fadbf45426052ddc77">kynema_sgf::terraindrag::TerrainDrag::m_horizontal_tau</a></div><div class="ttdeci">amrex::Real m_horizontal_tau</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:73</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_aab7247c22a93241a49cdcdd8fcea388c"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#aab7247c22a93241a49cdcdd8fcea388c">kynema_sgf::terraindrag::TerrainDrag::wave_negative_elevation_name</a></div><div class="ttdeci">std::string wave_negative_elevation_name() const</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:44</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_aae143327f8a64c0bbf7d5319f77546c5"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#aae143327f8a64c0bbf7d5319f77546c5">kynema_sgf::terraindrag::TerrainDrag::m_repo</a></div><div class="ttdeci">const FieldRepo &amp; m_repo</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:51</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_ab4cfc7dccabd4b34266a9d15fd4220cd"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ab4cfc7dccabd4b34266a9d15fd4220cd">kynema_sgf::terraindrag::TerrainDrag::pre_init_actions</a></div><div class="ttdeci">void pre_init_actions() override</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:25</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_abbda4d9a0fac6214cab7cfab1161c77b"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#abbda4d9a0fac6214cab7cfab1161c77b">kynema_sgf::terraindrag::TerrainDrag::initialize_fields</a></div><div class="ttdeci">void initialize_fields(int level, const amrex::Geometry &amp;geom) override</div><div class="ttdef"><b>Definition</b> TerrainDrag.cpp:71</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_abd4ccb48456613689bb46ecf71217d56"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#abd4ccb48456613689bb46ecf71217d56">kynema_sgf::terraindrag::TerrainDrag::post_init_actions</a></div><div class="ttdeci">void post_init_actions() override</div><div class="ttdef"><b>Definition</b> TerrainDrag.cpp:288</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_ac08212c6d7e0f413432cfc070252e4a4"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ac08212c6d7e0f413432cfc070252e4a4">kynema_sgf::terraindrag::TerrainDrag::pre_advance_work</a></div><div class="ttdeci">void pre_advance_work() override</div><div class="ttdef"><b>Definition</b> TerrainDrag.cpp:297</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_ac436e0cefaad3b10f75c0f60a5915571"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ac436e0cefaad3b10f75c0f60a5915571">kynema_sgf::terraindrag::TerrainDrag::m_sim</a></div><div class="ttdeci">CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:50</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_aca413a8b13a341655879896b9aed15fb"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#aca413a8b13a341655879896b9aed15fb">kynema_sgf::terraindrag::TerrainDrag::m_wave_volume_fraction_name</a></div><div class="ttdeci">const std::string m_wave_volume_fraction_name</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:92</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_acbcceb48e335948a83a898d46dc9842d"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#acbcceb48e335948a83a898d46dc9842d">kynema_sgf::terraindrag::TerrainDrag::m_terrain_height</a></div><div class="ttdeci">Field &amp; m_terrain_height</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:67</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_acfe29d94ed1d3c1286b4f269831da373"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#acfe29d94ed1d3c1286b4f269831da373">kynema_sgf::terraindrag::TerrainDrag::m_mesh</a></div><div class="ttdeci">const amrex::AmrCore &amp; m_mesh</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:52</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_ad114f3ad70fe8a500284cca3c0c517ad"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ad114f3ad70fe8a500284cca3c0c517ad">kynema_sgf::terraindrag::TerrainDrag::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdef"><b>Definition</b> TerrainDrag.cpp:306</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_ad1f1a2ff85b7222ccdb85df60db077ed"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ad1f1a2ff85b7222ccdb85df60db077ed">kynema_sgf::terraindrag::TerrainDrag::m_terrainz0</a></div><div class="ttdeci">Field &amp; m_terrainz0</div><div class="ttdoc">Roughness fields.</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:66</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_ad23653d1c04bc7efc284cc4afa3b99af"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ad23653d1c04bc7efc284cc4afa3b99af">kynema_sgf::terraindrag::TerrainDrag::m_damp_west_full</a></div><div class="ttdeci">amrex::Real m_damp_west_full</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:80</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_ad755473cb7c0ce98bb3fe1bab72f2ee6"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ad755473cb7c0ce98bb3fe1bab72f2ee6">kynema_sgf::terraindrag::TerrainDrag::m_damp_east_slope</a></div><div class="ttdeci">amrex::Real m_damp_east_slope</div><div class="ttdoc">Lateral Damping - X.</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:71</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_adc424b8f0c1d31d0d5c8c05e6ce7bed0"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#adc424b8f0c1d31d0d5c8c05e6ce7bed0">kynema_sgf::terraindrag::TerrainDrag::convert_waves_to_terrain_fields</a></div><div class="ttdeci">void convert_waves_to_terrain_fields()</div><div class="ttdoc">Terrain Drag for waves.</div><div class="ttdef"><b>Definition</b> TerrainDrag.cpp:318</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_ae5606b5ab4d75d1787c72bf912529c68"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#ae5606b5ab4d75d1787c72bf912529c68">kynema_sgf::terraindrag::TerrainDrag::m_damp_south_full</a></div><div class="ttdeci">amrex::Real m_damp_south_full</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:83</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_af05932fb71edff1db362eb5b1a9def9d"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#af05932fb71edff1db362eb5b1a9def9d">kynema_sgf::terraindrag::TerrainDrag::m_wave_negative_elevation</a></div><div class="ttdeci">Field * m_wave_negative_elevation</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:91</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1terraindrag_1_1_terrain_drag_html_af1af89eac9fb6772de352d493838df82"><div class="ttname"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html#af1af89eac9fb6772de352d493838df82">kynema_sgf::terraindrag::TerrainDrag::m_wave_volume_fraction</a></div><div class="ttdeci">Field * m_wave_volume_fraction</div><div class="ttdef"><b>Definition</b> TerrainDrag.H:90</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1terraindrag_html"><div class="ttname"><a href="namespacekynema__sgf_1_1terraindrag.html">kynema_sgf::terraindrag</a></div><div class="ttdef"><b>Definition</b> TerrainDrag.cpp:15</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

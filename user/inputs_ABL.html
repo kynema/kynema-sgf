@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Section: ABL &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Section: ABLMesoForcing" href="inputs_ABL_meso_forcing.html" />
+    <link rel="prev" title="Section: TKE Sources" href="inputs_TKE_Sources.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="inputs.html#input-file-reference">Input file reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="inputs_geometry.html">Section: geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_amr.html">Section: AMReX and AMR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_tagging.html">Section: tagging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_time.html">Section: time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_io.html">Section: io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_incflo.html">Section: incflo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_transport.html">Section: transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_turbulence.html">Section: turbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Momentum_Sources.html">Section: Momentum Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Temperature_Sources.html">Section: Temperature Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_TKE_Sources.html">Section: TKE Sources</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Section: ABL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL_meso_forcing.html">Section: ABLMesoForcing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_SyntheticTurbulence.html">Section: SyntheticTurbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Boundary_conditions.html">Section: Boundary conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_MLMG.html">Section: MLMG options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_post_processing.html">Section: Post-processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Sampling.html">Section: Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Subvolume.html">Section: Subvolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Averaging.html">Section: Averaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_KineticEnergy.html">Section: KineticEnergy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Enstrophy.html">Section: Enstrophy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FieldNorms.html">Section: FieldNorms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Actuator.html">Section: Actuator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_multiphase.html">Section: MultiPhase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ocean_waves.html">Section: Ocean Waves</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+          <li class="breadcrumb-item"><a href="inputs.html">Kynema-SGF inputs file</a></li>
+      <li class="breadcrumb-item active">Section: ABL</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/inputs_ABL.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-abl">
+<span id="inputs-abl"></span><h1>Section: ABL<a class="headerlink" href="#section-abl" title="Link to this heading"></a></h1>
+<p>This section is for setting atmospheric boundary layer parameters.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.kappa">
+<span class="sig-name descname"><span class="pre">ABL.kappa</span></span><a class="headerlink" href="#input_param-ABL.kappa" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.41</p>
+<p>Wall model coefficient.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.surface_roughness_z0">
+<span class="sig-name descname"><span class="pre">ABL.surface_roughness_z0</span></span><a class="headerlink" href="#input_param-ABL.surface_roughness_z0" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.1</p>
+<p>Wall model surface roughness length (in meters). When specified, this sets both the aerodynamic
+(pertaining to velocity) and thermal (pertaining to temperature) roughness lengths.
+These roughness lengths can be set separately using the two parameters listed below.
+Specifying these separately will override the combine parameter; however,
+if this parameter (which sets both) is used with only one of the roughness parameters below,
+the code will abort due to the ambiguity.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.aerodynamic_roughness_length">
+<span class="sig-name descname"><span class="pre">ABL.aerodynamic_roughness_length</span></span><a class="headerlink" href="#input_param-ABL.aerodynamic_roughness_length" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.1</p>
+<p>Wall model surface roughness length (in meters) for aerodynamic processes, i.e., the wall momentum flux/shear stress model.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.thermal_roughness_length">
+<span class="sig-name descname"><span class="pre">ABL.thermal_roughness_length</span></span><a class="headerlink" href="#input_param-ABL.thermal_roughness_length" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.1</p>
+<p>Wall model surface roughness length (in meters) for thermal processes, i.e., the wall temperature flux model.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.normal_direction">
+<span class="sig-name descname"><span class="pre">ABL.normal_direction</span></span><a class="headerlink" href="#input_param-ABL.normal_direction" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 2</p>
+<p>Wall model normal direction. x-direction = 0, y-direction = 1, z-direction = 2.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.log_law_height">
+<span class="sig-name descname"><span class="pre">ABL.log_law_height</span></span><a class="headerlink" href="#input_param-ABL.log_law_height" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>Height to evaluate the log law for the wall model.
+Currently, if this parameter is not specified in the input file, the first half cell height is calculated
+and is used to set the log law height.
+Therefore the log law height depends on the domain size and number of elements in the normal direction.
+If this parameter is set to a number the log law is evaluated at a fixed height.
+Note: currently the fluctuating velocity terms in the shear stress model are only
+available at the first cell center above the wall. This limitation will be removed soon.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.surface_temp_flux">
+<span class="sig-name descname"><span class="pre">ABL.surface_temp_flux</span></span><a class="headerlink" href="#input_param-ABL.surface_temp_flux" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>Surface temperature flux setting for the ABL wall function. Specifies a constant temperature flux
+at the wall-modeled boundary. This is not a required argument because there are other options for
+setting up the surface temperature condition.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.surface_temp_timetable">
+<span class="sig-name descname"><span class="pre">ABL.surface_temp_timetable</span></span><a class="headerlink" href="#input_param-ABL.surface_temp_timetable" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional</p>
+<p>File name of surface temperature time table, allowing the surface temperature
+to change with time without specifying a surface temperature rate.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.surface_temp_rate">
+<span class="sig-name descname"><span class="pre">ABL.surface_temp_rate</span></span><a class="headerlink" href="#input_param-ABL.surface_temp_rate" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>Constant rate at which the surface temperature changes.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.surface_temp_init">
+<span class="sig-name descname"><span class="pre">ABL.surface_temp_init</span></span><a class="headerlink" href="#input_param-ABL.surface_temp_init" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>Initial temperature of the wall-modeled surface. This parameter is only active
+when the surface temperature rate is specified. If this parameter is active but not
+specified, the initial temperature will be set to the reference temperature of the simulation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.surface_temp_rate_tstart">
+<span class="sig-name descname"><span class="pre">ABL.surface_temp_rate_tstart</span></span><a class="headerlink" href="#input_param-ABL.surface_temp_rate_tstart" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>Start time of the surface temperature rate of change. Prior to this time,
+the surface temperature remains at the initial value. This parameter is only
+active when the surface temperature rate is specified. The default start time is 0.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.temperature_heights">
+<span class="sig-name descname"><span class="pre">ABL.temperature_heights</span></span><a class="headerlink" href="#input_param-ABL.temperature_heights" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of Reals, mandatory</p>
+<p>Height(s) in meters at which temperature values are prescribed.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.temperature_values">
+<span class="sig-name descname"><span class="pre">ABL.temperature_values</span></span><a class="headerlink" href="#input_param-ABL.temperature_values" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of Reals (has to be same length as <a class="reference internal" href="#input_param-ABL.temperature_heights"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABL.temperature_heights</span></code></a>), mandatory</p>
+<p>Temperature values in Kelvin at the corresponding <a class="reference internal" href="#input_param-ABL.temperature_heights"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABL.temperature_heights</span></code></a>.
+The temperature below the first height is assumed to be constant and equal to the
+first temperature value.
+The temperature between values is initialized to have linear variation.
+The final temperature is constant above the last specified height.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.perturb_velocity">
+<span class="sig-name descname"><span class="pre">ABL.perturb_velocity</span></span><a class="headerlink" href="#input_param-ABL.perturb_velocity" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = true</p>
+<p>If true this flag turns on perturbations to the freestream flow.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.pertub_ref_height">
+<span class="sig-name descname"><span class="pre">ABL.pertub_ref_height</span></span><a class="headerlink" href="#input_param-ABL.pertub_ref_height" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 50.0</p>
+<p>Reference height for velocity perturbations,
+perturbations exist below this height and decay above this height.
+Only active when <a class="reference internal" href="#input_param-ABL.perturb_velocity"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABL.perturb_velocity</span></code></a> = true.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.Uperiods">
+<span class="sig-name descname"><span class="pre">ABL.Uperiods</span></span><a class="headerlink" href="#input_param-ABL.Uperiods" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 4.0</p>
+<p>Number of sinusoidal waves in x-direction.
+Only active when <a class="reference internal" href="#input_param-ABL.perturb_velocity"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABL.perturb_velocity</span></code></a> = true.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.Vperiods">
+<span class="sig-name descname"><span class="pre">ABL.Vperiods</span></span><a class="headerlink" href="#input_param-ABL.Vperiods" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 4.0</p>
+<p>Number of sinusoidal waves in y-direction.
+Only active when <a class="reference internal" href="#input_param-ABL.perturb_velocity"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABL.perturb_velocity</span></code></a> = true.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.deltaU">
+<span class="sig-name descname"><span class="pre">ABL.deltaU</span></span><a class="headerlink" href="#input_param-ABL.deltaU" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1.0</p>
+<p>Amplitude of fluctuations in x-direction.
+Only active when <a class="reference internal" href="#input_param-ABL.perturb_velocity"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABL.perturb_velocity</span></code></a> = true.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.deltaV">
+<span class="sig-name descname"><span class="pre">ABL.deltaV</span></span><a class="headerlink" href="#input_param-ABL.deltaV" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1.0</p>
+<p>Amplitude of fluctuations in y-direction.
+Only active when <a class="reference internal" href="#input_param-ABL.perturb_velocity"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABL.perturb_velocity</span></code></a> = true.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.perturb_temperature">
+<span class="sig-name descname"><span class="pre">ABL.perturb_temperature</span></span><a class="headerlink" href="#input_param-ABL.perturb_temperature" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = false</p>
+<p>Perturb temperature field with random fluctuations.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.theta_amplitude">
+<span class="sig-name descname"><span class="pre">ABL.theta_amplitude</span></span><a class="headerlink" href="#input_param-ABL.theta_amplitude" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.8 K</p>
+<p>Amplitude of the temperature perturbations added to the initial field. Only
+active when <a class="reference internal" href="#input_param-ABL.perturb_temperature"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABL.perturb_temperature</span></code></a> is true.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.cutoff_height">
+<span class="sig-name descname"><span class="pre">ABL.cutoff_height</span></span><a class="headerlink" href="#input_param-ABL.cutoff_height" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = domain height</p>
+<p>Height below which temperature perturbations are added</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.random_gauss_mean">
+<span class="sig-name descname"><span class="pre">ABL.random_gauss_mean</span></span><a class="headerlink" href="#input_param-ABL.random_gauss_mean" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.0</p>
+<p>Mean for the Gaussian random number generator</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.random_gauss_var">
+<span class="sig-name descname"><span class="pre">ABL.random_gauss_var</span></span><a class="headerlink" href="#input_param-ABL.random_gauss_var" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1.0</p>
+<p>Variance for the Gaussian random number generator</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.bndry_file">
+<span class="sig-name descname"><span class="pre">ABL.bndry_file</span></span><a class="headerlink" href="#input_param-ABL.bndry_file" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = “”</p>
+<p>NetCDF-4 file name for ABL inflow</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.bndry_io_mode">
+<span class="sig-name descname"><span class="pre">ABL.bndry_io_mode</span></span><a class="headerlink" href="#input_param-ABL.bndry_io_mode" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, optional, default = -1</p>
+<p>IO mode (0=output, 1=input)</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.bndry_planes">
+<span class="sig-name descname"><span class="pre">ABL.bndry_planes</span></span><a class="headerlink" href="#input_param-ABL.bndry_planes" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = “”</p>
+<p>IO planes for ABL inflow</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.bndry_output_start_time">
+<span class="sig-name descname"><span class="pre">ABL.bndry_output_start_time</span></span><a class="headerlink" href="#input_param-ABL.bndry_output_start_time" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.0</p>
+<p>Time at which to start ABL inflow output</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.bndry_var_names">
+<span class="sig-name descname"><span class="pre">ABL.bndry_var_names</span></span><a class="headerlink" href="#input_param-ABL.bndry_var_names" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = “”</p>
+<p>Variables for IO for ABL inflow</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.wall_shear_stress_type">
+<span class="sig-name descname"><span class="pre">ABL.wall_shear_stress_type</span></span><a class="headerlink" href="#input_param-ABL.wall_shear_stress_type" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = “Moeng”</p>
+<p>Wall shear stress model: options include
+“constant”, “local”, “Schumann”, and “Moeng”</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.bndry_output_format">
+<span class="sig-name descname"><span class="pre">ABL.bndry_output_format</span></span><a class="headerlink" href="#input_param-ABL.bndry_output_format" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = “native”</p>
+<p>Output of boundary plane files. Valid values are <code class="docutils literal notranslate"><span class="pre">netcdf</span></code> and <code class="docutils literal notranslate"><span class="pre">native</span></code>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.initial_condition_input_file">
+<span class="sig-name descname"><span class="pre">ABL.initial_condition_input_file</span></span><a class="headerlink" href="#input_param-ABL.initial_condition_input_file" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default= “”</p>
+<p>File that contains initial conditions for the
+velocity field in netcdf file format.
+This file is expected to have the same dimensions as the simulation.
+Values are passed directly from the file to the velocity field inside the code.
+Only spanwise velocity components are supported.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.anelastic">
+<span class="sig-name descname"><span class="pre">ABL.anelastic</span></span><a class="headerlink" href="#input_param-ABL.anelastic" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default= false</p>
+<p>Activate anelastic behavior. This adds <cite>reference_density</cite> and
+<cite>reference_pressure</cite> fields.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.bottom_reference_pressure">
+<span class="sig-name descname"><span class="pre">ABL.bottom_reference_pressure</span></span><a class="headerlink" href="#input_param-ABL.bottom_reference_pressure" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1.01325e5</p>
+<p>Reference pressure at the bottom of the domain. Used for anelastic ABL.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.initial_wind_profile">
+<span class="sig-name descname"><span class="pre">ABL.initial_wind_profile</span></span><a class="headerlink" href="#input_param-ABL.initial_wind_profile" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default= false</p>
+<p>Activates the reading of wind speed profile from a file. Recommended for
+RANS models and also for wind conditions input from climate model.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.rans_1dprofile_file">
+<span class="sig-name descname"><span class="pre">ABL.rans_1dprofile_file</span></span><a class="headerlink" href="#input_param-ABL.rans_1dprofile_file" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = “”</p>
+<p>This input is required when the ABL.initial_wind_profile is set to True.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.minimum_vertical_position">
+<span class="sig-name descname"><span class="pre">ABL.minimum_vertical_position</span></span><a class="headerlink" href="#input_param-ABL.minimum_vertical_position" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.1</p>
+<p>When using an initial wind profile, this parameter limits how small the vertical
+position can be. It affects calculations in the initialization and in DragForcing.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.meso_sponge_start">
+<span class="sig-name descname"><span class="pre">ABL.meso_sponge_start</span></span><a class="headerlink" href="#input_param-ABL.meso_sponge_start" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 600</p>
+<p>Approximate height of the planetary boundary layer height to enable the forcing
+in the free atmosphere. Recommended for use with RANS model and optionally to run
+LES with non canonical flow conditions. If not specified in the input file, the
+default value is active for the TKE source term but not for velocity or temperature.
+For this value to be used, the source terms must be included as input arguments
+as follows, for temperature, velocity, or TKE, respectively.</p>
+<p><cite>Temperature.source_terms  = TemperatureFreeAtmosphereForcing</cite></p>
+<p><cite>ICNS.source_terms  = VelocityFreeAtmosphereForcing</cite></p>
+<p><cite>TKE.source_terms = KransAxell</cite></p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.velocity_sponge_start">
+<span class="sig-name descname"><span class="pre">ABL.velocity_sponge_start</span></span><a class="headerlink" href="#input_param-ABL.velocity_sponge_start" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>Instead of specifying the same sponge start location for velocity, temperature, and TKE,
+this input argument allows the velocity sponge start (involved in <cite>VelocityFreeAtmosphereForcing</cite>)
+to be differentiated from the value specified by <a class="reference internal" href="#input_param-ABL.meso_sponge_start"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABL.meso_sponge_start</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.temp_sponge_start">
+<span class="sig-name descname"><span class="pre">ABL.temp_sponge_start</span></span><a class="headerlink" href="#input_param-ABL.temp_sponge_start" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>Instead of specifying the same sponge start location for velocity, temperature, and TKE,
+this input argument allows the temperature sponge start (involved in <cite>TemperatureFreeAtmosphereForcing</cite>)
+to be differentiated from the value specified by <a class="reference internal" href="#input_param-ABL.meso_sponge_start"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABL.meso_sponge_start</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.wall_het_model">
+<span class="sig-name descname"><span class="pre">ABL.wall_het_model</span></span><a class="headerlink" href="#input_param-ABL.wall_het_model" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = “none”</p>
+<p>Allows the use of different surface model options for the Monin-Obukhov length. Currently supports two options:
+(i) “none” - original model in the code and (ii) “mol” - Monin-Obukhov length is constant while heat-flux varies</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.monin_obukhov_length">
+<span class="sig-name descname"><span class="pre">ABL.monin_obukhov_length</span></span><a class="headerlink" href="#input_param-ABL.monin_obukhov_length" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = -1e30</p>
+<p>Used in conjunction with <cite>ABL.wall_het_model</cite>. The default value runs a neutral boundary layer.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.terrain_aligned_profile">
+<span class="sig-name descname"><span class="pre">ABL.terrain_aligned_profile</span></span><a class="headerlink" href="#input_param-ABL.terrain_aligned_profile" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default= false</p>
+<p>Used in conjunction with immersed forcing for terrain. This option allows the user to align the wind, temperature and turbulence profiles to be aligned with the terrain.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inputs_TKE_Sources.html" class="btn btn-neutral float-left" title="Section: TKE Sources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inputs_ABL_meso_forcing.html" class="btn btn-neutral float-right" title="Section: ABLMesoForcing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

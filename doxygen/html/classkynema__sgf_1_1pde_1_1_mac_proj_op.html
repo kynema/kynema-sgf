@@ -1,0 +1,737 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::pde::MacProjOp Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::pde::MacProjOp Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1pde_1_1_mac_proj_op.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="macprojop-class-reference">
+<h1>MacProjOp Class Reference<a class="headerlink" href="#macprojop-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::pde::MacProjOp Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1pde.html">pde</a></li><li class="navelem"><a href="classkynema__sgf_1_1pde_1_1_mac_proj_op.html">MacProjOp</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1pde_1_1_mac_proj_op-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::pde::MacProjOp Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="icns__advection_8_h_source.html">icns_advection.H</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::pde::MacProjOp:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1pde_1_1_mac_proj_op__coll__graph.svg" width="100%" height="585"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:af126c3ccb28b34e3ffe353cc16e92b17" id="r_af126c3ccb28b34e3ffe353cc16e92b17"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af126c3ccb28b34e3ffe353cc16e92b17">FaceFabPtrVec</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a00b85f2ab22bccb5d639cc1566619f0f" id="r_a00b85f2ab22bccb5d639cc1566619f0f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00b85f2ab22bccb5d639cc1566619f0f">MacProjOp</a> (<a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;, <a class="el" href="classkynema__sgf_1_1_field_boundary_mgr.html">FieldBoundaryMgr</a> &amp;, bool, bool, bool, bool)</td></tr>
+<tr class="memitem:ab21227d56ac35e75f53402b24d5d4968" id="r_ab21227d56ac35e75f53402b24d5d4968"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab21227d56ac35e75f53402b24d5d4968">set_inflow_velocity</a> (amrex::Real time)</td></tr>
+<tr class="memitem:a8a3b26bf1cd6966c799640f59cfe6c6a" id="r_a8a3b26bf1cd6966c799640f59cfe6c6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a3b26bf1cd6966c799640f59cfe6c6a">operator()</a> (<a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate, amrex::Real dt)</td></tr>
+<tr class="memitem:a8f85b6b9bf39478743edcde4f46d2855" id="r_a8f85b6b9bf39478743edcde4f46d2855"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f85b6b9bf39478743edcde4f46d2855">rho0</a> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ab377c8127a7fb072258db46f8a224873" id="r_ab377c8127a7fb072258db46f8a224873"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab377c8127a7fb072258db46f8a224873">mac_proj_to_uniform_space</a> (const <a class="el" href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a> &amp;, <a class="el" href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a> &amp;, <a class="el" href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a> &amp;, <a class="el" href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a> &amp;, amrex::Array&lt; amrex::MultiFab *, <a class="el" href="structkynema__sgf_1_1pde_1_1_i_c_n_s.html#a5627dfb8ee4cdac26a51b554941fea62">ICNS::ndim</a> &gt; &amp;, amrex::Real, int)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a98079e23f691b66adfd6d73d57ef8d49" id="r_a98079e23f691b66adfd6d73d57ef8d49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98079e23f691b66adfd6d73d57ef8d49">init_projector</a> (const <a class="el" href="#af126c3ccb28b34e3ffe353cc16e92b17">FaceFabPtrVec</a> &amp;)</td></tr>
+<tr class="memitem:a4f8e31178085a7b8cef984bb04c3d2bc" id="r_a4f8e31178085a7b8cef984bb04c3d2bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f8e31178085a7b8cef984bb04c3d2bc">init_projector</a> (amrex::Real)</td></tr>
+<tr class="memitem:ace58a9953514cb85b6ff6505000f8107" id="r_ace58a9953514cb85b6ff6505000f8107"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace58a9953514cb85b6ff6505000f8107">enforce_inout_solvability</a> (const amrex::Vector&lt; amrex::Array&lt; amrex::MultiFab *, AMREX_SPACEDIM &gt; &gt; &amp;a_umac)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a1e74aa36ccea65cce880e30728a5e67f" id="r_a1e74aa36ccea65cce880e30728a5e67f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e74aa36ccea65cce880e30728a5e67f">m_repo</a></td></tr>
+<tr class="memitem:aa24bbdff54e3574583997ffdda9cd927" id="r_aa24bbdff54e3574583997ffdda9cd927"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field_boundary_mgr.html">FieldBoundaryMgr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa24bbdff54e3574583997ffdda9cd927">m_fb_mgr</a></td></tr>
+<tr class="memitem:a36018438d3d8dc9ffe8e4212cc68c613" id="r_a36018438d3d8dc9ffe8e4212cc68c613"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; Hydro::MacProjector &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36018438d3d8dc9ffe8e4212cc68c613">m_mac_proj</a></td></tr>
+<tr class="memitem:a5a050f8bf15d009aae36f1dbbb0f2c3c" id="r_a5a050f8bf15d009aae36f1dbbb0f2c3c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1_m_l_m_g_options.html">MLMGOptions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a050f8bf15d009aae36f1dbbb0f2c3c">m_options</a></td></tr>
+<tr class="memitem:a5941bbf6ab83c05f549d6ebd6fbaa274" id="r_a5941bbf6ab83c05f549d6ebd6fbaa274"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5941bbf6ab83c05f549d6ebd6fbaa274">m_has_overset</a> {false}</td></tr>
+<tr class="memitem:a81ffe52df9df776d92ed7385ca78e53f" id="r_a81ffe52df9df776d92ed7385ca78e53f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81ffe52df9df776d92ed7385ca78e53f">m_need_init</a> {true}</td></tr>
+<tr class="memitem:a8dc304bef9a52b472eb8d325c3aece01" id="r_a8dc304bef9a52b472eb8d325c3aece01"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8dc304bef9a52b472eb8d325c3aece01">m_variable_density</a> {false}</td></tr>
+<tr class="memitem:a950244d89d96fd28e46de5c60dc19ed1" id="r_a950244d89d96fd28e46de5c60dc19ed1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a950244d89d96fd28e46de5c60dc19ed1">m_mesh_mapping</a> {false}</td></tr>
+<tr class="memitem:aff1f68b014ad87a36c1fdf497b6987c0" id="r_aff1f68b014ad87a36c1fdf497b6987c0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff1f68b014ad87a36c1fdf497b6987c0">m_is_anelastic</a> {false}</td></tr>
+<tr class="memitem:a1bb74da4a7c8ae860e49727c5fa29b48" id="r_a1bb74da4a7c8ae860e49727c5fa29b48"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1bb74da4a7c8ae860e49727c5fa29b48">m_rho_0</a> {1.0_rt}</td></tr>
+</table>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="af126c3ccb28b34e3ffe353cc16e92b17" name="af126c3ccb28b34e3ffe353cc16e92b17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af126c3ccb28b34e3ffe353cc16e92b17">&#9670;&#160;</a></span>FaceFabPtrVec</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#af126c3ccb28b34e3ffe353cc16e92b17">kynema_sgf::pde::MacProjOp::FaceFabPtrVec</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line"> </div>
+<div class="line">        amrex::Vector&lt;amrex::Array&lt;const amrex::MultiFab*, ICNS::ndim&gt;&gt;</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a00b85f2ab22bccb5d639cc1566619f0f" name="a00b85f2ab22bccb5d639cc1566619f0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00b85f2ab22bccb5d639cc1566619f0f">&#9670;&#160;</a></span>MacProjOp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::pde::MacProjOp::MacProjOp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>repo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_field_boundary_mgr.html">FieldBoundaryMgr</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fb_mgr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>has_overset</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>variable_density</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>mesh_mapping</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_anelastic</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="ace58a9953514cb85b6ff6505000f8107" name="ace58a9953514cb85b6ff6505000f8107"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace58a9953514cb85b6ff6505000f8107">&#9670;&#160;</a></span>enforce_inout_solvability()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::MacProjOp::enforce_inout_solvability </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Vector&lt; amrex::Array&lt; amrex::MultiFab *, AMREX_SPACEDIM &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>a_umac</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4f8e31178085a7b8cef984bb04c3d2bc" name="a4f8e31178085a7b8cef984bb04c3d2bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f8e31178085a7b8cef984bb04c3d2bc">&#9670;&#160;</a></span>init_projector() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::MacProjOp::init_projector </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>beta</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a98079e23f691b66adfd6d73d57ef8d49" name="a98079e23f691b66adfd6d73d57ef8d49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98079e23f691b66adfd6d73d57ef8d49">&#9670;&#160;</a></span>init_projector() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::MacProjOp::init_projector </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#af126c3ccb28b34e3ffe353cc16e92b17">FaceFabPtrVec</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>beta</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab377c8127a7fb072258db46f8a224873" name="ab377c8127a7fb072258db46f8a224873"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab377c8127a7fb072258db46f8a224873">&#9670;&#160;</a></span>mac_proj_to_uniform_space()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::MacProjOp::mac_proj_to_uniform_space </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>repo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>u_mac</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>v_mac</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>w_mac</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Array&lt; amrex::MultiFab *, <a class="el" href="structkynema__sgf_1_1pde_1_1_i_c_n_s.html#a5627dfb8ee4cdac26a51b554941fea62">ICNS::ndim</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>rho_face</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>ovst_fac</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8a3b26bf1cd6966c799640f59cfe6c6a" name="a8a3b26bf1cd6966c799640f59cfe6c6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a3b26bf1cd6966c799640f59cfe6c6a">&#9670;&#160;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::MacProjOp::operator() </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>dt</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8f85b6b9bf39478743edcde4f46d2855" name="a8f85b6b9bf39478743edcde4f46d2855"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f85b6b9bf39478743edcde4f46d2855">&#9670;&#160;</a></span>rho0()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::pde::MacProjOp::rho0 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab21227d56ac35e75f53402b24d5d4968" name="ab21227d56ac35e75f53402b24d5d4968"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab21227d56ac35e75f53402b24d5d4968">&#9670;&#160;</a></span>set_inflow_velocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::pde::MacProjOp::set_inflow_velocity </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="aa24bbdff54e3574583997ffdda9cd927" name="aa24bbdff54e3574583997ffdda9cd927"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa24bbdff54e3574583997ffdda9cd927">&#9670;&#160;</a></span>m_fb_mgr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field_boundary_mgr.html">FieldBoundaryMgr</a>&amp; kynema_sgf::pde::MacProjOp::m_fb_mgr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5941bbf6ab83c05f549d6ebd6fbaa274" name="a5941bbf6ab83c05f549d6ebd6fbaa274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5941bbf6ab83c05f549d6ebd6fbaa274">&#9670;&#160;</a></span>m_has_overset</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::pde::MacProjOp::m_has_overset {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aff1f68b014ad87a36c1fdf497b6987c0" name="aff1f68b014ad87a36c1fdf497b6987c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff1f68b014ad87a36c1fdf497b6987c0">&#9670;&#160;</a></span>m_is_anelastic</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::pde::MacProjOp::m_is_anelastic {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a36018438d3d8dc9ffe8e4212cc68c613" name="a36018438d3d8dc9ffe8e4212cc68c613"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36018438d3d8dc9ffe8e4212cc68c613">&#9670;&#160;</a></span>m_mac_proj</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;Hydro::MacProjector&gt; kynema_sgf::pde::MacProjOp::m_mac_proj</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a950244d89d96fd28e46de5c60dc19ed1" name="a950244d89d96fd28e46de5c60dc19ed1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a950244d89d96fd28e46de5c60dc19ed1">&#9670;&#160;</a></span>m_mesh_mapping</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::pde::MacProjOp::m_mesh_mapping {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a81ffe52df9df776d92ed7385ca78e53f" name="a81ffe52df9df776d92ed7385ca78e53f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81ffe52df9df776d92ed7385ca78e53f">&#9670;&#160;</a></span>m_need_init</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::pde::MacProjOp::m_need_init {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5a050f8bf15d009aae36f1dbbb0f2c3c" name="a5a050f8bf15d009aae36f1dbbb0f2c3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a050f8bf15d009aae36f1dbbb0f2c3c">&#9670;&#160;</a></span>m_options</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1_m_l_m_g_options.html">MLMGOptions</a> kynema_sgf::pde::MacProjOp::m_options</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e74aa36ccea65cce880e30728a5e67f" name="a1e74aa36ccea65cce880e30728a5e67f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e74aa36ccea65cce880e30728a5e67f">&#9670;&#160;</a></span>m_repo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; kynema_sgf::pde::MacProjOp::m_repo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1bb74da4a7c8ae860e49727c5fa29b48" name="a1bb74da4a7c8ae860e49727c5fa29b48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bb74da4a7c8ae860e49727c5fa29b48">&#9670;&#160;</a></span>m_rho_0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::pde::MacProjOp::m_rho_0 {1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8dc304bef9a52b472eb8d325c3aece01" name="a8dc304bef9a52b472eb8d325c3aece01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dc304bef9a52b472eb8d325c3aece01">&#9670;&#160;</a></span>m_variable_density</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::pde::MacProjOp::m_variable_density {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/<a class="el" href="icns__advection_8_h_source.html">icns_advection.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/icns/<a class="el" href="icns__advection_8cpp.html">icns_advection.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

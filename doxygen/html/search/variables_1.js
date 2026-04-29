@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['b_0',['B',['../structkynema__sgf_1_1_log_law.html#ac0a65cd1773a6bd64a3956faa3dd2682',1,'kynema_sgf::LogLaw']]],
+  ['bar_1',['bar',['../structkynema__sgf_1_1udf_1_1_custom_velocity_1_1_device_op.html#ad3c02fc21d8ce2f3ba1e8382f6d94359',1,'kynema_sgf::udf::CustomVelocity::DeviceOp']]],
+  ['base_2',['Base',['../structkynema__sgf_1_1_factory.html#a3f41ef21adfa37f9abb5c8cc52769974',1,'kynema_sgf::Factory']]],
+  ['base_5fpos_3',['base_pos',['../structext__turb_1_1_external_turbine.html#a7f21ab16276378fe6d9ae05235c93321',1,'ext_turb::ExternalTurbine::base_pos'],['../structkynema__sgf_1_1actuator_1_1_turbine_info.html#a287e0a9f263569628db2152dd3539592',1,'kynema_sgf::actuator::TurbineInfo::base_pos']]],
+  ['beach_5flength_4',['beach_length',['../structkynema__sgf_1_1ocean__waves_1_1_relax_zones_base_data.html#ad8918e8f64531949532a30e894d48e5b',1,'kynema_sgf::ocean_waves::RelaxZonesBaseData']]],
+  ['beach_5flength_5ffactor_5',['beach_length_factor',['../structkynema__sgf_1_1ocean__waves_1_1_relax_zones_base_data.html#abefdb2ddd3f34f4118d783d07b413009',1,'kynema_sgf::ocean_waves::RelaxZonesBaseData']]],
+  ['beta_5fh_6',['beta_h',['../structkynema__sgf_1_1_m_o_data.html#a0cc98e9fa507ea5813e922c77903a99f',1,'kynema_sgf::MOData']]],
+  ['beta_5fm_7',['beta_m',['../structkynema__sgf_1_1_m_o_data.html#aef39ff93f49a2cda9cde046e0086b9d3',1,'kynema_sgf::MOData']]],
+  ['blade_5fx_8',['blade_x',['../structkynema__sgf_1_1actuator_1_1_wing_base_data.html#abd042cbee94e2df986a6bfa92cbea737',1,'kynema_sgf::actuator::WingBaseData']]],
+  ['blades_9',['blades',['../structkynema__sgf_1_1actuator_1_1_turbine_base_data.html#a28df6aba0516663fa3c84472a3e6ad5e',1,'kynema_sgf::actuator::TurbineBaseData']]],
+  ['boltzmann_5fconstant_10',['BOLTZMANN_CONSTANT',['../namespacekynema__sgf_1_1constants.html#aad60b9e84dcc529f549276625479ac6b',1,'kynema_sgf::constants']]],
+  ['bottom_5fvel_11',['bottom_vel',['../structkynema__sgf_1_1udf_1_1_two_layer_1_1_device_op.html#afd85fc619a4af04253974255dd727833',1,'kynema_sgf::udf::TwoLayer::DeviceOp']]],
+  ['bound_5fbox_12',['bound_box',['../structkynema__sgf_1_1ib_1_1_i_b_info.html#a4128b42a8957449efa1152268437bd25',1,'kynema_sgf::ib::IBInfo::bound_box'],['../structkynema__sgf_1_1actuator_1_1_act_info.html#a88d8684e1832fdcc9a6509e24e01e7d9',1,'kynema_sgf::actuator::ActInfo::bound_box']]],
+  ['bounds_5ftol_13',['bounds_tol',['../classkynema__sgf_1_1sampling_1_1_sampler_base.html#ada4f11607bef2c0602905bca417917d3',1,'kynema_sgf::sampling::SamplerBase']]],
+  ['box_5fdims_14',['box_dims',['../structkynema__sgf_1_1_synth_turb_data.html#a5212f48fce20e540b186809d15dd0a56',1,'kynema_sgf::SynthTurbData::box_dims'],['../structkynema__sgf_1_1_synth_turb_device_data.html#a0e6924aad44e0830ddb2edfbcb6bde1a',1,'kynema_sgf::SynthTurbDeviceData::box_dims']]],
+  ['box_5flen_15',['box_len',['../structkynema__sgf_1_1_synth_turb_data.html#ab1ff64fd1357a75d8a4f770d77e0a175',1,'kynema_sgf::SynthTurbData::box_len'],['../structkynema__sgf_1_1_synth_turb_device_data.html#a0322c6909c1ccc32a1d3c7f080980e91',1,'kynema_sgf::SynthTurbDeviceData::box_len']]],
+  ['buffer_5fcf_16',['buffer_cf',['../structext__turb_1_1_kynema_turbine.html#a3d2b1d4150c4438feb964df0148ac7c4',1,'ext_turb::KynemaTurbine']]],
+  ['buffer_5ff_17',['buffer_f',['../structext__turb_1_1_kynema_turbine.html#a314ccae36c7694b9a587d1a345e5fde4',1,'ext_turb::KynemaTurbine']]],
+  ['buffer_5ffv_18',['buffer_fv',['../structext__turb_1_1_kynema_turbine.html#a207b6e7066a54e9f3d9359b104df1e6b',1,'ext_turb::KynemaTurbine']]],
+  ['buffer_5fori_19',['buffer_ori',['../structext__turb_1_1_kynema_turbine.html#a08df7d1cd79859cd82f1d2a73259b43c',1,'ext_turb::KynemaTurbine']]],
+  ['buffer_5fpf_20',['buffer_pf',['../structext__turb_1_1_kynema_turbine.html#ac3dc07e9b374ef1e49aea492c5ced160',1,'ext_turb::KynemaTurbine']]],
+  ['buffer_5fpv_21',['buffer_pv',['../structext__turb_1_1_kynema_turbine.html#ad70b9bf1afd38fb2e374fc3796c911f8',1,'ext_turb::KynemaTurbine']]],
+  ['buffer_5fsv_22',['buffer_sv',['../structext__turb_1_1_kynema_turbine.html#ae732d767a2248d3bb84884539f81ad20',1,'ext_turb::KynemaTurbine']]]
+];

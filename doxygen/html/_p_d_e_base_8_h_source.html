@@ -1,0 +1,372 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/PDEBase.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/PDEBase.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_p_d_e_base_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-pdebase-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/PDEBase.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-equation-systems-pdebase-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/PDEBase.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_0a302c6baedf52e9cfdc9fc1cbccbefa.html">equation_systems</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">PDEBase.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_p_d_e_base_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef PDEBASE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define PDEBASE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_factory_8_h.html">src/core/Factory.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_coll_mgr_8_h.html">src/core/CollMgr.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="_p_d_e_fields_8_h.html">src/equation_systems/PDEFields.H</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="_field_desc_types_8_h.html">src/core/FieldDescTypes.H</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="incflo__enums_8_h.html">src/incflo_enums.H</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1pde.html">pde</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="};">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">   50</a></span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a> : <span class="keyword">public</span> <a class="code hl_function" href="structkynema__sgf_1_1_factory.html#a91304216d59ae6834fc0da187ec512c6">Factory</a>&lt;PDEBase, CFDSim&amp;&gt;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>{</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#ad24d278fb72e93edcef08abbb2a232b2">   53</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#ad24d278fb72e93edcef08abbb2a232b2">~PDEBase</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a9396ebc2f857c10c170e26ad09fd61a1">   56</a></span>    <span class="keyword">virtual</span> <a class="code hl_struct" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a9396ebc2f857c10c170e26ad09fd61a1">fields</a>() = 0;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#af011b1f817409442e7f0f8a40f9ec6d6">   57</a></span>    [[nodiscard]] <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="code hl_struct" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#af011b1f817409442e7f0f8a40f9ec6d6">fields</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a56e2054d9e13e7cb57af7a14ff662543">   60</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a56e2054d9e13e7cb57af7a14ff662543">initialize</a>() = 0;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#ae3fb55421805d9d4960f368c68d75f2d">   63</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#ae3fb55421805d9d4960f368c68d75f2d">post_regrid_actions</a>() = 0;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a10e6ac1c0641cb9693058bf342be4b44">   66</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a10e6ac1c0641cb9693058bf342be4b44">compute_source_term</a>(<a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate) = 0;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#ab030ddda18565b8a52b5bef3f6e0bab0">   69</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#ab030ddda18565b8a52b5bef3f6e0bab0">compute_mueff</a>(<a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate) = 0;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a71a57f3a66cd1c06a9505e10cb3f98fa">   72</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a71a57f3a66cd1c06a9505e10cb3f98fa">compute_diffusion_term</a>(<a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate) = 0;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a37c16e7ba70f90ca13f6d5d9061a42fc">   75</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a37c16e7ba70f90ca13f6d5d9061a42fc">pre_advection_actions</a>(<a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate) = 0;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a85f1d8b31b96b1aa71a3ba081047533b">   78</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a85f1d8b31b96b1aa71a3ba081047533b">compute_advection_term</a>(<a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate) = 0;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a02678f07558f3cd1142b1f1d862bf73a">   86</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a02678f07558f3cd1142b1f1d862bf73a">compute_predictor_rhs</a>(<a class="code hl_enumeration" href="incflo__enums_8_h.html#a85b1059d3f82fd0319fd63b07f3c1500">DiffusionType</a> difftype) = 0;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a974de2fbe880e68fc23b48165811fd0b">   95</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a974de2fbe880e68fc23b48165811fd0b">compute_corrector_rhs</a>(<a class="code hl_enumeration" href="incflo__enums_8_h.html#a85b1059d3f82fd0319fd63b07f3c1500">DiffusionType</a> difftype) = 0;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#ae4748a2541fbf107034a7cd65ce2978a">   98</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#ae4748a2541fbf107034a7cd65ce2978a">solve</a>(amrex::Real dt) = 0;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a77a3b4e53c4765bbc8810d4bb9605049">  101</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a77a3b4e53c4765bbc8810d4bb9605049">post_solve_actions</a>() = 0;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a583db3a7e33c4561b226a91e57921971">  103</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a583db3a7e33c4561b226a91e57921971">improve_explicit_diffusion</a>(amrex::Real dt) = 0;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a513584ecf4e90f282394bb8953f54187">  106</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a513584ecf4e90f282394bb8953f54187">base_identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;PDESystem&quot;</span>; }</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>};</div>
+</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span></div>
+<div class="foldopen" id="foldopen00116" data-start="{" data-end="};">
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html">  116</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#ae5410a193e346960fe6bc318260cb3c5">PDEMgr</a> : <span class="keyword">public</span> <a class="code hl_function" href="classkynema__sgf_1_1_coll_mgr.html#a0b5191e83dafe9e3faa6a617992749e0">CollMgr</a>&lt;PDEMgr, PDEBase&gt;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>{</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#ae5410a193e346960fe6bc318260cb3c5">PDEMgr</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a320d5eaaaa00c623331c999bed4e3ac8">  121</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a320d5eaaaa00c623331c999bed4e3ac8">~PDEMgr</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a2af91196e5daa7d48a2b959c66bb8444">  124</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a2af91196e5daa7d48a2b959c66bb8444">icns</a>() { <span class="keywordflow">return</span> *<a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a7b0f00c7b1779cd8fde4f663d5420aa2">m_icns</a>; }</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a5d8b9329b31c5fcc53bcf116d6ee80bf">  125</a></span>    [[nodiscard]] <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a5d8b9329b31c5fcc53bcf116d6ee80bf">icns</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> *<a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a7b0f00c7b1779cd8fde4f663d5420aa2">m_icns</a>; }</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <a class="code hl_class" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a48e813aa8194be4a003779d533092785">register_icns</a>();</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <a class="code hl_class" href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a2dde63b4be46c07acc447d4afdddcac2">register_transport_pde</a>(<span class="keyword">const</span> std::string&amp; pde_name);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#ad18f1ea3d5a85b86c0a5999660ba1d7b">advance_states</a>();</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#ad9b16f9c21b93d80b2cab748c968edbd">prepare_boundaries</a>();</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#ab3b9b1b5afdac004d51cd95fa36324fc">density_check</a>();</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a864fa3b5c332df6e7a6a7482e1c34adc">fillpatch_state_fields</a>(</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        amrex::Real time, <a class="code hl_enumeration" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate = <a class="code hl_enumvalue" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">FieldState::New</a>);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#adc84caaaf5cabfb19930da69d13c9491">  155</a></span>    <a class="code hl_typedef" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#adc84caaaf5cabfb19930da69d13c9491">scalar_eqns</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_coll_mgr.html#aca9f58210b96fbb66c30e72c611e2726">m_obj_vec</a>; }</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a8fc8a31af7e1353c21ce4fbabbf358a9">  156</a></span>    [[nodiscard]] <span class="keyword">const</span> <a class="code hl_typedef" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a8fc8a31af7e1353c21ce4fbabbf358a9">scalar_eqns</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_coll_mgr.html#aca9f58210b96fbb66c30e72c611e2726">m_obj_vec</a>; }</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a257fd50cbefe4f110e8209f556427a14">has_pde</a>(<span class="keyword">const</span> std::string&amp; pde_name) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#adf9a5936424a4853b4697cdc5673b0f9">num_ghost_state</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a1450116d4dad7f3e32a0bbed88e8ac1f">  163</a></span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a1450116d4dad7f3e32a0bbed88e8ac1f">constant_density</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a13eb34508df202bdc62dc3f34bf59ad5">m_constant_density</a>; }</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a4a629c6bf230c6f00721e0674f31fa49">  165</a></span>    [[nodiscard]] std::string <a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a4a629c6bf230c6f00721e0674f31fa49">scheme</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a48b20a15cc2f978ce56fbf0c96cd5ea1">m_scheme</a>; }</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#ae6a41ebc220d646ed64a7a8dab262677">  169</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#ae6a41ebc220d646ed64a7a8dab262677">m_sim</a>;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a7b0f00c7b1779cd8fde4f663d5420aa2">  172</a></span>    std::unique_ptr&lt;PDEBase&gt; <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a7b0f00c7b1779cd8fde4f663d5420aa2">m_icns</a>;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a48b20a15cc2f978ce56fbf0c96cd5ea1">  175</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a48b20a15cc2f978ce56fbf0c96cd5ea1">m_scheme</a>;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#ac0444d88c59d5b177cb14beb6e7dac81">  178</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#ac0444d88c59d5b177cb14beb6e7dac81">m_use_godunov</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a13eb34508df202bdc62dc3f34bf59ad5">  181</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a13eb34508df202bdc62dc3f34bf59ad5">m_constant_density</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>};</div>
+</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>} <span class="comment">// namespace pde</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="preprocessor">#endif </span><span class="comment">/* PDEBASE_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_coll_mgr_8_h_html"><div class="ttname"><a href="_coll_mgr_8_h.html">CollMgr.H</a></div></div>
+<div class="ttc" id="a_factory_8_h_html"><div class="ttname"><a href="_factory_8_h.html">Factory.H</a></div></div>
+<div class="ttc" id="a_field_desc_types_8_h_html"><div class="ttname"><a href="_field_desc_types_8_h.html">FieldDescTypes.H</a></div></div>
+<div class="ttc" id="a_p_d_e_fields_8_h_html"><div class="ttname"><a href="_p_d_e_fields_8_h.html">PDEFields.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_coll_mgr_html_a0b5191e83dafe9e3faa6a617992749e0"><div class="ttname"><a href="classkynema__sgf_1_1_coll_mgr.html#a0b5191e83dafe9e3faa6a617992749e0">kynema_sgf::CollMgr&lt; PDEMgr, PDEBase &gt;::CollMgr</a></div><div class="ttdeci">CollMgr()=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_coll_mgr_html_ac8acc7ec0f7401f1377a985f580298ae"><div class="ttname"><a href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">kynema_sgf::CollMgr&lt; PDEMgr, PDEBase &gt;::TypeVector</a></div><div class="ttdeci">amrex::Vector&lt; TypePtr &gt; TypeVector</div><div class="ttdef"><b>Definition</b> CollMgr.H:25</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_coll_mgr_html_aca9f58210b96fbb66c30e72c611e2726"><div class="ttname"><a href="classkynema__sgf_1_1_coll_mgr.html#aca9f58210b96fbb66c30e72c611e2726">kynema_sgf::CollMgr&lt; PDEMgr, PDEBase &gt;::m_obj_vec</a></div><div class="ttdeci">TypeVector m_obj_vec</div><div class="ttdef"><b>Definition</b> CollMgr.H:83</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">kynema_sgf::pde::PDEBase</a></div><div class="ttdef"><b>Definition</b> PDEBase.H:51</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_a02678f07558f3cd1142b1f1d862bf73a"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a02678f07558f3cd1142b1f1d862bf73a">kynema_sgf::pde::PDEBase::compute_predictor_rhs</a></div><div class="ttdeci">virtual void compute_predictor_rhs(DiffusionType difftype)=0</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_a10e6ac1c0641cb9693058bf342be4b44"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a10e6ac1c0641cb9693058bf342be4b44">kynema_sgf::pde::PDEBase::compute_source_term</a></div><div class="ttdeci">virtual void compute_source_term(FieldState fstate)=0</div><div class="ttdoc">Compute the source (forcing) terms for this PDE.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_a37c16e7ba70f90ca13f6d5d9061a42fc"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a37c16e7ba70f90ca13f6d5d9061a42fc">kynema_sgf::pde::PDEBase::pre_advection_actions</a></div><div class="ttdeci">virtual void pre_advection_actions(FieldState fstate)=0</div><div class="ttdoc">Perform necessary steps to prepare for advection calculations.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_a513584ecf4e90f282394bb8953f54187"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a513584ecf4e90f282394bb8953f54187">kynema_sgf::pde::PDEBase::base_identifier</a></div><div class="ttdeci">static std::string base_identifier()</div><div class="ttdoc">Base class identifier used for factory registration interface.</div><div class="ttdef"><b>Definition</b> PDEBase.H:106</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_a56e2054d9e13e7cb57af7a14ff662543"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a56e2054d9e13e7cb57af7a14ff662543">kynema_sgf::pde::PDEBase::initialize</a></div><div class="ttdeci">virtual void initialize()=0</div><div class="ttdoc">Perform initialization actions for a PDE after the mesh is generated.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_a583db3a7e33c4561b226a91e57921971"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a583db3a7e33c4561b226a91e57921971">kynema_sgf::pde::PDEBase::improve_explicit_diffusion</a></div><div class="ttdeci">virtual void improve_explicit_diffusion(amrex::Real dt)=0</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_a71a57f3a66cd1c06a9505e10cb3f98fa"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a71a57f3a66cd1c06a9505e10cb3f98fa">kynema_sgf::pde::PDEBase::compute_diffusion_term</a></div><div class="ttdeci">virtual void compute_diffusion_term(FieldState fstate)=0</div><div class="ttdoc">Compute the diffusion term used in the RHS of the PDE system.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_a77a3b4e53c4765bbc8810d4bb9605049"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a77a3b4e53c4765bbc8810d4bb9605049">kynema_sgf::pde::PDEBase::post_solve_actions</a></div><div class="ttdeci">virtual void post_solve_actions()=0</div><div class="ttdoc">Perform post-processing actions after a system solve.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_a85f1d8b31b96b1aa71a3ba081047533b"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a85f1d8b31b96b1aa71a3ba081047533b">kynema_sgf::pde::PDEBase::compute_advection_term</a></div><div class="ttdeci">virtual void compute_advection_term(FieldState fstate)=0</div><div class="ttdoc">Compute the time derivative and advective term for the PDE system.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_a9396ebc2f857c10c170e26ad09fd61a1"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a9396ebc2f857c10c170e26ad09fd61a1">kynema_sgf::pde::PDEBase::fields</a></div><div class="ttdeci">virtual PDEFields &amp; fields()=0</div><div class="ttdoc">Return the object that holds references to fields for this PDE system.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_a974de2fbe880e68fc23b48165811fd0b"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#a974de2fbe880e68fc23b48165811fd0b">kynema_sgf::pde::PDEBase::compute_corrector_rhs</a></div><div class="ttdeci">virtual void compute_corrector_rhs(DiffusionType difftype)=0</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_ab030ddda18565b8a52b5bef3f6e0bab0"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#ab030ddda18565b8a52b5bef3f6e0bab0">kynema_sgf::pde::PDEBase::compute_mueff</a></div><div class="ttdeci">virtual void compute_mueff(FieldState fstate)=0</div><div class="ttdoc">Compute the effective dynamic viscosity for this PDE.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_ad24d278fb72e93edcef08abbb2a232b2"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#ad24d278fb72e93edcef08abbb2a232b2">kynema_sgf::pde::PDEBase::~PDEBase</a></div><div class="ttdeci">~PDEBase() override=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_ae3fb55421805d9d4960f368c68d75f2d"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#ae3fb55421805d9d4960f368c68d75f2d">kynema_sgf::pde::PDEBase::post_regrid_actions</a></div><div class="ttdeci">virtual void post_regrid_actions()=0</div><div class="ttdoc">Perform updates specific to PDE after a regrid is performed.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_ae4748a2541fbf107034a7cd65ce2978a"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#ae4748a2541fbf107034a7cd65ce2978a">kynema_sgf::pde::PDEBase::solve</a></div><div class="ttdeci">virtual void solve(amrex::Real dt)=0</div><div class="ttdoc">Solve the diffusion linear system and update the field.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_base_html_af011b1f817409442e7f0f8a40f9ec6d6"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html#af011b1f817409442e7f0f8a40f9ec6d6">kynema_sgf::pde::PDEBase::fields</a></div><div class="ttdeci">virtual const PDEFields &amp; fields() const =0</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_a13eb34508df202bdc62dc3f34bf59ad5"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a13eb34508df202bdc62dc3f34bf59ad5">kynema_sgf::pde::PDEMgr::m_constant_density</a></div><div class="ttdeci">bool m_constant_density</div><div class="ttdoc">Flag indicating whether density is constant for this simulation.</div><div class="ttdef"><b>Definition</b> PDEBase.H:181</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_a1450116d4dad7f3e32a0bbed88e8ac1f"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a1450116d4dad7f3e32a0bbed88e8ac1f">kynema_sgf::pde::PDEMgr::constant_density</a></div><div class="ttdeci">bool constant_density() const</div><div class="ttdef"><b>Definition</b> PDEBase.H:163</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_a257fd50cbefe4f110e8209f556427a14"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a257fd50cbefe4f110e8209f556427a14">kynema_sgf::pde::PDEMgr::has_pde</a></div><div class="ttdeci">bool has_pde(const std::string &amp;pde_name) const</div><div class="ttdoc">Query if a PDE has already been registered.</div><div class="ttdef"><b>Definition</b> PDEBase.cpp:73</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_a2af91196e5daa7d48a2b959c66bb8444"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a2af91196e5daa7d48a2b959c66bb8444">kynema_sgf::pde::PDEMgr::icns</a></div><div class="ttdeci">PDEBase &amp; icns()</div><div class="ttdoc">Return the incompressible Navier-Stokes instance.</div><div class="ttdef"><b>Definition</b> PDEBase.H:124</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_a2dde63b4be46c07acc447d4afdddcac2"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a2dde63b4be46c07acc447d4afdddcac2">kynema_sgf::pde::PDEMgr::register_transport_pde</a></div><div class="ttdeci">PDEBase &amp; register_transport_pde(const std::string &amp;pde_name)</div><div class="ttdoc">Register a new PDE instance and return its reference.</div><div class="ttdef"><b>Definition</b> PDEBase.cpp:60</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_a320d5eaaaa00c623331c999bed4e3ac8"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a320d5eaaaa00c623331c999bed4e3ac8">kynema_sgf::pde::PDEMgr::~PDEMgr</a></div><div class="ttdeci">~PDEMgr()=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_a48b20a15cc2f978ce56fbf0c96cd5ea1"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a48b20a15cc2f978ce56fbf0c96cd5ea1">kynema_sgf::pde::PDEMgr::m_scheme</a></div><div class="ttdeci">std::string m_scheme</div><div class="ttdoc">Unique identifier for the numerical scheme.</div><div class="ttdef"><b>Definition</b> PDEBase.H:175</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_a48e813aa8194be4a003779d533092785"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a48e813aa8194be4a003779d533092785">kynema_sgf::pde::PDEMgr::register_icns</a></div><div class="ttdeci">PDEBase &amp; register_icns()</div><div class="ttdoc">Create the incompressible Navier-Stokes instance and return its reference.</div><div class="ttdef"><b>Definition</b> PDEBase.cpp:52</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_a4a629c6bf230c6f00721e0674f31fa49"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a4a629c6bf230c6f00721e0674f31fa49">kynema_sgf::pde::PDEMgr::scheme</a></div><div class="ttdeci">std::string scheme() const</div><div class="ttdef"><b>Definition</b> PDEBase.H:165</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_a5d8b9329b31c5fcc53bcf116d6ee80bf"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a5d8b9329b31c5fcc53bcf116d6ee80bf">kynema_sgf::pde::PDEMgr::icns</a></div><div class="ttdeci">const PDEBase &amp; icns() const</div><div class="ttdef"><b>Definition</b> PDEBase.H:125</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_a7b0f00c7b1779cd8fde4f663d5420aa2"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a7b0f00c7b1779cd8fde4f663d5420aa2">kynema_sgf::pde::PDEMgr::m_icns</a></div><div class="ttdeci">std::unique_ptr&lt; PDEBase &gt; m_icns</div><div class="ttdoc">ICNS instance.</div><div class="ttdef"><b>Definition</b> PDEBase.H:172</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_a864fa3b5c332df6e7a6a7482e1c34adc"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a864fa3b5c332df6e7a6a7482e1c34adc">kynema_sgf::pde::PDEMgr::fillpatch_state_fields</a></div><div class="ttdeci">void fillpatch_state_fields(amrex::Real time, FieldState fstate=FieldState::New)</div><div class="ttdoc">Call fillpatch operator on state variables for all registered PDEs.</div><div class="ttdef"><b>Definition</b> PDEBase.cpp:217</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_a8fc8a31af7e1353c21ce4fbabbf358a9"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a8fc8a31af7e1353c21ce4fbabbf358a9">kynema_sgf::pde::PDEMgr::scalar_eqns</a></div><div class="ttdeci">const TypeVector &amp; scalar_eqns() const</div><div class="ttdef"><b>Definition</b> PDEBase.H:156</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_ab3b9b1b5afdac004d51cd95fa36324fc"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#ab3b9b1b5afdac004d51cd95fa36324fc">kynema_sgf::pde::PDEMgr::density_check</a></div><div class="ttdeci">void density_check()</div><div class="ttdoc">Check that the bounds of density correspond to the expected values – only applies to two-phase and co...</div><div class="ttdef"><b>Definition</b> PDEBase.cpp:150</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_ac0444d88c59d5b177cb14beb6e7dac81"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#ac0444d88c59d5b177cb14beb6e7dac81">kynema_sgf::pde::PDEMgr::m_use_godunov</a></div><div class="ttdeci">bool m_use_godunov</div><div class="ttdoc">Flag indicating whether Godunov scheme is active.</div><div class="ttdef"><b>Definition</b> PDEBase.H:178</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_ad18f1ea3d5a85b86c0a5999660ba1d7b"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#ad18f1ea3d5a85b86c0a5999660ba1d7b">kynema_sgf::pde::PDEMgr::advance_states</a></div><div class="ttdeci">void advance_states()</div><div class="ttdoc">Advance states for all registered PDEs at the beginning of a timestep.</div><div class="ttdef"><b>Definition</b> PDEBase.cpp:84</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_ad9b16f9c21b93d80b2cab748c968edbd"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#ad9b16f9c21b93d80b2cab748c968edbd">kynema_sgf::pde::PDEMgr::prepare_boundaries</a></div><div class="ttdeci">void prepare_boundaries()</div><div class="ttdoc">Prepare boundaries for registered PDEs at the beginning of a timestep: – intended for when boundaries...</div><div class="ttdef"><b>Definition</b> PDEBase.cpp:96</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_adc84caaaf5cabfb19930da69d13c9491"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#adc84caaaf5cabfb19930da69d13c9491">kynema_sgf::pde::PDEMgr::scalar_eqns</a></div><div class="ttdeci">TypeVector &amp; scalar_eqns()</div><div class="ttdef"><b>Definition</b> PDEBase.H:155</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_adf9a5936424a4853b4697cdc5673b0f9"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#adf9a5936424a4853b4697cdc5673b0f9">kynema_sgf::pde::PDEMgr::num_ghost_state</a></div><div class="ttdeci">int num_ghost_state() const</div><div class="ttdef"><b>Definition</b> PDEBase.cpp:79</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_ae5410a193e346960fe6bc318260cb3c5"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#ae5410a193e346960fe6bc318260cb3c5">kynema_sgf::pde::PDEMgr::PDEMgr</a></div><div class="ttdeci">PDEMgr(CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> PDEBase.cpp:27</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_ae6a41ebc220d646ed64a7a8dab262677"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#ae6a41ebc220d646ed64a7a8dab262677">kynema_sgf::pde::PDEMgr::m_sim</a></div><div class="ttdeci">CFDSim &amp; m_sim</div><div class="ttdoc">Instance of the CFD simulation controller.</div><div class="ttdef"><b>Definition</b> PDEBase.H:169</div></div>
+<div class="ttc" id="agroup__fields_html_ga73fcb43d320747f8ced022629f36af1f"><div class="ttname"><a href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">kynema_sgf::FieldState</a></div><div class="ttdeci">FieldState</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:16</div></div>
+<div class="ttc" id="agroup__fields_html_gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e"><div class="ttname"><a href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">kynema_sgf::FieldState::New</a></div><div class="ttdeci">@ New</div><div class="ttdoc">Same as FieldState::NP1.</div><div class="ttdef"><b>Definition</b> FieldDescTypes.H:22</div></div>
+<div class="ttc" id="aincflo__enums_8_h_html"><div class="ttname"><a href="incflo__enums_8_h.html">incflo_enums.H</a></div></div>
+<div class="ttc" id="aincflo__enums_8_h_html_a85b1059d3f82fd0319fd63b07f3c1500"><div class="ttname"><a href="incflo__enums_8_h.html#a85b1059d3f82fd0319fd63b07f3c1500">DiffusionType</a></div><div class="ttdeci">DiffusionType</div><div class="ttdef"><b>Definition</b> incflo_enums.H:6</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1pde_html"><div class="ttname"><a href="namespacekynema__sgf_1_1pde.html">kynema_sgf::pde</a></div><div class="ttdef"><b>Definition</b> AdvOp_Godunov.H:21</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_factory_html_a91304216d59ae6834fc0da187ec512c6"><div class="ttname"><a href="structkynema__sgf_1_1_factory.html#a91304216d59ae6834fc0da187ec512c6">kynema_sgf::Factory&lt; PDEBase, CFDSim &amp; &gt;::Factory</a></div><div class="ttdeci">Factory()=default</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_p_d_e_fields_html"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">kynema_sgf::pde::PDEFields</a></div><div class="ttdef"><b>Definition</b> PDEFields.H:27</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

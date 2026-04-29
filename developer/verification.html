@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verification &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Coding Guidelines" href="coding_guidelines.html" />
+    <link rel="prev" title="Regression testing" href="regression_testing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../doxygen/html/index.html">Kynema-SGF API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_testing.html">Regression testing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#building-and-linking-masa">Building and linking MASA</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#building-masa-from-source">Building MASA from source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-masa-using-spack">Building MASA using Spack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linking-masa-to-kynema-sgf">Linking MASA to Kynema-SGF</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#performing-the-mms-verification">Performing the MMS verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#convecting-taylor-vortex-ctv">Convecting Taylor Vortex (CTV)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ekman-spiral">Ekman spiral</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#channel-flow-laminar-quasi-2d-with-different-bcs">Channel flow (laminar, quasi-2D) with different BCs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#burggraf-flow-lid-driven-cavity-with-body-force">Burggraf flow: lid-driven cavity with body force</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#channel-flow-with-smagorinsky-les">Channel flow with Smagorinsky LES</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#parameter-values-for-testing">Parameter values for testing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test-results">Test results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="coding_guidelines.html">Coding Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer Documentation</a></li>
+      <li class="breadcrumb-item active">Verification</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/developer/verification.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="verification">
+<span id="dev-verification"></span><h1>Verification<a class="headerlink" href="#verification" title="Link to this heading"></a></h1>
+<p>Verification of AMR-WIND uses <a class="reference external" href="https://github.com/manufactured-solutions/MASA">MASA</a> and
+auto-differentiation tools to implement the Method of Manufactured
+Solutions. MMS verification has been performed for both CPU and GPU
+architectures.</p>
+<section id="building-and-linking-masa">
+<h2>Building and linking MASA<a class="headerlink" href="#building-and-linking-masa" title="Link to this heading"></a></h2>
+<p>The user must first build and install <a class="reference external" href="https://github.com/manufactured-solutions/MASA">MASA</a>. This can be done
+from source or using <a class="reference external" href="https://spack.io">Spack</a>.</p>
+<section id="building-masa-from-source">
+<h3>Building MASA from source<a class="headerlink" href="#building-masa-from-source" title="Link to this heading"></a></h3>
+<p>The user must build both <a class="reference external" href="https://github.com/roystgnr/MetaPhysicL">Metaphysicl</a> and MASA. After defining
+<code class="docutils literal notranslate"><span class="pre">METAPHYSICL_ROOT_DIR</span></code> and <code class="docutils literal notranslate"><span class="pre">MASA_ROOT_DIR</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/roystgnr/MetaPhysicL
+$<span class="w"> </span>./bootstrap
+$<span class="w"> </span>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$METAPHYSICL_ROOT_DIR</span>
+$<span class="w"> </span>make
+$<span class="w"> </span>make<span class="w"> </span>install
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/manufactured-solutions/MASA
+$<span class="w"> </span>./bootstrap
+$<span class="w"> </span>./configure<span class="w"> </span>--enable-fortran-interfaces<span class="w"> </span><span class="nv">METAPHYSICL_DIR</span><span class="o">=</span><span class="nv">$METAPHYSICL_ROOT_DIR</span><span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$MASA_ROOT_DIR</span><span class="w"> </span>--enable-python-interfaces
+$<span class="w"> </span>make
+$<span class="w"> </span>make<span class="w"> </span>check
+$<span class="w"> </span>make<span class="w"> </span>install
+</pre></div>
+</div>
+</section>
+<section id="building-masa-using-spack">
+<h3>Building MASA using Spack<a class="headerlink" href="#building-masa-using-spack" title="Link to this heading"></a></h3>
+<p>Assuming the user has Spack configured for their system, building and
+installing MASA is as easy as:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>spack<span class="w"> </span>install<span class="w"> </span>masa
+</pre></div>
+</div>
+</section>
+<section id="linking-masa-to-kynema-sgf">
+<h3>Linking MASA to Kynema-SGF<a class="headerlink" href="#linking-masa-to-kynema-sgf" title="Link to this heading"></a></h3>
+<p>The following CMake options enable MASA in Kynema-SGF:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-DKYNEMA_SGF_ENABLE_MASA<span class="o">=</span>ON<span class="w"> </span>-DMASA_DIR<span class="o">=</span><span class="nv">$MASA_ROOT_DIR</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">MASA_ROOT_DIR</span></code> is the MASA install location.</p>
+</section>
+</section>
+<section id="performing-the-mms-verification">
+<h2>Performing the MMS verification<a class="headerlink" href="#performing-the-mms-verification" title="Link to this heading"></a></h2>
+<p>For an MMS verification study, one performs a convergence study using
+an MMS input file, several examples of which can be found in the
+regression test suite. The velocity errors are computed after each
+time step and logged to a text file named <cite>mms.log</cite>. The following
+results for the Godunov FV method exhibit the expected second order
+accuracy:</p>
+<ul class="simple">
+<li><p>Velocity (u, v, w) <span class="math notranslate nohighlight">\(L_2\)</span> error norms:</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/mms_error.png"><img alt="../_images/mms_error.png" src="../_images/mms_error.png" style="width: 300pt;" />
+</a>
+<p>The <span class="math notranslate nohighlight">\(L_2\)</span> error norm for a quantity <span class="math notranslate nohighlight">\(s\)</span> is defined as</p>
+<div class="math notranslate nohighlight">
+\[e_s = \sqrt{ \frac{\sum_{i=1}^{N_e} \int_{V_i} (s^h-s^*)^2 \mathrm{d}V}{\sum_{i=1}^{N_e} \|V_i\|}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(s^h\)</span> is the numerical solution, <span class="math notranslate nohighlight">\(s^*\)</span> is the exact
+solution, and <span class="math notranslate nohighlight">\(N_e\)</span> is the number of elements. <span class="math notranslate nohighlight">\(N\)</span>, used
+below, is the number of element on a side of the cube (<span class="math notranslate nohighlight">\(N_e =
+N^3\)</span>).</p>
+</section>
+<section id="convecting-taylor-vortex-ctv">
+<h2>Convecting Taylor Vortex (CTV)<a class="headerlink" href="#convecting-taylor-vortex-ctv" title="Link to this heading"></a></h2>
+<p>An exact solution to the incompressible Navier-Stokes equations is
+the Convecting Taylor Vortex (CTV) which can also be used to test the
+order of accuracy. This exact solution is two dimensional, viscous, unsteady
+and uses periodic boundary conditions. The exact solution is</p>
+<div class="math notranslate nohighlight">
+\[u(x,y) = u_0 - \cos(\pi (x-u_0 t)) \sin(\pi(y-v_0 t)) e^{-2\omega t}\]</div>
+<div class="math notranslate nohighlight">
+\[v(x,y) = v_0 - \sin(\pi (x-u_0 t)) \cos(\pi(y-v_0 t)) e^{-2\omega t}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\omega = \pi^2 \nu\)</span> and <span class="math notranslate nohighlight">\(\nu\)</span> is the viscosity. Simulating the CTV
+to a fixed time of 0.2 seconds the <span class="math notranslate nohighlight">\(L_2\)</span> error is measured over a set of grids with
+varying mesh resolution. This is performed for two CFL numbers and shown in the figure:</p>
+<a class="reference internal image-reference" href="../_images/ctv_error.png"><img alt="../_images/ctv_error.png" src="../_images/ctv_error.png" style="width: 300pt;" />
+</a>
+</section>
+<section id="ekman-spiral">
+<h2>Ekman spiral<a class="headerlink" href="#ekman-spiral" title="Link to this heading"></a></h2>
+<p>Solution method adapted from this Ekman <a class="reference external" href="https://houraad.github.io/MPO503/Lecture%2011.xhtml">lecture</a>. Ekman assumed steady, homogeneous and horizontal flow with friction on a rotating Earth. Hence, the horizontal and time derivatives are zero.</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial}{\partial t} = \frac{\partial}{\partial x} = \frac{\partial}{\partial y} = 0\]</div>
+<p>This leave a balance between vertical friction and the Coriolis force:</p>
+<div class="math notranslate nohighlight">
+\[-fv = A_z \frac{\partial^2 u}{\partial z^2}  (1)\]</div>
+<div class="math notranslate nohighlight">
+\[fu = A_z \frac{\partial^2 v}{\partial z^2} + f u_g (2)\]</div>
+<p>where <span class="math notranslate nohighlight">\(A_z\)</span> is the eddy viscosity assumed to be constant throughout the boundary layer. If we multiply (2) by <span class="math notranslate nohighlight">\(i\)</span> and add to (1) we get:</p>
+<div class="math notranslate nohighlight">
+\[ifu - fv = \frac{\partial^2 \left( u + iv) \right)}{\partial z^2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(i = \sqrt{-1}\)</span>, rearranging the left hand side to get <span class="math notranslate nohighlight">\(u+iv\)</span></p>
+<div class="math notranslate nohighlight">
+\[if(u+iv) = \frac{\partial^2 \left( u + iv) \right)}{\partial z^2}\]</div>
+<p>Next we define <span class="math notranslate nohighlight">\(V = u+iv\)</span> and substitute that in:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial^2 V}{\partial z^2} - a^2 V = -a^2 u_g\]</div>
+<p>where <span class="math notranslate nohighlight">\(a = \sqrt{\frac{if}{A_z}}\)</span>. The solution to this constant coefficient second-order differential equation is:</p>
+<div class="math notranslate nohighlight">
+\[V = Ae^{az} + Be^{-az} + u_g\]</div>
+<p>The boundary conditions for this flow are <span class="math notranslate nohighlight">\(z=0, u=v=0\)</span> and at <span class="math notranslate nohighlight">\(z \rightarrow \infty, u \rightarrow u_g, v \rightarrow 0\)</span> therefore <span class="math notranslate nohighlight">\(A=0\)</span></p>
+<div class="math notranslate nohighlight">
+\[V = B e^{-az} + u_g\]</div>
+<p>where <span class="math notranslate nohighlight">\(B = \hat{B}e^{i\phi}\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> is the angle of the velocity to the wind. Now separating into real and imaginary parts:</p>
+<div class="math notranslate nohighlight">
+\[a = \sqrt{\frac{if}{A_z}} = \sqrt{i} \sqrt{\frac{f}{A_z}} = \frac{1+i}{\sqrt{2}}  \sqrt{\frac{f}{A_z}}  = \left(1+i \right) \sqrt{\frac{f}{2 A_z}} = \frac{1+i}{D_E}\]</div>
+<p>where <span class="math notranslate nohighlight">\(D_E = \sqrt{\frac{2 A_z}{f}}\)</span> is the Ekman depth.</p>
+<div class="math notranslate nohighlight">
+\[V = \hat{B} e^{i\phi} e^{-(1+i)z/D_E} + u_g\]</div>
+<p>rearranging</p>
+<div class="math notranslate nohighlight">
+\[V = \hat{B} e^{-z/D_E} e^{i \left(\phi-z/D_E \right)} + u_g\]</div>
+<p>using Euler’s identity <span class="math notranslate nohighlight">\(e^{i\theta} = \cos(\theta) + i \sin(\theta)\)</span> we can split this into real and imaginary parts</p>
+<div class="math notranslate nohighlight">
+\[V = \hat{B} e^{-z/D_E} \left [ \cos(\phi-z/D_E ) + i \sin(\phi-z/D_E ) \right ] + u_g\]</div>
+<div class="math notranslate nohighlight">
+\[u = \hat{B} e^{-z/D_E} \cos(\phi-z/D_E ) + u_g\]</div>
+<div class="math notranslate nohighlight">
+\[v = \hat{B} e^{-z/D_E} \sin(\phi-z/D_E )\]</div>
+<p>apply the boundary conditions <span class="math notranslate nohighlight">\(u(0) = 0\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\hat{B} + u_g = 0 \rightarrow \hat{B} = -u_g\]</div>
+<p>simplifying further we arrive at the Ekman spiral solution</p>
+<div class="math notranslate nohighlight">
+\[u = u_g\left [1- e^{-z/D_E} \cos(\phi-z/D_E ) \right]\]</div>
+<div class="math notranslate nohighlight">
+\[v = u_g e^{-z/D_E} \sin(\phi-z/D_E )\]</div>
+<p>Velocity profiles of AMR-wind with a Geostrophic wind of 15 m/s</p>
+<a class="reference internal image-reference" href="../_images/ekman_spiral_velocity.pdf"><img alt="../_images/ekman_spiral_velocity.pdf" src="../_images/ekman_spiral_velocity.pdf" style="width: 300pt;" />
+</a>
+<p>Wind direction <span class="math notranslate nohighlight">\(\tan^{-1}(v/u) \frac{180}{\pi}\)</span></p>
+<a class="reference internal image-reference" href="../_images/ekman_spiral_wind_direction.pdf"><img alt="../_images/ekman_spiral_wind_direction.pdf" src="../_images/ekman_spiral_wind_direction.pdf" style="width: 300pt;" />
+</a>
+<p>AMR-wind <span class="math notranslate nohighlight">\(L_2\)</span> error after <span class="math notranslate nohighlight">\(t=200\)</span> seconds.</p>
+<a class="reference internal image-reference" href="../_images/ekman_spiral_error.pdf"><img alt="../_images/ekman_spiral_error.pdf" src="../_images/ekman_spiral_error.pdf" style="width: 300pt;" />
+</a>
+</section>
+<section id="channel-flow-laminar-quasi-2d-with-different-bcs">
+<h2>Channel flow (laminar, quasi-2D) with different BCs<a class="headerlink" href="#channel-flow-laminar-quasi-2d-with-different-bcs" title="Link to this heading"></a></h2>
+<p>These tests use the Poiseuille flow solution for a channel to verify the implementation of the boundary conditions. Input files for these tests are included among the regression test directories.</p>
+<p>AMR-wind <span class="math notranslate nohighlight">\(L_2\)</span> error for whole channel after velocity field has converged to steady state. This evaluates the no-slip boundary conditions at the top and bottom of the domain. Results are identical for different normal directions and flow directions (x, y, and z).</p>
+<a class="reference internal image-reference" href="../_images/Channel_Laminar.png"><img alt="../_images/Channel_Laminar.png" src="../_images/Channel_Laminar.png" style="width: 300pt;" />
+</a>
+<p>AMR-wind <span class="math notranslate nohighlight">\(L_2\)</span> error for half-channel after velocity field has converged to steady state. At the upper boundary, the zero-gradient and symmetric wall boundary conditions are employed.</p>
+<a class="reference internal image-reference" href="../_images/HalfChannel_Laminar.png"><img alt="../_images/HalfChannel_Laminar.png" src="../_images/HalfChannel_Laminar.png" style="width: 300pt;" />
+</a>
+</section>
+<section id="burggraf-flow-lid-driven-cavity-with-body-force">
+<h2>Burggraf flow: lid-driven cavity with body force<a class="headerlink" href="#burggraf-flow-lid-driven-cavity-with-body-force" title="Link to this heading"></a></h2>
+<p>This flow, described by Burggraf (JFM, 1966), is a two-dimensional flow with no-slip walls. The upper wall has a spatially-varying tangential velocity (which is applied to the simulation via a user-defined-function, or UDF, boundary condition), and a spatially-varying body force. At steady state, this flow has an analytical solution that we use to verify the implementation of the UDF BC.</p>
+<a class="reference internal image-reference" href="../_images/Burggraf_error.png"><img alt="../_images/Burggraf_error.png" src="../_images/Burggraf_error.png" style="width: 300pt;" />
+</a>
+</section>
+<section id="channel-flow-with-smagorinsky-les">
+<h2>Channel flow with Smagorinsky LES<a class="headerlink" href="#channel-flow-with-smagorinsky-les" title="Link to this heading"></a></h2>
+<p>This test verifies the implementation of the Smagorinsky LES model as
+well as the wall model boundary conditions using an analytical channel
+flow solution.</p>
+<p>Smagorinsky model:</p>
+<div class="math notranslate nohighlight">
+\[\nu_t = C_s^2 (2 \langle S_{ij} S_{ij} \rangle)^{\frac{1}{2}} \Delta^2\]</div>
+<p>This simplifies in a 1-D case to</p>
+<div class="math notranslate nohighlight">
+\[\nu_t = C_s^2 \Delta^2 \lvert \frac{\partial U}{\partial z} \rvert\]</div>
+<p>Mean velocity equations:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial U}{\partial t} = -\frac{\mathrm{d} P}{\mathrm{d} x} + \left(\nu + C_s^2 \lvert \frac{\partial U}{\partial z} \rvert \Delta^2 \right) \frac{\partial^2 U}{{\partial z^2}}\]</div>
+<p>Steady state solution (assuming <span class="math notranslate nohighlight">\(\frac{\partial U}{\partial z} &gt; 0\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[0 = -\frac{\mathrm{d} P}{\mathrm{d} x} + \left(\nu + C_s^2 \frac{\partial U}{\partial z} \Delta^2 \right) \frac{\partial^2 U}{{\partial z^2}}\]</div>
+<p>The analytical solution is:</p>
+<div class="math notranslate nohighlight">
+\[U = -\frac{\nu}{C_s^2 \Delta^2} z + \frac{C_s^2 \Delta^2}{3 \frac{\mathrm{d} P}{\mathrm{d} x}} \left( \frac{2}{C_s^2 \Delta^2} \frac{\mathrm{d} P}{\mathrm{d} x} z + \left(\frac{\nu}{C_s^2 \Delta^2}\right)^2 + \mathcal{C}_1 \right)^{\frac{3}{2}} + \mathcal{C}_0\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{C}_i\)</span> are arbitrary constants.</p>
+<p>To solve for <span class="math notranslate nohighlight">\(\mathcal{C}_1\)</span>, we set the requirement that
+<span class="math notranslate nohighlight">\((\nu+\nu_t)\frac{\partial U}{\partial z}\Bigg\vert_{z=0} = -\frac{\partial P}{\partial x}\)</span> using</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \frac{\partial U}{\partial z} &amp;= -\frac{\nu}{C_s^2 \Delta^2} + \left( \frac{2}{C_s^2 \Delta^2} \frac{\mathrm{d} P}{\mathrm{d} x} z + \left(\frac{\nu}{C_s^2 \Delta^2}\right)^2 + \mathcal{C}_1 \right)^{\frac{1}{2}} \\
+\end{aligned}\end{split}\]</div>
+<p>This gives us a value for <span class="math notranslate nohighlight">\(\mathcal{C}_1\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{C}_1 = \frac{1}{2} \left(-\left(\frac{\nu}{C_s^2\Delta^2}\right)^2 - \frac{2}{C_s^2\Delta^2} \frac{\mathrm{d} P}{\mathrm{d} x} +  \left(\left(\frac{\nu}{C_s^2\Delta^2}\right)^4 + 4\left(\frac{\nu}{C_s^2\Delta^2}\right)^2 \left(-\frac{\mathrm{d} P}{\mathrm{d} x} \frac{1}{C_s^2 \Delta^2}\right)\right)^{\frac{1}{2}}\right)\]</div>
+<p>Using this <span class="math notranslate nohighlight">\(\mathcal{C}_1\)</span> and setting <span class="math notranslate nohighlight">\(U(z=0)=0\)</span>, we get
+<span class="math notranslate nohighlight">\(\mathcal{C}_0\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{C}_0 = - \frac{C_s^2 \Delta^2}{3 \frac{\mathrm{d} P}{\mathrm{d} x}} \left(  \left(\frac{\nu}{C_s^2 \Delta^2}\right)^2 + \mathcal{C}_1 \right)^{\frac{3}{2}}\]</div>
+<p>Finally, to make this problem well-posed, instead of setting a slip-wall
+at the top boundary, we set a Dirichlet boundary condition using
+<span class="math notranslate nohighlight">\(U(z)\)</span> computed at <span class="math notranslate nohighlight">\(z_{\mathrm{hi}}\)</span>.</p>
+<section id="parameter-values-for-testing">
+<h3>Parameter values for testing<a class="headerlink" href="#parameter-values-for-testing" title="Link to this heading"></a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+    \nu &amp;= 3.5e-3\\
+    \frac{\mathrm{d} P}{\mathrm{d} x} &amp;= -0.003969\\
+    C_s &amp;= 0.1\\
+    \Delta &amp;= \frac{1}{n_z}
+\end{aligned}\end{split}\]</div>
+<p>The hand computed values for the constants and boundary conditions for
+varying <span class="math notranslate nohighlight">\(n_z\)</span> are:</p>
+<div class="center docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(n_z\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\mathcal{C}_0\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\mathcal{C}_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(U\vert_{z=1}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>169.90632344067848</p></td>
+<td><p>49.63299783004268</p></td>
+<td><p>0.5322727144609587</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>2449.4399999999982</p></td>
+<td><p>201.95839999999998</p></td>
+<td><p>0.5576738677495996</p></td>
+</tr>
+<tr class="row-even"><td><p>32</p></td>
+<td><p>38115.76743991355</p></td>
+<td><p>811.5733178848386</p></td>
+<td><p>0.5646234542509774</p></td>
+</tr>
+<tr class="row-odd"><td><p>64</p></td>
+<td><p>605551.4603806001</p></td>
+<td><p>3250.1208744082833</p></td>
+<td><p>0.5664029656909406</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="test-results">
+<h3>Test results<a class="headerlink" href="#test-results" title="Link to this heading"></a></h3>
+<p>These are results of running the test case for 100 seconds.</p>
+<a class="reference internal image-reference" href="../_images/channel_smagorinsky.png"><img alt="../_images/channel_smagorinsky.png" src="../_images/channel_smagorinsky.png" style="width: 300pt;" />
+</a>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="regression_testing.html" class="btn btn-neutral float-left" title="Regression testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="coding_guidelines.html" class="btn btn-neutral float-right" title="Coding Guidelines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

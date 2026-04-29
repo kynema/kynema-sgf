@@ -1,0 +1,602 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::pde::AdvectionOp&amp;lt; PDE, fvm::Godunov, typename std::enable_if_t&amp;lt; std::is_base_of_v&amp;lt; ScalarTransport, PDE &amp;gt; &amp;gt; &amp;gt; Struct Template Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::pde::AdvectionOp&amp;lt; PDE, fvm::Godunov, typename std::enable_if_t&amp;lt; std::is_base_of_v&amp;lt; ScalarTransport, PDE &amp;gt; &amp;gt; &amp;gt; Struct Template Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="is-base-of-v-lt-scalartransport-pde-gt-gt-gt-struct-template-reference">
+<h1>is_base_of_v&amp;lt; ScalarTransport, PDE &amp;gt; &amp;gt; &amp;gt; Struct Template Reference<a class="headerlink" href="#is-base-of-v-lt-scalartransport-pde-gt-gt-gt-struct-template-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt; Struct Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1pde.html">pde</a></li><li class="navelem"><a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_a5c35d2391d866d4da72da2be0a8a06b.html">AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_40aff9a927b7ba47e28bf21b020dd040.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__eqsys.html">Equation Systems</a> &raquo; <a class="el" href="group__pdeop.html">PDE Operators</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_adv_op___godunov_8_h_source.html">AdvOp_Godunov.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_0af32996c22b09311806cdc14334693e.svg" width="376" height="266"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="structkynema__sgf_1_1pde_1_1_advection_op_3_01_p_d_e_00_01fvm_1_1_godunov_00_01typename_01std_1_067531ef24bf56a9db9a3f8aa9e8ac63.svg" width="100%" height="593"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a28b64d5541f062b4163c504649e77564" id="r_a28b64d5541f062b4163c504649e77564"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28b64d5541f062b4163c504649e77564">AdvectionOp</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;, <a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a> &amp;fields_in, bool, bool, bool, bool)</td></tr>
+<tr class="memitem:acf6116021a894e0fdf89fd501cf25869" id="r_acf6116021a894e0fdf89fd501cf25869"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf6116021a894e0fdf89fd501cf25869">preadvect</a> (const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a>, const amrex::Real, const amrex::Real)</td></tr>
+<tr class="memitem:ae46a5851f274ae3ca0e52835cb8118e0" id="r_ae46a5851f274ae3ca0e52835cb8118e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae46a5851f274ae3ca0e52835cb8118e0">operator()</a> (const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate, const amrex::Real dt)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ad58f2d30231818c97546fa8baa368b53" id="r_ad58f2d30231818c97546fa8baa368b53"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad58f2d30231818c97546fa8baa368b53">fields</a></td></tr>
+<tr class="memitem:a06590cc0365a36083da7910c0b342d21" id="r_a06590cc0365a36083da7910c0b342d21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06590cc0365a36083da7910c0b342d21">density</a></td></tr>
+<tr class="memitem:acbc994a1abc5b6cc3c66ecf775cec7bf" id="r_acbc994a1abc5b6cc3c66ecf775cec7bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbc994a1abc5b6cc3c66ecf775cec7bf">u_mac</a></td></tr>
+<tr class="memitem:a4334c606ca909972ba039793525bf117" id="r_a4334c606ca909972ba039793525bf117"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4334c606ca909972ba039793525bf117">v_mac</a></td></tr>
+<tr class="memitem:a0dc007f964830198a00f1f11322e873c" id="r_a0dc007f964830198a00f1f11322e873c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0dc007f964830198a00f1f11322e873c">w_mac</a></td></tr>
+<tr class="memitem:a30dc484cb5461a20d57f2d2ec8dc26dd" id="r_a30dc484cb5461a20d57f2d2ec8dc26dd"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30dc484cb5461a20d57f2d2ec8dc26dd">iconserv</a></td></tr>
+<tr class="memitem:a6dd35c0a3045eec36397a140c0d426fd" id="r_a6dd35c0a3045eec36397a140c0d426fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3">godunov::scheme</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6dd35c0a3045eec36397a140c0d426fd">godunov_scheme</a> = <a class="el" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3af47474bf582aab71c15995ebbdd9a372">godunov::scheme::WENOZ</a></td></tr>
+<tr class="memitem:ae1d55b6f84ae69edd1790a998ffbc4f1" id="r_ae1d55b6f84ae69edd1790a998ffbc4f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3">godunov::scheme</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1d55b6f84ae69edd1790a998ffbc4f1">mflux_scheme</a> = <a class="el" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a72c4ca1f5cabf1a67e1efd909f6be8b8">godunov::scheme::UPWIND</a></td></tr>
+<tr class="memitem:a39d800f030359c22bad1101a233e71a4" id="r_a39d800f030359c22bad1101a233e71a4"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39d800f030359c22bad1101a233e71a4">godunov_type</a> {&quot;weno_z&quot;}</td></tr>
+<tr class="memitem:a69563b71a2b6e2f5574bb517d5856264" id="r_a69563b71a2b6e2f5574bb517d5856264"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69563b71a2b6e2f5574bb517d5856264">mflux_type</a> {&quot;upwind&quot;}</td></tr>
+<tr class="memitem:aa4e487d399b95b7950077c7f5b811c71" id="r_aa4e487d399b95b7950077c7f5b811c71"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4e487d399b95b7950077c7f5b811c71">fluxes_are_area_weighted</a> {false}</td></tr>
+<tr class="memitem:ae7e9610be45ba57e6c8927edf4700070" id="r_ae7e9610be45ba57e6c8927edf4700070"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7e9610be45ba57e6c8927edf4700070">godunov_use_forces_in_trans</a> {false}</td></tr>
+<tr class="memitem:a768a8c58a63ce2696be6c277813fed00" id="r_a768a8c58a63ce2696be6c277813fed00"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a768a8c58a63ce2696be6c277813fed00">m_allow_inflow_on_outflow</a> {false}</td></tr>
+<tr class="memitem:a72ef2904ee1bdbae877e2f7fc2d16882" id="r_a72ef2904ee1bdbae877e2f7fc2d16882"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72ef2904ee1bdbae877e2f7fc2d16882">advection_type</a> {&quot;Godunov&quot;}</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename PDE&gt;<br />
+struct kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;</div><p>Godunov advection operator for scalar transport equations </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a28b64d5541f062b4163c504649e77564" name="a28b64d5541f062b4163c504649e77564"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28b64d5541f062b4163c504649e77564">&#9670;&#160;</a></span>AdvectionOp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::AdvectionOp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fields_in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="ae46a5851f274ae3ca0e52835cb8118e0" name="ae46a5851f274ae3ca0e52835cb8118e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae46a5851f274ae3ca0e52835cb8118e0">&#9670;&#160;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>dt</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acf6116021a894e0fdf89fd501cf25869" name="acf6116021a894e0fdf89fd501cf25869"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf6116021a894e0fdf89fd501cf25869">&#9670;&#160;</a></span>preadvect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::preadvect </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a72ef2904ee1bdbae877e2f7fc2d16882" name="a72ef2904ee1bdbae877e2f7fc2d16882"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72ef2904ee1bdbae877e2f7fc2d16882">&#9670;&#160;</a></span>advection_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::advection_type {&quot;Godunov&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a06590cc0365a36083da7910c0b342d21" name="a06590cc0365a36083da7910c0b342d21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06590cc0365a36083da7910c0b342d21">&#9670;&#160;</a></span>density</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::density</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad58f2d30231818c97546fa8baa368b53" name="ad58f2d30231818c97546fa8baa368b53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad58f2d30231818c97546fa8baa368b53">&#9670;&#160;</a></span>fields</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a>&amp; <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::fields</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa4e487d399b95b7950077c7f5b811c71" name="aa4e487d399b95b7950077c7f5b811c71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4e487d399b95b7950077c7f5b811c71">&#9670;&#160;</a></span>fluxes_are_area_weighted</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::fluxes_are_area_weighted {false}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6dd35c0a3045eec36397a140c0d426fd" name="a6dd35c0a3045eec36397a140c0d426fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dd35c0a3045eec36397a140c0d426fd">&#9670;&#160;</a></span>godunov_scheme</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3">godunov::scheme</a> <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::godunov_scheme = <a class="el" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3af47474bf582aab71c15995ebbdd9a372">godunov::scheme::WENOZ</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a39d800f030359c22bad1101a233e71a4" name="a39d800f030359c22bad1101a233e71a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39d800f030359c22bad1101a233e71a4">&#9670;&#160;</a></span>godunov_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::godunov_type {&quot;weno_z&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae7e9610be45ba57e6c8927edf4700070" name="ae7e9610be45ba57e6c8927edf4700070"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7e9610be45ba57e6c8927edf4700070">&#9670;&#160;</a></span>godunov_use_forces_in_trans</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::godunov_use_forces_in_trans {false}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a30dc484cb5461a20d57f2d2ec8dc26dd" name="a30dc484cb5461a20d57f2d2ec8dc26dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30dc484cb5461a20d57f2d2ec8dc26dd">&#9670;&#160;</a></span>iconserv</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;int&gt; <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::iconserv</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a768a8c58a63ce2696be6c277813fed00" name="a768a8c58a63ce2696be6c277813fed00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a768a8c58a63ce2696be6c277813fed00">&#9670;&#160;</a></span>m_allow_inflow_on_outflow</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::m_allow_inflow_on_outflow {false}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae1d55b6f84ae69edd1790a998ffbc4f1" name="ae1d55b6f84ae69edd1790a998ffbc4f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1d55b6f84ae69edd1790a998ffbc4f1">&#9670;&#160;</a></span>mflux_scheme</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3">godunov::scheme</a> <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::mflux_scheme = <a class="el" href="namespacegodunov.html#a0d48c9064caf98de3f1a76c4be1cb4a3a72c4ca1f5cabf1a67e1efd909f6be8b8">godunov::scheme::UPWIND</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a69563b71a2b6e2f5574bb517d5856264" name="a69563b71a2b6e2f5574bb517d5856264"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69563b71a2b6e2f5574bb517d5856264">&#9670;&#160;</a></span>mflux_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::mflux_type {&quot;upwind&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acbc994a1abc5b6cc3c66ecf775cec7bf" name="acbc994a1abc5b6cc3c66ecf775cec7bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbc994a1abc5b6cc3c66ecf775cec7bf">&#9670;&#160;</a></span>u_mac</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::u_mac</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4334c606ca909972ba039793525bf117" name="a4334c606ca909972ba039793525bf117"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4334c606ca909972ba039793525bf117">&#9670;&#160;</a></span>v_mac</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::v_mac</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0dc007f964830198a00f1f11322e873c" name="a0dc007f964830198a00f1f11322e873c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dc007f964830198a00f1f11322e873c">&#9670;&#160;</a></span>w_mac</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PDE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="el" href="structkynema__sgf_1_1pde_1_1_advection_op.html">kynema_sgf::pde::AdvectionOp</a>&lt; PDE, <a class="el" href="structkynema__sgf_1_1fvm_1_1_godunov.html">fvm::Godunov</a>, typename std::enable_if_t&lt; std::is_base_of_v&lt; <a class="el" href="structkynema__sgf_1_1pde_1_1_scalar_transport.html">ScalarTransport</a>, PDE &gt; &gt; &gt;::w_mac</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/<a class="el" href="_adv_op___godunov_8_h_source.html">AdvOp_Godunov.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

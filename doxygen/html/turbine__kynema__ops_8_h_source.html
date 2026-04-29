@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/kynema/turbine_kynema_ops.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/kynema/turbine_kynema_ops.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/turbine__kynema__ops_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-turbine-kynema-turbine-kynema-ops-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/kynema/turbine_kynema_ops.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-turbine-kynema-turbine-kynema-ops-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/kynema/turbine_kynema_ops.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_a80d9316c48aa709b9bc78e2b746db24.html">wind_energy</a></li><li class="navelem"><a href="dir_9dcf803d990c86a52c151efe46b23ed3.html">actuator</a></li><li class="navelem"><a href="dir_0761b4eef8ed7bf1817548a27f87065f.html">turbine</a></li><li class="navelem"><a href="dir_110b80f95f5b2cd12b3271d8475b0785.html">kynema</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">turbine_kynema_ops.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="turbine__kynema__ops_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef TURBINE_KYNEMA_OPS_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define TURBINE_KYNEMA_OPS_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_turbine_kynema_8_h.html">src/wind_energy/actuator/turbine/kynema/TurbineKynema.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="turbine__external__ops_8_h.html">src/wind_energy/actuator/turbine/external/turbine_external_ops.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1actuator_1_1ops.html">kynema_sgf::actuator::ops</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> SrcTrait&gt;</div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_read_inputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html">   13</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1ops_1_1_read_inputs_op.html">ReadInputsOp</a>&lt;<a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a8bea2c4d345f2208ec2d17800fc3b6c8">TurbineKynema</a>, SrcTrait&gt;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_read_inputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a361a25d84315d2dcaca579a58264afe3">   15</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1ops_1_1_read_inputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a361a25d84315d2dcaca579a58264afe3">operator()</a>(<a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#acf6af471cbcd2351185a09413f12b641">TurbineKynema::DataType</a>&amp; data, <span class="keyword">const</span> <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator_1_1utils.html#a09555b2d7d3bf73e8f36553f7f5aa3ac">utils::ActParser</a>&amp; pp)</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="keyword">auto</span>&amp; tf = data.<a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a7db25eb9e70b4ab6bcb1a921bd1508ac">meta</a>().ext_data;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="comment">// Only one mode available for now</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keyword">const</span> std::string sim_mode{<span class="stringliteral">&quot;init&quot;</span>};</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keywordflow">if</span> (sim_mode == <span class="stringliteral">&quot;init&quot;</span>) {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            tf.sim_mode = <a class="code hl_enumvalue" href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547ae37f0136aa3ffaf149b351f6a4c948e9">::ext_turb::SimMode::init</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>            amrex::Print() &lt;&lt; <span class="stringliteral">&quot;Initializing turbine:&quot;</span> &lt;&lt; tf.tlabel &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (sim_mode == <span class="stringliteral">&quot;replay&quot;</span>) {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            tf.sim_mode = <a class="code hl_enumvalue" href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547ab2dbeb695fa205804b1e5e72650ad2bb">::ext_turb::SimMode::replay</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            amrex::Print() &lt;&lt; <span class="stringliteral">&quot;Replaying turbine:&quot;</span> &lt;&lt; tf.tlabel &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (sim_mode == <span class="stringliteral">&quot;restart&quot;</span>) {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            tf.sim_mode = <a class="code hl_enumvalue" href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547a8a7ef1c3e82395341b7000b79c239eb4">::ext_turb::SimMode::restart</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            amrex::Print() &lt;&lt; <span class="stringliteral">&quot;Restarting turbine:&quot;</span> &lt;&lt; tf.tlabel &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            amrex::Abort(</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                <span class="stringliteral">&quot;Actuator: Invalid Kynema simulation mode: &quot;</span> + sim_mode);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">if</span> (tf.sim_mode == <a class="code hl_enumvalue" href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547a8a7ef1c3e82395341b7000b79c239eb4">::ext_turb::SimMode::restart</a>) {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#a4f0926f0305836f63f82aae64cf301af">get</a>(<span class="stringliteral">&quot;kynema_restart_file&quot;</span>, tf.checkpoint_file);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#a4f0926f0305836f63f82aae64cf301af">get</a>(<span class="stringliteral">&quot;kynema_input_file&quot;</span>, tf.input_file);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            amrex::FileSystem::Exists(tf.input_file),</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            <span class="stringliteral">&quot;turbine_kynema_ops: Cannot find Kynema input file: &quot;</span> +</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                tf.input_file);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#af817ab80304d5dcc3eed7641b68fcea4">query</a>(</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <span class="stringliteral">&quot;controller_shared_library_path&quot;</span>, tf.controller_shared_lib_path);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#af817ab80304d5dcc3eed7641b68fcea4">query</a>(<span class="stringliteral">&quot;controller_input_file&quot;</span>, tf.controller_input_file);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="comment">// Get hub height and turbine diameter from turbine input,</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="comment">// not Kynema-SGF input file</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keyword">const</span> YAML::Node wio = YAML::LoadFile(tf.input_file);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; wio_blade = wio[<span class="stringliteral">&quot;components&quot;</span>][<span class="stringliteral">&quot;blade&quot;</span>];</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; ref_axis = wio_blade[<span class="stringliteral">&quot;reference_axis&quot;</span>];</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            <span class="keyword">const</span> <span class="keyword">auto</span> z_values =</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                ref_axis[<span class="stringliteral">&quot;z&quot;</span>][<span class="stringliteral">&quot;values&quot;</span>].as&lt;std::vector&lt;amrex::Real&gt;&gt;();</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            data.<a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#af6ac3b049773b2a1521aebd310b9d595">info</a>().rotor_diameter = 2.0_rt * z_values[z_values.size() - 1];</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; wio_tower = wio[<span class="stringliteral">&quot;components&quot;</span>][<span class="stringliteral">&quot;tower&quot;</span>];</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; tower_ref_axis = wio_tower[<span class="stringliteral">&quot;reference_axis&quot;</span>];</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            <span class="keyword">const</span> <span class="keyword">auto</span> z_values =</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                tower_ref_axis[<span class="stringliteral">&quot;z&quot;</span>][<span class="stringliteral">&quot;values&quot;</span>].as&lt;std::vector&lt;amrex::Real&gt;&gt;();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            data.<a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#af6ac3b049773b2a1521aebd310b9d595">info</a>().hub_height = z_values[z_values.size() - 1];</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <a class="code hl_function" href="namespacekynema__sgf_1_1actuator_1_1ops.html#a82e4ab431ddfea6f20774bdf8bc0ec51">read_ops&lt;TurbineKynema::DataType&gt;</a>(data, pp);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="comment">// Do Kynema-SGF inputs specific to kynema turbine</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        tf.fluid_density = data.<a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a7db25eb9e70b4ab6bcb1a921bd1508ac">meta</a>().density;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        tf.dt_ext = -1.;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#af817ab80304d5dcc3eed7641b68fcea4">query</a>(<span class="stringliteral">&quot;dt&quot;</span>, tf.dt_ext);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keywordflow">if</span> (tf.dt_ext &lt; 0.0_rt) {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            tf.dt_ext = tf.dt_cfd;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="comment">// Number of beam elements read in from file</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#a4f0926f0305836f63f82aae64cf301af">get</a>(<span class="stringliteral">&quot;num_struct_nodes_blade&quot;</span>, tf.num_blade_elem);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#a4f0926f0305836f63f82aae64cf301af">get</a>(<span class="stringliteral">&quot;num_struct_nodes_tower&quot;</span>, tf.num_tower_elem);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="comment">// Initial or constant angular rotation speed</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#af817ab80304d5dcc3eed7641b68fcea4">query</a>(<span class="stringliteral">&quot;rot_speed_radps&quot;</span>, tf.rotational_speed);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordflow">if</span> (!pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#ac3c29d64997736fd0143df655bc6138d">contains</a>(<span class="stringliteral">&quot;rot_speed_radps&quot;</span>)) {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#af817ab80304d5dcc3eed7641b68fcea4">query</a>(<span class="stringliteral">&quot;rot_speed_rpm&quot;</span>, tf.rotational_speed);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            tf.rotational_speed *=</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                2.0_rt * std::numbers::pi_v&lt;amrex::Real&gt; / 60.0_rt;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="comment">// Initial generator speed</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#af817ab80304d5dcc3eed7641b68fcea4">query</a>(<span class="stringliteral">&quot;generator_power_init&quot;</span>, tf.generator_power);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="comment">// Initial wind speed</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        amrex::Vector&lt;amrex::Real&gt; vel_vec{tf.wind_speed, 0., 0.};</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#ad380f062ce998fb7b94b98779808d035">queryarr</a>(<span class="stringliteral">&quot;hub_wind_vector_init&quot;</span>, vel_vec);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        tf.wind_speed = std::sqrt(</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            vel_vec[0] * vel_vec[0] + vel_vec[1] * vel_vec[1] +</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            vel_vec[2] * vel_vec[2]);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="comment">// Initial or constant nacelle yaw</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#af817ab80304d5dcc3eed7641b68fcea4">query</a>(<span class="stringliteral">&quot;yaw_rad&quot;</span>, tf.yaw);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordflow">if</span> (!pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#ac3c29d64997736fd0143df655bc6138d">contains</a>(<span class="stringliteral">&quot;yaw_rad&quot;</span>)) {</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#af817ab80304d5dcc3eed7641b68fcea4">query</a>(<span class="stringliteral">&quot;yaw_deg&quot;</span>, tf.yaw);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>            tf.yaw *= std::numbers::pi_v&lt;amrex::Real&gt; / 180.0_rt;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="comment">// Generator efficiency</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#af817ab80304d5dcc3eed7641b68fcea4">query</a>(<span class="stringliteral">&quot;generator_efficiency&quot;</span>, tf.generator_efficiency);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    }</div>
+</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>};</div>
+</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00109" data-start="{" data-end="}">
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1actuator_1_1ops.html#ab14acef6344841f313a5f6c0249acec7">  109</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacekynema__sgf_1_1actuator_1_1ops.html#ab14acef6344841f313a5f6c0249acec7">determine_influenced_procs&lt;TurbineKynema&gt;</a>(</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keyword">typename</span> <a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#acf6af471cbcd2351185a09413f12b641">TurbineKynema::DataType</a>&amp; data)</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>{</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <a class="code hl_function" href="namespacekynema__sgf_1_1actuator_1_1ops.html#ac4c21609e0d39210deaf2573ebec7d43">external_determine_influenced_procs&lt;TurbineKynema::DataType&gt;</a>(data);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>}</div>
+</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="foldopen" id="foldopen00116" data-start="{" data-end="}">
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1actuator_1_1ops.html#a553a0c9707e9dd0d888de6ec4331e600">  116</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacekynema__sgf_1_1actuator_1_1ops.html#a553a0c9707e9dd0d888de6ec4331e600">determine_root_proc&lt;TurbineKynema&gt;</a>(</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keyword">typename</span> <a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#acf6af471cbcd2351185a09413f12b641">TurbineKynema::DataType</a>&amp; data, amrex::Vector&lt;int&gt;&amp; act_proc_count)</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>{</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <a class="code hl_function" href="namespacekynema__sgf_1_1actuator_1_1ops.html#a4e25ab0c238dff59e7b2ad86eb85d80d">external_determine_root_proc</a>&lt;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#acf6af471cbcd2351185a09413f12b641">TurbineKynema::DataType</a>, <a class="code hl_struct" href="structext__turb_1_1_kynema_turbine.html">::ext_turb::KynemaTurbine</a>,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <a class="code hl_struct" href="structext__turb_1_1_kynema_solver_data.html">::ext_turb::KynemaSolverData</a>&gt;(data, act_proc_count);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>}</div>
+</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> SrcTrait&gt;</div>
+<div class="foldopen" id="foldopen00125" data-start="{" data-end="};">
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_init_data_op_3_01_turbine_kynema_00_01_src_trait_01_4.html">  125</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1ops_1_1_init_data_op.html">InitDataOp</a>&lt;<a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a8bea2c4d345f2208ec2d17800fc3b6c8">TurbineKynema</a>, SrcTrait&gt;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>{</div>
+<div class="foldopen" id="foldopen00127" data-start="{" data-end="}">
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_init_data_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a93bc38fa7ddf5e6439bae87c17c2e233">  127</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1ops_1_1_init_data_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a93bc38fa7ddf5e6439bae87c17c2e233">operator()</a>(<a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#acf6af471cbcd2351185a09413f12b641">TurbineKynema::DataType</a>&amp; data)</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    {</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        BL_PROFILE(<span class="stringliteral">&quot;kynema-sgf::InitDataOp&lt;TurbineKynema&gt;&quot;</span>);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <a class="code hl_function" href="namespacekynema__sgf_1_1actuator_1_1ops.html#ad973877d988a43f209560a2fc0ec096c">init_data_op&lt;TurbineKynema::DataType&gt;</a>(data);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    }</div>
+</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>};</div>
+</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> SrcTrait&gt;</div>
+<div class="foldopen" id="foldopen00135" data-start="{" data-end="};">
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_update_pos_op_3_01_turbine_kynema_00_01_src_trait_01_4.html">  135</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1ops_1_1_update_pos_op.html">UpdatePosOp</a>&lt;<a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a8bea2c4d345f2208ec2d17800fc3b6c8">TurbineKynema</a>, SrcTrait&gt;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>{</div>
+<div class="foldopen" id="foldopen00137" data-start="{" data-end="}">
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_update_pos_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#abc134486e74739f65ce9a92a8b318511">  137</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1ops_1_1_update_pos_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#abc134486e74739f65ce9a92a8b318511">operator()</a>(<span class="keyword">typename</span> <a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#acf6af471cbcd2351185a09413f12b641">TurbineKynema::DataType</a>&amp; data)</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    {</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        BL_PROFILE(<span class="stringliteral">&quot;kynema-sgf::actuator::UpdatePosOp&lt;TurbineKynema&gt;&quot;</span>);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <a class="code hl_function" href="namespacekynema__sgf_1_1actuator_1_1ops.html#aa1742152087b006b880c5fe4de117a94">update_pos_op&lt;TurbineKynema::DataType&gt;</a>(data);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    }</div>
+</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>};</div>
+</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> SrcTrait&gt;</div>
+<div class="foldopen" id="foldopen00145" data-start="{" data-end="};">
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_update_vel_op_3_01_turbine_kynema_00_01_src_trait_01_4.html">  145</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1ops_1_1_update_vel_op.html">UpdateVelOp</a>&lt;<a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a8bea2c4d345f2208ec2d17800fc3b6c8">TurbineKynema</a>, SrcTrait&gt;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>{</div>
+<div class="foldopen" id="foldopen00147" data-start="{" data-end="}">
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_update_vel_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a4a416bcdbede645977819df0026d5ce6">  147</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1ops_1_1_update_vel_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a4a416bcdbede645977819df0026d5ce6">operator()</a>(<span class="keyword">typename</span> <a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#acf6af471cbcd2351185a09413f12b641">TurbineKynema::DataType</a>&amp; data)</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    {</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        BL_PROFILE(<span class="stringliteral">&quot;kynema-sgf::actuator::UpdateVelOp&lt;TurbineKynema&gt;&quot;</span>);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <a class="code hl_function" href="namespacekynema__sgf_1_1actuator_1_1ops.html#aa75695f53a6a2792ef2c34c814b438c0">update_vel_op&lt;TurbineKynema::DataType&gt;</a>(data);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    }</div>
+</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>};</div>
+</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> SrcTrait&gt;</div>
+<div class="foldopen" id="foldopen00155" data-start="{" data-end="};">
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_compute_force_op_3_01_turbine_kynema_00_01_src_trait_01_4.html">  155</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1ops_1_1_compute_force_op.html">ComputeForceOp</a>&lt;<a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a8bea2c4d345f2208ec2d17800fc3b6c8">TurbineKynema</a>, SrcTrait&gt;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>{</div>
+<div class="foldopen" id="foldopen00157" data-start="{" data-end="}">
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_compute_force_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a420c29e09374afcf9249e3b86abbf0cf">  157</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1ops_1_1_compute_force_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a420c29e09374afcf9249e3b86abbf0cf">operator()</a>(<span class="keyword">typename</span> <a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#acf6af471cbcd2351185a09413f12b641">TurbineKynema::DataType</a>&amp; data)</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    {</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        BL_PROFILE(<span class="stringliteral">&quot;kynema-sgf::actuator::ComputeForceOp&lt;TurbineKynema&gt;&quot;</span>);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <a class="code hl_function" href="namespacekynema__sgf_1_1actuator_1_1ops.html#ada3aab79a057aa24f4c7ac7e5c8260c8">compute_force_op&lt;TurbineKynema::DataType&gt;</a>(data);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    }</div>
+</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>};</div>
+</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> SrcTrait&gt;</div>
+<div class="foldopen" id="foldopen00165" data-start="{" data-end="};">
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html">  165</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a01919144e63a9333be9c2483096a32d9">ProcessOutputsOp</a>&lt;<a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a8bea2c4d345f2208ec2d17800fc3b6c8">TurbineKynema</a>, SrcTrait&gt;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>{</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#af6ca8d170d354f85b4d5bfbc9b1cd5b4">  168</a></span>    <span class="keyword">typename</span> <a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#acf6af471cbcd2351185a09413f12b641">TurbineKynema::DataType</a>&amp; <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#af6ca8d170d354f85b4d5bfbc9b1cd5b4">m_data</a>;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a4693f645cf6c8bcf0f66e691632e9bec">  171</a></span>    std::string <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a4693f645cf6c8bcf0f66e691632e9bec">m_out_dir</a>;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#ab601fe2535641c03c43976973491c708">  174</a></span>    std::string <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#ab601fe2535641c03c43976973491c708">m_nc_filename</a>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#abe43f89b97e4350598372eac4d5bdd95">  177</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#abe43f89b97e4350598372eac4d5bdd95">m_out_freq</a>{10};</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00180" data-start="{" data-end="}">
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a01919144e63a9333be9c2483096a32d9">  180</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a01919144e63a9333be9c2483096a32d9">ProcessOutputsOp</a>(<span class="keyword">typename</span> <a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#acf6af471cbcd2351185a09413f12b641">TurbineKynema::DataType</a>&amp; data)</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        : <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#af6ca8d170d354f85b4d5bfbc9b1cd5b4">m_data</a>(data)</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    {}</div>
+</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="foldopen" id="foldopen00184" data-start="{" data-end="}">
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#aea58c4100b1ce9c1ea62effc1ead2fbb">  184</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#aea58c4100b1ce9c1ea62effc1ead2fbb">read_io_options</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator_1_1utils.html#a09555b2d7d3bf73e8f36553f7f5aa3ac">utils::ActParser</a>&amp; pp)</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    {</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        pp.<a class="code hl_function" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#af817ab80304d5dcc3eed7641b68fcea4">query</a>(<span class="stringliteral">&quot;output_frequency&quot;</span>, <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#abe43f89b97e4350598372eac4d5bdd95">m_out_freq</a>);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    }</div>
+</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="foldopen" id="foldopen00189" data-start="{" data-end="}">
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a0da9a2e0c7e30c5ee5528920798751c1">  189</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a0da9a2e0c7e30c5ee5528920798751c1">prepare_outputs</a>(<span class="keyword">const</span> std::string&amp; out_dir)</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    {</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#ab601fe2535641c03c43976973491c708">m_nc_filename</a> = out_dir + <span class="stringliteral">&quot;/&quot;</span> + <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#af6ca8d170d354f85b4d5bfbc9b1cd5b4">m_data</a>.info().label + <span class="stringliteral">&quot;.nc&quot;</span>;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        <a class="code hl_function" href="namespacekynema__sgf_1_1actuator_1_1utils.html#a62ff404b0e730f5f133ca9209ba63309">utils::prepare_netcdf_file</a>(</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>            <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#ab601fe2535641c03c43976973491c708">m_nc_filename</a>, <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#af6ca8d170d354f85b4d5bfbc9b1cd5b4">m_data</a>.meta(), <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#af6ca8d170d354f85b4d5bfbc9b1cd5b4">m_data</a>.info(), <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#af6ca8d170d354f85b4d5bfbc9b1cd5b4">m_data</a>.grid());</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    }</div>
+</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="foldopen" id="foldopen00196" data-start="{" data-end="}">
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#aa36713979bdb8c4bc4177e2762ad78ef">  196</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#aa36713979bdb8c4bc4177e2762ad78ef">write_outputs</a>()</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    {</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; time = <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#af6ca8d170d354f85b4d5bfbc9b1cd5b4">m_data</a>.sim().time();</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> tidx = time.time_index();</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        <span class="keywordflow">if</span> ((<a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#abe43f89b97e4350598372eac4d5bdd95">m_out_freq</a> &gt; 0) &amp;&amp; (tidx % <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#abe43f89b97e4350598372eac4d5bdd95">m_out_freq</a> != 0)) {</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        }</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <a class="code hl_function" href="namespacekynema__sgf_1_1actuator_1_1utils.html#adf818ee1c49b37283f311e16851baf7f">utils::write_netcdf</a>(</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>            <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#ab601fe2535641c03c43976973491c708">m_nc_filename</a>, <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#af6ca8d170d354f85b4d5bfbc9b1cd5b4">m_data</a>.meta(), <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#af6ca8d170d354f85b4d5bfbc9b1cd5b4">m_data</a>.info(), <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#af6ca8d170d354f85b4d5bfbc9b1cd5b4">m_data</a>.grid(),</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>            time.new_time());</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    }</div>
+</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>};</div>
+</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>} <span class="comment">// namespace kynema_sgf::actuator::ops</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="preprocessor">#endif </span><span class="comment">/* TURBINE_KYNEMA_OPS_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_turbine_kynema_8_h_html"><div class="ttname"><a href="_turbine_kynema_8_h.html">TurbineKynema.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html_a7db25eb9e70b4ab6bcb1a921bd1508ac"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a7db25eb9e70b4ab6bcb1a921bd1508ac">kynema_sgf::actuator::ActDataHolder::meta</a></div><div class="ttdeci">ActTrait::MetaType &amp; meta()</div><div class="ttdef"><b>Definition</b> actuator_types.H:229</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html_af6ac3b049773b2a1521aebd310b9d595"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#af6ac3b049773b2a1521aebd310b9d595">kynema_sgf::actuator::ActDataHolder::info</a></div><div class="ttdeci">ActTrait::InfoType &amp; info()</div><div class="ttdef"><b>Definition</b> actuator_types.H:217</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1utils_1_1_multi_parser_html_a4f0926f0305836f63f82aae64cf301af"><div class="ttname"><a href="classkynema__sgf_1_1utils_1_1_multi_parser.html#a4f0926f0305836f63f82aae64cf301af">kynema_sgf::utils::MultiParser::get</a></div><div class="ttdeci">void get(const std::string &amp;name, vs::Vector &amp;value) const</div><div class="ttdef"><b>Definition</b> MultiParser.H:44</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1utils_1_1_multi_parser_html_ac3c29d64997736fd0143df655bc6138d"><div class="ttname"><a href="classkynema__sgf_1_1utils_1_1_multi_parser.html#ac3c29d64997736fd0143df655bc6138d">kynema_sgf::utils::MultiParser::contains</a></div><div class="ttdeci">bool contains(const std::string &amp;name) const</div><div class="ttdoc">Check if the keyword is present in either namespace.</div><div class="ttdef"><b>Definition</b> MultiParser.H:34</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1utils_1_1_multi_parser_html_ad380f062ce998fb7b94b98779808d035"><div class="ttname"><a href="classkynema__sgf_1_1utils_1_1_multi_parser.html#ad380f062ce998fb7b94b98779808d035">kynema_sgf::utils::MultiParser::queryarr</a></div><div class="ttdeci">void queryarr(const std::string &amp;name, T &amp;value) const</div><div class="ttdoc">Query a vector of values for the given keyword entry from either namespace.</div><div class="ttdef"><b>Definition</b> MultiParser.H:149</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1utils_1_1_multi_parser_html_af817ab80304d5dcc3eed7641b68fcea4"><div class="ttname"><a href="classkynema__sgf_1_1utils_1_1_multi_parser.html#af817ab80304d5dcc3eed7641b68fcea4">kynema_sgf::utils::MultiParser::query</a></div><div class="ttdeci">void query(const std::string &amp;name, vs::Vector &amp;value) const</div><div class="ttdef"><b>Definition</b> MultiParser.H:59</div></div>
+<div class="ttc" id="anamespaceext__turb_html_ac3ac74f4ee27c2fc64b11460d653f547a8a7ef1c3e82395341b7000b79c239eb4"><div class="ttname"><a href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547a8a7ef1c3e82395341b7000b79c239eb4">ext_turb::SimMode::restart</a></div><div class="ttdeci">@ restart</div><div class="ttdoc">Restart using external checkpoint files.</div><div class="ttdef"><b>Definition</b> external_base_types.H:15</div></div>
+<div class="ttc" id="anamespaceext__turb_html_ac3ac74f4ee27c2fc64b11460d653f547ab2dbeb695fa205804b1e5e72650ad2bb"><div class="ttname"><a href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547ab2dbeb695fa205804b1e5e72650ad2bb">ext_turb::SimMode::replay</a></div><div class="ttdeci">@ replay</div><div class="ttdoc">Replay using velocities stored in file.</div><div class="ttdef"><b>Definition</b> external_base_types.H:14</div></div>
+<div class="ttc" id="anamespaceext__turb_html_ac3ac74f4ee27c2fc64b11460d653f547ae37f0136aa3ffaf149b351f6a4c948e9"><div class="ttname"><a href="namespaceext__turb.html#ac3ac74f4ee27c2fc64b11460d653f547ae37f0136aa3ffaf149b351f6a4c948e9">ext_turb::SimMode::init</a></div><div class="ttdeci">@ init</div><div class="ttdoc">Clean start.</div><div class="ttdef"><b>Definition</b> external_base_types.H:13</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1ops_html"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1ops.html">kynema_sgf::actuator::ops</a></div><div class="ttdef"><b>Definition</b> ActSrcLineOp.H:12</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1ops_html_a4e25ab0c238dff59e7b2ad86eb85d80d"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1ops.html#a4e25ab0c238dff59e7b2ad86eb85d80d">kynema_sgf::actuator::ops::external_determine_root_proc</a></div><div class="ttdeci">void external_determine_root_proc(datatype &amp;data, amrex::Vector&lt; int &gt; &amp;act_proc_count)</div><div class="ttdef"><b>Definition</b> turbine_external_ops.H:66</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1ops_html_a553a0c9707e9dd0d888de6ec4331e600"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1ops.html#a553a0c9707e9dd0d888de6ec4331e600">kynema_sgf::actuator::ops::determine_root_proc&lt; TurbineKynema &gt;</a></div><div class="ttdeci">void determine_root_proc&lt; TurbineKynema &gt;(typename TurbineKynema::DataType &amp;data, amrex::Vector&lt; int &gt; &amp;act_proc_count)</div><div class="ttdef"><b>Definition</b> turbine_kynema_ops.H:116</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1ops_html_a82e4ab431ddfea6f20774bdf8bc0ec51"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1ops.html#a82e4ab431ddfea6f20774bdf8bc0ec51">kynema_sgf::actuator::ops::read_ops</a></div><div class="ttdeci">void read_ops(datatype &amp;data, const utils::ActParser &amp;pp)</div><div class="ttdef"><b>Definition</b> turbine_external_ops.H:16</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1ops_html_aa1742152087b006b880c5fe4de117a94"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1ops.html#aa1742152087b006b880c5fe4de117a94">kynema_sgf::actuator::ops::update_pos_op</a></div><div class="ttdeci">void update_pos_op(datatype &amp;data)</div><div class="ttdef"><b>Definition</b> turbine_external_ops.H:151</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1ops_html_aa75695f53a6a2792ef2c34c814b438c0"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1ops.html#aa75695f53a6a2792ef2c34c814b438c0">kynema_sgf::actuator::ops::update_vel_op</a></div><div class="ttdeci">void update_vel_op(datatype &amp;data)</div><div class="ttdef"><b>Definition</b> turbine_external_ops.H:175</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1ops_html_ab14acef6344841f313a5f6c0249acec7"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1ops.html#ab14acef6344841f313a5f6c0249acec7">kynema_sgf::actuator::ops::determine_influenced_procs&lt; TurbineKynema &gt;</a></div><div class="ttdeci">void determine_influenced_procs&lt; TurbineKynema &gt;(typename TurbineKynema::DataType &amp;data)</div><div class="ttdef"><b>Definition</b> turbine_kynema_ops.H:109</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1ops_html_ac4c21609e0d39210deaf2573ebec7d43"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1ops.html#ac4c21609e0d39210deaf2573ebec7d43">kynema_sgf::actuator::ops::external_determine_influenced_procs</a></div><div class="ttdeci">void external_determine_influenced_procs(datatype &amp;data)</div><div class="ttdef"><b>Definition</b> turbine_external_ops.H:47</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1ops_html_ad973877d988a43f209560a2fc0ec096c"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1ops.html#ad973877d988a43f209560a2fc0ec096c">kynema_sgf::actuator::ops::init_data_op</a></div><div class="ttdeci">void init_data_op(datatype &amp;data)</div><div class="ttdef"><b>Definition</b> turbine_external_ops.H:96</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1ops_html_ada3aab79a057aa24f4c7ac7e5c8260c8"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1ops.html#ada3aab79a057aa24f4c7ac7e5c8260c8">kynema_sgf::actuator::ops::compute_force_op</a></div><div class="ttdeci">void compute_force_op(datatype &amp;data)</div><div class="ttdef"><b>Definition</b> turbine_external_ops.H:215</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1utils_html_a09555b2d7d3bf73e8f36553f7f5aa3ac"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1utils.html#a09555b2d7d3bf73e8f36553f7f5aa3ac">kynema_sgf::actuator::utils::ActParser</a></div><div class="ttdeci">::kynema_sgf::utils::MultiParser ActParser</div><div class="ttdef"><b>Definition</b> ActParser.H:8</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1utils_html_a62ff404b0e730f5f133ca9209ba63309"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1utils.html#a62ff404b0e730f5f133ca9209ba63309">kynema_sgf::actuator::utils::prepare_netcdf_file</a></div><div class="ttdeci">void prepare_netcdf_file(const std::string &amp;ncfile, const TurbineBaseData &amp;meta, const TurbineInfo &amp;info, const ActGrid &amp;grid)</div><div class="ttdef"><b>Definition</b> turbine_utils.cpp:63</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1utils_html_adf818ee1c49b37283f311e16851baf7f"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1utils.html#adf818ee1c49b37283f311e16851baf7f">kynema_sgf::actuator::utils::write_netcdf</a></div><div class="ttdeci">void write_netcdf(const std::string &amp;ncfile, const TurbineBaseData &amp;meta, const TurbineInfo &amp;info, const ActGrid &amp;grid, const amrex::Real time)</div><div class="ttdef"><b>Definition</b> turbine_utils.cpp:130</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a8bea2c4d345f2208ec2d17800fc3b6c8"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a8bea2c4d345f2208ec2d17800fc3b6c8">kynema_sgf::actuator::TurbineKynema</a></div><div class="ttdeci">TurbineFromExtSolver&lt; ::ext_turb::KynemaTurbine, ::ext_turb::KynemaSolverData &gt; TurbineKynema</div><div class="ttdef"><b>Definition</b> TurbineKynema.H:9</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_solver_data_html"><div class="ttname"><a href="structext__turb_1_1_kynema_solver_data.html">ext_turb::KynemaSolverData</a></div><div class="ttdef"><b>Definition</b> kynema_types.H:272</div></div>
+<div class="ttc" id="astructext__turb_1_1_kynema_turbine_html"><div class="ttname"><a href="structext__turb_1_1_kynema_turbine.html">ext_turb::KynemaTurbine</a></div><div class="ttdef"><b>Definition</b> kynema_types.H:16</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver_html_acf6af471cbcd2351185a09413f12b641"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#acf6af471cbcd2351185a09413f12b641">kynema_sgf::actuator::TurbineFromExtSolver&lt; ::ext_turb::KynemaTurbine, ::ext_turb::KynemaSolverData &gt;::DataType</a></div><div class="ttdeci">ActDataHolder&lt; TurbineFromExtSolver&lt; ::ext_turb::KynemaTurbine, ::ext_turb::KynemaSolverData &gt; &gt; DataType</div><div class="ttdef"><b>Definition</b> TurbineExternal.H:30</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_compute_force_op_3_01_turbine_kynema_00_01_src_trait_01_4_html_a420c29e09374afcf9249e3b86abbf0cf"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_compute_force_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a420c29e09374afcf9249e3b86abbf0cf">kynema_sgf::actuator::ops::ComputeForceOp&lt; TurbineKynema, SrcTrait &gt;::operator()</a></div><div class="ttdeci">void operator()(typename TurbineKynema::DataType &amp;data)</div><div class="ttdef"><b>Definition</b> turbine_kynema_ops.H:157</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_compute_force_op_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_compute_force_op.html">kynema_sgf::actuator::ops::ComputeForceOp</a></div><div class="ttdef"><b>Definition</b> actuator_ops.H:61</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_init_data_op_3_01_turbine_kynema_00_01_src_trait_01_4_html_a93bc38fa7ddf5e6439bae87c17c2e233"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_init_data_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a93bc38fa7ddf5e6439bae87c17c2e233">kynema_sgf::actuator::ops::InitDataOp&lt; TurbineKynema, SrcTrait &gt;::operator()</a></div><div class="ttdeci">void operator()(TurbineKynema::DataType &amp;data)</div><div class="ttdef"><b>Definition</b> turbine_kynema_ops.H:127</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_init_data_op_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_init_data_op.html">kynema_sgf::actuator::ops::InitDataOp</a></div><div class="ttdef"><b>Definition</b> actuator_ops.H:32</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4_html_a01919144e63a9333be9c2483096a32d9"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a01919144e63a9333be9c2483096a32d9">kynema_sgf::actuator::ops::ProcessOutputsOp&lt; TurbineKynema, SrcTrait &gt;::ProcessOutputsOp</a></div><div class="ttdeci">ProcessOutputsOp(typename TurbineKynema::DataType &amp;data)</div><div class="ttdef"><b>Definition</b> turbine_kynema_ops.H:180</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4_html_a0da9a2e0c7e30c5ee5528920798751c1"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a0da9a2e0c7e30c5ee5528920798751c1">kynema_sgf::actuator::ops::ProcessOutputsOp&lt; TurbineKynema, SrcTrait &gt;::prepare_outputs</a></div><div class="ttdeci">void prepare_outputs(const std::string &amp;out_dir)</div><div class="ttdef"><b>Definition</b> turbine_kynema_ops.H:189</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4_html_a4693f645cf6c8bcf0f66e691632e9bec"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a4693f645cf6c8bcf0f66e691632e9bec">kynema_sgf::actuator::ops::ProcessOutputsOp&lt; TurbineKynema, SrcTrait &gt;::m_out_dir</a></div><div class="ttdeci">std::string m_out_dir</div><div class="ttdoc">Path to the output directory (specified by Actuator physics class)</div><div class="ttdef"><b>Definition</b> turbine_kynema_ops.H:171</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4_html_aa36713979bdb8c4bc4177e2762ad78ef"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#aa36713979bdb8c4bc4177e2762ad78ef">kynema_sgf::actuator::ops::ProcessOutputsOp&lt; TurbineKynema, SrcTrait &gt;::write_outputs</a></div><div class="ttdeci">void write_outputs()</div><div class="ttdef"><b>Definition</b> turbine_kynema_ops.H:196</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4_html_ab601fe2535641c03c43976973491c708"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#ab601fe2535641c03c43976973491c708">kynema_sgf::actuator::ops::ProcessOutputsOp&lt; TurbineKynema, SrcTrait &gt;::m_nc_filename</a></div><div class="ttdeci">std::string m_nc_filename</div><div class="ttdoc">NetCDF output filename for this turbine.</div><div class="ttdef"><b>Definition</b> turbine_kynema_ops.H:174</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4_html_abe43f89b97e4350598372eac4d5bdd95"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#abe43f89b97e4350598372eac4d5bdd95">kynema_sgf::actuator::ops::ProcessOutputsOp&lt; TurbineKynema, SrcTrait &gt;::m_out_freq</a></div><div class="ttdeci">int m_out_freq</div><div class="ttdoc">Output frequency (specified in input file)</div><div class="ttdef"><b>Definition</b> turbine_kynema_ops.H:177</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4_html_aea58c4100b1ce9c1ea62effc1ead2fbb"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#aea58c4100b1ce9c1ea62effc1ead2fbb">kynema_sgf::actuator::ops::ProcessOutputsOp&lt; TurbineKynema, SrcTrait &gt;::read_io_options</a></div><div class="ttdeci">void read_io_options(const utils::ActParser &amp;pp)</div><div class="ttdef"><b>Definition</b> turbine_kynema_ops.H:184</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4_html_af6ca8d170d354f85b4d5bfbc9b1cd5b4"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#af6ca8d170d354f85b4d5bfbc9b1cd5b4">kynema_sgf::actuator::ops::ProcessOutputsOp&lt; TurbineKynema, SrcTrait &gt;::m_data</a></div><div class="ttdeci">TurbineKynema::DataType &amp; m_data</div><div class="ttdef"><b>Definition</b> turbine_kynema_ops.H:168</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_read_inputs_op_3_01_turbine_kynema_00_01_src_trait_01_4_html_a361a25d84315d2dcaca579a58264afe3"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_read_inputs_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a361a25d84315d2dcaca579a58264afe3">kynema_sgf::actuator::ops::ReadInputsOp&lt; TurbineKynema, SrcTrait &gt;::operator()</a></div><div class="ttdeci">void operator()(TurbineKynema::DataType &amp;data, const utils::ActParser &amp;pp)</div><div class="ttdef"><b>Definition</b> turbine_kynema_ops.H:15</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_read_inputs_op_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_read_inputs_op.html">kynema_sgf::actuator::ops::ReadInputsOp</a></div><div class="ttdef"><b>Definition</b> actuator_ops.H:19</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_update_pos_op_3_01_turbine_kynema_00_01_src_trait_01_4_html_abc134486e74739f65ce9a92a8b318511"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_update_pos_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#abc134486e74739f65ce9a92a8b318511">kynema_sgf::actuator::ops::UpdatePosOp&lt; TurbineKynema, SrcTrait &gt;::operator()</a></div><div class="ttdeci">void operator()(typename TurbineKynema::DataType &amp;data)</div><div class="ttdef"><b>Definition</b> turbine_kynema_ops.H:137</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_update_pos_op_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_update_pos_op.html">kynema_sgf::actuator::ops::UpdatePosOp</a></div><div class="ttdef"><b>Definition</b> actuator_ops.H:43</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_update_vel_op_3_01_turbine_kynema_00_01_src_trait_01_4_html_a4a416bcdbede645977819df0026d5ce6"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_update_vel_op_3_01_turbine_kynema_00_01_src_trait_01_4.html#a4a416bcdbede645977819df0026d5ce6">kynema_sgf::actuator::ops::UpdateVelOp&lt; TurbineKynema, SrcTrait &gt;::operator()</a></div><div class="ttdeci">void operator()(typename TurbineKynema::DataType &amp;data)</div><div class="ttdef"><b>Definition</b> turbine_kynema_ops.H:147</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_update_vel_op_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_update_vel_op.html">kynema_sgf::actuator::ops::UpdateVelOp</a></div><div class="ttdef"><b>Definition</b> actuator_ops.H:54</div></div>
+<div class="ttc" id="aturbine__external__ops_8_h_html"><div class="ttname"><a href="turbine__external__ops_8_h.html">turbine_external_ops.H</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

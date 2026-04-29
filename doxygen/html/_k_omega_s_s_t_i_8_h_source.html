@@ -1,0 +1,290 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/turbulence/RANS/KOmegaSSTI.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/turbulence/RANS/KOmegaSSTI.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_k_omega_s_s_t_i_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-turbulence-rans-komegassti-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/turbulence/RANS/KOmegaSSTI.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-turbulence-rans-komegassti-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/turbulence/RANS/KOmegaSSTI.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_4c19a60307109eba79b0431678f4e7a6.html">turbulence</a></li><li class="navelem"><a href="dir_2d0cf925764d82e01403ab9e9db83be9.html">RANS</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">KOmegaSSTI.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_k_omega_s_s_t_i_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef KOMEGASSTI_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define KOMEGASSTI_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_k_omega_s_s_t_8_h.html">src/turbulence/RANS/KOmegaSST.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_p_d_e_base_8_h.html">src/equation_systems/PDEBase.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_turb_model_defs_8_h.html">src/turbulence/TurbModelDefs.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="turb__utils_8_h.html">src/turbulence/turb_utils.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="_t_k_e_8_h.html">src/equation_systems/tke/TKE.H</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="_s_d_r_8_h.html">src/equation_systems/sdr/SDR.H</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;AMReX_ParmParse.H&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1turbulence.html">kynema_sgf::turbulence</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Transport&gt;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">// cppcheck-suppress uninitMemberVar</span></div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#aae06da8092030745bda180cd672f8600">   17</a></span><a class="code hl_function" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#aae06da8092030745bda180cd672f8600">KOmegaSST&lt;Transport&gt;::KOmegaSST</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim)</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    : <a class="code hl_function" href="classkynema__sgf_1_1turbulence_1_1_turb_model_base.html#ac176c32e8ef87c6f7346eb8f825a6358">TurbModelBase</a>&lt;Transport&gt;(sim)</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    , <a class="code hl_variable" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a0f81e6f4828df997c36e17cc9acf9bbe">m_vel</a>(sim.repo().get_field(<span class="stringliteral">&quot;velocity&quot;</span>))</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    , <a class="code hl_variable" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a1b504f5ff2d9f12cd6043a2c1e8381a0">m_f1</a>(sim.repo().declare_field(<span class="stringliteral">&quot;f1&quot;</span>, 1, 1, 1))</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    , <a class="code hl_variable" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#ab370cb9f1ee3495ea057d7a0233b2943">m_shear_prod</a>(sim.repo().declare_field(<span class="stringliteral">&quot;shear_prod&quot;</span>, 1, 1, 1))</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    , <a class="code hl_variable" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a1859049f2f8a0161f74f9615d50c463d">m_buoy_term</a>(sim.repo().declare_field(<span class="stringliteral">&quot;buoyancy_term&quot;</span>, 1, 1, 1))</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    , <a class="code hl_variable" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a88dd7e9012396bdce0910f1b7a0ad1ca">m_diss</a>(sim.repo().declare_field(<span class="stringliteral">&quot;dissipation&quot;</span>, 1, 1, 1))</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    , <a class="code hl_variable" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#aa58126baa631dd528ec3c1e5a852b3e9">m_sdr_src</a>(sim.repo().declare_field(<span class="stringliteral">&quot;omega_src&quot;</span>, 1, 1, 1))</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    , <a class="code hl_variable" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#ad43df0ac187b1e4b5ec06776acaaf7a8">m_sdr_diss</a>(sim.repo().declare_field(<span class="stringliteral">&quot;sdr_dissipation&quot;</span>, 1, 1, 1))</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    , <a class="code hl_variable" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#adaf6c46df94ee2e6b3fc636a1438199d">m_rho</a>(sim.repo().get_field(<span class="stringliteral">&quot;density&quot;</span>))</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    , <a class="code hl_variable" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a8e8bed4887322eb9ac8f15a5fb100f50">m_walldist</a>(sim.repo().declare_field(<span class="stringliteral">&quot;wall_dist&quot;</span>, 1, 1, 1))</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_variable" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a8e8bed4887322eb9ac8f15a5fb100f50">m_walldist</a>.set_default_fillpatch_bc(sim.<a class="code hl_function" href="classkynema__sgf_1_1_c_f_d_sim.html#a3f420508134bc09e88bf62d63b4fbd5c">time</a>());</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_variable" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a8e8bed4887322eb9ac8f15a5fb100f50">m_walldist</a>.fillpatch_on_regrid() = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">auto</span>&amp; tke_eqn =</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        sim.<a class="code hl_function" href="classkynema__sgf_1_1_c_f_d_sim.html#a50e891e925cdfb6f7e79db62c8892dc4">pde_manager</a>().<a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a2dde63b4be46c07acc447d4afdddcac2">register_transport_pde</a>(<a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_t_k_e.html#a22193034ccb2b643874afa6fbd9b92b6">pde::TKE::pde_name</a>());</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_variable" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a455ab9ac25ed0054d5515111c50011d9">m_tke</a> = &amp;(tke_eqn.fields().field);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">auto</span>&amp; sdr_eqn =</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        sim.<a class="code hl_function" href="classkynema__sgf_1_1_c_f_d_sim.html#a50e891e925cdfb6f7e79db62c8892dc4">pde_manager</a>().<a class="code hl_function" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a2dde63b4be46c07acc447d4afdddcac2">register_transport_pde</a>(<a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_s_d_r.html#a01242b536a95215b806b1dfb63084d24">pde::SDR::pde_name</a>());</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_variable" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a8038bd4e7927df93f1748a0d5d091988">m_sdr</a> = &amp;(sdr_eqn.fields().field);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment">// TKE source term to be added to PDE</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_function" href="namespacekynema__sgf_1_1turbulence_1_1turb__utils.html#af863931383c0efdff85a8d53a83cf8fe">turb_utils::inject_turbulence_src_terms</a>(<a class="code hl_function" href="structkynema__sgf_1_1pde_1_1_t_k_e.html#a22193034ccb2b643874afa6fbd9b92b6">pde::TKE::pde_name</a>(), {<span class="stringliteral">&quot;KwSSTSrc&quot;</span>});</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}</div>
+</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Transport&gt;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><a class="code hl_function" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a15b54aa6c78dfe04446dcc243dbbe2ec">KOmegaSST&lt;Transport&gt;::~KOmegaSST</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>} <span class="comment">// namespace kynema_sgf::turbulence</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#endif </span><span class="comment">/* KOMEGASSTI_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_k_omega_s_s_t_8_h_html"><div class="ttname"><a href="_k_omega_s_s_t_8_h.html">KOmegaSST.H</a></div></div>
+<div class="ttc" id="a_p_d_e_base_8_h_html"><div class="ttname"><a href="_p_d_e_base_8_h.html">PDEBase.H</a></div></div>
+<div class="ttc" id="a_s_d_r_8_h_html"><div class="ttname"><a href="_s_d_r_8_h.html">SDR.H</a></div></div>
+<div class="ttc" id="a_t_k_e_8_h_html"><div class="ttname"><a href="_t_k_e_8_h.html">TKE.H</a></div></div>
+<div class="ttc" id="a_turb_model_defs_8_h_html"><div class="ttname"><a href="_turb_model_defs_8_h.html">TurbModelDefs.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html_a3f420508134bc09e88bf62d63b4fbd5c"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html#a3f420508134bc09e88bf62d63b4fbd5c">kynema_sgf::CFDSim::time</a></div><div class="ttdeci">SimTime &amp; time()</div><div class="ttdoc">Return simulation time control.</div><div class="ttdef"><b>Definition</b> CFDSim.H:66</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html_a50e891e925cdfb6f7e79db62c8892dc4"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html#a50e891e925cdfb6f7e79db62c8892dc4">kynema_sgf::CFDSim::pde_manager</a></div><div class="ttdeci">pde::PDEMgr &amp; pde_manager()</div><div class="ttdef"><b>Definition</b> CFDSim.H:79</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1pde_1_1_p_d_e_mgr_html_a2dde63b4be46c07acc447d4afdddcac2"><div class="ttname"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html#a2dde63b4be46c07acc447d4afdddcac2">kynema_sgf::pde::PDEMgr::register_transport_pde</a></div><div class="ttdeci">PDEBase &amp; register_transport_pde(const std::string &amp;pde_name)</div><div class="ttdoc">Register a new PDE instance and return its reference.</div><div class="ttdef"><b>Definition</b> PDEBase.cpp:60</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_html_a0f81e6f4828df997c36e17cc9acf9bbe"><div class="ttname"><a href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a0f81e6f4828df997c36e17cc9acf9bbe">kynema_sgf::turbulence::KOmegaSST::m_vel</a></div><div class="ttdeci">Field &amp; m_vel</div><div class="ttdef"><b>Definition</b> KOmegaSST.H:70</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_html_a15b54aa6c78dfe04446dcc243dbbe2ec"><div class="ttname"><a href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a15b54aa6c78dfe04446dcc243dbbe2ec">kynema_sgf::turbulence::KOmegaSST::~KOmegaSST</a></div><div class="ttdeci">~KOmegaSST() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_html_a1859049f2f8a0161f74f9615d50c463d"><div class="ttname"><a href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a1859049f2f8a0161f74f9615d50c463d">kynema_sgf::turbulence::KOmegaSST::m_buoy_term</a></div><div class="ttdeci">Field &amp; m_buoy_term</div><div class="ttdef"><b>Definition</b> KOmegaSST.H:74</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_html_a1b504f5ff2d9f12cd6043a2c1e8381a0"><div class="ttname"><a href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a1b504f5ff2d9f12cd6043a2c1e8381a0">kynema_sgf::turbulence::KOmegaSST::m_f1</a></div><div class="ttdeci">Field &amp; m_f1</div><div class="ttdef"><b>Definition</b> KOmegaSST.H:72</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_html_a455ab9ac25ed0054d5515111c50011d9"><div class="ttname"><a href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a455ab9ac25ed0054d5515111c50011d9">kynema_sgf::turbulence::KOmegaSST::m_tke</a></div><div class="ttdeci">Field * m_tke</div><div class="ttdef"><b>Definition</b> KOmegaSST.H:81</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_html_a8038bd4e7927df93f1748a0d5d091988"><div class="ttname"><a href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a8038bd4e7927df93f1748a0d5d091988">kynema_sgf::turbulence::KOmegaSST::m_sdr</a></div><div class="ttdeci">Field * m_sdr</div><div class="ttdef"><b>Definition</b> KOmegaSST.H:82</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_html_a88dd7e9012396bdce0910f1b7a0ad1ca"><div class="ttname"><a href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a88dd7e9012396bdce0910f1b7a0ad1ca">kynema_sgf::turbulence::KOmegaSST::m_diss</a></div><div class="ttdeci">Field &amp; m_diss</div><div class="ttdef"><b>Definition</b> KOmegaSST.H:75</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_html_a8e8bed4887322eb9ac8f15a5fb100f50"><div class="ttname"><a href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a8e8bed4887322eb9ac8f15a5fb100f50">kynema_sgf::turbulence::KOmegaSST::m_walldist</a></div><div class="ttdeci">Field &amp; m_walldist</div><div class="ttdef"><b>Definition</b> KOmegaSST.H:79</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_html_aa58126baa631dd528ec3c1e5a852b3e9"><div class="ttname"><a href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#aa58126baa631dd528ec3c1e5a852b3e9">kynema_sgf::turbulence::KOmegaSST::m_sdr_src</a></div><div class="ttdeci">Field &amp; m_sdr_src</div><div class="ttdef"><b>Definition</b> KOmegaSST.H:76</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_html_aae06da8092030745bda180cd672f8600"><div class="ttname"><a href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#aae06da8092030745bda180cd672f8600">kynema_sgf::turbulence::KOmegaSST::KOmegaSST</a></div><div class="ttdeci">KOmegaSST(CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> KOmegaSSTI.H:17</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_html_ab370cb9f1ee3495ea057d7a0233b2943"><div class="ttname"><a href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#ab370cb9f1ee3495ea057d7a0233b2943">kynema_sgf::turbulence::KOmegaSST::m_shear_prod</a></div><div class="ttdeci">Field &amp; m_shear_prod</div><div class="ttdef"><b>Definition</b> KOmegaSST.H:73</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_html_ad43df0ac187b1e4b5ec06776acaaf7a8"><div class="ttname"><a href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#ad43df0ac187b1e4b5ec06776acaaf7a8">kynema_sgf::turbulence::KOmegaSST::m_sdr_diss</a></div><div class="ttdeci">Field &amp; m_sdr_diss</div><div class="ttdef"><b>Definition</b> KOmegaSST.H:77</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_html_adaf6c46df94ee2e6b3fc636a1438199d"><div class="ttname"><a href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#adaf6c46df94ee2e6b3fc636a1438199d">kynema_sgf::turbulence::KOmegaSST::m_rho</a></div><div class="ttdeci">Field &amp; m_rho</div><div class="ttdef"><b>Definition</b> KOmegaSST.H:78</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1turbulence_1_1_turb_model_base_html_ac176c32e8ef87c6f7346eb8f825a6358"><div class="ttname"><a href="classkynema__sgf_1_1turbulence_1_1_turb_model_base.html#ac176c32e8ef87c6f7346eb8f825a6358">kynema_sgf::turbulence::TurbModelBase::TurbModelBase</a></div><div class="ttdeci">TurbModelBase(CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> TurbModelBase.H:95</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1turbulence_1_1turb__utils_html_af863931383c0efdff85a8d53a83cf8fe"><div class="ttname"><a href="namespacekynema__sgf_1_1turbulence_1_1turb__utils.html#af863931383c0efdff85a8d53a83cf8fe">kynema_sgf::turbulence::turb_utils::inject_turbulence_src_terms</a></div><div class="ttdeci">void inject_turbulence_src_terms(const std::string &amp;key, const amrex::Vector&lt; std::string &gt; &amp;terms)</div><div class="ttdef"><b>Definition</b> turb_utils.cpp:9</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1turbulence_html"><div class="ttname"><a href="namespacekynema__sgf_1_1turbulence.html">kynema_sgf::turbulence</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:31</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_s_d_r_html_a01242b536a95215b806b1dfb63084d24"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_s_d_r.html#a01242b536a95215b806b1dfb63084d24">kynema_sgf::pde::SDR::pde_name</a></div><div class="ttdeci">static std::string pde_name()</div><div class="ttdef"><b>Definition</b> SDR.H:36</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1pde_1_1_t_k_e_html_a22193034ccb2b643874afa6fbd9b92b6"><div class="ttname"><a href="structkynema__sgf_1_1pde_1_1_t_k_e.html#a22193034ccb2b643874afa6fbd9b92b6">kynema_sgf::pde::TKE::pde_name</a></div><div class="ttdeci">static std::string pde_name()</div><div class="ttdef"><b>Definition</b> TKE.H:40</div></div>
+<div class="ttc" id="aturb__utils_8_h_html"><div class="ttname"><a href="turb__utils_8_h.html">turb_utils.H</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

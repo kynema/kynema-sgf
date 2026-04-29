@@ -1,0 +1,865 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::sampling::LineSampler Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::sampling::LineSampler Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1sampling_1_1_line_sampler.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="linesampler-class-reference">
+<h1>LineSampler Class Reference<a class="headerlink" href="#linesampler-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::sampling::LineSampler Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1sampling.html">sampling</a></li><li class="navelem"><a href="classkynema__sgf_1_1sampling_1_1_line_sampler.html">LineSampler</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classkynema__sgf_1_1sampling_1_1_line_sampler-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::sampling::LineSampler Class Reference<div class="ingroups"><a class="el" href="group__utilities.html">Utilities</a> &raquo; <a class="el" href="group__sampling.html">Data-sampling utilities</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_line_sampler_8_h_source.html">LineSampler.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::sampling::LineSampler:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1sampling_1_1_line_sampler__inherit__graph.svg" width="182" height="315"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::sampling::LineSampler:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1sampling_1_1_line_sampler__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a8d83e0e7c3380634bf87e893291de487" id="r_a8d83e0e7c3380634bf87e893291de487"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d83e0e7c3380634bf87e893291de487">LineSampler</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;)</td></tr>
+<tr class="memitem:a2cee38a9aa03d69dab85a4b048d63cf6" id="r_a2cee38a9aa03d69dab85a4b048d63cf6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2cee38a9aa03d69dab85a4b048d63cf6">~LineSampler</a> () override</td></tr>
+<tr class="memitem:a183ee1b5f81cc9ae65a6bdcfc122cf9a" id="r_a183ee1b5f81cc9ae65a6bdcfc122cf9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a183ee1b5f81cc9ae65a6bdcfc122cf9a">initialize</a> (const std::string &amp;key) override</td></tr>
+<tr class="memitem:af37859ac3e0c006dc8301272206f7345" id="r_af37859ac3e0c006dc8301272206f7345"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af37859ac3e0c006dc8301272206f7345">check_bounds</a> () override</td></tr>
+<tr class="memdesc:af37859ac3e0c006dc8301272206f7345"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check and fix the bounds of the sampler so the probes are in the domain.  <br /></td></tr>
+<tr class="memitem:afdeb702814cd2e6427cdf961de24b26d" id="r_afdeb702814cd2e6427cdf961de24b26d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdeb702814cd2e6427cdf961de24b26d">sampling_locations</a> (<a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;) const override</td></tr>
+<tr class="memdesc:afdeb702814cd2e6427cdf961de24b26d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populate and return a vector of probe locations to be sampled.  <br /></td></tr>
+<tr class="memitem:ab5d033534a9bf7ecf8781dde8ffbd656" id="r_ab5d033534a9bf7ecf8781dde8ffbd656"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5d033534a9bf7ecf8781dde8ffbd656">sampling_locations</a> (<a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;, const amrex::Box &amp;) const override</td></tr>
+<tr class="memdesc:ab5d033534a9bf7ecf8781dde8ffbd656"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populate the vector with coordinates of the sampling locations inside a box.  <br /></td></tr>
+<tr class="memitem:aa3d1b98f2e88a4d5712d3c47cb158cb6" id="r_aa3d1b98f2e88a4d5712d3c47cb158cb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3d1b98f2e88a4d5712d3c47cb158cb6">output_locations</a> (<a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;sample_locs) const override</td></tr>
+<tr class="memitem:ae52f9bc0c00b5c20599b7950bc25d3e4" id="r_ae52f9bc0c00b5c20599b7950bc25d3e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae52f9bc0c00b5c20599b7950bc25d3e4">define_netcdf_metadata</a> (const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;) const override</td></tr>
+<tr class="memitem:a690e45ea10e9422541d62d73062325de" id="r_a690e45ea10e9422541d62d73062325de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a690e45ea10e9422541d62d73062325de">populate_netcdf_metadata</a> (const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;) const override</td></tr>
+<tr class="memitem:a524b015d19c83a1db2f009a1bee9ab8e" id="r_a524b015d19c83a1db2f009a1bee9ab8e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a524b015d19c83a1db2f009a1bee9ab8e">label</a> () const override</td></tr>
+<tr class="memdesc:a524b015d19c83a1db2f009a1bee9ab8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of this sampling object.  <br /></td></tr>
+<tr class="memitem:a416953d96a55b6aa6bb7e2f1da226f12" id="r_a416953d96a55b6aa6bb7e2f1da226f12"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a416953d96a55b6aa6bb7e2f1da226f12">label</a> () override</td></tr>
+<tr class="memitem:ac02280aaf8c3400830e980f298f0f786" id="r_ac02280aaf8c3400830e980f298f0f786"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac02280aaf8c3400830e980f298f0f786">sampletype</a> () const override</td></tr>
+<tr class="memdesc:ac02280aaf8c3400830e980f298f0f786"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of this sampling object.  <br /></td></tr>
+<tr class="memitem:aec416a47af7ac76bd7dc8a715de2cb09" id="r_aec416a47af7ac76bd7dc8a715de2cb09"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec416a47af7ac76bd7dc8a715de2cb09">id</a> () const override</td></tr>
+<tr class="memdesc:aec416a47af7ac76bd7dc8a715de2cb09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for this set of probe locations.  <br /></td></tr>
+<tr class="memitem:aec35dae4665f48c2722c673209433ad0" id="r_aec35dae4665f48c2722c673209433ad0"><td class="memItemLeft" align="right" valign="top">int &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec35dae4665f48c2722c673209433ad0">id</a> () override</td></tr>
+<tr class="memitem:a35efe7bace0d56cd5a2e3029c86cf20b" id="r_a35efe7bace0d56cd5a2e3029c86cf20b"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35efe7bace0d56cd5a2e3029c86cf20b">num_points</a> () const override</td></tr>
+<tr class="memdesc:a35efe7bace0d56cd5a2e3029c86cf20b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of probe locations along the line.  <br /></td></tr>
+<tr class="memitem:a4b6fc17791060a03027ed1ee6cc61a69" id="r_a4b6fc17791060a03027ed1ee6cc61a69"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b6fc17791060a03027ed1ee6cc61a69">num_output_points</a> () const override</td></tr>
+<tr class="memdesc:a4b6fc17791060a03027ed1ee6cc61a69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of output probe locations (after data reduction etc.)  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a252e8f3462d70a4917051440d8d68855" id="r_a252e8f3462d70a4917051440d8d68855"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a252e8f3462d70a4917051440d8d68855">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ade35192e9ea0c5554c6101cd7fcbd902" id="r_ade35192e9ea0c5554c6101cd7fcbd902"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade35192e9ea0c5554c6101cd7fcbd902">m_sim</a></td></tr>
+<tr class="memitem:ad0235bf4e9e9b9ab0f337f04f86f1e5c" id="r_ad0235bf4e9e9b9ab0f337f04f86f1e5c"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0235bf4e9e9b9ab0f337f04f86f1e5c">m_start</a></td></tr>
+<tr class="memitem:a2dab55785413668ff1f20e185229ff4a" id="r_a2dab55785413668ff1f20e185229ff4a"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2dab55785413668ff1f20e185229ff4a">m_end</a></td></tr>
+<tr class="memitem:a4d25d35bc68f97a01f7e27b75a06cdb4" id="r_a4d25d35bc68f97a01f7e27b75a06cdb4"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d25d35bc68f97a01f7e27b75a06cdb4">m_label</a></td></tr>
+<tr class="memitem:a178930c1fc7ed7aa22f538389631f7ab" id="r_a178930c1fc7ed7aa22f538389631f7ab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a178930c1fc7ed7aa22f538389631f7ab">m_id</a> {-1}</td></tr>
+<tr class="memitem:ad8a1fe42dc897ffe42e55d17ce578eb9" id="r_ad8a1fe42dc897ffe42e55d17ce578eb9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8a1fe42dc897ffe42e55d17ce578eb9">m_npts</a> {0}</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Sample data along a line</p>
+<p>Defines probes along a line defined by <span class="tt">start</span> and <span class="tt">end</span> coordinates and divides it into equal segments as determined by <span class="tt">num_points</span>. The length of each segment is given by </p><p class="formulaDsp">
+\[ (end - start) / (num_points - 1) \]
+</p>
+ </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8d83e0e7c3380634bf87e893291de487" name="a8d83e0e7c3380634bf87e893291de487"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d83e0e7c3380634bf87e893291de487">&#9670;&#160;</a></span>LineSampler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::sampling::LineSampler::LineSampler </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2cee38a9aa03d69dab85a4b048d63cf6" name="a2cee38a9aa03d69dab85a4b048d63cf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cee38a9aa03d69dab85a4b048d63cf6">&#9670;&#160;</a></span>~LineSampler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::sampling::LineSampler::~LineSampler </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="af37859ac3e0c006dc8301272206f7345" name="af37859ac3e0c006dc8301272206f7345"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af37859ac3e0c006dc8301272206f7345">&#9670;&#160;</a></span>check_bounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::LineSampler::check_bounds </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check and fix the bounds of the sampler so the probes are in the domain. </p>
+
+</div>
+</div>
+<a id="ae52f9bc0c00b5c20599b7950bc25d3e4" name="ae52f9bc0c00b5c20599b7950bc25d3e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae52f9bc0c00b5c20599b7950bc25d3e4">&#9670;&#160;</a></span>define_netcdf_metadata()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::LineSampler::define_netcdf_metadata </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>grp</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aec416a47af7ac76bd7dc8a715de2cb09" name="aec416a47af7ac76bd7dc8a715de2cb09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec416a47af7ac76bd7dc8a715de2cb09">&#9670;&#160;</a></span>id() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::LineSampler::id </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unique identifier for this set of probe locations. </p>
+
+</div>
+</div>
+<a id="aec35dae4665f48c2722c673209433ad0" name="aec35dae4665f48c2722c673209433ad0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec35dae4665f48c2722c673209433ad0">&#9670;&#160;</a></span>id() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int &amp; kynema_sgf::sampling::LineSampler::id </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a252e8f3462d70a4917051440d8d68855" name="a252e8f3462d70a4917051440d8d68855"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a252e8f3462d70a4917051440d8d68855">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::sampling::LineSampler::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a183ee1b5f81cc9ae65a6bdcfc122cf9a" name="a183ee1b5f81cc9ae65a6bdcfc122cf9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a183ee1b5f81cc9ae65a6bdcfc122cf9a">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::LineSampler::initialize </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Read user inputs and initialize the sampling object</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Prefix used to parse inputs from file </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a524b015d19c83a1db2f009a1bee9ab8e" name="a524b015d19c83a1db2f009a1bee9ab8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a524b015d19c83a1db2f009a1bee9ab8e">&#9670;&#160;</a></span>label() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::sampling::LineSampler::label </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Name of this sampling object. </p>
+
+</div>
+</div>
+<a id="a416953d96a55b6aa6bb7e2f1da226f12" name="a416953d96a55b6aa6bb7e2f1da226f12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a416953d96a55b6aa6bb7e2f1da226f12">&#9670;&#160;</a></span>label() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string &amp; kynema_sgf::sampling::LineSampler::label </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4b6fc17791060a03027ed1ee6cc61a69" name="a4b6fc17791060a03027ed1ee6cc61a69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b6fc17791060a03027ed1ee6cc61a69">&#9670;&#160;</a></span>num_output_points()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::LineSampler::num_output_points </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of output probe locations (after data reduction etc.) </p>
+
+</div>
+</div>
+<a id="a35efe7bace0d56cd5a2e3029c86cf20b" name="a35efe7bace0d56cd5a2e3029c86cf20b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35efe7bace0d56cd5a2e3029c86cf20b">&#9670;&#160;</a></span>num_points()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::LineSampler::num_points </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of probe locations along the line. </p>
+
+</div>
+</div>
+<a id="aa3d1b98f2e88a4d5712d3c47cb158cb6" name="aa3d1b98f2e88a4d5712d3c47cb158cb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3d1b98f2e88a4d5712d3c47cb158cb6">&#9670;&#160;</a></span>output_locations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::LineSampler::output_locations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sample_locs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a690e45ea10e9422541d62d73062325de" name="a690e45ea10e9422541d62d73062325de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a690e45ea10e9422541d62d73062325de">&#9670;&#160;</a></span>populate_netcdf_metadata()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::LineSampler::populate_netcdf_metadata </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac02280aaf8c3400830e980f298f0f786" name="ac02280aaf8c3400830e980f298f0f786"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac02280aaf8c3400830e980f298f0f786">&#9670;&#160;</a></span>sampletype()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::sampling::LineSampler::sampletype </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Type of this sampling object. </p>
+
+</div>
+</div>
+<a id="afdeb702814cd2e6427cdf961de24b26d" name="afdeb702814cd2e6427cdf961de24b26d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdeb702814cd2e6427cdf961de24b26d">&#9670;&#160;</a></span>sampling_locations() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::LineSampler::sampling_locations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sample_locs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Populate and return a vector of probe locations to be sampled. </p>
+
+</div>
+</div>
+<a id="ab5d033534a9bf7ecf8781dde8ffbd656" name="ab5d033534a9bf7ecf8781dde8ffbd656"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5d033534a9bf7ecf8781dde8ffbd656">&#9670;&#160;</a></span>sampling_locations() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::LineSampler::sampling_locations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sample_locs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Box &amp;</td>          <td class="paramname"><span class="paramname"><em>box</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Populate the vector with coordinates of the sampling locations inside a box. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a2dab55785413668ff1f20e185229ff4a" name="a2dab55785413668ff1f20e185229ff4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dab55785413668ff1f20e185229ff4a">&#9670;&#160;</a></span>m_end</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::sampling::LineSampler::m_end</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a178930c1fc7ed7aa22f538389631f7ab" name="a178930c1fc7ed7aa22f538389631f7ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a178930c1fc7ed7aa22f538389631f7ab">&#9670;&#160;</a></span>m_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::LineSampler::m_id {-1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4d25d35bc68f97a01f7e27b75a06cdb4" name="a4d25d35bc68f97a01f7e27b75a06cdb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d25d35bc68f97a01f7e27b75a06cdb4">&#9670;&#160;</a></span>m_label</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::sampling::LineSampler::m_label</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad8a1fe42dc897ffe42e55d17ce578eb9" name="ad8a1fe42dc897ffe42e55d17ce578eb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8a1fe42dc897ffe42e55d17ce578eb9">&#9670;&#160;</a></span>m_npts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::LineSampler::m_npts {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ade35192e9ea0c5554c6101cd7fcbd902" name="ade35192e9ea0c5554c6101cd7fcbd902"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade35192e9ea0c5554c6101cd7fcbd902">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::sampling::LineSampler::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad0235bf4e9e9b9ab0f337f04f86f1e5c" name="ad0235bf4e9e9b9ab0f337f04f86f1e5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0235bf4e9e9b9ab0f337f04f86f1e5c">&#9670;&#160;</a></span>m_start</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::sampling::LineSampler::m_start</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/<a class="el" href="_line_sampler_8_h_source.html">LineSampler.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/<a class="el" href="_line_sampler_8cpp.html">LineSampler.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

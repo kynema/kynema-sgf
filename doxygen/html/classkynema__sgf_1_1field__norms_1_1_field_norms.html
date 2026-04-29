@@ -1,0 +1,905 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::field_norms::FieldNorms Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::field_norms::FieldNorms Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1field__norms_1_1_field_norms.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fieldnorms-class-reference">
+<h1>FieldNorms Class Reference<a class="headerlink" href="#fieldnorms-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::field_norms::FieldNorms Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1field__norms.html">field_norms</a></li><li class="navelem"><a href="classkynema__sgf_1_1field__norms_1_1_field_norms.html">FieldNorms</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1field__norms_1_1_field_norms-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::field_norms::FieldNorms Class Reference<div class="ingroups"><a class="el" href="group__utilities.html">Utilities</a> &raquo; <a class="el" href="group__sampling.html">Data-sampling utilities</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_field_norms_8_h_source.html">FieldNorms.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::field_norms::FieldNorms:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1field__norms_1_1_field_norms__inherit__graph.svg" width="218" height="168"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::field_norms::FieldNorms:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1field__norms_1_1_field_norms__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a2414d128cdaf607b1efc6a833b027865" id="r_a2414d128cdaf607b1efc6a833b027865"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2414d128cdaf607b1efc6a833b027865">FieldNorms</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;, std::string)</td></tr>
+<tr class="memitem:a1adf92089e4f488a79eda30847549e2d" id="r_a1adf92089e4f488a79eda30847549e2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1adf92089e4f488a79eda30847549e2d">~FieldNorms</a> () override</td></tr>
+<tr class="memitem:a24f76d4412d89d4a4145bf4b73d13395" id="r_a24f76d4412d89d4a4145bf4b73d13395"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24f76d4412d89d4a4145bf4b73d13395">pre_init_actions</a> () override</td></tr>
+<tr class="memdesc:a24f76d4412d89d4a4145bf4b73d13395"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform actions before mesh is created.  <br /></td></tr>
+<tr class="memitem:aac9eaf4e33238862763f5c90fe183da2" id="r_aac9eaf4e33238862763f5c90fe183da2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac9eaf4e33238862763f5c90fe183da2">initialize</a> () override</td></tr>
+<tr class="memdesc:aac9eaf4e33238862763f5c90fe183da2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read user inputs and create the different data probe instances.  <br /></td></tr>
+<tr class="memitem:aba8fdd0bb9b94dcc17eae91cbc25ae5d" id="r_aba8fdd0bb9b94dcc17eae91cbc25ae5d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba8fdd0bb9b94dcc17eae91cbc25ae5d">post_advance_work</a> () override</td></tr>
+<tr class="memitem:ae8a15628ca1329591e1439facd3615f4" id="r_ae8a15628ca1329591e1439facd3615f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8a15628ca1329591e1439facd3615f4">output_actions</a> () override</td></tr>
+<tr class="memitem:a47d984d6cff302b24a1f00ff134da697" id="r_a47d984d6cff302b24a1f00ff134da697"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47d984d6cff302b24a1f00ff134da697">post_regrid_actions</a> () override</td></tr>
+<tr class="memitem:a94f4ebc6eb7a9d410fb656f78fbbed21" id="r_a94f4ebc6eb7a9d410fb656f78fbbed21"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94f4ebc6eb7a9d410fb656f78fbbed21">var_names</a> () const</td></tr>
+<tr class="memitem:a7e7d8f7c85a7c91033ceadd3cbe7e0ae" id="r_a7e7d8f7c85a7c91033ceadd3cbe7e0ae"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; amrex::Real &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e7d8f7c85a7c91033ceadd3cbe7e0ae">field_norms</a> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a48a286eabf7bd59892163bfe8a7304ca" id="r_a48a286eabf7bd59892163bfe8a7304ca"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48a286eabf7bd59892163bfe8a7304ca">identifier</a> ()</td></tr>
+<tr class="memitem:a8775ef7b081670cf7e18a9e128951705" id="r_a8775ef7b081670cf7e18a9e128951705"><td class="memItemLeft" align="right" valign="top">static amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8775ef7b081670cf7e18a9e128951705">get_norm</a> (const <a class="el" href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a> &amp;field, int comp, int ncomp, int norm_type, bool use_mask)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ac69a815a65f5faa759d89a365aa9fccc" id="r_ac69a815a65f5faa759d89a365aa9fccc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac69a815a65f5faa759d89a365aa9fccc">prepare_ascii_file</a> ()</td></tr>
+<tr class="memdesc:ac69a815a65f5faa759d89a365aa9fccc"><td class="mdescLeft">&#160;</td><td class="mdescRight">prepare ASCII file and directory  <br /></td></tr>
+<tr class="memitem:a6634217cfff73117fceba1ec511265ed" id="r_a6634217cfff73117fceba1ec511265ed"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6634217cfff73117fceba1ec511265ed">write_ascii</a> ()</td></tr>
+<tr class="memdesc:a6634217cfff73117fceba1ec511265ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output sampled data in ASCII format.  <br /></td></tr>
+<tr class="memitem:a00e92f84a0ce87f1713762de3bcbcb93" id="r_a00e92f84a0ce87f1713762de3bcbcb93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00e92f84a0ce87f1713762de3bcbcb93">process_field_norms</a> ()</td></tr>
+<tr class="memdesc:a00e92f84a0ce87f1713762de3bcbcb93"><td class="mdescLeft">&#160;</td><td class="mdescRight">process all fields and calculate norms  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aa3b4d0e2e4faba484d44e446ae44c60b" id="r_aa3b4d0e2e4faba484d44e446ae44c60b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3b4d0e2e4faba484d44e446ae44c60b">m_sim</a></td></tr>
+<tr class="memdesc:aa3b4d0e2e4faba484d44e446ae44c60b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the CFD sim.  <br /></td></tr>
+<tr class="memitem:ada242f975ff776b85760a8773e71d4ed" id="r_ada242f975ff776b85760a8773e71d4ed"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada242f975ff776b85760a8773e71d4ed">m_var_names</a></td></tr>
+<tr class="memdesc:ada242f975ff776b85760a8773e71d4ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of variable names for output.  <br /></td></tr>
+<tr class="memitem:a88a76dfe9f583cab2b31a4883d39c0f8" id="r_a88a76dfe9f583cab2b31a4883d39c0f8"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88a76dfe9f583cab2b31a4883d39c0f8">m_fnorms</a></td></tr>
+<tr class="memdesc:a88a76dfe9f583cab2b31a4883d39c0f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">List holding norms for all fields and their components.  <br /></td></tr>
+<tr class="memitem:a2494ebb45fd132949bfd5788cce29604" id="r_a2494ebb45fd132949bfd5788cce29604"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2494ebb45fd132949bfd5788cce29604">m_label</a></td></tr>
+<tr class="memitem:aa698b35eaf430d85ce4ac705f2c133ec" id="r_aa698b35eaf430d85ce4ac705f2c133ec"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa698b35eaf430d85ce4ac705f2c133ec">m_out_fname</a></td></tr>
+<tr class="memdesc:aa698b35eaf430d85ce4ac705f2c133ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">filename for ASCII output  <br /></td></tr>
+<tr class="memitem:a2ecd74d07d233d4b5fa7e497b726159a" id="r_a2ecd74d07d233d4b5fa7e497b726159a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ecd74d07d233d4b5fa7e497b726159a">m_width</a> {18}</td></tr>
+<tr class="memdesc:a2ecd74d07d233d4b5fa7e497b726159a"><td class="mdescLeft">&#160;</td><td class="mdescRight">width in ASCII output  <br /></td></tr>
+<tr class="memitem:a8d0cfa6b312a6f36885431c49a5f4376" id="r_a8d0cfa6b312a6f36885431c49a5f4376"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d0cfa6b312a6f36885431c49a5f4376">m_precision</a> {10}</td></tr>
+<tr class="memdesc:a8d0cfa6b312a6f36885431c49a5f4376"><td class="mdescLeft">&#160;</td><td class="mdescRight">precision in ASCII output  <br /></td></tr>
+<tr class="memitem:afb2439dcbec4a894f313ec33397e124d" id="r_afb2439dcbec4a894f313ec33397e124d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb2439dcbec4a894f313ec33397e124d">m_norm_type</a> {2}</td></tr>
+<tr class="memdesc:afb2439dcbec4a894f313ec33397e124d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of norm.  <br /></td></tr>
+<tr class="memitem:a29262472fca19876d06105e7e96d5d24" id="r_a29262472fca19876d06105e7e96d5d24"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29262472fca19876d06105e7e96d5d24">m_use_mask</a> {true}</td></tr>
+<tr class="memdesc:a29262472fca19876d06105e7e96d5d24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mask redundant grids (finest available grid only)  <br /></td></tr>
+<tr class="memitem:a75420cd82d9c43ef422e401ead87f96c" id="r_a75420cd82d9c43ef422e401ead87f96c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75420cd82d9c43ef422e401ead87f96c">m_use_vector_magnitude</a> {false}</td></tr>
+<tr class="memdesc:a75420cd82d9c43ef422e401ead87f96c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Consider vector magnitude, not separate vector components.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>field norm object</p>
+<p>A concrete implementation of the post-processing interface that deals with norms of fields. FIXME: need to update this </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a2414d128cdaf607b1efc6a833b027865" name="a2414d128cdaf607b1efc6a833b027865"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2414d128cdaf607b1efc6a833b027865">&#9670;&#160;</a></span>FieldNorms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::field_norms::FieldNorms::FieldNorms </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>label</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1adf92089e4f488a79eda30847549e2d" name="a1adf92089e4f488a79eda30847549e2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1adf92089e4f488a79eda30847549e2d">&#9670;&#160;</a></span>~FieldNorms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::field_norms::FieldNorms::~FieldNorms </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a7e7d8f7c85a7c91033ceadd3cbe7e0ae" name="a7e7d8f7c85a7c91033ceadd3cbe7e0ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e7d8f7c85a7c91033ceadd3cbe7e0ae">&#9670;&#160;</a></span>field_norms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::Vector&lt; amrex::Real &gt; &amp; kynema_sgf::field_norms::FieldNorms::field_norms </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8775ef7b081670cf7e18a9e128951705" name="a8775ef7b081670cf7e18a9e128951705"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8775ef7b081670cf7e18a9e128951705">&#9670;&#160;</a></span>get_norm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::field_norms::FieldNorms::get_norm </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>field</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>comp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ncomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>norm_type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>use_mask</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a48a286eabf7bd59892163bfe8a7304ca" name="a48a286eabf7bd59892163bfe8a7304ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48a286eabf7bd59892163bfe8a7304ca">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::field_norms::FieldNorms::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aac9eaf4e33238862763f5c90fe183da2" name="aac9eaf4e33238862763f5c90fe183da2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac9eaf4e33238862763f5c90fe183da2">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_norms::FieldNorms::initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read user inputs and create the different data probe instances. </p>
+
+</div>
+</div>
+<a id="ae8a15628ca1329591e1439facd3615f4" name="ae8a15628ca1329591e1439facd3615f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8a15628ca1329591e1439facd3615f4">&#9670;&#160;</a></span>output_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_norms::FieldNorms::output_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aba8fdd0bb9b94dcc17eae91cbc25ae5d" name="aba8fdd0bb9b94dcc17eae91cbc25ae5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba8fdd0bb9b94dcc17eae91cbc25ae5d">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_norms::FieldNorms::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a47d984d6cff302b24a1f00ff134da697" name="a47d984d6cff302b24a1f00ff134da697"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47d984d6cff302b24a1f00ff134da697">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_norms::FieldNorms::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a24f76d4412d89d4a4145bf4b73d13395" name="a24f76d4412d89d4a4145bf4b73d13395"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24f76d4412d89d4a4145bf4b73d13395">&#9670;&#160;</a></span>pre_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_norms::FieldNorms::pre_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform actions before mesh is created. </p>
+
+</div>
+</div>
+<a id="ac69a815a65f5faa759d89a365aa9fccc" name="ac69a815a65f5faa759d89a365aa9fccc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac69a815a65f5faa759d89a365aa9fccc">&#9670;&#160;</a></span>prepare_ascii_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_norms::FieldNorms::prepare_ascii_file </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>prepare ASCII file and directory </p>
+
+</div>
+</div>
+<a id="a00e92f84a0ce87f1713762de3bcbcb93" name="a00e92f84a0ce87f1713762de3bcbcb93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00e92f84a0ce87f1713762de3bcbcb93">&#9670;&#160;</a></span>process_field_norms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_norms::FieldNorms::process_field_norms </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>process all fields and calculate norms </p>
+
+</div>
+</div>
+<a id="a94f4ebc6eb7a9d410fb656f78fbbed21" name="a94f4ebc6eb7a9d410fb656f78fbbed21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94f4ebc6eb7a9d410fb656f78fbbed21">&#9670;&#160;</a></span>var_names()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::Vector&lt; std::string &gt; &amp; kynema_sgf::field_norms::FieldNorms::var_names </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6634217cfff73117fceba1ec511265ed" name="a6634217cfff73117fceba1ec511265ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6634217cfff73117fceba1ec511265ed">&#9670;&#160;</a></span>write_ascii()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_norms::FieldNorms::write_ascii </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Output sampled data in ASCII format. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a88a76dfe9f583cab2b31a4883d39c0f8" name="a88a76dfe9f583cab2b31a4883d39c0f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88a76dfe9f583cab2b31a4883d39c0f8">&#9670;&#160;</a></span>m_fnorms</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::field_norms::FieldNorms::m_fnorms</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List holding norms for all fields and their components. </p>
+
+</div>
+</div>
+<a id="a2494ebb45fd132949bfd5788cce29604" name="a2494ebb45fd132949bfd5788cce29604"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2494ebb45fd132949bfd5788cce29604">&#9670;&#160;</a></span>m_label</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string kynema_sgf::field_norms::FieldNorms::m_label</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Name of this sampling object.</p>
+<p>The label is used to read user inputs from file and is also used for naming files directories depending on the output format. </p>
+
+</div>
+</div>
+<a id="afb2439dcbec4a894f313ec33397e124d" name="afb2439dcbec4a894f313ec33397e124d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb2439dcbec4a894f313ec33397e124d">&#9670;&#160;</a></span>m_norm_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::field_norms::FieldNorms::m_norm_type {2}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Type of norm. </p>
+
+</div>
+</div>
+<a id="aa698b35eaf430d85ce4ac705f2c133ec" name="aa698b35eaf430d85ce4ac705f2c133ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa698b35eaf430d85ce4ac705f2c133ec">&#9670;&#160;</a></span>m_out_fname</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::field_norms::FieldNorms::m_out_fname</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>filename for ASCII output </p>
+
+</div>
+</div>
+<a id="a8d0cfa6b312a6f36885431c49a5f4376" name="a8d0cfa6b312a6f36885431c49a5f4376"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d0cfa6b312a6f36885431c49a5f4376">&#9670;&#160;</a></span>m_precision</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::field_norms::FieldNorms::m_precision {10}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>precision in ASCII output </p>
+
+</div>
+</div>
+<a id="aa3b4d0e2e4faba484d44e446ae44c60b" name="aa3b4d0e2e4faba484d44e446ae44c60b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3b4d0e2e4faba484d44e446ae44c60b">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::field_norms::FieldNorms::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reference to the CFD sim. </p>
+
+</div>
+</div>
+<a id="a29262472fca19876d06105e7e96d5d24" name="a29262472fca19876d06105e7e96d5d24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29262472fca19876d06105e7e96d5d24">&#9670;&#160;</a></span>m_use_mask</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::field_norms::FieldNorms::m_use_mask {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Mask redundant grids (finest available grid only) </p>
+
+</div>
+</div>
+<a id="a75420cd82d9c43ef422e401ead87f96c" name="a75420cd82d9c43ef422e401ead87f96c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75420cd82d9c43ef422e401ead87f96c">&#9670;&#160;</a></span>m_use_vector_magnitude</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::field_norms::FieldNorms::m_use_vector_magnitude {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Consider vector magnitude, not separate vector components. </p>
+
+</div>
+</div>
+<a id="ada242f975ff776b85760a8773e71d4ed" name="ada242f975ff776b85760a8773e71d4ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada242f975ff776b85760a8773e71d4ed">&#9670;&#160;</a></span>m_var_names</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;std::string&gt; kynema_sgf::field_norms::FieldNorms::m_var_names</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of variable names for output. </p>
+
+</div>
+</div>
+<a id="a2ecd74d07d233d4b5fa7e497b726159a" name="a2ecd74d07d233d4b5fa7e497b726159a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ecd74d07d233d4b5fa7e497b726159a">&#9670;&#160;</a></span>m_width</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::field_norms::FieldNorms::m_width {18}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>width in ASCII output </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/<a class="el" href="_field_norms_8_h_source.html">FieldNorms.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/<a class="el" href="_field_norms_8cpp.html">FieldNorms.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

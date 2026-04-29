@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Section: Ocean Waves &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Kynema-SGF ABL Boundary I/O" href="abl_bndry_io.html" />
+    <link rel="prev" title="Section: MultiPhase" href="inputs_multiphase.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="inputs.html#input-file-reference">Input file reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="inputs_geometry.html">Section: geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_amr.html">Section: AMReX and AMR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_tagging.html">Section: tagging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_time.html">Section: time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_io.html">Section: io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_incflo.html">Section: incflo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_transport.html">Section: transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_turbulence.html">Section: turbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Momentum_Sources.html">Section: Momentum Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Temperature_Sources.html">Section: Temperature Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_TKE_Sources.html">Section: TKE Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL.html">Section: ABL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL_meso_forcing.html">Section: ABLMesoForcing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_SyntheticTurbulence.html">Section: SyntheticTurbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Boundary_conditions.html">Section: Boundary conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_MLMG.html">Section: MLMG options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_post_processing.html">Section: Post-processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Sampling.html">Section: Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Subvolume.html">Section: Subvolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Averaging.html">Section: Averaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_KineticEnergy.html">Section: KineticEnergy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Enstrophy.html">Section: Enstrophy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FieldNorms.html">Section: FieldNorms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Actuator.html">Section: Actuator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_multiphase.html">Section: MultiPhase</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Section: Ocean Waves</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+          <li class="breadcrumb-item"><a href="inputs.html">Kynema-SGF inputs file</a></li>
+      <li class="breadcrumb-item active">Section: Ocean Waves</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/inputs_ocean_waves.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-ocean-waves">
+<span id="inputs-ocean-waves"></span><h1>Section: Ocean Waves<a class="headerlink" href="#section-ocean-waves" title="Link to this heading"></a></h1>
+<p>This section is for setting up wave forcing and relaxation zones.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label">
+<span class="sig-name descname"><span class="pre">OceanWaves.label</span></span><a class="headerlink" href="#input_param-OceanWaves.label" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String</p>
+<p>Name for Ocean Waves instance. As a placeholder, the label ‘label’ will be used in this documentation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.type">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.type</span></span><a class="headerlink" href="#input_param-OceanWaves.label.type" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String</p>
+<p>Type of wave to be used. Options include LinearWaves, StokesWaves, and W2AWaves.
+Linear and stokes waves are monochromatic waves. W2AWaves uses the Waves2AMR library to read
+and transform HOS-Ocean wave data into the Kynema-SGF domain, and this option requires the Waves2AMR
+library (abbreviated W2A) to be enabled at compile time.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.relax_zone_gen_length">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.relax_zone_gen_length</span></span><a class="headerlink" href="#input_param-OceanWaves.label.relax_zone_gen_length" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 4.0</p>
+<p>Length of region, in x-direction, over which the wave profile will be forced.
+The region begins at the low x boundary and extends in the positive x direction, covering
+the entire width of the domain in the y direction and applying to all liquid at all depths
+(in z). Always on, even if argument is not specified.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.numerical_beach_length">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.numerical_beach_length</span></span><a class="headerlink" href="#input_param-OceanWaves.label.numerical_beach_length" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 8.0</p>
+<p>Length of region, in x-direction, over which the waves will be forced to a flat interface.
+The region begins at the high x boundary and extends in the negative x direction, covering
+the entire width of the domain in the y direction and applying to all liquid at all depths
+(in z). Always on, unless relax_zone_out_length is included in the input file.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.numerical_beach_length_factor">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.numerical_beach_length_factor</span></span><a class="headerlink" href="#input_param-OceanWaves.label.numerical_beach_length_factor" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1.0</p>
+<p>Length factor for numerical beach region. Following the formulation suggested by <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0029801819303919">Chen, Kelly, and Zang
+(2019)</a>, this factor increases the
+effective length of the numerical beach while keeping it as the same physical length. This approach stems
+from the observation that waves are typically fully absorbed in the first half of the numerical beach,
+leaving the second portion basically unused. Therefore, using a numerical beach length factor can
+reduce the size of the required domain while still achieving the same results. For example, if a numerical beach
+length of 2 wave lengths is needed, <code class="docutils literal notranslate"><span class="pre">numerical_beach_length</span></code> could be set to 1 wave length, and then
+<code class="docutils literal notranslate"><span class="pre">numerical_beach_length_factor</span></code> would be set to 2.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.relax_zone_out_length">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.relax_zone_out_length</span></span><a class="headerlink" href="#input_param-OceanWaves.label.relax_zone_out_length" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 8.0</p>
+<p>Length of region, in x-direction, over which the wave profile will be forced. This input argument
+replaces, and thereby turns off, the numerical beach.
+The region begins at the high x boundary and extends in the negative x direction, covering
+the entire width of the domain in the y direction and applying to all liquid at all depths
+(in z). Only on when included in the input file.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.zero_sea_level">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.zero_sea_level</span></span><a class="headerlink" href="#input_param-OceanWaves.label.zero_sea_level" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.0</p>
+<p>Default location (in z) of the liquid surface. Where the water would rest in the absence of waves.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.water_depth">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.water_depth</span></span><a class="headerlink" href="#input_param-OceanWaves.label.water_depth" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.5</p>
+<p>The depth of the water in the simulation, used for calculating analytical wave profiles (linear
+and stokes waves). Should be equal to the difference between the zero_sea_level and the low z boundary location.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.timeramp_period">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.timeramp_period</span></span><a class="headerlink" href="#input_param-OceanWaves.label.timeramp_period" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>An initial ramp-up period for the wave forcing. Without specifying a period, the wave
+forcing will begin at full strength.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.initialize_wave_field">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.initialize_wave_field</span></span><a class="headerlink" href="#input_param-OceanWaves.label.initialize_wave_field" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = false</p>
+<p>By default, the domain will be initialized with a flat interface; if this option
+is turned on, the wave profile will be initialized over the entire domain. If there is a specified
+relax_zone_out_length, this option is automatically turned on.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.current">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.current</span></span><a class="headerlink" href="#input_param-OceanWaves.label.current" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.0</p>
+<p>Flow speed of a uniform current in the x-direction to be added to the wave forcing. This option is
+currently only compatible with the LinearWaves wave type and the numerical beach. If a nonzero current is
+specified for a case with nonlinear waves, the code will abort.</p>
+</dd></dl>
+
+<p>The following input arguments are only valid for the LinearWaves and StokesWave wave types:</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.wave_length">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.wave_length</span></span><a class="headerlink" href="#input_param-OceanWaves.label.wave_length" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, mandatory</p>
+<p>The wave length of the wave profile. This argument can be omitted for Stokes waves if
+the wave period is provided instead.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.wave_height">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.wave_height</span></span><a class="headerlink" href="#input_param-OceanWaves.label.wave_height" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, mandatory</p>
+<p>The amplitude of the wave profile</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.wave_phase_offset_radians">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.wave_phase_offset_radians</span></span><a class="headerlink" href="#input_param-OceanWaves.label.wave_phase_offset_radians" title="Link to this definition"></a></dt>
+<dd><p><strong>type</strong> Real, optional, default = 0.</p>
+<p>This specifies a phase offset to the target wave profile.
+It is in terms of phase (radians) relative to the wave, not
+in terms of time. Note that this argument should be retained
+when restarting a simulation so that the phase of the wave forcing
+is consistent with the preceding simulation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.wave_phase_offset_degrees">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.wave_phase_offset_degrees</span></span><a class="headerlink" href="#input_param-OceanWaves.label.wave_phase_offset_degrees" title="Link to this definition"></a></dt>
+<dd><p><strong>type</strong> Real, optional, default = 0.</p>
+<p>This specifies a phase offset to the target wave profile
+in terms of degrees. If the offset is specified in both radians
+and degrees, the code will abort; only one of these arguments
+can be used at a time.</p>
+</dd></dl>
+
+<p>The following input arguments are only valid for the StokesWave wave type:</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.order">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.order</span></span><a class="headerlink" href="#input_param-OceanWaves.label.order" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, mandatory</p>
+<p>The order of the Stokes wave formula being used. All Stokes wave theory (wave profile and
+dispersion relation) is applied from <a class="reference external" href="https://ascelibrary.org/doi/10.1061/%28ASCE%290733-950X%281985%29111%3A2%28216%29">Fenton (1985)</a>.
+The minimum order is 2, and the maximum order is 5.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.wave_period">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.wave_period</span></span><a class="headerlink" href="#input_param-OceanWaves.label.wave_period" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>If the wave period is provided and the wave length is not, the wave length will be solved
+iteratively using the wave height, the wave period, and the Stokes waves dispersion relation.
+If the wave length is not provided, this argument becomes mandatory.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.stokes_wavelength_order">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.stokes_wavelength_order</span></span><a class="headerlink" href="#input_param-OceanWaves.label.stokes_wavelength_order" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>Specifies the order of the dispersion relation used to calculate the wave length. By default,
+this is equal to the <code class="docutils literal notranslate"><span class="pre">order</span></code> of the waves. Practically, the minimum value is 1, and the
+maximum is 5.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.stokes_wavelength_tolerance">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.stokes_wavelength_tolerance</span></span><a class="headerlink" href="#input_param-OceanWaves.label.stokes_wavelength_tolerance" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1e-10</p>
+<p>Convergence tolerance of the iterative process to calculate the wave length.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.stokes_wavelength_iter_max">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.stokes_wavelength_iter_max</span></span><a class="headerlink" href="#input_param-OceanWaves.label.stokes_wavelength_iter_max" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 40</p>
+<p>Maximum number of iterations during the process to calculate the wave length.</p>
+</dd></dl>
+
+<p>The following input arguments are only valid for the W2AWaves wave type:</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.HOS_modes_filename">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.HOS_modes_filename</span></span><a class="headerlink" href="#input_param-OceanWaves.label.HOS_modes_filename" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, mandatory</p>
+<p>The name of the modes file, output by HOS-Ocean or HOS-NWT, in the SWENSE format.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.HOS_simulation_is_ocean">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.HOS_simulation_is_ocean</span></span><a class="headerlink" href="#input_param-OceanWaves.label.HOS_simulation_is_ocean" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = true</p>
+<p>Specify whether the modes file is from HOS-Ocean or HOS-NWT. If this is specified incorrectly,
+the code will abort by detecting mismatched parameters in the modes file.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.HOS_init_timestep">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.HOS_init_timestep</span></span><a class="headerlink" href="#input_param-OceanWaves.label.HOS_init_timestep" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 0</p>
+<p>The time step in the modes file for the Kynema-SGF simulation to start at.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.HOS_init_time">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.HOS_init_time</span></span><a class="headerlink" href="#input_param-OceanWaves.label.HOS_init_time" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 0</p>
+<p>The physical time in the modes file for the Kynema-SGF simulation to start at.
+This argument is only active if HOS_init_timestep is omitted. Kynema-SGF will pick the
+time step in the modes closest to the specified time.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.HOS_domain_offset_x">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.HOS_domain_offset_x</span></span><a class="headerlink" href="#input_param-OceanWaves.label.HOS_domain_offset_x" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.</p>
+<p>A physical space offset for mapping between the HOS domain and the Kynema-SGF domain.
+The coordinates of the HOS domain always start at (x,y) = (0,0), but often the setup
+of an Kynema-SGF domain is not constrained in this way, and also the Kynema-SGF domain
+may only represent a portion of the HOS domain. This parameter, <span class="math notranslate nohighlight">\(x_textrm{off}\)</span>,
+contributes to the mapping such that <span class="math notranslate nohighlight">\(x_\textrm{Kynema-SGF} = x_\textrm{HOS} + x_\textrm{off}\)</span>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.HOS_domain_offset_y">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.HOS_domain_offset_y</span></span><a class="headerlink" href="#input_param-OceanWaves.label.HOS_domain_offset_y" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.</p>
+<p>A physical space offset for mapping between the HOS domain and the Kynema-SGF domain.
+This parameter, <span class="math notranslate nohighlight">\(y_textrm{off}\)</span>, contributes to the mapping such that
+<span class="math notranslate nohighlight">\(y_\textrm{Kynema-SGF} = y_\textrm{HOS} + y_\textrm{off}\)</span>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.fftw_planner_flag">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.fftw_planner_flag</span></span><a class="headerlink" href="#input_param-OceanWaves.label.fftw_planner_flag" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = estimate</p>
+<p>When setting up a plan for the inverse Fourier transform within the Waves2AMR library,
+the FFTW algorithm can use different techniques to choose among available methods. Some of these
+are faster than others, and the optimal choice can also depend on the architecture. The
+default, “estimate”, which corresponds to FFTW_ESTIMATE, is deterministic. The other
+options are “exhaustive”, “patient”, and “measure”. Variations from nondeterministic
+approaches are tiny, on the order of machine precision.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.number_interp_points_in_z">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.number_interp_points_in_z</span></span><a class="headerlink" href="#input_param-OceanWaves.label.number_interp_points_in_z" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, mandatory</p>
+<p>When Waves2AMR converts mode data to spatial data, the z locations to perform the transformation
+must be chosen. Kynema-SGF does this by creating a geometric series from the water surface
+to the lower z boundary, starting with a small spacing between points near the surface and
+then expanding downward. This argument is the total number of z locations where wave modes will be
+transformed to inform the wave velocity field. After the transformation step, the data is then interpolated
+to the Kynema-SGF mesh. More points means better resolution over the whole depth, but more points
+also means more work for the solver.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.interp_spacing_at_surface">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.interp_spacing_at_surface</span></span><a class="headerlink" href="#input_param-OceanWaves.label.interp_spacing_at_surface" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, mandatory</p>
+<p>The physical spacing between interpolation points at the water surface.
+This is the most influential parameter for the geometric series that dictates the location of the points in z.
+This should be set to near the mesh spacing in z around the water surface.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-OceanWaves.label.number_interp_above_surface">
+<span class="sig-name descname"><span class="pre">OceanWaves.label.number_interp_above_surface</span></span><a class="headerlink" href="#input_param-OceanWaves.label.number_interp_above_surface" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 1</p>
+<p>The number of points placed above the mean water surface for the velocity transformation process. The spacing
+between the points above the surface is equal to the <code class="docutils literal notranslate"><span class="pre">interp_spacing_at_surface</span></code>. When setting this value, the wave height
+should be considered so that velocity can be accurately computed for portions of the waves above the mean surface.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inputs_multiphase.html" class="btn btn-neutral float-left" title="Section: MultiPhase" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="abl_bndry_io.html" class="btn btn-neutral float-right" title="Kynema-SGF ABL Boundary I/O" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,926 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::fvm::stencil::StencilILO Struct Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::fvm::stencil::StencilILO Struct Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/structkynema__sgf_1_1fvm_1_1stencil_1_1_stencil_i_l_o.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="stencililo-struct-reference">
+<h1>StencilILO Struct Reference<a class="headerlink" href="#stencililo-struct-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::fvm::stencil::StencilILO Struct Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1fvm.html">fvm</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1fvm_1_1stencil.html">stencil</a></li><li class="navelem"><a href="structkynema__sgf_1_1fvm_1_1stencil_1_1_stencil_i_l_o.html">StencilILO</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="structkynema__sgf_1_1fvm_1_1stencil_1_1_stencil_i_l_o-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::fvm::stencil::StencilILO Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="stencils_8_h_source.html">stencils.H</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:abee34fbace75f2c2a6c8bc19e78a1750" id="r_abee34fbace75f2c2a6c8bc19e78a1750"><td class="memItemLeft" align="right" valign="top">static amrex::Box&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abee34fbace75f2c2a6c8bc19e78a1750">box</a> (const amrex::Box &amp;bx, const amrex::Geometry &amp;geom)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a8395f8a3aa2c523b512075ab1a2972d8" id="r_a8395f8a3aa2c523b512075ab1a2972d8"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8395f8a3aa2c523b512075ab1a2972d8">direction</a> = 0</td></tr>
+<tr class="memitem:a81a97bc6e083264dd641ff14673b0079" id="r_a81a97bc6e083264dd641ff14673b0079"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81a97bc6e083264dd641ff14673b0079">side</a> = amrex::Orientation::Side::low</td></tr>
+<tr class="memitem:aa107b2113659633dd7a6bf7ddb76cee8" id="r_aa107b2113659633dd7a6bf7ddb76cee8"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa107b2113659633dd7a6bf7ddb76cee8">c00</a> = 1.0_rt / 3.0_rt</td></tr>
+<tr class="memitem:a24fdcc3ca3913359a36a5b9f2b7926ce" id="r_a24fdcc3ca3913359a36a5b9f2b7926ce"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24fdcc3ca3913359a36a5b9f2b7926ce">c01</a> = 1.0_rt</td></tr>
+<tr class="memitem:adbb32622e05f7208108fa8708a4dd78d" id="r_adbb32622e05f7208108fa8708a4dd78d"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbb32622e05f7208108fa8708a4dd78d">c02</a> = -4.0_rt / 3.0_rt</td></tr>
+<tr class="memitem:a97112b825316d737e532d06ba315185a" id="r_a97112b825316d737e532d06ba315185a"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97112b825316d737e532d06ba315185a">c10</a> = 0.5_rt</td></tr>
+<tr class="memitem:a339b39510117c5b23e07dbff39d986ec" id="r_a339b39510117c5b23e07dbff39d986ec"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a339b39510117c5b23e07dbff39d986ec">c11</a> = 0.0_rt</td></tr>
+<tr class="memitem:a832e3788ce749dff16f87975d958232a" id="r_a832e3788ce749dff16f87975d958232a"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a832e3788ce749dff16f87975d958232a">c12</a> = -0.5_rt</td></tr>
+<tr class="memitem:a1ef89f05594532df0ea2f38a54f1194a" id="r_a1ef89f05594532df0ea2f38a54f1194a"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ef89f05594532df0ea2f38a54f1194a">c20</a> = <a class="el" href="#a97112b825316d737e532d06ba315185a">c10</a></td></tr>
+<tr class="memitem:ab27e599c5a35b709c63077982761d55a" id="r_ab27e599c5a35b709c63077982761d55a"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab27e599c5a35b709c63077982761d55a">c21</a> = <a class="el" href="#a339b39510117c5b23e07dbff39d986ec">c11</a></td></tr>
+<tr class="memitem:add92481a9af6d7c940ebbf7995468adb" id="r_add92481a9af6d7c940ebbf7995468adb"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add92481a9af6d7c940ebbf7995468adb">c22</a> = <a class="el" href="#a832e3788ce749dff16f87975d958232a">c12</a></td></tr>
+<tr class="memitem:ad3ae9d74bfb20fe91dfd457d71ea3478" id="r_ad3ae9d74bfb20fe91dfd457d71ea3478"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3ae9d74bfb20fe91dfd457d71ea3478">s00</a> = 4.0_rt / 3.0_rt</td></tr>
+<tr class="memitem:abb34a1af1083f49edf81f194ecd058d0" id="r_abb34a1af1083f49edf81f194ecd058d0"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb34a1af1083f49edf81f194ecd058d0">s01</a> = -4.0_rt</td></tr>
+<tr class="memitem:a69edecfbac6b5aa7712c6c00597bdb84" id="r_a69edecfbac6b5aa7712c6c00597bdb84"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69edecfbac6b5aa7712c6c00597bdb84">s02</a> = 8.0_rt / 3.0_rt</td></tr>
+<tr class="memitem:ae1a5c2820e0a93de06b0ef9d93c7c738" id="r_ae1a5c2820e0a93de06b0ef9d93c7c738"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1a5c2820e0a93de06b0ef9d93c7c738">s10</a> = 1.0_rt</td></tr>
+<tr class="memitem:a1be342dc797808b8957203bfc4cf91a8" id="r_a1be342dc797808b8957203bfc4cf91a8"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1be342dc797808b8957203bfc4cf91a8">s11</a> = -2.0_rt</td></tr>
+<tr class="memitem:a9464cc8f6e8a1ec005558e59d71e3b75" id="r_a9464cc8f6e8a1ec005558e59d71e3b75"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9464cc8f6e8a1ec005558e59d71e3b75">s12</a> = 1.0_rt</td></tr>
+<tr class="memitem:a4699f89fc129d3285aeaebb6785c08a0" id="r_a4699f89fc129d3285aeaebb6785c08a0"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4699f89fc129d3285aeaebb6785c08a0">s20</a> = <a class="el" href="#ae1a5c2820e0a93de06b0ef9d93c7c738">s10</a></td></tr>
+<tr class="memitem:aa8ab19738ba1e485f33ada630eef7501" id="r_aa8ab19738ba1e485f33ada630eef7501"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8ab19738ba1e485f33ada630eef7501">s21</a> = <a class="el" href="#a1be342dc797808b8957203bfc4cf91a8">s11</a></td></tr>
+<tr class="memitem:a038263fbdb2b61a3240945f47a2be305" id="r_a038263fbdb2b61a3240945f47a2be305"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a038263fbdb2b61a3240945f47a2be305">s22</a> = <a class="el" href="#a9464cc8f6e8a1ec005558e59d71e3b75">s12</a></td></tr>
+<tr class="memitem:ae2cfb301a4d158b4497094a038cb4583" id="r_ae2cfb301a4d158b4497094a038cb4583"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2cfb301a4d158b4497094a038cb4583">f00</a> = 0.125_rt</td></tr>
+<tr class="memitem:aa2f9d2d611366f0bd3067e53c021accb" id="r_aa2f9d2d611366f0bd3067e53c021accb"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2f9d2d611366f0bd3067e53c021accb">f01</a> = 0.625_rt</td></tr>
+<tr class="memitem:aed6448f230bbfb83911a23f5662cbc06" id="r_aed6448f230bbfb83911a23f5662cbc06"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed6448f230bbfb83911a23f5662cbc06">f02</a> = 0.25_rt</td></tr>
+<tr class="memitem:a8bf98a6e2f6749336ce9465ad0e45154" id="r_a8bf98a6e2f6749336ce9465ad0e45154"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bf98a6e2f6749336ce9465ad0e45154">f10</a> = 0.25_rt</td></tr>
+<tr class="memitem:adea535afcdba94d17f6a68538b568799" id="r_adea535afcdba94d17f6a68538b568799"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adea535afcdba94d17f6a68538b568799">f11</a> = 0.5_rt</td></tr>
+<tr class="memitem:a418baa8b960e45a9d154da08226a1a6c" id="r_a418baa8b960e45a9d154da08226a1a6c"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a418baa8b960e45a9d154da08226a1a6c">f12</a> = 0.25_rt</td></tr>
+<tr class="memitem:a4335d9e179c18cc88739000231f15e5e" id="r_a4335d9e179c18cc88739000231f15e5e"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4335d9e179c18cc88739000231f15e5e">f20</a> = <a class="el" href="#a8bf98a6e2f6749336ce9465ad0e45154">f10</a></td></tr>
+<tr class="memitem:a5f9cf4900ec62ff2cd968ea00c73305a" id="r_a5f9cf4900ec62ff2cd968ea00c73305a"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f9cf4900ec62ff2cd968ea00c73305a">f21</a> = <a class="el" href="#adea535afcdba94d17f6a68538b568799">f11</a></td></tr>
+<tr class="memitem:a2fdb77b40f88d4a14199bb4456490f26" id="r_a2fdb77b40f88d4a14199bb4456490f26"><td class="memItemLeft" align="right" valign="top">static constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fdb77b40f88d4a14199bb4456490f26">f22</a> = <a class="el" href="#a418baa8b960e45a9d154da08226a1a6c">f12</a></td></tr>
+</table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="abee34fbace75f2c2a6c8bc19e78a1750" name="abee34fbace75f2c2a6c8bc19e78a1750"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abee34fbace75f2c2a6c8bc19e78a1750">&#9670;&#160;</a></span>box()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Box kynema_sgf::fvm::stencil::StencilILO::box </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Box &amp;</td>          <td class="paramname"><span class="paramname"><em>bx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="aa107b2113659633dd7a6bf7ddb76cee8" name="aa107b2113659633dd7a6bf7ddb76cee8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa107b2113659633dd7a6bf7ddb76cee8">&#9670;&#160;</a></span>c00</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::c00 = 1.0_rt / 3.0_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a24fdcc3ca3913359a36a5b9f2b7926ce" name="a24fdcc3ca3913359a36a5b9f2b7926ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24fdcc3ca3913359a36a5b9f2b7926ce">&#9670;&#160;</a></span>c01</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::c01 = 1.0_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adbb32622e05f7208108fa8708a4dd78d" name="adbb32622e05f7208108fa8708a4dd78d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbb32622e05f7208108fa8708a4dd78d">&#9670;&#160;</a></span>c02</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::c02 = -4.0_rt / 3.0_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a97112b825316d737e532d06ba315185a" name="a97112b825316d737e532d06ba315185a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97112b825316d737e532d06ba315185a">&#9670;&#160;</a></span>c10</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::c10 = 0.5_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a339b39510117c5b23e07dbff39d986ec" name="a339b39510117c5b23e07dbff39d986ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a339b39510117c5b23e07dbff39d986ec">&#9670;&#160;</a></span>c11</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::c11 = 0.0_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a832e3788ce749dff16f87975d958232a" name="a832e3788ce749dff16f87975d958232a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a832e3788ce749dff16f87975d958232a">&#9670;&#160;</a></span>c12</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::c12 = -0.5_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ef89f05594532df0ea2f38a54f1194a" name="a1ef89f05594532df0ea2f38a54f1194a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ef89f05594532df0ea2f38a54f1194a">&#9670;&#160;</a></span>c20</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::c20 = <a class="el" href="#a97112b825316d737e532d06ba315185a">c10</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab27e599c5a35b709c63077982761d55a" name="ab27e599c5a35b709c63077982761d55a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab27e599c5a35b709c63077982761d55a">&#9670;&#160;</a></span>c21</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::c21 = <a class="el" href="#a339b39510117c5b23e07dbff39d986ec">c11</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="add92481a9af6d7c940ebbf7995468adb" name="add92481a9af6d7c940ebbf7995468adb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add92481a9af6d7c940ebbf7995468adb">&#9670;&#160;</a></span>c22</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::c22 = <a class="el" href="#a832e3788ce749dff16f87975d958232a">c12</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8395f8a3aa2c523b512075ab1a2972d8" name="a8395f8a3aa2c523b512075ab1a2972d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8395f8a3aa2c523b512075ab1a2972d8">&#9670;&#160;</a></span>direction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::fvm::stencil::StencilILO::direction = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae2cfb301a4d158b4497094a038cb4583" name="ae2cfb301a4d158b4497094a038cb4583"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2cfb301a4d158b4497094a038cb4583">&#9670;&#160;</a></span>f00</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::f00 = 0.125_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa2f9d2d611366f0bd3067e53c021accb" name="aa2f9d2d611366f0bd3067e53c021accb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2f9d2d611366f0bd3067e53c021accb">&#9670;&#160;</a></span>f01</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::f01 = 0.625_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aed6448f230bbfb83911a23f5662cbc06" name="aed6448f230bbfb83911a23f5662cbc06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed6448f230bbfb83911a23f5662cbc06">&#9670;&#160;</a></span>f02</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::f02 = 0.25_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8bf98a6e2f6749336ce9465ad0e45154" name="a8bf98a6e2f6749336ce9465ad0e45154"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bf98a6e2f6749336ce9465ad0e45154">&#9670;&#160;</a></span>f10</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::f10 = 0.25_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adea535afcdba94d17f6a68538b568799" name="adea535afcdba94d17f6a68538b568799"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adea535afcdba94d17f6a68538b568799">&#9670;&#160;</a></span>f11</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::f11 = 0.5_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a418baa8b960e45a9d154da08226a1a6c" name="a418baa8b960e45a9d154da08226a1a6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a418baa8b960e45a9d154da08226a1a6c">&#9670;&#160;</a></span>f12</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::f12 = 0.25_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4335d9e179c18cc88739000231f15e5e" name="a4335d9e179c18cc88739000231f15e5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4335d9e179c18cc88739000231f15e5e">&#9670;&#160;</a></span>f20</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::f20 = <a class="el" href="#a8bf98a6e2f6749336ce9465ad0e45154">f10</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f9cf4900ec62ff2cd968ea00c73305a" name="a5f9cf4900ec62ff2cd968ea00c73305a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f9cf4900ec62ff2cd968ea00c73305a">&#9670;&#160;</a></span>f21</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::f21 = <a class="el" href="#adea535afcdba94d17f6a68538b568799">f11</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2fdb77b40f88d4a14199bb4456490f26" name="a2fdb77b40f88d4a14199bb4456490f26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fdb77b40f88d4a14199bb4456490f26">&#9670;&#160;</a></span>f22</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::f22 = <a class="el" href="#a418baa8b960e45a9d154da08226a1a6c">f12</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad3ae9d74bfb20fe91dfd457d71ea3478" name="ad3ae9d74bfb20fe91dfd457d71ea3478"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3ae9d74bfb20fe91dfd457d71ea3478">&#9670;&#160;</a></span>s00</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::s00 = 4.0_rt / 3.0_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abb34a1af1083f49edf81f194ecd058d0" name="abb34a1af1083f49edf81f194ecd058d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb34a1af1083f49edf81f194ecd058d0">&#9670;&#160;</a></span>s01</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::s01 = -4.0_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a69edecfbac6b5aa7712c6c00597bdb84" name="a69edecfbac6b5aa7712c6c00597bdb84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69edecfbac6b5aa7712c6c00597bdb84">&#9670;&#160;</a></span>s02</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::s02 = 8.0_rt / 3.0_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae1a5c2820e0a93de06b0ef9d93c7c738" name="ae1a5c2820e0a93de06b0ef9d93c7c738"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1a5c2820e0a93de06b0ef9d93c7c738">&#9670;&#160;</a></span>s10</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::s10 = 1.0_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1be342dc797808b8957203bfc4cf91a8" name="a1be342dc797808b8957203bfc4cf91a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1be342dc797808b8957203bfc4cf91a8">&#9670;&#160;</a></span>s11</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::s11 = -2.0_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9464cc8f6e8a1ec005558e59d71e3b75" name="a9464cc8f6e8a1ec005558e59d71e3b75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9464cc8f6e8a1ec005558e59d71e3b75">&#9670;&#160;</a></span>s12</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::s12 = 1.0_rt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4699f89fc129d3285aeaebb6785c08a0" name="a4699f89fc129d3285aeaebb6785c08a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4699f89fc129d3285aeaebb6785c08a0">&#9670;&#160;</a></span>s20</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::s20 = <a class="el" href="#ae1a5c2820e0a93de06b0ef9d93c7c738">s10</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa8ab19738ba1e485f33ada630eef7501" name="aa8ab19738ba1e485f33ada630eef7501"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8ab19738ba1e485f33ada630eef7501">&#9670;&#160;</a></span>s21</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::s21 = <a class="el" href="#a1be342dc797808b8957203bfc4cf91a8">s11</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a038263fbdb2b61a3240945f47a2be305" name="a038263fbdb2b61a3240945f47a2be305"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a038263fbdb2b61a3240945f47a2be305">&#9670;&#160;</a></span>s22</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::fvm::stencil::StencilILO::s22 = <a class="el" href="#a9464cc8f6e8a1ec005558e59d71e3b75">s12</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a81a97bc6e083264dd641ff14673b0079" name="a81a97bc6e083264dd641ff14673b0079"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81a97bc6e083264dd641ff14673b0079">&#9670;&#160;</a></span>side</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::fvm::stencil::StencilILO::side = amrex::Orientation::Side::low</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/fvm/<a class="el" href="stencils_8_h_source.html">stencils.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

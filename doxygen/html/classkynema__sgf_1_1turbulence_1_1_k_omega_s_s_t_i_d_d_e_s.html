@@ -1,0 +1,855 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::turbulence::KOmegaSSTIDDES&amp;lt; Transport &amp;gt; Class Template Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::turbulence::KOmegaSSTIDDES&amp;lt; Transport &amp;gt; Class Template Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="komegasstiddes-lt-transport-gt-class-template-reference">
+<h1>KOmegaSSTIDDES&amp;lt; Transport &amp;gt; Class Template Reference<a class="headerlink" href="#komegasstiddes-lt-transport-gt-class-template-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::turbulence::KOmegaSSTIDDES&lt; Transport &gt; Class Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1turbulence.html">turbulence</a></li><li class="navelem"><a href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">KOmegaSSTIDDES</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::turbulence::KOmegaSSTIDDES&lt; Transport &gt; Class Template Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_k_omega_s_s_t_i_d_d_e_s_8_h_source.html">KOmegaSSTIDDES.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::turbulence::KOmegaSSTIDDES&lt; Transport &gt;:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s__inherit__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::turbulence::KOmegaSSTIDDES&lt; Transport &gt;:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a996a1abec309cdddd810a45c72dccefd" id="r_a996a1abec309cdddd810a45c72dccefd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a996a1abec309cdddd810a45c72dccefd">KOmegaSSTIDDES</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:abed6538452d8d37a48bb3566fa02d798" id="r_abed6538452d8d37a48bb3566fa02d798"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abed6538452d8d37a48bb3566fa02d798">~KOmegaSSTIDDES</a> () override</td></tr>
+<tr class="memitem:ab9f545af14e78d6cadeabeb4e144d365" id="r_ab9f545af14e78d6cadeabeb4e144d365"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9f545af14e78d6cadeabeb4e144d365">model_name</a> () const override</td></tr>
+<tr class="memdesc:ab9f545af14e78d6cadeabeb4e144d365"><td class="mdescLeft">&#160;</td><td class="mdescRight">String representation of this turbulence model for I/O.  <br /></td></tr>
+<tr class="memitem:a3c41f4bc0e5693903ddf3be3b7906ea2" id="r_a3c41f4bc0e5693903ddf3be3b7906ea2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c41f4bc0e5693903ddf3be3b7906ea2">update_turbulent_viscosity</a> (<a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate, <a class="el" href="incflo__enums_8_h.html#a85b1059d3f82fd0319fd63b07f3c1500">DiffusionType</a> diff_type) override</td></tr>
+<tr class="memdesc:a3c41f4bc0e5693903ddf3be3b7906ea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the turbulent viscosity field.  <br /></td></tr>
+<tr class="memitem:ab2564075ada8edef8bdcfde512d961d7" id="r_ab2564075ada8edef8bdcfde512d961d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2564075ada8edef8bdcfde512d961d7">post_advance_work</a> () override</td></tr>
+<tr class="memdesc:ab2564075ada8edef8bdcfde512d961d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">No post advance work for this model.  <br /></td></tr>
+<tr class="memitem:aa09d9115adb048a168cf78a4336200b5" id="r_aa09d9115adb048a168cf78a4336200b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa09d9115adb048a168cf78a4336200b5">parse_model_coeffs</a> () override</td></tr>
+<tr class="memdesc:aa09d9115adb048a168cf78a4336200b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse turbulence model coefficients.  <br /></td></tr>
+<tr class="memitem:a936f8f49230fee67062042beda53a4d7" id="r_a936f8f49230fee67062042beda53a4d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a0875f86a33930dd2d2297f30739da297">TurbulenceModel::CoeffsDictType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a936f8f49230fee67062042beda53a4d7">model_coeffs</a> () const override</td></tr>
+<tr class="memdesc:a936f8f49230fee67062042beda53a4d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return turbulence model coefficients.  <br /></td></tr>
+<tr class="inherit_header pub_methods_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html">kynema_sgf::turbulence::KOmegaSST&lt; Transport &gt;</a></td></tr>
+<tr class="memitem:aae06da8092030745bda180cd672f8600 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_aae06da8092030745bda180cd672f8600"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#aae06da8092030745bda180cd672f8600">KOmegaSST</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a15b54aa6c78dfe04446dcc243dbbe2ec inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a15b54aa6c78dfe04446dcc243dbbe2ec"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a15b54aa6c78dfe04446dcc243dbbe2ec">~KOmegaSST</a> () override</td></tr>
+<tr class="memitem:a4666a20be2061d436c143c054068b214 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a4666a20be2061d436c143c054068b214"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a4666a20be2061d436c143c054068b214">update_scalar_diff</a> (<a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;deff, const std::string &amp;name) override</td></tr>
+<tr class="memdesc:a4666a20be2061d436c143c054068b214 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the effective scalar diffusivity field.  <br /></td></tr>
+<tr class="inherit_header pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model_base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model_base')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model_base.html">kynema_sgf::turbulence::TurbModelBase&lt; Transport &gt;</a></td></tr>
+<tr class="memitem:ac176c32e8ef87c6f7346eb8f825a6358 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model_base" id="r_ac176c32e8ef87c6f7346eb8f825a6358"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model_base.html#ac176c32e8ef87c6f7346eb8f825a6358">TurbModelBase</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:ad02c83691fcca4f632a45c9f67812cc0 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model_base" id="r_ad02c83691fcca4f632a45c9f67812cc0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model_base.html#ad02c83691fcca4f632a45c9f67812cc0">mu_turb</a> () override</td></tr>
+<tr class="memdesc:ad02c83691fcca4f632a45c9f67812cc0 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the turbulent viscosity field.  <br /></td></tr>
+<tr class="memitem:a6fe11b322fdca3b14d6ae0f54e796d1c inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model_base" id="r_a6fe11b322fdca3b14d6ae0f54e796d1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model_base.html#a6fe11b322fdca3b14d6ae0f54e796d1c">alpha_turb</a> () override</td></tr>
+<tr class="memdesc:a6fe11b322fdca3b14d6ae0f54e796d1c inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the turbulent thermal diffusivity field.  <br /></td></tr>
+<tr class="memitem:a18f554de9259f265e90be39a6a825bc4 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model_base" id="r_a18f554de9259f265e90be39a6a825bc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model_base.html#a18f554de9259f265e90be39a6a825bc4">update_mueff</a> (<a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;<a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a9aed9da5e7286b0256a51148f3d4f954">mueff</a>) override</td></tr>
+<tr class="memitem:a02577228cc1622f912aa4e5b1422c90b inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model_base" id="r_a02577228cc1622f912aa4e5b1422c90b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model_base.html#a02577228cc1622f912aa4e5b1422c90b">update_alphaeff</a> (<a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;<a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a272e20cd19889c4ca535722b319d9b3b">alphaeff</a>) override</td></tr>
+<tr class="memitem:a82cfd8a01a04f041991ac2beeb005f31 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model_base" id="r_a82cfd8a01a04f041991ac2beeb005f31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model_base.html#a82cfd8a01a04f041991ac2beeb005f31">update_scalar_diff</a> (<a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;deff, const std::string &amp;name) override</td></tr>
+<tr class="memdesc:a82cfd8a01a04f041991ac2beeb005f31 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface to update scalar diffusivity based on Schmidt number.  <br /></td></tr>
+<tr class="inherit_header pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html">kynema_sgf::turbulence::TurbModel&lt; Transport &gt;</a></td></tr>
+<tr class="memitem:a0c4f63b0590d90573c49418371e9d289 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_a0c4f63b0590d90573c49418371e9d289"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a0c4f63b0590d90573c49418371e9d289">TurbModel</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a8f83cf40c49c031fbfbed935c4d65348 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_a8f83cf40c49c031fbfbed935c4d65348"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a8f83cf40c49c031fbfbed935c4d65348">register_mueff_field</a> (<a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;<a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a9aed9da5e7286b0256a51148f3d4f954">mueff</a>) override</td></tr>
+<tr class="memdesc:a8f83cf40c49c031fbfbed935c4d65348 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register the effective viscosity (for momentum field)  <br /></td></tr>
+<tr class="memitem:acdce8c60dea52fab91150aba904f7875 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_acdce8c60dea52fab91150aba904f7875"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#acdce8c60dea52fab91150aba904f7875">register_alphaeff_field</a> (<a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;<a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a272e20cd19889c4ca535722b319d9b3b">alphaeff</a>) override</td></tr>
+<tr class="memdesc:acdce8c60dea52fab91150aba904f7875 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register the thermal diffusivity field.  <br /></td></tr>
+<tr class="memitem:af27bbc39eb4fa74a68a8a6dac9439e0b inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_af27bbc39eb4fa74a68a8a6dac9439e0b"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#af27bbc39eb4fa74a68a8a6dac9439e0b">mu</a> () override</td></tr>
+<tr class="memdesc:af27bbc39eb4fa74a68a8a6dac9439e0b inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the dynamic viscosity field.  <br /></td></tr>
+<tr class="memitem:aacc5ced5bebb3a1ff9305333bc57ae5c inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_aacc5ced5bebb3a1ff9305333bc57ae5c"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#aacc5ced5bebb3a1ff9305333bc57ae5c">alpha</a> () override</td></tr>
+<tr class="memdesc:aacc5ced5bebb3a1ff9305333bc57ae5c inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the thermal diffusivity field.  <br /></td></tr>
+<tr class="memitem:ad6c02eaff76c4aa28fb6c96148938e37 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_ad6c02eaff76c4aa28fb6c96148938e37"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#ad6c02eaff76c4aa28fb6c96148938e37">scalar_diffusivity</a> (const std::string &amp;name) override</td></tr>
+<tr class="memdesc:ad6c02eaff76c4aa28fb6c96148938e37 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the scalar diffusivity field.  <br /></td></tr>
+<tr class="memitem:a9aed9da5e7286b0256a51148f3d4f954 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_a9aed9da5e7286b0256a51148f3d4f954"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a9aed9da5e7286b0256a51148f3d4f954">mueff</a> () override</td></tr>
+<tr class="memdesc:a9aed9da5e7286b0256a51148f3d4f954 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the effective dynamic viscosity field.  <br /></td></tr>
+<tr class="memitem:a272e20cd19889c4ca535722b319d9b3b inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_a272e20cd19889c4ca535722b319d9b3b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a272e20cd19889c4ca535722b319d9b3b">alphaeff</a> () override</td></tr>
+<tr class="memdesc:a272e20cd19889c4ca535722b319d9b3b inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the effective thermal diffusivity field.  <br /></td></tr>
+<tr class="inherit_header pub_methods_classkynema__sgf_1_1turbulence_1_1_turbulence_model"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classkynema__sgf_1_1turbulence_1_1_turbulence_model')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html">kynema_sgf::turbulence::TurbulenceModel</a></td></tr>
+<tr class="memitem:afd11cea4eaa44c1979a0d07e1892cd2b inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turbulence_model" id="r_afd11cea4eaa44c1979a0d07e1892cd2b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#afd11cea4eaa44c1979a0d07e1892cd2b">~TurbulenceModel</a> () override=default</td></tr>
+<tr class="memitem:ad90c0084b0932af213bc73768cfaaf91 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turbulence_model" id="r_ad90c0084b0932af213bc73768cfaaf91"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#ad90c0084b0932af213bc73768cfaaf91">is_turbulent</a> () const</td></tr>
+<tr class="memdesc:ad90c0084b0932af213bc73768cfaaf91 inherit pub_methods_classkynema__sgf_1_1turbulence_1_1_turbulence_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether the model is turbulent.  <br /></td></tr>
+<tr class="inherit_header pub_methods_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; TurbulenceModel, CFDSim &amp; &gt;</a></td></tr>
+<tr class="memitem:ac34efe50a093c87b829083168775bc5f inherit pub_methods_structkynema__sgf_1_1_factory" id="r_ac34efe50a093c87b829083168775bc5f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#ac34efe50a093c87b829083168775bc5f">~Factory</a> ()=default</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a2db19cd124512fe854839b1c3950b2bd" id="r_a2db19cd124512fe854839b1c3950b2bd"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2db19cd124512fe854839b1c3950b2bd">identifier</a> ()</td></tr>
+<tr class="inherit_header pub_static_methods_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Static Public Member Functions inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html">kynema_sgf::turbulence::KOmegaSST&lt; Transport &gt;</a></td></tr>
+<tr class="memitem:a6f7bd265c8115dc68577ddbe384242c6 inherit pub_static_methods_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a6f7bd265c8115dc68577ddbe384242c6"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a6f7bd265c8115dc68577ddbe384242c6">identifier</a> ()</td></tr>
+<tr class="inherit_header pub_static_methods_classkynema__sgf_1_1turbulence_1_1_turbulence_model"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_classkynema__sgf_1_1turbulence_1_1_turbulence_model')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Static Public Member Functions inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html">kynema_sgf::turbulence::TurbulenceModel</a></td></tr>
+<tr class="memitem:a5bd8a05b139bbb374fb427f415a84ebc inherit pub_static_methods_classkynema__sgf_1_1turbulence_1_1_turbulence_model" id="r_a5bd8a05b139bbb374fb427f415a84ebc"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a5bd8a05b139bbb374fb427f415a84ebc">base_identifier</a> ()</td></tr>
+<tr class="inherit_header pub_static_methods_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Static Public Member Functions inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; TurbulenceModel, CFDSim &amp; &gt;</a></td></tr>
+<tr class="memitem:aa73d3b8dc6633292bb32e05d3b8e7120 inherit pub_static_methods_structkynema__sgf_1_1_factory" id="r_aa73d3b8dc6633292bb32e05d3b8e7120"><td class="memItemLeft" align="right" valign="top">static std::unique_ptr&lt; TurbulenceModel &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#aa73d3b8dc6633292bb32e05d3b8e7120">create</a> (const std::string &amp;key, Args... args)</td></tr>
+<tr class="memitem:a5e56671505c53a0862e25adeddea669f inherit pub_static_methods_structkynema__sgf_1_1_factory" id="r_a5e56671505c53a0862e25adeddea669f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#a5e56671505c53a0862e25adeddea669f">print</a> (std::ostream &amp;os)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a7e80c69e4378dd873279a691ac4f0e40" id="r_a7e80c69e4378dd873279a691ac4f0e40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e80c69e4378dd873279a691ac4f0e40">m_rans_ind</a></td></tr>
+<tr class="memitem:a0fd716a508a956b4ab8ae5a3e320b1c2" id="r_a0fd716a508a956b4ab8ae5a3e320b1c2"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fd716a508a956b4ab8ae5a3e320b1c2">m_Cdes1</a> {0.78_rt}</td></tr>
+<tr class="memdesc:a0fd716a508a956b4ab8ae5a3e320b1c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turbulence constants.  <br /></td></tr>
+<tr class="memitem:a299e6d02640159436cc722314ebd75c4" id="r_a299e6d02640159436cc722314ebd75c4"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a299e6d02640159436cc722314ebd75c4">m_Cdes2</a> {0.61_rt}</td></tr>
+<tr class="memitem:a120536341168ac17fc00ecda7ee88f8a" id="r_a120536341168ac17fc00ecda7ee88f8a"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a120536341168ac17fc00ecda7ee88f8a">m_Cdt1</a> {20.0_rt}</td></tr>
+<tr class="memitem:a40acfb6c86795ce2d8f23556768649e5" id="r_a40acfb6c86795ce2d8f23556768649e5"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40acfb6c86795ce2d8f23556768649e5">m_Cdt2</a> {3.0_rt}</td></tr>
+<tr class="memitem:a007d234e40a3a8dc52de55a637d8cd73" id="r_a007d234e40a3a8dc52de55a637d8cd73"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a007d234e40a3a8dc52de55a637d8cd73">m_Cl</a> {5.0_rt}</td></tr>
+<tr class="memitem:a874b2fbacfe27866617405deccb67eae" id="r_a874b2fbacfe27866617405deccb67eae"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a874b2fbacfe27866617405deccb67eae">m_Ct</a> {1.87_rt}</td></tr>
+<tr class="memitem:a20857587b315b310153078a2088f3a74" id="r_a20857587b315b310153078a2088f3a74"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20857587b315b310153078a2088f3a74">m_Cw</a> {0.15_rt}</td></tr>
+<tr class="memitem:aea7db909277c196e575806b009dc6a70" id="r_aea7db909277c196e575806b009dc6a70"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea7db909277c196e575806b009dc6a70">m_kappa</a> {0.41_rt}</td></tr>
+<tr class="memitem:a2e87b4bc2cd4e4df3222c700e35409fa" id="r_a2e87b4bc2cd4e4df3222c700e35409fa"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e87b4bc2cd4e4df3222c700e35409fa">m_sdr_prod_clip_factor</a> {10.0_rt}</td></tr>
+<tr class="inherit_header pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html">kynema_sgf::turbulence::KOmegaSST&lt; Transport &gt;</a></td></tr>
+<tr class="memitem:a0f81e6f4828df997c36e17cc9acf9bbe inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a0f81e6f4828df997c36e17cc9acf9bbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a0f81e6f4828df997c36e17cc9acf9bbe">m_vel</a></td></tr>
+<tr class="memitem:a1b504f5ff2d9f12cd6043a2c1e8381a0 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a1b504f5ff2d9f12cd6043a2c1e8381a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a1b504f5ff2d9f12cd6043a2c1e8381a0">m_f1</a></td></tr>
+<tr class="memitem:ab370cb9f1ee3495ea057d7a0233b2943 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_ab370cb9f1ee3495ea057d7a0233b2943"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#ab370cb9f1ee3495ea057d7a0233b2943">m_shear_prod</a></td></tr>
+<tr class="memitem:a1859049f2f8a0161f74f9615d50c463d inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a1859049f2f8a0161f74f9615d50c463d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a1859049f2f8a0161f74f9615d50c463d">m_buoy_term</a></td></tr>
+<tr class="memitem:a88dd7e9012396bdce0910f1b7a0ad1ca inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a88dd7e9012396bdce0910f1b7a0ad1ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a88dd7e9012396bdce0910f1b7a0ad1ca">m_diss</a></td></tr>
+<tr class="memitem:aa58126baa631dd528ec3c1e5a852b3e9 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_aa58126baa631dd528ec3c1e5a852b3e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#aa58126baa631dd528ec3c1e5a852b3e9">m_sdr_src</a></td></tr>
+<tr class="memitem:ad43df0ac187b1e4b5ec06776acaaf7a8 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_ad43df0ac187b1e4b5ec06776acaaf7a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#ad43df0ac187b1e4b5ec06776acaaf7a8">m_sdr_diss</a></td></tr>
+<tr class="memitem:adaf6c46df94ee2e6b3fc636a1438199d inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_adaf6c46df94ee2e6b3fc636a1438199d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#adaf6c46df94ee2e6b3fc636a1438199d">m_rho</a></td></tr>
+<tr class="memitem:a8e8bed4887322eb9ac8f15a5fb100f50 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a8e8bed4887322eb9ac8f15a5fb100f50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a8e8bed4887322eb9ac8f15a5fb100f50">m_walldist</a></td></tr>
+<tr class="memitem:a455ab9ac25ed0054d5515111c50011d9 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a455ab9ac25ed0054d5515111c50011d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a455ab9ac25ed0054d5515111c50011d9">m_tke</a></td></tr>
+<tr class="memitem:a8038bd4e7927df93f1748a0d5d091988 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a8038bd4e7927df93f1748a0d5d091988"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a8038bd4e7927df93f1748a0d5d091988">m_sdr</a></td></tr>
+<tr class="memitem:a2884c5b28e20025b6ed8191350fa5e81 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a2884c5b28e20025b6ed8191350fa5e81"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a2884c5b28e20025b6ed8191350fa5e81">m_beta_star</a> {0.09_rt}</td></tr>
+<tr class="memdesc:a2884c5b28e20025b6ed8191350fa5e81 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turbulence constants.  <br /></td></tr>
+<tr class="memitem:a114364038055bc247dd67bddac05dfd5 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a114364038055bc247dd67bddac05dfd5"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a114364038055bc247dd67bddac05dfd5">m_alpha1</a> {0.5555555555555556_rt}</td></tr>
+<tr class="memitem:a08626736be9fe021213e4d77481dd7a9 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a08626736be9fe021213e4d77481dd7a9"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a08626736be9fe021213e4d77481dd7a9">m_alpha2</a> {0.44_rt}</td></tr>
+<tr class="memitem:a78c0d6ff50c1881239909692965738bb inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a78c0d6ff50c1881239909692965738bb"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a78c0d6ff50c1881239909692965738bb">m_beta1</a> {0.075_rt}</td></tr>
+<tr class="memitem:aae2a5dfb68f67118c10808fc8edb877f inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_aae2a5dfb68f67118c10808fc8edb877f"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#aae2a5dfb68f67118c10808fc8edb877f">m_beta2</a> {0.0828_rt}</td></tr>
+<tr class="memitem:ae53727979f1281fe60993cb86b962700 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_ae53727979f1281fe60993cb86b962700"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#ae53727979f1281fe60993cb86b962700">m_sigma_k1</a> {0.85_rt}</td></tr>
+<tr class="memitem:a86828d8442d88be65196a5083d3186ae inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a86828d8442d88be65196a5083d3186ae"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a86828d8442d88be65196a5083d3186ae">m_sigma_k2</a> {1.0_rt}</td></tr>
+<tr class="memitem:af433813cf23bcba565cbc5721e472f8d inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_af433813cf23bcba565cbc5721e472f8d"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#af433813cf23bcba565cbc5721e472f8d">m_sigma_omega1</a> {0.5_rt}</td></tr>
+<tr class="memitem:a2ceb873a3f03f0ddc5062547be213291 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a2ceb873a3f03f0ddc5062547be213291"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a2ceb873a3f03f0ddc5062547be213291">m_sigma_omega2</a> {0.856_rt}</td></tr>
+<tr class="memitem:a6e0d76979803e685970c10861fee2dc0 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a6e0d76979803e685970c10861fee2dc0"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a6e0d76979803e685970c10861fee2dc0">m_a1</a> {0.31_rt}</td></tr>
+<tr class="memitem:a2f1dc195099625c14698bf46589cb626 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a2f1dc195099625c14698bf46589cb626"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a2f1dc195099625c14698bf46589cb626">m_tke_amb</a> {0.0_rt}</td></tr>
+<tr class="memitem:a2efa196e274bbd015162855c46015da0 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a2efa196e274bbd015162855c46015da0"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a2efa196e274bbd015162855c46015da0">m_sdr_amb</a> {0.0_rt}</td></tr>
+<tr class="memitem:a96f61a4767c510275f1b27f6c2767d86 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a96f61a4767c510275f1b27f6c2767d86"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a96f61a4767c510275f1b27f6c2767d86">m_include_buoyancy</a> {false}</td></tr>
+<tr class="memdesc:a96f61a4767c510275f1b27f6c2767d86 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buoyancy modified constants.  <br /></td></tr>
+<tr class="memitem:a7f467d796e622ab24ce640eef4d80c54 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_a7f467d796e622ab24ce640eef4d80c54"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a7f467d796e622ab24ce640eef4d80c54">m_buoyancy_factor</a> = 0.0_rt</td></tr>
+<tr class="memitem:aeca2188b85ee8cf7f88903a6e9ed2f19 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_aeca2188b85ee8cf7f88903a6e9ed2f19"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#aeca2188b85ee8cf7f88903a6e9ed2f19">m_sigma_t</a> {0.85_rt}</td></tr>
+<tr class="memitem:ab7b1500fd58e43a7c2664405e47e8346 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t" id="r_ab7b1500fd58e43a7c2664405e47e8346"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#ab7b1500fd58e43a7c2664405e47e8346">m_gravity</a> {0.0_rt, 0.0_rt, -9.81_rt}</td></tr>
+<tr class="inherit_header pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model_base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model_base')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model_base.html">kynema_sgf::turbulence::TurbModelBase&lt; Transport &gt;</a></td></tr>
+<tr class="memitem:aaeb7d47d7613c103056800601f702672 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model_base" id="r_aaeb7d47d7613c103056800601f702672"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model_base.html#aaeb7d47d7613c103056800601f702672">m_mu_turb</a></td></tr>
+<tr class="memdesc:aaeb7d47d7613c103056800601f702672 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the turbulent viscosity field.  <br /></td></tr>
+<tr class="memitem:ac24647e05282b8feb743c190cfcfe73c inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model_base" id="r_ac24647e05282b8feb743c190cfcfe73c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model_base.html#ac24647e05282b8feb743c190cfcfe73c">m_alpha_turb</a> {nullptr}</td></tr>
+<tr class="memdesc:ac24647e05282b8feb743c190cfcfe73c inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to thermal diffusivity field.  <br /></td></tr>
+<tr class="inherit_header pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html">kynema_sgf::turbulence::TurbModel&lt; Transport &gt;</a></td></tr>
+<tr class="memitem:a4584671ceb2b0baf1adb0d8d2f84ad4f inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_a4584671ceb2b0baf1adb0d8d2f84ad4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a4584671ceb2b0baf1adb0d8d2f84ad4f">m_sim</a></td></tr>
+<tr class="memitem:a312066a614d52d44b98ce03629457302 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_a312066a614d52d44b98ce03629457302"><td class="memItemLeft" align="right" valign="top">Transport&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a312066a614d52d44b98ce03629457302">m_transport</a></td></tr>
+<tr class="memdesc:a312066a614d52d44b98ce03629457302 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transport properties instance.  <br /></td></tr>
+<tr class="memitem:aef5a0db74ad0cd5dbba155a0ba5fdfd0 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_aef5a0db74ad0cd5dbba155a0ba5fdfd0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#aef5a0db74ad0cd5dbba155a0ba5fdfd0">m_mueff</a> {nullptr}</td></tr>
+<tr class="memdesc:aef5a0db74ad0cd5dbba155a0ba5fdfd0 inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the effective viscosity field.  <br /></td></tr>
+<tr class="memitem:a02c878e386327c420ae78895d10ead4c inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_a02c878e386327c420ae78895d10ead4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a02c878e386327c420ae78895d10ead4c">m_alphaeff</a> {nullptr}</td></tr>
+<tr class="memdesc:a02c878e386327c420ae78895d10ead4c inherit pro_attribs_classkynema__sgf_1_1turbulence_1_1_turb_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the thermal diffusivity field.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_types_classkynema__sgf_1_1turbulence_1_1_turb_model"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_types_classkynema__sgf_1_1turbulence_1_1_turb_model')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Types inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html">kynema_sgf::turbulence::TurbModel&lt; Transport &gt;</a></td></tr>
+<tr class="memitem:ad7b18bf1548ab4b6399ae953c23bc1e1 inherit pub_types_classkynema__sgf_1_1turbulence_1_1_turb_model" id="r_ad7b18bf1548ab4b6399ae953c23bc1e1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#ad7b18bf1548ab4b6399ae953c23bc1e1">TransportType</a> = Transport</td></tr>
+<tr class="inherit_header pub_types_classkynema__sgf_1_1turbulence_1_1_turbulence_model"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_types_classkynema__sgf_1_1turbulence_1_1_turbulence_model')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Types inherited from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html">kynema_sgf::turbulence::TurbulenceModel</a></td></tr>
+<tr class="memitem:a0875f86a33930dd2d2297f30739da297 inherit pub_types_classkynema__sgf_1_1turbulence_1_1_turbulence_model" id="r_a0875f86a33930dd2d2297f30739da297"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a0875f86a33930dd2d2297f30739da297">CoeffsDictType</a> = std::unordered_map&lt;std::string, amrex::Real&gt;</td></tr>
+<tr class="memdesc:a0875f86a33930dd2d2297f30739da297 inherit pub_types_classkynema__sgf_1_1turbulence_1_1_turbulence_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default identifier used by factor methods.  <br /></td></tr>
+<tr class="inherit_header pub_attribs_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Attributes inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; TurbulenceModel, CFDSim &amp; &gt;</a></td></tr>
+<tr class="memitem:a3f41ef21adfa37f9abb5c8cc52769974 inherit pub_attribs_structkynema__sgf_1_1_factory" id="r_a3f41ef21adfa37f9abb5c8cc52769974"><td class="memItemLeft" align="right" valign="top">friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#a3f41ef21adfa37f9abb5c8cc52769974">Base</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Transport&gt;<br />
+class kynema_sgf::turbulence::KOmegaSSTIDDES&lt; Transport &gt;</div><p>K-Omega-SST-IDDES Hybrid RANS/LES turbulence model</p>
+<p>Turbulence model described in</p>
+<p>Gritskevich, M. S., Garbaruk, A.V., Schutze, J and Menter, F.R., "Development
+of DDES and IDDES formulations for the k-omega Shear Stress Transport Model", Flow Turbulence and Combustion, 88, 2012, pp. 431-449, DOI 10.1007_rt/s10494-011-9378-4.</p>
+<p>Implementation contains the simplified version where f_e = 0 as in eq. 12 in the paper </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a996a1abec309cdddd810a45c72dccefd" name="a996a1abec309cdddd810a45c72dccefd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a996a1abec309cdddd810a45c72dccefd">&#9670;&#160;</a></span>KOmegaSSTIDDES()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::KOmegaSSTIDDES </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abed6538452d8d37a48bb3566fa02d798" name="abed6538452d8d37a48bb3566fa02d798"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abed6538452d8d37a48bb3566fa02d798">&#9670;&#160;</a></span>~KOmegaSSTIDDES()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::~<a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">KOmegaSSTIDDES</a> </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a2db19cd124512fe854839b1c3950b2bd" name="a2db19cd124512fe854839b1c3950b2bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2db19cd124512fe854839b1c3950b2bd">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a936f8f49230fee67062042beda53a4d7" name="a936f8f49230fee67062042beda53a4d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a936f8f49230fee67062042beda53a4d7">&#9670;&#160;</a></span>model_coeffs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a0875f86a33930dd2d2297f30739da297">TurbulenceModel::CoeffsDictType</a> <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::model_coeffs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return turbulence model coefficients. </p>
+
+<p>Reimplemented from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#aa69b99a8cbd6b4e1ed0f73a40bf45971">kynema_sgf::turbulence::KOmegaSST&lt; Transport &gt;</a>.</p>
+
+</div>
+</div>
+<a id="ab9f545af14e78d6cadeabeb4e144d365" name="ab9f545af14e78d6cadeabeb4e144d365"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9f545af14e78d6cadeabeb4e144d365">&#9670;&#160;</a></span>model_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::model_name </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>String representation of this turbulence model for I/O. </p>
+
+<p>Reimplemented from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a8151af8aff04dd6bc2690868cb9e8fd4">kynema_sgf::turbulence::KOmegaSST&lt; Transport &gt;</a>.</p>
+
+</div>
+</div>
+<a id="aa09d9115adb048a168cf78a4336200b5" name="aa09d9115adb048a168cf78a4336200b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa09d9115adb048a168cf78a4336200b5">&#9670;&#160;</a></span>parse_model_coeffs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::parse_model_coeffs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Parse turbulence model coefficients. </p>
+
+<p>Reimplemented from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a8ace4a686cb83a5831f173314ca12a4a">kynema_sgf::turbulence::KOmegaSST&lt; Transport &gt;</a>.</p>
+
+</div>
+</div>
+<a id="ab2564075ada8edef8bdcfde512d961d7" name="ab2564075ada8edef8bdcfde512d961d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2564075ada8edef8bdcfde512d961d7">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>No post advance work for this model. </p>
+
+<p>Reimplemented from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a9ad4a1a2d62b5813dc07eb68f1519273">kynema_sgf::turbulence::KOmegaSST&lt; Transport &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a3c41f4bc0e5693903ddf3be3b7906ea2" name="a3c41f4bc0e5693903ddf3be3b7906ea2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c41f4bc0e5693903ddf3be3b7906ea2">&#9670;&#160;</a></span>update_turbulent_viscosity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::update_turbulent_viscosity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="incflo__enums_8_h.html#a85b1059d3f82fd0319fd63b07f3c1500">DiffusionType</a></td>          <td class="paramname"><span class="paramname"><em>diff_type</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update the turbulent viscosity field. </p>
+
+<p>Reimplemented from <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a2f2f78a1f670591c9467e700b53e0131">kynema_sgf::turbulence::KOmegaSST&lt; Transport &gt;</a>.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a0fd716a508a956b4ab8ae5a3e320b1c2" name="a0fd716a508a956b4ab8ae5a3e320b1c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fd716a508a956b4ab8ae5a3e320b1c2">&#9670;&#160;</a></span>m_Cdes1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::m_Cdes1 {0.78_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Turbulence constants. </p>
+
+</div>
+</div>
+<a id="a299e6d02640159436cc722314ebd75c4" name="a299e6d02640159436cc722314ebd75c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a299e6d02640159436cc722314ebd75c4">&#9670;&#160;</a></span>m_Cdes2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::m_Cdes2 {0.61_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a120536341168ac17fc00ecda7ee88f8a" name="a120536341168ac17fc00ecda7ee88f8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a120536341168ac17fc00ecda7ee88f8a">&#9670;&#160;</a></span>m_Cdt1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::m_Cdt1 {20.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a40acfb6c86795ce2d8f23556768649e5" name="a40acfb6c86795ce2d8f23556768649e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40acfb6c86795ce2d8f23556768649e5">&#9670;&#160;</a></span>m_Cdt2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::m_Cdt2 {3.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a007d234e40a3a8dc52de55a637d8cd73" name="a007d234e40a3a8dc52de55a637d8cd73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a007d234e40a3a8dc52de55a637d8cd73">&#9670;&#160;</a></span>m_Cl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::m_Cl {5.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a874b2fbacfe27866617405deccb67eae" name="a874b2fbacfe27866617405deccb67eae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a874b2fbacfe27866617405deccb67eae">&#9670;&#160;</a></span>m_Ct</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::m_Ct {1.87_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a20857587b315b310153078a2088f3a74" name="a20857587b315b310153078a2088f3a74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20857587b315b310153078a2088f3a74">&#9670;&#160;</a></span>m_Cw</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::m_Cw {0.15_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aea7db909277c196e575806b009dc6a70" name="aea7db909277c196e575806b009dc6a70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea7db909277c196e575806b009dc6a70">&#9670;&#160;</a></span>m_kappa</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::m_kappa {0.41_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7e80c69e4378dd873279a691ac4f0e40" name="a7e80c69e4378dd873279a691ac4f0e40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e80c69e4378dd873279a691ac4f0e40">&#9670;&#160;</a></span>m_rans_ind</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::m_rans_ind</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2e87b4bc2cd4e4df3222c700e35409fa" name="a2e87b4bc2cd4e4df3222c700e35409fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e87b4bc2cd4e4df3222c700e35409fa">&#9670;&#160;</a></span>m_sdr_prod_clip_factor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Transport&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html">kynema_sgf::turbulence::KOmegaSSTIDDES</a>&lt; Transport &gt;::m_sdr_prod_clip_factor {10.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/turbulence/RANS/<a class="el" href="_k_omega_s_s_t_i_d_d_e_s_8_h_source.html">KOmegaSSTIDDES.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/turbulence/RANS/<a class="el" href="_k_omega_s_s_t_i_d_d_e_s_8cpp.html">KOmegaSSTIDDES.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/core/Physics.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/core/Physics.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_physics_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-core-physics-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/core/Physics.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-core-physics-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/core/Physics.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_b275fe914c86728e4bacb4b0e2726274.html">core</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">Physics.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_physics_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef PHYSICS_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define PHYSICS_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_factory_8_h.html">src/core/Factory.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_coll_mgr_8_h.html">src/core/CollMgr.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;AMReX_MultiFab.H&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;AMReX_Geometry.H&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics_old.html">   13</a></span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1_physics_old.html">PhysicsOld</a></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics_old.html#af9e0d43d2e0915e1b2d90e71b6c72d34">   16</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classkynema__sgf_1_1_physics_old.html#af9e0d43d2e0915e1b2d90e71b6c72d34">~PhysicsOld</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics_old.html#a7018f754c646f064f8fd445597f14580">   18</a></span>    [[nodiscard]] <span class="keyword">virtual</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1_physics_old.html#a7018f754c646f064f8fd445597f14580">physics_name</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics_old.html#a816dadf9651d6ced2e70ae2d01b1d3a3">   22</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_physics_old.html#a816dadf9651d6ced2e70ae2d01b1d3a3">initialize_fields</a>(<span class="keywordtype">int</span> level, <span class="keyword">const</span> amrex::Geometry&amp; geom) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics_old.html#ab8e529166427b6ece3686c98c491db03">   25</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_physics_old.html#ab8e529166427b6ece3686c98c491db03">pre_advance_work</a>() = 0;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics_old.html#ab0cc5f0f255ebb77dc3b4cc3f96ad62b">   28</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_physics_old.html#ab0cc5f0f255ebb77dc3b4cc3f96ad62b">add_momentum_sources</a>(</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keyword">const</span> amrex::Geometry&amp; geom,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keyword">const</span> amrex::MultiFab&amp; density,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keyword">const</span> amrex::MultiFab&amp; velocity,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keyword">const</span> amrex::MultiFab&amp; scalars,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        amrex::MultiFab&amp; vel_forces) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>};</div>
+</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span></div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="};">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics.html">   59</a></span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1_physics.html">Physics</a> : <span class="keyword">public</span> <a class="code hl_function" href="structkynema__sgf_1_1_factory.html#a91304216d59ae6834fc0da187ec512c6">Factory</a>&lt;Physics, CFDSim&amp;&gt;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>{</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics.html#a26eab4355dbadcb0b1d7592fdb94314a">   62</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1_physics.html#a26eab4355dbadcb0b1d7592fdb94314a">base_identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Physics&quot;</span>; }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics.html#a9fbdf195ef9dff3ae06883dbd6276c05">   64</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_physics.html#a9fbdf195ef9dff3ae06883dbd6276c05">~Physics</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics.html#aee739781e8e578d23fb02551bf0fc443">   67</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_physics.html#aee739781e8e578d23fb02551bf0fc443">initialize_fields</a>(<span class="keywordtype">int</span> level, <span class="keyword">const</span> amrex::Geometry&amp; geom) = 0;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics.html#accf363a984eddb0e66f199ecc32661d2">   71</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_physics.html#accf363a984eddb0e66f199ecc32661d2">pre_init_actions</a>() {}</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics.html#af042a44a03378c6c112cc3bd5da5808e">   74</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_physics.html#af042a44a03378c6c112cc3bd5da5808e">post_init_actions</a>() = 0;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics.html#a1e1086ee57fb1c17f6547611b0366e1e">   77</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_physics.html#a1e1086ee57fb1c17f6547611b0366e1e">post_regrid_actions</a>() = 0;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics.html#a1fb778fae961197bc17c60eca348c41b">   80</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_physics.html#a1fb778fae961197bc17c60eca348c41b">pre_advance_work</a>() = 0;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics.html#a10331628c2ff5836a15e17bc6cdb86f9">   83</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_physics.html#a10331628c2ff5836a15e17bc6cdb86f9">pre_predictor_work</a>() {}</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics.html#a33dd6b70574b8a4dcf8eae820a5a5431">   86</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_physics.html#a33dd6b70574b8a4dcf8eae820a5a5431">post_advance_work</a>() = 0;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics.html#ab7d914da42b3b718e541d5210aa10d2c">   89</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_physics.html#ab7d914da42b3b718e541d5210aa10d2c">pre_pressure_correction_work</a>() {}</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics.html#a9f8a3e0ae343538b0eea8c909c7add16">   92</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_physics.html#a9f8a3e0ae343538b0eea8c909c7add16">post_pressure_correction_work</a>() {}</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>};</div>
+</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="foldopen" id="foldopen00099" data-start="{" data-end="};">
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics_mgr.html">   99</a></span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1_physics_mgr.html">PhysicsMgr</a> : <span class="keyword">public</span> <a class="code hl_function" href="classkynema__sgf_1_1_coll_mgr.html#a0b5191e83dafe9e3faa6a617992749e0">CollMgr</a>&lt;PhysicsMgr, Physics&gt;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>{</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00104" data-start="{" data-end="}">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics_mgr.html#aeb93ba27c12aa8c4c6ce35460d747762">  104</a></span>    T&amp; <a class="code hl_function" href="classkynema__sgf_1_1_physics_mgr.html#aeb93ba27c12aa8c4c6ce35460d747762">get</a>()</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    {</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        AMREX_ASSERT(<a class="code hl_function" href="classkynema__sgf_1_1_coll_mgr.html#a5c00aeaeb965abce00787074f9e528c8">contains</a>(T::identifier()));</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span>T&amp;<span class="keyword">&gt;</span>(<a class="code hl_function" href="classkynema__sgf_1_1_coll_mgr.html#ae7f0988e9cfec93e12582048db08cf11">operator()</a>(T::identifier()));</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    }</div>
+</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00112" data-start="{" data-end="}">
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_physics_mgr.html#a554187e9c9ced33ed145f90547306d85">  112</a></span>    [[nodiscard]] <span class="keyword">const</span> T&amp; <a class="code hl_function" href="classkynema__sgf_1_1_physics_mgr.html#a554187e9c9ced33ed145f90547306d85">get</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        AMREX_ASSERT(<a class="code hl_function" href="classkynema__sgf_1_1_coll_mgr.html#a5c00aeaeb965abce00787074f9e528c8">contains</a>(T::identifier()));</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span><span class="keyword">const </span>T&amp;<span class="keyword">&gt;</span>(<a class="code hl_function" href="classkynema__sgf_1_1_coll_mgr.html#ae7f0988e9cfec93e12582048db08cf11">operator()</a>(T::identifier()));</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
+</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>};</div>
+</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="preprocessor">#endif </span><span class="comment">/* PHYSICS_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_coll_mgr_8_h_html"><div class="ttname"><a href="_coll_mgr_8_h.html">CollMgr.H</a></div></div>
+<div class="ttc" id="a_factory_8_h_html"><div class="ttname"><a href="_factory_8_h.html">Factory.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_coll_mgr_html_a0b5191e83dafe9e3faa6a617992749e0"><div class="ttname"><a href="classkynema__sgf_1_1_coll_mgr.html#a0b5191e83dafe9e3faa6a617992749e0">kynema_sgf::CollMgr&lt; PhysicsMgr, Physics &gt;::CollMgr</a></div><div class="ttdeci">CollMgr()=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_coll_mgr_html_a5c00aeaeb965abce00787074f9e528c8"><div class="ttname"><a href="classkynema__sgf_1_1_coll_mgr.html#a5c00aeaeb965abce00787074f9e528c8">kynema_sgf::CollMgr&lt; PhysicsMgr, Physics &gt;::contains</a></div><div class="ttdeci">bool contains(const std::string &amp;key) const</div><div class="ttdef"><b>Definition</b> CollMgr.H:57</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_coll_mgr_html_ae7f0988e9cfec93e12582048db08cf11"><div class="ttname"><a href="classkynema__sgf_1_1_coll_mgr.html#ae7f0988e9cfec93e12582048db08cf11">kynema_sgf::CollMgr&lt; PhysicsMgr, Physics &gt;::operator()</a></div><div class="ttdeci">Physics &amp; operator()(const std::string &amp;key)</div><div class="ttdef"><b>Definition</b> CollMgr.H:64</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_html"><div class="ttname"><a href="classkynema__sgf_1_1_physics.html">kynema_sgf::Physics</a></div><div class="ttdef"><b>Definition</b> Physics.H:60</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_html_a10331628c2ff5836a15e17bc6cdb86f9"><div class="ttname"><a href="classkynema__sgf_1_1_physics.html#a10331628c2ff5836a15e17bc6cdb86f9">kynema_sgf::Physics::pre_predictor_work</a></div><div class="ttdeci">virtual void pre_predictor_work()</div><div class="ttdoc">Perform tasks necessary only once per timestep, after pre_advance.</div><div class="ttdef"><b>Definition</b> Physics.H:83</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_html_a1e1086ee57fb1c17f6547611b0366e1e"><div class="ttname"><a href="classkynema__sgf_1_1_physics.html#a1e1086ee57fb1c17f6547611b0366e1e">kynema_sgf::Physics::post_regrid_actions</a></div><div class="ttdeci">virtual void post_regrid_actions()=0</div><div class="ttdoc">Actions to perform post regrid.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_html_a1fb778fae961197bc17c60eca348c41b"><div class="ttname"><a href="classkynema__sgf_1_1_physics.html#a1fb778fae961197bc17c60eca348c41b">kynema_sgf::Physics::pre_advance_work</a></div><div class="ttdeci">virtual void pre_advance_work()=0</div><div class="ttdoc">Perform tasks necessary before advancing timestep.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_html_a26eab4355dbadcb0b1d7592fdb94314a"><div class="ttname"><a href="classkynema__sgf_1_1_physics.html#a26eab4355dbadcb0b1d7592fdb94314a">kynema_sgf::Physics::base_identifier</a></div><div class="ttdeci">static std::string base_identifier()</div><div class="ttdef"><b>Definition</b> Physics.H:62</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_html_a33dd6b70574b8a4dcf8eae820a5a5431"><div class="ttname"><a href="classkynema__sgf_1_1_physics.html#a33dd6b70574b8a4dcf8eae820a5a5431">kynema_sgf::Physics::post_advance_work</a></div><div class="ttdeci">virtual void post_advance_work()=0</div><div class="ttdoc">Perform tasks necessary after advancing timestep.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_html_a9f8a3e0ae343538b0eea8c909c7add16"><div class="ttname"><a href="classkynema__sgf_1_1_physics.html#a9f8a3e0ae343538b0eea8c909c7add16">kynema_sgf::Physics::post_pressure_correction_work</a></div><div class="ttdeci">virtual void post_pressure_correction_work()</div><div class="ttdoc">Perform tasks necessary after applying the pressure correction.</div><div class="ttdef"><b>Definition</b> Physics.H:92</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_html_a9fbdf195ef9dff3ae06883dbd6276c05"><div class="ttname"><a href="classkynema__sgf_1_1_physics.html#a9fbdf195ef9dff3ae06883dbd6276c05">kynema_sgf::Physics::~Physics</a></div><div class="ttdeci">~Physics() override=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_html_ab7d914da42b3b718e541d5210aa10d2c"><div class="ttname"><a href="classkynema__sgf_1_1_physics.html#ab7d914da42b3b718e541d5210aa10d2c">kynema_sgf::Physics::pre_pressure_correction_work</a></div><div class="ttdeci">virtual void pre_pressure_correction_work()</div><div class="ttdoc">Perform tasks necessary before applying the pressure correction.</div><div class="ttdef"><b>Definition</b> Physics.H:89</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_html_accf363a984eddb0e66f199ecc32661d2"><div class="ttname"><a href="classkynema__sgf_1_1_physics.html#accf363a984eddb0e66f199ecc32661d2">kynema_sgf::Physics::pre_init_actions</a></div><div class="ttdeci">virtual void pre_init_actions()</div><div class="ttdoc">Actions to perform after PDEs and turbulence models have been created, but before mesh creation.</div><div class="ttdef"><b>Definition</b> Physics.H:71</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_html_aee739781e8e578d23fb02551bf0fc443"><div class="ttname"><a href="classkynema__sgf_1_1_physics.html#aee739781e8e578d23fb02551bf0fc443">kynema_sgf::Physics::initialize_fields</a></div><div class="ttdeci">virtual void initialize_fields(int level, const amrex::Geometry &amp;geom)=0</div><div class="ttdoc">Initialize the fields for a given level during init/regrid.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_html_af042a44a03378c6c112cc3bd5da5808e"><div class="ttname"><a href="classkynema__sgf_1_1_physics.html#af042a44a03378c6c112cc3bd5da5808e">kynema_sgf::Physics::post_init_actions</a></div><div class="ttdeci">virtual void post_init_actions()=0</div><div class="ttdoc">Actions to perform post initialization.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_mgr_html"><div class="ttname"><a href="classkynema__sgf_1_1_physics_mgr.html">kynema_sgf::PhysicsMgr</a></div><div class="ttdef"><b>Definition</b> Physics.H:100</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_mgr_html_a554187e9c9ced33ed145f90547306d85"><div class="ttname"><a href="classkynema__sgf_1_1_physics_mgr.html#a554187e9c9ced33ed145f90547306d85">kynema_sgf::PhysicsMgr::get</a></div><div class="ttdeci">const T &amp; get() const</div><div class="ttdoc">Return a concrete physics instance.</div><div class="ttdef"><b>Definition</b> Physics.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_mgr_html_aeb93ba27c12aa8c4c6ce35460d747762"><div class="ttname"><a href="classkynema__sgf_1_1_physics_mgr.html#aeb93ba27c12aa8c4c6ce35460d747762">kynema_sgf::PhysicsMgr::get</a></div><div class="ttdeci">T &amp; get()</div><div class="ttdoc">Return a concrete physics instance.</div><div class="ttdef"><b>Definition</b> Physics.H:104</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_old_html"><div class="ttname"><a href="classkynema__sgf_1_1_physics_old.html">kynema_sgf::PhysicsOld</a></div><div class="ttdef"><b>Definition</b> Physics.H:14</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_old_html_a7018f754c646f064f8fd445597f14580"><div class="ttname"><a href="classkynema__sgf_1_1_physics_old.html#a7018f754c646f064f8fd445597f14580">kynema_sgf::PhysicsOld::physics_name</a></div><div class="ttdeci">virtual std::string physics_name() const =0</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_old_html_a816dadf9651d6ced2e70ae2d01b1d3a3"><div class="ttname"><a href="classkynema__sgf_1_1_physics_old.html#a816dadf9651d6ced2e70ae2d01b1d3a3">kynema_sgf::PhysicsOld::initialize_fields</a></div><div class="ttdeci">virtual void initialize_fields(int level, const amrex::Geometry &amp;geom) const =0</div><div class="ttdoc">Initialize the fields for the physics/problem.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_old_html_ab0cc5f0f255ebb77dc3b4cc3f96ad62b"><div class="ttname"><a href="classkynema__sgf_1_1_physics_old.html#ab0cc5f0f255ebb77dc3b4cc3f96ad62b">kynema_sgf::PhysicsOld::add_momentum_sources</a></div><div class="ttdeci">virtual void add_momentum_sources(const amrex::Geometry &amp;geom, const amrex::MultiFab &amp;density, const amrex::MultiFab &amp;velocity, const amrex::MultiFab &amp;scalars, amrex::MultiFab &amp;vel_forces) const =0</div><div class="ttdoc">Add momentum source terms.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_old_html_ab8e529166427b6ece3686c98c491db03"><div class="ttname"><a href="classkynema__sgf_1_1_physics_old.html#ab8e529166427b6ece3686c98c491db03">kynema_sgf::PhysicsOld::pre_advance_work</a></div><div class="ttdeci">virtual void pre_advance_work()=0</div><div class="ttdoc">Perform tasks necessary before advancing timestep.</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_physics_old_html_af9e0d43d2e0915e1b2d90e71b6c72d34"><div class="ttname"><a href="classkynema__sgf_1_1_physics_old.html#af9e0d43d2e0915e1b2d90e71b6c72d34">kynema_sgf::PhysicsOld::~PhysicsOld</a></div><div class="ttdeci">virtual ~PhysicsOld()=default</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_factory_html_a91304216d59ae6834fc0da187ec512c6"><div class="ttname"><a href="structkynema__sgf_1_1_factory.html#a91304216d59ae6834fc0da187ec512c6">kynema_sgf::Factory&lt; Physics, CFDSim &amp; &gt;::Factory</a></div><div class="ttdeci">Factory()=default</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
