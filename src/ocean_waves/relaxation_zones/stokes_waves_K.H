@@ -360,14 +360,16 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void stokes_waves(
     v_w = 0.0_rt;
     w_w = 0.0_rt;
     for (int n = 1; n <= stokes_order; ++n) {
-        // Upper bound for deep water case
-        // This ensure finite values of velocity for large kd's
+        // Ensure finite values of velocity for large kd
         const amrex::Real nkdz = n * wavenumber * (water_depth + (z - zsl));
-        // Limit the output of hyperbolic functions instead of the output
         amrex::Real cosh_nkdz = std::cosh(nkdz);
         amrex::Real sinh_nkdz = std::sinh(nkdz);
-        cosh_nkdz = amrex::min<amrex::Real>(constants::LARGE_NUM, amrex::max<amrex::Real>(constants::LOW_NUM, cosh_nkdz));
-        sinh_nkdz = amrex::min<amrex::Real>(constants::LARGE_NUM, amrex::max<amrex::Real>(constants::LOW_NUM, sinh_nkdz));
+        cosh_nkdz = amrex::min<amrex::Real>(
+            constants::LARGE_NUM,
+            amrex::max<amrex::Real>(constants::LOW_NUM, cosh_nkdz));
+        sinh_nkdz = amrex::min<amrex::Real>(
+            constants::LARGE_NUM,
+            amrex::max<amrex::Real>(constants::LOW_NUM, sinh_nkdz));
         // Contributions to velocity
         u_w += utils::powi(eps, n) * static_cast<amrex::Real>(n) * a[n - 1] *
                cosh_nkdz * std::cos(static_cast<amrex::Real>(n) * phase);
