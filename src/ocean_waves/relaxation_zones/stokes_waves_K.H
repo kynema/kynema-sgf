@@ -6,7 +6,6 @@
 #include <numbers>
 #include "AMReX_FArrayBox.H"
 #include "src/utilities/math_ops.H"
-#include "src/utilities/constants.H"
 
 using namespace amrex::literals;
 
@@ -287,6 +286,8 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void stokes_waves(
     amrex::Real z,
     amrex::Real time,
     amrex::Real phase_offset,
+    amrex::Real hyp_lo_limit,
+    amrex::Real hyp_hi_limit,
     amrex::Real& eta,
     amrex::Real& u_w,
     amrex::Real& v_w,
@@ -365,11 +366,9 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void stokes_waves(
         amrex::Real cosh_nkdz = std::cosh(nkdz);
         amrex::Real sinh_nkdz = std::sinh(nkdz);
         cosh_nkdz = amrex::min<amrex::Real>(
-            constants::LARGE_NUM,
-            amrex::max<amrex::Real>(constants::LOW_NUM, cosh_nkdz));
+            hyp_hi_limit, amrex::max<amrex::Real>(hyp_lo_limit, cosh_nkdz));
         sinh_nkdz = amrex::min<amrex::Real>(
-            constants::LARGE_NUM,
-            amrex::max<amrex::Real>(constants::LOW_NUM, sinh_nkdz));
+            hyp_hi_limit, amrex::max<amrex::Real>(hyp_lo_limit, sinh_nkdz));
         // Contributions to velocity
         u_w += utils::powi(eps, n) * static_cast<amrex::Real>(n) * a[n - 1] *
                cosh_nkdz * std::cos(static_cast<amrex::Real>(n) * phase);
