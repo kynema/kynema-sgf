@@ -4,6 +4,7 @@
 #include "ks_test_utils/test_utils.H"
 #include "src/ocean_waves/relaxation_zones/stokes_waves_K.H"
 #include "src/utilities/math_ops.H"
+#include "src/utilities/constants.H"
 
 using namespace amrex::literals;
 
@@ -98,7 +99,8 @@ TEST_F(WaveTheoriesTest, StokesWavesFreeSurfaceProfile)
 
     kynema_sgf::ocean_waves::relaxation_zones::stokes_waves(
         stokes_order, wavelength, water_depth, wave_height, zsl, g, x, z, time,
-        phase_offset, eta, u_w, v_w, w_w);
+        phase_offset, kynema_sgf::constants::LOW_NUM,
+        kynema_sgf::constants::LARGE_NUM, eta, u_w, v_w, w_w);
 
     // Coefficients values taken from column 3 of table 2 of
     // Fenton, J. Fifth Order Stokes Theory for Steady Waves
@@ -166,7 +168,8 @@ TEST_F(WaveTheoriesTest, StokesWavesFreeSurfaceProfile)
 
     kynema_sgf::ocean_waves::relaxation_zones::stokes_waves(
         stokes_order, wavelength, water_depth, wave_height, zsl, g, x, z, time,
-        phase_offset, eta, u_w, v_w, w_w);
+        phase_offset, kynema_sgf::constants::LOW_NUM,
+        kynema_sgf::constants::LARGE_NUM, eta, u_w, v_w, w_w);
 
     // Coefficients values taken from column 1 of table 2 of
     // Fenton, J. Fifth Order Stokes Theory for Steady Waves
@@ -238,7 +241,8 @@ TEST_F(WaveTheoriesTest, StokesWavesVelocityComponents)
 
     kynema_sgf::ocean_waves::relaxation_zones::stokes_waves(
         stokes_order, wavelength, water_depth, wave_height, zsl, g, x, z, time,
-        phase_offset, eta, u_w, v_w, w_w);
+        phase_offset, kynema_sgf::constants::LOW_NUM,
+        kynema_sgf::constants::LARGE_NUM, eta, u_w, v_w, w_w);
 
     // Coefficients values taken from column 3 of table 2 of
     // Fenton, J. Fifth Order Stokes Theory for Steady Waves

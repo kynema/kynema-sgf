@@ -286,6 +286,8 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void stokes_waves(
     amrex::Real z,
     amrex::Real time,
     amrex::Real phase_offset,
+    amrex::Real hyp_lo_limit,
+    amrex::Real hyp_hi_limit,
     amrex::Real& eta,
     amrex::Real& u_w,
     amrex::Real& v_w,
@@ -359,15 +361,19 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void stokes_waves(
     v_w = 0.0_rt;
     w_w = 0.0_rt;
     for (int n = 1; n <= stokes_order; ++n) {
-        // Upper bound for deep water case
-        // This ensure finite values of velocity for large kd's
-        amrex::Real nkdz = n * wavenumber * (water_depth + (z - zsl));
-        nkdz = amrex::min<amrex::Real>(
-            nkdz, 50.0_rt * std::numbers::pi_v<amrex::Real>);
+        // Ensure finite values of velocity for large kd
+        const amrex::Real nkdz = n * wavenumber * (water_depth + (z - zsl));
+        amrex::Real cosh_nkdz = std::cosh(nkdz);
+        amrex::Real sinh_nkdz = std::sinh(nkdz);
+        cosh_nkdz = amrex::min<amrex::Real>(
+            hyp_hi_limit, amrex::max<amrex::Real>(hyp_lo_limit, cosh_nkdz));
+        sinh_nkdz = amrex::min<amrex::Real>(
+            hyp_hi_limit, amrex::max<amrex::Real>(hyp_lo_limit, sinh_nkdz));
+        // Contributions to velocity
         u_w += utils::powi(eps, n) * static_cast<amrex::Real>(n) * a[n - 1] *
-               std::cosh(nkdz) * std::cos(static_cast<amrex::Real>(n) * phase);
+               cosh_nkdz * std::cos(static_cast<amrex::Real>(n) * phase);
         w_w += utils::powi(eps, n) * static_cast<amrex::Real>(n) * a[n - 1] *
-               std::sinh(nkdz) * std::sin(static_cast<amrex::Real>(n) * phase);
+               sinh_nkdz * std::sin(static_cast<amrex::Real>(n) * phase);
     }
     u_w *= (c0 * std::sqrt(g / wavenumber));
     w_w *= (c0 * std::sqrt(g / wavenumber));
