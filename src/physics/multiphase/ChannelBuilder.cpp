@@ -82,15 +82,23 @@ get_local_dimensions(
     const amrex::Real& dim2_e)
 
 {
-    // Interpolate dimensions based on position along segment
-    const amrex::Real seg_length = std::sqrt(
-        (end_x - start_x) * (end_x - start_x) +
-        (end_y - start_y) * (end_y - start_y) +
-        (end_z - start_z) * (end_z - start_z));
-    const amrex::Real point_length = std::sqrt(
-        (x - start_x) * (x - start_x) + (y - start_y) * (y - start_y) +
-        (z - start_z) * (z - start_z));
-    const amrex::Real t = point_length / seg_length;
+    // Interpolate dimensions based on projected position along segment
+    const amrex::Real seg_dx = end_x - start_x;
+    const amrex::Real seg_dy = end_y - start_y;
+    const amrex::Real seg_dz = end_z - start_z;
+    const amrex::Real seg_length_sq =
+        seg_dx * seg_dx + seg_dy * seg_dy + seg_dz * seg_dz;
+    const amrex::Real point_dx = x - start_x;
+    const amrex::Real point_dy = y - start_y;
+    const amrex::Real point_dz = z - start_z;
+    const amrex::Real projected_t =
+        (seg_length_sq > 0.0_rt)
+            ? ((point_dx * seg_dx + point_dy * seg_dy + point_dz * seg_dz) /
+               seg_length_sq)
+            : 0.0_rt;
+    const amrex::Real t =
+        (projected_t < 0.0_rt) ? 0.0_rt
+                               : ((projected_t > 1.0_rt) ? 1.0_rt : projected_t);
     const amrex::Real dim0 = dim0_s + t * (dim0_e - dim0_s);
     const amrex::Real dim1 = dim1_s + t * (dim1_e - dim1_s);
     const amrex::Real dim2 = dim2_s + t * (dim2_e - dim2_s);
