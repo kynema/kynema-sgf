@@ -118,9 +118,10 @@ TEST_F(ChannelBuilderTest, interpolate_to_get_local_dimensions)
     const amrex::Real dim1_e = 5.0_rt;
     const amrex::Real dim2_e = 6.0_rt;
 
-    auto local_dims = kynema_sgf::channelbuilder::get_local_dimensions(
-        5.0_rt, 4.0_rt, 3.0_rt, start_x, start_y, start_z, end_x, end_y, end_z,
-        dim0_s, dim1_s, dim2_s, dim0_e, dim1_e, dim2_e);
+    auto local_dims =
+        AMREX_GPU_DEVICE kynema_sgf::channelbuilder::get_local_dimensions(
+            5.0_rt, 4.0_rt, 3.0_rt, start_x, start_y, start_z, end_x, end_y,
+            end_z, dim0_s, dim1_s, dim2_s, dim0_e, dim1_e, dim2_e);
     EXPECT_NEAR(local_dims[0], 2.5_rt, m_tol);
     EXPECT_NEAR(local_dims[1], 3.5_rt, m_tol);
     EXPECT_NEAR(local_dims[2], 4.5_rt, m_tol);
@@ -174,9 +175,10 @@ TEST_F(ChannelBuilderTest, transform_to_local_coordinates)
 
     // Test both - vertical segment
     end[0] = 2.0_rt;
-    auto both_z_only = kynema_sgf::channelbuilder::transform_to_local_coordinates(
-        true, false, 1.5_rt, 3.0_rt, 8.0_rt,
-        start[0], start[1], start[2], end[0], end[1], end[2]);
+    auto both_z_only =
+        kynema_sgf::channelbuilder::transform_to_local_coordinates(
+            true, false, 1.5_rt, 3.0_rt, 8.0_rt, start[0], start[1], start[2],
+            end[0], end[1], end[2]);
     EXPECT_NEAR(both_z_only[0], 3.0_rt, m_tol);
     EXPECT_NEAR(both_z_only[1], 0.0_rt, m_tol);
     EXPECT_NEAR(both_z_only[2], 0.5_rt, m_tol);

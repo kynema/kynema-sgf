@@ -64,7 +64,7 @@ namespace kynema_sgf::channelbuilder {
     return (p1 * p2 <= 0.0_rt);
 }
 
-[[nodiscard]] AMREX_GPU_HOST_DEVICE amrex::GpuArray<amrex::Real, 3>
+[[nodiscard]] AMREX_GPU_DEVICE amrex::GpuArray<amrex::Real, 3>
 get_local_dimensions(
     const amrex::Real& x,
     const amrex::Real& y,
