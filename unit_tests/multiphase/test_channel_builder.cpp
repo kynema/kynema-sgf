@@ -174,9 +174,10 @@ TEST_F(ChannelBuilderTest, transform_to_local_coordinates)
 
     // Test both - vertical segment
     end[0] = 2.0_rt;
-    auto both_z_only = kynema_sgf::channelbuilder::transform_to_local_coordinates(
-        true, false, 1.5_rt, 3.0_rt, 8.0_rt,
-        start[0], start[1], start[2], end[0], end[1], end[2]);
+    auto both_z_only =
+        kynema_sgf::channelbuilder::transform_to_local_coordinates(
+            true, false, 1.5_rt, 3.0_rt, 8.0_rt, start[0], start[1], start[2],
+            end[0], end[1], end[2]);
     EXPECT_NEAR(both_z_only[0], 3.0_rt, m_tol);
     EXPECT_NEAR(both_z_only[1], 0.0_rt, m_tol);
     EXPECT_NEAR(both_z_only[2], 0.5_rt, m_tol);
