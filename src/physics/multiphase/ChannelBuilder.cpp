@@ -96,9 +96,9 @@ get_local_dimensions(
             ? ((point_dx * seg_dx + point_dy * seg_dy + point_dz * seg_dz) /
                seg_length_sq)
             : 0.0_rt;
-    const amrex::Real t =
-        (projected_t < 0.0_rt) ? 0.0_rt
-                               : ((projected_t > 1.0_rt) ? 1.0_rt : projected_t);
+    const amrex::Real t = (projected_t < 0.0_rt)
+                              ? 0.0_rt
+                              : ((projected_t > 1.0_rt) ? 1.0_rt : projected_t);
     const amrex::Real dim0 = dim0_s + t * (dim0_e - dim0_s);
     const amrex::Real dim1 = dim1_s + t * (dim1_e - dim1_s);
     const amrex::Real dim2 = dim2_s + t * (dim2_e - dim2_s);
