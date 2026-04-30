@@ -104,7 +104,7 @@ TEST_F(ChannelBuilderTest, is_point_within_planes)
 
 TEST_F(ChannelBuilderTest, interpolate_to_get_local_dimensions)
 {
-    // Define a simple segment from (0, 0, 0) to (10, 0, 0)
+    // Define a segment from (0, 0, 0) to (10, 8, 6)
     const amrex::Real start_x = 0.0_rt;
     const amrex::Real start_y = 0.0_rt;
     const amrex::Real start_z = 0.0_rt;
@@ -171,6 +171,15 @@ TEST_F(ChannelBuilderTest, transform_to_local_coordinates)
     EXPECT_NEAR(both_xz[0], 1.0_rt, m_tol);
     EXPECT_NEAR(both_xz[1], 0.0_rt, m_tol);
     EXPECT_NEAR(both_xz[2], -1.0_rt, m_tol);
+
+    // Test both - vertical segment
+    end[0] = 2.0_rt;
+    auto both_z_only = kynema_sgf::channelbuilder::transform_to_local_coordinates(
+        true, false, 1.5_rt, 3.0_rt, 8.0_rt,
+        start[0], start[1], start[2], end[0], end[1], end[2]);
+    EXPECT_NEAR(both_z_only[0], 3.0_rt, m_tol);
+    EXPECT_NEAR(both_z_only[1], 0.0_rt, m_tol);
+    EXPECT_NEAR(both_z_only[2], 0.5_rt, m_tol);
 }
 
 } // namespace kynema_sgf_tests

@@ -141,8 +141,13 @@ transform_to_local_coordinates(
 
     // Rotate around z-axis based on xy component of direction
     const amrex::Real mag_xy = std::sqrt(a * a + b * b);
-    const amrex::Real cos_theta_xy = a / mag_xy;
-    const amrex::Real sin_theta_xy = b / mag_xy;
+    amrex::Real cos_theta_xy = a / (mag_xy + constants::EPS);
+    const amrex::Real sin_theta_xy = b / (mag_xy + constants::EPS);
+
+    // If no horizontal component, stick with original coordinates
+    if (mag_xy < constants::EPS) {
+        cos_theta_xy = 1.0_rt;
+    }
 
     const amrex::Real xpp = xp * cos_theta_xy - s * yp * sin_theta_xy;
     const amrex::Real ypp = s * xp * sin_theta_xy + yp * cos_theta_xy;
