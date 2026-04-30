@@ -1,6 +1,7 @@
 #include "src/physics/multiphase/ChannelBuilder.H"
 #include "src/physics/multiphase/MultiPhase.H"
 #include "src/utilities/math_ops.H"
+#include "src/utilities/constants.H"
 #include "src/utilities/IOManager.H"
 #include "src/CFDSim.H"
 #include "AMReX_ParmParse.H"
@@ -435,10 +436,14 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
                                     std::sqrt(yloc * yloc + zloc * zloc);
                                 const auto d_ext = std::sqrt(
                                     utils::powi(
-                                        (dim0 * yloc) / (2.0_rt * d), 2) +
+                                        (dim0 * yloc) /
+                                            (2.0_rt * d + constants::EPS),
+                                        2) +
                                     utils::powi(
-                                        (dim1 * zloc) / (2.0_rt * d), 2));
-                                speed_factor -= (d / d_ext);
+                                        (dim1 * zloc) /
+                                            (2.0_rt * d + constants::EPS),
+                                        2));
+                                speed_factor -= (d / (d_ext + constants::EPS));
                             } else if (
                                 velocity_profile ==
                                 ChannelVelocityProfile::Parabolic) {
@@ -446,10 +451,15 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
                                     std::sqrt(yloc * yloc + zloc * zloc);
                                 const auto d_ext = std::sqrt(
                                     utils::powi(
-                                        (dim0 * yloc) / (2.0_rt * d), 2) +
+                                        (dim0 * yloc) /
+                                            (2.0_rt * d + constants::EPS),
+                                        2) +
                                     utils::powi(
-                                        (dim1 * zloc) / (2.0_rt * d), 2));
-                                speed_factor -= utils::powi(d / d_ext, 2);
+                                        (dim1 * zloc) /
+                                            (2.0_rt * d + constants::EPS),
+                                        2));
+                                speed_factor -= utils::powi(
+                                    d / (d_ext + constants::EPS), 2);
                             } // Uniform case is default (else)
                             if (multiphase && z > water_level) {
                                 // Above water level means 0 velocity
