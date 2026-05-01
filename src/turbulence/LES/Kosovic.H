@@ -72,6 +72,7 @@ private:
     amrex::Real m_gamma_m{5.0_rt};
     amrex::Real m_beta_m{16.0_rt};
     amrex::Real m_surface_roughness_z0{0.1_rt};
+    amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 };
 
 } // namespace kynema_sgf::turbulence
