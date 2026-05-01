@@ -9,4 +9,5 @@ target_sources(${kynema_sgf_lib_name}
   SloshingTank.cpp
   RainDrop.cpp
   BreakingWaves.cpp
+  ChannelBuilder.cpp
   )
