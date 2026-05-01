@@ -28,16 +28,19 @@ Kosovic<Transport>::Kosovic(CFDSim& sim)
 {
     amrex::ParmParse pp("Kosovic");
     pp.query("Cb", m_Cb);
-    m_Cs = std::sqrt(8 * (1 + m_Cb) / (27 * M_PI * M_PI));
-    m_C1 = std::sqrt(960) * m_Cb / (7 * (1 + m_Cb) * m_Sk);
+    m_Cs = std::sqrt(
+        8.0_rt * (1.0_rt + m_Cb) /
+        (27.0_rt * std::numbers::pi_v<amrex::Real> *
+         std::numbers::pi_v<amrex::Real>));
+    m_C1 = std::sqrt(960.0_rt) * m_Cb / (7.0_rt * (1.0_rt + m_Cb) * m_Sk);
     m_C2 = m_C1;
     pp.query("surfaceRANS", m_surfaceRANS);
     if (m_surfaceRANS) {
-        m_surfaceFactor = 1;
+        m_surfaceFactor = 1.0_rt;
         pp.query("switchLoc", m_switchLoc);
         pp.query("surfaceRANSExp", m_surfaceRANSExp);
     } else {
-        m_surfaceFactor = 0;
+        m_surfaceFactor = 0.0_rt;
     }
     pp.query("writeTerms", m_writeTerms);
     if (m_writeTerms) {
@@ -162,15 +165,16 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                     -(gradT_arrs[nbx](i, j, k, 0) * gravity[0] +
                       gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
                       gradT_arrs[nbx](i, j, k, 2) * gravity[2]) /
-                    300.0;
-                amrex::Real non_linear_coeff = 1.0;
+                    300.0_rt;
+                amrex::Real non_linear_coeff = 1.0_rt;
 
-                if (stratification > 1e-10) {
+                if (stratification > 1.0e-10_rt) {
                     // stable
                     non_linear_coeff =
-                        (mut - 3.0 * stratification < 1e-10) ? 0 : 1;
-                    stratification =
-                        std::sqrt(std::max(1e-10, mut - 3.0 * stratification));
+                        (mut - 3.0_rt * stratification < 1.0e-10_rt) ? 0.0_rt
+                                                                     : 1.0_rt;
+                    stratification = std::sqrt(
+                        std::max(1.0e-10_rt, mut - 3.0_rt * stratification));
                 } else {
                     stratification = std::sqrt(mut);
                 }
