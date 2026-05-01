@@ -6,7 +6,7 @@ time.max_step                =  6          # Max number of time steps
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
 #         TIME STEP COMPUTATION         #
 #.......................................#
-time.fixed_dt         =   0.5        # Use this constant dt if > 0
+time.fixed_dt         =   0.75       # Use this constant dt if > 0
 time.cfl              =   0.95       # CFL factor
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
 #            INPUT AND OUTPUT           #
@@ -25,7 +25,6 @@ turbulence.model = Laminar
 
 incflo.physics = ChannelBuilder
 ICNS.source_terms = BodyForce DragForcing
-DragForcing.blank_other_forces = true
 BodyForce.magnitude = 0.1 0 0
 ChannelBuilder.segment_labels = s1 s2 s3 s4 s5
 
