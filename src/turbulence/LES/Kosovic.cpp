@@ -5,6 +5,8 @@
 #include "src/fvm/strainrate.H"
 #include "src/fvm/divergence.H"
 #include "src/utilities/math_ops.H"
+#include "src/fvm/gradient.H"
+#include "AMReX_REAL.H"
 #include "AMReX_MultiFab.H"
 #include "AMReX_ParmParse.H"
 #include "src/wind_energy/ABL.H"
@@ -20,16 +22,14 @@ Kosovic<Transport>::Kosovic(CFDSim& sim)
     : TurbModelBase<Transport>(sim)
     , m_vel(sim.repo().get_field("velocity"))
     , m_rho(sim.repo().get_field("density"))
+    , m_theta(sim.repo().get_field("temperature"))
     , m_Nij(sim.repo().declare_field("Nij", 9, 1, 1))
     , m_divNij(sim.repo().declare_field("divNij", 3))
 {
     amrex::ParmParse pp("Kosovic");
     pp.query("Cb", m_Cb);
-    m_Cs = std::sqrt(
-        8.0_rt * (1.0_rt + m_Cb) /
-        (27.0_rt * std::numbers::pi_v<amrex::Real> *
-         std::numbers::pi_v<amrex::Real>));
-    m_C1 = std::sqrt(960.0_rt) * m_Cb / (7.0_rt * (1.0_rt + m_Cb) * m_Sk);
+    m_Cs = std::sqrt(8 * (1 + m_Cb) / (27 * M_PI * M_PI));
+    m_C1 = std::sqrt(960) * m_Cb / (7 * (1 + m_Cb) * m_Sk);
     m_C2 = m_C1;
     pp.query("surfaceRANS", m_surfaceRANS);
     if (m_surfaceRANS) {
@@ -64,6 +64,9 @@ void Kosovic<Transport>::update_turbulent_viscosity(
     const auto& repo = mu_turb.repo();
     const auto& vel = m_vel.state(fstate);
     const auto& den = m_rho.state(fstate);
+    auto gradT = (this->m_sim.repo()).create_scratch_field(3, 0);
+    fvm::gradient(*gradT, m_theta.state(fstate));
+    const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> gravity{0, 0, -9.81};
     const auto& geom_vec = repo.mesh().Geom();
     const amrex::Real Cs_sqr = this->m_Cs * this->m_Cs;
     const bool has_terrain =
@@ -102,6 +105,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
         const auto& mu_arrs = mu_turb(lev).arrays();
         const auto& rho_arrs = den(lev).const_arrays();
         const auto& vel_arrs = vel(lev).const_arrays();
+        const auto& gradT_arrs = (*gradT)(lev).const_arrays();
         const auto& divNij_arrs = (this->m_divNij)(lev).arrays();
         const auto& blank_arrs = has_terrain
                                      ? (*m_terrain_blank)(lev).const_arrays()
@@ -153,8 +157,26 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                     ((1.0_rt - locSurfaceFactor) * smag_factor);
                 const amrex::Real blankTerrain =
                     (has_terrain) ? 1 - blank_arrs[nbx](i, j, k, 0) : 1.0_rt;
-                mu_arrs[nbx](i, j, k) *=
-                    rho * viscosityScale * turnOff * blankTerrain;
+                amrex::Real mut = mu_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
+                amrex::Real stratification =
+                    -(gradT_arrs[nbx](i, j, k, 0) * gravity[0] +
+                      gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
+                      gradT_arrs[nbx](i, j, k, 2) * gravity[2]) /
+                    300.0;
+                amrex::Real non_linear_coeff = 1.0;
+
+                if (stratification > 1e-10) {
+                    // stable
+                    non_linear_coeff =
+                        (mut - 3.0 * stratification < 1e-10) ? 0 : 1;
+                    stratification =
+                        std::sqrt(std::max(1e-10, mut - 3.0 * stratification));
+                } else {
+                    stratification = std::sqrt(mut);
+                }
+
+                mu_arrs[nbx](i, j, k) = rho * viscosityScale * turnOff *
+                                        blankTerrain * stratification;
                 // log-law
                 const amrex::Real ux = vel_arrs[nbx](i, j, k + 1, 0);
                 const amrex::Real uy = vel_arrs[nbx](i, j, k + 1, 1);
@@ -189,12 +211,12 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                       std::pow(fmu, locSurfaceRANSExp) * ransL)) +
                     ((1.0_rt - locSurfaceFactor) * smag_factor * 0.25_rt *
                      locC1);
-                divNij_arrs[nbx](i, j, k, 0) *=
-                    rho * stressScale * turnOff * blankTerrain;
-                divNij_arrs[nbx](i, j, k, 1) *=
-                    rho * stressScale * turnOff * blankTerrain;
-                divNij_arrs[nbx](i, j, k, 2) *=
-                    rho * stressScale * turnOff * blankTerrain;
+                divNij_arrs[nbx](i, j, k, 0) *= rho * stressScale * turnOff *
+                                                blankTerrain * non_linear_coeff;
+                divNij_arrs[nbx](i, j, k, 1) *= rho * stressScale * turnOff *
+                                                blankTerrain * non_linear_coeff;
+                divNij_arrs[nbx](i, j, k, 2) *= rho * stressScale * turnOff *
+                                                blankTerrain * non_linear_coeff;
             });
     }
     amrex::Gpu::streamSynchronize();
