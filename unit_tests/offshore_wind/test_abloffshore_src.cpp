@@ -1,26 +1,26 @@
 #include <numbers>
 #include "abloffshore_test_utils.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
+#include "src/utilities/trig_ops.H"
+#include "ks_test_utils/iter_tools.H"
+#include "ks_test_utils/test_utils.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_Random.H"
 #include "AMReX_REAL.H"
-#include "amr-wind/equation_systems/icns/icns.H"
-#include "amr-wind/equation_systems/icns/icns_ops.H"
-#include "amr-wind/equation_systems/icns/MomentumSource.H"
-#include "amr-wind/equation_systems/icns/source_terms/ABLForcing.H"
-#include "amr-wind/equation_systems/icns/source_terms/GeostrophicForcing.H"
-#include "amr-wind/equation_systems/icns/source_terms/BoussinesqBuoyancy.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
+#include "src/equation_systems/icns/icns.H"
+#include "src/equation_systems/icns/icns_ops.H"
+#include "src/equation_systems/icns/MomentumSource.H"
+#include "src/equation_systems/icns/source_terms/ABLForcing.H"
+#include "src/equation_systems/icns/source_terms/GeostrophicForcing.H"
+#include "src/equation_systems/icns/source_terms/BoussinesqBuoyancy.H"
+#include "src/physics/multiphase/MultiPhase.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 amrex::Real get_val_at_height(
-    amr_wind::Field& field,
+    kynema_sgf::Field& field,
     const int lev,
     const int comp,
     const amrex::Real ploz,
@@ -98,8 +98,8 @@ void init_vof_field(
 }
 } // namespace
 
-using ICNSFields =
-    amr_wind::pde::FieldRegOp<amr_wind::pde::ICNS, amr_wind::fvm::Godunov>;
+using ICNSFields = kynema_sgf::pde::
+    FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
 
 TEST_F(ABLOffshoreMeshTest, abl_forcing)
 {
@@ -112,13 +112,13 @@ TEST_F(ABLOffshoreMeshTest, abl_forcing)
     pde_mgr.register_icns();
     pde_mgr.register_transport_pde("Temperature");
     sim().init_physics();
-    auto& mphase = sim().physics_manager().get<amr_wind::MultiPhase>();
+    auto& mphase = sim().physics_manager().get<kynema_sgf::MultiPhase>();
     // Make sure to read water level
     mphase.post_init_actions();
 
     auto& src_term = pde_mgr.icns().fields().src_term;
 
-    amr_wind::pde::icns::ABLForcing abl_forcing(sim());
+    kynema_sgf::pde::icns::ABLForcing abl_forcing(sim());
 
     src_term.setVal(0.0_rt);
     // Mimic source term at later timesteps
@@ -140,7 +140,7 @@ TEST_F(ABLOffshoreMeshTest, abl_forcing)
             const auto& vof_arr = volume_fraction(lev).array(mfi);
             init_vof_field(geom[lev], gbx, vof_arr, waterlev);
             const auto& src_arr = src_term(lev).array(mfi);
-            abl_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+            abl_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
         });
 
         // Targets are U = (20.0_rt, 10.0_rt, 0.0_rt) set in initial conditions
@@ -220,7 +220,7 @@ TEST_F(ABLOffshoreMeshTest, geostrophic_forcing)
     auto& pde_mgr = sim().pde_manager();
     pde_mgr.register_icns();
     sim().init_physics();
-    auto& mphase = sim().physics_manager().get<amr_wind::MultiPhase>();
+    auto& mphase = sim().physics_manager().get<kynema_sgf::MultiPhase>();
     // Make sure to read water level
     mphase.post_init_actions();
 
@@ -228,7 +228,7 @@ TEST_F(ABLOffshoreMeshTest, geostrophic_forcing)
     auto& density = sim().repo().get_field("density");
     density.setVal(1.0_rt);
 
-    amr_wind::pde::icns::GeostrophicForcing geostrophic_forcing(sim());
+    kynema_sgf::pde::icns::GeostrophicForcing geostrophic_forcing(sim());
     src_term.setVal(0.0_rt);
     auto& volume_fraction = sim().repo().get_field("vof");
     auto waterlev = mphase.water_level();
@@ -239,11 +239,11 @@ TEST_F(ABLOffshoreMeshTest, geostrophic_forcing)
         const auto& vof_arr = volume_fraction(lev).array(mfi);
         init_vof_field(geom[lev], gbx, vof_arr, waterlev);
         const auto& src_arr = src_term(lev).array(mfi);
-        geostrophic_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
+        geostrophic_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
     });
 
     constexpr amrex::Real corfac =
-        2.0_rt * amr_wind::utils::two_pi() / 86164.091_rt * 0.80901699437_rt;
+        2.0_rt * kynema_sgf::utils::two_pi() / 86164.091_rt * 0.80901699437_rt;
     const amrex::Array<amrex::Real, AMREX_SPACEDIM> golds{
         {-corfac * 6.0_rt, corfac * 10.0_rt, 0.0_rt}};
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
@@ -319,20 +319,20 @@ TEST_F(ABLOffshoreMeshTest, boussinesq)
     pde_mgr.register_transport_pde("Temperature");
     sim().create_transport_model();
     sim().init_physics();
-    auto& mphase = sim().physics_manager().get<amr_wind::MultiPhase>();
+    auto& mphase = sim().physics_manager().get<kynema_sgf::MultiPhase>();
     // Make sure to read water level
     mphase.post_init_actions();
 
     auto& src_term = pde_mgr.icns().fields().src_term;
 
     auto& temperature =
-        sim().repo().get_field("temperature", amr_wind::FieldState::Old);
+        sim().repo().get_field("temperature", kynema_sgf::FieldState::Old);
     auto& volume_fraction = sim().repo().get_field("vof");
 
     src_term.setVal(0.0_rt);
     auto& geom = sim().mesh().Geom();
     auto waterlev =
-        sim().physics_manager().get<amr_wind::MultiPhase>().water_level();
+        sim().physics_manager().get<kynema_sgf::MultiPhase>().water_level();
     // Ensure temperature gradient crosses interface for the sake of testing
     const amrex::Real btm_temp_ht = -20;
     run_algorithm(temperature, [&](const int lev, const amrex::MFIter& mfi) {
@@ -343,11 +343,11 @@ TEST_F(ABLOffshoreMeshTest, boussinesq)
         init_vof_field(geom[lev], bx, vof_arr, waterlev);
     });
 
-    amr_wind::pde::icns::BoussinesqBuoyancy bb(sim());
+    kynema_sgf::pde::icns::BoussinesqBuoyancy bb(sim());
     run_algorithm(temperature, [&](const int lev, const amrex::MFIter& mfi) {
         const auto bx = mfi.validbox();
         const auto& src_arr = src_term(lev).array(mfi);
-        bb(lev, mfi, bx, amr_wind::FieldState::Old, src_arr);
+        bb(lev, mfi, bx, kynema_sgf::FieldState::Old, src_arr);
     });
 
     // should be no forcing in x and y directions
@@ -378,4 +378,4 @@ TEST_F(ABLOffshoreMeshTest, boussinesq)
     EXPECT_NEAR(src_z_val, 0.0_rt, tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

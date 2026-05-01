@@ -1,15 +1,15 @@
-#include "aw_test_utils/MeshTest.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/ocean_waves/utils/wave_utils_K.H"
-#include "amr-wind/ocean_waves/OceanWaves.H"
-#include "amr-wind/ocean_waves/relaxation_zones/waves2amr_ops.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
+#include "ks_test_utils/MeshTest.H"
+#include "ks_test_utils/iter_tools.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/ocean_waves/utils/wave_utils_K.H"
+#include "src/ocean_waves/OceanWaves.H"
+#include "src/ocean_waves/relaxation_zones/waves2amr_ops.H"
+#include "src/physics/multiphase/MultiPhase.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class OceanWavesW2ATest : public MeshTest
 {};
@@ -322,7 +322,7 @@ TEST_F(OceanWavesW2ATest, time_interp)
 
     if (t_sim > t_w2a) {
         // Copy current w2a data and update old time
-        amr_wind::field_ops::copy(lvs, w2a_lvs, 0, 0, 1, lvs.num_grow());
+        kynema_sgf::field_ops::copy(lvs, w2a_lvs, 0, 0, 1, lvs.num_grow());
         t_last = t_w2a;
         // Update w2a values (as in a file read)
         w2a_lvs.setVal(0.0_rt);
@@ -342,4 +342,4 @@ TEST_F(OceanWavesW2ATest, time_interp)
         fmin2, 0.5_rt, std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

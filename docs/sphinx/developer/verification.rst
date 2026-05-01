@@ -50,14 +50,14 @@ installing MASA is as easy as:
 
    $ spack install masa
 
-Linking MASA to AMR-Wind
-########################
+Linking MASA to Kynema-SGF
+##########################
 
-The following CMake options enable MASA in AMR-Wind:
+The following CMake options enable MASA in Kynema-SGF:
 
 .. code-block:: bash
 
-   -DAMR_WIND_ENABLE_MASA=ON -DMASA_DIR=$MASA_ROOT_DIR
+   -DKYNEMA_SGF_ENABLE_MASA=ON -DMASA_DIR=$MASA_ROOT_DIR
 
 where ``MASA_ROOT_DIR`` is the MASA install location.
 

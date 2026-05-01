@@ -8,7 +8,7 @@ RANS models
 
 The RANS models are available in two flavors: wall-modeled and wall-resolved. The former model is 
 designed for cases with :math:`y+ > 30` while the latter requires :math:`y+ < 5`. The wall-modeled RANS 
-model available in AMR-Wind is based on the work of `Axell and Liungman (EFM 2001 ) <https://link.springer.com/article/10.1023/A:1011560202388>`_.
+model available in Kynema-SGF is based on the work of `Axell and Liungman (EFM 2001 ) <https://link.springer.com/article/10.1023/A:1011560202388>`_.
 The code also includes Menter's K-Omega SST model with IDDES support. 
 
 Axell One-Equation RANS Model 
@@ -161,6 +161,6 @@ length scale is modified as follows
 Here the term :math:`H=1.5 dz` specifies the location at which the length scale switches to :math:`L=C_s\Delta` and :math:`\phi_M`
 is the atmospheric stability function. Currently, the implementation for the stability function uses a single global value. 
 The implementation of the non-linear model is split into two parts. The subgrid-scale viscosity term is directly used 
-within the AMR-Wind diffusion framework. The last two terms in :math:`M_{ij}` are added as source-terms in the momentum equation. 
+within the Kynema-SGF diffusion framework. The last two terms in :math:`M_{ij}` are added as source-terms in the momentum equation. 
 
 

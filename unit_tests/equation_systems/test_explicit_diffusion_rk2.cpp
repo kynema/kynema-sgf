@@ -1,17 +1,17 @@
-#include "aw_test_utils/MeshTest.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/incflo_enums.H"
-#include "amr-wind/core/field_ops.H"
-#include "amr-wind/equation_systems/PDEBase.H"
+#include "ks_test_utils/MeshTest.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/incflo_enums.H"
+#include "src/core/field_ops.H"
+#include "src/equation_systems/PDEBase.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
-void init_scalar(amr_wind::Field& scalar)
+void init_scalar(kynema_sgf::Field& scalar)
 {
     const int nlevels = scalar.repo().num_active_levels();
 
@@ -80,10 +80,10 @@ protected:
         sim().init_physics();
         auto& k_eqn = pde_mgr.register_transport_pde("TKE");
         auto& tke = k_eqn.fields().field;
-        auto& tke_old = tke.state(amr_wind::FieldState::Old);
+        auto& tke_old = tke.state(kynema_sgf::FieldState::Old);
         auto& density = sim().repo().get_field("density");
-        auto& density_old = density.state(amr_wind::FieldState::Old);
-        auto& density_nph = density.state(amr_wind::FieldState::NPH);
+        auto& density_old = density.state(kynema_sgf::FieldState::Old);
+        auto& density_nph = density.state(kynema_sgf::FieldState::NPH);
         // Set up initial arrays
         density.setVal(m_rho_0);
         density_old.setVal(m_rho_0);
@@ -101,7 +101,7 @@ protected:
 
         k_eqn.initialize();
         // Calculate diffusion term explicitly
-        k_eqn.compute_diffusion_term(amr_wind::FieldState::Old);
+        k_eqn.compute_diffusion_term(kynema_sgf::FieldState::Old);
         // Incorporate RHS, which should only be the explicit diffusion
         k_eqn.compute_predictor_rhs(DiffusionType::Explicit);
     }
@@ -119,16 +119,17 @@ TEST_F(ExplicitDiffusionRK2Test, old_approach)
     auto& pde_mgr = sim().pde_manager();
     auto& k_eqn = pde_mgr("TKE-Godunov");
     auto& tke = k_eqn.fields().field;
-    auto& tke_old = tke.state(amr_wind::FieldState::Old);
+    auto& tke_old = tke.state(kynema_sgf::FieldState::Old);
 
     // Subtract diffusion term manually, mimicking the assumption in the code
     // If correct, should go back to old value
     const auto dt = sim().time().delta_t();
-    auto& diff_old = k_eqn.fields().diff_term.state(amr_wind::FieldState::New);
-    amr_wind::field_ops::saxpy(tke, -dt, diff_old, 0, 0, 1, 0);
+    auto& diff_old =
+        k_eqn.fields().diff_term.state(kynema_sgf::FieldState::New);
+    kynema_sgf::field_ops::saxpy(tke, -dt, diff_old, 0, 0, 1, 0);
 
     // Subtract original tke from result for comparison
-    amr_wind::field_ops::saxpy(tke, -1.0_rt, tke_old, 0, 0, 1, 0);
+    kynema_sgf::field_ops::saxpy(tke, -1.0_rt, tke_old, 0, 0, 1, 0);
 
     auto min_diff = utils::field_min(tke);
     auto max_diff = utils::field_max(tke);
@@ -149,18 +150,19 @@ TEST_F(ExplicitDiffusionRK2Test, correct_approach)
     auto& pde_mgr = sim().pde_manager();
     auto& k_eqn = pde_mgr("TKE-Godunov");
     auto& tke = k_eqn.fields().field;
-    auto& tke_old = tke.state(amr_wind::FieldState::Old);
+    auto& tke_old = tke.state(kynema_sgf::FieldState::Old);
 
     // Change term to -2 times original value so it will cancel RHS contribution
     const auto dt = sim().time().delta_t();
-    auto& diff_new = k_eqn.fields().diff_term.state(amr_wind::FieldState::New);
-    amr_wind::field_ops::saxpy(diff_new, -3.0_rt, diff_new, 0, 0, 1, 0);
+    auto& diff_new =
+        k_eqn.fields().diff_term.state(kynema_sgf::FieldState::New);
+    kynema_sgf::field_ops::saxpy(diff_new, -3.0_rt, diff_new, 0, 0, 1, 0);
 
     // Apply operation through PDE function
     k_eqn.improve_explicit_diffusion(dt);
 
     // Subtract original tke from result for comparison
-    amr_wind::field_ops::saxpy(tke, -1.0_rt, tke_old, 0, 0, 1, 0);
+    kynema_sgf::field_ops::saxpy(tke, -1.0_rt, tke_old, 0, 0, 1, 0);
 
     // Check that difference is less than tolerance
     auto min_diff = utils::field_min(tke);
@@ -177,4 +179,4 @@ TEST_F(ExplicitDiffusionRK2Test, correct_approach)
         abs_diff_term, std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

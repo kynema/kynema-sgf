@@ -1,18 +1,18 @@
-#include "aw_test_utils/MeshTest.H"
-#include "aw_test_utils/iter_tools.H"
+#include "ks_test_utils/MeshTest.H"
+#include "ks_test_utils/iter_tools.H"
 #include "AMReX_Box.H"
 #include "AMReX_BoxArray.H"
 #include "AMReX_BoxList.H"
 #include "AMReX_Geometry.H"
 #include "AMReX_RealBox.H"
 #include "AMReX_Vector.H"
-#include "amr-wind/utilities/FieldPlaneAveraging.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "src/utilities/FieldPlaneAveraging.H"
+#include "src/utilities/trig_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class PlaneAveragingTest : public MeshTest
 {
@@ -52,7 +52,7 @@ TEST_F(PlaneAveragingTest, test_constant)
     // test the average of a constant is the same constant
     for (int dir = 0; dir < 3; ++dir) {
 
-        amr_wind::VelPlaneAveraging pa(sim(), dir);
+        kynema_sgf::VelPlaneAveraging pa(sim(), dir);
         pa();
 
         amrex::Real z = 0.5_rt * (problo[dir] + probhi[dir]);
@@ -133,7 +133,7 @@ TEST_F(PlaneAveragingTest, test_linear)
             add_linear(dir, u0, mesh().Geom(0), bx, vel);
         });
 
-    amr_wind::VelPlaneAveraging pa(sim(), dir);
+    kynema_sgf::VelPlaneAveraging pa(sim(), dir);
     pa();
 
     constexpr int n = 20;
@@ -238,9 +238,9 @@ void PlaneAveragingTest::test_dir(int dir)
     const auto& probhi = mesh().Geom(0).ProbHiArray();
 
     amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> a;
-    a[0] = periods * amr_wind::utils::two_pi() / (probhi[0] - problo[0]);
-    a[1] = periods * amr_wind::utils::two_pi() / (probhi[1] - problo[1]);
-    a[2] = periods * amr_wind::utils::two_pi() / (probhi[2] - problo[2]);
+    a[0] = periods * kynema_sgf::utils::two_pi() / (probhi[0] - problo[0]);
+    a[1] = periods * kynema_sgf::utils::two_pi() / (probhi[1] - problo[1]);
+    a[2] = periods * kynema_sgf::utils::two_pi() / (probhi[2] - problo[2]);
 
     run_algorithm(
         mesh().num_levels(), tracer,
@@ -251,7 +251,7 @@ void PlaneAveragingTest::test_dir(int dir)
             add_periodic(dir, a, mesh().Geom(lev), bx, vel);
         });
 
-    amr_wind::VelPlaneAveraging pa(sim(), dir);
+    kynema_sgf::VelPlaneAveraging pa(sim(), dir);
     pa();
 
     amrex::Real x = 0.5_rt * (problo[dir] + probhi[dir]);
@@ -270,4 +270,4 @@ TEST_F(PlaneAveragingTest, test_xdir) { test_dir(0); }
 TEST_F(PlaneAveragingTest, test_ydir) { test_dir(1); }
 TEST_F(PlaneAveragingTest, test_zdir) { test_dir(2); }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

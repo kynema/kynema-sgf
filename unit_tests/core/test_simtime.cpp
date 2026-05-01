@@ -1,11 +1,11 @@
-#include "aw_test_utils/AmrexTest.H"
+#include "ks_test_utils/AmrexTest.H"
 #include "AMReX_ParmParse.H"
-#include "amr-wind/core/SimTime.H"
+#include "src/core/SimTime.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
@@ -32,7 +32,7 @@ class SimTimeTest : public AmrexTest
 TEST_F(SimTimeTest, init)
 {
     build_simtime_params();
-    amr_wind::SimTime time;
+    kynema_sgf::SimTime time;
     time.parse_parameters();
 
     constexpr amrex::Real tol =
@@ -62,7 +62,7 @@ TEST_F(SimTimeTest, init)
 TEST_F(SimTimeTest, time_loop)
 {
     build_simtime_params();
-    amr_wind::SimTime time;
+    kynema_sgf::SimTime time;
     time.parse_parameters();
 
     int counter = 0;
@@ -101,7 +101,7 @@ TEST_F(SimTimeTest, fixed_dt_loop)
         amrex::ParmParse pp("time");
         pp.add("fixed_dt", 0.2_rt);
     }
-    amr_wind::SimTime time;
+    kynema_sgf::SimTime time;
     time.parse_parameters();
 
     int counter = 0;
@@ -142,7 +142,7 @@ TEST_F(SimTimeTest, fixed_dt_delay)
         pp.add("checkpoint_delay", 3);
         pp.add("plot_delay", 5);
     }
-    amr_wind::SimTime time;
+    kynema_sgf::SimTime time;
     time.parse_parameters();
 
     int plot_counter = 0;
@@ -176,7 +176,7 @@ TEST_F(SimTimeTest, plt_chk_timeinterval_loop)
         pp.add("stop_time", 5.0_rt);
         pp.add("max_step", 100);
     }
-    amr_wind::SimTime time;
+    kynema_sgf::SimTime time;
     time.parse_parameters();
 
     int counter = 0;
@@ -221,7 +221,7 @@ TEST_F(SimTimeTest, plt_chk_timeinterval_loop_perturb)
         pp.add("checkpoint_start_time", 1.0e-6_rt);
         pp.add("plot_start_time", 1.0e-6_rt);
     }
-    amr_wind::SimTime time;
+    kynema_sgf::SimTime time;
     time.parse_parameters();
 
     int counter = 0;
@@ -265,7 +265,7 @@ TEST_F(SimTimeTest, plt_chk_timeinterval_delay)
         pp.add("stop_time", 5.0_rt);
         pp.add("max_step", 100);
     }
-    amr_wind::SimTime time;
+    kynema_sgf::SimTime time;
     time.parse_parameters();
 
     int counter = 0;
@@ -343,7 +343,7 @@ TEST_F(SimTimeTest, enforce_timeinterval)
         pp.add("stop_time", 1.0_rt);
         pp.add("max_step", 10);
     }
-    amr_wind::SimTime time;
+    kynema_sgf::SimTime time;
     time.parse_parameters();
 
     int counter = 0;
@@ -388,7 +388,7 @@ TEST_F(SimTimeTest, enforce_timeinterval_bigtimetol)
         pp.add("stop_time", 1.0_rt);
         pp.add("max_step", 10);
     }
-    amr_wind::SimTime time;
+    kynema_sgf::SimTime time;
     time.parse_parameters();
 
     int counter = 0;
@@ -433,7 +433,7 @@ TEST_F(SimTimeTest, enforce_timeinterval_bigdttol)
         pp.add("stop_time", 1.0_rt);
         pp.add("max_step", 10);
     }
-    amr_wind::SimTime time;
+    kynema_sgf::SimTime time;
     time.parse_parameters();
 
     int counter = 0;
@@ -477,7 +477,7 @@ TEST_F(SimTimeTest, enforce_timeinterval_delay)
         pp.add("stop_time", 1.0_rt);
         pp.add("max_step", 10);
     }
-    amr_wind::SimTime time;
+    kynema_sgf::SimTime time;
     time.parse_parameters();
 
     int counter = 0;
@@ -524,7 +524,7 @@ TEST_F(SimTimeTest, enforce_chkpt_timeinterval)
         pp.add("stop_time", 1.0_rt);
         pp.add("max_step", 10);
     }
-    amr_wind::SimTime time;
+    kynema_sgf::SimTime time;
     time.parse_parameters();
 
     int counter = 0;
@@ -548,4 +548,4 @@ TEST_F(SimTimeTest, enforce_chkpt_timeinterval)
     EXPECT_EQ(chkpt_step_sum, 2 + 6);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -1,31 +1,30 @@
-# AMR-Wind 
+# Kynema-SGF (formerly AMR-Wind)
 
-[Documentation](https://exawind.github.io/amr-wind) | [Nightly test dashboard](http://my.cdash.org/index.php?project=Exawind) 
+[Documentation](https://kynema.github.io/kynema-sgf) | [Nightly test dashboard](http://my.cdash.org/index.php?project=Exawind) 
 
 [![Powered by AMReX](https://amrex-codes.github.io/badges/powered%20by-AMReX-red.svg)](https://amrex-codes.github.io/amrex/) [![Build Status](https://github.com/Exawind/amr-wind/workflows/AMR-Wind-CI/badge.svg)](https://github.com/Exawind/amr-wind/actions) [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9284/badge)](https://www.bestpractices.dev/projects/9284)
 
 
-AMR-Wind is a massively parallel, block-structured adaptive-mesh, incompressible
-flow solver for wind turbine and wind farm simulations. The codebase is a
-wind-focused fork of [incflo](https://github.com/AMReX-Codes/incflo). The solver
+Kynema-SGF (formerly AMR-Wind), wherein SGF stands for structured-grid fluid dynamics, is a 
+massively parallel, block-structured adaptive-mesh, incompressible
+flow solver. The codebase was initiated in 2019 from [incflo](https://github.com/AMReX-Codes/incflo). The solver
 is built on top of the [AMReX library](https://amrex-codes.github.io/amrex).
 AMReX library provides the mesh data structures, mesh adaptivity, as well as the
-linear solvers used for solving the governing equations. AMR-Wind is actively
+linear solvers used for solving the governing equations. Kynema-SGF is actively
 developed and maintained by a dedicated multi-institutional team from [Lawrence
-Berkeley National Laboratory](https://www.lbl.gov/), [National Renewable Energy
-Laboratory](https://nrel.gov), and [Sandia National
+Berkeley National Laboratory](https://www.lbl.gov/), [National Laboratory of the Rockies](https://nlr.gov), and [Sandia National
 Laboratories](https://sandia.gov).
 
-The primary applications for AMR-Wind are: performing large-eddy simulations
+The primary applications for Kynema-SGF are: performing large-eddy simulations
 (LES) of atmospheric boundary layer (ABL) flows, simulating wind farm
 turbine-wake interactions using actuator disk or actuator line models for
 turbines, and as a background solver when coupled with a near-body solver (e.g.,
-[Nalu-Wind](https://github.com/exawind/nalu-wind)) with overset methodology to
+[Kynema-UGF](https://github.com/kynema/kynema-ugf)) with overset methodology to
 perform blade-resolved simulations of multiple wind turbines within a wind farm.
 For offshore applications, the ability to model the air-sea interaction effects
 and its impact on the ABL characteristics is another focus for the code
 development effort. As with other codes in the
-[Exawind](https://github.com/exawind) ecosystem, AMR-wind shares the following
+[Exawind](https://github.com/kyneam) ecosystem, Kynema-SGF shares the following
 objectives:
 
 - an open, well-documented implementation of the state-of-the-art computational
@@ -38,15 +37,8 @@ objectives:
 - be able to leverage the high-performance leadership class computing
   facilities available at DOE national laboratories.
 
-## Part of the WETO Stack
-
-AMR-Wind is primarily developed with the support of the U.S. Department of Energy and is part of the [WETO Software Stack](https://NatLabRockies.github.io/WETOStack). For more information and other integrated modeling software, see:
-- [Portfolio Overview](https://NatLabRockies.github.io/WETOStack/portfolio_analysis/overview.html)
-- [Entry Guide](https://NatLabRockies.github.io/WETOStack/_static/entry_guide/index.html)
-- [High-Fidelity Modeling Workshop](https://NatLabRockies.github.io/WETOStack/workshops/user_workshops_2024.html#high-fidelity-modeling)
-
 ## References
-To cite AMR-Wind and to learn more about the methodology, use the following [journal article](https://doi.org/10.1002/we.70010) as well as the [ExaWind reference](https://doi.org/10.1002/we.2886):
+To cite Kynema-SGF and to learn more about the methodology, use the following [journal article](https://doi.org/10.1002/we.70010) as well as the [ExaWind reference](https://doi.org/10.1002/we.2886):
 
 ```
 @article{amrwind2025,
@@ -78,7 +70,7 @@ To cite AMR-Wind and to learn more about the methodology, use the following [jou
 
 ## Documentation
 
-Documentation is available at https://exawind.github.io/amr-wind, which 
+Documentation is available at https://kynema.github.io/kynema-sgf, which 
 includes a walkthrough tutorial, a user manual, notes on theory,
 and tips for developers. We also provide a developer-focused API
 documentation at the same link. You can either
@@ -88,8 +80,8 @@ build documentation locally.
 
 ## Compilation and usage
 
-AMR-Wind is built upon the [AMReX library](https://amrex-codes.github.io/amrex).
-A snapshot of the AMReX library is distributed along with the AMR-Wind source
+Kynema-SGF is built upon the [AMReX library](https://amrex-codes.github.io/amrex).
+A snapshot of the AMReX library is distributed along with the Kynema-SGF source
 code as a `git-submodule`. In addition to the AMReX library, you will require a
 modern C++ compiler that supports the C++17 standard. Users wishing to execute
 the code on high-performance computing (HPC) systems will also need MPI
@@ -100,7 +92,7 @@ CUDA to target NVIDIA GPUs, ROCM for AMD GPUs, or SyCL for Intel GPUs.
 ### Contributing, reporting bugs, and requesting help
 
 To report issues or bugs please [create a new
-issue](https://github.com/Exawind/amr-wind/issues/new) on GitHub.
+issue](https://github.com/kynema/kynema-sgf/issues/new) on GitHub.
 
 We welcome contributions from the community in form of bug fixes, feature
 enhancements, documentation updates, etc. All contributions are processed
@@ -110,7 +102,7 @@ a reference for the best practices currently used to develop AMR-Wind.
 
 To pass the code format checking, use this command with a new version of `clang-format`:
 ```
-find amr-wind unit_tests \( -name "*.cpp" -o -name "*.H" -o -name "*.h" \) -exec clang-format -i {} +
+find src unit_tests \( -name "*.cpp" -o -name "*.H" -o -name "*.h" \) -exec clang-format -i {} +
 ```
 
 Please acknowledge as a publication co-author any developer that has
@@ -119,7 +111,7 @@ capability that was used for that publication.
 
 ### User discussion, feedback, and community support
 
-The development team manages a mailing list for AMR-Wind users. Invites for quarterly user meetings,
+The development team manages a mailing list for Kynema-SGF users. Invites for quarterly user meetings,
 along with occasional announcements, are sent to this list.
 Quarterly meetings provide development updates and a forum for discussion and feedback.
 If you would like to join this mailing list, please send a request to amr-wind-maintainers@groups.nrel.gov,
@@ -129,7 +121,7 @@ for the majority of questions.
 
 ## Versioning and tags
 
-AMR-Wind uses a type of semantic versioning to help users navigate different versions of the code, 
+Kynema-SGF uses a type of semantic versioning to help users navigate different versions of the code, 
 which are labeled with GitHub tags. These tagged versions are not exhaustive, and they adhere to
 the following convention. Given a version number MAJOR.MINOR.PATCH:
 1. MAJOR version for changes to input file compatibility for key aspects of the solver, when a key model is changed to significantly affect results of simulations, when a major new capability is added
@@ -138,7 +130,7 @@ the following convention. Given a version number MAJOR.MINOR.PATCH:
 
 ## License
 
-AMR-Wind is licensed under BSD 3-clause license. Please see the
-[LICENSE](https://github.com/Exawind/amr-wind/blob/development/LICENSE) included in
+Kynema-SGF is licensed under BSD 3-clause license. Please see the
+[LICENSE](https://github.com/kynema/kynema-sgf/blob/development/LICENSE) included in
 the source code repository for more details.
 

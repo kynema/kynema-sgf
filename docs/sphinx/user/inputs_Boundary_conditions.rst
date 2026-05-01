@@ -208,7 +208,7 @@ The input file options are copied here::
 
 
 The most applicable use case for this boundary condition is with the
-:ref:`amrwind-abl-bndry-io` for flows that change directions
+:ref:`kynemasgf-abl-bndry-io` for flows that change directions
 across the vertical coordinate or with time.
 See the ``abl_bndry_input_native_inout`` test for an example,
 the relevant inputs are included below.

@@ -1,0 +1,80 @@
+#ifndef ABLMESOFORCINGMOM_H
+#define ABLMESOFORCINGMOM_H
+
+#include <memory>
+#include "AMReX_REAL.H"
+#include "AMReX_Vector.H"
+#include "src/core/FieldRepo.H"
+#include "src/equation_systems/icns/MomentumSource.H"
+#include "src/core/SimTime.H"
+#include "src/utilities/FieldPlaneAveragingFine.H"
+#include "src/utilities/ncutils/nc_interface.H"
+#include "src/wind_energy/ABLMesoscaleForcing.H"
+#include "src/wind_energy/ABLMesoscaleInput.H"
+
+namespace kynema_sgf::pde::icns {
+
+/** Forcing term for meso-micro scale coupled ABL simulations
+ *  \ingroup icns_src we_abl
+ *
+ *  \sa ABL
+ */
+
+class ABLMesoForcingMom
+    : public ABLMesoscaleForcing
+    , public MomentumSource::Register<ABLMesoForcingMom>
+{
+public:
+    static std::string identifier() { return "ABLMesoForcingMom"; }
+
+    explicit ABLMesoForcingMom(const CFDSim& sim);
+
+    ~ABLMesoForcingMom() override;
+
+    void operator()(
+        int lev,
+        const amrex::MFIter& mfi,
+        const amrex::Box& bx,
+        FieldState fstate,
+        const amrex::Array4<amrex::Real>& src_term) const override;
+
+    void mean_velocity_init(const ABLMesoscaleInput& ncfile);
+
+    void mean_velocity_init(
+        const VelPlaneAveragingFine& vavg, const ABLMesoscaleInput& ncfile);
+
+    void
+    mean_velocity_heights(std::unique_ptr<ABLMesoscaleInput> const& ncfile);
+
+    void mean_velocity_heights(
+        const VelPlaneAveragingFine& vavg,
+        std::unique_ptr<ABLMesoscaleInput> const& ncfile);
+
+    amrex::Vector<amrex::Real>& mom_u_error() { return m_err_U; }
+    amrex::Vector<amrex::Real>& mom_v_error() { return m_err_V; }
+
+private:
+    // these are inputs
+    amrex::Gpu::DeviceVector<amrex::Real> m_meso_ht;
+    amrex::Gpu::DeviceVector<amrex::Real> m_meso_u_vals;
+    amrex::Gpu::DeviceVector<amrex::Real> m_meso_v_vals;
+
+    // these are the instantaneous planar averages
+    amrex::Gpu::DeviceVector<amrex::Real> m_vavg_ht;
+
+    // these specify the source term
+    amrex::Gpu::DeviceVector<amrex::Real> m_error_meso_avg_U;
+    amrex::Gpu::DeviceVector<amrex::Real> m_error_meso_avg_V;
+
+    amrex::Vector<amrex::Real> m_err_U;
+    amrex::Vector<amrex::Real> m_err_V;
+
+    // these should be m_ind_polyOrder+1 (currently, cubic polynomials are
+    // assumed)
+    amrex::Array<amrex::Real, 4> m_poly_coeff_U;
+    amrex::Array<amrex::Real, 4> m_poly_coeff_V;
+};
+
+} // namespace kynema_sgf::pde::icns
+
+#endif // ABLMESOFORCINGMOM_H

@@ -5,7 +5,7 @@ AMReX Plot File Processor
 -------------------------
 
 This module provides a python class :class:`AmrexPlotFile` that can parse
-the plot files written out by AMR-Wind.
+the plot files written out by Kynema-SGF.
 
 """
 

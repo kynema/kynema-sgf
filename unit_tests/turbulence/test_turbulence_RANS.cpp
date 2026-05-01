@@ -1,21 +1,21 @@
 #include "gtest/gtest.h"
-#include "aw_test_utils/MeshTest.H"
-#include "amr-wind/turbulence/TurbulenceModel.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "ks_test_utils/MeshTest.H"
+#include "src/turbulence/TurbulenceModel.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
-void init_strain_field(amr_wind::Field& fld, amrex::Real srate)
+void init_strain_field(kynema_sgf::Field& fld, amrex::Real srate)
 {
     const auto& mesh = fld.repo().mesh();
     const int nlevels = fld.repo().num_active_levels();
     amrex::Real offset =
-        (fld.field_location() == amr_wind::FieldLoc::CELL) ? 0.5_rt : 0.0_rt;
+        (fld.field_location() == kynema_sgf::FieldLoc::CELL) ? 0.5_rt : 0.0_rt;
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& dx = mesh.Geom(lev).CellSizeArray();
         const auto& problo = mesh.Geom(lev).ProbLoArray();
@@ -36,13 +36,13 @@ void init_strain_field(amr_wind::Field& fld, amrex::Real srate)
     amrex::Gpu::streamSynchronize();
 }
 
-void init_temperature_field(amr_wind::Field& fld, amrex::Real tgrad)
+void init_temperature_field(kynema_sgf::Field& fld, amrex::Real tgrad)
 {
     const auto& mesh = fld.repo().mesh();
     const int nlevels = fld.repo().num_active_levels();
 
     amrex::Real offset =
-        (fld.field_location() == amr_wind::FieldLoc::CELL) ? 0.5_rt : 0.0_rt;
+        (fld.field_location() == kynema_sgf::FieldLoc::CELL) ? 0.5_rt : 0.0_rt;
 
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& dx = mesh.Geom(lev).CellSizeArray();
@@ -170,25 +170,25 @@ TEST_F(TurbRANSTest, test_1eqKrans_setup_calc)
 
     // Update turbulent viscosity directly
     tmodel.update_turbulent_viscosity(
-        amr_wind::FieldState::New, DiffusionType::Crank_Nicolson);
+        kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
     const auto& muturb = sim().repo().get_field("mu_turb");
 
     // Check values of turbulent viscosity
     const auto max_val = utils::field_max(muturb);
     const amrex::Real Cmu = 0.556_rt;
-    const amrex::Real epsilon = amr_wind::utils::powi(Cmu, 3) *
+    const amrex::Real epsilon = kynema_sgf::utils::powi(Cmu, 3) *
                                 std::pow(tke_val, 1.5_rt) /
                                 (tlscale_val + 1.0e-3_rt);
     const amrex::Real stratification = 0.0_rt;
     const amrex::Real Rt =
-        amr_wind::utils::powi(tke_val / epsilon, 2) * stratification;
+        kynema_sgf::utils::powi(tke_val / epsilon, 2) * stratification;
     const amrex::Real Cmu_Rt =
         (0.556_rt + 0.108_rt * Rt) /
-        (1.0_rt + 0.308_rt * Rt + 0.00837_rt * amr_wind::utils::powi(Rt, 2));
+        (1.0_rt + 0.308_rt * Rt + 0.00837_rt * kynema_sgf::utils::powi(Rt, 2));
     const amrex::Real tol = 0.12_rt;
     const amrex::Real nut_max =
         rho0 * Cmu_Rt * tlscale_val * std::sqrt(tke_val);
     EXPECT_NEAR(max_val, nut_max, tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

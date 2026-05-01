@@ -32,7 +32,7 @@ Mesoscale Forcing
 ~~~~~~~~~~~~~~~~~
 
 To incorporate larger-scale atmospheric dynamics under real conditions,
-AMR-Wind offers two approaches. If mesoscale momentum and/or temperature
+Kynema-SGF offers two approaches. If mesoscale momentum and/or temperature
 source terms are known exactly, e.g., from a numerical weather prediction (NWP)
 model, then these may be directly applied. These mesoscale source terms would
 come from the RHS of the mesoscale equations of motion and may also include the

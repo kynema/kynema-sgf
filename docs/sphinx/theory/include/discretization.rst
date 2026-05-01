@@ -4,9 +4,9 @@ Discretization
 --------------
 
 The numerical methodology used to solve the partial differential
-equations (PDEs) within AMR-Wind is documented in `Almgren et
+equations (PDEs) within Kynema-SGF is documented in `Almgren et
 al. (JCP 1998)
-<https://ccse.lbl.gov/Publications/almgren/abchw.pdf>`_. AMR-Wind uses
+<https://ccse.lbl.gov/Publications/almgren/abchw.pdf>`_. Kynema-SGF uses
 `AMReX-Hydro
 <https://amrex-fluids.github.io/amrex-hydro/docs_html/Schemes.html>`_
 for many advection routines. The reader is referred to their

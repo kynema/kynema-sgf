@@ -1,29 +1,29 @@
-#include "aw_test_utils/MeshTest.H"
+#include "ks_test_utils/MeshTest.H"
 #include "test_act_utils.H"
 
-#include "amr-wind/wind_energy/actuator/ActuatorContainer.H"
-#include "amr-wind/core/gpu_utils.H"
-#include "amr-wind/core/vs/vector_space.H"
+#include "src/wind_energy/actuator/ActuatorContainer.H"
+#include "src/core/gpu_utils.H"
+#include "src/core/vs/vector_space.H"
 
 #include <algorithm>
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 
 /** Mock test object to allow access to the data struct
  */
-class TestActContainer : public amr_wind::actuator::ActuatorContainer
+class TestActContainer : public kynema_sgf::actuator::ActuatorContainer
 {
 public:
     TestActContainer(amrex::AmrCore& mesh, const int nobj)
-        : amr_wind::actuator::ActuatorContainer(mesh, nobj)
+        : kynema_sgf::actuator::ActuatorContainer(mesh, nobj)
     {}
 
     // Accessor for the particle data holder object
-    amr_wind::actuator::ActuatorCloud& get_data_obj() { return point_data(); }
+    kynema_sgf::actuator::ActuatorCloud& get_data_obj() { return point_data(); }
 };
 
 class ActuatorTest : public MeshTest
@@ -110,7 +110,7 @@ TEST_F(ActuatorTest, act_container)
         ac.num_actuator_points() * nprocs, ac.NumberOfParticlesAtLevel(0));
 #endif
     {
-        using ParIter = amr_wind::actuator::ActuatorContainer::ParIterType;
+        using ParIter = kynema_sgf::actuator::ActuatorContainer::ParIterType;
         int total_particles = 0;
         const int lev = 0;
         for (ParIter pti(ac, lev); pti.isValid(); ++pti) {
@@ -134,7 +134,7 @@ TEST_F(ActuatorTest, act_container)
         ac.num_actuator_points() * nprocs, ac.NumberOfParticlesAtLevel(0));
 #endif
     {
-        using ParIter = amr_wind::actuator::ActuatorContainer::ParIterType;
+        using ParIter = kynema_sgf::actuator::ActuatorContainer::ParIterType;
         int counter = 0;
         int total_particles = 0;
         const int lev = 0;
@@ -153,7 +153,7 @@ TEST_F(ActuatorTest, act_container)
 
     // Check the interpolated velocity field
     {
-        namespace vs = amr_wind::vs;
+        namespace vs = kynema_sgf::vs;
         constexpr amrex::Real rtol =
             std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
         amrex::Real rerr = 0.0_rt;
@@ -172,4 +172,4 @@ TEST_F(ActuatorTest, act_container)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

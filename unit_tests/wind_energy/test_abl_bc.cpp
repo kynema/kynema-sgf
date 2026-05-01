@@ -1,31 +1,31 @@
 #include "abl_test_utils.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/incflo.H"
+#include "src/utilities/trig_ops.H"
+#include "ks_test_utils/iter_tools.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/incflo.H"
 
 #include "AMReX_Gpu.H"
 #include "AMReX_Random.H"
-#include "amr-wind/equation_systems/icns/icns.H"
-#include "amr-wind/equation_systems/icns/icns_ops.H"
-#include "amr-wind/equation_systems/icns/MomentumSource.H"
-#include "amr-wind/equation_systems/icns/source_terms/BodyForce.H"
-#include "amr-wind/equation_systems/icns/source_terms/ABLForcing.H"
-#include "amr-wind/equation_systems/icns/source_terms/GeostrophicForcing.H"
-#include "amr-wind/equation_systems/icns/source_terms/CoriolisForcing.H"
-#include "amr-wind/equation_systems/icns/source_terms/BoussinesqBuoyancy.H"
-#include "amr-wind/equation_systems/icns/source_terms/DensityBuoyancy.H"
-#include "amr-wind/equation_systems/icns/source_terms/HurricaneForcing.H"
-#include "amr-wind/equation_systems/icns/source_terms/RayleighDamping.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "src/equation_systems/icns/icns.H"
+#include "src/equation_systems/icns/icns_ops.H"
+#include "src/equation_systems/icns/MomentumSource.H"
+#include "src/equation_systems/icns/source_terms/BodyForce.H"
+#include "src/equation_systems/icns/source_terms/ABLForcing.H"
+#include "src/equation_systems/icns/source_terms/GeostrophicForcing.H"
+#include "src/equation_systems/icns/source_terms/CoriolisForcing.H"
+#include "src/equation_systems/icns/source_terms/BoussinesqBuoyancy.H"
+#include "src/equation_systems/icns/source_terms/DensityBuoyancy.H"
+#include "src/equation_systems/icns/source_terms/HurricaneForcing.H"
+#include "src/equation_systems/icns/source_terms/RayleighDamping.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 amrex::Real
-get_val_at_kindex(amr_wind::Field& field, const int comp, const int kref)
+get_val_at_kindex(kynema_sgf::Field& field, const int comp, const int kref)
 {
     const int lev = 0;
     amrex::Real error_total = 0;
@@ -50,7 +50,7 @@ get_val_at_kindex(amr_wind::Field& field, const int comp, const int kref)
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
     return error_total;
 }
-void init_velocity(amr_wind::Field& fld, amrex::Real vval, int dir)
+void init_velocity(kynema_sgf::Field& fld, amrex::Real vval, int dir)
 {
     const int nlevels = fld.repo().num_active_levels();
 
@@ -63,8 +63,8 @@ void init_velocity(amr_wind::Field& fld, amrex::Real vval, int dir)
 }
 } // namespace
 
-using ICNSFields =
-    amr_wind::pde::FieldRegOp<amr_wind::pde::ICNS, amr_wind::fvm::Godunov>;
+using ICNSFields = kynema_sgf::pde::
+    FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
 
 TEST_F(ABLMeshTest, abl_local_wall_model)
 {
@@ -135,8 +135,8 @@ TEST_F(ABLMeshTest, abl_local_wall_model)
     icns_eq.initialize();
     // Initialize viscosity
     sim().turbulence_model().update_turbulent_viscosity(
-        amr_wind::FieldState::Old, DiffusionType::Crank_Nicolson);
-    icns_eq.compute_mueff(amr_wind::FieldState::Old);
+        kynema_sgf::FieldState::Old, DiffusionType::Crank_Nicolson);
+    icns_eq.compute_mueff(kynema_sgf::FieldState::Old);
 
     // Check test setup by verifying mu
     const auto& viscosity = sim().repo().get_field("velocity_mueff");
@@ -150,7 +150,7 @@ TEST_F(ABLMeshTest, abl_local_wall_model)
     adv.setVal(0.0_rt);
 
     // Calculate diffusion term
-    icns_eq.compute_diffusion_term(amr_wind::FieldState::Old);
+    icns_eq.compute_diffusion_term(kynema_sgf::FieldState::Old);
     // Setup mask_cell array to avoid errors in solve
     auto& mask_cell = sim().repo().declare_int_field("mask_cell", 1, 1);
     mask_cell.setVal(1);
@@ -164,7 +164,7 @@ TEST_F(ABLMeshTest, abl_local_wall_model)
     const amrex::Real dz = sim().mesh().Geom(0).CellSizeArray()[2];
     const amrex::Real zref = 0.5_rt * dz;
     const amrex::Real utau = kappa * vval / (std::log(zref / z0));
-    const amrex::Real tau_wall = amr_wind::utils::powi(utau, 2);
+    const amrex::Real tau_wall = kynema_sgf::utils::powi(utau, 2);
     const amrex::Real vexpct = vval + (dt * (0.0_rt - tau_wall) / dz);
     EXPECT_NEAR(vexpct, vbase, tol);
 }
@@ -238,8 +238,8 @@ TEST_F(ABLMeshTest, abl_donelan_wall_model)
     icns_eq.initialize();
     // Initialize viscosity
     sim().turbulence_model().update_turbulent_viscosity(
-        amr_wind::FieldState::Old, DiffusionType::Crank_Nicolson);
-    icns_eq.compute_mueff(amr_wind::FieldState::Old);
+        kynema_sgf::FieldState::Old, DiffusionType::Crank_Nicolson);
+    icns_eq.compute_mueff(kynema_sgf::FieldState::Old);
 
     // Check test setup by verifying mu
     const auto& viscosity = sim().repo().get_field("velocity_mueff");
@@ -253,7 +253,7 @@ TEST_F(ABLMeshTest, abl_donelan_wall_model)
     adv.setVal(0.0_rt);
 
     // Calculate diffusion term
-    icns_eq.compute_diffusion_term(amr_wind::FieldState::Old);
+    icns_eq.compute_diffusion_term(kynema_sgf::FieldState::Old);
     // Setup mask_cell array to avoid errors in solve
     auto& mask_cell = sim().repo().declare_int_field("mask_cell", 1, 1);
     mask_cell.setVal(1);
@@ -265,9 +265,9 @@ TEST_F(ABLMeshTest, abl_donelan_wall_model)
 
     // Calculate expected velocity after one step
     const amrex::Real dz = sim().mesh().Geom(0).CellSizeArray()[2];
-    const amrex::Real tau_wall = 0.0024_rt * amr_wind::utils::powi(vval, 2);
+    const amrex::Real tau_wall = 0.0024_rt * kynema_sgf::utils::powi(vval, 2);
     const amrex::Real vexpct = vval + (dt * (0.0_rt - tau_wall) / dz);
     EXPECT_NEAR(vexpct, vbase, tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

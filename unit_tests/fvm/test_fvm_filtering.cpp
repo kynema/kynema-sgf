@@ -1,14 +1,14 @@
-#include "aw_test_utils/MeshTest.H"
-#include "amr-wind/fvm/filter.H"
+#include "ks_test_utils/MeshTest.H"
+#include "src/fvm/filter.H"
 #include "AnalyticalFunction.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
+#include "ks_test_utils/iter_tools.H"
+#include "ks_test_utils/test_utils.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class FvmOpTestFiltering : public MeshTest
 {};
@@ -49,7 +49,7 @@ void initialize_scalar(
     });
 }
 
-amrex::Real filtering_test_impl(amr_wind::Field& scalar, const int pdegree)
+amrex::Real filtering_test_impl(kynema_sgf::Field& scalar, const int pdegree)
 {
     const int ncoeff = (pdegree + 1) * (pdegree + 1) * (pdegree + 1);
 
@@ -63,7 +63,7 @@ amrex::Real filtering_test_impl(amr_wind::Field& scalar, const int pdegree)
         initialize_scalar(geom[lev], bx, pdegree, coeff, scalar_arr);
     });
 
-    auto filtered_scalar = amr_wind::fvm::filter(scalar);
+    auto filtered_scalar = kynema_sgf::fvm::filter(scalar);
 
     const int nlevels = scalar.repo().num_active_levels();
     amrex::Real error_total = 0.0_rt;
@@ -129,4 +129,4 @@ TEST_F(FvmOpTestFiltering, filter)
     EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

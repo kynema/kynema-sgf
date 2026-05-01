@@ -1,4 +1,4 @@
-"""Example script for reading and writing a AMR-Wind plot file."""
+"""Example script for reading and writing a Kynema-SGF plot file."""
 
 import argparse
 import pathlib
@@ -37,7 +37,7 @@ def main():
     parser.add_argument(
         "-f",
         "--fname",
-        help="AMR-Wind plot file",
+        help="Kynema-SGF plot file",
         required=True,
         type=str,
     )

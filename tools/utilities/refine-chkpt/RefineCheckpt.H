@@ -1,9 +1,9 @@
 #ifndef REFINECHECKPT_H
 #define REFINECHECKPT_H
 
-#include "amr-wind/incflo.H"
+#include "src/incflo.H"
 
-namespace amr_wind {
+namespace kynema_sgf {
 namespace tools {
 
 class RefineCheckpt : public incflo
@@ -28,6 +28,6 @@ private:
 };
 
 } // namespace tools
-} // namespace amr_wind
+} // namespace kynema_sgf
 
 #endif /* REFINECHECKPT_H */

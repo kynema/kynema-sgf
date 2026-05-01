@@ -4,7 +4,7 @@ Section: Sampling
 ~~~~~~~~~~~~~~~~~
 
 This section controls data-sampling actions supported within
-AMR-Wind. The input parameters below use the label ``sampling`` as an example,
+Kynema-SGF. The input parameters below use the label ``sampling`` as an example,
 as if this was provided to :input_param:`incflo.post_processing` in the input file.
 For more information on specifying
 when sampled data is output to a file, see the :ref:`post-processing
@@ -25,7 +25,7 @@ inputs <inputs_post_processing>`
        on performance and must be used for debugging only.
 
    ``netcdf``
-       This requires linking to the netcdf library. If netcdf is linked to AMR-Wind and output format
+       This requires linking to the netcdf library. If netcdf is linked to Kynema-SGF and output format
        is not specified then netcdf is chosen by default.
 
 .. input_param:: sampling.labels
@@ -206,6 +206,12 @@ for cases where the interface location is multi-valued along the search directio
 such as during wave breaking. This parameter defaults to 1, and the sampler will
 automatically select the highest position along the search direction when the interface
 location is multi-valued.
+
+A third optional parameter is ``phase_field``. By default, the free surface is located
+using the vof field, and in most cases, this is the only field that makes sense. However,
+when using the OceanWaves physics class, a target vof field, called ow_vof, is also
+created, and it can also be useful to use the sampler to output the location of the interface
+according to this target field.
 
 The free surface location is calculated with
 a geometric approach using the reconstruction of the interface in a computational

@@ -1,15 +1,17 @@
-#include "aw_test_utils/MeshTest.H"
-#include "amr-wind/utilities/index_operations.H"
+#include "ks_test_utils/MeshTest.H"
+#include "src/utilities/index_operations.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
 void auxiliary_fill_boundary(
-    amr_wind::Field& velocity, amr_wind::IntField& indices, const int comp = 0)
+    kynema_sgf::Field& velocity,
+    kynema_sgf::IntField& indices,
+    const int comp = 0)
 {
     const int nlevels = velocity.repo().num_active_levels();
     const int ncomp = velocity.num_comp();
@@ -36,7 +38,7 @@ void auxiliary_fill_boundary(
                 auto sbx = mfi.growntilebox(1);
                 auto shift_to_cc = amrex::IntVect(0);
                 const auto& bx =
-                    amr_wind::utils::face_aware_boundary_box_intersection(
+                    kynema_sgf::utils::face_aware_boundary_box_intersection(
                         shift_to_cc, sbx, domain_bdy_bx, ori);
                 if (bx.isEmpty()) {
                     continue;
@@ -65,8 +67,8 @@ void auxiliary_fill_boundary(
 }
 
 amrex::Real get_field_err(
-    amr_wind::Field& field,
-    amr_wind::IntField& indices,
+    kynema_sgf::Field& field,
+    kynema_sgf::IntField& indices,
     const bool check_all_ghost,
     const int comp = 0)
 {
@@ -307,11 +309,11 @@ public:
         }
     }
 
-    amr_wind::Field* m_vel;
-    amr_wind::Field* m_umac;
-    amr_wind::Field* m_vmac;
-    amr_wind::Field* m_wmac;
-    amr_wind::IntField* m_ind;
+    kynema_sgf::Field* m_vel;
+    kynema_sgf::Field* m_umac;
+    kynema_sgf::Field* m_vmac;
+    kynema_sgf::Field* m_wmac;
+    kynema_sgf::IntField* m_ind;
 };
 
 TEST_F(AuxiliaryFillTest, velocity_cc)
@@ -342,4 +344,4 @@ TEST_F(AuxiliaryFillTest, velocity_face)
     EXPECT_DOUBLE_EQ(w_err, 0.);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

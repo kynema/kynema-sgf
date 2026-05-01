@@ -22,7 +22,7 @@ def main():
     parser.add_argument(
         "-f",
         "--fdir",
-        help="AMR-Wind directory with boundary data",
+        help="Kynema-SGF directory with boundary data",
         required=True,
         type=str,
     )

@@ -1,17 +1,17 @@
 #include "abl_test_utils.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/equation_systems/tke/TKE.H"
-#include "amr-wind/wind_energy/ABLStats.H"
-#include "amr-wind/incflo.H"
+#include "ks_test_utils/iter_tools.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/equation_systems/tke/TKE.H"
+#include "src/wind_energy/ABLStats.H"
+#include "src/incflo.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
-void init_field1(amr_wind::Field& fld)
+void init_field1(kynema_sgf::Field& fld)
 {
     const int nlevels = fld.repo().num_active_levels();
 
@@ -30,13 +30,13 @@ void init_field1(amr_wind::Field& fld)
 }
 
 amrex::Real test_new_tke(
-    amr_wind::Field& tke,
-    amr_wind::Field& tkeold,
-    amr_wind::Field& conv_term,
-    amr_wind::Field& buoy_prod,
-    amr_wind::Field& shear_prod,
-    amr_wind::Field& dissipation,
-    amr_wind::ScratchField& diffusion,
+    kynema_sgf::Field& tke,
+    kynema_sgf::Field& tkeold,
+    kynema_sgf::Field& conv_term,
+    kynema_sgf::Field& buoy_prod,
+    kynema_sgf::Field& shear_prod,
+    kynema_sgf::Field& dissipation,
+    kynema_sgf::ScratchField& diffusion,
     const amrex::Real dt)
 {
     amrex::Real error_total = 0;
@@ -82,7 +82,7 @@ amrex::Real test_new_tke(
     return error_total;
 }
 
-void remove_nans(amr_wind::Field& field)
+void remove_nans(kynema_sgf::Field& field)
 {
     for (int lev = 0; lev < field.repo().num_active_levels(); ++lev) {
         const auto& farrs = field(lev).arrays();
@@ -129,7 +129,7 @@ TEST_F(ABLMeshTest, stats_tke_diffusion)
     auto diff = sim().repo().create_scratch_field("diffusion", 1, 1);
     // Register transport pde for tke
     auto& tke_eqn = sim().pde_manager().register_transport_pde(
-        amr_wind::pde::TKE::pde_name());
+        kynema_sgf::pde::TKE::pde_name());
     auto& tke = tke_eqn.fields().field;
 
     // Populate values of fields
@@ -138,11 +138,11 @@ TEST_F(ABLMeshTest, stats_tke_diffusion)
     dissip.setVal(val_dissip);
     tke_eqn.fields().conv_term.setVal(val_conv);
     tke.setVal(val_tke);
-    tke.state(amr_wind::FieldState::Old).setVal(val_tkeold);
+    tke.state(kynema_sgf::FieldState::Old).setVal(val_tkeold);
 
     // Initialize ABL Stats
-    amr_wind::ABLWallFunction wall_func(sim());
-    amr_wind::ABLStats stats(sim(), wall_func, 2);
+    kynema_sgf::ABLWallFunction wall_func(sim());
+    kynema_sgf::ABLStats stats(sim(), wall_func, 2);
 
     // Calculate diffusion term
     stats.calc_tke_diffusion(*diff, buoy, shear, dissip, dt);
@@ -205,13 +205,13 @@ TEST_F(ABLMeshTest, stats_energy_budget)
 
     // Register transport pde for tke
     auto& tke_eqn = sim().pde_manager().register_transport_pde(
-        amr_wind::pde::TKE::pde_name());
+        kynema_sgf::pde::TKE::pde_name());
     tke_eqn.initialize();
     auto& tke = tke_eqn.fields().field;
 
     // Initialize ABL Stats
-    amr_wind::ABLWallFunction wall_func(sim());
-    amr_wind::ABLStats stats(sim(), wall_func, 2);
+    kynema_sgf::ABLWallFunction wall_func(sim());
+    kynema_sgf::ABLStats stats(sim(), wall_func, 2);
 
     // Set initial tke value and advance states
     init_field1(tke);
@@ -227,7 +227,7 @@ TEST_F(ABLMeshTest, stats_energy_budget)
 
     // Set up new and NPH density for the sake of src term
     auto& density_nph =
-        sim().repo().get_field("density").state(amr_wind::FieldState::NPH);
+        sim().repo().get_field("density").state(kynema_sgf::FieldState::NPH);
     density_nph.setVal(1.0_rt);
 
     // Setup mask_cell array to avoid errors in solve
@@ -235,17 +235,17 @@ TEST_F(ABLMeshTest, stats_energy_budget)
     mask_cell.setVal(1);
 
     // Populate advection velocities
-    icns.pre_advection_actions(amr_wind::FieldState::Old);
+    icns.pre_advection_actions(kynema_sgf::FieldState::Old);
 
     // Step forward in time for tke equation
     sim().turbulence_model().update_turbulent_viscosity(
-        amr_wind::FieldState::Old, DiffusionType::Crank_Nicolson);
-    tke_eqn.compute_advection_term(amr_wind::FieldState::Old);
+        kynema_sgf::FieldState::Old, DiffusionType::Crank_Nicolson);
+    tke_eqn.compute_advection_term(kynema_sgf::FieldState::Old);
     // Remove NaNs (not sure why they're there, but need to be removed)
     remove_nans(tke_eqn.fields().conv_term);
-    tke_eqn.compute_mueff(amr_wind::FieldState::Old);
-    tke_eqn.compute_source_term(amr_wind::FieldState::NPH);
-    tke_eqn.compute_diffusion_term(amr_wind::FieldState::New);
+    tke_eqn.compute_mueff(kynema_sgf::FieldState::Old);
+    tke_eqn.compute_source_term(kynema_sgf::FieldState::NPH);
+    tke_eqn.compute_diffusion_term(kynema_sgf::FieldState::New);
     tke_eqn.compute_predictor_rhs(DiffusionType::Crank_Nicolson);
     tke_eqn.solve(0.5_rt * dt);
     tke_eqn.post_solve_actions();
@@ -257,9 +257,9 @@ TEST_F(ABLMeshTest, stats_energy_budget)
 
     // Check assumptions in diffusion term: sum of terms gets result
     const amrex::Real err_total = test_new_tke(
-        tke, tke.state(amr_wind::FieldState::Old), tke_eqn.fields().conv_term,
+        tke, tke.state(kynema_sgf::FieldState::Old), tke_eqn.fields().conv_term,
         buoy, shear, dissip, *(diff), dt);
     EXPECT_NEAR(err_total, 0.0_rt, tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

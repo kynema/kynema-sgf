@@ -1,0 +1,36 @@
+#ifndef SOURCETERM_H
+#define SOURCETERM_H
+
+#include "src/core/Factory.H"
+#include "src/core/FieldDescTypes.H"
+#include "src/core/FieldUtils.H"
+#include "src/core/FieldRepo.H"
+#include "AMReX_MultiFab.H"
+
+namespace kynema_sgf {
+class CFDSim;
+
+namespace pde {
+
+/** Abstract representation of a source term
+ *  \ingroup pdeop
+ */
+class SourceTerm : public Factory<SourceTerm, const CFDSim&>
+{
+public:
+    static std::string base_identifier() { return "SourceTerm"; }
+
+    ~SourceTerm() override = default;
+
+    virtual void operator()(
+        int lev,
+        const amrex::MFIter& mfi,
+        const amrex::Box& bx,
+        FieldState fstate,
+        const amrex::Array4<amrex::Real>& src_term) const = 0;
+};
+
+} // namespace pde
+} // namespace kynema_sgf
+
+#endif /* SOURCETERM_H */

@@ -2,7 +2,7 @@
 name: Bug report
 about: Report a bug to help us improve
 title: 'Bug report'
-labels: "bug:amr-wind"
+labels: "bug:kynema-sgf"
 ---
 
 ## Bug description
@@ -45,15 +45,15 @@ Steps to reproduce the behavior:
 ## Expected behavior
 <!-- A clear and concise description of what is expected behavior. -->
 
-## AMR-Wind information
-<!-- Please provide as much detail as possible including git commit. The best information is a snapshot of the AMR-Wind header. -->
+## Kynema-SGF information
+<!-- Please provide as much detail as possible including git commit. The best information is a snapshot of the Kynema-SGF header. -->
 
 ```
 ==============================================================================
-                AMR-Wind (https://github.com/exawind/amr-wind)
+                Kynema-SGF (https://github.com/kynema/kynema-sgf)
 
-  AMR-Wind version :: v1.4.0-17-g250778a3-DIRTY
-  AMR-Wind Git SHA :: 250778a3306e96b46afc117fc722491acaeb6176-DIRTY
+  Kynema-SGF version :: v1.4.0-17-g250778a3-DIRTY
+  Kynema-SGF Git SHA :: 250778a3306e96b46afc117fc722491acaeb6176-DIRTY
   AMReX version    :: 24.03-36-g748f8dfea597
 
   Exec. time       :: Fri May 10 09:51:15 2024
@@ -67,7 +67,7 @@ Steps to reproduce the behavior:
   No additional third-party libraries enabled
 
            This software is released under the BSD 3-clause license.
- See https://github.com/Exawind/amr-wind/blob/development/LICENSE for details.
+ See https://github.com/Kynema/kynema-sgf/blob/development/LICENSE for details.
 ------------------------------------------------------------------------------
 ```
 

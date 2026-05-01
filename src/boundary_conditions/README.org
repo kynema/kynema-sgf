@@ -1,0 +1,144 @@
+* Boundary conditions in Kynema-SGF
+
+This file describes the various boundary conditions available in =kynema-sgf= and
+its relationship to AMReX boundary condition types available for =fillpatch= and
+during linear solve. Please read the AMReX documentation at the following links
+if you are unfamiliar with the boundary condition types
+
+- BCRec :: https://amrex-codes.github.io/amrex/docs_html/Basics.html#boundary-conditions
+- LinOpBCType :: https://amrex-codes.github.io/amrex/docs_html/LinearSolvers.html#boundary-conditions
+
+=kynema-sgf= defines several boundary conditions that the user can specify in the input
+file to handle different =BCRec= and =LinOpBCType= combinations. The user can
+specify a /default/ boundary condition for the low/high faces of the
+non-periodic boundaries, but can override the defaults for a specific
+combination of boundary and field/variable. For example:
+
+#+BEGIN_SRC
+  xlo.type = slip_wall
+  xlo.temperature_type = fixed_gradient
+  xlo.temperature = 0.0
+#+END_SRC
+
+The boundary conditions that can be specified in the input file are:
+
+- =mass_inflow= :: This is an inflow or inlet BC. The user must specify a value
+  for the solution variable when using this boundary condition. The =BCRec= is
+  =ext_dir= and the user-specified value is filled in the ghost cell, and
+  interpreted as the value on the boundary face, during fillpatch operations.
+  The =LinOpBCType= is set to Dirichlet. When specifying =mass_inflow=, the user
+  *must* specify the values for the variable in the input file.
+
+- =pressure_outflow= :: =BCRec = foextrap= and =LinOpBCType = Neumann=. This is
+  the standard outflow BC for velocity and scalars. For MAC projection and
+  nodal-projection, it uses a Dirichlet BC for pressure. The value of pressure
+  at the boundary is specified in the input file (default = 0). This can be
+  used as an inflow condition (though not recommended) via the input argument
+  "allow_inflow_at_pressure_outflow" associated with the desired equation.
+
+- =no_slip_wall= :: Like =mass_inflow=, this sets =BCRec= to =ext_dir= and
+  specifies Dirichlet BC for the linear solvers. However, it differs from
+  =mass_inflow= for velocity because the component normal to the boundary is set
+  to =0.0=. The other components are read from the input file. Another
+  difference from =mass_inflow= is that the default value is assumed to be zero
+  if the user does not specify any inputs in the input file.
+
+- =zero_gradient= :: Sets =BCRec= to =foextrap= and =LinOpBCType= to Neumann.
+  Note, unlike the =no_slip_wall=, the normal component of velocity is also zero
+  Neumann. The value on the boundary face is the same as the value at the cell
+  center. No additional inputs are necessary when this BC is specified.
+
+- =slip_wall= :: =BCRec = hoextrap= and =LinOpBCType = Neumann=. The value on
+  the boundary face is /extrapolated/ from the two interior cells using a
+  one-sided stencil. No additional inputs are necessary when this BC is specified.
+
+- =symmetric_wall= ::  Sets =BCRec= to =foextrap= and =LinOpBCType= to Neumann.
+  Similar to =zero_gradient= but the normal component of velocity is set to 0.
+
+- =fixed_gradient= :: =BCRec = hoextrap= and =LinOpBCType = inhomogNeumann=.
+  Like =slip_wall= the value on the face is extrapolated (during fillpatch)
+  using a one-sided stencil. However, for linear solvers the value on the face
+  (stored in ghost cell) is interpreted differently for =inhomogNeumann=, it is
+  the gradient at the face. The value of the non-zero gradient is read from the
+  input file.
+
+- =wall_model= :: =BCRec = hoextrap= and =LinOpBCType = inhomogNeumann=. This
+  boundary condition behaves like =fixed_gradient= for fillpatch, but uses an
+  algorithm within the code to fill the gradient values on the faces internally
+  before calling the linear solver. An appropriate algorithm must be registered
+  either through the physics or turbulence model.
+
+The following sections provide more details about the boundary conditions for
+different phases of the solution process.
+
+** Fillpatch vs. linear solver BC matrix
+
+The following table shows the fillpatch and linear solver BC combinations
+possible for scalars and tangential component of velocity.
+
+|          | Dirichlet    | Neumann       | Inhomog Neumann |
+|----------+--------------+---------------+-----------------|
+| ext_dir  | no_slip_wall |               |                 |
+| foextrap |              | zero_gradient |                 |
+| hoextrap |              | slip_wall     | fixed_gradient  |
+|          |              |               |                 |
+
+** fillpatch
+
+| Name             | Short | V_n         | V_t      | Scalar   | Source   |
+|------------------+-------+-------------+----------+----------+----------|
+| pressure_outflow | po    | foextrap    | foextrap | foextrap | foextrap |
+| mass_inflow      | mi    | ext_dir     | ext_dir  | ext_dir  | foextrap |
+| no_slip_wall     | nsw   | ext_dir (0) | ext_dir  | ext_dir  | foextrap |
+| symmetric_wall   | symw  | ext_dir (0) | foextrap | foextrap | foextrap |
+| zero_gradient    | zg    | foextrap    | foextrap | foextrap | foextrap |
+| slip_wall        | sw    | ext_dir (0) | hoextrap | hoextrap | foextrap |
+| wall_model       | wm    | ext_dir (0) | hoextrap | hoextrap | foextrap |
+| fixed_gradient   | fg    | hoextrap    | hoextrap | hoextrap | foextrap |
+|                  |       |             |          |          |          |
+
+** projection
+
+The following linear solver boundary conditions are imposed for the nodal
+projection (pressure) and MAC projections.
+
+| Name             | Short | Linear solver BC |
+|------------------+-------+------------------|
+| pressure_outflow | po    | Dirichlet        |
+| mass_inflow      | mi    | Neumann          |
+| zero_gradient    | zg    | Neumann          |
+| symmetric_wall   | symw  | Neumann          |
+| no_slip_wall     | nsw   | Neumann          |
+| slip_wall        | sw    | Neumann          |
+| wall_model       | wm    | Neumann          |
+| fixed_gradient   | fg    | Neumann          |
+
+** tensor solve
+
+
+| Name             | Short | Normal component | Tangential component |
+|------------------+-------+------------------+----------------------|
+| pressure_outflow | po    | Neumann          | Neumann              |
+| mass_inflow      | mi    | Dirichlet        | Dirichlet            |
+| zero_gradient    | zg    | Dirichlet (0)    | Neumann              |
+| no_slip_wall     | nsw   | Dirichlet (0)    | Dirichlet            |
+| symmetric_wall   | symw  | Dirichlet (0)    | Neumann              |
+| slip_wall        | sw    | Dirichlet (0)    | Neumann              |
+| wall_model       | wm    | Dirichlet (0)    | Inhomog Neumann      |
+| fixed_gradient   | fg    | Inhomog Neumann  | Inhomog Neumann      |
+|                  |       |                  |                      |
+
+
+** scalar diffusion
+
+| Name             | Short | Linear solver BC |
+|------------------+-------+------------------|
+| pressure_outflow | po    | Neumann          |
+| mass_inflow      | mi    | Dirichlet        |
+| zero_gradient    | zg    | Neumann          |
+| symmetric_wall   | symw  | Neumann          |
+| no_slip_wall     | nsw   | Dirichlet        |
+| slip_wall        | sw    | Neumann          |
+| wall_model       | wm    | Inhomog Neumann  |
+| fixed_gradient   | fg    | Inhomog Neumann  |
+|                  |       |                  |

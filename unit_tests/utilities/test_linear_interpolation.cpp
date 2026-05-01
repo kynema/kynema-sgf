@@ -3,19 +3,19 @@
 #include <utility>
 #include <vector>
 #include <numeric>
-#include "aw_test_utils/AmrexTest.H"
-#include "amr-wind/utilities/linear_interpolation.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "ks_test_utils/AmrexTest.H"
+#include "src/utilities/linear_interpolation.H"
+#include "src/utilities/trig_ops.H"
 #include "AMReX_Random.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 TEST(LinearInterpolation, check_bounds)
 {
-    namespace interp = amr_wind::interp;
+    namespace interp = kynema_sgf::interp;
     std::vector<amrex::Real> xvec(10);
     std::iota(xvec.begin(), xvec.end(), 0.0_rt);
 
@@ -41,7 +41,7 @@ TEST(LinearInterpolation, check_bounds)
 
 TEST(LinearInterpolation, bisection_search)
 {
-    namespace interp = amr_wind::interp;
+    namespace interp = kynema_sgf::interp;
     std::vector<amrex::Real> xvec(10);
     std::iota(xvec.begin(), xvec.end(), 0.0_rt);
 
@@ -66,7 +66,7 @@ TEST(LinearInterpolation, bisection_search)
 
 TEST(LinearInterpolation, nearest_search)
 {
-    namespace interp = amr_wind::interp;
+    namespace interp = kynema_sgf::interp;
     std::vector<amrex::Real> xvec(10);
     std::iota(xvec.begin(), xvec.end(), 0.0_rt);
 
@@ -106,7 +106,7 @@ TEST(LinearInterpolation, nearest_search)
 
 TEST(LinearInterpolation, find_index)
 {
-    namespace interp = amr_wind::interp;
+    namespace interp = kynema_sgf::interp;
     std::vector<amrex::Real> xvec(10);
     std::iota(xvec.begin(), xvec.end(), 0.0_rt);
 
@@ -136,7 +136,7 @@ TEST(LinearInterpolation, find_index)
 
 TEST(LinearInterpolation, lin_interp_single)
 {
-    namespace interp = amr_wind::interp;
+    namespace interp = kynema_sgf::interp;
 
     const amrex::Real mult_fac = 2.0_rt + (10.0_rt * amrex::Random());
     std::vector<amrex::Real> xvec(10), yvec(10);
@@ -156,7 +156,7 @@ TEST(LinearInterpolation, lin_interp_single)
 
 TEST(LinearInterpolation, lin_interp_single_multicomponent)
 {
-    namespace interp = amr_wind::interp;
+    namespace interp = kynema_sgf::interp;
 
     const int ncomp = 3;
     std::vector<amrex::Real> xvec(10);
@@ -185,7 +185,7 @@ TEST(LinearInterpolation, lin_interp_single_multicomponent)
 
 TEST(LinearInterpolation, bilin_interp_single)
 {
-    namespace interp = amr_wind::interp;
+    namespace interp = kynema_sgf::interp;
 
     const amrex::Real mult_facx = 2.0_rt + (10.0_rt * amrex::Random());
     const amrex::Real mult_facy = 2.0_rt + (10.0_rt * amrex::Random());
@@ -215,7 +215,7 @@ TEST(LinearInterpolation, bilin_interp_single)
 
 TEST(LinearInterpolation, lin_interp)
 {
-    namespace interp = amr_wind::interp;
+    namespace interp = kynema_sgf::interp;
 
     const amrex::Real mult_fac = 2.0_rt + (10.0_rt * amrex::Random());
     std::vector<amrex::Real> xvec(10), yvec(10);
@@ -237,7 +237,7 @@ TEST(LinearInterpolation, lin_interp)
 
 TEST(LinearInterpolation, lin_monotonic)
 {
-    namespace interp = amr_wind::interp;
+    namespace interp = kynema_sgf::interp;
 
     const amrex::Real mult_fac = 2.0_rt + (10.0_rt * amrex::Random());
     std::vector<amrex::Real> xvec(10), yvec(10);
@@ -259,7 +259,7 @@ TEST(LinearInterpolation, lin_monotonic)
 
 TEST(LinearInterpolation, lin_interp_angle)
 {
-    namespace interp = amr_wind::interp;
+    namespace interp = kynema_sgf::interp;
 
     const int vecsize = 8;
     std::vector<amrex::Real> xvec(vecsize);
@@ -270,7 +270,7 @@ TEST(LinearInterpolation, lin_interp_angle)
     // Create duplicate list in radians
     std::vector<amrex::Real> yvec_rad(vecsize);
     for (size_t i = 0; i < yvec_rad.size(); ++i) {
-        yvec_rad[i] = amr_wind::utils::radians(yvec_deg[i]);
+        yvec_rad[i] = kynema_sgf::utils::radians(yvec_deg[i]);
     }
 
     // Set up output vectors, interp locations, and golds
@@ -293,9 +293,9 @@ TEST(LinearInterpolation, lin_interp_angle)
             ytest_deg[i], ygold_deg[i],
             std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
         EXPECT_NEAR(
-            ytest_rad[i], amr_wind::utils::radians(ygold_deg[i]),
+            ytest_rad[i], kynema_sgf::utils::radians(ygold_deg[i]),
             std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt);
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
