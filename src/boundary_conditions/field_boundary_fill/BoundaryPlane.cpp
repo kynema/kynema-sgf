@@ -347,6 +347,12 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
         pp_abl.query("bndry_output_initial_plane", m_output_init);
     }
 
+    if (m_is_static) {
+        amrex::Print()
+            << "BoundaryPlane: static boundary is enabled, will read only a "
+               "single boundary plane for the duration of this simulation.\n";
+    }
+
 #ifndef KYNEMA_SGF_USE_NETCDF
     if (m_out_fmt == "netcdf") {
         amrex::Print()
@@ -652,8 +658,10 @@ void BoundaryPlane::write_file()
     // Only output data if at the desired timestep
     const auto write_init =
         (m_output_init && m_time.new_time() < constants::EPS);
-    if (((t_step % m_write_frequency != 0) || ((m_io_mode != io_mode::output)) ||
-        (time < m_out_start_time - constants::LOOSE_TOL)) && !write_init) {
+    if (((t_step % m_write_frequency != 0) ||
+         ((m_io_mode != io_mode::output)) ||
+         (time < m_out_start_time - constants::LOOSE_TOL)) &&
+        !write_init) {
         return;
     }
 
