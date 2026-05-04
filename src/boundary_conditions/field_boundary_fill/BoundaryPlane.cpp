@@ -721,7 +721,7 @@ void BoundaryPlane::write_file()
                 bndry.setVal(1.0e13_rt);
 
                 bndry.copyFrom(
-                    field(lev), 0, 0, 0, field.num_comp(),
+                    field(lev), 1, 0, 0, field.num_comp(),
                     geom[lev].periodicity());
 
                 std::string filename = amrex::MultiFabFileFullPrefix(
