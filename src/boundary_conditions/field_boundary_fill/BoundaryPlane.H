@@ -51,7 +51,8 @@ public:
         const int /*lev*/,
         const Field* /*fld*/,
         const amrex::Real /*time*/,
-        const amrex::Vector<amrex::Real>& /*times*/);
+        const amrex::Vector<amrex::Real>& /*times*/,
+        bool /*is_static_single*/);
 #endif
 
     void read_data_native(
@@ -266,6 +267,16 @@ private:
     //! Flag indicating if the simulation is overset -- needed for complicated
     //! timing of pre_advance_work
     bool m_has_overset{false};
+
+    //! Flag indicating that the inflow is static, i.e., there is only a single
+    //! boundary plane to read in during the simulation
+    bool m_is_static{false};
+    bool m_static_plane_is_read{false};
+
+    //! Flag indicating that initial condition should be written out at
+    //! beginning of simulation to create static boundary plane for current sim.
+    //! This can be used as a generic boundary condition.
+    bool m_output_init{false};
 
     //! controls extents on native bndry output
     const int m_in_rad = 1;
