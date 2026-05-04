@@ -335,7 +335,7 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
         pp.get("file", m_filename);
         pp.query("output_format", m_out_fmt);
         pp.query("is_static", m_is_static);
-        pp.query("output_initial_plane", m_output_init);
+        pp.query("output_and_use_initial_plane", m_output_init);
     } else {
         pp_abl.query("bndry_write_frequency", m_write_frequency);
         pp_abl.queryarr("bndry_planes", m_planes);
@@ -344,13 +344,20 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
         pp_abl.get("bndry_file", m_filename);
         pp_abl.query("bndry_output_format", m_out_fmt);
         pp_abl.query("bndry_is_static", m_is_static);
-        pp_abl.query("bndry_output_initial_plane", m_output_init);
+        pp_abl.query("bndry_output_and_use_initial_plane", m_output_init);
     }
 
     if (m_is_static) {
         amrex::Print()
             << "BoundaryPlane: static boundary is enabled, will read only a "
                "single boundary plane for the duration of this simulation.\n";
+    }
+
+    if (m_output_init && m_io_mode != io_mode::input) {
+        amrex::Abort(
+            "BoundaryPlane: conflicting inputs. Inputs specify to output and "
+            "use initial plane, but the IO mode is not set to read. Please "
+            "revise input arguments.\n");
     }
 
 #ifndef KYNEMA_SGF_USE_NETCDF
@@ -666,7 +673,11 @@ void BoundaryPlane::write_file()
     }
 
     for (auto* fld : m_fields) {
-        fld->fillpatch(m_time.current_time());
+        if (write_init) {
+            fld->fillphysbc(m_time.current_time(), amrex::BCType::foextrap);
+        } else {
+            fld->fillpatch(m_time.current_time());
+        }
     }
 
 #ifdef KYNEMA_SGF_USE_NETCDF
