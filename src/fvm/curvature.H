@@ -130,6 +130,122 @@ struct Curvature
             });
     }
 
+    void applyFused(const int lev) const
+    {
+        const auto& geom = m_phi.repo().mesh().Geom(lev);
+        const auto& idx = geom.InvCellSizeArray();
+        const auto dlo = geom.Domain().smallEnd();
+        const auto dhi = geom.Domain().bigEnd();
+        const amrex::GpuArray<int, AMREX_SPACEDIM> periodic{
+            geom.isPeriodic(0) ? 1 : 0,
+            geom.isPeriodic(1) ? 1 : 0,
+            geom.isPeriodic(2) ? 1 : 0};
+        const int ncomp = m_phi.num_comp();
+
+        auto& out_mf = m_curphi(lev);
+        auto const& in_arrs = m_phi(lev).const_arrays();
+        auto const& out_arrs = out_mf.arrays();
+
+        amrex::ParallelFor(
+            out_mf, amrex::IntVect(0),
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                const auto sc = stencil::pick_stencil(
+                    i, j, k, dlo, dhi, periodic);
+                auto const& phi = in_arrs[nbx];
+                auto const& curphi = out_arrs[nbx];
+                for (int n = 0; n < ncomp; ++n) {
+                    const amrex::Real phixx =
+                        (sc.s00 * phi(i + 1, j, k, n) +
+                         sc.s01 * phi(i, j, k, n) +
+                         sc.s02 * phi(i - 1, j, k, n)) *
+                        idx[0] * idx[0];
+                    const amrex::Real phiyy =
+                        (sc.s10 * phi(i, j + 1, k, n) +
+                         sc.s11 * phi(i, j, k, n) +
+                         sc.s12 * phi(i, j - 1, k, n)) *
+                        idx[1] * idx[1];
+                    const amrex::Real phizz =
+                        (sc.s20 * phi(i, j, k + 1, n) +
+                         sc.s21 * phi(i, j, k, n) +
+                         sc.s22 * phi(i, j, k - 1, n)) *
+                        idx[2] * idx[2];
+
+                    const amrex::Real phiz =
+                        (sc.c20 * phi(i, j, k + 1, n) +
+                         sc.c21 * phi(i, j, k, n) +
+                         sc.c22 * phi(i, j, k - 1, n)) *
+                        idx[2];
+                    const amrex::Real phiz_ip1 =
+                        (sc.c20 * phi(i + 1, j, k + 1, n) +
+                         sc.c21 * phi(i + 1, j, k, n) +
+                         sc.c22 * phi(i + 1, j, k - 1, n)) *
+                        idx[2];
+                    const amrex::Real phiz_im1 =
+                        (sc.c20 * phi(i - 1, j, k + 1, n) +
+                         sc.c21 * phi(i - 1, j, k, n) +
+                         sc.c22 * phi(i - 1, j, k - 1, n)) *
+                        idx[2];
+                    const amrex::Real phiz_jp1 =
+                        (sc.c20 * phi(i, j + 1, k + 1, n) +
+                         sc.c21 * phi(i, j + 1, k, n) +
+                         sc.c22 * phi(i, j + 1, k - 1, n)) *
+                        idx[2];
+                    const amrex::Real phiz_jm1 =
+                        (sc.c20 * phi(i, j - 1, k + 1, n) +
+                         sc.c21 * phi(i, j - 1, k, n) +
+                         sc.c22 * phi(i, j - 1, k - 1, n)) *
+                        idx[2];
+
+                    const amrex::Real phiy =
+                        (sc.c10 * phi(i, j + 1, k, n) +
+                         sc.c11 * phi(i, j, k, n) +
+                         sc.c12 * phi(i, j - 1, k, n)) *
+                        idx[1];
+                    const amrex::Real phiy_ip1 =
+                        (sc.c10 * phi(i + 1, j + 1, k, n) +
+                         sc.c11 * phi(i + 1, j, k, n) +
+                         sc.c12 * phi(i + 1, j - 1, k, n)) *
+                        idx[1];
+                    const amrex::Real phiy_im1 =
+                        (sc.c10 * phi(i - 1, j + 1, k, n) +
+                         sc.c11 * phi(i - 1, j, k, n) +
+                         sc.c12 * phi(i - 1, j - 1, k, n)) *
+                        idx[1];
+                    const amrex::Real phiyz =
+                        (sc.c10 * phiz_jp1 + sc.c11 * phiz +
+                         sc.c12 * phiz_jm1) *
+                        idx[1];
+
+                    const amrex::Real phix =
+                        (sc.c00 * phi(i + 1, j, k, n) +
+                         sc.c01 * phi(i, j, k, n) +
+                         sc.c02 * phi(i - 1, j, k, n)) *
+                        idx[0];
+                    const amrex::Real phixy =
+                        (sc.c00 * phiy_ip1 + sc.c01 * phiy +
+                         sc.c02 * phiy_im1) *
+                        idx[0];
+                    const amrex::Real phixz =
+                        (sc.c00 * phiz_ip1 + sc.c01 * phiz +
+                         sc.c02 * phiz_im1) *
+                        idx[0];
+
+                    curphi(i, j, k, n) =
+                        -((phix * phix * phiyy) -
+                          (2.0_rt * phix * phiy * phixy) +
+                          (phiy * phiy * phixx) + (phix * phix * phizz) -
+                          (2.0_rt * phix * phiz * phixz) +
+                          (phiz * phiz * phixx) + (phiy * phiy * phizz) -
+                          (2.0_rt * phiy * phiz * phiyz) +
+                          (phiz * phiz * phiyy)) /
+                        std::pow(
+                            (phix * phix) + (phiy * phiy) + (phiz * phiz),
+                            1.5_rt);
+                }
+            });
+        amrex::Gpu::streamSynchronize();
+    }
+
     FTypeOut& m_curphi;
     const FTypeIn& m_phi;
 };

@@ -69,6 +69,61 @@ struct Divergence
         });
     }
 
+    void applyFused(const int lev) const
+    {
+        const int ncomp = m_divphi.num_comp();
+        const auto& geom = m_phi.repo().mesh().Geom(lev);
+        const auto& idx = geom.InvCellSizeArray();
+        const auto dlo = geom.Domain().smallEnd();
+        const auto dhi = geom.Domain().bigEnd();
+        const amrex::GpuArray<int, AMREX_SPACEDIM> periodic{
+            geom.isPeriodic(0) ? 1 : 0,
+            geom.isPeriodic(1) ? 1 : 0,
+            geom.isPeriodic(2) ? 1 : 0};
+
+        auto& out_mf = m_divphi(lev);
+        auto const& in_arrs = m_phi(lev).const_arrays();
+        auto const& out_arrs = out_mf.arrays();
+
+        amrex::ParallelFor(
+            out_mf, amrex::IntVect(0),
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                const auto sc = stencil::pick_stencil(
+                    i, j, k, dlo, dhi, periodic);
+                auto const& phi_arr = in_arrs[nbx];
+                auto const& divphi_arr = out_arrs[nbx];
+                for (int icomp = 0; icomp < ncomp; icomp++) {
+                    divphi_arr(i, j, k, icomp) =
+                        (sc.c00 *
+                             phi_arr(i + 1, j, k, (icomp * AMREX_SPACEDIM) + 0) +
+                         sc.c01 *
+                             phi_arr(i, j, k, (icomp * AMREX_SPACEDIM) + 0) +
+                         sc.c02 *
+                             phi_arr(i - 1, j, k, (icomp * AMREX_SPACEDIM) + 0)) *
+                        idx[0];
+
+                    divphi_arr(i, j, k, icomp) +=
+                        (sc.c10 *
+                             phi_arr(i, j + 1, k, (icomp * AMREX_SPACEDIM) + 1) +
+                         sc.c11 *
+                             phi_arr(i, j, k, (icomp * AMREX_SPACEDIM) + 1) +
+                         sc.c12 *
+                             phi_arr(i, j - 1, k, (icomp * AMREX_SPACEDIM) + 1)) *
+                        idx[1];
+
+                    divphi_arr(i, j, k, icomp) +=
+                        (sc.c20 *
+                             phi_arr(i, j, k + 1, (icomp * AMREX_SPACEDIM) + 2) +
+                         sc.c21 *
+                             phi_arr(i, j, k, (icomp * AMREX_SPACEDIM) + 2) +
+                         sc.c22 *
+                             phi_arr(i, j, k - 1, (icomp * AMREX_SPACEDIM) + 2)) *
+                        idx[2];
+                }
+            });
+        amrex::Gpu::streamSynchronize();
+    }
+
     FTypeOut& m_divphi;
     const FTypeIn& m_phi;
 };

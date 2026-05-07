@@ -73,6 +73,48 @@ struct Filter
         });
     }
 
+    void applyFused(const int lev) const
+    {
+        const int ncomp = m_phi.num_comp();
+        const auto& geom = m_phi.repo().mesh().Geom(lev);
+        const auto dlo = geom.Domain().smallEnd();
+        const auto dhi = geom.Domain().bigEnd();
+        const amrex::GpuArray<int, AMREX_SPACEDIM> periodic{
+            geom.isPeriodic(0) ? 1 : 0,
+            geom.isPeriodic(1) ? 1 : 0,
+            geom.isPeriodic(2) ? 1 : 0};
+
+        auto& out_mf = m_filterphi(lev);
+        auto const& in_arrs = m_phi(lev).const_arrays();
+        auto const& out_arrs = out_mf.arrays();
+
+        amrex::ParallelFor(
+            out_mf, amrex::IntVect(0),
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                const auto sc = stencil::pick_stencil(
+                    i, j, k, dlo, dhi, periodic);
+                auto const& phi_arr = in_arrs[nbx];
+                auto const& filterphi_arr = out_arrs[nbx];
+                for (int icomp = 0; icomp < ncomp; icomp++) {
+                    const amrex::Real filx =
+                        sc.f00 * phi_arr(i + 1, j, k, icomp) +
+                        sc.f01 * phi_arr(i, j, k, icomp) +
+                        sc.f02 * phi_arr(i - 1, j, k, icomp);
+                    const amrex::Real fily =
+                        sc.f10 * phi_arr(i, j + 1, k, icomp) +
+                        sc.f11 * phi_arr(i, j, k, icomp) +
+                        sc.f12 * phi_arr(i, j - 1, k, icomp);
+                    const amrex::Real filz =
+                        sc.f20 * phi_arr(i, j, k + 1, icomp) +
+                        sc.f21 * phi_arr(i, j, k, icomp) +
+                        sc.f22 * phi_arr(i, j, k - 1, icomp);
+                    filterphi_arr(i, j, k, icomp) =
+                        1.0_rt / 3.0_rt * (filx + fily + filz);
+                }
+            });
+        amrex::Gpu::streamSynchronize();
+    }
+
     FTypeOut& m_filterphi;
     const FTypeIn& m_phi;
 };

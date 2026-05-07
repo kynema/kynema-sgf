@@ -73,6 +73,59 @@ struct Vorticity
         });
     }
 
+    void applyFused(const int lev) const
+    {
+        const auto& geom = m_phi.repo().mesh().Geom(lev);
+        const auto& idx = geom.InvCellSizeArray();
+        const auto dlo = geom.Domain().smallEnd();
+        const auto dhi = geom.Domain().bigEnd();
+        const amrex::GpuArray<int, AMREX_SPACEDIM> periodic{
+            geom.isPeriodic(0) ? 1 : 0,
+            geom.isPeriodic(1) ? 1 : 0,
+            geom.isPeriodic(2) ? 1 : 0};
+
+        auto& out_mf = m_vort(lev);
+        auto const& in_arrs = m_phi(lev).const_arrays();
+        auto const& out_arrs = out_mf.arrays();
+
+        amrex::ParallelFor(
+            out_mf, amrex::IntVect(0),
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                const auto sc = stencil::pick_stencil(
+                    i, j, k, dlo, dhi, periodic);
+                auto const& phi = in_arrs[nbx];
+                auto const& vort = out_arrs[nbx];
+                const amrex::Real vx =
+                    (sc.c00 * phi(i + 1, j, k, 1) + sc.c01 * phi(i, j, k, 1) +
+                     sc.c02 * phi(i - 1, j, k, 1)) *
+                    idx[0];
+                const amrex::Real wx =
+                    (sc.c00 * phi(i + 1, j, k, 2) + sc.c01 * phi(i, j, k, 2) +
+                     sc.c02 * phi(i - 1, j, k, 2)) *
+                    idx[0];
+                const amrex::Real uy =
+                    (sc.c10 * phi(i, j + 1, k, 0) + sc.c11 * phi(i, j, k, 0) +
+                     sc.c12 * phi(i, j - 1, k, 0)) *
+                    idx[1];
+                const amrex::Real wy =
+                    (sc.c10 * phi(i, j + 1, k, 2) + sc.c11 * phi(i, j, k, 2) +
+                     sc.c12 * phi(i, j - 1, k, 2)) *
+                    idx[1];
+                const amrex::Real uz =
+                    (sc.c20 * phi(i, j, k + 1, 0) + sc.c21 * phi(i, j, k, 0) +
+                     sc.c22 * phi(i, j, k - 1, 0)) *
+                    idx[2];
+                const amrex::Real vz =
+                    (sc.c20 * phi(i, j, k + 1, 1) + sc.c21 * phi(i, j, k, 1) +
+                     sc.c22 * phi(i, j, k - 1, 1)) *
+                    idx[2];
+                vort(i, j, k, 0) = wy - vz;
+                vort(i, j, k, 1) = uz - wx;
+                vort(i, j, k, 2) = vx - uy;
+            });
+        amrex::Gpu::streamSynchronize();
+    }
+
     FTypeOut& m_vort;
     const FTypeIn& m_phi;
 };

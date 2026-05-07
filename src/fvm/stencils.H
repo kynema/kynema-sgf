@@ -1207,6 +1207,161 @@ struct StencilIhiJhiKhi
     }
 };
 
+/** Runtime stencil coefficients for use in fused single-kernel dispatch.
+ *
+ *  All 27 compile-time stencil types (interior, 6 faces, 12 edges, 8 corners)
+ *  can be expressed as a combination of three independent per-direction
+ *  coefficient sets.  This struct holds those coefficients as runtime values so
+ *  a single kernel can select the correct stencil per-cell.
+ *
+ *  Coefficient layout mirrors the static stencil structs:
+ *  - c0x / s0x / f0x : direction 0 (i)
+ *  - c1x / s1x / f1x : direction 1 (j)
+ *  - c2x / s2x / f2x : direction 2 (k)
+ */
+struct StencilCoefficients
+{
+    // First-derivative (gradient / divergence / vorticity / …) coefficients
+    amrex::Real c00, c01, c02; ///< direction 0 (i): phi(i+1), phi(i), phi(i-1)
+    amrex::Real c10, c11, c12; ///< direction 1 (j)
+    amrex::Real c20, c21, c22; ///< direction 2 (k)
+
+    // Second-derivative (laplacian / curvature) coefficients
+    amrex::Real s00, s01, s02; ///< direction 0 (i)
+    amrex::Real s10, s11, s12; ///< direction 1 (j)
+    amrex::Real s20, s21, s22; ///< direction 2 (k)
+
+    // Filter coefficients
+    amrex::Real f00, f01, f02; ///< direction 0 (i)
+    amrex::Real f10, f11, f12; ///< direction 1 (j)
+    amrex::Real f20, f21, f22; ///< direction 2 (k)
+};
+
+/** Select stencil coefficients for cell (i, j, k) at runtime.
+ *
+ *  The stencil is fully separable: the coefficients for each direction depend
+ *  only on whether that direction touches a non-periodic domain boundary.
+ *
+ *  \param [in] i, j, k    Cell indices
+ *  \param [in] dlo        Domain lower-corner (inclusive)
+ *  \param [in] dhi        Domain upper-corner (inclusive)
+ *  \param [in] periodic   Per-direction periodicity flags (non-zero = periodic)
+ */
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE StencilCoefficients pick_stencil(
+    int i,
+    int j,
+    int k,
+    amrex::IntVect const& dlo,
+    amrex::IntVect const& dhi,
+    amrex::GpuArray<int, AMREX_SPACEDIM> const& periodic) noexcept
+{
+    StencilCoefficients sc;
+
+    // --- direction 0 (i) ---
+    if (!periodic[0] && i == dlo[0]) {
+        // ILO: forward-biased one-sided difference
+        sc.c00 = 1.0_rt / 3.0_rt;
+        sc.c01 = 1.0_rt;
+        sc.c02 = -4.0_rt / 3.0_rt;
+        sc.s00 = 4.0_rt / 3.0_rt;
+        sc.s01 = -4.0_rt;
+        sc.s02 = 8.0_rt / 3.0_rt;
+        sc.f00 = 0.125_rt;
+        sc.f01 = 0.625_rt;
+        sc.f02 = 0.25_rt;
+    } else if (!periodic[0] && i == dhi[0]) {
+        // IHI: backward-biased one-sided difference
+        sc.c00 = 4.0_rt / 3.0_rt;
+        sc.c01 = -1.0_rt;
+        sc.c02 = -1.0_rt / 3.0_rt;
+        sc.s00 = 8.0_rt / 3.0_rt;
+        sc.s01 = -4.0_rt;
+        sc.s02 = 4.0_rt / 3.0_rt;
+        sc.f00 = 0.25_rt;
+        sc.f01 = 0.625_rt;
+        sc.f02 = 0.125_rt;
+    } else {
+        // Interior: central difference
+        sc.c00 = 0.5_rt;
+        sc.c01 = 0.0_rt;
+        sc.c02 = -0.5_rt;
+        sc.s00 = 1.0_rt;
+        sc.s01 = -2.0_rt;
+        sc.s02 = 1.0_rt;
+        sc.f00 = 0.25_rt;
+        sc.f01 = 0.5_rt;
+        sc.f02 = 0.25_rt;
+    }
+
+    // --- direction 1 (j) ---
+    if (!periodic[1] && j == dlo[1]) {
+        sc.c10 = 1.0_rt / 3.0_rt;
+        sc.c11 = 1.0_rt;
+        sc.c12 = -4.0_rt / 3.0_rt;
+        sc.s10 = 4.0_rt / 3.0_rt;
+        sc.s11 = -4.0_rt;
+        sc.s12 = 8.0_rt / 3.0_rt;
+        sc.f10 = 0.125_rt;
+        sc.f11 = 0.625_rt;
+        sc.f12 = 0.25_rt;
+    } else if (!periodic[1] && j == dhi[1]) {
+        sc.c10 = 4.0_rt / 3.0_rt;
+        sc.c11 = -1.0_rt;
+        sc.c12 = -1.0_rt / 3.0_rt;
+        sc.s10 = 8.0_rt / 3.0_rt;
+        sc.s11 = -4.0_rt;
+        sc.s12 = 4.0_rt / 3.0_rt;
+        sc.f10 = 0.25_rt;
+        sc.f11 = 0.625_rt;
+        sc.f12 = 0.125_rt;
+    } else {
+        sc.c10 = 0.5_rt;
+        sc.c11 = 0.0_rt;
+        sc.c12 = -0.5_rt;
+        sc.s10 = 1.0_rt;
+        sc.s11 = -2.0_rt;
+        sc.s12 = 1.0_rt;
+        sc.f10 = 0.25_rt;
+        sc.f11 = 0.5_rt;
+        sc.f12 = 0.25_rt;
+    }
+
+    // --- direction 2 (k) ---
+    if (!periodic[2] && k == dlo[2]) {
+        sc.c20 = 1.0_rt / 3.0_rt;
+        sc.c21 = 1.0_rt;
+        sc.c22 = -4.0_rt / 3.0_rt;
+        sc.s20 = 4.0_rt / 3.0_rt;
+        sc.s21 = -4.0_rt;
+        sc.s22 = 8.0_rt / 3.0_rt;
+        sc.f20 = 0.125_rt;
+        sc.f21 = 0.625_rt;
+        sc.f22 = 0.25_rt;
+    } else if (!periodic[2] && k == dhi[2]) {
+        sc.c20 = 4.0_rt / 3.0_rt;
+        sc.c21 = -1.0_rt;
+        sc.c22 = -1.0_rt / 3.0_rt;
+        sc.s20 = 8.0_rt / 3.0_rt;
+        sc.s21 = -4.0_rt;
+        sc.s22 = 4.0_rt / 3.0_rt;
+        sc.f20 = 0.25_rt;
+        sc.f21 = 0.625_rt;
+        sc.f22 = 0.125_rt;
+    } else {
+        sc.c20 = 0.5_rt;
+        sc.c21 = 0.0_rt;
+        sc.c22 = -0.5_rt;
+        sc.s20 = 1.0_rt;
+        sc.s21 = -2.0_rt;
+        sc.s22 = 1.0_rt;
+        sc.f20 = 0.25_rt;
+        sc.f21 = 0.5_rt;
+        sc.f22 = 0.25_rt;
+    }
+
+    return sc;
+}
+
 } // namespace kynema_sgf::fvm::stencil
 
 #endif /* STENCILS_H */
