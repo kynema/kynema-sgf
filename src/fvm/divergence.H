@@ -20,7 +20,7 @@ struct Divergence
     }
 
     template <typename Stencil>
-    void applyFused(const int lev) const
+    void apply(const int lev) const
     {
         const int ncomp = m_divphi.num_comp();
         const auto& geom = m_phi.repo().mesh().Geom(lev);

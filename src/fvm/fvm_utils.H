@@ -27,52 +27,52 @@ AMREX_INLINE void apply(const FvmOp& fvmop, const FType& fld)
         const bool py = geom.isPeriodic(1);
         const bool pz = geom.isPeriodic(2);
 
-        fvmop.template applyFused<stencil::StencilInterior>(lev);
+        fvmop.template apply<stencil::StencilInterior>(lev);
 
         // faces
         if (!px) {
-            fvmop.template applyFused<stencil::StencilILO>(lev);
-            fvmop.template applyFused<stencil::StencilIHI>(lev);
+            fvmop.template apply<stencil::StencilILO>(lev);
+            fvmop.template apply<stencil::StencilIHI>(lev);
         }
         if (!py) {
-            fvmop.template applyFused<stencil::StencilJLO>(lev);
-            fvmop.template applyFused<stencil::StencilJHI>(lev);
+            fvmop.template apply<stencil::StencilJLO>(lev);
+            fvmop.template apply<stencil::StencilJHI>(lev);
         }
         if (!pz) {
-            fvmop.template applyFused<stencil::StencilKLO>(lev);
-            fvmop.template applyFused<stencil::StencilKHI>(lev);
+            fvmop.template apply<stencil::StencilKLO>(lev);
+            fvmop.template apply<stencil::StencilKHI>(lev);
         }
 
         // edges
         if (!px && !py) {
-            fvmop.template applyFused<stencil::StencilIhiJlo>(lev);
-            fvmop.template applyFused<stencil::StencilIhiJhi>(lev);
-            fvmop.template applyFused<stencil::StencilIloJlo>(lev);
-            fvmop.template applyFused<stencil::StencilIloJhi>(lev);
+            fvmop.template apply<stencil::StencilIhiJlo>(lev);
+            fvmop.template apply<stencil::StencilIhiJhi>(lev);
+            fvmop.template apply<stencil::StencilIloJlo>(lev);
+            fvmop.template apply<stencil::StencilIloJhi>(lev);
         }
         if (!px && !pz) {
-            fvmop.template applyFused<stencil::StencilIhiKlo>(lev);
-            fvmop.template applyFused<stencil::StencilIhiKhi>(lev);
-            fvmop.template applyFused<stencil::StencilIloKlo>(lev);
-            fvmop.template applyFused<stencil::StencilIloKhi>(lev);
+            fvmop.template apply<stencil::StencilIhiKlo>(lev);
+            fvmop.template apply<stencil::StencilIhiKhi>(lev);
+            fvmop.template apply<stencil::StencilIloKlo>(lev);
+            fvmop.template apply<stencil::StencilIloKhi>(lev);
         }
         if (!py && !pz) {
-            fvmop.template applyFused<stencil::StencilJhiKlo>(lev);
-            fvmop.template applyFused<stencil::StencilJhiKhi>(lev);
-            fvmop.template applyFused<stencil::StencilJloKlo>(lev);
-            fvmop.template applyFused<stencil::StencilJloKhi>(lev);
+            fvmop.template apply<stencil::StencilJhiKlo>(lev);
+            fvmop.template apply<stencil::StencilJhiKhi>(lev);
+            fvmop.template apply<stencil::StencilJloKlo>(lev);
+            fvmop.template apply<stencil::StencilJloKhi>(lev);
         }
 
         // corners
         if (!px && !py && !pz) {
-            fvmop.template applyFused<stencil::StencilIloJloKlo>(lev);
-            fvmop.template applyFused<stencil::StencilIloJloKhi>(lev);
-            fvmop.template applyFused<stencil::StencilIloJhiKlo>(lev);
-            fvmop.template applyFused<stencil::StencilIloJhiKhi>(lev);
-            fvmop.template applyFused<stencil::StencilIhiJloKlo>(lev);
-            fvmop.template applyFused<stencil::StencilIhiJloKhi>(lev);
-            fvmop.template applyFused<stencil::StencilIhiJhiKlo>(lev);
-            fvmop.template applyFused<stencil::StencilIhiJhiKhi>(lev);
+            fvmop.template apply<stencil::StencilIloJloKlo>(lev);
+            fvmop.template apply<stencil::StencilIloJloKhi>(lev);
+            fvmop.template apply<stencil::StencilIloJhiKlo>(lev);
+            fvmop.template apply<stencil::StencilIloJhiKhi>(lev);
+            fvmop.template apply<stencil::StencilIhiJloKlo>(lev);
+            fvmop.template apply<stencil::StencilIhiJloKhi>(lev);
+            fvmop.template apply<stencil::StencilIhiJhiKlo>(lev);
+            fvmop.template apply<stencil::StencilIhiJhiKhi>(lev);
         }
     }
 }

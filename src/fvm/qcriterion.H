@@ -23,7 +23,7 @@ struct Qcriterion
     }
 
     template <typename Stencil>
-    void applyFused(const int lev) const
+    void apply(const int lev) const
     {
         const auto& geom = m_phi.repo().mesh().Geom(lev);
         const auto& idx = geom.InvCellSizeArray();
