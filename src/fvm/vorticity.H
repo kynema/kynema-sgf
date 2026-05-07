@@ -19,70 +19,12 @@ struct Vorticity
     }
 
     template <typename Stencil>
-    void apply(const int lev, const amrex::MFIter& mfi) const
-    {
-        const auto& geom = m_phi.repo().mesh().Geom(lev);
-        const auto& idx = geom.InvCellSizeArray();
-        const auto& vort = m_vort(lev).array(mfi);
-        const auto& phi = m_phi(lev).const_array(mfi);
-
-        const auto& bx_in = mfi.tilebox();
-        const auto& bx = Stencil::box(bx_in, geom);
-        if (bx.isEmpty()) {
-            return;
-        }
-
-        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-            amrex::Real cp1, c, cm1, uy, uz, vx, vz, wx, wy;
-            cp1 = Stencil::c00;
-            c = Stencil::c01;
-            cm1 = Stencil::c02;
-
-            vx = (cp1 * phi(i + 1, j, k, 1) + c * phi(i, j, k, 1) +
-                  cm1 * phi(i - 1, j, k, 1)) *
-                 idx[0];
-            wx = (cp1 * phi(i + 1, j, k, 2) + c * phi(i, j, k, 2) +
-                  cm1 * phi(i - 1, j, k, 2)) *
-                 idx[0];
-
-            cp1 = Stencil::c10;
-            c = Stencil::c11;
-            cm1 = Stencil::c12;
-
-            uy = (cp1 * phi(i, j + 1, k, 0) + c * phi(i, j, k, 0) +
-                  cm1 * phi(i, j - 1, k, 0)) *
-                 idx[1];
-            wy = (cp1 * phi(i, j + 1, k, 2) + c * phi(i, j, k, 2) +
-                  cm1 * phi(i, j - 1, k, 2)) *
-                 idx[1];
-
-            cp1 = Stencil::c20;
-            c = Stencil::c21;
-            cm1 = Stencil::c22;
-
-            uz = (cp1 * phi(i, j, k + 1, 0) + c * phi(i, j, k, 0) +
-                  cm1 * phi(i, j, k - 1, 0)) *
-                 idx[2];
-            vz = (cp1 * phi(i, j, k + 1, 1) + c * phi(i, j, k, 1) +
-                  cm1 * phi(i, j, k - 1, 1)) *
-                 idx[2];
-
-            vort(i, j, k, 0) = wy - vz;
-            vort(i, j, k, 1) = uz - wx;
-            vort(i, j, k, 2) = vx - uy;
-        });
-    }
-
     void applyFused(const int lev) const
     {
         const auto& geom = m_phi.repo().mesh().Geom(lev);
         const auto& idx = geom.InvCellSizeArray();
         const auto dlo = geom.Domain().smallEnd();
         const auto dhi = geom.Domain().bigEnd();
-        const amrex::GpuArray<int, AMREX_SPACEDIM> periodic{
-            geom.isPeriodic(0) ? 1 : 0,
-            geom.isPeriodic(1) ? 1 : 0,
-            geom.isPeriodic(2) ? 1 : 0};
 
         auto& out_mf = m_vort(lev);
         auto const& in_arrs = m_phi(lev).const_arrays();
@@ -91,39 +33,45 @@ struct Vorticity
         amrex::ParallelFor(
             out_mf, amrex::IntVect(0),
             [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
-                const auto sc = stencil::pick_stencil(
-                    i, j, k, dlo, dhi, periodic);
+                if (!Stencil::applies_to(i, j, k, dlo, dhi)) {
+                    return;
+                }
                 auto const& phi = in_arrs[nbx];
                 auto const& vort = out_arrs[nbx];
                 const amrex::Real vx =
-                    (sc.c00 * phi(i + 1, j, k, 1) + sc.c01 * phi(i, j, k, 1) +
-                     sc.c02 * phi(i - 1, j, k, 1)) *
+                    (Stencil::c00 * phi(i + 1, j, k, 1) +
+                     Stencil::c01 * phi(i, j, k, 1) +
+                     Stencil::c02 * phi(i - 1, j, k, 1)) *
                     idx[0];
                 const amrex::Real wx =
-                    (sc.c00 * phi(i + 1, j, k, 2) + sc.c01 * phi(i, j, k, 2) +
-                     sc.c02 * phi(i - 1, j, k, 2)) *
+                    (Stencil::c00 * phi(i + 1, j, k, 2) +
+                     Stencil::c01 * phi(i, j, k, 2) +
+                     Stencil::c02 * phi(i - 1, j, k, 2)) *
                     idx[0];
                 const amrex::Real uy =
-                    (sc.c10 * phi(i, j + 1, k, 0) + sc.c11 * phi(i, j, k, 0) +
-                     sc.c12 * phi(i, j - 1, k, 0)) *
+                    (Stencil::c10 * phi(i, j + 1, k, 0) +
+                     Stencil::c11 * phi(i, j, k, 0) +
+                     Stencil::c12 * phi(i, j - 1, k, 0)) *
                     idx[1];
                 const amrex::Real wy =
-                    (sc.c10 * phi(i, j + 1, k, 2) + sc.c11 * phi(i, j, k, 2) +
-                     sc.c12 * phi(i, j - 1, k, 2)) *
+                    (Stencil::c10 * phi(i, j + 1, k, 2) +
+                     Stencil::c11 * phi(i, j, k, 2) +
+                     Stencil::c12 * phi(i, j - 1, k, 2)) *
                     idx[1];
                 const amrex::Real uz =
-                    (sc.c20 * phi(i, j, k + 1, 0) + sc.c21 * phi(i, j, k, 0) +
-                     sc.c22 * phi(i, j, k - 1, 0)) *
+                    (Stencil::c20 * phi(i, j, k + 1, 0) +
+                     Stencil::c21 * phi(i, j, k, 0) +
+                     Stencil::c22 * phi(i, j, k - 1, 0)) *
                     idx[2];
                 const amrex::Real vz =
-                    (sc.c20 * phi(i, j, k + 1, 1) + sc.c21 * phi(i, j, k, 1) +
-                     sc.c22 * phi(i, j, k - 1, 1)) *
+                    (Stencil::c20 * phi(i, j, k + 1, 1) +
+                     Stencil::c21 * phi(i, j, k, 1) +
+                     Stencil::c22 * phi(i, j, k - 1, 1)) *
                     idx[2];
                 vort(i, j, k, 0) = wy - vz;
                 vort(i, j, k, 1) = uz - wx;
                 vort(i, j, k, 2) = vx - uy;
             });
-        amrex::Gpu::streamSynchronize();
     }
 
     FTypeOut& m_vort;

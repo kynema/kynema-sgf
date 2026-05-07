@@ -19,58 +19,12 @@ struct Laplacian
     }
 
     template <typename Stencil>
-    void apply(const int lev, const amrex::MFIter& mfi) const
-    {
-        const int ncomp = m_phi.num_comp();
-        const auto& geom = m_phi.repo().mesh().Geom(lev);
-        const auto& idx = geom.InvCellSizeArray();
-        const auto& lapphi = m_lapphi(lev).array(mfi);
-        const auto& phi = m_phi(lev).const_array(mfi);
-
-        const auto& bx_in = mfi.tilebox();
-        const auto& bx = Stencil::box(bx_in, geom);
-        if (bx.isEmpty()) {
-            return;
-        }
-
-        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-            for (int icomp = 0; icomp < ncomp; icomp++) {
-                amrex::Real sp1 = Stencil::s00;
-                amrex::Real s = Stencil::s01;
-                amrex::Real sm1 = Stencil::s02;
-                amrex::Real d2phidx2 =
-                    (sp1 * phi(i + 1, j, k, 0) + s * phi(i, j, k, 0) +
-                     sm1 * phi(i - 1, j, k, 0)) *
-                    idx[0] * idx[0];
-                sp1 = Stencil::s10;
-                s = Stencil::s11;
-                sm1 = Stencil::s12;
-                amrex::Real d2phidy2 =
-                    (sp1 * phi(i, j + 1, k, 1) + s * phi(i, j, k, 1) +
-                     sm1 * phi(i, j - 1, k, 1)) *
-                    idx[1] * idx[1];
-                sp1 = Stencil::s20;
-                s = Stencil::s21;
-                sm1 = Stencil::s22;
-                amrex::Real d2phidz2 =
-                    (sp1 * phi(i, j, k + 1, 2) + s * phi(i, j, k, 2) +
-                     sm1 * phi(i, j, k - 1, 2)) *
-                    idx[2] * idx[2];
-                lapphi(i, j, k) = d2phidx2 + d2phidy2 + d2phidz2;
-            }
-        });
-    }
-
     void applyFused(const int lev) const
     {
         const auto& geom = m_phi.repo().mesh().Geom(lev);
         const auto& idx = geom.InvCellSizeArray();
         const auto dlo = geom.Domain().smallEnd();
         const auto dhi = geom.Domain().bigEnd();
-        const amrex::GpuArray<int, AMREX_SPACEDIM> periodic{
-            geom.isPeriodic(0) ? 1 : 0,
-            geom.isPeriodic(1) ? 1 : 0,
-            geom.isPeriodic(2) ? 1 : 0};
 
         auto& out_mf = m_lapphi(lev);
         auto const& in_arrs = m_phi(lev).const_arrays();
@@ -79,25 +33,28 @@ struct Laplacian
         amrex::ParallelFor(
             out_mf, amrex::IntVect(0),
             [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
-                const auto sc = stencil::pick_stencil(
-                    i, j, k, dlo, dhi, periodic);
+                if (!Stencil::applies_to(i, j, k, dlo, dhi)) {
+                    return;
+                }
                 auto const& phi = in_arrs[nbx];
                 auto const& lapphi = out_arrs[nbx];
                 const amrex::Real d2phidx2 =
-                    (sc.s00 * phi(i + 1, j, k, 0) + sc.s01 * phi(i, j, k, 0) +
-                     sc.s02 * phi(i - 1, j, k, 0)) *
+                    (Stencil::s00 * phi(i + 1, j, k, 0) +
+                     Stencil::s01 * phi(i, j, k, 0) +
+                     Stencil::s02 * phi(i - 1, j, k, 0)) *
                     idx[0] * idx[0];
                 const amrex::Real d2phidy2 =
-                    (sc.s10 * phi(i, j + 1, k, 1) + sc.s11 * phi(i, j, k, 1) +
-                     sc.s12 * phi(i, j - 1, k, 1)) *
+                    (Stencil::s10 * phi(i, j + 1, k, 1) +
+                     Stencil::s11 * phi(i, j, k, 1) +
+                     Stencil::s12 * phi(i, j - 1, k, 1)) *
                     idx[1] * idx[1];
                 const amrex::Real d2phidz2 =
-                    (sc.s20 * phi(i, j, k + 1, 2) + sc.s21 * phi(i, j, k, 2) +
-                     sc.s22 * phi(i, j, k - 1, 2)) *
+                    (Stencil::s20 * phi(i, j, k + 1, 2) +
+                     Stencil::s21 * phi(i, j, k, 2) +
+                     Stencil::s22 * phi(i, j, k - 1, 2)) *
                     idx[2] * idx[2];
                 lapphi(i, j, k) = d2phidx2 + d2phidy2 + d2phidz2;
             });
-        amrex::Gpu::streamSynchronize();
     }
 
     FTypeOut& m_lapphi;
