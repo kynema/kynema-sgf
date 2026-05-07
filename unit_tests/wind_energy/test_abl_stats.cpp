@@ -195,6 +195,7 @@ TEST_F(ABLMeshTest, stats_energy_budget)
 
     // Initialize turbulence model
     sim().create_turbulence_model();
+    sim().turbulence_model().post_init_actions();
 
     // Initialize ABL velocity
     const int lev = 0;

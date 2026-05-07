@@ -2,6 +2,7 @@
 #define AMDNOTHERM_H
 
 #include <string>
+#include "src/core/ScratchField.H"
 #include "src/incflo_enums.H"
 #include "src/turbulence/TurbModelBase.H"
 #include "src/core/FieldRepo.H"
@@ -46,12 +47,20 @@ public:
     //! No post advance work for this model
     void post_advance_work() override {};
 
+    //! Actions to perform post initialization
+    void post_init_actions() override;
+
+    //! Actions to perform post regrid
+    void post_regrid_actions() override;
+
 private:
     //! Poincare coefficient (default value set for 2nd order AMR-wind
     //! discretization)
     amrex::Real m_C{0.333333333333333_rt};
     const Field& m_vel;
     const Field& m_rho;
+
+    std::unique_ptr<ScratchField> m_gradVel;
 };
 
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real amd_base_muvel(

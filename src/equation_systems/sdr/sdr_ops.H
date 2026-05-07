@@ -1,6 +1,7 @@
 #ifndef SDR_OPS_H
 #define SDR_OPS_H
 
+#include "src/core/ScratchField.H"
 #include "src/equation_systems/sdr/SDR.H"
 #include "src/core/field_ops.H"
 #include "AMReX_REAL.H"
@@ -99,6 +100,8 @@ struct DiffusionOp<SDR, Scheme> : public DiffSolverIface<typename SDR::MLDiffOp>
                 this->m_pdefields.field, amrex::Orientation::high));
 
         m_lhs_src_term.setVal(0.0_rt);
+
+        m_lhs_total = fields.repo.create_scratch_field(1, 1);
     }
 
     //! Computes the diffusion term that goes in the RHS
@@ -122,16 +125,17 @@ struct DiffusionOp<SDR, Scheme> : public DiffSolverIface<typename SDR::MLDiffOp>
 
         const int nlevels = repo.num_active_levels();
         auto& density = m_density.state(fstate);
-        auto lhs_total = repo.create_scratch_field(1, 1);
         field_ops::lincomb(
-            *lhs_total, 1.0_rt, m_lhs_src_term, 0, 1.0_rt, density, 0, 0, 1, 1);
+            *m_lhs_total, 1.0_rt, m_lhs_src_term, 0, 1.0_rt, density, 0, 0, 1,
+            1);
 
         for (int lev = 0; lev < nlevels; ++lev) {
-            linop.setACoeffs(lev, (*lhs_total)(lev));
+            linop.setACoeffs(lev, (*m_lhs_total)(lev));
         }
     }
 
     Field& m_lhs_src_term;
+    std::unique_ptr<ScratchField> m_lhs_total;
 };
 
 } // namespace kynema_sgf::pde
