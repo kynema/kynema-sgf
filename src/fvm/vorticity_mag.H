@@ -41,36 +41,30 @@ struct VorticityMag
                 }
                 auto const& phi = in_arrs[nbx];
                 auto const& vortmagphi = out_arrs[nbx];
-                const amrex::Real vx =
-                    (Stencil::c00 * phi(i + 1, j, k, 1) +
-                     Stencil::c01 * phi(i, j, k, 1) +
-                     Stencil::c02 * phi(i - 1, j, k, 1)) *
-                    idx[0];
-                const amrex::Real wx =
-                    (Stencil::c00 * phi(i + 1, j, k, 2) +
-                     Stencil::c01 * phi(i, j, k, 2) +
-                     Stencil::c02 * phi(i - 1, j, k, 2)) *
-                    idx[0];
-                const amrex::Real uy =
-                    (Stencil::c10 * phi(i, j + 1, k, 0) +
-                     Stencil::c11 * phi(i, j, k, 0) +
-                     Stencil::c12 * phi(i, j - 1, k, 0)) *
-                    idx[1];
-                const amrex::Real wy =
-                    (Stencil::c10 * phi(i, j + 1, k, 2) +
-                     Stencil::c11 * phi(i, j, k, 2) +
-                     Stencil::c12 * phi(i, j - 1, k, 2)) *
-                    idx[1];
-                const amrex::Real uz =
-                    (Stencil::c20 * phi(i, j, k + 1, 0) +
-                     Stencil::c21 * phi(i, j, k, 0) +
-                     Stencil::c22 * phi(i, j, k - 1, 0)) *
-                    idx[2];
-                const amrex::Real vz =
-                    (Stencil::c20 * phi(i, j, k + 1, 1) +
-                     Stencil::c21 * phi(i, j, k, 1) +
-                     Stencil::c22 * phi(i, j, k - 1, 1)) *
-                    idx[2];
+                const amrex::Real vx = (Stencil::c00 * phi(i + 1, j, k, 1) +
+                                        Stencil::c01 * phi(i, j, k, 1) +
+                                        Stencil::c02 * phi(i - 1, j, k, 1)) *
+                                       idx[0];
+                const amrex::Real wx = (Stencil::c00 * phi(i + 1, j, k, 2) +
+                                        Stencil::c01 * phi(i, j, k, 2) +
+                                        Stencil::c02 * phi(i - 1, j, k, 2)) *
+                                       idx[0];
+                const amrex::Real uy = (Stencil::c10 * phi(i, j + 1, k, 0) +
+                                        Stencil::c11 * phi(i, j, k, 0) +
+                                        Stencil::c12 * phi(i, j - 1, k, 0)) *
+                                       idx[1];
+                const amrex::Real wy = (Stencil::c10 * phi(i, j + 1, k, 2) +
+                                        Stencil::c11 * phi(i, j, k, 2) +
+                                        Stencil::c12 * phi(i, j - 1, k, 2)) *
+                                       idx[1];
+                const amrex::Real uz = (Stencil::c20 * phi(i, j, k + 1, 0) +
+                                        Stencil::c21 * phi(i, j, k, 0) +
+                                        Stencil::c22 * phi(i, j, k - 1, 0)) *
+                                       idx[2];
+                const amrex::Real vz = (Stencil::c20 * phi(i, j, k + 1, 1) +
+                                        Stencil::c21 * phi(i, j, k, 1) +
+                                        Stencil::c22 * phi(i, j, k - 1, 1)) *
+                                       idx[2];
                 vortmagphi(i, j, k) = std::sqrt(
                     utils::powi(uy - vx, 2) + utils::powi(vz - wy, 2) +
                     utils::powi(wx - uz, 2));

@@ -43,60 +43,50 @@ struct Qcriterion
                 }
                 auto const& phi = in_arrs[nbx];
                 auto const& qcritphi = out_arrs[nbx];
-                const amrex::Real ux =
-                    (Stencil::c00 * phi(i + 1, j, k, 0) +
-                     Stencil::c01 * phi(i, j, k, 0) +
-                     Stencil::c02 * phi(i - 1, j, k, 0)) *
-                    idx[0];
-                const amrex::Real vx =
-                    (Stencil::c00 * phi(i + 1, j, k, 1) +
-                     Stencil::c01 * phi(i, j, k, 1) +
-                     Stencil::c02 * phi(i - 1, j, k, 1)) *
-                    idx[0];
-                const amrex::Real wx =
-                    (Stencil::c00 * phi(i + 1, j, k, 2) +
-                     Stencil::c01 * phi(i, j, k, 2) +
-                     Stencil::c02 * phi(i - 1, j, k, 2)) *
-                    idx[0];
-                const amrex::Real uy =
-                    (Stencil::c10 * phi(i, j + 1, k, 0) +
-                     Stencil::c11 * phi(i, j, k, 0) +
-                     Stencil::c12 * phi(i, j - 1, k, 0)) *
-                    idx[1];
-                const amrex::Real vy =
-                    (Stencil::c10 * phi(i, j + 1, k, 1) +
-                     Stencil::c11 * phi(i, j, k, 1) +
-                     Stencil::c12 * phi(i, j - 1, k, 1)) *
-                    idx[1];
-                const amrex::Real wy =
-                    (Stencil::c10 * phi(i, j + 1, k, 2) +
-                     Stencil::c11 * phi(i, j, k, 2) +
-                     Stencil::c12 * phi(i, j - 1, k, 2)) *
-                    idx[1];
-                const amrex::Real uz =
-                    (Stencil::c20 * phi(i, j, k + 1, 0) +
-                     Stencil::c21 * phi(i, j, k, 0) +
-                     Stencil::c22 * phi(i, j, k - 1, 0)) *
-                    idx[2];
-                const amrex::Real vz =
-                    (Stencil::c20 * phi(i, j, k + 1, 1) +
-                     Stencil::c21 * phi(i, j, k, 1) +
-                     Stencil::c22 * phi(i, j, k - 1, 1)) *
-                    idx[2];
-                const amrex::Real wz =
-                    (Stencil::c20 * phi(i, j, k + 1, 2) +
-                     Stencil::c21 * phi(i, j, k, 2) +
-                     Stencil::c22 * phi(i, j, k - 1, 2)) *
-                    idx[2];
-                const amrex::Real S2 =
-                    utils::powi(ux, 2) + utils::powi(vy, 2) +
-                    utils::powi(wz, 2) + (0.5_rt * utils::powi(uy + vx, 2)) +
-                    (0.5_rt * utils::powi(vz + wy, 2)) +
-                    (0.5_rt * utils::powi(wx + uz, 2));
-                const amrex::Real W2 =
-                    (0.5_rt * utils::powi(uy - vx, 2)) +
-                    (0.5_rt * utils::powi(vz - wy, 2)) +
-                    (0.5_rt * utils::powi(wx - uz, 2));
+                const amrex::Real ux = (Stencil::c00 * phi(i + 1, j, k, 0) +
+                                        Stencil::c01 * phi(i, j, k, 0) +
+                                        Stencil::c02 * phi(i - 1, j, k, 0)) *
+                                       idx[0];
+                const amrex::Real vx = (Stencil::c00 * phi(i + 1, j, k, 1) +
+                                        Stencil::c01 * phi(i, j, k, 1) +
+                                        Stencil::c02 * phi(i - 1, j, k, 1)) *
+                                       idx[0];
+                const amrex::Real wx = (Stencil::c00 * phi(i + 1, j, k, 2) +
+                                        Stencil::c01 * phi(i, j, k, 2) +
+                                        Stencil::c02 * phi(i - 1, j, k, 2)) *
+                                       idx[0];
+                const amrex::Real uy = (Stencil::c10 * phi(i, j + 1, k, 0) +
+                                        Stencil::c11 * phi(i, j, k, 0) +
+                                        Stencil::c12 * phi(i, j - 1, k, 0)) *
+                                       idx[1];
+                const amrex::Real vy = (Stencil::c10 * phi(i, j + 1, k, 1) +
+                                        Stencil::c11 * phi(i, j, k, 1) +
+                                        Stencil::c12 * phi(i, j - 1, k, 1)) *
+                                       idx[1];
+                const amrex::Real wy = (Stencil::c10 * phi(i, j + 1, k, 2) +
+                                        Stencil::c11 * phi(i, j, k, 2) +
+                                        Stencil::c12 * phi(i, j - 1, k, 2)) *
+                                       idx[1];
+                const amrex::Real uz = (Stencil::c20 * phi(i, j, k + 1, 0) +
+                                        Stencil::c21 * phi(i, j, k, 0) +
+                                        Stencil::c22 * phi(i, j, k - 1, 0)) *
+                                       idx[2];
+                const amrex::Real vz = (Stencil::c20 * phi(i, j, k + 1, 1) +
+                                        Stencil::c21 * phi(i, j, k, 1) +
+                                        Stencil::c22 * phi(i, j, k - 1, 1)) *
+                                       idx[2];
+                const amrex::Real wz = (Stencil::c20 * phi(i, j, k + 1, 2) +
+                                        Stencil::c21 * phi(i, j, k, 2) +
+                                        Stencil::c22 * phi(i, j, k - 1, 2)) *
+                                       idx[2];
+                const amrex::Real S2 = utils::powi(ux, 2) + utils::powi(vy, 2) +
+                                       utils::powi(wz, 2) +
+                                       (0.5_rt * utils::powi(uy + vx, 2)) +
+                                       (0.5_rt * utils::powi(vz + wy, 2)) +
+                                       (0.5_rt * utils::powi(wx + uz, 2));
+                const amrex::Real W2 = (0.5_rt * utils::powi(uy - vx, 2)) +
+                                       (0.5_rt * utils::powi(vz - wy, 2)) +
+                                       (0.5_rt * utils::powi(wx - uz, 2));
                 if (nondim) {
                     qcritphi(i, j, k) =
                         0.5_rt *
