@@ -20,11 +20,7 @@ public:
     ~BurggrafFlowForcing() override;
 
     void operator()(
-        int lev,
-        const amrex::MFIter& mfi,
-        const amrex::Box& bx,
-        FieldState fstate,
-        const amrex::Array4<amrex::Real>& src_term) const override;
+        int lev, FieldState fstate, amrex::MultiFab& src_term) const override;
 
 private:
     const Field& m_bf_src;

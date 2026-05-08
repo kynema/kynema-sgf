@@ -66,13 +66,8 @@ void BodyForce::read_bforce_profile(const std::string& filename)
 }
 
 void BodyForce::operator()(
-    const int lev,
-    const amrex::MFIter& /*mfi*/,
-    const amrex::Box& bx,
-    const FieldState /*fstate*/,
-    const amrex::Array4<amrex::Real>& src_term) const
+    const int lev, const FieldState /*fstate*/, amrex::MultiFab& src_term) const
 {
-
     const auto& problo = m_mesh.Geom(lev).ProbLoArray();
     const auto& dx = m_mesh.Geom(lev).CellSizeArray();
 
@@ -82,14 +77,18 @@ void BodyForce::operator()(
 
     if (m_type == "height_varying" || m_type == "height-varying") {
 
-        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-            amrex::IntVect iv(i, j, k);
-            const amrex::Real ht = problo[2] + ((iv[2] + 0.5_rt) * dx[2]);
-            const amrex::Real ftheta = kynema_sgf::interp::linear(
-                force_ht, force_ht_end, force_theta, ht);
+        auto const& src_arrs = src_term.arrays();
 
-            src_term(i, j, k, 0) += ftheta;
-        });
+        amrex::ParallelFor(
+            src_term, amrex::IntVect(0), 1,
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+                amrex::IntVect iv(i, j, k);
+                const amrex::Real ht = problo[2] + ((iv[2] + 0.5_rt) * dx[2]);
+                const amrex::Real ftheta = kynema_sgf::interp::linear(
+                    force_ht, force_ht_end, force_theta, ht);
+
+                src_arrs[nbx](i, j, k, 0) += ftheta;
+            });
     }
 }
 

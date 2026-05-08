@@ -3,6 +3,7 @@
 
 #include "src/core/FieldRepo.H"
 #include "src/equation_systems/icns/MomentumSource.H"
+#include "AMReX_MultiFab.H"
 
 namespace kynema_sgf::pde::icns::mms {
 
@@ -16,11 +17,7 @@ public:
     ~MMSForcing() override = default;
 
     void operator()(
-        const int lev,
-        const amrex::MFIter& mfi,
-        const amrex::Box& bx,
-        const FieldState fstate,
-        const amrex::Array4<amrex::Real>& src_term) const override;
+        int lev, FieldState fstate, amrex::MultiFab& src_term) const override;
 
 private:
     const Field& m_mms_vel_source;

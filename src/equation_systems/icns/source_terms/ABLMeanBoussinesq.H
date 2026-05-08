@@ -28,11 +28,7 @@ public:
     ~ABLMeanBoussinesq() override;
 
     void operator()(
-        int lev,
-        const amrex::MFIter& mfi,
-        const amrex::Box& bx,
-        FieldState fstate,
-        const amrex::Array4<amrex::Real>& src_term) const override;
+        int lev, FieldState fstate, amrex::MultiFab& src_term) const override;
 
     void mean_temperature_init(const FieldPlaneAveraging& /*tavg*/);
 
@@ -40,6 +36,7 @@ public:
 
 private:
     const amrex::AmrCore& m_mesh;
+    FieldRepo& m_repo;
 
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 
@@ -52,6 +49,9 @@ private:
     int m_axis{2};
 
     bool m_const_profile{false};
+
+    mutable std::unique_ptr<ScratchField> m_beta_scratch;
+    mutable std::unique_ptr<ScratchField> m_ref_theta_scratch;
 
     //! Read a temperature profile from a text file
     void read_temperature_profile(const std::string& profile_file_name);
