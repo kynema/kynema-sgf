@@ -132,7 +132,9 @@ void BodyForce::operator()(
         amrex::ParallelFor(
             src_term, amrex::IntVect(0), AMREX_SPACEDIM,
             [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
-                if (n >= 2) return;
+                if (n >= 2) {
+                    return;
+                }
                 amrex::IntVect iv(i, j, k);
                 const amrex::Real ht = problo[2] + ((iv[2] + 0.5_rt) * dx[2]);
                 const amrex::Real val =

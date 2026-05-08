@@ -280,7 +280,9 @@ void ABLMesoForcingMom::operator()(
     amrex::ParallelFor(
         src_term, amrex::IntVect(0), AMREX_SPACEDIM,
         [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
-            if (n >= 2) return;
+            if (n >= 2) {
+                return;
+            }
             amrex::IntVect iv(i, j, k);
             const amrex::Real ht =
                 problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
