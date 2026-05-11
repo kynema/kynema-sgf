@@ -1,4 +1,5 @@
 #include <cmath>
+#include "src/transport_models/TransportModel.H"
 #include "src/turbulence/LES/Kosovic.H"
 #include "src/turbulence/TurbModelDefs.H"
 #include "src/fvm/nonLinearSum.H"
@@ -70,6 +71,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
     const auto& repo = mu_turb.repo();
     const auto& vel = m_vel.state(fstate);
     const auto& den = m_rho.state(fstate);
+    const auto& ref_theta = *(this->m_sim.transport_model().ref_theta());
 
     auto gradT = (this->m_sim.repo()).create_scratch_field(3, 0);
     fvm::gradient(*gradT, m_theta.state(fstate));
@@ -136,6 +138,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                 ? MOData::calc_psi_m(
                       1.5_rt * dz / monin_obukhov_length, m_beta_m, m_gamma_m)
                 : 0.0_rt;
+        auto ref_theta_arrs = ref_theta(lev).arrays();
         amrex::ParallelFor(
             mu_turb(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real rho = rho_arrs[nbx](i, j, k);
@@ -167,11 +170,12 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                 const amrex::Real blankTerrain =
                     (has_terrain) ? 1 - blank_arrs[nbx](i, j, k, 0) : 1.0_rt;
                 amrex::Real mut = mu_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
+                const amrex::Real T0 = ref_theta_arrs[nbx](i, j, k);
                 amrex::Real stratification =
                     -(gradT_arrs[nbx](i, j, k, 0) * gravity[0] +
                       gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
                       gradT_arrs[nbx](i, j, k, 2) * gravity[2]) /
-                    300.0_rt;
+                    T0;
                 amrex::Real non_linear_coeff = 1.0_rt;
 
                 if (stratification > 1.0e-10_rt) {
