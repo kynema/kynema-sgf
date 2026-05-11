@@ -89,6 +89,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
     const amrex::Real locSurfaceRANSExp = m_surfaceRANSExp;
     const amrex::Real locSurfaceFactor = m_surfaceFactor;
     const amrex::Real locC1 = m_C1;
+    const amrex::Real tol = constants::TIGHT_TOL;
 
     const auto& geom_vec = repo.mesh().Geom();
     const bool has_terrain =
@@ -183,16 +184,13 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                 amrex::Real stratification = 1.0_rt;
                 amrex::Real non_linear_coeff = 1.0_rt;
 
-                if (stratification_sensor > constants::TIGHT_TOL) {
+                if (stratification_sensor > tol) {
                     // stable
-                    non_linear_coeff = (mut - 3.0_rt * stratification_sensor <
-                                        constants::TIGHT_TOL)
-                                           ? 0.0_rt
-                                           : 1.0_rt;
+                    non_linear_coeff =
+                        (mut - 3.0_rt * stratification_sensor < tol) ? 0.0_rt
+                                                                     : 1.0_rt;
                     stratification = std::sqrt(
-                        std::max(
-                            constants::TIGHT_TOL,
-                            mut - 3.0_rt * stratification_sensor));
+                        std::max(tol, mut - 3.0_rt * stratification_sensor));
                 } else {
                     stratification = std::sqrt(mut);
                 }
