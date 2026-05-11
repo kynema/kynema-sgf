@@ -1,5 +1,4 @@
 #include <cmath>
-#include "src/transport_models/TransportModel.H"
 #include "src/turbulence/LES/Kosovic.H"
 #include "src/turbulence/TurbModelDefs.H"
 #include "src/fvm/nonLinearSum.H"
@@ -72,7 +71,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
     const auto& repo = mu_turb.repo();
     const auto& vel = m_vel.state(fstate);
     const auto& den = m_rho.state(fstate);
-    const auto& ref_theta = *(this->m_sim.transport_model().ref_theta());
+    const auto ref_theta = (this->m_transport).ref_theta();
 
     auto gradT = (this->m_sim.repo()).create_scratch_field(3, 0);
     fvm::gradient(*gradT, m_theta.state(fstate));
@@ -142,7 +141,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                 ? MOData::calc_psi_m(
                       1.5_rt * dz / monin_obukhov_length, m_beta_m, m_gamma_m)
                 : 0.0_rt;
-        auto ref_theta_arrs = ref_theta(lev).arrays();
+        const auto& ref_theta_arrs = (*ref_theta)(lev).const_arrays();
         amrex::ParallelFor(
             mu_turb(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real rho = rho_arrs[nbx](i, j, k);
@@ -165,17 +164,18 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                         : (k + 1) * dz;
                 const amrex::Real ransL =
                     utils::powi(0.41_rt * wall_distance / phiM, 2);
-                amrex::Real turnOff = std::exp(-x3 / locLESTurnOff);
-                amrex::Real viscosityScale =
+                const amrex::Real turnOff = std::exp(-x3 / locLESTurnOff);
+                const amrex::Real viscosityScale =
                     (locSurfaceFactor *
                      (std::pow(1.0_rt - fmu, locSurfaceRANSExp) * smag_factor +
                       std::pow(fmu, locSurfaceRANSExp) * ransL)) +
                     ((1.0_rt - locSurfaceFactor) * smag_factor);
                 const amrex::Real blankTerrain =
                     (has_terrain) ? 1 - blank_arrs[nbx](i, j, k, 0) : 1.0_rt;
-                amrex::Real mut = mu_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
+                const amrex::Real mut =
+                    mu_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
                 const amrex::Real T0 = ref_theta_arrs[nbx](i, j, k);
-                amrex::Real stratification_sensor =
+                const amrex::Real stratification_sensor =
                     -(gradT_arrs[nbx](i, j, k, 0) * gravity[0] +
                       gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
                       gradT_arrs[nbx](i, j, k, 2) * gravity[2]) /
@@ -220,13 +220,14 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                     std::sqrt((uxm1 * uxm1) + (uym1 * uym1));
                 const amrex::Real dMdz =
                     amrex::max<amrex::Real>((m0 - mm1) / dz, dMdz_min);
-                amrex::Real mut_loglaw = 2.0_rt * ustar * ustar * rho / dMdz;
+                const amrex::Real mut_loglaw =
+                    2.0_rt * ustar * ustar * rho / dMdz;
                 const amrex::Real drag =
                     (has_terrain) ? drag_arrs[nbx](i, j, k, 0) : 0.0_rt;
                 mu_arrs[nbx](i, j, k) =
                     (mu_arrs[nbx](i, j, k) * (1.0_rt - drag)) +
                     (drag * mut_loglaw);
-                amrex::Real stressScale =
+                const amrex::Real stressScale =
                     (locSurfaceFactor *
                      (std::pow(1.0_rt - fmu, locSurfaceRANSExp) * smag_factor *
                           0.25_rt * locC1 +
