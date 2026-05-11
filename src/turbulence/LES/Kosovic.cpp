@@ -49,6 +49,7 @@ Kosovic<Transport>::Kosovic(CFDSim& sim)
         this->m_sim.io_manager().register_io_var("divNij");
     }
     pp.query("LESOff", m_LESTurnOff);
+    pp.query("muCoeff", m_muCoeff);
     amrex::ParmParse pp_abl("ABL");
     pp_abl.query("wall_het_model", m_wall_het_model);
     pp_abl.query("monin_obukhov_length", m_monin_obukhov_length);
@@ -246,7 +247,7 @@ void Kosovic<Transport>::update_alphaeff(Field& alphaeff)
     auto lam_alpha = (this->m_transport).alpha();
     auto& mu_turb = this->m_mu_turb;
     auto& repo = mu_turb.repo();
-    const amrex::Real muCoeff = (m_monin_obukhov_length < 0) ? 3.0_rt : 1.0_rt;
+    const amrex::Real muCoeff = m_muCoeff;
     const int nlevels = repo.num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& muturb_arrs = mu_turb(lev).const_arrays();
