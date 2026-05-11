@@ -172,20 +172,23 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                     (has_terrain) ? 1 - blank_arrs[nbx](i, j, k, 0) : 1.0_rt;
                 amrex::Real mut = mu_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
                 const amrex::Real T0 = ref_theta_arrs[nbx](i, j, k);
-                amrex::Real stratification =
+                amrex::Real stratification_sensor =
                     -(gradT_arrs[nbx](i, j, k, 0) * gravity[0] +
                       gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
                       gradT_arrs[nbx](i, j, k, 2) * gravity[2]) /
                     T0;
+                amrex::Real stratification = 1.0_rt;
                 amrex::Real non_linear_coeff = 1.0_rt;
 
-                if (stratification > 1.0e-10_rt) {
+                if (stratification_sensor > 1.0e-10_rt) {
                     // stable
                     non_linear_coeff =
-                        (mut - 3.0_rt * stratification < 1.0e-10_rt) ? 0.0_rt
-                                                                     : 1.0_rt;
+                        (mut - 3.0_rt * stratification_sensor < 1.0e-10_rt)
+                            ? 0.0_rt
+                            : 1.0_rt;
                     stratification = std::sqrt(
-                        std::max(1.0e-10_rt, mut - 3.0_rt * stratification));
+                        std::max(
+                            1.0e-10_rt, mut - 3.0_rt * stratification_sensor));
                 } else {
                     stratification = std::sqrt(mut);
                 }
