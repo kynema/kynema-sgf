@@ -59,7 +59,7 @@ private:
     amrex::Real m_surfaceFactor{0.0_rt};
     amrex::Real m_switchLoc{24.0_rt};
     amrex::Real m_surfaceRANSExp{2.0_rt};
-    amrex::Real m_LESTurnOff{1.0e15_rt};
+    amrex::Real m_LESTurnOff{constants::LARGE_NUM};
     amrex::Real m_muCoeff{3.0_rt};
     bool m_writeTerms{false};
     const Field& m_vel;

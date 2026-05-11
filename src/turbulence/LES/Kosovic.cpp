@@ -79,6 +79,9 @@ void Kosovic<Transport>::update_turbulent_viscosity(
     const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> gravity{
         m_gravity[0], m_gravity[1], m_gravity[2]};
 
+    const amrex::Real z0_min = 1.0e-4_rt;
+    const amrex::Real dMdz_min = 0.01_rt;
+
     const auto& geom_vec = repo.mesh().Geom();
     const amrex::Real Cs_sqr = this->m_Cs * this->m_Cs;
     const bool has_terrain =
@@ -180,15 +183,16 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                 amrex::Real stratification = 1.0_rt;
                 amrex::Real non_linear_coeff = 1.0_rt;
 
-                if (stratification_sensor > 1.0e-10_rt) {
+                if (stratification_sensor > constants::TIGHT_TOL) {
                     // stable
-                    non_linear_coeff =
-                        (mut - 3.0_rt * stratification_sensor < 1.0e-10_rt)
-                            ? 0.0_rt
-                            : 1.0_rt;
+                    non_linear_coeff = (mut - 3.0_rt * stratification_sensor <
+                                        constants::TIGHT_TOL)
+                                           ? 0.0_rt
+                                           : 1.0_rt;
                     stratification = std::sqrt(
                         std::max(
-                            1.0e-10_rt, mut - 3.0_rt * stratification_sensor));
+                            constants::TIGHT_TOL,
+                            mut - 3.0_rt * stratification_sensor));
                 } else {
                     stratification = std::sqrt(mut);
                 }
@@ -201,7 +205,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                 const amrex::Real m = std::sqrt((ux * ux) + (uy * uy));
                 const amrex::Real local_z0 =
                     (has_terrain) ? amrex::max<amrex::Real>(
-                                        z0_arrs[nbx](i, j, k, 0), 1.0e-4_rt)
+                                        z0_arrs[nbx](i, j, k, 0), z0_min)
                                   : surface_roughness_z0;
                 // ustar from neighbor cell above
                 const amrex::Real ustar =
@@ -215,7 +219,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                 const amrex::Real mm1 =
                     std::sqrt((uxm1 * uxm1) + (uym1 * uym1));
                 const amrex::Real dMdz =
-                    amrex::max<amrex::Real>((m0 - mm1) / dz, 0.01_rt);
+                    amrex::max<amrex::Real>((m0 - mm1) / dz, dMdz_min);
                 amrex::Real mut_loglaw = 2.0_rt * ustar * ustar * rho / dMdz;
                 const amrex::Real drag =
                     (has_terrain) ? drag_arrs[nbx](i, j, k, 0) : 0.0_rt;
