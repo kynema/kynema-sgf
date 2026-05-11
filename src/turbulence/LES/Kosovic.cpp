@@ -79,11 +79,19 @@ void Kosovic<Transport>::update_turbulent_viscosity(
     const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> gravity{
         m_gravity[0], m_gravity[1], m_gravity[2]};
 
+    const amrex::Real Cs_sqr = this->m_Cs * this->m_Cs;
+    const amrex::Real monin_obukhov_length = m_monin_obukhov_length;
+    const amrex::Real kappa = m_kappa;
+    const amrex::Real surface_roughness_z0 = m_surface_roughness_z0;
     const amrex::Real z0_min = 1.0e-4_rt;
     const amrex::Real dMdz_min = 0.01_rt;
+    const amrex::Real locLESTurnOff = m_LESTurnOff;
+    const amrex::Real locSwitchLoc = m_switchLoc;
+    const amrex::Real locSurfaceRANSExp = m_surfaceRANSExp;
+    const amrex::Real locSurfaceFactor = m_surfaceFactor;
+    const amrex::Real locC1 = m_C1;
 
     const auto& geom_vec = repo.mesh().Geom();
-    const amrex::Real Cs_sqr = this->m_Cs * this->m_Cs;
     const bool has_terrain =
         this->m_sim.repo().int_field_exists("terrain_blank");
     const auto* m_terrain_blank =
@@ -112,11 +120,6 @@ void Kosovic<Transport>::update_turbulent_viscosity(
         const amrex::Real ds = std::cbrt(dx * dy * dz);
         const amrex::Real ds_sqr = ds * ds;
         const amrex::Real smag_factor = Cs_sqr * ds_sqr;
-        const amrex::Real locLESTurnOff = m_LESTurnOff;
-        const amrex::Real locSwitchLoc = m_switchLoc;
-        const amrex::Real locSurfaceRANSExp = m_surfaceRANSExp;
-        const amrex::Real locSurfaceFactor = m_surfaceFactor;
-        const amrex::Real locC1 = m_C1;
         const auto& mu_arrs = mu_turb(lev).arrays();
         const auto& rho_arrs = den(lev).const_arrays();
         const auto& vel_arrs = vel(lev).const_arrays();
@@ -134,9 +137,6 @@ void Kosovic<Transport>::update_turbulent_viscosity(
         const auto& z0_arrs = has_terrain
                                   ? (*m_terrain_z0)(lev).const_arrays()
                                   : amrex::MultiArray4<const amrex::Real>();
-        const amrex::Real monin_obukhov_length = m_monin_obukhov_length;
-        const amrex::Real kappa = m_kappa;
-        const amrex::Real surface_roughness_z0 = m_surface_roughness_z0;
         const amrex::Real non_neutral_neighbour =
             (m_wall_het_model == "mol")
                 ? MOData::calc_psi_m(
