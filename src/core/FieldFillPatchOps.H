@@ -82,7 +82,7 @@ public:
         const amrex::IntVect& nghost,
         FieldState fstate = FieldState::New) = 0;
 
-    virtual void fillphysbc(
+    virtual void fillphysbc_type(
         int lev,
         amrex::Real time,
         amrex::BCType::mathematicalBndryTypes bctype,
@@ -368,7 +368,7 @@ public:
         physbc.FillBoundary(mfab, 0, m_field.num_comp(), nghost, time, 0);
     }
 
-    void fillphysbc(
+    void fillphysbc_type(
         int lev,
         amrex::Real time,
         amrex::BCType::mathematicalBndryTypes bctype,

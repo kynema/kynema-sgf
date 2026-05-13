@@ -335,7 +335,7 @@ public:
     void fillphysbc(amrex::Real time, amrex::IntVect ng);
 
     void
-    fillphysbc(amrex::Real time, amrex::BCType::mathematicalBndryTypes bctype);
+    fillphysbc_type(amrex::Real time, amrex::BCType::mathematicalBndryTypes bctype);
 
     void apply_bc_funcs(FieldState rho_state);
 
@@ -357,7 +357,7 @@ public:
         amrex::MultiFab& mfab,
         const amrex::IntVect& nghost);
 
-    void fillphysbc(
+    void fillphysbc_type(
         int lev,
         amrex::Real time,
         amrex::BCType::mathematicalBndryTypes bctype,

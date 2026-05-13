@@ -674,7 +674,8 @@ void BoundaryPlane::write_file()
 
     for (auto* fld : m_fields) {
         if (write_init) {
-            fld->fillphysbc(m_time.current_time(), amrex::BCType::foextrap);
+            fld->fillphysbc_type(
+                m_time.current_time(), amrex::BCType::foextrap);
         } else {
             fld->fillpatch(m_time.current_time());
         }
