@@ -2,6 +2,7 @@
 #define ONEEQKSGS_H
 
 #include <string>
+#include "src/core/ScratchField.H"
 #include "src/turbulence/TurbModelBase.H"
 #include "AMReX_REAL.H"
 
@@ -68,6 +69,12 @@ public:
     //! Do any post advance work
     void post_advance_work() override;
 
+    //! Actions to perform post initialization
+    void post_init_actions() override;
+
+    //! Actions to perform post regrid
+    void post_regrid_actions() override;
+
     //! Update the effective thermal diffusivity field
     void update_alphaeff(Field& alphaeff) override;
 
@@ -89,6 +96,8 @@ private:
     //! Hybrid RANS-LES with Nalu-wind
     bool m_hybrid_rl{false};
     Field* m_sdr;
+
+    std::unique_ptr<ScratchField> m_gradT;
 };
 
 /** 1-equation subgrid scale TKE turbulence model

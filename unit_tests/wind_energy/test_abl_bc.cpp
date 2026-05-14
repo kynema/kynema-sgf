@@ -114,6 +114,7 @@ TEST_F(ABLMeshTest, abl_local_wall_model)
     auto& pde_mgr = sim().pde_manager();
     pde_mgr.register_icns();
     sim().create_turbulence_model();
+    sim().turbulence_model().post_init_actions();
     sim().init_physics();
 
     // Specify velocity as uniform in x direction
@@ -217,6 +218,7 @@ TEST_F(ABLMeshTest, abl_donelan_wall_model)
     auto& pde_mgr = sim().pde_manager();
     pde_mgr.register_icns();
     sim().create_turbulence_model();
+    sim().turbulence_model().post_init_actions();
     sim().init_physics();
 
     // Specify velocity as uniform in x direction

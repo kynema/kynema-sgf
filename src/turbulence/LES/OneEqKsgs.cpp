@@ -70,6 +70,18 @@ template <typename Transport>
 OneEqKsgsM84<Transport>::~OneEqKsgsM84() = default;
 
 template <typename Transport>
+void OneEqKsgsM84<Transport>::post_init_actions()
+{
+    m_gradT = (this->m_sim.repo()).create_scratch_field(3, 0);
+}
+
+template <typename Transport>
+void OneEqKsgsM84<Transport>::post_regrid_actions()
+{
+    m_gradT = (this->m_sim.repo()).create_scratch_field(3, 0);
+}
+
+template <typename Transport>
 void OneEqKsgsM84<Transport>::parse_model_coeffs()
 {
     const std::string coeffs_dict = this->model_name() + "_coeffs";
@@ -94,8 +106,8 @@ void OneEqKsgsM84<Transport>::update_turbulent_viscosity(
     BL_PROFILE(
         "kynema-sgf::" + this->identifier() + "::update_turbulent_viscosity");
 
-    auto gradT = (this->m_sim.repo()).create_scratch_field(3, 0);
-    fvm::gradient(*gradT, m_temperature.state(fstate));
+    fvm::gradient(*m_gradT, m_temperature.state(fstate));
+    auto& gradT = *m_gradT;
 
     const auto& vel = this->m_vel.state(fstate);
     // Compute strain rate into shear production term
@@ -121,7 +133,7 @@ void OneEqKsgsM84<Transport>::update_turbulent_viscosity(
         const amrex::Real ds = std::cbrt(dx * dy * dz);
         const auto& mu_arrs = mu_turb(lev).arrays();
         const auto& rho_arrs = den(lev).const_arrays();
-        const auto& gradT_arrs = (*gradT)(lev).const_arrays();
+        const auto& gradT_arrs = gradT(lev).const_arrays();
         const auto& tlscale_arrs = (this->m_turb_lscale)(lev).arrays();
         const auto& tke_arrs = (*this->m_tke)(lev).const_arrays();
         const auto& buoy_prod_arrs = (this->m_buoy_prod)(lev).arrays();

@@ -179,6 +179,7 @@ TEST_F(TurbLESTest, test_smag_setup_calc)
 
     // Create turbulence model
     sim().create_turbulence_model();
+    sim().turbulence_model().post_init_actions();
     // Get turbulence model
     auto& tmodel = sim().turbulence_model();
 
@@ -280,6 +281,7 @@ TEST_F(TurbLESTest, test_1eqKsgs_setup_calc)
     sim().create_transport_model();
     sim().init_physics();
     sim().create_turbulence_model();
+    sim().turbulence_model().post_init_actions();
     auto& tmodel = sim().turbulence_model();
 
     // Get coefficients
@@ -385,6 +387,7 @@ TEST_F(TurbLESTest, test_AMD_setup_calc)
 
     // Create turbulence model
     sim().create_turbulence_model();
+    sim().turbulence_model().post_init_actions();
     // Get turbulence model
     auto& tmodel = sim().turbulence_model();
 
@@ -469,6 +472,7 @@ TEST_F(TurbLESTest, test_AMDNoTherm_setup_calc)
 
     // Create turbulence model
     sim().create_turbulence_model();
+    sim().turbulence_model().post_init_actions();
     // Get turbulence model
     auto& tmodel = sim().turbulence_model();
 
@@ -560,6 +564,7 @@ TEST_F(TurbLESTest, test_kosovic_setup_calc)
 
     // Create turbulence model
     sim().create_turbulence_model();
+    sim().turbulence_model().post_init_actions();
     // Get turbulence model
     auto& tmodel = sim().turbulence_model();
 
