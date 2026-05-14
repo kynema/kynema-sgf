@@ -542,6 +542,19 @@ void incflo::ApplyCorrector()
     const auto& density_old = density_new.state(kynema_sgf::FieldState::Old);
     auto& density_nph = density_new.state(kynema_sgf::FieldState::NPH);
 
+    // src_term is `rho * accel` after the predictor's multiply_rho;
+    // convert to kinematic for MAC velocity-forces.
+    kynema_sgf::field_ops::divide(
+        icns().fields().src_term, density_nph, 0, 0, 1, AMREX_SPACEDIM, 0);
+
+    const int nghost_force = 1;
+    amrex::IntVect ng(nghost_force);
+    icns().fields().src_term.fillpatch(m_time.current_time(), ng);
+
+    for (auto& eqn : scalar_eqns()) {
+        eqn->fields().src_term.fillpatch(m_time.current_time(), ng);
+    }
+
     // Extrapolate and apply MAC projection for advection velocities
     icns().pre_advection_actions(kynema_sgf::FieldState::New);
 
