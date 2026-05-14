@@ -2,7 +2,7 @@
 #            SIMULATION STOP            #
 #.......................................#
 time.stop_time               =   1     # Max (simulated) time to evolve
-time.max_step                =   20          # Max number of time steps
+time.max_step                =   6          # Max number of time steps
 
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
 #         TIME STEP COMPUTATION         #
@@ -14,9 +14,9 @@ time.use_force_cfl= false
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
 #            INPUT AND OUTPUT           #
 #.......................................#
+io.restart_file = ../ow_current_wing/chk00003
 time.plot_interval            =  10       # Steps between plot files
-time.checkpoint_interval      =  3        # Steps between checkpoint files
-io.outputs = ow_velocity ow_vof actuator_src_term
+time.checkpoint_interval      =  -1       # Steps between checkpoint files
 
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
 #               PHYSICS                 #
@@ -24,18 +24,15 @@ io.outputs = ow_velocity ow_vof actuator_src_term
 transport.model = TwoPhaseTransport
 turbulence.model = Laminar 
 
-incflo.physics = MultiPhase OceanWaves Actuator
-OceanWaves.label = Wave1
-OceanWaves.Wave1.type = LinearWaves
-OceanWaves.Wave1.wave_height=0.3
-OceanWaves.Wave1.wave_length=2.0
-OceanWaves.Wave1.water_depth=3.0
-OceanWaves.Wave1.relax_zone_gen_length=2.0
-OceanWaves.Wave1.numerical_beach_length=2.0
-OceanWaves.Wave1.numerical_beach_length_factor=2.0
-OceanWaves.Wave1.current=1.0
+incflo.physics = MultiPhase TerrainDrag Actuator
 MultiPhase.density_fluid1=1000.
 MultiPhase.density_fluid2=1.
+MultiPhase.water_level = 0.
+TerrainDrag.terrain_file = "expansion_bathy.amrwind"
+
+ICNS.source_terms = GravityForcing DragForcing ActuatorForcing
+ICNS.use_perturb_pressure = true
+DragForcing.is_laminar    = true
 Actuator.labels = F1
 Actuator.type = FixedWingLine
 Actuator.FixedWingLine.num_points = 21
@@ -48,9 +45,6 @@ Actuator.F1.start = 4.0 -1.5 -0.7
 Actuator.F1.end = 4.0 1.5 -0.7
 Actuator.F1.pitch = 20.0
 Actuator.F1.output_frequency = 10
-
-ICNS.source_terms = GravityForcing ActuatorForcing
-ICNS.use_perturb_pressure = true
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
 #        ADAPTIVE MESH REFINEMENT       #
 #.......................................#
@@ -84,7 +78,10 @@ geometry.is_periodic    =     0     0    0   # Periodicity x y z (0/1)
 #              BOUNDARIES               #
 #.......................................#
 
-xlo.type =     "wave_generation"
+xlo.type =     "mass_inflow"
+xlo.density  = 1.
+xlo.vof      = 0.
+xlo.velocity = 3.0 0.0 0.0
 xhi.type =     "pressure_outflow"
 ylo.type =     "slip_wall"
 yhi.type =     "slip_wall"
@@ -92,9 +89,9 @@ zlo.type =     "slip_wall"
 zhi.type =     "slip_wall"
 
 incflo.field_boundaries = BoundaryPlane
-BoundaryPlane.file = "bndry_files"
-BoundaryPlane.io_mode = 0
+BoundaryPlane.file = "../ow_current_wing/bndry_files"
+BoundaryPlane.io_mode = 1
 BoundaryPlane.planes = xlo
-BoundaryPlane.output_start_time = 0.015
 BoundaryPlane.var_names = velocity vof density
 BoundaryPlane.output_format = native
+BoundaryPlane.fluid_phase = liquid
