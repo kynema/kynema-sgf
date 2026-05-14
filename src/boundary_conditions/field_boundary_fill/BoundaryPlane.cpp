@@ -77,15 +77,21 @@ void InletData::read_data(
     const int lev,
     const Field* fld,
     const amrex::Real time,
-    const amrex::Vector<amrex::Real>& times)
+    const amrex::Vector<amrex::Real>& times,
+    bool is_static_single)
 {
     const size_t nc = fld->num_comp();
     const int nstart = m_components[static_cast<int>(fld->id())];
 
     const int idx = utils::closest_index(times, time, constants::LOOSE_TOL);
-    const int idxp1 = idx + 1;
+    int idxp1 = idx + 1;
     m_tn = times[idx];
-    m_tnp1 = times[idxp1];
+    if (!is_static_single) {
+        m_tnp1 = times[idxp1];
+    } else {
+        m_tnp1 = constants::LARGE_NUM;
+        idxp1 = idx;
+    }
     if (!((m_tn <= time + constants::LOOSE_TOL) &&
           (time <= m_tnp1 + constants::LOOSE_TOL))) {
         amrex::Abort(
@@ -328,6 +334,8 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
         pp.queryarr("var_names", m_var_names);
         pp.get("file", m_filename);
         pp.query("output_format", m_out_fmt);
+        pp.query("is_static", m_is_static);
+        pp.query("output_and_use_initial_plane", m_output_init);
     } else {
         pp_abl.query("bndry_write_frequency", m_write_frequency);
         pp_abl.queryarr("bndry_planes", m_planes);
@@ -335,6 +343,21 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
         pp_abl.queryarr("bndry_var_names", m_var_names);
         pp_abl.get("bndry_file", m_filename);
         pp_abl.query("bndry_output_format", m_out_fmt);
+        pp_abl.query("bndry_is_static", m_is_static);
+        pp_abl.query("bndry_output_and_use_initial_plane", m_output_init);
+    }
+
+    if (m_is_static) {
+        amrex::Print()
+            << "BoundaryPlane: static boundary is enabled, will read only a "
+               "single boundary plane for the duration of this simulation.\n";
+    }
+
+    if (m_output_init && m_io_mode != io_mode::input) {
+        amrex::Abort(
+            "BoundaryPlane: conflicting inputs. Inputs specify to output and "
+            "use initial plane, but the IO mode is not set to read. Please "
+            "revise input arguments.\n");
     }
 
 #ifndef KYNEMA_SGF_USE_NETCDF
@@ -410,7 +433,9 @@ void BoundaryPlane::initialize_data()
 void BoundaryPlane::write_header()
 {
     BL_PROFILE("kynema-sgf::BoundaryPlane::write_header");
-    if (m_io_mode != io_mode::output) {
+    const auto write_init =
+        (m_output_init && m_time.new_time() < constants::EPS);
+    if (m_io_mode != io_mode::output && !write_init) {
         return;
     }
 
@@ -542,7 +567,9 @@ void BoundaryPlane::write_header()
 void BoundaryPlane::write_bndry_native_header(const std::string& chkname)
 {
     BL_PROFILE("kynema-sgf::BoundaryPlane::write_bndry_native_header");
-    if (m_io_mode != io_mode::output) {
+    const auto write_init =
+        (m_output_init && m_time.new_time() < constants::EPS);
+    if (m_io_mode != io_mode::output && !write_init) {
         return;
     }
 
@@ -636,13 +663,22 @@ void BoundaryPlane::write_file()
     const int t_step = m_time.time_index();
 
     // Only output data if at the desired timestep
-    if ((t_step % m_write_frequency != 0) || ((m_io_mode != io_mode::output)) ||
-        (time < m_out_start_time - constants::LOOSE_TOL)) {
+    const auto write_init =
+        (m_output_init && m_time.new_time() < constants::EPS);
+    if (((t_step % m_write_frequency != 0) ||
+         ((m_io_mode != io_mode::output)) ||
+         (time < m_out_start_time - constants::LOOSE_TOL)) &&
+        !write_init) {
         return;
     }
 
     for (auto* fld : m_fields) {
-        fld->fillpatch(m_time.current_time());
+        if (write_init) {
+            fld->fillphysbc_type(
+                m_time.current_time(), amrex::BCType::foextrap);
+        } else {
+            fld->fillpatch(m_time.current_time());
+        }
     }
 
 #ifdef KYNEMA_SGF_USE_NETCDF
@@ -721,7 +757,7 @@ void BoundaryPlane::write_file()
                 bndry.setVal(1.0e13_rt);
 
                 bndry.copyFrom(
-                    field(lev), 0, 0, 0, field.num_comp(),
+                    field(lev), 1, 0, 0, field.num_comp(),
                     geom[lev].periodicity());
 
                 std::string filename = amrex::MultiFabFileFullPrefix(
@@ -874,14 +910,23 @@ void BoundaryPlane::read_header()
             }
             time_file.close();
         }
+        const bool add_time_entry = m_is_static && time_file_length == 1;
+        if (add_time_entry) {
+            // Add entry to end of times to make it work with a single plane
+            m_in_times.emplace_back(constants::LARGE_NUM);
+            m_in_timesteps.emplace_back(m_in_timesteps[0]);
+            // Time step index is made to be the same to stay inbounds
+        }
 
         amrex::ParallelDescriptor::Bcast(
-            m_in_timesteps.data(), time_file_length,
+            m_in_timesteps.data(),
+            time_file_length + static_cast<int>(add_time_entry),
             amrex::ParallelDescriptor::IOProcessorNumber(),
             amrex::ParallelDescriptor::Communicator());
 
         amrex::ParallelDescriptor::Bcast(
-            m_in_times.data(), time_file_length,
+            m_in_times.data(),
+            time_file_length + static_cast<int>(add_time_entry),
             amrex::ParallelDescriptor::IOProcessorNumber(),
             amrex::ParallelDescriptor::Communicator());
 
@@ -1158,9 +1203,13 @@ amrex::Vector<amrex::BoxArray> BoundaryPlane::read_bndry_native_boxarrays(
 void BoundaryPlane::read_file(const bool nph_target_time)
 {
     BL_PROFILE("kynema-sgf::BoundaryPlane::read_file");
-    if (m_io_mode != io_mode::input) {
+    if (m_io_mode != io_mode::input || m_static_plane_is_read) {
         return;
     }
+
+    // If the code reaches here and the plane is static, then it is being read.
+    // If the planes are dynamic and evolving with time, then the flag is false.
+    m_static_plane_is_read = m_is_static;
 
     // populate planes and interpolate
     const amrex::Real time =
@@ -1205,6 +1254,8 @@ void BoundaryPlane::read_file(const bool nph_target_time)
             m_filename, NC_NOWRITE | NC_NETCDF4 | NC_MPIIO,
             amrex::ParallelContext::CommunicatorSub(), MPI_INFO_NULL);
 
+        const bool static_single = m_is_static && m_in_times.size() == 1;
+
         for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
             auto ori = oit();
             if (!m_in_data.is_populated(ori)) {
@@ -1216,7 +1267,8 @@ void BoundaryPlane::read_file(const bool nph_target_time)
             for (auto* fld : m_fields) {
                 for (int lev = 0; lev < nlevels; ++lev) {
                     auto grp = ncf.group(plane).group(level_name(lev));
-                    m_in_data.read_data(grp, ori, lev, fld, time, m_in_times);
+                    m_in_data.read_data(
+                        grp, ori, lev, fld, time, m_in_times, static_single);
                 }
             }
         }
@@ -1327,33 +1379,35 @@ void BoundaryPlane::populate_data(
         return;
     }
 
-    if (!(m_in_data.tn() <= time + constants::LOOSE_TOL) &&
-        !(time <= m_in_data.tnp1() + constants::LOOSE_TOL)) {
-        amrex::Abort(
-            "BoundaryPlane.cpp BoundaryPlane::populate_data() check 1"
-            "failed\n"
-            "Left time quantities should be <= right time quantities\n"
-            "m_in_data.tn() = " +
-            std::to_string(m_in_data.tn()) + ", time + LOOSE_TOL = " +
-            std::to_string(time + constants::LOOSE_TOL) +
-            "\n"
-            "time = " +
-            std::to_string(time) + ", m_in_data.tnp1() + LOOSE_TOL = " +
-            std::to_string(m_in_data.tnp1() + constants::LOOSE_TOL));
-    }
-    if (!(std::abs(time - m_in_data.tinterp()) < constants::LOOSE_TOL)) {
-        amrex::Abort(
-            "BoundaryPlane.cpp BoundaryPlane::populate_data() check 2"
-            "failed\n"
-            "Left time quantities should be < right time quantities. "
-            "Additional quantities supplied on second line for debugging.\n"
-            "std::abs(time - m_in_data.tinterp()) = " +
-            std::to_string(std::abs(time - m_in_data.tinterp())) +
-            ", LOOSE_TOL = " + std::to_string(constants::LOOSE_TOL) +
-            "\n"
-            "time = " +
-            std::to_string(time) +
-            ", m_in_data.tinterp() = " + std::to_string(m_in_data.tinterp()));
+    if (!m_is_static) {
+        if (!(m_in_data.tn() <= time + constants::LOOSE_TOL) &&
+            !(time <= m_in_data.tnp1() + constants::LOOSE_TOL)) {
+            amrex::Abort(
+                "BoundaryPlane.cpp BoundaryPlane::populate_data() check 1"
+                "failed\n"
+                "Left time quantities should be <= right time quantities\n"
+                "m_in_data.tn() = " +
+                std::to_string(m_in_data.tn()) + ", time + LOOSE_TOL = " +
+                std::to_string(time + constants::LOOSE_TOL) +
+                "\n"
+                "time = " +
+                std::to_string(time) + ", m_in_data.tnp1() + LOOSE_TOL = " +
+                std::to_string(m_in_data.tnp1() + constants::LOOSE_TOL));
+        }
+        if (!(std::abs(time - m_in_data.tinterp()) < constants::LOOSE_TOL)) {
+            amrex::Abort(
+                "BoundaryPlane.cpp BoundaryPlane::populate_data() check 2"
+                "failed\n"
+                "Left time quantities should be < right time quantities. "
+                "Additional quantities supplied on second line for debugging.\n"
+                "std::abs(time - m_in_data.tinterp()) = " +
+                std::to_string(std::abs(time - m_in_data.tinterp())) +
+                ", LOOSE_TOL = " + std::to_string(constants::LOOSE_TOL) +
+                "\n"
+                "time = " +
+                std::to_string(time) + ", m_in_data.tinterp() = " +
+                std::to_string(m_in_data.tinterp()));
+        }
     }
 
     for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
