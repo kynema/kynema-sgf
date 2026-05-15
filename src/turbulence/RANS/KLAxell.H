@@ -2,6 +2,7 @@
 #define KLAXELL_H
 
 #include <string>
+#include "src/core/ScratchField.H"
 #include "src/turbulence/TurbModelBase.H"
 #include "AMReX_REAL.H"
 
@@ -31,6 +32,12 @@ public:
 
     //! Do any post advance work
     void post_advance_work() override;
+
+    //! Actions to perform post initialization
+    void post_init_actions() override;
+
+    //! Actions to perform post regrid
+    void post_regrid_actions() override;
 
     //! Update the effective thermal diffusivity field
     void update_alphaeff(Field& alphaeff) override;
@@ -63,6 +70,8 @@ private:
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
     amrex::Real m_surf_flux{0};
     amrex::Real m_meso_sponge_start{2000};
+
+    std::unique_ptr<ScratchField> m_gradT;
 };
 
 } // namespace kynema_sgf::turbulence
