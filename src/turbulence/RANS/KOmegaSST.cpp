@@ -67,6 +67,22 @@ TurbulenceModel::CoeffsDictType KOmegaSST<Transport>::model_coeffs() const
 }
 
 template <typename Transport>
+void KOmegaSST<Transport>::post_init_actions()
+{
+    m_gradK = this->m_sim.repo().create_scratch_field(3, 0);
+    m_gradOmega = this->m_sim.repo().create_scratch_field(3, 0);
+    m_gradden = this->m_sim.repo().create_scratch_field(3, 0);
+}
+
+template <typename Transport>
+void KOmegaSST<Transport>::post_regrid_actions()
+{
+    m_gradK = this->m_sim.repo().create_scratch_field(3, 0);
+    m_gradOmega = this->m_sim.repo().create_scratch_field(3, 0);
+    m_gradden = this->m_sim.repo().create_scratch_field(3, 0);
+}
+
+template <typename Transport>
 void KOmegaSST<Transport>::update_turbulent_viscosity(
     const FieldState fstate, const DiffusionType diff_type)
 {
@@ -93,15 +109,13 @@ void KOmegaSST<Transport>::update_turbulent_viscosity(
     tke_lhs.setVal(0.0_rt);
     auto& sdr_lhs = (this->m_sim).repo().get_field("sdr_lhs_src_term");
 
-    auto gradK = (this->m_sim.repo()).create_scratch_field(3, 0);
-    fvm::gradient(*gradK, tke);
+    fvm::gradient(*m_gradK, tke);
+    fvm::gradient(*m_gradOmega, sdr);
+    fvm::gradient(*m_gradden, den);
 
-    auto gradOmega = (this->m_sim.repo()).create_scratch_field(3, 0);
-    fvm::gradient(*gradOmega, sdr);
-
-    // This is used for the buoyancy-modified version of the model
-    auto gradden = (this->m_sim.repo()).create_scratch_field(3, 0);
-    fvm::gradient(*gradden, den);
+    auto& gradK = *m_gradK;
+    auto& gradOmega = *m_gradOmega;
+    auto& gradden = *m_gradden;
 
     const auto& vel = this->m_vel.state(fstate);
     // Compute strain rate into shear production term
@@ -117,10 +131,10 @@ void KOmegaSST<Transport>::update_turbulent_viscosity(
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& lam_mu_arrs = (*lam_mu)(lev).const_arrays();
         const auto& mu_arrs = mu_turb(lev).arrays();
-        const auto& gradrho_arrs = (*gradden)(lev).const_arrays();
+        const auto& gradrho_arrs = gradden(lev).const_arrays();
         const auto& rho_arrs = den(lev).const_arrays();
-        const auto& gradK_arrs = (*gradK)(lev).const_arrays();
-        const auto& gradOmega_arrs = (*gradOmega)(lev).const_arrays();
+        const auto& gradK_arrs = gradK(lev).const_arrays();
+        const auto& gradOmega_arrs = gradOmega(lev).const_arrays();
         const auto& tke_arrs = tke(lev).const_arrays();
         const auto& sdr_arrs = sdr(lev).const_arrays();
         const auto& wd_arrs = (this->m_walldist)(lev).const_arrays();

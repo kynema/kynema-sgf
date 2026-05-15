@@ -1,6 +1,6 @@
 # Kynema-SGF (formerly AMR-Wind)
 
-[Documentation](https://kynema.github.io/kynema-sgf) | [Nightly test dashboard](http://my.cdash.org/index.php?project=Exawind) 
+[Documentation](https://kynema.github.io/kynema-sgf) | [Nightly test dashboard](http://my.cdash.org/index.php?project=Kynema) 
 
 [![Powered by AMReX](https://amrex-codes.github.io/badges/powered%20by-AMReX-red.svg)](https://amrex-codes.github.io/amrex/) [![Build Status](https://github.com/Exawind/amr-wind/workflows/AMR-Wind-CI/badge.svg)](https://github.com/Exawind/amr-wind/actions) [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9284/badge)](https://www.bestpractices.dev/projects/9284)
 
