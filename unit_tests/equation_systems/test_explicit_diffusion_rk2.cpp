@@ -3,6 +3,7 @@
 #include "src/incflo_enums.H"
 #include "src/core/field_ops.H"
 #include "src/equation_systems/PDEBase.H"
+#include "src/turbulence/TurbulenceModel.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -77,6 +78,7 @@ protected:
         auto& pde_mgr = sim().pde_manager();
         pde_mgr.register_icns();
         sim().create_turbulence_model();
+        sim().turbulence_model().post_init_actions();
         sim().init_physics();
         auto& k_eqn = pde_mgr.register_transport_pde("TKE");
         auto& tke = k_eqn.fields().field;

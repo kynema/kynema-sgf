@@ -260,22 +260,13 @@ void ABLMesoForcingMom::mean_velocity_heights(
 }
 
 void ABLMesoForcingMom::operator()(
-    const int lev,
-    const amrex::MFIter& /*mfi*/,
-    const amrex::Box& bx,
-    const FieldState /*fstate*/,
-    const amrex::Array4<amrex::Real>& src_term) const
+    const int lev, const FieldState /*fstate*/, amrex::MultiFab& src_term) const
 {
     if (m_forcing_scheme.empty()) {
         return;
     }
-
     const auto& problo = m_mesh.Geom(lev).ProbLoArray();
     const auto& dx = m_mesh.Geom(lev).CellSizeArray();
-
-    // The z values corresponding to the forcing values is either the number of
-    // points in the netcdf input (for tendency) or the size of the plane
-    // averaged velocities (non tendency)
     const amrex::Real* vheights_begin =
         (m_tendency) ? m_meso_ht.data() : m_vavg_ht.data();
     const amrex::Real* vheights_end =
@@ -284,20 +275,24 @@ void ABLMesoForcingMom::operator()(
     const amrex::Real* v_error_val = m_error_meso_avg_V.data();
     const int idir = (int)m_axis;
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        amrex::IntVect iv(i, j, k);
-        const amrex::Real ht = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
-        const amrex::Real u_err = kynema_sgf::interp::linear(
-            vheights_begin, vheights_end, u_error_val, ht);
-        const amrex::Real v_err = kynema_sgf::interp::linear(
-            vheights_begin, vheights_end, v_error_val, ht);
+    auto const& src_arrs = src_term.arrays();
 
-        // Compute Source term
-        src_term(i, j, k, 0) += u_err;
-        src_term(i, j, k, 1) += v_err;
-
-        // No forcing in z-direction
-    });
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), AMREX_SPACEDIM,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+            if (n >= 2) {
+                return;
+            }
+            amrex::IntVect iv(i, j, k);
+            const amrex::Real ht =
+                problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
+            const amrex::Real err =
+                (n == 0) ? kynema_sgf::interp::linear(
+                               vheights_begin, vheights_end, u_error_val, ht)
+                         : kynema_sgf::interp::linear(
+                               vheights_begin, vheights_end, v_error_val, ht);
+            src_arrs[nbx](i, j, k, n) += err;
+        });
 }
 
 } // namespace kynema_sgf::pde::icns

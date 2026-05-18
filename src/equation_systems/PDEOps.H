@@ -127,18 +127,11 @@ struct SrcTermOpBase
         const int nlevels = this->fields.repo.num_active_levels();
         for (int lev = 0; lev < nlevels; ++lev) {
             auto& src_term = this->fields.src_term(lev);
-#ifdef AMREX_USE_OMP
-#pragma omp parallel if (amrex::Gpu::notInLaunchRegion())
-#endif
-            for (amrex::MFIter mfi(src_term, amrex::TilingIfNotGPU());
-                 mfi.isValid(); ++mfi) {
-                const auto& bx = mfi.tilebox();
-                const auto& vf = src_term.array(mfi);
 
-                for (const auto& src : this->sources) {
-                    (*src)(lev, mfi, bx, fstate, vf);
-                }
+            for (const auto& src : this->sources) {
+                (*src)(lev, fstate, src_term);
             }
+            amrex::Gpu::streamSynchronize();
         }
 
         if (PDE::multiply_rho) {

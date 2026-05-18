@@ -3,6 +3,7 @@
 
 #include <AMReX_GpuContainers.H>
 #include <string>
+#include "src/core/ScratchField.H"
 #include "src/turbulence/TurbModelBase.H"
 #include "src/utilities/FieldPlaneAveragingFine.H"
 #include "src/core/FieldRepo.H"
@@ -48,6 +49,12 @@ public:
     //! No post advance work for this model
     void post_advance_work() override {};
 
+    //! Actions to perform post initialization
+    void post_init_actions() override;
+
+    //! Actions to perform post regrid
+    void post_regrid_actions() override;
+
 private:
     //! Poincare coefficient (default value set for 2nd order AMR-wind
     //! discretization)
@@ -61,6 +68,9 @@ private:
     const Field& m_rho;
     FieldPlaneAveragingFine m_pa_temp;
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
+
+    std::unique_ptr<ScratchField> m_gradVel;
+    std::unique_ptr<ScratchField> m_gradT;
 };
 
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real amd_muvel(

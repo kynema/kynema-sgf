@@ -77,12 +77,7 @@ TEST_F(ABLMeshTest, abl_forcing)
     kynema_sgf::pde::icns::ABLForcing abl_forcing(sim());
 
     src_term.setVal(0.0_rt);
-    run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto& bx = mfi.tilebox();
-        const auto& src_arr = src_term(lev).array(mfi);
-
-        abl_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
-    });
+    abl_forcing(0, kynema_sgf::FieldState::New, src_term(0));
 
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         const auto min_val = utils::field_min(src_term, i);
@@ -100,12 +95,7 @@ TEST_F(ABLMeshTest, abl_forcing)
 
         src_term.setVal(0.0_rt);
         abl_forcing.set_mean_velocities(10.0_rt, 5.0_rt);
-        run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-            const auto& bx = mfi.tilebox();
-            const auto& src_arr = src_term(lev).array(mfi);
-
-            abl_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
-        });
+        abl_forcing(0, kynema_sgf::FieldState::New, src_term(0));
 
         // Targets are U = (20.0_rt, 10.0_rt, 0.0_rt) set in initial conditions
         // Means (set above) V = (10.0_rt, 5.0_rt, 0.0_rt)
@@ -138,12 +128,7 @@ TEST_F(ABLMeshTest, body_force)
     kynema_sgf::pde::icns::BodyForce body_force(sim());
 
     src_term.setVal(0.0_rt);
-    run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto& bx = mfi.tilebox();
-        const auto& src_arr = src_term(lev).array(mfi);
-
-        body_force(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
-    });
+    body_force(0, kynema_sgf::FieldState::New, src_term(0));
 
     const auto valx = utils::field_max(src_term, 0);
     const auto valy = utils::field_max(src_term, 1);
@@ -159,12 +144,7 @@ TEST_F(ABLMeshTest, body_force)
         time.current_time() = 0.05_rt;
         src_term.setVal(0.0_rt);
 
-        run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-            const auto& bx = mfi.tilebox();
-            const auto& src_arr = src_term(lev).array(mfi);
-
-            body_force(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
-        });
+        body_force(0, kynema_sgf::FieldState::New, src_term(0));
 
         const amrex::Array<amrex::Real, AMREX_SPACEDIM> golds{
             {static_cast<amrex::Real>(
@@ -203,12 +183,7 @@ TEST_F(ABLMeshTest, geostrophic_forcing)
 
     kynema_sgf::pde::icns::GeostrophicForcing geostrophic_forcing(sim());
     src_term.setVal(0.0_rt);
-    run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto& bx = mfi.tilebox();
-        const auto& src_arr = src_term(lev).array(mfi);
-
-        geostrophic_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
-    });
+    geostrophic_forcing(0, kynema_sgf::FieldState::New, src_term(0));
 
     constexpr amrex::Real corfac =
         2.0_rt * kynema_sgf::utils::two_pi() / 86164.091_rt * 0.80901699437_rt;
@@ -241,12 +216,7 @@ TEST_F(ABLMeshTest, rayleigh_damping)
 
     kynema_sgf::pde::icns::RayleighDamping rayleigh_damping(sim());
     src_term.setVal(0.0_rt);
-    run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto& bx = mfi.tilebox();
-        const auto& src_arr = src_term(lev).array(mfi);
-
-        rayleigh_damping(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
-    });
+    rayleigh_damping(0, kynema_sgf::FieldState::New, src_term(0));
 
     // Domain is from 0 to 1000 in z, with 64 cells
     // Damping where coefficient is 1 is 50 long
@@ -349,24 +319,13 @@ TEST_F(ABLMeshTest, hurricane_forcing)
     // Calculate Hurricane Forcing to the momentum equation
     kynema_sgf::pde::icns::HurricaneForcing hurricane_forcing(sim());
     src_term_icns.setVal(0.0_rt);
-    run_algorithm(src_term_icns, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto& bx = mfi.tilebox();
-        const auto& src_arr = src_term_icns(lev).array(mfi);
-
-        hurricane_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
-    });
+    hurricane_forcing(0, kynema_sgf::FieldState::New, src_term_icns(0));
 
     // Calculate Hurricane Forcing to the temperature equation
     kynema_sgf::pde::temperature::HurricaneTempForcing hurricane_temp_forcing(
         sim());
     src_term_temp.setVal(0.0_rt);
-    run_algorithm(src_term_temp, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto& bx = mfi.tilebox();
-        const auto& src_arr = src_term_temp(lev).array(mfi);
-
-        hurricane_temp_forcing(
-            lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
-    });
+    hurricane_temp_forcing(0, kynema_sgf::FieldState::New, src_term_temp(0));
 
     // Test the momentum hurricane forcing
     constexpr amrex::Real corfac =
@@ -426,12 +385,7 @@ TEST_F(ABLMeshTest, coriolis_const_vel)
         src_term.setVal(0.0_rt);
         vel.setVal(vel_comp, 0);
 
-        run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-            const auto& bx = mfi.tilebox();
-            const auto& src_arr = src_term(lev).array(mfi);
-
-            coriolis(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
-        });
+        coriolis(0, kynema_sgf::FieldState::New, src_term(0));
 
         for (int i = 0; i < AMREX_SPACEDIM; ++i) {
             const auto min_val = utils::field_min(src_term, i);
@@ -450,12 +404,7 @@ TEST_F(ABLMeshTest, coriolis_const_vel)
         src_term.setVal(0.0_rt);
         vel.setVal(vel_comp, 1);
 
-        run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-            const auto& bx = mfi.tilebox();
-            const auto& src_arr = src_term(lev).array(mfi);
-
-            coriolis(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
-        });
+        coriolis(0, kynema_sgf::FieldState::New, src_term(0));
 
         for (int i = 0; i < AMREX_SPACEDIM; ++i) {
             const auto min_val = utils::field_min(src_term, i);
@@ -506,10 +455,9 @@ TEST_F(ABLMeshTest, coriolis_height_variation)
     run_algorithm(velocity, [&](const int lev, const amrex::MFIter& mfi) {
         const auto bx = mfi.validbox();
         const auto& vel_arr = velocity(lev).array(mfi);
-        const auto& vel_src_arr = vel_src(lev).array(mfi);
         cor_height_init_vel_field(bx, vel_arr);
-        coriolis(lev, mfi, bx, kynema_sgf::FieldState::New, vel_src_arr);
     });
+    coriolis(0, kynema_sgf::FieldState::New, vel_src(0));
 
     EXPECT_NEAR(utils::field_min(vel_src, 0), 0.0_rt, tol);
     EXPECT_NEAR(utils::field_max(vel_src, 0), corfac * latfac * kdim, tol);
@@ -575,11 +523,9 @@ TEST_F(ABLMeshTest, boussinesq)
     run_algorithm(temperature, [&](const int lev, const amrex::MFIter& mfi) {
         const auto bx = mfi.validbox();
         const auto& temp_arr = temperature(lev).array(mfi);
-        const auto& src_arr = src_term(lev).array(mfi);
-
         init_abl_temperature_field(kdim, bx, temp_arr);
-        bb(lev, mfi, bx, kynema_sgf::FieldState::Old, src_arr);
     });
+    bb(0, kynema_sgf::FieldState::Old, src_term(0));
 
     // should be no forcing in x and y directions
     for (int i = 0; i < 2; ++i) {
@@ -624,11 +570,9 @@ TEST_F(ABLMeshTest, boussinesq_nph)
     run_algorithm(temperature, [&](const int lev, const amrex::MFIter& mfi) {
         const auto bx = mfi.validbox();
         const auto& temp_arr = temperature(lev).array(mfi);
-        const auto& src_arr = src_term(lev).array(mfi);
-
         init_abl_temperature_field(kdim, bx, temp_arr);
-        bb(lev, mfi, bx, kynema_sgf::FieldState::NPH, src_arr);
     });
+    bb(0, kynema_sgf::FieldState::NPH, src_term(0));
 
     // should be no forcing in x and y directions
     for (int i = 0; i < 2; ++i) {
@@ -693,11 +637,7 @@ TEST_F(ABLMeshTest, densitybuoyancy)
     density.setVal(1.0_rt);
     src_term.setVal(0.0_rt);
 
-    run_algorithm(density, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto bx = mfi.validbox();
-        const auto& src_arr = src_term(lev).array(mfi);
-        db(lev, mfi, bx, kynema_sgf::FieldState::Old, src_arr);
-    });
+    db(0, kynema_sgf::FieldState::Old, src_term(0));
 
     // should be no forcing for constant density
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
@@ -709,11 +649,10 @@ TEST_F(ABLMeshTest, densitybuoyancy)
 
     run_algorithm(density, [&](const int lev, const amrex::MFIter& mfi) {
         const auto bx = mfi.validbox();
-        const auto& src_arr = src_term(lev).array(mfi);
         const auto& den_arr = density(lev).array(mfi);
         init_density_field(kdim, bx, den_arr);
-        db(lev, mfi, bx, kynema_sgf::FieldState::Old, src_arr);
     });
+    db(0, kynema_sgf::FieldState::Old, src_term(0));
 
     // should be no forcing in x and y directions
     for (int i = 0; i < 2; ++i) {

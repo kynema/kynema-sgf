@@ -55,6 +55,12 @@ public:
     //! Do any post advance actions for the turbulence model
     virtual void post_advance_work() = 0;
 
+    //! Actions to perform post initialization
+    virtual void post_init_actions() {}
+
+    //! Actions to perform post regrid
+    virtual void post_regrid_actions() {}
+
     //! Register the effective viscosity (for momentum field)
     virtual void register_mueff_field(Field& mueff) = 0;
 

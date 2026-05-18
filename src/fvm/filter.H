@@ -2,9 +2,6 @@
 #define FILTER_H
 
 #include "src/fvm/fvm_utils.H"
-#include "AMReX_Array4.H"
-#include "AMReX_Geometry.H"
-#include "AMReX_MFIter.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -29,48 +26,42 @@ struct Filter
     }
 
     template <typename Stencil>
-    void apply(const int lev, const amrex::MFIter& mfi) const
+    void apply(const int lev) const
     {
         const int ncomp = m_phi.num_comp();
         const auto& geom = m_phi.repo().mesh().Geom(lev);
-        const auto& filterphi_arr = m_filterphi(lev).array(mfi);
-        const auto& phi_arr = m_phi(lev).const_array(mfi);
+        const auto dlo = geom.Domain().smallEnd();
+        const auto dhi = geom.Domain().bigEnd();
 
-        const auto& bx_in = mfi.tilebox();
-        const auto& bx = Stencil::box(bx_in, geom);
-        if (bx.isEmpty()) {
-            return;
-        }
+        auto& out_mf = m_filterphi(lev);
+        auto const& in_arrs = m_phi(lev).const_arrays();
+        auto const& out_arrs = out_mf.arrays();
 
-        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-            for (int icomp = 0; icomp < ncomp; icomp++) {
-                amrex::Real fp1 = Stencil::f00;
-                amrex::Real f = Stencil::f01;
-                amrex::Real fm1 = Stencil::f02;
-                const amrex::Real filx =
-                    ((fp1 * phi_arr(i + 1, j, k, icomp)) +
-                     (f * phi_arr(i, j, k, icomp)) +
-                     (fm1 * phi_arr(i - 1, j, k, icomp)));
-
-                fp1 = Stencil::f10;
-                f = Stencil::f11;
-                fm1 = Stencil::f12;
-                const amrex::Real fily =
-                    ((fp1 * phi_arr(i, j + 1, k, icomp)) +
-                     (f * phi_arr(i, j, k, icomp)) +
-                     (fm1 * phi_arr(i, j - 1, k, icomp)));
-
-                fp1 = Stencil::f20;
-                f = Stencil::f21;
-                fm1 = Stencil::f22;
-                const amrex::Real filz =
-                    ((fp1 * phi_arr(i, j, k + 1, icomp)) +
-                     (f * phi_arr(i, j, k, icomp)) +
-                     (fm1 * phi_arr(i, j, k - 1, icomp)));
-                filterphi_arr(i, j, k, icomp) =
-                    1.0_rt / 3.0_rt * (filx + fily + filz);
-            }
-        });
+        amrex::ParallelFor(
+            out_mf, amrex::IntVect(0),
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                if (!Stencil::applies_to(i, j, k, dlo, dhi)) {
+                    return;
+                }
+                auto const& phi_arr = in_arrs[nbx];
+                auto const& filterphi_arr = out_arrs[nbx];
+                for (int icomp = 0; icomp < ncomp; icomp++) {
+                    const amrex::Real filx =
+                        Stencil::f00 * phi_arr(i + 1, j, k, icomp) +
+                        Stencil::f01 * phi_arr(i, j, k, icomp) +
+                        Stencil::f02 * phi_arr(i - 1, j, k, icomp);
+                    const amrex::Real fily =
+                        Stencil::f10 * phi_arr(i, j + 1, k, icomp) +
+                        Stencil::f11 * phi_arr(i, j, k, icomp) +
+                        Stencil::f12 * phi_arr(i, j - 1, k, icomp);
+                    const amrex::Real filz =
+                        Stencil::f20 * phi_arr(i, j, k + 1, icomp) +
+                        Stencil::f21 * phi_arr(i, j, k, icomp) +
+                        Stencil::f22 * phi_arr(i, j, k - 1, icomp);
+                    filterphi_arr(i, j, k, icomp) =
+                        1.0_rt / 3.0_rt * (filx + fily + filz);
+                }
+            });
     }
 
     FTypeOut& m_filterphi;

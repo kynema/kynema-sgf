@@ -29,6 +29,20 @@ void AMDNoTherm<Transport>::parse_model_coeffs()
 }
 
 template <typename Transport>
+void AMDNoTherm<Transport>::post_init_actions()
+{
+    m_gradVel = this->m_sim.repo().create_scratch_field(
+        AMREX_SPACEDIM * AMREX_SPACEDIM);
+}
+
+template <typename Transport>
+void AMDNoTherm<Transport>::post_regrid_actions()
+{
+    m_gradVel = this->m_sim.repo().create_scratch_field(
+        AMREX_SPACEDIM * AMREX_SPACEDIM);
+}
+
+template <typename Transport>
 void AMDNoTherm<Transport>::update_turbulent_viscosity(
     const FieldState fstate, const DiffusionType /*unused*/)
 {
@@ -39,8 +53,9 @@ void AMDNoTherm<Transport>::update_turbulent_viscosity(
     const auto& repo = mu_turb.repo();
     const auto& vel = m_vel.state(fstate);
     const auto& den = m_rho.state(fstate);
-    auto gradVel = repo.create_scratch_field(AMREX_SPACEDIM * AMREX_SPACEDIM);
-    fvm::gradient(*gradVel, vel);
+
+    fvm::gradient(*m_gradVel, vel);
+    auto& gradVel = *m_gradVel;
     const auto& geom_vec = repo.mesh().Geom();
 
     const amrex::Real C_poincare = this->m_C;
@@ -50,7 +65,7 @@ void AMDNoTherm<Transport>::update_turbulent_viscosity(
         const auto& geom = geom_vec[lev];
 
         const auto& dx = geom.CellSizeArray();
-        const auto& gradVel_arrs = (*gradVel)(lev).const_arrays();
+        const auto& gradVel_arrs = gradVel(lev).const_arrays();
         const auto& mu_arrs = mu_turb(lev).arrays();
         const auto& rho_arrs = den(lev).const_arrays();
         amrex::ParallelFor(
