@@ -40,6 +40,22 @@ void AMD<Transport>::parse_model_coeffs()
 }
 
 template <typename Transport>
+void AMD<Transport>::post_init_actions()
+{
+    m_gradVel = this->m_sim.repo().create_scratch_field(
+        AMREX_SPACEDIM * AMREX_SPACEDIM);
+    m_gradT = this->m_sim.repo().create_scratch_field(AMREX_SPACEDIM);
+}
+
+template <typename Transport>
+void AMD<Transport>::post_regrid_actions()
+{
+    m_gradVel = this->m_sim.repo().create_scratch_field(
+        AMREX_SPACEDIM * AMREX_SPACEDIM);
+    m_gradT = this->m_sim.repo().create_scratch_field(AMREX_SPACEDIM);
+}
+
+template <typename Transport>
 void AMD<Transport>::update_turbulent_viscosity(
     const FieldState fstate, const DiffusionType /*unused*/)
 {
@@ -57,10 +73,10 @@ void AMD<Transport>::update_turbulent_viscosity(
 
     const amrex::Real C_poincare = m_C;
 
-    auto gradVel = repo.create_scratch_field(AMREX_SPACEDIM * AMREX_SPACEDIM);
-    fvm::gradient(*gradVel, vel);
-    auto gradT = repo.create_scratch_field(AMREX_SPACEDIM);
-    fvm::gradient(*gradT, temp);
+    fvm::gradient(*m_gradVel, vel);
+    fvm::gradient(*m_gradT, temp);
+    auto& gradVel = *m_gradVel;
+    auto& gradT = *m_gradT;
     m_pa_temp(); // compute the current plane average
     const auto& tpa_deriv = m_pa_temp.line_deriv();
     amrex::Vector<amrex::Real> tpa_coord(tpa_deriv.size(), 0.0_rt);
@@ -88,8 +104,8 @@ void AMD<Transport>::update_turbulent_viscosity(
         const amrex::Real nlo = problo[normal_dir];
         const auto& dx = geom.CellSizeArray();
 
-        const auto& gradVel_arrs = (*gradVel)(lev).const_arrays();
-        const auto& gradT_arrs = (*gradT)(lev).const_arrays();
+        const auto& gradVel_arrs = gradVel(lev).const_arrays();
+        const auto& gradT_arrs = gradT(lev).const_arrays();
         const auto& rho_arrs = den(lev).const_arrays();
         const auto& beta_arrs = (*beta)(lev).const_arrays();
         const auto& mu_arrs = mu_turb(lev).arrays();
@@ -124,18 +140,19 @@ void AMD<Transport>::update_alphaeff(Field& alphaeff)
     const auto& repo = alphaeff.repo();
     const auto& geom_vec = repo.mesh().Geom();
     const amrex::Real C_poincare = m_C;
-    auto gradVel = repo.create_scratch_field(AMREX_SPACEDIM * AMREX_SPACEDIM);
-    fvm::gradient(*gradVel, m_vel);
-    auto gradT = repo.create_scratch_field(AMREX_SPACEDIM);
-    fvm::gradient(*gradT, m_temperature);
+
+    fvm::gradient(*m_gradVel, m_vel);
+    fvm::gradient(*m_gradT, m_temperature);
+    auto& gradVel = *m_gradVel;
+    auto& gradT = *m_gradT;
 
     const int nlevels = repo.num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& geom = geom_vec[lev];
 
         const auto& dx = geom.CellSizeArray();
-        const auto& gradVel_arrs = (*gradVel)(lev).const_arrays();
-        const auto& gradT_arrs = (*gradT)(lev).const_arrays();
+        const auto& gradVel_arrs = gradVel(lev).const_arrays();
+        const auto& gradT_arrs = gradT(lev).const_arrays();
         const auto& rho_arrs = m_rho(lev).const_arrays();
         const auto& alpha_arrs = alphaeff(lev).arrays();
         amrex::ParallelFor(

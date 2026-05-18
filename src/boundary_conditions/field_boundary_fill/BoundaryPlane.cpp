@@ -285,7 +285,8 @@ bool InletData::is_populated(amrex::Orientation ori) const
 }
 
 BoundaryPlane::BoundaryPlane(CFDSim& sim)
-    : m_time(sim.time())
+    : m_sim(sim)
+    , m_time(sim.time())
     , m_repo(sim.repo())
     , m_mesh(sim.mesh())
     , m_mbc(sim.mbc())
@@ -319,7 +320,6 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
             "BoundaryPlane: io_mode must be specified as 0 for output or 1 for "
             "input. \n");
     }
-    m_has_overset = sim.has_overset();
 
     if (!original_input) {
         pp.query("write_frequency", m_write_frequency);
@@ -372,7 +372,7 @@ void BoundaryPlane::post_init_actions()
 // of the boundaries during advection to nph time (n+1/2)
 void BoundaryPlane::pre_advance_work()
 {
-    if (!m_has_overset) {
+    if (!m_sim.has_overset()) {
         pre_advance_inner_calls();
     }
 }

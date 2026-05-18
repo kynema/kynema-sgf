@@ -202,6 +202,7 @@ public:
     }
 
 private:
+    const CFDSim& m_sim;
     const kynema_sgf::SimTime& m_time;
     const FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
@@ -262,10 +263,6 @@ private:
 
     //! IO mode
     io_mode m_io_mode{io_mode::undefined};
-
-    //! Flag indicating if the simulation is overset -- needed for complicated
-    //! timing of pre_advance_work
-    bool m_has_overset{false};
 
     //! controls extents on native bndry output
     const int m_in_rad = 1;
