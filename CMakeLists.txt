@@ -205,7 +205,7 @@ endif()
 
 if(KYNEMA_SGF_ENABLE_KYNEMA_FMB)
   set(CMAKE_PREFIX_PATH ${KYNEMA_FMB_DIR} ${CMAKE_PREFIX_PATH})
-  find_package(Kynema-FMB REQUIRED)
+  find_package(KynemaFMB REQUIRED)
   target_link_libraries(${kynema_sgf_lib_name} PUBLIC KynemaFMB::kynema_fmb_library)
   target_compile_definitions(${kynema_sgf_lib_name} PUBLIC KYNEMA_SGF_USE_KYNEMA_FMB)
 endif()
