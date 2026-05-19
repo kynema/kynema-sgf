@@ -391,8 +391,8 @@ if(KYNEMA_SGF_ENABLE_OPENFAST AND KYNEMA_SGF_OPENFAST_VERSION VERSION_LESS "4")
   endif()
 endif()
 
-if(KYNEMA_SGF_ENABLE_KYNEMA)
-  add_test_re(act_kynema_alm)
+if(KYNEMA_SGF_ENABLE_KYNEMA_FMB)
+  add_test_re(act_kynema_fmb_alm)
 endif()
 
 if(KYNEMA_SGF_ENABLE_FFT)
