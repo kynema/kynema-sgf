@@ -1,7 +1,8 @@
 # Set amrex hydro options
 
 set(HYDRO_SPACEDIM 3)
-set(HYDRO_EB OFF)
+set(HYDRO_EB OFF CACHE BOOL "Disable AMReX-Hydro embedded boundary routines" FORCE)
+set(HYDRO_NO_EB ON CACHE BOOL "Force-disable AMReX-Hydro EB code paths" FORCE)
 set(HYDRO_MPI ${KYNEMA_SGF_ENABLE_MPI})
 set(HYDRO_OMP ${KYNEMA_SGF_ENABLE_OPENMP})
 set(HYDRO_FFT ${KYNEMA_SGF_ENABLE_FFT})
@@ -14,4 +15,3 @@ elseif(KYNEMA_SGF_ENABLE_SYCL)
 else()
   set(HYDRO_GPU_BACKEND NONE CACHE STRING "HYDRO GPU type" FORCE)
 endif()
-
