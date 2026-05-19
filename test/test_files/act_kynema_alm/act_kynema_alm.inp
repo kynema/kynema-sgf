@@ -122,6 +122,3 @@ Actuator.TurbineKynemaLine.num_blades             = 3
 Actuator.labels                          = T0 T1               
 Actuator.T0.base_position                = 0.0 -250.0 -90.0                       
 Actuator.T1.base_position                = 0.0 250.0 -90.0     
-
-#---- extra params ----
-#== END AMR-WIND INPUT ==
