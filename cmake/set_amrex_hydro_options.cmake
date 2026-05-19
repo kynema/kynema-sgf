@@ -1,6 +1,8 @@
 # Set amrex hydro options
 
 set(HYDRO_SPACEDIM 3)
+# Keep both flags set: HYDRO_EB=OFF skips EBGodunov/EBMOL targets, while
+# HYDRO_NO_EB=ON disables EB code paths in AMReX-Hydro utility sources.
 set(HYDRO_EB OFF CACHE BOOL "Disable AMReX-Hydro embedded boundary routines" FORCE)
 set(HYDRO_NO_EB ON CACHE BOOL "Force-disable AMReX-Hydro EB code paths" FORCE)
 set(HYDRO_MPI ${KYNEMA_SGF_ENABLE_MPI})
