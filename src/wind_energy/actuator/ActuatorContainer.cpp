@@ -261,15 +261,10 @@ void ActuatorContainer::populate_field_buffers()
         buff_host.begin());
 #ifdef AMREX_USE_MPI
     const int num_entries = static_cast<int>(buff_host.size());
-#ifdef AMREX_USE_FLOAT
     MPI_Allreduce(
-        MPI_IN_PLACE, buff_host.data(), num_entries, MPI_FLOAT, MPI_SUM,
+        MPI_IN_PLACE, buff_host.data(), num_entries,
+        amrex::ParallelDescriptor::Mpi_typemap<amrex::Real>::type(), MPI_SUM,
         amrex::ParallelDescriptor::Communicator());
-#else
-    MPI_Allreduce(
-        MPI_IN_PLACE, buff_host.data(), num_entries, MPI_DOUBLE, MPI_SUM,
-        amrex::ParallelDescriptor::Communicator());
-#endif
 #endif
     {
         auto& vel_arr = m_data.velocity;
