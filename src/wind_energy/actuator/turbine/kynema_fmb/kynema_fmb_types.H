@@ -1,8 +1,8 @@
-#ifndef KYNEMA_TYPES_H
-#define KYNEMA_TYPES_H
+#ifndef KYNEMA_FMB_TYPES_H
+#define KYNEMA_FMB_TYPES_H
 
 #include <string>
-#include "src/wind_energy/actuator/turbine/kynema/kynema_wrapper.H"
+#include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_wrapper.H"
 #include "src/wind_energy/actuator/turbine/external/external_base_types.H"
 #include "AMReX_REAL.H"
 
@@ -10,13 +10,13 @@ using namespace amrex::literals;
 
 namespace ext_turb {
 
-/** Representation of a turbine for exchanging data with Kynema
+/** Representation of a turbine for exchanging data with Kynema-FMB
  */
-struct KynemaTurbine : public ext_turb::ExternalTurbine
+struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
 {
-    /** Variables exclusive to Kynema turbine type
+    /** Variables exclusive to KynemaFMB turbine type
      */
-    std::unique_ptr<kynema::interfaces::TurbineInterface> interface;
+    std::unique_ptr<kynema_fmb::interfaces::TurbineInterface> interface;
 
     // Need buffers to make data contiguous to fit into coupling
     void allocate_buffers()
@@ -52,7 +52,7 @@ struct KynemaTurbine : public ext_turb::ExternalTurbine
         // Get hub information for nacelle force
         // Chord is not used, set it to zero
         buffer_cf[0] = 0.;
-        // Force is calculated by Kynema-SGF, passed to Kynema
+        // Force is calculated by Kynema-SGF, passed to Kynema-FMB
         // Get position directly from node information
         buffer_pf[0] = interface->Turbine().hub_node.position[0];
         buffer_pf[length_force(0)] = interface->Turbine().hub_node.position[1];
@@ -268,9 +268,9 @@ struct KynemaTurbine : public ext_turb::ExternalTurbine
     float* ptr_ori{nullptr};
 };
 
-struct KynemaSolverData
+struct KynemaFMBSolverData
 {
-    std::string output_dir{"kynema_velocity_data"};
+    std::string output_dir{"kynema_fmb_velocity_data"};
 
     amrex::Real damping_factor{0.0_rt};
     int nl_iter_max{12};
@@ -281,4 +281,4 @@ struct KynemaSolverData
 
 } // namespace ext_turb
 
-#endif /* KYNEMA_TYPES_H */
+#endif /* KYNEMA_FMB_TYPES_H */
