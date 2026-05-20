@@ -1,8 +1,8 @@
 #include <algorithm>
 #include <cmath>
 #include "src/wind_energy/actuator/turbine/external/ExtTurbIface.H"
-#include "src/wind_energy/actuator/turbine/kynema/kynema_types.H"
-#include "src/wind_energy/actuator/turbine/kynema/kynema_wrapper.H"
+#include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_types.H"
+#include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_wrapper.H"
 #include "src/CFDSim.H"
 #include "src/core/SimTime.H"
 #include "src/utilities/io_utils.H"
@@ -18,7 +18,7 @@ using namespace amrex::literals;
 
 namespace exw_kynema {
 void build_turbine(
-    kynema::interfaces::TurbineInterfaceBuilder& builder,
+    kynema_fmb::interfaces::TurbineInterfaceBuilder& builder,
     const YAML::Node wio,
     const int n_blades,
     const int n_blade_nodes,
@@ -90,7 +90,8 @@ void build_turbine(
         for (auto i : std::views::iota(0U, axis_grid.size())) {
             blade_builder.AddRefAxisPoint(
                 axis_grid[i], {x_values[i], y_values[i], z_values[i]},
-                kynema::interfaces::components::ReferenceAxisOrientation::Z);
+                kynema_fmb::interfaces::components::ReferenceAxisOrientation::
+                    Z);
         }
 
         // Add reference axis twist
@@ -173,7 +174,8 @@ void build_turbine(
                     {k15, k25, k35, k45, k55, k56},
                     {k16, k26, k36, k46, k56, k66},
                 }},
-                kynema::interfaces::components::ReferenceAxisOrientation::Z);
+                kynema_fmb::interfaces::components::ReferenceAxisOrientation::
+                    Z);
         }
     }
 
@@ -204,7 +206,7 @@ void build_turbine(
     for (auto i : std::views::iota(0U, axis_grid.size())) {
         tower_builder.AddRefAxisPoint(
             axis_grid[i], {x_values[i], y_values[i], z_values[i]},
-            kynema::interfaces::components::ReferenceAxisOrientation::Z);
+            kynema_fmb::interfaces::components::ReferenceAxisOrientation::Z);
     }
 
     // Set tower base position from first reference axis point
@@ -249,7 +251,7 @@ void build_turbine(
 
     for (auto i : std::views::iota(0U, tower_diameter_grid.size())) {
         // Create section mass and stiffness matrices
-        const auto section = kynema::beams::GenerateHollowCircleSection(
+        const auto section = kynema_fmb::beams::GenerateHollowCircleSection(
             tower_diameter_grid[i], elastic_modulus, shear_modulus, density,
             tower_diameter_values[i], tower_wall_thickness_values[i],
             poisson_ratio);
@@ -257,7 +259,7 @@ void build_turbine(
         // Add section
         tower_builder.AddSection(
             section.position, section.M_star, section.C_star,
-            kynema::interfaces::components::ReferenceAxisOrientation::Z);
+            kynema_fmb::interfaces::components::ReferenceAxisOrientation::Z);
     }
 
     //--------------------------------------------------------------------------
@@ -336,7 +338,7 @@ void build_turbine(
 }
 
 amrex::Vector<int> build_aero(
-    kynema::interfaces::TurbineInterfaceBuilder& builder,
+    kynema_fmb::interfaces::TurbineInterfaceBuilder& builder,
     const YAML::Node wio,
     const bool do_tower_aero)
 {
@@ -356,7 +358,7 @@ amrex::Vector<int> build_aero(
 
     const auto& airfoil_io = wio["airfoils"];
     auto blade_aero_sections =
-        std::vector<kynema::interfaces::components::AerodynamicSection>{};
+        std::vector<kynema_fmb::interfaces::components::AerodynamicSection>{};
     auto id = 0UL;
     for (const auto& af : airfoil_io) {
         const auto s = af["spanwise_position"].as<amrex::Real>();
@@ -372,6 +374,7 @@ amrex::Vector<int> build_aero(
         std::ranges::transform(aoa, std::begin(aoa), [](auto degrees) {
             return degrees * std::numbers::pi_v<amrex::Real> / 180.0_rt;
         });
+        const auto aoa_copy = aoa;
         const auto cl = af["polars"][0]["re_sets"][0]["cl"]["values"]
                             .as<std::vector<amrex::Real>>();
         const auto cd = af["polars"][0]["re_sets"][0]["cd"]["values"]
@@ -380,7 +383,7 @@ amrex::Vector<int> build_aero(
                             .as<std::vector<amrex::Real>>();
         blade_aero_sections.emplace_back(
             id, s, chord, section_offset_x, section_offset_y,
-            aerodynamic_center, twist, aoa, cl, cd, cm);
+            aerodynamic_center, twist, aoa_copy, cl, cd, cm);
         ++id;
     }
 
@@ -388,7 +391,7 @@ amrex::Vector<int> build_aero(
 
     // Tower airfoil sections (simple circular cylinder)
     auto tower_aero_sections =
-        std::vector<kynema::interfaces::components::AerodynamicSection>{};
+        std::vector<kynema_fmb::interfaces::components::AerodynamicSection>{};
     if (do_tower_aero) {
         const auto& tower_os = wio["components"]["tower"]["outer_shape"];
         const auto aoa = std::vector<double>{-180., 180.};
@@ -413,10 +416,10 @@ amrex::Vector<int> build_aero(
             const auto s = tower_os["outer_diameter"]["grid"]
                                .as<std::vector<double>>()[id];
             const auto cd = ::kynema_sgf::interp::linear(s_cd, cd_vec, s);
+            const auto cd_vec_wrapped = std::vector<double>{cd, cd};
             tower_aero_sections.emplace_back(
                 id, s, chord, section_offset_x, section_offset_y,
-                aerodynamic_center, twist, aoa, cl, std::vector<double>{cd, cd},
-                cm);
+                aerodynamic_center, twist, aoa, cl, cd_vec_wrapped, cm);
             ++id;
         }
         aero_builder.SetAirfoilSections(1UL, tower_aero_sections);
@@ -427,7 +430,7 @@ amrex::Vector<int> build_aero(
 }
 
 void build_controller(
-    kynema::interfaces::TurbineInterfaceBuilder& builder,
+    kynema_fmb::interfaces::TurbineInterfaceBuilder& builder,
     const std::string controller_shared_lib_path,
     const std::string controller_input_file,
     const std::string turbine_label)
@@ -442,7 +445,7 @@ void build_controller(
                                   .SetControllerInput(controller_output_file);
 }
 
-void update_turbine(::ext_turb::KynemaTurbine& fi, bool advance)
+void update_turbine(::ext_turb::KynemaFMBTurbine& fi, bool advance)
 {
     ++fi.substep_counter;
     // Operations that only need to be done once
@@ -459,7 +462,7 @@ void update_turbine(::ext_turb::KynemaTurbine& fi, bool advance)
         // individual turbine step, do not output every step
         bool converged = fi.interface->Step();
         if (!converged) {
-            amrex::Abort("Kynema did not converge\n");
+            amrex::Abort("Kynema-FMB did not converge\n");
         }
         if (fi.controller_input_file.size() > 0) {
             const amrex::Real t = fi.time_index * fi.dt_ext;
@@ -489,14 +492,14 @@ void update_turbine(::ext_turb::KynemaTurbine& fi, bool advance)
 namespace ext_turb {
 
 template <>
-ExtTurbIface<KynemaTurbine, KynemaSolverData>::~ExtTurbIface()
+ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::~ExtTurbIface()
 {
     //! Do deallocation if necessary
 }
 
 // !! This doesn't get used by the actual code, just by unit tests !! //
 template <>
-void ExtTurbIface<KynemaTurbine, KynemaSolverData>::parse_inputs(
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::parse_inputs(
     const kynema_sgf::CFDSim& sim, const std::string& inp_name)
 {
     amrex::ParmParse pp(inp_name);
@@ -511,15 +514,16 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::parse_inputs(
 }
 
 template <>
-void ExtTurbIface<KynemaTurbine, KynemaSolverData>::allocate_ext_turbines()
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::
+    allocate_ext_turbines()
 {
-    BL_PROFILE("kynema-sgf::KynemaIface::allocate_turbines");
+    BL_PROFILE("kynema-sgf::KynemaFMBIface::allocate_turbines");
 
     m_is_initialized = true;
 
     // Get solver parameters
     {
-        amrex::ParmParse pp("Kynema");
+        amrex::ParmParse pp("KynemaFMB");
         pp.query("damping_factor", m_solver_data.damping_factor);
         pp.query("max_nonlinear_iterations", m_solver_data.nl_iter_max);
         pp.query("abs_err_tol", m_solver_data.abs_err_tol);
@@ -533,10 +537,10 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::allocate_ext_turbines()
 }
 
 template <>
-void ExtTurbIface<KynemaTurbine, KynemaSolverData>::init_solution(
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::init_solution(
     const int local_id)
 {
-    BL_PROFILE("kynema-sgf::KynemaIface::init_solution");
+    BL_PROFILE("kynema-sgf::KynemaFMBIface::init_solution");
     AMREX_ALWAYS_ASSERT(local_id < static_cast<int>(m_turbine_data.size()));
     AMREX_ALWAYS_ASSERT(m_is_initialized);
 
@@ -548,10 +552,10 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::init_solution(
 }
 
 template <>
-void ExtTurbIface<KynemaTurbine, KynemaSolverData>::get_hub_stats(
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::get_hub_stats(
     const int local_id)
 {
-    BL_PROFILE("kynema-sgf::KynemaIface::get_hub_stats");
+    BL_PROFILE("kynema-sgf::KynemaFMBIface::get_hub_stats");
 
     auto& fi = *m_turbine_data[local_id];
 
@@ -566,14 +570,14 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::get_hub_stats(
     }
 }
 
-#ifdef KYNEMA_SGF_USE_KYNEMA
+#ifdef KYNEMA_SGF_USE_KYNEMA_FMB
 
 template <>
-void ExtTurbIface<KynemaTurbine, KynemaSolverData>::prepare_netcdf_file(
-    KynemaTurbine& fi)
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::prepare_netcdf_file(
+    KynemaFMBTurbine& fi)
 {
 #ifdef KYNEMA_SGF_USE_NETCDF
-    BL_PROFILE("kynema-sgf::KynemaIface::prepare_netcdf_file");
+    BL_PROFILE("kynema-sgf::KynemaFMBIface::prepare_netcdf_file");
     if (!amrex::UtilCreateDirectory(m_solver_data.output_dir, 0755)) {
         amrex::CreateDirectoryFailed(m_solver_data.output_dir);
     }
@@ -617,19 +621,19 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::prepare_netcdf_file(
     }
 #else
     amrex::ignore_unused(fi);
-    amrex::OutStream() << "WARNING: KynemaIface: NetCDF support was not "
+    amrex::OutStream() << "WARNING: KynemaFMBIface: NetCDF support was not "
                           "enabled during compile "
-                          "time. KynemaIface cannot support restart."
+                          "time. KynemaFMBIface cannot support restart."
                        << std::endl;
 #endif
 }
 
 template <>
-void ExtTurbIface<KynemaTurbine, KynemaSolverData>::write_velocity_data(
-    const KynemaTurbine& fi)
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::write_velocity_data(
+    const KynemaFMBTurbine& fi)
 {
 #ifdef KYNEMA_SGF_USE_NETCDF
-    BL_PROFILE("kynema-sgf::KynemaIface::write_velocity_data");
+    BL_PROFILE("kynema-sgf::KynemaFMBIface::write_velocity_data");
     const std::string fname =
         m_solver_data.output_dir + "/" + fi.tlabel + ".nc";
     auto ncf = ncutils::NCFile::open(fname, NC_WRITE);
@@ -648,8 +652,8 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::write_velocity_data(
 }
 
 template <>
-void ExtTurbIface<KynemaTurbine, KynemaSolverData>::read_velocity_data(
-    KynemaTurbine& fi, const ncutils::NCFile& ncf, const size_t tid)
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::read_velocity_data(
+    KynemaFMBTurbine& fi, const ncutils::NCFile& ncf, const size_t tid)
 {
 #ifdef KYNEMA_SGF_USE_NETCDF
     const auto nt = static_cast<size_t>(tid);
@@ -661,7 +665,7 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::read_velocity_data(
 #else
     amrex::ignore_unused(fi);
     amrex::Abort(
-        "KynemaIface::read_velocity_data: Kynema-SGF was not compiled with "
+        "KynemaFMBIface::read_velocity_data: Kynema-SGF was not compiled with "
         "NetCDF "
         "support");
 #endif
@@ -670,16 +674,16 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::read_velocity_data(
 #else
 
 template <>
-void ExtTurbIface<KynemaTurbine, KynemaSolverData>::prepare_netcdf_file(
-    KynemaTurbine& /*unused*/)
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::prepare_netcdf_file(
+    KynemaFMBTurbine& /*unused*/)
 {}
 template <>
-void ExtTurbIface<KynemaTurbine, KynemaSolverData>::write_velocity_data(
-    const KynemaTurbine& /*unused*/)
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::write_velocity_data(
+    const KynemaFMBTurbine& /*unused*/)
 {}
 template <>
-void ExtTurbIface<KynemaTurbine, KynemaSolverData>::read_velocity_data(
-    KynemaTurbine& /*unused*/,
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::read_velocity_data(
+    KynemaFMBTurbine& /*unused*/,
     const ncutils::NCFile& /*unused*/,
     const size_t /*unused*/)
 {}
@@ -687,26 +691,26 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::read_velocity_data(
 #endif
 
 template <>
-void ExtTurbIface<KynemaTurbine, KynemaSolverData>::do_turbine_step(
-    KynemaTurbine& fi)
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::do_turbine_step(
+    KynemaFMBTurbine& fi)
 {
     ::exw_kynema::update_turbine(fi, true);
 }
 
 template <>
-void ExtTurbIface<KynemaTurbine, KynemaSolverData>::write_turbine_checkpoint(
-    int& tid)
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::
+    write_turbine_checkpoint(int& tid)
 {
     // write checkpoint
 }
 
 template <>
-void ExtTurbIface<KynemaTurbine, KynemaSolverData>::ext_init_turbine(
-    KynemaTurbine& fi)
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
+    KynemaFMBTurbine& fi)
 {
-    BL_PROFILE("kynema-sgf::KynemaIface::init_turbine");
+    BL_PROFILE("kynema-sgf::KynemaFMBIface::init_turbine");
 
-    auto builder = kynema::interfaces::TurbineInterfaceBuilder{};
+    auto builder = kynema_fmb::interfaces::TurbineInterfaceBuilder{};
 
     builder.Solution()
         .EnableDynamicSolve()
@@ -733,21 +737,21 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::ext_init_turbine(
 
     if (n_aero_sections[0] != fi.num_pts_blade) {
         amrex::Abort(
-            "KynemaIface: number of points per blade (from Kynema-SGF input "
+            "KynemaFMBIface: number of points per blade (from Kynema-SGF input "
             "file: " +
             std::to_string(fi.num_pts_blade) +
             ") does not match number of aerodynamic sections per blade (from "
-            "Kynema input file: " +
+            "Kynema-FMB input file: " +
             std::to_string(n_aero_sections[0]) + ").");
     }
 
     if (n_aero_sections[1] != fi.num_pts_tower) {
         amrex::Abort(
-            "KynemaIface: number of tower points (from Kynema-SGF input "
+            "KynemaFMBIface: number of tower points (from Kynema-SGF input "
             "file: " +
             std::to_string(fi.num_pts_tower) +
             ") does not match number of aerodynamic tower sections (from "
-            "Kynema input file: " +
+            "Kynema-FMB input file: " +
             std::to_string(n_aero_sections[1]) + ").");
     }
 
@@ -758,9 +762,9 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::ext_init_turbine(
     }
 
     // Create output
-    builder.Outputs().SetOutputFilePath("kynema_" + fi.tlabel);
+    builder.Outputs().SetOutputFilePath("kynema_fmb_" + fi.tlabel);
 
-    fi.interface = std::make_unique<kynema::interfaces::TurbineInterface>(
+    fi.interface = std::make_unique<kynema_fmb::interfaces::TurbineInterface>(
         builder.Solution().Input(), builder.Turbine().Input(),
         builder.Aerodynamics().Input(), builder.Controller().Input(),
         builder.Outputs().Config());
@@ -779,7 +783,7 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::ext_init_turbine(
         1.0_rt;
     if (dt_err > 1.0e-12_rt) {
         amrex::Abort(
-            "KynemaIFace: Kynema timestep is not an integral "
+            "KynemaFMBIFace: Kynema-FMB timestep is not an integral "
             "multiple of CFD timestep");
     }
 
@@ -790,8 +794,8 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::ext_init_turbine(
 // cppcheck-suppress constParameterReference
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 template <>
-void ExtTurbIface<KynemaTurbine, KynemaSolverData>::ext_replay_turbine(
-    KynemaTurbine& fi)
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_replay_turbine(
+    KynemaFMBTurbine& fi)
 {
 
     // Do we even do this???
@@ -799,14 +803,14 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::ext_replay_turbine(
 
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 template <>
-void ExtTurbIface<KynemaTurbine, KynemaSolverData>::ext_restart_turbine(
-    KynemaTurbine& fi)
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_restart_turbine(
+    KynemaFMBTurbine& fi)
 {
-    BL_PROFILE("kynema-sgf::KynemaIface::restart_turbine");
+    BL_PROFILE("kynema-sgf::KynemaFMBIface::restart_turbine");
 
     AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
         amrex::FileSystem::Exists(fi.checkpoint_file + ".chkp"),
-        "KynemaIface: Cannot find Kynema checkpoint file: " +
+        "KynemaFMBIface: Cannot find Kynema-FMB checkpoint file: " +
             fi.checkpoint_file);
 
     // Determine the number of substeps for Kynema per CFD timestep
@@ -820,11 +824,11 @@ void ExtTurbIface<KynemaTurbine, KynemaSolverData>::ext_restart_turbine(
         1.0_rt;
     if (dt_err > 1.0e-4_rt) {
         amrex::Abort(
-            "KynemaIFace: Kynema timestep is not an integral "
+            "KynemaFMBIFace: Kynema timestep is not an integral "
             "multiple of CFD timestep");
     }
 }
 
-template class ExtTurbIface<KynemaTurbine, KynemaSolverData>;
+template class ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>;
 
 } // namespace ext_turb

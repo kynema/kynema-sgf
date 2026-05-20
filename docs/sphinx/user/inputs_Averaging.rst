@@ -4,7 +4,7 @@ Section: Averaging
 ~~~~~~~~~~~~~~~~~~
 
 This section controls data-averaging actions supported within
-AMR-wind. 
+Kynema-SGF. 
 Averaging is included as one of the identifiers of 
 post-processing by
 ``incflo.post_processing = averaging``.

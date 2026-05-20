@@ -260,9 +260,10 @@ void ActuatorContainer::populate_field_buffers()
         amrex::Gpu::deviceToHost, buff_device.begin(), buff_device.end(),
         buff_host.begin());
 #ifdef AMREX_USE_MPI
-    const int num_entires = static_cast<int>(buff_host.size());
+    const int num_entries = static_cast<int>(buff_host.size());
     MPI_Allreduce(
-        MPI_IN_PLACE, buff_host.data(), num_entires, MPI_DOUBLE, MPI_SUM,
+        MPI_IN_PLACE, buff_host.data(), num_entries,
+        amrex::ParallelDescriptor::Mpi_typemap<amrex::Real>::type(), MPI_SUM,
         amrex::ParallelDescriptor::Communicator());
 #endif
     {

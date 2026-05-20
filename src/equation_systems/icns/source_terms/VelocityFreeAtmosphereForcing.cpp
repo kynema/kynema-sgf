@@ -104,7 +104,7 @@ void VelocityFreeAtmosphereForcing::operator()(
                 ref_wind = kynema_sgf::interp::linear(
                     wind_heights_d, wind_ht_end, vals, z);
             }
-            src_arrs[nbx](i, j, k, n) -= zi * zi / meso_timescale *
+            src_arrs[nbx](i, j, k, n) -= 1.0_rt / meso_timescale *
                                          (vel_arrs[nbx](i, j, k, n) - ref_wind);
         });
 }
