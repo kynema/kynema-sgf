@@ -32,10 +32,10 @@ incflo.velocity                          = 11.0 0.0 0.0
 time.plot_interval                       = 10                
 time.checkpoint_interval                 = 5                
 io.plot_file                             = plt
-Actuator.type                            = TurbineKynemaLine     
-Actuator.TurbineKynemaLine.epsilon       = 5.0 5.0 5.0   
-Actuator.TurbineKynemaLine.epsilon_tower = 5.0 5.0 5.0         
-Actuator.TurbineKynemaLine.fllc          = false               
+Actuator.type                            = TurbineKynemaFMBLine     
+Actuator.TurbineKynemaFMBLine.epsilon       = 5.0 5.0 5.0   
+Actuator.TurbineKynemaFMBLine.epsilon_tower = 5.0 5.0 5.0         
+Actuator.TurbineKynemaFMBLine.fllc          = false               
 
 #---- tagging defs ----
 tagging.labels                           = T0_level_0_zone T1_level_0_zone T0_level_1_zone T1_level_1_zone T0_level_2_zone T1_level_2_zone T0_level_3_zone T1_level_3_zone
@@ -105,23 +105,20 @@ tagging.T1_level_3_zone.T1_level_3_zone.yaxis = -0.0 151.2 -0.0
 tagging.T1_level_3_zone.T1_level_3_zone.zaxis = 0.0 0.0 151.2       
 
 #---- actuator defs ----
-Actuator.TurbineKynemaLine.kynema_input_file      = NREL-5MW-aero.yaml
-Actuator.TurbineKynemaLine.num_struct_nodes_blade = 11
-Actuator.TurbineKynemaLine.num_struct_nodes_tower = 11
-Actuator.TurbineKynemaLine.num_points_blade       = 64
-Actuator.TurbineKynemaLine.num_points_tower       = 7
-Actuator.TurbineKynemaLine.rot_speed_rpm          = 12.1
-Actuator.TurbineKynemaLine.dt                     = 0.005
-Actuator.TurbineKynemaLine.fllc                   = false
-Actuator.TurbineKynemaLine.density                = 1.225
-Actuator.TurbineKynemaLine.nacelle_drag_coeff     = 1.0                 
-Actuator.TurbineKynemaLine.nacelle_area           = 8.0                 
-Actuator.TurbineKynemaLine.output_frequency       = 1                   
-Actuator.TurbineKynemaLine.num_blades             = 3
+Actuator.TurbineKynemaFMBLine.kynema_fmb_input_file  = NREL-5MW-aero.yaml
+Actuator.TurbineKynemaFMBLine.num_struct_nodes_blade = 11
+Actuator.TurbineKynemaFMBLine.num_struct_nodes_tower = 11
+Actuator.TurbineKynemaFMBLine.num_points_blade       = 64
+Actuator.TurbineKynemaFMBLine.num_points_tower       = 7
+Actuator.TurbineKynemaFMBLine.rot_speed_rpm          = 12.1
+Actuator.TurbineKynemaFMBLine.dt                     = 0.005
+Actuator.TurbineKynemaFMBLine.fllc                   = false
+Actuator.TurbineKynemaFMBLine.density                = 1.225
+Actuator.TurbineKynemaFMBLine.nacelle_drag_coeff     = 1.0                 
+Actuator.TurbineKynemaFMBLine.nacelle_area           = 8.0                 
+Actuator.TurbineKynemaFMBLine.output_frequency       = 1                   
+Actuator.TurbineKynemaFMBLine.num_blades             = 3
 
 Actuator.labels                          = T0 T1               
 Actuator.T0.base_position                = 0.0 -250.0 -90.0                       
 Actuator.T1.base_position                = 0.0 250.0 -90.0     
-
-#---- extra params ----
-#== END AMR-WIND INPUT ==

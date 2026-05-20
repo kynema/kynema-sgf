@@ -22,12 +22,8 @@ public:
 
     ~SourceTerm() override = default;
 
-    virtual void operator()(
-        int lev,
-        const amrex::MFIter& mfi,
-        const amrex::Box& bx,
-        FieldState fstate,
-        const amrex::Array4<amrex::Real>& src_term) const = 0;
+    virtual void
+    operator()(int lev, FieldState fstate, amrex::MultiFab& src_term) const = 0;
 };
 
 } // namespace pde

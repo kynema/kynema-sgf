@@ -1,7 +1,7 @@
-#ifndef KYNEMA_WRAPPER_H
-#define KYNEMA_WRAPPER_H
+#ifndef KYNEMA_FMB_WRAPPER_H
+#define KYNEMA_FMB_WRAPPER_H
 
-#ifdef KYNEMA_SGF_USE_KYNEMA
+#ifdef KYNEMA_SGF_USE_KYNEMA_FMB
 #include <array>
 #include <numbers>
 #include <ranges>
@@ -15,4 +15,4 @@
 #else
 #endif
 
-#endif /* KYNEMA_WRAPPER_H */
+#endif /* KYNEMA_FMB_WRAPPER_H */

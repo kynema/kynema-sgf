@@ -54,7 +54,7 @@ public:
     void post_regrid_actions() override;
 
 private:
-    //! Poincare coefficient (default value set for 2nd order AMR-wind
+    //! Poincare coefficient (default value set for 2nd order Kynema-SGF
     //! discretization)
     amrex::Real m_C{0.333333333333333_rt};
     const Field& m_vel;

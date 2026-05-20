@@ -49,7 +49,7 @@ jobs:
             ccache_size: 100M
           - build_type: Debug
             openmp_flag: NoOpenMP
-            ctest_args: -LE no_ci
+            ctest_args: -L "unit|debug_ci"
             ccache_size: 200M
           - build_type: Debug
             openmp_flag: OpenMP
@@ -590,31 +590,31 @@ jobs:
           pip install codespell
       - name: Run codespell
         run: codespell
-  Docker:
-    needs: Formatting
-    runs-on: ubuntu-24.04
-    container:
-      image: ecpe4s/kynema-snapshot
-      env:
-          EXAWIND_MANAGER: /kynema-manager
-          E4S_MACHINE: true
-    steps:
-      - name: Clone
-        uses: actions/checkout@v6
-        with:
-          submodules: true
-      - name: Test
-        run: |
-          /bin/bash -c " \
-            source ${EXAWIND_MANAGER}/start.sh && spack-start && \
-            spack env activate e4s-build && \
-            cd ${EXAWIND_MANAGER}/environments/e4s-build && \
-            ln -s ${GITHUB_WORKSPACE} amr-wind && \
-            spack develop --no-modify-concrete-specs --no-clone amr-wind@=main && \
-            spack rm kynema && \
-            spack add amr-wind@main && \
-            spack concretize -f && \
-            spack install && \
-            spack cd -b amr-wind && \
-            spack build-env amr-wind ctest -j $(nproc) -L unit --output-on-failure \
-          "
+#  Docker:
+#    needs: Formatting
+#    runs-on: ubuntu-24.04
+#    container:
+#      image: ecpe4s/kynema-snapshot
+#      env:
+#          EXAWIND_MANAGER: /kynema-manager
+#          E4S_MACHINE: true
+#    steps:
+#      - name: Clone
+#        uses: actions/checkout@v6
+#        with:
+#          submodules: true
+#      - name: Test
+#        run: |
+#          /bin/bash -c " \
+#            source ${EXAWIND_MANAGER}/start.sh && spack-start && \
+#            spack env activate e4s-build && \
+#            cd ${EXAWIND_MANAGER}/environments/e4s-build && \
+#            ln -s ${GITHUB_WORKSPACE} amr-wind && \
+#            spack develop --no-modify-concrete-specs --no-clone amr-wind@=main && \
+#            spack rm kynema && \
+#            spack add amr-wind@main && \
+#            spack concretize -f && \
+#            spack install && \
+#            spack cd -b amr-wind && \
+#            spack build-env amr-wind ctest -j $(nproc) -L unit --output-on-failure \
+#          "

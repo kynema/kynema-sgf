@@ -48,25 +48,18 @@ public:
     //! Thermal expansion coefficient
     [[nodiscard]] virtual std::unique_ptr<ScratchField> beta() const = 0;
 
-    //! Thermal expansion coefficient
-    virtual void beta_impl(
-        int lev,
-        const amrex::MFIter& mfi,
-        const amrex::Box& bx,
-        const amrex::Array4<amrex::Real>& beta) const = 0;
-
     //! Reference temperature
     [[nodiscard]] virtual amrex::Real reference_temperature() const = 0;
 
     //! Reference temperature
-    virtual void ref_theta_impl(
-        int lev,
-        const amrex::MFIter& mfi,
-        const amrex::Box& bx,
-        const amrex::Array4<amrex::Real>& ref_theta) const = 0;
-
-    //! Reference temperature
     [[nodiscard]] virtual std::unique_ptr<ScratchField> ref_theta() const = 0;
+
+    //! Fill an entire MultiFab with thermal expansion coefficient (level-wide)
+    virtual void beta_fill(int lev, amrex::MultiFab& beta_mf) const = 0;
+
+    //! Fill an entire MultiFab with reference temperature (level-wide)
+    virtual void
+    ref_theta_fill(int lev, amrex::MultiFab& ref_theta_mf) const = 0;
 
 protected:
     const int m_ngrow{1};

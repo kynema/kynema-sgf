@@ -3,7 +3,7 @@
 Verification
 ============
 
-Verification of AMR-WIND uses `MASA
+Verification of Kynema-SGF uses `MASA
 <https://github.com/manufactured-solutions/MASA>`_ and
 auto-differentiation tools to implement the Method of Manufactured
 Solutions. MMS verification has been performed for both CPU and GPU
@@ -189,7 +189,7 @@ simplifying further we arrive at the Ekman spiral solution
    v = u_g e^{-z/D_E} \sin(\phi-z/D_E )
 
 
-Velocity profiles of AMR-wind with a Geostrophic wind of 15 m/s
+Velocity profiles of Kynema-SGF with a Geostrophic wind of 15 m/s
 
 .. image:: ./ekman_spiral_velocity.pdf
    :width: 300pt
@@ -199,7 +199,7 @@ Wind direction :math:`\tan^{-1}(v/u) \frac{180}{\pi}`
 .. image:: ./ekman_spiral_wind_direction.pdf
    :width: 300pt
    
-AMR-wind :math:`L_2` error after :math:`t=200` seconds. 
+Kynema-SGF :math:`L_2` error after :math:`t=200` seconds. 
 
 .. image:: ./ekman_spiral_error.pdf 
    :width: 300pt
@@ -210,12 +210,12 @@ Channel flow (laminar, quasi-2D) with different BCs
 These tests use the Poiseuille flow solution for a channel to verify the implementation of the boundary conditions. Input files for these tests are included among the regression test directories.
 
 
-AMR-wind :math:`L_2` error for whole channel after velocity field has converged to steady state. This evaluates the no-slip boundary conditions at the top and bottom of the domain. Results are identical for different normal directions and flow directions (x, y, and z).
+Kynema-SGF :math:`L_2` error for whole channel after velocity field has converged to steady state. This evaluates the no-slip boundary conditions at the top and bottom of the domain. Results are identical for different normal directions and flow directions (x, y, and z).
 
 .. image:: ./Channel_Laminar.png
    :width: 300pt
 
-AMR-wind :math:`L_2` error for half-channel after velocity field has converged to steady state. At the upper boundary, the zero-gradient and symmetric wall boundary conditions are employed.
+Kynema-SGF :math:`L_2` error for half-channel after velocity field has converged to steady state. At the upper boundary, the zero-gradient and symmetric wall boundary conditions are employed.
 
 .. image:: ./HalfChannel_Laminar.png
    :width: 300pt

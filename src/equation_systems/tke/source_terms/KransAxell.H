@@ -26,11 +26,7 @@ public:
     ~KransAxell() override;
 
     void operator()(
-        int lev,
-        const amrex::MFIter& mfi,
-        const amrex::Box& bx,
-        FieldState fstate,
-        const amrex::Array4<amrex::Real>& src_term) const override;
+        int lev, FieldState fstate, amrex::MultiFab& src_term) const override;
 
 private:
     Field& m_turb_lscale;
@@ -59,6 +55,7 @@ private:
 
     //! Reference temperature
     std::unique_ptr<ScratchField> m_ref_theta;
+    mutable std::unique_ptr<ScratchField> m_ref_theta_scratch;
     bool m_horizontal_sponge{false};
     amrex::Real m_sponge_strength{1.0_rt};
     amrex::Real m_sponge_distance_west{0.0_rt};

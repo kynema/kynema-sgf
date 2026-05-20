@@ -93,43 +93,30 @@ struct SrcTermOp<ICNS> : SrcTermOpBase<ICNS>
         const int nlevels = this->fields.repo.num_active_levels();
         for (int lev = 0; lev < nlevels; ++lev) {
             auto& src_term = this->fields.src_term(lev);
-#ifdef AMREX_USE_OMP
-#pragma omp parallel if (amrex::Gpu::notInLaunchRegion())
-#endif
-            for (amrex::MFIter mfi(src_term, amrex::TilingIfNotGPU());
-                 mfi.isValid(); ++mfi) {
-                const auto& bx = mfi.tilebox();
-                const auto& vf = src_term.array(mfi);
-                const auto& rho = density(lev).const_array(mfi);
-                const auto& gp = grad_p(lev).const_array(mfi);
-                amrex::Array4<amrex::Real const> fac =
-                    mesh_mapping ? ((*mesh_fac)(lev).const_array(mfi))
-                                 : amrex::Array4<amrex::Real const>();
 
-                amrex::ParallelFor(
-                    bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                        amrex::Real rhoinv = 1.0_rt / rho(i, j, k);
-                        amrex::Real fac_x =
-                            mesh_mapping ? (fac(i, j, k, 0)) : 1.0_rt;
-                        amrex::Real fac_y =
-                            mesh_mapping ? (fac(i, j, k, 1)) : 1.0_rt;
-                        amrex::Real fac_z =
-                            mesh_mapping ? (fac(i, j, k, 2)) : 1.0_rt;
+            auto const& src_arrs = src_term.arrays();
+            auto const& rho_arrs = density(lev).const_arrays();
+            auto const& gp_arrs = grad_p(lev).const_arrays();
+            auto const& fac_arrs =
+                mesh_mapping ? (*mesh_fac)(lev).const_arrays()
+                             : amrex::MultiArray4<amrex::Real const>();
 
-                        vf(i, j, k, 0) =
-                            -(1.0_rt / fac_x * gp(i, j, k, 0)) * rhoinv;
-                        vf(i, j, k, 1) =
-                            -(1.0_rt / fac_y * gp(i, j, k, 1)) * rhoinv;
-                        vf(i, j, k, 2) =
-                            -(1.0_rt / fac_z * gp(i, j, k, 2)) * rhoinv;
-                    });
+            amrex::ParallelFor(
+                src_term, amrex::IntVect(0), AMREX_SPACEDIM,
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+                    const amrex::Real rhoinv = 1.0_rt / rho_arrs[nbx](i, j, k);
+                    const amrex::Real fac_n =
+                        mesh_mapping ? fac_arrs[nbx](i, j, k, n) : 1.0_rt;
+                    src_arrs[nbx](i, j, k, n) =
+                        -(1.0_rt / fac_n * gp_arrs[nbx](i, j, k, n)) * rhoinv;
+                });
+            amrex::Gpu::streamSynchronize();
 
-                for (const auto& src : this->sources) {
-                    (*src)(lev, mfi, bx, fstate, vf);
-                }
+            for (const auto& src : this->sources) {
+                (*src)(lev, fstate, src_term);
             }
+            amrex::Gpu::streamSynchronize();
         }
-        // Multiply velocity src terms by density for momentum equation
         this->multiply_rho(fstate);
     }
 

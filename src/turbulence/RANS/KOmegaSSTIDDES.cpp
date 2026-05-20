@@ -268,8 +268,8 @@ void KOmegaSSTIDDES<Transport>::update_turbulent_viscosity(
                 shear_prod_arrs[nbx](i, j, k) = amrex::min<amrex::Real>(
                     amrex::max<amrex::Real>(
                         mu_arrs[nbx](i, j, k) * tmp4 * tmp4, 0.0_rt),
-                    10.0_rt * rho_arrs[nbx](i, j, k) * tke_arrs[nbx](i, j, k) *
-                        std::sqrt(tke_arrs[nbx](i, j, k)) / l_iddes);
+                    10.0_rt * beta_star * rho_arrs[nbx](i, j, k) *
+                        tke_arrs[nbx](i, j, k) * sdr_arrs[nbx](i, j, k));
 
                 diss_arrs[nbx](i, j, k) = (-rho_arrs[nbx](i, j, k) *
                                            std::sqrt(tke_arrs[nbx](i, j, k)) *

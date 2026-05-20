@@ -106,7 +106,7 @@ volume_sampling.volume2.num_points  = 30 10 10
 
 volume_sampling2.output_interval    = 1
 volume_sampling2.output_format       = native
-volume_sampling2.fields              = velocity
+volume_sampling2.fields              = temperature
 volume_sampling2.int_fields          = mask_cell
 volume_sampling2.derived_fields      = q_criterion_nondim
 volume_sampling2.labels              = volume1

@@ -44,12 +44,9 @@ TEST_F(MMSMeshTest, mms_forcing)
         2.0381534755116628_rt, 2.2014865191023762_rt, 2.4125363807493985_rt};
     src_term.setVal(0.0_rt);
 
-    run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto& bx = mfi.tilebox();
-        const auto& src_arr = src_term(lev).array(mfi);
-
-        mmsforcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
-    });
+    for (int lev = 0; lev < src_term.repo().num_active_levels(); ++lev) {
+        mmsforcing(lev, kynema_sgf::FieldState::New, src_term(lev));
+    }
 
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         const auto min_val = utils::field_min(src_term, i);
