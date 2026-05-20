@@ -361,26 +361,26 @@ amrex::Vector<int> build_aero(
         std::vector<kynema_fmb::interfaces::components::AerodynamicSection>{};
     auto id = 0UL;
     for (const auto& af : airfoil_io) {
-        const auto s = af["spanwise_position"].as<amrex::Real>();
-        const auto chord = af["chord"].as<amrex::Real>();
-        const auto twist = af["twist"].as<amrex::Real>() *
-                           std::numbers::pi_v<amrex::Real> / 180.0_rt;
-        const auto section_offset_x = af["section_offset_x"].as<amrex::Real>();
-        const auto section_offset_y = af["section_offset_y"].as<amrex::Real>();
+        const auto s = af["spanwise_position"].as<double>();
+        const auto chord = af["chord"].as<double>();
+        const auto twist = af["twist"].as<double>() *
+                           std::numbers::pi_v<double> / 180.0;
+        const auto section_offset_x = af["section_offset_x"].as<double>();
+        const auto section_offset_y = af["section_offset_y"].as<double>();
         const auto aerodynamic_center =
-            af["aerodynamic_center"].as<amrex::Real>();
+            af["aerodynamic_center"].as<double>();
         auto aoa = af["polars"][0]["re_sets"][0]["cl"]["grid"]
-                       .as<std::vector<amrex::Real>>();
+                       .as<std::vector<double>>();
         std::ranges::transform(aoa, std::begin(aoa), [](auto degrees) {
-            return degrees * std::numbers::pi_v<amrex::Real> / 180.0_rt;
+            return degrees * std::numbers::pi_v<double> / 180.0;
         });
         const auto aoa_copy = aoa;
         const auto cl = af["polars"][0]["re_sets"][0]["cl"]["values"]
-                            .as<std::vector<amrex::Real>>();
+                            .as<std::vector<double>>();
         const auto cd = af["polars"][0]["re_sets"][0]["cd"]["values"]
-                            .as<std::vector<amrex::Real>>();
+                            .as<std::vector<double>>();
         const auto cm = af["polars"][0]["re_sets"][0]["cm"]["values"]
-                            .as<std::vector<amrex::Real>>();
+                            .as<std::vector<double>>();
         blade_aero_sections.emplace_back(
             id, s, chord, section_offset_x, section_offset_y,
             aerodynamic_center, twist, aoa_copy, cl, cd, cm);
