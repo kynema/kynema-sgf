@@ -429,41 +429,14 @@ void incflo::ApplyProjection(
     auto gradphi = nodal_projector->getGradPhi();
 
     for (int lev = 0; lev <= finest_level; lev++) {
-
-#ifdef AMREX_USE_OMP
-#pragma omp parallel if (amrex::Gpu::notInLaunchRegion())
-#endif
-        for (amrex::MFIter mfi(grad_p(lev), amrex::TilingIfNotGPU());
-             mfi.isValid(); ++mfi) {
-            amrex::Box const& tbx = mfi.tilebox();
-            amrex::Box const& nbx = mfi.nodaltilebox();
-            amrex::Array4<amrex::Real> const& gp_lev = grad_p(lev).array(mfi);
-            amrex::Array4<amrex::Real> const& p_lev = pressure(lev).array(mfi);
-            amrex::Array4<amrex::Real const> const& gp_proj =
-                gradphi[lev]->const_array(mfi);
-            amrex::Array4<amrex::Real const> const& p_proj =
-                phi[lev]->const_array(mfi);
-            if (incremental) {
-                amrex::ParallelFor(
-                    tbx, AMREX_SPACEDIM,
-                    [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
-                        gp_lev(i, j, k, n) += gp_proj(i, j, k, n);
-                    });
-                amrex::ParallelFor(
-                    nbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                        p_lev(i, j, k) += p_proj(i, j, k);
-                    });
-            } else {
-                amrex::ParallelFor(
-                    tbx, AMREX_SPACEDIM,
-                    [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
-                        gp_lev(i, j, k, n) = gp_proj(i, j, k, n);
-                    });
-                amrex::ParallelFor(
-                    nbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                        p_lev(i, j, k) = p_proj(i, j, k);
-                    });
-            }
+        if (incremental) {
+            amrex::MultiFab::Add(
+                grad_p(lev), *gradphi[lev], 0, 0, AMREX_SPACEDIM, 0);
+            amrex::MultiFab::Add(pressure(lev), *phi[lev], 0, 0, 1, 0);
+        } else {
+            amrex::MultiFab::Copy(
+                grad_p(lev), *gradphi[lev], 0, 0, AMREX_SPACEDIM, 0);
+            amrex::MultiFab::Copy(pressure(lev), *phi[lev], 0, 0, 1, 0);
         }
     }
 

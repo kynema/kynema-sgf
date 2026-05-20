@@ -138,6 +138,7 @@ TEST_F(TurbRANSTest, test_1eqKrans_setup_calc)
 
     // Create turbulence model
     sim().create_turbulence_model();
+    sim().turbulence_model().post_init_actions();
     // Get turbulence model
     auto& tmodel = sim().turbulence_model();
 

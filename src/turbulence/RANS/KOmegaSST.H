@@ -2,6 +2,7 @@
 #define KOMEGASST_H
 
 #include <string>
+#include "src/core/ScratchField.H"
 #include "src/turbulence/TurbModelBase.H"
 #include "AMReX_REAL.H"
 
@@ -57,6 +58,12 @@ public:
     //! No post advance work for this model
     void post_advance_work() override {}
 
+    //! Actions to perform post initialization
+    void post_init_actions() override;
+
+    //! Actions to perform post regrid
+    void post_regrid_actions() override;
+
     //! Update the effective scalar diffusivity field
     void update_scalar_diff(Field& deff, const std::string& name) override;
 
@@ -100,6 +107,10 @@ protected:
     amrex::Real m_buoyancy_factor = 0.0_rt;
     amrex::Real m_sigma_t{0.85_rt};
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
+
+    std::unique_ptr<ScratchField> m_gradK;
+    std::unique_ptr<ScratchField> m_gradOmega;
+    std::unique_ptr<ScratchField> m_gradden;
 };
 
 } // namespace kynema_sgf::turbulence

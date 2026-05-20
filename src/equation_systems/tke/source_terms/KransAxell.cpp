@@ -86,32 +86,23 @@ KransAxell::KransAxell(const CFDSim& sim)
 KransAxell::~KransAxell() = default;
 
 void KransAxell::operator()(
-    const int lev,
-    const amrex::MFIter& mfi,
-    const amrex::Box& bx,
-    const FieldState fstate,
-    const amrex::Array4<amrex::Real>& src_term) const
+    const int lev, const FieldState fstate, amrex::MultiFab& src_term) const
 {
-    const auto& vel =
-        m_velocity.state(field_impl::dof_state(fstate))(lev).const_array(mfi);
-    const auto& tlscale_arr = (this->m_turb_lscale)(lev).array(mfi);
-    const auto& shear_prod_arr = (this->m_shear_prod)(lev).array(mfi);
-    const auto& buoy_prod_arr = (this->m_buoy_prod)(lev).array(mfi);
-    const auto& dissip_arr = (this->m_dissip)(lev).array(mfi);
-    const auto& tke_arr = m_tke(lev).array(mfi);
-    amrex::FArrayBox ref_theta_fab(bx, 1, amrex::The_Async_Arena());
-    amrex::Array4<amrex::Real> const& ref_theta_arr = ref_theta_fab.array();
-    m_transport.ref_theta_impl(lev, mfi, bx, ref_theta_arr);
+    if (!m_ref_theta_scratch) {
+        m_ref_theta_scratch = m_sim.repo().create_scratch_field(1, 0);
+    }
+    m_transport.ref_theta_fill(lev, (*m_ref_theta_scratch)(lev));
+
     const auto& geom = m_mesh.Geom(lev);
-    const auto& problo = m_mesh.Geom(lev).ProbLoArray();
-    const auto& probhi = m_mesh.Geom(lev).ProbHiArray();
+    const auto& problo = geom.ProbLoArray();
+    const auto& probhi = geom.ProbHiArray();
     const auto& dx = geom.CellSizeArray();
     const auto& dt = m_time.delta_t();
     const amrex::Real heat_flux = m_heat_flux;
     const amrex::Real Cmu = m_Cmu;
     const amrex::Real kappa = m_kappa;
     const amrex::Real time_factor = m_forcing_time_factor;
-    amrex::Real z0 = m_z0;
+    const amrex::Real z0 = m_z0;
     const bool has_terrain =
         this->m_sim.repo().int_field_exists("terrain_blank");
     const amrex::Real sponge_start = m_meso_start;
@@ -125,89 +116,46 @@ void KransAxell::operator()(
         psi_m = MOData::calc_psi_m(
             1.5_rt * dx[2] / m_monin_obukhov_length, m_beta_m, m_gamma_m);
     }
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        amrex::Real bcforcing = 0;
-        const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
-        if (k == 0) {
-            const amrex::Real ux = vel(i, j, k + 1, 0);
-            const amrex::Real uy = vel(i, j, k + 1, 1);
-            const amrex::Real m = std::sqrt((ux * ux) + (uy * uy));
-            const amrex::Real ustar =
-                m * kappa / (std::log(3.0_rt * z / z0) - psi_m);
-            const amrex::Real T0 = ref_theta_arr(i, j, k);
-            const amrex::Real hf = std::abs(gravity[2]) / T0 * heat_flux;
-            const amrex::Real rans_b = amrex::max<amrex::Real>(hf, 0.0_rt) *
-                                       kappa * z / utils::powi(Cmu, 3);
-            const amrex::Real tke_exact = std::pow(
-                ustar * ustar * ustar / (Cmu * Cmu * Cmu) + rans_b,
-                2.0_rt / 3.0_rt);
-            bcforcing = (tke_exact - tke_arr(i, j, k)) / (time_factor * dt);
-        }
-        amrex::Real ref_tke = tke_arr(i, j, k);
-        if (z > sponge_start) {
-            ref_tke = (vsize > 0) ? interp::linear(
-                                        wind_heights_d, wind_heights_d + vsize,
-                                        tke_values_d, z)
-                                  : tke_arr(i, j, k, 0);
-        }
-        const amrex::Real sponge_forcing =
-            1.0_rt / dt * (tke_arr(i, j, k) - ref_tke);
-        dissip_arr(i, j, k) =
-            utils::powi(Cmu, 3) * std::pow(tke_arr(i, j, k), 1.5_rt) /
-            (tlscale_arr(i, j, k) + kynema_sgf::constants::EPS);
-        src_term(i, j, k) += shear_prod_arr(i, j, k) + buoy_prod_arr(i, j, k) -
-                             dissip_arr(i, j, k) -
-                             ((1.0_rt - static_cast<int>(has_terrain)) *
-                              (sponge_forcing - bcforcing));
-    });
-    if (has_terrain) {
-        const amrex::Real z0_min = 1.0e-4_rt;
-        const auto* const m_terrain_blank =
-            &this->m_sim.repo().get_int_field("terrain_blank");
-        const auto* const m_terrain_drag =
-            &this->m_sim.repo().get_int_field("terrain_drag");
-        auto* const m_terrain_height =
-            &this->m_sim.repo().get_field("terrain_height");
-        auto* const m_terrainz0 = &this->m_sim.repo().get_field("terrainz0");
-        const auto& blank_arr = (*m_terrain_blank)(lev).const_array(mfi);
-        const auto& drag_arr = (*m_terrain_drag)(lev).const_array(mfi);
-        const auto& terrain_height = (*m_terrain_height)(lev).const_array(mfi);
-        const auto& terrainz0 = (*m_terrainz0)(lev).const_array(mfi);
-        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-            const amrex::Real cell_z0 =
-                (drag_arr(i, j, k) *
-                 amrex::max<amrex::Real>(terrainz0(i, j, k), z0_min)) +
-                ((1.0_rt - drag_arr(i, j, k)) * z0);
-            amrex::Real ux = vel(i, j, k + 1, 0);
-            amrex::Real uy = vel(i, j, k + 1, 1);
-            amrex::Real z = 0.5_rt * dx[2];
-            amrex::Real m = std::sqrt((ux * ux) + (uy * uy));
-            const amrex::Real ustar =
-                m * kappa / (std::log(3.0_rt * z / cell_z0) - psi_m);
-            const amrex::Real T0 = ref_theta_arr(i, j, k);
-            const amrex::Real hf = std::abs(gravity[2]) / T0 * heat_flux;
-            const amrex::Real rans_b = amrex::max<amrex::Real>(hf, 0.0_rt) *
-                                       kappa * z / utils::powi(Cmu, 3);
-            const amrex::Real tke_exact = std::pow(
-                ustar * ustar * ustar / (Cmu * Cmu * Cmu) + rans_b,
-                2.0_rt / 3.0_rt);
-            const amrex::Real terrainforcing =
-                (tke_exact - tke_arr(i, j, k)) / (time_factor * dt);
-            amrex::Real bcforcing = 0.0_rt;
+
+    auto const& src_arrs = src_term.arrays();
+    auto const& vel_arrs =
+        m_velocity.state(field_impl::dof_state(fstate))(lev).const_arrays();
+    auto const& tlscale_arrs = m_turb_lscale(lev).const_arrays();
+    auto const& shear_prod_arrs = m_shear_prod(lev).const_arrays();
+    auto const& buoy_prod_arrs = m_buoy_prod(lev).const_arrays();
+    auto const& dissip_arrs = m_dissip(lev).arrays();
+    auto const& tke_arrs = m_tke(lev).const_arrays();
+    auto const& ref_theta_arrs = (*m_ref_theta_scratch)(lev).const_arrays();
+
+    // Main kernel
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), 1,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+            const auto& vel = vel_arrs[nbx];
+            const auto& tlscale_arr = tlscale_arrs[nbx];
+            const auto& shear_prod_arr = shear_prod_arrs[nbx];
+            const auto& buoy_prod_arr = buoy_prod_arrs[nbx];
+            const auto& dissip_arr = dissip_arrs[nbx];
+            const auto& tke_arr = tke_arrs[nbx];
+            const auto& ref_theta_arr = ref_theta_arrs[nbx];
+
+            amrex::Real bcforcing = 0;
+            const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
             if (k == 0) {
-                bcforcing = (1 - blank_arr(i, j, k)) * terrainforcing;
+                const amrex::Real ux = vel(i, j, k + 1, 0);
+                const amrex::Real uy = vel(i, j, k + 1, 1);
+                const amrex::Real m = std::sqrt((ux * ux) + (uy * uy));
+                const amrex::Real ustar =
+                    m * kappa / (std::log(3.0_rt * z / z0) - psi_m);
+                const amrex::Real T0 = ref_theta_arr(i, j, k);
+                const amrex::Real hf = std::abs(gravity[2]) / T0 * heat_flux;
+                const amrex::Real rans_b = amrex::max<amrex::Real>(hf, 0.0_rt) *
+                                           kappa * z / utils::powi(Cmu, 3);
+                const amrex::Real tke_exact = std::pow(
+                    ustar * ustar * ustar / (Cmu * Cmu * Cmu) + rans_b,
+                    2.0_rt / 3.0_rt);
+                bcforcing = (tke_exact - tke_arr(i, j, k)) / (time_factor * dt);
             }
-            ux = vel(i, j, k, 0);
-            uy = vel(i, j, k, 1);
-            const amrex::Real uz = vel(i, j, k, 2);
-            m = std::sqrt((ux * ux) + (uy * uy) + (uz * uz));
-            const amrex::Real Cd = amrex::min<amrex::Real>(
-                10.0_rt / (dx[2] * m + kynema_sgf::constants::EPS),
-                100.0_rt / dx[2]);
-            const amrex::Real dragforcing = -Cd * m * tke_arr(i, j, k, 0);
-            z = amrex::max<amrex::Real>(
-                problo[2] + ((k + 0.5_rt) * dx[2]) - terrain_height(i, j, k),
-                0.5_rt * dx[2]);
             amrex::Real ref_tke = tke_arr(i, j, k);
             if (z > sponge_start) {
                 ref_tke = (vsize > 0)
@@ -218,12 +166,94 @@ void KransAxell::operator()(
             }
             const amrex::Real sponge_forcing =
                 1.0_rt / dt * (tke_arr(i, j, k) - ref_tke);
-            src_term(i, j, k) =
-                ((1.0_rt - blank_arr(i, j, k)) * src_term(i, j, k)) +
-                (drag_arr(i, j, k) * terrainforcing) +
-                (blank_arr(i, j, k) * dragforcing) -
-                (static_cast<int>(has_terrain) * (sponge_forcing - bcforcing));
+            dissip_arr(i, j, k) =
+                utils::powi(Cmu, 3) * std::pow(tke_arr(i, j, k), 1.5_rt) /
+                (tlscale_arr(i, j, k) + kynema_sgf::constants::EPS);
+            src_arrs[nbx](i, j, k) +=
+                shear_prod_arr(i, j, k) + buoy_prod_arr(i, j, k) -
+                dissip_arr(i, j, k) -
+                ((1.0_rt - static_cast<int>(has_terrain)) *
+                 (sponge_forcing - bcforcing));
         });
+
+    if (has_terrain) {
+        const amrex::Real z0_min = 1.0e-4_rt;
+        const auto& terrain_blank =
+            this->m_sim.repo().get_int_field("terrain_blank");
+        const auto& terrain_drag =
+            this->m_sim.repo().get_int_field("terrain_drag");
+        auto& terrain_height = this->m_sim.repo().get_field("terrain_height");
+        auto& terrainz0 = this->m_sim.repo().get_field("terrainz0");
+
+        auto const& blank_arrs = terrain_blank(lev).const_arrays();
+        auto const& drag_arrs = terrain_drag(lev).const_arrays();
+        auto const& terrain_height_arrs = terrain_height(lev).const_arrays();
+        auto const& terrainz0_arrs = terrainz0(lev).const_arrays();
+
+        amrex::ParallelFor(
+            src_term, amrex::IntVect(0), 1,
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+                const auto& vel = vel_arrs[nbx];
+                const auto& tke_arr = tke_arrs[nbx];
+                const auto& blank_arr = blank_arrs[nbx];
+                const auto& drag_arr = drag_arrs[nbx];
+                const auto& terrain_height_arr = terrain_height_arrs[nbx];
+                const auto& terrainz0_arr = terrainz0_arrs[nbx];
+                const auto& ref_theta_arr = ref_theta_arrs[nbx];
+
+                const amrex::Real cell_z0 =
+                    (drag_arr(i, j, k) *
+                     amrex::max<amrex::Real>(terrainz0_arr(i, j, k), z0_min)) +
+                    ((1.0_rt - drag_arr(i, j, k)) * z0);
+                amrex::Real ux = vel(i, j, k + 1, 0);
+                amrex::Real uy = vel(i, j, k + 1, 1);
+                amrex::Real z = 0.5_rt * dx[2];
+                amrex::Real m = std::sqrt((ux * ux) + (uy * uy));
+                const amrex::Real ustar =
+                    m * kappa / (std::log(3.0_rt * z / cell_z0) - psi_m);
+                const amrex::Real T0 = ref_theta_arr(i, j, k);
+                const amrex::Real hf = std::abs(gravity[2]) / T0 * heat_flux;
+                const amrex::Real rans_b = amrex::max<amrex::Real>(hf, 0.0_rt) *
+                                           kappa * z / utils::powi(Cmu, 3);
+                const amrex::Real tke_exact = std::pow(
+                    ustar * ustar * ustar / (Cmu * Cmu * Cmu) + rans_b,
+                    2.0_rt / 3.0_rt);
+                const amrex::Real terrainforcing =
+                    (tke_exact - tke_arr(i, j, k)) / (time_factor * dt);
+                amrex::Real bcforcing = 0.0_rt;
+                if (k == 0) {
+                    bcforcing = (1 - blank_arr(i, j, k)) * terrainforcing;
+                }
+                ux = vel(i, j, k, 0);
+                uy = vel(i, j, k, 1);
+                const amrex::Real uz = vel(i, j, k, 2);
+                m = std::sqrt((ux * ux) + (uy * uy) + (uz * uz));
+                const amrex::Real Cd = amrex::min<amrex::Real>(
+                    10.0_rt / (dx[2] * m + kynema_sgf::constants::EPS),
+                    100.0_rt / dx[2]);
+                const amrex::Real dragforcing = -Cd * m * tke_arr(i, j, k, 0);
+                z = amrex::max<amrex::Real>(
+                    problo[2] + ((k + 0.5_rt) * dx[2]) -
+                        terrain_height_arr(i, j, k),
+                    0.5_rt * dx[2]);
+                amrex::Real ref_tke = tke_arr(i, j, k);
+                if (z > sponge_start) {
+                    ref_tke = (vsize > 0)
+                                  ? interp::linear(
+                                        wind_heights_d, wind_heights_d + vsize,
+                                        tke_values_d, z)
+                                  : tke_arr(i, j, k, 0);
+                }
+                const amrex::Real sponge_forcing =
+                    1.0_rt / dt * (tke_arr(i, j, k) - ref_tke);
+                src_arrs[nbx](i, j, k) =
+                    ((1.0_rt - blank_arr(i, j, k)) * src_arrs[nbx](i, j, k)) +
+                    (drag_arr(i, j, k) * terrainforcing) +
+                    (blank_arr(i, j, k) * dragforcing) -
+                    (static_cast<int>(has_terrain) *
+                     (sponge_forcing - bcforcing));
+            });
+
         if (m_horizontal_sponge) {
             const amrex::Real sponge_strength = m_sponge_strength;
             const amrex::Real start_east = probhi[0] - m_sponge_distance_east;
@@ -238,58 +268,65 @@ void KransAxell::operator()(
             const auto sponge_west = static_cast<int>(m_sponge_west);
             const auto sponge_south = static_cast<int>(m_sponge_south);
             const auto sponge_north = static_cast<int>(m_sponge_north);
-            amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
-                const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
-                const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
-                amrex::Real xi_end =
-                    (std::abs(sdist_east) > kynema_sgf::constants::EPS)
-                        ? (x - start_east) / (sdist_east)
-                        : 0.0_rt;
-                amrex::Real xi_start =
-                    (std::abs(sdist_west) > kynema_sgf::constants::EPS)
-                        ? (start_west - x) / (-sdist_west)
-                        : 0.0_rt;
-                xi_start =
-                    sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);
-                xi_end = sponge_east * amrex::max<amrex::Real>(xi_end, 0.0_rt);
-                xi_start /= (xi_start + kynema_sgf::constants::EPS);
-                xi_end /= (xi_end + kynema_sgf::constants::EPS);
-                const amrex::Real xstart_damping =
-                    sponge_strength * xi_start * xi_start;
-                const amrex::Real xend_damping =
-                    sponge_strength * xi_end * xi_end;
-                amrex::Real yi_end =
-                    (std::abs(sdist_north) > kynema_sgf::constants::EPS)
-                        ? (y - start_north) / (sdist_north)
-                        : 0.0_rt;
-                amrex::Real yi_start =
-                    (std::abs(sdist_south) > kynema_sgf::constants::EPS)
-                        ? (start_south - y) / (-sdist_south)
-                        : 0.0_rt;
-                yi_start =
-                    sponge_south * amrex::max<amrex::Real>(yi_start, 0.0_rt);
-                yi_end = sponge_north * amrex::max<amrex::Real>(yi_end, 0.0_rt);
-                yi_start /= (yi_start + kynema_sgf::constants::EPS);
-                yi_end /= (yi_end + kynema_sgf::constants::EPS);
-                const amrex::Real ystart_damping =
-                    sponge_strength * yi_start * yi_start;
-                const amrex::Real yend_damping =
-                    sponge_strength * yi_end * yi_end;
-                const amrex::Real ref_tke =
-                    (vsize > 0) ? interp::linear(
-                                      wind_heights_d, wind_heights_d + vsize,
-                                      tke_values_d, z)
-                                : tke_arr(i, j, k, 0);
-                const amrex::Real damping_sum =
-                    (xstart_damping + xend_damping + ystart_damping +
-                     yend_damping + kynema_sgf::constants::EPS);
-                const amrex::Real sponge_forcing =
-                    (xstart_damping + xend_damping + ystart_damping +
-                     yend_damping) /
-                    (damping_sum * dt) * (tke_arr(i, j, k) - ref_tke);
-                src_term(i, j, k, 0) -= sponge_forcing;
-            });
+
+            amrex::ParallelFor(
+                src_term, amrex::IntVect(0), 1,
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+                    const auto& tke_arr = tke_arrs[nbx];
+                    const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                    const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
+                    amrex::Real xi_end =
+                        (std::abs(sdist_east) > kynema_sgf::constants::EPS)
+                            ? (x - start_east) / (sdist_east)
+                            : 0.0_rt;
+                    amrex::Real xi_start =
+                        (std::abs(sdist_west) > kynema_sgf::constants::EPS)
+                            ? (start_west - x) / (-sdist_west)
+                            : 0.0_rt;
+                    xi_start =
+                        sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);
+                    xi_end =
+                        sponge_east * amrex::max<amrex::Real>(xi_end, 0.0_rt);
+                    xi_start /= (xi_start + kynema_sgf::constants::EPS);
+                    xi_end /= (xi_end + kynema_sgf::constants::EPS);
+                    const amrex::Real xstart_damping =
+                        sponge_strength * xi_start * xi_start;
+                    const amrex::Real xend_damping =
+                        sponge_strength * xi_end * xi_end;
+                    amrex::Real yi_end =
+                        (std::abs(sdist_north) > kynema_sgf::constants::EPS)
+                            ? (y - start_north) / (sdist_north)
+                            : 0.0_rt;
+                    amrex::Real yi_start =
+                        (std::abs(sdist_south) > kynema_sgf::constants::EPS)
+                            ? (start_south - y) / (-sdist_south)
+                            : 0.0_rt;
+                    yi_start = sponge_south *
+                               amrex::max<amrex::Real>(yi_start, 0.0_rt);
+                    yi_end =
+                        sponge_north * amrex::max<amrex::Real>(yi_end, 0.0_rt);
+                    yi_start /= (yi_start + kynema_sgf::constants::EPS);
+                    yi_end /= (yi_end + kynema_sgf::constants::EPS);
+                    const amrex::Real ystart_damping =
+                        sponge_strength * yi_start * yi_start;
+                    const amrex::Real yend_damping =
+                        sponge_strength * yi_end * yi_end;
+                    const amrex::Real ref_tke =
+                        (vsize > 0)
+                            ? interp::linear(
+                                  wind_heights_d, wind_heights_d + vsize,
+                                  tke_values_d, z)
+                            : tke_arr(i, j, k, 0);
+                    const amrex::Real damping_sum =
+                        (xstart_damping + xend_damping + ystart_damping +
+                         yend_damping + kynema_sgf::constants::EPS);
+                    const amrex::Real sponge_forcing =
+                        (xstart_damping + xend_damping + ystart_damping +
+                         yend_damping) /
+                        (damping_sum * dt) * (tke_arr(i, j, k) - ref_tke);
+                    src_arrs[nbx](i, j, k, 0) -= sponge_forcing;
+                });
         }
     }
 }

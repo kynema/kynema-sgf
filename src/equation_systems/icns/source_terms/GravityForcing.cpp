@@ -38,40 +38,34 @@ GravityForcing::~GravityForcing() = default;
 /** Add the Gravity source term to the forcing array
  *
  *  \param lev AMR level
- *  \param mfi multiFab index
- *  \param bx Box to operate on
  *  \param fstate FieldState field
- *  \param vel_forces Forcing source term
+ *  \param src_term Cumulative forcing array
  */
 void GravityForcing::operator()(
-    const int lev,
-    const amrex::MFIter& mfi,
-    const amrex::Box& bx,
-    const FieldState fstate,
-    const amrex::Array4<amrex::Real>& vel_forces) const
+    const int lev, const FieldState fstate, amrex::MultiFab& src_term) const
 {
     const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> gravity{
         m_gravity[0], m_gravity[1], m_gravity[2]};
 
-    const auto& rho_arr =
-        ((*m_rho).state(field_impl::phi_state(fstate)))(lev).const_array(mfi);
-    const auto& rho0_arr = m_use_reference_density
-                               ? (*m_rho0)(lev).const_array(mfi)
-                               : amrex::Array4<amrex::Real>();
+    auto const& src_arrs = src_term.arrays();
+    auto const& rho_arrs =
+        ((*m_rho).state(field_impl::phi_state(fstate)))(lev).const_arrays();
+    auto const& rho0_arrs = m_use_reference_density
+                                ? (*m_rho0)(lev).const_arrays()
+                                : amrex::MultiArray4<amrex::Real const>();
     const bool ir0 = m_use_reference_density;
     const bool ipt = m_use_perturb_pressure;
     const amrex::Real mr0c = m_rho0_const;
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        const amrex::Real factor =
-            (!ipt ? 1.0_rt
-                  : 1.0_rt -
-                        ((ir0 ? rho0_arr(i, j, k) : mr0c) / rho_arr(i, j, k)));
-
-        vel_forces(i, j, k, 0) += gravity[0] * factor;
-        vel_forces(i, j, k, 1) += gravity[1] * factor;
-        vel_forces(i, j, k, 2) += gravity[2] * factor;
-    });
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), AMREX_SPACEDIM,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+            const amrex::Real factor =
+                (!ipt ? 1.0_rt
+                      : 1.0_rt - ((ir0 ? rho0_arrs[nbx](i, j, k) : mr0c) /
+                                  rho_arrs[nbx](i, j, k)));
+            src_arrs[nbx](i, j, k, n) += gravity[n] * factor;
+        });
 }
 
 } // namespace kynema_sgf::pde::icns

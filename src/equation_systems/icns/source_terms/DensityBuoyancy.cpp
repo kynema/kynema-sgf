@@ -37,33 +37,27 @@ DensityBuoyancy::~DensityBuoyancy() = default;
 /** Add the Boussinesq source term to the forcing array
  *
  *  \param lev AMR level
- *  \param mfi multiFab index
- *  \param bx Box to operate on
  *  \param fstate field state
- *  \param vel_forces Forcing source term, activated when density varies from
- * rho_0
+ *  \param src_term Cumulative forcing array
  */
 void DensityBuoyancy::operator()(
-    const int lev,
-    const amrex::MFIter& mfi,
-    const amrex::Box& bx,
-    const FieldState fstate,
-    const amrex::Array4<amrex::Real>& vel_forces) const
+    const int lev, const FieldState fstate, amrex::MultiFab& src_term) const
 {
     const amrex::Real density_0 = m_rho_0;
     const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> gravity{
         m_gravity[0], m_gravity[1], m_gravity[2]};
 
     FieldState den_state = field_impl::phi_state(fstate);
-    const auto& density = m_density.state(den_state)(lev).const_array(mfi);
+    auto const& src_arrs = src_term.arrays();
+    auto const& density_arrs = m_density.state(den_state)(lev).const_arrays();
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        const amrex::Real fac = 1.0_rt - (density_0 / density(i, j, k));
-
-        vel_forces(i, j, k, 0) += gravity[0] * fac;
-        vel_forces(i, j, k, 1) += gravity[1] * fac;
-        vel_forces(i, j, k, 2) += gravity[2] * fac;
-    });
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), AMREX_SPACEDIM,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+            const amrex::Real fac =
+                1.0_rt - (density_0 / density_arrs[nbx](i, j, k));
+            src_arrs[nbx](i, j, k, n) += gravity[n] * fac;
+        });
 }
 
 } // namespace kynema_sgf::pde::icns

@@ -33,44 +33,6 @@ HurricaneTempForcing::HurricaneTempForcing(const CFDSim& sim)
 
 HurricaneTempForcing::~HurricaneTempForcing() = default;
 
-void HurricaneTempForcing::operator()(
-    const int lev,
-    const amrex::MFIter& /*mfi*/,
-    const amrex::Box& bx,
-    const FieldState /*fstate*/,
-    const amrex::Array4<amrex::Real>& src_term) const
-
-{
-    const auto& problo = m_mesh.Geom(lev).ProbLoArray();
-    const auto& dx = m_mesh.Geom(lev).CellSizeArray();
-
-    const amrex::Real dTdR = m_dTdR;
-    const amrex::Real dTzh = m_dTzh;
-
-    // Mean velocity profile used to compute background hurricane forcing term
-
-    const int idir = m_axis;
-    const amrex::Real* heights = m_vel_ht.data();
-    const amrex::Real* heights_end = m_vel_ht.end();
-    const amrex::Real* vals = m_vel_vals.data();
-
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        amrex::IntVect iv(i, j, k);
-        const amrex::Real ht = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
-
-        /*const amrex::Real umean =
-            vals[3 * il + 0] + ((vals[3 * ir + 0] - vals[3 * il + 0]) /
-                                (heights[ir] - heights[il])) *
-                                   (ht - heights[il]);
-        */
-        const amrex::Real dTdR_z = dTdR * (dTzh - ht) / dTzh;
-        const amrex::Real vmean =
-            kynema_sgf::interp::linear(heights, heights_end, vals, ht, 3, 1);
-
-        src_term(i, j, k) -= vmean * dTdR_z;
-    });
-}
-
 void HurricaneTempForcing::mean_velocity_init(const VelPlaneAveraging& vavg)
 {
     m_axis = vavg.axis();
@@ -98,6 +60,37 @@ void HurricaneTempForcing::mean_velocity_update(const VelPlaneAveraging& vavg)
     amrex::Gpu::copy(
         amrex::Gpu::hostToDevice, vavg.line_average().begin(),
         vavg.line_average().end(), m_vel_vals.begin());
+}
+
+void HurricaneTempForcing::operator()(
+    const int lev, const FieldState /*fstate*/, amrex::MultiFab& src_term) const
+{
+    const auto& problo = m_mesh.Geom(lev).ProbLoArray();
+    const auto& dx = m_mesh.Geom(lev).CellSizeArray();
+
+    const amrex::Real dTdR = m_dTdR;
+    const amrex::Real dTzh = m_dTzh;
+
+    const int idir = m_axis;
+    const amrex::Real* heights = m_vel_ht.data();
+    const amrex::Real* heights_end = m_vel_ht.end();
+    const amrex::Real* vals = m_vel_vals.data();
+
+    auto const& src_arrs = src_term.arrays();
+
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), 1,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+            amrex::IntVect iv(i, j, k);
+            const amrex::Real ht =
+                problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
+
+            const amrex::Real dTdR_z = dTdR * (dTzh - ht) / dTzh;
+            const amrex::Real vmean = kynema_sgf::interp::linear(
+                heights, heights_end, vals, ht, 3, 1);
+
+            src_arrs[nbx](i, j, k) -= vmean * dTdR_z;
+        });
 }
 
 } // namespace kynema_sgf::pde::temperature

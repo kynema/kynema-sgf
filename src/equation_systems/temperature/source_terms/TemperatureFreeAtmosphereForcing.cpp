@@ -60,56 +60,56 @@ TemperatureFreeAtmosphereForcing::TemperatureFreeAtmosphereForcing(
 TemperatureFreeAtmosphereForcing::~TemperatureFreeAtmosphereForcing() = default;
 
 void TemperatureFreeAtmosphereForcing::operator()(
-    const int lev,
-    const amrex::MFIter& mfi,
-    const amrex::Box& bx,
-    const FieldState fstate,
-    const amrex::Array4<amrex::Real>& src_term) const
+    const int lev, const FieldState fstate, amrex::MultiFab& src_term) const
 {
     const auto& geom = m_mesh.Geom(lev);
     const auto& dx = geom.CellSizeArray();
     const auto& prob_lo = geom.ProbLoArray();
     const auto& prob_hi = geom.ProbHiArray();
-    const auto& temperature =
-        m_temperature.state(field_impl::dof_state(fstate))(lev).const_array(
-            mfi);
+    const auto& temperature_arrs =
+        m_temperature.state(field_impl::dof_state(fstate))(lev).const_arrays();
     const amrex::Real sponge_start = m_meso_start;
     const amrex::Real meso_timescale = m_meso_timescale;
     const auto vsize = m_theta_heights_d.size();
     const auto* theta_heights_d = m_theta_heights_d.data();
     const auto* theta_values_d = m_theta_values_d.data();
     const bool has_terrain = this->m_sim.repo().field_exists("terrain_height");
-    auto* const m_terrain_height =
-        (has_terrain) ? &this->m_sim.repo().get_field("terrain_height")
-                      : nullptr;
-    const auto& terrain_height = (has_terrain)
-                                     ? (*m_terrain_height)(lev).const_array(mfi)
-                                     : amrex::Array4<amrex::Real>();
-    auto* const m_terrain_blank =
-        (has_terrain) ? &this->m_sim.repo().get_int_field("terrain_blank")
-                      : nullptr;
-    const auto& terrain_blank = (has_terrain)
-                                    ? (*m_terrain_blank)(lev).const_array(mfi)
-                                    : amrex::Array4<int>();
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        const amrex::Real cell_terrain_height =
-            (has_terrain) ? terrain_height(i, j, k) : 0.0_rt;
-        const int cell_blanking = (has_terrain) ? terrain_blank(i, j, k) : 0;
-        const amrex::Real z = amrex::max<amrex::Real>(
-            prob_lo[2] + ((k + 0.5_rt) * dx[2]) - cell_terrain_height,
-            0.5_rt * dx[2]);
-        amrex::Real ref_temp = temperature(i, j, k);
-        if (z > sponge_start) {
-            ref_temp = (vsize > 0)
-                           ? interp::linear(
-                                 theta_heights_d, theta_heights_d + vsize,
-                                 theta_values_d, z)
-                           : temperature(i, j, k);
-        }
-        src_term(i, j, k, 0) -= static_cast<amrex::Real>(1 - cell_blanking) /
-                                meso_timescale *
-                                (temperature(i, j, k) - ref_temp);
-    });
+    const auto& terrain_height_arrs =
+        (has_terrain)
+            ? this->m_sim.repo().get_field("terrain_height")(lev).const_arrays()
+            : amrex::MultiArray4<amrex::Real const>();
+    const auto& terrain_blank_arrs =
+        (has_terrain) ? this->m_sim.repo()
+                            .get_int_field("terrain_blank")(lev)
+                            .const_arrays()
+                      : amrex::MultiArray4<int const>();
+
+    auto const& src_arrs = src_term.arrays();
+
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), 1,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+            const auto& temperature = temperature_arrs[nbx];
+            const amrex::Real cell_terrain_height =
+                (has_terrain) ? terrain_height_arrs[nbx](i, j, k) : 0.0_rt;
+            const int cell_blanking =
+                (has_terrain) ? terrain_blank_arrs[nbx](i, j, k) : 0;
+            const amrex::Real z = amrex::max<amrex::Real>(
+                prob_lo[2] + ((k + 0.5_rt) * dx[2]) - cell_terrain_height,
+                0.5_rt * dx[2]);
+            amrex::Real ref_temp = temperature(i, j, k);
+            if (z > sponge_start) {
+                ref_temp = (vsize > 0)
+                               ? interp::linear(
+                                     theta_heights_d, theta_heights_d + vsize,
+                                     theta_values_d, z)
+                               : temperature(i, j, k);
+            }
+            src_arrs[nbx](i, j, k, 0) -=
+                static_cast<amrex::Real>(1 - cell_blanking) / meso_timescale *
+                (temperature(i, j, k) - ref_temp);
+        });
+
     if (m_horizontal_sponge) {
         const amrex::Real sponge_strength = m_sponge_strength;
         const amrex::Real sponge_density = m_sponge_density;
@@ -125,46 +125,54 @@ void TemperatureFreeAtmosphereForcing::operator()(
         const auto sponge_west = static_cast<int>(m_sponge_west);
         const auto sponge_south = static_cast<int>(m_sponge_south);
         const auto sponge_north = static_cast<int>(m_sponge_north);
-        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-            const amrex::Real x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
-            const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
-            const amrex::Real z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
-            amrex::Real xi_end =
-                (std::abs(sdist_east) > kynema_sgf::constants::EPS)
-                    ? (x - start_east) / (sdist_east)
-                    : 0.0_rt;
-            amrex::Real xi_start =
-                (std::abs(sdist_west) > kynema_sgf::constants::EPS)
-                    ? (start_west - x) / (-sdist_west)
-                    : 0.0_rt;
-            xi_start = sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);
-            xi_end = sponge_east * amrex::max<amrex::Real>(xi_end, 0.0_rt);
-            const amrex::Real xstart_damping =
-                sponge_strength * xi_start * xi_start;
-            const amrex::Real xend_damping = sponge_strength * xi_end * xi_end;
-            amrex::Real yi_end =
-                (std::abs(sdist_north) > kynema_sgf::constants::EPS)
-                    ? (y - start_north) / (sdist_north)
-                    : 0.0_rt;
-            amrex::Real yi_start =
-                (std::abs(sdist_south) > kynema_sgf::constants::EPS)
-                    ? (start_south - y) / (-sdist_south)
-                    : 0.0_rt;
-            yi_start = sponge_south * amrex::max<amrex::Real>(yi_start, 0.0_rt);
-            yi_end = sponge_north * amrex::max<amrex::Real>(yi_end, 0.0_rt);
-            const amrex::Real ystart_damping =
-                sponge_strength * yi_start * yi_start;
-            const amrex::Real yend_damping = sponge_strength * yi_end * yi_end;
-            const amrex::Real ref_temp =
-                (vsize > 0) ? interp::linear(
-                                  theta_heights_d, theta_heights_d + vsize,
-                                  theta_values_d, z)
-                            : temperature(i, j, k);
-            src_term(i, j, k, 0) -=
-                (xstart_damping + xend_damping + ystart_damping +
-                 yend_damping) *
-                (temperature(i, j, k) - sponge_density * ref_temp);
-        });
+
+        amrex::ParallelFor(
+            src_term, amrex::IntVect(0), 1,
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+                const auto& temperature = temperature_arrs[nbx];
+                const amrex::Real x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
+                const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
+                const amrex::Real z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
+                amrex::Real xi_end =
+                    (std::abs(sdist_east) > kynema_sgf::constants::EPS)
+                        ? (x - start_east) / (sdist_east)
+                        : 0.0_rt;
+                amrex::Real xi_start =
+                    (std::abs(sdist_west) > kynema_sgf::constants::EPS)
+                        ? (start_west - x) / (-sdist_west)
+                        : 0.0_rt;
+                xi_start =
+                    sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);
+                xi_end = sponge_east * amrex::max<amrex::Real>(xi_end, 0.0_rt);
+                const amrex::Real xstart_damping =
+                    sponge_strength * xi_start * xi_start;
+                const amrex::Real xend_damping =
+                    sponge_strength * xi_end * xi_end;
+                amrex::Real yi_end =
+                    (std::abs(sdist_north) > kynema_sgf::constants::EPS)
+                        ? (y - start_north) / (sdist_north)
+                        : 0.0_rt;
+                amrex::Real yi_start =
+                    (std::abs(sdist_south) > kynema_sgf::constants::EPS)
+                        ? (start_south - y) / (-sdist_south)
+                        : 0.0_rt;
+                yi_start =
+                    sponge_south * amrex::max<amrex::Real>(yi_start, 0.0_rt);
+                yi_end = sponge_north * amrex::max<amrex::Real>(yi_end, 0.0_rt);
+                const amrex::Real ystart_damping =
+                    sponge_strength * yi_start * yi_start;
+                const amrex::Real yend_damping =
+                    sponge_strength * yi_end * yi_end;
+                const amrex::Real ref_temp =
+                    (vsize > 0) ? interp::linear(
+                                      theta_heights_d, theta_heights_d + vsize,
+                                      theta_values_d, z)
+                                : temperature(i, j, k);
+                src_arrs[nbx](i, j, k, 0) -=
+                    (xstart_damping + xend_damping + ystart_damping +
+                     yend_damping) *
+                    (temperature(i, j, k) - sponge_density * ref_temp);
+            });
     }
 }
 
