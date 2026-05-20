@@ -83,8 +83,7 @@ struct ComputeForceOp<UniformCt, ActSrcDisk>
         // kinematic units (force / density): ActuatorForcing adds it into
         // the ICNS src_term in the same [m/s^2] convention as every other
         // momentum source, ahead of the shared multiply_rho step.
-        const amrex::Real aeroPressure =
-            0.5_rt * uInfSqr * ddata.current_ct;
+        const amrex::Real aeroPressure = 0.5_rt * uInfSqr * ddata.current_ct;
         const amrex::Real dr = ddata.dr;
 
         for (int ip = 0; ip < npts; ++ip) {
