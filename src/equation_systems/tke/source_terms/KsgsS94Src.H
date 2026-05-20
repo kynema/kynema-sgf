@@ -19,12 +19,8 @@ public:
 
     virtual ~KsgsS94Src();
 
-    virtual void operator()(
-        const int lev,
-        const amrex::MFIter& mfi,
-        const amrex::Box& bx,
-        const FieldState fstate,
-        const amrex::Array4<amrex::Real>& src_term) const override;
+    void operator()(
+        int lev, FieldState fstate, amrex::MultiFab& src_term) const override;
 };
 } // namespace tke
 } // namespace pde

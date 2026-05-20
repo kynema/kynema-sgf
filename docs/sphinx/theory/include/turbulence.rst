@@ -153,7 +153,7 @@ Here :math:`S_{ij}` is the strain-rate tensor and :math:`R_{ij}` is the vorticit
 :math:`C_s=[8*(1+C_b)/27\pi^2]^{1/2}`, :math:`C_1=C_2=960^{1/2}C_b/7(1+C_b)S_k`, :math:`S_k=0.5`, and :math:`C_b=0.36`.  
 
 The default length scale of :math:`L=C_s\Delta` causes over-prediction of the mean wind speed profiles. To avoid this over-prediction, the
-length scale is modified as follows 
+length scale is modified as proposed by `Senocak et. al (BLM 2007) <https://doi.org/10.1007/s10546-007-9181-x>`_
 
 .. math::
    L=(1-\exp(-z/H))^2(\frac{\kappa z}{\phi_M})^2+(\exp(-z/H))^2(C_s \Delta)^2

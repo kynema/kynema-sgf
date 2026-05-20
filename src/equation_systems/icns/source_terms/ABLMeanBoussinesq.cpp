@@ -13,7 +13,7 @@ namespace kynema_sgf::pde::icns {
 /** Boussinesq buoyancy source term for ABL simulations
  */
 ABLMeanBoussinesq::ABLMeanBoussinesq(const CFDSim& sim)
-    : m_mesh(sim.mesh()), m_transport(sim.transport_model())
+    : m_mesh(sim.mesh()), m_repo(sim.repo()), m_transport(sim.transport_model())
 
 {
     const auto& abl = sim.physics_manager().get<kynema_sgf::ABL>();
@@ -84,44 +84,45 @@ ABLMeanBoussinesq::ABLMeanBoussinesq(const CFDSim& sim)
 ABLMeanBoussinesq::~ABLMeanBoussinesq() = default;
 
 void ABLMeanBoussinesq::operator()(
-    const int lev,
-    const amrex::MFIter& mfi,
-    const amrex::Box& bx,
-    const FieldState /*fstate*/,
-    const amrex::Array4<amrex::Real>& src_term) const
+    const int lev, const FieldState /*fstate*/, amrex::MultiFab& src_term) const
 {
+    if (!m_beta_scratch) {
+        m_beta_scratch = m_repo.create_scratch_field(1, 0);
+    }
+    if (!m_ref_theta_scratch) {
+        m_ref_theta_scratch = m_repo.create_scratch_field(1, 0);
+    }
+
+    m_transport.beta_fill(lev, (*m_beta_scratch)(lev));
+    m_transport.ref_theta_fill(lev, (*m_ref_theta_scratch)(lev));
+
     const auto& problo = m_mesh.Geom(lev).ProbLoArray();
     const auto& dx = m_mesh.Geom(lev).CellSizeArray();
 
-    amrex::FArrayBox beta_fab(bx, 1, amrex::The_Async_Arena());
-    amrex::Array4<amrex::Real> const& beta_arr = beta_fab.array();
-    m_transport.beta_impl(lev, mfi, bx, beta_arr);
-
-    amrex::FArrayBox ref_theta_fab(bx, 1, amrex::The_Async_Arena());
-    amrex::Array4<amrex::Real> const& ref_theta_arr = ref_theta_fab.array();
-    m_transport.ref_theta_impl(lev, mfi, bx, ref_theta_arr);
-
     const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> gravity{
         m_gravity[0], m_gravity[1], m_gravity[2]};
-
-    // Mean temperature profile used to compute background forcing term
 
     const int idir = m_axis;
     const amrex::Real* theights = m_theta_ht.data();
     const amrex::Real* tvals = m_theta_vals.data();
     const amrex::Real* theights_end = m_theta_ht.end();
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        amrex::IntVect iv(i, j, k);
-        const amrex::Real ht = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
-        const amrex::Real T0 = ref_theta_arr(i, j, k);
-        const amrex::Real temp =
-            kynema_sgf::interp::linear(theights, theights_end, tvals, ht);
-        const amrex::Real fac = beta_arr(i, j, k) * (temp - T0);
-        src_term(i, j, k, 0) += gravity[0] * fac;
-        src_term(i, j, k, 1) += gravity[1] * fac;
-        src_term(i, j, k, 2) += gravity[2] * fac;
-    });
+    auto const& src_arrs = src_term.arrays();
+    auto const& beta_arrs = (*m_beta_scratch)(lev).const_arrays();
+    auto const& ref_arrs = (*m_ref_theta_scratch)(lev).const_arrays();
+
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), AMREX_SPACEDIM,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+            amrex::IntVect iv(i, j, k);
+            const amrex::Real ht =
+                problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
+            const amrex::Real T0 = ref_arrs[nbx](i, j, k);
+            const amrex::Real temp =
+                kynema_sgf::interp::linear(theights, theights_end, tvals, ht);
+            const amrex::Real fac = beta_arrs[nbx](i, j, k) * (temp - T0);
+            src_arrs[nbx](i, j, k, n) += gravity[n] * fac;
+        });
 }
 
 void ABLMeanBoussinesq::mean_temperature_init(const FieldPlaneAveraging& tavg)
