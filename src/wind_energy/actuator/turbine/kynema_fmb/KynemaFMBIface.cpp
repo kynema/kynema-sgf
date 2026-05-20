@@ -374,6 +374,7 @@ amrex::Vector<int> build_aero(
         std::ranges::transform(aoa, std::begin(aoa), [](auto degrees) {
             return degrees * std::numbers::pi_v<amrex::Real> / 180.0_rt;
         });
+        const auto aoa_copy = aoa;
         const auto cl = af["polars"][0]["re_sets"][0]["cl"]["values"]
                             .as<std::vector<amrex::Real>>();
         const auto cd = af["polars"][0]["re_sets"][0]["cd"]["values"]
@@ -382,7 +383,7 @@ amrex::Vector<int> build_aero(
                             .as<std::vector<amrex::Real>>();
         blade_aero_sections.emplace_back(
             id, s, chord, section_offset_x, section_offset_y,
-            aerodynamic_center, twist, aoa, cl, cd, cm);
+            aerodynamic_center, twist, aoa_copy, cl, cd, cm);
         ++id;
     }
 
@@ -415,10 +416,10 @@ amrex::Vector<int> build_aero(
             const auto s = tower_os["outer_diameter"]["grid"]
                                .as<std::vector<double>>()[id];
             const auto cd = ::kynema_sgf::interp::linear(s_cd, cd_vec, s);
+            const auto cd_vec_wrapped = std::vector<double>{cd, cd};
             tower_aero_sections.emplace_back(
                 id, s, chord, section_offset_x, section_offset_y,
-                aerodynamic_center, twist, aoa, cl, std::vector<double>{cd, cd},
-                cm);
+                aerodynamic_center, twist, aoa, cl, cd_vec_wrapped, cm);
             ++id;
         }
         aero_builder.SetAirfoilSections(1UL, tower_aero_sections);
