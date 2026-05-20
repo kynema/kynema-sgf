@@ -49,6 +49,12 @@ public:
     //! No post advance work for this model
     void post_advance_work() override {}
 
+    //! Actions to perform post initialization
+    void post_init_actions() override;
+
+    //! Actions to perform post regrid
+    void post_regrid_actions() override;
+
     //! Parse turbulence model coefficients
     void parse_model_coeffs() override;
 
@@ -68,6 +74,8 @@ protected:
     amrex::Real m_Cw{0.15_rt};
     amrex::Real m_kappa{0.41_rt};
     amrex::Real m_sdr_prod_clip_factor{10.0_rt};
+
+    std::unique_ptr<ScratchField> m_vortmag;
 };
 
 } // namespace kynema_sgf::turbulence

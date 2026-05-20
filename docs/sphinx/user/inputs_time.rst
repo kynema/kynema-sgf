@@ -135,7 +135,9 @@ This section also addresses the time-dependent nature of checkpoint files, plot 
    to wait before writing a plot file. The implementation waits until this threshold is reached to check if the interval 
    allows for a file to be written. For example, if the plot delay is specified to be "1000", and the plot
    interval is "10", then the first plot file written would be at timestep "1000". If the plot delay is "1001" and the
-   plot interval is still "10", then the first plot file file would be at timestep "1010".
+   plot interval is still "10", then the first plot file file would be at timestep "1010". In other words,
+   the plot delay prevents outputs prior to a specified time step index, but it does not modify the output timing (it
+   is not used as an offset) once the outputs are allowed to occur. The plot start parameter is for custom offsets.
 
 .. input_param:: time.plot_time_delay
 
@@ -143,7 +145,9 @@ This section also addresses the time-dependent nature of checkpoint files, plot 
 
    If :input_param:`time.plot_time_interval` is greater than zero, then the plot time delay specifies how long (in seconds)
    to wait before writing a plot file. Similar to :input_param:`time.plot_delay`, the implementation waits until this threshold is 
-   reached to check if the time interval allows for a file to be written.
+   reached to check if the time interval allows for a file to be written. Note that this parameter does not modify
+   the output timing (it is not used as a time offset) once the outputs are allowed to occur. The plot start time
+   parameter is for custom offsets.
 
 .. input_param:: time.checkpoint_interval
 
@@ -174,7 +178,9 @@ This section also addresses the time-dependent nature of checkpoint files, plot 
    to wait before writing a checkpoint file. The implementation waits until this threshold is reached to check if the interval 
    allows for a file to be written. For example, if the checkpoint delay is specified to be "1000", and the checkpoint
    interval is "10", then the first checkpoint file written would be at timestep "1000". If the checkpoint delay is "1001" and the
-   checkpoint interval is still "10", then the first checkpoint file would be at timestep "1010".
+   checkpoint interval is still "10", then the first checkpoint file would be at timestep "1010". In other words,
+   the checkpoint delay prevents outputs prior to a specified time step index, but it does not modify the output timing (it
+   is not used as an offset) once the outputs are allowed to occur. The checkpoint start parameter is for custom offsets.
 
 .. input_param:: time.checkpoint_time_delay
 
@@ -182,7 +188,9 @@ This section also addresses the time-dependent nature of checkpoint files, plot 
 
    If :input_param:`time.checkpoint_time_interval` is greater than zero, then the checkpoint time delay specifies how long (in seconds)
    to wait before writing a checkpoint file. Similar to :input_param:`time.checkpoint_delay`, the implementation waits until this threshold is 
-   reached to check if the time interval allows for a file to be written.
+   reached to check if the time interval allows for a file to be written. Note that this parameter does not modify
+   the output timing (it is not used as a time offset) once the outputs are allowed to occur. The checkpoint start time
+   parameter is for custom offsets.
    
 .. input_param:: time.regrid_start
 
@@ -195,15 +203,45 @@ This section also addresses the time-dependent nature of checkpoint files, plot 
 
   **type:** Integer, optional, default = 0; default = start index upon restart
 
-  This user-specified parameter sets the base timestep onward which the output (plot files)
-  are written to the disk. This parameter is specifically for offsetting the index following a restart.
+  This user-specified parameter sets the base timestep relative to which the output (plot files)
+  are written to the disk. This parameter is primarily for offsetting the index following a restart,
+  though it can still be used in other contexts. This parameter, as an offset for the plot file index,
+  affects the output timing, but it does not prevent outputs from occurring prior to the offset, i.e.,
+  outputs can still occur when the time step index is less than the plot start index. To prevent outputs
+  from occurring prior to a particular index, the user can set the plot delay.
+
+.. input_param:: time.plot_start_time
+
+  **type:** Real, optional, default = 0; default = start time upon restart
+
+  This user-specified parameter sets the base time relative to which the output (plot files)
+  are written to the disk. This parameter is primarily for offsetting the time interval calculation following a restart,
+  though it can still be used in other contexts. This parameter, as an offset for the plot file time,
+  affects the output timing, but it does not prevent outputs from occurring prior to the offset, i.e.,
+  outputs can still occur when the simulation time is less than the plot start time. To prevent outputs
+  from occurring prior to a particular time, the user can set the plot time delay.
 
 .. input_param:: time.checkpoint_start
 
   **type:** Integer, optional, default = 0; default = start index upon restart
 
   This user-specified parameter sets the base timestep onward which the checkpoint (restart) 
-  files are written to the disk. This parameter is specifically for offsetting the index following a restart.
+  files are written to the disk. This parameter is primarily for offsetting the index following a restart,
+  though it can still be used in other contexts. This parameter, as an offset for the checkpoint file index,
+  affects the output timing, but it does not prevent outputs from occurring prior to the offset, i.e.,
+  outputs can still occur when the time step index is less than the checkpoint start index. To prevent outputs
+  from occurring prior to a particular index, the user can set the checkpoint delay.
+
+.. input_param:: time.checkpoint_start_time
+
+  **type:** Real, optional, default = 0; default = start time upon restart
+
+  This user-specified parameter sets the base time relative to which the output (checkpoint files)
+  are written to the disk. This parameter is primarily for offsetting the time interval calculation following a restart,
+  though it can still be used in other contexts. This parameter, as an offset for the checkpoint file time,
+  affects the output timing, but it does not prevent outputs from occurring prior to the offset, i.e.,
+  outputs can still occur when the simulation time is less than the checkpoint start time. To prevent outputs
+  from occurring prior to a particular time, the user can set the checkpoint time delay.
 
 .. input_param:: time.use_force_cfl
 

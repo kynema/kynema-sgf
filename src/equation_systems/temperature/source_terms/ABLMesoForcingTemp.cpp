@@ -231,11 +231,7 @@ amrex::Real ABLMesoForcingTemp::mean_temperature_heights(
 }
 
 void ABLMesoForcingTemp::operator()(
-    const int lev,
-    const amrex::MFIter& /*mfi*/,
-    const amrex::Box& bx,
-    const FieldState /*fstate*/,
-    const amrex::Array4<amrex::Real>& src_term) const
+    const int lev, const FieldState /*fstate*/, amrex::MultiFab& src_term) const
 {
     if (m_forcing_scheme.empty()) {
         return;
@@ -244,9 +240,6 @@ void ABLMesoForcingTemp::operator()(
     const auto& problo = m_mesh.Geom(lev).ProbLoArray();
     const auto& dx = m_mesh.Geom(lev).CellSizeArray();
 
-    // The z values corresponding to the forcing values is either the number of
-    // points in the netcdf input (for tendency) or the size of the plane
-    // averaged temperature (non tendency)
     const amrex::Real* theights_begin =
         (m_tendency) ? m_meso_ht.data() : m_theta_ht.data();
     const amrex::Real* theights_end =
@@ -255,15 +248,19 @@ void ABLMesoForcingTemp::operator()(
 
     const int idir = (int)m_axis;
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        amrex::IntVect iv(i, j, k);
-        const amrex::Real ht = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
-        const amrex::Real theta_err = kynema_sgf::interp::linear(
-            theights_begin, theights_end, theta_error_val, ht);
+    auto const& src_arrs = src_term.arrays();
 
-        // Compute Source term
-        src_term(i, j, k, 0) += theta_err;
-    });
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), 1,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+            amrex::IntVect iv(i, j, k);
+            const amrex::Real ht =
+                problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
+            const amrex::Real theta_err = kynema_sgf::interp::linear(
+                theights_begin, theights_end, theta_error_val, ht);
+
+            src_arrs[nbx](i, j, k, 0) += theta_err;
+        });
 }
 
 } // namespace kynema_sgf::pde::temperature

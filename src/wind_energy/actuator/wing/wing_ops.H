@@ -167,9 +167,9 @@ struct ComputeForceOp<
 
         // Get flags for each coordinate of force and put in vs::Vector
         const vs::Vector force_coord_flags_vec = {
-            (amrex::Real)wdata.force_coord_flags[0],
-            (amrex::Real)wdata.force_coord_flags[1],
-            (amrex::Real)wdata.force_coord_flags[2]};
+            static_cast<amrex::Real>(wdata.force_coord_flags[0]),
+            static_cast<amrex::Real>(wdata.force_coord_flags[1]),
+            static_cast<amrex::Real>(wdata.force_coord_flags[2])};
 
         // Calculate the local force using sampled velocity (at n)
         amrex::Real total_lift = 0.0_rt;
@@ -200,7 +200,7 @@ struct ComputeForceOp<
             if (wdata.gauss_2D && wdata.normalize_2D_spanwise) {
                 // Do not multiply by a length scale, but divide by number of
                 // points because the Gaussians of each point all overlap
-                qfac /= (amrex::Real)npts;
+                qfac /= static_cast<amrex::Real>(npts);
                 // Convert 3D Gaussian factor to 2D factor
                 constexpr amrex::Real G2D_from_3D =
                     std::numbers::inv_pi_v<amrex::Real> /

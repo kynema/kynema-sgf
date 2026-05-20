@@ -57,11 +57,7 @@ CoriolisForcing::CoriolisForcing(const CFDSim& sim)
 CoriolisForcing::~CoriolisForcing() = default;
 
 void CoriolisForcing::operator()(
-    const int lev,
-    const amrex::MFIter& mfi,
-    const amrex::Box& bx,
-    const FieldState fstate,
-    const amrex::Array4<amrex::Real>& src_term) const
+    const int lev, const FieldState fstate, amrex::MultiFab& src_term) const
 {
     amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> east{
         m_east[0], m_east[1], m_east[2]};
@@ -72,34 +68,36 @@ void CoriolisForcing::operator()(
     const auto sinphi = m_sinphi;
     const auto cosphi = m_cosphi;
     const auto corfac = m_coriolis_factor;
-    const auto& vel =
-        m_velocity.state(field_impl::dof_state(fstate))(lev).const_array(mfi);
+    const amrex::Real fac = (m_is_horizontal) ? 0.0_rt : 1.0_rt;
 
-    amrex::Real fac = (m_is_horizontal) ? 0. : 1.;
+    auto const& src_arrs = src_term.arrays();
+    auto const& vel_arrs =
+        m_velocity.state(field_impl::dof_state(fstate))(lev).const_arrays();
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        const amrex::Real ue = (east[0] * vel(i, j, k, 0)) +
-                               (east[1] * vel(i, j, k, 1)) +
-                               (east[2] * vel(i, j, k, 2));
-        const amrex::Real un = (north[0] * vel(i, j, k, 0)) +
-                               (north[1] * vel(i, j, k, 1)) +
-                               (north[2] * vel(i, j, k, 2));
-        const amrex::Real uu = (up[0] * vel(i, j, k, 0)) +
-                               (up[1] * vel(i, j, k, 1)) +
-                               (up[2] * vel(i, j, k, 2));
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), AMREX_SPACEDIM,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+            const amrex::Real ue = (east[0] * vel_arrs[nbx](i, j, k, 0)) +
+                                   (east[1] * vel_arrs[nbx](i, j, k, 1)) +
+                                   (east[2] * vel_arrs[nbx](i, j, k, 2));
+            const amrex::Real un = (north[0] * vel_arrs[nbx](i, j, k, 0)) +
+                                   (north[1] * vel_arrs[nbx](i, j, k, 1)) +
+                                   (north[2] * vel_arrs[nbx](i, j, k, 2));
+            const amrex::Real uu = (up[0] * vel_arrs[nbx](i, j, k, 0)) +
+                                   (up[1] * vel_arrs[nbx](i, j, k, 1)) +
+                                   (up[2] * vel_arrs[nbx](i, j, k, 2));
 
-        const amrex::Real ae = +corfac * (un * sinphi - fac * uu * cosphi);
-        const amrex::Real an = -corfac * ue * sinphi;
-        const amrex::Real au = +fac * corfac * ue * cosphi;
+            const amrex::Real ae = +corfac * (un * sinphi - fac * uu * cosphi);
+            const amrex::Real an = -corfac * ue * sinphi;
+            const amrex::Real au = +fac * corfac * ue * cosphi;
 
-        const amrex::Real ax = (ae * east[0]) + (an * north[0]) + (au * up[0]);
-        const amrex::Real ay = (ae * east[1]) + (an * north[1]) + (au * up[1]);
-        const amrex::Real az = (ae * east[2]) + (an * north[2]) + (au * up[2]);
+            amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> accel{
+                (ae * east[0]) + (an * north[0]) + (au * up[0]),
+                (ae * east[1]) + (an * north[1]) + (au * up[1]),
+                (ae * east[2]) + (an * north[2]) + (au * up[2])};
 
-        src_term(i, j, k, 0) += ax;
-        src_term(i, j, k, 1) += ay;
-        src_term(i, j, k, 2) += az;
-    });
+            src_arrs[nbx](i, j, k, n) += accel[n];
+        });
 }
 
 } // namespace kynema_sgf::pde::icns

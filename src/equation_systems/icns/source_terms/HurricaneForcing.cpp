@@ -48,13 +48,8 @@ HurricaneForcing::HurricaneForcing(const CFDSim& sim) : m_mesh(sim.mesh())
 HurricaneForcing::~HurricaneForcing() = default;
 
 void HurricaneForcing::operator()(
-    const int lev,
-    const amrex::MFIter& /*mfi*/,
-    const amrex::Box& bx,
-    const FieldState /*fstate*/,
-    const amrex::Array4<amrex::Real>& src_term) const
+    const int lev, const FieldState /*fstate*/, amrex::MultiFab& src_term) const
 {
-
     const auto& problo = m_mesh.Geom(lev).ProbLoArray();
     const auto& dx = m_mesh.Geom(lev).CellSizeArray();
 
@@ -64,34 +59,39 @@ void HurricaneForcing::operator()(
     const amrex::Real Vzh = m_Vzh;
     const amrex::Real f = m_coriolis_factor;
 
-    // Mean velocity profile used to compute background hurricane forcing term
-
     const int idir = m_axis;
     const amrex::Real* heights = m_vel_ht.data();
     const amrex::Real* heights_end = m_vel_ht.end();
     const amrex::Real* vals = m_vel_vals.data();
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        amrex::IntVect iv(i, j, k);
-        const amrex::Real ht = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
+    auto const& src_arrs = src_term.arrays();
 
-        const amrex::Real umean =
-            kynema_sgf::interp::linear(heights, heights_end, vals, ht, 3, 0);
-        const amrex::Real vmean =
-            kynema_sgf::interp::linear(heights, heights_end, vals, ht, 3, 1);
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), AMREX_SPACEDIM,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+            amrex::IntVect iv(i, j, k);
+            const amrex::Real ht =
+                problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
 
-        // Gradient velocities varying with height
-        const amrex::Real V_z = V * (Vzh - ht) / Vzh;
-        const amrex::Real dVdR_z = dVdR * (Vzh - ht) / Vzh;
-        // Compute the LES terms as presented in George Bryan's paper
-        const amrex::Real M1LES =
-            (umean * umean / R) + (vmean * V_z / R) - (f * V_z + V_z * V_z / R);
-        const amrex::Real M2LES = (-umean * dVdR_z) - (umean * V_z / R);
+            const amrex::Real umean = kynema_sgf::interp::linear(
+                heights, heights_end, vals, ht, 3, 0);
+            const amrex::Real vmean = kynema_sgf::interp::linear(
+                heights, heights_end, vals, ht, 3, 1);
 
-        src_term(i, j, k, 0) += M1LES;
-        src_term(i, j, k, 1) += M2LES;
-        src_term(i, j, k, 2) += 0.0_rt;
-    });
+            const amrex::Real V_z = V * (Vzh - ht) / Vzh;
+            const amrex::Real dVdR_z = dVdR * (Vzh - ht) / Vzh;
+            const amrex::Real M1LES = (umean * umean / R) + (vmean * V_z / R) -
+                                      (f * V_z + V_z * V_z / R);
+            const amrex::Real M2LES = (-umean * dVdR_z) - (umean * V_z / R);
+
+            if (n == 0) {
+                src_arrs[nbx](i, j, k, 0) += M1LES;
+            } else if (n == 1) {
+                src_arrs[nbx](i, j, k, 1) += M2LES;
+            } else {
+                src_arrs[nbx](i, j, k, 2) += 0.0_rt;
+            }
+        });
 }
 
 void HurricaneForcing::mean_velocity_init(const VelPlaneAveraging& vavg)
