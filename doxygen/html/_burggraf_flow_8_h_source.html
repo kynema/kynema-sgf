@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/BurggrafFlow.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/BurggrafFlow.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_burggraf_flow_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-physics-burggrafflow-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/BurggrafFlow.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-physics-burggrafflow-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/BurggrafFlow.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_ddcea0517a7b80a55be019748a9389a4.html">physics</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">BurggrafFlow.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_burggraf_flow_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef BURGGRAFFLOW_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define BURGGRAFFLOW_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_physics_8_h.html">src/core/Physics.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_field_8_h.html">src/core/Field.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1burggraf.html">kynema_sgf::burggraf</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">struct </span>UExact</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    operator()(amrex::Real <span class="comment">/*x*/</span>, amrex::Real <span class="comment">/*y*/</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> m_comp{0};</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>};</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">struct </span>VExact</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    operator()(amrex::Real <span class="comment">/*x*/</span>, amrex::Real <span class="comment">/*y*/</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> m_comp{1};</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>};</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">struct </span>WExact</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    operator()(amrex::Real <span class="comment">/*x*/</span>, amrex::Real <span class="comment">/*y*/</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> m_comp{2};</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>};</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>} <span class="comment">// namespace</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html">   43</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#ae62dcbe89d7595c38a2320c574ab11ef">BurggrafFlow</a> : <span class="keyword">public</span> Physics::Register&lt;BurggrafFlow&gt;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a3ab4389d69874aaa2012a03bbb9f45b1">   46</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a3ab4389d69874aaa2012a03bbb9f45b1">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;BurggrafFlow&quot;</span>; }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#ae62dcbe89d7595c38a2320c574ab11ef">BurggrafFlow</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a90a0baf41d9aca1b78fb1a74b49d9c93">   50</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a90a0baf41d9aca1b78fb1a74b49d9c93">~BurggrafFlow</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#ad14815e071ed0dfd4f5b7c5977859eee">initialize_fields</a>(<span class="keywordtype">int</span> level, <span class="keyword">const</span> amrex::Geometry&amp; geom) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a435497fe07d012132f216846768771db">compute_error</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <span class="comment">/*field*/</span>);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a35772c174b3574b5132cb4de037275f7">   57</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a35772c174b3574b5132cb4de037275f7">apply_lid_boundary_condition</a>();</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#ae90be54da192565877ed5ccd43397584">post_init_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#aa884a62419dbc8447a7c2ff2ace7258a">   61</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#aa884a62419dbc8447a7c2ff2ace7258a">post_regrid_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#add87deefcfc078b853020efd1a9a4cf8">   63</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#add87deefcfc078b853020efd1a9a4cf8">pre_advance_work</a>()<span class="keyword"> override </span>{};</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#af14193c6ff7a63f476f321f3f2b605ef">post_advance_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a00afcb4c6ef2674f3ff8b16aca602f89">   68</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a00afcb4c6ef2674f3ff8b16aca602f89">m_time</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a9dd05c8c3d8d472a87ffc1d3de7a6588">   69</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a9dd05c8c3d8d472a87ffc1d3de7a6588">m_repo</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a801bb6530e2a566ee08b91cf914d4b6f">   70</a></span>    <span class="keyword">const</span> amrex::AmrCore&amp; <a class="code hl_variable" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a801bb6530e2a566ee08b91cf914d4b6f">m_mesh</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a417d76993bec6c8a6a2ede803c81b58b">   72</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a417d76993bec6c8a6a2ede803c81b58b">m_velocity</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#aace75da928311796567de6f6d3ba79b4">   73</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#aace75da928311796567de6f6d3ba79b4">m_density</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a5ffdbb8c8b3eddfb3da5116215eb76f3">   74</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a5ffdbb8c8b3eddfb3da5116215eb76f3">m_source</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#ad444a15fcede77312a450f43b4dec8c9">output_error</a>();</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a6fc60806ae8fda0722b92c07206ecc8a">   79</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a6fc60806ae8fda0722b92c07206ecc8a">m_rho</a>{1.0_rt};</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#ab1a3cf3af015ff54ccedea279039ca99">   82</a></span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#ab1a3cf3af015ff54ccedea279039ca99">m_w</a>{18};</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a058d192b40e645baace0bc8eb8bc4f00">   85</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a058d192b40e645baace0bc8eb8bc4f00">m_output_fname</a>{<span class="stringliteral">&quot;burggraf.log&quot;</span>};</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
+</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>} <span class="comment">// namespace kynema_sgf::burggraf</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_field_8_h_html"><div class="ttname"><a href="_field_8_h.html">Field.H</a></div></div>
+<div class="ttc" id="a_physics_8_h_html"><div class="ttname"><a href="_physics_8_h.html">Physics.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_repo_html"><div class="ttname"><a href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a></div><div class="ttdef"><b>Definition</b> FieldRepo.H:86</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a></div><div class="ttdef"><b>Definition</b> SimTime.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_a00afcb4c6ef2674f3ff8b16aca602f89"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a00afcb4c6ef2674f3ff8b16aca602f89">kynema_sgf::burggraf::BurggrafFlow::m_time</a></div><div class="ttdeci">const kynema_sgf::SimTime &amp; m_time</div><div class="ttdef"><b>Definition</b> BurggrafFlow.H:68</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_a058d192b40e645baace0bc8eb8bc4f00"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a058d192b40e645baace0bc8eb8bc4f00">kynema_sgf::burggraf::BurggrafFlow::m_output_fname</a></div><div class="ttdeci">std::string m_output_fname</div><div class="ttdoc">error log file</div><div class="ttdef"><b>Definition</b> BurggrafFlow.H:85</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_a35772c174b3574b5132cb4de037275f7"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a35772c174b3574b5132cb4de037275f7">kynema_sgf::burggraf::BurggrafFlow::apply_lid_boundary_condition</a></div><div class="ttdeci">void apply_lid_boundary_condition()</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_a3ab4389d69874aaa2012a03bbb9f45b1"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a3ab4389d69874aaa2012a03bbb9f45b1">kynema_sgf::burggraf::BurggrafFlow::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> BurggrafFlow.H:46</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_a417d76993bec6c8a6a2ede803c81b58b"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a417d76993bec6c8a6a2ede803c81b58b">kynema_sgf::burggraf::BurggrafFlow::m_velocity</a></div><div class="ttdeci">Field &amp; m_velocity</div><div class="ttdef"><b>Definition</b> BurggrafFlow.H:72</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_a435497fe07d012132f216846768771db"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a435497fe07d012132f216846768771db">kynema_sgf::burggraf::BurggrafFlow::compute_error</a></div><div class="ttdeci">amrex::Real compute_error(const Field &amp;)</div><div class="ttdef"><b>Definition</b> BurggrafFlow.cpp:115</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_a5ffdbb8c8b3eddfb3da5116215eb76f3"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a5ffdbb8c8b3eddfb3da5116215eb76f3">kynema_sgf::burggraf::BurggrafFlow::m_source</a></div><div class="ttdeci">Field &amp; m_source</div><div class="ttdef"><b>Definition</b> BurggrafFlow.H:74</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_a6fc60806ae8fda0722b92c07206ecc8a"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a6fc60806ae8fda0722b92c07206ecc8a">kynema_sgf::burggraf::BurggrafFlow::m_rho</a></div><div class="ttdeci">amrex::Real m_rho</div><div class="ttdoc">initial density value</div><div class="ttdef"><b>Definition</b> BurggrafFlow.H:79</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_a801bb6530e2a566ee08b91cf914d4b6f"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a801bb6530e2a566ee08b91cf914d4b6f">kynema_sgf::burggraf::BurggrafFlow::m_mesh</a></div><div class="ttdeci">const amrex::AmrCore &amp; m_mesh</div><div class="ttdef"><b>Definition</b> BurggrafFlow.H:70</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_a90a0baf41d9aca1b78fb1a74b49d9c93"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a90a0baf41d9aca1b78fb1a74b49d9c93">kynema_sgf::burggraf::BurggrafFlow::~BurggrafFlow</a></div><div class="ttdeci">~BurggrafFlow() override=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_a9dd05c8c3d8d472a87ffc1d3de7a6588"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#a9dd05c8c3d8d472a87ffc1d3de7a6588">kynema_sgf::burggraf::BurggrafFlow::m_repo</a></div><div class="ttdeci">const FieldRepo &amp; m_repo</div><div class="ttdef"><b>Definition</b> BurggrafFlow.H:69</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_aa884a62419dbc8447a7c2ff2ace7258a"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#aa884a62419dbc8447a7c2ff2ace7258a">kynema_sgf::burggraf::BurggrafFlow::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdef"><b>Definition</b> BurggrafFlow.H:61</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_aace75da928311796567de6f6d3ba79b4"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#aace75da928311796567de6f6d3ba79b4">kynema_sgf::burggraf::BurggrafFlow::m_density</a></div><div class="ttdeci">Field &amp; m_density</div><div class="ttdef"><b>Definition</b> BurggrafFlow.H:73</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_ab1a3cf3af015ff54ccedea279039ca99"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#ab1a3cf3af015ff54ccedea279039ca99">kynema_sgf::burggraf::BurggrafFlow::m_w</a></div><div class="ttdeci">const int m_w</div><div class="ttdoc">output precision</div><div class="ttdef"><b>Definition</b> BurggrafFlow.H:82</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_ad14815e071ed0dfd4f5b7c5977859eee"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#ad14815e071ed0dfd4f5b7c5977859eee">kynema_sgf::burggraf::BurggrafFlow::initialize_fields</a></div><div class="ttdeci">void initialize_fields(int level, const amrex::Geometry &amp;geom) override</div><div class="ttdef"><b>Definition</b> BurggrafFlow.cpp:53</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_ad444a15fcede77312a450f43b4dec8c9"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#ad444a15fcede77312a450f43b4dec8c9">kynema_sgf::burggraf::BurggrafFlow::output_error</a></div><div class="ttdeci">void output_error()</div><div class="ttdef"><b>Definition</b> BurggrafFlow.cpp:168</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_add87deefcfc078b853020efd1a9a4cf8"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#add87deefcfc078b853020efd1a9a4cf8">kynema_sgf::burggraf::BurggrafFlow::pre_advance_work</a></div><div class="ttdeci">void pre_advance_work() override</div><div class="ttdef"><b>Definition</b> BurggrafFlow.H:63</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_ae62dcbe89d7595c38a2320c574ab11ef"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#ae62dcbe89d7595c38a2320c574ab11ef">kynema_sgf::burggraf::BurggrafFlow::BurggrafFlow</a></div><div class="ttdeci">BurggrafFlow(const CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> BurggrafFlow.cpp:36</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_ae90be54da192565877ed5ccd43397584"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#ae90be54da192565877ed5ccd43397584">kynema_sgf::burggraf::BurggrafFlow::post_init_actions</a></div><div class="ttdeci">void post_init_actions() override</div><div class="ttdef"><b>Definition</b> BurggrafFlow.cpp:184</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1burggraf_1_1_burggraf_flow_html_af14193c6ff7a63f476f321f3f2b605ef"><div class="ttname"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html#af14193c6ff7a63f476f321f3f2b605ef">kynema_sgf::burggraf::BurggrafFlow::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> BurggrafFlow.cpp:186</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1burggraf_html"><div class="ttname"><a href="namespacekynema__sgf_1_1burggraf.html">kynema_sgf::burggraf</a></div><div class="ttdef"><b>Definition</b> BurggrafFlow.cpp:12</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

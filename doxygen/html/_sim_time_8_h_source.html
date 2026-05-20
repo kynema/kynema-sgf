@@ -1,0 +1,561 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/core/SimTime.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/core/SimTime.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_sim_time_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-core-simtime-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/core/SimTime.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-core-simtime-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/core/SimTime.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_b275fe914c86728e4bacb4b0e2726274.html">core</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">SimTime.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_sim_time_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SIMTIME_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SIMTIME_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;AMReX_GpuQualifiers.H&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;AMReX_Extension.H&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;AMReX_Vector.H&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>AMREX_FORCE_INLINE amrex::Real get_enforced_dt_for_output(</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">const</span> amrex::Real dt,</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">const</span> amrex::Real cur_time,</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">const</span> amrex::Real interval,</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">const</span> amrex::Real tol)</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="comment">// Tolerance for being slightly under is relative to requested interval</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordflow">return</span> amrex::min&lt;amrex::Real&gt;(</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        dt, ((std::floor((cur_time / interval) + tol) + 1.0_rt) * interval) -</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                cur_time);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>} <span class="comment">// namespace</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html">   32</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a00da6c6e89df5d97dec91791ca1fa19f">SimTime</a></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a7f2e0f0dd274ec8d53af57bf113b1d09">   35</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a7f2e0f0dd274ec8d53af57bf113b1d09">max_time_states</a> = 3;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a00da6c6e89df5d97dec91791ca1fa19f">   37</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a00da6c6e89df5d97dec91791ca1fa19f">SimTime</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a1484bdac01a2427ac6da9282c7d0e877">   39</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a1484bdac01a2427ac6da9282c7d0e877">~SimTime</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#ad465921e385be4472a27bd18602f3da2">new_timestep</a>();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#adec1863eb9831cc5e4ba53bcb36c7568">continue_simulation</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a347b6f00ccb49fdbcd2c6652f13aab98">do_regrid</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a233de5f4faeacaedc5af8686129ce2c4">write_plot_file</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a8b03684a42880873386549c51877df10">write_checkpoint</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a47b2a03f3264843978fed17058447862">write_last_plot_file</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a791ee13e05f7d79f2e125ccaa67ac1cb">write_last_checkpoint</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#ac1fc46b85fbb35bda294869b6aa13713">set_current_cfl</a>(</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        amrex::Real conv_cfl, amrex::Real diff_cfl, amrex::Real src_cfl);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a827e7d452032ab4e4e18c781b93101f6">advance_time</a>();</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a6dec05dd058bdf1f6a4efd62f7ae0ef5">set_restart_time</a>(<span class="keywordtype">int</span> tidx, amrex::Real time);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a32cd21c192803ea79007c2e37ebe5b86">   90</a></span>    amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a32cd21c192803ea79007c2e37ebe5b86">delta_t</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a0220a795df5fce05b6ca56d2398c1a54">m_dt</a>[0]; }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a45fb1d1e9d082763f490acca598ce94b">   93</a></span>    amrex::Real&amp; <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a45fb1d1e9d082763f490acca598ce94b">delta_t</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a0220a795df5fce05b6ca56d2398c1a54">m_dt</a>[0]; }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#ad0856ef14b32c94d17b2d4f126c0e32e">   96</a></span>    amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#ad0856ef14b32c94d17b2d4f126c0e32e">delta_t_nm1</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a0220a795df5fce05b6ca56d2398c1a54">m_dt</a>[1]; }</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#aa1f0a7108fcb2d9c5c5318698e861bcd">   99</a></span>    amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#aa1f0a7108fcb2d9c5c5318698e861bcd">delta_t_nm2</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a0220a795df5fce05b6ca56d2398c1a54">m_dt</a>[2]; }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a726eaa772899bdb1ef9a054beb23b9ea">  102</a></span>    amrex::Real&amp; <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a726eaa772899bdb1ef9a054beb23b9ea">delta_t_nm1</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a0220a795df5fce05b6ca56d2398c1a54">m_dt</a>[1]; }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#aee2498f438f45dc14f9fe0e2fc0fa9df">  105</a></span>    amrex::Real&amp; <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#aee2498f438f45dc14f9fe0e2fc0fa9df">delta_t_nm2</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a0220a795df5fce05b6ca56d2398c1a54">m_dt</a>[2]; }</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#af80d8e20dd65cc3b935829f73a7f932a">  108</a></span>    amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#af80d8e20dd65cc3b935829f73a7f932a">current_time</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a6c5e299ddbfb5960545f8ab56ff78d42">m_cur_time</a>; }</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a26241950cd9bbd698def9cd9c144a742">  111</a></span>    amrex::Real&amp; <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a26241950cd9bbd698def9cd9c144a742">current_time</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a6c5e299ddbfb5960545f8ab56ff78d42">m_cur_time</a>; }</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a9a2700c635d4090f4a1aedc024afb64c">  114</a></span>    amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a9a2700c635d4090f4a1aedc024afb64c">new_time</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a402e9afcefef510136fce46951a99b78">m_new_time</a>; }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a8a400b6b6fd880137722a25cda270343">  117</a></span>    amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a8a400b6b6fd880137722a25cda270343">max_cfl</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#aea754123ab32cf29fc86458923c56057">m_max_cfl</a>; }</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    AMREX_FORCE_INLINE</div>
+<div class="foldopen" id="foldopen00120" data-start="{" data-end="}">
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a6b90869c3bc335fc7f64cc532eea70ee">  120</a></span>    amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a6b90869c3bc335fc7f64cc532eea70ee">get_minimum_enforce_dt_abs_tol</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a975c3b4b4ff96b07de8ebe3ef0e26aca">m_force_dt_abs_tol</a>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    }</div>
+</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#adf38fd5a1c335746f3a514d2ba58732f">  126</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#adf38fd5a1c335746f3a514d2ba58732f">time_index</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a30e3a66b5cfb79ff86bcc25b21bf8b26">m_time_index</a>; }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a41c55dc85a454116e6d87edda0c71958">  129</a></span>    <span class="keywordtype">int</span>&amp; <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a41c55dc85a454116e6d87edda0c71958">time_index</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a30e3a66b5cfb79ff86bcc25b21bf8b26">m_time_index</a>; }</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a0dc66aded963c07a13ab66b04a7e0909">  132</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a0dc66aded963c07a13ab66b04a7e0909">adaptive_timestep</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a62cad5c3543554a4e5f3fa6001ebdcad">m_adaptive</a>; }</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#ab839b47f4f407929ab37830614026d57">  135</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#ab839b47f4f407929ab37830614026d57">use_force_cfl</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a9d31f26de53e72cbef27487e52fda5b4">m_use_force_cfl</a>; }</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#ab9970daf05453d428b867c28320a67a4">  138</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#ab9970daf05453d428b867c28320a67a4">regrid_interval</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a9ba246c4673bc61ffa07ae43472b54dc">m_regrid_interval</a>; }</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a5dfedc8ff8375161cea3e9ac82a07d76">  141</a></span>    amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a5dfedc8ff8375161cea3e9ac82a07d76">start_time</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#aa4014f8c077349c4f4b1678965056399">m_start_time</a>; }</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a3fbc8100ab07e9aa933c8e3b65c62af2">  144</a></span>    amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a3fbc8100ab07e9aa933c8e3b65c62af2">stop_time</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#ac9d639bf597cb7de649589316722d050">m_stop_time</a>; }</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#abf989d3e77c8d0265ec5cc6861750ef4">  147</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#abf989d3e77c8d0265ec5cc6861750ef4">start_time_index</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#ac536efd111cef1def9c9e62dcfa88035">m_start_time_index</a>; }</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a68c2c030fda7545444de8112b46b84cb">  150</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a68c2c030fda7545444de8112b46b84cb">stop_time_index</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#aea6a38528150cf33047318a607ec560a">m_stop_time_index</a>; }</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    AMREX_FORCE_INLINE</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a3112935684b03d82c60dd9aa3c5fc5bd">  153</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a3112935684b03d82c60dd9aa3c5fc5bd">chkpt_interval</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#aeb50097d5a1602238991841479951097">m_chkpt_interval</a>; }</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a505778f8c30a3aca804e5e2b23a0c4a5">parse_parameters</a>();</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span></div>
+<div class="foldopen" id="foldopen00159" data-start="{" data-end="}">
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#adbf0a3401d7af821eec47c47df9e70e1">  159</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#adbf0a3401d7af821eec47c47df9e70e1">add_postproc_dt_parameters</a>(</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keyword">const</span> <span class="keywordtype">bool</span> enforce_dt_flag,</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keyword">const</span> amrex::Real enforce_dt_tol,</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keyword">const</span> amrex::Real time_interval,</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        <span class="keyword">const</span> amrex::Real time_delay)</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    {</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a4ea0c676b596d7fbefe7cbe0d2cbb0c0">m_postprocess_enforce_dt</a>.emplace_back(enforce_dt_flag);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#aa80c41c7684a5c66a939f726a59c6b1c">m_postprocess_enforce_dt_tol</a>.emplace_back(enforce_dt_tol);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a74a0c7cf6eb3192d2abba5667593b54a">m_postprocess_time_interval</a>.emplace_back(time_interval);</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a8d85afdb84f8270adee67ab3e596562b">m_postprocess_time_delay</a>.emplace_back(time_delay);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
+</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a540ce63d9a8c349ddd4277c1a8590da7">calculate_minimum_enforce_dt_abs_tol</a>();</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span></div>
+<div class="foldopen" id="foldopen00175" data-start="{" data-end="}">
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a8f560f1a17a5ab07370ae707362b6e91">  175</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a8f560f1a17a5ab07370ae707362b6e91">override_simulation_end_parameters</a>()</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    {</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#aea6a38528150cf33047318a607ec560a">m_stop_time_index</a> = -1;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#ac9d639bf597cb7de649589316722d050">m_stop_time</a> = -1.0_rt;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    }</div>
+</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_sim_time.html#a8e48a97361d37c6bb63bb73ff220f895">output_profiling_info</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a0220a795df5fce05b6ca56d2398c1a54">  188</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a0220a795df5fce05b6ca56d2398c1a54">m_dt</a> =</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        amrex::Vector&lt;amrex::Real&gt;(<a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a7f2e0f0dd274ec8d53af57bf113b1d09">max_time_states</a>, 0.0_rt);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a6c5e299ddbfb5960545f8ab56ff78d42">  192</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a6c5e299ddbfb5960545f8ab56ff78d42">m_cur_time</a>{0.0_rt};</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a402e9afcefef510136fce46951a99b78">  195</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a402e9afcefef510136fce46951a99b78">m_new_time</a>{0.0_rt};</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#aa4014f8c077349c4f4b1678965056399">  198</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#aa4014f8c077349c4f4b1678965056399">m_start_time</a>{0.0_rt};</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#ac9d639bf597cb7de649589316722d050">  201</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#ac9d639bf597cb7de649589316722d050">m_stop_time</a>{-1.0_rt};</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a9b8fd9eee006d9e5b3faf1b871cca7b2">  204</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a9b8fd9eee006d9e5b3faf1b871cca7b2">m_delay_time</a>{-1.0_rt};</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#aea754123ab32cf29fc86458923c56057">  207</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#aea754123ab32cf29fc86458923c56057">m_max_cfl</a>{1.0_rt};</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a6531b5188b0b74a77c2850fe2ab53d00">  210</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a6531b5188b0b74a77c2850fe2ab53d00">m_fixed_dt</a>{-1.0_rt};</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#ad2ba4cc847077f83422e2fe7dbc966fd">  213</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#ad2ba4cc847077f83422e2fe7dbc966fd">m_initial_dt</a>{-1.0_rt};</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a9c3a25d5582f8edc5806d626fa7a7aff">  216</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a9c3a25d5582f8edc5806d626fa7a7aff">m_max_dt</a>{-1.0_rt};</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a20bfa4931eeccd9b20e0903aac8d6946">  219</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a20bfa4931eeccd9b20e0903aac8d6946">m_min_dt</a>{-1.0_rt};</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a3812309cefa578c756ef5ab68fe21407">  222</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a3812309cefa578c756ef5ab68fe21407">m_current_cfl</a>{0.0_rt};</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#ae906266db551c0f95a08b4a1ed034ffc">  225</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#ae906266db551c0f95a08b4a1ed034ffc">m_conv_cfl</a>{0.0_rt};</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a0cf49c31deb033f7fc3a70b6a062a82b">  226</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a0cf49c31deb033f7fc3a70b6a062a82b">m_diff_cfl</a>{0.0_rt};</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a430db732b8f9f363c660b5145a137f84">  227</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a430db732b8f9f363c660b5145a137f84">m_src_cfl</a>{0.0_rt};</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a5f537322b464da919e27da76001556fc">  230</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a5f537322b464da919e27da76001556fc">m_dt_calc</a>{0.0_rt};</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a62a22131ffd21da14ef553272eeab9ca">  233</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a62a22131ffd21da14ef553272eeab9ca">m_init_shrink</a>{0.1_rt};</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a50899da0c68ad813b031ba7cd347b8f1">  236</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a50899da0c68ad813b031ba7cd347b8f1">m_dt_growth</a>{0.1_rt};</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a4e1bf137658138497605f1902452f417">  239</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a4e1bf137658138497605f1902452f417">m_chkpt_t_interval</a>{-1.0_rt};</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a97902dfa6c72808efdab8010d0a90b65">  242</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a97902dfa6c72808efdab8010d0a90b65">m_chkpt_t_delay</a>{0.0_rt};</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a739575667fa666e4c53184e0f2b5104b">  245</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a739575667fa666e4c53184e0f2b5104b">m_chkpt_t_tol</a>{1.0e-2_rt};</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#ad46c03b6951b7efe1206653790be7b1e">  248</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#ad46c03b6951b7efe1206653790be7b1e">m_force_chkpt_tol</a>{1.0e-3_rt};</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#aee1a6c39774bae3fe09fde5bea68b5fc">  251</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#aee1a6c39774bae3fe09fde5bea68b5fc">m_plt_t_interval</a>{-1.0_rt};</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#aed4ea6817fda6dd08919d91719fb59ae">  254</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#aed4ea6817fda6dd08919d91719fb59ae">m_plt_t_delay</a>{0.0_rt};</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a2b087d73556406149e6064122506e8d4">  257</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a2b087d73556406149e6064122506e8d4">m_plt_t_tol</a>{1.0e-2_rt};</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a1231cb618226bb1210ca6331d5e6821e">  260</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a1231cb618226bb1210ca6331d5e6821e">m_force_plt_tol</a>{1.0e-3_rt};</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a975c3b4b4ff96b07de8ebe3ef0e26aca">  265</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a975c3b4b4ff96b07de8ebe3ef0e26aca">m_force_dt_abs_tol</a>{1.0e8_rt};</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#ac1161367c5b417433ccb36fc35204c0f">  268</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#ac1161367c5b417433ccb36fc35204c0f">m_chkpt_start_time</a>{0.0_rt};</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a3b6a8fe9873d438a600782305ec47297">  271</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a3b6a8fe9873d438a600782305ec47297">m_plt_start_time</a>{0.0_rt};</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a30e3a66b5cfb79ff86bcc25b21bf8b26">  274</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a30e3a66b5cfb79ff86bcc25b21bf8b26">m_time_index</a>{0};</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#ac536efd111cef1def9c9e62dcfa88035">  277</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#ac536efd111cef1def9c9e62dcfa88035">m_start_time_index</a>{0};</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a19747f4f40328c6fbd9aeac5d25e6f14">  280</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a19747f4f40328c6fbd9aeac5d25e6f14">m_chkpt_start_index</a>{0};</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a56140b1fb70a85237c592a92b6cd23dc">  283</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a56140b1fb70a85237c592a92b6cd23dc">m_plt_start_index</a>{0};</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a216f61581d75d5591ded040ed32ccdde">  286</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a216f61581d75d5591ded040ed32ccdde">m_regrid_start_index</a>{0};</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#aea6a38528150cf33047318a607ec560a">  289</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#aea6a38528150cf33047318a607ec560a">m_stop_time_index</a>{-1};</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#aeb50097d5a1602238991841479951097">  292</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#aeb50097d5a1602238991841479951097">m_chkpt_interval</a>{-1};</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a4f8151ca2b0458bd05f153e04e5f8982">  296</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a4f8151ca2b0458bd05f153e04e5f8982">m_chkpt_delay</a>{0};</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#af2360cb4cd0fce2405117400e0a9fc90">  299</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#af2360cb4cd0fce2405117400e0a9fc90">m_plt_interval</a>{-1};</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#aac16590a5a629e2fad4ac35f46c919f2">  302</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#aac16590a5a629e2fad4ac35f46c919f2">m_plt_delay</a>{0};</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a9ba246c4673bc61ffa07ae43472b54dc">  305</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a9ba246c4673bc61ffa07ae43472b54dc">m_regrid_interval</a>{-1};</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a5dd8699ed3e7a3750d80fd92a1c14ba5">  308</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a5dd8699ed3e7a3750d80fd92a1c14ba5">m_profiling_interval</a>{-1};</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a30b27e54cbb7b1fe03e49dd081f78fc2">  311</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a30b27e54cbb7b1fe03e49dd081f78fc2">m_verbose</a>{0};</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a62cad5c3543554a4e5f3fa6001ebdcad">  314</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a62cad5c3543554a4e5f3fa6001ebdcad">m_adaptive</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#afecfb6ad620b79248d8f3e00dab2159e">  317</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#afecfb6ad620b79248d8f3e00dab2159e">m_is_init</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a9d31f26de53e72cbef27487e52fda5b4">  320</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a9d31f26de53e72cbef27487e52fda5b4">m_use_force_cfl</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a9cded017f628174e98fd3078fb99b0a2">  323</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a9cded017f628174e98fd3078fb99b0a2">m_force_chkpt_dt</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a4721624ffb6556967c3e77c385deee03">  326</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a4721624ffb6556967c3e77c385deee03">m_force_plt_dt</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a4ea0c676b596d7fbefe7cbe0d2cbb0c0">  329</a></span>    std::vector&lt;bool&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a4ea0c676b596d7fbefe7cbe0d2cbb0c0">m_postprocess_enforce_dt</a>;</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#aa80c41c7684a5c66a939f726a59c6b1c">  330</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#aa80c41c7684a5c66a939f726a59c6b1c">m_postprocess_enforce_dt_tol</a>;</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a74a0c7cf6eb3192d2abba5667593b54a">  331</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a74a0c7cf6eb3192d2abba5667593b54a">m_postprocess_time_interval</a>;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_sim_time.html#a8d85afdb84f8270adee67ab3e596562b">  332</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_sim_time.html#a8d85afdb84f8270adee67ab3e596562b">m_postprocess_time_delay</a>;</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>};</div>
+</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span> </div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="preprocessor">#endif </span><span class="comment">/* SIMTIME_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a00da6c6e89df5d97dec91791ca1fa19f"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a00da6c6e89df5d97dec91791ca1fa19f">kynema_sgf::SimTime::SimTime</a></div><div class="ttdeci">SimTime()=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a0220a795df5fce05b6ca56d2398c1a54"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a0220a795df5fce05b6ca56d2398c1a54">kynema_sgf::SimTime::m_dt</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_dt</div><div class="ttdoc">Timestep sizes.</div><div class="ttdef"><b>Definition</b> SimTime.H:188</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a0cf49c31deb033f7fc3a70b6a062a82b"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a0cf49c31deb033f7fc3a70b6a062a82b">kynema_sgf::SimTime::m_diff_cfl</a></div><div class="ttdeci">amrex::Real m_diff_cfl</div><div class="ttdef"><b>Definition</b> SimTime.H:226</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a0dc66aded963c07a13ab66b04a7e0909"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a0dc66aded963c07a13ab66b04a7e0909">kynema_sgf::SimTime::adaptive_timestep</a></div><div class="ttdeci">AMREX_FORCE_INLINE bool adaptive_timestep() const</div><div class="ttdef"><b>Definition</b> SimTime.H:132</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a1231cb618226bb1210ca6331d5e6821e"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a1231cb618226bb1210ca6331d5e6821e">kynema_sgf::SimTime::m_force_plt_tol</a></div><div class="ttdeci">amrex::Real m_force_plt_tol</div><div class="ttdoc">Relative (to plt_t_interval) tolerance for enforcing dt.</div><div class="ttdef"><b>Definition</b> SimTime.H:260</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a1484bdac01a2427ac6da9282c7d0e877"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a1484bdac01a2427ac6da9282c7d0e877">kynema_sgf::SimTime::~SimTime</a></div><div class="ttdeci">~SimTime()=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a19747f4f40328c6fbd9aeac5d25e6f14"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a19747f4f40328c6fbd9aeac5d25e6f14">kynema_sgf::SimTime::m_chkpt_start_index</a></div><div class="ttdeci">int m_chkpt_start_index</div><div class="ttdoc">Initial starting time index for generating checkpoint files.</div><div class="ttdef"><b>Definition</b> SimTime.H:280</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a20bfa4931eeccd9b20e0903aac8d6946"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a20bfa4931eeccd9b20e0903aac8d6946">kynema_sgf::SimTime::m_min_dt</a></div><div class="ttdeci">amrex::Real m_min_dt</div><div class="ttdoc">Minimum delta_t indicated by user.</div><div class="ttdef"><b>Definition</b> SimTime.H:219</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a216f61581d75d5591ded040ed32ccdde"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a216f61581d75d5591ded040ed32ccdde">kynema_sgf::SimTime::m_regrid_start_index</a></div><div class="ttdeci">int m_regrid_start_index</div><div class="ttdoc">Initial starting time index for regriding.</div><div class="ttdef"><b>Definition</b> SimTime.H:286</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a233de5f4faeacaedc5af8686129ce2c4"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a233de5f4faeacaedc5af8686129ce2c4">kynema_sgf::SimTime::write_plot_file</a></div><div class="ttdeci">bool write_plot_file() const</div><div class="ttdef"><b>Definition</b> SimTime.cpp:350</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a26241950cd9bbd698def9cd9c144a742"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a26241950cd9bbd698def9cd9c144a742">kynema_sgf::SimTime::current_time</a></div><div class="ttdeci">AMREX_FORCE_INLINE amrex::Real &amp; current_time()</div><div class="ttdef"><b>Definition</b> SimTime.H:111</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a2b087d73556406149e6064122506e8d4"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a2b087d73556406149e6064122506e8d4">kynema_sgf::SimTime::m_plt_t_tol</a></div><div class="ttdeci">amrex::Real m_plt_t_tol</div><div class="ttdoc">Relative (to dt) tolerance for plot time interval output.</div><div class="ttdef"><b>Definition</b> SimTime.H:257</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a30b27e54cbb7b1fe03e49dd081f78fc2"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a30b27e54cbb7b1fe03e49dd081f78fc2">kynema_sgf::SimTime::m_verbose</a></div><div class="ttdeci">int m_verbose</div><div class="ttdoc">Verbosity.</div><div class="ttdef"><b>Definition</b> SimTime.H:311</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a30e3a66b5cfb79ff86bcc25b21bf8b26"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a30e3a66b5cfb79ff86bcc25b21bf8b26">kynema_sgf::SimTime::m_time_index</a></div><div class="ttdeci">int m_time_index</div><div class="ttdoc">Counter for the number of timesteps since start of simulation.</div><div class="ttdef"><b>Definition</b> SimTime.H:274</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a3112935684b03d82c60dd9aa3c5fc5bd"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a3112935684b03d82c60dd9aa3c5fc5bd">kynema_sgf::SimTime::chkpt_interval</a></div><div class="ttdeci">AMREX_FORCE_INLINE int chkpt_interval() const</div><div class="ttdef"><b>Definition</b> SimTime.H:153</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a32cd21c192803ea79007c2e37ebe5b86"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a32cd21c192803ea79007c2e37ebe5b86">kynema_sgf::SimTime::delta_t</a></div><div class="ttdeci">AMREX_FORCE_INLINE amrex::Real delta_t() const</div><div class="ttdef"><b>Definition</b> SimTime.H:90</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a347b6f00ccb49fdbcd2c6652f13aab98"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a347b6f00ccb49fdbcd2c6652f13aab98">kynema_sgf::SimTime::do_regrid</a></div><div class="ttdeci">bool do_regrid() const</div><div class="ttdef"><b>Definition</b> SimTime.cpp:342</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a3812309cefa578c756ef5ab68fe21407"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a3812309cefa578c756ef5ab68fe21407">kynema_sgf::SimTime::m_current_cfl</a></div><div class="ttdeci">amrex::Real m_current_cfl</div><div class="ttdoc">Current CFL.</div><div class="ttdef"><b>Definition</b> SimTime.H:222</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a3b6a8fe9873d438a600782305ec47297"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a3b6a8fe9873d438a600782305ec47297">kynema_sgf::SimTime::m_plt_start_time</a></div><div class="ttdeci">amrex::Real m_plt_start_time</div><div class="ttdoc">Initial starting time for generating output files (time-based)</div><div class="ttdef"><b>Definition</b> SimTime.H:271</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a3fbc8100ab07e9aa933c8e3b65c62af2"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a3fbc8100ab07e9aa933c8e3b65c62af2">kynema_sgf::SimTime::stop_time</a></div><div class="ttdeci">AMREX_FORCE_INLINE amrex::Real stop_time() const</div><div class="ttdef"><b>Definition</b> SimTime.H:144</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a402e9afcefef510136fce46951a99b78"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a402e9afcefef510136fce46951a99b78">kynema_sgf::SimTime::m_new_time</a></div><div class="ttdeci">amrex::Real m_new_time</div><div class="ttdoc">Time where a new timestep will advance to.</div><div class="ttdef"><b>Definition</b> SimTime.H:195</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a41c55dc85a454116e6d87edda0c71958"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a41c55dc85a454116e6d87edda0c71958">kynema_sgf::SimTime::time_index</a></div><div class="ttdeci">AMREX_FORCE_INLINE int &amp; time_index()</div><div class="ttdef"><b>Definition</b> SimTime.H:129</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a430db732b8f9f363c660b5145a137f84"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a430db732b8f9f363c660b5145a137f84">kynema_sgf::SimTime::m_src_cfl</a></div><div class="ttdeci">amrex::Real m_src_cfl</div><div class="ttdef"><b>Definition</b> SimTime.H:227</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a45fb1d1e9d082763f490acca598ce94b"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a45fb1d1e9d082763f490acca598ce94b">kynema_sgf::SimTime::delta_t</a></div><div class="ttdeci">AMREX_FORCE_INLINE amrex::Real &amp; delta_t()</div><div class="ttdef"><b>Definition</b> SimTime.H:93</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a4721624ffb6556967c3e77c385deee03"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a4721624ffb6556967c3e77c385deee03">kynema_sgf::SimTime::m_force_plt_dt</a></div><div class="ttdeci">bool m_force_plt_dt</div><div class="ttdoc">Bool for if plt time interval should be forced.</div><div class="ttdef"><b>Definition</b> SimTime.H:326</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a47b2a03f3264843978fed17058447862"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a47b2a03f3264843978fed17058447862">kynema_sgf::SimTime::write_last_plot_file</a></div><div class="ttdeci">bool write_last_plot_file() const</div><div class="ttdef"><b>Definition</b> SimTime.cpp:384</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a4e1bf137658138497605f1902452f417"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a4e1bf137658138497605f1902452f417">kynema_sgf::SimTime::m_chkpt_t_interval</a></div><div class="ttdeci">amrex::Real m_chkpt_t_interval</div><div class="ttdoc">Time interval for writing checkpoint/restart files.</div><div class="ttdef"><b>Definition</b> SimTime.H:239</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a4ea0c676b596d7fbefe7cbe0d2cbb0c0"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a4ea0c676b596d7fbefe7cbe0d2cbb0c0">kynema_sgf::SimTime::m_postprocess_enforce_dt</a></div><div class="ttdeci">std::vector&lt; bool &gt; m_postprocess_enforce_dt</div><div class="ttdoc">Timestep considerations from postprocessing instances.</div><div class="ttdef"><b>Definition</b> SimTime.H:329</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a4f8151ca2b0458bd05f153e04e5f8982"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a4f8151ca2b0458bd05f153e04e5f8982">kynema_sgf::SimTime::m_chkpt_delay</a></div><div class="ttdeci">int m_chkpt_delay</div><div class="ttdoc">Time step delay for checkpoint/restart output (this means that output only happens after the delay)</div><div class="ttdef"><b>Definition</b> SimTime.H:296</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a505778f8c30a3aca804e5e2b23a0c4a5"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a505778f8c30a3aca804e5e2b23a0c4a5">kynema_sgf::SimTime::parse_parameters</a></div><div class="ttdeci">void parse_parameters()</div><div class="ttdoc">Read user defined options from input file.</div><div class="ttdef"><b>Definition</b> SimTime.cpp:11</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a50899da0c68ad813b031ba7cd347b8f1"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a50899da0c68ad813b031ba7cd347b8f1">kynema_sgf::SimTime::m_dt_growth</a></div><div class="ttdeci">amrex::Real m_dt_growth</div><div class="ttdoc">Maximum growth of dt between timesteps.</div><div class="ttdef"><b>Definition</b> SimTime.H:236</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a540ce63d9a8c349ddd4277c1a8590da7"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a540ce63d9a8c349ddd4277c1a8590da7">kynema_sgf::SimTime::calculate_minimum_enforce_dt_abs_tol</a></div><div class="ttdeci">void calculate_minimum_enforce_dt_abs_tol()</div><div class="ttdoc">Calculate minimum enforce dt tolerance based on all considerations.</div><div class="ttdef"><b>Definition</b> SimTime.cpp:436</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a56140b1fb70a85237c592a92b6cd23dc"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a56140b1fb70a85237c592a92b6cd23dc">kynema_sgf::SimTime::m_plt_start_index</a></div><div class="ttdeci">int m_plt_start_index</div><div class="ttdoc">Initial starting time index for generating output files.</div><div class="ttdef"><b>Definition</b> SimTime.H:283</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a5dd8699ed3e7a3750d80fd92a1c14ba5"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a5dd8699ed3e7a3750d80fd92a1c14ba5">kynema_sgf::SimTime::m_profiling_interval</a></div><div class="ttdeci">int m_profiling_interval</div><div class="ttdoc">Time step interval for profiling output.</div><div class="ttdef"><b>Definition</b> SimTime.H:308</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a5dfedc8ff8375161cea3e9ac82a07d76"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a5dfedc8ff8375161cea3e9ac82a07d76">kynema_sgf::SimTime::start_time</a></div><div class="ttdeci">AMREX_FORCE_INLINE amrex::Real start_time() const</div><div class="ttdef"><b>Definition</b> SimTime.H:141</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a5f537322b464da919e27da76001556fc"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a5f537322b464da919e27da76001556fc">kynema_sgf::SimTime::m_dt_calc</a></div><div class="ttdeci">amrex::Real m_dt_calc</div><div class="ttdoc">delta_t calculated using CFL constraint</div><div class="ttdef"><b>Definition</b> SimTime.H:230</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a62a22131ffd21da14ef553272eeab9ca"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a62a22131ffd21da14ef553272eeab9ca">kynema_sgf::SimTime::m_init_shrink</a></div><div class="ttdeci">amrex::Real m_init_shrink</div><div class="ttdoc">Initial reduction in timestep size for startup.</div><div class="ttdef"><b>Definition</b> SimTime.H:233</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a62cad5c3543554a4e5f3fa6001ebdcad"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a62cad5c3543554a4e5f3fa6001ebdcad">kynema_sgf::SimTime::m_adaptive</a></div><div class="ttdeci">bool m_adaptive</div><div class="ttdoc">Flag indicating whether timestep is adaptive.</div><div class="ttdef"><b>Definition</b> SimTime.H:314</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a6531b5188b0b74a77c2850fe2ab53d00"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a6531b5188b0b74a77c2850fe2ab53d00">kynema_sgf::SimTime::m_fixed_dt</a></div><div class="ttdeci">amrex::Real m_fixed_dt</div><div class="ttdoc">Fixed delta_t indicated by user.</div><div class="ttdef"><b>Definition</b> SimTime.H:210</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a68c2c030fda7545444de8112b46b84cb"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a68c2c030fda7545444de8112b46b84cb">kynema_sgf::SimTime::stop_time_index</a></div><div class="ttdeci">AMREX_FORCE_INLINE int stop_time_index() const</div><div class="ttdef"><b>Definition</b> SimTime.H:150</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a6b90869c3bc335fc7f64cc532eea70ee"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a6b90869c3bc335fc7f64cc532eea70ee">kynema_sgf::SimTime::get_minimum_enforce_dt_abs_tol</a></div><div class="ttdeci">AMREX_FORCE_INLINE amrex::Real get_minimum_enforce_dt_abs_tol() const</div><div class="ttdef"><b>Definition</b> SimTime.H:120</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a6c5e299ddbfb5960545f8ab56ff78d42"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a6c5e299ddbfb5960545f8ab56ff78d42">kynema_sgf::SimTime::m_cur_time</a></div><div class="ttdeci">amrex::Real m_cur_time</div><div class="ttdoc">Current simulation time.</div><div class="ttdef"><b>Definition</b> SimTime.H:192</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a6dec05dd058bdf1f6a4efd62f7ae0ef5"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a6dec05dd058bdf1f6a4efd62f7ae0ef5">kynema_sgf::SimTime::set_restart_time</a></div><div class="ttdeci">void set_restart_time(int tidx, amrex::Real time)</div><div class="ttdef"><b>Definition</b> SimTime.cpp:413</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a726eaa772899bdb1ef9a054beb23b9ea"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a726eaa772899bdb1ef9a054beb23b9ea">kynema_sgf::SimTime::delta_t_nm1</a></div><div class="ttdeci">AMREX_FORCE_INLINE amrex::Real &amp; delta_t_nm1()</div><div class="ttdef"><b>Definition</b> SimTime.H:102</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a739575667fa666e4c53184e0f2b5104b"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a739575667fa666e4c53184e0f2b5104b">kynema_sgf::SimTime::m_chkpt_t_tol</a></div><div class="ttdeci">amrex::Real m_chkpt_t_tol</div><div class="ttdoc">Relative (to dt) tolerance for checkpoint time interval output.</div><div class="ttdef"><b>Definition</b> SimTime.H:245</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a74a0c7cf6eb3192d2abba5667593b54a"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a74a0c7cf6eb3192d2abba5667593b54a">kynema_sgf::SimTime::m_postprocess_time_interval</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_postprocess_time_interval</div><div class="ttdef"><b>Definition</b> SimTime.H:331</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a791ee13e05f7d79f2e125ccaa67ac1cb"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a791ee13e05f7d79f2e125ccaa67ac1cb">kynema_sgf::SimTime::write_last_checkpoint</a></div><div class="ttdeci">bool write_last_checkpoint() const</div><div class="ttdef"><b>Definition</b> SimTime.cpp:398</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a7f2e0f0dd274ec8d53af57bf113b1d09"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a7f2e0f0dd274ec8d53af57bf113b1d09">kynema_sgf::SimTime::max_time_states</a></div><div class="ttdeci">static constexpr int max_time_states</div><div class="ttdef"><b>Definition</b> SimTime.H:35</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a827e7d452032ab4e4e18c781b93101f6"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a827e7d452032ab4e4e18c781b93101f6">kynema_sgf::SimTime::advance_time</a></div><div class="ttdeci">void advance_time()</div><div class="ttdef"><b>Definition</b> SimTime.cpp:288</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a8a400b6b6fd880137722a25cda270343"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a8a400b6b6fd880137722a25cda270343">kynema_sgf::SimTime::max_cfl</a></div><div class="ttdeci">AMREX_FORCE_INLINE amrex::Real max_cfl() const</div><div class="ttdef"><b>Definition</b> SimTime.H:117</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a8b03684a42880873386549c51877df10"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a8b03684a42880873386549c51877df10">kynema_sgf::SimTime::write_checkpoint</a></div><div class="ttdeci">bool write_checkpoint() const</div><div class="ttdef"><b>Definition</b> SimTime.cpp:367</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a8d85afdb84f8270adee67ab3e596562b"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a8d85afdb84f8270adee67ab3e596562b">kynema_sgf::SimTime::m_postprocess_time_delay</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_postprocess_time_delay</div><div class="ttdef"><b>Definition</b> SimTime.H:332</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a8e48a97361d37c6bb63bb73ff220f895"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a8e48a97361d37c6bb63bb73ff220f895">kynema_sgf::SimTime::output_profiling_info</a></div><div class="ttdeci">bool output_profiling_info() const</div><div class="ttdef"><b>Definition</b> SimTime.cpp:458</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a8f560f1a17a5ab07370ae707362b6e91"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a8f560f1a17a5ab07370ae707362b6e91">kynema_sgf::SimTime::override_simulation_end_parameters</a></div><div class="ttdeci">void override_simulation_end_parameters()</div><div class="ttdoc">Deactivate ending parameters (overset should be externally controlled)</div><div class="ttdef"><b>Definition</b> SimTime.H:175</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a975c3b4b4ff96b07de8ebe3ef0e26aca"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a975c3b4b4ff96b07de8ebe3ef0e26aca">kynema_sgf::SimTime::m_force_dt_abs_tol</a></div><div class="ttdeci">amrex::Real m_force_dt_abs_tol</div><div class="ttdoc">Smallest absolute tolerance for enforcing dt, considering all tolerance criteria.</div><div class="ttdef"><b>Definition</b> SimTime.H:265</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a97902dfa6c72808efdab8010d0a90b65"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a97902dfa6c72808efdab8010d0a90b65">kynema_sgf::SimTime::m_chkpt_t_delay</a></div><div class="ttdeci">amrex::Real m_chkpt_t_delay</div><div class="ttdoc">Time delay for checkpoint/restart output.</div><div class="ttdef"><b>Definition</b> SimTime.H:242</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a9a2700c635d4090f4a1aedc024afb64c"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a9a2700c635d4090f4a1aedc024afb64c">kynema_sgf::SimTime::new_time</a></div><div class="ttdeci">AMREX_FORCE_INLINE amrex::Real new_time() const</div><div class="ttdef"><b>Definition</b> SimTime.H:114</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a9b8fd9eee006d9e5b3faf1b871cca7b2"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a9b8fd9eee006d9e5b3faf1b871cca7b2">kynema_sgf::SimTime::m_delay_time</a></div><div class="ttdeci">amrex::Real m_delay_time</div><div class="ttdoc">Delayed adaptive stepping.</div><div class="ttdef"><b>Definition</b> SimTime.H:204</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a9ba246c4673bc61ffa07ae43472b54dc"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a9ba246c4673bc61ffa07ae43472b54dc">kynema_sgf::SimTime::m_regrid_interval</a></div><div class="ttdeci">int m_regrid_interval</div><div class="ttdoc">Time interval for regridding.</div><div class="ttdef"><b>Definition</b> SimTime.H:305</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a9c3a25d5582f8edc5806d626fa7a7aff"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a9c3a25d5582f8edc5806d626fa7a7aff">kynema_sgf::SimTime::m_max_dt</a></div><div class="ttdeci">amrex::Real m_max_dt</div><div class="ttdoc">Maximum delta_t indicated by user.</div><div class="ttdef"><b>Definition</b> SimTime.H:216</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a9cded017f628174e98fd3078fb99b0a2"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a9cded017f628174e98fd3078fb99b0a2">kynema_sgf::SimTime::m_force_chkpt_dt</a></div><div class="ttdeci">bool m_force_chkpt_dt</div><div class="ttdoc">Bool for if checkpoint time interval should be forced.</div><div class="ttdef"><b>Definition</b> SimTime.H:323</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_a9d31f26de53e72cbef27487e52fda5b4"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#a9d31f26de53e72cbef27487e52fda5b4">kynema_sgf::SimTime::m_use_force_cfl</a></div><div class="ttdeci">bool m_use_force_cfl</div><div class="ttdoc">Flag indicating if forcing should be included in CFL calculation.</div><div class="ttdef"><b>Definition</b> SimTime.H:320</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_aa1f0a7108fcb2d9c5c5318698e861bcd"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#aa1f0a7108fcb2d9c5c5318698e861bcd">kynema_sgf::SimTime::delta_t_nm2</a></div><div class="ttdeci">AMREX_FORCE_INLINE amrex::Real delta_t_nm2() const</div><div class="ttdef"><b>Definition</b> SimTime.H:99</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_aa4014f8c077349c4f4b1678965056399"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#aa4014f8c077349c4f4b1678965056399">kynema_sgf::SimTime::m_start_time</a></div><div class="ttdeci">amrex::Real m_start_time</div><div class="ttdoc">Starting simulation time (to track restart)</div><div class="ttdef"><b>Definition</b> SimTime.H:198</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_aa80c41c7684a5c66a939f726a59c6b1c"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#aa80c41c7684a5c66a939f726a59c6b1c">kynema_sgf::SimTime::m_postprocess_enforce_dt_tol</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_postprocess_enforce_dt_tol</div><div class="ttdef"><b>Definition</b> SimTime.H:330</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_aac16590a5a629e2fad4ac35f46c919f2"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#aac16590a5a629e2fad4ac35f46c919f2">kynema_sgf::SimTime::m_plt_delay</a></div><div class="ttdeci">int m_plt_delay</div><div class="ttdoc">Time step delay for plot file output.</div><div class="ttdef"><b>Definition</b> SimTime.H:302</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_ab839b47f4f407929ab37830614026d57"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#ab839b47f4f407929ab37830614026d57">kynema_sgf::SimTime::use_force_cfl</a></div><div class="ttdeci">AMREX_FORCE_INLINE bool use_force_cfl() const</div><div class="ttdef"><b>Definition</b> SimTime.H:135</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_ab9970daf05453d428b867c28320a67a4"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#ab9970daf05453d428b867c28320a67a4">kynema_sgf::SimTime::regrid_interval</a></div><div class="ttdeci">AMREX_FORCE_INLINE int regrid_interval() const</div><div class="ttdef"><b>Definition</b> SimTime.H:138</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_abf989d3e77c8d0265ec5cc6861750ef4"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#abf989d3e77c8d0265ec5cc6861750ef4">kynema_sgf::SimTime::start_time_index</a></div><div class="ttdeci">AMREX_FORCE_INLINE int start_time_index() const</div><div class="ttdef"><b>Definition</b> SimTime.H:147</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_ac1161367c5b417433ccb36fc35204c0f"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#ac1161367c5b417433ccb36fc35204c0f">kynema_sgf::SimTime::m_chkpt_start_time</a></div><div class="ttdeci">amrex::Real m_chkpt_start_time</div><div class="ttdoc">Initial starting time for generating checkpoint files (time-based)</div><div class="ttdef"><b>Definition</b> SimTime.H:268</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_ac1fc46b85fbb35bda294869b6aa13713"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#ac1fc46b85fbb35bda294869b6aa13713">kynema_sgf::SimTime::set_current_cfl</a></div><div class="ttdeci">void set_current_cfl(amrex::Real conv_cfl, amrex::Real diff_cfl, amrex::Real src_cfl)</div><div class="ttdef"><b>Definition</b> SimTime.cpp:157</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_ac536efd111cef1def9c9e62dcfa88035"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#ac536efd111cef1def9c9e62dcfa88035">kynema_sgf::SimTime::m_start_time_index</a></div><div class="ttdeci">int m_start_time_index</div><div class="ttdoc">Initial starting time index.</div><div class="ttdef"><b>Definition</b> SimTime.H:277</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_ac9d639bf597cb7de649589316722d050"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#ac9d639bf597cb7de649589316722d050">kynema_sgf::SimTime::m_stop_time</a></div><div class="ttdeci">amrex::Real m_stop_time</div><div class="ttdoc">Max time for simulation.</div><div class="ttdef"><b>Definition</b> SimTime.H:201</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_ad0856ef14b32c94d17b2d4f126c0e32e"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#ad0856ef14b32c94d17b2d4f126c0e32e">kynema_sgf::SimTime::delta_t_nm1</a></div><div class="ttdeci">AMREX_FORCE_INLINE amrex::Real delta_t_nm1() const</div><div class="ttdef"><b>Definition</b> SimTime.H:96</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_ad2ba4cc847077f83422e2fe7dbc966fd"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#ad2ba4cc847077f83422e2fe7dbc966fd">kynema_sgf::SimTime::m_initial_dt</a></div><div class="ttdeci">amrex::Real m_initial_dt</div><div class="ttdoc">Initial delta_t indicated by user.</div><div class="ttdef"><b>Definition</b> SimTime.H:213</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_ad465921e385be4472a27bd18602f3da2"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#ad465921e385be4472a27bd18602f3da2">kynema_sgf::SimTime::new_timestep</a></div><div class="ttdeci">bool new_timestep()</div><div class="ttdef"><b>Definition</b> SimTime.cpp:108</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_ad46c03b6951b7efe1206653790be7b1e"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#ad46c03b6951b7efe1206653790be7b1e">kynema_sgf::SimTime::m_force_chkpt_tol</a></div><div class="ttdeci">amrex::Real m_force_chkpt_tol</div><div class="ttdoc">Relative (to chkpt_t_interval) tolerance for enforcing dt.</div><div class="ttdef"><b>Definition</b> SimTime.H:248</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_adbf0a3401d7af821eec47c47df9e70e1"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#adbf0a3401d7af821eec47c47df9e70e1">kynema_sgf::SimTime::add_postproc_dt_parameters</a></div><div class="ttdeci">void add_postproc_dt_parameters(const bool enforce_dt_flag, const amrex::Real enforce_dt_tol, const amrex::Real time_interval, const amrex::Real time_delay)</div><div class="ttdoc">Get timestep considerations from postprocessing instances.</div><div class="ttdef"><b>Definition</b> SimTime.H:159</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_adec1863eb9831cc5e4ba53bcb36c7568"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#adec1863eb9831cc5e4ba53bcb36c7568">kynema_sgf::SimTime::continue_simulation</a></div><div class="ttdeci">bool continue_simulation() const</div><div class="ttdef"><b>Definition</b> SimTime.cpp:321</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_adf38fd5a1c335746f3a514d2ba58732f"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#adf38fd5a1c335746f3a514d2ba58732f">kynema_sgf::SimTime::time_index</a></div><div class="ttdeci">AMREX_FORCE_INLINE int time_index() const</div><div class="ttdef"><b>Definition</b> SimTime.H:126</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_ae906266db551c0f95a08b4a1ed034ffc"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#ae906266db551c0f95a08b4a1ed034ffc">kynema_sgf::SimTime::m_conv_cfl</a></div><div class="ttdeci">amrex::Real m_conv_cfl</div><div class="ttdoc">Current CFL categories.</div><div class="ttdef"><b>Definition</b> SimTime.H:225</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_aea6a38528150cf33047318a607ec560a"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#aea6a38528150cf33047318a607ec560a">kynema_sgf::SimTime::m_stop_time_index</a></div><div class="ttdeci">int m_stop_time_index</div><div class="ttdoc">Maximum timesteps for simulation.</div><div class="ttdef"><b>Definition</b> SimTime.H:289</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_aea754123ab32cf29fc86458923c56057"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#aea754123ab32cf29fc86458923c56057">kynema_sgf::SimTime::m_max_cfl</a></div><div class="ttdeci">amrex::Real m_max_cfl</div><div class="ttdoc">Maximum CFL constraint.</div><div class="ttdef"><b>Definition</b> SimTime.H:207</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_aeb50097d5a1602238991841479951097"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#aeb50097d5a1602238991841479951097">kynema_sgf::SimTime::m_chkpt_interval</a></div><div class="ttdeci">int m_chkpt_interval</div><div class="ttdoc">Time step interval for writing checkpoint/restart files.</div><div class="ttdef"><b>Definition</b> SimTime.H:292</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_aed4ea6817fda6dd08919d91719fb59ae"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#aed4ea6817fda6dd08919d91719fb59ae">kynema_sgf::SimTime::m_plt_t_delay</a></div><div class="ttdeci">amrex::Real m_plt_t_delay</div><div class="ttdoc">Time delay for plot file output.</div><div class="ttdef"><b>Definition</b> SimTime.H:254</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_aee1a6c39774bae3fe09fde5bea68b5fc"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#aee1a6c39774bae3fe09fde5bea68b5fc">kynema_sgf::SimTime::m_plt_t_interval</a></div><div class="ttdeci">amrex::Real m_plt_t_interval</div><div class="ttdoc">Time interval for plot file output.</div><div class="ttdef"><b>Definition</b> SimTime.H:251</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_aee2498f438f45dc14f9fe0e2fc0fa9df"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#aee2498f438f45dc14f9fe0e2fc0fa9df">kynema_sgf::SimTime::delta_t_nm2</a></div><div class="ttdeci">AMREX_FORCE_INLINE amrex::Real &amp; delta_t_nm2()</div><div class="ttdef"><b>Definition</b> SimTime.H:105</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_af2360cb4cd0fce2405117400e0a9fc90"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#af2360cb4cd0fce2405117400e0a9fc90">kynema_sgf::SimTime::m_plt_interval</a></div><div class="ttdeci">int m_plt_interval</div><div class="ttdoc">Time step interval for plot file output.</div><div class="ttdef"><b>Definition</b> SimTime.H:299</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_af80d8e20dd65cc3b935829f73a7f932a"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#af80d8e20dd65cc3b935829f73a7f932a">kynema_sgf::SimTime::current_time</a></div><div class="ttdeci">AMREX_FORCE_INLINE amrex::Real current_time() const</div><div class="ttdef"><b>Definition</b> SimTime.H:108</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html_afecfb6ad620b79248d8f3e00dab2159e"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html#afecfb6ad620b79248d8f3e00dab2159e">kynema_sgf::SimTime::m_is_init</a></div><div class="ttdeci">bool m_is_init</div><div class="ttdoc">Flag indicating if this is initialization.</div><div class="ttdef"><b>Definition</b> SimTime.H:317</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

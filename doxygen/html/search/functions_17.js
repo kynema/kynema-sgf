@@ -1,0 +1,10 @@
+var searchData=
+[
+  ['x_0',['x',['../structkynema__sgf_1_1vs_1_1_tensor_t.html#a2633fc1c1ea0be1b43705bec625c511c',1,'kynema_sgf::vs::TensorT::x()'],['../structkynema__sgf_1_1vs_1_1_vector_t.html#a431b59c29891ba64ca543fc5ae856709',1,'kynema_sgf::vs::VectorT::x() &amp;'],['../structkynema__sgf_1_1vs_1_1_vector_t.html#a89d16216c7734833ec17a43bc62a362b',1,'kynema_sgf::vs::VectorT::x() const &amp;']]],
+  ['xlo_1',['xlo',['../classkynema__sgf_1_1_f_plane_averaging.html#a76759a3ef495e6463cd3de69a04a846f',1,'kynema_sgf::FPlaneAveraging::xlo()'],['../classkynema__sgf_1_1_f_plane_averaging_fine.html#ab1fe8555bc0c6a03ff8c556c8d7e26c7',1,'kynema_sgf::FPlaneAveragingFine::xlo()']]],
+  ['xpay_2',['xpay',['../group__field__ops.html#ga008944d97eb1dddebb965f10e3897e3c',1,'kynema_sgf::field_ops::xpay(T1 &amp;dst, const amrex::Real a, const T2 &amp;src, const int srccomp, const int dstcomp, const int numcomp, const amrex::IntVect &amp;nghost)'],['../group__field__ops.html#ga8a429f0fe98ec4046fe99abfa0ed59a1',1,'kynema_sgf::field_ops::xpay(T1 &amp;dst, const amrex::Real a, const T2 &amp;src, const int srccomp, const int dstcomp, const int numcomp, const int nghost)']]],
+  ['xrot_3',['xrot',['../namespacekynema__sgf_1_1vs.html#acef259deb0bbb80224c838a04ca84003',1,'kynema_sgf::vs']]],
+  ['xx_4',['xx',['../structkynema__sgf_1_1vs_1_1_tensor_t.html#a9bc6d4cfaf50a32e88f5214b5ddb603e',1,'kynema_sgf::vs::TensorT::xx() &amp;'],['../structkynema__sgf_1_1vs_1_1_tensor_t.html#acd074a4eff6fb9261165758b45d9ee7a',1,'kynema_sgf::vs::TensorT::xx() const &amp;']]],
+  ['xy_5',['xy',['../structkynema__sgf_1_1vs_1_1_tensor_t.html#a16fe5054834095fa5a7b05723df2a7d4',1,'kynema_sgf::vs::TensorT::xy() &amp;'],['../structkynema__sgf_1_1vs_1_1_tensor_t.html#a60906767360d18f466f64b8fefaadafe',1,'kynema_sgf::vs::TensorT::xy() const &amp;']]],
+  ['xz_6',['xz',['../structkynema__sgf_1_1vs_1_1_tensor_t.html#a28bd54224fb067141bfa9191354abf9c',1,'kynema_sgf::vs::TensorT::xz() &amp;'],['../structkynema__sgf_1_1vs_1_1_tensor_t.html#a9579cc7f41d623642113492d80ac94de',1,'kynema_sgf::vs::TensorT::xz() const &amp;']]]
+];

@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_ocean_waves_boundary_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-boundary-conditions-field-boundary-fill-oceanwavesboundary-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-boundary-conditions-field-boundary-fill-oceanwavesboundary-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_1e81ec2858f8c09f6adc44292f32a0c3.html">boundary_conditions</a></li><li class="navelem"><a href="dir_d01a4f955544b9b6bff1cf5efa9fe538.html">field_boundary_fill</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">OceanWavesBoundary.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_ocean_waves_boundary_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef OCEANWAVESBOUNDARY_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define OCEANWAVESBOUNDARY_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_field_8_h.html">src/core/Field.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_int_field_8_h.html">src/core/IntField.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_field_boundary_8_h.html">src/boundary_conditions/field_boundary_fill/FieldBoundary.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;AMReX_Gpu.H&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;AMReX_BndryRegister.H&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span></div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_ocean_waves_boundary.html">   22</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a09cd9813b61a508f02c087723904187c">OceanWavesBoundary</a> : <span class="keyword">public</span> FieldBoundary::Register&lt;OceanWavesBoundary&gt;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a429ce6183dc70d859287e4684a0472a5">   25</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a429ce6183dc70d859287e4684a0472a5">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;OceanWavesBoundary&quot;</span>; }</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a09cd9813b61a508f02c087723904187c">OceanWavesBoundary</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <span class="comment">/*sim*/</span>);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_ocean_waves_boundary.html#ab0019994a3730af313772dfbcae3dbd1">post_init_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a5a6b24dff82b053f46d24a76a9526506">pre_advance_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_ocean_waves_boundary.html#af375ad206cda3d5f5cec27f752c05ce2">pre_predictor_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a75e8043ac5bbe980e03af13756af73bc">   35</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a75e8043ac5bbe980e03af13756af73bc">post_advance_work</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a9bdb489eee0fc4b930e0d689222d1fe4">set_velocity</a>(</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordtype">int</span> lev,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        amrex::Real time,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; fld,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        amrex::MultiFab&amp; mfab,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">int</span> dcomp = 0,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordtype">int</span> orig_comp = 0) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_function" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a5bec2f4131cc451d45fcdd1befe74e85">set_vof</a>(<span class="keywordtype">int</span> lev, amrex::Real time, <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; fld, amrex::MultiFab&amp; mfab)</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_ocean_waves_boundary.html#aabfd61b2757cefe01811bdb42c68ed38">set_density</a>(</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordtype">int</span> lev,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        amrex::Real time,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; fld,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        amrex::MultiFab&amp; mfab) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a817fd3e4cbfab7429af5d928d7bff1dd">set_inflow_sibling_velocity</a>(</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordtype">int</span> lev,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        amrex::Real time,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; fld,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        amrex::Array&lt;amrex::MultiFab*, AMREX_SPACEDIM&gt; mfabs) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a2ec32cc2c0e25dcc372af9e7b7c316ac">   61</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a2ec32cc2c0e25dcc372af9e7b7c316ac">record_boundary_data_time</a>(<span class="keyword">const</span> amrex::Real time)</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <a class="code hl_variable" href="classkynema__sgf_1_1_ocean_waves_boundary.html#aba8fdd2f1310ed16aeb5e42dba732fff">m_bndry_time</a> = time;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
+</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="foldopen" id="foldopen00066" data-start="{" data-end="}">
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_ocean_waves_boundary.html#aa80a2454dae398e0231c700dfda7ac4b">   66</a></span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_ocean_waves_boundary.html#aa80a2454dae398e0231c700dfda7ac4b">get_boundary_data_time</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_ocean_waves_boundary.html#aba8fdd2f1310ed16aeb5e42dba732fff">m_bndry_time</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
+</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_ocean_waves_boundary.html#af9a89f351ace091724b308409a47feaa">   72</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_ocean_waves_boundary.html#af9a89f351ace091724b308409a47feaa">m_time</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_ocean_waves_boundary.html#ab652b0e919547413d00cef9cf49dedac">   73</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_ocean_waves_boundary.html#ab652b0e919547413d00cef9cf49dedac">m_repo</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a7468f6467355f824b275d8ecf377ddbc">   74</a></span>    <span class="keyword">const</span> amrex::AmrCore&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a7468f6467355f824b275d8ecf377ddbc">m_mesh</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a4b75a90890ec3a416f4c5e4458be0f83">   75</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>* <a class="code hl_variable" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a4b75a90890ec3a416f4c5e4458be0f83">m_ow_velocity</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a9068a5951041896e18c4d6794aafdab0">   76</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>* <a class="code hl_variable" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a9068a5951041896e18c4d6794aafdab0">m_ow_vof</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a2417390df927d13bab80f05d4b549c0b">   77</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_int_field.html">IntField</a>* <a class="code hl_variable" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a2417390df927d13bab80f05d4b549c0b">m_terrain_blank_ptr</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">// Check for single-phase simulation</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a1c25fe5e8cc986e9cb1e7dba8cc6fba8">   80</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a1c25fe5e8cc986e9cb1e7dba8cc6fba8">m_vof_exists</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">// Check for terrain</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_ocean_waves_boundary.html#aa36df5f8ea7c08290640154eafe1d4f6">   83</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_ocean_waves_boundary.html#aa36df5f8ea7c08290640154eafe1d4f6">m_terrain_exists</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// Store time corresponding to current boundary data</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_ocean_waves_boundary.html#aba8fdd2f1310ed16aeb5e42dba732fff">   86</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_ocean_waves_boundary.html#aba8fdd2f1310ed16aeb5e42dba732fff">m_bndry_time</a>{0.0_rt};</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">// Will only remain negative if not needed</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a99263258487531890e1bd2629b71ba2a">   89</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_ocean_waves_boundary.html#a99263258487531890e1bd2629b71ba2a">m_rho1</a>{-1.0_rt};</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>};</div>
+</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#endif </span><span class="comment">/* OCEANWAVESBOUNDARY_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_field_8_h_html"><div class="ttname"><a href="_field_8_h.html">Field.H</a></div></div>
+<div class="ttc" id="a_field_boundary_8_h_html"><div class="ttname"><a href="_field_boundary_8_h.html">FieldBoundary.H</a></div></div>
+<div class="ttc" id="a_int_field_8_h_html"><div class="ttname"><a href="_int_field_8_h.html">IntField.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_repo_html"><div class="ttname"><a href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a></div><div class="ttdef"><b>Definition</b> FieldRepo.H:86</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_int_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_int_field.html">kynema_sgf::IntField</a></div><div class="ttdef"><b>Definition</b> IntField.H:20</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_a09cd9813b61a508f02c087723904187c"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#a09cd9813b61a508f02c087723904187c">kynema_sgf::OceanWavesBoundary::OceanWavesBoundary</a></div><div class="ttdeci">OceanWavesBoundary(CFDSim &amp;)</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.cpp:16</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_a1c25fe5e8cc986e9cb1e7dba8cc6fba8"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#a1c25fe5e8cc986e9cb1e7dba8cc6fba8">kynema_sgf::OceanWavesBoundary::m_vof_exists</a></div><div class="ttdeci">bool m_vof_exists</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.H:80</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_a2417390df927d13bab80f05d4b549c0b"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#a2417390df927d13bab80f05d4b549c0b">kynema_sgf::OceanWavesBoundary::m_terrain_blank_ptr</a></div><div class="ttdeci">IntField * m_terrain_blank_ptr</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.H:77</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_a2ec32cc2c0e25dcc372af9e7b7c316ac"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#a2ec32cc2c0e25dcc372af9e7b7c316ac">kynema_sgf::OceanWavesBoundary::record_boundary_data_time</a></div><div class="ttdeci">void record_boundary_data_time(const amrex::Real time)</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.H:61</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_a429ce6183dc70d859287e4684a0472a5"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#a429ce6183dc70d859287e4684a0472a5">kynema_sgf::OceanWavesBoundary::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.H:25</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_a4b75a90890ec3a416f4c5e4458be0f83"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#a4b75a90890ec3a416f4c5e4458be0f83">kynema_sgf::OceanWavesBoundary::m_ow_velocity</a></div><div class="ttdeci">Field * m_ow_velocity</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.H:75</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_a5a6b24dff82b053f46d24a76a9526506"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#a5a6b24dff82b053f46d24a76a9526506">kynema_sgf::OceanWavesBoundary::pre_advance_work</a></div><div class="ttdeci">void pre_advance_work() override</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.cpp:62</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_a5bec2f4131cc451d45fcdd1befe74e85"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#a5bec2f4131cc451d45fcdd1befe74e85">kynema_sgf::OceanWavesBoundary::set_vof</a></div><div class="ttdeci">void set_vof(int lev, amrex::Real time, const Field &amp;fld, amrex::MultiFab &amp;mfab) const</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.cpp:149</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_a7468f6467355f824b275d8ecf377ddbc"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#a7468f6467355f824b275d8ecf377ddbc">kynema_sgf::OceanWavesBoundary::m_mesh</a></div><div class="ttdeci">const amrex::AmrCore &amp; m_mesh</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.H:74</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_a75e8043ac5bbe980e03af13756af73bc"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#a75e8043ac5bbe980e03af13756af73bc">kynema_sgf::OceanWavesBoundary::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.H:35</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_a817fd3e4cbfab7429af5d928d7bff1dd"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#a817fd3e4cbfab7429af5d928d7bff1dd">kynema_sgf::OceanWavesBoundary::set_inflow_sibling_velocity</a></div><div class="ttdeci">void set_inflow_sibling_velocity(int lev, amrex::Real time, const Field &amp;fld, amrex::Array&lt; amrex::MultiFab *, AMREX_SPACEDIM &gt; mfabs) const</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.cpp:243</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_a9068a5951041896e18c4d6794aafdab0"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#a9068a5951041896e18c4d6794aafdab0">kynema_sgf::OceanWavesBoundary::m_ow_vof</a></div><div class="ttdeci">Field * m_ow_vof</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.H:76</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_a99263258487531890e1bd2629b71ba2a"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#a99263258487531890e1bd2629b71ba2a">kynema_sgf::OceanWavesBoundary::m_rho1</a></div><div class="ttdeci">amrex::Real m_rho1</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.H:89</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_a9bdb489eee0fc4b930e0d689222d1fe4"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#a9bdb489eee0fc4b930e0d689222d1fe4">kynema_sgf::OceanWavesBoundary::set_velocity</a></div><div class="ttdeci">void set_velocity(int lev, amrex::Real time, const Field &amp;fld, amrex::MultiFab &amp;mfab, int dcomp=0, int orig_comp=0) const override</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.cpp:79</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_aa36df5f8ea7c08290640154eafe1d4f6"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#aa36df5f8ea7c08290640154eafe1d4f6">kynema_sgf::OceanWavesBoundary::m_terrain_exists</a></div><div class="ttdeci">bool m_terrain_exists</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.H:83</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_aa80a2454dae398e0231c700dfda7ac4b"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#aa80a2454dae398e0231c700dfda7ac4b">kynema_sgf::OceanWavesBoundary::get_boundary_data_time</a></div><div class="ttdeci">amrex::Real get_boundary_data_time() const</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.H:66</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_aabfd61b2757cefe01811bdb42c68ed38"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#aabfd61b2757cefe01811bdb42c68ed38">kynema_sgf::OceanWavesBoundary::set_density</a></div><div class="ttdeci">void set_density(int lev, amrex::Real time, const Field &amp;fld, amrex::MultiFab &amp;mfab) const</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.cpp:192</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_ab0019994a3730af313772dfbcae3dbd1"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#ab0019994a3730af313772dfbcae3dbd1">kynema_sgf::OceanWavesBoundary::post_init_actions</a></div><div class="ttdeci">void post_init_actions() override</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.cpp:31</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_ab652b0e919547413d00cef9cf49dedac"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#ab652b0e919547413d00cef9cf49dedac">kynema_sgf::OceanWavesBoundary::m_repo</a></div><div class="ttdeci">const FieldRepo &amp; m_repo</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.H:73</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_aba8fdd2f1310ed16aeb5e42dba732fff"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#aba8fdd2f1310ed16aeb5e42dba732fff">kynema_sgf::OceanWavesBoundary::m_bndry_time</a></div><div class="ttdeci">amrex::Real m_bndry_time</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.H:86</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_af375ad206cda3d5f5cec27f752c05ce2"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#af375ad206cda3d5f5cec27f752c05ce2">kynema_sgf::OceanWavesBoundary::pre_predictor_work</a></div><div class="ttdeci">void pre_predictor_work() override</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.cpp:71</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_ocean_waves_boundary_html_af9a89f351ace091724b308409a47feaa"><div class="ttname"><a href="classkynema__sgf_1_1_ocean_waves_boundary.html#af9a89f351ace091724b308409a47feaa">kynema_sgf::OceanWavesBoundary::m_time</a></div><div class="ttdeci">const kynema_sgf::SimTime &amp; m_time</div><div class="ttdef"><b>Definition</b> OceanWavesBoundary.H:72</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a></div><div class="ttdef"><b>Definition</b> SimTime.H:33</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

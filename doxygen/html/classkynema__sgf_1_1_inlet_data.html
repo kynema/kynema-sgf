@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::InletData Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::InletData Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_inlet_data.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="inletdata-class-reference">
+<h1>InletData Class Reference<a class="headerlink" href="#inletdata-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::InletData Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_inlet_data.html">InletData</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_inlet_data-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::InletData Class Reference<div class="ingroups"><a class="el" href="group__physics.html">Physics models</a> &raquo; <a class="el" href="group__wind.html">Wind energy modeling</a> &raquo; <a class="el" href="group__we__abl.html">ABL</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_boundary_plane_8_h_source.html">BoundaryPlane.H</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::InletData:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_inlet_data__coll__graph.svg" width="204" height="354"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ae78303b1d454c638812349015d5145b3" id="r_ae78303b1d454c638812349015d5145b3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae78303b1d454c638812349015d5145b3">InletData</a> ()=default</td></tr>
+<tr class="memitem:a5f78ae1d8a63ed07f30d11e255ee0f38" id="r_a5f78ae1d8a63ed07f30d11e255ee0f38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f78ae1d8a63ed07f30d11e255ee0f38">resize</a> (int)</td></tr>
+<tr class="memitem:a897ac8c50e9294dd5dfb07c4986624aa" id="r_a897ac8c50e9294dd5dfb07c4986624aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a897ac8c50e9294dd5dfb07c4986624aa">define_plane</a> (amrex::Orientation)</td></tr>
+<tr class="memitem:ac41f9ad33ab24b008ab8067346e4efc4" id="r_ac41f9ad33ab24b008ab8067346e4efc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac41f9ad33ab24b008ab8067346e4efc4">define_level_data</a> (amrex::Orientation, const amrex::Box &amp;, size_t)</td></tr>
+<tr class="memitem:a956922cdbeef5c38d9704ef71da4fcd4" id="r_a956922cdbeef5c38d9704ef71da4fcd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a956922cdbeef5c38d9704ef71da4fcd4">read_data</a> (<a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;, const amrex::Orientation, const int, const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *, const amrex::Real, const amrex::Vector&lt; amrex::Real &gt; &amp;)</td></tr>
+<tr class="memitem:a83f3d2cfb4a063f27368dd4babbf3e4c" id="r_a83f3d2cfb4a063f27368dd4babbf3e4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83f3d2cfb4a063f27368dd4babbf3e4c">read_data_native</a> (amrex::OrientationIter oit, amrex::BndryRegister &amp;bndry_n, amrex::BndryRegister &amp;bndry_np1, int lev, const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *, amrex::Real time, const amrex::Vector&lt; amrex::Real &gt; &amp;)</td></tr>
+<tr class="memitem:aebd8afff34ec5a402d97283481398546" id="r_aebd8afff34ec5a402d97283481398546"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebd8afff34ec5a402d97283481398546">interpolate</a> (amrex::Real)</td></tr>
+<tr class="memitem:a4a6459dcea46eb21daab6074fd191421" id="r_a4a6459dcea46eb21daab6074fd191421"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a6459dcea46eb21daab6074fd191421">is_populated</a> (amrex::Orientation) const</td></tr>
+<tr class="memitem:addd1d4402b60456ab6fd18ec5216d55f" id="r_addd1d4402b60456ab6fd18ec5216d55f"><td class="memItemLeft" align="right" valign="top">const amrex::FArrayBox &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addd1d4402b60456ab6fd18ec5216d55f">interpolate_data</a> (const amrex::Orientation ori, const int lev) const</td></tr>
+<tr class="memitem:a4d8186528839cd3b70e5189733dab85a" id="r_a4d8186528839cd3b70e5189733dab85a"><td class="memItemLeft" align="right" valign="top">int &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d8186528839cd3b70e5189733dab85a">component</a> (const int id)</td></tr>
+<tr class="memitem:ad411e84e7f7d25c83d3e28b8de2b5d33" id="r_ad411e84e7f7d25c83d3e28b8de2b5d33"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad411e84e7f7d25c83d3e28b8de2b5d33">component</a> (const int id) const</td></tr>
+<tr class="memitem:ab62387fe9d8b2bb4f4bc01f53e3a372e" id="r_ab62387fe9d8b2bb4f4bc01f53e3a372e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab62387fe9d8b2bb4f4bc01f53e3a372e">nlevels</a> (const amrex::Orientation ori) const</td></tr>
+<tr class="memitem:aa67b8db9353cd866fc38b252a0e2788c" id="r_aa67b8db9353cd866fc38b252a0e2788c"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa67b8db9353cd866fc38b252a0e2788c">tn</a> () const</td></tr>
+<tr class="memitem:a52324df899be62aeb79fba01fb4ae049" id="r_a52324df899be62aeb79fba01fb4ae049"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52324df899be62aeb79fba01fb4ae049">tnp1</a> () const</td></tr>
+<tr class="memitem:a0fb156d6db75ef4eb5cbb0010506da7d" id="r_a0fb156d6db75ef4eb5cbb0010506da7d"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fb156d6db75ef4eb5cbb0010506da7d">tinterp</a> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-types" class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:af8a10cc824d12a0ec210d19a204350ea" id="r_af8a10cc824d12a0ec210d19a204350ea"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8a10cc824d12a0ec210d19a204350ea">PlaneVector</a> = amrex::Vector&lt;amrex::FArrayBox&gt;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a96bae3e5214a4f388d84701d65221553" id="r_a96bae3e5214a4f388d84701d65221553"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; std::unique_ptr&lt; <a class="el" href="#af8a10cc824d12a0ec210d19a204350ea">PlaneVector</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96bae3e5214a4f388d84701d65221553">m_data_n</a></td></tr>
+<tr class="memitem:a1ab3feac5e49bfedbf3295937b38d59a" id="r_a1ab3feac5e49bfedbf3295937b38d59a"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; std::unique_ptr&lt; <a class="el" href="#af8a10cc824d12a0ec210d19a204350ea">PlaneVector</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ab3feac5e49bfedbf3295937b38d59a">m_data_np1</a></td></tr>
+<tr class="memitem:aa78c733fc9b41bc53d5e8d82f9a4ddaf" id="r_aa78c733fc9b41bc53d5e8d82f9a4ddaf"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; std::unique_ptr&lt; <a class="el" href="#af8a10cc824d12a0ec210d19a204350ea">PlaneVector</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa78c733fc9b41bc53d5e8d82f9a4ddaf">m_data_interp</a></td></tr>
+<tr class="memitem:ad6d4bb518ee8b2a6ae960637ca540463" id="r_ad6d4bb518ee8b2a6ae960637ca540463"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6d4bb518ee8b2a6ae960637ca540463">m_tn</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:ad6d4bb518ee8b2a6ae960637ca540463"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time for plane at n.  <br /></td></tr>
+<tr class="memitem:ad8e6269851294ce43774db23086c7ec1" id="r_ad8e6269851294ce43774db23086c7ec1"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8e6269851294ce43774db23086c7ec1">m_tnp1</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:ad8e6269851294ce43774db23086c7ec1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time for plane at n + 1.  <br /></td></tr>
+<tr class="memitem:a5cb832099bda360f7d69bac6cd981883" id="r_a5cb832099bda360f7d69bac6cd981883"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cb832099bda360f7d69bac6cd981883">m_tinterp</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:a5cb832099bda360f7d69bac6cd981883"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time for plane at interpolation.  <br /></td></tr>
+<tr class="memitem:a1814b8adb7e75221c744f3fc9426f0f9" id="r_a1814b8adb7e75221c744f3fc9426f0f9"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1814b8adb7e75221c744f3fc9426f0f9">m_components</a></td></tr>
+<tr class="memdesc:a1814b8adb7e75221c744f3fc9426f0f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map of <span class="tt">{variableId : component}</span>  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Collection of data structures and operations for reading data</p>
+<p>This class contains the inlet data structures and operations to read and interpolate inflow data. </p>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="af8a10cc824d12a0ec210d19a204350ea" name="af8a10cc824d12a0ec210d19a204350ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8a10cc824d12a0ec210d19a204350ea">&#9670;&#160;</a></span>PlaneVector</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#af8a10cc824d12a0ec210d19a204350ea">kynema_sgf::InletData::PlaneVector</a> = amrex::Vector&lt;amrex::FArrayBox&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae78303b1d454c638812349015d5145b3" name="ae78303b1d454c638812349015d5145b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae78303b1d454c638812349015d5145b3">&#9670;&#160;</a></span>InletData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::InletData::InletData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a4d8186528839cd3b70e5189733dab85a" name="a4d8186528839cd3b70e5189733dab85a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d8186528839cd3b70e5189733dab85a">&#9670;&#160;</a></span>component() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int &amp; kynema_sgf::InletData::component </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad411e84e7f7d25c83d3e28b8de2b5d33" name="ad411e84e7f7d25c83d3e28b8de2b5d33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad411e84e7f7d25c83d3e28b8de2b5d33">&#9670;&#160;</a></span>component() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::InletData::component </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac41f9ad33ab24b008ab8067346e4efc4" name="ac41f9ad33ab24b008ab8067346e4efc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac41f9ad33ab24b008ab8067346e4efc4">&#9670;&#160;</a></span>define_level_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::InletData::define_level_data </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Orientation</td>          <td class="paramname"><span class="paramname"><em>ori</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Box &amp;</td>          <td class="paramname"><span class="paramname"><em>bx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>nc</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a897ac8c50e9294dd5dfb07c4986624aa" name="a897ac8c50e9294dd5dfb07c4986624aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a897ac8c50e9294dd5dfb07c4986624aa">&#9670;&#160;</a></span>define_plane()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::InletData::define_plane </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Orientation</td>          <td class="paramname"><span class="paramname"><em>ori</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aebd8afff34ec5a402d97283481398546" name="aebd8afff34ec5a402d97283481398546"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebd8afff34ec5a402d97283481398546">&#9670;&#160;</a></span>interpolate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::InletData::interpolate </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="addd1d4402b60456ab6fd18ec5216d55f" name="addd1d4402b60456ab6fd18ec5216d55f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addd1d4402b60456ab6fd18ec5216d55f">&#9670;&#160;</a></span>interpolate_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::FArrayBox &amp; kynema_sgf::InletData::interpolate_data </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Orientation</td>          <td class="paramname"><span class="paramname"><em>ori</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4a6459dcea46eb21daab6074fd191421" name="a4a6459dcea46eb21daab6074fd191421"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a6459dcea46eb21daab6074fd191421">&#9670;&#160;</a></span>is_populated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::InletData::is_populated </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Orientation</td>          <td class="paramname"><span class="paramname"><em>ori</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab62387fe9d8b2bb4f4bc01f53e3a372e" name="ab62387fe9d8b2bb4f4bc01f53e3a372e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab62387fe9d8b2bb4f4bc01f53e3a372e">&#9670;&#160;</a></span>nlevels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::InletData::nlevels </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Orientation</td>          <td class="paramname"><span class="paramname"><em>ori</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a956922cdbeef5c38d9704ef71da4fcd4" name="a956922cdbeef5c38d9704ef71da4fcd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a956922cdbeef5c38d9704ef71da4fcd4">&#9670;&#160;</a></span>read_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::InletData::read_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>grp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Orientation</td>          <td class="paramname"><span class="paramname"><em>ori</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *</td>          <td class="paramname"><span class="paramname"><em>fld</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>times</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a83f3d2cfb4a063f27368dd4babbf3e4c" name="a83f3d2cfb4a063f27368dd4babbf3e4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83f3d2cfb4a063f27368dd4babbf3e4c">&#9670;&#160;</a></span>read_data_native()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::InletData::read_data_native </td>
+          <td>(</td>
+          <td class="paramtype">amrex::OrientationIter</td>          <td class="paramname"><span class="paramname"><em>oit</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::BndryRegister &amp;</td>          <td class="paramname"><span class="paramname"><em>bndry_n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::BndryRegister &amp;</td>          <td class="paramname"><span class="paramname"><em>bndry_np1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *</td>          <td class="paramname"><span class="paramname"><em>fld</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>times</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f78ae1d8a63ed07f30d11e255ee0f38" name="a5f78ae1d8a63ed07f30d11e255ee0f38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f78ae1d8a63ed07f30d11e255ee0f38">&#9670;&#160;</a></span>resize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::InletData::resize </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>size</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0fb156d6db75ef4eb5cbb0010506da7d" name="a0fb156d6db75ef4eb5cbb0010506da7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fb156d6db75ef4eb5cbb0010506da7d">&#9670;&#160;</a></span>tinterp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::InletData::tinterp </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa67b8db9353cd866fc38b252a0e2788c" name="aa67b8db9353cd866fc38b252a0e2788c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa67b8db9353cd866fc38b252a0e2788c">&#9670;&#160;</a></span>tn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::InletData::tn </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a52324df899be62aeb79fba01fb4ae049" name="a52324df899be62aeb79fba01fb4ae049"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52324df899be62aeb79fba01fb4ae049">&#9670;&#160;</a></span>tnp1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::InletData::tnp1 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a1814b8adb7e75221c744f3fc9426f0f9" name="a1814b8adb7e75221c744f3fc9426f0f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1814b8adb7e75221c744f3fc9426f0f9">&#9670;&#160;</a></span>m_components</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;int, int&gt; kynema_sgf::InletData::m_components</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Map of <span class="tt">{variableId : component}</span> </p>
+
+</div>
+</div>
+<a id="aa78c733fc9b41bc53d5e8d82f9a4ddaf" name="aa78c733fc9b41bc53d5e8d82f9a4ddaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa78c733fc9b41bc53d5e8d82f9a4ddaf">&#9670;&#160;</a></span>m_data_interp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;std::unique_ptr&lt;<a class="el" href="#af8a10cc824d12a0ec210d19a204350ea">PlaneVector</a>&gt; &gt; kynema_sgf::InletData::m_data_interp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a96bae3e5214a4f388d84701d65221553" name="a96bae3e5214a4f388d84701d65221553"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96bae3e5214a4f388d84701d65221553">&#9670;&#160;</a></span>m_data_n</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;std::unique_ptr&lt;<a class="el" href="#af8a10cc824d12a0ec210d19a204350ea">PlaneVector</a>&gt; &gt; kynema_sgf::InletData::m_data_n</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ab3feac5e49bfedbf3295937b38d59a" name="a1ab3feac5e49bfedbf3295937b38d59a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ab3feac5e49bfedbf3295937b38d59a">&#9670;&#160;</a></span>m_data_np1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;std::unique_ptr&lt;<a class="el" href="#af8a10cc824d12a0ec210d19a204350ea">PlaneVector</a>&gt; &gt; kynema_sgf::InletData::m_data_np1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5cb832099bda360f7d69bac6cd981883" name="a5cb832099bda360f7d69bac6cd981883"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cb832099bda360f7d69bac6cd981883">&#9670;&#160;</a></span>m_tinterp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::InletData::m_tinterp {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time for plane at interpolation. </p>
+
+</div>
+</div>
+<a id="ad6d4bb518ee8b2a6ae960637ca540463" name="ad6d4bb518ee8b2a6ae960637ca540463"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6d4bb518ee8b2a6ae960637ca540463">&#9670;&#160;</a></span>m_tn</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::InletData::m_tn {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time for plane at n. </p>
+
+</div>
+</div>
+<a id="ad8e6269851294ce43774db23086c7ec1" name="ad8e6269851294ce43774db23086c7ec1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8e6269851294ce43774db23086c7ec1">&#9670;&#160;</a></span>m_tnp1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::InletData::m_tnp1 {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time for plane at n + 1. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/<a class="el" href="_boundary_plane_8_h_source.html">BoundaryPlane.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/<a class="el" href="_boundary_plane_8cpp.html">BoundaryPlane.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

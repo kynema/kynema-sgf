@@ -1,0 +1,778 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::ThirdMomentAveraging Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::ThirdMomentAveraging Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_third_moment_averaging.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="thirdmomentaveraging-class-reference">
+<h1>ThirdMomentAveraging Class Reference<a class="headerlink" href="#thirdmomentaveraging-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::ThirdMomentAveraging Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_third_moment_averaging.html">ThirdMomentAveraging</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_third_moment_averaging-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::ThirdMomentAveraging Class Reference<div class="ingroups"><a class="el" href="group__utilities.html">Utilities</a> &raquo; <a class="el" href="group__statistics.html">Field statistics</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_third_moment_averaging_8_h_source.html">ThirdMomentAveraging.H</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::ThirdMomentAveraging:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_third_moment_averaging__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ab359824e5c5a7a31c488a249234b783e" id="r_ab359824e5c5a7a31c488a249234b783e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab359824e5c5a7a31c488a249234b783e">ThirdMomentAveraging</a> (<a class="el" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a> &amp;pa1, <a class="el" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a> &amp;pa2, <a class="el" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a> &amp;pa3)</td></tr>
+<tr class="memitem:ad97fbb3639b6550feaf473df862eeb21" id="r_ad97fbb3639b6550feaf473df862eeb21"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad97fbb3639b6550feaf473df862eeb21">~ThirdMomentAveraging</a> ()=default</td></tr>
+<tr class="memitem:a3e2dbe9555b4d5be9ec668ff723cc90d" id="r_a3e2dbe9555b4d5be9ec668ff723cc90d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e2dbe9555b4d5be9ec668ff723cc90d">operator()</a> ()</td></tr>
+<tr class="memitem:a931e0ebd8a1ec52f0a63b8cba6d639ac" id="r_a931e0ebd8a1ec52f0a63b8cba6d639ac"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a931e0ebd8a1ec52f0a63b8cba6d639ac">line_average_interpolated</a> (amrex::Real x, int comp1, int comp2, int comp3) const</td></tr>
+<tr class="memitem:ac1bee5506ee781aab205f08425b4da7d" id="r_ac1bee5506ee781aab205f08425b4da7d"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1bee5506ee781aab205f08425b4da7d">line_average_interpolated</a> (amrex::Real x, int comp) const</td></tr>
+<tr class="memitem:a126a2025b3662885d38e7126b3ba4b55" id="r_a126a2025b3662885d38e7126b3ba4b55"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a126a2025b3662885d38e7126b3ba4b55">line_average_cell</a> (int ind, int comp1, int comp2, int comp3) const</td></tr>
+<tr class="memitem:aa27b453802fcdaa68c01ebe0a1b721cd" id="r_aa27b453802fcdaa68c01ebe0a1b721cd"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa27b453802fcdaa68c01ebe0a1b721cd">line_average_cell</a> (int ind, int comp) const</td></tr>
+<tr class="memitem:abdc911ef9c8b4ad92cbccab30ca992c5" id="r_abdc911ef9c8b4ad92cbccab30ca992c5"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; amrex::Real &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdc911ef9c8b4ad92cbccab30ca992c5">line_moment</a> ()</td></tr>
+<tr class="memitem:a8e2998c34491f0c2978ba7f61740d6f9" id="r_a8e2998c34491f0c2978ba7f61740d6f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e2998c34491f0c2978ba7f61740d6f9">line_moment</a> (int comp, amrex::Vector&lt; amrex::Real &gt; &amp;l_vec)</td></tr>
+<tr class="memitem:ab810b7932091b05ee30af8db95710400" id="r_ab810b7932091b05ee30af8db95710400"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab810b7932091b05ee30af8db95710400">output_line_average_ascii</a> (const std::string &amp;filename, int step, amrex::Real time)</td></tr>
+<tr class="memitem:ab849fbabbe97d8ec8119d11f983ef7ad" id="r_ab849fbabbe97d8ec8119d11f983ef7ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab849fbabbe97d8ec8119d11f983ef7ad">output_line_average_ascii</a> (int step, amrex::Real time)</td></tr>
+<tr class="memitem:a951caee117faed393129b4319ae22d1d" id="r_a951caee117faed393129b4319ae22d1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a951caee117faed393129b4319ae22d1d">set_precision</a> (int p)</td></tr>
+<tr class="memitem:ac7b26c79d2592a090346553410cb9294" id="r_ac7b26c79d2592a090346553410cb9294"><td class="memTemplParams" colspan="2">template&lt;typename IndexSelector&gt; </td></tr>
+<tr class="memitem:ac7b26c79d2592a090346553410cb9294 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7b26c79d2592a090346553410cb9294">compute_average</a> (const IndexSelector &amp;idxOp, const amrex::MultiFab &amp;mfab1, const amrex::MultiFab &amp;mfab2, const amrex::MultiFab &amp;mfab3)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a24deb94e9d835fba37643ad12b884476" id="r_a24deb94e9d835fba37643ad12b884476"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24deb94e9d835fba37643ad12b884476">m_num_moments</a></td></tr>
+<tr class="memitem:affacf1a5f2a4f33c6a246f7140233538" id="r_affacf1a5f2a4f33c6a246f7140233538"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affacf1a5f2a4f33c6a246f7140233538">m_third_moments_line</a></td></tr>
+<tr class="memitem:a472e5f99c6b9ab62b05959c17653a162" id="r_a472e5f99c6b9ab62b05959c17653a162"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a472e5f99c6b9ab62b05959c17653a162">m_precision</a> = 4</td></tr>
+<tr class="memitem:a264aa281586c5cee4f182154547d8bbe" id="r_a264aa281586c5cee4f182154547d8bbe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a264aa281586c5cee4f182154547d8bbe">m_last_updated_index</a> = -1</td></tr>
+<tr class="memitem:ab89578917edd3619c7b7cb5935c59e1b" id="r_ab89578917edd3619c7b7cb5935c59e1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab89578917edd3619c7b7cb5935c59e1b">m_plane_average1</a></td></tr>
+<tr class="memitem:ad10ec9c0a0e575e33268b80a8e742b73" id="r_ad10ec9c0a0e575e33268b80a8e742b73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad10ec9c0a0e575e33268b80a8e742b73">m_plane_average2</a></td></tr>
+<tr class="memitem:a5e47dea15b857100eecc21460adb2da9" id="r_a5e47dea15b857100eecc21460adb2da9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e47dea15b857100eecc21460adb2da9">m_plane_average3</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Compute the third moment with three fields </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ab359824e5c5a7a31c488a249234b783e" name="ab359824e5c5a7a31c488a249234b783e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab359824e5c5a7a31c488a249234b783e">&#9670;&#160;</a></span>ThirdMomentAveraging()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::ThirdMomentAveraging::ThirdMomentAveraging </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>pa1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>pa2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>pa3</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad97fbb3639b6550feaf473df862eeb21" name="ad97fbb3639b6550feaf473df862eeb21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad97fbb3639b6550feaf473df862eeb21">&#9670;&#160;</a></span>~ThirdMomentAveraging()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::ThirdMomentAveraging::~ThirdMomentAveraging </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="ac7b26c79d2592a090346553410cb9294" name="ac7b26c79d2592a090346553410cb9294"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7b26c79d2592a090346553410cb9294">&#9670;&#160;</a></span>compute_average()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename IndexSelector&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ThirdMomentAveraging::compute_average </td>
+          <td>(</td>
+          <td class="paramtype">const IndexSelector &amp;</td>          <td class="paramname"><span class="paramname"><em>idxOp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab3</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>fill line storage with averages </p>
+
+</div>
+</div>
+<a id="aa27b453802fcdaa68c01ebe0a1b721cd" name="aa27b453802fcdaa68c01ebe0a1b721cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa27b453802fcdaa68c01ebe0a1b721cd">&#9670;&#160;</a></span>line_average_cell() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ThirdMomentAveraging::line_average_cell </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ind</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>comp</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>evaluate third moment at specific cell for each component </p>
+
+</div>
+</div>
+<a id="a126a2025b3662885d38e7126b3ba4b55" name="a126a2025b3662885d38e7126b3ba4b55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a126a2025b3662885d38e7126b3ba4b55">&#9670;&#160;</a></span>line_average_cell() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ThirdMomentAveraging::line_average_cell </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ind</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>comp1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>comp2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>comp3</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>evaluate third moment at specific cell for both components </p>
+
+</div>
+</div>
+<a id="ac1bee5506ee781aab205f08425b4da7d" name="ac1bee5506ee781aab205f08425b4da7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1bee5506ee781aab205f08425b4da7d">&#9670;&#160;</a></span>line_average_interpolated() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ThirdMomentAveraging::line_average_interpolated </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>comp</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>evaluate third moment at specific location for each component </p>
+
+</div>
+</div>
+<a id="a931e0ebd8a1ec52f0a63b8cba6d639ac" name="a931e0ebd8a1ec52f0a63b8cba6d639ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a931e0ebd8a1ec52f0a63b8cba6d639ac">&#9670;&#160;</a></span>line_average_interpolated() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ThirdMomentAveraging::line_average_interpolated </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>comp1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>comp2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>comp3</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>evaluate third moment at specific location for both components </p>
+
+</div>
+</div>
+<a id="abdc911ef9c8b4ad92cbccab30ca992c5" name="abdc911ef9c8b4ad92cbccab30ca992c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdc911ef9c8b4ad92cbccab30ca992c5">&#9670;&#160;</a></span>line_moment() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::Vector&lt; amrex::Real &gt; &amp; kynema_sgf::ThirdMomentAveraging::line_moment </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8e2998c34491f0c2978ba7f61740d6f9" name="a8e2998c34491f0c2978ba7f61740d6f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e2998c34491f0c2978ba7f61740d6f9">&#9670;&#160;</a></span>line_moment() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ThirdMomentAveraging::line_moment </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>comp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>l_vec</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e2dbe9555b4d5be9ec668ff723cc90d" name="a3e2dbe9555b4d5be9ec668ff723cc90d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e2dbe9555b4d5be9ec668ff723cc90d">&#9670;&#160;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ThirdMomentAveraging::operator() </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab810b7932091b05ee30af8db95710400" name="ab810b7932091b05ee30af8db95710400"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab810b7932091b05ee30af8db95710400">&#9670;&#160;</a></span>output_line_average_ascii() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ThirdMomentAveraging::output_line_average_ascii </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>filename</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>step</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab849fbabbe97d8ec8119d11f983ef7ad" name="ab849fbabbe97d8ec8119d11f983ef7ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab849fbabbe97d8ec8119d11f983ef7ad">&#9670;&#160;</a></span>output_line_average_ascii() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ThirdMomentAveraging::output_line_average_ascii </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>step</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a951caee117faed393129b4319ae22d1d" name="a951caee117faed393129b4319ae22d1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a951caee117faed393129b4319ae22d1d">&#9670;&#160;</a></span>set_precision()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ThirdMomentAveraging::set_precision </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>change precision of text file output </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a264aa281586c5cee4f182154547d8bbe" name="a264aa281586c5cee4f182154547d8bbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a264aa281586c5cee4f182154547d8bbe">&#9670;&#160;</a></span>m_last_updated_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::ThirdMomentAveraging::m_last_updated_index = -1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>precision for line plot text file </p>
+
+</div>
+</div>
+<a id="a24deb94e9d835fba37643ad12b884476" name="a24deb94e9d835fba37643ad12b884476"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24deb94e9d835fba37643ad12b884476">&#9670;&#160;</a></span>m_num_moments</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::ThirdMomentAveraging::m_num_moments</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab89578917edd3619c7b7cb5935c59e1b" name="ab89578917edd3619c7b7cb5935c59e1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab89578917edd3619c7b7cb5935c59e1b">&#9670;&#160;</a></span>m_plane_average1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a>&amp; kynema_sgf::ThirdMomentAveraging::m_plane_average1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>keep track of the last time index that the operator was called </p>
+
+</div>
+</div>
+<a id="ad10ec9c0a0e575e33268b80a8e742b73" name="ad10ec9c0a0e575e33268b80a8e742b73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad10ec9c0a0e575e33268b80a8e742b73">&#9670;&#160;</a></span>m_plane_average2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a>&amp; kynema_sgf::ThirdMomentAveraging::m_plane_average2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5e47dea15b857100eecc21460adb2da9" name="a5e47dea15b857100eecc21460adb2da9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e47dea15b857100eecc21460adb2da9">&#9670;&#160;</a></span>m_plane_average3</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a>&amp; kynema_sgf::ThirdMomentAveraging::m_plane_average3</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a472e5f99c6b9ab62b05959c17653a162" name="a472e5f99c6b9ab62b05959c17653a162"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a472e5f99c6b9ab62b05959c17653a162">&#9670;&#160;</a></span>m_precision</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::ThirdMomentAveraging::m_precision = 4</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>line storage for fluctuations </p>
+
+</div>
+</div>
+<a id="affacf1a5f2a4f33c6a246f7140233538" name="affacf1a5f2a4f33c6a246f7140233538"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affacf1a5f2a4f33c6a246f7140233538">&#9670;&#160;</a></span>m_third_moments_line</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ThirdMomentAveraging::m_third_moments_line</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>outer product of components </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/<a class="el" href="_third_moment_averaging_8_h_source.html">ThirdMomentAveraging.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/<a class="el" href="_third_moment_averaging_8cpp.html">ThirdMomentAveraging.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,706 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::pde::PDEBase Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::pde::PDEBase Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1pde_1_1_p_d_e_base.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pdebase-class-reference">
+<h1>PDEBase Class Reference<a class="headerlink" href="#pdebase-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::pde::PDEBase Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1pde.html">pde</a></li><li class="navelem"><a href="classkynema__sgf_1_1pde_1_1_p_d_e_base.html">PDEBase</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="classkynema__sgf_1_1pde_1_1_p_d_e_base-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::pde::PDEBase Class Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span><div class="ingroups"><a class="el" href="group__eqsys.html">Equation Systems</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_p_d_e_base_8_h_source.html">PDEBase.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::pde::PDEBase:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1pde_1_1_p_d_e_base__inherit__graph.svg" width="282" height="236"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::pde::PDEBase:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1pde_1_1_p_d_e_base__coll__graph.svg" width="282" height="236"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ad24d278fb72e93edcef08abbb2a232b2" id="r_ad24d278fb72e93edcef08abbb2a232b2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad24d278fb72e93edcef08abbb2a232b2">~PDEBase</a> () override=default</td></tr>
+<tr class="memitem:a9396ebc2f857c10c170e26ad09fd61a1" id="r_a9396ebc2f857c10c170e26ad09fd61a1"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9396ebc2f857c10c170e26ad09fd61a1">fields</a> ()=0</td></tr>
+<tr class="memdesc:a9396ebc2f857c10c170e26ad09fd61a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the object that holds references to fields for this PDE system.  <br /></td></tr>
+<tr class="memitem:af011b1f817409442e7f0f8a40f9ec6d6" id="r_af011b1f817409442e7f0f8a40f9ec6d6"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af011b1f817409442e7f0f8a40f9ec6d6">fields</a> () const =0</td></tr>
+<tr class="memitem:a56e2054d9e13e7cb57af7a14ff662543" id="r_a56e2054d9e13e7cb57af7a14ff662543"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56e2054d9e13e7cb57af7a14ff662543">initialize</a> ()=0</td></tr>
+<tr class="memdesc:a56e2054d9e13e7cb57af7a14ff662543"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform initialization actions for a PDE after the mesh is generated.  <br /></td></tr>
+<tr class="memitem:ae3fb55421805d9d4960f368c68d75f2d" id="r_ae3fb55421805d9d4960f368c68d75f2d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3fb55421805d9d4960f368c68d75f2d">post_regrid_actions</a> ()=0</td></tr>
+<tr class="memdesc:ae3fb55421805d9d4960f368c68d75f2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform updates specific to PDE after a regrid is performed.  <br /></td></tr>
+<tr class="memitem:a10e6ac1c0641cb9693058bf342be4b44" id="r_a10e6ac1c0641cb9693058bf342be4b44"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10e6ac1c0641cb9693058bf342be4b44">compute_source_term</a> (<a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate)=0</td></tr>
+<tr class="memdesc:a10e6ac1c0641cb9693058bf342be4b44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the source (forcing) terms for this PDE.  <br /></td></tr>
+<tr class="memitem:ab030ddda18565b8a52b5bef3f6e0bab0" id="r_ab030ddda18565b8a52b5bef3f6e0bab0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab030ddda18565b8a52b5bef3f6e0bab0">compute_mueff</a> (<a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate)=0</td></tr>
+<tr class="memdesc:ab030ddda18565b8a52b5bef3f6e0bab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the effective dynamic viscosity for this PDE.  <br /></td></tr>
+<tr class="memitem:a71a57f3a66cd1c06a9505e10cb3f98fa" id="r_a71a57f3a66cd1c06a9505e10cb3f98fa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71a57f3a66cd1c06a9505e10cb3f98fa">compute_diffusion_term</a> (<a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate)=0</td></tr>
+<tr class="memdesc:a71a57f3a66cd1c06a9505e10cb3f98fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the diffusion term used in the RHS of the PDE system.  <br /></td></tr>
+<tr class="memitem:a37c16e7ba70f90ca13f6d5d9061a42fc" id="r_a37c16e7ba70f90ca13f6d5d9061a42fc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37c16e7ba70f90ca13f6d5d9061a42fc">pre_advection_actions</a> (<a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate)=0</td></tr>
+<tr class="memdesc:a37c16e7ba70f90ca13f6d5d9061a42fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform necessary steps to prepare for advection calculations.  <br /></td></tr>
+<tr class="memitem:a85f1d8b31b96b1aa71a3ba081047533b" id="r_a85f1d8b31b96b1aa71a3ba081047533b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85f1d8b31b96b1aa71a3ba081047533b">compute_advection_term</a> (<a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate)=0</td></tr>
+<tr class="memdesc:a85f1d8b31b96b1aa71a3ba081047533b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the time derivative and advective term for the PDE system.  <br /></td></tr>
+<tr class="memitem:a02678f07558f3cd1142b1f1d862bf73a" id="r_a02678f07558f3cd1142b1f1d862bf73a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02678f07558f3cd1142b1f1d862bf73a">compute_predictor_rhs</a> (<a class="el" href="incflo__enums_8_h.html#a85b1059d3f82fd0319fd63b07f3c1500">DiffusionType</a> difftype)=0</td></tr>
+<tr class="memitem:a974de2fbe880e68fc23b48165811fd0b" id="r_a974de2fbe880e68fc23b48165811fd0b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a974de2fbe880e68fc23b48165811fd0b">compute_corrector_rhs</a> (<a class="el" href="incflo__enums_8_h.html#a85b1059d3f82fd0319fd63b07f3c1500">DiffusionType</a> difftype)=0</td></tr>
+<tr class="memitem:ae4748a2541fbf107034a7cd65ce2978a" id="r_ae4748a2541fbf107034a7cd65ce2978a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4748a2541fbf107034a7cd65ce2978a">solve</a> (amrex::Real dt)=0</td></tr>
+<tr class="memdesc:ae4748a2541fbf107034a7cd65ce2978a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve the diffusion linear system and update the field.  <br /></td></tr>
+<tr class="memitem:a77a3b4e53c4765bbc8810d4bb9605049" id="r_a77a3b4e53c4765bbc8810d4bb9605049"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77a3b4e53c4765bbc8810d4bb9605049">post_solve_actions</a> ()=0</td></tr>
+<tr class="memdesc:a77a3b4e53c4765bbc8810d4bb9605049"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform post-processing actions after a system solve.  <br /></td></tr>
+<tr class="memitem:a583db3a7e33c4561b226a91e57921971" id="r_a583db3a7e33c4561b226a91e57921971"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a583db3a7e33c4561b226a91e57921971">improve_explicit_diffusion</a> (amrex::Real dt)=0</td></tr>
+<tr class="inherit_header pub_methods_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; PDEBase, CFDSim &amp; &gt;</a></td></tr>
+<tr class="memitem:ac34efe50a093c87b829083168775bc5f inherit pub_methods_structkynema__sgf_1_1_factory" id="r_ac34efe50a093c87b829083168775bc5f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#ac34efe50a093c87b829083168775bc5f">~Factory</a> ()=default</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a513584ecf4e90f282394bb8953f54187" id="r_a513584ecf4e90f282394bb8953f54187"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a513584ecf4e90f282394bb8953f54187">base_identifier</a> ()</td></tr>
+<tr class="memdesc:a513584ecf4e90f282394bb8953f54187"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class identifier used for factory registration interface.  <br /></td></tr>
+<tr class="inherit_header pub_static_methods_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Static Public Member Functions inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; PDEBase, CFDSim &amp; &gt;</a></td></tr>
+<tr class="memitem:aa73d3b8dc6633292bb32e05d3b8e7120 inherit pub_static_methods_structkynema__sgf_1_1_factory" id="r_aa73d3b8dc6633292bb32e05d3b8e7120"><td class="memItemLeft" align="right" valign="top">static std::unique_ptr&lt; PDEBase &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#aa73d3b8dc6633292bb32e05d3b8e7120">create</a> (const std::string &amp;key, Args... args)</td></tr>
+<tr class="memitem:a5e56671505c53a0862e25adeddea669f inherit pub_static_methods_structkynema__sgf_1_1_factory" id="r_a5e56671505c53a0862e25adeddea669f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#a5e56671505c53a0862e25adeddea669f">print</a> (std::ostream &amp;os)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Attributes inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; PDEBase, CFDSim &amp; &gt;</a></td></tr>
+<tr class="memitem:a3f41ef21adfa37f9abb5c8cc52769974 inherit pub_attribs_structkynema__sgf_1_1_factory" id="r_a3f41ef21adfa37f9abb5c8cc52769974"><td class="memItemLeft" align="right" valign="top">friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#a3f41ef21adfa37f9abb5c8cc52769974">Base</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Abstract interface defining a PDE and its solution process within Kynema-SGF</p>
+<p>The exact behavior is implemented by subclass <a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_system.html">PDESystem</a> that is specialized using two traits: the PDE type trait, and the numerical scheme trait. Currently, two numerical scheme traits are supported: Godunov and MOL.</p>
+<p>Each <a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_system.html">PDESystem</a> instance contains its own <a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a> object that holds fields unique to the PDE. These fields are: the variable solved by the PDE (e.g., velocity, temperature, etc.), the effective dynamic viscosity, the source terms, the diffusion term, and the convective term. A PDE may declare additional fields that are not stored in this object, but can be queried using the <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> instance. For example, the incompressible Navier-Stokes (<a class="el" href="structkynema__sgf_1_1pde_1_1_i_c_n_s.html">ICNS</a>) always declares density and pressure in addition to the velocity fields. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ad24d278fb72e93edcef08abbb2a232b2" name="ad24d278fb72e93edcef08abbb2a232b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad24d278fb72e93edcef08abbb2a232b2">&#9670;&#160;</a></span>~PDEBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::pde::PDEBase::~PDEBase </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a513584ecf4e90f282394bb8953f54187" name="a513584ecf4e90f282394bb8953f54187"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a513584ecf4e90f282394bb8953f54187">&#9670;&#160;</a></span>base_identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::pde::PDEBase::base_identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Base class identifier used for factory registration interface. </p>
+
+</div>
+</div>
+<a id="a85f1d8b31b96b1aa71a3ba081047533b" name="a85f1d8b31b96b1aa71a3ba081047533b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85f1d8b31b96b1aa71a3ba081047533b">&#9670;&#160;</a></span>compute_advection_term()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::pde::PDEBase::compute_advection_term </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the time derivative and advective term for the PDE system. </p>
+
+</div>
+</div>
+<a id="a974de2fbe880e68fc23b48165811fd0b" name="a974de2fbe880e68fc23b48165811fd0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a974de2fbe880e68fc23b48165811fd0b">&#9670;&#160;</a></span>compute_corrector_rhs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::pde::PDEBase::compute_corrector_rhs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="incflo__enums_8_h.html#a85b1059d3f82fd0319fd63b07f3c1500">DiffusionType</a></td>          <td class="paramname"><span class="paramname"><em>difftype</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Combine the source, diffusion, and advection term to obtain RHS</p>
+<p>This method behaves differently depending upon whether the diffusion term is treated implicitly, with Crank-Nicolson scheme, or explicitly. The corrector step uses both "old" state as well as the updated "new" state from predictor step to compute the RHS term. </p>
+
+</div>
+</div>
+<a id="a71a57f3a66cd1c06a9505e10cb3f98fa" name="a71a57f3a66cd1c06a9505e10cb3f98fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71a57f3a66cd1c06a9505e10cb3f98fa">&#9670;&#160;</a></span>compute_diffusion_term()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::pde::PDEBase::compute_diffusion_term </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the diffusion term used in the RHS of the PDE system. </p>
+
+</div>
+</div>
+<a id="ab030ddda18565b8a52b5bef3f6e0bab0" name="ab030ddda18565b8a52b5bef3f6e0bab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab030ddda18565b8a52b5bef3f6e0bab0">&#9670;&#160;</a></span>compute_mueff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::pde::PDEBase::compute_mueff </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the effective dynamic viscosity for this PDE. </p>
+
+</div>
+</div>
+<a id="a02678f07558f3cd1142b1f1d862bf73a" name="a02678f07558f3cd1142b1f1d862bf73a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02678f07558f3cd1142b1f1d862bf73a">&#9670;&#160;</a></span>compute_predictor_rhs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::pde::PDEBase::compute_predictor_rhs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="incflo__enums_8_h.html#a85b1059d3f82fd0319fd63b07f3c1500">DiffusionType</a></td>          <td class="paramname"><span class="paramname"><em>difftype</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Combine the source, diffusion, and advection term to obtain RHS</p>
+<p>This method behaves differently depending upon whether the diffusion term is treated implicitly, with Crank-Nicolson scheme, or explicitly. The predictor step only uses the "old" states for RHS computation. </p>
+
+</div>
+</div>
+<a id="a10e6ac1c0641cb9693058bf342be4b44" name="a10e6ac1c0641cb9693058bf342be4b44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10e6ac1c0641cb9693058bf342be4b44">&#9670;&#160;</a></span>compute_source_term()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::pde::PDEBase::compute_source_term </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the source (forcing) terms for this PDE. </p>
+
+</div>
+</div>
+<a id="af011b1f817409442e7f0f8a40f9ec6d6" name="af011b1f817409442e7f0f8a40f9ec6d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af011b1f817409442e7f0f8a40f9ec6d6">&#9670;&#160;</a></span>fields() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a> &amp; kynema_sgf::pde::PDEBase::fields </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9396ebc2f857c10c170e26ad09fd61a1" name="a9396ebc2f857c10c170e26ad09fd61a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9396ebc2f857c10c170e26ad09fd61a1">&#9670;&#160;</a></span>fields() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a> &amp; kynema_sgf::pde::PDEBase::fields </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the object that holds references to fields for this PDE system. </p>
+
+</div>
+</div>
+<a id="a583db3a7e33c4561b226a91e57921971" name="a583db3a7e33c4561b226a91e57921971"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a583db3a7e33c4561b226a91e57921971">&#9670;&#160;</a></span>improve_explicit_diffusion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::pde::PDEBase::improve_explicit_diffusion </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a56e2054d9e13e7cb57af7a14ff662543" name="a56e2054d9e13e7cb57af7a14ff662543"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56e2054d9e13e7cb57af7a14ff662543">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::pde::PDEBase::initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform initialization actions for a PDE after the mesh is generated. </p>
+
+</div>
+</div>
+<a id="ae3fb55421805d9d4960f368c68d75f2d" name="ae3fb55421805d9d4960f368c68d75f2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3fb55421805d9d4960f368c68d75f2d">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::pde::PDEBase::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform updates specific to PDE after a regrid is performed. </p>
+
+</div>
+</div>
+<a id="a77a3b4e53c4765bbc8810d4bb9605049" name="a77a3b4e53c4765bbc8810d4bb9605049"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77a3b4e53c4765bbc8810d4bb9605049">&#9670;&#160;</a></span>post_solve_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::pde::PDEBase::post_solve_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform post-processing actions after a system solve. </p>
+
+</div>
+</div>
+<a id="a37c16e7ba70f90ca13f6d5d9061a42fc" name="a37c16e7ba70f90ca13f6d5d9061a42fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37c16e7ba70f90ca13f6d5d9061a42fc">&#9670;&#160;</a></span>pre_advection_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::pde::PDEBase::pre_advection_actions </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform necessary steps to prepare for advection calculations. </p>
+
+</div>
+</div>
+<a id="ae4748a2541fbf107034a7cd65ce2978a" name="ae4748a2541fbf107034a7cd65ce2978a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4748a2541fbf107034a7cd65ce2978a">&#9670;&#160;</a></span>solve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::pde::PDEBase::solve </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Solve the diffusion linear system and update the field. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/<a class="el" href="_p_d_e_base_8_h_source.html">PDEBase.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

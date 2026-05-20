@@ -1,0 +1,565 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::DirichletOp&amp;lt; InflowOp, WallOp &amp;gt; Struct Template Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::DirichletOp&amp;lt; InflowOp, WallOp &amp;gt; Struct Template Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/structkynema__sgf_1_1_dirichlet_op.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dirichletop-lt-inflowop-wallop-gt-struct-template-reference">
+<h1>DirichletOp&amp;lt; InflowOp, WallOp &amp;gt; Struct Template Reference<a class="headerlink" href="#dirichletop-lt-inflowop-wallop-gt-struct-template-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::DirichletOp&lt; InflowOp, WallOp &gt; Struct Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="structkynema__sgf_1_1_dirichlet_op.html">DirichletOp</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structkynema__sgf_1_1_dirichlet_op-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::DirichletOp&lt; InflowOp, WallOp &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__core.html">Kynema-SGF core</a> &raquo; <a class="el" href="group__fields.html">Field management</a> &raquo; <a class="el" href="group__field__fillpatch.html">Fillpatch operators</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_field_b_c_ops_8_h_source.html">FieldBCOps.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::DirichletOp&lt; InflowOp, WallOp &gt;:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="structkynema__sgf_1_1_dirichlet_op__inherit__graph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ae328bb83c18d013d5f7c67abcec61813" id="r_ae328bb83c18d013d5f7c67abcec61813"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae328bb83c18d013d5f7c67abcec61813">InflowOpType</a> = InflowOp</td></tr>
+<tr class="memitem:a77cc1610719aafb9d867be057a773302" id="r_a77cc1610719aafb9d867be057a773302"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77cc1610719aafb9d867be057a773302">WallOpType</a> = WallOp</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a810a1641fca8c1189b5aa19b53e7df0c" id="r_a810a1641fca8c1189b5aa19b53e7df0c"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a810a1641fca8c1189b5aa19b53e7df0c">DirichletOp</a> (const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;fld, const int face_dir)</td></tr>
+<tr class="memitem:afd2b2db027aaa869a2f628fdbb8e0309" id="r_afd2b2db027aaa869a2f628fdbb8e0309"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd2b2db027aaa869a2f628fdbb8e0309">DirichletOp</a> (const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;fld, const <a class="el" href="#ae328bb83c18d013d5f7c67abcec61813">InflowOpType</a> &amp;inflow_op, const <a class="el" href="#a77cc1610719aafb9d867be057a773302">WallOpType</a> &amp;wall_op, const int face_dir)</td></tr>
+<tr class="memitem:aeca40f53c2a3c9384f17868bb8c90970" id="r_aeca40f53c2a3c9384f17868bb8c90970"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_DEVICE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeca40f53c2a3c9384f17868bb8c90970">operator()</a> (const amrex::IntVect &amp;iv, amrex::Array4&lt; amrex::Real &gt; const &amp;field, const int dcomp, const int numcomp, amrex::GeometryData const &amp;geom, const amrex::Real time, const amrex::BCRec *bcr, const int bcomp, const int orig_comp) const</td></tr>
+<tr class="memitem:a066070fbd405e7e647a07bb2cca53407" id="r_a066070fbd405e7e647a07bb2cca53407"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_DEVICE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a066070fbd405e7e647a07bb2cca53407">set_inflow</a> (const amrex::IntVect &amp;iv, amrex::Array4&lt; amrex::Real &gt; const &amp;field, amrex::GeometryData const &amp;geom, const amrex::Real time, amrex::Orientation ori, const int comp, const int dcomp, const int orig_comp) const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a462f387920bec91f1bdb73ce9e0e38fc" id="r_a462f387920bec91f1bdb73ce9e0e38fc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a462f387920bec91f1bdb73ce9e0e38fc">m_ncomp</a></td></tr>
+<tr class="memitem:a50314595e20fbb4f38ee6bd7feccb491" id="r_a50314595e20fbb4f38ee6bd7feccb491"><td class="memItemLeft" align="right" valign="top">amrex::GpuArray&lt; <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a>, AMREX_SPACEDIM *2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50314595e20fbb4f38ee6bd7feccb491">m_bc_type</a></td></tr>
+<tr class="memitem:a3f315fffd4d07d6097976d3c0b5b1a81" id="r_a3f315fffd4d07d6097976d3c0b5b1a81"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#ae328bb83c18d013d5f7c67abcec61813">InflowOpType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f315fffd4d07d6097976d3c0b5b1a81">m_inflow_op</a></td></tr>
+<tr class="memitem:aa60d1c369116ad34a9c3a6df23cad132" id="r_aa60d1c369116ad34a9c3a6df23cad132"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a77cc1610719aafb9d867be057a773302">WallOpType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa60d1c369116ad34a9c3a6df23cad132">m_wall_op</a></td></tr>
+<tr class="memitem:ac5e69083964e41cd701be45db93db766" id="r_ac5e69083964e41cd701be45db93db766"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5e69083964e41cd701be45db93db766">m_face_dir</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename InflowOp, typename WallOp&gt;<br />
+struct kynema_sgf::DirichletOp&lt; InflowOp, WallOp &gt;</div><p>Sets constant values on specified boundaries </p>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="ae328bb83c18d013d5f7c67abcec61813" name="ae328bb83c18d013d5f7c67abcec61813"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae328bb83c18d013d5f7c67abcec61813">&#9670;&#160;</a></span>InflowOpType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InflowOp, typename WallOp&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1_dirichlet_op.html">kynema_sgf::DirichletOp</a>&lt; InflowOp, WallOp &gt;::InflowOpType = InflowOp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a77cc1610719aafb9d867be057a773302" name="a77cc1610719aafb9d867be057a773302"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77cc1610719aafb9d867be057a773302">&#9670;&#160;</a></span>WallOpType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InflowOp, typename WallOp&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1_dirichlet_op.html">kynema_sgf::DirichletOp</a>&lt; InflowOp, WallOp &gt;::WallOpType = WallOp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a810a1641fca8c1189b5aa19b53e7df0c" name="a810a1641fca8c1189b5aa19b53e7df0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a810a1641fca8c1189b5aa19b53e7df0c">&#9670;&#160;</a></span>DirichletOp() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InflowOp, typename WallOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST constexpr <a class="el" href="structkynema__sgf_1_1_dirichlet_op.html">kynema_sgf::DirichletOp</a>&lt; InflowOp, WallOp &gt;::DirichletOp </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fld</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>face_dir</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afd2b2db027aaa869a2f628fdbb8e0309" name="afd2b2db027aaa869a2f628fdbb8e0309"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd2b2db027aaa869a2f628fdbb8e0309">&#9670;&#160;</a></span>DirichletOp() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InflowOp, typename WallOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST <a class="el" href="structkynema__sgf_1_1_dirichlet_op.html">kynema_sgf::DirichletOp</a>&lt; InflowOp, WallOp &gt;::DirichletOp </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fld</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#ae328bb83c18d013d5f7c67abcec61813">InflowOpType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>inflow_op</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a77cc1610719aafb9d867be057a773302">WallOpType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>wall_op</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>face_dir</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="aeca40f53c2a3c9384f17868bb8c90970" name="aeca40f53c2a3c9384f17868bb8c90970"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeca40f53c2a3c9384f17868bb8c90970">&#9670;&#160;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InflowOp, typename WallOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_DEVICE void <a class="el" href="structkynema__sgf_1_1_dirichlet_op.html">kynema_sgf::DirichletOp</a>&lt; InflowOp, WallOp &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>iv</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Array4&lt; amrex::Real &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>field</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>dcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>numcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::GeometryData const &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::BCRec *</td>          <td class="paramname"><span class="paramname"><em>bcr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>bcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>orig_comp</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a066070fbd405e7e647a07bb2cca53407" name="a066070fbd405e7e647a07bb2cca53407"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a066070fbd405e7e647a07bb2cca53407">&#9670;&#160;</a></span>set_inflow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InflowOp, typename WallOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_DEVICE void <a class="el" href="structkynema__sgf_1_1_dirichlet_op.html">kynema_sgf::DirichletOp</a>&lt; InflowOp, WallOp &gt;::set_inflow </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>iv</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Array4&lt; amrex::Real &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>field</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::GeometryData const &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Orientation</td>          <td class="paramname"><span class="paramname"><em>ori</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>comp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>dcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>orig_comp</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a50314595e20fbb4f38ee6bd7feccb491" name="a50314595e20fbb4f38ee6bd7feccb491"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50314595e20fbb4f38ee6bd7feccb491">&#9670;&#160;</a></span>m_bc_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InflowOp, typename WallOp&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::GpuArray&lt;<a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a>, AMREX_SPACEDIM * 2&gt; <a class="el" href="structkynema__sgf_1_1_dirichlet_op.html">kynema_sgf::DirichletOp</a>&lt; InflowOp, WallOp &gt;::m_bc_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac5e69083964e41cd701be45db93db766" name="ac5e69083964e41cd701be45db93db766"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5e69083964e41cd701be45db93db766">&#9670;&#160;</a></span>m_face_dir</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InflowOp, typename WallOp&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const int <a class="el" href="structkynema__sgf_1_1_dirichlet_op.html">kynema_sgf::DirichletOp</a>&lt; InflowOp, WallOp &gt;::m_face_dir</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3f315fffd4d07d6097976d3c0b5b1a81" name="a3f315fffd4d07d6097976d3c0b5b1a81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f315fffd4d07d6097976d3c0b5b1a81">&#9670;&#160;</a></span>m_inflow_op</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InflowOp, typename WallOp&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="#ae328bb83c18d013d5f7c67abcec61813">InflowOpType</a> <a class="el" href="structkynema__sgf_1_1_dirichlet_op.html">kynema_sgf::DirichletOp</a>&lt; InflowOp, WallOp &gt;::m_inflow_op</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a462f387920bec91f1bdb73ce9e0e38fc" name="a462f387920bec91f1bdb73ce9e0e38fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a462f387920bec91f1bdb73ce9e0e38fc">&#9670;&#160;</a></span>m_ncomp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InflowOp, typename WallOp&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="structkynema__sgf_1_1_dirichlet_op.html">kynema_sgf::DirichletOp</a>&lt; InflowOp, WallOp &gt;::m_ncomp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa60d1c369116ad34a9c3a6df23cad132" name="aa60d1c369116ad34a9c3a6df23cad132"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa60d1c369116ad34a9c3a6df23cad132">&#9670;&#160;</a></span>m_wall_op</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InflowOp, typename WallOp&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="#a77cc1610719aafb9d867be057a773302">WallOpType</a> <a class="el" href="structkynema__sgf_1_1_dirichlet_op.html">kynema_sgf::DirichletOp</a>&lt; InflowOp, WallOp &gt;::m_wall_op</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/core/<a class="el" href="_field_b_c_ops_8_h_source.html">FieldBCOps.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

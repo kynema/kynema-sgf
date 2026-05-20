@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/KineticEnergy.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/KineticEnergy.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_kinetic_energy_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-utilities-sampling-kineticenergy-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/KineticEnergy.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-utilities-sampling-kineticenergy-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/KineticEnergy.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_d59b7dddc6cfeb8ed243c8310c362d19.html">utilities</a></li><li class="navelem"><a href="dir_1e7ebb5eca46c4b828056407c325055a.html">sampling</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">KineticEnergy.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_kinetic_energy_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef KINETICENERGY_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define KINETICENERGY_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_post_processing_8_h.html">src/utilities/PostProcessing.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1kinetic__energy.html">kynema_sgf::kinetic_energy</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span></div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html">   19</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a423c6df228a189e4dc9acc7f4bedb146">KineticEnergy</a> : <span class="keyword">public</span> PostProcessBase::Register&lt;KineticEnergy&gt;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a188fb474ea5a12480911d69f14a70679">   22</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a188fb474ea5a12480911d69f14a70679">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;KineticEnergy&quot;</span>; }</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_function" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a423c6df228a189e4dc9acc7f4bedb146">KineticEnergy</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <span class="comment">/*sim*/</span>, std::string <span class="comment">/*label*/</span>);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a807be403b8761920554364ab5d548ec7">   26</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a807be403b8761920554364ab5d548ec7">~KineticEnergy</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#ac4cfc0d1c44768deb200d4fc3b211794">   29</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#ac4cfc0d1c44768deb200d4fc3b211794">pre_init_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a8f5bd8b5c912a5f3f805b812b556978c">initialize</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#afac0e93d3118060a7f8e451d5fe0716f">   34</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#afac0e93d3118060a7f8e451d5fe0716f">post_advance_work</a>()<span class="keyword"> override </span>{};</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a73c38294ada827f3665e327ab268024e">output_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#ae0a43efe528812269cfde07390f6c3a3">   38</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#ae0a43efe528812269cfde07390f6c3a3">post_regrid_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a608e59f1608257159ecfc47b9d98c82e">calculate_kinetic_energy</a>();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a99c30f16c1e70e1e5669880d8c700ac3">prepare_ascii_file</a>();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#ae75fb4e4026a9fc6b58bda6576159d06">write_ascii</a>();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#abce575b79cebef29d5de79ac191a7ead">   51</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#abce575b79cebef29d5de79ac191a7ead">m_total_kinetic_energy</a>{0.0_rt};</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a2258b633c9f9e9797d418872eb615061">   54</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a2258b633c9f9e9797d418872eb615061">m_sim</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a4f7719d5a49b634e7f779a2475509ffd">   61</a></span>    <span class="keyword">const</span> std::string <a class="code hl_variable" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a4f7719d5a49b634e7f779a2475509ffd">m_label</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a0972baedf65ff2949711a3cf554ff7eb">   64</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a0972baedf65ff2949711a3cf554ff7eb">m_velocity</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a752a8853085a71c5f00f5072ca881eac">   66</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a752a8853085a71c5f00f5072ca881eac">m_density</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a7de93675b2861a22da8176d7a354b388">   69</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a7de93675b2861a22da8176d7a354b388">m_out_fname</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a63b133f40d14bc495a4f914d3d556444">   72</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a63b133f40d14bc495a4f914d3d556444">m_width</a>{22};</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a08b8e27394cdc0a12973c12440b5faa5">   75</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a08b8e27394cdc0a12973c12440b5faa5">m_precision</a>{12};</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>};</div>
+</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>} <span class="comment">// namespace kynema_sgf::kinetic_energy</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">#endif </span><span class="comment">/* KINETICENERGY_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_post_processing_8_h_html"><div class="ttname"><a href="_post_processing_8_h.html">PostProcessing.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_a08b8e27394cdc0a12973c12440b5faa5"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a08b8e27394cdc0a12973c12440b5faa5">kynema_sgf::kinetic_energy::KineticEnergy::m_precision</a></div><div class="ttdeci">int m_precision</div><div class="ttdoc">precision in ASCII output</div><div class="ttdef"><b>Definition</b> KineticEnergy.H:75</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_a0972baedf65ff2949711a3cf554ff7eb"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a0972baedf65ff2949711a3cf554ff7eb">kynema_sgf::kinetic_energy::KineticEnergy::m_velocity</a></div><div class="ttdeci">const Field &amp; m_velocity</div><div class="ttdoc">reference to velocity</div><div class="ttdef"><b>Definition</b> KineticEnergy.H:64</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_a188fb474ea5a12480911d69f14a70679"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a188fb474ea5a12480911d69f14a70679">kynema_sgf::kinetic_energy::KineticEnergy::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> KineticEnergy.H:22</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_a2258b633c9f9e9797d418872eb615061"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a2258b633c9f9e9797d418872eb615061">kynema_sgf::kinetic_energy::KineticEnergy::m_sim</a></div><div class="ttdeci">CFDSim &amp; m_sim</div><div class="ttdoc">Reference to the CFD sim.</div><div class="ttdef"><b>Definition</b> KineticEnergy.H:54</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_a423c6df228a189e4dc9acc7f4bedb146"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a423c6df228a189e4dc9acc7f4bedb146">kynema_sgf::kinetic_energy::KineticEnergy::KineticEnergy</a></div><div class="ttdeci">KineticEnergy(CFDSim &amp;, std::string)</div><div class="ttdef"><b>Definition</b> KineticEnergy.cpp:14</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_a4f7719d5a49b634e7f779a2475509ffd"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a4f7719d5a49b634e7f779a2475509ffd">kynema_sgf::kinetic_energy::KineticEnergy::m_label</a></div><div class="ttdeci">const std::string m_label</div><div class="ttdef"><b>Definition</b> KineticEnergy.H:61</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_a608e59f1608257159ecfc47b9d98c82e"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a608e59f1608257159ecfc47b9d98c82e">kynema_sgf::kinetic_energy::KineticEnergy::calculate_kinetic_energy</a></div><div class="ttdeci">amrex::Real calculate_kinetic_energy()</div><div class="ttdoc">calculate the L2 norm of a given field and component</div><div class="ttdef"><b>Definition</b> KineticEnergy.cpp:31</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_a63b133f40d14bc495a4f914d3d556444"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a63b133f40d14bc495a4f914d3d556444">kynema_sgf::kinetic_energy::KineticEnergy::m_width</a></div><div class="ttdeci">int m_width</div><div class="ttdoc">width in ASCII output</div><div class="ttdef"><b>Definition</b> KineticEnergy.H:72</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_a73c38294ada827f3665e327ab268024e"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a73c38294ada827f3665e327ab268024e">kynema_sgf::kinetic_energy::KineticEnergy::output_actions</a></div><div class="ttdeci">void output_actions() override</div><div class="ttdef"><b>Definition</b> KineticEnergy.cpp:90</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_a752a8853085a71c5f00f5072ca881eac"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a752a8853085a71c5f00f5072ca881eac">kynema_sgf::kinetic_energy::KineticEnergy::m_density</a></div><div class="ttdeci">const Field &amp; m_density</div><div class="ttdoc">reference to density</div><div class="ttdef"><b>Definition</b> KineticEnergy.H:66</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_a7de93675b2861a22da8176d7a354b388"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a7de93675b2861a22da8176d7a354b388">kynema_sgf::kinetic_energy::KineticEnergy::m_out_fname</a></div><div class="ttdeci">std::string m_out_fname</div><div class="ttdoc">filename for ASCII output</div><div class="ttdef"><b>Definition</b> KineticEnergy.H:69</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_a807be403b8761920554364ab5d548ec7"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a807be403b8761920554364ab5d548ec7">kynema_sgf::kinetic_energy::KineticEnergy::~KineticEnergy</a></div><div class="ttdeci">~KineticEnergy() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_a8f5bd8b5c912a5f3f805b812b556978c"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a8f5bd8b5c912a5f3f805b812b556978c">kynema_sgf::kinetic_energy::KineticEnergy::initialize</a></div><div class="ttdeci">void initialize() override</div><div class="ttdoc">Read user inputs and create the different data probe instances.</div><div class="ttdef"><b>Definition</b> KineticEnergy.cpp:23</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_a99c30f16c1e70e1e5669880d8c700ac3"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#a99c30f16c1e70e1e5669880d8c700ac3">kynema_sgf::kinetic_energy::KineticEnergy::prepare_ascii_file</a></div><div class="ttdeci">void prepare_ascii_file()</div><div class="ttdoc">prepare ASCII file and directory</div><div class="ttdef"><b>Definition</b> KineticEnergy.cpp:99</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_abce575b79cebef29d5de79ac191a7ead"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#abce575b79cebef29d5de79ac191a7ead">kynema_sgf::kinetic_energy::KineticEnergy::m_total_kinetic_energy</a></div><div class="ttdeci">amrex::Real m_total_kinetic_energy</div><div class="ttdoc">store the total kinetic energy</div><div class="ttdef"><b>Definition</b> KineticEnergy.H:51</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_ac4cfc0d1c44768deb200d4fc3b211794"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#ac4cfc0d1c44768deb200d4fc3b211794">kynema_sgf::kinetic_energy::KineticEnergy::pre_init_actions</a></div><div class="ttdeci">void pre_init_actions() override</div><div class="ttdoc">Perform actions before mesh is created.</div><div class="ttdef"><b>Definition</b> KineticEnergy.H:29</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_ae0a43efe528812269cfde07390f6c3a3"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#ae0a43efe528812269cfde07390f6c3a3">kynema_sgf::kinetic_energy::KineticEnergy::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdef"><b>Definition</b> KineticEnergy.H:38</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_ae75fb4e4026a9fc6b58bda6576159d06"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#ae75fb4e4026a9fc6b58bda6576159d06">kynema_sgf::kinetic_energy::KineticEnergy::write_ascii</a></div><div class="ttdeci">void write_ascii()</div><div class="ttdoc">Output sampled data in ASCII format.</div><div class="ttdef"><b>Definition</b> KineticEnergy.cpp:116</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1kinetic__energy_1_1_kinetic_energy_html_afac0e93d3118060a7f8e451d5fe0716f"><div class="ttname"><a href="classkynema__sgf_1_1kinetic__energy_1_1_kinetic_energy.html#afac0e93d3118060a7f8e451d5fe0716f">kynema_sgf::kinetic_energy::KineticEnergy::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> KineticEnergy.H:34</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1kinetic__energy_html"><div class="ttname"><a href="namespacekynema__sgf_1_1kinetic__energy.html">kynema_sgf::kinetic_energy</a></div><div class="ttdef"><b>Definition</b> KineticEnergy.cpp:12</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

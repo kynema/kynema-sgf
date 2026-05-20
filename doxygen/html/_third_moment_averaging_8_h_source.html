@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/ThirdMomentAveraging.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/ThirdMomentAveraging.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_third_moment_averaging_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-utilities-thirdmomentaveraging-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/ThirdMomentAveraging.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-utilities-thirdmomentaveraging-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/ThirdMomentAveraging.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_d59b7dddc6cfeb8ed243c8310c362d19.html">utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">ThirdMomentAveraging.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_third_moment_averaging_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef THIRDMOMENTAVERAGING_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define THIRDMOMENTAVERAGING_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;AMReX_AmrCore.H&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_direction_selector_8_h.html">src/utilities/DirectionSelector.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_field_8_h.html">src/core/Field.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_field_plane_averaging_8_h.html">src/utilities/FieldPlaneAveraging.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span></div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_third_moment_averaging.html">   15</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_third_moment_averaging.html#ab359824e5c5a7a31c488a249234b783e">ThirdMomentAveraging</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_function" href="classkynema__sgf_1_1_third_moment_averaging.html#ab359824e5c5a7a31c488a249234b783e">ThirdMomentAveraging</a>(</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <a class="code hl_typedef" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a>&amp; pa1,</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <a class="code hl_typedef" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a>&amp; pa2,</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <a class="code hl_typedef" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a>&amp; pa3);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_third_moment_averaging.html#ad97fbb3639b6550feaf473df862eeb21">   23</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_third_moment_averaging.html#ad97fbb3639b6550feaf473df862eeb21">~ThirdMomentAveraging</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_third_moment_averaging.html#a3e2dbe9555b4d5be9ec668ff723cc90d">operator()</a>();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_third_moment_averaging.html#a931e0ebd8a1ec52f0a63b8cba6d639ac">line_average_interpolated</a>(</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        amrex::Real x, <span class="keywordtype">int</span> comp1, <span class="keywordtype">int</span> comp2, <span class="keywordtype">int</span> comp3) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    [[nodiscard]] amrex::Real</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <a class="code hl_function" href="classkynema__sgf_1_1_third_moment_averaging.html#a931e0ebd8a1ec52f0a63b8cba6d639ac">line_average_interpolated</a>(amrex::Real x, <span class="keywordtype">int</span> comp) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    [[nodiscard]] amrex::Real</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_function" href="classkynema__sgf_1_1_third_moment_averaging.html#a126a2025b3662885d38e7126b3ba4b55">line_average_cell</a>(<span class="keywordtype">int</span> ind, <span class="keywordtype">int</span> comp1, <span class="keywordtype">int</span> comp2, <span class="keywordtype">int</span> comp3) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1_third_moment_averaging.html#a126a2025b3662885d38e7126b3ba4b55">line_average_cell</a>(<span class="keywordtype">int</span> ind, <span class="keywordtype">int</span> comp) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_third_moment_averaging.html#abdc911ef9c8b4ad92cbccab30ca992c5">   39</a></span>    <span class="keyword">const</span> amrex::Vector&lt;amrex::Real&gt;&amp; <a class="code hl_function" href="classkynema__sgf_1_1_third_moment_averaging.html#abdc911ef9c8b4ad92cbccab30ca992c5">line_moment</a>()</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_third_moment_averaging.html#affacf1a5f2a4f33c6a246f7140233538">m_third_moments_line</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    };</div>
+</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_third_moment_averaging.html#abdc911ef9c8b4ad92cbccab30ca992c5">line_moment</a>(<span class="keywordtype">int</span> comp, amrex::Vector&lt;amrex::Real&gt;&amp; l_vec);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_third_moment_averaging.html#ab810b7932091b05ee30af8db95710400">output_line_average_ascii</a>(</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keyword">const</span> std::string&amp; filename, <span class="keywordtype">int</span> step, amrex::Real time);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_third_moment_averaging.html#ab810b7932091b05ee30af8db95710400">output_line_average_ascii</a>(<span class="keywordtype">int</span> step, amrex::Real time);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_third_moment_averaging.html#a951caee117faed393129b4319ae22d1d">   50</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_third_moment_averaging.html#a951caee117faed393129b4319ae22d1d">set_precision</a>(<span class="keywordtype">int</span> p) { <a class="code hl_variable" href="classkynema__sgf_1_1_third_moment_averaging.html#a472e5f99c6b9ab62b05959c17653a162">m_precision</a> = p; };</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_third_moment_averaging.html#a24deb94e9d835fba37643ad12b884476">   53</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_third_moment_averaging.html#a24deb94e9d835fba37643ad12b884476">m_num_moments</a>; </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    amrex::Vector&lt;amrex::Real&gt;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_third_moment_averaging.html#affacf1a5f2a4f33c6a246f7140233538">   55</a></span>        <a class="code hl_variable" href="classkynema__sgf_1_1_third_moment_averaging.html#affacf1a5f2a4f33c6a246f7140233538">m_third_moments_line</a>; </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_third_moment_averaging.html#a472e5f99c6b9ab62b05959c17653a162">   57</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_third_moment_averaging.html#a472e5f99c6b9ab62b05959c17653a162">m_precision</a> = 4;           </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_third_moment_averaging.html#a264aa281586c5cee4f182154547d8bbe">   58</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_third_moment_averaging.html#a264aa281586c5cee4f182154547d8bbe">m_last_updated_index</a> = -1; </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_third_moment_averaging.html#ab89578917edd3619c7b7cb5935c59e1b">   61</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_third_moment_averaging.html#ab89578917edd3619c7b7cb5935c59e1b">m_plane_average1</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_third_moment_averaging.html#ad10ec9c0a0e575e33268b80a8e742b73">   62</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_third_moment_averaging.html#ad10ec9c0a0e575e33268b80a8e742b73">m_plane_average2</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_third_moment_averaging.html#a5e47dea15b857100eecc21460adb2da9">   63</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">FieldPlaneAveraging</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_third_moment_averaging.html#a5e47dea15b857100eecc21460adb2da9">m_plane_average3</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">public</span>: <span class="comment">// public for GPU</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> IndexSelector&gt;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_third_moment_averaging.html#ac7b26c79d2592a090346553410cb9294">compute_average</a>(</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keyword">const</span> IndexSelector&amp; idxOp,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keyword">const</span> amrex::MultiFab&amp; mfab1,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keyword">const</span> amrex::MultiFab&amp; mfab2,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keyword">const</span> amrex::MultiFab&amp; mfab3);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>};</div>
+</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#endif </span><span class="comment">/* ThirdMomentAveraging_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_direction_selector_8_h_html"><div class="ttname"><a href="_direction_selector_8_h.html">DirectionSelector.H</a></div></div>
+<div class="ttc" id="a_field_8_h_html"><div class="ttname"><a href="_field_8_h.html">Field.H</a></div></div>
+<div class="ttc" id="a_field_plane_averaging_8_h_html"><div class="ttname"><a href="_field_plane_averaging_8_h.html">FieldPlaneAveraging.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_a126a2025b3662885d38e7126b3ba4b55"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#a126a2025b3662885d38e7126b3ba4b55">kynema_sgf::ThirdMomentAveraging::line_average_cell</a></div><div class="ttdeci">amrex::Real line_average_cell(int ind, int comp1, int comp2, int comp3) const</div><div class="ttdef"><b>Definition</b> ThirdMomentAveraging.cpp:297</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_a24deb94e9d835fba37643ad12b884476"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#a24deb94e9d835fba37643ad12b884476">kynema_sgf::ThirdMomentAveraging::m_num_moments</a></div><div class="ttdeci">int m_num_moments</div><div class="ttdef"><b>Definition</b> ThirdMomentAveraging.H:53</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_a264aa281586c5cee4f182154547d8bbe"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#a264aa281586c5cee4f182154547d8bbe">kynema_sgf::ThirdMomentAveraging::m_last_updated_index</a></div><div class="ttdeci">int m_last_updated_index</div><div class="ttdef"><b>Definition</b> ThirdMomentAveraging.H:58</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_a3e2dbe9555b4d5be9ec668ff723cc90d"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#a3e2dbe9555b4d5be9ec668ff723cc90d">kynema_sgf::ThirdMomentAveraging::operator()</a></div><div class="ttdeci">void operator()()</div><div class="ttdef"><b>Definition</b> ThirdMomentAveraging.cpp:113</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_a472e5f99c6b9ab62b05959c17653a162"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#a472e5f99c6b9ab62b05959c17653a162">kynema_sgf::ThirdMomentAveraging::m_precision</a></div><div class="ttdeci">int m_precision</div><div class="ttdef"><b>Definition</b> ThirdMomentAveraging.H:57</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_a5e47dea15b857100eecc21460adb2da9"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#a5e47dea15b857100eecc21460adb2da9">kynema_sgf::ThirdMomentAveraging::m_plane_average3</a></div><div class="ttdeci">FieldPlaneAveraging &amp; m_plane_average3</div><div class="ttdef"><b>Definition</b> ThirdMomentAveraging.H:63</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_a931e0ebd8a1ec52f0a63b8cba6d639ac"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#a931e0ebd8a1ec52f0a63b8cba6d639ac">kynema_sgf::ThirdMomentAveraging::line_average_interpolated</a></div><div class="ttdeci">amrex::Real line_average_interpolated(amrex::Real x, int comp1, int comp2, int comp3) const</div><div class="ttdef"><b>Definition</b> ThirdMomentAveraging.cpp:241</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_a951caee117faed393129b4319ae22d1d"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#a951caee117faed393129b4319ae22d1d">kynema_sgf::ThirdMomentAveraging::set_precision</a></div><div class="ttdeci">void set_precision(int p)</div><div class="ttdef"><b>Definition</b> ThirdMomentAveraging.H:50</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_ab359824e5c5a7a31c488a249234b783e"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#ab359824e5c5a7a31c488a249234b783e">kynema_sgf::ThirdMomentAveraging::ThirdMomentAveraging</a></div><div class="ttdeci">ThirdMomentAveraging(FieldPlaneAveraging &amp;pa1, FieldPlaneAveraging &amp;pa2, FieldPlaneAveraging &amp;pa3)</div><div class="ttdef"><b>Definition</b> ThirdMomentAveraging.cpp:85</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_ab810b7932091b05ee30af8db95710400"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#ab810b7932091b05ee30af8db95710400">kynema_sgf::ThirdMomentAveraging::output_line_average_ascii</a></div><div class="ttdeci">void output_line_average_ascii(const std::string &amp;filename, int step, amrex::Real time)</div><div class="ttdef"><b>Definition</b> ThirdMomentAveraging.cpp:10</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_ab89578917edd3619c7b7cb5935c59e1b"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#ab89578917edd3619c7b7cb5935c59e1b">kynema_sgf::ThirdMomentAveraging::m_plane_average1</a></div><div class="ttdeci">FieldPlaneAveraging &amp; m_plane_average1</div><div class="ttdef"><b>Definition</b> ThirdMomentAveraging.H:61</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_abdc911ef9c8b4ad92cbccab30ca992c5"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#abdc911ef9c8b4ad92cbccab30ca992c5">kynema_sgf::ThirdMomentAveraging::line_moment</a></div><div class="ttdeci">const amrex::Vector&lt; amrex::Real &gt; &amp; line_moment()</div><div class="ttdef"><b>Definition</b> ThirdMomentAveraging.H:39</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_ac7b26c79d2592a090346553410cb9294"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#ac7b26c79d2592a090346553410cb9294">kynema_sgf::ThirdMomentAveraging::compute_average</a></div><div class="ttdeci">void compute_average(const IndexSelector &amp;idxOp, const amrex::MultiFab &amp;mfab1, const amrex::MultiFab &amp;mfab2, const amrex::MultiFab &amp;mfab3)</div><div class="ttdef"><b>Definition</b> ThirdMomentAveraging.cpp:143</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_ad10ec9c0a0e575e33268b80a8e742b73"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#ad10ec9c0a0e575e33268b80a8e742b73">kynema_sgf::ThirdMomentAveraging::m_plane_average2</a></div><div class="ttdeci">FieldPlaneAveraging &amp; m_plane_average2</div><div class="ttdef"><b>Definition</b> ThirdMomentAveraging.H:62</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_ad97fbb3639b6550feaf473df862eeb21"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#ad97fbb3639b6550feaf473df862eeb21">kynema_sgf::ThirdMomentAveraging::~ThirdMomentAveraging</a></div><div class="ttdeci">~ThirdMomentAveraging()=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_third_moment_averaging_html_affacf1a5f2a4f33c6a246f7140233538"><div class="ttname"><a href="classkynema__sgf_1_1_third_moment_averaging.html#affacf1a5f2a4f33c6a246f7140233538">kynema_sgf::ThirdMomentAveraging::m_third_moments_line</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_third_moments_line</div><div class="ttdef"><b>Definition</b> ThirdMomentAveraging.H:55</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html_a4a11a6c59bbe4964af3356eebaa22364"><div class="ttname"><a href="namespacekynema__sgf.html#a4a11a6c59bbe4964af3356eebaa22364">kynema_sgf::FieldPlaneAveraging</a></div><div class="ttdeci">FPlaneAveraging&lt; Field &gt; FieldPlaneAveraging</div><div class="ttdef"><b>Definition</b> FieldPlaneAveraging.H:139</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

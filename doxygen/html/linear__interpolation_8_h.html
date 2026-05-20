@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/linear_interpolation.H File Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/linear_interpolation.H File Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/linear__interpolation_8_h.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-utilities-linear-interpolation-h-file-reference">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/linear_interpolation.H File Reference<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-utilities-linear-interpolation-h-file-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/linear_interpolation.H File Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_d59b7dddc6cfeb8ed243c8310c362d19.html">utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">linear_interpolation.H File Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;AMReX_Gpu.H&quot;</code><br />
+<code>#include &quot;AMReX_REAL.H&quot;</code><br />
+<code>#include &quot;AMReX_Extension.H&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for linear_interpolation.H:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="linear__interpolation_8_h__incl.svg" width="454" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="linear__interpolation_8_h__dep__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+</div>
+<p><a href="linear__interpolation_8_h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3Ainterp_3A_3AIndex" id="r_kynema_5Fsgf_3A_3Ainterp_3A_3AIndex"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">kynema_sgf::interp::Index</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:kynema_5Fsgf" id="r_kynema_5Fsgf"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf.html">kynema_sgf</a></td></tr>
+<tr class="memdesc:namespacekynema__sgf"><td class="mdescLeft">&#160;</td><td class="mdescRight">This test case is intended as an evaluation of the momentum advection scheme. <br /></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3Ainterp" id="r_kynema_5Fsgf_3A_3Ainterp"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html">kynema_sgf::interp</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a4d454c0ac0d38c2efc4e92b5d7ab419c" id="r_a4d454c0ac0d38c2efc4e92b5d7ab419c"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#a4d454c0ac0d38c2efc4e92b5d7ab419c">kynema_sgf::interp::Limits</a> : int { <a class="el" href="namespacekynema__sgf_1_1interp.html#a4d454c0ac0d38c2efc4e92b5d7ab419caee3e9e533a2530a35ae6092ff5ac6f16">kynema_sgf::interp::LOWLIM</a> = -2
+, <a class="el" href="namespacekynema__sgf_1_1interp.html#a4d454c0ac0d38c2efc4e92b5d7ab419ca26c3945e7c9cf7dc79efc95e8f3a118d">kynema_sgf::interp::UPLIM</a> = -1
+, <a class="el" href="namespacekynema__sgf_1_1interp.html#a4d454c0ac0d38c2efc4e92b5d7ab419cac9f1a6384b1c466d4612f513bd8e13ea">kynema_sgf::interp::VALID</a> = 0
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a3da97f674f95c19ed1d4a5f132ca86ae" id="r_a3da97f674f95c19ed1d4a5f132ca86ae"><td class="memTemplParams" colspan="2">template&lt;typename It, typename T&gt; </td></tr>
+<tr class="memitem:a3da97f674f95c19ed1d4a5f132ca86ae template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#a3da97f674f95c19ed1d4a5f132ca86ae">kynema_sgf::interp::check_bounds</a> (const It begin, const It end, const T &amp;x)</td></tr>
+<tr class="memitem:a485e0ea02297bf9cd67cad9eff8703b6" id="r_a485e0ea02297bf9cd67cad9eff8703b6"><td class="memTemplParams" colspan="2">template&lt;typename It, typename T&gt; </td></tr>
+<tr class="memitem:a485e0ea02297bf9cd67cad9eff8703b6 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#a485e0ea02297bf9cd67cad9eff8703b6">kynema_sgf::interp::bisection_search</a> (const It begin, const It end, const T &amp;x)</td></tr>
+<tr class="memitem:a34f9693f33eee16883d272160777665c" id="r_a34f9693f33eee16883d272160777665c"><td class="memTemplParams" colspan="2">template&lt;typename It, typename T&gt; </td></tr>
+<tr class="memitem:a34f9693f33eee16883d272160777665c template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#a34f9693f33eee16883d272160777665c">kynema_sgf::interp::nearest_search</a> (const It begin, const It end, const T &amp;x)</td></tr>
+<tr class="memitem:a7c434522f93314e3081247a9b386c395" id="r_a7c434522f93314e3081247a9b386c395"><td class="memTemplParams" colspan="2">template&lt;typename It, typename T&gt; </td></tr>
+<tr class="memitem:a7c434522f93314e3081247a9b386c395 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#a7c434522f93314e3081247a9b386c395">kynema_sgf::interp::find_index</a> (const It begin, const It end, const T &amp;x, const int hint=1)</td></tr>
+<tr class="memitem:a4eeb25bd2638eacbdff7fb9d11259cb3" id="r_a4eeb25bd2638eacbdff7fb9d11259cb3"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a4eeb25bd2638eacbdff7fb9d11259cb3 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE std::iterator_traits&lt; C2 &gt;::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#a4eeb25bd2638eacbdff7fb9d11259cb3">kynema_sgf::interp::linear_impl</a> (const C1 xbegin, const C2 yinp, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;xout, const <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a> &amp;idx, const int ncomp=1, const int comp=0)</td></tr>
+<tr class="memitem:a07559a548d527f576e9c24e302ed8ba5" id="r_a07559a548d527f576e9c24e302ed8ba5"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a07559a548d527f576e9c24e302ed8ba5 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE std::iterator_traits&lt; C2 &gt;::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#a07559a548d527f576e9c24e302ed8ba5">kynema_sgf::interp::linear</a> (const C1 xbegin, const C1 xend, const C2 yinp, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;xout, const int ncomp=1, const int comp=0)</td></tr>
+<tr class="memitem:aee0ba5f8d6b8e5ca370c372db374375e" id="r_aee0ba5f8d6b8e5ca370c372db374375e"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:aee0ba5f8d6b8e5ca370c372db374375e template"><td class="memItemLeft" align="right" valign="top">C2::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#aee0ba5f8d6b8e5ca370c372db374375e">kynema_sgf::interp::linear</a> (const C1 &amp;xinp, const C2 &amp;yinp, const typename C1::value_type &amp;xout, const int ncomp=1, const int comp=0)</td></tr>
+<tr class="memitem:a7fab6457712b89310d71ed2bb57d3c26" id="r_a7fab6457712b89310d71ed2bb57d3c26"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a7fab6457712b89310d71ed2bb57d3c26 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#a7fab6457712b89310d71ed2bb57d3c26">kynema_sgf::interp::linear_monotonic</a> (const C1 &amp;xinp, const C2 &amp;yinp, const C1 &amp;xout, C2 &amp;yout, const int ncomp=1, const int comp=0)</td></tr>
+<tr class="memitem:a95dde3c8f8723432f08d08458cb9d206" id="r_a95dde3c8f8723432f08d08458cb9d206"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a95dde3c8f8723432f08d08458cb9d206 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#a95dde3c8f8723432f08d08458cb9d206">kynema_sgf::interp::linear</a> (const C1 &amp;xinp, const C2 &amp;yinp, const C1 &amp;xout, C2 &amp;yout, const int ncomp=1, const int comp=0)</td></tr>
+<tr class="memitem:adf5f737239fadc849f22752e6ad0e682" id="r_adf5f737239fadc849f22752e6ad0e682"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:adf5f737239fadc849f22752e6ad0e682 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE std::iterator_traits&lt; C2 &gt;::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#adf5f737239fadc849f22752e6ad0e682">kynema_sgf::interp::linear_angle</a> (const C1 xbegin, const C1 xend, const C2 yinp, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;xout, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;upper_bound)</td></tr>
+<tr class="memitem:a4bcd0b6daec58c1ac45d8f4393437ebe" id="r_a4bcd0b6daec58c1ac45d8f4393437ebe"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a4bcd0b6daec58c1ac45d8f4393437ebe template"><td class="memItemLeft" align="right" valign="top">C2::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#a4bcd0b6daec58c1ac45d8f4393437ebe">kynema_sgf::interp::linear_angle</a> (const C1 &amp;xinp, const C2 &amp;yinp, const typename C1::value_type &amp;xout, const typename C1::value_type &amp;upper_bound)</td></tr>
+<tr class="memitem:a56f5af954038e254ec4f5ce2d30a78a1" id="r_a56f5af954038e254ec4f5ce2d30a78a1"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a56f5af954038e254ec4f5ce2d30a78a1 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#a56f5af954038e254ec4f5ce2d30a78a1">kynema_sgf::interp::linear_angle</a> (const C1 &amp;xinp, const C2 &amp;yinp, const C1 &amp;xout, C2 &amp;yout, const typename C1::value_type &amp;upper_bound)</td></tr>
+<tr class="memitem:abf15f1f6275f92c8839f0988aaec1d16" id="r_abf15f1f6275f92c8839f0988aaec1d16"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:abf15f1f6275f92c8839f0988aaec1d16 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE std::iterator_traits&lt; C2 &gt;::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#abf15f1f6275f92c8839f0988aaec1d16">kynema_sgf::interp::bilinear_impl</a> (const C1 xbegin, const C1 ybegin, const int ny, const C2 zinp, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;xout, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;yout, const <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a> &amp;xidx, const <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a> &amp;yidx)</td></tr>
+<tr class="memitem:a618fb20104411ebaa857207115715efe" id="r_a618fb20104411ebaa857207115715efe"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a618fb20104411ebaa857207115715efe template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE std::iterator_traits&lt; C2 &gt;::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#a618fb20104411ebaa857207115715efe">kynema_sgf::interp::bilinear</a> (const C1 xbegin, const C1 xend, const C1 ybegin, const C1 yend, const C2 zinp, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;xout, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;yout)</td></tr>
+<tr class="memitem:a1aaf71264d1543a3f7c36047071d68db" id="r_a1aaf71264d1543a3f7c36047071d68db"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a1aaf71264d1543a3f7c36047071d68db template"><td class="memItemLeft" align="right" valign="top">C2::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekynema__sgf_1_1interp.html#a1aaf71264d1543a3f7c36047071d68db">kynema_sgf::interp::bilinear</a> (const C1 &amp;xinp, const C1 &amp;yinp, const C2 &amp;zinp, const typename C1::value_type &amp;xout, const typename C1::value_type &amp;yout)</td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

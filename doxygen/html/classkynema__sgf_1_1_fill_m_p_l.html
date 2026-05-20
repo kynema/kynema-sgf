@@ -1,0 +1,573 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::FillMPL Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::FillMPL Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_fill_m_p_l.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fillmpl-class-reference">
+<h1>FillMPL Class Reference<a class="headerlink" href="#fillmpl-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::FillMPL Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_fill_m_p_l.html">FillMPL</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_fill_m_p_l-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::FillMPL Class Reference<div class="ingroups"><a class="el" href="group__physics.html">Physics models</a> &raquo; <a class="el" href="group__wind.html">Wind energy modeling</a> &raquo; <a class="el" href="group__we__abl.html">ABL</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_fill_m_p_l_8_h_source.html">FillMPL.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::FillMPL:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_fill_m_p_l__inherit__graph.svg" width="323" height="326"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::FillMPL:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_fill_m_p_l__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a1bc1b418c705c7df046412111cacdce0" id="r_a1bc1b418c705c7df046412111cacdce0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1bc1b418c705c7df046412111cacdce0">FillMPL</a> (<a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;field, const amrex::AmrCore &amp;mesh, const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> &amp;time, const <a class="el" href="classkynema__sgf_1_1_modulated_power_law.html">ModulatedPowerLaw</a> &amp;abl_mpl)</td></tr>
+<tr class="memitem:ae60de8acfd780cc545e83894300116f9" id="r_ae60de8acfd780cc545e83894300116f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae60de8acfd780cc545e83894300116f9">~FillMPL</a> () override</td></tr>
+<tr class="memitem:a2e68e688f681b390bf946ec14b5fe6f6" id="r_a2e68e688f681b390bf946ec14b5fe6f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e68e688f681b390bf946ec14b5fe6f6">fillpatch</a> (int lev, amrex::Real time, amrex::MultiFab &amp;mfab, const amrex::IntVect &amp;nghost, <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate=<a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">FieldState::New</a>) override</td></tr>
+<tr class="memdesc:a2e68e688f681b390bf946ec14b5fe6f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation that handles filling patches on a single level as well as across a coarse-fine interface.  <br /></td></tr>
+<tr class="memitem:a8fdd25ba7e291a82931a5b112b84d6a6" id="r_a8fdd25ba7e291a82931a5b112b84d6a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8fdd25ba7e291a82931a5b112b84d6a6">fillpatch_sibling_fields</a> (int lev, amrex::Real time, amrex::Array&lt; amrex::MultiFab *, AMREX_SPACEDIM &gt; &amp;mfabs, amrex::Array&lt; amrex::MultiFab *, AMREX_SPACEDIM &gt; &amp;ffabs, amrex::Array&lt; amrex::MultiFab *, AMREX_SPACEDIM &gt; &amp;cfabs, const amrex::IntVect &amp;nghost, const amrex::Vector&lt; amrex::BCRec &gt; &amp;bcrec, const amrex::Vector&lt; amrex::BCRec &gt; &amp;, <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate=<a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">FieldState::New</a>) override</td></tr>
+<tr class="memdesc:a8fdd25ba7e291a82931a5b112b84d6a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation that handles filling patches on a single level as well as across a coarse-fine interface, for an array of different fields.  <br /></td></tr>
+<tr class="memitem:a9cfebf2f6e30ae5887df1f8feab76d49" id="r_a9cfebf2f6e30ae5887df1f8feab76d49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9cfebf2f6e30ae5887df1f8feab76d49">fillpatch_from_coarse</a> (int lev, amrex::Real time, amrex::MultiFab &amp;mfab, const amrex::IntVect &amp;nghost, <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate=<a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">FieldState::New</a>) override</td></tr>
+<tr class="memdesc:a9cfebf2f6e30ae5887df1f8feab76d49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation that handles filling patches from a coarse to fine level.  <br /></td></tr>
+<tr class="memitem:a25d6c821e09c9b9391179d1150cfaeb8" id="r_a25d6c821e09c9b9391179d1150cfaeb8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25d6c821e09c9b9391179d1150cfaeb8">fillphysbc</a> (int lev, amrex::Real time, amrex::MultiFab &amp;mfab, const amrex::IntVect &amp;nghost, <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate=<a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">FieldState::New</a>) override</td></tr>
+<tr class="memdesc:a25d6c821e09c9b9391179d1150cfaeb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation that handles filling physical boundary conditions.  <br /></td></tr>
+<tr class="inherit_header pub_methods_classkynema__sgf_1_1_field_fill_patch_ops"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classkynema__sgf_1_1_field_fill_patch_ops')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html">kynema_sgf::FieldFillPatchOps&lt; FieldBCDirichlet &gt;</a></td></tr>
+<tr class="memitem:a077e5f44f794f659ac294b4e1b177cad inherit pub_methods_classkynema__sgf_1_1_field_fill_patch_ops" id="r_a077e5f44f794f659ac294b4e1b177cad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#a077e5f44f794f659ac294b4e1b177cad">FieldFillPatchOps</a> (<a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;field, const amrex::AmrCore &amp;mesh, const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> &amp;time, <a class="el" href="group__fields.html#ga7a6cb530fb551873a19ab6954617782e">FieldInterpolator</a> itype=<a class="el" href="group__fields.html#gga7a6cb530fb551873a19ab6954617782eaef706a0ad0437ced3c3cb11c7fcb9fc3">FieldInterpolator::CellConsLinear</a>, <a class="el" href="group__fields.html#ga7a6cb530fb551873a19ab6954617782e">FieldInterpolator</a> face_itype=<a class="el" href="group__fields.html#gga7a6cb530fb551873a19ab6954617782eae3103fbe6b552f90be5056482f4d01f2">FieldInterpolator::FaceDivFree</a>)</td></tr>
+<tr class="memitem:a1cff8c31dddeac009f5a350101ec2bb8 inherit pub_methods_classkynema__sgf_1_1_field_fill_patch_ops" id="r_a1cff8c31dddeac009f5a350101ec2bb8"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::MultiFab * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#a1cff8c31dddeac009f5a350101ec2bb8">get_mfab_vec</a> (int lev)</td></tr>
+<tr class="memitem:a7129e5fe873beb183e8e76e39a06b4d1 inherit pub_methods_classkynema__sgf_1_1_field_fill_patch_ops" id="r_a7129e5fe873beb183e8e76e39a06b4d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#a7129e5fe873beb183e8e76e39a06b4d1">set_inflow</a> (int lev, amrex::Real time, amrex::MultiFab &amp;mfab, const amrex::IntVect &amp;nghost, const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a>) override</td></tr>
+<tr class="memitem:a23377d6a68c6c07f32a05e602380b97b inherit pub_methods_classkynema__sgf_1_1_field_fill_patch_ops" id="r_a23377d6a68c6c07f32a05e602380b97b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#a23377d6a68c6c07f32a05e602380b97b">set_inflow_sibling_fields</a> (const int lev, const amrex::Real time, const amrex::Array&lt; amrex::MultiFab *, AMREX_SPACEDIM &gt; mfabs) override</td></tr>
+<tr class="inherit_header pub_methods_classkynema__sgf_1_1_field_fill_patch_ops_base"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classkynema__sgf_1_1_field_fill_patch_ops_base')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops_base.html">kynema_sgf::FieldFillPatchOpsBase</a></td></tr>
+<tr class="memitem:ab29b8547d40e80eeacaeebb1199f416d inherit pub_methods_classkynema__sgf_1_1_field_fill_patch_ops_base" id="r_ab29b8547d40e80eeacaeebb1199f416d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops_base.html#ab29b8547d40e80eeacaeebb1199f416d">FieldFillPatchOpsBase</a> ()=default</td></tr>
+<tr class="memitem:aa25e0f05573f043efefbb50ab2e2657d inherit pub_methods_classkynema__sgf_1_1_field_fill_patch_ops_base" id="r_aa25e0f05573f043efefbb50ab2e2657d"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops_base.html#aa25e0f05573f043efefbb50ab2e2657d">~FieldFillPatchOpsBase</a> ()=default</td></tr>
+<tr class="memitem:a574dfb8c108dcd8cd85e9dca24f7dbe4 inherit pub_methods_classkynema__sgf_1_1_field_fill_patch_ops_base" id="r_a574dfb8c108dcd8cd85e9dca24f7dbe4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops_base.html#a574dfb8c108dcd8cd85e9dca24f7dbe4">set_inflow_sibling_fields</a> (int lev, amrex::Real time, amrex::Array&lt; amrex::MultiFab *, AMREX_SPACEDIM &gt; mfabs)=0</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a89036dcc7f748c1c56437a3e3c133836" id="r_a89036dcc7f748c1c56437a3e3c133836"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_modulated_power_law.html">ModulatedPowerLaw</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89036dcc7f748c1c56437a3e3c133836">m_abl_mpl</a></td></tr>
+<tr class="inherit_header pro_attribs_classkynema__sgf_1_1_field_fill_patch_ops"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classkynema__sgf_1_1_field_fill_patch_ops')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html">kynema_sgf::FieldFillPatchOps&lt; FieldBCDirichlet &gt;</a></td></tr>
+<tr class="memitem:adc20f9769dfc4bc98e8b386a7b3badf5 inherit pro_attribs_classkynema__sgf_1_1_field_fill_patch_ops" id="r_adc20f9769dfc4bc98e8b386a7b3badf5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#adc20f9769dfc4bc98e8b386a7b3badf5">m_time</a></td></tr>
+<tr class="memitem:ae4e57cbf9bdbe86ebee88a1b9e51a956 inherit pro_attribs_classkynema__sgf_1_1_field_fill_patch_ops" id="r_ae4e57cbf9bdbe86ebee88a1b9e51a956"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#ae4e57cbf9bdbe86ebee88a1b9e51a956">m_mesh</a></td></tr>
+<tr class="memitem:aacea37dc0b2467108b96b27d7cf127f2 inherit pro_attribs_classkynema__sgf_1_1_field_fill_patch_ops" id="r_aacea37dc0b2467108b96b27d7cf127f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#aacea37dc0b2467108b96b27d7cf127f2">m_field</a></td></tr>
+<tr class="memitem:acf91f003b363097f8a7fd32437aa645c inherit pro_attribs_classkynema__sgf_1_1_field_fill_patch_ops" id="r_acf91f003b363097f8a7fd32437aa645c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structkynema__sgf_1_1_field_b_c_dirichlet.html">FieldBCDirichlet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#acf91f003b363097f8a7fd32437aa645c">m_op</a></td></tr>
+<tr class="memitem:a2e2329aae930fd41969d1bd840f1bc0c inherit pro_attribs_classkynema__sgf_1_1_field_fill_patch_ops" id="r_a2e2329aae930fd41969d1bd840f1bc0c"><td class="memItemLeft" align="right" valign="top">amrex::Interpolater *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#a2e2329aae930fd41969d1bd840f1bc0c">m_mapper</a></td></tr>
+<tr class="memdesc:a2e2329aae930fd41969d1bd840f1bc0c inherit pro_attribs_classkynema__sgf_1_1_field_fill_patch_ops"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that handles interpolation from coarse to fine level.  <br /></td></tr>
+<tr class="memitem:aa8830a38194c1762ce6b898570ff924a inherit pro_attribs_classkynema__sgf_1_1_field_fill_patch_ops" id="r_aa8830a38194c1762ce6b898570ff924a"><td class="memItemLeft" align="right" valign="top">amrex::Interpolater *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#aa8830a38194c1762ce6b898570ff924a">m_face_mapper</a></td></tr>
+<tr class="memdesc:aa8830a38194c1762ce6b898570ff924a inherit pro_attribs_classkynema__sgf_1_1_field_fill_patch_ops"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that handles interpolation from coarse to fine level for faces.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_types_classkynema__sgf_1_1_field_fill_patch_ops"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_types_classkynema__sgf_1_1_field_fill_patch_ops')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Types inherited from <a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html">kynema_sgf::FieldFillPatchOps&lt; FieldBCDirichlet &gt;</a></td></tr>
+<tr class="memitem:a5d322c4bb68e988b5301a0e75b97829d inherit pub_types_classkynema__sgf_1_1_field_fill_patch_ops" id="r_a5d322c4bb68e988b5301a0e75b97829d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#a5d322c4bb68e988b5301a0e75b97829d">Functor</a></td></tr>
+<tr class="inherit_header pro_methods_classkynema__sgf_1_1_field_fill_patch_ops"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classkynema__sgf_1_1_field_fill_patch_ops')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html">kynema_sgf::FieldFillPatchOps&lt; FieldBCDirichlet &gt;</a></td></tr>
+<tr class="memitem:a8b7c513744b19f1d948d8b3386e0f46d inherit pro_methods_classkynema__sgf_1_1_field_fill_patch_ops" id="r_a8b7c513744b19f1d948d8b3386e0f46d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#a5d322c4bb68e988b5301a0e75b97829d">Functor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#a8b7c513744b19f1d948d8b3386e0f46d">bc_functor</a> ()</td></tr>
+<tr class="memitem:adc538e1fa2e7b58447d91d48f3f62686 inherit pro_methods_classkynema__sgf_1_1_field_fill_patch_ops" id="r_adc538e1fa2e7b58447d91d48f3f62686"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#a5d322c4bb68e988b5301a0e75b97829d">Functor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#adc538e1fa2e7b58447d91d48f3f62686">bc_functor_face</a> (const int face_dir)</td></tr>
+<tr class="memitem:a75394beffb1ac25ec714c08b3f509440 inherit pro_methods_classkynema__sgf_1_1_field_fill_patch_ops" id="r_a75394beffb1ac25ec714c08b3f509440"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#a75394beffb1ac25ec714c08b3f509440">check_face_mapper</a> ()</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Operations to perform inflow of data from boundary planes</p>
+<p>This class contains the operations necessary to interface with ABLBoundaryPlane class and populate data at the boundaries</p>
+<dl class="section see"><dt>See also</dt><dd>ABLBoundaryPlane </dd></dl>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a1bc1b418c705c7df046412111cacdce0" name="a1bc1b418c705c7df046412111cacdce0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bc1b418c705c7df046412111cacdce0">&#9670;&#160;</a></span>FillMPL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::FillMPL::FillMPL </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>field</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::AmrCore &amp;</td>          <td class="paramname"><span class="paramname"><em>mesh</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_modulated_power_law.html">ModulatedPowerLaw</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>abl_mpl</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae60de8acfd780cc545e83894300116f9" name="ae60de8acfd780cc545e83894300116f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae60de8acfd780cc545e83894300116f9">&#9670;&#160;</a></span>~FillMPL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::FillMPL::~FillMPL </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a2e68e688f681b390bf946ec14b5fe6f6" name="a2e68e688f681b390bf946ec14b5fe6f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e68e688f681b390bf946ec14b5fe6f6">&#9670;&#160;</a></span>fillpatch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::FillMPL::fillpatch </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">FieldState::New</a></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementation that handles filling patches on a single level as well as across a coarse-fine interface. </p>
+
+<p>Reimplemented from <a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#a04f402c22b7adcdbc899ae88247f2990">kynema_sgf::FieldFillPatchOps&lt; FieldBCDirichlet &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a9cfebf2f6e30ae5887df1f8feab76d49" name="a9cfebf2f6e30ae5887df1f8feab76d49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cfebf2f6e30ae5887df1f8feab76d49">&#9670;&#160;</a></span>fillpatch_from_coarse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::FillMPL::fillpatch_from_coarse </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">FieldState::New</a></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementation that handles filling patches from a coarse to fine level. </p>
+
+<p>Reimplemented from <a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#a9a7c9b08a4482b184d69c24a23f66a1a">kynema_sgf::FieldFillPatchOps&lt; FieldBCDirichlet &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a8fdd25ba7e291a82931a5b112b84d6a6" name="a8fdd25ba7e291a82931a5b112b84d6a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fdd25ba7e291a82931a5b112b84d6a6">&#9670;&#160;</a></span>fillpatch_sibling_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::FillMPL::fillpatch_sibling_fields </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Array&lt; amrex::MultiFab *, AMREX_SPACEDIM &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>mfabs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Array&lt; amrex::MultiFab *, AMREX_SPACEDIM &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>ffabs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Array&lt; amrex::MultiFab *, AMREX_SPACEDIM &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>cfabs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Vector&lt; amrex::BCRec &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>fillpatch_bcrec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Vector&lt; amrex::BCRec &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>physbc_bcrec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">FieldState::New</a></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementation that handles filling patches on a single level as well as across a coarse-fine interface, for an array of different fields. </p>
+
+<p>Reimplemented from <a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#a479768c83b474934be31dd79e37b78c8">kynema_sgf::FieldFillPatchOps&lt; FieldBCDirichlet &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a25d6c821e09c9b9391179d1150cfaeb8" name="a25d6c821e09c9b9391179d1150cfaeb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25d6c821e09c9b9391179d1150cfaeb8">&#9670;&#160;</a></span>fillphysbc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::FillMPL::fillphysbc </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="group__fields.html#gga73fcb43d320747f8ced022629f36af1fa03c2e7e41ffc181a4e84080b4710e81e">FieldState::New</a></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementation that handles filling physical boundary conditions. </p>
+
+<p>Reimplemented from <a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops.html#abe5c538b63973851ccc6a9939f63d575">kynema_sgf::FieldFillPatchOps&lt; FieldBCDirichlet &gt;</a>.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a89036dcc7f748c1c56437a3e3c133836" name="a89036dcc7f748c1c56437a3e3c133836"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89036dcc7f748c1c56437a3e3c133836">&#9670;&#160;</a></span>m_abl_mpl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_modulated_power_law.html">ModulatedPowerLaw</a>&amp; kynema_sgf::FillMPL::m_abl_mpl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/<a class="el" href="_fill_m_p_l_8_h_source.html">FillMPL.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/<a class="el" href="_fill_m_p_l_8cpp.html">FillMPL.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

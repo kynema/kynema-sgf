@@ -1,0 +1,279 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compiling using Spack, with Kynema-Manager &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Walkthrough" href="../walkthrough/index.html" />
+    <link rel="prev" title="Getting Started" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Compiling using Spack, with Kynema-Manager</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#set-up-kynema-manager">Set up Kynema-Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-up-spack-environment">Set up Spack environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compile-and-load">Compile and load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#find-rosco-dynamic-library">Find ROSCO dynamic library</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Getting Started</a></li>
+      <li class="breadcrumb-item active">Compiling using Spack, with Kynema-Manager</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting_started/compiling.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="compiling-using-spack-with-kynema-manager">
+<span id="compiling"></span><h1>Compiling using Spack, with Kynema-Manager<a class="headerlink" href="#compiling-using-spack-with-kynema-manager" title="Link to this heading"></a></h1>
+<p>The first step before using Kynema-SGF is compilation of the software on the computing resources
+you intend to use. We recommend the use of Spack to streamline this process because of its ability
+to handle code dependencies and keep track of hardware variations.</p>
+<p>Spack is a “package management tool designed to support multiple versions and configurations of
+software on a wide variety of platforms and environments.” To make it easier for users to harness
+Spack, we provide the repository <a class="reference external" href="https://github.com/Kynema/kynema-manager">Kynema-Manager</a>.
+Kynema-Manager is a custom application of the Spack-Manager tool, which uses Spack environments
+to manage software builds. From the
+<a class="reference external" href="https://sandialabs.github.io/spack-manager/user_profiles/developers/developer_spack_minimum.html">Spack-Manager documentation</a>,
+“These environments are similar to
+Conda environments in concept, but they benefit from reusing software that you’ve built in previous environments.
+As such it is recommended that you maintain a single instance of Spack-Manager to organize and curate your builds,
+and create new environments when you want to start a new development project.”</p>
+<p>This walkthrough is meant for common Kynema-SGF workflows, and to avoid verbosity we provide limited
+details about the functionality of Spack and Kynema-Manager. Some additional details are included in
+dropdown sections, but these can be ignored if they are hard to understand.
+If you would rather avoid the use of Spack and handle dependencies manually, please refer to
+the section of the user manual outlining the process of building from the source code using CMake: <a class="reference internal" href="../user/build.html"><span class="doc">Compiling Kynema-SGF</span></a>.</p>
+<details class="summary-further-external-installation-examples">
+<summary>Further (external) installation examples</summary><p>Further installation examples are provided in the Spack-Manager documentation,
+including <a class="reference external" href="https://sandialabs.github.io/spack-manager/user_profiles/developers/snapshot_workflow.html">Snapshot Developer Workflow Example</a>
+and <a class="reference external" href="https://sandialabs.github.io/spack-manager/user_profiles/developers/developer_workflow.html#quick-start">Spack-Manager abbreviated example</a>.
+However, it should be noted that when using Kynema-Manager, the environment variable EXAWIND_MANAGER should be used in place of
+the SPACK_MANAGER variable, pointing to the location of the Kynema-Manager directory.</p>
+</details><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="set-up-kynema-manager">
+<h2>Set up Kynema-Manager<a class="headerlink" href="#set-up-kynema-manager" title="Link to this heading"></a></h2>
+<p>To begin the process, clone Kynema-Manager using the following command, which includes its submodules through the <code class="docutils literal notranslate"><span class="pre">--recursive</span></code> option.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export REPO_DEST=&lt;fill in the directory&gt;</span>
+<span class="go">cd ${REPO_DEST}</span>
+<span class="go">git clone --recursive https://github.com/Kynema/kynema-manager.git</span>
+</pre></div>
+</div>
+<p>Because the kynema-manager directory will house any dependencies that need to be downloaded, it is best to put it in a
+location with sufficient memory.</p>
+</section>
+<section id="set-up-spack-environment">
+<h2>Set up Spack environment<a class="headerlink" href="#set-up-spack-environment" title="Link to this heading"></a></h2>
+<p>Then activate it:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export EXAWIND_MANAGER=${REPO_DEST}/kynema-manager</span>
+<span class="go">source ${EXAWIND_MANAGER}/start.sh &amp;&amp; spack-start</span>
+</pre></div>
+</div>
+<p>It is helpful to put the above commands as a function in your bash environment so they can be easily
+called in the future when code needs to be altered and recompiled.</p>
+<p>Before installing anything, we can obtain info about the codes that Spack supports using <code class="docutils literal notranslate"><span class="pre">spack</span> <span class="pre">info</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">spack info kynema-sgf</span>
+</pre></div>
+</div>
+<p>and</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">spack info openfast</span>
+</pre></div>
+</div>
+<p>This command shows the available versions for the specified package as well as different flags (variants)
+that can be included, along with the default values for the flags. Turning on a bool-type variant is
+represented by a <code class="docutils literal notranslate"><span class="pre">+</span></code> symbol, and turning off is denoted with a <code class="docutils literal notranslate"><span class="pre">~</span></code> symbol.</p>
+<p>For this walkthrough, we will include variants that are commonly relevant to wind turbine simulations
+that rely on the actuator-line method (ALM). The next step is to create the environment.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir ${REPO_DEST}/env_kynemasgf_openfast &amp;&amp; cd ${REPO_DEST}/env_kynemasgf_openfast</span>
+<span class="go">quick-create-dev -d . -s kynema-sgf@main+openfast+netcdf%compiler openfast@3.5.3+rosco%compiler</span>
+</pre></div>
+</div>
+<p>This <code class="docutils literal notranslate"><span class="pre">quick-create-dev</span></code> command has flags selected so that that Kynema-SGF will work with OpenFAST,
+Kynema-SGF can save certain files using NetCDF, and OpenFAST will compile with
+the turbine controller package ROSCO. By executing this command, the environment is set up and activated,
+and the Kynema-SGF and OpenFAST repositories are cloned to the environment directory.</p>
+<details class="summary-details-on-quick-create-dev">
+<summary>Details on quick-create-dev</summary><p>Environments can be associated with directories (using the <code class="docutils literal notranslate"><span class="pre">-d</span></code> <em>option) or with a name (using the</em>
+<code class="docutils literal notranslate"><span class="pre">-n</span></code> option). Environments associated with directories tend to be more navigable for development
+because named environments create and use directories within the Kynema-Manager directory.</p>
+<p>The repositories cloned by Kynema-Manager are shallow clones, and do not automatically have any commit
+history. If you would like to compile an older version of a code using a different commit, you can retrieve
+the commit history using the command <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">--unshallow</span></code> within the repository and then check out
+any past commit that you may need. After choosing a different commit, be sure to run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span></code>
+to modify the submodules to correspond to the chosen commit.</p>
+<p>If you do not want
+to clone new copies of Kynema-SGF or OpenFAST and instead want to use other, already-cloned repositories:
+after making the environment directory, create symbolic links to the cloned repositories in the environment
+directory, ensuring that the name of the links match the name of the repository. Then create the
+environment with <code class="docutils literal notranslate"><span class="pre">quick-create-dev</span></code>. If you use your own cloned repositories, be aware that this
+approach puts the version-based dependency checks into your own hands, though.</p>
+<p>The fact we specified
+main and develop branches when we created the environment does not mean that the code in these repositories
+must be on the main and develop branches, respectively. These references communicate to Spack a grouping of
+dependencies for each code. In many cases, using different commits or even your own fork for Kynema codes will
+not change their dependencies, and so the specification of main or master is typically the correct spec for
+whatever version of the code you are using. OpenFAST compatibility can vary more from version to version, though.</p>
+</details><p>The choice of compiler depends on the machine you are using. On Kestrel, the compiler for CPUs is <code class="docutils literal notranslate"><span class="pre">oneapi</span></code>,
+and on a Mac, the recommended compiler is <code class="docutils literal notranslate"><span class="pre">apple-clang</span></code>. Omitting <code class="docutils literal notranslate"><span class="pre">%compiler</span></code> allows Spack to choose
+the default compiler based on the machine being used, but this should not be omitted on Kestrel due to
+its GPUs and CPUs both being associated with the same machine identification.</p>
+<p>The next step is to have Spack compile everything. If you are using a machine that has dedicated compute nodes,
+now is the time to get an interactive job on a compute node. Once on the node, the Spack environment will
+need to be activated again. If you are using a machine that does not have dedicated compute resources for compiling,
+e.g., a laptop, you can begin a new terminal shell to continue along using the following instructions.
+Alternatively, the command <code class="docutils literal notranslate"><span class="pre">despacktivate</span></code> will deactivate the Spack environment to put your current terminal in a similar state.</p>
+</section>
+<section id="compile-and-load">
+<h2>Compile and load<a class="headerlink" href="#compile-and-load" title="Link to this heading"></a></h2>
+<p>To activate the Spack environment now, first activate Spack by repeating these commands from before:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export EXAWIND_MANAGER=${REPO_DEST}/kynema-manager</span>
+<span class="go">source ${EXAWIND_MANAGER}/start.sh &amp;&amp; spack-start</span>
+</pre></div>
+</div>
+<p>Now, the Spack environment can be activated.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ${REPO_DEST}/env_kynemasgf_openfast</span>
+<span class="go">quick-activate .</span>
+</pre></div>
+</div>
+<p>Finally, the Spack compilation is</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">spack install</span>
+</pre></div>
+</div>
+<p>This step takes a long time and generates a lot of output text. Spack first determines which packages are required by dependencies
+and then compiles and installs them, downloading when necessary. If this command is interrupted, it can be resumed by following the
+same process of activating the environment and repeating the install command.</p>
+<details class="summary-details-on-spack-install-and-modifying-environments">
+<summary>Details on spack install and modifying environments</summary><p>The process of determining which packages are required is known as concretizing. When <code class="docutils literal notranslate"><span class="pre">spack</span> <span class="pre">install</span></code> is called in an
+environment that has not been concretized, the concretize step is automatically included. However, these can be called separately,
+as <code class="docutils literal notranslate"><span class="pre">spack</span> <span class="pre">concretize</span></code> will perform this part of the installation by itself. If the specifications (specs) of an environment
+are changed after concretization, this step may need to be forced to overwrite the preexisting environment using <code class="docutils literal notranslate"><span class="pre">spack</span> <span class="pre">concretize</span> <span class="pre">-f</span></code>.
+Environments can be modified by editing the spack.yaml file or by using the <code class="docutils literal notranslate"><span class="pre">spack</span> <span class="pre">rm</span> <span class="pre">&lt;spec&gt;</span></code> command to remove specs (e.g.,
+<code class="docutils literal notranslate"><span class="pre">kynema-sgf&#64;main</span></code>) and <code class="docutils literal notranslate"><span class="pre">spack</span> <span class="pre">add</span> <span class="pre">&lt;spec&gt;</span></code> to add specs (e.g., <code class="docutils literal notranslate"><span class="pre">kynema-sgf&#64;main+hypre</span></code>).</p>
+</details><p>After the code is compiled, the executables can be located within build-spack directories inside the package directories, and each
+package build has its own hash. Instead of referencing these locations directly to use the executables, Spack provides a command
+to add them to the path, enabling the executable to be used directly. When the spack environment is active, use</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">spack load kynema-sgf</span>
+</pre></div>
+</div>
+<p>to make executables from Kynema-SGF directly available. To verify that the package was loaded correctly, type</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">spack find --loaded</span>
+</pre></div>
+</div>
+<p>which will display all the loaded packages.</p>
+</section>
+<section id="find-rosco-dynamic-library">
+<span id="rosco-dyn-lib"></span><h2>Find ROSCO dynamic library<a class="headerlink" href="#find-rosco-dynamic-library" title="Link to this heading"></a></h2>
+<p>On using ROSCO: OpenFAST requires the location of the ROSCO library file (either <code class="docutils literal notranslate"><span class="pre">libdiscon.so</span></code> (Linux)
+or <code class="docutils literal notranslate"><span class="pre">libdiscon.dylib</span></code> (Mac)) as an argument within the ServoDyn input file.
+During the spack install command, the location of the installed
+packages are printed to the screen. After installation is complete, these can be listed again more briefly
+by repeating the spack install command. To find the location of the ROSCO library, look for “rosco” among
+the listed locations. If <code class="docutils literal notranslate"><span class="pre">&lt;spack</span> <span class="pre">opt</span> <span class="pre">path&gt;/rosco-&lt;hash&gt;</span></code> is the directory provided by spack install,
+the <code class="docutils literal notranslate"><span class="pre">libdiscon.so</span></code> or <code class="docutils literal notranslate"><span class="pre">libdiscon.dylib</span></code> file will be located within <code class="docutils literal notranslate"><span class="pre">&lt;spack</span> <span class="pre">opt</span> <span class="pre">path&gt;/rosco-&lt;hash&gt;/lib/</span></code>.</p>
+<p>The path to this library file will come into play when setting up the turbine simulation.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Go to the next step: <a class="reference internal" href="../walkthrough/precursor.html"><span class="doc">Precursor (ABL) walkthrough</span></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../walkthrough/index.html" class="btn btn-neutral float-right" title="Walkthrough" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

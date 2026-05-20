@@ -1,0 +1,306 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Section: ABLMesoForcing &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Section: SyntheticTurbulence" href="inputs_SyntheticTurbulence.html" />
+    <link rel="prev" title="Section: ABL" href="inputs_ABL.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="inputs.html#input-file-reference">Input file reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="inputs_geometry.html">Section: geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_amr.html">Section: AMReX and AMR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_tagging.html">Section: tagging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_time.html">Section: time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_io.html">Section: io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_incflo.html">Section: incflo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_transport.html">Section: transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_turbulence.html">Section: turbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Momentum_Sources.html">Section: Momentum Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Temperature_Sources.html">Section: Temperature Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_TKE_Sources.html">Section: TKE Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL.html">Section: ABL</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Section: ABLMesoForcing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_SyntheticTurbulence.html">Section: SyntheticTurbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Boundary_conditions.html">Section: Boundary conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_MLMG.html">Section: MLMG options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_post_processing.html">Section: Post-processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Sampling.html">Section: Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Subvolume.html">Section: Subvolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Averaging.html">Section: Averaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_KineticEnergy.html">Section: KineticEnergy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Enstrophy.html">Section: Enstrophy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FieldNorms.html">Section: FieldNorms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Actuator.html">Section: Actuator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_multiphase.html">Section: MultiPhase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ocean_waves.html">Section: Ocean Waves</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+          <li class="breadcrumb-item"><a href="inputs.html">Kynema-SGF inputs file</a></li>
+      <li class="breadcrumb-item active">Section: ABLMesoForcing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/inputs_ABL_meso_forcing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-ablmesoforcing">
+<span id="inputs-meso-forcing"></span><h1>Section: ABLMesoForcing<a class="headerlink" href="#section-ablmesoforcing" title="Link to this heading"></a></h1>
+<p>This section is for setting mesoscale forcing parameters for
+mesoscale-to-microscale coupling (MMC). With the exception of
+<code class="docutils literal notranslate"><span class="pre">ABL.mesoscale_forcing</span></code> and <code class="docutils literal notranslate"><span class="pre">ABL.tendency_forcing</span></code>, the parameters below
+apply to both <code class="docutils literal notranslate"><span class="pre">ABLMesoForcingMom</span></code> and <code class="docutils literal notranslate"><span class="pre">ABLMesoForcingTemp</span></code> for momentum and
+temperature, respectively.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.mesoscale_forcing">
+<span class="sig-name descname"><span class="pre">ABL.mesoscale_forcing</span></span><a class="headerlink" href="#input_param-ABL.mesoscale_forcing" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional</p>
+<p>Path to a netcdf file with mesoscale data. This datafile should have
+dimensions “ntime” and “nheight”. Time-height-varying variables include
+“momentum_u”, “momentum_v”, and “temperature” (virtual potential
+temperature); time-varying variables include “tflux” (kinematic heat flux)
+and “transition_height” (optional, only used if
+<a class="reference internal" href="#input_param-ABLMesoForcing-.forcing_transition"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABLMesoForcing*.forcing_transition</span></code></a> is specified without a
+<a class="reference internal" href="#input_param-ABLMesoForcing-.constant_transition_height"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABLMesoForcing*.constant_transition_height</span></code></a>). The time-height
+data are stored as flattened 1-D arrays, wherein the height dimension
+changes the fastest.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABL.tendency_forcing">
+<span class="sig-name descname"><span class="pre">ABL.tendency_forcing</span></span><a class="headerlink" href="#input_param-ABL.tendency_forcing" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = false</p>
+<p>If “true”, momentum and temperature source terms are directly provided
+within the <a class="reference internal" href="#input_param-ABL.mesoscale_forcing"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABL.mesoscale_forcing</span></code></a> netcdf file;
+<a class="reference internal" href="#input_param-ABLMesoForcing-.forcing_scheme"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABLMesoForcing*.forcing_scheme</span></code></a> is ignored. Typically, these
+source terms are determined from mesoscale model tendencies.</p>
+<p>If “false”, the input velocity and temperature time-height data are used for
+profile assimilation forcing schemes.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABLMesoForcing-.forcing_scheme">
+<span class="sig-name descname"><span class="pre">ABLMesoForcing*.forcing_scheme</span></span><a class="headerlink" href="#input_param-ABLMesoForcing-.forcing_scheme" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, mandatory</p>
+<p>Options include: “direct” or “indirect” profile assimilation. <strong>Direct
+profile assimilation (DPA)</strong> is a strong enforcement of the input mesoscale
+profiles. Height-varying source terms are calculated at every time step to
+drive the error between the instantaneous planar-averaged fields and the
+mesoscale data to zero. This strategy implies a high level of confidence in
+the specified mesoscale conditions and can result in excessive turbulence
+resolved in the microscale.</p>
+<p>In comparison, <strong>indirect profile assimilation</strong> weakly enforces the
+mesoscale profiles by using an approximation to the DPA forcing. This is an
+engineering approach that allows for local deviation from the mesoscale mean
+quantities and allows the microscale flow to find its own equilibrium
+between mean profiles and the associated resolved turbulence. The
+approximate forcing is derived by applying a polynomial regression to the
+DPA forcing profile.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABLMesoForcing-.control_gain">
+<span class="sig-name descname"><span class="pre">ABLMesoForcing*.control_gain</span></span><a class="headerlink" href="#input_param-ABLMesoForcing-.control_gain" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.2</p>
+<p>A relaxation factor used to scale the magnitude of the source term, which
+may be interpreted as an inverse time scale with units of 1/s.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABLMesoForcing-.forcing_transition">
+<span class="sig-name descname"><span class="pre">ABLMesoForcing*.forcing_transition</span></span><a class="headerlink" href="#input_param-ABLMesoForcing-.forcing_transition" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = “none”</p>
+<p>Used to specify two forcing schemes for upper and lower regions under more
+complicated MMC modeling scenarios, e.g., with complex background conditions
+and/or uncertainty in the mesoscale data. The default is apply the
+<a class="reference internal" href="#input_param-ABLMesoForcing-.forcing_scheme"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABLMesoForcing*.forcing_scheme</span></code></a> for the full mesoscale profile
+over the entire microscale domain. Other options include “directToConstant”,
+“indirectToConstant”, and “indirectToDirect”.</p>
+<p>When blending to a constant forcing profile, the slope of the forcing
+profile at the transition height (specified by
+<a class="reference internal" href="#input_param-ABLMesoForcing-.constant_transition_height"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABLMesoForcing*.constant_transition_height</span></code></a> or provided in the
+<a class="reference internal" href="#input_param-ABL.mesoscale_forcing"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABL.mesoscale_forcing</span></code></a> datafile) is linearly reduced to 0 from
+the transition height up to the transition height +
+<a class="reference internal" href="#input_param-ABLMesoForcing-.transition_thickness"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABLMesoForcing*.transition_thickness</span></code></a>.</p>
+<p>When blending to the DPA forcing profile (e.g., in the free atmosphere), the
+two forcing profiles are linearly blended from one to the other over the
+<a class="reference internal" href="#input_param-ABLMesoForcing-.transition_thickness"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABLMesoForcing*.transition_thickness</span></code></a>, starting from the
+transition height as described above.</p>
+</dd></dl>
+
+<section id="indirect-profile-assimilation">
+<h2>Indirect Profile Assimilation<a class="headerlink" href="#indirect-profile-assimilation" title="Link to this heading"></a></h2>
+<p>The following parameters are specific to the IPA scheme
+(<a class="reference internal" href="#input_param-ABLMesoForcing-.forcing_scheme"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABLMesoForcing*.forcing_scheme</span></code></a> = “indirect”). At the moment,
+only third-order polynomial regression is supported.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABLMesoForcing-.weighting_heights">
+<span class="sig-name descname"><span class="pre">ABLMesoForcing*.weighting_heights</span></span><a class="headerlink" href="#input_param-ABLMesoForcing-.weighting_heights" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of Reals (has to be same length as
+<a class="reference internal" href="#input_param-ABLMesoForcing-.weighting_values"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABLMesoForcing*.weighting_values</span></code></a>), optional</p>
+<p>Height(s) in meters at which IPA regression weights are provided.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABLMesoForcing-.weighting_values">
+<span class="sig-name descname"><span class="pre">ABLMesoForcing*.weighting_values</span></span><a class="headerlink" href="#input_param-ABLMesoForcing-.weighting_values" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of Reals (has to be same length as
+<a class="reference internal" href="#input_param-ABLMesoForcing-.weighting_heights"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABLMesoForcing*.weighting_heights</span></code></a>), optional</p>
+<p>IPA regression weights at the corresponding
+<a class="reference internal" href="#input_param-ABLMesoForcing-.weighting_heights"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABLMesoForcing*.weighting_heights</span></code></a>. The default behavior is to
+use uniform weighting. Nonuniform weighting is generally ill-advised as
+runaway positive or negative forcing values may be possible.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABLMesoForcing-.normalize_by_zmax">
+<span class="sig-name descname"><span class="pre">ABLMesoForcing*.normalize_by_zmax</span></span><a class="headerlink" href="#input_param-ABLMesoForcing-.normalize_by_zmax" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = false</p>
+<p>If “true”, the height coordinate is normalized by the domain height when
+performing the IPA regression. Provided for consistency with a legacy solver
+implementation to improve conditioning of the regression matrix but should
+<em>not</em> be needed.</p>
+</dd></dl>
+
+</section>
+<section id="partial-profile-assimilation">
+<h2>Partial Profile Assimilation<a class="headerlink" href="#partial-profile-assimilation" title="Link to this heading"></a></h2>
+<p>The following parameters are for “partial” profile assimilation, enabled by
+<a class="reference internal" href="#input_param-ABLMesoForcing-.forcing_transition"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABLMesoForcing*.forcing_transition</span></code></a> being not set to “none”. This
+will only partially apply the instantaneous IPA forcing profiles over the
+simulation domain. Above a specified transition layer, a secondary forcing
+profiles may be applied.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABLMesoForcing-.transition_thickness">
+<span class="sig-name descname"><span class="pre">ABLMesoForcing*.transition_thickness</span></span><a class="headerlink" href="#input_param-ABLMesoForcing-.transition_thickness" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real</p>
+<p>The thickness of the layer over which the forcing scheme transitions from
+the lower scheme to the upper scheme.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ABLMesoForcing-.constant_transition_height">
+<span class="sig-name descname"><span class="pre">ABLMesoForcing*.constant_transition_height</span></span><a class="headerlink" href="#input_param-ABLMesoForcing-.constant_transition_height" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real</p>
+<p>The base of the transition layer, which is invariant for the duration of the
+entirety of the simulation. To specify a time-varying transition layer
+height that, e.g., tracks the evolution of the ABL height, omit this
+parameter and include the time-varying <code class="docutils literal notranslate"><span class="pre">transition_height</span></code> variable within
+the <a class="reference internal" href="#input_param-ABL.mesoscale_forcing"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABL.mesoscale_forcing</span></code></a> datafile.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inputs_ABL.html" class="btn btn-neutral float-left" title="Section: ABL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inputs_SyntheticTurbulence.html" class="btn btn-neutral float-right" title="Section: SyntheticTurbulence" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

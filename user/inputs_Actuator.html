@@ -1,0 +1,875 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Section: Actuator &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Section: MultiPhase" href="inputs_multiphase.html" />
+    <link rel="prev" title="Section: FieldNorms" href="inputs_FieldNorms.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="inputs.html#input-file-reference">Input file reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="inputs_geometry.html">Section: geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_amr.html">Section: AMReX and AMR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_tagging.html">Section: tagging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_time.html">Section: time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_io.html">Section: io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_incflo.html">Section: incflo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_transport.html">Section: transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_turbulence.html">Section: turbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Momentum_Sources.html">Section: Momentum Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Temperature_Sources.html">Section: Temperature Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_TKE_Sources.html">Section: TKE Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL.html">Section: ABL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL_meso_forcing.html">Section: ABLMesoForcing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_SyntheticTurbulence.html">Section: SyntheticTurbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Boundary_conditions.html">Section: Boundary conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_MLMG.html">Section: MLMG options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_post_processing.html">Section: Post-processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Sampling.html">Section: Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Subvolume.html">Section: Subvolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Averaging.html">Section: Averaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_KineticEnergy.html">Section: KineticEnergy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Enstrophy.html">Section: Enstrophy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FieldNorms.html">Section: FieldNorms</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Section: Actuator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_multiphase.html">Section: MultiPhase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ocean_waves.html">Section: Ocean Waves</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+          <li class="breadcrumb-item"><a href="inputs.html">Kynema-SGF inputs file</a></li>
+      <li class="breadcrumb-item active">Section: Actuator</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/inputs_Actuator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-actuator">
+<span id="inputs-actuator"></span><h1>Section: Actuator<a class="headerlink" href="#section-actuator" title="Link to this heading"></a></h1>
+<p>This section controls  the actuator type models. This includes the actuator
+disk and line models. The prefix is the label set in
+<code class="docutils literal notranslate"><span class="pre">incflo.physics</span></code>. For example
+<code class="docutils literal notranslate"><span class="pre">incflo.physics</span> <span class="pre">=</span> <span class="pre">FreeStream</span> <span class="pre">Actuator</span></code>
+Actuator models are meant to simulate aerodynamic objects by using body forces
+in the momentum equation.
+There are capabilities to simulate fixed wings as actuator lines and wind
+turbines as actuator disks and actuator line models.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.labels">
+<span class="sig-name descname"><span class="pre">Actuator.labels</span></span><a class="headerlink" href="#input_param-Actuator.labels" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, mandatory</p>
+<p>This string is used as an identifier for the current actuator.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.type">
+<span class="sig-name descname"><span class="pre">Actuator.type</span></span><a class="headerlink" href="#input_param-Actuator.type" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, mandatory</p>
+<p>This string identifies the type of actuator to use. The ones currently
+supported are: <code class="docutils literal notranslate"><span class="pre">UniformCtDisk</span></code>, <code class="docutils literal notranslate"><span class="pre">JoukowskyDisk</span></code>, <code class="docutils literal notranslate"><span class="pre">TurbineFastLine</span></code>,
+<code class="docutils literal notranslate"><span class="pre">TurbineFastDisk</span></code>, <code class="docutils literal notranslate"><span class="pre">TurbineKynemaLine</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">FixedWingLine</span></code>.</p>
+</dd></dl>
+
+<p>It is recommended to group common parameters across actuators using the <code class="docutils literal notranslate"><span class="pre">Actuator.[type].[param]</span></code>. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Actuator</span><span class="o">.</span><span class="n">Turb1</span><span class="o">.</span><span class="n">type</span>            <span class="o">=</span> <span class="n">UniformCtDisk</span><span class="s2">&quot;</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">Turb1</span><span class="o">.</span><span class="n">epsilon</span>         <span class="o">=</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span><span class="s2">&quot;</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">Turb2</span><span class="o">.</span><span class="n">type</span>            <span class="o">=</span> <span class="n">UniformCtDisk</span><span class="s2">&quot;</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">Turb2</span><span class="o">.</span><span class="n">epsilon</span>         <span class="o">=</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>becomes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Actuator</span><span class="o">.</span><span class="n">UniformCtDisk</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span><span class="s2">&quot;</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">Turb1</span><span class="o">.</span><span class="n">type</span>            <span class="o">=</span> <span class="n">UniformCtDisk</span><span class="s2">&quot;</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">Turb2</span><span class="o">.</span><span class="n">type</span>            <span class="o">=</span> <span class="n">UniformCtDisk</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<section id="fixedwingline">
+<h2>FixedWingLine<a class="headerlink" href="#fixedwingline" title="Link to this heading"></a></h2>
+<p>Example for <code class="docutils literal notranslate"><span class="pre">FixedWingLine</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">incflo</span><span class="o">.</span><span class="n">physics</span> <span class="o">=</span> <span class="n">FreeStream</span> <span class="n">Actuator</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">F1</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">FixedWingLine</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">FixedWingLine</span><span class="o">.</span><span class="n">num_points</span> <span class="o">=</span> <span class="mi">21</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">FixedWingLine</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">3.0</span> <span class="mf">3.0</span> <span class="mf">3.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">FixedWingLine</span><span class="o">.</span><span class="n">epsilon_chord</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="mf">0.25</span> <span class="mf">0.25</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">FixedWingLine</span><span class="o">.</span><span class="n">fllc</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">FixedWingLine</span><span class="o">.</span><span class="n">pitch</span> <span class="o">=</span> <span class="mf">4.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">FixedWingLine</span><span class="o">.</span><span class="n">span_locs</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">FixedWingLine</span><span class="o">.</span><span class="n">chord</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="mf">2.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">FixedWingLine</span><span class="o">.</span><span class="n">airfoil_table</span> <span class="o">=</span> <span class="n">DU21_A17</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">FixedWingLine</span><span class="o">.</span><span class="n">airfoil_type</span> <span class="o">=</span> <span class="n">openfast</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">F1</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">-</span><span class="mf">4.0</span> <span class="mf">0.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">F1</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">4.0</span> <span class="mf">0.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">F1</span><span class="o">.</span><span class="n">output_frequency</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">ICNS</span><span class="o">.</span><span class="n">source_terms</span> <span class="o">=</span> <span class="n">ActuatorForcing</span>
+</pre></div>
+</div>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.num_points">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.num_points</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.num_points" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> int, mandatory</p>
+<p>This is the number of actuator points along the wing to be used in the
+simulation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.epsilon">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.epsilon</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.epsilon" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of 3 real numbers, mandatory</p>
+<p>This is the value of epsilon in the chord, thickness and spanwise directions.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.epsilon_chord">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.epsilon_chord</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.epsilon_chord" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of 3 real numbers, optional</p>
+<p>This is the value of epsilon/chord. This value will be used to compute
+epsilon as a function of the chord at every actuator point. A value of
+epsilon / chord ~ 0.25 is recommended for an optimal representation of the
+blade aerodynamics. When this variable is specified, the code will choose
+the maximum value between <code class="docutils literal notranslate"><span class="pre">epsilon_chord</span> <span class="pre">*</span> <span class="pre">chord</span></code> and <code class="docutils literal notranslate"><span class="pre">epsilon</span></code> for
+every actuator point.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.fllc">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.fllc</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.fllc" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Bool, optional</p>
+<p>This option will activate the filtered lifting line correction (fllc).
+The correction follows the implementation of <a class="reference external" href="https://doi.org/10.1017/jfm.2018.994">Martinez-Tossas and Meneveau (2019)</a> and <a class="reference external" href="https://doi.org/10.2514/6.2022-1921">Blaylock et al (2022)</a>. The use of the fllc requires <code class="docutils literal notranslate"><span class="pre">epsilon</span></code>
+and an optimal <code class="docutils literal notranslate"><span class="pre">epsilon_chord</span></code> as an input. The recommended value is 0.25
+in all directions for <code class="docutils literal notranslate"><span class="pre">epsilon_chord</span></code> and a value of <code class="docutils literal notranslate"><span class="pre">epsilon</span></code> in all directions
+that would be greater than at least 2.5 times the grid size <code class="docutils literal notranslate"><span class="pre">dx</span></code>.
+The default is <cite>0</cite>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.fllc_type">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.fllc_type</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.fllc_type" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = <code class="docutils literal notranslate"><span class="pre">variable_chord</span></code></p>
+<p>This option tells whether to use the original fllc formulation outlined in
+<a class="reference external" href="https://doi.org/10.1017/jfm.2018.994">Martinez-Tossas and Meneveau (2019)</a>,
+which assumes a constant chord length across blade (specified as <code class="docutils literal notranslate"><span class="pre">constant_chord</span></code>), or
+to use a new formulation outlined in <a class="reference external" href="https://www.nrel.gov/docs/fy24osti/85343.pdf">Martinez-Tossas et al. (2023)</a>, which accounts for chord
+variations (specified as <code class="docutils literal notranslate"><span class="pre">variable_chord</span></code>).</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.fllc_relaxation_factor">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.fllc_relaxation_factor</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.fllc_relaxation_factor" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Double, optional</p>
+<p>The relaxation factor to be applied to the updated velocity see:
+<a class="reference external" href="https://doi.org/10.1017/jfm.2018.994">Martinez-Tossas and Meneveau (2019)</a>
+The default value is <cite>0.1</cite>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.fllc_start_time">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.fllc_start_time</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.fllc_start_time" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Double, optional</p>
+<p>The time in the simulation from when to start using the correction.
+The default value is <cite>0</cite>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.fllc_nonuniform">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.fllc_nonuniform</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.fllc_nonuniform" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Bool</p>
+<p>The flag to specify if the actuator points used to compute the correction should be
+non-uniformly distributed. This helps in using less points for the fllc while
+still maintaining the accuracy of the fllc.
+The default value is <cite>true</cite>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.fllc_epsilon_dr_ratio">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.fllc_epsilon_dr_ratio</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.fllc_epsilon_dr_ratio" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Double, optional</p>
+<p>The ratio of epsilon to actuator point spacing used to create a non-uniform distribution.
+A value of <cite>1</cite> or greater is recommended.
+The default value is <cite>1</cite>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.pitch">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.pitch</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.pitch" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real number, mandatory</p>
+<p>This is the pitch angle of the blade in degrees. All coordinates will be
+pitched by this angle. In the case of a fixed wing, this would be the angle
+of attack of the wing with respect to the inflow velocity. This argument is mandatory unless
+a pitch timetable is specified.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.span_locs">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.span_locs</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.span_locs" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of real numbers, mandatory</p>
+<p>These are non-dimensional span locations from 0 to 1. These locations are
+used to specify the chord values at every span location of the blade.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.chord">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.chord</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.chord" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of real numbers, mandatory</p>
+<p>These are the chord values at every span location. The length of this array
+needs to be the same length as <code class="docutils literal notranslate"><span class="pre">span_locs</span></code>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.airfoil_table">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.airfoil_table</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.airfoil_table" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, mandatory</p>
+<p>This is the name of the file that contains the lookup table for lift and drag
+coefficients.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.airfoil_type">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.airfoil_type</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.airfoil_type" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, mandatory</p>
+<p>This is the type of airfoil table lookup. The currently supported options are
+<code class="docutils literal notranslate"><span class="pre">openfast</span></code> and <code class="docutils literal notranslate"><span class="pre">text</span></code>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.F1.start">
+<span class="sig-name descname"><span class="pre">Actuator.F1.start</span></span><a class="headerlink" href="#input_param-Actuator.F1.start" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of 3 real numbers, mandatory</p>
+<p>This is the starting point of the wing where the first actuator point will be.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.F1.end">
+<span class="sig-name descname"><span class="pre">Actuator.F1.end</span></span><a class="headerlink" href="#input_param-Actuator.F1.end" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of 3 real numbers, mandatory</p>
+<p>This is the end point of the wing where the last actuator point will be.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.F1.output_frequency">
+<span class="sig-name descname"><span class="pre">Actuator.F1.output_frequency</span></span><a class="headerlink" href="#input_param-Actuator.F1.output_frequency" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> int, optional</p>
+<p>This is how often to write actuator output. The default is <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.motion_type">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.motion_type</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.motion_type" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional</p>
+<p>The FixedWingLine actuator allows for motion,
+though other aspects of the actuator remain fixed (such as the orientation and
+the dimensions). The currently supported options are <code class="docutils literal notranslate"><span class="pre">none</span></code> (default), <code class="docutils literal notranslate"><span class="pre">linear</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">sine</span></code>. Linear motion moves the actuator at a constant velocity in a straight
+line whereas sine motion oscillates the actuator according to a temporal sine signal.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.velocity">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.velocity</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.velocity" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of 3 real numbers, mandatory when motion_type = <code class="docutils literal notranslate"><span class="pre">linear</span></code></p>
+<p>This vector provides the prescribed constant velocity of the actuator motion.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.sine_vector">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.sine_vector</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.sine_vector" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of 3 real numbers, mandatory when motion_type = <code class="docutils literal notranslate"><span class="pre">sine</span></code></p>
+<p>This vector provides the actuator displacement from its initial, specified location as it
+moves according to the oscillatory sine signal. The range of motion of the actuator
+will be between (initial location + sine vector) and (initial location - sine vector).</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.sine_period">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.sine_period</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.sine_period" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real number, mandatory when motion_type = <code class="docutils literal notranslate"><span class="pre">linear</span></code></p>
+<p>This value specifies the temporal period of the sine signal.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.pitch_timetable">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.pitch_timetable</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.pitch_timetable" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional</p>
+<p>File name of pitch timetable. This file must specify pitch angles
+at different times below a one-line header. When this argument is present,
+the <code class="docutils literal notranslate"><span class="pre">pitch</span></code> argument is no longer mandatory, and it will not be used.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.disable_spanwise_gaussian">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.disable_spanwise_gaussian</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.disable_spanwise_gaussian" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = false</p>
+<p>When this option is turned on, the actuator Gaussian is disabled in the spanwise Gaussian,
+making the force distribution uniform in that direction. This option enables quasi-2D simulations
+with a fixed wing. The code will print warning statements if the detected spanwise direction is
+not periodic.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.normalize_spanwise">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.normalize_spanwise</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.normalize_spanwise" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = true</p>
+<p>When the <code class="docutils literal notranslate"><span class="pre">disable_spanwise_gaussian</span></code> is true, the default behavior is to normalize the
+Gaussian and force quantities in the spanwise direction, preventing the number of actuator points
+or the actuator point spacing from affecting the results. When this option is false, the
+ordinary treatment of the Gaussian and force quantities in the spanwise direction is used instead.
+Setting this option to false can be useful for verification studies.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.prescribed_uinf">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.prescribed_uinf</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.prescribed_uinf" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = -1.0</p>
+<p>This input allows the freestream velocity sampled by the actuator routines to be overwritten with
+a user-prescribed value. This feature becomes active when the prescribed value is non-negative.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.FixedWingLine.active_force_dirs">
+<span class="sig-name descname"><span class="pre">Actuator.FixedWingLine.active_force_dirs</span></span><a class="headerlink" href="#input_param-Actuator.FixedWingLine.active_force_dirs" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of 3 real numbers, optional, default = 1.0 1.0 1.0</p>
+<p>By default, the actuator force is computed and applied in every coordinate direction.
+This input allows actuator force coordinate directions to be deactivated by specifying a 0.0 in
+for the x, y, or z component of this vector.</p>
+</dd></dl>
+
+</section>
+<section id="turbinefastline">
+<h2>TurbineFastLine<a class="headerlink" href="#turbinefastline" title="Link to this heading"></a></h2>
+<p>This actuator type requires an Kynema-SGF build with OpenFAST coupling
+enabled. Kynema-SGF provides flow quantities at the actuator point
+locations to OpenFAST and OpenFAST provides the actuator point
+locations and forces at those points. This tight coupling happens at
+every time step.</p>
+<p>Example for <code class="docutils literal notranslate"><span class="pre">TurbineFastLine</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">incflo</span><span class="o">.</span><span class="n">physics</span> <span class="o">=</span> <span class="n">FreeStream</span> <span class="n">Actuator</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">WTG01</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">TurbineFastLine</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">rotor_diameter</span> <span class="o">=</span> <span class="mf">126.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">hub_height</span> <span class="o">=</span> <span class="mf">90.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">num_points_blade</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">num_points_tower</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="mf">10.0</span> <span class="mf">10.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">epsilon_chord</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="mf">0.25</span> <span class="mf">0.25</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">fllc</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">epsilon_tower</span> <span class="o">=</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">openfast_start_time</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">openfast_stop_time</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">nacelle_drag_coeff</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">nacelle_area</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">output_frequency</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineFastLine</span><span class="o">.</span><span class="n">density</span> <span class="o">=</span> <span class="mf">1.225</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">WTG01</span><span class="o">.</span><span class="n">base_position</span> <span class="o">=</span> <span class="mf">5.0191</span> <span class="mf">0.</span> <span class="o">-</span><span class="mf">89.56256</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">WTG01</span><span class="o">.</span><span class="n">openfast_input_file</span> <span class="o">=</span> <span class="s2">&quot;fast_inp/nrel5mw.fst&quot;</span>
+<span class="n">ICNS</span><span class="o">.</span><span class="n">source_terms</span> <span class="o">=</span> <span class="n">ActuatorForcing</span>
+</pre></div>
+</div>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineFastLine.rotor_diameter">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineFastLine.rotor_diameter</span></span><a class="headerlink" href="#input_param-Actuator.TurbineFastLine.rotor_diameter" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real number, required</p>
+<p>This is the rotor diameter of the turbine to be simulated.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineFastLine.hub_height">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineFastLine.hub_height</span></span><a class="headerlink" href="#input_param-Actuator.TurbineFastLine.hub_height" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real number, required</p>
+<p>This is the hub height of the turbine.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineFastLine.num_points_blade">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineFastLine.num_points_blade</span></span><a class="headerlink" href="#input_param-Actuator.TurbineFastLine.num_points_blade" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> int, required</p>
+<p>This the number of actuator points along the blades.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineFastLine.num_points_tower">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineFastLine.num_points_tower</span></span><a class="headerlink" href="#input_param-Actuator.TurbineFastLine.num_points_tower" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> int, required</p>
+<p>This is the number of actuator points along the tower.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineFastLine.epsilon">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineFastLine.epsilon</span></span><a class="headerlink" href="#input_param-Actuator.TurbineFastLine.epsilon" title="Link to this definition"></a></dt>
+<dd><p>Same as <a class="reference internal" href="#input_param-Actuator.FixedWingLine.epsilon"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">Actuator.FixedWingLine.epsilon</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineFastLine.epsilon_chord">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineFastLine.epsilon_chord</span></span><a class="headerlink" href="#input_param-Actuator.TurbineFastLine.epsilon_chord" title="Link to this definition"></a></dt>
+<dd><p>Same as <a class="reference internal" href="#input_param-Actuator.FixedWingLine.epsilon_chord"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">Actuator.FixedWingLine.epsilon_chord</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineFastLine.fllc">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineFastLine.fllc</span></span><a class="headerlink" href="#input_param-Actuator.TurbineFastLine.fllc" title="Link to this definition"></a></dt>
+<dd><p>Same as <a class="reference internal" href="#input_param-Actuator.FixedWingLine.fllc"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">Actuator.FixedWingLine.fllc</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineFastLine.fllc_relaxation_factor">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineFastLine.fllc_relaxation_factor</span></span><a class="headerlink" href="#input_param-Actuator.TurbineFastLine.fllc_relaxation_factor" title="Link to this definition"></a></dt>
+<dd><p>Same as <a class="reference internal" href="#input_param-Actuator.FixedWingLine.fllc_relaxation_factor"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">Actuator.FixedWingLine.fllc_relaxation_factor</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineFastLine.fllc_type">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineFastLine.fllc_type</span></span><a class="headerlink" href="#input_param-Actuator.TurbineFastLine.fllc_type" title="Link to this definition"></a></dt>
+<dd><p>Same as <a class="reference internal" href="#input_param-Actuator.FixedWingLine.fllc_type"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">Actuator.FixedWingLine.fllc_type</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineFastLine.openfast_start_time">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineFastLine.openfast_start_time</span></span><a class="headerlink" href="#input_param-Actuator.TurbineFastLine.openfast_start_time" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, required</p>
+<p>This is the time at which to start the openfast simulation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineFastLine.openfast_stop_time">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineFastLine.openfast_stop_time</span></span><a class="headerlink" href="#input_param-Actuator.TurbineFastLine.openfast_stop_time" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, required</p>
+<p>This is the time at which to stop the openfast run.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineFastLine.nacelle_drag_coeff">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineFastLine.nacelle_drag_coeff</span></span><a class="headerlink" href="#input_param-Actuator.TurbineFastLine.nacelle_drag_coeff" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>This is the drag coefficient of the nacelle. If this and the area of the
+nacelle are specified, a value of epsilon for the nacelle is computed that
+would provide an optimal momentum thickness of the wake.
+This is also used to correct the sampled velocity at the location of the
+nacelle actuator point.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineFastLine.nacelle_area">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineFastLine.nacelle_area</span></span><a class="headerlink" href="#input_param-Actuator.TurbineFastLine.nacelle_area" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default=0</p>
+<p>This is the frontal area of the nacelle which is used to compute the force.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineFastLine.output_frequency">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineFastLine.output_frequency</span></span><a class="headerlink" href="#input_param-Actuator.TurbineFastLine.output_frequency" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> int, optional, default=10</p>
+<p>This is how often to write actuator output.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineFastLine.density">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineFastLine.density</span></span><a class="headerlink" href="#input_param-Actuator.TurbineFastLine.density" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>This is the density of the fluid specified in openfast. This is used to
+non-dimensionalize the forces from openfast.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.WTG01.openfast_input_file">
+<span class="sig-name descname"><span class="pre">Actuator.WTG01.openfast_input_file</span></span><a class="headerlink" href="#input_param-Actuator.WTG01.openfast_input_file" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, required</p>
+<p>This is the name of the openfast input file with all the turbine information.</p>
+</dd></dl>
+
+</section>
+<section id="turbinekynemaline">
+<h2>TurbineKynemaLine<a class="headerlink" href="#turbinekynemaline" title="Link to this heading"></a></h2>
+<p>This actuator type requires an Kynema-SGF build with Kynema coupling
+enabled. This is a similar coupling to OpenFAST, but Kynema
+acts as the turbine solver in this instance. Some turbine quantities
+that the OpenFAST interface needs from the Kynema-SGF input file
+are instead found directly by the code within the Kynema input file,
+whereas other quantities that OpenFAST has stored within its inputs
+need to be directly supplied through the Kynema-SGF input file for Kynema,
+especially for initialization.</p>
+<p>Example for <code class="docutils literal notranslate"><span class="pre">TurbineKynemaLine</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">incflo</span><span class="o">.</span><span class="n">physics</span> <span class="o">=</span> <span class="n">FreeStream</span> <span class="n">Actuator</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">WTG01</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">TurbineKynemaLine</span>
+<span class="c1">## Turbine discretization parameters</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">num_struct_nodes_blade</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">num_struct_nodes_tower</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">num_points_blade</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">num_points_tower</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="c1">## Turbine setup</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">rot_speed_rpm</span>    <span class="o">=</span> <span class="mf">12.1</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">yaw_deg</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">WTG01</span><span class="o">.</span><span class="n">kynema_input_file</span> <span class="o">=</span> <span class="n">NREL</span><span class="o">-</span><span class="mi">15</span><span class="n">MW</span><span class="o">-</span><span class="n">aero</span><span class="o">.</span><span class="n">yaml</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">WTG01</span><span class="o">.</span><span class="n">base_position</span> <span class="o">=</span> <span class="mf">5.0191</span> <span class="mf">0.</span> <span class="o">-</span><span class="mf">89.56256</span>
+<span class="c1">## Turbine - flow coupling parameters</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="mf">10.0</span> <span class="mf">10.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">epsilon_chord</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="mf">0.25</span> <span class="mf">0.25</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">fllc</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">nacelle_drag_coeff</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">nacelle_area</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">density</span> <span class="o">=</span> <span class="mf">1.225</span>
+<span class="c1">## Turbine controller parameters and initial state</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">controller_shared_library_path</span> <span class="o">=</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">libdiscon</span><span class="o">.</span><span class="n">so</span> <span class="c1"># or libdiscon.dylib</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">generator_power_init</span> <span class="o">=</span> <span class="mf">5e6</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">hub_wind_vector_init</span> <span class="o">=</span> <span class="mf">9.8726896031426</span> <span class="mf">5.7</span> <span class="mf">0.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">generator_efficiency</span> <span class="o">=</span> <span class="mf">0.944</span>
+<span class="c1">## Turbine solver numerical parameters</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">Kynema</span><span class="o">.</span><span class="n">abs_err_tol</span> <span class="o">=</span> <span class="mf">1e-6</span>
+
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaLine</span><span class="o">.</span><span class="n">output_frequency</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">ICNS</span><span class="o">.</span><span class="n">source_terms</span> <span class="o">=</span> <span class="n">ActuatorForcing</span>
+</pre></div>
+</div>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaLine.num_struct_nodes_blade">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaLine.num_struct_nodes_blade</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaLine.num_struct_nodes_blade" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, required</p>
+<p>This is the number of structural nodes for Kynema to use when modeling each turbine blade.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaLine.num_struct_nodes_tower">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaLine.num_struct_nodes_tower</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaLine.num_struct_nodes_tower" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, required</p>
+<p>This is the number of structural nodes for Kynema to use when modeling the turbine tower.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaLine.num_points_blade">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaLine.num_points_blade</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaLine.num_points_blade" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, required</p>
+<p>This is the number of aerodynamic sections for Kynema to use when modeling each turbine blade.
+This will correspond to the number of force points and velocity points on each blade in Kynema-SGF.
+This must be the same number as provided in the Kynema input file.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaLine.num_points_tower">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaLine.num_points_tower</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaLine.num_points_tower" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, required</p>
+<p>This is the number of aerodynamic sections for Kynema to use when modeling the tower. Setting this
+value to zero will disable aerodynamic representation of the tower and any forces from the tower.
+If nonzero, this must be the same number of points as provided in the Kynema input file under
+the tower outer shape.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaLine.rot_speed_rpm">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaLine.rot_speed_rpm</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaLine.rot_speed_rpm" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0</p>
+<p>This is the initial rotational speed of the turbine in RPM. This parameter can
+alternatively be set in radians per second using the input parameter
+<a class="reference internal" href="#input_param-Actuator.TurbineKynemaLine.rot_speed_radps"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">Actuator.TurbineKynemaLine.rot_speed_radps</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaLine.rot_speed_radps">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaLine.rot_speed_radps</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaLine.rot_speed_radps" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0</p>
+<p>This is the initial rotational speed of the turbine in radians per second.
+If this argument is present,
+<a class="reference internal" href="#input_param-Actuator.TurbineKynemaLine.rot_speed_rpm"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">Actuator.TurbineKynemaLine.rot_speed_rpm</span></code></a> will be ignored.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaLine.yaw_deg">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaLine.yaw_deg</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaLine.yaw_deg" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0</p>
+<p>This is the initial yaw angle of the turbine in degrees, counterclockwise
+from the -x direction. This parameter can alternatively be set in radians
+using the input parameter <a class="reference internal" href="#input_param-Actuator.TurbineKynemaLine.yaw_rad"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">Actuator.TurbineKynemaLine.yaw_rad</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaLine.yaw_rad">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaLine.yaw_rad</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaLine.yaw_rad" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0</p>
+<p>This is the initial yaw angle of the turbine in radians. If this argument is
+present, <a class="reference internal" href="#input_param-Actuator.TurbineKynemaLine.yaw_deg"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">Actuator.TurbineKynemaLine.yaw_deg</span></code></a> will be ignored.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaLine.kynema_input_file">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaLine.kynema_input_file</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaLine.kynema_input_file" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, required</p>
+<p>This is the input file used to initialize the Kynema turbine model. It
+conforms to the WindIO format. A pre-processing tool is provided in the
+Kynema repository to change the number of aerodynamic sections per blade,
+if needed, as well as to address some format edge cases.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaLine.controller_shared_library_path">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaLine.controller_shared_library_path</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaLine.controller_shared_library_path" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = empty</p>
+<p>This is the path to the controller shared library (typically ROSCO).
+If this parameter is not provided, no controller will be created in
+the turbine model, and the controller-related input parameters will not be used.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaLine.generator_power_init">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaLine.generator_power_init</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaLine.generator_power_init" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0</p>
+<p>Power of the generator at the start of the simulation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaLine.hub_wind_vector_init">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaLine.hub_wind_vector_init</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaLine.hub_wind_vector_init" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Vector&lt;Real&gt;, optional, default = 0 0 0</p>
+<p>This is the initial wind vector that the turbine hub is exposed to.
+It does not have to be the actual wind there at initialization; this
+number is converted to a wind speed that is used as the controller’s
+initial guess.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaLine.generator_efficiency">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaLine.generator_efficiency</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaLine.generator_efficiency" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1</p>
+<p>This is the efficiency of the generator. If not populated,
+the efficiency is assumed to be 1, i.e., 100%.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaLine.dt">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaLine.dt</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaLine.dt" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = same as Kynema-SGF dt</p>
+<p>This is the time step size chosen for the Kynema turbine model. It must
+be a factor of the Kynema-SGF time step so that Kynema can take an integer
+number of sub-steps for each Kynema-SGF time step. If not populated, the Kynema time
+step size will be the same as the flow solver time step, and, due to the
+robustness of Kynema, this is typically fine.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaLine.output_frequency">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaLine.output_frequency</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaLine.output_frequency" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, optional, default = 10</p>
+<p>This is how often, in time steps, to output actuator data from Kynema-SGF.
+Note, this does not govern how often Kynema outputs turbine data. Kynema
+automatically outputs data every Kynema-SGF time step.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Kynema.abs_err_tol">
+<span class="sig-name descname"><span class="pre">Kynema.abs_err_tol</span></span><a class="headerlink" href="#input_param-Kynema.abs_err_tol" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1e-5</p>
+<p>This turbine solver parameter is not turbine-specific; rather, it informs the
+solution parameters of Kynema overall. This, in particular, sets the absolute
+tolerance of the Kynema solver.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Kynema.rel_err_tol">
+<span class="sig-name descname"><span class="pre">Kynema.rel_err_tol</span></span><a class="headerlink" href="#input_param-Kynema.rel_err_tol" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1e-4</p>
+<p>This parameter sets the relative tolerance of the Kynema solver.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Kynema.max_nonlinear_iterations">
+<span class="sig-name descname"><span class="pre">Kynema.max_nonlinear_iterations</span></span><a class="headerlink" href="#input_param-Kynema.max_nonlinear_iterations" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, optional, default = 12</p>
+<p>This parameter sets the maximum number of nonlinear iterations for the Kynema solver.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Kynema.damping_factor">
+<span class="sig-name descname"><span class="pre">Kynema.damping_factor</span></span><a class="headerlink" href="#input_param-Kynema.damping_factor" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0</p>
+<p>This parameter sets the numerical damping (time-based) of the Kynema solver.
+Counterintuitively, full damping corresponds to 0 and no damping corresponds to 1.</p>
+</dd></dl>
+
+</section>
+<section id="active-wake-control-with-joukowsky-disk">
+<h2>Active Wake Control with Joukowsky Disk<a class="headerlink" href="#active-wake-control-with-joukowsky-disk" title="Link to this heading"></a></h2>
+<p>There is preliminary support for exploring Active Wake Control (AWC) strategies with
+the Joukowsky disk model. The current implementation follows <a class="reference external" href="https://doi.org/10.3390/en17040865">Cheung et. al (2024)</a>. The following input options allow for enabling AWC:</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.WTG01.awc_angular_frequency">
+<span class="sig-name descname"><span class="pre">Actuator.WTG01.awc_angular_frequency</span></span><a class="headerlink" href="#input_param-Actuator.WTG01.awc_angular_frequency" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default=0</p>
+<p>Sets the temporal angular frequency for AWC (in radians)</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.WTG01.awc_amplitude">
+<span class="sig-name descname"><span class="pre">Actuator.WTG01.awc_amplitude</span></span><a class="headerlink" href="#input_param-Actuator.WTG01.awc_amplitude" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default=0</p>
+<p>Sets the amplitude of the forcing term in AWC relative to the axial force</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.WTG01.awc_azimuthal_mode">
+<span class="sig-name descname"><span class="pre">Actuator.WTG01.awc_azimuthal_mode</span></span><a class="headerlink" href="#input_param-Actuator.WTG01.awc_azimuthal_mode" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, optional, default=0</p>
+<p>Sets the azimuthal mode for the AWC (e.g. 0 denotes a pulse mode, 1 denotes a helical mode)</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.WTG01.awc_clocking_angle">
+<span class="sig-name descname"><span class="pre">Actuator.WTG01.awc_clocking_angle</span></span><a class="headerlink" href="#input_param-Actuator.WTG01.awc_clocking_angle" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default=0</p>
+<p>Sets the clocking angle to adjust the orientation of the modes in the azimuthal direction (in radians)</p>
+</dd></dl>
+
+</section>
+<section id="actuatorsourcetagging">
+<h2>ActuatorSourceTagging<a class="headerlink" href="#actuatorsourcetagging" title="Link to this heading"></a></h2>
+<p>It is possible to seed a passive scalar in the flow field at locations
+where the actuator source term value is above a certain
+threshold. This is useful for wake visualization and for dynamic
+adaptation of the mesh to the wake location. This is activated by
+adding <code class="docutils literal notranslate"><span class="pre">ActuatorSourceTagging</span></code> to <code class="docutils literal notranslate"><span class="pre">incflo.physics</span></code>. It has the
+following input options:</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ActuatorSourceTagging.actuator_source_threshold">
+<span class="sig-name descname"><span class="pre">ActuatorSourceTagging.actuator_source_threshold</span></span><a class="headerlink" href="#input_param-ActuatorSourceTagging.actuator_source_threshold" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default=0.1</p>
+<p>Threshold value for the actuator source term above which the passive scalar will be set to 1.0.</p>
+</dd></dl>
+
+<p>Additional input parameters are
+<code class="docutils literal notranslate"><span class="pre">transport.passive_scalar_laminar_schmidt</span></code> and
+<code class="docutils literal notranslate"><span class="pre">transport.passive_scalar_turbulent_schmidt</span></code> to set the diffusion of
+the passive scalar. This can be combined with the <code class="docutils literal notranslate"><span class="pre">FieldRefinement</span></code>
+criteria for mesh adaptation:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">tagging.labels = tracer</span>
+<span class="go">tagging.tracer.type = FieldRefinement</span>
+<span class="go">tagging.tracer.field_name = passive_scalar</span>
+<span class="go">tagging.tracer.field_error = 0.3 0.3 0.3 0.3</span>
+</pre></div>
+</div>
+<p>where the <code class="docutils literal notranslate"><span class="pre">field_error</span></code> is the value above which the cells should be
+tagged for refinement. Here is an example using the
+uniform_ct_disk_dynamic_adaptation regression test:</p>
+<a class="reference internal image-reference" href="../_images/uniform_ct_disk_dynamic_adaptation.gif"><img alt="../_images/uniform_ct_disk_dynamic_adaptation.gif" src="../_images/uniform_ct_disk_dynamic_adaptation.gif" style="width: 300pt;" />
+</a>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is an experimental feature and there is no guidance yet on the
+values that should be used for the passive scalar and tagging
+criteria.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inputs_FieldNorms.html" class="btn btn-neutral float-left" title="Section: FieldNorms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inputs_multiphase.html" class="btn btn-neutral float-right" title="Section: MultiPhase" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

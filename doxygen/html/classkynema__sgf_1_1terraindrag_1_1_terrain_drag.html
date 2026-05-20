@@ -1,0 +1,1255 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::terraindrag::TerrainDrag Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::terraindrag::TerrainDrag Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1terraindrag_1_1_terrain_drag.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="terraindrag-class-reference">
+<h1>TerrainDrag Class Reference<a class="headerlink" href="#terraindrag-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::terraindrag::TerrainDrag Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1terraindrag.html">terraindrag</a></li><li class="navelem"><a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag.html">TerrainDrag</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1terraindrag_1_1_terrain_drag-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::terraindrag::TerrainDrag Class Reference<div class="ingroups"><a class="el" href="group__physics.html">Physics models</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_terrain_drag_8_h_source.html">TerrainDrag.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::terraindrag::TerrainDrag:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1terraindrag_1_1_terrain_drag__inherit__graph.svg" width="191" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::terraindrag::TerrainDrag:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1terraindrag_1_1_terrain_drag__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a67963edd0a3da7885a83ad45e38bd044" id="r_a67963edd0a3da7885a83ad45e38bd044"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67963edd0a3da7885a83ad45e38bd044">TerrainDrag</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a7970c159c423835b8a97498f2161722e" id="r_a7970c159c423835b8a97498f2161722e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7970c159c423835b8a97498f2161722e">~TerrainDrag</a> () override=default</td></tr>
+<tr class="memitem:abbda4d9a0fac6214cab7cfab1161c77b" id="r_abbda4d9a0fac6214cab7cfab1161c77b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbda4d9a0fac6214cab7cfab1161c77b">initialize_fields</a> (int level, const amrex::Geometry &amp;geom) override</td></tr>
+<tr class="memitem:ab4cfc7dccabd4b34266a9d15fd4220cd" id="r_ab4cfc7dccabd4b34266a9d15fd4220cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4cfc7dccabd4b34266a9d15fd4220cd">pre_init_actions</a> () override</td></tr>
+<tr class="memitem:abd4ccb48456613689bb46ecf71217d56" id="r_abd4ccb48456613689bb46ecf71217d56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd4ccb48456613689bb46ecf71217d56">post_init_actions</a> () override</td></tr>
+<tr class="memitem:ad114f3ad70fe8a500284cca3c0c517ad" id="r_ad114f3ad70fe8a500284cca3c0c517ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad114f3ad70fe8a500284cca3c0c517ad">post_regrid_actions</a> () override</td></tr>
+<tr class="memitem:ac08212c6d7e0f413432cfc070252e4a4" id="r_ac08212c6d7e0f413432cfc070252e4a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac08212c6d7e0f413432cfc070252e4a4">pre_advance_work</a> () override</td></tr>
+<tr class="memitem:a459f1b8396479555150f52cd582f2d14" id="r_a459f1b8396479555150f52cd582f2d14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a459f1b8396479555150f52cd582f2d14">post_advance_work</a> () override</td></tr>
+<tr class="memitem:adc424b8f0c1d31d0d5c8c05e6ce7bed0" id="r_adc424b8f0c1d31d0d5c8c05e6ce7bed0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc424b8f0c1d31d0d5c8c05e6ce7bed0">convert_waves_to_terrain_fields</a> ()</td></tr>
+<tr class="memdesc:adc424b8f0c1d31d0d5c8c05e6ce7bed0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Terrain Drag for waves.  <br /></td></tr>
+<tr class="memitem:a754c33379edc915db97089b4ca477e24" id="r_a754c33379edc915db97089b4ca477e24"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a754c33379edc915db97089b4ca477e24">wave_velocity_field_name</a> () const</td></tr>
+<tr class="memitem:aab7247c22a93241a49cdcdd8fcea388c" id="r_aab7247c22a93241a49cdcdd8fcea388c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab7247c22a93241a49cdcdd8fcea388c">wave_negative_elevation_name</a> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a0ddf1b9171d1d7a2f2b064540ebf2d7c" id="r_a0ddf1b9171d1d7a2f2b064540ebf2d7c"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ddf1b9171d1d7a2f2b064540ebf2d7c">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac436e0cefaad3b10f75c0f60a5915571" id="r_ac436e0cefaad3b10f75c0f60a5915571"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac436e0cefaad3b10f75c0f60a5915571">m_sim</a></td></tr>
+<tr class="memitem:aae143327f8a64c0bbf7d5319f77546c5" id="r_aae143327f8a64c0bbf7d5319f77546c5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae143327f8a64c0bbf7d5319f77546c5">m_repo</a></td></tr>
+<tr class="memitem:acfe29d94ed1d3c1286b4f269831da373" id="r_acfe29d94ed1d3c1286b4f269831da373"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfe29d94ed1d3c1286b4f269831da373">m_mesh</a></td></tr>
+<tr class="memitem:a5316437cdd55bf809a9cfc52ab539917" id="r_a5316437cdd55bf809a9cfc52ab539917"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_int_field.html">IntField</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5316437cdd55bf809a9cfc52ab539917">m_terrain_blank</a></td></tr>
+<tr class="memdesc:a5316437cdd55bf809a9cfc52ab539917"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blanking field for terrain or buildings.  <br /></td></tr>
+<tr class="memitem:a7c36aa8ea310ff306501990692ea05bd" id="r_a7c36aa8ea310ff306501990692ea05bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_int_field.html">IntField</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c36aa8ea310ff306501990692ea05bd">m_terrain_drag</a></td></tr>
+<tr class="memdesc:a7c36aa8ea310ff306501990692ea05bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Terrain drag force term.  <br /></td></tr>
+<tr class="memitem:a0572c4a55b542a40bed016887bc1e607" id="r_a0572c4a55b542a40bed016887bc1e607"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0572c4a55b542a40bed016887bc1e607">m_terrain_file</a> {&quot;terrain.amrwind&quot;}</td></tr>
+<tr class="memdesc:a0572c4a55b542a40bed016887bc1e607"><td class="mdescLeft">&#160;</td><td class="mdescRight">Terrain file.  <br /></td></tr>
+<tr class="memitem:a8747953d0f5706c81b61cc554f793932" id="r_a8747953d0f5706c81b61cc554f793932"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8747953d0f5706c81b61cc554f793932">m_roughness_file</a> {&quot;terrain.roughness&quot;}</td></tr>
+<tr class="memdesc:a8747953d0f5706c81b61cc554f793932"><td class="mdescLeft">&#160;</td><td class="mdescRight">Roughness file.  <br /></td></tr>
+<tr class="memitem:ad1f1a2ff85b7222ccdb85df60db077ed" id="r_ad1f1a2ff85b7222ccdb85df60db077ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1f1a2ff85b7222ccdb85df60db077ed">m_terrainz0</a></td></tr>
+<tr class="memdesc:ad1f1a2ff85b7222ccdb85df60db077ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Roughness fields.  <br /></td></tr>
+<tr class="memitem:acbcceb48e335948a83a898d46dc9842d" id="r_acbcceb48e335948a83a898d46dc9842d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbcceb48e335948a83a898d46dc9842d">m_terrain_height</a></td></tr>
+<tr class="memitem:a186176da6e2cb10d168b4d1709b32265" id="r_a186176da6e2cb10d168b4d1709b32265"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a186176da6e2cb10d168b4d1709b32265">m_terrain_damping</a></td></tr>
+<tr class="memitem:ad755473cb7c0ce98bb3fe1bab72f2ee6" id="r_ad755473cb7c0ce98bb3fe1bab72f2ee6"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad755473cb7c0ce98bb3fe1bab72f2ee6">m_damp_east_slope</a> {0.0_rt}</td></tr>
+<tr class="memdesc:ad755473cb7c0ce98bb3fe1bab72f2ee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lateral Damping - X.  <br /></td></tr>
+<tr class="memitem:a59bd0de2904cab95ac3aae7a8d49beea" id="r_a59bd0de2904cab95ac3aae7a8d49beea"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59bd0de2904cab95ac3aae7a8d49beea">m_damp_east_full</a> {0.0_rt}</td></tr>
+<tr class="memitem:aa7de249fa3ed01fadbf45426052ddc77" id="r_aa7de249fa3ed01fadbf45426052ddc77"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7de249fa3ed01fadbf45426052ddc77">m_horizontal_tau</a> {20.0_rt}</td></tr>
+<tr class="memitem:a92056bf52448be5823327bc34a24e1b7" id="r_a92056bf52448be5823327bc34a24e1b7"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92056bf52448be5823327bc34a24e1b7">m_horizontal_abl_height</a> {1e15_rt}</td></tr>
+<tr class="memitem:a2304458bfc304b83179925b5b51e7f3f" id="r_a2304458bfc304b83179925b5b51e7f3f"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2304458bfc304b83179925b5b51e7f3f">m_horizontal_slope_end</a> {1e30_rt}</td></tr>
+<tr class="memitem:a06b7f1977b91b7e02237b5049065f3dd" id="r_a06b7f1977b91b7e02237b5049065f3dd"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06b7f1977b91b7e02237b5049065f3dd">m_vertical_slope</a> {0.0_rt}</td></tr>
+<tr class="memitem:a8d3c2046f87d861287ad3ae38f821d6f" id="r_a8d3c2046f87d861287ad3ae38f821d6f"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d3c2046f87d861287ad3ae38f821d6f">m_vertical_full</a> {1e30_rt}</td></tr>
+<tr class="memitem:a5703507c8f360ef6cc849c7e494b5c0c" id="r_a5703507c8f360ef6cc849c7e494b5c0c"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5703507c8f360ef6cc849c7e494b5c0c">m_damp_west_slope</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a5703507c8f360ef6cc849c7e494b5c0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lateral Damping - (-X)  <br /></td></tr>
+<tr class="memitem:ad23653d1c04bc7efc284cc4afa3b99af" id="r_ad23653d1c04bc7efc284cc4afa3b99af"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad23653d1c04bc7efc284cc4afa3b99af">m_damp_west_full</a> {0.0_rt}</td></tr>
+<tr class="memitem:a37fb79f2c6b36a245d5c3eef06d6d288" id="r_a37fb79f2c6b36a245d5c3eef06d6d288"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37fb79f2c6b36a245d5c3eef06d6d288">m_damp_south_slope</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a37fb79f2c6b36a245d5c3eef06d6d288"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lateral Damping - (-Y)  <br /></td></tr>
+<tr class="memitem:ae5606b5ab4d75d1787c72bf912529c68" id="r_ae5606b5ab4d75d1787c72bf912529c68"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5606b5ab4d75d1787c72bf912529c68">m_damp_south_full</a> {0.0_rt}</td></tr>
+<tr class="memitem:a6797786f19e9846b573f5f41385d16b4" id="r_a6797786f19e9846b573f5f41385d16b4"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6797786f19e9846b573f5f41385d16b4">m_damp_north_slope</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a6797786f19e9846b573f5f41385d16b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lateral Damping - Y.  <br /></td></tr>
+<tr class="memitem:a5b4591e5e834c5b595a5c3f89f15e8f9" id="r_a5b4591e5e834c5b595a5c3f89f15e8f9"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b4591e5e834c5b595a5c3f89f15e8f9">m_damp_north_full</a> {0.0_rt}</td></tr>
+<tr class="memitem:a197ea693bf6b5267d103edab6225e198" id="r_a197ea693bf6b5267d103edab6225e198"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a197ea693bf6b5267d103edab6225e198">m_terrain_is_waves</a> {false}</td></tr>
+<tr class="memdesc:a197ea693bf6b5267d103edab6225e198"><td class="mdescLeft">&#160;</td><td class="mdescRight">Terrain Drag for waves.  <br /></td></tr>
+<tr class="memitem:af1af89eac9fb6772de352d493838df82" id="r_af1af89eac9fb6772de352d493838df82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1af89eac9fb6772de352d493838df82">m_wave_volume_fraction</a> {nullptr}</td></tr>
+<tr class="memitem:af05932fb71edff1db362eb5b1a9def9d" id="r_af05932fb71edff1db362eb5b1a9def9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af05932fb71edff1db362eb5b1a9def9d">m_wave_negative_elevation</a> {nullptr}</td></tr>
+<tr class="memitem:aca413a8b13a341655879896b9aed15fb" id="r_aca413a8b13a341655879896b9aed15fb"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca413a8b13a341655879896b9aed15fb">m_wave_volume_fraction_name</a> {&quot;ow_vof&quot;}</td></tr>
+<tr class="memitem:a6ee7b6d30a2f9a881116f0dec56b530a" id="r_a6ee7b6d30a2f9a881116f0dec56b530a"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ee7b6d30a2f9a881116f0dec56b530a">m_wave_negative_elevation_name</a> {&quot;ow_levelset&quot;}</td></tr>
+<tr class="memitem:a81ffff2ff12a5b49b02dc6df5c0bbee6" id="r_a81ffff2ff12a5b49b02dc6df5c0bbee6"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81ffff2ff12a5b49b02dc6df5c0bbee6">m_wave_velocity_name</a> {&quot;ow_velocity&quot;}</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Terraindrag Flow physics </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a67963edd0a3da7885a83ad45e38bd044" name="a67963edd0a3da7885a83ad45e38bd044"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67963edd0a3da7885a83ad45e38bd044">&#9670;&#160;</a></span>TerrainDrag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::terraindrag::TerrainDrag::TerrainDrag </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7970c159c423835b8a97498f2161722e" name="a7970c159c423835b8a97498f2161722e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7970c159c423835b8a97498f2161722e">&#9670;&#160;</a></span>~TerrainDrag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::terraindrag::TerrainDrag::~TerrainDrag </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="adc424b8f0c1d31d0d5c8c05e6ce7bed0" name="adc424b8f0c1d31d0d5c8c05e6ce7bed0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc424b8f0c1d31d0d5c8c05e6ce7bed0">&#9670;&#160;</a></span>convert_waves_to_terrain_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::terraindrag::TerrainDrag::convert_waves_to_terrain_fields </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Terrain Drag for waves. </p>
+
+</div>
+</div>
+<a id="a0ddf1b9171d1d7a2f2b064540ebf2d7c" name="a0ddf1b9171d1d7a2f2b064540ebf2d7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ddf1b9171d1d7a2f2b064540ebf2d7c">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::terraindrag::TerrainDrag::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abbda4d9a0fac6214cab7cfab1161c77b" name="abbda4d9a0fac6214cab7cfab1161c77b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbda4d9a0fac6214cab7cfab1161c77b">&#9670;&#160;</a></span>initialize_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::terraindrag::TerrainDrag::initialize_fields </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a459f1b8396479555150f52cd582f2d14" name="a459f1b8396479555150f52cd582f2d14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a459f1b8396479555150f52cd582f2d14">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::terraindrag::TerrainDrag::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abd4ccb48456613689bb46ecf71217d56" name="abd4ccb48456613689bb46ecf71217d56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd4ccb48456613689bb46ecf71217d56">&#9670;&#160;</a></span>post_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::terraindrag::TerrainDrag::post_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad114f3ad70fe8a500284cca3c0c517ad" name="ad114f3ad70fe8a500284cca3c0c517ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad114f3ad70fe8a500284cca3c0c517ad">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::terraindrag::TerrainDrag::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac08212c6d7e0f413432cfc070252e4a4" name="ac08212c6d7e0f413432cfc070252e4a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac08212c6d7e0f413432cfc070252e4a4">&#9670;&#160;</a></span>pre_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::terraindrag::TerrainDrag::pre_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4cfc7dccabd4b34266a9d15fd4220cd" name="ab4cfc7dccabd4b34266a9d15fd4220cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4cfc7dccabd4b34266a9d15fd4220cd">&#9670;&#160;</a></span>pre_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::terraindrag::TerrainDrag::pre_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab7247c22a93241a49cdcdd8fcea388c" name="aab7247c22a93241a49cdcdd8fcea388c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab7247c22a93241a49cdcdd8fcea388c">&#9670;&#160;</a></span>wave_negative_elevation_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::terraindrag::TerrainDrag::wave_negative_elevation_name </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a754c33379edc915db97089b4ca477e24" name="a754c33379edc915db97089b4ca477e24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a754c33379edc915db97089b4ca477e24">&#9670;&#160;</a></span>wave_velocity_field_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::terraindrag::TerrainDrag::wave_velocity_field_name </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a59bd0de2904cab95ac3aae7a8d49beea" name="a59bd0de2904cab95ac3aae7a8d49beea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59bd0de2904cab95ac3aae7a8d49beea">&#9670;&#160;</a></span>m_damp_east_full</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::terraindrag::TerrainDrag::m_damp_east_full {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad755473cb7c0ce98bb3fe1bab72f2ee6" name="ad755473cb7c0ce98bb3fe1bab72f2ee6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad755473cb7c0ce98bb3fe1bab72f2ee6">&#9670;&#160;</a></span>m_damp_east_slope</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::terraindrag::TerrainDrag::m_damp_east_slope {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lateral Damping - X. </p>
+
+</div>
+</div>
+<a id="a5b4591e5e834c5b595a5c3f89f15e8f9" name="a5b4591e5e834c5b595a5c3f89f15e8f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b4591e5e834c5b595a5c3f89f15e8f9">&#9670;&#160;</a></span>m_damp_north_full</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::terraindrag::TerrainDrag::m_damp_north_full {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6797786f19e9846b573f5f41385d16b4" name="a6797786f19e9846b573f5f41385d16b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6797786f19e9846b573f5f41385d16b4">&#9670;&#160;</a></span>m_damp_north_slope</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::terraindrag::TerrainDrag::m_damp_north_slope {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lateral Damping - Y. </p>
+
+</div>
+</div>
+<a id="ae5606b5ab4d75d1787c72bf912529c68" name="ae5606b5ab4d75d1787c72bf912529c68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5606b5ab4d75d1787c72bf912529c68">&#9670;&#160;</a></span>m_damp_south_full</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::terraindrag::TerrainDrag::m_damp_south_full {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a37fb79f2c6b36a245d5c3eef06d6d288" name="a37fb79f2c6b36a245d5c3eef06d6d288"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37fb79f2c6b36a245d5c3eef06d6d288">&#9670;&#160;</a></span>m_damp_south_slope</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::terraindrag::TerrainDrag::m_damp_south_slope {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lateral Damping - (-Y) </p>
+
+</div>
+</div>
+<a id="ad23653d1c04bc7efc284cc4afa3b99af" name="ad23653d1c04bc7efc284cc4afa3b99af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad23653d1c04bc7efc284cc4afa3b99af">&#9670;&#160;</a></span>m_damp_west_full</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::terraindrag::TerrainDrag::m_damp_west_full {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5703507c8f360ef6cc849c7e494b5c0c" name="a5703507c8f360ef6cc849c7e494b5c0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5703507c8f360ef6cc849c7e494b5c0c">&#9670;&#160;</a></span>m_damp_west_slope</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::terraindrag::TerrainDrag::m_damp_west_slope {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lateral Damping - (-X) </p>
+
+</div>
+</div>
+<a id="a92056bf52448be5823327bc34a24e1b7" name="a92056bf52448be5823327bc34a24e1b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92056bf52448be5823327bc34a24e1b7">&#9670;&#160;</a></span>m_horizontal_abl_height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::terraindrag::TerrainDrag::m_horizontal_abl_height {1e15_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2304458bfc304b83179925b5b51e7f3f" name="a2304458bfc304b83179925b5b51e7f3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2304458bfc304b83179925b5b51e7f3f">&#9670;&#160;</a></span>m_horizontal_slope_end</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::terraindrag::TerrainDrag::m_horizontal_slope_end {1e30_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa7de249fa3ed01fadbf45426052ddc77" name="aa7de249fa3ed01fadbf45426052ddc77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7de249fa3ed01fadbf45426052ddc77">&#9670;&#160;</a></span>m_horizontal_tau</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::terraindrag::TerrainDrag::m_horizontal_tau {20.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acfe29d94ed1d3c1286b4f269831da373" name="acfe29d94ed1d3c1286b4f269831da373"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfe29d94ed1d3c1286b4f269831da373">&#9670;&#160;</a></span>m_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::AmrCore&amp; kynema_sgf::terraindrag::TerrainDrag::m_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aae143327f8a64c0bbf7d5319f77546c5" name="aae143327f8a64c0bbf7d5319f77546c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae143327f8a64c0bbf7d5319f77546c5">&#9670;&#160;</a></span>m_repo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; kynema_sgf::terraindrag::TerrainDrag::m_repo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8747953d0f5706c81b61cc554f793932" name="a8747953d0f5706c81b61cc554f793932"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8747953d0f5706c81b61cc554f793932">&#9670;&#160;</a></span>m_roughness_file</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::terraindrag::TerrainDrag::m_roughness_file {&quot;terrain.roughness&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Roughness file. </p>
+
+</div>
+</div>
+<a id="ac436e0cefaad3b10f75c0f60a5915571" name="ac436e0cefaad3b10f75c0f60a5915571"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac436e0cefaad3b10f75c0f60a5915571">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::terraindrag::TerrainDrag::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5316437cdd55bf809a9cfc52ab539917" name="a5316437cdd55bf809a9cfc52ab539917"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5316437cdd55bf809a9cfc52ab539917">&#9670;&#160;</a></span>m_terrain_blank</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_int_field.html">IntField</a>&amp; kynema_sgf::terraindrag::TerrainDrag::m_terrain_blank</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Blanking field for terrain or buildings. </p>
+
+</div>
+</div>
+<a id="a186176da6e2cb10d168b4d1709b32265" name="a186176da6e2cb10d168b4d1709b32265"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a186176da6e2cb10d168b4d1709b32265">&#9670;&#160;</a></span>m_terrain_damping</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::terraindrag::TerrainDrag::m_terrain_damping</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c36aa8ea310ff306501990692ea05bd" name="a7c36aa8ea310ff306501990692ea05bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c36aa8ea310ff306501990692ea05bd">&#9670;&#160;</a></span>m_terrain_drag</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_int_field.html">IntField</a>&amp; kynema_sgf::terraindrag::TerrainDrag::m_terrain_drag</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Terrain drag force term. </p>
+
+</div>
+</div>
+<a id="a0572c4a55b542a40bed016887bc1e607" name="a0572c4a55b542a40bed016887bc1e607"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0572c4a55b542a40bed016887bc1e607">&#9670;&#160;</a></span>m_terrain_file</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::terraindrag::TerrainDrag::m_terrain_file {&quot;terrain.amrwind&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Terrain file. </p>
+
+</div>
+</div>
+<a id="acbcceb48e335948a83a898d46dc9842d" name="acbcceb48e335948a83a898d46dc9842d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbcceb48e335948a83a898d46dc9842d">&#9670;&#160;</a></span>m_terrain_height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::terraindrag::TerrainDrag::m_terrain_height</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a197ea693bf6b5267d103edab6225e198" name="a197ea693bf6b5267d103edab6225e198"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a197ea693bf6b5267d103edab6225e198">&#9670;&#160;</a></span>m_terrain_is_waves</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::terraindrag::TerrainDrag::m_terrain_is_waves {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Terrain Drag for waves. </p>
+
+</div>
+</div>
+<a id="ad1f1a2ff85b7222ccdb85df60db077ed" name="ad1f1a2ff85b7222ccdb85df60db077ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1f1a2ff85b7222ccdb85df60db077ed">&#9670;&#160;</a></span>m_terrainz0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::terraindrag::TerrainDrag::m_terrainz0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Roughness fields. </p>
+
+</div>
+</div>
+<a id="a8d3c2046f87d861287ad3ae38f821d6f" name="a8d3c2046f87d861287ad3ae38f821d6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d3c2046f87d861287ad3ae38f821d6f">&#9670;&#160;</a></span>m_vertical_full</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::terraindrag::TerrainDrag::m_vertical_full {1e30_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a06b7f1977b91b7e02237b5049065f3dd" name="a06b7f1977b91b7e02237b5049065f3dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06b7f1977b91b7e02237b5049065f3dd">&#9670;&#160;</a></span>m_vertical_slope</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::terraindrag::TerrainDrag::m_vertical_slope {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af05932fb71edff1db362eb5b1a9def9d" name="af05932fb71edff1db362eb5b1a9def9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af05932fb71edff1db362eb5b1a9def9d">&#9670;&#160;</a></span>m_wave_negative_elevation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>* kynema_sgf::terraindrag::TerrainDrag::m_wave_negative_elevation {nullptr}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ee7b6d30a2f9a881116f0dec56b530a" name="a6ee7b6d30a2f9a881116f0dec56b530a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ee7b6d30a2f9a881116f0dec56b530a">&#9670;&#160;</a></span>m_wave_negative_elevation_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string kynema_sgf::terraindrag::TerrainDrag::m_wave_negative_elevation_name {&quot;ow_levelset&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a81ffff2ff12a5b49b02dc6df5c0bbee6" name="a81ffff2ff12a5b49b02dc6df5c0bbee6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81ffff2ff12a5b49b02dc6df5c0bbee6">&#9670;&#160;</a></span>m_wave_velocity_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string kynema_sgf::terraindrag::TerrainDrag::m_wave_velocity_name {&quot;ow_velocity&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af1af89eac9fb6772de352d493838df82" name="af1af89eac9fb6772de352d493838df82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1af89eac9fb6772de352d493838df82">&#9670;&#160;</a></span>m_wave_volume_fraction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>* kynema_sgf::terraindrag::TerrainDrag::m_wave_volume_fraction {nullptr}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aca413a8b13a341655879896b9aed15fb" name="aca413a8b13a341655879896b9aed15fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca413a8b13a341655879896b9aed15fb">&#9670;&#160;</a></span>m_wave_volume_fraction_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string kynema_sgf::terraindrag::TerrainDrag::m_wave_volume_fraction_name {&quot;ow_vof&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/<a class="el" href="_terrain_drag_8_h_source.html">TerrainDrag.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/<a class="el" href="_terrain_drag_8cpp.html">TerrainDrag.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

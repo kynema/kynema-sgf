@@ -1,0 +1,754 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::subvolume::RectangularSubvolume Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::subvolume::RectangularSubvolume Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1subvolume_1_1_rectangular_subvolume.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rectangularsubvolume-class-reference">
+<h1>RectangularSubvolume Class Reference<a class="headerlink" href="#rectangularsubvolume-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::subvolume::RectangularSubvolume Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1subvolume.html">subvolume</a></li><li class="navelem"><a href="classkynema__sgf_1_1subvolume_1_1_rectangular_subvolume.html">RectangularSubvolume</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classkynema__sgf_1_1subvolume_1_1_rectangular_subvolume-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::subvolume::RectangularSubvolume Class Reference<div class="ingroups"><a class="el" href="group__utilities.html">Utilities</a> &raquo; <a class="el" href="group__subvolume.html">Mesh data subvolume utilities</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_rectangular_subvolume_8_h_source.html">RectangularSubvolume.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::subvolume::RectangularSubvolume:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1subvolume_1_1_rectangular_subvolume__inherit__graph.svg" width="214" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::subvolume::RectangularSubvolume:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1subvolume_1_1_rectangular_subvolume__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:af0bc1c1bd105694d9b682a4c3021b568" id="r_af0bc1c1bd105694d9b682a4c3021b568"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0bc1c1bd105694d9b682a4c3021b568">RectangularSubvolume</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;)</td></tr>
+<tr class="memitem:aeceb532a17f2fa7912e218a2bd57b86e" id="r_aeceb532a17f2fa7912e218a2bd57b86e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeceb532a17f2fa7912e218a2bd57b86e">~RectangularSubvolume</a> () override</td></tr>
+<tr class="memitem:af3af8b7e8dfa67ee4a90d2d360d885c7" id="r_af3af8b7e8dfa67ee4a90d2d360d885c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3af8b7e8dfa67ee4a90d2d360d885c7">initialize</a> (const std::string &amp;key) override</td></tr>
+<tr class="memitem:a9e2bfe20974b46701d63e3e170821861" id="r_a9e2bfe20974b46701d63e3e170821861"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e2bfe20974b46701d63e3e170821861">evaluate_inputs</a> () override</td></tr>
+<tr class="memdesc:a9e2bfe20974b46701d63e3e170821861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if inputs have a valid correspondence in the mesh and save quantities for output steps.  <br /></td></tr>
+<tr class="memitem:a4fa7a18b72a5fe7f67ef9d30cdd9523f" id="r_a4fa7a18b72a5fe7f67ef9d30cdd9523f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fa7a18b72a5fe7f67ef9d30cdd9523f">label</a> () const override</td></tr>
+<tr class="memdesc:a4fa7a18b72a5fe7f67ef9d30cdd9523f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of this subvolume object.  <br /></td></tr>
+<tr class="memitem:a2f1f5ef28a1fdf06685a86d44769a7ba" id="r_a2f1f5ef28a1fdf06685a86d44769a7ba"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f1f5ef28a1fdf06685a86d44769a7ba">label</a> () override</td></tr>
+<tr class="memitem:a2a4dcc16a836fb6d86fe75ddb2a21751" id="r_a2a4dcc16a836fb6d86fe75ddb2a21751"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a4dcc16a836fb6d86fe75ddb2a21751">subvolumetype</a> () const override</td></tr>
+<tr class="memdesc:a2a4dcc16a836fb6d86fe75ddb2a21751"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of this subvolume object.  <br /></td></tr>
+<tr class="memitem:a7e914780863b5a901e1cc994926843e1" id="r_a7e914780863b5a901e1cc994926843e1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e914780863b5a901e1cc994926843e1">lev</a> () const override</td></tr>
+<tr class="memitem:a1e90ddfc4ee52e4710231fa18c06056e" id="r_a1e90ddfc4ee52e4710231fa18c06056e"><td class="memItemLeft" align="right" valign="top">amrex::BoxArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e90ddfc4ee52e4710231fa18c06056e">box_array</a> () const override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a3767cca2ec616cd599afbf70970eb613" id="r_a3767cca2ec616cd599afbf70970eb613"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3767cca2ec616cd599afbf70970eb613">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a08929a50774de2afd1b3dd16c91bc382" id="r_a08929a50774de2afd1b3dd16c91bc382"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08929a50774de2afd1b3dd16c91bc382">m_sim</a></td></tr>
+<tr class="memitem:ad9b48cccbfaab1d2d54c60b91f5658a7" id="r_ad9b48cccbfaab1d2d54c60b91f5658a7"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9b48cccbfaab1d2d54c60b91f5658a7">m_origin</a></td></tr>
+<tr class="memitem:a3bbe8b71181c05068101654fca220631" id="r_a3bbe8b71181c05068101654fca220631"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3bbe8b71181c05068101654fca220631">m_npts_vec</a></td></tr>
+<tr class="memitem:a322b4edcc14c4edfcaa85fb6f4a59d19" id="r_a322b4edcc14c4edfcaa85fb6f4a59d19"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a322b4edcc14c4edfcaa85fb6f4a59d19">m_dx_vec</a></td></tr>
+<tr class="memitem:a94dfef3321f125834475455cc4b7022e" id="r_a94dfef3321f125834475455cc4b7022e"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94dfef3321f125834475455cc4b7022e">m_chunk_size_vec</a></td></tr>
+<tr class="memitem:a177d9a2f0c683282c7f40b19cfd1fcde" id="r_a177d9a2f0c683282c7f40b19cfd1fcde"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a177d9a2f0c683282c7f40b19cfd1fcde">m_lev_for_sub</a> {0}</td></tr>
+<tr class="memitem:a55170860b2cdb04bb05c52f4db7824dc" id="r_a55170860b2cdb04bb05c52f4db7824dc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55170860b2cdb04bb05c52f4db7824dc">m_verbose</a> {0}</td></tr>
+<tr class="memitem:a8f66c1d7c2c0933ae0179bd80c0afda1" id="r_a8f66c1d7c2c0933ae0179bd80c0afda1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f66c1d7c2c0933ae0179bd80c0afda1">m_chunk_size_present</a></td></tr>
+<tr class="memitem:ab525db778294ed091b3c0bff631b3ad7" id="r_ab525db778294ed091b3c0bff631b3ad7"><td class="memItemLeft" align="right" valign="top">amrex::BoxArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab525db778294ed091b3c0bff631b3ad7">m_ba</a></td></tr>
+<tr class="memitem:a8e7af0b478321839ff50f92ec5782b67" id="r_a8e7af0b478321839ff50f92ec5782b67"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e7af0b478321839ff50f92ec5782b67">m_label</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Get subvolume defined by 3D rectangle</p>
+<p>Defines volume region with origin, number of points in each direction, and target mesh resolution in each direction. Also has an optional parameter regarding the data organization, which is the chunk size. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="af0bc1c1bd105694d9b682a4c3021b568" name="af0bc1c1bd105694d9b682a4c3021b568"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0bc1c1bd105694d9b682a4c3021b568">&#9670;&#160;</a></span>RectangularSubvolume()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::subvolume::RectangularSubvolume::RectangularSubvolume </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeceb532a17f2fa7912e218a2bd57b86e" name="aeceb532a17f2fa7912e218a2bd57b86e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeceb532a17f2fa7912e218a2bd57b86e">&#9670;&#160;</a></span>~RectangularSubvolume()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::subvolume::RectangularSubvolume::~RectangularSubvolume </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a1e90ddfc4ee52e4710231fa18c06056e" name="a1e90ddfc4ee52e4710231fa18c06056e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e90ddfc4ee52e4710231fa18c06056e">&#9670;&#160;</a></span>box_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::BoxArray kynema_sgf::subvolume::RectangularSubvolume::box_array </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9e2bfe20974b46701d63e3e170821861" name="a9e2bfe20974b46701d63e3e170821861"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e2bfe20974b46701d63e3e170821861">&#9670;&#160;</a></span>evaluate_inputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::subvolume::RectangularSubvolume::evaluate_inputs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if inputs have a valid correspondence in the mesh and save quantities for output steps. </p>
+
+</div>
+</div>
+<a id="a3767cca2ec616cd599afbf70970eb613" name="a3767cca2ec616cd599afbf70970eb613"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3767cca2ec616cd599afbf70970eb613">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::subvolume::RectangularSubvolume::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af3af8b7e8dfa67ee4a90d2d360d885c7" name="af3af8b7e8dfa67ee4a90d2d360d885c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3af8b7e8dfa67ee4a90d2d360d885c7">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::subvolume::RectangularSubvolume::initialize </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Read user inputs and initialize the subvolume object</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Prefix used to parse inputs from file </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4fa7a18b72a5fe7f67ef9d30cdd9523f" name="a4fa7a18b72a5fe7f67ef9d30cdd9523f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fa7a18b72a5fe7f67ef9d30cdd9523f">&#9670;&#160;</a></span>label() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::subvolume::RectangularSubvolume::label </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Name of this subvolume object. </p>
+
+</div>
+</div>
+<a id="a2f1f5ef28a1fdf06685a86d44769a7ba" name="a2f1f5ef28a1fdf06685a86d44769a7ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f1f5ef28a1fdf06685a86d44769a7ba">&#9670;&#160;</a></span>label() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string &amp; kynema_sgf::subvolume::RectangularSubvolume::label </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7e914780863b5a901e1cc994926843e1" name="a7e914780863b5a901e1cc994926843e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e914780863b5a901e1cc994926843e1">&#9670;&#160;</a></span>lev()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::subvolume::RectangularSubvolume::lev </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2a4dcc16a836fb6d86fe75ddb2a21751" name="a2a4dcc16a836fb6d86fe75ddb2a21751"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a4dcc16a836fb6d86fe75ddb2a21751">&#9670;&#160;</a></span>subvolumetype()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::subvolume::RectangularSubvolume::subvolumetype </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Type of this subvolume object. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="ab525db778294ed091b3c0bff631b3ad7" name="ab525db778294ed091b3c0bff631b3ad7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab525db778294ed091b3c0bff631b3ad7">&#9670;&#160;</a></span>m_ba</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::BoxArray kynema_sgf::subvolume::RectangularSubvolume::m_ba</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8f66c1d7c2c0933ae0179bd80c0afda1" name="a8f66c1d7c2c0933ae0179bd80c0afda1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f66c1d7c2c0933ae0179bd80c0afda1">&#9670;&#160;</a></span>m_chunk_size_present</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::subvolume::RectangularSubvolume::m_chunk_size_present</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a94dfef3321f125834475455cc4b7022e" name="a94dfef3321f125834475455cc4b7022e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94dfef3321f125834475455cc4b7022e">&#9670;&#160;</a></span>m_chunk_size_vec</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;int&gt; kynema_sgf::subvolume::RectangularSubvolume::m_chunk_size_vec</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a322b4edcc14c4edfcaa85fb6f4a59d19" name="a322b4edcc14c4edfcaa85fb6f4a59d19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a322b4edcc14c4edfcaa85fb6f4a59d19">&#9670;&#160;</a></span>m_dx_vec</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::subvolume::RectangularSubvolume::m_dx_vec</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8e7af0b478321839ff50f92ec5782b67" name="a8e7af0b478321839ff50f92ec5782b67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e7af0b478321839ff50f92ec5782b67">&#9670;&#160;</a></span>m_label</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::subvolume::RectangularSubvolume::m_label</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a177d9a2f0c683282c7f40b19cfd1fcde" name="a177d9a2f0c683282c7f40b19cfd1fcde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a177d9a2f0c683282c7f40b19cfd1fcde">&#9670;&#160;</a></span>m_lev_for_sub</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::subvolume::RectangularSubvolume::m_lev_for_sub {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3bbe8b71181c05068101654fca220631" name="a3bbe8b71181c05068101654fca220631"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bbe8b71181c05068101654fca220631">&#9670;&#160;</a></span>m_npts_vec</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;int&gt; kynema_sgf::subvolume::RectangularSubvolume::m_npts_vec</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9b48cccbfaab1d2d54c60b91f5658a7" name="ad9b48cccbfaab1d2d54c60b91f5658a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9b48cccbfaab1d2d54c60b91f5658a7">&#9670;&#160;</a></span>m_origin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::subvolume::RectangularSubvolume::m_origin</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a08929a50774de2afd1b3dd16c91bc382" name="a08929a50774de2afd1b3dd16c91bc382"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08929a50774de2afd1b3dd16c91bc382">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::subvolume::RectangularSubvolume::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a55170860b2cdb04bb05c52f4db7824dc" name="a55170860b2cdb04bb05c52f4db7824dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55170860b2cdb04bb05c52f4db7824dc">&#9670;&#160;</a></span>m_verbose</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::subvolume::RectangularSubvolume::m_verbose {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/subvolume/<a class="el" href="_rectangular_subvolume_8_h_source.html">RectangularSubvolume.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/subvolume/<a class="el" href="_rectangular_subvolume_8cpp.html">RectangularSubvolume.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

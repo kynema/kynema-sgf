@@ -1,0 +1,312 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/VolumeSampler.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/VolumeSampler.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_volume_sampler_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-utilities-sampling-volumesampler-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/VolumeSampler.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-utilities-sampling-volumesampler-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/VolumeSampler.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_d59b7dddc6cfeb8ed243c8310c362d19.html">utilities</a></li><li class="navelem"><a href="dir_1e7ebb5eca46c4b828056407c325055a.html">sampling</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">VolumeSampler.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_volume_sampler_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef VOLUMESAMPLER_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define VOLUMESAMPLER_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_sampler_base_8_h.html">src/utilities/sampling/SamplerBase.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1sampling.html">kynema_sgf::sampling</a> {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span></div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html">   16</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#aa8a153b6fd6715266eb47b1375025e82">VolumeSampler</a> : <span class="keyword">public</span> SamplerBase::Register&lt;VolumeSampler&gt;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a7875c95650a15c9fe83f3bc20a245191">   19</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a7875c95650a15c9fe83f3bc20a245191">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;VolumeSampler&quot;</span>; }</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#aa8a153b6fd6715266eb47b1375025e82">VolumeSampler</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <span class="comment">/*unused*/</span>);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#aea0d8cb11d7e10b46ba729694977600f">   23</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#aea0d8cb11d7e10b46ba729694977600f">~VolumeSampler</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#acc363f004755d734f1542802007da7dc">initialize</a>(<span class="keyword">const</span> std::string&amp; key) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a4cbd54bea7b45189a4b8e5bf2518c3b5">check_bounds</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a91f904b36e141ab5335340e7b7969647">sampling_locations</a>(<a class="code hl_struct" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a>&amp; <span class="comment">/*sample_locs**/</span>) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a91f904b36e141ab5335340e7b7969647">sampling_locations</a>(</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <a class="code hl_struct" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a>&amp; <span class="comment">/*sample_locs*/</span>,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keyword">const</span> amrex::Box&amp; <span class="comment">/*box*/</span>) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#af6579895e32ebcedc4fcf01d59a172a4">   43</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#af6579895e32ebcedc4fcf01d59a172a4">output_locations</a>(<a class="code hl_struct" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a>&amp; sample_locs)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a91f904b36e141ab5335340e7b7969647">sampling_locations</a>(sample_locs);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
+</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a62164e3ffc9d269435c51d07ef6d26a6">define_netcdf_metadata</a>(<span class="keyword">const</span> <a class="code hl_class" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a>&amp; <span class="comment">/*unused*/</span>) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#ae84cc3ed37a50cbcf137c3afd418ec56">populate_netcdf_metadata</a>(<span class="keyword">const</span> <a class="code hl_class" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a>&amp; <span class="comment">/*unused*/</span>) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a9dc3dafbd09da204328f0cee7479734a">   54</a></span>    [[nodiscard]] std::string <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a9dc3dafbd09da204328f0cee7479734a">label</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a3787ca7fc1df8487e792fce00ac8ff82">m_label</a>; }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a22c4a58fe908713090914460a53d1de7">   55</a></span>    std::string&amp; <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a22c4a58fe908713090914460a53d1de7">label</a>()<span class="keyword"> override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a3787ca7fc1df8487e792fce00ac8ff82">m_label</a>; }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span></div>
+<div class="foldopen" id="foldopen00058" data-start="{" data-end="}">
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#ab6de164398b7971eb25e7b55a7f2321a">   58</a></span>    [[nodiscard]] std::string <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#ab6de164398b7971eb25e7b55a7f2321a">sampletype</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a7875c95650a15c9fe83f3bc20a245191">identifier</a>();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    }</div>
+</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#ab9f40597e4d042b1309fa93467e981ee">   64</a></span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#ab9f40597e4d042b1309fa93467e981ee">id</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#aa3b732f2504cec22128ac7507864472a">m_id</a>; }</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a855abd814b2c3b8ededcad53ac01b5d9">   65</a></span>    <span class="keywordtype">int</span>&amp; <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a855abd814b2c3b8ededcad53ac01b5d9">id</a>()<span class="keyword"> override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#aa3b732f2504cec22128ac7507864472a">m_id</a>; }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a80daa91e0609d18246a1ead3b9a6052e">   68</a></span>    [[nodiscard]] <span class="keywordtype">long</span> <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a80daa91e0609d18246a1ead3b9a6052e">num_points</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#afaa85b5ed08db765b977a540c16bafac">m_npts</a>; }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#afd39cad6a254089163c9a3e4ae76e119">   71</a></span>    [[nodiscard]] <span class="keywordtype">long</span> <a class="code hl_function" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#afd39cad6a254089163c9a3e4ae76e119">num_output_points</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#afaa85b5ed08db765b977a540c16bafac">m_npts</a>; }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a6d2aafd1582e5ec296cf183f88440421">   74</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a6d2aafd1582e5ec296cf183f88440421">m_sim</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a31651e31cbc3ff0d7762f7d6198e1d56">   76</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a31651e31cbc3ff0d7762f7d6198e1d56">m_hi</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#ad50263295f2c41830a7835e4b6460eef">   77</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#ad50263295f2c41830a7835e4b6460eef">m_lo</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a5b1f86f3ebc22bfdbae8686feb6d0070">   78</a></span>    amrex::Vector&lt;int&gt; <a class="code hl_variable" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a5b1f86f3ebc22bfdbae8686feb6d0070">m_npts_dir</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a3787ca7fc1df8487e792fce00ac8ff82">   80</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a3787ca7fc1df8487e792fce00ac8ff82">m_label</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#aa3b732f2504cec22128ac7507864472a">   82</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#aa3b732f2504cec22128ac7507864472a">m_id</a>{-1};</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#afaa85b5ed08db765b977a540c16bafac">   83</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#afaa85b5ed08db765b977a540c16bafac">m_npts</a>{0};</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>};</div>
+</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>} <span class="comment">// namespace kynema_sgf::sampling</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="preprocessor">#endif </span><span class="comment">/* VOLUMESAMPLER_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_sampler_base_8_h_html"><div class="ttname"><a href="_sampler_base_8_h.html">SamplerBase.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_a22c4a58fe908713090914460a53d1de7"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a22c4a58fe908713090914460a53d1de7">kynema_sgf::sampling::VolumeSampler::label</a></div><div class="ttdeci">std::string &amp; label() override</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_a31651e31cbc3ff0d7762f7d6198e1d56"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a31651e31cbc3ff0d7762f7d6198e1d56">kynema_sgf::sampling::VolumeSampler::m_hi</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_hi</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:76</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_a3787ca7fc1df8487e792fce00ac8ff82"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a3787ca7fc1df8487e792fce00ac8ff82">kynema_sgf::sampling::VolumeSampler::m_label</a></div><div class="ttdeci">std::string m_label</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:80</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_a4cbd54bea7b45189a4b8e5bf2518c3b5"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a4cbd54bea7b45189a4b8e5bf2518c3b5">kynema_sgf::sampling::VolumeSampler::check_bounds</a></div><div class="ttdeci">void check_bounds() override</div><div class="ttdoc">Check and fix the bounds of the sampler so the probes are in the domain.</div><div class="ttdef"><b>Definition</b> VolumeSampler.cpp:37</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_a5b1f86f3ebc22bfdbae8686feb6d0070"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a5b1f86f3ebc22bfdbae8686feb6d0070">kynema_sgf::sampling::VolumeSampler::m_npts_dir</a></div><div class="ttdeci">amrex::Vector&lt; int &gt; m_npts_dir</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:78</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_a62164e3ffc9d269435c51d07ef6d26a6"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a62164e3ffc9d269435c51d07ef6d26a6">kynema_sgf::sampling::VolumeSampler::define_netcdf_metadata</a></div><div class="ttdeci">void define_netcdf_metadata(const ncutils::NCGroup &amp;) const override</div><div class="ttdef"><b>Definition</b> VolumeSampler.cpp:110</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_a6d2aafd1582e5ec296cf183f88440421"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a6d2aafd1582e5ec296cf183f88440421">kynema_sgf::sampling::VolumeSampler::m_sim</a></div><div class="ttdeci">const CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:74</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_a7875c95650a15c9fe83f3bc20a245191"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a7875c95650a15c9fe83f3bc20a245191">kynema_sgf::sampling::VolumeSampler::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:19</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_a80daa91e0609d18246a1ead3b9a6052e"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a80daa91e0609d18246a1ead3b9a6052e">kynema_sgf::sampling::VolumeSampler::num_points</a></div><div class="ttdeci">long num_points() const override</div><div class="ttdoc">Number of probe locations along the line.</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:68</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_a855abd814b2c3b8ededcad53ac01b5d9"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a855abd814b2c3b8ededcad53ac01b5d9">kynema_sgf::sampling::VolumeSampler::id</a></div><div class="ttdeci">int &amp; id() override</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:65</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_a91f904b36e141ab5335340e7b7969647"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a91f904b36e141ab5335340e7b7969647">kynema_sgf::sampling::VolumeSampler::sampling_locations</a></div><div class="ttdeci">void sampling_locations(SampleLocType &amp;) const override</div><div class="ttdoc">Populate and return a vector of probe locations to be sampled.</div><div class="ttdef"><b>Definition</b> VolumeSampler.cpp:69</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_a9dc3dafbd09da204328f0cee7479734a"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#a9dc3dafbd09da204328f0cee7479734a">kynema_sgf::sampling::VolumeSampler::label</a></div><div class="ttdeci">std::string label() const override</div><div class="ttdoc">Name of this sampling object.</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:54</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_aa3b732f2504cec22128ac7507864472a"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#aa3b732f2504cec22128ac7507864472a">kynema_sgf::sampling::VolumeSampler::m_id</a></div><div class="ttdeci">int m_id</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:82</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_aa8a153b6fd6715266eb47b1375025e82"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#aa8a153b6fd6715266eb47b1375025e82">kynema_sgf::sampling::VolumeSampler::VolumeSampler</a></div><div class="ttdeci">VolumeSampler(const CFDSim &amp;)</div><div class="ttdef"><b>Definition</b> VolumeSampler.cpp:10</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_ab6de164398b7971eb25e7b55a7f2321a"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#ab6de164398b7971eb25e7b55a7f2321a">kynema_sgf::sampling::VolumeSampler::sampletype</a></div><div class="ttdeci">std::string sampletype() const override</div><div class="ttdoc">Type of this sampling object.</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:58</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_ab9f40597e4d042b1309fa93467e981ee"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#ab9f40597e4d042b1309fa93467e981ee">kynema_sgf::sampling::VolumeSampler::id</a></div><div class="ttdeci">int id() const override</div><div class="ttdoc">Unique identifier for this set of probe locations.</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:64</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_acc363f004755d734f1542802007da7dc"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#acc363f004755d734f1542802007da7dc">kynema_sgf::sampling::VolumeSampler::initialize</a></div><div class="ttdeci">void initialize(const std::string &amp;key) override</div><div class="ttdef"><b>Definition</b> VolumeSampler.cpp:14</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_ad50263295f2c41830a7835e4b6460eef"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#ad50263295f2c41830a7835e4b6460eef">kynema_sgf::sampling::VolumeSampler::m_lo</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_lo</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:77</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_ae84cc3ed37a50cbcf137c3afd418ec56"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#ae84cc3ed37a50cbcf137c3afd418ec56">kynema_sgf::sampling::VolumeSampler::populate_netcdf_metadata</a></div><div class="ttdeci">void populate_netcdf_metadata(const ncutils::NCGroup &amp;) const override</div><div class="ttdef"><b>Definition</b> VolumeSampler.cpp:119</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_aea0d8cb11d7e10b46ba729694977600f"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#aea0d8cb11d7e10b46ba729694977600f">kynema_sgf::sampling::VolumeSampler::~VolumeSampler</a></div><div class="ttdeci">~VolumeSampler() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_af6579895e32ebcedc4fcf01d59a172a4"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#af6579895e32ebcedc4fcf01d59a172a4">kynema_sgf::sampling::VolumeSampler::output_locations</a></div><div class="ttdeci">void output_locations(SampleLocType &amp;sample_locs) const override</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:43</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_afaa85b5ed08db765b977a540c16bafac"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#afaa85b5ed08db765b977a540c16bafac">kynema_sgf::sampling::VolumeSampler::m_npts</a></div><div class="ttdeci">int m_npts</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:83</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1sampling_1_1_volume_sampler_html_afd39cad6a254089163c9a3e4ae76e119"><div class="ttname"><a href="classkynema__sgf_1_1sampling_1_1_volume_sampler.html#afd39cad6a254089163c9a3e4ae76e119">kynema_sgf::sampling::VolumeSampler::num_output_points</a></div><div class="ttdeci">long num_output_points() const override</div><div class="ttdoc">Number of output probe locations (after data reduction etc.)</div><div class="ttdef"><b>Definition</b> VolumeSampler.H:71</div></div>
+<div class="ttc" id="aclassncutils_1_1_n_c_group_html"><div class="ttname"><a href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a></div><div class="ttdoc">Representation of a NetCDF group.</div><div class="ttdef"><b>Definition</b> nc_interface.H:162</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_html"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling.html">kynema_sgf::sampling</a></div><div class="ttdef"><b>Definition</b> DTUSpinnerSampler.cpp:19</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1sampling_1_1_sample_loc_type_html"><div class="ttname"><a href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">kynema_sgf::sampling::SampleLocType</a></div><div class="ttdef"><b>Definition</b> SamplerBase.H:19</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

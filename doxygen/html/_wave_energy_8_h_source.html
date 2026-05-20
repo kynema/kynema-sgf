@@ -1,0 +1,314 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/WaveEnergy.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/WaveEnergy.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_wave_energy_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-utilities-sampling-waveenergy-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/WaveEnergy.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-utilities-sampling-waveenergy-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/WaveEnergy.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_d59b7dddc6cfeb8ed243c8310c362d19.html">utilities</a></li><li class="navelem"><a href="dir_1e7ebb5eca46c4b828056407c325055a.html">sampling</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">WaveEnergy.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_wave_energy_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef WAVEENERGY_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define WAVEENERGY_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_post_processing_8_h.html">src/utilities/PostProcessing.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1wave__energy.html">kynema_sgf::wave_energy</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span></div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html">   32</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a02330b02bd294177948b186a75f3eae5">WaveEnergy</a> : <span class="keyword">public</span> PostProcessBase::Register&lt;WaveEnergy&gt;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#ade51c05e7910d6df11f672585a0d4b7f">   35</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#ade51c05e7910d6df11f672585a0d4b7f">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;WaveEnergy&quot;</span>; }</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_function" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a02330b02bd294177948b186a75f3eae5">WaveEnergy</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <span class="comment">/*sim*/</span>, std::string <span class="comment">/*label*/</span>);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a4893f48a9d2f1dcecbfc73857dd26785">   39</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a4893f48a9d2f1dcecbfc73857dd26785">~WaveEnergy</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#ade63e9a152862c7bcb9a59bf14974c12">   42</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#ade63e9a152862c7bcb9a59bf14974c12">pre_init_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#ad41151088e9201e68822597c851e8797">initialize</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#abee292d111eea9ee9805f69d4b9e9977">   47</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#abee292d111eea9ee9805f69d4b9e9977">post_advance_work</a>()<span class="keyword"> override </span>{};</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a47310a2f8b6060385e2a6aebf12fb2eb">output_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#af9dcf916e8e5f77db0408d9c92560378">   52</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#af9dcf916e8e5f77db0408d9c92560378">post_regrid_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#ae9edcf25eb135b9961f09f56946debcd">calculate_kinetic_energy</a>();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a7265696edc9f731e093839c33566ca71">calculate_potential_energy</a>();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span></div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a95ba728c7c1b6b7cb27c4fe0112ce464">   59</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a95ba728c7c1b6b7cb27c4fe0112ce464">wave_energy</a>(amrex::Real&amp; ke, amrex::Real&amp; pe)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        ke = <a class="code hl_variable" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a3c15a1469d82dc702d03e04a7238ce45">m_wave_kinetic_energy</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        pe = <a class="code hl_variable" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a6087da866d6436670059d550e8dabad4">m_wave_potential_energy</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    };</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a9b5d24c75de47ca161806b6bdfcc562f">prepare_ascii_file</a>();</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#aecfd5a00e00f2c936ac51610106f4810">write_ascii</a>();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a3c15a1469d82dc702d03e04a7238ce45">   73</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a3c15a1469d82dc702d03e04a7238ce45">m_wave_kinetic_energy</a>{0.0_rt};</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a6087da866d6436670059d550e8dabad4">   74</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a6087da866d6436670059d550e8dabad4">m_wave_potential_energy</a>{0.0_rt};</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#aa480e5cab999811d8126f5b2c9c43890">   77</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#aa480e5cab999811d8126f5b2c9c43890">m_sim</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#ae060fddc0fd39fcc0714f9c101280aeb">   84</a></span>    <span class="keyword">const</span> std::string <a class="code hl_variable" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#ae060fddc0fd39fcc0714f9c101280aeb">m_label</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a05ee878d7129e80ae52ed00fc858e3db">   87</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a05ee878d7129e80ae52ed00fc858e3db">m_velocity</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a3a0224b48896712067ca5a630f3c5bee">   89</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a3a0224b48896712067ca5a630f3c5bee">m_vof</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a251c2fa8577b14f56fbfdae9bd804add">   92</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a251c2fa8577b14f56fbfdae9bd804add">m_gravity</a>{0.0_rt, 0.0_rt, -9.81_rt};</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a33ac93336d0c897aa581167c07e75409">   95</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a33ac93336d0c897aa581167c07e75409">m_pe_off</a> = 0.0_rt;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a3b79493021a066b8a114a83c07b4e7f6">   97</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a3b79493021a066b8a114a83c07b4e7f6">m_escl</a> = 1.0_rt;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a11aa716283ad5dfe09c122bde718b14b">  100</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a11aa716283ad5dfe09c122bde718b14b">m_out_fname</a>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a9a4ef95d2bcf672bfb8dfb11f2e497a0">  103</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a9a4ef95d2bcf672bfb8dfb11f2e497a0">m_width</a>{22};</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a229b3a5eba48f8691d09a35b25a9a6ee">  106</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a229b3a5eba48f8691d09a35b25a9a6ee">m_precision</a>{12};</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>};</div>
+</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>} <span class="comment">// namespace kynema_sgf::wave_energy</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#endif </span><span class="comment">/* WAVEENERGY_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_post_processing_8_h_html"><div class="ttname"><a href="_post_processing_8_h.html">PostProcessing.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a02330b02bd294177948b186a75f3eae5"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a02330b02bd294177948b186a75f3eae5">kynema_sgf::wave_energy::WaveEnergy::WaveEnergy</a></div><div class="ttdeci">WaveEnergy(CFDSim &amp;, std::string)</div><div class="ttdef"><b>Definition</b> WaveEnergy.cpp:15</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a05ee878d7129e80ae52ed00fc858e3db"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a05ee878d7129e80ae52ed00fc858e3db">kynema_sgf::wave_energy::WaveEnergy::m_velocity</a></div><div class="ttdeci">const Field &amp; m_velocity</div><div class="ttdoc">reference to velocity</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:87</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a11aa716283ad5dfe09c122bde718b14b"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a11aa716283ad5dfe09c122bde718b14b">kynema_sgf::wave_energy::WaveEnergy::m_out_fname</a></div><div class="ttdeci">std::string m_out_fname</div><div class="ttdoc">filename for ASCII output</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:100</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a229b3a5eba48f8691d09a35b25a9a6ee"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a229b3a5eba48f8691d09a35b25a9a6ee">kynema_sgf::wave_energy::WaveEnergy::m_precision</a></div><div class="ttdeci">int m_precision</div><div class="ttdoc">precision in ASCII output</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:106</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a251c2fa8577b14f56fbfdae9bd804add"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a251c2fa8577b14f56fbfdae9bd804add">kynema_sgf::wave_energy::WaveEnergy::m_gravity</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_gravity</div><div class="ttdoc">gravity vector</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:92</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a33ac93336d0c897aa581167c07e75409"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a33ac93336d0c897aa581167c07e75409">kynema_sgf::wave_energy::WaveEnergy::m_pe_off</a></div><div class="ttdeci">amrex::Real m_pe_off</div><div class="ttdoc">offset for potential energy calculation</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:95</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a3a0224b48896712067ca5a630f3c5bee"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a3a0224b48896712067ca5a630f3c5bee">kynema_sgf::wave_energy::WaveEnergy::m_vof</a></div><div class="ttdeci">const Field &amp; m_vof</div><div class="ttdoc">reference to vof</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:89</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a3b79493021a066b8a114a83c07b4e7f6"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a3b79493021a066b8a114a83c07b4e7f6">kynema_sgf::wave_energy::WaveEnergy::m_escl</a></div><div class="ttdeci">amrex::Real m_escl</div><div class="ttdoc">volumetric scaling for each energy</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:97</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a3c15a1469d82dc702d03e04a7238ce45"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a3c15a1469d82dc702d03e04a7238ce45">kynema_sgf::wave_energy::WaveEnergy::m_wave_kinetic_energy</a></div><div class="ttdeci">amrex::Real m_wave_kinetic_energy</div><div class="ttdoc">store the total wave energy</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:73</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a47310a2f8b6060385e2a6aebf12fb2eb"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a47310a2f8b6060385e2a6aebf12fb2eb">kynema_sgf::wave_energy::WaveEnergy::output_actions</a></div><div class="ttdeci">void output_actions() override</div><div class="ttdoc">Integrate energy components and output to file.</div><div class="ttdef"><b>Definition</b> WaveEnergy.cpp:167</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a4893f48a9d2f1dcecbfc73857dd26785"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a4893f48a9d2f1dcecbfc73857dd26785">kynema_sgf::wave_energy::WaveEnergy::~WaveEnergy</a></div><div class="ttdeci">~WaveEnergy() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a6087da866d6436670059d550e8dabad4"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a6087da866d6436670059d550e8dabad4">kynema_sgf::wave_energy::WaveEnergy::m_wave_potential_energy</a></div><div class="ttdeci">amrex::Real m_wave_potential_energy</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:74</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a7265696edc9f731e093839c33566ca71"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a7265696edc9f731e093839c33566ca71">kynema_sgf::wave_energy::WaveEnergy::calculate_potential_energy</a></div><div class="ttdeci">amrex::Real calculate_potential_energy()</div><div class="ttdef"><b>Definition</b> WaveEnergy.cpp:105</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a95ba728c7c1b6b7cb27c4fe0112ce464"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a95ba728c7c1b6b7cb27c4fe0112ce464">kynema_sgf::wave_energy::WaveEnergy::wave_energy</a></div><div class="ttdeci">void wave_energy(amrex::Real &amp;ke, amrex::Real &amp;pe) const</div><div class="ttdoc">Output private variables that store energy measurements.</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:59</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a9a4ef95d2bcf672bfb8dfb11f2e497a0"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a9a4ef95d2bcf672bfb8dfb11f2e497a0">kynema_sgf::wave_energy::WaveEnergy::m_width</a></div><div class="ttdeci">int m_width</div><div class="ttdoc">width in ASCII output</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:103</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_a9b5d24c75de47ca161806b6bdfcc562f"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#a9b5d24c75de47ca161806b6bdfcc562f">kynema_sgf::wave_energy::WaveEnergy::prepare_ascii_file</a></div><div class="ttdeci">virtual void prepare_ascii_file()</div><div class="ttdoc">prepare ASCII file and directory</div><div class="ttdef"><b>Definition</b> WaveEnergy.cpp:178</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_aa480e5cab999811d8126f5b2c9c43890"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#aa480e5cab999811d8126f5b2c9c43890">kynema_sgf::wave_energy::WaveEnergy::m_sim</a></div><div class="ttdeci">CFDSim &amp; m_sim</div><div class="ttdoc">Reference to the CFD sim.</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:77</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_abee292d111eea9ee9805f69d4b9e9977"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#abee292d111eea9ee9805f69d4b9e9977">kynema_sgf::wave_energy::WaveEnergy::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:47</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_ad41151088e9201e68822597c851e8797"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#ad41151088e9201e68822597c851e8797">kynema_sgf::wave_energy::WaveEnergy::initialize</a></div><div class="ttdeci">void initialize() override</div><div class="ttdoc">Read user inputs and get information needed for calculations.</div><div class="ttdef"><b>Definition</b> WaveEnergy.cpp:24</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_ade51c05e7910d6df11f672585a0d4b7f"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#ade51c05e7910d6df11f672585a0d4b7f">kynema_sgf::wave_energy::WaveEnergy::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:35</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_ade63e9a152862c7bcb9a59bf14974c12"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#ade63e9a152862c7bcb9a59bf14974c12">kynema_sgf::wave_energy::WaveEnergy::pre_init_actions</a></div><div class="ttdeci">void pre_init_actions() override</div><div class="ttdoc">Perform actions before mesh is created.</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:42</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_ae060fddc0fd39fcc0714f9c101280aeb"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#ae060fddc0fd39fcc0714f9c101280aeb">kynema_sgf::wave_energy::WaveEnergy::m_label</a></div><div class="ttdeci">const std::string m_label</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:84</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_ae9edcf25eb135b9961f09f56946debcd"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#ae9edcf25eb135b9961f09f56946debcd">kynema_sgf::wave_energy::WaveEnergy::calculate_kinetic_energy</a></div><div class="ttdeci">amrex::Real calculate_kinetic_energy()</div><div class="ttdoc">Calculate the sum of stated energy in liquid phase.</div><div class="ttdef"><b>Definition</b> WaveEnergy.cpp:50</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_aecfd5a00e00f2c936ac51610106f4810"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#aecfd5a00e00f2c936ac51610106f4810">kynema_sgf::wave_energy::WaveEnergy::write_ascii</a></div><div class="ttdeci">virtual void write_ascii()</div><div class="ttdoc">Output sampled data in ASCII format.</div><div class="ttdef"><b>Definition</b> WaveEnergy.cpp:195</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1wave__energy_1_1_wave_energy_html_af9dcf916e8e5f77db0408d9c92560378"><div class="ttname"><a href="classkynema__sgf_1_1wave__energy_1_1_wave_energy.html#af9dcf916e8e5f77db0408d9c92560378">kynema_sgf::wave_energy::WaveEnergy::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdef"><b>Definition</b> WaveEnergy.H:52</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1wave__energy_html"><div class="ttname"><a href="namespacekynema__sgf_1_1wave__energy.html">kynema_sgf::wave_energy</a></div><div class="ttdef"><b>Definition</b> WaveEnergy.cpp:13</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

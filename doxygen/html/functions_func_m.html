@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: Class Members - Functions &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Class Members - Functions" href="functions_func_n.html" />
+    <link rel="prev" title="Class Members - Functions" href="functions_func_l.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../developer/documentation.html">Documentation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Kynema-SGF API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="pages.html">Related Pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="topics.html">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="namespaces_namespaces.html">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="annotated_classes.html">Classes</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="annotated.html">Class List</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classes.html">Class Index</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inherits.html">Class Hierarchy</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="functions_class_members.html">Class Members</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="files_files.html">Files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer/unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer/regression_testing.html">Regression testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer/verification.html">Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer/coding_guidelines.html">Coding Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../developer/index.html">Developer Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Kynema-SGF API</a></li>
+          <li class="breadcrumb-item"><a href="annotated_classes.html">Classes</a></li>
+          <li class="breadcrumb-item"><a href="functions_class_members.html">Class Members</a></li>
+          <li class="breadcrumb-item"><a href="functions_func_functions.html">Functions</a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: Class Members - Functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/functions_func_m.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-members-functions">
+<h1>Class Members - Functions<a class="headerlink" href="#class-members-functions" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: Class Members - Functions</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="contents">
+<div class="textblock">Here is a list of all functions with links to the classes they belong to:</div>
+
+<h3 class="doxsection"><a id="index_m" name="index_m"></a>- m -</h3><ul>
+<li>mac_proj_to_uniform_space()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1pde_1_1_mac_proj_op.html#ab377c8127a7fb072258db46f8a224873">kynema_sgf::pde::MacProjOp</a></li>
+<li>MacProjOp()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1pde_1_1_mac_proj_op.html#a00b85f2ab22bccb5d639cc1566619f0f">kynema_sgf::pde::MacProjOp</a></li>
+<li>make_new_level_from_coarse()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_field_repo.html#a004d34db1d59407ed51ca03765d4c099">kynema_sgf::FieldRepo</a></li>
+<li>make_new_level_from_scratch()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_field_repo.html#a6f7a1974c08a4eea498e2357011c2296">kynema_sgf::FieldRepo</a></li>
+<li>MakeNewLevelFromCoarse()&#160;:&#160;<a class="el" href="classincflo.html#abbd6fb2d02c3769dac7be0e06bcda60f">incflo</a></li>
+<li>MakeNewLevelFromScratch()&#160;:&#160;<a class="el" href="classincflo.html#a8bb5c3f6e62d62a687c57cf8fc7641f9">incflo</a></li>
+<li>MassInflowOutflowBC()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_mass_inflow_outflow_b_c.html#a8efdcaa7d048d9564e653e90235d732f">kynema_sgf::MassInflowOutflowBC</a></li>
+<li>max()&#160;:&#160;<a class="el" href="structkynema__sgf_1_1vs_1_1_d_traits_3_01double_01_4.html#a464305daf4e34d05ecef7812795d6287">kynema_sgf::vs::DTraits&lt; double &gt;</a>, <a class="el" href="structkynema__sgf_1_1vs_1_1_d_traits_3_01float_01_4.html#ae5a3875f8780dda677ade160b54c1534">kynema_sgf::vs::DTraits&lt; float &gt;</a>, <a class="el" href="structkynema__sgf_1_1vs_1_1_d_traits_3_01int_01_4.html#a1e58ae4e9aa492c8231008cfa8b12a16">kynema_sgf::vs::DTraits&lt; int &gt;</a></li>
+<li>max_cfl()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_sim_time.html#a8a400b6b6fd880137722a25cda270343">kynema_sgf::SimTime</a></li>
+<li>mbc()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_boundary_plane.html#a1a0b665b1c3497b23d67316840c48099">kynema_sgf::BoundaryPlane</a>, <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html#adcc000d906ca1884e74da48aa29deba4">kynema_sgf::CFDSim</a></li>
+<li>mean_temperature_heights()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1pde_1_1temperature_1_1_a_b_l_meso_forcing_temp.html#a5ae472f3903bca089d899785427b0941">kynema_sgf::pde::temperature::ABLMesoForcingTemp</a></li>
+<li>mean_temperature_init()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_mean_boussinesq.html#a2c402b18c4bcd4a31206179f5f21f7ef">kynema_sgf::pde::icns::ABLMeanBoussinesq</a>, <a class="el" href="classkynema__sgf_1_1pde_1_1temperature_1_1_a_b_l_meso_forcing_temp.html#a70bec8cdfeddbed6a7da8c292a968fca">kynema_sgf::pde::temperature::ABLMesoForcingTemp</a></li>
+<li>mean_temperature_update()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_mean_boussinesq.html#aff45e6e786d54b96c99155cab4d7d742">kynema_sgf::pde::icns::ABLMeanBoussinesq</a></li>
+<li>mean_velocity_heights()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a9e55f9f620fb65191f7470e51792ae8f">kynema_sgf::pde::icns::ABLMesoForcingMom</a></li>
+<li>mean_velocity_init()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a9d83c65aa40f722d711131164ef8264e">kynema_sgf::pde::icns::ABLMesoForcingMom</a>, <a class="el" href="classkynema__sgf_1_1pde_1_1icns_1_1_hurricane_forcing.html#aa904a6d770ef2df3c3adfbcbb2a9e52b">kynema_sgf::pde::icns::HurricaneForcing</a>, <a class="el" href="classkynema__sgf_1_1pde_1_1temperature_1_1_hurricane_temp_forcing.html#a228f1432dd4eb79ef4e8863085349dd4">kynema_sgf::pde::temperature::HurricaneTempForcing</a></li>
+<li>mean_velocity_update()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1pde_1_1icns_1_1_hurricane_forcing.html#a2f849ce4bd129c7d6a9998a942af0e79">kynema_sgf::pde::icns::HurricaneForcing</a>, <a class="el" href="classkynema__sgf_1_1pde_1_1temperature_1_1_hurricane_temp_forcing.html#a212f703916ead29021b5228e4be710a8">kynema_sgf::pde::temperature::HurricaneTempForcing</a></li>
+<li>MeanProfile()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a5d59c2df15540bd1bc66c49b94eeebae">kynema_sgf::synth_turb::MeanProfile</a></li>
+<li>mesh()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html#a801b3a355a380b309235a1f725b2a2ef">kynema_sgf::CFDSim</a>, <a class="el" href="classkynema__sgf_1_1_field_repo.html#aa366161f1ffc7e83813d70efe78916c5">kynema_sgf::FieldRepo</a></li>
+<li>mesh_mapping()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html#aa8c5535beb5c807f715efa0f412a919f">kynema_sgf::CFDSim</a></li>
+<li>meso_heights()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_a_b_l_mesoscale_input.html#abb21873b769081f0fd621cec4d5372ea">kynema_sgf::ABLMesoscaleInput</a></li>
+<li>meso_temp()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_a_b_l_mesoscale_input.html#a1cb5b8623d7d451e6afaf89f40865512">kynema_sgf::ABLMesoscaleInput</a></li>
+<li>meso_tflux()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_a_b_l_mesoscale_input.html#a9abe4b1a171cffadf93b992c3aff69f7">kynema_sgf::ABLMesoscaleInput</a></li>
+<li>meso_times()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_a_b_l_mesoscale_input.html#a0f2ac200519892d4bc99d9499e827eae">kynema_sgf::ABLMesoscaleInput</a></li>
+<li>meso_transition_height()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_a_b_l_mesoscale_input.html#a13a17f27f162631cb04bc9c85a4c5c98">kynema_sgf::ABLMesoscaleInput</a></li>
+<li>meso_u()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_a_b_l_mesoscale_input.html#ab35456a345e35abdca1235ce5cc35b01">kynema_sgf::ABLMesoscaleInput</a></li>
+<li>meso_v()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_a_b_l_mesoscale_input.html#a695521695ab01fc8b4f9669fc9617ee9">kynema_sgf::ABLMesoscaleInput</a></li>
+<li>meta()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html#a7db25eb9e70b4ab6bcb1a921bd1508ac">kynema_sgf::actuator::ActDataHolder&lt; ActTrait &gt;</a>, <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html#a07568de4451b95c3868abd11e2d3db53">kynema_sgf::actuator::ActModel&lt; ActTrait, SrcTrait &gt;</a>, <a class="el" href="classkynema__sgf_1_1ib_1_1_i_b_data_holder.html#a8f9f6f499020deb0999fd7d64d2b103e">kynema_sgf::ib::IBDataHolder&lt; IBTrait &gt;</a>, <a class="el" href="classkynema__sgf_1_1ocean__waves_1_1_ocean_waves_data_holder.html#a96a6eccb5a0655e46f77428f3090cca6">kynema_sgf::ocean_waves::OceanWavesDataHolder&lt; OceanWavesTrait &gt;</a></li>
+<li>MetMastForcing()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1pde_1_1icns_1_1_met_mast_forcing.html#a7e24df50cf02cbf6a5c6c3f0c7737000">kynema_sgf::pde::icns::MetMastForcing</a></li>
+<li>min()&#160;:&#160;<a class="el" href="structkynema__sgf_1_1vs_1_1_d_traits_3_01double_01_4.html#a7ef1a6e3b7af01d05fcd9e165a7c8171">kynema_sgf::vs::DTraits&lt; double &gt;</a>, <a class="el" href="structkynema__sgf_1_1vs_1_1_d_traits_3_01float_01_4.html#adab27d1736e115bea1457a04c9a670dd">kynema_sgf::vs::DTraits&lt; float &gt;</a>, <a class="el" href="structkynema__sgf_1_1vs_1_1_d_traits_3_01int_01_4.html#a6b9ee0db3260ffb97fd3330cccb88b08">kynema_sgf::vs::DTraits&lt; int &gt;</a></li>
+<li>MLMGOptions()&#160;:&#160;<a class="el" href="structkynema__sgf_1_1_m_l_m_g_options.html#a634b7dc1c5fdc820cf47e59bd35b44f5">kynema_sgf::MLMGOptions</a></li>
+<li>MMS()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1mms_1_1_m_m_s.html#ac938327b86bb1e93cd360c0d60e8ceed">kynema_sgf::mms::MMS</a></li>
+<li>MMSForcing()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1pde_1_1icns_1_1mms_1_1_m_m_s_forcing.html#adcc69b0d6fc4e63b5c91234eb7e6cc6d">kynema_sgf::pde::icns::mms::MMSForcing</a></li>
+<li>mo()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_a_b_l_wall_function.html#a6b3c19899549f142c3afb34ba7403c6d">kynema_sgf::ABLWallFunction</a></li>
+<li>mode()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_boundary_plane.html#aebcbd3d0e679a62c6fe6938d0ec3e214">kynema_sgf::BoundaryPlane</a></li>
+<li>model_coeffs()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1turbulence_1_1_a_m_d.html#a36c846e9f6a79c27e0744761e813bd56">kynema_sgf::turbulence::AMD&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_a_m_d_no_therm.html#a536d8d894d0bc8fab8ade48e602f8073">kynema_sgf::turbulence::AMDNoTherm&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_l_axell.html#a8f91b13367ff3c0fee818ec07f7daf7a">kynema_sgf::turbulence::KLAxell&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#aa69b99a8cbd6b4e1ed0f73a40bf45971">kynema_sgf::turbulence::KOmegaSST&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html#a936f8f49230fee67062042beda53a4d7">kynema_sgf::turbulence::KOmegaSSTIDDES&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_kosovic.html#a32a5c81b5a8bd239cae72f8826f931f9">kynema_sgf::turbulence::Kosovic&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html#a154c109a07ffeca2e0bb781c8f7c726e">kynema_sgf::turbulence::Laminar&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_one_eq_ksgs_m84.html#a15abb325d56bb7736e89a006282489cf">kynema_sgf::turbulence::OneEqKsgsM84&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_one_eq_ksgs_s94.html#a167b05dc082bb9d866ca010e15f95e66">kynema_sgf::turbulence::OneEqKsgsS94&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_smagorinsky.html#a2efb7e0dc694255b333b2985ce3447b1">kynema_sgf::turbulence::Smagorinsky&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#ad37b21344df328aea2493c827b06b4a7">kynema_sgf::turbulence::TurbulenceModel</a></li>
+<li>model_name()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1turbulence_1_1_a_m_d.html#aa2e473e7c8931e761fed0ff6fc1fbb63">kynema_sgf::turbulence::AMD&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_a_m_d_no_therm.html#a888af609bdd10abc78d975d3fb24dc91">kynema_sgf::turbulence::AMDNoTherm&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_l_axell.html#add501ef4f13bab52cae85a9919867b53">kynema_sgf::turbulence::KLAxell&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t.html#a8151af8aff04dd6bc2690868cb9e8fd4">kynema_sgf::turbulence::KOmegaSST&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_k_omega_s_s_t_i_d_d_e_s.html#ab9f545af14e78d6cadeabeb4e144d365">kynema_sgf::turbulence::KOmegaSSTIDDES&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_kosovic.html#a1652ff509cd71ea6143cf75a8f823525">kynema_sgf::turbulence::Kosovic&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html#a7980844fe41776cc594e7a073a50599d">kynema_sgf::turbulence::Laminar&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_one_eq_ksgs_m84.html#a31eb89cb7f2ec7e189ea49e6d6b3ba44">kynema_sgf::turbulence::OneEqKsgsM84&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_one_eq_ksgs_s94.html#aeba8d662c9853c67708dee889efc6e38">kynema_sgf::turbulence::OneEqKsgsS94&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_smagorinsky.html#a9d64e70008ce3fea18a7cefb61bc3d93">kynema_sgf::turbulence::Smagorinsky&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a2f09dc0e20f6c0db72c3fbfdd64b3369">kynema_sgf::turbulence::TurbulenceModel</a></li>
+<li>modify_sample_data()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1sampling_1_1_radar_sampler.html#a07b6adf99c94602f3b301f0b9d624a98">kynema_sgf::sampling::RadarSampler</a>, <a class="el" href="classkynema__sgf_1_1sampling_1_1_sampler_base.html#a92bf4571bfca427db32e3865393013c6">kynema_sgf::sampling::SamplerBase</a></li>
+<li>ModulatedPowerLaw()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_modulated_power_law.html#a47da81c2e52098e1b47843b3cf6167aa">kynema_sgf::ModulatedPowerLaw</a></li>
+<li>mom_u_error()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#a901c914694adf35d018801849ddf3abc">kynema_sgf::pde::icns::ABLMesoForcingMom</a></li>
+<li>mom_v_error()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1pde_1_1icns_1_1_a_b_l_meso_forcing_mom.html#af4eef555969a91fdda54181233e6d90b">kynema_sgf::pde::icns::ABLMesoForcingMom</a></li>
+<li>momentum_sum()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_multi_phase.html#a3c2d54725cf9d96d7d8e5efb3ed239e2">kynema_sgf::MultiPhase</a></li>
+<li>mosd()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_wall_function.html#ab5fe5dd4678c7b451597f4ff7698cc34">kynema_sgf::WallFunction</a></li>
+<li>mu()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1transport_1_1_const_transport.html#a6d100014ee074f6a87402c007848152e">kynema_sgf::transport::ConstTransport</a>, <a class="el" href="classkynema__sgf_1_1transport_1_1_transport_model.html#a38870985d07079f9bb709423418984c2">kynema_sgf::transport::TransportModel</a>, <a class="el" href="classkynema__sgf_1_1transport_1_1_two_phase_transport.html#a510c8ec4adc54073232e2f8e430816fa">kynema_sgf::transport::TwoPhaseTransport</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#af27bbc39eb4fa74a68a8a6dac9439e0b">kynema_sgf::turbulence::TurbModel&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#ac18eff5086fb8ec4a47cbc2239800ce4">kynema_sgf::turbulence::TurbulenceModel</a></li>
+<li>mu_turb()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1turbulence_1_1_laminar.html#a37365abe74cf97f71a7bc3edfb2957d6">kynema_sgf::turbulence::Laminar&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model_base.html#ad02c83691fcca4f632a45c9f67812cc0">kynema_sgf::turbulence::TurbModelBase&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#ad514762c7ac32293f6966e09e9dd1cdd">kynema_sgf::turbulence::TurbulenceModel</a></li>
+<li>mueff()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1turbulence_1_1_turb_model.html#a9aed9da5e7286b0256a51148f3d4f954">kynema_sgf::turbulence::TurbModel&lt; Transport &gt;</a>, <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html#a516ab240b2fc1388d31069a798af5a28">kynema_sgf::turbulence::TurbulenceModel</a></li>
+<li>MultiLevelVector()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_multi_level_vector.html#a3246ef0435e6c3c0673b5068981d1a37">kynema_sgf::MultiLevelVector</a></li>
+<li>MultiParser()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1utils_1_1_multi_parser.html#a772099e04cd668a3f5e029bdf4ddb65d">kynema_sgf::utils::MultiParser</a></li>
+<li>MultiPhase()&#160;:&#160;<a class="el" href="classkynema__sgf_1_1_multi_phase.html#aa78fd6dd06831fbf530d183895ec7a33">kynema_sgf::MultiPhase</a></li>
+<li>multiply_rho()&#160;:&#160;<a class="el" href="structkynema__sgf_1_1pde_1_1_src_term_op_base.html#afef743fd5549bf5d8200ea2aaaba5115">kynema_sgf::pde::SrcTermOpBase&lt; PDE &gt;</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="functions_func_l.html" class="btn btn-neutral float-left" title="Class Members - Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="functions_func_n.html" class="btn btn-neutral float-right" title="Class Members - Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

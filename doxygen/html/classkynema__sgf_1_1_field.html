@@ -1,0 +1,2220 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::Field Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::Field Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_field.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="field-class-reference">
+<h1>Field Class Reference<a class="headerlink" href="#field-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::Field Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_field.html">Field</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classkynema__sgf_1_1_field-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::Field Class Reference<div class="ingroups"><a class="el" href="group__core.html">Kynema-SGF core</a> &raquo; <a class="el" href="group__fields.html">Field management</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_field_8_h_source.html">Field.H</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::Field:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_field__coll__graph.svg" width="100%" height="560"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a543d5e904cbd752bcec5db07c23860b3" id="r_a543d5e904cbd752bcec5db07c23860b3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a543d5e904cbd752bcec5db07c23860b3">Field</a> (const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;)=delete</td></tr>
+<tr class="memitem:a604b2a3ed49a4972dd66532ea57f9d08" id="r_a604b2a3ed49a4972dd66532ea57f9d08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a604b2a3ed49a4972dd66532ea57f9d08">operator=</a> (const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;)=delete</td></tr>
+<tr class="memitem:aaa324902037ce43db01f88f3cac735ab" id="r_aaa324902037ce43db01f88f3cac735ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa324902037ce43db01f88f3cac735ab">~Field</a> ()</td></tr>
+<tr class="memitem:ac465fd9da83968ba9982a3760721d71c" id="r_ac465fd9da83968ba9982a3760721d71c"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac465fd9da83968ba9982a3760721d71c">name</a> () const</td></tr>
+<tr class="memdesc:ac465fd9da83968ba9982a3760721d71c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of this field (including state information)  <br /></td></tr>
+<tr class="memitem:a18c50532c5d73c3e7c03e47e93198f62" id="r_a18c50532c5d73c3e7c03e47e93198f62"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18c50532c5d73c3e7c03e47e93198f62">base_name</a> () const</td></tr>
+<tr class="memdesc:a18c50532c5d73c3e7c03e47e93198f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base name (without state information)  <br /></td></tr>
+<tr class="memitem:a6271e8613db75a8eb1baac9c2ca1ae12" id="r_a6271e8613db75a8eb1baac9c2ca1ae12"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6271e8613db75a8eb1baac9c2ca1ae12">id</a> () const</td></tr>
+<tr class="memdesc:a6271e8613db75a8eb1baac9c2ca1ae12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique integer identifier for this field.  <br /></td></tr>
+<tr class="memitem:a90497d72d0096bb0afda627371a6af7e" id="r_a90497d72d0096bb0afda627371a6af7e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90497d72d0096bb0afda627371a6af7e">num_comp</a> () const</td></tr>
+<tr class="memdesc:a90497d72d0096bb0afda627371a6af7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of components for this field.  <br /></td></tr>
+<tr class="memitem:a7179274c0b0b5d3f314f3223687ca84b" id="r_a7179274c0b0b5d3f314f3223687ca84b"><td class="memItemLeft" align="right" valign="top">const amrex::IntVect &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7179274c0b0b5d3f314f3223687ca84b">num_grow</a> () const</td></tr>
+<tr class="memdesc:a7179274c0b0b5d3f314f3223687ca84b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ghost cells.  <br /></td></tr>
+<tr class="memitem:ac147567ed6b40c3bda4d0f59cf2235b7" id="r_ac147567ed6b40c3bda4d0f59cf2235b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac147567ed6b40c3bda4d0f59cf2235b7">num_time_states</a> () const</td></tr>
+<tr class="memdesc:ac147567ed6b40c3bda4d0f59cf2235b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of exact time states available for this field.  <br /></td></tr>
+<tr class="memitem:a899cdbb0c02a2f593c4d976bdd7b8ae0" id="r_a899cdbb0c02a2f593c4d976bdd7b8ae0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a899cdbb0c02a2f593c4d976bdd7b8ae0">num_states</a> () const</td></tr>
+<tr class="memdesc:a899cdbb0c02a2f593c4d976bdd7b8ae0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of states available for this field.  <br /></td></tr>
+<tr class="memitem:a888521e1b030bb88cab0e7c578ffdb31" id="r_a888521e1b030bb88cab0e7c578ffdb31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a888521e1b030bb88cab0e7c578ffdb31">field_location</a> () const</td></tr>
+<tr class="memdesc:a888521e1b030bb88cab0e7c578ffdb31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cell, node, or face centered field.  <br /></td></tr>
+<tr class="memitem:aa2421b5176a6f47b92f1ca9c9eaadbf6" id="r_aa2421b5176a6f47b92f1ca9c9eaadbf6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2421b5176a6f47b92f1ca9c9eaadbf6">field_state</a> () const</td></tr>
+<tr class="memdesc:aa2421b5176a6f47b92f1ca9c9eaadbf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">State of this field instance.  <br /></td></tr>
+<tr class="memitem:acb91c58e9ef6f866162486cc930e992d" id="r_acb91c58e9ef6f866162486cc930e992d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb91c58e9ef6f866162486cc930e992d">repo</a> () const</td></tr>
+<tr class="memdesc:acb91c58e9ef6f866162486cc930e992d"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> instance that manages this field.  <br /></td></tr>
+<tr class="memitem:a9bbc2c27cb81bd34030d651082b09018" id="r_a9bbc2c27cb81bd34030d651082b09018"><td class="memItemLeft" align="right" valign="top">bool &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9bbc2c27cb81bd34030d651082b09018">fillpatch_on_regrid</a> ()</td></tr>
+<tr class="memitem:aaff549ca3f61d597683a5e821a766492" id="r_aaff549ca3f61d597683a5e821a766492"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaff549ca3f61d597683a5e821a766492">fillpatch_on_regrid</a> () const</td></tr>
+<tr class="memitem:accc937aa771d59def6bd505a87e749c7" id="r_accc937aa771d59def6bd505a87e749c7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#accc937aa771d59def6bd505a87e749c7">query_state</a> (const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate) const</td></tr>
+<tr class="memdesc:accc937aa771d59def6bd505a87e749c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return true if the requested state exists for this field.  <br /></td></tr>
+<tr class="memitem:a5c0923ecdbd351d3f6d2d8a501d62e83" id="r_a5c0923ecdbd351d3f6d2d8a501d62e83"><td class="memItemLeft" align="right" valign="top">const amrex::GpuArray&lt; <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a>, AMREX_SPACEDIM *2 &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c0923ecdbd351d3f6d2d8a501d62e83">bc_type</a> () const</td></tr>
+<tr class="memitem:a7d645ea7d78737ef73094082b44cc259" id="r_a7d645ea7d78737ef73094082b44cc259"><td class="memItemLeft" align="right" valign="top">amrex::GpuArray&lt; <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a>, AMREX_SPACEDIM *2 &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d645ea7d78737ef73094082b44cc259">bc_type</a> ()</td></tr>
+<tr class="memitem:a45bb6d3e67b2407345cc015c878b33b8" id="r_a45bb6d3e67b2407345cc015c878b33b8"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Vector&lt; amrex::Real &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45bb6d3e67b2407345cc015c878b33b8">bc_values</a> ()</td></tr>
+<tr class="memdesc:a45bb6d3e67b2407345cc015c878b33b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return reference to the host view of <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> values array.  <br /></td></tr>
+<tr class="memitem:a635118f14087a0c7c299e95b0cbd57a7" id="r_a635118f14087a0c7c299e95b0cbd57a7"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::BCRec &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a635118f14087a0c7c299e95b0cbd57a7">bcrec</a> () const</td></tr>
+<tr class="memdesc:a635118f14087a0c7c299e95b0cbd57a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return reference to host view of BCRec array.  <br /></td></tr>
+<tr class="memitem:abb1d5a9a243e3a4e9b7f26b517914fe8" id="r_abb1d5a9a243e3a4e9b7f26b517914fe8"><td class="memItemLeft" align="right" valign="top">const amrex::GpuArray&lt; const amrex::Real *, AMREX_SPACEDIM *2 &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb1d5a9a243e3a4e9b7f26b517914fe8">bc_values_device</a> () const</td></tr>
+<tr class="memitem:aeb08025667375f834d88f80c1c77ad92" id="r_aeb08025667375f834d88f80c1c77ad92"><td class="memItemLeft" align="right" valign="top">const amrex::Gpu::DeviceVector&lt; amrex::BCRec &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb08025667375f834d88f80c1c77ad92">bcrec_device</a> () const</td></tr>
+<tr class="memitem:ab570f874fd7d23f4ce03cdd4504f41de" id="r_ab570f874fd7d23f4ce03cdd4504f41de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab570f874fd7d23f4ce03cdd4504f41de">copy_bc_to_device</a> ()</td></tr>
+<tr class="memdesc:ab570f874fd7d23f4ce03cdd4504f41de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> data from host to device.  <br /></td></tr>
+<tr class="memitem:ae2f27e301ab30ff57a01cfa126caf0e9" id="r_ae2f27e301ab30ff57a01cfa126caf0e9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2f27e301ab30ff57a01cfa126caf0e9">bc_initialized</a> () const</td></tr>
+<tr class="memdesc:ae2f27e301ab30ff57a01cfa126caf0e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return flag indicating whether BCs have been initialized.  <br /></td></tr>
+<tr class="memitem:a235428510b99884ef14f35c8f577080b" id="r_a235428510b99884ef14f35c8f577080b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a235428510b99884ef14f35c8f577080b">has_fillpatch_op</a> () const</td></tr>
+<tr class="memdesc:a235428510b99884ef14f35c8f577080b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a flag indicating whether a fillpatch Op has been registered.  <br /></td></tr>
+<tr class="memitem:ab5b9c240a51cfda76bbfe9ba85eb3956" id="r_ab5b9c240a51cfda76bbfe9ba85eb3956"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5b9c240a51cfda76bbfe9ba85eb3956">set_default_fillpatch_bc</a> (const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> &amp;time, amrex::BCType::mathematicalBndryTypes bctype=amrex::BCType::hoextrap)</td></tr>
+<tr class="memitem:aa65f08500bf52ef4eff62e2d968bd986" id="r_aa65f08500bf52ef4eff62e2d968bd986"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa65f08500bf52ef4eff62e2d968bd986">to_uniform_space</a> ()</td></tr>
+<tr class="memitem:ada7bec4006cbd403a6b3ea680ca9cbc4" id="r_ada7bec4006cbd403a6b3ea680ca9cbc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada7bec4006cbd403a6b3ea680ca9cbc4">to_stretched_space</a> ()</td></tr>
+<tr class="memitem:a75eb008d67f7ab98ee5bc3bde44d7e9a" id="r_a75eb008d67f7ab98ee5bc3bde44d7e9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75eb008d67f7ab98ee5bc3bde44d7e9a">state</a> (<a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate)</td></tr>
+<tr class="memdesc:a75eb008d67f7ab98ee5bc3bde44d7e9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return field at a different time state.  <br /></td></tr>
+<tr class="memitem:a53489ddea80ef5389469d53a17c63d00" id="r_a53489ddea80ef5389469d53a17c63d00"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53489ddea80ef5389469d53a17c63d00">state</a> (<a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate) const</td></tr>
+<tr class="memitem:a6a1c0f922ac98e445f5540a72a32da8a" id="r_a6a1c0f922ac98e445f5540a72a32da8a"><td class="memItemLeft" align="right" valign="top">amrex::MultiFab &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a1c0f922ac98e445f5540a72a32da8a">operator()</a> (int lev)</td></tr>
+<tr class="memdesc:a6a1c0f922ac98e445f5540a72a32da8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return MultiFab instance for a given level.  <br /></td></tr>
+<tr class="memitem:a6c11decca2e17694c89667e39946dc81" id="r_a6c11decca2e17694c89667e39946dc81"><td class="memItemLeft" align="right" valign="top">const amrex::MultiFab &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c11decca2e17694c89667e39946dc81">operator()</a> (int lev) const</td></tr>
+<tr class="memitem:a8586dd43968a98a6f7cfe985072c112f" id="r_a8586dd43968a98a6f7cfe985072c112f"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::MultiFab * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8586dd43968a98a6f7cfe985072c112f">vec_ptrs</a> ()</td></tr>
+<tr class="memdesc:a8586dd43968a98a6f7cfe985072c112f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a vector of MultiFab pointers for all levels.  <br /></td></tr>
+<tr class="memitem:aaa45dc99aa6289e1c0472a5b34e048d6" id="r_aaa45dc99aa6289e1c0472a5b34e048d6"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; const amrex::MultiFab * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa45dc99aa6289e1c0472a5b34e048d6">vec_const_ptrs</a> () const</td></tr>
+<tr class="memdesc:aaa45dc99aa6289e1c0472a5b34e048d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return vector of <span class="tt">const MultiFab*</span> for all levels.  <br /></td></tr>
+<tr class="memitem:abc417c0d0294e60ea02d0499a5191f82" id="r_abc417c0d0294e60ea02d0499a5191f82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc417c0d0294e60ea02d0499a5191f82">advance_states</a> ()</td></tr>
+<tr class="memdesc:abc417c0d0294e60ea02d0499a5191f82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advance timestep for fields with multiple states.  <br /></td></tr>
+<tr class="memitem:a4e905f480501295ec6ce17b7ce1ea064" id="r_a4e905f480501295ec6ce17b7ce1ea064"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e905f480501295ec6ce17b7ce1ea064">copy_state</a> (<a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> to_state, <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> from_state)</td></tr>
+<tr class="memdesc:a4e905f480501295ec6ce17b7ce1ea064"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy a user-specified "from_state" to "to_state".  <br /></td></tr>
+<tr class="memitem:a027ecdb749f98ca7532c5ed61df7ebaa" id="r_a027ecdb749f98ca7532c5ed61df7ebaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a027ecdb749f98ca7532c5ed61df7ebaa">create_state</a> (<a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate)</td></tr>
+<tr class="memdesc:a027ecdb749f98ca7532c5ed61df7ebaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new time state after the field has been created.  <br /></td></tr>
+<tr class="memitem:abcedfd925edab2c7be546b21637ced0e" id="r_abcedfd925edab2c7be546b21637ced0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abcedfd925edab2c7be546b21637ced0e">setVal</a> (amrex::Real value)</td></tr>
+<tr class="memdesc:abcedfd925edab2c7be546b21637ced0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the field to a constant value at all levels.  <br /></td></tr>
+<tr class="memitem:aa5386e409ce4d66bc109a815b75f4ed5" id="r_aa5386e409ce4d66bc109a815b75f4ed5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5386e409ce4d66bc109a815b75f4ed5">setVal</a> (amrex::Real value, int start_comp, int <a class="el" href="#a90497d72d0096bb0afda627371a6af7e">num_comp</a>=1, int nghost=0)</td></tr>
+<tr class="memitem:a74539a4063f09ebcb8cb7bf7cc2fc951" id="r_a74539a4063f09ebcb8cb7bf7cc2fc951"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74539a4063f09ebcb8cb7bf7cc2fc951">setVal</a> (const amrex::Vector&lt; amrex::Real &gt; &amp;values, int nghost=0)</td></tr>
+<tr class="memitem:a4a9cc9866820a37e619462336911f1ce" id="r_a4a9cc9866820a37e619462336911f1ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_view_field.html">ViewField</a>&lt; <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a9cc9866820a37e619462336911f1ce">subview</a> (const int scomp=0, const int ncomp=1)</td></tr>
+<tr class="memitem:a76282103d0e03320e1b7d66c6bfb6da6" id="r_a76282103d0e03320e1b7d66c6bfb6da6"><td class="memTemplParams" colspan="2">template&lt;typename T, class... Args&gt; </td></tr>
+<tr class="memitem:a76282103d0e03320e1b7d66c6bfb6da6 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76282103d0e03320e1b7d66c6bfb6da6">register_fill_patch_op</a> (Args &amp;&amp;... args)</td></tr>
+<tr class="memitem:aca729da9d2bc2be85aad8604af77bf1f" id="r_aca729da9d2bc2be85aad8604af77bf1f"><td class="memTemplParams" colspan="2">template&lt;typename T, class... Args&gt; </td></tr>
+<tr class="memitem:aca729da9d2bc2be85aad8604af77bf1f template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca729da9d2bc2be85aad8604af77bf1f">register_custom_bc</a> (Args &amp;&amp;... args)</td></tr>
+<tr class="memitem:ada4dbdd218f7642ce438a74e90672dc4" id="r_ada4dbdd218f7642ce438a74e90672dc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada4dbdd218f7642ce438a74e90672dc4">fillpatch</a> (amrex::Real time)</td></tr>
+<tr class="memitem:abfbe2c679df4b3e68fdab5cb106289d4" id="r_abfbe2c679df4b3e68fdab5cb106289d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfbe2c679df4b3e68fdab5cb106289d4">fillpatch</a> (amrex::Real time, amrex::IntVect ng)</td></tr>
+<tr class="memitem:a3a7079700b105f5292987dc0abc4471d" id="r_a3a7079700b105f5292987dc0abc4471d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a7079700b105f5292987dc0abc4471d">fillpatch_sibling_fields</a> (amrex::Real time, amrex::IntVect ng, amrex::Array&lt; <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *, AMREX_SPACEDIM &gt; &amp;fields) const</td></tr>
+<tr class="memitem:a4b3664b46758197fdbcafca88c5e5e9e" id="r_a4b3664b46758197fdbcafca88c5e5e9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b3664b46758197fdbcafca88c5e5e9e">fillphysbc</a> (amrex::Real time)</td></tr>
+<tr class="memitem:a5613193a9bd69f9471a7862b95e08d60" id="r_a5613193a9bd69f9471a7862b95e08d60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5613193a9bd69f9471a7862b95e08d60">fillphysbc</a> (amrex::Real time, amrex::IntVect ng)</td></tr>
+<tr class="memitem:aee4566d0aa18362bb7d27fa6cf96ba38" id="r_aee4566d0aa18362bb7d27fa6cf96ba38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee4566d0aa18362bb7d27fa6cf96ba38">apply_bc_funcs</a> (<a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> rho_state)</td></tr>
+<tr class="memitem:a890eb367c6345c0144845635c4095241" id="r_a890eb367c6345c0144845635c4095241"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a890eb367c6345c0144845635c4095241">fillpatch</a> (int lev, amrex::Real time, amrex::MultiFab &amp;mfab, const amrex::IntVect &amp;nghost)</td></tr>
+<tr class="memitem:a6fd83bb74cf306da9598d3bb2c70117e" id="r_a6fd83bb74cf306da9598d3bb2c70117e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fd83bb74cf306da9598d3bb2c70117e">fillpatch_from_coarse</a> (int lev, amrex::Real time, amrex::MultiFab &amp;mfab, const amrex::IntVect &amp;nghost)</td></tr>
+<tr class="memitem:a05f0114574b7ad9480f0a05d3197f9b7" id="r_a05f0114574b7ad9480f0a05d3197f9b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05f0114574b7ad9480f0a05d3197f9b7">fillphysbc</a> (int lev, amrex::Real time, amrex::MultiFab &amp;mfab, const amrex::IntVect &amp;nghost)</td></tr>
+<tr class="memitem:a2a5ae6f1c0d08734e697b9c429e765fe" id="r_a2a5ae6f1c0d08734e697b9c429e765fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a5ae6f1c0d08734e697b9c429e765fe">set_inflow</a> (int lev, amrex::Real time, amrex::MultiFab &amp;mfab, const amrex::IntVect &amp;nghost)</td></tr>
+<tr class="memitem:afa08c22a442a0fcfb827e7de3a22cf7a" id="r_afa08c22a442a0fcfb827e7de3a22cf7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa08c22a442a0fcfb827e7de3a22cf7a">set_inflow_sibling_fields</a> (int lev, amrex::Real time, amrex::Array&lt; amrex::MultiFab *, AMREX_SPACEDIM &gt; mfabs)</td></tr>
+<tr class="memitem:abeae25a484411ef2d64b7797eb280dec" id="r_abeae25a484411ef2d64b7797eb280dec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abeae25a484411ef2d64b7797eb280dec">fillpatch</a> (const int lev, const amrex::Real time, amrex::MultiFab &amp;mfab, const int nghost)</td></tr>
+<tr class="memitem:af960d9d96f283cb5de0065d78f626d43" id="r_af960d9d96f283cb5de0065d78f626d43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af960d9d96f283cb5de0065d78f626d43">fillpatch_from_coarse</a> (const int lev, const amrex::Real time, amrex::MultiFab &amp;mfab, const int nghost)</td></tr>
+<tr class="memitem:a12a56968f5795b041e0b1a0d0b550d31" id="r_a12a56968f5795b041e0b1a0d0b550d31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12a56968f5795b041e0b1a0d0b550d31">fillphysbc</a> (const int lev, const amrex::Real time, amrex::MultiFab &amp;mfab, const int nghost)</td></tr>
+<tr class="memitem:a473584323ca1ab07aa83aa25cc8a823b" id="r_a473584323ca1ab07aa83aa25cc8a823b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a473584323ca1ab07aa83aa25cc8a823b">set_inflow</a> (const int lev, const amrex::Real time, amrex::MultiFab &amp;mfab, const int nghost)</td></tr>
+<tr class="memitem:a4198427912896b016fdf23f04bd2691f" id="r_a4198427912896b016fdf23f04bd2691f"><td class="memItemLeft" align="right" valign="top">bool &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4198427912896b016fdf23f04bd2691f">in_uniform_space</a> ()</td></tr>
+<tr class="memitem:a6995e3ef3422e67718f3fc908582cae5" id="r_a6995e3ef3422e67718f3fc908582cae5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6995e3ef3422e67718f3fc908582cae5">in_uniform_space</a> () const</td></tr>
+<tr class="memitem:a66613b9d02c0f86cbef21742904aa5dd" id="r_a66613b9d02c0f86cbef21742904aa5dd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66613b9d02c0f86cbef21742904aa5dd">has_inout_bndry</a> () const</td></tr>
+<tr class="memdesc:a66613b9d02c0f86cbef21742904aa5dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if any of the boundaries is a mass-inflow-outflow.  <br /></td></tr>
+<tr class="memitem:a32b434b763e5e83b56bf1620fe3d6e24" id="r_a32b434b763e5e83b56bf1620fe3d6e24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32b434b763e5e83b56bf1620fe3d6e24">set_inout_bndry</a> ()</td></tr>
+<tr class="memdesc:a32b434b763e5e83b56bf1620fe3d6e24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the inout_bndry flag.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a65430838d933a1e2ef44e41320ac0051" id="r_a65430838d933a1e2ef44e41320ac0051"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65430838d933a1e2ef44e41320ac0051">Field</a> (<a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;<a class="el" href="#acb91c58e9ef6f866162486cc930e992d">repo</a>, std::string <a class="el" href="#ac465fd9da83968ba9982a3760721d71c">name</a>, std::shared_ptr&lt; <a class="el" href="structkynema__sgf_1_1_field_info.html">FieldInfo</a> &gt; finfo, unsigned fid, <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> <a class="el" href="#a75eb008d67f7ab98ee5bc3bde44d7e9a">state</a>)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a72610f3cc2ae99f15666cf8c4e43f0b8" id="r_a72610f3cc2ae99f15666cf8c4e43f0b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72610f3cc2ae99f15666cf8c4e43f0b8">m_repo</a></td></tr>
+<tr class="memdesc:a72610f3cc2ae99f15666cf8c4e43f0b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the FieldRepository instance.  <br /></td></tr>
+<tr class="memitem:a9c51c394faa9812d82a85dc3348cd2a2" id="r_a9c51c394faa9812d82a85dc3348cd2a2"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c51c394faa9812d82a85dc3348cd2a2">m_name</a></td></tr>
+<tr class="memdesc:a9c51c394faa9812d82a85dc3348cd2a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the field.  <br /></td></tr>
+<tr class="memitem:a44a4297c43121e69761fe224d18c1f59" id="r_a44a4297c43121e69761fe224d18c1f59"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="structkynema__sgf_1_1_field_info.html">FieldInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44a4297c43121e69761fe224d18c1f59">m_info</a></td></tr>
+<tr class="memdesc:a44a4297c43121e69761fe224d18c1f59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Common data for all field states.  <br /></td></tr>
+<tr class="memitem:a261c9eadd154dd4ac16ffcb5e9658491" id="r_a261c9eadd154dd4ac16ffcb5e9658491"><td class="memItemLeft" align="right" valign="top">const unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a261c9eadd154dd4ac16ffcb5e9658491">m_id</a></td></tr>
+<tr class="memdesc:a261c9eadd154dd4ac16ffcb5e9658491"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique ID for this field.  <br /></td></tr>
+<tr class="memitem:af40068415ae66ded1d31968ce927780c" id="r_af40068415ae66ded1d31968ce927780c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af40068415ae66ded1d31968ce927780c">m_state</a></td></tr>
+<tr class="memdesc:af40068415ae66ded1d31968ce927780c"><td class="mdescLeft">&#160;</td><td class="mdescRight">State for this field.  <br /></td></tr>
+<tr class="memitem:a301c7f800ed529fb2a84b030a790fae6" id="r_a301c7f800ed529fb2a84b030a790fae6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a301c7f800ed529fb2a84b030a790fae6">m_fillpatch_on_regrid</a> {false}</td></tr>
+<tr class="memdesc:a301c7f800ed529fb2a84b030a790fae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether fill patch operation must be performed for this field during regrid.  <br /></td></tr>
+<tr class="memitem:aa4244852d8d4fcf2e9366bb4094b947b" id="r_aa4244852d8d4fcf2e9366bb4094b947b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4244852d8d4fcf2e9366bb4094b947b">m_mesh_mapped</a> {false}</td></tr>
+<tr class="memdesc:aa4244852d8d4fcf2e9366bb4094b947b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to track mesh mapping (to uniform space) of field.  <br /></td></tr>
+<tr class="memitem:a38516337c9f1f8d7d70bce87ccd137c9" id="r_a38516337c9f1f8d7d70bce87ccd137c9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38516337c9f1f8d7d70bce87ccd137c9">m_inout_bndry</a> {false}</td></tr>
+<tr class="memdesc:a38516337c9f1f8d7d70bce87ccd137c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to indicate whether any of the boundaries is mass-inflow-outflow.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a966868e1abbfd5558376d359c07c6611" id="r_a966868e1abbfd5558376d359c07c6611"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a966868e1abbfd5558376d359c07c6611">FieldRepo</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Computational field</p>
+<p>This is an abstraction of a collection of MultiFabs over multiple levels, and allows operations on the field as a whole. The <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> cannot be constructed directly but instead must be created using field creation functions in <a class="el" href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a>. This indirection is necessary to allow different parts of the code to hold a reference to the <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> instance without having to worry about the changes in underlynig MultiFab data during regrid operations.</p>
+<p><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> data is split into two groups: information that is unique to a particular field at a given time state, and data that is common to a given field with multiple timestates. The latter is held within <a class="el" href="structkynema__sgf_1_1_field_info.html">kynema_sgf::FieldInfo</a> object that is common to all time instances of a given <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> (which are themselves <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> instances). Different time instances of a <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> can access other states through this <a class="el" href="structkynema__sgf_1_1_field_info.html">FieldInfo</a> instance, as well as access boundary conditions and fill patch operators applicable to all states.</p>
+<p>As <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> does not hold any data itself, but instead is just a thin wrapper to data held by <a class="el" href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a>, <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> instance cannot be created directly. Instead the user must use <a class="el" href="classkynema__sgf_1_1_field_repo.html#aca8ec0b9e9ad34df02bbed00538d3ef7">kynema_sgf::FieldRepo::declare_field</a> to create and initialize the field. This also ensures that the <a class="el" href="structkynema__sgf_1_1_field_info.html">FieldInfo</a> instance is managed properly during field creation. Once a field is created, the user can customize the behavior (e.g., registering fill patch operator, handling I/O on a per-field basis). </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a543d5e904cbd752bcec5db07c23860b3" name="a543d5e904cbd752bcec5db07c23860b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a543d5e904cbd752bcec5db07c23860b3">&#9670;&#160;</a></span>Field() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::Field::Field </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaa324902037ce43db01f88f3cac735ab" name="aaa324902037ce43db01f88f3cac735ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa324902037ce43db01f88f3cac735ab">&#9670;&#160;</a></span>~Field()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::Field::~Field </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a65430838d933a1e2ef44e41320ac0051" name="a65430838d933a1e2ef44e41320ac0051"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65430838d933a1e2ef44e41320ac0051">&#9670;&#160;</a></span>Field() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::Field::Field </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>repo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structkynema__sgf_1_1_field_info.html">FieldInfo</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>finfo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned</td>          <td class="paramname"><span class="paramname"><em>fid</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>state</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="abc417c0d0294e60ea02d0499a5191f82" name="abc417c0d0294e60ea02d0499a5191f82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc417c0d0294e60ea02d0499a5191f82">&#9670;&#160;</a></span>advance_states()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::advance_states </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Advance timestep for fields with multiple states. </p>
+
+</div>
+</div>
+<a id="aee4566d0aa18362bb7d27fa6cf96ba38" name="aee4566d0aa18362bb7d27fa6cf96ba38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee4566d0aa18362bb7d27fa6cf96ba38">&#9670;&#160;</a></span>apply_bc_funcs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::apply_bc_funcs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>rho_state</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a18c50532c5d73c3e7c03e47e93198f62" name="a18c50532c5d73c3e7c03e47e93198f62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18c50532c5d73c3e7c03e47e93198f62">&#9670;&#160;</a></span>base_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; kynema_sgf::Field::base_name </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Base name (without state information) </p>
+
+</div>
+</div>
+<a id="ae2f27e301ab30ff57a01cfa126caf0e9" name="ae2f27e301ab30ff57a01cfa126caf0e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2f27e301ab30ff57a01cfa126caf0e9">&#9670;&#160;</a></span>bc_initialized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::Field::bc_initialized </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return flag indicating whether BCs have been initialized. </p>
+
+</div>
+</div>
+<a id="a7d645ea7d78737ef73094082b44cc259" name="a7d645ea7d78737ef73094082b44cc259"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d645ea7d78737ef73094082b44cc259">&#9670;&#160;</a></span>bc_type() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::GpuArray&lt; <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a>, AMREX_SPACEDIM *2 &gt; &amp; kynema_sgf::Field::bc_type </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5c0923ecdbd351d3f6d2d8a501d62e83" name="a5c0923ecdbd351d3f6d2d8a501d62e83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c0923ecdbd351d3f6d2d8a501d62e83">&#9670;&#160;</a></span>bc_type() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::GpuArray&lt; <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a>, AMREX_SPACEDIM *2 &gt; &amp; kynema_sgf::Field::bc_type </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a45bb6d3e67b2407345cc015c878b33b8" name="a45bb6d3e67b2407345cc015c878b33b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45bb6d3e67b2407345cc015c878b33b8">&#9670;&#160;</a></span>bc_values()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt; amrex::Vector&lt; amrex::Real &gt; &gt; &amp; kynema_sgf::Field::bc_values </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return reference to the host view of <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> values array. </p>
+
+</div>
+</div>
+<a id="abb1d5a9a243e3a4e9b7f26b517914fe8" name="abb1d5a9a243e3a4e9b7f26b517914fe8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb1d5a9a243e3a4e9b7f26b517914fe8">&#9670;&#160;</a></span>bc_values_device()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::GpuArray&lt; const amrex::Real *, AMREX_SPACEDIM *2 &gt; &amp; kynema_sgf::Field::bc_values_device </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a635118f14087a0c7c299e95b0cbd57a7" name="a635118f14087a0c7c299e95b0cbd57a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a635118f14087a0c7c299e95b0cbd57a7">&#9670;&#160;</a></span>bcrec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt; amrex::BCRec &gt; &amp; kynema_sgf::Field::bcrec </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return reference to host view of BCRec array. </p>
+
+</div>
+</div>
+<a id="aeb08025667375f834d88f80c1c77ad92" name="aeb08025667375f834d88f80c1c77ad92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb08025667375f834d88f80c1c77ad92">&#9670;&#160;</a></span>bcrec_device()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::Gpu::DeviceVector&lt; amrex::BCRec &gt; &amp; kynema_sgf::Field::bcrec_device </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab570f874fd7d23f4ce03cdd4504f41de" name="ab570f874fd7d23f4ce03cdd4504f41de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab570f874fd7d23f4ce03cdd4504f41de">&#9670;&#160;</a></span>copy_bc_to_device()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::copy_bc_to_device </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> data from host to device. </p>
+<p>The data must have been created on host using the host arrays </p>
+
+</div>
+</div>
+<a id="a4e905f480501295ec6ce17b7ce1ea064" name="a4e905f480501295ec6ce17b7ce1ea064"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e905f480501295ec6ce17b7ce1ea064">&#9670;&#160;</a></span>copy_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::copy_state </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>to_state</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>from_state</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy a user-specified "from_state" to "to_state". </p>
+
+</div>
+</div>
+<a id="a027ecdb749f98ca7532c5ed61df7ebaa" name="a027ecdb749f98ca7532c5ed61df7ebaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a027ecdb749f98ca7532c5ed61df7ebaa">&#9670;&#160;</a></span>create_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp; kynema_sgf::Field::create_state </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a new time state after the field has been created. </p>
+
+</div>
+</div>
+<a id="a888521e1b030bb88cab0e7c578ffdb31" name="a888521e1b030bb88cab0e7c578ffdb31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a888521e1b030bb88cab0e7c578ffdb31">&#9670;&#160;</a></span>field_location()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a> kynema_sgf::Field::field_location </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cell, node, or face centered field. </p>
+
+</div>
+</div>
+<a id="aa2421b5176a6f47b92f1ca9c9eaadbf6" name="aa2421b5176a6f47b92f1ca9c9eaadbf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2421b5176a6f47b92f1ca9c9eaadbf6">&#9670;&#160;</a></span>field_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> kynema_sgf::Field::field_state </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>State of this field instance. </p>
+
+</div>
+</div>
+<a id="ada4dbdd218f7642ce438a74e90672dc4" name="ada4dbdd218f7642ce438a74e90672dc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada4dbdd218f7642ce438a74e90672dc4">&#9670;&#160;</a></span>fillpatch() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::fillpatch </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abfbe2c679df4b3e68fdab5cb106289d4" name="abfbe2c679df4b3e68fdab5cb106289d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfbe2c679df4b3e68fdab5cb106289d4">&#9670;&#160;</a></span>fillpatch() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::fillpatch </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::IntVect</td>          <td class="paramname"><span class="paramname"><em>ng</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abeae25a484411ef2d64b7797eb280dec" name="abeae25a484411ef2d64b7797eb280dec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abeae25a484411ef2d64b7797eb280dec">&#9670;&#160;</a></span>fillpatch() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::fillpatch </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a890eb367c6345c0144845635c4095241" name="a890eb367c6345c0144845635c4095241"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a890eb367c6345c0144845635c4095241">&#9670;&#160;</a></span>fillpatch() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::fillpatch </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af960d9d96f283cb5de0065d78f626d43" name="af960d9d96f283cb5de0065d78f626d43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af960d9d96f283cb5de0065d78f626d43">&#9670;&#160;</a></span>fillpatch_from_coarse() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::fillpatch_from_coarse </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6fd83bb74cf306da9598d3bb2c70117e" name="a6fd83bb74cf306da9598d3bb2c70117e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fd83bb74cf306da9598d3bb2c70117e">&#9670;&#160;</a></span>fillpatch_from_coarse() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::fillpatch_from_coarse </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9bbc2c27cb81bd34030d651082b09018" name="a9bbc2c27cb81bd34030d651082b09018"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bbc2c27cb81bd34030d651082b09018">&#9670;&#160;</a></span>fillpatch_on_regrid() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool &amp; kynema_sgf::Field::fillpatch_on_regrid </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaff549ca3f61d597683a5e821a766492" name="aaff549ca3f61d597683a5e821a766492"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaff549ca3f61d597683a5e821a766492">&#9670;&#160;</a></span>fillpatch_on_regrid() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::Field::fillpatch_on_regrid </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a7079700b105f5292987dc0abc4471d" name="a3a7079700b105f5292987dc0abc4471d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a7079700b105f5292987dc0abc4471d">&#9670;&#160;</a></span>fillpatch_sibling_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::fillpatch_sibling_fields </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::IntVect</td>          <td class="paramname"><span class="paramname"><em>ng</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Array&lt; <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *, AMREX_SPACEDIM &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>fields</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4b3664b46758197fdbcafca88c5e5e9e" name="a4b3664b46758197fdbcafca88c5e5e9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b3664b46758197fdbcafca88c5e5e9e">&#9670;&#160;</a></span>fillphysbc() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::fillphysbc </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5613193a9bd69f9471a7862b95e08d60" name="a5613193a9bd69f9471a7862b95e08d60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5613193a9bd69f9471a7862b95e08d60">&#9670;&#160;</a></span>fillphysbc() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::fillphysbc </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::IntVect</td>          <td class="paramname"><span class="paramname"><em>ng</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a12a56968f5795b041e0b1a0d0b550d31" name="a12a56968f5795b041e0b1a0d0b550d31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12a56968f5795b041e0b1a0d0b550d31">&#9670;&#160;</a></span>fillphysbc() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::fillphysbc </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a05f0114574b7ad9480f0a05d3197f9b7" name="a05f0114574b7ad9480f0a05d3197f9b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05f0114574b7ad9480f0a05d3197f9b7">&#9670;&#160;</a></span>fillphysbc() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::fillphysbc </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a235428510b99884ef14f35c8f577080b" name="a235428510b99884ef14f35c8f577080b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a235428510b99884ef14f35c8f577080b">&#9670;&#160;</a></span>has_fillpatch_op()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::Field::has_fillpatch_op </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return a flag indicating whether a fillpatch Op has been registered. </p>
+
+</div>
+</div>
+<a id="a66613b9d02c0f86cbef21742904aa5dd" name="a66613b9d02c0f86cbef21742904aa5dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66613b9d02c0f86cbef21742904aa5dd">&#9670;&#160;</a></span>has_inout_bndry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::Field::has_inout_bndry </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if any of the boundaries is a mass-inflow-outflow. </p>
+
+</div>
+</div>
+<a id="a6271e8613db75a8eb1baac9c2ca1ae12" name="a6271e8613db75a8eb1baac9c2ca1ae12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6271e8613db75a8eb1baac9c2ca1ae12">&#9670;&#160;</a></span>id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned kynema_sgf::Field::id </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unique integer identifier for this field. </p>
+
+</div>
+</div>
+<a id="a4198427912896b016fdf23f04bd2691f" name="a4198427912896b016fdf23f04bd2691f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4198427912896b016fdf23f04bd2691f">&#9670;&#160;</a></span>in_uniform_space() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool &amp; kynema_sgf::Field::in_uniform_space </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6995e3ef3422e67718f3fc908582cae5" name="a6995e3ef3422e67718f3fc908582cae5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6995e3ef3422e67718f3fc908582cae5">&#9670;&#160;</a></span>in_uniform_space() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::Field::in_uniform_space </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac465fd9da83968ba9982a3760721d71c" name="ac465fd9da83968ba9982a3760721d71c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac465fd9da83968ba9982a3760721d71c">&#9670;&#160;</a></span>name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; kynema_sgf::Field::name </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Name of this field (including state information) </p>
+
+</div>
+</div>
+<a id="a90497d72d0096bb0afda627371a6af7e" name="a90497d72d0096bb0afda627371a6af7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90497d72d0096bb0afda627371a6af7e">&#9670;&#160;</a></span>num_comp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::Field::num_comp </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of components for this field. </p>
+
+</div>
+</div>
+<a id="a7179274c0b0b5d3f314f3223687ca84b" name="a7179274c0b0b5d3f314f3223687ca84b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7179274c0b0b5d3f314f3223687ca84b">&#9670;&#160;</a></span>num_grow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::IntVect &amp; kynema_sgf::Field::num_grow </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ghost cells. </p>
+
+</div>
+</div>
+<a id="a899cdbb0c02a2f593c4d976bdd7b8ae0" name="a899cdbb0c02a2f593c4d976bdd7b8ae0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a899cdbb0c02a2f593c4d976bdd7b8ae0">&#9670;&#160;</a></span>num_states()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::Field::num_states </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of states available for this field. </p>
+
+</div>
+</div>
+<a id="ac147567ed6b40c3bda4d0f59cf2235b7" name="ac147567ed6b40c3bda4d0f59cf2235b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac147567ed6b40c3bda4d0f59cf2235b7">&#9670;&#160;</a></span>num_time_states()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::Field::num_time_states </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of exact time states available for this field. </p>
+
+</div>
+</div>
+<a id="a6a1c0f922ac98e445f5540a72a32da8a" name="a6a1c0f922ac98e445f5540a72a32da8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a1c0f922ac98e445f5540a72a32da8a">&#9670;&#160;</a></span>operator()() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::MultiFab &amp; kynema_sgf::Field::operator() </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return MultiFab instance for a given level. </p>
+
+</div>
+</div>
+<a id="a6c11decca2e17694c89667e39946dc81" name="a6c11decca2e17694c89667e39946dc81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c11decca2e17694c89667e39946dc81">&#9670;&#160;</a></span>operator()() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::MultiFab &amp; kynema_sgf::Field::operator() </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a604b2a3ed49a4972dd66532ea57f9d08" name="a604b2a3ed49a4972dd66532ea57f9d08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a604b2a3ed49a4972dd66532ea57f9d08">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp; kynema_sgf::Field::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="accc937aa771d59def6bd505a87e749c7" name="accc937aa771d59def6bd505a87e749c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accc937aa771d59def6bd505a87e749c7">&#9670;&#160;</a></span>query_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::Field::query_state </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return true if the requested state exists for this field. </p>
+
+</div>
+</div>
+<a id="aca729da9d2bc2be85aad8604af77bf1f" name="aca729da9d2bc2be85aad8604af77bf1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca729da9d2bc2be85aad8604af77bf1f">&#9670;&#160;</a></span>register_custom_bc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::register_custom_bc </td>
+          <td>(</td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Register a custom boundary conditions class </p>
+
+</div>
+</div>
+<a id="a76282103d0e03320e1b7d66c6bfb6da6" name="a76282103d0e03320e1b7d66c6bfb6da6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76282103d0e03320e1b7d66c6bfb6da6">&#9670;&#160;</a></span>register_fill_patch_op()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::register_fill_patch_op </td>
+          <td>(</td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Register a custom fillpatch class instance for this field</p>
+<p>The class must be a subclass of <a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops_base.html">kynema_sgf::FieldFillPatchOpsBase</a> </p>
+
+</div>
+</div>
+<a id="acb91c58e9ef6f866162486cc930e992d" name="acb91c58e9ef6f866162486cc930e992d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb91c58e9ef6f866162486cc930e992d">&#9670;&#160;</a></span>repo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp; kynema_sgf::Field::repo </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> instance that manages this field. </p>
+
+</div>
+</div>
+<a id="ab5b9c240a51cfda76bbfe9ba85eb3956" name="ab5b9c240a51cfda76bbfe9ba85eb3956"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5b9c240a51cfda76bbfe9ba85eb3956">&#9670;&#160;</a></span>set_default_fillpatch_bc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::set_default_fillpatch_bc </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::BCType::mathematicalBndryTypes</td>          <td class="paramname"><span class="paramname"><em>bctype</em></span><span class="paramdefsep"> = </span><span class="paramdefval">amrex::BCType::hoextrap</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Setup default <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> conditions for fillpatch operations</p>
+<p>This method initializes the necessary <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> data on the field so that a fillpatch call will interpolations on periodic faces and extrapolation on all the other boundaries. This method is useful for use with derived quantities where we still require some fill patch operations. </p>
+
+</div>
+</div>
+<a id="a473584323ca1ab07aa83aa25cc8a823b" name="a473584323ca1ab07aa83aa25cc8a823b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a473584323ca1ab07aa83aa25cc8a823b">&#9670;&#160;</a></span>set_inflow() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::set_inflow </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2a5ae6f1c0d08734e697b9c429e765fe" name="a2a5ae6f1c0d08734e697b9c429e765fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a5ae6f1c0d08734e697b9c429e765fe">&#9670;&#160;</a></span>set_inflow() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::set_inflow </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afa08c22a442a0fcfb827e7de3a22cf7a" name="afa08c22a442a0fcfb827e7de3a22cf7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa08c22a442a0fcfb827e7de3a22cf7a">&#9670;&#160;</a></span>set_inflow_sibling_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::set_inflow_sibling_fields </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Array&lt; amrex::MultiFab *, AMREX_SPACEDIM &gt;</td>          <td class="paramname"><span class="paramname"><em>mfabs</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a32b434b763e5e83b56bf1620fe3d6e24" name="a32b434b763e5e83b56bf1620fe3d6e24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32b434b763e5e83b56bf1620fe3d6e24">&#9670;&#160;</a></span>set_inout_bndry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::set_inout_bndry </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the inout_bndry flag. </p>
+
+</div>
+</div>
+<a id="abcedfd925edab2c7be546b21637ced0e" name="abcedfd925edab2c7be546b21637ced0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcedfd925edab2c7be546b21637ced0e">&#9670;&#160;</a></span>setVal() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::setVal </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the field to a constant value at all levels. </p>
+
+</div>
+</div>
+<a id="aa5386e409ce4d66bc109a815b75f4ed5" name="aa5386e409ce4d66bc109a815b75f4ed5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5386e409ce4d66bc109a815b75f4ed5">&#9670;&#160;</a></span>setVal() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::setVal </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>start_comp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>num_comp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set specific components of a multi-component field to a given value</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Constant value for initialization </td></tr>
+    <tr><td class="paramname">start_comp</td><td>Starting component index (0-based) </td></tr>
+    <tr><td class="paramname">num_comp</td><td>Number of components from starting component to initialize </td></tr>
+    <tr><td class="paramname">nghost</td><td>Number of ghost cells to include </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a74539a4063f09ebcb8cb7bf7cc2fc951" name="a74539a4063f09ebcb8cb7bf7cc2fc951"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74539a4063f09ebcb8cb7bf7cc2fc951">&#9670;&#160;</a></span>setVal() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::setVal </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>values</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set components to those in the vector for a multi-component field </p>
+
+</div>
+</div>
+<a id="a75eb008d67f7ab98ee5bc3bde44d7e9a" name="a75eb008d67f7ab98ee5bc3bde44d7e9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75eb008d67f7ab98ee5bc3bde44d7e9a">&#9670;&#160;</a></span>state() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp; kynema_sgf::Field::state </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return field at a different time state. </p>
+
+</div>
+</div>
+<a id="a53489ddea80ef5389469d53a17c63d00" name="a53489ddea80ef5389469d53a17c63d00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53489ddea80ef5389469d53a17c63d00">&#9670;&#160;</a></span>state() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp; kynema_sgf::Field::state </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4a9cc9866820a37e619462336911f1ce" name="a4a9cc9866820a37e619462336911f1ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a9cc9866820a37e619462336911f1ce">&#9670;&#160;</a></span>subview()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_view_field.html">ViewField</a>&lt; <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &gt; kynema_sgf::Field::subview </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>scomp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ncomp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Return a sub-view of the <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> instance </p>
+
+</div>
+</div>
+<a id="ada7bec4006cbd403a6b3ea680ca9cbc4" name="ada7bec4006cbd403a6b3ea680ca9cbc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada7bec4006cbd403a6b3ea680ca9cbc4">&#9670;&#160;</a></span>to_stretched_space()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::to_stretched_space </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Map field to the stretched mesh</p>
+<p>This method transforms the field to the stretched mesh based on the fields mesh_scaling_factor_cc or mesh_scaling_factor_nd depending on whether the field is cell-centered or node-centered, respectively. </p>
+
+</div>
+</div>
+<a id="aa65f08500bf52ef4eff62e2d968bd986" name="aa65f08500bf52ef4eff62e2d968bd986"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa65f08500bf52ef4eff62e2d968bd986">&#9670;&#160;</a></span>to_uniform_space()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Field::to_uniform_space </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Map field to the uniform mesh</p>
+<p>This method transforms the field to the uniform mesh based on the fields mesh_scaling_factor_cc or mesh_scaling_factor_nd depending on whether the field is cell-centered or node-centered, respectively. </p>
+
+</div>
+</div>
+<a id="aaa45dc99aa6289e1c0472a5b34e048d6" name="aaa45dc99aa6289e1c0472a5b34e048d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa45dc99aa6289e1c0472a5b34e048d6">&#9670;&#160;</a></span>vec_const_ptrs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt; const amrex::MultiFab * &gt; kynema_sgf::Field::vec_const_ptrs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return vector of <span class="tt">const MultiFab*</span> for all levels. </p>
+
+</div>
+</div>
+<a id="a8586dd43968a98a6f7cfe985072c112f" name="a8586dd43968a98a6f7cfe985072c112f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8586dd43968a98a6f7cfe985072c112f">&#9670;&#160;</a></span>vec_ptrs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt; amrex::MultiFab * &gt; kynema_sgf::Field::vec_ptrs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return a vector of MultiFab pointers for all levels. </p>
+
+</div>
+</div>
+<a name="doc-related-members" id="doc-related-members"></a><h2 id="header-doc-related-members" class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="a966868e1abbfd5558376d359c07c6611" name="a966868e1abbfd5558376d359c07c6611"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a966868e1abbfd5558376d359c07c6611">&#9670;&#160;</a></span>FieldRepo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a301c7f800ed529fb2a84b030a790fae6" name="a301c7f800ed529fb2a84b030a790fae6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a301c7f800ed529fb2a84b030a790fae6">&#9670;&#160;</a></span>m_fillpatch_on_regrid</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::Field::m_fillpatch_on_regrid {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating whether fill patch operation must be performed for this field during regrid. </p>
+
+</div>
+</div>
+<a id="a261c9eadd154dd4ac16ffcb5e9658491" name="a261c9eadd154dd4ac16ffcb5e9658491"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a261c9eadd154dd4ac16ffcb5e9658491">&#9670;&#160;</a></span>m_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unsigned kynema_sgf::Field::m_id</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unique ID for this field. </p>
+
+</div>
+</div>
+<a id="a44a4297c43121e69761fe224d18c1f59" name="a44a4297c43121e69761fe224d18c1f59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44a4297c43121e69761fe224d18c1f59">&#9670;&#160;</a></span>m_info</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="structkynema__sgf_1_1_field_info.html">FieldInfo</a>&gt; kynema_sgf::Field::m_info</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Common data for all field states. </p>
+
+</div>
+</div>
+<a id="a38516337c9f1f8d7d70bce87ccd137c9" name="a38516337c9f1f8d7d70bce87ccd137c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38516337c9f1f8d7d70bce87ccd137c9">&#9670;&#160;</a></span>m_inout_bndry</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::Field::m_inout_bndry {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag to indicate whether any of the boundaries is mass-inflow-outflow. </p>
+
+</div>
+</div>
+<a id="aa4244852d8d4fcf2e9366bb4094b947b" name="aa4244852d8d4fcf2e9366bb4094b947b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4244852d8d4fcf2e9366bb4094b947b">&#9670;&#160;</a></span>m_mesh_mapped</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::Field::m_mesh_mapped {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag to track mesh mapping (to uniform space) of field. </p>
+
+</div>
+</div>
+<a id="a9c51c394faa9812d82a85dc3348cd2a2" name="a9c51c394faa9812d82a85dc3348cd2a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c51c394faa9812d82a85dc3348cd2a2">&#9670;&#160;</a></span>m_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string kynema_sgf::Field::m_name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Name of the field. </p>
+
+</div>
+</div>
+<a id="a72610f3cc2ae99f15666cf8c4e43f0b8" name="a72610f3cc2ae99f15666cf8c4e43f0b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72610f3cc2ae99f15666cf8c4e43f0b8">&#9670;&#160;</a></span>m_repo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; kynema_sgf::Field::m_repo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reference to the FieldRepository instance. </p>
+
+</div>
+</div>
+<a id="af40068415ae66ded1d31968ce927780c" name="af40068415ae66ded1d31968ce927780c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af40068415ae66ded1d31968ce927780c">&#9670;&#160;</a></span>m_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> kynema_sgf::Field::m_state</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>State for this field. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/core/<a class="el" href="_field_8_h_source.html">Field.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/core/<a class="el" href="_field_8cpp.html">Field.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
