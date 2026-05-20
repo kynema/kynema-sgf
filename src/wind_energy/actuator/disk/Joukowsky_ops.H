@@ -310,7 +310,8 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
                                   f_theta * theta_vec) *
                                  uInfSqr * dArea;
 
-                ddata.disk_force = ddata.disk_force + grid.force[ip];
+                ddata.disk_force =
+                    ddata.disk_force + ddata.density * grid.force[ip];
             }
         }
 
