@@ -1,7 +1,5 @@
-FILE = ../abl_bndry_output/abl_bndry_output.inp
-ABL.bndry_file = "bndry_files"
+FILE = ../abl_bndry_output_native/abl_bndry_output_native.inp
 ABL.bndry_output_start_time = 1.5
-ABL.bndry_output_format = native
 amr.n_cell              = 24 24 24    # Grid cells at coarsest AMRlevel
 amr.max_level           = 1           # Max AMR level in hierarchy
 amr.blocking_factor     = 4

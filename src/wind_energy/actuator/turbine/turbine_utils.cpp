@@ -30,7 +30,7 @@ void read_inputs(
     pp.query_either("epsilon_tower", tdata.eps_tower);
 
     pp.get("base_position", tinfo.base_pos);
-    if (tdata.solver_name != "Kynema") {
+    if (tdata.solver_name != "KynemaFMB") {
         pp.get("rotor_diameter", tinfo.rotor_diameter);
         pp.get("hub_height", tinfo.hub_height);
     }
