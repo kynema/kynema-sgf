@@ -444,7 +444,7 @@ void build_controller(
                                   .SetControllerInput(controller_output_file);
 }
 
-void update_turbine(::ext_turb::KynemaTurbine& fi, bool advance)
+void update_turbine(::ext_turb::KynemaFMBTurbine& fi, bool advance)
 {
     ++fi.substep_counter;
     // Operations that only need to be done once

@@ -119,8 +119,8 @@ void determine_root_proc<TurbineKynemaFMB>(
     amrex::Vector<int>& act_proc_count)
 {
     external_determine_root_proc<
-        TurbineKynemaFMB::DataType, ::ext_turb::KynemaTurbine,
-        ::ext_turb::KynemaSolverData>(data, act_proc_count);
+        TurbineKynemaFMB::DataType, ::ext_turb::KynemaFMBTurbine,
+        ::ext_turb::KynemaFMBSolverData>(data, act_proc_count);
 }
 
 template <typename SrcTrait>
