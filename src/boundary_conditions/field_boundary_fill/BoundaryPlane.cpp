@@ -328,23 +328,25 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
     }
 
     if (!original_input) {
-        pp.query("write_frequency", m_write_frequency);
-        pp.queryarr("planes", m_planes);
-        pp.query("output_start_time", m_out_start_time);
-        pp.queryarr("var_names", m_var_names);
         pp.get("file", m_filename);
+        pp.getarr("planes", m_planes);
+        pp.getarr("var_names", m_var_names);
+        pp.query("write_frequency", m_write_frequency);
+        pp.query("output_start_time", m_out_start_time);
         pp.query("output_format", m_out_fmt);
-        pp.query("is_static", m_is_static);
         pp.query("output_and_use_initial_plane", m_output_init);
+        m_is_static = m_is_static || m_output_init;
+        pp.query("is_static", m_is_static);
     } else {
-        pp_abl.query("bndry_write_frequency", m_write_frequency);
-        pp_abl.queryarr("bndry_planes", m_planes);
-        pp_abl.query("bndry_output_start_time", m_out_start_time);
-        pp_abl.queryarr("bndry_var_names", m_var_names);
         pp_abl.get("bndry_file", m_filename);
+        pp_abl.getarr("bndry_planes", m_planes);
+        pp_abl.getarr("bndry_var_names", m_var_names);
+        pp_abl.query("bndry_write_frequency", m_write_frequency);
+        pp_abl.query("bndry_output_start_time", m_out_start_time);
         pp_abl.query("bndry_output_format", m_out_fmt);
-        pp_abl.query("bndry_is_static", m_is_static);
         pp_abl.query("bndry_output_and_use_initial_plane", m_output_init);
+        m_is_static = m_is_static || m_output_init;
+        pp_abl.query("bndry_is_static", m_is_static);
     }
 
     if (m_is_static) {
@@ -357,6 +359,13 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
         amrex::Abort(
             "BoundaryPlane: conflicting inputs. Inputs specify to output and "
             "use initial plane, but the IO mode is not set to read. Please "
+            "revise input arguments.\n");
+    }
+
+    if (m_output_init && !m_is_static) {
+        amrex::Abort(
+            "BoundaryPlane: conflicting inputs. Inputs specify to output and "
+            "use initial plane, but the boundary is not static. Please "
             "revise input arguments.\n");
     }
 
