@@ -22,11 +22,7 @@ public:
     ~GravityForcing() override;
 
     void operator()(
-        int lev,
-        const amrex::MFIter& mfi,
-        const amrex::Box& bx,
-        FieldState fstate,
-        const amrex::Array4<amrex::Real>& vel_forces) const override;
+        int lev, FieldState fstate, amrex::MultiFab& src_term) const override;
 
 private:
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};

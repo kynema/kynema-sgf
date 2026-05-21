@@ -301,11 +301,17 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
                         (ddata.awc_azimuthal_mode * theta_angle) +
                         ddata.awc_clocking_angle);
 
+                // Kinematic force [m^4/s^2]: omit the density factor so the
+                // disk force enters ActuatorForcing in the same [m/s^2]
+                // convention as every other ICNS source (see uniform_ct_ops
+                // and ActuatorForcing.cpp). current_power / current_cp below
+                // keep their own density factor.
                 grid.force[ip] = ((1 + f_awc) * f_z * ddata.normal_vec +
                                   f_theta * theta_vec) *
-                                 ddata.density * uInfSqr * dArea;
+                                 uInfSqr * dArea;
 
-                ddata.disk_force = ddata.disk_force + grid.force[ip];
+                ddata.disk_force =
+                    ddata.disk_force + ddata.density * grid.force[ip];
             }
         }
 

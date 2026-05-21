@@ -27,19 +27,20 @@ public:
     ~BoussinesqBuoyancy() override;
 
     void operator()(
-        int lev,
-        const amrex::MFIter& mfi,
-        const amrex::Box& bx,
-        FieldState fstate,
-        const amrex::Array4<amrex::Real>& src_term) const override;
+        int lev, FieldState fstate, amrex::MultiFab& src_term) const override;
 
 private:
     const Field& m_temperature;
+    FieldRepo& m_repo;
 
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 
     //! Transport model
     const transport::TransportModel& m_transport;
+
+    //! Scratch fields for level-wide beta and ref_theta
+    mutable std::unique_ptr<ScratchField> m_beta_scratch;
+    mutable std::unique_ptr<ScratchField> m_ref_theta_scratch;
 };
 } // namespace kynema_sgf::pde::icns
 

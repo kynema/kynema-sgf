@@ -32,7 +32,7 @@ CMake configure phase: :cmakeval:`KYNEMA_SGF_ENABLE_TESTS` as shown below:
 
 .. code-block:: console
 
-   # Switch to AMR-wind source code
+   # Switch to Kynema-SGF source code
    cd ${HOME}/kynema/source/kynema-sgf
    # Create a build directory
    mkdir build-test
@@ -93,7 +93,7 @@ additional flags during the CMake configure phase:
 
 .. code-block:: console
 
-   # Switch to AMR-wind source code
+   # Switch to Kynema-SGF source code
    cd ${HOME}/kynema/source/kynema-sgf
    # Create a build directory
    mkdir build-test

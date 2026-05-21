@@ -71,14 +71,26 @@ TurbulenceModel::CoeffsDictType KLAxell<Transport>::model_coeffs() const
 }
 
 template <typename Transport>
+void KLAxell<Transport>::post_init_actions()
+{
+    m_gradT = this->m_sim.repo().create_scratch_field(3, 0);
+}
+
+template <typename Transport>
+void KLAxell<Transport>::post_regrid_actions()
+{
+    m_gradT = this->m_sim.repo().create_scratch_field(3, 0);
+}
+
+template <typename Transport>
 void KLAxell<Transport>::update_turbulent_viscosity(
     const FieldState fstate, const DiffusionType /*unused*/)
 {
     BL_PROFILE(
         "kynema-sgf::" + this->identifier() + "::update_turbulent_viscosity");
 
-    auto gradT = (this->m_sim.repo()).create_scratch_field(3, 0);
-    fvm::gradient(*gradT, m_temperature.state(fstate));
+    fvm::gradient(*m_gradT, m_temperature.state(fstate));
+    auto& gradT = *m_gradT;
 
     const auto& vel = this->m_vel.state(fstate);
     fvm::strainrate(this->m_shear_prod, vel);
@@ -108,7 +120,7 @@ void KLAxell<Transport>::update_turbulent_viscosity(
 
         const auto& mu_arrs = mu_turb(lev).arrays();
         const auto& rho_arrs = den(lev).const_arrays();
-        const auto& gradT_arrs = (*gradT)(lev).const_arrays();
+        const auto& gradT_arrs = gradT(lev).const_arrays();
         const auto& tlscale_arrs = (this->m_turb_lscale)(lev).arrays();
         const auto& tke_arrs = (*this->m_tke)(lev).arrays();
         const auto& buoy_prod_arrs = (this->m_buoy_prod)(lev).arrays();
@@ -291,8 +303,9 @@ void KLAxell<Transport>::update_alphaeff(Field& alphaeff)
     auto lam_alpha = (this->m_transport).alpha();
     auto& mu_turb = this->m_mu_turb;
     auto& repo = mu_turb.repo();
-    auto gradT = (this->m_sim.repo()).create_scratch_field(3, 0);
-    fvm::gradient(*gradT, m_temperature);
+
+    fvm::gradient(*m_gradT, m_temperature);
+    auto& gradT = *m_gradT;
     const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> gravity{
         m_gravity[0], m_gravity[1], m_gravity[2]};
     const auto beta = (this->m_transport).beta();
@@ -303,7 +316,7 @@ void KLAxell<Transport>::update_alphaeff(Field& alphaeff)
         const auto& alphaeff_arrs = alphaeff(lev).arrays();
         const auto& lam_diff_arrs = (*lam_alpha)(lev).arrays();
         const auto& tke_arrs = (*this->m_tke)(lev).arrays();
-        const auto& gradT_arrs = (*gradT)(lev).const_arrays();
+        const auto& gradT_arrs = gradT(lev).const_arrays();
         const auto& tlscale_arrs = (this->m_turb_lscale)(lev).arrays();
         const auto& beta_arrs = (*beta)(lev).const_arrays();
         const amrex::Real Rtc = -1.0_rt;

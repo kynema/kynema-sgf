@@ -203,6 +203,7 @@ public:
     }
 
 private:
+    const CFDSim& m_sim;
     const kynema_sgf::SimTime& m_time;
     const FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
@@ -263,10 +264,6 @@ private:
 
     //! IO mode
     io_mode m_io_mode{io_mode::undefined};
-
-    //! Flag indicating if the simulation is overset -- needed for complicated
-    //! timing of pre_advance_work
-    bool m_has_overset{false};
 
     //! Flag indicating that the inflow is static, i.e., there is only a single
     //! boundary plane to read in during the simulation

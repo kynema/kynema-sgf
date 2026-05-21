@@ -4,7 +4,7 @@ Governing equations
 -------------------
 
 
-AMR-wind solves the LES formulation of the incompressible Navier-Stokes
+Kynema-SGF solves the LES formulation of the incompressible Navier-Stokes
 equations with additional source terms and a transport equation for potential
 temperature to model atmospheric boundary layer flows. With
 :math:`\widetilde{.}` denoting the spatial filtering operator, the governing

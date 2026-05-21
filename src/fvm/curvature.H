@@ -22,111 +22,111 @@ struct Curvature
     }
 
     template <typename Stencil>
-    void apply(const int lev, const amrex::MFIter& mfi) const
+    void apply(const int lev) const
     {
         const auto& geom = m_phi.repo().mesh().Geom(lev);
         const auto& idx = geom.InvCellSizeArray();
-        const auto& curphi = m_curphi(lev).array(mfi);
-        const auto& phi = m_phi(lev).const_array(mfi);
+        const auto dlo = geom.Domain().smallEnd();
+        const auto dhi = geom.Domain().bigEnd();
+        const int ncomp = m_phi.num_comp();
 
-        const auto& bx_in = mfi.tilebox();
-        const auto& bx = Stencil::box(bx_in, geom);
-        if (bx.isEmpty()) {
-            return;
-        }
+        auto& out_mf = m_curphi(lev);
+        auto const& in_arrs = m_phi(lev).const_arrays();
+        auto const& out_arrs = out_mf.arrays();
 
         amrex::ParallelFor(
-            bx, m_phi.num_comp(),
-            [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
-                amrex::Real cp1, c, cm1;
-                amrex::Real sp1, s, sm1;
-
-                sp1 = Stencil::s00;
-                s = Stencil::s01;
-                sm1 = Stencil::s02;
-                const amrex::Real phixx =
-                    (sp1 * phi(i + 1, j, k, n) + s * phi(i, j, k, n) +
-                     sm1 * phi(i - 1, j, k, n)) *
-                    idx[0] * idx[0];
-
-                sp1 = Stencil::s10;
-                s = Stencil::s11;
-                sm1 = Stencil::s12;
-                const amrex::Real phiyy =
-                    (sp1 * phi(i, j + 1, k, n) + s * phi(i, j, k, n) +
-                     sm1 * phi(i, j - 1, k, n)) *
-                    idx[1] * idx[1];
-
-                sp1 = Stencil::s20;
-                s = Stencil::s21;
-                sm1 = Stencil::s22;
-                const amrex::Real phizz =
-                    (sp1 * phi(i, j, k + 1, n) + s * phi(i, j, k, n) +
-                     sm1 * phi(i, j, k - 1, n)) *
-                    idx[2] * idx[2];
-
-                cp1 = Stencil::c20;
-                c = Stencil::c21;
-                cm1 = Stencil::c22;
-                const amrex::Real phiz =
-                    (cp1 * phi(i, j, k + 1, n) + c * phi(i, j, k, n) +
-                     cm1 * phi(i, j, k - 1, n)) *
-                    idx[2];
-                const amrex::Real phiz_ip1 =
-                    (cp1 * phi(i + 1, j, k + 1, n) + c * phi(i + 1, j, k, n) +
-                     cm1 * phi(i + 1, j, k - 1, n)) *
-                    idx[2];
-                const amrex::Real phiz_im1 =
-                    (cp1 * phi(i - 1, j, k + 1, n) + c * phi(i - 1, j, k, n) +
-                     cm1 * phi(i - 1, j, k - 1, n)) *
-                    idx[2];
-                const amrex::Real phiz_jp1 =
-                    (cp1 * phi(i, j + 1, k + 1, n) + c * phi(i, j + 1, k, n) +
-                     cm1 * phi(i, j + 1, k - 1, n)) *
-                    idx[2];
-                const amrex::Real phiz_jm1 =
-                    (cp1 * phi(i, j - 1, k + 1, n) + c * phi(i, j - 1, k, n) +
-                     cm1 * phi(i, j - 1, k - 1, n)) *
-                    idx[2];
-
-                cp1 = Stencil::c10;
-                c = Stencil::c11;
-                cm1 = Stencil::c12;
-                const amrex::Real phiy =
-                    (cp1 * phi(i, j + 1, k, n) + c * phi(i, j, k, n) +
-                     cm1 * phi(i, j - 1, k, n)) *
-                    idx[1];
-                const amrex::Real phiy_ip1 =
-                    (cp1 * phi(i + 1, j + 1, k, n) + c * phi(i + 1, j, k, n) +
-                     cm1 * phi(i + 1, j - 1, k, n)) *
-                    idx[1];
-                const amrex::Real phiy_im1 =
-                    (cp1 * phi(i - 1, j + 1, k, n) + c * phi(i - 1, j, k, n) +
-                     cm1 * phi(i - 1, j - 1, k, n)) *
-                    idx[1];
-                const amrex::Real phiyz =
-                    (cp1 * phiz_jp1 + c * phiz + cm1 * phiz_jm1) * idx[1];
-
-                cp1 = Stencil::c00;
-                c = Stencil::c01;
-                cm1 = Stencil::c02;
-                const amrex::Real phix =
-                    (cp1 * phi(i + 1, j, k, n) + c * phi(i, j, k, n) +
-                     cm1 * phi(i - 1, j, k, n)) *
-                    idx[0];
-                const amrex::Real phixy =
-                    (cp1 * phiy_ip1 + c * phiy + cm1 * phiy_im1) * idx[0];
-                const amrex::Real phixz =
-                    (cp1 * phiz_ip1 + c * phiz + cm1 * phiz_im1) * idx[0];
-
-                curphi(i, j, k, n) =
-                    -((phix * phix * phiyy) - (2.0_rt * phix * phiy * phixy) +
-                      (phiy * phiy * phixx) + (phix * phix * phizz) -
-                      (2.0_rt * phix * phiz * phixz) + (phiz * phiz * phixx) +
-                      (phiy * phiy * phizz) - (2.0_rt * phiy * phiz * phiyz) +
-                      (phiz * phiz * phiyy)) /
-                    std::pow(
-                        (phix * phix) + (phiy * phiy) + (phiz * phiz), 1.5_rt);
+            out_mf, amrex::IntVect(0),
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                if (!Stencil::applies_to(i, j, k, dlo, dhi)) {
+                    return;
+                }
+                auto const& phi = in_arrs[nbx];
+                auto const& curphi = out_arrs[nbx];
+                for (int n = 0; n < ncomp; ++n) {
+                    const amrex::Real phixx =
+                        (Stencil::s00 * phi(i + 1, j, k, n) +
+                         Stencil::s01 * phi(i, j, k, n) +
+                         Stencil::s02 * phi(i - 1, j, k, n)) *
+                        idx[0] * idx[0];
+                    const amrex::Real phiyy =
+                        (Stencil::s10 * phi(i, j + 1, k, n) +
+                         Stencil::s11 * phi(i, j, k, n) +
+                         Stencil::s12 * phi(i, j - 1, k, n)) *
+                        idx[1] * idx[1];
+                    const amrex::Real phizz =
+                        (Stencil::s20 * phi(i, j, k + 1, n) +
+                         Stencil::s21 * phi(i, j, k, n) +
+                         Stencil::s22 * phi(i, j, k - 1, n)) *
+                        idx[2] * idx[2];
+                    const amrex::Real phiz =
+                        (Stencil::c20 * phi(i, j, k + 1, n) +
+                         Stencil::c21 * phi(i, j, k, n) +
+                         Stencil::c22 * phi(i, j, k - 1, n)) *
+                        idx[2];
+                    const amrex::Real phiz_ip1 =
+                        (Stencil::c20 * phi(i + 1, j, k + 1, n) +
+                         Stencil::c21 * phi(i + 1, j, k, n) +
+                         Stencil::c22 * phi(i + 1, j, k - 1, n)) *
+                        idx[2];
+                    const amrex::Real phiz_im1 =
+                        (Stencil::c20 * phi(i - 1, j, k + 1, n) +
+                         Stencil::c21 * phi(i - 1, j, k, n) +
+                         Stencil::c22 * phi(i - 1, j, k - 1, n)) *
+                        idx[2];
+                    const amrex::Real phiz_jp1 =
+                        (Stencil::c20 * phi(i, j + 1, k + 1, n) +
+                         Stencil::c21 * phi(i, j + 1, k, n) +
+                         Stencil::c22 * phi(i, j + 1, k - 1, n)) *
+                        idx[2];
+                    const amrex::Real phiz_jm1 =
+                        (Stencil::c20 * phi(i, j - 1, k + 1, n) +
+                         Stencil::c21 * phi(i, j - 1, k, n) +
+                         Stencil::c22 * phi(i, j - 1, k - 1, n)) *
+                        idx[2];
+                    const amrex::Real phiy =
+                        (Stencil::c10 * phi(i, j + 1, k, n) +
+                         Stencil::c11 * phi(i, j, k, n) +
+                         Stencil::c12 * phi(i, j - 1, k, n)) *
+                        idx[1];
+                    const amrex::Real phiy_ip1 =
+                        (Stencil::c10 * phi(i + 1, j + 1, k, n) +
+                         Stencil::c11 * phi(i + 1, j, k, n) +
+                         Stencil::c12 * phi(i + 1, j - 1, k, n)) *
+                        idx[1];
+                    const amrex::Real phiy_im1 =
+                        (Stencil::c10 * phi(i - 1, j + 1, k, n) +
+                         Stencil::c11 * phi(i - 1, j, k, n) +
+                         Stencil::c12 * phi(i - 1, j - 1, k, n)) *
+                        idx[1];
+                    const amrex::Real phiyz =
+                        (Stencil::c10 * phiz_jp1 + Stencil::c11 * phiz +
+                         Stencil::c12 * phiz_jm1) *
+                        idx[1];
+                    const amrex::Real phix =
+                        (Stencil::c00 * phi(i + 1, j, k, n) +
+                         Stencil::c01 * phi(i, j, k, n) +
+                         Stencil::c02 * phi(i - 1, j, k, n)) *
+                        idx[0];
+                    const amrex::Real phixy =
+                        (Stencil::c00 * phiy_ip1 + Stencil::c01 * phiy +
+                         Stencil::c02 * phiy_im1) *
+                        idx[0];
+                    const amrex::Real phixz =
+                        (Stencil::c00 * phiz_ip1 + Stencil::c01 * phiz +
+                         Stencil::c02 * phiz_im1) *
+                        idx[0];
+                    curphi(i, j, k, n) =
+                        -((phix * phix * phiyy) -
+                          (2.0_rt * phix * phiy * phixy) +
+                          (phiy * phiy * phixx) + (phix * phix * phizz) -
+                          (2.0_rt * phix * phiz * phixz) +
+                          (phiz * phiz * phixx) + (phiy * phiy * phizz) -
+                          (2.0_rt * phiy * phiz * phiyz) +
+                          (phiz * phiz * phiyy)) /
+                        std::pow(
+                            (phix * phix) + (phiy * phiy) + (phiz * phiz),
+                            1.5_rt);
+                }
             });
     }
 

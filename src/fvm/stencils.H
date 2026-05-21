@@ -146,6 +146,16 @@ struct StencilInterior
     static constexpr amrex::Real f21 = f01;
     static constexpr amrex::Real f22 = f02;
 
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int /*i*/,
+        int /*j*/,
+        int /*k*/,
+        amrex::IntVect const& /*dlo*/,
+        amrex::IntVect const& /*dhi*/) noexcept
+    {
+        return true;
+    }
+
     static amrex::Box
     box(const amrex::Box& bx, const amrex::Geometry& /*unused*/)
     {
@@ -188,6 +198,16 @@ struct StencilILO
     static constexpr amrex::Real f21 = f11;
     static constexpr amrex::Real f22 = f12;
 
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int /*j*/,
+        int /*k*/,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& /*dhi*/) noexcept
+    {
+        return i == dlo[0];
+    }
+
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
         return impl::box_lo(bx, geom, StencilILO::direction);
@@ -228,6 +248,16 @@ struct StencilJLO
     static constexpr amrex::Real f20 = f00;
     static constexpr amrex::Real f21 = f01;
     static constexpr amrex::Real f22 = f02;
+
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int /*i*/,
+        int j,
+        int /*k*/,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& /*dhi*/) noexcept
+    {
+        return j == dlo[1];
+    }
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -270,6 +300,16 @@ struct StencilKLO
     static constexpr amrex::Real f21 = 0.625_rt;
     static constexpr amrex::Real f22 = 0.25_rt;
 
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int /*i*/,
+        int /*j*/,
+        int k,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& /*dhi*/) noexcept
+    {
+        return k == dlo[2];
+    }
+
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
         return impl::box_lo(bx, geom, StencilKLO::direction);
@@ -310,6 +350,16 @@ struct StencilIHI
     static constexpr amrex::Real f20 = f10;
     static constexpr amrex::Real f21 = f11;
     static constexpr amrex::Real f22 = f12;
+
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int /*j*/,
+        int /*k*/,
+        amrex::IntVect const& /*dlo*/,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return i == dhi[0];
+    }
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -352,6 +402,16 @@ struct StencilJHI
     static constexpr amrex::Real f21 = f01;
     static constexpr amrex::Real f22 = f02;
 
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int /*i*/,
+        int j,
+        int /*k*/,
+        amrex::IntVect const& /*dlo*/,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return j == dhi[1];
+    }
+
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
         return impl::box_hi(bx, geom, StencilJHI::direction);
@@ -393,6 +453,16 @@ struct StencilKHI
     static constexpr amrex::Real f21 = 0.625_rt;
     static constexpr amrex::Real f22 = 0.125_rt;
 
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int /*i*/,
+        int /*j*/,
+        int k,
+        amrex::IntVect const& /*dlo*/,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return k == dhi[2];
+    }
+
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
         return impl::box_hi(bx, geom, StencilKHI::direction);
@@ -432,6 +502,16 @@ struct StencilIloJlo
     static constexpr amrex::Real f20 = 0.25_rt;
     static constexpr amrex::Real f21 = 0.5_rt;
     static constexpr amrex::Real f22 = 0.25_rt;
+
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int j,
+        int /*k*/,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& /*dhi*/) noexcept
+    {
+        return i == dlo[0] && j == dlo[1];
+    }
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -473,6 +553,16 @@ struct StencilJloKlo
     static constexpr amrex::Real f21 = f11;
     static constexpr amrex::Real f22 = f12;
 
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int /*i*/,
+        int j,
+        int k,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& /*dhi*/) noexcept
+    {
+        return j == dlo[1] && k == dlo[2];
+    }
+
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
         return StencilJLO::box(bx, geom) & StencilKLO::box(bx, geom);
@@ -512,6 +602,16 @@ struct StencilIloKlo
     static constexpr amrex::Real f20 = f00;
     static constexpr amrex::Real f21 = f01;
     static constexpr amrex::Real f22 = f02;
+
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int /*j*/,
+        int k,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& /*dhi*/) noexcept
+    {
+        return i == dlo[0] && k == dlo[2];
+    }
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -553,6 +653,16 @@ struct StencilIhiJhi
     static constexpr amrex::Real f21 = 0.5_rt;
     static constexpr amrex::Real f22 = 0.25_rt;
 
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int j,
+        int /*k*/,
+        amrex::IntVect const& /*dlo*/,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return i == dhi[0] && j == dhi[1];
+    }
+
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
         return StencilIHI::box(bx, geom) & StencilJHI::box(bx, geom);
@@ -592,6 +702,16 @@ struct StencilJhiKhi
     static constexpr amrex::Real f20 = f10;
     static constexpr amrex::Real f21 = f11;
     static constexpr amrex::Real f22 = f12;
+
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int /*i*/,
+        int j,
+        int k,
+        amrex::IntVect const& /*dlo*/,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return j == dhi[1] && k == dhi[2];
+    }
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -633,6 +753,16 @@ struct StencilIhiKhi
     static constexpr amrex::Real f21 = f01;
     static constexpr amrex::Real f22 = f02;
 
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int /*j*/,
+        int k,
+        amrex::IntVect const& /*dlo*/,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return i == dhi[0] && k == dhi[2];
+    }
+
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
         return StencilIHI::box(bx, geom) & StencilKHI::box(bx, geom);
@@ -672,6 +802,16 @@ struct StencilIloJhi
     static constexpr amrex::Real f20 = 0.25_rt;
     static constexpr amrex::Real f21 = 0.5_rt;
     static constexpr amrex::Real f22 = 0.25_rt;
+
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int j,
+        int /*k*/,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return i == dlo[0] && j == dhi[1];
+    }
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -713,6 +853,16 @@ struct StencilJloKhi
     static constexpr amrex::Real f21 = 0.625_rt;
     static constexpr amrex::Real f22 = 0.125_rt;
 
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int /*i*/,
+        int j,
+        int k,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return j == dlo[1] && k == dhi[2];
+    }
+
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
         return StencilJLO::box(bx, geom) & StencilKHI::box(bx, geom);
@@ -752,6 +902,16 @@ struct StencilIloKhi
     static constexpr amrex::Real f20 = 0.25_rt;
     static constexpr amrex::Real f21 = 0.625_rt;
     static constexpr amrex::Real f22 = 0.125_rt;
+
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int /*j*/,
+        int k,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return i == dlo[0] && k == dhi[2];
+    }
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -793,6 +953,16 @@ struct StencilIhiJlo
     static constexpr amrex::Real f21 = 0.5_rt;
     static constexpr amrex::Real f22 = 0.25_rt;
 
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int j,
+        int /*k*/,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return i == dhi[0] && j == dlo[1];
+    }
+
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
         return StencilIHI::box(bx, geom) & StencilJLO::box(bx, geom);
@@ -832,6 +1002,16 @@ struct StencilJhiKlo
     static constexpr amrex::Real f20 = 0.125_rt;
     static constexpr amrex::Real f21 = 0.625_rt;
     static constexpr amrex::Real f22 = 0.25_rt;
+
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int /*i*/,
+        int j,
+        int k,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return j == dhi[1] && k == dlo[2];
+    }
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -873,6 +1053,16 @@ struct StencilIhiKlo
     static constexpr amrex::Real f21 = 0.625_rt;
     static constexpr amrex::Real f22 = 0.25_rt;
 
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int /*j*/,
+        int k,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return i == dhi[0] && k == dlo[2];
+    }
+
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
         return StencilIHI::box(bx, geom) & StencilKLO::box(bx, geom);
@@ -912,6 +1102,16 @@ struct StencilIloJloKlo
     static constexpr amrex::Real f20 = f00;
     static constexpr amrex::Real f21 = f01;
     static constexpr amrex::Real f22 = f02;
+
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int j,
+        int k,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& /*dhi*/) noexcept
+    {
+        return i == dlo[0] && j == dlo[1] && k == dlo[2];
+    }
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -954,6 +1154,16 @@ struct StencilIloJhiKlo
     static constexpr amrex::Real f21 = f01;
     static constexpr amrex::Real f22 = f02;
 
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int j,
+        int k,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return i == dlo[0] && j == dhi[1] && k == dlo[2];
+    }
+
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
         return StencilILO::box(bx, geom) & StencilJHI::box(bx, geom) &
@@ -994,6 +1204,16 @@ struct StencilIhiJloKlo
     static constexpr amrex::Real f20 = f10;
     static constexpr amrex::Real f21 = f11;
     static constexpr amrex::Real f22 = f12;
+
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int j,
+        int k,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return i == dhi[0] && j == dlo[1] && k == dlo[2];
+    }
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -1036,6 +1256,16 @@ struct StencilIhiJhiKlo
     static constexpr amrex::Real f21 = 0.625_rt;
     static constexpr amrex::Real f22 = 0.25_rt;
 
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int j,
+        int k,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return i == dhi[0] && j == dhi[1] && k == dlo[2];
+    }
+
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
         return StencilIHI::box(bx, geom) & StencilJHI::box(bx, geom) &
@@ -1076,6 +1306,16 @@ struct StencilIloJloKhi
     static constexpr amrex::Real f20 = 0.25_rt;
     static constexpr amrex::Real f21 = 0.625_rt;
     static constexpr amrex::Real f22 = 0.125_rt;
+
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int j,
+        int k,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return i == dlo[0] && j == dlo[1] && k == dhi[2];
+    }
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
@@ -1118,6 +1358,16 @@ struct StencilIloJhiKhi
     static constexpr amrex::Real f21 = 0.625_rt;
     static constexpr amrex::Real f22 = 0.125_rt;
 
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int j,
+        int k,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return i == dlo[0] && j == dhi[1] && k == dhi[2];
+    }
+
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
         return StencilILO::box(bx, geom) & StencilJHI::box(bx, geom) &
@@ -1159,6 +1409,16 @@ struct StencilIhiJloKhi
     static constexpr amrex::Real f21 = 0.625_rt;
     static constexpr amrex::Real f22 = 0.125_rt;
 
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int j,
+        int k,
+        amrex::IntVect const& dlo,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return i == dhi[0] && j == dlo[1] && k == dhi[2];
+    }
+
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
         return StencilIHI::box(bx, geom) & StencilJLO::box(bx, geom) &
@@ -1199,6 +1459,16 @@ struct StencilIhiJhiKhi
     static constexpr amrex::Real f20 = 0.25_rt;
     static constexpr amrex::Real f21 = 0.625_rt;
     static constexpr amrex::Real f22 = 0.125_rt;
+
+    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE static bool applies_to(
+        int i,
+        int j,
+        int k,
+        amrex::IntVect const& /*dlo*/,
+        amrex::IntVect const& dhi) noexcept
+    {
+        return i == dhi[0] && j == dhi[1] && k == dhi[2];
+    }
 
     static amrex::Box box(const amrex::Box& bx, const amrex::Geometry& geom)
     {
