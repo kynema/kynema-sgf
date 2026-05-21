@@ -82,6 +82,14 @@ public:
         const amrex::IntVect& nghost,
         FieldState fstate = FieldState::New) = 0;
 
+    virtual void fillphysbc_type(
+        int lev,
+        amrex::Real time,
+        amrex::BCType::mathematicalBndryTypes bctype,
+        amrex::MultiFab& mfab,
+        const amrex::IntVect& nghost,
+        FieldState fstate = FieldState::New) = 0;
+
     virtual void set_inflow(
         int lev,
         amrex::Real time,
@@ -357,6 +365,26 @@ public:
     {
         amrex::PhysBCFunct<amrex::GpuBndryFuncFab<Functor>> physbc(
             m_mesh.Geom(lev), m_field.bcrec(), bc_functor());
+        physbc.FillBoundary(mfab, 0, m_field.num_comp(), nghost, time, 0);
+    }
+
+    void fillphysbc_type(
+        int lev,
+        amrex::Real time,
+        amrex::BCType::mathematicalBndryTypes bctype,
+        amrex::MultiFab& mfab,
+        const amrex::IntVect& nghost,
+        const FieldState /*fstate*/) override
+    {
+        amrex::Vector<amrex::BCRec> bcrec(m_field.num_comp());
+        for (int i = 0; i < m_field.num_comp(); ++i) {
+            for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
+                bcrec[i].setLo(dir, bctype);
+                bcrec[i].setHi(dir, bctype);
+            }
+        }
+        amrex::PhysBCFunct<amrex::GpuBndryFuncFab<Functor>> physbc(
+            m_mesh.Geom(lev), bcrec, bc_functor());
         physbc.FillBoundary(mfab, 0, m_field.num_comp(), nghost, time, 0);
     }
 
