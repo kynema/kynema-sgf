@@ -3,4 +3,4 @@ target_sources(${kynema_sgf_lib_name} PRIVATE
   )
 
 add_subdirectory(fast)
-add_subdirectory(kynema)
+add_subdirectory(kynema_fmb)

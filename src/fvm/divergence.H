@@ -2,9 +2,6 @@
 #define DIVERGENCE_H
 
 #include "src/fvm/fvm_utils.H"
-#include "AMReX_Array4.H"
-#include "AMReX_Geometry.H"
-#include "AMReX_MFIter.H"
 
 namespace kynema_sgf::fvm {
 
@@ -23,50 +20,61 @@ struct Divergence
     }
 
     template <typename Stencil>
-    void apply(const int lev, const amrex::MFIter& mfi) const
+    void apply(const int lev) const
     {
         const int ncomp = m_divphi.num_comp();
         const auto& geom = m_phi.repo().mesh().Geom(lev);
         const auto& idx = geom.InvCellSizeArray();
-        const auto& divphi_arr = m_divphi(lev).array(mfi);
-        const auto& phi_arr = m_phi(lev).const_array(mfi);
+        const auto dlo = geom.Domain().smallEnd();
+        const auto dhi = geom.Domain().bigEnd();
 
-        const auto& bx_in = mfi.tilebox();
-        const auto& bx = Stencil::box(bx_in, geom);
-        if (bx.isEmpty()) {
-            return;
-        }
+        auto& out_mf = m_divphi(lev);
+        auto const& in_arrs = m_phi(lev).const_arrays();
+        auto const& out_arrs = out_mf.arrays();
 
-        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-            for (int icomp = 0; icomp < ncomp; icomp++) {
-                amrex::Real cp1 = Stencil::c00;
-                amrex::Real c = Stencil::c01;
-                amrex::Real cm1 = Stencil::c02;
-                divphi_arr(i, j, k, icomp) =
-                    (cp1 * phi_arr(i + 1, j, k, (icomp * AMREX_SPACEDIM) + 0) +
-                     c * phi_arr(i, j, k, (icomp * AMREX_SPACEDIM) + 0) +
-                     cm1 * phi_arr(i - 1, j, k, (icomp * AMREX_SPACEDIM) + 0)) *
-                    idx[0];
+        amrex::ParallelFor(
+            out_mf, amrex::IntVect(0),
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                if (!Stencil::applies_to(i, j, k, dlo, dhi)) {
+                    return;
+                }
+                auto const& phi_arr = in_arrs[nbx];
+                auto const& divphi_arr = out_arrs[nbx];
+                for (int icomp = 0; icomp < ncomp; icomp++) {
+                    divphi_arr(i, j, k, icomp) =
+                        (Stencil::c00 *
+                             phi_arr(
+                                 i + 1, j, k, (icomp * AMREX_SPACEDIM) + 0) +
+                         Stencil::c01 *
+                             phi_arr(i, j, k, (icomp * AMREX_SPACEDIM) + 0) +
+                         Stencil::c02 *
+                             phi_arr(
+                                 i - 1, j, k, (icomp * AMREX_SPACEDIM) + 0)) *
+                        idx[0];
 
-                cp1 = Stencil::c10;
-                c = Stencil::c11;
-                cm1 = Stencil::c12;
-                divphi_arr(i, j, k, icomp) +=
-                    (cp1 * phi_arr(i, j + 1, k, (icomp * AMREX_SPACEDIM) + 1) +
-                     c * phi_arr(i, j, k, (icomp * AMREX_SPACEDIM) + 1) +
-                     cm1 * phi_arr(i, j - 1, k, (icomp * AMREX_SPACEDIM) + 1)) *
-                    idx[1];
+                    divphi_arr(i, j, k, icomp) +=
+                        (Stencil::c10 *
+                             phi_arr(
+                                 i, j + 1, k, (icomp * AMREX_SPACEDIM) + 1) +
+                         Stencil::c11 *
+                             phi_arr(i, j, k, (icomp * AMREX_SPACEDIM) + 1) +
+                         Stencil::c12 *
+                             phi_arr(
+                                 i, j - 1, k, (icomp * AMREX_SPACEDIM) + 1)) *
+                        idx[1];
 
-                cp1 = Stencil::c20;
-                c = Stencil::c21;
-                cm1 = Stencil::c22;
-                divphi_arr(i, j, k, icomp) +=
-                    (cp1 * phi_arr(i, j, k + 1, (icomp * AMREX_SPACEDIM) + 2) +
-                     c * phi_arr(i, j, k, (icomp * AMREX_SPACEDIM) + 2) +
-                     cm1 * phi_arr(i, j, k - 1, (icomp * AMREX_SPACEDIM) + 2)) *
-                    idx[2];
-            }
-        });
+                    divphi_arr(i, j, k, icomp) +=
+                        (Stencil::c20 *
+                             phi_arr(
+                                 i, j, k + 1, (icomp * AMREX_SPACEDIM) + 2) +
+                         Stencil::c21 *
+                             phi_arr(i, j, k, (icomp * AMREX_SPACEDIM) + 2) +
+                         Stencil::c22 *
+                             phi_arr(
+                                 i, j, k - 1, (icomp * AMREX_SPACEDIM) + 2)) *
+                        idx[2];
+                }
+            });
     }
 
     FTypeOut& m_divphi;

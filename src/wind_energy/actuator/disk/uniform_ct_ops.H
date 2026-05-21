@@ -79,9 +79,11 @@ struct ComputeForceOp<UniformCt, ActSrcDisk>
         base::set_thrust_coefficient(ddata, uInfSqr);
 
         const int npts = ddata.num_force_pts;
-        const amrex::Real rho = ddata.density;
-        const amrex::Real aeroPressure =
-            0.5_rt * uInfSqr * rho * ddata.current_ct;
+        // Kinematic aero pressure [m^2/s^2]. grid.force is stored in
+        // kinematic units (force / density): ActuatorForcing adds it into
+        // the ICNS src_term in the same [m/s^2] convention as every other
+        // momentum source, ahead of the shared multiply_rho step.
+        const amrex::Real aeroPressure = 0.5_rt * uInfSqr * ddata.current_ct;
         const amrex::Real dr = ddata.dr;
 
         for (int ip = 0; ip < npts; ++ip) {
@@ -97,6 +99,7 @@ struct ComputeForceOp<UniformCt, ActSrcDisk>
 
         if (data.info().is_root_proc && data.sim().helics().is_activated()) {
 
+            const amrex::Real rho = ddata.density;
             const amrex::Real ct = ddata.current_ct;
             std::cout << "turbine" << data.info().id << " thrust: " << ct
                       << std::endl;

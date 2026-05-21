@@ -162,6 +162,7 @@ protected:
         auto& icns_eq = pde_mgr.register_icns();
         sim().init_physics();
         sim().create_turbulence_model();
+        sim().turbulence_model().post_init_actions();
         icns_eq.initialize();
 
         // Get turbulence model

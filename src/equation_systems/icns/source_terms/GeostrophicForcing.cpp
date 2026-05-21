@@ -101,14 +101,9 @@ GeostrophicForcing::GeostrophicForcing(const CFDSim& sim)
 GeostrophicForcing::~GeostrophicForcing() = default;
 
 void GeostrophicForcing::operator()(
-    const int lev,
-    const amrex::MFIter& mfi,
-    const amrex::Box& bx,
-    const FieldState /*fstate*/,
-    const amrex::Array4<amrex::Real>& src_term) const
+    const int lev, const FieldState /*fstate*/, amrex::MultiFab& src_term) const
 {
     amrex::Real hfac = (m_is_horizontal) ? 0.0_rt : 1.0_rt;
-    // Forces applied at n+1/2
     const auto& nph_time = 0.5_rt * (m_time.current_time() + m_time.new_time());
 
     const bool ph_ramp = m_use_phase_ramp;
@@ -121,7 +116,6 @@ void GeostrophicForcing::operator()(
     amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> forcing{
         m_g_forcing[0], m_g_forcing[1], m_g_forcing[2]};
 
-    // Calculate forcing values if target velocity is a function of time
     if (!m_vel_timetable.empty()) {
         const amrex::Real nph_spd =
             kynema_sgf::interp::linear(m_time_table, m_speed_table, nph_time);
@@ -137,38 +131,36 @@ void GeostrophicForcing::operator()(
         forcing[2] = 0.0_rt;
     }
 
-    const auto& vof = (*m_vof)(lev).const_array(mfi);
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        amrex::Real wfac = 1.0_rt;
-        if (ph_ramp) {
-            const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
-            if (z - wlev < wrht0 + wrht1) {
-                if (z - wlev < wrht0) {
-                    // Apply no forcing within first interval
+    auto const& src_arrs = src_term.arrays();
+    auto const& vof_arrs = (*m_vof)(lev).const_arrays();
+
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), AMREX_SPACEDIM,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+            amrex::Real wfac = 1.0_rt;
+            if (ph_ramp) {
+                const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
+                if (z - wlev < wrht0 + wrht1) {
+                    if (z - wlev < wrht0) {
+                        wfac = 0.0_rt;
+                    } else {
+                        wfac = 0.5_rt -
+                               (0.5_rt * std::cos(
+                                             std::numbers::pi_v<amrex::Real> *
+                                             (z - wlev - wrht0) / wrht1));
+                    }
+                }
+                if (multiphase::interface_band(
+                        i, j, k, vof_arrs[nbx], n_band) ||
+                    vof_arrs[nbx](i, j, k) >
+                        1.0_rt - (std::numeric_limits<amrex::Real>::epsilon() *
+                                  1.0e4_rt)) {
                     wfac = 0.0_rt;
-                } else {
-                    // Ramp from 0 to 1 over second interval
-                    wfac =
-                        0.5_rt - (0.5_rt * std::cos(
-                                               std::numbers::pi_v<amrex::Real> *
-                                               (z - wlev - wrht0) / wrht1));
                 }
             }
-            // Check for presence of liquid (like a droplet)
-            // - interface_band checks for closeness to interface
-            // - need to also check for within liquid
-            if (multiphase::interface_band(i, j, k, vof, n_band) ||
-                vof(i, j, k) >
-                    1.0_rt - (std::numeric_limits<amrex::Real>::epsilon() *
-                              1.0e4_rt)) {
-                // Turn off forcing
-                wfac = 0.0_rt;
-            }
-        }
-        src_term(i, j, k, 0) += wfac * forcing[0];
-        src_term(i, j, k, 1) += wfac * forcing[1];
-        src_term(i, j, k, 2) += wfac * hfac * forcing[2];
-    });
+            const amrex::Real comp_fac = (n == 2) ? hfac : 1.0_rt;
+            src_arrs[nbx](i, j, k, n) += wfac * comp_fac * forcing[n];
+        });
 }
 
 } // namespace kynema_sgf::pde::icns

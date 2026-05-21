@@ -1,6 +1,7 @@
 #ifndef ICNS_ADVECTION_H
 #define ICNS_ADVECTION_H
 
+#include "src/core/ScratchField.H"
 #include "src/equation_systems/AdvOp_Godunov.H"
 #include "src/equation_systems/AdvOp_MOL.H"
 #include "src/equation_systems/icns/icns.H"
@@ -95,6 +96,18 @@ struct AdvectionOp<ICNS, fvm::Godunov>
               variable_density,
               mesh_mapping,
               is_anelastic)
+        , m_flux_x(fields_in.repo.create_scratch_field(
+              ICNS::ndim, 0, kynema_sgf::FieldLoc::XFACE))
+        , m_flux_y(fields_in.repo.create_scratch_field(
+              ICNS::ndim, 0, kynema_sgf::FieldLoc::YFACE))
+        , m_flux_z(fields_in.repo.create_scratch_field(
+              ICNS::ndim, 0, kynema_sgf::FieldLoc::ZFACE))
+        , m_face_x(fields_in.repo.create_scratch_field(
+              ICNS::ndim, 0, kynema_sgf::FieldLoc::XFACE))
+        , m_face_y(fields_in.repo.create_scratch_field(
+              ICNS::ndim, 0, kynema_sgf::FieldLoc::YFACE))
+        , m_face_z(fields_in.repo.create_scratch_field(
+              ICNS::ndim, 0, kynema_sgf::FieldLoc::ZFACE))
     {
 
         amrex::ParmParse pp("incflo");
@@ -245,18 +258,12 @@ struct AdvectionOp<ICNS, fvm::Godunov>
         const auto& dof_field = fields.field.state(fstate);
         const auto& dof_nph = fields.field.state(kynema_sgf::FieldState::NPH);
 
-        auto flux_x = repo.create_scratch_field(
-            ICNS::ndim, 0, kynema_sgf::FieldLoc::XFACE);
-        auto flux_y = repo.create_scratch_field(
-            ICNS::ndim, 0, kynema_sgf::FieldLoc::YFACE);
-        auto flux_z = repo.create_scratch_field(
-            ICNS::ndim, 0, kynema_sgf::FieldLoc::ZFACE);
-        auto face_x = repo.create_scratch_field(
-            ICNS::ndim, 0, kynema_sgf::FieldLoc::XFACE);
-        auto face_y = repo.create_scratch_field(
-            ICNS::ndim, 0, kynema_sgf::FieldLoc::YFACE);
-        auto face_z = repo.create_scratch_field(
-            ICNS::ndim, 0, kynema_sgf::FieldLoc::ZFACE);
+        auto& flux_x = *m_flux_x;
+        auto& flux_y = *m_flux_y;
+        auto& flux_z = *m_flux_z;
+        auto& face_x = *m_face_x;
+        auto& face_y = *m_face_y;
+        auto& face_z = *m_face_z;
 
         const auto& rho_o =
             repo.get_field("density").state(kynema_sgf::FieldState::Old);
@@ -351,10 +358,10 @@ struct AdvectionOp<ICNS, fvm::Godunov>
                     const auto& divu = tmpfab.array();
                     HydroUtils::ComputeFluxesOnBoxFromState(
                         bx, ICNS::ndim, mfi, q.const_array(mfi),
-                        q_nph.const_array(mfi), (*flux_x)(lev).array(mfi),
-                        (*flux_y)(lev).array(mfi), (*flux_z)(lev).array(mfi),
-                        (*face_x)(lev).array(mfi), (*face_y)(lev).array(mfi),
-                        (*face_z)(lev).array(mfi), known_edge_state,
+                        q_nph.const_array(mfi), flux_x(lev).array(mfi),
+                        flux_y(lev).array(mfi), flux_z(lev).array(mfi),
+                        face_x(lev).array(mfi), face_y(lev).array(mfi),
+                        face_z(lev).array(mfi), known_edge_state,
                         u_mac(lev).const_array(mfi),
                         v_mac(lev).const_array(mfi),
                         w_mac(lev).const_array(mfi), divu, fq.const_array(mfi),
@@ -374,9 +381,9 @@ struct AdvectionOp<ICNS, fvm::Godunov>
         if (mphase_vof) {
             // Loop levels
             multiphase::hybrid_fluxes(
-                repo, ICNS::ndim, iconserv, (*flux_x), (*flux_y), (*flux_z),
-                dof_field, dof_nph, src_term, rho_o, rho_nph, u_mac, v_mac,
-                w_mac, dof_field.bcrec(), dof_field.bcrec_device().data(),
+                repo, ICNS::ndim, iconserv, flux_x, flux_y, flux_z, dof_field,
+                dof_nph, src_term, rho_o, rho_nph, u_mac, v_mac, w_mac,
+                dof_field.bcrec(), dof_field.bcrec_device().data(),
                 rho_o.bcrec(), rho_o.bcrec_device().data(), dt, mflux_scheme,
                 m_allow_inflow_on_outflow, godunov_use_forces_in_trans);
         }
@@ -384,9 +391,9 @@ struct AdvectionOp<ICNS, fvm::Godunov>
         amrex::Vector<amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>> fluxes(
             repo.num_active_levels());
         for (int lev = 0; lev < repo.num_active_levels(); ++lev) {
-            fluxes[lev][0] = &(*flux_x)(lev);
-            fluxes[lev][1] = &(*flux_y)(lev);
-            fluxes[lev][2] = &(*flux_z)(lev);
+            fluxes[lev][0] = &flux_x(lev);
+            fluxes[lev][1] = &flux_y(lev);
+            fluxes[lev][2] = &flux_z(lev);
         }
 
         // In order to enforce conservation across coarse-fine boundaries we
@@ -409,9 +416,9 @@ struct AdvectionOp<ICNS, fvm::Godunov>
                 const auto& bx = mfi.tilebox();
 
                 HydroUtils::ComputeDivergence(
-                    bx, conv_term(lev).array(mfi), (*flux_x)(lev).array(mfi),
-                    (*flux_y)(lev).array(mfi), (*flux_z)(lev).array(mfi),
-                    ICNS::ndim, geom[lev], static_cast<amrex::Real>(-1.0_rt),
+                    bx, conv_term(lev).array(mfi), flux_x(lev).array(mfi),
+                    flux_y(lev).array(mfi), flux_z(lev).array(mfi), ICNS::ndim,
+                    geom[lev], static_cast<amrex::Real>(-1.0_rt),
                     fluxes_are_area_weighted);
 
                 if (m_cons == 0) {
@@ -424,9 +431,9 @@ struct AdvectionOp<ICNS, fvm::Godunov>
                         static_cast<amrex::Real>(1.0_rt), false);
                     HydroUtils::ComputeConvectiveTerm(
                         bx, ICNS::ndim, mfi, dof_field(lev).const_array(mfi),
-                        (*face_x)(lev).const_array(mfi),
-                        (*face_y)(lev).const_array(mfi),
-                        (*face_z)(lev).const_array(mfi), divum_arr,
+                        face_x(lev).const_array(mfi),
+                        face_y(lev).const_array(mfi),
+                        face_z(lev).const_array(mfi), divum_arr,
                         conv_term(lev).array(mfi), iconserv.data(),
                         postmac_advection_type);
                 }
@@ -440,6 +447,14 @@ struct AdvectionOp<ICNS, fvm::Godunov>
     Field& w_mac;
 
     MacProjOp m_macproj_op;
+
+    std::unique_ptr<ScratchField> m_flux_x;
+    std::unique_ptr<ScratchField> m_flux_y;
+    std::unique_ptr<ScratchField> m_flux_z;
+    std::unique_ptr<ScratchField> m_face_x;
+    std::unique_ptr<ScratchField> m_face_y;
+    std::unique_ptr<ScratchField> m_face_z;
+
     amrex::Gpu::DeviceVector<int> iconserv;
 
     godunov::scheme godunov_scheme = godunov::scheme::WENOZ;

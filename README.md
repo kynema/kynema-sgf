@@ -24,7 +24,7 @@ perform blade-resolved simulations of multiple wind turbines within a wind farm.
 For offshore applications, the ability to model the air-sea interaction effects
 and its impact on the ABL characteristics is another focus for the code
 development effort. As with other codes in the
-[Exawind](https://github.com/kyneam) ecosystem, Kynema-SGF shares the following
+[Kynema](https://github.com/kynema) ecosystem, Kynema-SGF shares the following
 objectives:
 
 - an open, well-documented implementation of the state-of-the-art computational
@@ -97,8 +97,8 @@ issue](https://github.com/kynema/kynema-sgf/issues/new) on GitHub.
 We welcome contributions from the community in form of bug fixes, feature
 enhancements, documentation updates, etc. All contributions are processed
 through pull-requests on GitHub. Please refer to the 
-[coding guidelines](https://exawind.github.io/amr-wind/developer/coding_guidelines.html) as
-a reference for the best practices currently used to develop AMR-Wind.
+[coding guidelines](https://kynema.github.io/kynema-sgf/developer/coding_guidelines.html) as
+a reference for the best practices currently used to develop Kynema-SGF.
 
 To pass the code format checking, use this command with a new version of `clang-format`:
 ```
@@ -114,9 +114,8 @@ capability that was used for that publication.
 The development team manages a mailing list for Kynema-SGF users. Invites for quarterly user meetings,
 along with occasional announcements, are sent to this list.
 Quarterly meetings provide development updates and a forum for discussion and feedback.
-If you would like to join this mailing list, please send a request to amr-wind-maintainers@groups.nrel.gov,
-and we will be happy to add your email address. Our maintainers email is also available for direct
-inquiries about AMR-Wind, but the GitHub page (issues, discussions, pull requests) is preferred
+If you would like to join this mailing list, please send a request to michael.kuhn@nlr.gov,
+and we will be happy to add your email address. The GitHub page (issues, discussions, pull requests) is preferred
 for the majority of questions.
 
 ## Versioning and tags

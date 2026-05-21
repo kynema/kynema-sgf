@@ -89,13 +89,8 @@ ABLForcing::ABLForcing(const CFDSim& sim)
 ABLForcing::~ABLForcing() = default;
 
 void ABLForcing::operator()(
-    const int lev,
-    const amrex::MFIter& mfi,
-    const amrex::Box& bx,
-    const FieldState /*fstate*/,
-    const amrex::Array4<amrex::Real>& src_term) const
+    const int lev, const FieldState /*fstate*/, amrex::MultiFab& src_term) const
 {
-
     const amrex::Real dudt = m_abl_forcing[0];
     const amrex::Real dvdt = m_abl_forcing[1];
 
@@ -107,39 +102,39 @@ void ABLForcing::operator()(
     const auto& problo = m_mesh.Geom(lev).ProbLoArray();
     const auto& dx = m_mesh.Geom(lev).CellSizeArray();
 
-    const auto& vof = (*m_vof)(lev).const_array(mfi);
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        amrex::Real fac = 1.0_rt;
-        if (ph_ramp) {
-            const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
-            if (z - wlev < wrht0 + wrht1) {
-                if (z - wlev < wrht0) {
-                    // Apply no forcing within first interval
+    auto const& src_arrs = src_term.arrays();
+    auto const& vof_arrs = (*m_vof)(lev).const_arrays();
+
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), AMREX_SPACEDIM,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+            if (n >= 2) {
+                return;
+            }
+            amrex::Real fac = 1.0_rt;
+            if (ph_ramp) {
+                const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
+                if (z - wlev < wrht0 + wrht1) {
+                    if (z - wlev < wrht0) {
+                        fac = 0.0_rt;
+                    } else {
+                        fac = 0.5_rt -
+                              (0.5_rt * std::cos(
+                                            std::numbers::pi_v<amrex::Real> *
+                                            (z - wlev - wrht0) / wrht1));
+                    }
+                }
+                if (multiphase::interface_band(
+                        i, j, k, vof_arrs[nbx], n_band) ||
+                    vof_arrs[nbx](i, j, k) >
+                        1.0_rt - (std::numeric_limits<amrex::Real>::epsilon() *
+                                  1.0e4_rt)) {
                     fac = 0.0_rt;
-                } else {
-                    // Ramp from 0 to 1 over second interval
-                    fac =
-                        0.5_rt - (0.5_rt * std::cos(
-                                               std::numbers::pi_v<amrex::Real> *
-                                               (z - wlev - wrht0) / wrht1));
                 }
             }
-            // Check for presence of liquid (like a droplet)
-            // - interface_band checks for closeness to interface
-            // - need to also check for within liquid
-            if (multiphase::interface_band(i, j, k, vof, n_band) ||
-                vof(i, j, k) >
-                    1.0_rt - (std::numeric_limits<amrex::Real>::epsilon() *
-                              1.0e4_rt)) {
-                // Turn off forcing
-                fac = 0.0_rt;
-            }
-        }
-        src_term(i, j, k, 0) += fac * dudt;
-        src_term(i, j, k, 1) += fac * dvdt;
-
-        // No forcing in z-direction
-    });
+            const amrex::Real forcing = (n == 0) ? dudt : dvdt;
+            src_arrs[nbx](i, j, k, n) += fac * forcing;
+        });
 }
 
 } // namespace kynema_sgf::pde::icns
