@@ -96,16 +96,16 @@ public:
             if (fields.repo.int_field_exists("terrain_blank")) {
                 auto& terrain_blank =
                     fields.repo.get_int_field("terrain_blank");
-                for (int i = 0; i < mesh.finestLevel() + 1; ++i) {
+                for (int lev = 0; lev < mesh.finestLevel() + 1; ++lev) {
                     amrex::iMultiFab::Saxpy(
-                        (*combo_mask)(i), -1, terrain_blank(i), 0, 0, 1,
+                        (*combo_mask)(lev), -1, terrain_blank(lev), 0, 0, 1,
                         amrex::IntVect(1));
                 }
             }
             const auto& overset_mask = fields.repo.get_int_field("mask_cell");
-            for (int i = 0; i < mesh.finestLevel() + 1; ++i) {
+            for (int lev = 0; lev < mesh.finestLevel() + 1; ++lev) {
                 amrex::iMultiFab::Multiply(
-                    (*combo_mask)(i), overset_mask(i), 0, 0, 1, 1);
+                    (*combo_mask)(lev), overset_mask(lev), 0, 0, 1, 1);
             }
             auto imask = (*combo_mask).vec_const_ptrs();
             m_solver_scalar = std::make_unique<amrex::MLABecLaplacian>(
@@ -306,17 +306,17 @@ public:
                 if (fields.repo.int_field_exists("terrain_blank")) {
                     auto& terrain_blank =
                         fields.repo.get_int_field("terrain_blank");
-                    for (int i = 0; i < mesh.finestLevel() + 1; ++i) {
+                    for (int lev = 0; lev < mesh.finestLevel() + 1; ++lev) {
                         amrex::iMultiFab::Saxpy(
-                            (*combo_mask)(i), -1, terrain_blank(i), 0, 0, 1,
+                            (*combo_mask)(lev), -1, terrain_blank(lev), 0, 0, 1,
                             amrex::IntVect(1));
                     }
                 }
                 const auto& overset_mask =
                     fields.repo.get_int_field("mask_cell");
-                for (int i = 0; i < mesh.finestLevel() + 1; ++i) {
+                for (int lev = 0; lev < mesh.finestLevel() + 1; ++lev) {
                     amrex::iMultiFab::Multiply(
-                        (*combo_mask)(i), overset_mask(i), 0, 0, 1, 1);
+                        (*combo_mask)(lev), overset_mask(lev), 0, 0, 1, 1);
                 }
                 auto imask = (*combo_mask).vec_const_ptrs();
                 m_solver_scalar[i] = std::make_unique<amrex::MLABecLaplacian>(
