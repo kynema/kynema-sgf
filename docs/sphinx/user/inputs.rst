@@ -101,6 +101,7 @@ documentation provided here might not work with older releases.
    inputs_ABL.rst
    inputs_ABL_meso_forcing.rst
    inputs_SyntheticTurbulence.rst
+   inputs_ChannelBuilder.rst
    inputs_Boundary_conditions.rst
    inputs_MLMG.rst
    inputs_post_processing.rst
