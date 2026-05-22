@@ -1,10 +1,11 @@
 #ifndef VOF_ADVECTION_H
 #define VOF_ADVECTION_H
 
+#include "src/core/ScratchField.H"
+#include "src/core/SimTime.H"
 #include "src/equation_systems/vof/vof.H"
 #include "src/equation_systems/vof/vof_hybridsolver_ops.H"
 #include "src/equation_systems/vof/SplitAdvection.H"
-#include "src/core/SimTime.H"
 
 namespace kynema_sgf::pde {
 
@@ -26,6 +27,14 @@ struct AdvectionOp<VOF, fvm::Godunov>
         , u_mac(fields_in.repo.get_field("u_mac"))
         , v_mac(fields_in.repo.get_field("v_mac"))
         , w_mac(fields_in.repo.get_field("w_mac"))
+        , m_flux_x(fields_in.repo.create_scratch_field(
+              1, 0, kynema_sgf::FieldLoc::XFACE))
+        , m_flux_y(fields_in.repo.create_scratch_field(
+              1, 0, kynema_sgf::FieldLoc::YFACE))
+        , m_flux_z(fields_in.repo.create_scratch_field(
+              1, 0, kynema_sgf::FieldLoc::ZFACE))
+        , m_fluxC(fields_in.repo.create_scratch_field(
+              1, 0, kynema_sgf::FieldLoc::CELL))
     {
         amrex::ParmParse pp_multiphase("VOF");
         pp_multiphase.query("remove_debris", m_rm_debris);
@@ -74,16 +83,10 @@ struct AdvectionOp<VOF, fvm::Godunov>
         // reconstruction
         //
 
-        auto flux_x =
-            repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::XFACE);
-        auto flux_y =
-            repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::YFACE);
-        auto flux_z =
-            repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::ZFACE);
-
-        // Scratch field for fluxC
-        auto fluxC =
-            repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::CELL);
+        auto& flux_x = *m_flux_x;
+        auto& flux_y = *m_flux_y;
+        auto& flux_z = *m_flux_z;
+        auto& fluxC = *m_fluxC;
 
         // Define the sweep time
         isweep += 1;
@@ -96,9 +99,9 @@ struct AdvectionOp<VOF, fvm::Godunov>
         amrex::Vector<amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>> advas(
             nlevels);
         for (int lev = 0; lev < nlevels; ++lev) {
-            fluxes[lev][0] = &(*flux_x)(lev);
-            fluxes[lev][1] = &(*flux_y)(lev);
-            fluxes[lev][2] = &(*flux_z)(lev);
+            fluxes[lev][0] = &flux_x(lev);
+            fluxes[lev][1] = &flux_y(lev);
+            fluxes[lev][2] = &flux_z(lev);
             advas[lev][0] = &aa_x(lev);
             advas[lev][1] = &aa_y(lev);
             advas[lev][2] = &aa_z(lev);
@@ -106,20 +109,20 @@ struct AdvectionOp<VOF, fvm::Godunov>
 
         // Split advection step 1, with cmask calculation
         multiphase::split_advection_step(
-            isweep, 0, nlevels, dof_field, fluxes, (*fluxC), advas, u_mac,
-            v_mac, w_mac, dof_field.bc_type(), geom, m_time.new_time(), dt,
+            isweep, 0, nlevels, dof_field, fluxes, fluxC, advas, u_mac, v_mac,
+            w_mac, dof_field.bc_type(), geom, m_time.new_time(), dt,
             m_rm_debris);
         // (copy old boundaries to working state)
         // Split advection step 2
         multiphase::split_advection_step(
-            isweep, 1, nlevels, dof_field, fluxes, (*fluxC), advas, u_mac,
-            v_mac, w_mac, dof_field.bc_type(), geom, m_time.new_time(), dt,
+            isweep, 1, nlevels, dof_field, fluxes, fluxC, advas, u_mac, v_mac,
+            w_mac, dof_field.bc_type(), geom, m_time.new_time(), dt,
             m_rm_debris);
         // (copy old boundaries to working state)
         // Split advection step 3
         multiphase::split_advection_step(
-            isweep, 2, nlevels, dof_field, fluxes, (*fluxC), advas, u_mac,
-            v_mac, w_mac, dof_field.bc_type(), geom, m_time.new_time(), dt,
+            isweep, 2, nlevels, dof_field, fluxes, fluxC, advas, u_mac, v_mac,
+            w_mac, dof_field.bc_type(), geom, m_time.new_time(), dt,
             m_rm_debris);
 
         // Replace masked cells using overset
@@ -142,6 +145,12 @@ struct AdvectionOp<VOF, fvm::Godunov>
     Field& u_mac;
     Field& v_mac;
     Field& w_mac;
+
+    std::unique_ptr<ScratchField> m_flux_x;
+    std::unique_ptr<ScratchField> m_flux_y;
+    std::unique_ptr<ScratchField> m_flux_z;
+    std::unique_ptr<ScratchField> m_fluxC;
+
     int isweep = 0;
     bool m_rm_debris{true};
     bool m_replace_mask{true};

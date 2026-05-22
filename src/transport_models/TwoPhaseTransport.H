@@ -287,81 +287,89 @@ public:
     {
         auto beta = m_repo.create_scratch_field(1, m_ngrow);
         for (int lev = 0; lev < m_repo.num_active_levels(); ++lev) {
-#ifdef AMREX_USE_OMP
-#pragma omp parallel if (amrex::Gpu::notInLaunchRegion())
-#endif
-            for (amrex::MFIter mfi((*beta)(lev)); mfi.isValid(); ++mfi) {
-                const auto& bx = mfi.tilebox();
-                const auto& beta_arr = (*beta)(lev).array(mfi);
-                beta_impl(lev, mfi, bx, beta_arr);
-            }
+            beta_fill(lev, (*beta)(lev));
         }
         return beta;
-    }
-
-    //! Compute the thermal expansion coefficient
-    void beta_impl(
-        const int lev,
-        const amrex::MFIter& mfi,
-        const amrex::Box& bx,
-        const amrex::Array4<amrex::Real>& beta) const override
-    {
-
-        if (m_constant_beta > 0.0_rt) {
-            const amrex::Real beta_val = m_constant_beta;
-            amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                beta(i, j, k) = beta_val;
-            });
-        } else if (m_repo.field_exists("reference_temperature")) {
-            const auto& temp0 = m_repo.get_field("reference_temperature");
-            const auto& temp0_arr = temp0(lev).const_array(mfi);
-            amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                beta(i, j, k) = 1.0_rt / temp0_arr(i, j, k);
-            });
-        } else {
-            const amrex::Real beta_val = 1.0_rt / m_reference_temperature;
-            amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                beta(i, j, k) = beta_val;
-            });
-        }
-
-        auto ifacetype = get_iface_method();
-        if (ifacetype == InterfaceCapturingMethod::VOF) {
-            const auto& vof = m_repo.get_field("vof");
-            const auto& vof_arr = vof(lev).const_array(mfi);
-            amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                if (vof_arr(i, j, k) > constants::TIGHT_TOL) {
-                    beta(i, j, k) = 0.0_rt;
-                }
-            });
-        } else if (ifacetype == InterfaceCapturingMethod::LS) {
-            const auto& levelset = m_repo.get_field("levelset");
-            const auto& dx = m_repo.mesh().Geom(lev).CellSizeArray();
-            const auto& phi_arr = levelset(lev).const_array(mfi);
-            const amrex::Real eps = std::cbrt(2.0_rt * dx[0] * dx[1] * dx[2]);
-            amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                amrex::Real smooth_heaviside;
-                if (phi_arr(i, j, k) > eps) {
-                    smooth_heaviside = 1.0_rt;
-                } else if (phi_arr(i, j, k) < -eps) {
-                    smooth_heaviside = 0.0_rt;
-                } else {
-                    smooth_heaviside =
-                        0.5_rt *
-                        (1.0_rt + phi_arr(i, j, k) / eps +
-                         1.0_rt / std::numbers::pi_v<amrex::Real> *
-                             std::sin(
-                                 phi_arr(i, j, k) *
-                                 std::numbers::pi_v<amrex::Real> / eps));
-                }
-                beta(i, j, k) *= (1.0_rt - smooth_heaviside);
-            });
-        }
     }
 
     [[nodiscard]] amrex::Real reference_temperature() const override
     {
         return m_reference_temperature;
+    }
+
+    void beta_fill(const int lev, amrex::MultiFab& beta_mf) const override
+    {
+        if (m_constant_beta > 0.0_rt) {
+            beta_mf.setVal(m_constant_beta);
+        } else if (m_repo.field_exists("reference_temperature")) {
+            const auto& temp0 = m_repo.get_field("reference_temperature");
+            auto const& beta_arrs = beta_mf.arrays();
+            auto const& temp0_arrs = temp0(lev).const_arrays();
+            amrex::ParallelFor(
+                beta_mf, amrex::IntVect(0), 1,
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+                    beta_arrs[nbx](i, j, k) = 1.0_rt / temp0_arrs[nbx](i, j, k);
+                });
+            amrex::Gpu::streamSynchronize();
+        } else {
+            beta_mf.setVal(1.0_rt / m_reference_temperature);
+        }
+
+        auto ifacetype = get_iface_method();
+        if (ifacetype == InterfaceCapturingMethod::VOF) {
+            const auto& vof = m_repo.get_field("vof");
+            auto const& beta_arrs = beta_mf.arrays();
+            auto const& vof_arrs = vof(lev).const_arrays();
+            amrex::ParallelFor(
+                beta_mf, amrex::IntVect(0), 1,
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+                    if (vof_arrs[nbx](i, j, k) > constants::TIGHT_TOL) {
+                        beta_arrs[nbx](i, j, k) = 0.0_rt;
+                    }
+                });
+            amrex::Gpu::streamSynchronize();
+        } else if (ifacetype == InterfaceCapturingMethod::LS) {
+            const auto& levelset = m_repo.get_field("levelset");
+            const auto& dx = m_repo.mesh().Geom(lev).CellSizeArray();
+            const amrex::Real eps = std::cbrt(2.0_rt * dx[0] * dx[1] * dx[2]);
+            auto const& beta_arrs = beta_mf.arrays();
+            auto const& phi_arrs = levelset(lev).const_arrays();
+            amrex::ParallelFor(
+                beta_mf, amrex::IntVect(0), 1,
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+                    amrex::Real smooth_heaviside;
+                    if (phi_arrs[nbx](i, j, k) > eps) {
+                        smooth_heaviside = 1.0_rt;
+                    } else if (phi_arrs[nbx](i, j, k) < -eps) {
+                        smooth_heaviside = 0.0_rt;
+                    } else {
+                        smooth_heaviside =
+                            0.5_rt *
+                            (1.0_rt + phi_arrs[nbx](i, j, k) / eps +
+                             1.0_rt / std::numbers::pi_v<amrex::Real> *
+                                 std::sin(
+                                     phi_arrs[nbx](i, j, k) *
+                                     std::numbers::pi_v<amrex::Real> / eps));
+                    }
+                    beta_arrs[nbx](i, j, k) *= (1.0_rt - smooth_heaviside);
+                });
+            amrex::Gpu::streamSynchronize();
+        }
+    }
+
+    void
+    ref_theta_fill(const int lev, amrex::MultiFab& ref_theta_mf) const override
+    {
+        if (m_reference_temperature < 0.0_rt) {
+            amrex::Abort("Reference temperature was not set");
+        }
+
+        if (m_repo.field_exists("reference_temperature")) {
+            const auto& temp0 = m_repo.get_field("reference_temperature");
+            amrex::MultiFab::Copy(ref_theta_mf, temp0(lev), 0, 0, 1, 0);
+        } else {
+            ref_theta_mf.setVal(m_reference_temperature);
+        }
     }
 
     //! Return the reference temperature
@@ -373,41 +381,9 @@ public:
 
         auto ref_theta = m_repo.create_scratch_field(1, m_ngrow);
         for (int lev = 0; lev < m_repo.num_active_levels(); ++lev) {
-#ifdef AMREX_USE_OMP
-#pragma omp parallel if (amrex::Gpu::notInLaunchRegion())
-#endif
-            for (amrex::MFIter mfi((*ref_theta)(lev)); mfi.isValid(); ++mfi) {
-                const auto& bx = mfi.tilebox();
-                const auto& ref_theta_arr = (*ref_theta)(lev).array(mfi);
-                ref_theta_impl(lev, mfi, bx, ref_theta_arr);
-            }
+            ref_theta_fill(lev, (*ref_theta)(lev));
         }
         return ref_theta;
-    }
-
-    //! Compute the reference temperature
-    void ref_theta_impl(
-        const int lev,
-        const amrex::MFIter& mfi,
-        const amrex::Box& bx,
-        const amrex::Array4<amrex::Real>& ref_theta) const override
-    {
-        if (m_reference_temperature < 0.0_rt) {
-            amrex::Abort("Reference temperature was not set");
-        }
-
-        if (m_repo.field_exists("reference_temperature")) {
-            auto& temp0 = m_repo.get_field("reference_temperature");
-            const auto& temp0_arr = temp0(lev).const_array(mfi);
-            amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                ref_theta(i, j, k) = temp0_arr(i, j, k);
-            });
-        } else {
-            const amrex::Real ref_theta_val = m_reference_temperature;
-            amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                ref_theta(i, j, k) = ref_theta_val;
-            });
-        }
     }
 
 private:

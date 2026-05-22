@@ -205,6 +205,7 @@ public:
     }
 
 private:
+    const CFDSim& m_sim;
     const kynema_sgf::SimTime& m_time;
     const FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;

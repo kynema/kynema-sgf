@@ -6,14 +6,11 @@
 
 namespace kynema_sgf::pde::icns {
 
-/** Boussinesq buoyancy source term for ABL simulations
- *
- */
 BoussinesqBuoyancy::BoussinesqBuoyancy(const CFDSim& sim)
     : m_temperature(sim.repo().get_field("temperature"))
+    , m_repo(sim.repo())
     , m_transport(sim.transport_model())
 {
-    // gravity in `incflo` namespace
     amrex::ParmParse pp_incflo("incflo");
     pp_incflo.queryarr("gravity", m_gravity);
 }
@@ -21,33 +18,35 @@ BoussinesqBuoyancy::BoussinesqBuoyancy(const CFDSim& sim)
 BoussinesqBuoyancy::~BoussinesqBuoyancy() = default;
 
 void BoussinesqBuoyancy::operator()(
-    const int lev,
-    const amrex::MFIter& mfi,
-    const amrex::Box& bx,
-    const FieldState fstate,
-    const amrex::Array4<amrex::Real>& src_term) const
+    const int lev, const FieldState fstate, amrex::MultiFab& src_term) const
 {
+    if (!m_beta_scratch) {
+        m_beta_scratch = m_repo.create_scratch_field(1, 0);
+    }
+    if (!m_ref_theta_scratch) {
+        m_ref_theta_scratch = m_repo.create_scratch_field(1, 0);
+    }
+
+    m_transport.beta_fill(lev, (*m_beta_scratch)(lev));
+    m_transport.ref_theta_fill(lev, (*m_ref_theta_scratch)(lev));
+
     const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> gravity{
         m_gravity[0], m_gravity[1], m_gravity[2]};
 
-    const auto& temp =
-        m_temperature.state(field_impl::phi_state(fstate))(lev).const_array(
-            mfi);
-    amrex::FArrayBox beta_fab(bx, 1, amrex::The_Async_Arena());
-    amrex::Array4<amrex::Real> const& beta_arr = beta_fab.array();
-    m_transport.beta_impl(lev, mfi, bx, beta_arr);
-    amrex::FArrayBox ref_theta_fab(bx, 1, amrex::The_Async_Arena());
-    amrex::Array4<amrex::Real> const& ref_theta_arr = ref_theta_fab.array();
-    m_transport.ref_theta_impl(lev, mfi, bx, ref_theta_arr);
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        const amrex::Real T = temp(i, j, k, 0);
-        const amrex::Real T0 = ref_theta_arr(i, j, k);
-        const amrex::Real fac = beta_arr(i, j, k) * (T0 - T);
+    auto const& src_arrs = src_term.arrays();
+    auto const& temp_arrs =
+        m_temperature.state(field_impl::phi_state(fstate))(lev).const_arrays();
+    auto const& beta_arrs = (*m_beta_scratch)(lev).const_arrays();
+    auto const& ref_arrs = (*m_ref_theta_scratch)(lev).const_arrays();
 
-        src_term(i, j, k, 0) += gravity[0] * fac;
-        src_term(i, j, k, 1) += gravity[1] * fac;
-        src_term(i, j, k, 2) += gravity[2] * fac;
-    });
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), AMREX_SPACEDIM,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+            const amrex::Real T = temp_arrs[nbx](i, j, k, 0);
+            const amrex::Real T0 = ref_arrs[nbx](i, j, k);
+            const amrex::Real fac = beta_arrs[nbx](i, j, k) * (T0 - T);
+            src_arrs[nbx](i, j, k, n) += gravity[n] * fac;
+        });
 }
 
 } // namespace kynema_sgf::pde::icns

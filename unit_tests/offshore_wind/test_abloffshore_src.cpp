@@ -135,13 +135,13 @@ TEST_F(ABLOffshoreMeshTest, abl_forcing)
         auto& geom = sim().mesh().Geom();
         // Initialize vof field before calculating forcing function
         run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-            const auto& bx = mfi.tilebox();
             const auto& gbx = mfi.growntilebox(3);
             const auto& vof_arr = volume_fraction(lev).array(mfi);
             init_vof_field(geom[lev], gbx, vof_arr, waterlev);
-            const auto& src_arr = src_term(lev).array(mfi);
-            abl_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
         });
+        for (int lev = 0; lev < src_term.repo().num_active_levels(); ++lev) {
+            abl_forcing(lev, kynema_sgf::FieldState::New, src_term(lev));
+        }
 
         // Targets are U = (20.0_rt, 10.0_rt, 0.0_rt) set in initial conditions
         // Means (set above) V = (10.0_rt, 5.0_rt, 0.0_rt)
@@ -234,13 +234,13 @@ TEST_F(ABLOffshoreMeshTest, geostrophic_forcing)
     auto waterlev = mphase.water_level();
     auto& geom = sim().mesh().Geom();
     run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto& bx = mfi.tilebox();
         const auto& gbx = mfi.growntilebox(3);
         const auto& vof_arr = volume_fraction(lev).array(mfi);
         init_vof_field(geom[lev], gbx, vof_arr, waterlev);
-        const auto& src_arr = src_term(lev).array(mfi);
-        geostrophic_forcing(lev, mfi, bx, kynema_sgf::FieldState::New, src_arr);
     });
+    for (int lev = 0; lev < src_term.repo().num_active_levels(); ++lev) {
+        geostrophic_forcing(lev, kynema_sgf::FieldState::New, src_term(lev));
+    }
 
     constexpr amrex::Real corfac =
         2.0_rt * kynema_sgf::utils::two_pi() / 86164.091_rt * 0.80901699437_rt;
@@ -344,11 +344,9 @@ TEST_F(ABLOffshoreMeshTest, boussinesq)
     });
 
     kynema_sgf::pde::icns::BoussinesqBuoyancy bb(sim());
-    run_algorithm(temperature, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto bx = mfi.validbox();
-        const auto& src_arr = src_term(lev).array(mfi);
-        bb(lev, mfi, bx, kynema_sgf::FieldState::Old, src_arr);
-    });
+    for (int lev = 0; lev < src_term.repo().num_active_levels(); ++lev) {
+        bb(lev, kynema_sgf::FieldState::Old, src_term(lev));
+    }
 
     // should be no forcing in x and y directions
     for (int i = 0; i < 2; ++i) {
