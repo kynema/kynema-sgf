@@ -267,7 +267,7 @@ void Field::fillphysbc(const amrex::Real time) { fillphysbc(time, num_grow()); }
 void Field::fillphysbc_type(
     const amrex::Real time, const amrex::BCType::mathematicalBndryTypes bctype)
 {
-    BL_PROFILE("kynema-sgf::Field::fillphysbc");
+    BL_PROFILE("kynema-sgf::Field::fillphysbc_type");
     // Does BC need to be copied to device?
     auto& fop = *(m_info->m_fillpatch_op);
     const int nlevels = m_repo.num_active_levels();
