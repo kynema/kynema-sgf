@@ -889,6 +889,7 @@ void BoundaryPlane::read_header()
     if (m_out_fmt == "native") {
 
         int time_file_length = 0;
+        bool add_time_entry = false;
 
         if (amrex::ParallelDescriptor::IOProcessor()) {
 
@@ -902,6 +903,9 @@ void BoundaryPlane::read_header()
             }
 
             time_file.close();
+
+            add_time_entry = m_is_static && time_file_length == 1;
+            time_file_length += static_cast<int>(add_time_entry);
         }
 
         amrex::ParallelDescriptor::Bcast(
@@ -914,28 +918,27 @@ void BoundaryPlane::read_header()
 
         if (amrex::ParallelDescriptor::IOProcessor()) {
             std::ifstream time_file(m_time_file);
-            for (int i = 0; i < time_file_length; ++i) {
+            for (int i = 0;
+                 i < time_file_length - static_cast<int>(add_time_entry); ++i) {
                 time_file >> m_in_timesteps[i] >> m_in_times[i];
             }
             time_file.close();
-        }
-        const bool add_time_entry = m_is_static && time_file_length == 1;
-        if (add_time_entry) {
-            // Add entry to end of times to make it work with a single plane
-            m_in_times.emplace_back(constants::LARGE_NUM);
-            m_in_timesteps.emplace_back(m_in_timesteps[0]);
-            // Time step index is made to be the same to stay inbounds
+
+            if (add_time_entry) {
+                // Add entry to end of times to make it work with a single plane
+                m_in_times[1] = constants::LARGE_NUM;
+                m_in_timesteps[1] = m_in_timesteps[0];
+                // Time step index is made to be the same to stay inbounds
+            }
         }
 
         amrex::ParallelDescriptor::Bcast(
-            m_in_timesteps.data(),
-            time_file_length + static_cast<int>(add_time_entry),
+            m_in_timesteps.data(), time_file_length,
             amrex::ParallelDescriptor::IOProcessorNumber(),
             amrex::ParallelDescriptor::Communicator());
 
         amrex::ParallelDescriptor::Bcast(
-            m_in_times.data(),
-            time_file_length + static_cast<int>(add_time_entry),
+            m_in_times.data(), time_file_length,
             amrex::ParallelDescriptor::IOProcessorNumber(),
             amrex::ParallelDescriptor::Communicator());
 
