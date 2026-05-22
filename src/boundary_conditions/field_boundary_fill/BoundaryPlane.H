@@ -279,10 +279,6 @@ private:
     //! Pointer to terrain_blank field for velocity population based on terrain
     IntField* m_terrain_blank_ptr{nullptr};
 
-    //! Flag indicating if the simulation is overset -- needed for complicated
-    //! timing of pre_advance_work
-    bool m_has_overset{false};
-
     //! Flag indicating if terrain can move (i.e. if representing waves)
     bool m_has_moving_terrain{false};
 
