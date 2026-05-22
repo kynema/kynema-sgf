@@ -25,7 +25,7 @@ as initial conditions and discretization options.
    Though more than one can be specified, typically only a single field boundary type is used at a time.
    Currently, there are three implemented field boundary types: BoundaryPlane, ModulatedPowerLaw, and OceanWavesBoundary.
    OceanWavesBoundary relies on OceanWaves physics, but the other field boundaries can be used independently of particular
-   physics classes. Refer to the : :ref:`Field Boundaries documentation <inputs_field_boundaries>` for more details on each field boundary type. 
+   physics classes. Refer to the :ref:`Field Boundaries documentation <inputs_field_boundaries>` for more details on each field boundary type. 
    
 .. input_param:: incflo.density
 
