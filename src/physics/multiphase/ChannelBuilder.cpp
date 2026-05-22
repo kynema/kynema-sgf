@@ -241,6 +241,9 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
                 pp1.get("top_width", dim0_s);
                 pp1.get("bottom_width", dim1_s);
                 pp1.get("height", dim2_s);
+                dim0_e = dim0_s;
+                dim1_e = dim1_s;
+                dim2_e = dim2_s;
             } else {
                 pp1.get("top_width_start", dim0_s);
                 pp1.get("bottom_width_start", dim1_s);
