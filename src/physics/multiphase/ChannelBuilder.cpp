@@ -21,10 +21,10 @@ namespace kynema_sgf::channelbuilder {
     const amrex::Real& vcoord)
 {
     return (vcoord >= -height / 2.0_rt) && (vcoord <= height / 2.0_rt) &&
-           (hcoord >=
-            (-(top + bottom) / 2.0_rt + ((bottom - top) / height) * vcoord)) &&
-           (hcoord <=
-            ((top + bottom) / 2.0_rt - ((bottom - top) / height) * vcoord));
+           (hcoord >= (-(top + bottom) / 4.0_rt +
+                       ((bottom - top) / (2.0_rt * height)) * vcoord)) &&
+           (hcoord <= ((top + bottom) / 4.0_rt -
+                       ((bottom - top) / (2.0_rt * height)) * vcoord));
 }
 
 [[nodiscard]] AMREX_GPU_HOST_DEVICE bool ellipse(
