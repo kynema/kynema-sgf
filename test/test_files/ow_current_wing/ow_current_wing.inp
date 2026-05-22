@@ -15,7 +15,7 @@ time.use_force_cfl= false
 #            INPUT AND OUTPUT           #
 #.......................................#
 time.plot_interval            =  10       # Steps between plot files
-time.checkpoint_interval      =  3        # Steps between checkpoint files
+time.checkpoint_interval      =  -1       # Steps between checkpoint files
 io.outputs = ow_velocity ow_vof actuator_src_term
 
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
@@ -80,21 +80,9 @@ geometry.prob_lo        =     0.0  -2.  -3   # Lo corner coordinates
 geometry.prob_hi        =     8.0   2.   1  # Hi corner coordinates
 geometry.is_periodic    =     0     0    0   # Periodicity x y z (0/1)
 
-#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
-#              BOUNDARIES               #
-#.......................................#
-
 xlo.type =     "wave_generation"
 xhi.type =     "pressure_outflow"
 ylo.type =     "slip_wall"
 yhi.type =     "slip_wall"
 zlo.type =     "slip_wall"
 zhi.type =     "slip_wall"
-
-incflo.field_boundaries = BoundaryPlane
-BoundaryPlane.file = "bndry_files"
-BoundaryPlane.io_mode = 0
-BoundaryPlane.planes = xlo
-BoundaryPlane.output_start_time = 0.015
-BoundaryPlane.var_names = velocity vof density
-BoundaryPlane.output_format = native
