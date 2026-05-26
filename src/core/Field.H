@@ -357,13 +357,6 @@ public:
         amrex::MultiFab& mfab,
         const amrex::IntVect& nghost);
 
-    void fillphysbc_type(
-        int lev,
-        amrex::Real time,
-        amrex::BCType::mathematicalBndryTypes bctype,
-        amrex::MultiFab& mfab,
-        const amrex::IntVect& nghost);
-
     void set_inflow(
         int lev,
         amrex::Real time,
