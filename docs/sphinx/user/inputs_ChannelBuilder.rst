@@ -16,7 +16,7 @@ The channel builder capability allows for initializing a variety of velocity
 profiles, which can be awkward to replicate as standard boundary conditions
 for a simulation. As a result, the BoundaryPlane field boundary type is
 often best suited for these cases by leveraging the
-`BoundaryPlane.output_and_use_initial_plane`
+:input_param:`BoundaryPlane.output_and_use_initial_plane`
 capability.
 The channel builder is activated by including `ChannelBuilder` in the list
 of physics under :input_param:`incflo.physics`. Finally, the channel builder
