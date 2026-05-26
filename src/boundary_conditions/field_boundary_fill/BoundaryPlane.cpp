@@ -343,7 +343,7 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
         pp_abl.get("bndry_file", m_filename);
         pp_abl.getarr("bndry_var_names", m_var_names);
         if (m_io_mode == io_mode::output) {
-            pp.getarr("bndry_planes", m_planes);
+            pp_abl.getarr("bndry_planes", m_planes);
         }
         pp_abl.query("bndry_write_frequency", m_write_frequency);
         pp_abl.query("bndry_output_start_time", m_out_start_time);
