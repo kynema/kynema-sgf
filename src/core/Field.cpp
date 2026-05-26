@@ -268,7 +268,10 @@ void Field::fillphysbc_type(
     const amrex::Real time, const amrex::BCType::mathematicalBndryTypes bctype)
 {
     BL_PROFILE("kynema-sgf::Field::fillphysbc_type");
-    // Does BC need to be copied to device?
+    BL_ASSERT(m_info->m_fillpatch_op);
+    // BC does not need to be initialized to fill BCs with a specified type, but
+    // it does need to be copied to device (e.g., if requested type needs data)
+    BL_ASSERT(m_info->m_bc_copied_to_device);
     auto& fop = *(m_info->m_fillpatch_op);
     const int nlevels = m_repo.num_active_levels();
     const auto ng = num_grow();
