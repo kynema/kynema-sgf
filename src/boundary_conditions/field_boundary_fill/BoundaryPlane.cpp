@@ -329,8 +329,10 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
 
     if (!original_input) {
         pp.get("file", m_filename);
-        pp.getarr("planes", m_planes);
         pp.getarr("var_names", m_var_names);
+        if (m_io_mode == io_mode::output) {
+            pp.getarr("planes", m_planes);
+        }
         pp.query("write_frequency", m_write_frequency);
         pp.query("output_start_time", m_out_start_time);
         pp.query("output_format", m_out_fmt);
@@ -339,8 +341,10 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
         pp.query("is_static", m_is_static);
     } else {
         pp_abl.get("bndry_file", m_filename);
-        pp_abl.getarr("bndry_planes", m_planes);
         pp_abl.getarr("bndry_var_names", m_var_names);
+        if (m_io_mode == io_mode::output) {
+            pp.getarr("bndry_planes", m_planes);
+        }
         pp_abl.query("bndry_write_frequency", m_write_frequency);
         pp_abl.query("bndry_output_start_time", m_out_start_time);
         pp_abl.query("bndry_output_format", m_out_fmt);
