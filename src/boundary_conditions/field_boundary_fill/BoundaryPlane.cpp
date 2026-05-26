@@ -1392,7 +1392,7 @@ void BoundaryPlane::populate_data(
     }
 
     if (!m_is_static) {
-        if (!(m_in_data.tn() <= time + constants::LOOSE_TOL) &&
+        if (!(m_in_data.tn() <= time + constants::LOOSE_TOL) ||
             !(time <= m_in_data.tnp1() + constants::LOOSE_TOL)) {
             amrex::Abort(
                 "BoundaryPlane.cpp BoundaryPlane::populate_data() check 1"
