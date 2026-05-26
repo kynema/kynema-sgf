@@ -16,6 +16,16 @@ as initial conditions and discretization options.
    For multiphase simulations, the MultiPhase physics must be specified, and for forcing wave profiles into the domain, the OceanWaves physics must be specified as well.
    For immersed boundary forcing method TerrainDrag must be specified and the folder should include a terrain file (default name: `terrain.amrwind`, user control is `TerrainDrag.terrain_file`) file.
    For including forested regions ForestDrag must be specified and the folder should include a forest file (default name: `forest.amrwind`, user control is `ForestDrag.forest_file`) file.
+
+.. input_param:: incflo.field_boundaries
+
+   **type:** List of strings
+
+   Specify a string or a list of strings for each type of field boundary to initialize and use during a simulation.
+   Though more than one can be specified, typically only a single field boundary type is used at a time.
+   Currently, there are three implemented field boundary types: BoundaryPlane, ModulatedPowerLaw, and OceanWavesBoundary.
+   OceanWavesBoundary relies on OceanWaves physics, but the other field boundaries can be used independently of particular
+   physics classes. Refer to the :ref:`Field Boundaries documentation <inputs_field_boundaries>` for more details on each field boundary type. 
    
 .. input_param:: incflo.density
 

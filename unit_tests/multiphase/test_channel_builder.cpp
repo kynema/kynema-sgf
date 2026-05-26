@@ -27,20 +27,62 @@ TEST_F(ChannelBuilderTest, trapezoid_inside_outside)
             top, bottom, height, 0.0_rt, 0.0_rt));
     EXPECT_TRUE(
         kynema_sgf::channelbuilder::trapezoid(
-            top, bottom, height, 0.8_rt, 1.5_rt));
-
-    // Boundary point should be included
+            top, bottom, height, 1.2_rt, 0.8_rt));
     EXPECT_TRUE(
         kynema_sgf::channelbuilder::trapezoid(
-            top, bottom, height, -1.5_rt, 3.0_rt));
+            top, bottom, height, 1.5_rt, -0.8_rt));
+
+    // Boundary points should be included
+    EXPECT_TRUE(
+        kynema_sgf::channelbuilder::trapezoid(
+            top, bottom, height, 2.0_rt, -3.0_rt));
+    EXPECT_TRUE(
+        kynema_sgf::channelbuilder::trapezoid(
+            top, bottom, height, -2.0_rt, -3.0_rt));
+    EXPECT_TRUE(
+        kynema_sgf::channelbuilder::trapezoid(
+            top, bottom, height, 1.5_rt, 0.0_rt));
+    EXPECT_TRUE(
+        kynema_sgf::channelbuilder::trapezoid(
+            top, bottom, height, -1.5_rt, 0.0_rt));
+    EXPECT_TRUE(
+        kynema_sgf::channelbuilder::trapezoid(
+            top, bottom, height, 1.0_rt, 3.0_rt));
+    EXPECT_TRUE(
+        kynema_sgf::channelbuilder::trapezoid(
+            top, bottom, height, -1.0_rt, 3.0_rt));
 
     // Exterior points
     EXPECT_FALSE(
         kynema_sgf::channelbuilder::trapezoid(
-            top, bottom, height, 3.1_rt, 0.0_rt));
+            top, bottom, height, 2.0_rt, -3.1_rt));
     EXPECT_FALSE(
         kynema_sgf::channelbuilder::trapezoid(
-            top, bottom, height, 0.0_rt, 3.1_rt));
+            top, bottom, height, -2.0_rt, -3.1_rt));
+    EXPECT_FALSE(
+        kynema_sgf::channelbuilder::trapezoid(
+            top, bottom, height, 1.0_rt, 3.1_rt));
+    EXPECT_FALSE(
+        kynema_sgf::channelbuilder::trapezoid(
+            top, bottom, height, -1.0_rt, 3.1_rt));
+    EXPECT_FALSE(
+        kynema_sgf::channelbuilder::trapezoid(
+            top, bottom, height, 2.1_rt, -3.0_rt));
+    EXPECT_FALSE(
+        kynema_sgf::channelbuilder::trapezoid(
+            top, bottom, height, -2.1_rt, -3.0_rt));
+    EXPECT_FALSE(
+        kynema_sgf::channelbuilder::trapezoid(
+            top, bottom, height, 1.1_rt, 3.0_rt));
+    EXPECT_FALSE(
+        kynema_sgf::channelbuilder::trapezoid(
+            top, bottom, height, -1.1_rt, 3.0_rt));
+    EXPECT_FALSE(
+        kynema_sgf::channelbuilder::trapezoid(
+            top, bottom, height, 1.6_rt, 0.0_rt));
+    EXPECT_FALSE(
+        kynema_sgf::channelbuilder::trapezoid(
+            top, bottom, height, -1.6_rt, 0.0_rt));
 }
 
 TEST_F(ChannelBuilderTest, ellipse_inside_outside)

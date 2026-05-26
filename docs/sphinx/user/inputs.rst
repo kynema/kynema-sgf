@@ -100,8 +100,13 @@ documentation provided here might not work with older releases.
    inputs_TKE_Sources.rst
    inputs_ABL.rst
    inputs_ABL_meso_forcing.rst
+   inputs_Actuator.rst
+   inputs_multiphase.rst
+   inputs_ocean_waves.rst
    inputs_SyntheticTurbulence.rst
+   inputs_ChannelBuilder.rst
    inputs_Boundary_conditions.rst
+   inputs_field_boundaries.rst
    inputs_MLMG.rst
    inputs_post_processing.rst
    inputs_Sampling.rst
@@ -110,6 +115,3 @@ documentation provided here might not work with older releases.
    inputs_KineticEnergy.rst
    inputs_Enstrophy.rst
    inputs_FieldNorms.rst
-   inputs_Actuator.rst
-   inputs_multiphase.rst
-   inputs_ocean_waves.rst

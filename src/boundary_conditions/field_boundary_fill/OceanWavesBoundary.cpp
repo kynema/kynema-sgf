@@ -2,8 +2,6 @@
 #include "src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
 #include "src/boundary_conditions/field_boundary_fill/OceanWavesFillInflow.H"
 #include "src/boundary_conditions/field_boundary_fill/FieldBoundary.H"
-#include "src/boundary_conditions/field_boundary_fill/BoundaryPlane.H"
-#include "src/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H"
 #include "src/utilities/index_operations.H"
 #include "src/utilities/constants.H"
 #include "src/physics/multiphase/MultiPhase.H"
