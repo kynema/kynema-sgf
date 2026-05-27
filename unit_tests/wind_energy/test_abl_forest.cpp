@@ -3,7 +3,7 @@
 #include "ks_test_utils/test_utils.H"
 #include "src/physics/ForestDrag.H"
 #include "src/core/field_ops.H"
-#include "src/utilities/sampling/FieldNorms.H"
+#include "src/utilities/output_quantities/FieldNorms.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

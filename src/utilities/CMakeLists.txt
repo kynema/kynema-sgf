@@ -24,6 +24,7 @@ add_subdirectory(tagging)
 add_subdirectory(sampling)
 add_subdirectory(subvolume)
 add_subdirectory(averaging)
+add_subdirectory(output_quantities)
 
 if (KYNEMA_SGF_ENABLE_NETCDF)
   add_subdirectory(ncutils)

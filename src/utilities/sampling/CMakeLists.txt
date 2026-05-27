@@ -12,8 +12,4 @@ target_sources(${kynema_sgf_lib_name}
   ProbeSampler.cpp
   FreeSurfaceSampler.cpp
   VolumeSampler.cpp
-  FieldNorms.cpp
-  KineticEnergy.cpp
-  Enstrophy.cpp
-  WaveEnergy.cpp
   )

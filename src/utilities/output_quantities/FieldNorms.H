@@ -7,7 +7,7 @@
 namespace kynema_sgf::field_norms {
 
 /** field norm object
- *  \ingroup sampling
+ *  \ingroup output_quantities
  *
  *  A concrete implementation of the post-processing interface that deals with
  *  norms of fields. FIXME: need to update this
