@@ -5,6 +5,7 @@
 #include <cstdint>
 #include "src/core/vs/vector_space.H"
 #include "src/utilities/tensor_ops.H"
+#include "AMReX_Geometry.H"
 #include "AMReX_Vector.H"
 #include "AMReX_REAL.H"
 
@@ -50,6 +51,9 @@ void spherical_cap_truncated_normal(
 
 std::pair<std::vector<amrex::Real>, std::vector<amrex::Real>>
 truncated_normal_rule(NormalRule rule);
+
+amrex::Real snap_to_nearest_cell_center(
+    const amrex::Geometry& geom, int dir, amrex::Real x);
 
 } // namespace kynema_sgf::sampling::sampling_utils
 

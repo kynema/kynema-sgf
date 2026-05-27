@@ -1,30 +1,10 @@
 #include <limits>
 
 #include "src/utilities/sampling/VolumeSampler.H"
+#include "src/utilities/sampling/SamplingUtils.H"
 #include "src/CFDSim.H"
 #include "src/utilities/index_operations.H"
 #include "AMReX_ParmParse.H"
-
-#include <algorithm>
-#include <cmath>
-
-namespace {
-
-amrex::Real snap_to_nearest_cell_center(
-    const amrex::Geometry& geom, const int dir, const amrex::Real x)
-{
-    const auto& plo = geom.ProbLoArray();
-    const auto& dx = geom.CellSizeArray();
-    const auto& dxi = geom.InvCellSizeArray();
-    const auto& dom = geom.Domain();
-
-    int idx = static_cast<int>(std::lround((x - plo[dir]) * dxi[dir] - 0.5));
-    idx = std::max(dom.smallEnd(dir), std::min(dom.bigEnd(dir), idx));
-
-    return plo[dir] + (static_cast<amrex::Real>(idx) + 0.5) * dx[dir];
-}
-
-} // namespace
 
 namespace kynema_sgf::sampling {
 
@@ -123,7 +103,8 @@ void VolumeSampler::sampling_locations(
 
                 if (m_snap_to_cell_center) {
                     for (int d = 0; d < AMREX_SPACEDIM; ++d) {
-                        loc[d] = snap_to_nearest_cell_center(fine_geom, d, loc[d]);
+                        loc[d] = sampling_utils::snap_to_nearest_cell_center(
+                            fine_geom, d, loc[d]);
                     }
                 }
 
