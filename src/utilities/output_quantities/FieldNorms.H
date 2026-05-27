@@ -10,8 +10,9 @@ namespace kynema_sgf::field_norms {
  *  \defgroup output_quantities Output quantities
  *  Output quantities
  *
- *  This group contains globally calculated flow quantities (scalars or vectors, not fields)
- *  that are output during the simulation by the post-processing interface.
+ *  This group contains globally calculated flow quantities (scalars or vectors,
+ *  not fields) that are output during the simulation by the post-processing
+ *  interface.
  *
  *  \ingroup utilities
  */
