@@ -77,9 +77,10 @@ The prefix is the label set in ``incflo.post_processing``. For example
 
    **type:** Vector<Real>, mandatory
 
-   Cell size, in each direction, for the rectangular subvolume. This is used to determine which mesh level
-   should be used for the subvolume, and, as a result, this input argument must correspond to the resolution
-   of one of the mesh levels in the spatial extent of the subvolume. If a single cell size is specified through
+   Output cell size, in each direction, for the rectangular subvolume. The spacing can be anisotropic and
+   does not need to match a mesh level exactly. Instead, each entry must be an integer multiple of the source
+   level cell size in that direction, so sampled values still come directly from source cell centers.
+   This allows outputs that are coarser than the base level. If a single cell size is specified through
    the :input_param:`subvol1.chunk1.dx` argument below, then this argument (:input_param:`subvol1.chunk1.dx_vec`) is not required.
 
 .. input_param:: subvol1.chunk1.dx
@@ -87,8 +88,8 @@ The prefix is the label set in ``incflo.post_processing``. For example
    **type:** Real, optional
 
    Cell size for the rectangular subvolume. This optional argument can be used in place of
-   :input_param:`subvol1.chunk1.dx_vec` to specify a single cell size, representing the
-   cell size in all three directions.
+   :input_param:`subvol1.chunk1.dx_vec` to specify a single (isotropic) output cell size.
+   As with ``dx_vec``, the value must map to an integer multiple of the selected source level spacing.
 
 .. input_param:: subvol1.chunk1.chunk_size_vec
 
