@@ -29,6 +29,7 @@ BoundaryPlane.file = ../channel_builder_multiphase_contraction/bndry_plane
 BoundaryPlane.var_names = velocity vof density
 BoundaryPlane.output_format = native
 BoundaryPlane.is_static = true
+BoundaryPlane.fluid_phase = liquid
 BoundaryPlane.io_mode = 1
 
 incflo.physics = MultiPhase ChannelBuilder

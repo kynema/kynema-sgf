@@ -413,7 +413,7 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
             "use initial plane, but the boundary is not static. Please "
             "revise input arguments.\n");
     }
-    m_phase = parse_phase_condition(m_phase_str);
+    m_phase = parse_phase_condition(amrex::toLower(m_phase_str));
 
 #ifndef KYNEMA_SGF_USE_NETCDF
     if (m_out_fmt == "netcdf") {
