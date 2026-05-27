@@ -6,7 +6,8 @@ time.max_step                =  500          # Max number of time steps
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
 #         TIME STEP COMPUTATION         #
 #.......................................#
-time.fixed_dt         =   0.2        # Use this constant dt if > 0
+time.max_dt           =   2.0        # Use this constant dt if > 0
+time.initial_dt       =   0.2
 time.cfl              =   0.95       # CFL factor
 time.use_force_cfl    =   0
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
@@ -35,7 +36,7 @@ BoundaryPlane.io_mode = 1
 incflo.physics = MultiPhase ChannelBuilder
 MultiPhase.density_fluid1 = 1000.
 MultiPhase.density_fluid2 = 1.225
-ICNS.source_terms = GravityForcing DragForcing
+ICNS.source_terms = DragForcing
 ChannelBuilder.segment_labels = s1 s2
 
 ChannelBuilder.s1.flow_speed = 0.
