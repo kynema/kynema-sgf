@@ -1495,7 +1495,9 @@ void BoundaryPlane::populate_data(
         }
     }
 
-    // Apply optional VOF gating only when populating the velocity field.
+    // Apply optional VOF gating to any field except for density or vof itself,
+    // which directly relate to phase. The terrain condition is only applied to
+    // the velocity field to prevent flow into terrain cells.
     const bool is_velocity_field = (fld.name() == "velocity");
     const bool is_not_phase_field =
         (fld.name() != "density") && (fld.name() != "vof");

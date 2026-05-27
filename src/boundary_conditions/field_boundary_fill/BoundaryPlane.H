@@ -268,13 +268,13 @@ private:
     //! IO mode
     io_mode m_io_mode{io_mode::undefined};
 
-    //! User-selected VOF gate for boundary velocity population
+    //! User-selected fluid phase gate for boundary field population
     phase m_phase{phase::both};
 
-    //! Default string for collecting user input for velocity_vof_condition
+    //! Default string for collecting user input for phase condition
     std::string m_phase_str{"both"};
 
-    //! Pointer to vof field for velocity population based on vof values
+    //! Pointer to vof field for boundary field population based on vof values
     Field* m_vof_ptr{nullptr};
 
     //! Pointer to terrain_blank field for velocity population based on terrain
