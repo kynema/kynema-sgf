@@ -177,6 +177,9 @@ private:
     // Sample initial condition for interpolation consistency
     bool m_restart_sample{false};
 
+    // When true, return value at nearest cell/point instead of interpolating
+    bool m_nearest_neighbor{false};
+
     // number of field components
     int m_ncomp{0};
 

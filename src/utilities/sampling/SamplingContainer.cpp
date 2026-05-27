@@ -159,7 +159,7 @@ void SamplingContainer::interpolate_derived_fields(
             const auto farr = (*outfield)(lev).const_array(pti);
             interpolate(
                 pti, farr, lev, outfield->field_location(),
-                outfield->num_comp(), scomp);
+                outfield->num_comp(), scomp, m_use_nearest);
         }
     }
 }

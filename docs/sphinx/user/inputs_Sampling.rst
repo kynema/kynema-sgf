@@ -10,6 +10,16 @@ For more information on specifying
 when sampled data is output to a file, see the :ref:`post-processing
 inputs <inputs_post_processing>`
 
+.. input_param:: sampling.nearest_neighbor
+
+   **type:** Boolean, optional, default = false
+
+   When set to ``true``, disable linear interpolation and instead return the
+   value at the nearest data point (cell center, face center, or node) to each
+   sampling location. This is equivalent to a nearest-neighbor lookup and does
+   not require ghost cells on the sampled fields. Useful when the exact
+   cell-center value is desired rather than an interpolated estimate.
+
 .. input_param:: sampling.output_format
 
    **type:** String, optional, default = "native"
