@@ -48,21 +48,6 @@ but instead allows the user to specify variable names.
    List of plane names, identifying domain boundaries, to read/write for the BoundaryPlane field boundary. The plane
    names must be in the format "xlo", "xhi", "ylo", "yhi", "zlo", or "zhi". 
 
-.. input_param:: BoundaryPlane.output_and_use_initial_plane
-
-   **type:** Boolean, optional, default = false
-
-   This flag controls whether to output the initial plane at the start of the simulation and use it as the
-   boundary plane for the duration of the simulation. If true, this flag implies that the boundary plane is static.
-
-.. input_param:: BoundaryPlane.is_static
-
-   **type:** Boolean, optional, default = false
-
-   This flag controls whether the boundary plane is static or dynamic. If true, the same plane will be used
-   for the duration of the simulation. If false, new planes will be read in as time progresses, updating the boundary
-   conditions according to the available data. Note that this input parameter is only relevant to read mode.
-
 .. input_param:: BoundaryPlane.output_format
 
    **type:** String, optional, default = "native"
@@ -83,6 +68,31 @@ but instead allows the user to specify variable names.
    **type:** Real, optional, default = 0.0
 
    Time at which to start writing BoundaryPlane data to file in write mode.
+
+.. input_param:: BoundaryPlane.output_and_use_initial_plane
+
+   **type:** Boolean, optional, default = false
+
+   This flag controls whether to output the initial plane at the start of the simulation and use it as the
+   boundary plane for the duration of the simulation. If true, this flag implies that the boundary plane is static.
+
+.. input_param:: BoundaryPlane.is_static
+
+   **type:** Boolean, optional, default = false
+
+   This flag controls whether the boundary plane is static or dynamic. If true, the same plane will be used
+   for the duration of the simulation. If false, new planes will be read in as time progresses, updating the boundary
+   conditions according to the available data. Note that this input parameter is only relevant to read mode.
+
+.. input_param:: BoundaryPlane.fluid_phase
+
+   **type:** String, optional, default = "both"
+
+   This input parameter controls which fluid phase(s) the BoundaryPlane field boundary is applied to when in read mode.
+   Valid options are "liquid" (or "water" or "1"), "gas" (or "air" or "2"), and "both" (or "agnostic" or "0").
+   This capability works by checking the vof value within the boundary and only using parts of the boundary plane where
+   the specified phase is present. As a result, the vof variable must be present for this capability, which 
+   means the MultiPhase physics class must be active.
 
 **ModulatedPowerLaw**
 
