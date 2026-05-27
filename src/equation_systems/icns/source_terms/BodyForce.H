@@ -28,11 +28,7 @@ public:
     ~BodyForce() override;
 
     void operator()(
-        int lev,
-        const amrex::MFIter& mfi,
-        const amrex::Box& bx,
-        FieldState fstate,
-        const amrex::Array4<amrex::Real>& src_term) const override;
+        int lev, FieldState fstate, amrex::MultiFab& src_term) const override;
 
     void read_bforce_profile(const std::string& filename);
     void read_bforce_timetable(const std::string& filename);

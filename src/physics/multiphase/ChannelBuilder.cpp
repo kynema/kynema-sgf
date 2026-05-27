@@ -21,10 +21,10 @@ namespace kynema_sgf::channelbuilder {
     const amrex::Real& vcoord)
 {
     return (vcoord >= -height / 2.0_rt) && (vcoord <= height / 2.0_rt) &&
-           (hcoord >=
-            (-(top + bottom) / 2.0_rt + ((bottom - top) / height) * vcoord)) &&
-           (hcoord <=
-            ((top + bottom) / 2.0_rt - ((bottom - top) / height) * vcoord));
+           (hcoord >= (-(top + bottom) / 4.0_rt +
+                       ((bottom - top) / (2.0_rt * height)) * vcoord)) &&
+           (hcoord <= ((top + bottom) / 4.0_rt -
+                       ((bottom - top) / (2.0_rt * height)) * vcoord));
 }
 
 [[nodiscard]] AMREX_GPU_HOST_DEVICE bool ellipse(
@@ -212,7 +212,7 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
 
         std::string stype = "Ellipse";
         pp1.query("type", stype);
-        if (stype == "Ellipse") {
+        if (amrex::toLower(stype) == "ellipse") {
             h_type.emplace_back(ChannelSegmentType::Ellipse);
             if (pp1.contains("diameter")) {
                 pp1.get("diameter", dim0_s);
@@ -235,12 +235,15 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
                 pp1.get("horizontal_axis_end", dim0_e);
                 pp1.get("vertical_axis_end", dim1_e);
             }
-        } else if (stype == "Trapezoid") {
+        } else if (amrex::toLower(stype) == "trapezoid") {
             h_type.emplace_back(ChannelSegmentType::Trapezoid);
             if (pp1.contains("top_width")) {
                 pp1.get("top_width", dim0_s);
                 pp1.get("bottom_width", dim1_s);
                 pp1.get("height", dim2_s);
+                dim0_e = dim0_s;
+                dim1_e = dim1_s;
+                dim2_e = dim2_s;
             } else {
                 pp1.get("top_width_start", dim0_s);
                 pp1.get("bottom_width_start", dim1_s);
@@ -269,18 +272,19 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
         h_segment_end.emplace_back(
             amrex::Array<amrex::Real, 3>{seg_end[0], seg_end[1], seg_end[2]});
 
-        stype = "Uniform";
+        stype = "uniform";
         pp1.query("velocity_profile", stype);
-        if (stype == "Uniform") {
+        stype = amrex::toLower(stype);
+        if (stype == "uniform") {
             h_velocity_profile.emplace_back(ChannelVelocityProfile::Uniform);
-        } else if (stype == "Linear") {
+        } else if (stype == "linear") {
             h_velocity_profile.emplace_back(ChannelVelocityProfile::Linear);
-        } else if (stype == "Parabolic") {
+        } else if (stype == "parabolic") {
             h_velocity_profile.emplace_back(ChannelVelocityProfile::Parabolic);
         } else {
             amrex::Abort(
                 "Invalid channel velocity profile specified: " + stype +
-                ". Only 'Uniform', 'Linear', and 'Parabolic' are supported.");
+                ". Only 'uniform', 'linear', and 'parabolic' are supported.");
         }
         amrex::Real flow_speed = 0.0_rt;
         pp1.get("flow_speed", flow_speed);
@@ -367,12 +371,18 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     const amrex::Real land_level = m_land_level;
     const amrex::Real water_level = m_water_level;
 
+    amrex::MultiFab* levelset_lev{nullptr};
     // Set all velocity to 0 for the sake of blanked cells
     velocity.setVal(0.0_rt);
     // Set density in single-phase case
     if (!multiphase) {
         m_repo.get_field("density").setVal(m_rho_init);
+    } else {
+        levelset_lev = &(m_repo.get_field("levelset")(level));
     }
+
+    const auto& phi_arrs =
+        multiphase ? levelset_lev->arrays() : amrex::MultiArray4<amrex::Real>();
 
     amrex::ParallelFor(
         blank_mfab, m_terrain_blank.num_grow(),
@@ -518,9 +528,11 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
             }
 
             // Do adjustments for multiphase case
-            if (multiphase && z > land_level) {
+            if (multiphase) {
+                // Set levelset field so vof can be initialized
+                phi_arrs[nbx](i, j, k) = water_level - z;
                 // Above land level means unblanked
-                outside_channel = false;
+                outside_channel = (z > land_level) ? false : outside_channel;
             }
 
             blank_arrs[nbx](i, j, k) = static_cast<int>(outside_channel);

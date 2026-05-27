@@ -1,7 +1,7 @@
-#ifndef TURBINE_KYNEMA_OPS_H
-#define TURBINE_KYNEMA_OPS_H
+#ifndef TURBINE_KYNEMA_FMB_OPS_H
+#define TURBINE_KYNEMA_FMB_OPS_H
 
-#include "src/wind_energy/actuator/turbine/kynema/TurbineKynema.H"
+#include "src/wind_energy/actuator/turbine/kynema_fmb/TurbineKynemaFMB.H"
 #include "src/wind_energy/actuator/turbine/external/turbine_external_ops.H"
 #include "AMReX_REAL.H"
 
@@ -10,9 +10,10 @@ using namespace amrex::literals;
 namespace kynema_sgf::actuator::ops {
 
 template <typename SrcTrait>
-struct ReadInputsOp<TurbineKynema, SrcTrait>
+struct ReadInputsOp<TurbineKynemaFMB, SrcTrait>
 {
-    void operator()(TurbineKynema::DataType& data, const utils::ActParser& pp)
+    void
+    operator()(TurbineKynemaFMB::DataType& data, const utils::ActParser& pp)
     {
         auto& tf = data.meta().ext_data;
         // Only one mode available for now
@@ -33,14 +34,14 @@ struct ReadInputsOp<TurbineKynema, SrcTrait>
         }
 
         if (tf.sim_mode == ::ext_turb::SimMode::restart) {
-            pp.get("kynema_restart_file", tf.checkpoint_file);
+            pp.get("kynema_fmb_restart_file", tf.checkpoint_file);
         } else {
-            pp.get("kynema_input_file", tf.input_file);
+            pp.get("kynema_fmb_input_file", tf.input_file);
         }
 
         AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
             amrex::FileSystem::Exists(tf.input_file),
-            "turbine_kynema_ops: Cannot find Kynema input file: " +
+            "turbine_kynema_fmb_ops: Cannot find Kynema-FMB input file: " +
                 tf.input_file);
 
         pp.query(
@@ -65,9 +66,9 @@ struct ReadInputsOp<TurbineKynema, SrcTrait>
             data.info().hub_height = z_values[z_values.size() - 1];
         }
 
-        read_ops<TurbineKynema::DataType>(data, pp);
+        read_ops<TurbineKynemaFMB::DataType>(data, pp);
 
-        // Do Kynema-SGF inputs specific to kynema turbine
+        // Do Kynema-SGF inputs specific to kynema_fmb turbine
         tf.fluid_density = data.meta().density;
 
         tf.dt_ext = -1.;
@@ -106,66 +107,67 @@ struct ReadInputsOp<TurbineKynema, SrcTrait>
 };
 
 template <>
-void determine_influenced_procs<TurbineKynema>(
-    typename TurbineKynema::DataType& data)
+void determine_influenced_procs<TurbineKynemaFMB>(
+    typename TurbineKynemaFMB::DataType& data)
 {
-    external_determine_influenced_procs<TurbineKynema::DataType>(data);
+    external_determine_influenced_procs<TurbineKynemaFMB::DataType>(data);
 }
 
 template <>
-void determine_root_proc<TurbineKynema>(
-    typename TurbineKynema::DataType& data, amrex::Vector<int>& act_proc_count)
+void determine_root_proc<TurbineKynemaFMB>(
+    typename TurbineKynemaFMB::DataType& data,
+    amrex::Vector<int>& act_proc_count)
 {
     external_determine_root_proc<
-        TurbineKynema::DataType, ::ext_turb::KynemaTurbine,
-        ::ext_turb::KynemaSolverData>(data, act_proc_count);
+        TurbineKynemaFMB::DataType, ::ext_turb::KynemaFMBTurbine,
+        ::ext_turb::KynemaFMBSolverData>(data, act_proc_count);
 }
 
 template <typename SrcTrait>
-struct InitDataOp<TurbineKynema, SrcTrait>
+struct InitDataOp<TurbineKynemaFMB, SrcTrait>
 {
-    void operator()(TurbineKynema::DataType& data)
+    void operator()(TurbineKynemaFMB::DataType& data)
     {
-        BL_PROFILE("kynema-sgf::InitDataOp<TurbineKynema>");
-        init_data_op<TurbineKynema::DataType>(data);
+        BL_PROFILE("kynema-sgf::InitDataOp<TurbineKynemaFMB>");
+        init_data_op<TurbineKynemaFMB::DataType>(data);
     }
 };
 
 template <typename SrcTrait>
-struct UpdatePosOp<TurbineKynema, SrcTrait>
+struct UpdatePosOp<TurbineKynemaFMB, SrcTrait>
 {
-    void operator()(typename TurbineKynema::DataType& data)
+    void operator()(typename TurbineKynemaFMB::DataType& data)
     {
-        BL_PROFILE("kynema-sgf::actuator::UpdatePosOp<TurbineKynema>");
-        update_pos_op<TurbineKynema::DataType>(data);
+        BL_PROFILE("kynema-sgf::actuator::UpdatePosOp<TurbineKynemaFMB>");
+        update_pos_op<TurbineKynemaFMB::DataType>(data);
     }
 };
 
 template <typename SrcTrait>
-struct UpdateVelOp<TurbineKynema, SrcTrait>
+struct UpdateVelOp<TurbineKynemaFMB, SrcTrait>
 {
-    void operator()(typename TurbineKynema::DataType& data)
+    void operator()(typename TurbineKynemaFMB::DataType& data)
     {
-        BL_PROFILE("kynema-sgf::actuator::UpdateVelOp<TurbineKynema>");
-        update_vel_op<TurbineKynema::DataType>(data);
+        BL_PROFILE("kynema-sgf::actuator::UpdateVelOp<TurbineKynemaFMB>");
+        update_vel_op<TurbineKynemaFMB::DataType>(data);
     }
 };
 
 template <typename SrcTrait>
-struct ComputeForceOp<TurbineKynema, SrcTrait>
+struct ComputeForceOp<TurbineKynemaFMB, SrcTrait>
 {
-    void operator()(typename TurbineKynema::DataType& data)
+    void operator()(typename TurbineKynemaFMB::DataType& data)
     {
-        BL_PROFILE("kynema-sgf::actuator::ComputeForceOp<TurbineKynema>");
-        compute_force_op<TurbineKynema::DataType>(data);
+        BL_PROFILE("kynema-sgf::actuator::ComputeForceOp<TurbineKynemaFMB>");
+        compute_force_op<TurbineKynemaFMB::DataType>(data);
     }
 };
 
 template <typename SrcTrait>
-struct ProcessOutputsOp<TurbineKynema, SrcTrait>
+struct ProcessOutputsOp<TurbineKynemaFMB, SrcTrait>
 {
 private:
-    typename TurbineKynema::DataType& m_data;
+    typename TurbineKynemaFMB::DataType& m_data;
 
     //! Path to the output directory (specified by Actuator physics class)
     std::string m_out_dir;
@@ -177,7 +179,7 @@ private:
     int m_out_freq{10};
 
 public:
-    explicit ProcessOutputsOp(typename TurbineKynema::DataType& data)
+    explicit ProcessOutputsOp(typename TurbineKynemaFMB::DataType& data)
         : m_data(data)
     {}
 
@@ -209,4 +211,4 @@ public:
 
 } // namespace kynema_sgf::actuator::ops
 
-#endif /* TURBINE_KYNEMA_OPS_H */
+#endif /* TURBINE_KYNEMA_FMB_OPS_H */

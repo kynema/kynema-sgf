@@ -334,6 +334,9 @@ public:
     void fillphysbc(amrex::Real time);
     void fillphysbc(amrex::Real time, amrex::IntVect ng);
 
+    void fillphysbc_type(
+        amrex::Real time, amrex::BCType::mathematicalBndryTypes bctype);
+
     void apply_bc_funcs(FieldState rho_state);
 
     void fillpatch(

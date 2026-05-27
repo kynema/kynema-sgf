@@ -17,21 +17,21 @@ SDRSrc::SDRSrc(const CFDSim& sim)
 SDRSrc::~SDRSrc() = default;
 
 void SDRSrc::operator()(
-    const int lev,
-    const amrex::MFIter& mfi,
-    const amrex::Box& bx,
-    const FieldState fstate,
-    const amrex::Array4<amrex::Real>& src_term) const
+    const int lev, const FieldState fstate, amrex::MultiFab& src_term) const
 {
-    const auto& sdr_src_arr = (this->m_sdr_src)(lev).array(mfi);
-    const auto& sdr_diss_arr = (this->m_sdr_diss)(lev).array(mfi);
+    const auto& sdr_src_arrs = (this->m_sdr_src)(lev).const_arrays();
+    const auto& sdr_diss_arrs = (this->m_sdr_diss)(lev).const_arrays();
 
     const amrex::Real factor = (fstate == FieldState::NPH) ? 0.5_rt : 1.0_rt;
 
-    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-        src_term(i, j, k) +=
-            (factor * sdr_diss_arr(i, j, k)) + sdr_src_arr(i, j, k);
-    });
+    auto const& src_arrs = src_term.arrays();
+
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), 1,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+            src_arrs[nbx](i, j, k) += (factor * sdr_diss_arrs[nbx](i, j, k)) +
+                                      sdr_src_arrs[nbx](i, j, k);
+        });
 }
 
 } // namespace kynema_sgf::pde::tke

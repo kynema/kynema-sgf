@@ -49,7 +49,7 @@ jobs:
             ccache_size: 100M
           - build_type: Debug
             openmp_flag: NoOpenMP
-            ctest_args: -LE no_ci
+            ctest_args: -L "unit|debug_ci"
             ccache_size: 200M
           - build_type: Debug
             openmp_flag: OpenMP
@@ -594,9 +594,9 @@ jobs:
     needs: Formatting
     runs-on: ubuntu-24.04
     container:
-      image: ecpe4s/kynema-snapshot
+      image: roodj/kynema
       env:
-          EXAWIND_MANAGER: /kynema-manager
+          KYNEMA_MANAGER: /kynema-manager
           E4S_MACHINE: true
     steps:
       - name: Clone
@@ -606,15 +606,15 @@ jobs:
       - name: Test
         run: |
           /bin/bash -c " \
-            source ${EXAWIND_MANAGER}/start.sh && spack-start && \
+            source ${KYNEMA_MANAGER}/start.sh && spack-start && \
             spack env activate e4s-build && \
-            cd ${EXAWIND_MANAGER}/environments/e4s-build && \
-            ln -s ${GITHUB_WORKSPACE} amr-wind && \
-            spack develop --no-modify-concrete-specs --no-clone amr-wind@=main && \
+            cd ${KYNEMA_MANAGER}/environments/e4s-build && \
+            ln -s ${GITHUB_WORKSPACE} kynema-sgf && \
+            spack develop --no-modify-concrete-specs --no-clone kynema-sgf@=main && \
             spack rm kynema && \
-            spack add amr-wind@main && \
+            spack add kynema-sgf@main && \
             spack concretize -f && \
             spack install && \
-            spack cd -b amr-wind && \
-            spack build-env amr-wind ctest -j $(nproc) -L unit --output-on-failure \
+            spack cd -b kynema-sgf && \
+            spack build-env kynema-sgf ctest -j $(nproc) -L unit --output-on-failure \
           "

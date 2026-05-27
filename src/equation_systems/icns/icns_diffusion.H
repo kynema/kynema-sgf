@@ -123,7 +123,6 @@ public:
         const int nlevels = repo.num_active_levels();
         const auto& geom = repo.mesh().Geom();
 
-        bool diff_for_RHS(fstate == kynema_sgf::FieldState::New);
         auto& divtau = m_pdefields.diff_term.state(tau_state);
         const auto& density = m_density.state(fstate);
         const auto& viscosity = m_pdefields.mueff;
@@ -164,23 +163,6 @@ public:
 
         amrex::MLMG mlmg(*m_applier_scalar);
         mlmg.apply(divtau.vec_ptrs(), m_pdefields.field.vec_ptrs());
-
-        if (!diff_for_RHS) {
-            for (int lev = 0; lev < nlevels; ++lev) {
-                const auto& divtau_arrs = divtau(lev).arrays();
-                const auto& rho_arrs = density(lev).const_arrays();
-
-                amrex::ParallelFor(
-                    divtau(lev),
-                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
-                        amrex::Real rhoinv = 1.0_rt / rho_arrs[nbx](i, j, k);
-                        divtau_arrs[nbx](i, j, k, 0) *= rhoinv;
-                        divtau_arrs[nbx](i, j, k, 1) *= rhoinv;
-                        divtau_arrs[nbx](i, j, k, 2) *= rhoinv;
-                    });
-            }
-            amrex::Gpu::streamSynchronize();
-        }
     }
 
     void linsys_solve(const amrex::Real dt)
@@ -330,7 +312,6 @@ public:
         const auto& geom = repo.mesh().Geom();
 
         auto& divtau = m_pdefields.diff_term.state(tau_state);
-        bool diff_for_RHS(fstate == kynema_sgf::FieldState::New);
         const auto& density = m_density.state(fstate);
         const auto& viscosity = m_pdefields.mueff;
         Field const* mesh_detJ =
@@ -384,23 +365,6 @@ public:
 
             amrex::MLMG mlmg(*m_applier_scalar[i]);
             mlmg.apply(divtau_comp.vec_ptrs(), vel_comp.vec_ptrs());
-        }
-
-        if (!diff_for_RHS) {
-            for (int lev = 0; lev < nlevels; ++lev) {
-                const auto& divtau_arrs = divtau(lev).arrays();
-                const auto& rho_arrs = density(lev).const_arrays();
-
-                amrex::ParallelFor(
-                    divtau(lev),
-                    [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
-                        amrex::Real rhoinv = 1.0_rt / rho_arrs[nbx](i, j, k);
-                        divtau_arrs[nbx](i, j, k, 0) *= rhoinv;
-                        divtau_arrs[nbx](i, j, k, 1) *= rhoinv;
-                        divtau_arrs[nbx](i, j, k, 2) *= rhoinv;
-                    });
-            }
-            amrex::Gpu::streamSynchronize();
         }
     }
 

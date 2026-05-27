@@ -122,6 +122,8 @@ void incflo::init_kynema_sgf_modules()
         eqn->initialize();
     }
 
+    m_sim.turbulence_model().post_init_actions();
+
     m_sim.pde_manager().fillpatch_state_fields(m_time.current_time());
     m_sim.pde_manager().density_check();
     m_sim.post_manager().post_init_actions();
@@ -230,6 +232,7 @@ bool incflo::regrid_and_update()
         for (auto& eqn : scalar_eqns()) {
             eqn->post_regrid_actions();
         }
+        m_sim.turbulence_model().post_regrid_actions();
         for (auto& pp : m_sim.physics()) {
             pp->post_regrid_actions();
         }

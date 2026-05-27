@@ -115,11 +115,7 @@ void BodyForce::read_bforce_timetable(const std::string& filename)
 }
 
 void BodyForce::operator()(
-    const int lev,
-    const amrex::MFIter& /*mfi*/,
-    const amrex::Box& bx,
-    const FieldState /*fstate*/,
-    const amrex::Array4<amrex::Real>& src_term) const
+    const int lev, const FieldState /*fstate*/, amrex::MultiFab& src_term) const
 {
     const auto& nph_time = 0.5_rt * (m_time.current_time() + m_time.new_time());
     const auto& problo = m_mesh.Geom(lev).ProbLoArray();
@@ -130,26 +126,29 @@ void BodyForce::operator()(
     const amrex::Real* force_x = m_prof_x.data();
     const amrex::Real* force_y = m_prof_y.data();
 
+    auto const& src_arrs = src_term.arrays();
+
     if (m_type == "height_varying" || m_type == "height-varying") {
-
-        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-            amrex::IntVect iv(i, j, k);
-            const amrex::Real ht = problo[2] + ((iv[2] + 0.5_rt) * dx[2]);
-            const amrex::Real fx =
-                kynema_sgf::interp::linear(force_ht, force_ht_end, force_x, ht);
-            const amrex::Real fy =
-                kynema_sgf::interp::linear(force_ht, force_ht_end, force_y, ht);
-            src_term(i, j, k, 0) += fx;
-            src_term(i, j, k, 1) += fy;
-        });
-
+        amrex::ParallelFor(
+            src_term, amrex::IntVect(0), AMREX_SPACEDIM,
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+                if (n >= 2) {
+                    return;
+                }
+                amrex::IntVect iv(i, j, k);
+                const amrex::Real ht = problo[2] + ((iv[2] + 0.5_rt) * dx[2]);
+                const amrex::Real val =
+                    (n == 0) ? kynema_sgf::interp::linear(
+                                   force_ht, force_ht_end, force_x, ht)
+                             : kynema_sgf::interp::linear(
+                                   force_ht, force_ht_end, force_y, ht);
+                src_arrs[nbx](i, j, k, n) += val;
+            });
     } else {
-
         amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> forcing{
             m_body_force[0], m_body_force[1], m_body_force[2]};
 
         if (!m_utt_file.empty()) {
-            // Populate forcing from file if supplied
             forcing[0] =
                 kynema_sgf::interp::linear(m_time_table, m_fx_table, nph_time);
             forcing[1] =
@@ -160,11 +159,12 @@ void BodyForce::operator()(
 
         amrex::Real coeff =
             (m_type == "oscillatory") ? std::cos(m_omega * nph_time) : 1.0_rt;
-        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-            src_term(i, j, k, 0) += coeff * forcing[0];
-            src_term(i, j, k, 1) += coeff * forcing[1];
-            src_term(i, j, k, 2) += coeff * forcing[2];
-        });
+
+        amrex::ParallelFor(
+            src_term, amrex::IntVect(0), AMREX_SPACEDIM,
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+                src_arrs[nbx](i, j, k, n) += coeff * forcing[n];
+            });
     }
 }
 

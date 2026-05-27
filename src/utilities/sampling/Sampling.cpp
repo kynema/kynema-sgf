@@ -246,6 +246,13 @@ void Sampling::convert_velocity_lineofsight()
         return;
     }
 
+    const bool any_los = std::ranges::any_of(m_samplers, [](const auto& obj) {
+        return obj->do_convert_velocity_los();
+    });
+    if (!any_los) {
+        return;
+    }
+
 #ifdef KYNEMA_SGF_USE_NETCDF
     amrex::Vector<int> vel_map(AMREX_SPACEDIM, 0);
     const amrex::Vector<std::string> vnames = {
