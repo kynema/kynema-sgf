@@ -61,7 +61,8 @@ AMREX_FORCE_INLINE phase parse_phase_condition(const std::string& condition)
 
     amrex::Abort(
         "BoundaryPlane: invalid phase='" + condition +
-        "'. Valid options are liquid, gas, or both.");
+        "'. Valid options are liquid (or water, 1), gas (or air, 2), "
+        "or both (or agnostic, 0).");
     // To satisfy the compiler, will never reach this return with abort
     return phase::both;
 }
