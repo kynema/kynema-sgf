@@ -66,6 +66,8 @@ The prefix is the label set in ``incflo.post_processing``. For example
 
    Starting point in three-dimensional space to define the rectangular subvolume. This needs
    to be the lower left corner of a mesh cell for the subvolume data extraction to work properly.
+   This always corresponds to the source mesh level cell corners, even if the output cell size is
+   coarser than the source level.
 
 .. input_param:: subvol1.chunk1.num_points
 
