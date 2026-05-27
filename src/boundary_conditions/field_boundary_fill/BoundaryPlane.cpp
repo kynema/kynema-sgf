@@ -1569,7 +1569,8 @@ void BoundaryPlane::populate_data(
                     // for vof or density, since directly relate to phase.)
                     if (!use_vof_condition ||
                         (use_vof_condition &&
-                         vof_matches(phase_condition, vof_arr(iv)))) {
+                         vof_matches(
+                             phase_condition, vof_arr(iv + shift_to_cc)))) {
                         dest(iv, n + dcomp) = src_arr(
                             iv[0] + shift_to_cc[0], iv[1] + shift_to_cc[1],
                             iv[2] + shift_to_cc[2], n + nstart + orig_comp);
