@@ -5,6 +5,27 @@
 
 #include "AMReX_ParmParse.H"
 
+#include <algorithm>
+#include <cmath>
+
+namespace {
+
+amrex::Real snap_to_nearest_cell_center(
+    const amrex::Geometry& geom, const int dir, const amrex::Real x)
+{
+    const auto& plo = geom.ProbLoArray();
+    const auto& dx = geom.CellSizeArray();
+    const auto& dxi = geom.InvCellSizeArray();
+    const auto& dom = geom.Domain();
+
+    int idx = static_cast<int>(std::lround((x - plo[dir]) * dxi[dir] - 0.5));
+    idx = std::max(dom.smallEnd(dir), std::min(dom.bigEnd(dir), idx));
+
+    return plo[dir] + (static_cast<amrex::Real>(idx) + 0.5) * dx[dir];
+}
+
+} // namespace
+
 namespace kynema_sgf::sampling {
 
 LineSampler::LineSampler(const CFDSim& sim) : m_sim(sim) {}
@@ -18,6 +39,7 @@ void LineSampler::initialize(const std::string& key)
     pp.get("num_points", m_npts);
     pp.getarr("start", m_start);
     pp.getarr("end", m_end);
+    pp.query("snap_to_cell_center", m_snap_to_cell_center);
 
     check_bounds();
 }
@@ -81,9 +103,17 @@ void LineSampler::sampling_locations(
     }
 
     for (int i = 0; i < m_npts; ++i) {
-        const amrex::RealVect loc = {AMREX_D_DECL(
+        amrex::RealVect loc = {AMREX_D_DECL(
             m_start[0] + (i * dx[0]), m_start[1] + (i * dx[1]),
             m_start[2] + (i * dx[2]))};
+
+        if (m_snap_to_cell_center) {
+            const auto& fine_geom = m_sim.mesh().Geom(m_sim.mesh().finestLevel());
+            for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+                loc[d] = snap_to_nearest_cell_center(fine_geom, d, loc[d]);
+            }
+        }
+
         if (utils::contains(box, loc, plo, dxinv)) {
             sample_locs.push_back(loc, i);
         }

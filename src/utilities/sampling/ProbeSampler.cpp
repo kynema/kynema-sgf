@@ -4,7 +4,28 @@
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 
+#include <algorithm>
+#include <cmath>
+
 using namespace amrex::literals;
+
+namespace {
+
+amrex::Real snap_to_nearest_cell_center(
+    const amrex::Geometry& geom, const int dir, const amrex::Real x)
+{
+    const auto& plo = geom.ProbLoArray();
+    const auto& dx = geom.CellSizeArray();
+    const auto& dxi = geom.InvCellSizeArray();
+    const auto& dom = geom.Domain();
+
+    int idx = static_cast<int>(std::lround((x - plo[dir]) * dxi[dir] - 0.5_rt));
+    idx = std::max(dom.smallEnd(dir), std::min(dom.bigEnd(dir), idx));
+
+    return plo[dir] + (static_cast<amrex::Real>(idx) + 0.5_rt) * dx[dir];
+}
+
+} // namespace
 
 namespace kynema_sgf::sampling {
 
@@ -17,6 +38,7 @@ void ProbeSampler::initialize(const std::string& key)
     amrex::ParmParse pp(key);
     std::string pfile("probe_locations.txt");
     pp.query("probe_location_file", pfile);
+    pp.query("snap_to_cell_center", m_snap_to_cell_center);
 
     std::ifstream ifh(pfile, std::ios::in);
     if (!ifh.good()) {
@@ -109,9 +131,17 @@ void ProbeSampler::sampling_locations(
     const int lev = 0;
     const auto& dxinv = m_sim.mesh().Geom(lev).InvCellSizeArray();
     const auto& plo = m_sim.mesh().Geom(lev).ProbLoArray();
+    const auto& fine_geom = m_sim.mesh().Geom(m_sim.mesh().finestLevel());
     for (int i = 0; i < m_npts; ++i) {
-        const amrex::RealVect loc = {
+        amrex::RealVect loc = {
             AMREX_D_DECL(probe_locs[i][0], probe_locs[i][1], probe_locs[i][2])};
+
+        if (m_snap_to_cell_center) {
+            for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+                loc[d] = snap_to_nearest_cell_center(fine_geom, d, loc[d]);
+            }
+        }
+
         if (utils::contains(box, loc, plo, dxinv)) {
             sample_locs.push_back(loc, i);
         }
