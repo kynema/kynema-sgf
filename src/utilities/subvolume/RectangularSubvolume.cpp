@@ -73,7 +73,8 @@ void RectangularSubvolume::evaluate_inputs()
         for (int d = 0; d < AMREX_SPACEDIM; ++d) {
             const auto ratio = m_dx_vec[d] / geom[i].CellSize(d);
             const int iratio = static_cast<int>(std::lround(ratio));
-            if (iratio < 1 || std::abs(ratio - static_cast<amrex::Real>(iratio)) > tol) {
+            if (iratio < 1 ||
+                std::abs(ratio - static_cast<amrex::Real>(iratio)) > tol) {
                 valid_stride = false;
                 break;
             }
@@ -92,9 +93,15 @@ void RectangularSubvolume::evaluate_inputs()
             (m_origin[2] - geom[i].ProbLo(2)) / geom[i].CellSize(2)));
 
         const bool aligned_origin =
-            std::abs(geom[i].ProbLo(0) + i0 * geom[i].CellSize(0) - m_origin[0]) < tol &&
-            std::abs(geom[i].ProbLo(1) + j0 * geom[i].CellSize(1) - m_origin[1]) < tol &&
-            std::abs(geom[i].ProbLo(2) + k0 * geom[i].CellSize(2) - m_origin[2]) < tol;
+            std::abs(
+                geom[i].ProbLo(0) + i0 * geom[i].CellSize(0) - m_origin[0]) <
+                tol &&
+            std::abs(
+                geom[i].ProbLo(1) + j0 * geom[i].CellSize(1) - m_origin[1]) <
+                tol &&
+            std::abs(
+                geom[i].ProbLo(2) + k0 * geom[i].CellSize(2) - m_origin[2]) <
+                tol;
 
         if (!aligned_origin) {
             continue;
@@ -122,7 +129,7 @@ void RectangularSubvolume::evaluate_inputs()
         amrex::Abort(
             "RectangularSubvolume " + m_label +
             ": Could not map requested output mesh to an existing level. "
-            "The requested dx/dx_vec must be an integer multiple of a level "
+            "The requested dx or dx_vec must be an integer multiple of a level "
             "cell size in each direction, the origin must align to that "
             "level grid, and the full sampled extent must be contained in "
             "that level.");
@@ -130,19 +137,19 @@ void RectangularSubvolume::evaluate_inputs()
 
     m_stride = best_stride;
     if (m_verbose > 0) {
-        amrex::Print()
-            << "RectangularSubvolume " + m_label
-            << ": Using source level " << m_lev_for_sub
-            << " with output stride ("
-            << m_stride[0] << ", " << m_stride[1] << ", " << m_stride[2]
-            << ")\n"
-            << "RectangularSubvolume " + m_label
-            << ": Source sampling extent is " << best_src_box << "\n";
+        amrex::Print() << "RectangularSubvolume " + m_label
+                       << ": Using source level " << m_lev_for_sub
+                       << " with output stride (" << m_stride[0] << ", "
+                       << m_stride[1] << ", " << m_stride[2] << ")\n"
+                       << "RectangularSubvolume " + m_label
+                       << ": Source sampling extent is " << best_src_box
+                       << "\n";
     }
 
     amrex::Box out_box(
         amrex::IntVect(0, 0, 0),
-        amrex::IntVect(m_npts_vec[0] - 1, m_npts_vec[1] - 1, m_npts_vec[2] - 1));
+        amrex::IntVect(
+            m_npts_vec[0] - 1, m_npts_vec[1] - 1, m_npts_vec[2] - 1));
 
     if (!m_chunk_size_present && m_chunk_size_vec.empty()) {
         m_chunk_size_vec.resize(AMREX_SPACEDIM);
@@ -172,19 +179,19 @@ void RectangularSubvolume::evaluate_inputs()
     }
 
     amrex::RealBox out_real_box(
-        {
-            m_origin[0] + 0.5_rt * (geom[m_lev_for_sub].CellSize(0) - m_dx_vec[0]),
-            m_origin[1] + 0.5_rt * (geom[m_lev_for_sub].CellSize(1) - m_dx_vec[1]),
-            m_origin[2] + 0.5_rt * (geom[m_lev_for_sub].CellSize(2) - m_dx_vec[2])
-        },
-        {
-            m_origin[0] + 0.5_rt * (geom[m_lev_for_sub].CellSize(0) - m_dx_vec[0]) +
-                m_npts_vec[0] * m_dx_vec[0],
-            m_origin[1] + 0.5_rt * (geom[m_lev_for_sub].CellSize(1) - m_dx_vec[1]) +
-                m_npts_vec[1] * m_dx_vec[1],
-            m_origin[2] + 0.5_rt * (geom[m_lev_for_sub].CellSize(2) - m_dx_vec[2]) +
-                m_npts_vec[2] * m_dx_vec[2]
-        });
+        {m_origin[0] + 0.5_rt * (geom[m_lev_for_sub].CellSize(0) - m_dx_vec[0]),
+         m_origin[1] + 0.5_rt * (geom[m_lev_for_sub].CellSize(1) - m_dx_vec[1]),
+         m_origin[2] +
+             0.5_rt * (geom[m_lev_for_sub].CellSize(2) - m_dx_vec[2])},
+        {m_origin[0] +
+             0.5_rt * (geom[m_lev_for_sub].CellSize(0) - m_dx_vec[0]) +
+             m_npts_vec[0] * m_dx_vec[0],
+         m_origin[1] +
+             0.5_rt * (geom[m_lev_for_sub].CellSize(1) - m_dx_vec[1]) +
+             m_npts_vec[1] * m_dx_vec[1],
+         m_origin[2] +
+             0.5_rt * (geom[m_lev_for_sub].CellSize(2) - m_dx_vec[2]) +
+             m_npts_vec[2] * m_dx_vec[2]});
 
     m_out_geom = amrex::Geometry(
         out_box, out_real_box, geom[m_lev_for_sub].Coord(),
