@@ -84,15 +84,16 @@ public:
     {}
 
     bool write_flag{false};
+    std::vector<amrex::Real> sampled_values;
 
 protected:
     void prepare_netcdf_file() override {}
     void process_output() override
     {
         // Test buffer populate for GPU runs
-        std::vector<amrex::Real> buf(
+        sampled_values.assign(
             num_total_particles() * var_names().size(), 0.0_rt);
-        sampling_container().populate_buffer(buf);
+        sampling_container().populate_buffer(sampled_values);
 
         write_flag = true;
     }
@@ -294,6 +295,82 @@ TEST_F(SamplingTest, sampling_timing)
         probes.output_actions();
     }
     EXPECT_TRUE(probes.write_flag);
+}
+
+TEST_F(SamplingTest, nearest_neighbor)
+{
+    initialize_mesh();
+
+    auto& repo = sim().repo();
+    auto& rho = repo.declare_field("density", 1, 2);
+    init_field(rho);
+
+    const amrex::Real x = 10.2_rt;
+    const amrex::Real y = 20.3_rt;
+    const amrex::Real z = 30.4_rt;
+
+    {
+        amrex::ParmParse pp("sampling_interp");
+        pp.add("output_interval", 1);
+        pp.addarr("labels", amrex::Vector<std::string>{"line1"});
+        pp.addarr("fields", amrex::Vector<std::string>{"density"});
+    }
+    {
+        amrex::ParmParse pp("sampling_interp.line1");
+        pp.add("type", std::string("LineSampler"));
+        pp.add("num_points", 1);
+        pp.addarr("start", amrex::Vector<amrex::Real>{x, y, z});
+        pp.addarr("end", amrex::Vector<amrex::Real>{x, y, z});
+    }
+
+    SamplingImpl interp(sim(), "sampling_interp");
+    interp.initialize();
+    interp.output_actions();
+
+    ASSERT_EQ(interp.sampled_values.size(), 1);
+    const amrex::Real interp_val = interp.sampled_values[0];
+
+    {
+        amrex::ParmParse pp("sampling_nearest");
+        pp.add("output_interval", 1);
+        pp.addarr("labels", amrex::Vector<std::string>{"line1"});
+        pp.addarr("fields", amrex::Vector<std::string>{"density"});
+        pp.add("nearest_neighbor", true);
+    }
+    {
+        amrex::ParmParse pp("sampling_nearest.line1");
+        pp.add("type", std::string("LineSampler"));
+        pp.add("num_points", 1);
+        pp.addarr("start", amrex::Vector<amrex::Real>{x, y, z});
+        pp.addarr("end", amrex::Vector<amrex::Real>{x, y, z});
+    }
+
+    SamplingImpl nearest(sim(), "sampling_nearest");
+    nearest.initialize();
+    nearest.output_actions();
+
+    ASSERT_EQ(nearest.sampled_values.size(), 1);
+    const amrex::Real nearest_val = nearest.sampled_values[0];
+
+    const auto& geom = mesh().Geom(0);
+    const auto& plo = geom.ProbLoArray();
+    const auto& dx = geom.CellSizeArray();
+    const auto& dxi = geom.InvCellSizeArray();
+    const int i = static_cast<int>(std::round((x - plo[0]) * dxi[0] - 0.5_rt));
+    const int j = static_cast<int>(std::round((y - plo[1]) * dxi[1] - 0.5_rt));
+    const int k = static_cast<int>(std::round((z - plo[2]) * dxi[2] - 0.5_rt));
+    const amrex::Real xcc =
+        plo[0] + (static_cast<amrex::Real>(i) + 0.5_rt) * dx[0];
+    const amrex::Real ycc =
+        plo[1] + (static_cast<amrex::Real>(j) + 0.5_rt) * dx[1];
+    const amrex::Real zcc =
+        plo[2] + (static_cast<amrex::Real>(k) + 0.5_rt) * dx[2];
+
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt;
+    EXPECT_NEAR(interp_val, x + y + z, tol);
+    EXPECT_NEAR(nearest_val, xcc + ycc + zcc, tol);
+    EXPECT_GT(amrex::Math::abs(nearest_val - interp_val), 1.0_rt);
 }
 
 TEST_F(SamplingTest, probe_sampler)
