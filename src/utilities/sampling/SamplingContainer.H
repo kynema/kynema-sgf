@@ -169,9 +169,9 @@ public:
                 (p.pos(2) - problo[2] - offset[2] * dx[2]) * dxi[2];
 
             // Round to the nearest data point index
-            const int i = static_cast<int>(std::lround(x));
-            const int j = static_cast<int>(std::lround(y));
-            const int k = static_cast<int>(std::lround(z));
+            const int i = static_cast<int>(std::round(x));
+            const int j = static_cast<int>(std::round(y));
+            const int k = static_cast<int>(std::round(z));
 
             parr[ip] = farr(i, j, k, ic);
         });
