@@ -1,42 +1,45 @@
-#include "src/utilities/sampling/KineticEnergy.H"
+#include "src/utilities/output_quantities/Enstrophy.H"
 #include "src/utilities/io_utils.H"
 #include "src/utilities/ncutils/nc_interface.H"
 #include <AMReX_MultiFabUtil.H>
 #include <utility>
 #include "AMReX_ParmParse.H"
 #include "src/utilities/IOManager.H"
+#include "src/fvm/vorticity_mag.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace kynema_sgf::kinetic_energy {
+namespace kynema_sgf::enstrophy {
 
-KineticEnergy::KineticEnergy(CFDSim& sim, std::string label)
+Enstrophy::Enstrophy(CFDSim& sim, std::string label)
     : m_sim(sim)
     , m_label(std::move(label))
     , m_velocity(sim.repo().get_field("velocity"))
     , m_density(sim.repo().get_field("density"))
 {}
 
-KineticEnergy::~KineticEnergy() = default;
+Enstrophy::~Enstrophy() = default;
 
-void KineticEnergy::initialize()
+void Enstrophy::initialize()
 {
-    BL_PROFILE("kynema-sgf::KineticEnergy::initialize");
+    BL_PROFILE("kynema-sgf::Enstrophy::initialize");
     amrex::ParmParse pp(m_label);
     populate_output_parameters(pp);
     prepare_ascii_file();
 }
 
-amrex::Real KineticEnergy::calculate_kinetic_energy()
+amrex::Real Enstrophy::calculate_enstrophy()
 {
-    BL_PROFILE("kynema-sgf::KineticEnergy::calculate_kinetic_energy");
+    BL_PROFILE("kynema-sgf::Enstrophy::calculate_enstrophy");
 
-    // integrated total Kinetic Energy
-    amrex::Real Kinetic_energy = 0.0_rt;
+    // integrated total Enstrophy
+    amrex::Real total_enstrophy = 0.0_rt;
 
     const int finest_level = m_velocity.repo().num_active_levels() - 1;
     const auto& geom = m_velocity.repo().mesh().Geom();
+
+    auto vorticity = kynema_sgf::fvm::vorticity_mag(m_velocity);
 
     for (int lev = 0; lev <= finest_level; lev++) {
 
@@ -57,48 +60,44 @@ amrex::Real KineticEnergy::calculate_kinetic_energy()
                                      geom[lev].CellSize()[1] *
                                      geom[lev].CellSize()[2];
 
-        Kinetic_energy += amrex::ReduceSum(
-            m_density(lev), m_velocity(lev), level_mask, 0,
+        total_enstrophy += amrex::ReduceSum(
+            m_density(lev), (*vorticity)(lev), level_mask, 0,
             [=] AMREX_GPU_HOST_DEVICE(
                 amrex::Box const& bx,
                 amrex::Array4<amrex::Real const> const& den_arr,
-                amrex::Array4<amrex::Real const> const& vel_arr,
+                amrex::Array4<amrex::Real const> const& vort_arr,
                 amrex::Array4<int const> const& mask_arr) -> amrex::Real {
-                amrex::Real Kinetic_Energy_Fab = 0.0_rt;
+                amrex::Real enstrophy_fab = 0.0_rt;
 
-                amrex::Loop(bx, [=, &Kinetic_Energy_Fab](int i, int j, int k) {
-                    Kinetic_Energy_Fab +=
-                        cell_vol * mask_arr(i, j, k) * den_arr(i, j, k) *
-                        (vel_arr(i, j, k, 0) * vel_arr(i, j, k, 0) +
-                         vel_arr(i, j, k, 1) * vel_arr(i, j, k, 1) +
-                         vel_arr(i, j, k, 2) * vel_arr(i, j, k, 2));
+                amrex::Loop(bx, [=, &enstrophy_fab](int i, int j, int k) {
+                    enstrophy_fab += cell_vol * mask_arr(i, j, k) *
+                                     den_arr(i, j, k) *
+                                     (vort_arr(i, j, k) * vort_arr(i, j, k));
                 });
-                return Kinetic_Energy_Fab;
+                return enstrophy_fab;
             });
     }
 
     // total volume of grid on level 0
     const amrex::Real total_vol = geom[0].ProbDomain().volume();
 
-    Kinetic_energy *= 0.5_rt / total_vol;
+    total_enstrophy *= 0.5_rt / total_vol;
 
-    amrex::ParallelDescriptor::ReduceRealSum(Kinetic_energy);
+    amrex::ParallelDescriptor::ReduceRealSum(total_enstrophy);
 
-    return Kinetic_energy;
+    return total_enstrophy;
 }
 
-void KineticEnergy::output_actions()
+void Enstrophy::output_actions()
 {
-    BL_PROFILE("kynema-sgf::KineticEnergy::output_actions");
-
-    m_total_kinetic_energy = calculate_kinetic_energy();
-
+    BL_PROFILE("kynema-sgf::Enstrophy::output_actions");
+    m_total_enstrophy = calculate_enstrophy();
     write_ascii();
 }
 
-void KineticEnergy::prepare_ascii_file()
+void Enstrophy::prepare_ascii_file()
 {
-    BL_PROFILE("kynema-sgf::KineticEnergy::prepare_ascii_file");
+    BL_PROFILE("kynema-sgf::Enstrophy::prepare_ascii_file");
 
     const std::string post_dir = m_sim.io_manager().post_processing_directory();
     const std::string sname =
@@ -108,24 +107,24 @@ void KineticEnergy::prepare_ascii_file()
 
     if (amrex::ParallelDescriptor::IOProcessor()) {
         std::ofstream f(m_out_fname.c_str());
-        f << "time_step time kinetic_energy" << '\n';
+        f << "time_step time enstrophy" << '\n';
         f.close();
     }
 }
 
-void KineticEnergy::write_ascii()
+void Enstrophy::write_ascii()
 {
-    BL_PROFILE("kynema-sgf::KineticEnergy::write_ascii");
+    BL_PROFILE("kynema-sgf::Enstrophy::write_ascii");
 
     if (amrex::ParallelDescriptor::IOProcessor()) {
         std::ofstream f(m_out_fname.c_str(), std::ios_base::app);
         f << m_sim.time().time_index() << std::scientific
           << std::setprecision(m_precision) << std::setw(m_width)
           << m_sim.time().new_time();
-        f << std::setw(m_width) << m_total_kinetic_energy;
+        f << std::setw(m_width) << m_total_enstrophy;
         f << '\n';
         f.close();
     }
 }
 
-} // namespace kynema_sgf::kinetic_energy
+} // namespace kynema_sgf::enstrophy
