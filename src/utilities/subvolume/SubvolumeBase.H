@@ -62,13 +62,13 @@ public:
     //! Integer sampling stride in each direction from source cells
     [[nodiscard]] virtual amrex::IntVect sampling_stride() const
     {
-        return amrex::IntVect(1, 1, 1);
+        return amrex::IntVect{1, 1, 1};
     }
 
     //! Output geometry for the single-level plotfile
     [[nodiscard]] virtual amrex::Geometry output_geom() const
     {
-        return amrex::Geometry();
+        return amrex::Geometry{};
     }
 };
 
