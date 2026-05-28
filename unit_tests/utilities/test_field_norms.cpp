@@ -1,6 +1,6 @@
 #include "ks_test_utils/MeshTest.H"
 #include "src/utilities/IOManager.H"
-#include "src/utilities/sampling/FieldNorms.H"
+#include "src/utilities/output_quantities/FieldNorms.H"
 #include "src/utilities/tagging/FieldRefinement.H"
 #include "AMReX_REAL.H"
 
