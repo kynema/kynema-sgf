@@ -297,7 +297,7 @@ TEST_F(SamplingTest, sampling_timing)
     EXPECT_TRUE(probes.write_flag);
 }
 
-TEST_F(SamplingTest, nearest_neighbor)
+TEST_F(SamplingTest, interpolation_order)
 {
     initialize_mesh();
 
@@ -314,6 +314,7 @@ TEST_F(SamplingTest, nearest_neighbor)
         pp.add("output_interval", 1);
         pp.addarr("labels", amrex::Vector<std::string>{"line1"});
         pp.addarr("fields", amrex::Vector<std::string>{"density"});
+        pp.add("interpolation_order", 1);
     }
     {
         amrex::ParmParse pp("sampling_interp.line1");
@@ -327,7 +328,7 @@ TEST_F(SamplingTest, nearest_neighbor)
     interp.initialize();
     interp.output_actions();
 
-    ASSERT_EQ(interp.sampled_values.size(), 1);
+    ASSERT_EQ(interp.sampled_values.size(), 1u);
     const amrex::Real interp_val = interp.sampled_values[0];
 
     {
@@ -335,7 +336,7 @@ TEST_F(SamplingTest, nearest_neighbor)
         pp.add("output_interval", 1);
         pp.addarr("labels", amrex::Vector<std::string>{"line1"});
         pp.addarr("fields", amrex::Vector<std::string>{"density"});
-        pp.add("nearest_neighbor", true);
+        pp.add("interpolation_order", 0);
     }
     {
         amrex::ParmParse pp("sampling_nearest.line1");
@@ -349,7 +350,7 @@ TEST_F(SamplingTest, nearest_neighbor)
     nearest.initialize();
     nearest.output_actions();
 
-    ASSERT_EQ(nearest.sampled_values.size(), 1);
+    ASSERT_EQ(nearest.sampled_values.size(), 1u);
     const amrex::Real nearest_val = nearest.sampled_values[0];
 
     const auto& geom = mesh().Geom(0);

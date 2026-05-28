@@ -86,8 +86,12 @@ public:
     void initialize_particles(
         const amrex::Vector<std::unique_ptr<SamplerBase>>& /*samplers*/);
 
-    //! If true, use nearest-cell lookup instead of linear interpolation
-    void use_nearest(const bool b) { m_use_nearest = b; }
+    //! Interpolation order for sampling: 0 = nearest-neighbor, 1 = linear
+    void set_interpolation_order(const int order)
+    {
+        AMREX_ALWAYS_ASSERT(order == 0 || order == 1);
+        m_interpolation_order = order;
+    }
 
     //! Perform field interpolation to sampling locations
     template <typename FType>
@@ -101,14 +105,15 @@ public:
             for (ParIterType pti(*this, lev); pti.isValid(); ++pti) {
                 int scomp_curr = scomp;
                 for (const auto* fld : fields) {
-                    if (!m_use_nearest) {
+                    const bool use_nearest = (m_interpolation_order == 0);
+                    if (!use_nearest) {
                         AMREX_ALWAYS_ASSERT(
                             fld->num_grow() > amrex::IntVect{0});
                     }
                     const auto farr = (*fld)(lev).const_array(pti);
                     interpolate(
                         pti, farr, lev, fld->field_location(), fld->num_comp(),
-                        scomp_curr, m_use_nearest);
+                        scomp_curr, use_nearest);
 
                     scomp_curr += fld->num_comp();
                 }
@@ -284,8 +289,8 @@ private:
 
     long m_total_particles{0};
 
-    //! When true, use nearest-cell lookup instead of linear interpolation
-    bool m_use_nearest{false};
+    //! Interpolation order for sampling: 0 = nearest-neighbor, 1 = linear
+    int m_interpolation_order{1};
 };
 
 } // namespace sampling
