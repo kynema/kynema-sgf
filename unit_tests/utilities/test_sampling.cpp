@@ -1,4 +1,5 @@
 #include <numbers>
+#include <cmath>
 #include "ks_test_utils/MeshTest.H"
 #include "src/utilities/sampling/Sampling.H"
 #include "src/utilities/sampling/SamplingContainer.H"
@@ -384,6 +385,117 @@ TEST_F(SamplingTest, volume_sampler)
     volume.sampling_locations(sample_locs);
 
     ASSERT_EQ(sample_locs.locations().size(), 3 * 5 * 5);
+}
+
+TEST_F(SamplingTest, snap_to_cell_center)
+{
+    initialize_mesh();
+
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e5_rt;
+    const auto& geom = mesh().Geom(mesh().finestLevel());
+    const auto& dx = geom.CellSizeArray();
+    const auto& plo = geom.ProbLoArray();
+
+    const auto is_cell_center = [&](const amrex::Real x, const int d) {
+        const amrex::Real idx = (x - plo[d]) / dx[d] - 0.5_rt;
+        return amrex::Math::abs(idx - std::round(idx)) < tol;
+    };
+
+    // Line sampler
+    {
+        amrex::ParmParse pp("line_snap");
+        pp.add("num_points", 3);
+        pp.addarr("start", amrex::Vector<amrex::Real>{1.1_rt, 1.9_rt, 2.2_rt});
+        pp.addarr("end", amrex::Vector<amrex::Real>{9.1_rt, 5.9_rt, 6.2_rt});
+        pp.add("snap_to_cell_center", true);
+    }
+
+    kynema_sgf::sampling::LineSampler line_snap(sim());
+    line_snap.initialize("line_snap");
+    kynema_sgf::sampling::SampleLocType line_locs;
+    line_snap.sampling_locations(line_locs);
+    ASSERT_EQ(line_locs.locations().size(), 3);
+    for (const auto& loc : line_locs.locations()) {
+        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+            EXPECT_TRUE(is_cell_center(loc[d], d));
+        }
+    }
+
+    // Plane sampler
+    {
+        amrex::ParmParse pp("plane_snap");
+        pp.addarr("axis1", amrex::Vector<amrex::Real>{0.0_rt, 5.0_rt, 0.0_rt});
+        pp.addarr("axis2", amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 5.0_rt});
+        pp.addarr("origin", amrex::Vector<amrex::Real>{1.1_rt, 1.9_rt, 2.2_rt});
+        pp.addarr("num_points", amrex::Vector<int>{3, 3});
+        pp.addarr("offsets", amrex::Vector<amrex::Real>{2.0_rt});
+        pp.addarr(
+            "offset_vector",
+            amrex::Vector<amrex::Real>{1.0_rt, 0.0_rt, 0.0_rt});
+        pp.add("snap_to_cell_center", true);
+    }
+
+    kynema_sgf::sampling::PlaneSampler plane_snap(sim());
+    plane_snap.initialize("plane_snap");
+    kynema_sgf::sampling::SampleLocType plane_locs;
+    plane_snap.sampling_locations(plane_locs);
+    ASSERT_EQ(plane_locs.locations().size(), 3 * 3);
+    for (const auto& loc : plane_locs.locations()) {
+        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+            EXPECT_TRUE(is_cell_center(loc[d], d));
+        }
+    }
+
+    // Probe sampler
+    std::string fname = "probes_snap.txt";
+    write_probe_sampler_file(fname);
+    {
+        amrex::ParmParse pp("probe_snap");
+        pp.add("probe_location_file", fname);
+        pp.add("snap_to_cell_center", true);
+    }
+
+    kynema_sgf::sampling::ProbeSampler probe_snap(sim());
+    probe_snap.initialize("probe_snap");
+    kynema_sgf::sampling::SampleLocType probe_locs;
+    probe_snap.sampling_locations(probe_locs);
+    ASSERT_EQ(probe_locs.locations().size(), 3);
+    for (const auto& loc : probe_locs.locations()) {
+        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+            EXPECT_TRUE(is_cell_center(loc[d], d));
+        }
+    }
+
+    const char* fname_char = fname.c_str();
+    {
+        std::ifstream f(fname_char);
+        if (f.good()) {
+            remove(fname_char);
+        }
+        std::ifstream ff(fname_char);
+        EXPECT_FALSE(ff.good());
+    }
+
+    // Volume sampler
+    {
+        amrex::ParmParse pp("volume_snap");
+        pp.addarr("hi", amrex::Vector<amrex::Real>{9.1_rt, 9.1_rt, 9.1_rt});
+        pp.addarr("lo", amrex::Vector<amrex::Real>{1.1_rt, 1.9_rt, 2.2_rt});
+        pp.addarr("num_points", amrex::Vector<int>{3, 3, 3});
+        pp.add("snap_to_cell_center", true);
+    }
+
+    kynema_sgf::sampling::VolumeSampler volume_snap(sim());
+    volume_snap.initialize("volume_snap");
+    kynema_sgf::sampling::SampleLocType volume_locs;
+    volume_snap.sampling_locations(volume_locs);
+    ASSERT_EQ(volume_locs.locations().size(), 3 * 3 * 3);
+    for (const auto& loc : volume_locs.locations()) {
+        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+            EXPECT_TRUE(is_cell_center(loc[d], d));
+        }
+    }
 }
 
 TEST_F(SamplingTest, spinner_sampler)
