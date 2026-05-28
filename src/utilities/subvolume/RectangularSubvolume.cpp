@@ -178,20 +178,25 @@ void RectangularSubvolume::evaluate_inputs()
         ba_src.set(ib, amrex::Box(lo, hi));
     }
 
+    const amrex::Real dx0 = m_stride[0] * geom[m_lev_for_sub].CellSize(0);
+    const amrex::Real dx1 = m_stride[1] * geom[m_lev_for_sub].CellSize(1);
+    const amrex::Real dx2 = m_stride[2] * geom[m_lev_for_sub].CellSize(2);
+    // Normalize to the exact sampled spacing so output geometry remains
+    // consistent with the integer stride mapping.
+    m_dx_vec[0] = dx0;
+    m_dx_vec[1] = dx1;
+    m_dx_vec[2] = dx2;
+
     amrex::RealBox out_real_box(
-        {m_origin[0] + 0.5_rt * (geom[m_lev_for_sub].CellSize(0) - m_dx_vec[0]),
-         m_origin[1] + 0.5_rt * (geom[m_lev_for_sub].CellSize(1) - m_dx_vec[1]),
-         m_origin[2] +
-             0.5_rt * (geom[m_lev_for_sub].CellSize(2) - m_dx_vec[2])},
-        {m_origin[0] +
-             0.5_rt * (geom[m_lev_for_sub].CellSize(0) - m_dx_vec[0]) +
-             m_npts_vec[0] * m_dx_vec[0],
-         m_origin[1] +
-             0.5_rt * (geom[m_lev_for_sub].CellSize(1) - m_dx_vec[1]) +
-             m_npts_vec[1] * m_dx_vec[1],
-         m_origin[2] +
-             0.5_rt * (geom[m_lev_for_sub].CellSize(2) - m_dx_vec[2]) +
-             m_npts_vec[2] * m_dx_vec[2]});
+        {m_origin[0] + 0.5_rt * (geom[m_lev_for_sub].CellSize(0) - dx0),
+         m_origin[1] + 0.5_rt * (geom[m_lev_for_sub].CellSize(1) - dx1),
+         m_origin[2] + 0.5_rt * (geom[m_lev_for_sub].CellSize(2) - dx2)},
+        {m_origin[0] + 0.5_rt * (geom[m_lev_for_sub].CellSize(0) - dx0) +
+             m_npts_vec[0] * dx0,
+         m_origin[1] + 0.5_rt * (geom[m_lev_for_sub].CellSize(1) - dx1) +
+             m_npts_vec[1] * dx1,
+         m_origin[2] + 0.5_rt * (geom[m_lev_for_sub].CellSize(2) - dx2) +
+             m_npts_vec[2] * dx2});
 
     m_out_geom = amrex::Geometry(
         out_box, out_real_box, geom[m_lev_for_sub].Coord(),
