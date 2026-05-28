@@ -328,7 +328,7 @@ TEST_F(SamplingTest, interpolation_order)
     interp.initialize();
     interp.output_actions();
 
-    ASSERT_EQ(interp.sampled_values.size(), 1u);
+    ASSERT_EQ(interp.sampled_values.size(), 1);
     const amrex::Real interp_val = interp.sampled_values[0];
 
     {
@@ -350,7 +350,7 @@ TEST_F(SamplingTest, interpolation_order)
     nearest.initialize();
     nearest.output_actions();
 
-    ASSERT_EQ(nearest.sampled_values.size(), 1u);
+    ASSERT_EQ(nearest.sampled_values.size(), 1);
     const amrex::Real nearest_val = nearest.sampled_values[0];
 
     const auto& geom = mesh().Geom(0);
