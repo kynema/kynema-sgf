@@ -10,15 +10,20 @@ For more information on specifying
 when sampled data is output to a file, see the :ref:`post-processing
 inputs <inputs_post_processing>`
 
-.. input_param:: sampling.nearest_neighbor
+.. input_param:: sampling.interpolation_order
 
-   **type:** Boolean, optional, default = false
+   **type:** Integer, optional, default = 1
 
-   When set to ``true``, disable linear interpolation and instead return the
-   value at the nearest data point (cell center, face center, or node) to each
-   sampling location. This is equivalent to a nearest-neighbor lookup and does
-   not require ghost cells on the sampled fields. Useful when the exact
-   cell-center value is desired rather than an interpolated estimate.
+   Controls interpolation behavior for sampled fields:
+
+   ``0``
+      Nearest-neighbor sampling. Returns the value at the nearest data point
+      (cell center, face center, or node) to each sampling location. This mode
+      does not require ghost cells on sampled fields.
+
+   ``1``
+      Linear interpolation (default). Interpolates values to the sampling
+      location using a linear reconstruction.
 
 .. input_param:: sampling.output_format
 
