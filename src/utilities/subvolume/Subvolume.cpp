@@ -203,19 +203,23 @@ void Subvolume::output_actions()
 
         for (amrex::MFIter mfi(mf_sv); mfi.isValid(); ++mfi) {
             const amrex::Box& out_box = mfi.validbox();
-            const amrex::Box& src_box = mf_src[mfi].box();
+            const amrex::Box& out_fab_box = mf_sv[mfi].box();
+            const amrex::Box& src_fab_box = mf_src[mfi].box();
             const auto out_arr = mf_sv.array(mfi);
             const auto src_arr = mf_src.const_array(mfi);
+
+            const auto out_small = out_fab_box.smallEnd();
+            const auto src_small = src_fab_box.smallEnd();
 
             amrex::ParallelFor(
                 out_box, n_out,
                 [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) noexcept {
-                    const int ii = src_box.smallEnd(0) +
-                                   (i - out_box.smallEnd(0)) * stride[0];
-                    const int jj = src_box.smallEnd(1) +
-                                   (j - out_box.smallEnd(1)) * stride[1];
-                    const int kk = src_box.smallEnd(2) +
-                                   (k - out_box.smallEnd(2)) * stride[2];
+                    const int ii =
+                        src_small[0] + (i - out_small[0]) * stride[0];
+                    const int jj =
+                        src_small[1] + (j - out_small[1]) * stride[1];
+                    const int kk =
+                        src_small[2] + (k - out_small[2]) * stride[2];
                     out_arr(i, j, k, n) = src_arr(ii, jj, kk, n);
                 });
         }
