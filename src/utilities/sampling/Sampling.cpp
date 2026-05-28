@@ -55,8 +55,9 @@ void Sampling::initialize()
         pp.query("interpolation_order", m_interpolation_order);
         ioutils::assert_with_message(
             m_interpolation_order == 0 || m_interpolation_order == 1,
-            m_label + ".interpolation_order must be 0 (nearest-neighbor) or "
-                      "1 (linear interpolation)");
+            m_label +
+                ".interpolation_order must be 0 (nearest-neighbor) or "
+                "1 (linear interpolation)");
         populate_output_parameters(pp);
     }
 
