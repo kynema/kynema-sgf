@@ -102,7 +102,8 @@ public:
                 int scomp_curr = scomp;
                 for (const auto* fld : fields) {
                     if (!m_use_nearest) {
-                        AMREX_ALWAYS_ASSERT(fld->num_grow() > amrex::IntVect{0});
+                        AMREX_ALWAYS_ASSERT(
+                            fld->num_grow() > amrex::IntVect{0});
                     }
                     const auto farr = (*fld)(lev).const_array(pti);
                     interpolate(
