@@ -59,10 +59,12 @@ private:
     amrex::Real m_surfaceFactor{0.0_rt};
     amrex::Real m_switchLoc{24.0_rt};
     amrex::Real m_surfaceRANSExp{2.0_rt};
-    amrex::Real m_LESTurnOff{1.0e15_rt};
+    amrex::Real m_LESTurnOff{constants::LARGE_NUM};
+    amrex::Real m_muCoeff{3.0_rt};
     bool m_writeTerms{false};
     const Field& m_vel;
     const Field& m_rho;
+    const Field& m_theta;
     Field& m_Nij;
     Field& m_divNij;
     std::string m_wall_het_model{"none"};
@@ -71,6 +73,7 @@ private:
     amrex::Real m_gamma_m{5.0_rt};
     amrex::Real m_beta_m{16.0_rt};
     amrex::Real m_surface_roughness_z0{0.1_rt};
+    amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 };
 
 } // namespace kynema_sgf::turbulence

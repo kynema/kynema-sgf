@@ -1,4 +1,4 @@
-#include "src/utilities/sampling/WaveEnergy.H"
+#include "src/utilities/output_quantities/WaveEnergy.H"
 #include "src/utilities/io_utils.H"
 #include "src/utilities/ncutils/nc_interface.H"
 #include "src/physics/multiphase/MultiPhase.H"

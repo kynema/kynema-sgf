@@ -264,6 +264,24 @@ void Field::fillphysbc(const amrex::Real time, const amrex::IntVect ng)
 
 void Field::fillphysbc(const amrex::Real time) { fillphysbc(time, num_grow()); }
 
+void Field::fillphysbc_type(
+    const amrex::Real time, const amrex::BCType::mathematicalBndryTypes bctype)
+{
+    BL_PROFILE("kynema-sgf::Field::fillphysbc_type");
+    BL_ASSERT(m_info->m_fillpatch_op);
+    // BC does not need to be initialized to fill BCs with a specified type, but
+    // it does need to be copied to device (e.g., if requested type needs data)
+    BL_ASSERT(m_info->m_bc_copied_to_device);
+    auto& fop = *(m_info->m_fillpatch_op);
+    const int nlevels = m_repo.num_active_levels();
+    const auto ng = num_grow();
+    for (int lev = 0; lev < nlevels; ++lev) {
+        fop.fillphysbc_type(
+            lev, time, bctype, m_repo.get_multifab(m_id, lev), ng,
+            field_state());
+    }
+}
+
 void Field::apply_bc_funcs(const FieldState rho_state)
 {
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);

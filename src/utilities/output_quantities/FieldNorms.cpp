@@ -1,4 +1,4 @@
-#include "src/utilities/sampling/FieldNorms.H"
+#include "src/utilities/output_quantities/FieldNorms.H"
 #include "src/utilities/io_utils.H"
 #include "src/utilities/ncutils/nc_interface.H"
 #include "src/utilities/IOManager.H"

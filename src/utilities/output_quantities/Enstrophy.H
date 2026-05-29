@@ -10,7 +10,7 @@ using namespace amrex::literals;
 namespace kynema_sgf::enstrophy {
 
 /** enstrophy object
- *  \ingroup sampling
+ *  \ingroup output_quantities
  *
  *  A concrete implementation of the post-processing interface that deals with
  *  the total enstrophy
