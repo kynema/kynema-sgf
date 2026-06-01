@@ -29,7 +29,7 @@ the section of the user manual outlining the process of building from the source
     Further installation examples are provided in the Spack-Manager documentation, 
     including `Snapshot Developer Workflow Example <https://sandialabs.github.io/spack-manager/user_profiles/developers/snapshot_workflow.html>`_
     and `Spack-Manager abbreviated example <https://sandialabs.github.io/spack-manager/user_profiles/developers/developer_workflow.html#quick-start>`_.
-    However, it should be noted that when using Kynema-Manager, the environment variable EXAWIND_MANAGER should be used in place of
+    However, it should be noted that when using Kynema-Manager, the environment variable KYNEMA_MANAGER should be used in place of
     the SPACK_MANAGER variable, pointing to the location of the Kynema-Manager directory.
 
 |
@@ -55,8 +55,8 @@ Then activate it:
 
 .. code-block:: console
 
-    export EXAWIND_MANAGER=${REPO_DEST}/kynema-manager
-    source ${EXAWIND_MANAGER}/start.sh && spack-start
+    export KYNEMA_MANAGER=${REPO_DEST}/kynema-manager
+    source ${KYNEMA_MANAGER}/start.sh && spack-start
 
 It is helpful to put the above commands as a function in your bash environment so they can be easily 
 called in the future when code needs to be altered and recompiled.
@@ -135,8 +135,8 @@ To activate the Spack environment now, first activate Spack by repeating these c
 
 .. code-block:: console
 
-    export EXAWIND_MANAGER=${REPO_DEST}/kynema-manager
-    source ${EXAWIND_MANAGER}/start.sh && spack-start
+    export KYNEMA_MANAGER=${REPO_DEST}/kynema-manager
+    source ${KYNEMA_MANAGER}/start.sh && spack-start
 
 Now, the Spack environment can be activated.
 

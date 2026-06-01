@@ -590,31 +590,31 @@ jobs:
           pip install codespell
       - name: Run codespell
         run: codespell
-#  Docker:
-#    needs: Formatting
-#    runs-on: ubuntu-24.04
-#    container:
-#      image: ecpe4s/kynema-snapshot
-#      env:
-#          EXAWIND_MANAGER: /kynema-manager
-#          E4S_MACHINE: true
-#    steps:
-#      - name: Clone
-#        uses: actions/checkout@v6
-#        with:
-#          submodules: true
-#      - name: Test
-#        run: |
-#          /bin/bash -c " \
-#            source ${EXAWIND_MANAGER}/start.sh && spack-start && \
-#            spack env activate e4s-build && \
-#            cd ${EXAWIND_MANAGER}/environments/e4s-build && \
-#            ln -s ${GITHUB_WORKSPACE} amr-wind && \
-#            spack develop --no-modify-concrete-specs --no-clone amr-wind@=main && \
-#            spack rm kynema && \
-#            spack add amr-wind@main && \
-#            spack concretize -f && \
-#            spack install && \
-#            spack cd -b amr-wind && \
-#            spack build-env amr-wind ctest -j $(nproc) -L unit --output-on-failure \
-#          "
+  Docker:
+    needs: Formatting
+    runs-on: ubuntu-24.04
+    container:
+      image: roodj/kynema
+      env:
+          KYNEMA_MANAGER: /kynema-manager
+          E4S_MACHINE: true
+    steps:
+      - name: Clone
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+      - name: Test
+        run: |
+          /bin/bash -c " \
+            source ${KYNEMA_MANAGER}/start.sh && spack-start && \
+            spack env activate e4s-build && \
+            cd ${KYNEMA_MANAGER}/environments/e4s-build && \
+            ln -s ${GITHUB_WORKSPACE} kynema-sgf && \
+            spack develop --no-modify-concrete-specs --no-clone kynema-sgf@=main && \
+            spack rm kynema && \
+            spack add kynema-sgf@main && \
+            spack concretize -f && \
+            spack install && \
+            spack cd -b kynema-sgf && \
+            spack build-env kynema-sgf ctest -j $(nproc) -L unit --output-on-failure \
+          "
