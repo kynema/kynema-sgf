@@ -1,13 +1,13 @@
-#include "aw_test_utils/AmrexTest.H"
+#include "ks_test_utils/AmrexTest.H"
 #include "test_act_utils.H"
 
-#include "amr-wind/wind_energy/actuator/disk/uniform_ct_ops.H"
+#include "src/wind_energy/actuator/disk/uniform_ct_ops.H"
 #include "AMReX_Exception.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 class UniformCtTest : public AmrexTest
@@ -28,9 +28,9 @@ protected:
 };
 } // namespace
 
-namespace act = amr_wind::actuator;
+namespace act = kynema_sgf::actuator;
 namespace ops = act::ops;
-namespace vs = amr_wind::vs;
+namespace vs = kynema_sgf::vs;
 
 TEST_F(UniformCtTest, compute_vecs_from_yaw)
 {
@@ -291,4 +291,4 @@ TEST_F(UniformCtTest, sample_yawed_normal_is_opposite_expected_wind_dir)
         }
     }
 }
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

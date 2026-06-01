@@ -87,7 +87,7 @@ The ``cellSize: 128`` sets a grid resolution of 128 m at level 0.The variable ``
 You do not need ``Hypre`` to run the high aspect ratio simulations. User has to manually edit the 
 input file to create refinement regions in area of interest around the terrain. 
 
-All other inputs in the yaml file are for creating dummy inputs to the AMR-Wind simulations and user can 
+All other inputs in the yaml file are for creating dummy inputs to the Kynema-SGF simulations and user can 
 modify them manually to fit their needs. The inputs ``caseType: "terrainTurbine"`` and ``turbineType: "UniformCtDisk"``
 are useful for aligning the turbine vertically with the terrain. The file includes all the turbines within the continental 
 US and have to be modified for other locations. The turbine type information is ad-hoc and has to be manually modified by 

@@ -17,9 +17,10 @@ This section is for setting atmospheric boundary layer parameters.
 
    Wall model surface roughness length (in meters). When specified, this sets both the aerodynamic 
    (pertaining to velocity) and thermal (pertaining to temperature) roughness lengths.
-   These roughness lengths can be set separately using the two parameters listed below; however,
-   if this parameter (which sets both) is used with either of the roughness parameters below,
-   the code will abort to prevent using conflicting parameters.
+   These roughness lengths can be set separately using the two parameters listed below.
+   Specifying these separately will override the combine parameter; however,
+   if this parameter (which sets both) is used with only one of the roughness parameters below,
+   the code will abort due to the ambiguity.
 
 .. input_param:: ABL.aerodynamic_roughness_length
 
@@ -259,19 +260,45 @@ This section is for setting atmospheric boundary layer parameters.
 
    This input is required when the ABL.initial_wind_profile is set to True. 
 
+.. input_param:: ABL.minimum_vertical_position 
+
+   **type:** Real, optional, default = 0.1
+
+   When using an initial wind profile, this parameter limits how small the vertical
+   position can be. It affects calculations in the initialization and in DragForcing.
+
 .. input_param:: ABL.meso_sponge_start 
 
-   **type:** Real, optional, default = 650
+   **type:** Real, optional, default = 600
 
    Approximate height of the planetary boundary layer height to enable the forcing 
    in the free atmosphere. Recommended for use with RANS model and optionally to run 
-   LES with non canonical flow conditions. The method is enabled by default for turbulent 
-   kinetic energy. To enable this option for temperature and velocity, the following flags
-   have to be added to the input file. 
+   LES with non canonical flow conditions. If not specified in the input file, the 
+   default value is active for the TKE source term but not for velocity or temperature.
+   For this value to be used, the source terms must be included as input arguments 
+   as follows, for temperature, velocity, or TKE, respectively.
    
    `Temperature.source_terms  = TemperatureFreeAtmosphereForcing`
 
    `ICNS.source_terms  = VelocityFreeAtmosphereForcing`
+
+   `TKE.source_terms = KransAxell`
+
+.. input_param:: ABL.velocity_sponge_start
+
+   **type:** Real, optional
+
+   Instead of specifying the same sponge start location for velocity, temperature, and TKE,
+   this input argument allows the velocity sponge start (involved in `VelocityFreeAtmosphereForcing`)
+   to be differentiated from the value specified by :input_param:`ABL.meso_sponge_start`.
+
+.. input_param:: ABL.temp_sponge_start
+
+   **type:** Real, optional
+
+   Instead of specifying the same sponge start location for velocity, temperature, and TKE,
+   this input argument allows the temperature sponge start (involved in `TemperatureFreeAtmosphereForcing`)
+   to be differentiated from the value specified by :input_param:`ABL.meso_sponge_start`.
 
 .. input_param:: ABL.wall_het_model
 

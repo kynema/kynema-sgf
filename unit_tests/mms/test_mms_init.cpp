@@ -1,13 +1,13 @@
 #include "mms_test_utils.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
+#include "ks_test_utils/iter_tools.H"
+#include "ks_test_utils/test_utils.H"
 
-#include "amr-wind/physics/mms/MMS.H"
+#include "src/physics/mms/MMS.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 TEST_F(MMSMeshTest, mms_initialization)
 {
 #if defined(AMREX_USE_HIP)
@@ -21,7 +21,7 @@ TEST_F(MMSMeshTest, mms_initialization)
     auto& velocityf = frepo.declare_field("velocity", 3, 0);
     auto& densityf = frepo.declare_field("density");
 
-    amr_wind::mms::MMS mms(sim());
+    kynema_sgf::mms::MMS mms(sim());
     const int nlevels = mesh().num_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
         mms.initialize_fields(lev, mesh().Geom(lev));
@@ -54,4 +54,4 @@ TEST_F(MMSMeshTest, mms_initialization)
 #endif
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -9,14 +9,14 @@ Tools reference
 ===============
 
 This section summarizes the functionality of the auxiliary tools included
-in the AMR-Wind ``tools/`` directory. There are two main parts of this folder. Python
+in the Kynema-SGF ``tools/`` directory. There are two main parts of this folder. Python
 scripts, which do not require compilation, are in ``tools/``. C++ programs, which
-are compiled as separate executables when AMR-Wind is compiled, are saved in ``tools/utilities/``.
+are compiled as separate executables when Kynema-SGF is compiled, are saved in ``tools/utilities/``.
 After compilation, these executables can be found in the build directory, where each has its own 
 folder within ``tools/utilities/`` there.
 
 These capabilities are not meant to be exhaustive and are not maintained as actively as the
-solver source code. More tools for interacting with AMR-Wind data (pre- and post-processing)
+solver source code. More tools for interacting with Kynema-SGF data (pre- and post-processing)
 can be found in `amr-wind-frontend <https://github.com/Exawind/amr-wind-frontend>`_.
 
 Python scripts

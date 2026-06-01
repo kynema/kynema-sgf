@@ -55,7 +55,7 @@ def main():
     parser.add_argument(
         "-i",
         "--iname",
-        help="AMR-Wind input file for boundary data",
+        help="Kynema-SGF input file for boundary data",
         required=True,
         type=str,
     )

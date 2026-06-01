@@ -22,6 +22,14 @@ Section: Temperature Sources
    This value specifies the coefficient for the forcing term in the immersed boundary forcing method. It is currently
    recommended to use the default value to avoid initial numerical stability. 
 
+.. input_param:: DragTempForcing.bc_forcing_time_factor
+
+   **type:** Real, optional, default = 5.0
+
+   This value modifies the time scale of the BC forcing component of DragTempForcing relative to
+   the time step size.
+
+
 The following list of inputs are used with the `Temperature.source_terms = PerturbationForcing` option to add perturbation to the 
 temperature field to generate flow structures for LES when the inflow data is coarse or uniform flow condition. Not 
 recommended for use with RANS models. 

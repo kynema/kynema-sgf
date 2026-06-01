@@ -1,11 +1,11 @@
-.. _amrwind-abl-bndry-io:
+.. _kynemasgf-abl-bndry-io:
 
-AMR-Wind ABL Boundary I/O
-=========================
+Kynema-SGF ABL Boundary I/O
+===========================
 
 Wind farm simulations typically require ABL inflow conditions. As
 such, a precursor ABL simulation is often performed to collect inflow
-conditions for the wind farm. AMR-Wind leverages NetCDF to collect ABL
+conditions for the wind farm. Kynema-SGF leverages NetCDF to collect ABL
 inflow variables at each time step and write the data to a file. This
 file can then be read during a wind farm simulation to populate the
 inflow.
@@ -117,7 +117,7 @@ The different boundaries are counted as ``xlo = 0``, ``ylo = 1``,
 ``zlo = 2``, ``xhi = 3``, ``yhi = 4``, and ``zhi = 5``. The boundary
 files can now be loaded into the visualizers.
 
-AMR-Wind provides Python tools for reading and manipulating boundary
+Kynema-SGF provides Python tools for reading and manipulating boundary
 file data. These are located in the ``tools`` folder of Python
 scripts. One of the provided examples,
 ``refine_native_boundary_plane.py``, is a utility to refine boundary

@@ -33,13 +33,13 @@ transport.laminar_prandtl                          = 0.7
 transport.turbulent_prandtl                        = 0.333
 # turbulence equation parameters 
 turbulence.model                                   = Kosovic
-Kosovic.monin_obukhov_length                       = -1e30
+ABL.monin_obukhov_length                           = -1e30
 # Atmospheric boundary layer
 ABL.perturb_velocity                               = false
 ABL.perturb_temperature                            = false
 ABL.kappa                                          = .41
 ABL.normal_direction                               = 2
-ABL.reference_temperature                          = 300
+transport.reference_temperature                          = 300
 ABL.stats_output_format                            = ascii
 ABL.surface_roughness_z0                           = 0.1
 ABL.wall_shear_stress_type                         = local

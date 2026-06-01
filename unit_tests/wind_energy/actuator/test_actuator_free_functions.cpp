@@ -1,17 +1,17 @@
-#include "aw_test_utils/AmrexTest.H"
-#include "amr-wind/utilities/trig_ops.H"
-#include "amr-wind/core/vs/vector_space.H"
-#include "amr-wind/wind_energy/actuator/actuator_utils.H"
+#include "ks_test_utils/AmrexTest.H"
+#include "src/utilities/trig_ops.H"
+#include "src/core/vs/vector_space.H"
+#include "src/wind_energy/actuator/actuator_utils.H"
 #include <cmath>
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace act = ::amr_wind::actuator::utils;
-namespace vs = ::amr_wind::vs;
-namespace utils = ::amr_wind::utils;
+namespace act = ::kynema_sgf::actuator::utils;
+namespace vs = ::kynema_sgf::vs;
+namespace utils = ::kynema_sgf::utils;
 
-namespace amr_wind_tests::amr_wind {
+namespace kynema_sgf_tests::kynema_sgf {
 namespace {
 
 TEST(CylindricalTransformation, distances_on_z_aligned_circle)
@@ -108,4 +108,4 @@ TEST(CylindricalTransformation, distances_on_rotated_shifted_circle)
 }
 
 } // namespace
-} // namespace amr_wind_tests::amr_wind
+} // namespace kynema_sgf_tests::kynema_sgf

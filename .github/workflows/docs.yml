@@ -1,4 +1,4 @@
-name: AMR-Wind-Docs
+name: Kynema-SGF-Docs
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends graphviz libenchant-2-dev
           python3 -m pip install --upgrade pip
-          pip3 install sphinx sphinx_rtd_theme sphinx_toolbox sphinx_copybutton pyenchant sphinxcontrib-spelling sphinxcontrib-bibtex doxysphinx
+          python3 -m pip install "sphinx<9" sphinx_rtd_theme sphinx_toolbox sphinx_copybutton pyenchant sphinxcontrib-spelling sphinxcontrib-bibtex doxysphinx
       - name: Doxygen install
         uses: ssciwr/doxygen-install@v1.6.0
         with:
@@ -36,10 +36,10 @@ jobs:
       - name: Configure
         run: |
           cmake -B ${{runner.workspace}}/build-docs \
-            -DAMR_WIND_ENABLE_DOCUMENTATION:BOOL=ON \
+            -DKYNEMA_SGF_ENABLE_DOCUMENTATION:BOOL=ON \
             ${{github.workspace}}
       - name: Build
-        # execute from top-level amr-wind directory
+        # execute from top-level kynema-sgf directory
         run: |
           echo "::add-matcher::.github/problem-matchers/sphinx.json"
           cmake --build ${{runner.workspace}}/build-docs -t docs 2>&1 | tee -a build-output.txt

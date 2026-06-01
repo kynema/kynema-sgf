@@ -8,7 +8,7 @@ RANS models
 
 The RANS models are available in two flavors: wall-modeled and wall-resolved. The former model is 
 designed for cases with :math:`y+ > 30` while the latter requires :math:`y+ < 5`. The wall-modeled RANS 
-model available in AMR-Wind is based on the work of `Axell and Liungman (EFM 2001 ) <https://link.springer.com/article/10.1023/A:1011560202388>`_.
+model available in Kynema-SGF is based on the work of `Axell and Liungman (EFM 2001 ) <https://link.springer.com/article/10.1023/A:1011560202388>`_.
 The code also includes Menter's K-Omega SST model with IDDES support. 
 
 Axell One-Equation RANS Model 
@@ -153,7 +153,7 @@ Here :math:`S_{ij}` is the strain-rate tensor and :math:`R_{ij}` is the vorticit
 :math:`C_s=[8*(1+C_b)/27\pi^2]^{1/2}`, :math:`C_1=C_2=960^{1/2}C_b/7(1+C_b)S_k`, :math:`S_k=0.5`, and :math:`C_b=0.36`.  
 
 The default length scale of :math:`L=C_s\Delta` causes over-prediction of the mean wind speed profiles. To avoid this over-prediction, the
-length scale is modified as follows 
+length scale is modified as proposed by `Senocak et. al (BLM 2007) <https://doi.org/10.1007/s10546-007-9181-x>`_
 
 .. math::
    L=(1-\exp(-z/H))^2(\frac{\kappa z}{\phi_M})^2+(\exp(-z/H))^2(C_s \Delta)^2
@@ -161,6 +161,6 @@ length scale is modified as follows
 Here the term :math:`H=1.5 dz` specifies the location at which the length scale switches to :math:`L=C_s\Delta` and :math:`\phi_M`
 is the atmospheric stability function. Currently, the implementation for the stability function uses a single global value. 
 The implementation of the non-linear model is split into two parts. The subgrid-scale viscosity term is directly used 
-within the AMR-Wind diffusion framework. The last two terms in :math:`M_{ij}` are added as source-terms in the momentum equation. 
+within the Kynema-SGF diffusion framework. The last two terms in :math:`M_{ij}` are added as source-terms in the momentum equation. 
 
 

@@ -4,7 +4,7 @@ Post-processing Examples
 ========================
 
 This section provides examples of manipulating and plotting the
-post-processing data output by AMR-Wind (i.e., the files written
+post-processing data output by Kynema-SGF (i.e., the files written
 to the post_processing directory, not checkpoint files or plotfiles).
 
 .. toctree::

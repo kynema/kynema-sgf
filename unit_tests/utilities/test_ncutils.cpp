@@ -1,11 +1,11 @@
 #include "gtest/gtest.h"
-#include "amr-wind/utilities/ncutils/nc_interface.H"
+#include "src/utilities/ncutils/nc_interface.H"
 #include "AMReX.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 TEST(NetCDFUtils, ncfile)
 {
@@ -95,7 +95,7 @@ TEST(NetCDFUtils, var_io)
     ncutils::NCFile ncf =
         ncutils::NCFile::create("test_vario.nc", NC_DISKLESS | NC_NETCDF4);
     ASSERT_GE(ncf.ncid, 0);
-    ncf.put_attr("title", "AMR-Wind data sampling");
+    ncf.put_attr("title", "Kynema-SGF data sampling");
 
     auto line1 = ncf.def_group("line1");
     line1.put_attr("sampling_type", "LineSampler");
@@ -141,4 +141,4 @@ TEST(NetCDFUtils, var_io)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

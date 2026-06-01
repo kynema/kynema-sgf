@@ -1,10 +1,10 @@
-#include "aw_test_utils/MeshTest.H"
-#include "amr-wind/equation_systems/icns/icns_advection.H"
+#include "ks_test_utils/MeshTest.H"
+#include "src/equation_systems/icns/icns_advection.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class ICNSConstDensTest : public MeshTest
 {
@@ -25,8 +25,9 @@ protected:
         initialize_mesh();
 
         // Initialize MAC projection operator
-        const auto& mco = amr_wind::pde::MacProjOp(
-            sim().repo(), sim().physics_manager(), false, false, false, false);
+        const auto& mco = kynema_sgf::pde::MacProjOp(
+            sim().repo(), sim().field_boundary_manager(), false, false, false,
+            false);
         // Get background density and check
         const amrex::Real rho0 = mco.rho0();
         EXPECT_EQ(rho0, m_rho_0);
@@ -36,4 +37,4 @@ protected:
 
 TEST_F(ICNSConstDensTest, nonunity) { testing_density(); }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -1,0 +1,69 @@
+#ifndef FILLMPL_H
+#define FILLMPL_H
+
+#include "src/core/FieldFillPatchOps.H"
+#include "src/core/FieldBCOps.H"
+#include "src/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H"
+
+namespace kynema_sgf {
+
+/** Operations to perform inflow of data from boundary planes
+ *  \ingroup we_abl
+ *
+ *  This class contains the operations necessary to interface with
+ *  ABLBoundaryPlane class and populate data at the boundaries
+ *
+ *  \sa ABLBoundaryPlane
+ */
+class FillMPL : public FieldFillPatchOps<FieldBCDirichlet>
+{
+public:
+    FillMPL(
+        Field& field,
+        const amrex::AmrCore& mesh,
+        const SimTime& time,
+        const ModulatedPowerLaw& abl_mpl);
+
+    ~FillMPL() override;
+
+    void fillpatch(
+        int lev,
+        amrex::Real time,
+        amrex::MultiFab& mfab,
+        const amrex::IntVect& nghost,
+        FieldState fstate = FieldState::New) override;
+
+    void fillpatch_sibling_fields(
+        int lev,
+        amrex::Real time,
+        amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>& mfabs,
+        amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>& ffabs,
+        amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>& cfabs,
+        const amrex::IntVect& nghost,
+        const amrex::Vector<amrex::BCRec>& bcrec,
+        const amrex::Vector<amrex::BCRec>& /* unused */,
+        FieldState fstate = FieldState::New) override;
+
+    //! Implementation that handles filling patches from a coarse to fine level
+    void fillpatch_from_coarse(
+        int lev,
+        amrex::Real time,
+        amrex::MultiFab& mfab,
+        const amrex::IntVect& nghost,
+        FieldState fstate = FieldState::New) override;
+
+    //! Implementation that handles filling physical boundary conditions
+    void fillphysbc(
+        int lev,
+        amrex::Real time,
+        amrex::MultiFab& mfab,
+        const amrex::IntVect& nghost,
+        FieldState fstate = FieldState::New) override;
+
+protected:
+    const ModulatedPowerLaw& m_abl_mpl;
+};
+
+} // namespace kynema_sgf
+
+#endif /* FILLMPL_H */

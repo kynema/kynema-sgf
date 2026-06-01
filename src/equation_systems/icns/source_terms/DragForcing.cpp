@@ -1,0 +1,434 @@
+#include "src/equation_systems/icns/source_terms/DragForcing.H"
+#include "src/equation_systems/vof/volume_fractions.H"
+#include "src/utilities/IOManager.H"
+#include "AMReX_Gpu.H"
+#include "AMReX_Random.H"
+#include "src/wind_energy/ABL.H"
+#include "src/physics/TerrainDrag.H"
+#include "src/utilities/linear_interpolation.H"
+#include "src/utilities/constants.H"
+#include "AMReX_REAL.H"
+#include <fstream>
+
+using namespace amrex::literals;
+
+namespace {
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real viscous_drag_calculations(
+    amrex::Real& Dxz,
+    amrex::Real& Dyz,
+    const amrex::Real ux1r,
+    const amrex::Real uy1r,
+    const amrex::Real ux2r,
+    const amrex::Real uy2r,
+    const amrex::Real z0,
+    const amrex::Real dz,
+    const amrex::Real kappa,
+    const amrex::Real non_neutral_neighbour)
+{
+    const amrex::Real m2 = std::sqrt((ux2r * ux2r) + (uy2r * uy2r));
+    const amrex::Real ustar =
+        m2 * kappa / (std::log(1.5_rt * dz / z0) - non_neutral_neighbour);
+    Dxz += -ustar * ustar * ux1r /
+           (kynema_sgf::constants::EPS +
+            std::sqrt((ux1r * ux1r) + (uy1r * uy1r))) /
+           dz;
+    Dyz += -ustar * ustar * uy1r /
+           (kynema_sgf::constants::EPS +
+            std::sqrt((ux1r * ux1r) + (uy1r * uy1r))) /
+           dz;
+    return ustar;
+}
+
+// Implementation comes from MOSD approach in boundary_conditions/wall_models/
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void form_drag_calculations(
+    amrex::Real& Dxz,
+    amrex::Real& Dyz,
+    const int i,
+    const int j,
+    const int k,
+    amrex::Array4<amrex::Real const> const& phi,
+    const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> dx,
+    const amrex::Real ux1r,
+    const amrex::Real uy1r)
+{
+    // phi = eta - z, so eta derivatives in x and y can be calculate with phi
+    amrex::Real n_x, n_y, n_z;
+    kynema_sgf::multiphase::youngs_finite_difference_normal(
+        i, j, k, phi, n_x, n_y, n_z);
+    // factor of 32 has to do with finite differences, number of points used
+    // negative to make normals point away from waves into air
+    const amrex::Real dx_eta_wave = -n_x / 32.0_rt / dx[0];
+    const amrex::Real dy_eta_wave = -n_y / 32.0_rt / dx[1];
+    const amrex::Real grad_eta_wave =
+        std::sqrt((dx_eta_wave * dx_eta_wave) + (dy_eta_wave * dy_eta_wave));
+    n_x = dx_eta_wave / grad_eta_wave;
+    n_y = dy_eta_wave / grad_eta_wave;
+
+    // Relative velocity while considering interface normal
+    const amrex::Real ur_mag =
+        std::sqrt((ux1r * ux1r * n_x * n_x) + (uy1r * uy1r * n_y * n_y));
+    // Heaviside function changes behavior for velocity surplus/deficit
+    const amrex::Real Heavi_arg = ((ux1r * dx_eta_wave) + (uy1r * dy_eta_wave));
+    const amrex::Real Heavi =
+        (Heavi_arg + std::abs(Heavi_arg)) / (2.0_rt * Heavi_arg);
+
+    // Stress in each direction
+    const amrex::Real tau_xz =
+        (1.0_rt / std::numbers::pi_v<amrex::Real>)*ur_mag * ur_mag *
+        grad_eta_wave * grad_eta_wave * Heavi * n_x;
+    const amrex::Real tau_yz =
+        (1.0_rt / std::numbers::pi_v<amrex::Real>)*ur_mag * ur_mag *
+        grad_eta_wave * grad_eta_wave * Heavi * n_y;
+
+    // Drag terms from waves added to log law
+    Dxz += -tau_xz / dx[2];
+    Dyz += -tau_yz / dx[2];
+}
+} // namespace
+
+namespace kynema_sgf::pde::icns {
+
+DragForcing::DragForcing(const CFDSim& sim)
+    : m_time(sim.time())
+    , m_sim(sim)
+    , m_mesh(sim.mesh())
+    , m_velocity(sim.repo().get_field("velocity"))
+{
+    amrex::ParmParse pp("DragForcing");
+    pp.query("drag_coefficient", m_drag_coefficient);
+    pp.query("sponge_strength", m_sponge_strength);
+    pp.query("bc_forcing_time_factor", m_forcing_time_factor);
+    pp.query("sponge_density", m_sponge_density);
+    pp.query("sponge_west", m_sponge_west);
+    pp.query("sponge_east", m_sponge_east);
+    pp.query("sponge_south", m_sponge_south);
+    pp.query("sponge_north", m_sponge_north);
+    if (m_sponge_west) {
+        pp.get("sponge_distance_west", m_sponge_distance_west);
+    }
+    if (m_sponge_east) {
+        pp.get("sponge_distance_east", m_sponge_distance_east);
+    }
+    if (m_sponge_south) {
+        pp.get("sponge_distance_south", m_sponge_distance_south);
+    }
+    if (m_sponge_north) {
+        pp.get("sponge_distance_north", m_sponge_distance_north);
+    }
+
+    pp.query("is_laminar", m_is_laminar);
+    const auto& phy_mgr = m_sim.physics_manager();
+    amrex::ParmParse pp_abl("ABL");
+    pp_abl.query("minimum_vertical_position", m_min_z);
+    pp_abl.query("rans_1dprofile_file", m_1d_rans);
+    if (!m_1d_rans.empty()) {
+        std::ifstream ransfile(m_1d_rans, std::ios::in);
+        if (!ransfile.good()) {
+            amrex::Abort("Cannot find 1-D RANS profile file " + m_1d_rans);
+        }
+        amrex::Real value1, value2, value3, value4, value5;
+        while (ransfile >> value1 >> value2 >> value3 >> value4 >> value5) {
+            m_wind_heights.push_back(value1);
+            m_u_values.push_back(value2);
+            m_v_values.push_back(value3);
+            m_w_values.push_back(value4);
+        }
+        int num_wind_values = static_cast<int>(m_wind_heights.size());
+        m_windht_d.resize(num_wind_values);
+        m_prof_u_d.resize(num_wind_values);
+        m_prof_v_d.resize(num_wind_values);
+        m_prof_w_d.resize(num_wind_values);
+        amrex::Gpu::copy(
+            amrex::Gpu::hostToDevice, m_wind_heights.begin(),
+            m_wind_heights.end(), m_windht_d.begin());
+        amrex::Gpu::copy(
+            amrex::Gpu::hostToDevice, m_u_values.begin(), m_u_values.end(),
+            m_prof_u_d.begin());
+        amrex::Gpu::copy(
+            amrex::Gpu::hostToDevice, m_v_values.begin(), m_v_values.end(),
+            m_prof_v_d.begin());
+        amrex::Gpu::copy(
+            amrex::Gpu::hostToDevice, m_w_values.begin(), m_w_values.end(),
+            m_prof_w_d.begin());
+    } else {
+        if (m_sponge_west || m_sponge_east || m_sponge_south ||
+            m_sponge_north) {
+            amrex::Print()
+                << " WARNING: Sponge Forcing with no precursor RANS is "
+                   "not recommended; use with caution.\n";
+        } else {
+            m_sponge_strength = 0.0_rt;
+        }
+    }
+    if (phy_mgr.contains("OceanWaves") && !sim.repo().field_exists("vof")) {
+        const auto terrain_phys =
+            m_sim.physics_manager().get<kynema_sgf::terraindrag::TerrainDrag>();
+        const auto target_vel_name = terrain_phys.wave_velocity_field_name();
+        m_target_vel = &sim.repo().get_field(target_vel_name);
+        const auto target_levelset_name =
+            terrain_phys.wave_negative_elevation_name();
+        m_target_levelset = &sim.repo().get_field(target_levelset_name);
+        m_terrain_is_waves = true;
+        // Inviscid form drag model can help when waves are smaller than cells,
+        // i.e., too small to be resolved with cell blanking
+        pp.query("wave_model_inviscid_form_drag", m_apply_MOSD);
+    }
+    pp_abl.query("wall_het_model", m_wall_het_model);
+    pp_abl.query("monin_obukhov_length", m_monin_obukhov_length);
+    pp_abl.query("kappa", m_kappa);
+    pp_abl.query("mo_gamma_m", m_gamma_m);
+    pp_abl.query("mo_beta_m", m_beta_m);
+}
+
+DragForcing::~DragForcing() = default;
+
+void DragForcing::operator()(
+    const int lev, const FieldState fstate, amrex::MultiFab& src_term) const
+{
+    auto const& src_arrs = src_term.arrays();
+    auto const& vel_arrs =
+        m_velocity.state(field_impl::dof_state(fstate))(lev).const_arrays();
+
+    const int is_terrain =
+        this->m_sim.repo().int_field_exists("terrain_blank") ? 1 : 0;
+    if (is_terrain == 0) {
+        amrex::Abort("Need terrain blanking variable to use this source term");
+    }
+    auto const& blank_arrs =
+        this->m_sim.repo().get_int_field("terrain_blank")(lev).const_arrays();
+
+    const int has_terrain_drag =
+        this->m_sim.repo().int_field_exists("terrain_drag") ? 1 : 0;
+    const int has_terrainz0 =
+        this->m_sim.repo().field_exists("terrainz0") ? 1 : 0;
+    const int has_terrain_damping =
+        this->m_sim.repo().field_exists("terrain_damping") ? 1 : 0;
+    const int has_terrain_height =
+        this->m_sim.repo().field_exists("terrain_height") ? 1 : 0;
+
+    auto const& drag_arrs = has_terrain_drag != 0
+                                ? this->m_sim.repo()
+                                      .get_int_field("terrain_drag")(lev)
+                                      .const_arrays()
+                                : amrex::MultiArray4<int const>();
+    auto const& terrainz0_arrs =
+        has_terrainz0 != 0
+            ? this->m_sim.repo().get_field("terrainz0")(lev).const_arrays()
+            : amrex::MultiArray4<amrex::Real const>();
+    auto const& damping_arrs = has_terrain_damping != 0
+                                   ? this->m_sim.repo()
+                                         .get_field("terrain_damping")(lev)
+                                         .const_arrays()
+                                   : amrex::MultiArray4<amrex::Real const>();
+    auto const& terrain_height_arrs =
+        has_terrain_height != 0
+            ? this->m_sim.repo().get_field("terrain_height")(lev).const_arrays()
+            : amrex::MultiArray4<amrex::Real const>();
+
+    const int is_waves = m_terrain_is_waves ? 1 : 0;
+    const int model_form_drag = m_apply_MOSD ? 1 : 0;
+    auto const& target_vel_arrs = is_waves != 0
+                                      ? (*m_target_vel)(lev).const_arrays()
+                                      : amrex::MultiArray4<amrex::Real const>();
+    auto const& target_lvs_arrs = is_waves != 0
+                                      ? (*m_target_levelset)(lev).const_arrays()
+                                      : amrex::MultiArray4<amrex::Real const>();
+
+    const auto& geom = m_mesh.Geom(lev);
+    const auto& dx = geom.CellSizeArray();
+    const auto& prob_lo = geom.ProbLoArray();
+    const auto& prob_hi = geom.ProbHiArray();
+    const amrex::Real drag_coefficient = m_drag_coefficient;
+    const amrex::Real sponge_strength = m_sponge_strength;
+    const amrex::Real sponge_density = m_sponge_density;
+    const amrex::Real start_east = prob_hi[0] - m_sponge_distance_east;
+    const amrex::Real start_west = prob_lo[0] - m_sponge_distance_west;
+    const amrex::Real start_north = prob_hi[1] - m_sponge_distance_north;
+    const amrex::Real start_south = prob_lo[1] - m_sponge_distance_south;
+    const amrex::Real sdist_east = m_sponge_distance_east;
+    const amrex::Real sdist_west = m_sponge_distance_west;
+    const amrex::Real sdist_north = m_sponge_distance_north;
+    const amrex::Real sdist_south = m_sponge_distance_south;
+    const int sponge_east = m_sponge_east ? 1 : 0;
+    const int sponge_west = m_sponge_west ? 1 : 0;
+    const int sponge_south = m_sponge_south ? 1 : 0;
+    const int sponge_north = m_sponge_north ? 1 : 0;
+
+    const auto& dt = m_time.delta_t();
+    const int is_laminar = m_is_laminar ? 1 : 0;
+    const amrex::Real time_factor = m_forcing_time_factor;
+    const amrex::Real min_z = m_min_z;
+    const amrex::Real scale_factor = (dx[2] < 1.0_rt) ? 1.0_rt : 1.0_rt / dx[2];
+    const amrex::Real Cd = (is_laminar != 0 && dx[2] < 1)
+                               ? drag_coefficient
+                               : drag_coefficient / dx[2];
+    const amrex::Real kappa = m_kappa;
+    const amrex::Real z0_min = 1.0e-4_rt;
+    const amrex::Real cd_max = 1000.0_rt;
+
+    const amrex::Real non_neutral_neighbour =
+        (m_wall_het_model == "mol")
+            ? MOData::calc_psi_m(
+                  1.5_rt * dx[2] / m_monin_obukhov_length, m_beta_m, m_gamma_m)
+            : 0.0_rt;
+    const amrex::Real non_neutral_cell =
+        (m_wall_het_model == "mol")
+            ? MOData::calc_psi_m(
+                  0.5_rt * dx[2] / m_monin_obukhov_length, m_beta_m, m_gamma_m)
+            : 0.0_rt;
+    const int nwvals = static_cast<int>(m_wind_heights.size());
+    const amrex::Real* windh = m_windht_d.data();
+    const amrex::Real* uu = m_prof_u_d.data();
+    const amrex::Real* vv = m_prof_v_d.data();
+    const amrex::Real* ww = m_prof_w_d.data();
+
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), AMREX_SPACEDIM,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+            const amrex::Real x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
+            const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
+            const amrex::Real z = amrex::max<amrex::Real>(
+                prob_lo[2] + ((k + 0.5_rt) * dx[2]) -
+                    (has_terrain_height != 0 ? terrain_height_arrs[nbx](i, j, k)
+                                             : 0.0_rt),
+                min_z);
+            amrex::Real xi_end =
+                (std::abs(sdist_east) > kynema_sgf::constants::EPS)
+                    ? (x - start_east) / (sdist_east)
+                    : 0.0_rt;
+            amrex::Real xi_start =
+                (std::abs(sdist_west) > kynema_sgf::constants::EPS)
+                    ? (start_west - x) / (-sdist_west)
+                    : 0.0_rt;
+            xi_start = sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);
+            xi_end = sponge_east * amrex::max<amrex::Real>(xi_end, 0.0_rt);
+            const amrex::Real xstart_damping =
+                sponge_strength * xi_start * xi_start;
+            const amrex::Real xend_damping = sponge_strength * xi_end * xi_end;
+            amrex::Real yi_end =
+                (std::abs(sdist_north) > kynema_sgf::constants::EPS)
+                    ? (y - start_north) / (sdist_north)
+                    : 0.0_rt;
+            amrex::Real yi_start =
+                (std::abs(sdist_south) > kynema_sgf::constants::EPS)
+                    ? (start_south - y) / (-sdist_south)
+                    : 0.0_rt;
+            yi_start = sponge_south * amrex::max<amrex::Real>(yi_start, 0.0_rt);
+            yi_end = sponge_north * amrex::max<amrex::Real>(yi_end, 0.0_rt);
+            const amrex::Real ystart_damping =
+                sponge_strength * yi_start * yi_start;
+            const amrex::Real yend_damping = sponge_strength * yi_end * yi_end;
+            const amrex::Real ux1 = vel_arrs[nbx](i, j, k, 0);
+            const amrex::Real uy1 = vel_arrs[nbx](i, j, k, 1);
+            const amrex::Real uz1 = vel_arrs[nbx](i, j, k, 2);
+            const amrex::Real spongeVelX =
+                (nwvals > 1) ? interp::linear(windh, windh + nwvals, uu, z)
+                             : ((nwvals == 0) ? ux1 : uu[0]);
+            const amrex::Real spongeVelY =
+                (nwvals > 1) ? interp::linear(windh, windh + nwvals, vv, z)
+                             : ((nwvals == 0) ? uy1 : vv[0]);
+            const amrex::Real spongeVelZ =
+                (nwvals > 1) ? interp::linear(windh, windh + nwvals, ww, z)
+                             : ((nwvals == 0) ? uz1 : ww[0]);
+            amrex::Real Dxz = 0.0_rt;
+            amrex::Real Dyz = 0.0_rt;
+            amrex::Real bc_forcing_x = 0.0_rt;
+            amrex::Real bc_forcing_y = 0.0_rt;
+            const amrex::Real m =
+                std::sqrt((ux1 * ux1) + (uy1 * uy1) + (uz1 * uz1));
+            if (has_terrain_drag != 0 && drag_arrs[nbx](i, j, k) == 1 &&
+                (is_laminar == 0)) {
+                int k_off = -1;
+                if (is_waves != 0) {
+                    const amrex::Real cell_length_2D =
+                        std::sqrt((dx[0] * dx[0]) + (dx[2] * dx[2]));
+                    if (target_lvs_arrs[nbx](i, j, k) + cell_length_2D >= 0) {
+                        k_off = 0;
+                    }
+                }
+                const amrex::Real wall_u =
+                    (is_waves == 0) ? 0.0_rt
+                                    : target_vel_arrs[nbx](i, j, k + k_off, 0);
+                const amrex::Real wall_v =
+                    (is_waves == 0) ? 0.0_rt
+                                    : target_vel_arrs[nbx](i, j, k + k_off, 1);
+                const amrex::Real ux1r = ux1 - wall_u;
+                const amrex::Real uy1r = uy1 - wall_v;
+                const amrex::Real ux2r = vel_arrs[nbx](i, j, k + 1, 0) - wall_u;
+                const amrex::Real uy2r = vel_arrs[nbx](i, j, k + 1, 1) - wall_v;
+                const amrex::Real z0 = amrex::max<amrex::Real>(
+                    terrainz0_arrs[nbx](i, j, k), z0_min);
+                const amrex::Real ustar = viscous_drag_calculations(
+                    Dxz, Dyz, ux1r, uy1r, ux2r, uy2r, z0, dx[2], kappa,
+                    non_neutral_neighbour);
+                if (model_form_drag != 0) {
+                    form_drag_calculations(
+                        Dxz, Dyz, i, j, k, target_lvs_arrs[nbx], dx, ux1r,
+                        uy1r);
+                }
+                const amrex::Real uTarget =
+                    ustar / kappa *
+                    (std::log(0.5_rt * dx[2] / z0) - non_neutral_cell);
+                const amrex::Real uxTarget =
+                    uTarget * ux2r /
+                    (kynema_sgf::constants::EPS +
+                     std::sqrt((ux2r * ux2r) + (uy2r * uy2r)));
+                const amrex::Real uyTarget =
+                    uTarget * uy2r /
+                    (kynema_sgf::constants::EPS +
+                     std::sqrt((ux2r * ux2r) + (uy2r * uy2r)));
+                bc_forcing_x = -(uxTarget - ux1) / (time_factor * dt);
+                bc_forcing_y = -(uyTarget - uy1) / (time_factor * dt);
+            }
+            amrex::Real target_u = 0.0_rt;
+            amrex::Real target_v = 0.0_rt;
+            amrex::Real target_w = 0.0_rt;
+            if (is_waves != 0) {
+                target_u = target_vel_arrs[nbx](i, j, k, 0);
+                target_v = target_vel_arrs[nbx](i, j, k, 1);
+                target_w = target_vel_arrs[nbx](i, j, k, 2);
+            }
+            const amrex::Real CdM = amrex::min<amrex::Real>(
+                Cd / (m + kynema_sgf::constants::EPS), cd_max / scale_factor);
+
+            const amrex::Real vel_n = vel_arrs[nbx](i, j, k, n);
+            const amrex::Real target_n = (n == 0)   ? target_u
+                                         : (n == 1) ? target_v
+                                                    : target_w;
+
+            src_arrs[nbx](i, j, k, n) -=
+                (CdM * m * (vel_n - target_n) * blank_arrs[nbx](i, j, k));
+
+            if (has_terrain_drag != 0) {
+                amrex::Real drag_force_n = 0.0_rt;
+                if (n == 0) {
+                    drag_force_n = (Dxz * drag_arrs[nbx](i, j, k)) +
+                                   (bc_forcing_x * drag_arrs[nbx](i, j, k));
+                } else if (n == 1) {
+                    drag_force_n = (Dyz * drag_arrs[nbx](i, j, k)) +
+                                   (bc_forcing_y * drag_arrs[nbx](i, j, k));
+                } else {
+                    drag_force_n =
+                        CdM * m * (uz1 - target_w) * drag_arrs[nbx](i, j, k);
+                }
+                src_arrs[nbx](i, j, k, n) -= drag_force_n;
+            }
+
+            if (sponge_strength > 0.0_rt) {
+                const amrex::Real spongeVel_n = (n == 0)   ? spongeVelX
+                                                : (n == 1) ? spongeVelY
+                                                           : spongeVelZ;
+                src_arrs[nbx](i, j, k, n) -=
+                    (1 - blank_arrs[nbx](i, j, k)) *
+                    ((xstart_damping + xend_damping + ystart_damping +
+                      yend_damping) *
+                     (vel_n - sponge_density * spongeVel_n));
+            }
+
+            if (has_terrain_damping != 0 && n == 2) {
+                src_arrs[nbx](i, j, k, 2) -= damping_arrs[nbx](i, j, k) * uz1;
+            }
+        });
+}
+
+} // namespace kynema_sgf::pde::icns

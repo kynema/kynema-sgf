@@ -4,12 +4,12 @@ Developer Documentation
 =======================
 
 This section is meant for potential developers who are interested in modifying
-and extending the AMR-Wind source code for their own use cases.
+and extending the Kynema-SGF source code for their own use cases.
 
-AMR-Wind is built on top of `AMReX library
+Kynema-SGF is built on top of `AMReX library
 <https://amrex-codes.github.io/amrex/docs_html/>`_. Users are strongly
 recommended to read through the AMReX documentation and understand the basic
-AMReX concepts before jumping into the AMR-Wind source code.
+AMReX concepts before jumping into the Kynema-SGF source code.
 
 The `Basics section
 <https://amrex-codes.github.io/amrex/docs_html/Basics_Chapter.html>`_ provides a
@@ -18,10 +18,10 @@ structures. The `GPU section
 <https://amrex-codes.github.io/amrex/docs_html/GPU_Chapter.html>`_ provides an
 overview of the AMReX GPU strategy and the higher-level functions (e.g.,
 ``parallel-for`` abstractions) available to write GPU-ready code within
-AMR-Wind. The `Linear Solvers section
+Kynema-SGF. The `Linear Solvers section
 <https://amrex-codes.github.io/amrex/docs_html/LinearSolvers_Chapter.html>`_
 provides an overview of the multi-level multigrid (MLMG) solvers used to solve
-the various linear systems within AMR-Wind.
+the various linear systems within Kynema-SGF.
 
 .. toctree::
    :maxdepth: 3

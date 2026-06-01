@@ -37,7 +37,7 @@ temperature.source_terms = DragTempForcing
 DragTempForcing.reference_temperature = 265.0
 
 incflo.velocity = 8.0 0.0 0.0
-ABL.reference_temperature = 263.5
+transport.reference_temperature = 263.5
 ABL.temperature_heights = 0.0 100 400.0
 ABL.temperature_values = 265.0 265.0 268.0
 ABL.perturb_temperature = false

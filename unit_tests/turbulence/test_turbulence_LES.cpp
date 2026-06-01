@@ -1,23 +1,23 @@
 #include <numbers>
 #include "gtest/gtest.h"
-#include "aw_test_utils/MeshTest.H"
-#include "amr-wind/turbulence/TurbulenceModel.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/utilities/math_ops.H"
+#include "ks_test_utils/MeshTest.H"
+#include "src/turbulence/TurbulenceModel.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 
-void init_field3(amr_wind::Field& fld, amrex::Real srate)
+void init_field3(kynema_sgf::Field& fld, amrex::Real srate)
 {
     const auto& mesh = fld.repo().mesh();
     const int nlevels = fld.repo().num_active_levels();
 
     amrex::Real offset = 0.0_rt;
-    if (fld.field_location() == amr_wind::FieldLoc::CELL) {
+    if (fld.field_location() == kynema_sgf::FieldLoc::CELL) {
         offset = 0.5_rt;
     }
 
@@ -37,13 +37,13 @@ void init_field3(amr_wind::Field& fld, amrex::Real srate)
     amrex::Gpu::streamSynchronize();
 }
 
-void init_field_amd(amr_wind::Field& fld, amrex::Real scale)
+void init_field_amd(kynema_sgf::Field& fld, amrex::Real scale)
 {
     const auto& mesh = fld.repo().mesh();
     const int nlevels = fld.repo().num_active_levels();
 
     amrex::Real offset = 0.0_rt;
-    if (fld.field_location() == amr_wind::FieldLoc::CELL) {
+    if (fld.field_location() == kynema_sgf::FieldLoc::CELL) {
         offset = 0.5_rt;
     }
 
@@ -67,13 +67,13 @@ void init_field_amd(amr_wind::Field& fld, amrex::Real scale)
     amrex::Gpu::streamSynchronize();
 }
 
-void init_field_incomp(amr_wind::Field& fld, amrex::Real scale)
+void init_field_incomp(kynema_sgf::Field& fld, amrex::Real scale)
 {
     const auto& mesh = fld.repo().mesh();
     const int nlevels = fld.repo().num_active_levels();
 
     amrex::Real offset = 0.0_rt;
-    if (fld.field_location() == amr_wind::FieldLoc::CELL) {
+    if (fld.field_location() == kynema_sgf::FieldLoc::CELL) {
         offset = 0.5_rt;
     }
 
@@ -97,13 +97,13 @@ void init_field_incomp(amr_wind::Field& fld, amrex::Real scale)
     amrex::Gpu::streamSynchronize();
 }
 
-void init_field1(amr_wind::Field& fld, amrex::Real tgrad)
+void init_field1(kynema_sgf::Field& fld, amrex::Real tgrad)
 {
     const auto& mesh = fld.repo().mesh();
     const int nlevels = fld.repo().num_active_levels();
 
     amrex::Real offset = 0.0_rt;
-    if (fld.field_location() == amr_wind::FieldLoc::CELL) {
+    if (fld.field_location() == kynema_sgf::FieldLoc::CELL) {
         offset = 0.5_rt;
     }
 
@@ -179,6 +179,7 @@ TEST_F(TurbLESTest, test_smag_setup_calc)
 
     // Create turbulence model
     sim().create_turbulence_model();
+    sim().turbulence_model().post_init_actions();
     // Get turbulence model
     auto& tmodel = sim().turbulence_model();
 
@@ -204,7 +205,7 @@ TEST_F(TurbLESTest, test_smag_setup_calc)
 
     // Update turbulent viscosity directly
     tmodel.update_turbulent_viscosity(
-        amr_wind::FieldState::New, DiffusionType::Crank_Nicolson);
+        kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
     const auto& muturb = sim().repo().get_field("mu_turb");
 
     // Check values of turbulent viscosity
@@ -213,8 +214,8 @@ TEST_F(TurbLESTest, test_smag_setup_calc)
     const amrex::Real tol =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     const amrex::Real smag_answer =
-        rho0 * amr_wind::utils::powi(Cs, 2) *
-        amr_wind::utils::powi(std::cbrt(m_dx * m_dy * m_dz), 2) * srate;
+        rho0 * kynema_sgf::utils::powi(Cs, 2) *
+        kynema_sgf::utils::powi(std::cbrt(m_dx * m_dy * m_dz), 2) * srate;
     EXPECT_NEAR(min_val, smag_answer, tol);
     EXPECT_NEAR(max_val, smag_answer, tol);
 
@@ -280,6 +281,7 @@ TEST_F(TurbLESTest, test_1eqKsgs_setup_calc)
     sim().create_transport_model();
     sim().init_physics();
     sim().create_turbulence_model();
+    sim().turbulence_model().post_init_actions();
     auto& tmodel = sim().turbulence_model();
 
     // Get coefficients
@@ -320,7 +322,7 @@ TEST_F(TurbLESTest, test_1eqKsgs_setup_calc)
 
     // Update turbulent viscosity directly
     tmodel.update_turbulent_viscosity(
-        amr_wind::FieldState::New, DiffusionType::Crank_Nicolson);
+        kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
     const auto& muturb = sim().repo().get_field("mu_turb");
 
     // Check values of turbulent viscosity
@@ -385,6 +387,7 @@ TEST_F(TurbLESTest, test_AMD_setup_calc)
 
     // Create turbulence model
     sim().create_turbulence_model();
+    sim().turbulence_model().post_init_actions();
     // Get turbulence model
     auto& tmodel = sim().turbulence_model();
 
@@ -412,7 +415,7 @@ TEST_F(TurbLESTest, test_AMD_setup_calc)
 
     // Update turbulent viscosity directly
     tmodel.update_turbulent_viscosity(
-        amr_wind::FieldState::New, DiffusionType::Crank_Nicolson);
+        kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
     const auto& muturb = sim().repo().get_field("mu_turb");
 
     // Check values of turbulent viscosity
@@ -423,7 +426,7 @@ TEST_F(TurbLESTest, test_AMD_setup_calc)
 
     const amrex::Real amd_answer =
         C *
-        (-1.0_rt * amr_wind::utils::powi(scale / std::sqrt(6.0_rt), 3) *
+        (-1.0_rt * kynema_sgf::utils::powi(scale / std::sqrt(6.0_rt), 3) *
          (m_dx * m_dx - 8.0_rt * m_dy * m_dy - m_dz * m_dz)) /
         (1.0_rt * scale * scale);
     EXPECT_NEAR(min_val, amd_answer, tol);
@@ -469,6 +472,7 @@ TEST_F(TurbLESTest, test_AMDNoTherm_setup_calc)
 
     // Create turbulence model
     sim().create_turbulence_model();
+    sim().turbulence_model().post_init_actions();
     // Get turbulence model
     auto& tmodel = sim().turbulence_model();
 
@@ -492,7 +496,7 @@ TEST_F(TurbLESTest, test_AMDNoTherm_setup_calc)
 
     // Update turbulent viscosity directly
     tmodel.update_turbulent_viscosity(
-        amr_wind::FieldState::New, DiffusionType::Crank_Nicolson);
+        kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
     const auto& muturb = sim().repo().get_field("mu_turb");
 
     // Check values of turbulent viscosity
@@ -502,7 +506,7 @@ TEST_F(TurbLESTest, test_AMDNoTherm_setup_calc)
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
 
     const amrex::Real amd_answer =
-        -C * amr_wind::utils::powi(scale, 3) *
+        -C * kynema_sgf::utils::powi(scale, 3) *
         (m_dx * m_dx - 8.0_rt * m_dy * m_dy + m_dz * m_dz) /
         (6 * scale * scale);
     EXPECT_NEAR(min_val, amd_answer, tol);
@@ -526,10 +530,31 @@ TEST_F(TurbLESTest, test_kosovic_setup_calc)
         pp.add("Cb", Cb);
     }
     {
+        amrex::ParmParse pp("incflo");
+        amrex::Vector<std::string> physics{"ABL"};
+        pp.addarr("physics", physics);
+        pp.add("density", 1.225);
+        amrex::Vector<amrex::Real> vvec{8.0, 0.0, 0.0};
+        pp.addarr("velocity", vvec);
+        amrex::Vector<amrex::Real> gvec{0.0, 0.0, -9.81};
+        pp.addarr("gravity", gvec);
+    }
+    {
         amrex::ParmParse pp("transport");
         pp.add("viscosity", visc);
     }
-
+    {
+        amrex::ParmParse pp("ABL");
+        amrex::Vector<amrex::Real> t_hts{0.0, 100.0, 4000.0};
+        pp.addarr("temperature_heights", t_hts);
+        amrex::Vector<amrex::Real> t_vals{300.0, 300.0, 300.0};
+        pp.addarr("temperature_values", t_vals);
+    }
+    // Transport
+    {
+        amrex::ParmParse pp("transport");
+        pp.add("reference_temperature", 300.0);
+    }
     // Initialize necessary parts of solver
     populate_parameters();
     initialize_mesh();
@@ -539,6 +564,7 @@ TEST_F(TurbLESTest, test_kosovic_setup_calc)
 
     // Create turbulence model
     sim().create_turbulence_model();
+    sim().turbulence_model().post_init_actions();
     // Get turbulence model
     auto& tmodel = sim().turbulence_model();
 
@@ -561,10 +587,13 @@ TEST_F(TurbLESTest, test_kosovic_setup_calc)
     // Set up uniform unity density field
     auto& dens = sim().repo().get_field("density");
     dens.setVal(rho0);
+    // Set up temperature field with constant gradient in z
+    auto& temp = sim().repo().get_field("temperature");
+    temp.setVal(300.0);
 
     // Update turbulent viscosity directly
     tmodel.update_turbulent_viscosity(
-        amr_wind::FieldState::New, DiffusionType::Crank_Nicolson);
+        kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
     const auto& muturb = sim().repo().get_field("mu_turb");
 
     // Check values of turbulent viscosity
@@ -573,8 +602,8 @@ TEST_F(TurbLESTest, test_kosovic_setup_calc)
     const amrex::Real tol =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
     const amrex::Real kosovic_answer =
-        rho0 * amr_wind::utils::powi(kosovic_Cs, 2) *
-        amr_wind::utils::powi(std::cbrt(m_dx * m_dy * m_dz), 2) * srate;
+        rho0 * kynema_sgf::utils::powi(kosovic_Cs, 2) *
+        kynema_sgf::utils::powi(std::cbrt(m_dx * m_dy * m_dz), 2) * srate;
     EXPECT_NEAR(min_val, kosovic_answer, tol);
     EXPECT_NEAR(max_val, kosovic_answer, tol);
 
@@ -591,4 +620,4 @@ TEST_F(TurbLESTest, test_kosovic_setup_calc)
     EXPECT_EQ(visc_name, "velocity_mueff");
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

@@ -1,12 +1,12 @@
 #include "gtest/gtest.h"
-#include "aw_test_utils/MeshTest.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/boundary_conditions/wall_models/LogLaw.H"
+#include "ks_test_utils/MeshTest.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/boundary_conditions/wall_models/LogLaw.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class LogLawTest : public MeshTest
 {
@@ -27,7 +27,7 @@ protected:
 TEST_F(LogLawTest, test_log_law)
 {
     populate_parameters();
-    amr_wind::LogLaw ll;
+    kynema_sgf::LogLaw ll;
     ll.zref = m_zref;
     ll.nu = m_nu;
 
@@ -49,4 +49,4 @@ TEST_F(LogLawTest, test_log_law)
     ll.update_utau_mean();
     EXPECT_NEAR(ll.utau_mean, utau_expected, m_tol);
 }
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

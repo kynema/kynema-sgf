@@ -1,13 +1,13 @@
-#include "aw_test_utils/MeshTest.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
-#include "amr-wind/utilities/tagging/CartBoxRefinement.H"
+#include "ks_test_utils/MeshTest.H"
+#include "ks_test_utils/iter_tools.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/physics/multiphase/MultiPhase.H"
+#include "src/utilities/tagging/CartBoxRefinement.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class ICNSInitTest : public MeshTest
 {
@@ -44,8 +44,8 @@ protected:
         ss << "0.8 0.5 0.5 0.9 0.5 0.5" << '\n';
 
         create_mesh_instance<RefineMesh>();
-        std::unique_ptr<amr_wind::CartBoxRefinement> box_refine(
-            new amr_wind::CartBoxRefinement(sim()));
+        std::unique_ptr<kynema_sgf::CartBoxRefinement> box_refine(
+            new kynema_sgf::CartBoxRefinement(sim()));
         box_refine->read_inputs(mesh(), ss);
 
         if (mesh<RefineMesh>() != nullptr) {
@@ -76,4 +76,4 @@ TEST_F(ICNSInitTest, generic_2level)
     generic_field.fillpatch(0.0_rt);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

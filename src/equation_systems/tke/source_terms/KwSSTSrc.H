@@ -1,0 +1,33 @@
+#ifndef KWSSTSRC_H
+#define KWSSTSRC_H
+
+#include "src/equation_systems/tke/TKESource.H"
+
+namespace kynema_sgf::pde::tke {
+
+/** Source terms for TKE equation in K-w-SST turbulence model
+ *   \ingroup turb_model
+ *
+ *  Works for all TKE equations with production and dissipation terms
+ */
+class KwSSTSrc : public TKESource::Register<KwSSTSrc>
+{
+public:
+    static std::string identifier() { return "KwSSTSrc"; }
+
+    explicit KwSSTSrc(const CFDSim& /*sim*/);
+
+    ~KwSSTSrc() override;
+
+    void operator()(
+        int lev, FieldState fstate, amrex::MultiFab& src_term) const override;
+
+private:
+    Field& m_shear_prod;
+    Field& m_diss;
+    Field& m_buoy_term;
+};
+
+} // namespace kynema_sgf::pde::tke
+
+#endif /* KWSSTSRC_H */

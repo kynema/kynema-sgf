@@ -1,5 +1,5 @@
 target_sources(
-  ${amr_wind_unit_test_exe_name} PRIVATE
+  ${kynema_sgf_unit_test_exe_name} PRIVATE
   physics_test_utils.cpp
 
   test_simtime.cpp

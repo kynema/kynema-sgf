@@ -3,8 +3,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
-AMR_WIND_PATH = '.'
-sys.path.append(AMR_WIND_PATH+'/tools/')
+KYNEMA_SGF_PATH = '.'
+sys.path.append(KYNEMA_SGF_PATH+'/tools/')
 import amrex_particle
 from amrex_particle import AmrexParticleFile
 

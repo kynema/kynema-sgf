@@ -32,7 +32,7 @@ Smagorinsky_coeffs.Cs = 0.135
 incflo.physics = ABL OceanWaves TerrainDrag
 ICNS.source_terms = CoriolisForcing DragForcing
 
-ABL.reference_temperature = 290.0
+transport.reference_temperature = 290.0
 CoriolisForcing.east_vector = 1.0 0.0 0.0
 CoriolisForcing.north_vector = 0.0 1.0 0.0
 CoriolisForcing.latitude = 90.0

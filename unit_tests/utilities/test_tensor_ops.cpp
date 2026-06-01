@@ -1,12 +1,12 @@
 #include <utility>
 
-#include "aw_test_utils/AmrexTest.H"
-#include "amr-wind/utilities/tensor_ops.H"
+#include "ks_test_utils/AmrexTest.H"
+#include "src/utilities/tensor_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
 constexpr amrex::Real tol =
     std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
@@ -43,7 +43,7 @@ void impl_vec_mag()
     amrex::Gpu::DeviceScalar<amrex::Real> ds(0.0_rt);
     auto* ddata = ds.dataPtr();
     amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int /*unused*/) {
-        ddata[0] = amr_wind::utils::vec_mag(pvec);
+        ddata[0] = kynema_sgf::utils::vec_mag(pvec);
     });
     EXPECT_NEAR(ds.dataValue(), expected_value, tol);
 }
@@ -60,7 +60,7 @@ void impl_vec_normalize()
     auto* ddata = ds.dataPtr();
     const auto np = tv.size();
     amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int /*unused*/) {
-        amr_wind::utils::vec_normalize(pvec);
+        kynema_sgf::utils::vec_normalize(pvec);
         for (int i = 0; std::cmp_less(i, np); i++) {
             ddata[i] = pvec[i];
         }
@@ -83,7 +83,7 @@ void impl_dot_prod()
     amrex::Gpu::DeviceScalar<amrex::Real> ds(0.0_rt);
     auto* ddata = ds.dataPtr();
     amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int /*unused*/) {
-        ddata[0] = amr_wind::utils::dot_prod(pvec, pvec);
+        ddata[0] = kynema_sgf::utils::dot_prod(pvec, pvec);
     });
     EXPECT_NEAR(ds.dataValue(), expected_value, tol);
 }
@@ -97,7 +97,7 @@ void impl_cross_prod()
     amrex::Gpu::DeviceVector<amrex::Real> ds(tv.size(), -1.0_rt);
     auto* ddata = ds.dataPtr();
     amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int /*unused*/) {
-        amr_wind::utils::cross_prod(pvec, pvec, ddata);
+        kynema_sgf::utils::cross_prod(pvec, pvec, ddata);
     });
 
     amrex::Vector<amrex::Real> hs(ds.size(), -1.0_rt);
@@ -129,7 +129,7 @@ void impl_transform_vec()
     amrex::Gpu::DeviceVector<amrex::Real> ds(tv.size(), -1.0_rt);
     auto* ddata = ds.dataPtr();
     amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int /*unused*/) {
-        amr_wind::utils::transform_vec(tmat, pvec, ddata);
+        kynema_sgf::utils::transform_vec(tmat, pvec, ddata);
     });
 
     amrex::Vector<amrex::Real> hs(ds.size(), -1.0_rt);
@@ -160,7 +160,7 @@ void impl_inv_transform_vec()
     amrex::Gpu::DeviceVector<amrex::Real> ds(tv.size(), -1.0_rt);
     auto* ddata = ds.dataPtr();
     amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int /*unused*/) {
-        amr_wind::utils::inv_transform_vec(tmat, pvec, ddata);
+        kynema_sgf::utils::inv_transform_vec(tmat, pvec, ddata);
     });
 
     amrex::Vector<amrex::Real> hs(ds.size(), -1.0_rt);
@@ -182,4 +182,4 @@ TEST(TensorOps, transform_vec) { impl_transform_vec(); }
 
 TEST(TensorOps, inv_transform_vec) { impl_inv_transform_vec(); }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

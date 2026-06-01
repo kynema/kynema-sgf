@@ -1,18 +1,18 @@
-#include "aw_test_utils/MeshTest.H"
+#include "ks_test_utils/MeshTest.H"
 #include "test_act_utils.H"
 
-#include "amr-wind/wind_energy/actuator/Actuator.H"
-#include "amr-wind/wind_energy/actuator/ActuatorContainer.H"
-#include "amr-wind/wind_energy/actuator/ActuatorModel.H"
-#include "amr-wind/wind_energy/actuator/ActParser.H"
-#include "amr-wind/wind_energy/actuator/wing/fixed_wing_ops.H"
+#include "src/wind_energy/actuator/Actuator.H"
+#include "src/wind_energy/actuator/ActuatorContainer.H"
+#include "src/wind_energy/actuator/ActuatorModel.H"
+#include "src/wind_energy/actuator/ActParser.H"
+#include "src/wind_energy/actuator/wing/fixed_wing_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 namespace {
-namespace act = amr_wind::actuator;
+namespace act = kynema_sgf::actuator;
 
 struct FixedWing : public act::FixedWing
 {
@@ -56,7 +56,7 @@ protected:
         auto& density = sim().repo().declare_field("density", 1, 3);
         vel.setVal(10.0_rt, 0, 1, 3);
         density.setVal(1.0_rt);
-        amr_wind::actuator::ActuatorContainer::ParticleType::NextID(1U);
+        kynema_sgf::actuator::ActuatorContainer::ParticleType::NextID(1U);
     }
 
     void moving_wing_setup()
@@ -146,18 +146,19 @@ void write_pitch_file(const std::string& fname)
 }
 
 } // namespace
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
 
-namespace amr_wind::actuator {
+namespace kynema_sgf::actuator {
 namespace ops {
 
 template <>
-struct ReadInputsOp<::amr_wind_tests::FixedWing, ActSrcLine>
+struct ReadInputsOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
 {
     void operator()(
-        ::amr_wind_tests::FixedWing::DataType& data, const utils::ActParser& pp)
+        ::kynema_sgf_tests::FixedWing::DataType& data,
+        const utils::ActParser& pp)
     {
-        ReadInputsOp<::amr_wind::actuator::FixedWing, ActSrcLine> actual_op;
+        ReadInputsOp<::kynema_sgf::actuator::FixedWing, ActSrcLine> actual_op;
         EXPECT_NO_FATAL_FAILURE(actual_op(data, pp));
 
         const auto& meta = data.meta();
@@ -176,25 +177,25 @@ struct ReadInputsOp<::amr_wind_tests::FixedWing, ActSrcLine>
 };
 
 template <>
-struct InitDataOp<::amr_wind_tests::FixedWing, ActSrcLine>
+struct InitDataOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
 {
-    void operator()(::amr_wind_tests::FixedWing::DataType& data)
+    void operator()(::kynema_sgf_tests::FixedWing::DataType& data)
     {
-        InitDataOp<::amr_wind::actuator::FixedWing, ActSrcLine> actual_op;
+        InitDataOp<::kynema_sgf::actuator::FixedWing, ActSrcLine> actual_op;
         EXPECT_NO_FATAL_FAILURE(actual_op(data));
     }
 };
 
 template <>
-struct ComputeForceOp<::amr_wind_tests::FixedWing, ActSrcLine>
+struct ComputeForceOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
 {
-    void operator()(::amr_wind_tests::FixedWing::DataType& data)
+    void operator()(::kynema_sgf_tests::FixedWing::DataType& data)
     {
         constexpr amrex::Real tol =
             std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt;
         const auto& meta = data.meta();
         const auto& grid = data.grid();
-        ComputeForceOp<::amr_wind::actuator::FixedWing, ActSrcLine> actual_op;
+        ComputeForceOp<::kynema_sgf::actuator::FixedWing, ActSrcLine> actual_op;
         EXPECT_NO_FATAL_FAILURE(actual_op(data));
         const auto time = data.sim().time().new_time();
         // Do checks for each case
@@ -236,27 +237,27 @@ struct ComputeForceOp<::amr_wind_tests::FixedWing, ActSrcLine>
 };
 
 template <>
-struct ProcessOutputsOp<::amr_wind_tests::FixedWing, ActSrcLine>
+struct ProcessOutputsOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
 {
-    ProcessOutputsOp(::amr_wind_tests::FixedWing::DataType& /**/) {}
-    void operator()(::amr_wind_tests::FixedWing::DataType& /**/) {}
+    ProcessOutputsOp(::kynema_sgf_tests::FixedWing::DataType& /**/) {}
+    void operator()(::kynema_sgf_tests::FixedWing::DataType& /**/) {}
     void read_io_options(const utils::ActParser& /**/) {}
     void prepare_outputs(const std::string& /**/) {}
     void write_outputs() {}
 };
 
 } // namespace ops
-template class ::amr_wind::actuator::
-    ActModel<::amr_wind_tests::FixedWing, ActSrcLine>;
-} // namespace amr_wind::actuator
+template class ::kynema_sgf::actuator::
+    ActModel<::kynema_sgf_tests::FixedWing, ActSrcLine>;
+} // namespace kynema_sgf::actuator
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
-class ActPhysicsTest : public ::amr_wind::actuator::Actuator
+class ActPhysicsTest : public ::kynema_sgf::actuator::Actuator
 {
 public:
-    explicit ActPhysicsTest(::amr_wind::CFDSim& sim)
-        : ::amr_wind::actuator::Actuator(sim)
+    explicit ActPhysicsTest(::kynema_sgf::CFDSim& sim)
+        : ::kynema_sgf::actuator::Actuator(sim)
     {}
 
 protected:
@@ -323,4 +324,4 @@ TEST_F(ActFixedWingTest, pitch_table_2D)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

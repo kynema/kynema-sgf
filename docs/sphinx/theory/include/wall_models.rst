@@ -2,7 +2,7 @@
 
 Wall models
 -----------
-The wall models described in this section are implemented in AMR-Wind for
+The wall models described in this section are implemented in Kynema-SGF for
 running wall-bounded flows.
 
 Monin-Obukhov Similarity Theory
@@ -33,7 +33,7 @@ and for stable stratification (:math:`z_b/L > 0` ):
         \psi_h &= -\gamma_h \frac{z_b}{L},
     \end{align}
 
-where :math:`L = -\frac{u_\tau^3 \theta_0}{\kappa g q}` is the Monin-Obukhov length and :math:`\beta_m, \beta_h, \gamma_m, \gamma_h` are model constants. AMR-Wind uses :math:`\beta_m = \beta_h = 16` and :math:`\gamma_m = \gamma_h = 5`.
+where :math:`L = -\frac{u_\tau^3 \theta_0}{\kappa g q}` is the Monin-Obukhov length and :math:`\beta_m, \beta_h, \gamma_m, \gamma_h` are model constants. Kynema-SGF uses :math:`\beta_m = \beta_h = 16` and :math:`\gamma_m = \gamma_h = 5`.
 
 Log-law wall model
 ~~~~~~~~~~~~~~~~~~
@@ -54,7 +54,7 @@ Given a horizontal velocity magnitude
 :math:`z = z_{\mathrm{ref}}`, :math:`u_\tau` can be computed using a
 non-linear solve to satisfy equation :eq:`loglaw`.
 
-In AMR-Wind Newton-Raphson iterations are used with a convergence
+In Kynema-SGF Newton-Raphson iterations are used with a convergence
 criterion of :math:`\lvert u_\tau^{n+1} - u_\tau^n \rvert < 10^{-5}`.
 For this, derivative of
 :math:`\frac{\partial u_{\mathrm{mag}}}{\partial {u_\tau}}` is used,

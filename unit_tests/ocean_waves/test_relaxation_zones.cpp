@@ -1,16 +1,17 @@
-#include "aw_test_utils/MeshTest.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/ocean_waves/utils/wave_utils_K.H"
-#include "amr-wind/ocean_waves/OceanWaves.H"
-#include "amr-wind/utilities/constants.H"
-#include "amr-wind/physics/multiphase/MultiPhase.H"
-#include "amr-wind/equation_systems/icns/icns_advection.H"
+#include "ks_test_utils/MeshTest.H"
+#include "ks_test_utils/iter_tools.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/ocean_waves/utils/wave_utils_K.H"
+#include "src/ocean_waves/OceanWaves.H"
+#include "src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
+#include "src/utilities/constants.H"
+#include "src/physics/multiphase/MultiPhase.H"
+#include "src/equation_systems/icns/icns_advection.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 class OceanWavesOpTest : public MeshTest
 {
@@ -81,7 +82,8 @@ void initialize_relaxation_zone_field(
     });
 }
 
-void init_relaxation_field(amr_wind::Field& theor_field, amrex::Real gen_length)
+void init_relaxation_field(
+    kynema_sgf::Field& theor_field, amrex::Real gen_length)
 {
     const auto& geom = theor_field.repo().mesh().Geom();
     run_algorithm(theor_field, [&](const int lev, const amrex::MFIter& mfi) {
@@ -95,7 +97,7 @@ void init_relaxation_field(amr_wind::Field& theor_field, amrex::Real gen_length)
 }
 
 void apply_relaxation_zone_field(
-    amr_wind::Field& comp, amr_wind::Field& targ, amrex::Real gen_length)
+    kynema_sgf::Field& comp, kynema_sgf::Field& targ, amrex::Real gen_length)
 {
 
     const auto& geom = comp.repo().mesh().Geom();
@@ -116,7 +118,7 @@ void apply_relaxation_zone_field(
                     probhi[0]);
                 if (x <= problo[0] + gen_length) {
                     const amrex::Real Gamma =
-                        amr_wind::ocean_waves::utils::gamma_generate(
+                        kynema_sgf::ocean_waves::utils::gamma_generate(
                             x - problo[0], gen_length);
                     comp_arrs[nbx](i, j, k) =
                         (targ_arrs[nbx](i, j, k) * (1.0_rt - Gamma)) +
@@ -127,7 +129,8 @@ void apply_relaxation_zone_field(
     amrex::Gpu::streamSynchronize();
 }
 
-amrex::Real field_error(amr_wind::Field& comp, amr_wind::Field& targ, int ncomp)
+amrex::Real
+field_error(kynema_sgf::Field& comp, kynema_sgf::Field& targ, int ncomp)
 {
     amrex::Real error_total = 0.0_rt;
     int nc = ncomp;
@@ -154,13 +157,13 @@ amrex::Real field_error(amr_wind::Field& comp, amr_wind::Field& targ, int ncomp)
     return error_total;
 }
 
-amrex::Real field_error(amr_wind::Field& comp, amr_wind::Field& targ)
+amrex::Real field_error(kynema_sgf::Field& comp, kynema_sgf::Field& targ)
 {
     return field_error(comp, targ, 1);
 }
 
 amrex::Real gas_velocity_error(
-    amr_wind::Field& vel, amr_wind::Field& vof, amrex::Real gas_vel)
+    kynema_sgf::Field& vel, kynema_sgf::Field& vof, amrex::Real gas_vel)
 {
     amrex::Real error_total = 0.0_rt;
     const amrex::Real gvel = gas_vel;
@@ -193,9 +196,9 @@ amrex::Real gas_velocity_error(
 }
 
 void make_target_velocity(
-    amr_wind::Field& ow_velocity,
-    amr_wind::Field& velocity,
-    amr_wind::Field& ow_vof)
+    kynema_sgf::Field& ow_velocity,
+    kynema_sgf::Field& velocity,
+    kynema_sgf::Field& ow_vof)
 {
     for (int lev = 0; lev < ow_vof.repo().num_active_levels(); ++lev) {
         const auto& ow_vel_arrs = ow_velocity(lev).arrays();
@@ -205,7 +208,7 @@ void make_target_velocity(
             ow_vof(lev), amrex::IntVect(2), velocity.num_comp(),
             [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 if (ow_vof_arrs[nbx](i, j, k) <=
-                    amr_wind::constants::TIGHT_TOL) {
+                    kynema_sgf::constants::TIGHT_TOL) {
                     ow_vel_arrs[nbx](i, j, k, n) = vel_arrs[nbx](i, j, k, n);
                 }
             });
@@ -214,7 +217,7 @@ void make_target_velocity(
 }
 
 void make_target_density(
-    amr_wind::Field& ow_vof, const amrex::Real rho1, const amrex::Real rho2)
+    kynema_sgf::Field& ow_vof, const amrex::Real rho1, const amrex::Real rho2)
 {
     for (int lev = 0; lev < ow_vof.repo().num_active_levels(); ++lev) {
         const auto& ow_vof_arrs = ow_vof(lev).arrays();
@@ -229,7 +232,8 @@ void make_target_density(
     amrex::Gpu::streamSynchronize();
 }
 
-amrex::Real bdy_error(amr_wind::Field& comp, amr_wind::Field& targ, int ncomp)
+amrex::Real
+bdy_error(kynema_sgf::Field& comp, kynema_sgf::Field& targ, int ncomp)
 {
     amrex::Real error_total = 0.0_rt;
     int nc = ncomp;
@@ -259,12 +263,12 @@ amrex::Real bdy_error(amr_wind::Field& comp, amr_wind::Field& targ, int ncomp)
     return error_total;
 }
 
-amrex::Real bdy_error(amr_wind::Field& comp, amr_wind::Field& targ)
+amrex::Real bdy_error(kynema_sgf::Field& comp, kynema_sgf::Field& targ)
 {
     return bdy_error(comp, targ, 1);
 }
 
-amrex::Real uface_bdy_error(amr_wind::Field& comp, amr_wind::Field& targ)
+amrex::Real uface_bdy_error(kynema_sgf::Field& comp, kynema_sgf::Field& targ)
 {
     amrex::Real error_total = 0.0_rt;
 
@@ -354,10 +358,13 @@ TEST_F(OceanWavesOpTest, gas_phase)
     // OceanWaves
     auto& pde_mgr = sim().pde_manager();
     pde_mgr.register_icns();
-    // Initialize physics
+    // Initialize physics and boundary fill
     sim().init_physics();
+    sim().init_field_boundaries();
     auto& oceanwaves =
-        sim().physics_manager().get<amr_wind::ocean_waves::OceanWaves>();
+        sim().physics_manager().get<kynema_sgf::ocean_waves::OceanWaves>();
+    auto& oceanwaves_bndry =
+        sim().field_boundary_manager().get<kynema_sgf::OceanWavesBoundary>();
     // Initialize fields
     oceanwaves.pre_init_actions();
     auto& repo = sim().repo();
@@ -372,6 +379,7 @@ TEST_F(OceanWavesOpTest, gas_phase)
 
     // Do post-init step, which modifies velocity and vof fields
     oceanwaves.post_init_actions();
+    oceanwaves_bndry.post_init_actions();
 
     // Get vof field
     auto& vof = repo.get_field("vof");
@@ -419,10 +427,13 @@ TEST_F(OceanWavesOpTest, boundary_fill)
     // OceanWaves
     auto& pde_mgr = sim().pde_manager();
     pde_mgr.register_icns();
-    // Initialize physics
+    // Initialize physics and boundary fill
     sim().init_physics();
+    sim().init_field_boundaries();
     auto& oceanwaves =
-        sim().physics_manager().get<amr_wind::ocean_waves::OceanWaves>();
+        sim().physics_manager().get<kynema_sgf::ocean_waves::OceanWaves>();
+    auto& oceanwaves_bndry =
+        sim().field_boundary_manager().get<kynema_sgf::OceanWavesBoundary>();
     // Initialize fields
     auto& repo = sim().repo();
     auto& velocity = repo.get_field("velocity");
@@ -433,8 +444,9 @@ TEST_F(OceanWavesOpTest, boundary_fill)
     }
     // Do post-init step, which includes fillpatch calls
     oceanwaves.post_init_actions();
+    oceanwaves_bndry.post_init_actions();
 
-    auto& multiphase = sim().physics_manager().get<amr_wind::MultiPhase>();
+    auto& multiphase = sim().physics_manager().get<kynema_sgf::MultiPhase>();
     const amrex::Real rho1 = multiphase.rho1();
     const amrex::Real rho2 = multiphase.rho2();
 
@@ -494,10 +506,13 @@ TEST_F(OceanWavesOpTest, set_inflow_sibling)
     // OceanWaves
     auto& pde_mgr = sim().pde_manager();
     pde_mgr.register_icns();
-    // Initialize physics
+    // Initialize physics and boundary fill
     sim().init_physics();
+    sim().init_field_boundaries();
     auto& oceanwaves =
-        sim().physics_manager().get<amr_wind::ocean_waves::OceanWaves>();
+        sim().physics_manager().get<kynema_sgf::ocean_waves::OceanWaves>();
+    auto& oceanwaves_bndry =
+        sim().field_boundary_manager().get<kynema_sgf::OceanWavesBoundary>();
     // Initialize fields
     auto& repo = sim().repo();
     auto& velocity = repo.get_field("velocity");
@@ -508,14 +523,16 @@ TEST_F(OceanWavesOpTest, set_inflow_sibling)
     }
     // Do post-init step, which includes fillpatch calls
     oceanwaves.post_init_actions();
+    oceanwaves_bndry.post_init_actions();
 
     // Get MAC velocity in x
     auto& u_mac = repo.get_field("u_mac");
     // Set to 0 as a starting point
     u_mac.setVal(0.0_rt);
     // Initialize MAC projection operator
-    auto mco = amr_wind::pde::MacProjOp(
-        sim().repo(), sim().physics_manager(), false, false, false, false);
+    auto mco = kynema_sgf::pde::MacProjOp(
+        sim().repo(), sim().field_boundary_manager(), false, false, false,
+        false);
     // Populate boundary using set inflow
     mco.set_inflow_velocity(0.0_rt);
 
@@ -529,4 +546,4 @@ TEST_F(OceanWavesOpTest, set_inflow_sibling)
     EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

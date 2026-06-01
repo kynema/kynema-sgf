@@ -1,15 +1,14 @@
 #include <numbers>
-#include "aw_test_utils/MeshTest.H"
-#include "aw_test_utils/iter_tools.H"
-#include "aw_test_utils/test_utils.H"
-#include "amr-wind/wind_energy/ABL.H"
-#include "amr-wind/equation_systems/icns/icns.H"
-#include "amr-wind/equation_systems/icns/icns_ops.H"
-#include "amr-wind/equation_systems/icns/MomentumSource.H"
-#include "amr-wind/equation_systems/icns/source_terms/BodyForce.H"
-#include "amr-wind/equation_systems/icns/source_terms/ABLForcing.H"
-#include "amr-wind/equation_systems/icns/source_terms/GeostrophicForcing.H"
-#include "amr-wind/equation_systems/icns/source_terms/CoriolisForcing.H"
+#include "ks_test_utils/MeshTest.H"
+#include "ks_test_utils/test_utils.H"
+#include "src/wind_energy/ABL.H"
+#include "src/equation_systems/icns/icns.H"
+#include "src/equation_systems/icns/icns_ops.H"
+#include "src/equation_systems/icns/MomentumSource.H"
+#include "src/equation_systems/icns/source_terms/BodyForce.H"
+#include "src/equation_systems/icns/source_terms/ABLForcing.H"
+#include "src/equation_systems/icns/source_terms/GeostrophicForcing.H"
+#include "src/equation_systems/icns/source_terms/CoriolisForcing.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -45,10 +44,10 @@ void write_body_force_file(const std::string& fname)
 }
 } // namespace
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
-using ICNSFields =
-    amr_wind::pde::FieldRegOp<amr_wind::pde::ICNS, amr_wind::fvm::Godunov>;
+using ICNSFields = kynema_sgf::pde::
+    FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
 
 // Tests in this file involve ABLForcing, BodyForce, and GeostrophicWind
 class ABLSrcTimeTableTest : public MeshTest
@@ -138,13 +137,10 @@ TEST_F(ABLSrcTimeTableTest, abl)
     auto& src_term = pde_mgr.icns().fields().src_term;
     src_term.setVal(0.0_rt);
     // Source term object for ABLForcing
-    amr_wind::pde::icns::ABLForcing abl_forcing(sim());
-    run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto& bx = mfi.tilebox();
-        const auto& src_arr = src_term(lev).array(mfi);
-
-        abl_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
-    });
+    kynema_sgf::pde::icns::ABLForcing abl_forcing(sim());
+    for (int lev = 0; lev < src_term.repo().num_active_levels(); ++lev) {
+        abl_forcing(lev, kynema_sgf::FieldState::New, src_term(lev));
+    }
 
     // Initial velocity should be the same as target velocity, so force is 0
     amrex::Vector<amrex::Real> target_force = {0.0_rt, 0.0_rt, 0.0_rt};
@@ -164,12 +160,9 @@ TEST_F(ABLSrcTimeTableTest, abl)
     // Doing this through ABL physics is complicated and would require
     // calc_averages in ABLStats, then pre_advance_work in ABL physics
     src_term.setVal(0.0_rt);
-    run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto& bx = mfi.tilebox();
-        const auto& src_arr = src_term(lev).array(mfi);
-
-        abl_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
-    });
+    for (int lev = 0; lev < src_term.repo().num_active_levels(); ++lev) {
+        abl_forcing(lev, kynema_sgf::FieldState::New, src_term(lev));
+    }
     // Velocity at hub height is (5, 3) and target is (8, 0)
     target_force[0] = (init_vel[0] - new_vel[0]) / m_dt;
     target_force[1] = (init_vel[1] - new_vel[1]) / m_dt;
@@ -190,12 +183,9 @@ TEST_F(ABLSrcTimeTableTest, abl)
     abl_forcing.set_mean_velocities(init_vel[0], init_vel[1]);
     // Recalculate forcing and check
     src_term.setVal(0.0_rt);
-    run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto& bx = mfi.tilebox();
-        const auto& src_arr = src_term(lev).array(mfi);
-
-        abl_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
-    });
+    for (int lev = 0; lev < src_term.repo().num_active_levels(); ++lev) {
+        abl_forcing(lev, kynema_sgf::FieldState::New, src_term(lev));
+    }
     // Velocity at hub height is 8 at 0deg and target is 8 at 2.5deg
     target_force[0] =
         (8.0_rt *
@@ -260,13 +250,10 @@ TEST_F(ABLSrcTimeTableTest, bodyforce)
     auto& src_term = pde_mgr.icns().fields().src_term;
     src_term.setVal(0.0_rt);
     // Source term object for BodyForce
-    amr_wind::pde::icns::BodyForce body_forcing(sim());
-    run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto& bx = mfi.tilebox();
-        const auto& src_arr = src_term(lev).array(mfi);
-
-        body_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
-    });
+    kynema_sgf::pde::icns::BodyForce body_forcing(sim());
+    for (int lev = 0; lev < src_term.repo().num_active_levels(); ++lev) {
+        body_forcing(lev, kynema_sgf::FieldState::New, src_term(lev));
+    }
 
     // Force is 0 initially
     amrex::Vector<amrex::Real> target_force = {0.0_rt, 0.0_rt, 0.0_rt};
@@ -286,12 +273,9 @@ TEST_F(ABLSrcTimeTableTest, bodyforce)
         sim().time().advance_time();
         // Recalculate forcing and check
         src_term.setVal(0.0_rt);
-        run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-            const auto& bx = mfi.tilebox();
-            const auto& src_arr = src_term(lev).array(mfi);
-
-            body_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
-        });
+        for (int lev = 0; lev < src_term.repo().num_active_levels(); ++lev) {
+            body_forcing(lev, kynema_sgf::FieldState::New, src_term(lev));
+        }
         // Forces correspond to ABL Forcing from other test
         const amrex::Vector<amrex::Real> init_vel{8.0_rt, 0.0_rt, 0.0_rt};
         target_force[0] = (8.0_rt * std::cos(
@@ -366,13 +350,10 @@ TEST_F(ABLSrcTimeTableTest, geostrophic)
     auto& src_term = pde_mgr.icns().fields().src_term;
     src_term.setVal(0.0_rt);
     // Source term object for geostrophic forcing
-    amr_wind::pde::icns::GeostrophicForcing gstr_forcing(sim());
-    run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto& bx = mfi.tilebox();
-        const auto& src_arr = src_term(lev).array(mfi);
-
-        gstr_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
-    });
+    kynema_sgf::pde::icns::GeostrophicForcing gstr_forcing(sim());
+    for (int lev = 0; lev < src_term.repo().num_active_levels(); ++lev) {
+        gstr_forcing(lev, kynema_sgf::FieldState::New, src_term(lev));
+    }
 
     // Initial velocity should be the same as target velocity
     const amrex::Vector<amrex::Real> init_vel{8.0_rt, 0.0_rt, 0.0_rt};
@@ -393,12 +374,9 @@ TEST_F(ABLSrcTimeTableTest, geostrophic)
 
     // Recalculate forcing and check
     src_term.setVal(0.0_rt);
-    run_algorithm(src_term, [&](const int lev, const amrex::MFIter& mfi) {
-        const auto& bx = mfi.tilebox();
-        const auto& src_arr = src_term(lev).array(mfi);
-
-        gstr_forcing(lev, mfi, bx, amr_wind::FieldState::New, src_arr);
-    });
+    for (int lev = 0; lev < src_term.repo().num_active_levels(); ++lev) {
+        gstr_forcing(lev, kynema_sgf::FieldState::New, src_term(lev));
+    }
     // New target velocity is 8 at 1.25deg (nph velocity)
     const amrex::Vector<amrex::Real> targ_vel{
         8.0_rt * std::cos(std::numbers::pi_v<amrex::Real> / 180.0_rt * 1.25_rt),
@@ -426,4 +404,4 @@ TEST_F(ABLSrcTimeTableTest, geostrophic)
     }
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests

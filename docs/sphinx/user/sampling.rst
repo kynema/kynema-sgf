@@ -3,7 +3,7 @@
 Sampling
 ========
 
-AMR-Wind provides a sampling utility that measures field
+Kynema-SGF provides a sampling utility that measures field
 variables at specific locations within the flow. A variety of
 sampler types are available, which determine the locations to 
 be sampled and, depending on the type, update the sampling 

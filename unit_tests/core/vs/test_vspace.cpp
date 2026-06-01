@@ -1,11 +1,11 @@
-#include "aw_test_utils/AmrexTest.H"
-#include "amr-wind/core/vs/vector_space.H"
-#include "amr-wind/utilities/trig_ops.H"
+#include "ks_test_utils/AmrexTest.H"
+#include "src/core/vs/vector_space.H"
+#include "src/utilities/trig_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
-namespace amr_wind_tests {
+namespace kynema_sgf_tests {
 
 namespace {
 constexpr amrex::Real tol =
@@ -13,7 +13,7 @@ constexpr amrex::Real tol =
 
 void test_vector_create_impl()
 {
-    namespace vs = amr_wind::vs;
+    namespace vs = kynema_sgf::vs;
     amrex::Gpu::DeviceScalar<amrex::Real> ds(0.0_rt);
     auto* ddata = ds.dataPtr();
     amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int /*unused*/) {
@@ -30,7 +30,7 @@ void test_vector_create_impl()
 
 void test_tensor_create_impl()
 {
-    namespace vs = amr_wind::vs;
+    namespace vs = kynema_sgf::vs;
     amrex::Gpu::DeviceScalar<amrex::Real> ds(0.0_rt);
     auto* ddata = ds.dataPtr();
     amrex::ParallelFor(1, [=] AMREX_GPU_DEVICE(int /*unused*/) {
@@ -47,9 +47,9 @@ void test_tensor_create_impl()
 
 void test_rotations_impl()
 {
-    namespace vs = amr_wind::vs;
+    namespace vs = kynema_sgf::vs;
     const amrex::Real angle = 45.0_rt;
-    const auto ang = amr_wind::utils::radians(angle);
+    const auto ang = kynema_sgf::utils::radians(angle);
     const auto cval = std::cos(ang);
     const auto sval = std::sin(ang);
 
@@ -96,7 +96,7 @@ void test_rotations_impl()
 
 void test_device_capture_impl()
 {
-    namespace vs = amr_wind::vs;
+    namespace vs = kynema_sgf::vs;
     auto v1 = vs::Vector::ihat();
     auto vexpected = vs::Vector::khat();
     amrex::Gpu::DeviceScalar<amrex::Real> ds(
@@ -114,7 +114,7 @@ void test_device_capture_impl()
 
 void test_device_lists_impl()
 {
-    namespace vs = amr_wind::vs;
+    namespace vs = kynema_sgf::vs;
     amrex::Gpu::DeviceVector<vs::Vector> dvectors(3);
     auto* dv = dvectors.data();
 
@@ -144,7 +144,7 @@ void test_device_lists_impl()
 
 TEST(VectorSpace, vector_create)
 {
-    namespace vs = amr_wind::vs;
+    namespace vs = kynema_sgf::vs;
 
     auto v1 = vs::Vector::ihat();
     auto v2 = vs::Vector::jhat();
@@ -178,7 +178,7 @@ TEST(VectorSpace, device_lists) { test_device_lists_impl(); }
 
 TEST(VectorSpace, vector_ops)
 {
-    namespace vs = amr_wind::vs;
+    namespace vs = kynema_sgf::vs;
     const vs::Vector v1{10.0_rt, 20.0_rt, 0.0_rt};
     const vs::Vector v2{1.0_rt, 2.0_rt, 0.0_rt};
     const auto v21 = vs::mag_sqr(v2.unit());
@@ -190,4 +190,4 @@ TEST(VectorSpace, vector_ops)
         tol);
 }
 
-} // namespace amr_wind_tests
+} // namespace kynema_sgf_tests
