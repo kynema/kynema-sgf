@@ -51,9 +51,9 @@ private:
     //! Monin-Obukhov instance
     MOData m_mo;
 
-    int m_direction{2};   ///< Direction normal to wall
-    bool m_use_fch{true}; ///< Use first cell height?
-    amrex::Real m_wall_pos{0.0_rt}; ///< Position of the wall in the normal direction
+    int m_direction{2};             ///< Direction normal to wall
+    bool m_use_fch{true};           ///< Use first cell height?
+    amrex::Real m_wall_pos{0.0_rt}; ///< Position of the wall
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 
     //! Ability to read in a table of surface temperature versus time.

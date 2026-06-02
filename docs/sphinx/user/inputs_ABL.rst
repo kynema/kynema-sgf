@@ -48,7 +48,7 @@ This section is for setting atmospheric boundary layer parameters.
    When not specified, this is taken from the lower problem-domain boundary in the
    selected normal direction. This value is used together with
    :input_param:`ABL.log_law_height` to determine the sampling location for the
-   planar averages used in thewall model.
+   planar averages used in the wall model.
 
 .. input_param:: ABL.log_law_height
 
