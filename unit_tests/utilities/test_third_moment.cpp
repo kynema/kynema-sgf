@@ -250,7 +250,8 @@ TEST_F(ThirdMomentAveragingMaxLevelTest, test_max_level)
     pa_coarse();
     pa_fine();
 
-    kynema_sgf::ThirdMomentAveraging uuu_coarse(pa_coarse, pa_coarse, pa_coarse);
+    kynema_sgf::ThirdMomentAveraging uuu_coarse(
+        pa_coarse, pa_coarse, pa_coarse);
     kynema_sgf::ThirdMomentAveraging uuu_fine(pa_fine, pa_fine, pa_fine);
     uuu_coarse();
     uuu_fine();
@@ -258,7 +259,8 @@ TEST_F(ThirdMomentAveragingMaxLevelTest, test_max_level)
     const amrex::Real z = 0.5_rt * (z_fine_lo + z_fine_hi);
     const amrex::Real m012_coarse =
         uuu_coarse.line_average_interpolated(z, 0, 1, 2);
-    const amrex::Real m012_fine = uuu_fine.line_average_interpolated(z, 0, 1, 2);
+    const amrex::Real m012_fine =
+        uuu_fine.line_average_interpolated(z, 0, 1, 2);
 
     EXPECT_NEAR(m012_coarse, 0.0_rt, tol);
     EXPECT_GT(m012_fine, 0.1_rt);
