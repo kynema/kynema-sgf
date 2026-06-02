@@ -189,8 +189,7 @@ void ThirdMomentAveraging::compute_average(const IndexSelector& idxOp)
             lateral_area *= (g0.ProbHi(d) - g0.ProbLo(d));
         }
     }
-    const amrex::Real denom =
-        1.0_rt / (lateral_area * m_plane_average1.dx());
+    const amrex::Real denom = 1.0_rt / (lateral_area * m_plane_average1.dx());
 
     for (int lev = 0; lev <= finestLevel; ++lev) {
 
