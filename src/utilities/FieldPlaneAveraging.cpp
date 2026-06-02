@@ -475,7 +475,11 @@ template class FPlaneAveraging<ScratchField>;
 
 VelPlaneAveraging::VelPlaneAveraging(CFDSim& sim, int axis_in, int max_level)
     : FieldPlaneAveraging(
-          sim.repo().get_field("velocity"), sim.time(), axis_in, max_level)
+          sim.repo().get_field("velocity"),
+          sim.time(),
+          axis_in,
+          max_level,
+          true)
 {
     m_line_hvelmag_average.resize(m_ncell_line, 0.0_rt);
     m_line_Su_average.resize(m_ncell_line, 0.0_rt);
