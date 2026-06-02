@@ -240,13 +240,16 @@ void FPlaneAveraging<FType>::compute_averages(const IndexSelector& idxOp)
     const bool periodic_dir = g0.periodicity().isPeriodic(m_axis);
 
     const auto& mesh = m_field.repo().mesh();
-    const int finestLevel = m_max_level < 0 ? mesh.finestLevel() : m_max_level;
+    int finestLevel = mesh.finestLevel();
+    if (m_max_level >= 0) {
+        finestLevel = std::min(m_max_level, finestLevel);
+    }
     const auto dir = m_axis;
     const bool no_ghost = (m_field.num_grow()[dir] == 0);
 
     for (int lev = 0; lev <= finestLevel; ++lev) {
 
-        const auto& geom = m_field.repo().mesh().Geom(lev);
+        const auto& geom = mesh.Geom(lev);
         const amrex::Real dx = geom.CellSize()[dir];
         const amrex::Real dy = geom.CellSize()[idxOp.odir1];
         const amrex::Real dz = geom.CellSize()[idxOp.odir2];
@@ -538,18 +541,21 @@ void VelPlaneAveraging::compute_hvelmag_averages(const IndexSelector& idxOp)
     const amrex::Real line_dx = m_dx;
     const amrex::Real xlo = m_xlo;
 
-    auto g0 = m_field.repo().mesh().Geom(0);
+    const auto& mesh = m_field.repo().mesh();
+    auto g0 = mesh.Geom(0);
     const amrex::Real denom =
         (amrex::Real)m_ncell_line /
         ((g0.ProbHi(0) - g0.ProbLo(0)) * (g0.ProbHi(1) - g0.ProbLo(1)) *
          (g0.ProbHi(2) - g0.ProbLo(2)));
 
-    const auto& mesh = m_field.repo().mesh();
-    const int finestLevel = m_max_level < 0 ? mesh.finestLevel() : m_max_level;
+    int finestLevel = mesh.finestLevel();
+    if (m_max_level >= 0) {
+        finestLevel = std::min(m_max_level, finestLevel);
+    }
 
     for (int lev = 0; lev <= finestLevel; ++lev) {
 
-        const auto& geom = m_field.repo().mesh().Geom(lev);
+        const auto& geom = mesh.Geom(lev);
         const amrex::Real dx = geom.CellSize()[m_axis];
         const amrex::Real dy = geom.CellSize()[idxOp.odir1];
         const amrex::Real dz = geom.CellSize()[idxOp.odir2];
