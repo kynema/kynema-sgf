@@ -7,9 +7,11 @@
 #include "AMReX_Geometry.H"
 #include "AMReX_RealBox.H"
 #include "AMReX_Vector.H"
+#include <sstream>
 
 #include "src/utilities/FieldPlaneAveraging.H"
 #include "src/utilities/SecondMomentAveraging.H"
+#include "src/utilities/tagging/CartBoxRefinement.H"
 #include "src/utilities/trig_ops.H"
 #include "AMReX_REAL.H"
 
@@ -21,6 +23,61 @@ class SecondMomentAveragingTest : public MeshTest
 {
 public:
     void test_dir(int /*dir*/);
+};
+
+class SecondMomentAveragingMaxLevelTest : public MeshTest
+{
+protected:
+    void populate_parameters() override
+    {
+        MeshTest::populate_parameters();
+
+        {
+            amrex::ParmParse pp("geometry");
+            amrex::Vector<amrex::Real> problo{{0.0_rt, 0.0_rt, 0.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{8.0_rt, 8.0_rt, 8.0_rt}};
+
+            pp.addarr("prob_lo", problo);
+            pp.addarr("prob_hi", probhi);
+        }
+        {
+            amrex::ParmParse pp("amr");
+            const amrex::Vector<int> ncell{{m_nx, m_nx, m_nx}};
+            pp.add("max_level", 1);
+            pp.add("max_grid_size", m_nx);
+            pp.add("blocking_factor", 2);
+            pp.addarr("n_cell", ncell);
+        }
+        {
+            amrex::ParmParse pp("geometry");
+            amrex::Vector<int> periodic{{0, 0, 0}};
+            pp.addarr("is_periodic", periodic);
+        }
+
+        // Refine a z-band across the full x-y extent to create level 1 cells.
+        std::stringstream ss;
+        ss << "1 // Number of levels" << '\n';
+        ss << "1 // Number of boxes at this level" << '\n';
+        ss << "0 0 " << z_fine_lo_in << " 8 8 " << z_fine_hi_in << '\n';
+
+        create_mesh_instance<RefineMesh>();
+        std::unique_ptr<kynema_sgf::CartBoxRefinement> box_refine(
+            new kynema_sgf::CartBoxRefinement(sim()));
+        box_refine->read_inputs(mesh(), ss);
+
+        if (mesh<RefineMesh>() != nullptr) {
+            mesh<RefineMesh>()->refine_criteria_vec().push_back(
+                std::move(box_refine));
+        }
+    }
+
+    const int m_nx{8};
+
+public:
+    const amrex::Real z_fine_lo = 2;
+    const amrex::Real z_fine_hi = 4;
+    const amrex::Real z_fine_lo_in = z_fine_lo + 0.1_rt;
+    const amrex::Real z_fine_hi_in = z_fine_hi - 0.1_rt;
 };
 
 TEST_F(SecondMomentAveragingTest, test_constant)
@@ -167,6 +224,63 @@ TEST_F(SecondMomentAveragingTest, test_linear)
             EXPECT_NEAR(0.0_rt, uu.line_average_interpolated(x, j), tol);
         }
     }
+}
+
+TEST_F(SecondMomentAveragingMaxLevelTest, test_max_level)
+{
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+
+    populate_parameters();
+    initialize_mesh();
+
+    auto& frepo = mesh().field_repo();
+    auto& velocityf = frepo.declare_field("velocity", 3, 1);
+    auto velocity = velocityf.vec_ptrs();
+
+    for (int lev = 0; lev < mesh().num_levels(); ++lev) {
+        velocity[lev]->setVal(0.0_rt, 0, 3);
+    }
+
+    // Populate only level 1 so max_level selection changes statistics.
+    run_algorithm(
+        mesh().num_levels(), velocity,
+        [&](const int lev, const amrex::MFIter& mfi) {
+            if (lev != 1) {
+                return;
+            }
+
+            auto vel = velocity[lev]->array(mfi);
+            const auto& bx = mfi.validbox();
+            const auto xlo = mesh().Geom(lev).ProbLoArray();
+            const auto dx = mesh().Geom(lev).CellSizeArray();
+
+            amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                const amrex::Real x = xlo[0] + ((i + 0.5_rt) * dx[0]);
+                vel(i, j, k, 0) = x;
+                vel(i, j, k, 1) = x;
+                vel(i, j, k, 2) = 0.0_rt;
+            });
+        });
+
+    constexpr int dir = 2;
+    kynema_sgf::FieldPlaneAveraging pa_coarse(velocityf, sim().time(), dir, 0);
+    // Setting the max level to -1 selects the finest level available
+    kynema_sgf::FieldPlaneAveraging pa_fine(velocityf, sim().time(), dir, -1);
+    pa_coarse();
+    pa_fine();
+
+    kynema_sgf::SecondMomentAveraging uu_coarse(pa_coarse, pa_coarse);
+    kynema_sgf::SecondMomentAveraging uu_fine(pa_fine, pa_fine);
+    uu_coarse();
+    uu_fine();
+
+    const amrex::Real z = 0.5_rt * (z_fine_lo + z_fine_hi);
+    const amrex::Real m00_coarse = uu_coarse.line_average_interpolated(z, 0, 0);
+    const amrex::Real m00_fine = uu_fine.line_average_interpolated(z, 0, 0);
+
+    EXPECT_NEAR(m00_coarse, 0.0_rt, tol);
+    EXPECT_GT(m00_fine, 0.1_rt);
 }
 
 namespace {
