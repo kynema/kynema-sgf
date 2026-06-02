@@ -121,7 +121,7 @@ protected:
     int m_ncell_plane; /** number of cells in plane */
     int m_ncell_line;  /** number of cells along line */
 
-    int m_precision = 4; /** precision for line plot text file */
+    int m_precision = 4;           /** precision for line plot text file */
     int m_last_updated_index = -1; /** keep track of the last time index that
                                       the operator was called */
 
