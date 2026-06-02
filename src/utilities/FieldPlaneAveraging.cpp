@@ -23,22 +23,24 @@ FPlaneAveraging<FType>::FPlaneAveraging(
     , m_comp_deriv(compute_deriv)
 {
     AMREX_ALWAYS_ASSERT(m_axis >= 0 && m_axis < AMREX_SPACEDIM);
-    auto geom = m_field.repo().mesh().Geom();
+    const auto& mesh = m_field.repo().mesh();
+    auto geom = mesh.Geom();
 
     // beginning and end of line, for now assuming line is the length of the
     // entire domain
     m_xlo = geom[0].ProbLo(m_axis);
     m_xhi = geom[0].ProbHi(m_axis);
 
-    const int finestLevel =
-        m_max_level < 0 ? m_field.repo().mesh().maxLevel() : m_max_level;
+    int finestLevel = mesh.finestLevel();
+    if (m_max_level >= 0) {
+        finestLevel = std::min(m_max_level, finestLevel);
+    }
     const amrex::IntVect dom_lo_vec(geom[finestLevel].Domain().smallEnd());
     const amrex::IntVect dom_hi_vec(geom[finestLevel].Domain().bigEnd());
     const int dom_lo = dom_lo_vec[m_axis];
     const int dom_hi = dom_hi_vec[m_axis];
 
     AMREX_ALWAYS_ASSERT(dom_lo == 0);
-    const auto& mesh = m_field.repo().mesh();
     int dom_hi2 = geom[0].Domain().bigEnd()[m_axis] + 1;
     for (int i = 0; i < finestLevel; ++i) {
         dom_hi2 *= mesh.refRatio(i)[m_axis];
