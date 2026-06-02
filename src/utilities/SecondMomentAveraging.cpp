@@ -150,7 +150,10 @@ void SecondMomentAveraging::compute_average(const IndexSelector& idxOp)
 
     const auto max_lev = m_plane_average1.level();
     const auto& mesh = m_plane_average1.field().repo().mesh();
-    const int finestLevel = max_lev < 0 ? mesh.finestLevel() : max_lev;
+    int finestLevel = mesh.finestLevel();
+    if (max_lev >= 0) {
+        finestLevel = std::min(max_lev, finestLevel);
+    }
     const auto dir = m_plane_average1.axis();
     const bool no_ghost =
         (amrex::min<int>(
