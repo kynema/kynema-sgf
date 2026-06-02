@@ -232,10 +232,13 @@ void FPlaneAveraging<FType>::compute_averages(const IndexSelector& idxOp)
     const amrex::Real xlo = m_xlo;
 
     auto g0 = m_field.repo().mesh().Geom(0);
-    const amrex::Real denom =
-        (amrex::Real)m_ncell_line /
-        ((g0.ProbHi(0) - g0.ProbLo(0)) * (g0.ProbHi(1) - g0.ProbLo(1)) *
-         (g0.ProbHi(2) - g0.ProbLo(2)));
+    amrex::Real lateral_area = 1.0_rt;
+    for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+        if (d != m_axis) {
+            lateral_area *= (g0.ProbHi(d) - g0.ProbLo(d));
+        }
+    }
+    const amrex::Real denom = 1.0_rt / (lateral_area * m_dx);
 
     const bool periodic_dir = g0.periodicity().isPeriodic(m_axis);
 
@@ -543,10 +546,13 @@ void VelPlaneAveraging::compute_hvelmag_averages(const IndexSelector& idxOp)
 
     const auto& mesh = m_field.repo().mesh();
     auto g0 = mesh.Geom(0);
-    const amrex::Real denom =
-        (amrex::Real)m_ncell_line /
-        ((g0.ProbHi(0) - g0.ProbLo(0)) * (g0.ProbHi(1) - g0.ProbLo(1)) *
-         (g0.ProbHi(2) - g0.ProbLo(2)));
+    amrex::Real lateral_area = 1.0_rt;
+    for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+        if (d != m_axis) {
+            lateral_area *= (g0.ProbHi(d) - g0.ProbLo(d));
+        }
+    }
+    const amrex::Real denom = 1.0_rt / (lateral_area * m_dx);
 
     int finestLevel = mesh.finestLevel();
     if (m_max_level >= 0) {

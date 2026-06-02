@@ -183,10 +183,14 @@ void ThirdMomentAveraging::compute_average(const IndexSelector& idxOp)
     const bool periodic_dir = mesh.Geom(0).periodicity().isPeriodic(dir);
 
     const auto& g0 = mesh.Geom(0);
+    amrex::Real lateral_area = 1.0_rt;
+    for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+        if (d != dir) {
+            lateral_area *= (g0.ProbHi(d) - g0.ProbLo(d));
+        }
+    }
     const amrex::Real denom =
-        (amrex::Real)m_plane_average1.ncell_line() /
-        ((g0.ProbHi(0) - g0.ProbLo(0)) * (g0.ProbHi(1) - g0.ProbLo(1)) *
-         (g0.ProbHi(2) - g0.ProbLo(2)));
+        1.0_rt / (lateral_area * m_plane_average1.dx());
 
     for (int lev = 0; lev <= finestLevel; ++lev) {
 
