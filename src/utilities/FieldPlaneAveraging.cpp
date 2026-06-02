@@ -312,7 +312,7 @@ void FPlaneAveraging<FType>::compute_averages(const IndexSelector& idxOp)
                                     amrex::max(
                                         static_cast<int>(
                                             (cell_xhi -
-                                             amr_wind::constants::TIGHT_TOL -
+                                             kynema_sgf::constants::TIGHT_TOL -
                                              xlo) /
                                             line_dx),
                                         0),
