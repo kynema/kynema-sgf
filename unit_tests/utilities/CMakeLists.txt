@@ -4,6 +4,7 @@ target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
   test_field_plane_averaging.cpp
   test_field_plane_averaging_fine.cpp
   test_second_moment.cpp
+  test_third_moment.cpp
   test_sampling.cpp
   test_linear_interpolation.cpp
   test_integrals.cpp
