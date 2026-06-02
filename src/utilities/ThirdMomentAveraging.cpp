@@ -160,8 +160,6 @@ void ThirdMomentAveraging::compute_average(const IndexSelector& idxOp)
     const auto* line_avg2 = lavg2.data();
     const auto* line_avg3 = lavg3.data();
 
-    amrex::Real denom = 1.0_rt / (amrex::Real)m_plane_average1.ncell_plane();
-
     const int ncomp1 = m_plane_average1.ncomp();
     const int ncomp2 = m_plane_average2.ncomp();
     const int ncomp3 = m_plane_average3.ncomp();
@@ -183,6 +181,12 @@ void ThirdMomentAveraging::compute_average(const IndexSelector& idxOp)
                  m_plane_average2.field().num_grow()[dir]),
              m_plane_average3.field().num_grow()[dir]) == 0);
     const bool periodic_dir = mesh.Geom(0).periodicity().isPeriodic(dir);
+
+    const auto& g0 = mesh.Geom(0);
+    const amrex::Real denom =
+        (amrex::Real)m_plane_average1.ncell_line() /
+        ((g0.ProbHi(0) - g0.ProbLo(0)) * (g0.ProbHi(1) - g0.ProbLo(1)) *
+         (g0.ProbHi(2) - g0.ProbLo(2)));
 
     for (int lev = 0; lev <= finestLevel; ++lev) {
 
