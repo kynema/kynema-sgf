@@ -31,7 +31,7 @@ FPlaneAveraging<FType>::FPlaneAveraging(
     m_xlo = geom[0].ProbLo(m_axis);
     m_xhi = geom[0].ProbHi(m_axis);
 
-    int finestLevel = mesh.finestLevel();
+    int finestLevel = mesh.maxLevel();
     if (m_max_level >= 0) {
         finestLevel = std::min(m_max_level, finestLevel);
     }
