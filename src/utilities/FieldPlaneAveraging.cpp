@@ -698,7 +698,7 @@ VelPlaneAveraging::line_hvelmag_average_interpolated(amrex::Real x) const
 
 amrex::Real VelPlaneAveraging::line_su_average_interpolated(amrex::Real x) const
 {
-    BL_PROFILE("kynema-sgf::VelPlaneAveraging::line_hvelmag_average_cell");
+    BL_PROFILE("kynema-sgf::VelPlaneAveraging::line_su_average_interpolated");
     int ind;
     amrex::Real c;
     convert_x_to_ind(x, ind, c);
@@ -709,7 +709,7 @@ amrex::Real VelPlaneAveraging::line_su_average_interpolated(amrex::Real x) const
 
 amrex::Real VelPlaneAveraging::line_sv_average_interpolated(amrex::Real x) const
 {
-    BL_PROFILE("kynema-sgf::VelPlaneAveraging::output_line_average_ascii");
+    BL_PROFILE("kynema-sgf::VelPlaneAveraging::line_sv_average_interpolated");
     int ind;
     amrex::Real c;
     convert_x_to_ind(x, ind, c);
