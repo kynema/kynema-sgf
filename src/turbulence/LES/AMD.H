@@ -66,7 +66,6 @@ private:
     const Field& m_vel;
     const Field& m_temperature;
     const Field& m_rho;
-
     FieldPlaneAveraging m_pa_temp;
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 
