@@ -142,6 +142,22 @@ void add_linear(
     });
 }
 
+void init_for_max_level(
+    const amrex::Geometry& geom,
+    const amrex::Box& bx,
+    const amrex::Array4<amrex::Real>& velocity)
+{
+    auto xlo = geom.ProbLoArray();
+    auto dx = geom.CellSizeArray();
+
+    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+        const amrex::Real x = xlo[0] + ((i + 0.5_rt) * dx[0]);
+        velocity(i, j, k, 0) = x;
+        velocity(i, j, k, 1) = x;
+        velocity(i, j, k, 2) = 0.0_rt;
+    });
+}
+
 } // namespace
 
 TEST_F(SecondMomentAveragingTest, test_linear)
@@ -252,15 +268,8 @@ TEST_F(SecondMomentAveragingMaxLevelTest, test_max_level)
 
             auto vel = velocity[lev]->array(mfi);
             const auto& bx = mfi.validbox();
-            const auto xlo = mesh().Geom(lev).ProbLoArray();
-            const auto dx = mesh().Geom(lev).CellSizeArray();
 
-            amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                const amrex::Real x = xlo[0] + ((i + 0.5_rt) * dx[0]);
-                vel(i, j, k, 0) = x;
-                vel(i, j, k, 1) = x;
-                vel(i, j, k, 2) = 0.0_rt;
-            });
+            init_for_max_level(mesh().Geom(lev), bx, vel);
         });
 
     constexpr int dir = 2;
