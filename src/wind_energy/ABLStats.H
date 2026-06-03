@@ -49,6 +49,8 @@ public:
 
     ABLStatsMode abl_mode() const override { return ABLStatsMode::computed; }
 
+    const int& max_level() const override { return m_max_level; }
+
     // Perform initialization actions after the mesh has been created
     void post_init_actions() override;
 
@@ -171,12 +173,10 @@ private:
 #endif
     std::string m_ascii_file_name;
 
-#ifdef KYNEMA_SGF_USE_NETCDF
     //! Maximum level to consider in planar averages: -1 means no limit
     int m_max_level{-1};
-    // - when netcdf is not used, max level is still used but it is only needed
-    // - at initialization, does not need to be stored
-#endif
+    // This also controls what is considered as the first cell height,
+    // which is the default log law height in the wall function
 
     //! Frequency of data sampling and output
     int m_out_freq{100};

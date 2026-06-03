@@ -151,10 +151,10 @@ ABLWallFunction::ABLWallFunction(const CFDSim& sim)
     m_mo.gravity = utils::vec_mag(m_gravity.data());
 }
 
-void ABLWallFunction::init_log_law_height()
+void ABLWallFunction::init_log_law_height(int max_level)
 {
     if (m_use_fch) {
-        const auto& geom = m_mesh.Geom(0);
+        const auto& geom = m_mesh.Geom(max_level);
         m_mo.zref = 0.5_rt * geom.CellSize(m_direction);
     }
 }

@@ -187,7 +187,7 @@ void ABL::post_init_actions()
 
     m_stats->post_init_actions();
 
-    m_abl_wall_func.init_log_law_height();
+    m_abl_wall_func.init_log_law_height(m_stats->max_level());
 
     m_abl_wall_func.update_umean(
         m_stats->vel_profile(), m_stats->theta_profile_fine());

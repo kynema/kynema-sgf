@@ -34,7 +34,7 @@ public:
     [[nodiscard]] amrex::Real utau() const { return m_mo.utau; }
 
     //! Initialize the log-law height based on user inputs
-    void init_log_law_height();
+    void init_log_law_height(int max_level);
 
     //! Update the mean velocity at a given timestep
     void
