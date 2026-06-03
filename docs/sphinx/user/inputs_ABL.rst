@@ -40,6 +40,16 @@ This section is for setting atmospheric boundary layer parameters.
 
    Wall model normal direction. x-direction = 0, y-direction = 1, z-direction = 2.
 
+.. input_param:: ABL.wall_position
+
+   **type:** Real, optional, default = lower domain boundary in :input_param:`ABL.normal_direction` (typically zlo)
+
+   Physical location of the wall-modeled boundary along the wall-normal direction.
+   When not specified, this is taken from the lower problem-domain boundary in the
+   selected normal direction. This value is used together with
+   :input_param:`ABL.log_law_height` to determine the sampling location for the
+   planar averages used in the wall model.
+
 .. input_param:: ABL.log_law_height
 
    **type:** Real, optional
