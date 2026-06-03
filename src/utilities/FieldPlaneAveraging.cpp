@@ -280,6 +280,7 @@ void FPlaneAveraging<FType>::compute_averages(const IndexSelector& idxOp)
         for (amrex::MFIter mfi(mfab, amrex::TilingIfNotGPU()); mfi.isValid();
              ++mfi) {
             amrex::Box bx = mfi.tilebox();
+            amrex::Box vbx = mfi.validbox();
 
             auto fab_arr = mfab.const_array(mfi);
             auto mask_arr = level_mask.const_array(mfi);
@@ -381,14 +382,14 @@ void FPlaneAveraging<FType>::compute_averages(const IndexSelector& idxOp)
                                         iv_nb[dir] += 1;
                                         if (no_ghost) {
                                             iv_nb[dir] = amrex::min<int>(
-                                                iv_nb[dir], bx.bigEnd(dir));
+                                                iv_nb[dir], vbx.bigEnd(dir));
                                         }
                                     } else {
                                         x_nb = x_down;
                                         iv_nb[dir] -= 1;
                                         if (no_ghost) {
                                             iv_nb[dir] = amrex::max<int>(
-                                                iv_nb[dir], bx.smallEnd(dir));
+                                                iv_nb[dir], vbx.smallEnd(dir));
                                         }
                                     }
                                     // Interpolate to target location using

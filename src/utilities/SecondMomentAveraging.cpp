@@ -199,6 +199,7 @@ void SecondMomentAveraging::compute_average(const IndexSelector& idxOp)
         for (amrex::MFIter mfi(mfab1, amrex::TilingIfNotGPU()); mfi.isValid();
              ++mfi) {
             amrex::Box bx = mfi.tilebox();
+            amrex::Box vbx = mfi.validbox();
 
             auto mfab_arr1 = mfab1.const_array(mfi);
             auto mfab_arr2 = mfab2.const_array(mfi);
@@ -301,14 +302,14 @@ void SecondMomentAveraging::compute_average(const IndexSelector& idxOp)
                                         iv_nb[dir] += 1;
                                         if (no_ghost) {
                                             iv_nb[dir] = amrex::min<int>(
-                                                iv_nb[dir], bx.bigEnd(dir));
+                                                iv_nb[dir], vbx.bigEnd(dir));
                                         }
                                     } else {
                                         x_nb = x_down;
                                         iv_nb[dir] -= 1;
                                         if (no_ghost) {
                                             iv_nb[dir] = amrex::max<int>(
-                                                iv_nb[dir], bx.smallEnd(dir));
+                                                iv_nb[dir], vbx.smallEnd(dir));
                                         }
                                     }
                                     // Interpolate to target location using
