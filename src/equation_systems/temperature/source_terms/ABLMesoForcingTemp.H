@@ -5,7 +5,7 @@
 #include "src/core/FieldRepo.H"
 #include "src/equation_systems/temperature/TemperatureSource.H"
 #include "src/core/SimTime.H"
-#include "src/utilities/FieldPlaneAveragingFine.H"
+#include "src/utilities/FieldPlaneAveraging.H"
 #include "src/utilities/ncutils/nc_interface.H"
 #include "src/wind_energy/ABLMesoscaleForcing.H"
 #include "src/wind_energy/ABLMesoscaleInput.H"
@@ -30,13 +30,13 @@ public:
     void mean_temperature_init(const ABLMesoscaleInput& ncfile);
 
     void mean_temperature_init(
-        const FieldPlaneAveragingFine& tavg, const ABLMesoscaleInput& ncfile);
+        const FieldPlaneAveraging& tavg, const ABLMesoscaleInput& ncfile);
 
     amrex::Real
     mean_temperature_heights(std::unique_ptr<ABLMesoscaleInput> const& ncfile);
 
     amrex::Real mean_temperature_heights(
-        const FieldPlaneAveragingFine& tavg,
+        const FieldPlaneAveraging& tavg,
         std::unique_ptr<ABLMesoscaleInput> const& ncfile);
 
     amrex::Vector<amrex::Real>& theta_error() { return m_err_Theta; }

@@ -71,10 +71,7 @@ private:
 public: // public for GPU
     /** fill line storage with averages */
     template <typename IndexSelector>
-    void compute_average(
-        const IndexSelector& idxOp,
-        const amrex::MultiFab& mfab1,
-        const amrex::MultiFab& mfab2);
+    void compute_average(const IndexSelector& idxOp);
 };
 
 } // namespace kynema_sgf

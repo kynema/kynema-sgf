@@ -9,7 +9,6 @@ target_sources(${kynema_sgf_lib_name}
       io_utils.cpp
       IOManager.cpp
       FieldPlaneAveraging.cpp
-      FieldPlaneAveragingFine.cpp
       SecondMomentAveraging.cpp
       ThirdMomentAveraging.cpp
 

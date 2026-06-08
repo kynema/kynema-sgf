@@ -7,7 +7,7 @@
 #include "src/core/FieldRepo.H"
 #include "src/equation_systems/icns/MomentumSource.H"
 #include "src/core/SimTime.H"
-#include "src/utilities/FieldPlaneAveragingFine.H"
+#include "src/utilities/FieldPlaneAveraging.H"
 #include "src/utilities/ncutils/nc_interface.H"
 #include "src/wind_energy/ABLMesoscaleForcing.H"
 #include "src/wind_energy/ABLMesoscaleInput.H"
@@ -37,13 +37,13 @@ public:
     void mean_velocity_init(const ABLMesoscaleInput& ncfile);
 
     void mean_velocity_init(
-        const VelPlaneAveragingFine& vavg, const ABLMesoscaleInput& ncfile);
+        const VelPlaneAveraging& vavg, const ABLMesoscaleInput& ncfile);
 
     void
     mean_velocity_heights(std::unique_ptr<ABLMesoscaleInput> const& ncfile);
 
     void mean_velocity_heights(
-        const VelPlaneAveragingFine& vavg,
+        const VelPlaneAveraging& vavg,
         std::unique_ptr<ABLMesoscaleInput> const& ncfile);
 
     amrex::Vector<amrex::Real>& mom_u_error() { return m_err_U; }

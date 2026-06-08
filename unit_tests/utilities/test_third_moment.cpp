@@ -10,7 +10,7 @@
 #include <sstream>
 
 #include "src/utilities/FieldPlaneAveraging.H"
-#include "src/utilities/SecondMomentAveraging.H"
+#include "src/utilities/ThirdMomentAveraging.H"
 #include "src/utilities/tagging/CartBoxRefinement.H"
 #include "src/utilities/trig_ops.H"
 #include "AMReX_REAL.H"
@@ -19,13 +19,13 @@ using namespace amrex::literals;
 
 namespace kynema_sgf_tests {
 
-class SecondMomentAveragingTest : public MeshTest
+class ThirdMomentAveragingTest : public MeshTest
 {
 public:
     void test_dir(int /*dir*/);
 };
 
-class SecondMomentAveragingMaxLevelTest : public MeshTest
+class ThirdMomentAveragingMaxLevelTest : public MeshTest
 {
 protected:
     void populate_parameters() override
@@ -80,7 +80,7 @@ public:
     const amrex::Real z_fine_hi_in = z_fine_hi - 0.1_rt;
 };
 
-TEST_F(SecondMomentAveragingTest, test_constant)
+TEST_F(ThirdMomentAveragingTest, test_constant)
 {
     constexpr amrex::Real tol =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
@@ -102,19 +102,22 @@ TEST_F(SecondMomentAveragingTest, test_constant)
     const auto& problo = mesh().Geom(0).ProbLoArray();
     const auto& probhi = mesh().Geom(0).ProbHiArray();
 
-    // test the average of a constant is the same constant
+    // test the fluctuation third-moments of a constant are zero
     for (int dir = 0; dir < 3; ++dir) {
 
         kynema_sgf::FieldPlaneAveraging pa(velocityf, sim().time(), dir, 0);
         pa();
 
-        kynema_sgf::SecondMomentAveraging uu(pa, pa);
-        uu();
+        kynema_sgf::ThirdMomentAveraging uuu(pa, pa, pa);
+        uuu();
 
         amrex::Real x = 0.5_rt * (problo[dir] + probhi[dir]);
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                EXPECT_NEAR(uu.line_average_interpolated(x, i, j), 0.0_rt, tol);
+                for (int k = 0; k < 3; ++k) {
+                    EXPECT_NEAR(
+                        uuu.line_average_interpolated(x, i, j, k), 0.0_rt, tol);
+                }
             }
         }
     }
@@ -154,13 +157,13 @@ void init_for_max_level(
         const amrex::Real x = xlo[0] + ((i + 0.5_rt) * dx[0]);
         velocity(i, j, k, 0) = x;
         velocity(i, j, k, 1) = x;
-        velocity(i, j, k, 2) = 0.0_rt;
+        velocity(i, j, k, 2) = x * x;
     });
 }
 
 } // namespace
 
-TEST_F(SecondMomentAveragingTest, test_linear)
+TEST_F(ThirdMomentAveragingTest, test_linear)
 {
 
     constexpr amrex::Real tol =
@@ -195,54 +198,31 @@ TEST_F(SecondMomentAveragingTest, test_linear)
 
     kynema_sgf::FieldPlaneAveraging pa(velocityf, sim().time(), dir, 0);
     pa();
-    kynema_sgf::SecondMomentAveraging uu(pa, pa);
-    uu();
+    kynema_sgf::ThirdMomentAveraging uuu(pa, pa, pa);
+    uuu();
 
     constexpr int n = 20;
     const amrex::Real L = probhi[dir] - problo[dir];
     const amrex::Real dx = L / ((amrex::Real)n);
-    const amrex::Real hchLo =
-        problo[dir] + (0.5_rt * mesh().Geom(0).CellSizeArray()[dir]);
-    const amrex::Real hchHi =
-        probhi[dir] - (0.5_rt * mesh().Geom(0).CellSizeArray()[dir]);
 
     // test along a line at n equidistant points
     for (int i = 0; i < n; ++i) {
 
         const amrex::Real x = problo[dir] + (i * dx);
 
-        const amrex::Array<amrex::Real, 3> u = {
-            pa.line_average_interpolated(x, 0),
-            pa.line_average_interpolated(x, 1),
-            pa.line_average_interpolated(x, 2)};
-
-        amrex::Real xtest;
-
-        if (x < hchLo) {
-            // test near bottom boundary where solution is not linearly
-            // interpolated but instead copied from first cell
-            xtest = hchLo;
-        } else if (x > hchHi) {
-            // test near top boundary where solution is not linearly
-            // interpolated but instead copied from last cell
-            xtest = hchHi;
-        } else {
-            // interior is linearly interpolated
-            xtest = x;
-        }
-
-        // test each velocity field u = u0 + u0*x
-        for (int j = 0; j < 3; ++j) {
-            EXPECT_NEAR(u0[j] * (xtest + 1.0_rt), u[j], tol);
-        }
-        // this test seems kind of silly
-        for (int j = 0; j < 9; ++j) {
-            EXPECT_NEAR(0.0_rt, uu.line_average_interpolated(x, j), tol);
+        for (int m = 0; m < 3; ++m) {
+            for (int ncomp = 0; ncomp < 3; ++ncomp) {
+                for (int p = 0; p < 3; ++p) {
+                    EXPECT_NEAR(
+                        0.0_rt, uuu.line_average_interpolated(x, m, ncomp, p),
+                        tol);
+                }
+            }
         }
     }
 }
 
-TEST_F(SecondMomentAveragingMaxLevelTest, test_max_level)
+TEST_F(ThirdMomentAveragingMaxLevelTest, test_max_level)
 {
     constexpr amrex::Real tol =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
@@ -279,17 +259,20 @@ TEST_F(SecondMomentAveragingMaxLevelTest, test_max_level)
     pa_coarse();
     pa_fine();
 
-    kynema_sgf::SecondMomentAveraging uu_coarse(pa_coarse, pa_coarse);
-    kynema_sgf::SecondMomentAveraging uu_fine(pa_fine, pa_fine);
-    uu_coarse();
-    uu_fine();
+    kynema_sgf::ThirdMomentAveraging uuu_coarse(
+        pa_coarse, pa_coarse, pa_coarse);
+    kynema_sgf::ThirdMomentAveraging uuu_fine(pa_fine, pa_fine, pa_fine);
+    uuu_coarse();
+    uuu_fine();
 
     const amrex::Real z = 0.5_rt * (z_fine_lo + z_fine_hi);
-    const amrex::Real m00_coarse = uu_coarse.line_average_interpolated(z, 0, 0);
-    const amrex::Real m00_fine = uu_fine.line_average_interpolated(z, 0, 0);
+    const amrex::Real m012_coarse =
+        uuu_coarse.line_average_interpolated(z, 0, 1, 2);
+    const amrex::Real m012_fine =
+        uuu_fine.line_average_interpolated(z, 0, 1, 2);
 
-    EXPECT_NEAR(m00_coarse, 0.0_rt, tol);
-    EXPECT_GT(m00_fine, 0.1_rt);
+    EXPECT_NEAR(m012_coarse, 0.0_rt, tol);
+    EXPECT_GT(m012_fine, 0.1_rt);
 }
 
 namespace {
@@ -318,7 +301,7 @@ void add_periodic(
 
 } // namespace
 
-void SecondMomentAveragingTest::test_dir(int dir)
+void ThirdMomentAveragingTest::test_dir(int dir)
 {
 
     constexpr amrex::Real tol =
@@ -358,28 +341,36 @@ void SecondMomentAveragingTest::test_dir(int dir)
     kynema_sgf::FieldPlaneAveraging pa(velocityf, sim().time(), dir, 0);
     pa();
 
-    kynema_sgf::SecondMomentAveraging uu(pa, pa);
-    uu();
+    kynema_sgf::ThirdMomentAveraging uuu(pa, pa, pa);
+    uuu();
 
     amrex::Real x =
         (0.5_rt + 0.01_rt * amrex::Random()) * (problo[dir] + probhi[dir]);
 
-    // used symbolic tool to find this
-    EXPECT_NEAR(1.0_rt, uu.line_average_interpolated(x, 0, 0), tol);
-    EXPECT_NEAR(0.0_rt, uu.line_average_interpolated(x, 0, 1), tol);
-    EXPECT_NEAR(0.0_rt, uu.line_average_interpolated(x, 0, 2), tol);
-    EXPECT_NEAR(0.0_rt, uu.line_average_interpolated(x, 1, 0), tol);
-    EXPECT_NEAR(1.0_rt, uu.line_average_interpolated(x, 1, 1), tol);
-    EXPECT_NEAR(0.0_rt, uu.line_average_interpolated(x, 1, 2), tol);
-    EXPECT_NEAR(0.0_rt, uu.line_average_interpolated(x, 2, 0), tol);
-    EXPECT_NEAR(0.0_rt, uu.line_average_interpolated(x, 2, 1), tol);
-    EXPECT_NEAR(0.25_rt, uu.line_average_interpolated(x, 2, 2), tol);
+    // Non-zero third moments are permutations of <u' v' w'> = 1/4.
+    EXPECT_NEAR(0.25_rt, uuu.line_average_interpolated(x, 0, 1, 2), tol);
+    EXPECT_NEAR(0.25_rt, uuu.line_average_interpolated(x, 0, 2, 1), tol);
+    EXPECT_NEAR(0.25_rt, uuu.line_average_interpolated(x, 1, 0, 2), tol);
+    EXPECT_NEAR(0.25_rt, uuu.line_average_interpolated(x, 1, 2, 0), tol);
+    EXPECT_NEAR(0.25_rt, uuu.line_average_interpolated(x, 2, 0, 1), tol);
+    EXPECT_NEAR(0.25_rt, uuu.line_average_interpolated(x, 2, 1, 0), tol);
 
-    // fixme need a better non-trivial unit test...
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            for (int k = 0; k < 3; ++k) {
+                const bool is_012_perm =
+                    (i != j) && (j != k) && (i != k) && (i + j + k == 3);
+                if (!is_012_perm) {
+                    EXPECT_NEAR(
+                        0.0_rt, uuu.line_average_interpolated(x, i, j, k), tol);
+                }
+            }
+        }
+    }
 }
 
-TEST_F(SecondMomentAveragingTest, test_xdir) { test_dir(0); }
-TEST_F(SecondMomentAveragingTest, test_ydir) { test_dir(1); }
-TEST_F(SecondMomentAveragingTest, test_zdir) { test_dir(2); }
+TEST_F(ThirdMomentAveragingTest, test_xdir) { test_dir(0); }
+TEST_F(ThirdMomentAveragingTest, test_ydir) { test_dir(1); }
+TEST_F(ThirdMomentAveragingTest, test_zdir) { test_dir(2); }
 
 } // namespace kynema_sgf_tests

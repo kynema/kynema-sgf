@@ -3,7 +3,6 @@
 
 #include "src/CFDSim.H"
 #include "src/utilities/FieldPlaneAveraging.H"
-#include "src/utilities/FieldPlaneAveragingFine.H"
 #include "src/core/FieldBCOps.H"
 #include "src/wind_energy/MOData.H"
 #include "src/utilities/constants.H"
@@ -35,11 +34,11 @@ public:
     [[nodiscard]] amrex::Real utau() const { return m_mo.utau; }
 
     //! Initialize the log-law height based on user inputs
-    void init_log_law_height();
+    void init_log_law_height(int max_level);
 
     //! Update the mean velocity at a given timestep
-    void update_umean(
-        const VelPlaneAveragingFine& vpa, const FieldPlaneAveragingFine& tpa);
+    void
+    update_umean(const VelPlaneAveraging& vpa, const FieldPlaneAveraging& tpa);
 
     void update_tflux(amrex::Real tflux);
 
@@ -51,9 +50,9 @@ private:
     //! Monin-Obukhov instance
     MOData m_mo;
 
-    int m_direction{2};   ///< Direction normal to wall
-    bool m_use_fch{true}; ///< Use first cell height?
-
+    int m_direction{2};             ///< Direction normal to wall
+    bool m_use_fch{true};           ///< Use first cell height?
+    amrex::Real m_wall_pos{0.0_rt}; ///< Position of the wall
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 
     //! Ability to read in a table of surface temperature versus time.

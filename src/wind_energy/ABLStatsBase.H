@@ -21,7 +21,7 @@ enum class ABLStatsMode : std::uint8_t {
 };
 
 class ABLStatsBase
-    : public Factory<ABLStatsBase, CFDSim&, ABLWallFunction&, int>
+    : public Factory<ABLStatsBase, CFDSim&, ABLWallFunction&, int, int>
 {
 public:
     static std::string base_identifier() { return "ABLStatsBase"; }
@@ -33,14 +33,17 @@ public:
     //! Flag indicating ABL simulation mode
     [[nodiscard]] virtual ABLStatsMode abl_mode() const = 0;
 
+    //! Maximum level considered for "coarse" planar averages
+    [[nodiscard]] virtual const int& max_level() const = 0;
+
     //! Interpolating object for vertical velocity profile
     [[nodiscard]] virtual const VelPlaneAveraging&
     vel_profile_coarse() const = 0;
-    [[nodiscard]] virtual const VelPlaneAveragingFine& vel_profile() const = 0;
+    [[nodiscard]] virtual const VelPlaneAveraging& vel_profile() const = 0;
 
     //! Interpolating object for vertical temperature profile
     [[nodiscard]] virtual const FieldPlaneAveraging& theta_profile() const = 0;
-    [[nodiscard]] virtual const FieldPlaneAveragingFine&
+    [[nodiscard]] virtual const FieldPlaneAveraging&
     theta_profile_fine() const = 0;
 
     //! Perform initialization actions after the mesh has been created
