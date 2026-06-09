@@ -58,7 +58,7 @@ protected:
         {
             amrex::ParmParse pp("geometry");
             amrex::Vector<amrex::Real> problo{{0.0_rt, 0.0_rt, 0.0_rt}};
-            amrex::Vector<amrex::Real> probhi{{128.0_rt, 128.0_rt, 128.0_rt}};
+            amrex::Vector<amrex::Real> probhi{{128.0_rt, 128.0_rt, 256.0_rt}};
 
             pp.addarr("prob_lo", problo);
             pp.addarr("prob_hi", probhi);
@@ -85,8 +85,7 @@ TEST_F(SubvolumeTest, rectangular_subvolume_output)
     {
         amrex::ParmParse pp("subvolume.chunk1");
         pp.add("type", std::string("Rectangular"));
-        pp.addarr(
-            "origin", amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 0.0_rt});
+        pp.addarr("origin", amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 0.0_rt});
         pp.addarr("num_points", amrex::Vector<int>{4, 4, 4});
         pp.add("dx", 4.0_rt);
     }
@@ -115,12 +114,14 @@ TEST_F(SubvolumeTest, rectangular_subvolume_output)
         for (int k = lo.z; k <= hi.z; ++k) {
             for (int j = lo.y; j <= hi.y; ++j) {
                 for (int i = lo.x; i <= hi.x; ++i) {
+                    const amrex::Real dx_sv = 4.0_rt;
+                    const amrex::Real dx_dom = 128.0_rt / 32.0_rt;
                     const amrex::Real expected =
-                        4.0_rt * static_cast<amrex::Real>(i + j + k) + 5.0_rt;
+                        dx_sv * static_cast<amrex::Real>(i + j + k) +
+                        3.0_rt * 0.5_rt * dx_dom;
                     EXPECT_NEAR(
                         arr(i, j, k), expected,
-                        std::numeric_limits<amrex::Real>::epsilon() *
-                            1.0e3_rt);
+                        std::numeric_limits<amrex::Real>::epsilon() * 1.0e3_rt);
                 }
             }
         }
