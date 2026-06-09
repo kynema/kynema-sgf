@@ -79,11 +79,18 @@ TEST_F(SubvolumeTest, rectangular_subvolume_output)
     {
         amrex::ParmParse pp("subvolume");
         pp.add("output_interval", 1);
-        pp.addarr("labels", amrex::Vector<std::string>{"chunk1"});
+        pp.addarr("labels", amrex::Vector<std::string>{"chunk1", "chunk2"});
         pp.addarr("fields", amrex::Vector<std::string>{"density"});
     }
     {
         amrex::ParmParse pp("subvolume.chunk1");
+        pp.add("type", std::string("Rectangular"));
+        pp.addarr("origin", amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 0.0_rt});
+        pp.addarr("num_points", amrex::Vector<int>{32, 32, 64});
+        pp.add("dx", 4.0_rt);
+    }
+    {
+        amrex::ParmParse pp("subvolume.chunk2");
         pp.add("type", std::string("Rectangular"));
         pp.addarr("origin", amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 0.0_rt});
         pp.addarr("num_points", amrex::Vector<int>{4, 4, 4});
