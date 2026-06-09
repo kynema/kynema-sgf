@@ -1,7 +1,10 @@
 #include <filesystem>
+#include <limits>
 
 #include "ks_test_utils/MeshTest.H"
 #include "src/utilities/subvolume/Subvolume.H"
+#include "AMReX_MFIter.H"
+#include "AMReX_PlotFileUtil.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -95,6 +98,33 @@ TEST_F(SubvolumeTest, rectangular_subvolume_output)
     const std::filesystem::path header_path(
         "post_processing/subvolume_chunk100000/Header");
     EXPECT_TRUE(std::filesystem::exists(header_path));
+
+    amrex::PlotFileData pf("post_processing/subvolume_chunk100000");
+    EXPECT_EQ(pf.finestLevel(), 0);
+    EXPECT_EQ(pf.nComp(), 1);
+    ASSERT_EQ(pf.varNames().size(), 1);
+    EXPECT_EQ(pf.varNames()[0], "density");
+
+    auto mf_out = pf.get(0, "density");
+    for (amrex::MFIter mfi(mf_out); mfi.isValid(); ++mfi) {
+        const auto bx = mfi.validbox();
+        const auto arr = mf_out.const_array(mfi);
+        const auto lo = amrex::lbound(bx);
+        const auto hi = amrex::ubound(bx);
+
+        for (int k = lo.z; k <= hi.z; ++k) {
+            for (int j = lo.y; j <= hi.y; ++j) {
+                for (int i = lo.x; i <= hi.x; ++i) {
+                    const amrex::Real expected =
+                        4.0_rt * static_cast<amrex::Real>(i + j + k) + 5.0_rt;
+                    EXPECT_NEAR(
+                        arr(i, j, k), expected,
+                        std::numeric_limits<amrex::Real>::epsilon() *
+                            1.0e3_rt);
+                }
+            }
+        }
+    }
 
     std::error_code ec;
     std::filesystem::remove_all("post_processing", ec);
