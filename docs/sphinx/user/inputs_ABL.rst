@@ -55,12 +55,22 @@ This section is for setting atmospheric boundary layer parameters.
    **type:** Real, optional
 
    Height to evaluate the log law for the wall model.
-   Currently, if this parameter is not specified in the input file, the first half cell height is calculated
-   and is used to set the log law height.
+   If this parameter is not specified in the input file, the first half cell height is set
+   as the log law height. For meshes with multiple levels, the first half cell height
+   on the coarsest level is used, but the :input_param:`ABL.stats_max_level` parameter
+   overrides this behavior, making the code use the first half cell height on the specified level.
    Therefore the log law height depends on the domain size and number of elements in the normal direction.
    If this parameter is set to a number the log law is evaluated at a fixed height.
-   Note: currently the fluctuating velocity terms in the shear stress model are only
-   available at the first cell center above the wall. This limitation will be removed soon.
+
+.. input_param:: ABL.stats_max_level
+
+   **type:** Integer, optional, default = 0
+
+   Maximum level to consider in planar averages for ABLStats. This also controls what is
+   considered as the first cell height, which is the default log law height in the wall function.
+   The default value of 0 means the coarsest level is used, which has been the legacy behavior of
+   the code. Setting a value of -1 means there is no limit on the maximum level, allowing the code
+   to select the finest level available on the mesh.
 
 .. input_param:: ABL.surface_temp_flux
 
