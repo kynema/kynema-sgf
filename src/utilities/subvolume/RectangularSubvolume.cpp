@@ -164,7 +164,9 @@ void RectangularSubvolume::evaluate_inputs()
     amrex::BoxArray ba(out_box);
     ba.maxSize(chunk_size);
 
-    amrex::BoxArray ba_src(ba);
+    // Create a new box array: same layout but different box definitions
+    amrex::BoxArray ba_src(ba); // shallow copy to get same layout, size
+    ba_src.uniqify();           // force deep copy to avoid changing original
     for (int ib = 0; ib < ba_src.size(); ++ib) {
         const auto b = ba_src[ib];
         const amrex::IntVect lo(

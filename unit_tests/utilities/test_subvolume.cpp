@@ -96,6 +96,7 @@ TEST_F(SubvolumeTest, rectangular_subvolume_output)
         pp.addarr("num_points", amrex::Vector<int>{4, 4, 4});
         pp.addarr(
             "dx_vec", amrex::Vector<amrex::Real>{8.0_rt, 16.0_rt, 12.0_rt});
+        pp.add("verbose", 1);
     }
 
     kynema_sgf::subvolume::Subvolume subvol(sim(), "subvolume");
