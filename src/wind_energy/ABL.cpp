@@ -37,13 +37,17 @@ ABL::ABL(CFDSim& sim)
     {
         std::string statistics_mode = "precursor";
         int dir = 2;
+        // Default to level 0 for backward-compatible statistics
+        // Override with ABL.stats_max_level
+        int stats_max_level = 0;
         amrex::ParmParse pp("ABL");
         pp.query("enable_hybrid_rl_mode", m_hybrid_rl);
         pp.query("initial_sdr_value", m_init_sdr);
         pp.query("normal_direction", dir);
         pp.query("statistics_mode", statistics_mode);
-        m_stats =
-            ABLStatsBase::create(statistics_mode, sim, m_abl_wall_func, dir);
+        pp.query("stats_max_level", stats_max_level);
+        m_stats = ABLStatsBase::create(
+            statistics_mode, sim, m_abl_wall_func, dir, stats_max_level);
         // Check for file input
         m_file_input = pp.contains("initial_condition_input_file");
     }
@@ -183,7 +187,7 @@ void ABL::post_init_actions()
 
     m_stats->post_init_actions();
 
-    m_abl_wall_func.init_log_law_height();
+    m_abl_wall_func.init_log_law_height(m_stats->max_level());
 
     m_abl_wall_func.update_umean(
         m_stats->vel_profile(), m_stats->theta_profile_fine());

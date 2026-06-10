@@ -5,7 +5,7 @@
 #include <string>
 #include "src/core/ScratchField.H"
 #include "src/turbulence/TurbModelBase.H"
-#include "src/utilities/FieldPlaneAveragingFine.H"
+#include "src/utilities/FieldPlaneAveraging.H"
 #include "src/core/FieldRepo.H"
 #include "src/fvm/stencils.H"
 #include "src/utilities/DirectionSelector.H"
@@ -66,7 +66,7 @@ private:
     const Field& m_vel;
     const Field& m_temperature;
     const Field& m_rho;
-    FieldPlaneAveragingFine m_pa_temp;
+    FieldPlaneAveraging m_pa_temp;
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 
     std::unique_ptr<ScratchField> m_gradVel;

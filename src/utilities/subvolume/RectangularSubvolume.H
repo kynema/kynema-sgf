@@ -1,6 +1,9 @@
 #ifndef RECTANGULARSUBVOLUME_H
 #define RECTANGULARSUBVOLUME_H
 
+#include <AMReX_Geometry.H>
+#include <AMReX_IntVect.H>
+
 #include "src/utilities/subvolume/SubvolumeBase.H"
 
 namespace kynema_sgf::subvolume {
@@ -43,6 +46,12 @@ public:
 
     amrex::BoxArray box_array() const override { return m_ba; }
 
+    amrex::BoxArray source_box_array() const override { return m_src_ba; }
+
+    amrex::IntVect sampling_stride() const override { return m_stride; }
+
+    amrex::Geometry output_geom() const override { return m_out_geom; }
+
 protected:
     const CFDSim& m_sim;
 
@@ -54,9 +63,12 @@ protected:
     int m_lev_for_sub{0};
     int m_verbose{0};
 
-    bool m_chunk_size_present;
+    bool m_chunk_size_present{false};
 
+    amrex::IntVect m_stride{1, 1, 1};
     amrex::BoxArray m_ba;
+    amrex::BoxArray m_src_ba;
+    amrex::Geometry m_out_geom;
 
     std::string m_label;
 };

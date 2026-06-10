@@ -5,7 +5,6 @@
 #include "src/CFDSim.H"
 #include "src/transport_models/TransportModel.H"
 #include "src/utilities/FieldPlaneAveraging.H"
-#include "src/utilities/FieldPlaneAveragingFine.H"
 #include "src/utilities/SecondMomentAveraging.H"
 #include "src/utilities/ThirdMomentAveraging.H"
 #include "src/utilities/PostProcessing.H"
@@ -41,11 +40,16 @@ public:
     static std::string identifier() { return "precursor"; }
 
     ABLStats(
-        CFDSim& /*sim*/, const ABLWallFunction& /*abl_wall_func*/, int dir);
+        CFDSim& /*sim*/,
+        const ABLWallFunction& /*abl_wall_func*/,
+        int dir,
+        int max_level);
 
     ~ABLStats() override;
 
     ABLStatsMode abl_mode() const override { return ABLStatsMode::computed; }
+
+    const int& max_level() const override { return m_max_level; }
 
     // Perform initialization actions after the mesh has been created
     void post_init_actions() override;
@@ -60,7 +64,7 @@ public:
     void compute_zi();
 
     //! Return vel plane averaging instance
-    const VelPlaneAveragingFine& vel_profile() const override
+    const VelPlaneAveraging& vel_profile() const override
     {
         return m_pa_vel_fine;
     };
@@ -78,7 +82,7 @@ public:
     }
 
     //! Return instance that handles temperature statistics
-    const FieldPlaneAveragingFine& theta_profile_fine() const override
+    const FieldPlaneAveraging& theta_profile_fine() const override
     {
         return m_pa_temp_fine;
     }
@@ -145,8 +149,8 @@ private:
 
     VelPlaneAveraging m_pa_vel;
     FieldPlaneAveraging m_pa_temp;
-    VelPlaneAveragingFine m_pa_vel_fine;
-    FieldPlaneAveragingFine m_pa_temp_fine;
+    VelPlaneAveraging m_pa_vel_fine;
+    FieldPlaneAveraging m_pa_temp_fine;
     FieldPlaneAveraging m_pa_mueff;
     SecondMomentAveraging m_pa_tt;
     SecondMomentAveraging m_pa_tu;
@@ -168,6 +172,11 @@ private:
     std::string m_out_fmt{"ascii"};
 #endif
     std::string m_ascii_file_name;
+
+    //! Maximum level to consider in planar averages: -1 means no limit
+    int m_max_level{-1};
+    // This also controls what is considered as the first cell height,
+    // which is the default log law height in the wall function
 
     //! Frequency of data sampling and output
     int m_out_freq{100};

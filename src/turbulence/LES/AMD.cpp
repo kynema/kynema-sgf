@@ -23,7 +23,7 @@ AMD<Transport>::AMD(CFDSim& sim)
     , m_vel(sim.repo().get_field("velocity"))
     , m_temperature(sim.repo().get_field("temperature"))
     , m_rho(sim.repo().get_field("density"))
-    , m_pa_temp(m_temperature, sim.time(), m_normal_dir, true)
+    , m_pa_temp(m_temperature, sim.time(), m_normal_dir, -1, true)
 {
     {
         amrex::ParmParse pp("incflo");

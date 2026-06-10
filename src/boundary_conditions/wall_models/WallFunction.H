@@ -3,7 +3,7 @@
 
 #include "src/CFDSim.H"
 #include "src/core/FieldBCOps.H"
-#include "src/utilities/FieldPlaneAveragingFine.H"
+#include "src/utilities/FieldPlaneAveraging.H"
 #include "src/boundary_conditions/wall_models/LogLaw.H"
 #include "src/boundary_conditions/wall_models/MOSD.H"
 
@@ -40,7 +40,7 @@ private:
     //! LogLaw instance
     LogLaw m_log_law;
     int m_direction{2}; ///< Direction normal to wall, hardcoded to z
-    VelPlaneAveragingFine m_pa_vel;
+    VelPlaneAveraging m_pa_vel;
 
     MOSD m_mosd;
 };

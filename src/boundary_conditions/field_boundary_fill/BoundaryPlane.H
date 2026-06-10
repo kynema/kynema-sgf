@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include "src/core/Field.H"
+#include "src/core/IntField.H"
 #include "src/CFDSim.H"
 #include "src/utilities/ncutils/nc_interface.H"
 #include "src/utilities/io_utils.H"
@@ -16,6 +17,8 @@ class MultiBlockContainer;
 namespace kynema_sgf {
 
 enum struct io_mode : std::uint8_t { output, input, undefined };
+
+enum struct phase : std::uint8_t { liquid, gas, both };
 
 struct BufferData
 {
@@ -264,6 +267,21 @@ private:
 
     //! IO mode
     io_mode m_io_mode{io_mode::undefined};
+
+    //! User-selected fluid phase gate for boundary field population
+    phase m_phase{phase::both};
+
+    //! Default string for collecting user input for phase condition
+    std::string m_phase_str{"both"};
+
+    //! Pointer to vof field for boundary field population based on vof values
+    Field* m_vof_ptr{nullptr};
+
+    //! Pointer to terrain_blank field for velocity population based on terrain
+    IntField* m_terrain_blank_ptr{nullptr};
+
+    //! Flag indicating if terrain can move (i.e. if representing waves)
+    bool m_has_moving_terrain{false};
 
     //! Flag indicating that the inflow is static, i.e., there is only a single
     //! boundary plane to read in during the simulation

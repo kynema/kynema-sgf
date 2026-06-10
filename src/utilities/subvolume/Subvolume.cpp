@@ -4,6 +4,7 @@
 #include "src/utilities/subvolume/Subvolume.H"
 #include "src/utilities/io_utils.H"
 #include "src/utilities/IOManager.H"
+#include "AMReX_MFIter.H"
 #include "AMReX_MultiFabUtil.H"
 
 #include "AMReX_ParmParse.H"
@@ -166,10 +167,13 @@ void Subvolume::output_actions()
     for (const auto& sv : m_subvolumes) {
 
         const auto lev = sv->lev();
-        const auto ba = sv->box_array();
+        const auto ba_out = sv->box_array();
+        const auto ba_src = sv->source_box_array();
+        const auto stride = sv->sampling_stride();
 
-        amrex::DistributionMapping dm(ba);
-        amrex::MultiFab mf_sv(ba, dm, n_out, 0);
+        amrex::DistributionMapping dm(ba_out);
+        amrex::MultiFab mf_sv(ba_out, dm, n_out, 0);
+        amrex::MultiFab mf_src(ba_src, dm, n_out, 0);
 
         amrex::MultiFab mf_all_samelev(
             m_sim.mesh().boxArray(lev), m_sim.mesh().DistributionMap(lev),
@@ -195,7 +199,30 @@ void Subvolume::output_actions()
                 mf_all_samelev, (*scr_ptr)(lev), 0, icomp, m_ndcomp, 0);
         }
 
-        mf_sv.ParallelCopy(mf_all_samelev, 0, 0, n_out, 0, 0);
+        mf_src.ParallelCopy(mf_all_samelev, 0, 0, n_out, 0, 0);
+
+        for (amrex::MFIter mfi(mf_sv); mfi.isValid(); ++mfi) {
+            const amrex::Box& out_box = mfi.validbox();
+            const amrex::Box& out_fab_box = mf_sv[mfi].box();
+            const amrex::Box& src_fab_box = mf_src[mfi].box();
+            const auto out_arr = mf_sv.array(mfi);
+            const auto src_arr = mf_src.const_array(mfi);
+
+            const auto out_small = out_fab_box.smallEnd();
+            const auto src_small = src_fab_box.smallEnd();
+
+            amrex::ParallelFor(
+                out_box, n_out,
+                [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) noexcept {
+                    const int ii =
+                        src_small[0] + (i - out_small[0]) * stride[0];
+                    const int jj =
+                        src_small[1] + (j - out_small[1]) * stride[1];
+                    const int kk =
+                        src_small[2] + (k - out_small[2]) * stride[2];
+                    out_arr(i, j, k, n) = src_arr(ii, jj, kk, n);
+                });
+        }
 
         std::string sv_label = name + "_" + sv->label();
         std::string subvol_filename =
@@ -203,7 +230,7 @@ void Subvolume::output_actions()
 
         amrex::Print() << "Writing subvolume into " << subvol_filename << "\n";
         WriteSingleLevelPlotfile(
-            subvol_filename, mf_sv, m_var_names, m_sim.mesh().Geom(lev), time,
+            subvol_filename, mf_sv, m_var_names, sv->output_geom(), time,
             itime);
     }
 }
