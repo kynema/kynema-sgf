@@ -72,6 +72,8 @@ ABLWallFunction::ABLWallFunction(const CFDSim& sim)
                "Assuming log_law_height = first cell height"
             << '\n';
     }
+    m_wall_pos = m_sim.mesh().Geom(0).ProbLo(m_direction);
+    pp.query("wall_position", m_wall_pos);
 
     if (pp.contains("surface_temp_flux")) {
         pp.query("surface_temp_flux", m_mo.surf_temp_flux);
@@ -151,16 +153,16 @@ ABLWallFunction::ABLWallFunction(const CFDSim& sim)
     m_mo.gravity = utils::vec_mag(m_gravity.data());
 }
 
-void ABLWallFunction::init_log_law_height()
+void ABLWallFunction::init_log_law_height(int max_level)
 {
     if (m_use_fch) {
-        const auto& geom = m_mesh.Geom(0);
+        const auto& geom = m_mesh.Geom(max_level);
         m_mo.zref = 0.5_rt * geom.CellSize(m_direction);
     }
 }
 
 void ABLWallFunction::update_umean(
-    const VelPlaneAveragingFine& vpa, const FieldPlaneAveragingFine& tpa)
+    const VelPlaneAveraging& vpa, const FieldPlaneAveraging& tpa)
 {
     const auto& time = m_sim.time();
 
@@ -188,12 +190,16 @@ void ABLWallFunction::update_umean(
         m_mo.Sv_mean = 0.0_rt; // TODO: need to fill this correctly
         m_mo.theta_mean = m_wf_theta;
     } else {
-        m_mo.vel_mean[0] = vpa.line_average_interpolated(m_mo.zref, 0);
-        m_mo.vel_mean[1] = vpa.line_average_interpolated(m_mo.zref, 1);
-        m_mo.vmag_mean = vpa.line_hvelmag_average_interpolated(m_mo.zref);
-        m_mo.Su_mean = vpa.line_su_average_interpolated(m_mo.zref);
-        m_mo.Sv_mean = vpa.line_sv_average_interpolated(m_mo.zref);
-        m_mo.theta_mean = tpa.line_average_interpolated(m_mo.zref, 0);
+        m_mo.vel_mean[0] =
+            vpa.line_average_interpolated(m_wall_pos + m_mo.zref, 0);
+        m_mo.vel_mean[1] =
+            vpa.line_average_interpolated(m_wall_pos + m_mo.zref, 1);
+        m_mo.vmag_mean =
+            vpa.line_hvelmag_average_interpolated(m_wall_pos + m_mo.zref);
+        m_mo.Su_mean = vpa.line_su_average_interpolated(m_wall_pos + m_mo.zref);
+        m_mo.Sv_mean = vpa.line_sv_average_interpolated(m_wall_pos + m_mo.zref);
+        m_mo.theta_mean =
+            tpa.line_average_interpolated(m_wall_pos + m_mo.zref, 0);
     }
 
     m_mo.update_fluxes();

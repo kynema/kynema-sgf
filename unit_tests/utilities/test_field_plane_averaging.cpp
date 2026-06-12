@@ -45,7 +45,7 @@ TEST_F(FieldPlaneAveragingTest, test_constant)
     // test the average of a constant is the same constant
     for (int dir = 0; dir < 3; ++dir) {
 
-        kynema_sgf::FieldPlaneAveraging pa(velocityf, sim().time(), dir);
+        kynema_sgf::FieldPlaneAveraging pa(velocityf, sim().time(), dir, 0);
         pa();
 
         amrex::Real z = 0.5_rt * (problo[dir] + probhi[dir]);
@@ -126,7 +126,7 @@ TEST_F(FieldPlaneAveragingTest, test_linear)
             add_linear(dir, u0, mesh().Geom(0), bx, vel);
         });
 
-    kynema_sgf::FieldPlaneAveraging pa(velocityf, sim().time(), dir);
+    kynema_sgf::FieldPlaneAveraging pa(velocityf, sim().time(), dir, 0);
     pa();
 
     constexpr int n = 20;
@@ -241,7 +241,7 @@ void FieldPlaneAveragingTest::test_dir(int dir)
             add_periodic(dir, a, mesh().Geom(lev), bx, vel);
         });
 
-    kynema_sgf::FieldPlaneAveraging pa(velocityf, sim().time(), dir);
+    kynema_sgf::FieldPlaneAveraging pa(velocityf, sim().time(), dir, 0);
     pa();
 
     amrex::Real x = 0.5_rt * (problo[dir] + probhi[dir]);

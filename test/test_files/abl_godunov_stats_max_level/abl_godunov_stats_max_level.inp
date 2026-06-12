@@ -1,0 +1,5 @@
+FILE = ../abl_godunov_static_refinement/abl_godunov_static_refinement.inp
+time.checkpoint_interval = -1
+tagging.static.static_refinement_def = ../abl_godunov_static_refinement/static_box.txt
+ABL.stats_max_level = 1
+

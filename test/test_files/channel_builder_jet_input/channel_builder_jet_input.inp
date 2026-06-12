@@ -1,0 +1,80 @@
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#            SIMULATION STOP            #
+#.......................................#
+time.stop_time               =  -1.     # Max (simulated) time to evolve
+time.max_step                =  500          # Max number of time steps
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#         TIME STEP COMPUTATION         #
+#.......................................#
+time.max_dt           =   2.0        # Use this constant dt if > 0
+time.initial_dt       =   0.2
+time.cfl              =   0.95       # CFL factor
+time.use_force_cfl    =   0
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#            INPUT AND OUTPUT           #
+#.......................................#
+time.plot_interval            =  10       # Steps between plot files
+time.checkpoint_interval      =  -3        # Steps between checkpoint files
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#               PHYSICS                 #
+#.......................................#
+incflo.gravity        =  0.0  0.0 -9.81  # Gravitational force (3D)
+
+transport.model = TwoPhaseTransport
+turbulence.model = Laminar
+
+incflo.field_boundaries = BoundaryPlane
+BoundaryPlane.planes =  xlo
+BoundaryPlane.file = ../channel_builder_multiphase_contraction/bndry_plane
+BoundaryPlane.var_names = velocity vof density
+BoundaryPlane.output_format = native
+BoundaryPlane.is_static = true
+BoundaryPlane.fluid_phase = liquid
+BoundaryPlane.io_mode = 1
+
+incflo.physics = MultiPhase ChannelBuilder
+MultiPhase.density_fluid1 = 1000.
+MultiPhase.density_fluid2 = 1.225
+ICNS.source_terms = DragForcing
+ChannelBuilder.segment_labels = s1 s2
+
+ChannelBuilder.s1.flow_speed = 0.
+ChannelBuilder.s1.diameter = 70.
+ChannelBuilder.s1.segment_start_point = 0. 200. 0.
+ChannelBuilder.s1.segment_end_point = 100. 200. 0.
+
+ChannelBuilder.s2.flow_speed = 0.
+ChannelBuilder.s2.type = Trapezoid
+ChannelBuilder.s2.top_width = 350
+ChannelBuilder.s2.bottom_width = 150
+ChannelBuilder.s2.height = 200
+ChannelBuilder.s2.segment_start_point = 100. 200. 0.
+ChannelBuilder.s2.segment_end_point = 380. 200. 0.
+
+ChannelBuilder.water_level = -110.
+ChannelBuilder.land_level = 50.
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#        ADAPTIVE MESH REFINEMENT       #
+#.......................................#
+amr.n_cell              = 64 64 32 # Grid cells at coarsest AMRlevel
+amr.max_level           = 0           # Max AMR level in hierarchy
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#              GEOMETRY                 #
+#.......................................#
+geometry.prob_lo        =   0.       0.  -100.  # Lo corner coordinates
+geometry.prob_hi        =   400.   400.   100.  # Hi corner coordinates
+geometry.is_periodic    =   0   0   0   # Periodicity x y z (0/1)
+# Boundary conditions
+xlo.type =   "mass_inflow"
+xlo.density = 1.225
+xlo.vof     = 0
+xlo.velocity = 5.0 0.0 0.0
+xhi.type =   "pressure_outflow"
+ylo.type =   "slip_wall"
+yhi.type =   "slip_wall"
+zlo.type =   "slip_wall"
+zhi.type =   "slip_wall"
+

@@ -1,6 +1,7 @@
 #ifndef SUBVOLUMEBASE_H
 #define SUBVOLUMEBASE_H
 
+#include <AMReX_Geometry.H>
 #include <AMReX_RealVect.H>
 #include "src/core/Factory.H"
 
@@ -50,6 +51,24 @@ public:
     [[nodiscard]] virtual amrex::BoxArray box_array() const
     {
         return amrex::BoxArray(0);
+    }
+
+    //! Source BoxArray used to gather data before downsampling
+    [[nodiscard]] virtual amrex::BoxArray source_box_array() const
+    {
+        return box_array();
+    }
+
+    //! Integer sampling stride in each direction from source cells
+    [[nodiscard]] virtual amrex::IntVect sampling_stride() const
+    {
+        return amrex::IntVect{1, 1, 1};
+    }
+
+    //! Output geometry for the single-level plotfile
+    [[nodiscard]] virtual amrex::Geometry output_geom() const
+    {
+        return amrex::Geometry{};
     }
 };
 

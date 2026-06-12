@@ -10,7 +10,7 @@
 #include "AMReX_Vector.H"
 #include "AMReX_REAL.H"
 
-#include "src/utilities/FieldPlaneAveragingFine.H"
+#include "src/utilities/FieldPlaneAveraging.H"
 
 using namespace amrex::literals;
 
@@ -127,8 +127,8 @@ TEST_F(FieldPlaneAveragingFineTest, test_linear_fine_only)
     constexpr int dir = 2;
     init_field_linear(velocityf, u0, dir);
 
-    kynema_sgf::FieldPlaneAveragingFine pa_fine(
-        velocityf, sim().time(), dir, true);
+    kynema_sgf::FieldPlaneAveraging pa_fine(
+        velocityf, sim().time(), dir, -1, true);
     pa_fine();
 
     constexpr int n = 20;
@@ -180,8 +180,8 @@ TEST_F(FieldPlaneAveragingFineTest, test_linear)
     constexpr int dir = 2;
     init_field_linear(velocityf, u0, dir);
 
-    kynema_sgf::FieldPlaneAveragingFine pa_fine(
-        velocityf, sim().time(), dir, true);
+    kynema_sgf::FieldPlaneAveraging pa_fine(
+        velocityf, sim().time(), dir, -1, true);
     pa_fine();
 
     constexpr int n = 20;

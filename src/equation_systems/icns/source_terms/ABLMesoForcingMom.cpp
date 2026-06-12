@@ -55,7 +55,7 @@ void ABLMesoForcingMom::mean_velocity_init(const ABLMesoscaleInput& ncfile)
 }
 
 void ABLMesoForcingMom::mean_velocity_init(
-    const VelPlaneAveragingFine& vavg, const ABLMesoscaleInput& ncfile)
+    const VelPlaneAveraging& vavg, const ABLMesoscaleInput& ncfile)
 {
     const int num_meso_ht = ncfile.nheights();
     m_nht = vavg.ncell_line();
@@ -122,7 +122,7 @@ void ABLMesoForcingMom::mean_velocity_heights(
 }
 
 void ABLMesoForcingMom::mean_velocity_heights(
-    const VelPlaneAveragingFine& vavg,
+    const VelPlaneAveraging& vavg,
     std::unique_ptr<ABLMesoscaleInput> const& ncfile)
 {
     if (m_forcing_scheme.empty()) {

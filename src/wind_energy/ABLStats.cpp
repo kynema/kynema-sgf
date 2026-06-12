@@ -22,20 +22,24 @@ using namespace amrex::literals;
 namespace kynema_sgf {
 
 ABLStats::ABLStats(
-    CFDSim& sim, const ABLWallFunction& abl_wall_func, const int dir)
+    CFDSim& sim,
+    const ABLWallFunction& abl_wall_func,
+    const int dir,
+    const int max_level)
     : m_sim(sim)
     , m_abl_wall_func(abl_wall_func)
     , m_temperature(sim.repo().get_field("temperature"))
     , m_mueff(sim.pde_manager().icns().fields().mueff)
-    , m_pa_vel(sim, dir)
-    , m_pa_temp(m_temperature, sim.time(), dir)
-    , m_pa_vel_fine(sim, dir)
-    , m_pa_temp_fine(m_temperature, sim.time(), dir)
-    , m_pa_mueff(m_mueff, sim.time(), dir)
+    , m_pa_vel(sim, dir, max_level)
+    , m_pa_temp(m_temperature, sim.time(), dir, max_level)
+    , m_pa_vel_fine(sim, dir, -1)
+    , m_pa_temp_fine(m_temperature, sim.time(), dir, -1)
+    , m_pa_mueff(m_mueff, sim.time(), dir, max_level)
     , m_pa_tt(m_pa_temp, m_pa_temp)
     , m_pa_tu(m_pa_vel, m_pa_temp)
     , m_pa_uu(m_pa_vel, m_pa_vel)
     , m_pa_uuu(m_pa_vel, m_pa_vel, m_pa_vel)
+    , m_max_level(max_level)
 {}
 
 ABLStats::~ABLStats() = default;
@@ -44,6 +48,13 @@ void ABLStats::post_init_actions()
 {
     initialize();
     calc_averages();
+    // Get the actual max level (replace -1 and cap high values)
+    int finestLevel = m_sim.repo().mesh().finestLevel();
+    if (m_max_level >= 0) {
+        m_max_level = std::min(m_max_level, finestLevel);
+    } else {
+        m_max_level = finestLevel;
+    }
 }
 
 void ABLStats::initialize()
@@ -588,15 +599,17 @@ void ABLStats::write_netcdf()
     auto sfs_stress = m_sim.repo().create_scratch_field("sfs_stress", 3);
     auto t_sfs_stress = m_sim.repo().create_scratch_field("tsfs_stress", 3);
     calc_sfs_stress_avgs(*sfs_stress, *t_sfs_stress);
-    ScratchFieldPlaneAveraging pa_sfs(*sfs_stress, m_sim.time(), m_normal_dir);
+    ScratchFieldPlaneAveraging pa_sfs(
+        *sfs_stress, m_sim.time(), m_normal_dir, m_max_level);
     pa_sfs();
     ScratchFieldPlaneAveraging pa_tsfs(
-        *t_sfs_stress, m_sim.time(), m_normal_dir);
+        *t_sfs_stress, m_sim.time(), m_normal_dir, m_max_level);
     pa_tsfs();
 
     if (m_sim.repo().field_exists("tke")) {
         auto& m_ksgs = m_sim.repo().get_field("tke");
-        FieldPlaneAveraging pa_ksgs(m_ksgs, m_sim.time(), m_normal_dir);
+        FieldPlaneAveraging pa_ksgs(
+            m_ksgs, m_sim.time(), m_normal_dir, m_max_level);
         pa_ksgs();
     }
 
@@ -757,28 +770,28 @@ void ABLStats::write_netcdf()
                 m_sim.time().delta_t());
             {
                 FieldPlaneAveraging pa_tke_buoy_prod(
-                    tke_dissip, m_sim.time(), m_normal_dir);
+                    tke_dissip, m_sim.time(), m_normal_dir, m_max_level);
                 pa_tke_buoy_prod();
                 auto var = grp.var("tke_buoy");
                 var.put(pa_tke_buoy_prod.line_average().data(), start, count);
             }
             {
                 FieldPlaneAveraging pa_tke_shear_prod(
-                    tke_shear_prod, m_sim.time(), m_normal_dir);
+                    tke_shear_prod, m_sim.time(), m_normal_dir, m_max_level);
                 pa_tke_shear_prod();
                 auto var = grp.var("tke_shear");
                 var.put(pa_tke_shear_prod.line_average().data(), start, count);
             }
             {
                 FieldPlaneAveraging pa_tke_dissip(
-                    tke_dissip, m_sim.time(), m_normal_dir);
+                    tke_dissip, m_sim.time(), m_normal_dir, m_max_level);
                 pa_tke_dissip();
                 auto var = grp.var("tke_dissip");
                 var.put(pa_tke_dissip.line_average().data(), start, count);
             }
             {
                 ScratchFieldPlaneAveraging pa_tke_diff(
-                    *tke_diffusion, m_sim.time(), m_normal_dir);
+                    *tke_diffusion, m_sim.time(), m_normal_dir, m_max_level);
                 pa_tke_diff();
                 auto var = grp.var("tke_diff");
                 var.put(pa_tke_diff.line_average().data(), start, count);

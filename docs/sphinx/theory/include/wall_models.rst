@@ -17,7 +17,7 @@ where :math:`s` is the horizontal wind speed :math:`s = \sqrt{u_{1}^2+ u_{2}^2}`
 is the wall temperature, :math:`\kappa` is the von Karman constant, and :math:`z_0` is the surface roughness length and :math:`z_b` is the reference height (default is the first cell center). The
 :math:`\overline{\phantom{l}.\phantom{l}}` operator indicates a horizontal plane
 average.  The quantities :math:`\psi_m, \psi_h` are computed using the Monin-Obukhov similarity law
-following the calculations in `ven der Lann et al <https://doi.org/10.1002/we.2017>`_ and `Dyer (1974)` formulation  for unstable stratification (:math:`z_b/L < 0`):
+following the calculations in `ven der Lann et al <https://doi.org/10.1002/we.2017>`_ and `Dyer (1974) <https://doi.org/10.1007/BF00240838>`_ formulation  for unstable stratification (:math:`z_b/L < 0`):
 
 .. math::
     \begin{align}
