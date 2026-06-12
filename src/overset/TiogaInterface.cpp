@@ -59,6 +59,14 @@ void TiogaInterface::post_init_actions()
 
 void TiogaInterface::post_regrid_actions()
 {
+    // Initialize the scratch fields again after regrid
+    const auto& repo = m_sim.repo();
+    const int num_ghost = m_sim.pde_manager().num_ghost_state();
+    m_iblank_cell_host = repo.create_int_scratch_field_on_host(
+        "iblank_cell_host", 1, num_ghost, FieldLoc::CELL);
+    m_iblank_node_host = repo.create_int_scratch_field_on_host(
+        "iblank_node_host", 1, num_ghost, FieldLoc::NODE);
+
     amr_to_tioga_mesh();
     amr_to_tioga_iblank();
 
