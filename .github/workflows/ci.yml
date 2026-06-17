@@ -594,7 +594,7 @@ jobs:
     needs: Formatting
     runs-on: ubuntu-24.04
     container:
-      image: roodj/kynema
+      image: roodj/kynema-snapshot:latest
       env:
           KYNEMA_MANAGER: /kynema-manager
           E4S_MACHINE: true
@@ -610,11 +610,11 @@ jobs:
             spack env activate e4s-build && \
             cd ${KYNEMA_MANAGER}/environments/e4s-build && \
             ln -s ${GITHUB_WORKSPACE} kynema-sgf && \
-            spack develop --no-modify-concrete-specs --no-clone kynema-sgf@=main && \
+            spack develop --no-modify-concrete-specs --no-clone kynema-sgf@main && \
             spack rm kynema && \
             spack add kynema-sgf@main && \
             spack concretize -f && \
             spack install && \
             spack cd -b kynema-sgf && \
-            spack build-env kynema-sgf ctest -j $(nproc) -L unit --output-on-failure \
+            spack build-env kynema-sgf ctest -L unit --output-on-failure \
           "
