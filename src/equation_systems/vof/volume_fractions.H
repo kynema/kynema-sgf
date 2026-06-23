@@ -336,10 +336,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real volume_intercept(
         teta =
             std::acos(
                 amrex::max(
-                    -1.0_rt,
-                    amrex::min(
-                        1.0_rt,
-                        q / (p * p12 + const_tiny)))) /
+                    -1.0_rt, amrex::min(1.0_rt, q / (p * p12 + const_tiny)))) /
             3.0_rt;
         cs = std::cos(teta);
         alpha = (p12 * (std::sqrt(3.0_rt * (1.0_rt - cs * cs)) - cs)) + m12;
@@ -352,10 +349,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real volume_intercept(
         teta =
             std::acos(
                 amrex::max(
-                    -1.0_rt,
-                    amrex::min(
-                        1.0_rt,
-                        q / (p * p12 + const_tiny)))) /
+                    -1.0_rt, amrex::min(1.0_rt, q / (p * p12 + const_tiny)))) /
             3.0_rt;
         cs = std::cos(teta);
         alpha = (p12 * (std::sqrt(3.0_rt * (1.0_rt - cs * cs)) - cs)) + 0.5_rt;
