@@ -159,6 +159,8 @@ TEST_F(PointCloudForestTest, point_cloud_selection_and_interpolation)
     constexpr amrex::Real tol = 1.0e-12_rt;
 
     // Exact-point selections: drag = cd * lad
+    // Point cloud forms convex hull triangle in xy-plane:
+    // Vertices: (2.5, 2.5), (4.5, 2.5), (2.5, 6.5)
     const auto drag_exact_p1 =
         utils::field_probe(f_drag, 0, 2, 2, 2); // x,y,z = 2.5,2.5,2.5
     const auto drag_exact_p2 =
@@ -168,21 +170,41 @@ TEST_F(PointCloudForestTest, point_cloud_selection_and_interpolation)
     EXPECT_NEAR(utils::field_probe(f_id, 0, 2, 2, 2), 0.0_rt, tol);
 
     // Midpoint interpolation from the two nearest points (far LAD=100 point
-    // must be ignored because neighbors=2).
+    // must be ignored because neighbors=2). Cell is inside hull.
     const auto drag_mid =
         utils::field_probe(f_drag, 0, 3, 2, 2); // x,y,z = 3.5,2.5,2.5
     EXPECT_NEAR(drag_mid, 4.0_rt, tol);
 
     // Unequal-distance interpolation (still only nearest two points).
+    // Cell at (2.5, 3.5) is inside hull.
     const auto drag_off =
         utils::field_probe(f_drag, 0, 2, 3, 2); // x,y,z = 2.5,3.5,2.5
     const auto expected_lad =
         idw_lad_from_two(1.0_rt, 1.0_rt, std::sqrt(5.0_rt), 3.0_rt, 1.0e-12_rt);
     EXPECT_NEAR(drag_off, 2.0_rt * expected_lad, tol);
 
+    // Cell at (3.5, 3.5) should be inside hull and interpolate.
+    const auto drag_interior =
+        utils::field_probe(f_drag, 0, 3, 3, 2); // x,y,z = 3.5,3.5,2.5
+    EXPECT_GT(drag_interior, 0.0_rt); // Should have non-zero drag if inside hull
+    EXPECT_NEAR(utils::field_probe(f_id, 0, 3, 3, 2), 0.0_rt, tol);
+
     // Outside all cloud extents should remain untouched.
     EXPECT_NEAR(utils::field_probe(f_drag, 0, 0, 0, 0), 0.0_rt, tol);
     EXPECT_NEAR(utils::field_probe(f_id, 0, 0, 0, 0), -1.0_rt, tol);
+
+    // Cell at (5, 2) center (5.5, 2.5) is outside hull (x > 4.5).
+    // Even though it's near the second cloud point, it should be excluded.
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 5, 2, 2), 0.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_id, 0, 5, 2, 2), -1.0_rt, tol);
+
+    // Cell at (0, 2) center (0.5, 2.5) is outside hull (x < 2.5).
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 0, 2, 2), 0.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_id, 0, 0, 2, 2), -1.0_rt, tol);
+
+    // Cell at (2, 7) center (2.5, 7.5) is outside hull (y > 6.5).
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 2, 7, 2), 0.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_id, 0, 2, 7, 2), -1.0_rt, tol);
 }
 
 } // namespace kynema_sgf_tests
