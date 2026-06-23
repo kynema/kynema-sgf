@@ -439,7 +439,10 @@ void MultiPhase::levelset2vof()
                 mx = std::abs(mx / 32.0_rt);
                 my = std::abs(my / 32.0_rt);
                 mz = std::abs(mz / 32.0_rt);
-                const amrex::Real normL1 = (mx + my + mz);
+                // guard against zero-normal
+                const amrex::Real normL1 =
+                    (mx + my + mz) +
+                    std::numeric_limits<amrex::Real>::epsilon();
                 mx = mx / normL1;
                 my = my / normL1;
                 mz = mz / normL1;
