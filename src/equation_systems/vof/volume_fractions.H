@@ -284,7 +284,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real volume_intercept(
     const amrex::Real b3,
     const amrex::Real volF)
 {
-    amrex::Real const_tiny = std::numeric_limits<amrex::Real>::epsilon();
+    constexpr amrex::Real tiny = std::numeric_limits<amrex::Real>::epsilon();
     // (1) "order coefficients: m1<m2<m3"
     // (2) "get ranges: V1<V2<v3"
     // (3) "limit ch (0.d0 < ch < 0.5d0)"
@@ -306,7 +306,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real volume_intercept(
     }
 
     amrex::Real m12 = m1 + m2;
-    amrex::Real pr = amrex::max<amrex::Real>(6.0_rt * m1 * m2 * m3, const_tiny);
+    amrex::Real pr = amrex::max<amrex::Real>(6.0_rt * m1 * m2 * m3, tiny);
     amrex::Real V1 = m1 * m1 * m1 / pr;
     amrex::Real V2 = V1 + (0.5_rt * (m2 - m1) / m3);
 
@@ -335,8 +335,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real volume_intercept(
         p12 = std::sqrt(amrex::max(0.0_rt, p));
         teta =
             std::acos(
-                amrex::max(
-                    -1.0_rt, amrex::min(1.0_rt, q / (p * p12 + const_tiny)))) /
+                amrex::max(-1.0_rt, amrex::min(1.0_rt, q / (p * p12 + tiny)))) /
             3.0_rt;
         cs = std::cos(teta);
         alpha = (p12 * (std::sqrt(3.0_rt * (1.0_rt - cs * cs)) - cs)) + m12;
@@ -348,8 +347,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real volume_intercept(
         p12 = std::sqrt(amrex::max(0.0_rt, p));
         teta =
             std::acos(
-                amrex::max(
-                    -1.0_rt, amrex::min(1.0_rt, q / (p * p12 + const_tiny)))) /
+                amrex::max(-1.0_rt, amrex::min(1.0_rt, q / (p * p12 + tiny)))) /
             3.0_rt;
         cs = std::cos(teta);
         alpha = (p12 * (std::sqrt(3.0_rt * (1.0_rt - cs * cs)) - cs)) + 0.5_rt;
@@ -378,7 +376,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real cut_volume(
     const amrex::Real r0,
     const amrex::Real dr0)
 {
-    const amrex::Real const_tiny = std::numeric_limits<amrex::Real>::epsilon();
+    constexpr amrex::Real tiny = std::numeric_limits<amrex::Real>::epsilon();
     amrex::Real al;
 
     // move origin to x0
@@ -392,8 +390,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real cut_volume(
     // normalized equation: m1*y1 + m2*y2 + m3*y3 = alh, with 0 <= m1 <= m2 <=
     // m3 the problem is then solved again in the unit cube
     amrex::Real tmp = amrex::max<amrex::Real>(
-        std::numeric_limits<amrex::Real>::epsilon(),
-        (std::abs(m1) * dr0) + std::abs(m2) + std::abs(m3));
+        tiny, (std::abs(m1) * dr0) + std::abs(m2) + std::abs(m3));
     amrex::Real n1 = std::abs(m1) / tmp; // need positive coefficients
     amrex::Real n2 = std::abs(m2) / tmp;
     amrex::Real n3 = std::abs(m3) / tmp;
@@ -435,7 +432,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real cut_volume(
             v = a * a * a / (6.0_rt * vm1 * vm2 * vm3);
         } else if (a < vm2) {
             v = (a * (a - vm1) / (2.0_rt * vm2 * vm3)) +
-                (vm1 * vm1 / (6.0_rt * vm2 * vm3 + const_tiny));
+                (vm1 * vm1 / (6.0_rt * vm2 * vm3 + tiny));
         } else if (a < amrex::min(vm12, vm3)) {
             v = (a * a * (3.0_rt * vm12 - a) + vm1 * vm1 * (vm1 - 3.0_rt * a) +
                  vm2 * vm2 * (vm2 - 3.0_rt * a)) /
