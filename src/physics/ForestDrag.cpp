@@ -7,10 +7,38 @@
 #include "src/utilities/trig_ops.H"
 #include "src/utilities/IOManager.H"
 #include "AMReX_REAL.H"
+#include <algorithm>
+#include <filesystem>
+#include <limits>
+#include <sstream>
 
 using namespace amrex::literals;
 
 namespace kynema_sgf::forestdrag {
+
+namespace {
+
+std::string resolve_forest_path(const std::string& list_file, const std::string& path)
+{
+    namespace fs = std::filesystem;
+    fs::path input(path);
+    if (input.is_absolute()) {
+        return input.string();
+    }
+    const fs::path parent = fs::path(list_file).parent_path();
+    return (parent / input).lexically_normal().string();
+}
+
+bool parse_data_line(const std::string& raw_line, std::istringstream& iss)
+{
+    const auto pos = raw_line.find('#');
+    const auto line = raw_line.substr(0, pos);
+    iss.clear();
+    iss.str(line);
+    return !(line.empty() || line.find_first_not_of(" \t\r\n") == std::string::npos);
+}
+
+} // namespace
 
 ForestDrag::ForestDrag(CFDSim& sim)
     : m_sim(sim)
@@ -20,6 +48,11 @@ ForestDrag::ForestDrag(CFDSim& sim)
 
     amrex::ParmParse pp(identifier());
     pp.query("forest_file", m_forest_file);
+    pp.query("forest_point_cloud_list", m_forest_point_cloud_list);
+    pp.query("forest_point_neighbors", m_forest_point_neighbors);
+    pp.query("forest_point_interp_eps", m_forest_point_interp_eps);
+    m_forest_point_neighbors =
+        std::max(1, std::min(m_forest_point_neighbors, 8));
 
     m_sim.io_manager().register_output_var("forest_drag");
     m_sim.io_manager().register_output_var("forest_id");
@@ -34,11 +67,22 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
 {
     BL_PROFILE("kynema-sgf::" + this->identifier() + "::initialize_fields");
 
-    const auto forests = read_forest(level);
+    amrex::Vector<ForestPoint> cloud_points;
+    amrex::Vector<Forest> forests;
+    if (!m_forest_point_cloud_list.empty()) {
+        forests = read_point_cloud_forests(level, cloud_points);
+    } else {
+        forests = read_forest(level);
+    }
+
     amrex::Gpu::DeviceVector<Forest> d_forests(forests.size());
     amrex::Gpu::copy(
         amrex::Gpu::hostToDevice, forests.begin(), forests.end(),
         d_forests.begin());
+    amrex::Gpu::DeviceVector<ForestPoint> d_cloud_points(cloud_points.size());
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, cloud_points.begin(), cloud_points.end(),
+        d_cloud_points.begin());
 
     const auto& dx = geom.CellSizeArray();
     const auto& prob_lo = geom.ProbLoArray();
@@ -57,22 +101,91 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 const auto& levelDrag = drag.array(mfi);
                 const auto& levelId = fst_id.array(mfi);
                 const auto* forests_ptr = d_forests.data();
+                const auto* points_ptr = d_cloud_points.data();
+                const int num_neighbors = m_forest_point_neighbors;
+                const amrex::Real interp_eps = m_forest_point_interp_eps;
                 amrex::ParallelFor(
                     bxi, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         const auto x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
                         const auto y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
                         const auto z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
                         const auto& fst = forests_ptr[nf];
-                        const auto radius = std::sqrt(
-                            ((x - fst.m_x_forest) * (x - fst.m_x_forest)) +
-                            ((y - fst.m_y_forest) * (y - fst.m_y_forest)));
-                        if (z <= fst.m_height_forest &&
-                            radius <= (0.5_rt * fst.m_diameter_forest)) {
-                            const auto treelaimax = fst.lm();
-                            levelId(i, j, k) = fst.m_id;
-                            levelDrag(i, j, k) +=
-                                fst.m_cd_forest *
-                                fst.area_fraction(z, treelaimax);
+                        if (fst.m_drag_mode == 0) {
+                            const auto radius = std::sqrt(
+                                ((x - fst.m_x_forest) * (x - fst.m_x_forest)) +
+                                ((y - fst.m_y_forest) * (y - fst.m_y_forest)));
+                            if (z <= fst.m_height_forest &&
+                                radius <= (0.5_rt * fst.m_diameter_forest)) {
+                                const auto treelaimax = fst.lm();
+                                levelId(i, j, k) = fst.m_id;
+                                levelDrag(i, j, k) +=
+                                    fst.m_cd_forest *
+                                    fst.area_fraction(z, treelaimax);
+                            }
+                        } else if (fst.m_cloud_point_count > 0) {
+                            constexpr int max_neighbors = 8;
+                            constexpr amrex::Real huge = 1.0e30_rt;
+                            amrex::Real nearest_d2[max_neighbors];
+                            amrex::Real nearest_lad[max_neighbors];
+
+                            for (int n = 0; n < max_neighbors; ++n) {
+                                nearest_d2[n] = huge;
+                                nearest_lad[n] = 0.0_rt;
+                            }
+
+                            const int pstart = fst.m_cloud_point_offset;
+                            const int pend = pstart + fst.m_cloud_point_count;
+                            for (int p = pstart; p < pend; ++p) {
+                                const auto& pt = points_ptr[p];
+                                const auto dxp = x - pt.m_x;
+                                const auto dyp = y - pt.m_y;
+                                const auto dzp = z - pt.m_z;
+                                const auto d2 = (dxp * dxp) + (dyp * dyp) +
+                                                (dzp * dzp);
+
+                                if (d2 < nearest_d2[num_neighbors - 1]) {
+                                    int insert = num_neighbors - 1;
+                                    while (
+                                        insert > 0 &&
+                                        d2 < nearest_d2[insert - 1]) {
+                                        nearest_d2[insert] =
+                                            nearest_d2[insert - 1];
+                                        nearest_lad[insert] =
+                                            nearest_lad[insert - 1];
+                                        --insert;
+                                    }
+                                    nearest_d2[insert] = d2;
+                                    nearest_lad[insert] = pt.m_lad;
+                                }
+                            }
+
+                            const auto eps2 = interp_eps * interp_eps;
+                            amrex::Real lad_interp = 0.0_rt;
+                            if (nearest_d2[0] < eps2) {
+                                lad_interp = nearest_lad[0];
+                            } else {
+                                amrex::Real sum_w = 0.0_rt;
+                                amrex::Real sum_lad = 0.0_rt;
+                                for (int n = 0; n < num_neighbors; ++n) {
+                                    if (nearest_d2[n] >= huge) {
+                                        continue;
+                                    }
+                                    const auto w =
+                                        1.0_rt /
+                                        std::sqrt(nearest_d2[n] + eps2);
+                                    sum_w += w;
+                                    sum_lad += w * nearest_lad[n];
+                                }
+                                if (sum_w > 0.0_rt) {
+                                    lad_interp = sum_lad / sum_w;
+                                }
+                            }
+
+                            if (lad_interp > 0.0_rt) {
+                                levelId(i, j, k) = fst.m_id;
+                                levelDrag(i, j, k) +=
+                                    fst.m_cd_forest * lad_interp;
+                            }
                         }
                     });
             }
@@ -124,6 +237,119 @@ amrex::Vector<Forest> ForestDrag::read_forest(const int level) const
         cnt++;
     }
     file.close();
+    return forests;
+}
+
+amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
+    const int level, amrex::Vector<ForestPoint>& points) const
+{
+    BL_PROFILE(
+        "kynema-sgf::" + this->identifier() + "::read_point_cloud_forests");
+
+    std::ifstream list_file(m_forest_point_cloud_list, std::ios::in);
+    if (!list_file.good()) {
+        amrex::Abort(
+            "Cannot find file " + m_forest_point_cloud_list +
+            " for forest point cloud list");
+    }
+
+    amrex::Vector<Forest> forests;
+    const auto& geom = m_sim.repo().mesh().Geom(level);
+    const auto& ba = m_sim.repo().mesh().boxArray(level);
+
+    std::string line;
+    std::istringstream line_stream;
+    int cnt = 0;
+    while (std::getline(list_file, line)) {
+        if (!parse_data_line(line, line_stream)) {
+            continue;
+        }
+
+        amrex::Real cd = 0.0_rt;
+        std::string cloud_file;
+        if (!(line_stream >> cd >> cloud_file)) {
+            amrex::Abort(
+                "Malformed line in " + m_forest_point_cloud_list +
+                ". Expected: cd point_file");
+        }
+
+        const auto cloud_path =
+            resolve_forest_path(m_forest_point_cloud_list, cloud_file);
+        std::ifstream cloud_data(cloud_path, std::ios::in);
+        if (!cloud_data.good()) {
+            amrex::Abort("Cannot find forest point cloud file " + cloud_path);
+        }
+
+        Forest f;
+        f.m_id = cnt;
+        f.m_drag_mode = 1;
+        f.m_cd_forest = cd;
+        f.m_cloud_point_offset = static_cast<int>(points.size());
+
+        amrex::Real xmin = std::numeric_limits<amrex::Real>::max();
+        amrex::Real ymin = std::numeric_limits<amrex::Real>::max();
+        amrex::Real zmin = std::numeric_limits<amrex::Real>::max();
+        amrex::Real xmax = std::numeric_limits<amrex::Real>::lowest();
+        amrex::Real ymax = std::numeric_limits<amrex::Real>::lowest();
+        amrex::Real zmax = std::numeric_limits<amrex::Real>::lowest();
+
+        std::string p_line;
+        std::istringstream p_stream;
+        while (std::getline(cloud_data, p_line)) {
+            if (!parse_data_line(p_line, p_stream)) {
+                continue;
+            }
+
+            ForestPoint pt;
+            if (!(p_stream >> pt.m_x >> pt.m_y >> pt.m_z >> pt.m_lad)) {
+                amrex::Abort(
+                    "Malformed point entry in " + cloud_path +
+                    ". Expected: x y z lad");
+            }
+
+            points.push_back(pt);
+            xmin = std::min(xmin, pt.m_x);
+            ymin = std::min(ymin, pt.m_y);
+            zmin = std::min(zmin, pt.m_z);
+            xmax = std::max(xmax, pt.m_x);
+            ymax = std::max(ymax, pt.m_y);
+            zmax = std::max(zmax, pt.m_z);
+        }
+
+        f.m_cloud_point_count = static_cast<int>(points.size()) - f.m_cloud_point_offset;
+        if (f.m_cloud_point_count <= 0) {
+            amrex::Abort("Forest point cloud file has no valid points: " + cloud_path);
+        }
+
+        const amrex::Real pad = 0.5_rt *
+                                (geom.CellSizeArray()[0] +
+                                 geom.CellSizeArray()[1] +
+                                 geom.CellSizeArray()[2]) /
+                                3.0_rt;
+        f.m_bbox_xlo = xmin - pad;
+        f.m_bbox_ylo = ymin - pad;
+        f.m_bbox_zlo = zmin - pad;
+        f.m_bbox_xhi = xmax + pad;
+        f.m_bbox_yhi = ymax + pad;
+        f.m_bbox_zhi = zmax + pad;
+
+        // Keep legacy fields coherent for diagnostics/output.
+        f.m_x_forest = 0.5_rt * (xmin + xmax);
+        f.m_y_forest = 0.5_rt * (ymin + ymax);
+        f.m_height_forest = zmax;
+        f.m_diameter_forest =
+            2.0_rt * std::max(xmax - f.m_x_forest, ymax - f.m_y_forest);
+        f.m_type_forest = 0.0_rt;
+        f.m_lai_forest = 0.0_rt;
+        f.m_laimax_forest = 0.0_rt;
+
+        if (ba.intersects(f.bounding_box(geom))) {
+            forests.push_back(f);
+        }
+        ++cnt;
+    }
+
+    list_file.close();
     return forests;
 }
 } // namespace kynema_sgf::forestdrag

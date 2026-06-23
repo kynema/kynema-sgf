@@ -16,6 +16,9 @@ namespace kynema_sgf::forestdrag {
 struct Forest
 {
     int m_id{-1};
+    int m_drag_mode{0};
+    int m_cloud_point_offset{0};
+    int m_cloud_point_count{0};
     amrex::Real m_type_forest;
     amrex::Real m_x_forest;
     amrex::Real m_y_forest;
@@ -24,6 +27,12 @@ struct Forest
     amrex::Real m_cd_forest;
     amrex::Real m_lai_forest;
     amrex::Real m_laimax_forest;
+    amrex::Real m_bbox_xlo{0.0_rt};
+    amrex::Real m_bbox_ylo{0.0_rt};
+    amrex::Real m_bbox_zlo{0.0_rt};
+    amrex::Real m_bbox_xhi{0.0_rt};
+    amrex::Real m_bbox_yhi{0.0_rt};
+    amrex::Real m_bbox_zhi{0.0_rt};
 
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real lm() const
     {
@@ -67,6 +76,12 @@ struct Forest
     AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::RealBox real_bounding_box(
         const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>& prob_lo) const
     {
+        if (m_drag_mode == 1) {
+            return {
+                m_bbox_xlo, m_bbox_ylo, m_bbox_zlo, m_bbox_xhi, m_bbox_yhi,
+                m_bbox_zhi};
+        }
+
         const amrex::Real search_tol = 1.1_rt;
         const amrex::Real search_radius =
             0.5_rt * search_tol * m_diameter_forest;
@@ -84,6 +99,14 @@ struct Forest
         return utils::realbox_to_box(
             real_bounding_box(geom.ProbLoArray()), geom);
     }
+};
+
+struct ForestPoint
+{
+    amrex::Real m_x;
+    amrex::Real m_y;
+    amrex::Real m_z;
+    amrex::Real m_lad;
 };
 
 /** Forestdrag Flow physics
@@ -114,11 +137,17 @@ public:
 
     [[nodiscard]] amrex::Vector<Forest> read_forest(int level) const;
 
+    [[nodiscard]] amrex::Vector<Forest>
+    read_point_cloud_forests(int level, amrex::Vector<ForestPoint>& points) const;
+
 private:
     CFDSim& m_sim;
     Field& m_forest_drag;
     Field& m_forest_id;
     std::string m_forest_file{"forest.amrwind"};
+    std::string m_forest_point_cloud_list;
+    int m_forest_point_neighbors{4};
+    amrex::Real m_forest_point_interp_eps{1.0e-12_rt};
 };
 } // namespace kynema_sgf::forestdrag
 
