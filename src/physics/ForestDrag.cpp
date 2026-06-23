@@ -20,6 +20,7 @@ namespace kynema_sgf::forestdrag {
 
 namespace {
 
+// Resolve relative forest paths against the directory of the list/config file.
 std::string
 resolve_forest_path(const std::string& list_file, const std::string& path)
 {
@@ -32,6 +33,7 @@ resolve_forest_path(const std::string& list_file, const std::string& path)
     return (parent / input).lexically_normal().string();
 }
 
+// Strip inline comments and whitespace-only rows from point-cloud data files.
 bool parse_data_line(const std::string& raw_line, std::istringstream& iss)
 {
     const auto pos = raw_line.find('#');
@@ -42,6 +44,7 @@ bool parse_data_line(const std::string& raw_line, std::istringstream& iss)
         line.empty() || line.find_first_not_of(" \t\r\n") == std::string::npos);
 }
 
+// Compute a 2D convex hull in the x-y plane using the monotonic chain method.
 int compute_convex_hull_2d(
     const std::vector<std::pair<amrex::Real, amrex::Real>>& points,
     std::vector<std::pair<amrex::Real, amrex::Real>>& hull)
@@ -99,6 +102,7 @@ ForestDrag::ForestDrag(CFDSim& sim)
     , m_forest_id(sim.repo().declare_field("forest_id", 1, 1, 1))
 {
 
+    // Accept either legacy cylinder input or point-cloud input, but not both.
     amrex::ParmParse pp(identifier());
     pp.query("forest_file", m_forest_file);
     const auto cyl_forest = pp.contains("forest_file");
@@ -110,6 +114,7 @@ ForestDrag::ForestDrag(CFDSim& sim)
     }
     pp.queryarr("forest_point_cloud_files", m_forest_point_cloud_files);
     if (point_forest) {
+        // One drag coefficient is required per point-cloud forest file.
         pp.getarr("forest_coefficients_of_drag", m_forest_cd);
         AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
             m_forest_cd.size() == m_forest_point_cloud_files.size(),
@@ -117,10 +122,12 @@ ForestDrag::ForestDrag(CFDSim& sim)
             "number of entries as 'forest_point_cloud_files'");
         pp.query("forest_point_neighbors", m_forest_point_neighbors);
         pp.query("forest_point_interp_eps", m_forest_point_interp_eps);
+        // Keep neighbor count bounded by fixed-size device arrays in kernels.
         m_forest_point_neighbors =
             std::max(1, std::min(m_forest_point_neighbors, 8));
     }
 
+    // Register outputs and initialize field defaults.
     m_sim.io_manager().register_output_var("forest_drag");
     m_sim.io_manager().register_output_var("forest_id");
 
@@ -134,6 +141,7 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
 {
     BL_PROFILE("kynema-sgf::" + this->identifier() + "::initialize_fields");
 
+    // Build host-side forest metadata for the requested AMR level.
     amrex::Vector<ForestPoint> cloud_points;
     amrex::Vector<kynema_sgf::forestdrag::ForestHullVertex> hull_vertices;
     amrex::Vector<Forest> forests;
@@ -143,6 +151,8 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
         forests = read_cylinder_forests(level);
     }
 
+    // Mirror host vectors on device so kernels can access forest descriptors,
+    // point samples, and precomputed hull vertices.
     amrex::Gpu::DeviceVector<Forest> d_forests(forests.size());
     amrex::Gpu::copy(
         amrex::Gpu::hostToDevice, forests.begin(), forests.end(),
@@ -164,6 +174,8 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
     const auto& prob_lo = geom.ProbLoArray();
     auto& drag = m_forest_drag(level);
     auto& fst_id = m_forest_id(level);
+
+    // Rebuild fields from scratch each time we initialize this level.
     drag.setVal(0.0_rt);
     fst_id.setVal(-1.0_rt);
 #ifdef AMREX_USE_OMP
@@ -172,6 +184,7 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
     for (amrex::MFIter mfi(m_forest_drag(level)); mfi.isValid(); ++mfi) {
         const auto& vbx = mfi.growntilebox();
         for (int nf = 0; nf < static_cast<int>(forests.size()); nf++) {
+            // First trim work to a forest-local bounding box before per-cell logic.
             const auto bxi = vbx & forests[nf].bounding_box(geom);
             if (!bxi.isEmpty()) {
                 const auto& levelDrag = drag.array(mfi);
@@ -183,10 +196,13 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 const amrex::Real interp_eps = m_forest_point_interp_eps;
                 amrex::ParallelFor(
                     bxi, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                        // Convert integer cell indices to cell-center coordinates.
                         const auto x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
                         const auto y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
                         const auto z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
                         const auto& fst = forests_ptr[nf];
+
+                        // Legacy mode: cylindrical footprint with vertical LAD profile.
                         if (fst.m_drag_mode == 0) {
                             const auto radius = std::sqrt(
                                 ((x - fst.m_x_forest) * (x - fst.m_x_forest)) +
@@ -202,6 +218,8 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                         } else if (
                             fst.m_cloud_point_count > 0 &&
                             fst.point_in_hull(x, y, hull_verts_ptr)) {
+                            // Point-cloud mode: only evaluate interpolation for
+                            // cells inside the convex hull projected in x-y.
                             constexpr int max_neighbors = 8;
                             constexpr amrex::Real huge = 1.0e30_rt;
                             amrex::Real nearest_d2[max_neighbors];
@@ -224,6 +242,7 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                                 const auto d2 =
                                     (dxp * dxp) + (dyp * dyp) + (dzp * dzp);
 
+                                // Maintain a sorted nearest-neighbor list in-place.
                                 if (d2 < nearest_d2[num_neighbors - 1]) {
                                     int insert = num_neighbors - 1;
                                     while (insert > 0 &&
@@ -240,12 +259,15 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                                 }
                             }
 
+                            // Limit interpolation above canopy by nearest sample heights.
                             amrex::Real max_z_neighbors = 0.0_rt;
                             for (int i = 0; i < num_neighbors; ++i) {
                                 max_z_neighbors = amrex::max<amrex::Real>(
                                     max_z_neighbors, nearest_z[i]);
                             }
 
+                            // Interpolate LAD with inverse-distance weighting.
+                            // If we are essentially on a sample point, use it directly.
                             const auto eps2 = interp_eps * interp_eps;
                             amrex::Real lad_interp = 0.0_rt;
                             if (nearest_d2[0] < eps2) {
@@ -268,6 +290,7 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                                 }
                             }
 
+                            // Apply drag contribution only for positive interpolated LAD.
                             if (lad_interp > 0.0_rt) {
                                 levelId(i, j, k) = fst.m_id;
                                 levelDrag(i, j, k) +=
@@ -282,6 +305,7 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
 
 void ForestDrag::post_regrid_actions()
 {
+    // Forest fields depend on geometry and valid boxes, so recompute on regrid.
     const int nlevels = m_sim.repo().num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
         initialize_fields(lev, m_sim.repo().mesh().Geom(lev));
@@ -292,6 +316,7 @@ amrex::Vector<Forest> ForestDrag::read_cylinder_forests(const int level) const
 {
     BL_PROFILE("kynema-sgf::" + this->identifier() + "::read_cylinder_forests");
 
+    // Legacy format: one row per cylindrical forest.
     std::ifstream file(m_forest_file, std::ios::in);
     if (!file.good()) {
         amrex::Abort("Cannot find file " + m_forest_file);
@@ -316,7 +341,7 @@ amrex::Vector<Forest> ForestDrag::read_cylinder_forests(const int level) const
         f.m_lai_forest = value7;
         f.m_laimax_forest = value8;
 
-        // Only keep a forest if the rank owns it
+        // Keep only forests intersecting this rank's local level boxes.
         const auto bx = f.bounding_box(geom);
         if (ba.intersects(bx)) {
             forests.push_back(f);
@@ -336,6 +361,7 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
     BL_PROFILE(
         "kynema-sgf::" + this->identifier() + "::read_point_cloud_forests");
 
+    // Point-cloud mode builds one Forest descriptor per input file.
     amrex::Vector<Forest> forests;
     const auto& geom = m_sim.repo().mesh().Geom(level);
     const auto& ba = m_sim.repo().mesh().boxArray(level);
@@ -356,6 +382,7 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
         f.m_cd_forest = m_forest_cd[i];
         f.m_cloud_point_offset = static_cast<int>(points.size());
 
+        // Track extents for a quick coarse bounding box test.
         amrex::Real xmin = std::numeric_limits<amrex::Real>::max();
         amrex::Real ymin = std::numeric_limits<amrex::Real>::max();
         amrex::Real zmin = std::numeric_limits<amrex::Real>::max();
@@ -389,6 +416,7 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
             zmax = std::max(zmax, pt.m_z);
         }
 
+        // Number of points belonging to this forest in the flattened point array.
         f.m_cloud_point_count =
             static_cast<int>(points.size()) - f.m_cloud_point_offset;
         if (f.m_cloud_point_count <= 0) {
@@ -396,7 +424,7 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
                 "Forest point cloud file has no valid points: " + cloud_file);
         }
 
-        // Compute 2D convex hull in xy-plane
+        // Precompute the x-y convex hull used as an interpolation domain filter.
         std::vector<std::pair<amrex::Real, amrex::Real>> hull_2d;
         compute_convex_hull_2d(xy_points, hull_2d);
         f.m_hull_vertex_offset = static_cast<int>(hull_vertices.size());
@@ -405,6 +433,8 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
             hull_vertices.push_back({pt.first, pt.second});
         }
 
+        // Slightly pad the point-cloud extents to avoid missing edge cells due to
+        // floating-point and cell-center alignment effects.
         const amrex::Real pad =
             0.5_rt *
             (geom.CellSizeArray()[0] + geom.CellSizeArray()[1] +
@@ -427,6 +457,7 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
         f.m_lai_forest = 0.0_rt;
         f.m_laimax_forest = 0.0_rt;
 
+        // Keep only forests intersecting this rank's local level boxes.
         if (ba.intersects(f.bounding_box(geom))) {
             forests.push_back(f);
         }

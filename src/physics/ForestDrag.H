@@ -13,20 +13,30 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::forestdrag {
 
+// One vertex in the precomputed x-y convex hull used by point-cloud forests.
 struct ForestHullVertex
 {
     amrex::Real m_x;
     amrex::Real m_y;
 };
 
+// Per-forest descriptor consumed by host logic and device kernels.
 struct Forest
 {
+    // Forest identifier written to forest_id field.
     int m_id{-1};
+    // 0 = legacy cylindrical forest, 1 = point-cloud forest.
     int m_drag_mode{0};
+
+    // Point-cloud storage slice [offset, offset + count) in flattened point array.
     int m_cloud_point_offset{0};
     int m_cloud_point_count{0};
+
+    // Convex hull storage slice in flattened hull-vertex array.
     int m_hull_vertex_offset{0};
     int m_hull_vertex_count{0};
+
+    // Legacy cylindrical/model parameters.
     amrex::Real m_type_forest;
     amrex::Real m_x_forest;
     amrex::Real m_y_forest;
@@ -35,6 +45,8 @@ struct Forest
     amrex::Real m_cd_forest;
     amrex::Real m_lai_forest;
     amrex::Real m_laimax_forest;
+
+    // Axis-aligned bounding box used for coarse spatial pruning.
     amrex::Real m_bbox_xlo{0.0_rt};
     amrex::Real m_bbox_ylo{0.0_rt};
     amrex::Real m_bbox_zlo{0.0_rt};
@@ -42,6 +54,7 @@ struct Forest
     amrex::Real m_bbox_yhi{0.0_rt};
     amrex::Real m_bbox_zhi{0.0_rt};
 
+    // Compute the type-2 peak LAD scaling factor from integrated LAI.
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real lm() const
     {
         amrex::Real treelaimax = 0.0_rt;
@@ -64,6 +77,7 @@ struct Forest
         return treelaimax;
     }
 
+    // Vertical LAD profile used by legacy cylindrical forests.
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
     area_fraction(const amrex::Real z, const amrex::Real treelaimax) const
     {
@@ -81,6 +95,7 @@ struct Forest
         return af;
     }
 
+    // Ray-casting point-in-polygon test against this forest's convex hull.
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE bool point_in_hull(
         const amrex::Real px,
         const amrex::Real py,
@@ -105,6 +120,7 @@ struct Forest
         return inside;
     }
 
+    // Return real-space bounds for either point-cloud or cylindrical mode.
     AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::RealBox real_bounding_box(
         const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>& prob_lo) const
     {
@@ -126,6 +142,7 @@ struct Forest
         return {x0, y0, z0, x1, y1, z1};
     }
 
+    // Integer box used for tile intersection tests before launching kernels.
     [[nodiscard]] amrex::Box bounding_box(const amrex::Geometry& geom) const
     {
         return utils::realbox_to_box(
@@ -133,6 +150,7 @@ struct Forest
     }
 };
 
+// A single LAD sample for point-cloud forests.
 struct ForestPoint
 {
     amrex::Real m_x;
@@ -167,19 +185,26 @@ public:
 
     void post_advance_work() override {}
 
+    // Parse legacy cylindrical forest file for a specific AMR level.
     [[nodiscard]] amrex::Vector<Forest> read_cylinder_forests(int level) const;
 
+    // Parse point-cloud forests, flatten points/hulls, and build forest descriptors.
     [[nodiscard]] amrex::Vector<Forest>
     read_point_cloud_forests(int level, amrex::Vector<ForestPoint>& points,
                              amrex::Vector<ForestHullVertex>& hull_vertices) const;
 
 private:
     CFDSim& m_sim;
+    // Output fields populated by this physics source.
     Field& m_forest_drag;
     Field& m_forest_id;
+
+    // Input configuration for legacy and point-cloud modes.
     std::string m_forest_file{"forest.amrwind"};
     amrex::Vector<std::string> m_forest_point_cloud_files;
     amrex::Vector<amrex::Real> m_forest_cd;
+
+    // Point-cloud interpolation controls.
     int m_forest_point_neighbors{4};
     amrex::Real m_forest_point_interp_eps{1.0e-12_rt};
 };
