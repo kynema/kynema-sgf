@@ -56,18 +56,19 @@ int compute_convex_hull_2d(
         sorted_points.begin(), sorted_points.end(),
         [](const auto& a, const auto& b) {
             return a.first < b.first ||
-                   (std::abs(a.first - b.first) < 1.0e-14_rt && a.second < b.second);
+                   (std::abs(a.first - b.first) < 1.0e-14_rt &&
+                    a.second < b.second);
         });
 
-    auto cross =
-        [](const auto& o, const auto& a, const auto& b) {
-            return (a.first - o.first) * (b.second - o.second) -
-                   (a.second - o.second) * (b.first - o.first);
-        };
+    auto cross = [](const auto& o, const auto& a, const auto& b) {
+        return (a.first - o.first) * (b.second - o.second) -
+               (a.second - o.second) * (b.first - o.first);
+    };
 
     std::vector<std::pair<amrex::Real, amrex::Real>> lower;
     for (const auto& p : sorted_points) {
-        while (lower.size() >= 2 && cross(lower[lower.size() - 2], lower.back(), p) <= 0.0_rt) {
+        while (lower.size() >= 2 &&
+               cross(lower[lower.size() - 2], lower.back(), p) <= 0.0_rt) {
             lower.pop_back();
         }
         lower.push_back(p);
@@ -75,7 +76,8 @@ int compute_convex_hull_2d(
 
     std::vector<std::pair<amrex::Real, amrex::Real>> upper;
     for (auto it = sorted_points.rbegin(); it != sorted_points.rend(); ++it) {
-        while (upper.size() >= 2 && cross(upper[upper.size() - 2], upper.back(), *it) <= 0.0_rt) {
+        while (upper.size() >= 2 &&
+               cross(upper[upper.size() - 2], upper.back(), *it) <= 0.0_rt) {
             upper.pop_back();
         }
         upper.push_back(*it);
@@ -149,12 +151,13 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
     amrex::Gpu::copy(
         amrex::Gpu::hostToDevice, cloud_points.begin(), cloud_points.end(),
         d_cloud_points.begin());
-    
-    amrex::Gpu::DeviceVector<kynema_sgf::forestdrag::ForestHullVertex> d_hull_vertices(hull_vertices.size());
+
+    amrex::Gpu::DeviceVector<kynema_sgf::forestdrag::ForestHullVertex>
+        d_hull_vertices(hull_vertices.size());
     if (hull_vertices.size() > 0) {
         amrex::Gpu::copy(
-            amrex::Gpu::hostToDevice, hull_vertices.begin(), hull_vertices.end(),
-            d_hull_vertices.begin());
+            amrex::Gpu::hostToDevice, hull_vertices.begin(),
+            hull_vertices.end(), d_hull_vertices.begin());
     }
 
     const auto& dx = geom.CellSizeArray();
@@ -196,7 +199,9 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                                     fst.m_cd_forest *
                                     fst.area_fraction(z, treelaimax);
                             }
-                        } else if (fst.m_cloud_point_count > 0 && fst.point_in_hull(x, y, hull_verts_ptr)) {
+                        } else if (
+                            fst.m_cloud_point_count > 0 &&
+                            fst.point_in_hull(x, y, hull_verts_ptr)) {
                             constexpr int max_neighbors = 8;
                             constexpr amrex::Real huge = 1.0e30_rt;
                             amrex::Real nearest_d2[max_neighbors];
@@ -314,8 +319,10 @@ amrex::Vector<Forest> ForestDrag::read_cylinder_forests(const int level) const
 }
 
 amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
-    const int level, amrex::Vector<ForestPoint>& points,
-    amrex::Vector<kynema_sgf::forestdrag::ForestHullVertex>& hull_vertices) const
+    const int level,
+    amrex::Vector<ForestPoint>& points,
+    amrex::Vector<kynema_sgf::forestdrag::ForestHullVertex>& hull_vertices)
+    const
 {
     BL_PROFILE(
         "kynema-sgf::" + this->identifier() + "::read_point_cloud_forests");
