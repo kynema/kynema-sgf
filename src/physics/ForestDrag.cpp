@@ -72,7 +72,7 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
     if (!m_forest_point_cloud_list.empty()) {
         forests = read_point_cloud_forests(level, cloud_points);
     } else {
-        forests = read_forest(level);
+        forests = read_cylinder_forests(level);
     }
 
     amrex::Gpu::DeviceVector<Forest> d_forests(forests.size());
@@ -201,9 +201,9 @@ void ForestDrag::post_regrid_actions()
     }
 }
 
-amrex::Vector<Forest> ForestDrag::read_forest(const int level) const
+amrex::Vector<Forest> ForestDrag::read_cylinder_forests(const int level) const
 {
-    BL_PROFILE("kynema-sgf::" + this->identifier() + "::read_forest");
+    BL_PROFILE("kynema-sgf::" + this->identifier() + "::read_cylinder_forests");
 
     std::ifstream file(m_forest_file, std::ios::in);
     if (!file.good()) {

@@ -135,7 +135,7 @@ public:
 
     void post_advance_work() override {}
 
-    [[nodiscard]] amrex::Vector<Forest> read_forest(int level) const;
+    [[nodiscard]] amrex::Vector<Forest> read_cylinder_forests(int level) const;
 
     [[nodiscard]] amrex::Vector<Forest>
     read_point_cloud_forests(int level, amrex::Vector<ForestPoint>& points) const;
