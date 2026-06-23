@@ -8,9 +8,11 @@
 #include "src/utilities/IOManager.H"
 #include "AMReX_REAL.H"
 #include <algorithm>
+#include <cmath>
 #include <filesystem>
 #include <limits>
 #include <sstream>
+#include <vector>
 
 using namespace amrex::literals;
 
@@ -38,6 +40,53 @@ bool parse_data_line(const std::string& raw_line, std::istringstream& iss)
     iss.str(line);
     return !(
         line.empty() || line.find_first_not_of(" \t\r\n") == std::string::npos);
+}
+
+int compute_convex_hull_2d(
+    const std::vector<std::pair<amrex::Real, amrex::Real>>& points,
+    std::vector<std::pair<amrex::Real, amrex::Real>>& hull)
+{
+    if (points.size() < 3) {
+        hull = points;
+        return points.size();
+    }
+
+    std::vector<std::pair<amrex::Real, amrex::Real>> sorted_points = points;
+    std::sort(
+        sorted_points.begin(), sorted_points.end(),
+        [](const auto& a, const auto& b) {
+            return a.first < b.first ||
+                   (std::abs(a.first - b.first) < 1.0e-14_rt && a.second < b.second);
+        });
+
+    auto cross =
+        [](const auto& o, const auto& a, const auto& b) {
+            return (a.first - o.first) * (b.second - o.second) -
+                   (a.second - o.second) * (b.first - o.first);
+        };
+
+    std::vector<std::pair<amrex::Real, amrex::Real>> lower;
+    for (const auto& p : sorted_points) {
+        while (lower.size() >= 2 && cross(lower[lower.size() - 2], lower.back(), p) <= 0.0_rt) {
+            lower.pop_back();
+        }
+        lower.push_back(p);
+    }
+
+    std::vector<std::pair<amrex::Real, amrex::Real>> upper;
+    for (auto it = sorted_points.rbegin(); it != sorted_points.rend(); ++it) {
+        while (upper.size() >= 2 && cross(upper[upper.size() - 2], upper.back(), *it) <= 0.0_rt) {
+            upper.pop_back();
+        }
+        upper.push_back(*it);
+    }
+
+    lower.pop_back();
+    upper.pop_back();
+    lower.insert(lower.end(), upper.begin(), upper.end());
+
+    hull = lower;
+    return hull.size();
 }
 
 } // namespace
@@ -84,9 +133,10 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
     BL_PROFILE("kynema-sgf::" + this->identifier() + "::initialize_fields");
 
     amrex::Vector<ForestPoint> cloud_points;
+    amrex::Vector<kynema_sgf::forestdrag::ForestHullVertex> hull_vertices;
     amrex::Vector<Forest> forests;
     if (!m_forest_point_cloud_files.empty()) {
-        forests = read_point_cloud_forests(level, cloud_points);
+        forests = read_point_cloud_forests(level, cloud_points, hull_vertices);
     } else {
         forests = read_cylinder_forests(level);
     }
@@ -99,6 +149,13 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
     amrex::Gpu::copy(
         amrex::Gpu::hostToDevice, cloud_points.begin(), cloud_points.end(),
         d_cloud_points.begin());
+    
+    amrex::Gpu::DeviceVector<kynema_sgf::forestdrag::ForestHullVertex> d_hull_vertices(hull_vertices.size());
+    if (hull_vertices.size() > 0) {
+        amrex::Gpu::copy(
+            amrex::Gpu::hostToDevice, hull_vertices.begin(), hull_vertices.end(),
+            d_hull_vertices.begin());
+    }
 
     const auto& dx = geom.CellSizeArray();
     const auto& prob_lo = geom.ProbLoArray();
@@ -118,6 +175,7 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 const auto& levelId = fst_id.array(mfi);
                 const auto* forests_ptr = d_forests.data();
                 const auto* points_ptr = d_cloud_points.data();
+                const auto* hull_verts_ptr = d_hull_vertices.data();
                 const int num_neighbors = m_forest_point_neighbors;
                 const amrex::Real interp_eps = m_forest_point_interp_eps;
                 amrex::ParallelFor(
@@ -138,7 +196,7 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                                     fst.m_cd_forest *
                                     fst.area_fraction(z, treelaimax);
                             }
-                        } else if (fst.m_cloud_point_count > 0) {
+                        } else if (fst.m_cloud_point_count > 0 && fst.point_in_hull(x, y, hull_verts_ptr)) {
                             constexpr int max_neighbors = 8;
                             constexpr amrex::Real huge = 1.0e30_rt;
                             amrex::Real nearest_d2[max_neighbors];
@@ -256,7 +314,8 @@ amrex::Vector<Forest> ForestDrag::read_cylinder_forests(const int level) const
 }
 
 amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
-    const int level, amrex::Vector<ForestPoint>& points) const
+    const int level, amrex::Vector<ForestPoint>& points,
+    amrex::Vector<kynema_sgf::forestdrag::ForestHullVertex>& hull_vertices) const
 {
     BL_PROFILE(
         "kynema-sgf::" + this->identifier() + "::read_point_cloud_forests");
@@ -288,6 +347,8 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
         amrex::Real ymax = std::numeric_limits<amrex::Real>::lowest();
         amrex::Real zmax = std::numeric_limits<amrex::Real>::lowest();
 
+        std::vector<std::pair<amrex::Real, amrex::Real>> xy_points;
+
         std::string p_line;
         std::istringstream p_stream;
         while (std::getline(cloud_data, p_line)) {
@@ -303,6 +364,7 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
             }
 
             points.push_back(pt);
+            xy_points.push_back({pt.m_x, pt.m_y});
             xmin = std::min(xmin, pt.m_x);
             ymin = std::min(ymin, pt.m_y);
             zmin = std::min(zmin, pt.m_z);
@@ -316,6 +378,15 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
         if (f.m_cloud_point_count <= 0) {
             amrex::Abort(
                 "Forest point cloud file has no valid points: " + cloud_file);
+        }
+
+        // Compute 2D convex hull in xy-plane
+        std::vector<std::pair<amrex::Real, amrex::Real>> hull_2d;
+        compute_convex_hull_2d(xy_points, hull_2d);
+        f.m_hull_vertex_offset = static_cast<int>(hull_vertices.size());
+        f.m_hull_vertex_count = static_cast<int>(hull_2d.size());
+        for (const auto& pt : hull_2d) {
+            hull_vertices.push_back({pt.first, pt.second});
         }
 
         const amrex::Real pad =

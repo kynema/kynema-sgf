@@ -13,12 +13,20 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::forestdrag {
 
+struct ForestHullVertex
+{
+    amrex::Real m_x;
+    amrex::Real m_y;
+};
+
 struct Forest
 {
     int m_id{-1};
     int m_drag_mode{0};
     int m_cloud_point_offset{0};
     int m_cloud_point_count{0};
+    int m_hull_vertex_offset{0};
+    int m_hull_vertex_count{0};
     amrex::Real m_type_forest;
     amrex::Real m_x_forest;
     amrex::Real m_y_forest;
@@ -71,6 +79,30 @@ struct Forest
                  std::exp(exponent * (1 - ratio));
         }
         return af;
+    }
+
+    AMREX_GPU_DEVICE AMREX_FORCE_INLINE bool point_in_hull(
+        const amrex::Real px,
+        const amrex::Real py,
+        const ForestHullVertex* hull_verts) const
+    {
+        if (m_hull_vertex_count <= 0) {
+            return true;
+        }
+        bool inside = false;
+        int j = m_hull_vertex_count - 1;
+        for (int i = 0; i < m_hull_vertex_count; ++i) {
+            const auto xi = hull_verts[m_hull_vertex_offset + i].m_x;
+            const auto yi = hull_verts[m_hull_vertex_offset + i].m_y;
+            const auto xj = hull_verts[m_hull_vertex_offset + j].m_x;
+            const auto yj = hull_verts[m_hull_vertex_offset + j].m_y;
+            if (((yi > py) != (yj > py)) &&
+                (px < (xj - xi) * (py - yi) / (yj - yi) + xi)) {
+                inside = !inside;
+            }
+            j = i;
+        }
+        return inside;
     }
 
     AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::RealBox real_bounding_box(
@@ -138,7 +170,8 @@ public:
     [[nodiscard]] amrex::Vector<Forest> read_cylinder_forests(int level) const;
 
     [[nodiscard]] amrex::Vector<Forest>
-    read_point_cloud_forests(int level, amrex::Vector<ForestPoint>& points) const;
+    read_point_cloud_forests(int level, amrex::Vector<ForestPoint>& points,
+                             amrex::Vector<ForestHullVertex>& hull_vertices) const;
 
 private:
     CFDSim& m_sim;
