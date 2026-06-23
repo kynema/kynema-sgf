@@ -5,6 +5,8 @@
 #include "src/core/field_ops.H"
 #include "src/utilities/output_quantities/FieldNorms.H"
 #include "AMReX_REAL.H"
+#include <cmath>
+#include <fstream>
 
 using namespace amrex::literals;
 
@@ -17,6 +19,28 @@ void write_forest(const std::string& fname)
     os << "1  512 512 35 200  0.2 6 0.8 \n";
     os << "1  512 612 75 200  0.2 6 0.8 \n";
     os << "2  512 762 120 200 0.2 10 0.8 \n";
+}
+
+void write_point_cloud_forest(const std::string& fname)
+{
+    std::ofstream os(fname);
+    //! x y z lad
+    os << "2.5 2.5 2.5 1.0\n";
+    os << "4.5 2.5 2.5 3.0\n";
+    // Far point with very large LAD used to confirm nearest-point selection.
+    os << "2.5 6.5 2.5 100.0\n";
+}
+
+amrex::Real idw_lad_from_two(
+    const amrex::Real d1,
+    const amrex::Real lad1,
+    const amrex::Real d2,
+    const amrex::Real lad2,
+    const amrex::Real eps)
+{
+    const amrex::Real w1 = 1.0_rt / std::sqrt((d1 * d1) + (eps * eps));
+    const amrex::Real w2 = 1.0_rt / std::sqrt((d2 * d2) + (eps * eps));
+    return ((w1 * lad1) + (w2 * lad2)) / (w1 + w2);
 }
 
 } // namespace
@@ -45,6 +69,30 @@ protected:
         }
     }
     std::string m_forest_fname = "forest.amrwind";
+};
+
+class PointCloudForestTest : public MeshTest
+{
+protected:
+    void populate_parameters() override
+    {
+        MeshTest::populate_parameters();
+
+        {
+            amrex::ParmParse pp("amr");
+            amrex::Vector<int> ncell{{8, 8, 8}};
+            pp.addarr("n_cell", ncell);
+            pp.add("blocking_factor", 2);
+        }
+
+        {
+            amrex::ParmParse pp("geometry");
+            amrex::Vector<amrex::Real> probhi{{8.0_rt, 8.0_rt, 8.0_rt}};
+            pp.addarr("prob_hi", probhi);
+        }
+    }
+
+    std::string m_point_cloud_fname{"forest_points.dat"};
 };
 
 TEST_F(ForestTest, forest)
@@ -83,6 +131,58 @@ TEST_F(ForestTest, forest)
         kynema_sgf::field_norms::FieldNorms::get_norm(f_drag, 0, 1, 2, false);
     EXPECT_NEAR(
         norm_drag, expected_norm_drag, kynema_sgf::constants::TIGHT_TOL);
+}
+
+TEST_F(PointCloudForestTest, point_cloud_selection_and_interpolation)
+{
+    write_point_cloud_forest(m_point_cloud_fname);
+    populate_parameters();
+    initialize_mesh();
+
+    auto& pde_mgr = sim().pde_manager();
+    pde_mgr.register_icns();
+    sim().init_physics();
+
+    amrex::ParmParse pp("ForestDrag");
+    amrex::Vector<std::string> cloud_files{m_point_cloud_fname};
+    amrex::Vector<amrex::Real> cds{2.0_rt};
+    pp.addarr("forest_point_cloud_files", cloud_files);
+    pp.addarr("forest_coefficients_of_drag", cds);
+    pp.add("forest_point_neighbors", 2);
+    pp.add("forest_point_interp_eps", 1.0e-12_rt);
+
+    kynema_sgf::forestdrag::ForestDrag forest_drag(sim());
+    forest_drag.initialize_fields(0, sim().repo().mesh().Geom(0));
+
+    const auto& f_drag = sim().repo().get_field("forest_drag");
+    const auto& f_id = sim().repo().get_field("forest_id");
+    constexpr amrex::Real tol = 1.0e-12_rt;
+
+    // Exact-point selections: drag = cd * lad
+    const auto drag_exact_p1 =
+        utils::field_probe(f_drag, 0, 2, 2, 2); // x,y,z = 2.5,2.5,2.5
+    const auto drag_exact_p2 =
+        utils::field_probe(f_drag, 0, 4, 2, 2); // x,y,z = 4.5,2.5,2.5
+    EXPECT_NEAR(drag_exact_p1, 2.0_rt, tol);
+    EXPECT_NEAR(drag_exact_p2, 6.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_id, 0, 2, 2, 2), 0.0_rt, tol);
+
+    // Midpoint interpolation from the two nearest points (far LAD=100 point
+    // must be ignored because neighbors=2).
+    const auto drag_mid =
+        utils::field_probe(f_drag, 0, 3, 2, 2); // x,y,z = 3.5,2.5,2.5
+    EXPECT_NEAR(drag_mid, 4.0_rt, tol);
+
+    // Unequal-distance interpolation (still only nearest two points).
+    const auto drag_off =
+        utils::field_probe(f_drag, 0, 2, 3, 2); // x,y,z = 2.5,3.5,2.5
+    const auto expected_lad =
+        idw_lad_from_two(1.0_rt, 1.0_rt, std::sqrt(5.0_rt), 3.0_rt, 1.0e-12_rt);
+    EXPECT_NEAR(drag_off, 2.0_rt * expected_lad, tol);
+
+    // Outside all cloud extents should remain untouched.
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 0, 0, 0), 0.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_id, 0, 0, 0, 0), -1.0_rt, tol);
 }
 
 } // namespace kynema_sgf_tests
