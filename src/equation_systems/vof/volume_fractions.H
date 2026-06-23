@@ -211,20 +211,23 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void mixed_youngs_central_normal(
     // normalize each set (mx,my,mz): |mx|+|my|+|mz| = 1
     amrex::Real t0, t1, t2;
 
-    t0 = std::abs(m(0, 0)) + std::abs(m(0, 1)) + std::abs(m(0, 2)) +
-         std::numeric_limits<amrex::Real>::epsilon();
+    t0 = amrex::max<amrex::Real>(
+        std::numeric_limits<amrex::Real>::epsilon(),
+        std::abs(m(0, 0)) + std::abs(m(0, 1)) + std::abs(m(0, 2)));
     m(0, 0) = m(0, 0) / t0;
     m(0, 1) = m(0, 1) / t0;
     m(0, 2) = m(0, 2) / t0;
 
-    t0 = std::abs(m(1, 0)) + std::abs(m(1, 1)) + std::abs(m(1, 2)) +
-         std::numeric_limits<amrex::Real>::epsilon();
+    t0 = amrex::max<amrex::Real>(
+        std::numeric_limits<amrex::Real>::epsilon(),
+        std::abs(m(1, 0)) + std::abs(m(1, 1)) + std::abs(m(1, 2)));
     m(1, 0) = m(1, 0) / t0;
     m(1, 1) = m(1, 1) / t0;
     m(1, 2) = m(1, 2) / t0;
 
-    t0 = std::abs(m(2, 0)) + std::abs(m(2, 1)) + std::abs(m(2, 2)) +
-         std::numeric_limits<amrex::Real>::epsilon();
+    t0 = amrex::max<amrex::Real>(
+        std::numeric_limits<amrex::Real>::epsilon(),
+        std::abs(m(2, 0)) + std::abs(m(2, 1)) + std::abs(m(2, 2)));
     m(2, 0) = m(2, 0) / t0;
     m(2, 1) = m(2, 1) / t0;
     m(2, 2) = m(2, 2) / t0;
@@ -336,8 +339,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real volume_intercept(
                     -1.0_rt,
                     amrex::min(
                         1.0_rt,
-                        q / (p * p12 +
-                             std::numeric_limits<amrex::Real>::epsilon())))) /
+                        q / (p * p12 + const_tiny)))) /
             3.0_rt;
         cs = std::cos(teta);
         alpha = (p12 * (std::sqrt(3.0_rt * (1.0_rt - cs * cs)) - cs)) + m12;
@@ -353,8 +355,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real volume_intercept(
                     -1.0_rt,
                     amrex::min(
                         1.0_rt,
-                        q / (p * p12 +
-                             std::numeric_limits<amrex::Real>::epsilon())))) /
+                        q / (p * p12 + const_tiny)))) /
             3.0_rt;
         cs = std::cos(teta);
         alpha = (p12 * (std::sqrt(3.0_rt * (1.0_rt - cs * cs)) - cs)) + 0.5_rt;
@@ -396,8 +397,9 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real cut_volume(
 
     // normalized equation: m1*y1 + m2*y2 + m3*y3 = alh, with 0 <= m1 <= m2 <=
     // m3 the problem is then solved again in the unit cube
-    amrex::Real tmp = (std::abs(m1) * dr0) + std::abs(m2) + std::abs(m3) +
-                      std::numeric_limits<amrex::Real>::epsilon();
+    amrex::Real tmp = amrex::max<amrex::Real>(
+        std::numeric_limits<amrex::Real>::epsilon(),
+        (std::abs(m1) * dr0) + std::abs(m2) + std::abs(m3));
     amrex::Real n1 = std::abs(m1) / tmp; // need positive coefficients
     amrex::Real n2 = std::abs(m2) / tmp;
     amrex::Real n3 = std::abs(m3) / tmp;
@@ -496,8 +498,8 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void fit_plane(
         invz = -1.0_rt;
     }
 
-    amrex::Real mm2 =
-        mx + my + mz + std::numeric_limits<amrex::Real>::epsilon();
+    amrex::Real mm2 = amrex::max<amrex::Real>(
+        std::numeric_limits<amrex::Real>::epsilon(), mx + my + mz);
     mx = mx / mm2;
     my = my / mm2;
     mz = mz / mm2;
@@ -554,8 +556,8 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real levelset_to_vof(
     mx = std::abs(mx / 32.0_rt);
     my = std::abs(my / 32.0_rt);
     mz = std::abs(mz / 32.0_rt);
-    amrex::Real normL1 =
-        (mx + my + mz) + std::numeric_limits<amrex::Real>::epsilon();
+    amrex::Real normL1 = amrex::max<amrex::Real>(
+        std::numeric_limits<amrex::Real>::epsilon(), (mx + my + mz));
     mx = mx / normL1;
     my = my / normL1;
     mz = mz / normL1;
