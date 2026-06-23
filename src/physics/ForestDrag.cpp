@@ -267,7 +267,7 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
 
     int cnt = 0;
     for (std::size_t i = 0; i < m_forest_point_cloud_files.size(); ++i) {
-    
+
         const auto& cloud_file = m_forest_point_cloud_files[i];
 
         std::ifstream cloud_data(cloud_file, std::ios::in);
