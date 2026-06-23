@@ -206,10 +206,12 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                             constexpr amrex::Real huge = 1.0e30_rt;
                             amrex::Real nearest_d2[max_neighbors];
                             amrex::Real nearest_lad[max_neighbors];
+                            amrex::Real nearest_z[max_neighbors];
 
                             for (int n = 0; n < max_neighbors; ++n) {
                                 nearest_d2[n] = huge;
                                 nearest_lad[n] = 0.0_rt;
+                                nearest_z[n] = 0.0_rt;
                             }
 
                             const int pstart = fst.m_cloud_point_offset;
@@ -234,14 +236,21 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                                     }
                                     nearest_d2[insert] = d2;
                                     nearest_lad[insert] = pt.m_lad;
+                                    nearest_z[insert] = pt.m_z;
                                 }
+                            }
+
+                            amrex::Real max_z_neighbors = 0.0_rt;
+                            for (int i = 0; i < num_neighbors; ++i) {
+                                max_z_neighbors = amrex::max<amrex::Real>(
+                                    max_z_neighbors, nearest_z[i]);
                             }
 
                             const auto eps2 = interp_eps * interp_eps;
                             amrex::Real lad_interp = 0.0_rt;
                             if (nearest_d2[0] < eps2) {
                                 lad_interp = nearest_lad[0];
-                            } else {
+                            } else if (z - 0.5_rt * dx[2] <= max_z_neighbors) {
                                 amrex::Real sum_w = 0.0_rt;
                                 amrex::Real sum_lad = 0.0_rt;
                                 for (int n = 0; n < num_neighbors; ++n) {
