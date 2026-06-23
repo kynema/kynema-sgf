@@ -145,7 +145,8 @@ private:
     Field& m_forest_drag;
     Field& m_forest_id;
     std::string m_forest_file{"forest.amrwind"};
-    std::string m_forest_point_cloud_list;
+    amrex::Vector<std::string> m_forest_point_cloud_files;
+    amrex::Vector<amrex::Real> m_forest_cd;
     int m_forest_point_neighbors{4};
     amrex::Real m_forest_point_interp_eps{1.0e-12_rt};
 };

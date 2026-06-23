@@ -18,7 +18,8 @@ namespace kynema_sgf::forestdrag {
 
 namespace {
 
-std::string resolve_forest_path(const std::string& list_file, const std::string& path)
+std::string
+resolve_forest_path(const std::string& list_file, const std::string& path)
 {
     namespace fs = std::filesystem;
     fs::path input(path);
@@ -35,7 +36,8 @@ bool parse_data_line(const std::string& raw_line, std::istringstream& iss)
     const auto line = raw_line.substr(0, pos);
     iss.clear();
     iss.str(line);
-    return !(line.empty() || line.find_first_not_of(" \t\r\n") == std::string::npos);
+    return !(
+        line.empty() || line.find_first_not_of(" \t\r\n") == std::string::npos);
 }
 
 } // namespace
@@ -48,11 +50,25 @@ ForestDrag::ForestDrag(CFDSim& sim)
 
     amrex::ParmParse pp(identifier());
     pp.query("forest_file", m_forest_file);
-    pp.query("forest_point_cloud_list", m_forest_point_cloud_list);
-    pp.query("forest_point_neighbors", m_forest_point_neighbors);
-    pp.query("forest_point_interp_eps", m_forest_point_interp_eps);
-    m_forest_point_neighbors =
-        std::max(1, std::min(m_forest_point_neighbors, 8));
+    const auto cyl_forest = pp.contains("forest_file");
+    const auto point_forest = pp.contains("forest_point_cloud_files");
+    if (cyl_forest && point_forest) {
+        amrex::Abort(
+            "ForestDrag: Cannot specify both 'forest_file' and "
+            "'forest_point_cloud_files'");
+    }
+    pp.queryarr("forest_point_cloud_files", m_forest_point_cloud_files);
+    if (point_forest) {
+        pp.getarr("forest_coefficients_of_drag", m_forest_cd);
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            m_forest_cd.size() == m_forest_point_cloud_files.size(),
+            "ForestDrag: 'forest_coefficients_of_drag' must have the same "
+            "number of entries as 'forest_point_cloud_files'");
+        pp.query("forest_point_neighbors", m_forest_point_neighbors);
+        pp.query("forest_point_interp_eps", m_forest_point_interp_eps);
+        m_forest_point_neighbors =
+            std::max(1, std::min(m_forest_point_neighbors, 8));
+    }
 
     m_sim.io_manager().register_output_var("forest_drag");
     m_sim.io_manager().register_output_var("forest_id");
@@ -69,7 +85,7 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
 
     amrex::Vector<ForestPoint> cloud_points;
     amrex::Vector<Forest> forests;
-    if (!m_forest_point_cloud_list.empty()) {
+    if (!m_forest_point_cloud_files.empty()) {
         forests = read_point_cloud_forests(level, cloud_points);
     } else {
         forests = read_cylinder_forests(level);
@@ -140,14 +156,13 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                                 const auto dxp = x - pt.m_x;
                                 const auto dyp = y - pt.m_y;
                                 const auto dzp = z - pt.m_z;
-                                const auto d2 = (dxp * dxp) + (dyp * dyp) +
-                                                (dzp * dzp);
+                                const auto d2 =
+                                    (dxp * dxp) + (dyp * dyp) + (dzp * dzp);
 
                                 if (d2 < nearest_d2[num_neighbors - 1]) {
                                     int insert = num_neighbors - 1;
-                                    while (
-                                        insert > 0 &&
-                                        d2 < nearest_d2[insert - 1]) {
+                                    while (insert > 0 &&
+                                           d2 < nearest_d2[insert - 1]) {
                                         nearest_d2[insert] =
                                             nearest_d2[insert - 1];
                                         nearest_lad[insert] =
@@ -246,44 +261,24 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
     BL_PROFILE(
         "kynema-sgf::" + this->identifier() + "::read_point_cloud_forests");
 
-    std::ifstream list_file(m_forest_point_cloud_list, std::ios::in);
-    if (!list_file.good()) {
-        amrex::Abort(
-            "Cannot find file " + m_forest_point_cloud_list +
-            " for forest point cloud list");
-    }
-
     amrex::Vector<Forest> forests;
     const auto& geom = m_sim.repo().mesh().Geom(level);
     const auto& ba = m_sim.repo().mesh().boxArray(level);
 
-    std::string line;
-    std::istringstream line_stream;
     int cnt = 0;
-    while (std::getline(list_file, line)) {
-        if (!parse_data_line(line, line_stream)) {
-            continue;
-        }
+    for (std::size_t i = 0; i < m_forest_point_cloud_files.size(); ++i) {
+    
+        const auto& cloud_file = m_forest_point_cloud_files[i];
 
-        amrex::Real cd = 0.0_rt;
-        std::string cloud_file;
-        if (!(line_stream >> cd >> cloud_file)) {
-            amrex::Abort(
-                "Malformed line in " + m_forest_point_cloud_list +
-                ". Expected: cd point_file");
-        }
-
-        const auto cloud_path =
-            resolve_forest_path(m_forest_point_cloud_list, cloud_file);
-        std::ifstream cloud_data(cloud_path, std::ios::in);
+        std::ifstream cloud_data(cloud_file, std::ios::in);
         if (!cloud_data.good()) {
-            amrex::Abort("Cannot find forest point cloud file " + cloud_path);
+            amrex::Abort("Cannot find forest point cloud file " + cloud_file);
         }
 
         Forest f;
         f.m_id = cnt;
         f.m_drag_mode = 1;
-        f.m_cd_forest = cd;
+        f.m_cd_forest = m_forest_cd[i];
         f.m_cloud_point_offset = static_cast<int>(points.size());
 
         amrex::Real xmin = std::numeric_limits<amrex::Real>::max();
@@ -303,7 +298,7 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
             ForestPoint pt;
             if (!(p_stream >> pt.m_x >> pt.m_y >> pt.m_z >> pt.m_lad)) {
                 amrex::Abort(
-                    "Malformed point entry in " + cloud_path +
+                    "Malformed point entry in " + cloud_file +
                     ". Expected: x y z lad");
             }
 
@@ -316,16 +311,18 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
             zmax = std::max(zmax, pt.m_z);
         }
 
-        f.m_cloud_point_count = static_cast<int>(points.size()) - f.m_cloud_point_offset;
+        f.m_cloud_point_count =
+            static_cast<int>(points.size()) - f.m_cloud_point_offset;
         if (f.m_cloud_point_count <= 0) {
-            amrex::Abort("Forest point cloud file has no valid points: " + cloud_path);
+            amrex::Abort(
+                "Forest point cloud file has no valid points: " + cloud_file);
         }
 
-        const amrex::Real pad = 0.5_rt *
-                                (geom.CellSizeArray()[0] +
-                                 geom.CellSizeArray()[1] +
-                                 geom.CellSizeArray()[2]) /
-                                3.0_rt;
+        const amrex::Real pad =
+            0.5_rt *
+            (geom.CellSizeArray()[0] + geom.CellSizeArray()[1] +
+             geom.CellSizeArray()[2]) /
+            3.0_rt;
         f.m_bbox_xlo = xmin - pad;
         f.m_bbox_ylo = ymin - pad;
         f.m_bbox_zlo = zmin - pad;
@@ -349,7 +346,6 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
         ++cnt;
     }
 
-    list_file.close();
     return forests;
 }
 } // namespace kynema_sgf::forestdrag

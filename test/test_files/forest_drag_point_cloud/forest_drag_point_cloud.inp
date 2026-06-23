@@ -28,7 +28,8 @@ incflo.use_godunov                          = true
 incflo.godunov_type                         = "weno_z"
 incflo.diffusion_type                       = 2
 # ForestDrag point-cloud inputs
-ForestDrag.forest_point_cloud_list          = forest_point_clouds.list
+ForestDrag.forest_point_cloud_files         = forest_pc_1.dat forest_pc_2.dat forest_pc_3.dat forest_pc_4.dat
+ForestDrag.forest_coefficients_of_drag      = 0.2 0.1 0.2 0.3
 ForestDrag.forest_point_neighbors           = 4
 ForestDrag.forest_point_interp_eps          = 1.0e-6
 # transport equation parameters
