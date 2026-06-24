@@ -149,18 +149,6 @@ void Actuator::pre_advance_work()
 {
     BL_PROFILE("kynema-sgf::actuator::Actuator::pre_advance_work");
 
-    // Velocity sampling uses trilinear interpolation, which can read one cell
-    // beyond the owning box when a sample point is near a box/rank boundary.
-    // Refresh ghost cells every timestep so MPI-decomposed actuator samples see
-    // the same field values as a serial run.
-    auto& vel = m_sim.repo().get_field("velocity");
-    auto& density = m_sim.repo().get_field("density");
-    for (int lev = 0; lev < m_sim.repo().num_active_levels(); ++lev) {
-        const auto& periodicity = m_sim.mesh().Geom()[lev].periodicity();
-        vel(lev).FillBoundary(periodicity);
-        density(lev).FillBoundary(periodicity);
-    }
-
     m_container->reset_container();
     update_positions();
     update_velocities();
