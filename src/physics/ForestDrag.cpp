@@ -46,7 +46,7 @@ int compute_convex_hull_2d(
         sorted_points.begin(), sorted_points.end(),
         [](const auto& a, const auto& b) {
             return a.first < b.first ||
-                   (std::abs(a.first - b.first) < 1.0e-14_rt &&
+                   (std::abs(a.first - b.first) < constants::TIGHT_TOL &&
                     a.second < b.second);
         });
 
@@ -210,7 +210,7 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                             // Point-cloud mode: only evaluate interpolation for
                             // cells inside the convex hull projected in x-y.
                             constexpr int max_neighbors = 8;
-                            constexpr amrex::Real huge = 1.0e30_rt;
+                            constexpr amrex::Real huge = constants::LARGE_NUM;
                             amrex::Real nearest_d2[max_neighbors];
                             amrex::Real nearest_lad[max_neighbors];
                             amrex::Real nearest_z[max_neighbors];
