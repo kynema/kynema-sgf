@@ -110,8 +110,8 @@ struct Forest
         }
         for (int i = 0; i < m_hull_edge_count; ++i) {
             const auto& e = hull_edges[m_hull_edge_offset + i];
-            const amrex::Real signed_dist = (e.m_nx * px) + (e.m_ny * py) -
-                                            e.m_d;
+            const amrex::Real signed_dist =
+                (e.m_nx * px) + (e.m_ny * py) - e.m_d;
             if (signed_dist < -constants::TIGHT_TOL * e.m_tol_scale) {
                 return false;
             }

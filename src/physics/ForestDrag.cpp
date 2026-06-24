@@ -350,8 +350,7 @@ amrex::Vector<Forest> ForestDrag::read_cylinder_forests(const int level) const
 amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
     const int level,
     amrex::Vector<ForestPoint>& points,
-    amrex::Vector<kynema_sgf::forestdrag::ForestHullEdge>& hull_edges)
-    const
+    amrex::Vector<kynema_sgf::forestdrag::ForestHullEdge>& hull_edges) const
 {
     BL_PROFILE(
         "kynema-sgf::" + this->identifier() + "::read_point_cloud_forests");
