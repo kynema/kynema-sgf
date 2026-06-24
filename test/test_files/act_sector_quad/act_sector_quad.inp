@@ -6,10 +6,10 @@ time.plot_interval = -1
 time.checkpoint_interval = -1
 
 # Domain extents are Cartesian coordinates [m].
-geometry.prob_lo = -0.1 -0.12 -0.12
-geometry.prob_hi = 0.2 0.12 0.12
+geometry.prob_lo = -0.1 -0.2 -0.2
+geometry.prob_hi = 0.2 0.2 0.2
 geometry.is_periodic = 0 0 0
-amr.n_cell = 48 40 40
+amr.n_cell = 48 64 64
 amr.max_level = 0
 amr.max_grid_size = 16
 
@@ -29,7 +29,7 @@ turbulence.model = Laminar
 incflo.physics = FreeStream Actuator
 ICNS.source_terms = ActuatorForcing
 
-Actuator.labels = R1
+Actuator.labels = R1 R2 R3 R4
 Actuator.type = ActuatorSector
 
 # Generic actuator-sector rotor geometry
@@ -39,10 +39,31 @@ Actuator.ActuatorSector.num_blades = 2                 # number of blades [-]
 
 # R1-specific rotor placement and motion
 Actuator.R1.omega = 2500.0                             # rotor angular speed [rad/s]
-Actuator.R1.center = 0.0 0.0 0.0                       # hub position [m]
+Actuator.R1.center = 0.0 0.075 0.075                   # hub position [m]
 Actuator.R1.translation_velocity = 0.0 0.0 0.0         # hub velocity [m/s]
 Actuator.R1.rotor_normal = 1.0 0.0 0.0                 # rotor-axis normal [-]
-Actuator.R1.rotor_rotation_degrees_per_revolution = 0.0 2.0 0.0  # body rotation [deg/rev]
+Actuator.R1.rotor_rotation_degrees_per_revolution = 0.0 0.0 0.0  # body rotation [deg/rev]
+
+# R2-specific rotor placement and motion
+Actuator.R2.omega = -2500.0                            # rotor angular speed [rad/s]
+Actuator.R2.center = 0.0 -0.075 0.075                  # hub position [m]
+Actuator.R2.translation_velocity = 0.0 0.0 0.0         # hub velocity [m/s]
+Actuator.R2.rotor_normal = 1.0 0.0 0.0                 # rotor-axis normal [-]
+Actuator.R2.rotor_rotation_degrees_per_revolution = 0.0 0.0 0.0  # body rotation [deg/rev]
+
+# R3-specific rotor placement and motion
+Actuator.R3.omega = 2500.0                             # rotor angular speed [rad/s]
+Actuator.R3.center = 0.0 -0.075 -0.075                 # hub position [m]
+Actuator.R3.translation_velocity = 0.0 0.0 0.0         # hub velocity [m/s]
+Actuator.R3.rotor_normal = 1.0 0.0 0.0                 # rotor-axis normal [-]
+Actuator.R3.rotor_rotation_degrees_per_revolution = 0.0 0.0 0.0  # body rotation [deg/rev]
+
+# R4-specific rotor placement and motion
+Actuator.R4.omega = -2500.0                            # rotor angular speed [rad/s]
+Actuator.R4.center = 0.0 0.075 -0.075                  # hub position [m]
+Actuator.R4.translation_velocity = 0.0 0.0 0.0         # hub velocity [m/s]
+Actuator.R4.rotor_normal = 1.0 0.0 0.0                 # rotor-axis normal [-]
+Actuator.R4.rotor_rotation_degrees_per_revolution = 0.0 0.0 0.0  # body rotation [deg/rev]
 
 # Actuator-sector Gaussian width and generated sector grid
 Actuator.ActuatorSector.epsilon_chord = 0.5            # epsilon / local chord [-]
@@ -62,7 +83,7 @@ Actuator.ActuatorSector.airfoil_type = openfast
 # Actuator-sector force projection and blade-load output
 Actuator.ActuatorSector.gaussian_type = table
 Actuator.ActuatorSector.gaussian_table_error = 1.0e-4  # max exp(-r^2 / epsilon^2) table error [-]
-Actuator.ActuatorSector.output_frequency = 1            # blade-load output interval [steps]
+Actuator.ActuatorSector.output_frequency = 1           # blade-load output interval [steps]
 
 # Boundary conditions: +x inflow, +x pressure outflow, transverse slip walls.
 xlo.type = "mass_inflow"
@@ -70,12 +91,11 @@ xlo.density = 1.0
 xlo.velocity = 1.0 0.0 0.0
 xhi.type = "pressure_outflow"
 
-ylo.type =   "slip_wall"
-yhi.type =   "slip_wall"
+ylo.type = "slip_wall"
+yhi.type = "slip_wall"
 
-zlo.type =   "slip_wall"
-zhi.type =   "slip_wall"
-
+zlo.type = "slip_wall"
+zhi.type = "slip_wall"
 
 incflo.verbose = 0
 nodal_proj.verbose = 0
