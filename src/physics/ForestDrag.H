@@ -97,7 +97,7 @@ struct Forest
     }
 
     // Ray-casting point-in-polygon test against this forest's convex hull.
-    AMREX_GPU_DEVICE AMREX_FORCE_INLINE bool point_in_hull(
+    AMREX_GPU_DEVICE AMREX_FORCE_INLINE bool point_in_on_hull(
         const amrex::Real px,
         const amrex::Real py,
         const ForestHullVertex* hull_verts) const
@@ -112,6 +112,17 @@ struct Forest
             const auto yi = hull_verts[m_hull_vertex_offset + i].m_y;
             const auto xj = hull_verts[m_hull_vertex_offset + j].m_x;
             const auto yj = hull_verts[m_hull_vertex_offset + j].m_y;
+            // Boundary check: point lies on this edge when the cross product
+            // is zero (collinear) and the point is within the edge's bbox.
+            const amrex::Real cross =
+                (xj - xi) * (py - yi) - (yj - yi) * (px - xi);
+            const amrex::Real edge_scale =
+                std::abs(xj - xi) + std::abs(yj - yi) + 1.0_rt;
+            if (std::abs(cross) <= constants::TIGHT_TOL * edge_scale &&
+                amrex::min(xi, xj) <= px && px <= amrex::max(xi, xj) &&
+                amrex::min(yi, yj) <= py && py <= amrex::max(yi, yj)) {
+                return true;
+            }
             if (((yi > py) != (yj > py)) &&
                 (px < (xj - xi) * (py - yi) / (yj - yi) + xi)) {
                 inside = !inside;

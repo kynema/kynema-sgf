@@ -206,7 +206,7 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                             }
                         } else if (
                             fst.m_cloud_point_count > 0 &&
-                            fst.point_in_hull(x, y, hull_verts_ptr)) {
+                            fst.point_in_on_hull(x, y, hull_verts_ptr)) {
                             // Point-cloud mode: only evaluate interpolation for
                             // cells inside the convex hull projected in x-y.
                             constexpr int max_neighbors = 8;
