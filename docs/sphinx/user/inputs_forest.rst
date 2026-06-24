@@ -7,7 +7,7 @@ These parameters are active when ``ForestDrag`` is included in
 :input_param:`incflo.physics`. Two forest representations are supported:
 
 1. A legacy cylinder-based forest file, controlled by ``ForestDrag.forest_file``.
-2. A point-cloud forest description, controlled by ``ForestDrag.forest_point_cloud_files``.
+2. A point-cloud forest description, controlled by ``ForestDrag.point_cloud_files``.
 
 The two approaches are mutually exclusive and cannot be used together in the same run.
 
@@ -17,7 +17,7 @@ The two approaches are mutually exclusive and cannot be used together in the sam
 
    Input file for the legacy cylinder-based forest representation. If
    ``ForestDrag`` is enabled and
-   :input_param:`ForestDrag.forest_point_cloud_files` is not provided,
+   :input_param:`ForestDrag.point_cloud_files` is not provided,
    Kynema-SGF reads this file.
 
    Each non-comment line of the file must contain eight values,
@@ -34,7 +34,7 @@ The two approaches are mutually exclusive and cannot be used together in the sam
    theory documentation: a uniform profile and an analytical vertically varying
    profile.
 
-.. input_param:: ForestDrag.forest_point_cloud_files
+.. input_param:: ForestDrag.point_cloud_files
 
    **type:** List of strings, optional
 
@@ -52,23 +52,23 @@ The two approaches are mutually exclusive and cannot be used together in the sam
    Blank lines are ignored. Text following ``#`` on a line is treated as a
    comment.
 
-.. input_param:: ForestDrag.forest_coefficients_of_drag
+.. input_param:: ForestDrag.coefficients_of_drag
 
    **type:** List of reals, mandatory when
-   :input_param:`ForestDrag.forest_point_cloud_files` is used
+   :input_param:`ForestDrag.point_cloud_files` is used
 
    Drag coefficient for each point-cloud forest. The number of entries in this
    list must match the number of files listed in
-   :input_param:`ForestDrag.forest_point_cloud_files`.
+   :input_param:`ForestDrag.point_cloud_files`.
 
-.. input_param:: ForestDrag.forest_point_neighbors
+.. input_param:: ForestDrag.point_neighbors
 
    **type:** Integer, optional, default = 4
 
    Number of nearest point-cloud samples used to reconstruct the local LAD at a
    cell center. Values are internally clamped to the range 1 through 8.
 
-.. input_param:: ForestDrag.forest_point_interp_eps
+.. input_param:: ForestDrag.point_interp_eps
 
    **type:** Real, optional, default = 1.0e-12
 

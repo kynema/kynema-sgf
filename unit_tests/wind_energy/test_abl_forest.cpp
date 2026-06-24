@@ -146,10 +146,10 @@ TEST_F(PointCloudForestTest, point_cloud_selection_and_interpolation)
     amrex::ParmParse pp("ForestDrag");
     amrex::Vector<std::string> cloud_files{m_point_cloud_fname};
     amrex::Vector<amrex::Real> cds{2.0_rt};
-    pp.addarr("forest_point_cloud_files", cloud_files);
-    pp.addarr("forest_coefficients_of_drag", cds);
-    pp.add("forest_point_neighbors", 2);
-    pp.add("forest_point_interp_eps", 1.0e-12_rt);
+    pp.addarr("point_cloud_files", cloud_files);
+    pp.addarr("coefficients_of_drag", cds);
+    pp.add("point_neighbors", 2);
+    pp.add("point_interp_eps", 1.0e-12_rt);
 
     kynema_sgf::forestdrag::ForestDrag forest_drag(sim());
     forest_drag.initialize_fields(0, sim().repo().mesh().Geom(0));

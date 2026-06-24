@@ -106,25 +106,25 @@ ForestDrag::ForestDrag(CFDSim& sim)
     amrex::ParmParse pp(identifier());
     pp.query("forest_file", m_forest_file);
     const auto cyl_forest = pp.contains("forest_file");
-    const auto point_forest = pp.contains("forest_point_cloud_files");
+    const auto point_forest = pp.contains("point_cloud_files");
     if (cyl_forest && point_forest) {
         amrex::Abort(
             "ForestDrag: Cannot specify both 'forest_file' and "
-            "'forest_point_cloud_files'");
+            "'point_cloud_files'");
     }
-    pp.queryarr("forest_point_cloud_files", m_forest_point_cloud_files);
+    pp.queryarr("point_cloud_files", m_point_cloud_files);
     if (point_forest) {
         // One drag coefficient is required per point-cloud forest file.
-        pp.getarr("forest_coefficients_of_drag", m_forest_cd);
+        pp.getarr("coefficients_of_drag", m_forest_cd);
         AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-            m_forest_cd.size() == m_forest_point_cloud_files.size(),
-            "ForestDrag: 'forest_coefficients_of_drag' must have the same "
-            "number of entries as 'forest_point_cloud_files'");
-        pp.query("forest_point_neighbors", m_forest_point_neighbors);
-        pp.query("forest_point_interp_eps", m_forest_point_interp_eps);
+            m_forest_cd.size() == m_point_cloud_files.size(),
+            "ForestDrag: 'coefficients_of_drag' must have the same "
+            "number of entries as 'point_cloud_files'");
+        pp.query("point_neighbors", m_point_neighbors);
+        pp.query("point_interp_eps", m_point_interp_eps);
         // Keep neighbor count bounded by fixed-size device arrays in kernels.
-        m_forest_point_neighbors =
-            std::max(1, std::min(m_forest_point_neighbors, 8));
+        m_point_neighbors =
+            std::max(1, std::min(m_point_neighbors, 8));
     }
 
     // Register outputs and initialize field defaults.
@@ -145,7 +145,7 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
     amrex::Vector<ForestPoint> cloud_points;
     amrex::Vector<kynema_sgf::forestdrag::ForestHullVertex> hull_vertices;
     amrex::Vector<Forest> forests;
-    if (!m_forest_point_cloud_files.empty()) {
+    if (!m_point_cloud_files.empty()) {
         forests = read_point_cloud_forests(level, cloud_points, hull_vertices);
     } else {
         forests = read_cylinder_forests(level);
@@ -192,8 +192,8 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 const auto* forests_ptr = d_forests.data();
                 const auto* points_ptr = d_cloud_points.data();
                 const auto* hull_verts_ptr = d_hull_vertices.data();
-                const int num_neighbors = m_forest_point_neighbors;
-                const amrex::Real interp_eps = m_forest_point_interp_eps;
+                const int num_neighbors = m_point_neighbors;
+                const amrex::Real interp_eps = m_point_interp_eps;
                 amrex::ParallelFor(
                     bxi, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         // Convert integer cell indices to cell-center coordinates.
@@ -367,9 +367,9 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
     const auto& ba = m_sim.repo().mesh().boxArray(level);
 
     int cnt = 0;
-    for (std::size_t i = 0; i < m_forest_point_cloud_files.size(); ++i) {
+    for (std::size_t i = 0; i < m_point_cloud_files.size(); ++i) {
 
-        const auto& cloud_file = m_forest_point_cloud_files[i];
+        const auto& cloud_file = m_point_cloud_files[i];
 
         std::ifstream cloud_data(cloud_file, std::ios::in);
         if (!cloud_data.good()) {

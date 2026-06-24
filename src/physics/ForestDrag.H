@@ -201,12 +201,12 @@ private:
 
     // Input configuration for legacy and point-cloud modes.
     std::string m_forest_file{"forest.amrwind"};
-    amrex::Vector<std::string> m_forest_point_cloud_files;
+    amrex::Vector<std::string> m_point_cloud_files;
     amrex::Vector<amrex::Real> m_forest_cd;
 
     // Point-cloud interpolation controls.
-    int m_forest_point_neighbors{4};
-    amrex::Real m_forest_point_interp_eps{1.0e-12_rt};
+    int m_point_neighbors{4};
+    amrex::Real m_point_interp_eps{1.0e-12_rt};
 };
 } // namespace kynema_sgf::forestdrag
 

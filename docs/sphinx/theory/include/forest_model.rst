@@ -44,7 +44,7 @@ onto the :math:`x-y` plane and a convex hull is formed. LAD interpolation is onl
 :math:`(x,y)` location lies inside this convex hull.
 
 For a cell center located at :math:`\boldsymbol{x}=(x,y,z)`, the :math:`k` nearest point-cloud samples from the same forest are selected,
-where :math:`k` is controlled by the input parameter ``ForestDrag.forest_point_neighbors``. Let :math:`d_p` denote the Euclidean distance
+where :math:`k` is controlled by the input parameter ``ForestDrag.point_neighbors``. Let :math:`d_p` denote the Euclidean distance
 from the cell center to a selected sample point,
 
 .. math::
@@ -52,7 +52,7 @@ from the cell center to a selected sample point,
    d_p = \sqrt{(x-x_p)^2 + (y-y_p)^2 + (z-z_p)^2}.
 
 If the cell center coincides with a sample point to within the regularization tolerance
-``ForestDrag.forest_point_interp_eps`` :math:`= \varepsilon`, then the LAD is taken directly from that sample,
+``ForestDrag.point_interp_eps`` :math:`= \varepsilon`, then the LAD is taken directly from that sample,
 
 .. math::
 
