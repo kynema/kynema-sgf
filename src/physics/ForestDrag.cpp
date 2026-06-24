@@ -114,7 +114,8 @@ ForestDrag::ForestDrag(CFDSim& sim)
         pp.query("point_neighbors", m_point_neighbors);
         pp.query("point_interp_eps", m_point_interp_eps);
         // Keep neighbor count bounded by fixed-size device arrays in kernels.
-        m_point_neighbors = std::max(1, std::min(m_point_neighbors, 8));
+        m_point_neighbors =
+            amrex::max<int>(1, amrex::min<int>(m_point_neighbors, 8));
     }
 
     // Register outputs and initialize field defaults.
@@ -407,12 +408,12 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
 
             points.push_back(pt);
             xy_points.push_back({pt.m_x, pt.m_y});
-            xmin = std::min(xmin, pt.m_x);
-            ymin = std::min(ymin, pt.m_y);
-            zmin = std::min(zmin, pt.m_z);
-            xmax = std::max(xmax, pt.m_x);
-            ymax = std::max(ymax, pt.m_y);
-            zmax = std::max(zmax, pt.m_z);
+            xmin = amrex::min<amrex::Real>(xmin, pt.m_x);
+            ymin = amrex::min<amrex::Real>(ymin, pt.m_y);
+            zmin = amrex::min<amrex::Real>(zmin, pt.m_z);
+            xmax = amrex::max<amrex::Real>(xmax, pt.m_x);
+            ymax = amrex::max<amrex::Real>(ymax, pt.m_y);
+            zmax = amrex::max<amrex::Real>(zmax, pt.m_z);
         }
 
         // Number of points belonging to this forest in the flattened point
@@ -482,7 +483,8 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
         f.m_y_forest = 0.5_rt * (ymin + ymax);
         f.m_height_forest = zmax;
         f.m_diameter_forest =
-            2.0_rt * std::max(xmax - f.m_x_forest, ymax - f.m_y_forest);
+            2.0_rt *
+            amrex::max<amrex::Real>(xmax - f.m_x_forest, ymax - f.m_y_forest);
         f.m_type_forest = 0.0_rt;
         f.m_lai_forest = 0.0_rt;
         f.m_laimax_forest = 0.0_rt;
