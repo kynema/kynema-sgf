@@ -13,6 +13,7 @@
 #include <limits>
 #include <sstream>
 #include <vector>
+#include <ranges>
 
 using namespace amrex::literals;
 
@@ -67,8 +68,7 @@ int compute_convex_hull_2d(
     }
 
     std::vector<std::pair<amrex::Real, amrex::Real>> upper;
-    for (auto it = sorted_points.rbegin(); it != sorted_points.rend(); ++it) {
-        const auto& p = *it;
+    for (const auto& p : sorted_points | std::views::reverse) {
         while (upper.size() >= 2 &&
                cross(upper[upper.size() - 2], upper.back(), p) <=
                    constants::TIGHT_TOL) {
