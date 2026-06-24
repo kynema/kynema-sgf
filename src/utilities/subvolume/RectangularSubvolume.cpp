@@ -136,15 +136,22 @@ void RectangularSubvolume::evaluate_inputs()
     }
 
     m_stride = best_stride;
-    if (m_verbose > 0) {
-        amrex::Print() << "RectangularSubvolume " + m_label
-                       << ": Using source level " << m_lev_for_sub
-                       << " with output stride (" << m_stride[0] << ", "
-                       << m_stride[1] << ", " << m_stride[2] << ")\n"
-                       << "RectangularSubvolume " + m_label
-                       << ": Source sampling extent is " << best_src_box
-                       << "\n";
-    }
+
+    amrex::Print() << "RectangularSubvolume " + m_label
+                   << ": Using source level " << m_lev_for_sub
+                   << " with output stride (" << m_stride[0] << ", "
+                   << m_stride[1] << ", " << m_stride[2] << "). "
+                   << "Source cell resolution is ("
+                   << geom[m_lev_for_sub].CellSize(0) << ", "
+                   << geom[m_lev_for_sub].CellSize(1) << ", "
+                   << geom[m_lev_for_sub].CellSize(2) << "); "
+                   << "output cell resolution is ("
+                   << m_dx_vec[0] << ", "
+                   << m_dx_vec[1] << ", "
+                   << m_dx_vec[2] << ")\n";
+                   << "RectangularSubvolume " + m_label
+                   << ": Source sampling extent is " << best_src_box
+                   << "\n";
 
     amrex::Box out_box(
         amrex::IntVect(0, 0, 0),
