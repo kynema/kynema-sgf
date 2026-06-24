@@ -9,8 +9,36 @@
 #include "src/overset/OversetManager.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
+#include <sstream>
 
 using namespace amrex::literals;
+
+namespace {
+void printGridSummaryWithTotal(amrex::AmrCore& core, int finest_level)
+{
+    // Get AMReX's per-level summary, remove trailing \n, and append
+    // summary of summed quantities
+    std::ostringstream oss;
+    core.printGridSummary(oss, 0, finest_level);
+    std::string s = oss.str();
+    while (!s.empty() && (s.back() == '\n' || s.back() == ' ' ||
+                          s.back() == '\t' || s.back() == '\r')) {
+        s.pop_back();
+    }
+
+    long total_grids = 0;
+    long long total_cells = 0;
+    for (int lev = 0; lev <= finest_level; ++lev) {
+        const auto& ba = core.boxArray(lev);
+        total_grids += static_cast<long>(ba.size());
+        total_cells += static_cast<long long>(ba.numPts());
+    }
+
+    amrex::Print() << s << '\n'
+                   << "  Total     " << total_grids << " grids  "
+                   << total_cells << " cells\n\n";
+}
+}
 
 incflo::incflo()
     : m_sim(*this)
@@ -65,7 +93,7 @@ void incflo::init_mesh()
         amrex::Print() << "done" << '\n';
         if (amrex::ParallelDescriptor::IOProcessor()) {
             amrex::Print() << "Grid summary: " << '\n';
-            printGridSummary(amrex::OutStream(), 0, finest_level);
+            printGridSummaryWithTotal(*this, finest_level);
         }
     } else {
         // Read starting configuration from chk file.
@@ -83,7 +111,7 @@ void incflo::init_mesh()
 
         if (amrex::ParallelDescriptor::IOProcessor()) {
             amrex::Print() << "Grid summary: " << '\n';
-            printGridSummary(amrex::OutStream(), 0, finest_level);
+            printGridSummaryWithTotal(*this, finest_level);
         }
     }
 }
@@ -200,7 +228,7 @@ bool incflo::regrid_and_update()
         amrex::Print() << "time elapsed = " << rend << '\n';
         if (amrex::ParallelDescriptor::IOProcessor()) {
             amrex::Print() << "Grid summary: " << '\n';
-            printGridSummary(amrex::OutStream(), 0, finest_level);
+            printGridSummaryWithTotal(*this, finest_level);
         }
 
         // update mesh map
