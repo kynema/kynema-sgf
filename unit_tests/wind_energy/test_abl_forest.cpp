@@ -146,17 +146,17 @@ TEST_F(PointCloudForestTest, point_cloud_selection_and_interpolation)
     amrex::ParmParse pp("ForestDrag");
     amrex::Vector<std::string> cloud_files{m_point_cloud_fname};
     amrex::Vector<amrex::Real> cds{2.0_rt};
+    const amrex::Real tol = kynema_sgf::constants::TIGHT_TOL;
     pp.addarr("point_cloud_files", cloud_files);
     pp.addarr("coefficients_of_drag", cds);
     pp.add("point_neighbors", 2);
-    pp.add("point_interp_eps", 1.0e-12_rt);
+    pp.add("point_interp_eps", tol);
 
     kynema_sgf::forestdrag::ForestDrag forest_drag(sim());
     forest_drag.initialize_fields(0, sim().repo().mesh().Geom(0));
 
     const auto& f_drag = sim().repo().get_field("forest_drag");
     const auto& f_id = sim().repo().get_field("forest_id");
-    constexpr amrex::Real tol = 1.0e-12_rt;
 
     // Exact-point selections: drag = cd * lad
     // Point cloud forms convex hull triangle in xy-plane:
@@ -180,7 +180,7 @@ TEST_F(PointCloudForestTest, point_cloud_selection_and_interpolation)
     const auto drag_off =
         utils::field_probe(f_drag, 0, 2, 3, 2); // x,y,z = 2.5,3.5,2.5
     const auto expected_lad =
-        idw_lad_from_two(1.0_rt, 1.0_rt, std::sqrt(5.0_rt), 3.0_rt, 1.0e-12_rt);
+        idw_lad_from_two(1.0_rt, 1.0_rt, std::sqrt(5.0_rt), 3.0_rt, tol);
     EXPECT_NEAR(drag_off, 2.0_rt * expected_lad, tol);
 
     // Cell at (3.5, 3.5) should be inside hull and interpolate.

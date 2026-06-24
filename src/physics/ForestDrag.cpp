@@ -241,6 +241,8 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                                             nearest_d2[insert - 1];
                                         nearest_lad[insert] =
                                             nearest_lad[insert - 1];
+                                        nearest_z[insert] =
+                                            nearest_z[insert - 1];
                                         --insert;
                                     }
                                     nearest_d2[insert] = d2;
@@ -422,6 +424,12 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
         // filter.
         std::vector<std::pair<amrex::Real, amrex::Real>> hull_2d;
         compute_convex_hull_2d(xy_points, hull_2d);
+        if (hull_2d.size() < 3) {
+            amrex::Abort(
+                "Forest point cloud file must contain at least 3 non-collinear "
+                "x-y points: " +
+                cloud_file);
+        }
         f.m_hull_vertex_offset = static_cast<int>(hull_vertices.size());
         f.m_hull_vertex_count = static_cast<int>(hull_2d.size());
         for (const auto& pt : hull_2d) {
