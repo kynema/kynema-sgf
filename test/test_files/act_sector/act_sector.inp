@@ -1,0 +1,79 @@
+# Time controls
+time.max_step = 4
+time.fixed_dt = 1.7453292519943296e-4  # 25 deg rotor sweep per step [s]
+time.use_force_cfl = false
+time.plot_interval = -1
+time.checkpoint_interval = -1
+
+# Domain extents are Cartesian coordinates [m].
+geometry.prob_lo = -0.1 -0.12 -0.12
+geometry.prob_hi = 0.2 0.12 0.12
+geometry.is_periodic = 0 0 0
+amr.n_cell = 48 40 40
+amr.max_level = 0
+amr.max_grid_size = 16
+
+# Constant initial/background fields: density [kg/m^3], velocity [m/s].
+ConstValue.density.value = 1.0
+ConstValue.velocity.value = 1.0 0.0 0.0
+
+incflo.use_godunov = 1
+incflo.diffusion_type = 2
+incflo.do_initial_proj = 1
+incflo.initial_iterations = 3
+transport.viscosity = 1.0e-5
+transport.laminar_prandtl = 0.7
+transport.turbulent_prandtl = 0.3333
+turbulence.model = Laminar
+
+incflo.physics = FreeStream Actuator
+ICNS.source_terms = ActuatorForcing
+
+Actuator.labels = R1
+Actuator.type = ActuatorSector
+
+# Actuator-sector rotor geometry and motion
+Actuator.ActuatorSector.rotor_diameter = 0.10          # full rotor diameter [m]
+Actuator.ActuatorSector.root_radius_fraction = 0.18    # root cutoff / tip radius [-]
+Actuator.ActuatorSector.num_blades = 2                 # number of blades [-]
+Actuator.ActuatorSector.omega = 2500.0                 # rotor angular speed [rad/s]
+Actuator.ActuatorSector.center = 0.0 0.0 0.0           # hub position [m]
+Actuator.ActuatorSector.translation_velocity = 0.0 0.0 0.0  # hub velocity [m/s]
+Actuator.ActuatorSector.rotor_normal = 1.0 0.0 0.0    # rotor-axis normal [-]
+Actuator.ActuatorSector.rotor_rotation_degrees_per_revolution = 0.0 2.0 0.0  # body rotation [deg/rev]
+
+# Actuator-sector Gaussian width and generated sector grid
+Actuator.ActuatorSector.epsilon_chord = 0.5            # epsilon / local chord [-]
+# Actuator.ActuatorSector.epsilon_min = 0.0            # optional floor for epsilon_chord [m]
+# Actuator.ActuatorSector.epsilon = 0.005              # optional fixed epsilon [m], overrides epsilon_chord
+Actuator.ActuatorSector.epsilon_dr = 1.5               # radial spacing target epsilon / dr [-]
+Actuator.ActuatorSector.epsilon_dl = 1.5               # swept-arc spacing target epsilon / dl [-]
+Actuator.ActuatorSector.min_chord_dr = 2.0             # lower limit chord / dr [-]
+
+# Actuator-sector blade section inputs
+Actuator.ActuatorSector.span_locs = 0.0 1.0            # nondimensional span stations [-]
+Actuator.ActuatorSector.chord = 0.01 0.006             # chord at span_locs [m]
+Actuator.ActuatorSector.twist = 12.0 4.0               # pitch/twist at span_locs [deg]
+Actuator.ActuatorSector.airfoil_table = ../act_fixed_wing/DU21_A17.txt
+Actuator.ActuatorSector.airfoil_type = openfast
+
+# Actuator-sector force projection and blade-load output
+Actuator.ActuatorSector.gaussian_type = table
+Actuator.ActuatorSector.gaussian_table_error = 1.0e-4  # max exp(-r^2 / epsilon^2) table error [-]
+Actuator.ActuatorSector.output_frequency = 1            # blade-load output interval [steps]
+
+# Boundary conditions: +x inflow, +x pressure outflow, transverse slip walls.
+xlo.type = "mass_inflow"
+xlo.density = 1.0
+xlo.velocity = 1.0 0.0 0.0
+xhi.type = "pressure_outflow"
+
+ylo.type =   "slip_wall"
+yhi.type =   "slip_wall"
+
+zlo.type =   "slip_wall"
+zhi.type =   "slip_wall"
+
+
+incflo.verbose = 0
+nodal_proj.verbose = 0

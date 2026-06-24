@@ -60,6 +60,21 @@ struct ActSrcDisk : ActSrcType
     static constexpr bool is_disk = true;
 };
 
+/** Actuator sector representation.
+ *
+ *  Sector models sweep blade-section loads through the timestep before
+ *  spreading them to the flow. The empty identifier keeps the runtime type name
+ *  equal to the actuator trait name, e.g., ActuatorSector.
+ */
+struct ActSrcSector : ActSrcType
+{
+    static std::string identifier() { return ""; }
+
+    static constexpr bool is_line = false;
+    static constexpr bool is_disk = false;
+    static constexpr bool is_sector = true;
+};
+
 using RealList = amrex::Vector<amrex::Real>;
 using RealSlice = ::kynema_sgf::utils::Slice<amrex::Real>;
 using VecList = amrex::Vector<kynema_sgf::vs::Vector>;
