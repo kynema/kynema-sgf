@@ -117,8 +117,8 @@ struct Forest
             const amrex::Real cross =
                 (xj - xi) * (py - yi) - (yj - yi) * (px - xi);
             const amrex::Real edge_scale =
-                std::abs(xj - xi) + std::abs(yj - yi) + 1.0_rt;
-            if (std::abs(cross) <= constants::TIGHT_TOL * edge_scale &&
+                amrex::Math::abs(xj - xi) + amrex::Math::abs(yj - yi) + 1.0_rt;
+            if (amrex::Math::abs(cross) <= constants::TIGHT_TOL * edge_scale &&
                 amrex::min(xi, xj) <= px && px <= amrex::max(xi, xj) &&
                 amrex::min(yi, yj) <= py && py <= amrex::max(yi, yj)) {
                 return true;
