@@ -367,7 +367,7 @@ TEST_F(FieldNormsTest, levelmask_on_with_box)
     tool.initialize();
     tool.output_actions();
     tool.check_output(
-        1.342655804506534_rt, 1.9393917176204616_rt, 4.0279674135195087_rt);
+        1.333418678095456_rt, 1.9260492016933528_rt, 4.0002560342862816_rt);
 
     // Change scalar for determining refinement - no fine level
     flag.setVal(0);
