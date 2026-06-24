@@ -20,19 +20,6 @@ namespace kynema_sgf::forestdrag {
 
 namespace {
 
-// Resolve relative forest paths against the directory of the list/config file.
-std::string
-resolve_forest_path(const std::string& list_file, const std::string& path)
-{
-    namespace fs = std::filesystem;
-    fs::path input(path);
-    if (input.is_absolute()) {
-        return input.string();
-    }
-    const fs::path parent = fs::path(list_file).parent_path();
-    return (parent / input).lexically_normal().string();
-}
-
 // Strip inline comments and whitespace-only rows from point-cloud data files.
 bool parse_data_line(const std::string& raw_line, std::istringstream& iss)
 {
@@ -265,9 +252,9 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                             // Limit interpolation above canopy by nearest
                             // sample heights.
                             amrex::Real max_z_neighbors = 0.0_rt;
-                            for (int i = 0; i < num_neighbors; ++i) {
+                            for (int n = 0; n < num_neighbors; ++n) {
                                 max_z_neighbors = amrex::max<amrex::Real>(
-                                    max_z_neighbors, nearest_z[i]);
+                                    max_z_neighbors, nearest_z[n]);
                             }
 
                             // Interpolate LAD with inverse-distance weighting.
