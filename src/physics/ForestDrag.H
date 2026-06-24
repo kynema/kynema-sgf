@@ -206,7 +206,7 @@ private:
 
     // Point-cloud interpolation controls.
     int m_point_neighbors{4};
-    amrex::Real m_point_interp_eps{1.0e-12_rt};
+    amrex::Real m_point_interp_eps{constants::TIGHT_TOL};
 };
 } // namespace kynema_sgf::forestdrag
 
