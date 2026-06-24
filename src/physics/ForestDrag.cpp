@@ -360,7 +360,7 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
     const auto& ba = m_sim.repo().mesh().boxArray(level);
 
     int cnt = 0;
-    for (std::size_t i = 0; i < m_point_cloud_files.size(); ++i) {
+    for (int i = 0; i < m_point_cloud_files.size(); ++i) {
 
         const auto& cloud_file = m_point_cloud_files[i];
 
