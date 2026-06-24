@@ -27,8 +27,9 @@ bool parse_data_line(const std::string& raw_line, std::istringstream& iss)
     const auto line = raw_line.substr(0, pos);
     iss.clear();
     iss.str(line);
-    return !(
-        line.empty() || line.find_first_not_of(" \t\r\n") == std::string::npos);
+    return (
+        !line.empty() &&
+        line.find_first_not_of(" \t\r\n") != std::string::npos);
 }
 
 // Compute a 2D convex hull in the x-y plane using the monotonic chain method.
@@ -38,7 +39,7 @@ int compute_convex_hull_2d(
 {
     if (points.size() < 3) {
         hull = points;
-        return points.size();
+        return static_cast<int>(points.size());
     }
 
     std::vector<std::pair<amrex::Real, amrex::Real>> sorted_points = points;
@@ -58,7 +59,8 @@ int compute_convex_hull_2d(
     std::vector<std::pair<amrex::Real, amrex::Real>> lower;
     for (const auto& p : sorted_points) {
         while (lower.size() >= 2 &&
-               cross(lower[lower.size() - 2], lower.back(), p) <= 0.0_rt) {
+               cross(lower[lower.size() - 2], lower.back(), p) <=
+                   constants::TIGHT_TOL) {
             lower.pop_back();
         }
         lower.push_back(p);
@@ -66,11 +68,13 @@ int compute_convex_hull_2d(
 
     std::vector<std::pair<amrex::Real, amrex::Real>> upper;
     for (auto it = sorted_points.rbegin(); it != sorted_points.rend(); ++it) {
+        const auto& p = *it;
         while (upper.size() >= 2 &&
-               cross(upper[upper.size() - 2], upper.back(), *it) <= 0.0_rt) {
+               cross(upper[upper.size() - 2], upper.back(), p) <=
+                   constants::TIGHT_TOL) {
             upper.pop_back();
         }
-        upper.push_back(*it);
+        upper.push_back(p);
     }
 
     lower.pop_back();
@@ -78,7 +82,7 @@ int compute_convex_hull_2d(
     lower.insert(lower.end(), upper.begin(), upper.end());
 
     hull = lower;
-    return hull.size();
+    return static_cast<int>(hull.size());
 }
 
 } // namespace
@@ -150,7 +154,7 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
 
     amrex::Gpu::DeviceVector<kynema_sgf::forestdrag::ForestHullEdge>
         d_hull_edges(hull_edges.size());
-    if (hull_edges.size() > 0) {
+    if (!hull_edges.empty()) {
         amrex::Gpu::copy(
             amrex::Gpu::hostToDevice, hull_edges.begin(), hull_edges.end(),
             d_hull_edges.begin());
@@ -211,9 +215,10 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                             // cells inside the convex hull projected in x-y.
                             constexpr int max_neighbors = 8;
                             constexpr amrex::Real huge = constants::LARGE_NUM;
-                            amrex::Real nearest_d2[max_neighbors];
-                            amrex::Real nearest_lad[max_neighbors];
-                            amrex::Real nearest_z[max_neighbors];
+                            amrex::Array<amrex::Real, max_neighbors> nearest_d2;
+                            amrex::Array<amrex::Real, max_neighbors>
+                                nearest_lad;
+                            amrex::Array<amrex::Real, max_neighbors> nearest_z;
 
                             for (int n = 0; n < max_neighbors; ++n) {
                                 nearest_d2[n] = huge;
