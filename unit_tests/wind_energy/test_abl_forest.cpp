@@ -186,7 +186,8 @@ TEST_F(PointCloudForestTest, point_cloud_selection_and_interpolation)
     // Cell at (3.5, 3.5) should be inside hull and interpolate.
     const auto drag_interior =
         utils::field_probe(f_drag, 0, 3, 3, 2); // x,y,z = 3.5,3.5,2.5
-    EXPECT_GT(drag_interior, 0.0_rt); // Should have non-zero drag if inside hull
+    EXPECT_GT(
+        drag_interior, 0.0_rt); // Should have non-zero drag if inside hull
     EXPECT_NEAR(utils::field_probe(f_id, 0, 3, 3, 2), 0.0_rt, tol);
 
     // Outside all cloud extents should remain untouched.

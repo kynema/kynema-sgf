@@ -28,7 +28,8 @@ struct Forest
     // 0 = legacy cylindrical forest, 1 = point-cloud forest.
     int m_drag_mode{0};
 
-    // Point-cloud storage slice [offset, offset + count) in flattened point array.
+    // Point-cloud storage slice [offset, offset + count) in flattened point
+    // array.
     int m_cloud_point_offset{0};
     int m_cloud_point_count{0};
 
@@ -125,9 +126,8 @@ struct Forest
         const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>& prob_lo) const
     {
         if (m_drag_mode == 1) {
-            return {
-                m_bbox_xlo, m_bbox_ylo, m_bbox_zlo, m_bbox_xhi, m_bbox_yhi,
-                m_bbox_zhi};
+            return {m_bbox_xlo, m_bbox_ylo, m_bbox_zlo,
+                    m_bbox_xhi, m_bbox_yhi, m_bbox_zhi};
         }
 
         const amrex::Real search_tol = 1.1_rt;
@@ -188,10 +188,12 @@ public:
     // Parse legacy cylindrical forest file for a specific AMR level.
     [[nodiscard]] amrex::Vector<Forest> read_cylinder_forests(int level) const;
 
-    // Parse point-cloud forests, flatten points/hulls, and build forest descriptors.
-    [[nodiscard]] amrex::Vector<Forest>
-    read_point_cloud_forests(int level, amrex::Vector<ForestPoint>& points,
-                             amrex::Vector<ForestHullVertex>& hull_vertices) const;
+    // Parse point-cloud forests, flatten points/hulls, and build forest
+    // descriptors.
+    [[nodiscard]] amrex::Vector<Forest> read_point_cloud_forests(
+        int level,
+        amrex::Vector<ForestPoint>& points,
+        amrex::Vector<ForestHullVertex>& hull_vertices) const;
 
 private:
     CFDSim& m_sim;

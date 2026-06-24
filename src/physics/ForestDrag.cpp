@@ -123,8 +123,7 @@ ForestDrag::ForestDrag(CFDSim& sim)
         pp.query("point_neighbors", m_point_neighbors);
         pp.query("point_interp_eps", m_point_interp_eps);
         // Keep neighbor count bounded by fixed-size device arrays in kernels.
-        m_point_neighbors =
-            std::max(1, std::min(m_point_neighbors, 8));
+        m_point_neighbors = std::max(1, std::min(m_point_neighbors, 8));
     }
 
     // Register outputs and initialize field defaults.
@@ -184,7 +183,8 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
     for (amrex::MFIter mfi(m_forest_drag(level)); mfi.isValid(); ++mfi) {
         const auto& vbx = mfi.growntilebox();
         for (int nf = 0; nf < static_cast<int>(forests.size()); nf++) {
-            // First trim work to a forest-local bounding box before per-cell logic.
+            // First trim work to a forest-local bounding box before per-cell
+            // logic.
             const auto bxi = vbx & forests[nf].bounding_box(geom);
             if (!bxi.isEmpty()) {
                 const auto& levelDrag = drag.array(mfi);
@@ -196,13 +196,15 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 const amrex::Real interp_eps = m_point_interp_eps;
                 amrex::ParallelFor(
                     bxi, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                        // Convert integer cell indices to cell-center coordinates.
+                        // Convert integer cell indices to cell-center
+                        // coordinates.
                         const auto x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
                         const auto y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
                         const auto z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
                         const auto& fst = forests_ptr[nf];
 
-                        // Legacy mode: cylindrical footprint with vertical LAD profile.
+                        // Legacy mode: cylindrical footprint with vertical LAD
+                        // profile.
                         if (fst.m_drag_mode == 0) {
                             const auto radius = std::sqrt(
                                 ((x - fst.m_x_forest) * (x - fst.m_x_forest)) +
@@ -242,7 +244,8 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                                 const auto d2 =
                                     (dxp * dxp) + (dyp * dyp) + (dzp * dzp);
 
-                                // Maintain a sorted nearest-neighbor list in-place.
+                                // Maintain a sorted nearest-neighbor list
+                                // in-place.
                                 if (d2 < nearest_d2[num_neighbors - 1]) {
                                     int insert = num_neighbors - 1;
                                     while (insert > 0 &&
@@ -259,7 +262,8 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                                 }
                             }
 
-                            // Limit interpolation above canopy by nearest sample heights.
+                            // Limit interpolation above canopy by nearest
+                            // sample heights.
                             amrex::Real max_z_neighbors = 0.0_rt;
                             for (int i = 0; i < num_neighbors; ++i) {
                                 max_z_neighbors = amrex::max<amrex::Real>(
@@ -267,7 +271,8 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                             }
 
                             // Interpolate LAD with inverse-distance weighting.
-                            // If we are essentially on a sample point, use it directly.
+                            // If we are essentially on a sample point, use it
+                            // directly.
                             const auto eps2 = interp_eps * interp_eps;
                             amrex::Real lad_interp = 0.0_rt;
                             if (nearest_d2[0] < eps2) {
@@ -290,7 +295,8 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                                 }
                             }
 
-                            // Apply drag contribution only for positive interpolated LAD.
+                            // Apply drag contribution only for positive
+                            // interpolated LAD.
                             if (lad_interp > 0.0_rt) {
                                 levelId(i, j, k) = fst.m_id;
                                 levelDrag(i, j, k) +=
@@ -416,7 +422,8 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
             zmax = std::max(zmax, pt.m_z);
         }
 
-        // Number of points belonging to this forest in the flattened point array.
+        // Number of points belonging to this forest in the flattened point
+        // array.
         f.m_cloud_point_count =
             static_cast<int>(points.size()) - f.m_cloud_point_offset;
         if (f.m_cloud_point_count <= 0) {
@@ -424,7 +431,8 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
                 "Forest point cloud file has no valid points: " + cloud_file);
         }
 
-        // Precompute the x-y convex hull used as an interpolation domain filter.
+        // Precompute the x-y convex hull used as an interpolation domain
+        // filter.
         std::vector<std::pair<amrex::Real, amrex::Real>> hull_2d;
         compute_convex_hull_2d(xy_points, hull_2d);
         f.m_hull_vertex_offset = static_cast<int>(hull_vertices.size());
@@ -433,8 +441,8 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
             hull_vertices.push_back({pt.first, pt.second});
         }
 
-        // Slightly pad the point-cloud extents to avoid missing edge cells due to
-        // floating-point and cell-center alignment effects.
+        // Slightly pad the point-cloud extents to avoid missing edge cells due
+        // to floating-point and cell-center alignment effects.
         const amrex::Real pad =
             0.5_rt *
             (geom.CellSizeArray()[0] + geom.CellSizeArray()[1] +
