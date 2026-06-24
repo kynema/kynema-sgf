@@ -211,23 +211,17 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void mixed_youngs_central_normal(
     // normalize each set (mx,my,mz): |mx|+|my|+|mz| = 1
     amrex::Real t0, t1, t2;
 
-    t0 = amrex::max<amrex::Real>(
-        std::numeric_limits<amrex::Real>::epsilon(),
-        std::abs(m(0, 0)) + std::abs(m(0, 1)) + std::abs(m(0, 2)));
+    t0 = std::abs(m(0, 0)) + std::abs(m(0, 1)) + std::abs(m(0, 2));
     m(0, 0) = m(0, 0) / t0;
     m(0, 1) = m(0, 1) / t0;
     m(0, 2) = m(0, 2) / t0;
 
-    t0 = amrex::max<amrex::Real>(
-        std::numeric_limits<amrex::Real>::epsilon(),
-        std::abs(m(1, 0)) + std::abs(m(1, 1)) + std::abs(m(1, 2)));
+    t0 = std::abs(m(1, 0)) + std::abs(m(1, 1)) + std::abs(m(1, 2));
     m(1, 0) = m(1, 0) / t0;
     m(1, 1) = m(1, 1) / t0;
     m(1, 2) = m(1, 2) / t0;
 
-    t0 = amrex::max<amrex::Real>(
-        std::numeric_limits<amrex::Real>::epsilon(),
-        std::abs(m(2, 0)) + std::abs(m(2, 1)) + std::abs(m(2, 2)));
+    t0 = std::abs(m(2, 0)) + std::abs(m(2, 1)) + std::abs(m(2, 2));
     m(2, 0) = m(2, 0) / t0;
     m(2, 1) = m(2, 1) / t0;
     m(2, 2) = m(2, 2) / t0;
@@ -547,8 +541,18 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real levelset_to_vof(
     mx = std::abs(mx / 32.0_rt);
     my = std::abs(my / 32.0_rt);
     mz = std::abs(mz / 32.0_rt);
-    amrex::Real normL1 = amrex::max<amrex::Real>(
-        std::numeric_limits<amrex::Real>::epsilon(), (mx + my + mz));
+    const amrex::Real norm_raw = (mx + my + mz);
+    if (norm_raw <= std::numeric_limits<amrex::Real>::epsilon()) {
+        const amrex::Real phi_ijk = phi(i, j, k);
+        if (phi_ijk < -eps) {
+            return 0.0_rt;
+        }
+        if (phi_ijk > eps) {
+            return 1.0_rt;
+        }
+        return 0.5_rt;
+    }
+    amrex::Real normL1 = norm_raw;
     mx = mx / normL1;
     my = my / normL1;
     mz = mz / normL1;
