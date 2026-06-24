@@ -301,6 +301,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real volume_intercept(
 
     amrex::Real m12 = m1 + m2;
     amrex::Real pr = amrex::max<amrex::Real>(6.0_rt * m1 * m2 * m3, tiny);
+    amrex::Real m3 = amrex::max<amrex::Real>(m3, tiny);
     amrex::Real V1 = m1 * m1 * m1 / pr;
     amrex::Real V2 = V1 + (0.5_rt * (m2 - m1) / m3);
 

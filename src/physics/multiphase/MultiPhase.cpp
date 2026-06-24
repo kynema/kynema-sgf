@@ -45,18 +45,8 @@ MultiPhase::MultiPhase(CFDSim& sim)
         auto& levelset_eqn =
             sim.pde_manager().register_transport_pde("Levelset");
         m_levelset = &(levelset_eqn.fields().field);
-        // Register higher-order extrapolation as a default BC for the
-        // levelset field so that ghost cells contain a sensible
-        // (non-zero, non-NaN) extrapolation of the interior signed
-        // distance.  This avoids zero-gradient stencils in
-        // youngs_finite_difference_normal (and resulting FPEs in
-        // levelset2vof / set_density_via_levelset) when the user has not
-        // specified Dirichlet values for levelset at every non-periodic
-        // boundary.  The transport PDE's own BCs take effect once the
-        // user has registered explicit BCs for the levelset field.
-        const amrex::Real levelset_default = 0.0_rt;
-        BCFillPatchExtrap bc_ls(*m_levelset);
-        bc_ls(levelset_default);
+        m_levelset->set_default_fillpatch_bc(
+            sim.time(), amrex::BCType::hoextrap);
         m_levelset->fillpatch(sim.time().current_time());
     } else {
         amrex::Print() << "Please select an interface capturing model between "
