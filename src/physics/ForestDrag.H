@@ -13,11 +13,13 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::forestdrag {
 
-// One vertex in the precomputed x-y convex hull used by point-cloud forests.
-struct ForestHullVertex
+// One precomputed inward-facing half-space edge for convex hull tests.
+struct ForestHullEdge
 {
-    amrex::Real m_x;
-    amrex::Real m_y;
+    amrex::Real m_nx;
+    amrex::Real m_ny;
+    amrex::Real m_d;
+    amrex::Real m_tol_scale;
 };
 
 // Per-forest descriptor consumed by host logic and device kernels.
@@ -33,9 +35,9 @@ struct Forest
     int m_cloud_point_offset{0};
     int m_cloud_point_count{0};
 
-    // Convex hull storage slice in flattened hull-vertex array.
-    int m_hull_vertex_offset{0};
-    int m_hull_vertex_count{0};
+    // Convex hull half-space storage slice in flattened edge array.
+    int m_hull_edge_offset{0};
+    int m_hull_edge_count{0};
 
     // Legacy cylindrical/model parameters.
     amrex::Real m_type_forest;
@@ -96,40 +98,25 @@ struct Forest
         return af;
     }
 
-    // Ray-casting point-in-polygon test against this forest's convex hull.
+    // Convex-hull half-space test (boundary-inclusive) using precomputed
+    // inward edge normals.
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE bool point_in_on_hull(
         const amrex::Real px,
         const amrex::Real py,
-        const ForestHullVertex* hull_verts) const
+        const ForestHullEdge* hull_edges) const
     {
-        if (m_hull_vertex_count <= 0) {
+        if (m_hull_edge_count <= 0) {
             return true;
         }
-        bool inside = false;
-        int j = m_hull_vertex_count - 1;
-        for (int i = 0; i < m_hull_vertex_count; ++i) {
-            const auto xi = hull_verts[m_hull_vertex_offset + i].m_x;
-            const auto yi = hull_verts[m_hull_vertex_offset + i].m_y;
-            const auto xj = hull_verts[m_hull_vertex_offset + j].m_x;
-            const auto yj = hull_verts[m_hull_vertex_offset + j].m_y;
-            // Boundary check: point lies on this edge when the cross product
-            // is zero (collinear) and the point is within the edge's bbox.
-            const amrex::Real cross =
-                (xj - xi) * (py - yi) - (yj - yi) * (px - xi);
-            const amrex::Real edge_scale =
-                amrex::Math::abs(xj - xi) + amrex::Math::abs(yj - yi) + 1.0_rt;
-            if (amrex::Math::abs(cross) <= constants::TIGHT_TOL * edge_scale &&
-                amrex::min(xi, xj) <= px && px <= amrex::max(xi, xj) &&
-                amrex::min(yi, yj) <= py && py <= amrex::max(yi, yj)) {
-                return true;
+        for (int i = 0; i < m_hull_edge_count; ++i) {
+            const auto& e = hull_edges[m_hull_edge_offset + i];
+            const amrex::Real signed_dist = (e.m_nx * px) + (e.m_ny * py) -
+                                            e.m_d;
+            if (signed_dist < -constants::TIGHT_TOL * e.m_tol_scale) {
+                return false;
             }
-            if (((yi > py) != (yj > py)) &&
-                (px < (xj - xi) * (py - yi) / (yj - yi) + xi)) {
-                inside = !inside;
-            }
-            j = i;
         }
-        return inside;
+        return true;
     }
 
     // Return real-space bounds for either point-cloud or cylindrical mode.
@@ -199,12 +186,12 @@ public:
     // Parse legacy cylindrical forest file for a specific AMR level.
     [[nodiscard]] amrex::Vector<Forest> read_cylinder_forests(int level) const;
 
-    // Parse point-cloud forests, flatten points/hulls, and build forest
+    // Parse point-cloud forests, flatten points/hull-edges, and build forest
     // descriptors.
     [[nodiscard]] amrex::Vector<Forest> read_point_cloud_forests(
         int level,
         amrex::Vector<ForestPoint>& points,
-        amrex::Vector<ForestHullVertex>& hull_vertices) const;
+        amrex::Vector<ForestHullEdge>& hull_edges) const;
 
 private:
     CFDSim& m_sim;

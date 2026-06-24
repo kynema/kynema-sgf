@@ -129,16 +129,16 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
 
     // Build host-side forest metadata for the requested AMR level.
     amrex::Vector<ForestPoint> cloud_points;
-    amrex::Vector<kynema_sgf::forestdrag::ForestHullVertex> hull_vertices;
+    amrex::Vector<kynema_sgf::forestdrag::ForestHullEdge> hull_edges;
     amrex::Vector<Forest> forests;
     if (!m_point_cloud_files.empty()) {
-        forests = read_point_cloud_forests(level, cloud_points, hull_vertices);
+        forests = read_point_cloud_forests(level, cloud_points, hull_edges);
     } else {
         forests = read_cylinder_forests(level);
     }
 
     // Mirror host vectors on device so kernels can access forest descriptors,
-    // point samples, and precomputed hull vertices.
+    // point samples, and precomputed hull half-space edges.
     amrex::Gpu::DeviceVector<Forest> d_forests(forests.size());
     amrex::Gpu::copy(
         amrex::Gpu::hostToDevice, forests.begin(), forests.end(),
@@ -148,12 +148,12 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
         amrex::Gpu::hostToDevice, cloud_points.begin(), cloud_points.end(),
         d_cloud_points.begin());
 
-    amrex::Gpu::DeviceVector<kynema_sgf::forestdrag::ForestHullVertex>
-        d_hull_vertices(hull_vertices.size());
-    if (hull_vertices.size() > 0) {
+    amrex::Gpu::DeviceVector<kynema_sgf::forestdrag::ForestHullEdge>
+        d_hull_edges(hull_edges.size());
+    if (hull_edges.size() > 0) {
         amrex::Gpu::copy(
-            amrex::Gpu::hostToDevice, hull_vertices.begin(),
-            hull_vertices.end(), d_hull_vertices.begin());
+            amrex::Gpu::hostToDevice, hull_edges.begin(), hull_edges.end(),
+            d_hull_edges.begin());
     }
 
     const auto& dx = geom.CellSizeArray();
@@ -178,7 +178,7 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 const auto& levelId = fst_id.array(mfi);
                 const auto* forests_ptr = d_forests.data();
                 const auto* points_ptr = d_cloud_points.data();
-                const auto* hull_verts_ptr = d_hull_vertices.data();
+                const auto* hull_edges_ptr = d_hull_edges.data();
                 const int num_neighbors = m_point_neighbors;
                 const amrex::Real interp_eps = m_point_interp_eps;
                 amrex::ParallelFor(
@@ -206,7 +206,7 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                             }
                         } else if (
                             fst.m_cloud_point_count > 0 &&
-                            fst.point_in_on_hull(x, y, hull_verts_ptr)) {
+                            fst.point_in_on_hull(x, y, hull_edges_ptr)) {
                             // Point-cloud mode: only evaluate interpolation for
                             // cells inside the convex hull projected in x-y.
                             constexpr int max_neighbors = 8;
@@ -350,7 +350,7 @@ amrex::Vector<Forest> ForestDrag::read_cylinder_forests(const int level) const
 amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
     const int level,
     amrex::Vector<ForestPoint>& points,
-    amrex::Vector<kynema_sgf::forestdrag::ForestHullVertex>& hull_vertices)
+    amrex::Vector<kynema_sgf::forestdrag::ForestHullEdge>& hull_edges)
     const
 {
     BL_PROFILE(
@@ -420,8 +420,8 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
                 "Forest point cloud file has no valid points: " + cloud_file);
         }
 
-        // Precompute the x-y convex hull used as an interpolation domain
-        // filter.
+        // Precompute the x-y convex hull used as an interpolation-domain
+        // filter, then convert it to inward half-space edges.
         std::vector<std::pair<amrex::Real, amrex::Real>> hull_2d;
         compute_convex_hull_2d(xy_points, hull_2d);
         if (hull_2d.size() < 3) {
@@ -430,10 +430,33 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
                 "x-y points: " +
                 cloud_file);
         }
-        f.m_hull_vertex_offset = static_cast<int>(hull_vertices.size());
-        f.m_hull_vertex_count = static_cast<int>(hull_2d.size());
-        for (const auto& pt : hull_2d) {
-            hull_vertices.push_back({pt.first, pt.second});
+
+        // Ensure CCW winding so inward normals are consistently defined.
+        amrex::Real twice_area = 0.0_rt;
+        for (int v = 0; v < static_cast<int>(hull_2d.size()); ++v) {
+            const int vn = (v + 1) % static_cast<int>(hull_2d.size());
+            twice_area += (hull_2d[v].first * hull_2d[vn].second) -
+                          (hull_2d[vn].first * hull_2d[v].second);
+        }
+        if (twice_area < 0.0_rt) {
+            std::reverse(hull_2d.begin(), hull_2d.end());
+        }
+
+        f.m_hull_edge_offset = static_cast<int>(hull_edges.size());
+        f.m_hull_edge_count = static_cast<int>(hull_2d.size());
+        for (int v = 0; v < static_cast<int>(hull_2d.size()); ++v) {
+            const int vn = (v + 1) % static_cast<int>(hull_2d.size());
+            const auto xi = hull_2d[v].first;
+            const auto yi = hull_2d[v].second;
+            const auto xj = hull_2d[vn].first;
+            const auto yj = hull_2d[vn].second;
+            const auto ex = xj - xi;
+            const auto ey = yj - yi;
+            const auto nx = -ey;
+            const auto ny = ex;
+            hull_edges.push_back(
+                {nx, ny, (nx * xi) + (ny * yi),
+                 amrex::Math::abs(nx) + amrex::Math::abs(ny) + 1.0_rt});
         }
 
         // Slightly pad the point-cloud extents to avoid missing edge cells due
