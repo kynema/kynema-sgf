@@ -45,8 +45,8 @@ MultiPhase::MultiPhase(CFDSim& sim)
         auto& levelset_eqn =
             sim.pde_manager().register_transport_pde("Levelset");
         m_levelset = &(levelset_eqn.fields().field);
-        m_levelset->set_default_fillpatch_bc(
-            sim.time(), amrex::BCType::hoextrap);
+        BCScalar bc_ls(*m_levelset);
+        bc_ls(0.0_rt);
         m_levelset->fillpatch(sim.time().current_time());
     } else {
         amrex::Print() << "Please select an interface capturing model between "
