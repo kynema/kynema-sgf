@@ -206,6 +206,19 @@ TEST_F(PointCloudForestTest, point_cloud_selection_and_interpolation)
     // Cell at (2, 7) center (2.5, 7.5) is outside hull (y > 6.5).
     EXPECT_NEAR(utils::field_probe(f_drag, 0, 2, 7, 2), 0.0_rt, tol);
     EXPECT_NEAR(utils::field_probe(f_id, 0, 2, 7, 2), -1.0_rt, tol);
+
+    // Vertical canopy cutoff: all cloud points are at z=2.5, so
+    // max_z_neighbors=2.5. The guard is (z - 0.5*dz) <= max_z_neighbors.
+    // dx[2]=1.0, so k=2 -> cell bottom 2.0 <= 2.5 (inside), k=3 -> 3.0 > 2.5
+    // (above canopy). Positive control: cell (3,2,2) center (3.5,2.5,2.5) is
+    // inside hull and within canopy height — must have non-zero drag.
+    EXPECT_GT(utils::field_probe(f_drag, 0, 3, 2, 2), 0.0_rt);
+
+    // Above-canopy cell (3,2,3) center (3.5,2.5,3.5): x-y is inside hull but
+    // the vertical check zeroes the contribution because
+    // z - 0.5*dz = 3.0 > max_z_neighbors = 2.5.
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 3, 2, 3), 0.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_id, 0, 3, 2, 3), -1.0_rt, tol);
 }
 
 } // namespace kynema_sgf_tests
