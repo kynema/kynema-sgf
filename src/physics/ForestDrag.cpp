@@ -407,7 +407,7 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
             }
 
             points.push_back(pt);
-            xy_points.push_back({pt.m_x, pt.m_y});
+            xy_points.emplace_back(pt.m_x, pt.m_y);
             xmin = amrex::min<amrex::Real>(xmin, pt.m_x);
             ymin = amrex::min<amrex::Real>(ymin, pt.m_y);
             zmin = amrex::min<amrex::Real>(zmin, pt.m_z);
@@ -459,9 +459,10 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
             const auto ey = yj - yi;
             const auto nx = -ey;
             const auto ny = ex;
-            hull_edges.push_back(
-                {nx, ny, (nx * xi) + (ny * yi),
-                 amrex::Math::abs(nx) + amrex::Math::abs(ny) + 1.0_rt});
+            hull_edges.emplace_back(
+                ForestHullEdge{
+                    nx, ny, (nx * xi) + (ny * yi),
+                    amrex::Math::abs(nx) + amrex::Math::abs(ny) + 1.0_rt});
         }
 
         // Slightly pad the point-cloud extents to avoid missing edge cells due
