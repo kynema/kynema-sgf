@@ -262,7 +262,8 @@ void DragForcing::operator()(
     const amrex::Real time_factor = m_forcing_time_factor;
     const amrex::Real min_z = m_min_z;
     const amrex::Real min_z0 = m_min_z0;
-    const amrex::Real scale_factor = (m_limit_drag && dx[2] < 1.0_rt) ? 1.0_rt : 1.0_rt / dx[2];
+    const amrex::Real scale_factor =
+        (m_limit_drag && dx[2] < 1.0_rt) ? 1.0_rt : 1.0_rt / dx[2];
     const amrex::Real Cd = (m_limit_drag && is_laminar != 0 && dx[2] < 1)
                                ? drag_coefficient
                                : drag_coefficient / dx[2];
@@ -410,16 +411,14 @@ void DragForcing::operator()(
             if (has_terrain_drag != 0) {
                 amrex::Real drag_force_n = 0.0_rt;
                 if (n == 0) {
-                    drag_force_n = (Dxz * drag_arrs[nbx](i, j, k)) +
-                                   (bc_forcing_x * drag_arrs[nbx](i, j, k));
+                    drag_force_n = Dxz + bc_forcing_x;
                 } else if (n == 1) {
-                    drag_force_n = (Dyz * drag_arrs[nbx](i, j, k)) +
-                                   (bc_forcing_y * drag_arrs[nbx](i, j, k));
+                    drag_force_n = Dyz + bc_forcing_y;
                 } else {
-                    drag_force_n =
-                        CdM * m * (uz1 - target_w) * drag_arrs[nbx](i, j, k);
+                    drag_force_n = CdM * m * (uz1 - target_w);
                 }
-                src_arrs[nbx](i, j, k, n) -= drag_force_n;
+                src_arrs[nbx](i, j, k, n) -=
+                    drag_force_n * amrex::Math::abs(drag_arrs[nbx](i, j, k));
             }
 
             if (sponge_strength > 0.0_rt) {
