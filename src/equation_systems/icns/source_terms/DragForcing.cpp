@@ -96,6 +96,9 @@ DragForcing::DragForcing(const CFDSim& sim)
 {
     amrex::ParmParse pp("DragForcing");
     pp.query("drag_coefficient", m_drag_coefficient);
+    pp.query("use_conditionals_to_limit_drag", m_limit_drag);
+    pp.query("max_drag_coefficient", m_cd_max);
+    pp.query("minimum_z0", m_min_z0);
     pp.query("sponge_strength", m_sponge_strength);
     pp.query("bc_forcing_time_factor", m_forcing_time_factor);
     pp.query("sponge_density", m_sponge_density);
@@ -258,13 +261,13 @@ void DragForcing::operator()(
     const int is_laminar = m_is_laminar ? 1 : 0;
     const amrex::Real time_factor = m_forcing_time_factor;
     const amrex::Real min_z = m_min_z;
-    const amrex::Real scale_factor = (dx[2] < 1.0_rt) ? 1.0_rt : 1.0_rt / dx[2];
-    const amrex::Real Cd = (is_laminar != 0 && dx[2] < 1)
+    const amrex::Real min_z0 = m_min_z0;
+    const amrex::Real scale_factor = (m_limit_drag && dx[2] < 1.0_rt) ? 1.0_rt : 1.0_rt / dx[2];
+    const amrex::Real Cd = (m_limit_drag && is_laminar != 0 && dx[2] < 1)
                                ? drag_coefficient
                                : drag_coefficient / dx[2];
     const amrex::Real kappa = m_kappa;
-    const amrex::Real z0_min = 1.0e-4_rt;
-    const amrex::Real cd_max = 1000.0_rt;
+    const amrex::Real cd_max = m_limit_drag ? m_cd_max : constants::LARGE_NUM;
 
     const amrex::Real non_neutral_neighbour =
         (m_wall_het_model == "mol")
@@ -336,7 +339,8 @@ void DragForcing::operator()(
             amrex::Real bc_forcing_y = 0.0_rt;
             const amrex::Real m =
                 std::sqrt((ux1 * ux1) + (uy1 * uy1) + (uz1 * uz1));
-            if (has_terrain_drag != 0 && drag_arrs[nbx](i, j, k) == 1 &&
+            if (has_terrain_drag != 0 &&
+                amrex::Math::abs(drag_arrs[nbx](i, j, k)) == 1 &&
                 (is_laminar == 0)) {
                 int k_off = -1;
                 if (is_waves != 0) {
@@ -354,10 +358,14 @@ void DragForcing::operator()(
                                     : target_vel_arrs[nbx](i, j, k + k_off, 1);
                 const amrex::Real ux1r = ux1 - wall_u;
                 const amrex::Real uy1r = uy1 - wall_v;
-                const amrex::Real ux2r = vel_arrs[nbx](i, j, k + 1, 0) - wall_u;
-                const amrex::Real uy2r = vel_arrs[nbx](i, j, k + 1, 1) - wall_v;
+                const amrex::Real ux2r =
+                    vel_arrs[nbx](i, j, k + drag_arrs[nbx](i, j, k), 0) -
+                    wall_u;
+                const amrex::Real uy2r =
+                    vel_arrs[nbx](i, j, k + drag_arrs[nbx](i, j, k), 1) -
+                    wall_v;
                 const amrex::Real z0 = amrex::max<amrex::Real>(
-                    terrainz0_arrs[nbx](i, j, k), z0_min);
+                    terrainz0_arrs[nbx](i, j, k), min_z0);
                 const amrex::Real ustar = viscous_drag_calculations(
                     Dxz, Dyz, ux1r, uy1r, ux2r, uy2r, z0, dx[2], kappa,
                     non_neutral_neighbour);
