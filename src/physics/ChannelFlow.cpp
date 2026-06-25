@@ -44,7 +44,7 @@ ChannelFlow::ChannelFlow(CFDSim& sim)
             pp.query("Mean_Velocity", m_mean_vel);
             pp.query("half_channel", m_half);
             if (m_perturb_vel) {
-                // When m_laminar and m_perturb_vel are both true, assume DNS
+                // Assumes DNS when m_laminar and m_perturb_vel are both true
                 pp.query("re_tau", m_re_tau);
             }
         } else {
@@ -149,7 +149,8 @@ void ChannelFlow::initialize_fields(
     const auto y_perturb = m_perturb_y_period * 2.0_rt * pi / lengths[1];
     const auto z_perturb = m_perturb_z_period * 2.0_rt * pi / lengths[2];
 
-    if (!m_laminar) {
+    if (!m_laminar || (m_laminar && m_perturb_vel)) {
+        // Non-laminar case or "laminar" DNS with perturbations
         if (m_analytical_smagorinsky_test) {
             auto coeffs = m_sim.turbulence_model().model_coeffs();
             const auto Cs = coeffs["Cs"];
@@ -224,48 +225,10 @@ void ChannelFlow::initialize_fields(
             amrex::Gpu::streamSynchronize();
         }
     } else {
-        // Laminar case: initialize with constant velocity or perturbations
-        if (m_perturb_vel) {
-            // DNS-style initialization: Reichardt profile with perturbations
-            auto& walldist = m_repo.get_field("wall_dist")(level);
-            const auto& vel_arrs = velocity.arrays();
-            const auto& wd_arrs = walldist.arrays();
-
-            amrex::ParallelFor(
-                velocity, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
-                    const int n_ind = idxOp(i, j, k);
-                    amrex::Real h =
-                        problo[n_idx] + ((n_ind + 0.5_rt) * dx[n_idx]);
-                    if (h > 1.0_rt) {
-                        h = 2.0_rt - h;
-                    }
-                    wd_arrs[nbx](i, j, k) = h;
-                    const amrex::Real hp = h / y_tau;
-                    vel_arrs[nbx](i, j, k, 0) =
-                        utau *
-                        (1.0_rt / kappa * std::log1p(kappa * hp) +
-                         7.8_rt * (1.0_rt - std::exp(-hp / 11.0_rt) -
-                                   (hp / 11.0_rt) * std::exp(-hp / 3.0_rt)));
-
-                    const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
-                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
-                    const amrex::Real perty = z_perturb * perturb_amp *
-                                              std::sin(y_perturb * y) *
-                                              std::cos(z_perturb * z);
-                    const amrex::Real pertz = -y_perturb * perturb_amp *
-                                              std::cos(y_perturb * y) *
-                                              std::sin(z_perturb * z);
-                    vel_arrs[nbx](i, j, k, 1) = perty;
-                    vel_arrs[nbx](i, j, k, 2) = pertz;
-                });
-            amrex::Gpu::streamSynchronize();
-        } else {
-            // Standard laminar initialization: constant velocity
-            velocity.setVal(0.0_rt);
-            velocity.setVal(
-                m_mean_vel, m_mean_vel_dir, 1,
-                velocity_field.num_grow()[m_mean_vel_dir]);
-        }
+        velocity.setVal(0.0_rt);
+        velocity.setVal(
+            m_mean_vel, m_mean_vel_dir, 1,
+            velocity_field.num_grow()[m_mean_vel_dir]);
     }
 }
 
