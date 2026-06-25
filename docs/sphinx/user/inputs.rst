@@ -104,6 +104,7 @@ documentation provided here might not work with older releases.
    inputs_multiphase.rst
    inputs_ocean_waves.rst
    inputs_SyntheticTurbulence.rst
+   inputs_forest.rst
    inputs_ChannelBuilder.rst
    inputs_Boundary_conditions.rst
    inputs_field_boundaries.rst
