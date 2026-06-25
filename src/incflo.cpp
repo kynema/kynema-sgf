@@ -95,11 +95,11 @@ void incflo::init_mesh()
             amrex::Print() << "Grid summary: " << '\n';
             printGridSummaryWithTotal(*this, finest_level);
 
-            amrex::Print() << "Aspect ratio (dy/dx  dz/dx  dz/dy): \n";
+            amrex::Print() << "Cell aspect ratio (dy/dx  dz/dx  dz/dy): ";
             auto dx = m_sim.mesh().Geom(0).CellSize(0);
             auto dy = m_sim.mesh().Geom(0).CellSize(1);
             auto dz = m_sim.mesh().Geom(0).CellSize(2);
-            amrex::Print() << dy/dx << "  " << dz/dx << "  " << dz/dy << '\n';
+            amrex::Print() << dy/dx << "  " << dz/dx << "  " << dz/dy << "\n\n";
         }
     } else {
         // Read starting configuration from chk file.
@@ -119,11 +119,11 @@ void incflo::init_mesh()
             amrex::Print() << "Grid summary: " << '\n';
             printGridSummaryWithTotal(*this, finest_level);
 
-            amrex::Print() << "Aspect ratio (dy/dx  dz/dx  dz/dy): \n";
+            amrex::Print() << "Cell aspect ratio (dy/dx  dz/dx  dz/dy): ";
             auto dx = m_sim.mesh().Geom(0).CellSize(0);
             auto dy = m_sim.mesh().Geom(0).CellSize(1);
             auto dz = m_sim.mesh().Geom(0).CellSize(2);
-            amrex::Print() << dy/dx << "  " << dz/dx << "  " << dz/dy << '\n';
+            amrex::Print() << dy/dx << "  " << dz/dx << "  " << dz/dy << "\n\n";
         }
     }
 }
