@@ -35,10 +35,10 @@ void printGridSummaryWithTotal(amrex::AmrCore& core, int finest_level)
     }
 
     amrex::Print() << s << '\n'
-                   << "  Total     " << total_grids << " grids  "
-                   << total_cells << " cells\n\n";
+                   << "  Total     " << total_grids << " grids  " << total_cells
+                   << " cells\n\n";
 }
-}
+} // namespace
 
 incflo::incflo()
     : m_sim(*this)
@@ -99,7 +99,8 @@ void incflo::init_mesh()
             auto dx = m_sim.mesh().Geom(0).CellSize(0);
             auto dy = m_sim.mesh().Geom(0).CellSize(1);
             auto dz = m_sim.mesh().Geom(0).CellSize(2);
-            amrex::Print() << dy/dx << "  " << dz/dx << "  " << dz/dy << "\n\n";
+            amrex::Print() << dy / dx << "  " << dz / dx << "  " << dz / dy
+                           << "\n\n";
         }
     } else {
         // Read starting configuration from chk file.
@@ -123,7 +124,8 @@ void incflo::init_mesh()
             auto dx = m_sim.mesh().Geom(0).CellSize(0);
             auto dy = m_sim.mesh().Geom(0).CellSize(1);
             auto dz = m_sim.mesh().Geom(0).CellSize(2);
-            amrex::Print() << dy/dx << "  " << dz/dx << "  " << dz/dy << "\n\n";
+            amrex::Print() << dy / dx << "  " << dz / dx << "  " << dz / dy
+                           << "\n\n";
         }
     }
 }
