@@ -94,6 +94,12 @@ void incflo::init_mesh()
         if (amrex::ParallelDescriptor::IOProcessor()) {
             amrex::Print() << "Grid summary: " << '\n';
             printGridSummaryWithTotal(*this, finest_level);
+
+            amrex::Print() << "Aspect ratio (dy/dx  dz/dx  dz/dy): \n";
+            auto dx = m_sim.mesh().Geom(0).CellSize(0);
+            auto dy = m_sim.mesh().Geom(0).CellSize(1);
+            auto dz = m_sim.mesh().Geom(0).CellSize(2);
+            amrex::Print() << dy/dx << "  " << dz/dx << "  " << dz/dy << '\n';
         }
     } else {
         // Read starting configuration from chk file.
@@ -112,6 +118,12 @@ void incflo::init_mesh()
         if (amrex::ParallelDescriptor::IOProcessor()) {
             amrex::Print() << "Grid summary: " << '\n';
             printGridSummaryWithTotal(*this, finest_level);
+
+            amrex::Print() << "Aspect ratio (dy/dx  dz/dx  dz/dy): \n";
+            auto dx = m_sim.mesh().Geom(0).CellSize(0);
+            auto dy = m_sim.mesh().Geom(0).CellSize(1);
+            auto dz = m_sim.mesh().Geom(0).CellSize(2);
+            amrex::Print() << dy/dx << "  " << dz/dx << "  " << dz/dy << '\n';
         }
     }
 }
