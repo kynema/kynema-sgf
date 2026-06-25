@@ -14,7 +14,7 @@
 using namespace amrex::literals;
 
 namespace {
-void PrintGridSummaryWithTotal(amrex::AmrCore& core, int finest_level)
+void print_grid_summary_with_total(amrex::AmrCore& core, int finest_level)
 {
     // Get AMReX's per-level summary, remove trailing \n, and append
     // summary of summed quantities
@@ -93,7 +93,7 @@ void incflo::init_mesh()
         amrex::Print() << "done" << '\n';
         if (amrex::ParallelDescriptor::IOProcessor()) {
             amrex::Print() << "Grid summary: " << '\n';
-            PrintGridSummaryWithTotal(*this, finest_level);
+            print_grid_summary_with_total(*this, finest_level);
 
             amrex::Print() << "Cell aspect ratio (dy/dx  dz/dx  dz/dy): ";
             auto dx = m_sim.mesh().Geom(0).CellSize(0);
@@ -118,7 +118,7 @@ void incflo::init_mesh()
 
         if (amrex::ParallelDescriptor::IOProcessor()) {
             amrex::Print() << "Grid summary: " << '\n';
-            PrintGridSummaryWithTotal(*this, finest_level);
+            print_grid_summary_with_total(*this, finest_level);
 
             amrex::Print() << "Cell aspect ratio (dy/dx  dz/dx  dz/dy): ";
             auto dx = m_sim.mesh().Geom(0).CellSize(0);
@@ -242,7 +242,7 @@ bool incflo::regrid_and_update()
         amrex::Print() << "time elapsed = " << rend << '\n';
         if (amrex::ParallelDescriptor::IOProcessor()) {
             amrex::Print() << "Grid summary: " << '\n';
-            PrintGridSummaryWithTotal(*this, finest_level);
+            print_grid_summary_with_total(*this, finest_level);
         }
 
         // update mesh map
