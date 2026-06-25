@@ -148,7 +148,7 @@ void RectangularSubvolume::evaluate_inputs()
                    << "output cell resolution is ("
                    << m_dx_vec[0] << ", "
                    << m_dx_vec[1] << ", "
-                   << m_dx_vec[2] << ")\n";
+                   << m_dx_vec[2] << ")\n"
                    << "RectangularSubvolume " + m_label
                    << ": Source sampling extent is " << best_src_box
                    << "\n";
