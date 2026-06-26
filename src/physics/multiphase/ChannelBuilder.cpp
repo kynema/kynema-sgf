@@ -196,6 +196,7 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
     pp.query("initialize_drag_cells", m_initialize_drag);
     if (m_initialize_drag) {
         sim.repo().declare_int_field("terrain_drag", 1, 0, 1);
+        m_sim.io_manager().register_output_int_var("terrain_drag");
     }
     pp.getarr("segment_labels", labels);
 
@@ -560,7 +561,8 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     amrex::Gpu::streamSynchronize();
 
     if (m_initialize_drag) {
-        auto drag_arrs = m_sim.repo().get_int_field("terrain_drag")(level).arrays();
+        auto drag_arrs =
+            m_sim.repo().get_int_field("terrain_drag")(level).arrays();
         amrex::ParallelFor(
             blank_mfab, m_terrain_blank.num_grow() - amrex::IntVect(1),
             [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
