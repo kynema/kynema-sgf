@@ -111,6 +111,9 @@ private:
     IntField& m_terrain_blank;
 
     bool m_is_multiphase{false};
+    bool m_initialize_velocity{true};
+    bool m_zero_blanked_velocity{true};
+    bool m_initialize_drag{false};
     amrex::Real m_rho_init{1.0_rt};
     amrex::Real m_water_level{0.0_rt};
     amrex::Real m_land_level{0.0_rt};
