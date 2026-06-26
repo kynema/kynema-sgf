@@ -193,8 +193,7 @@ void PlaneSampler::populate_netcdf_metadata(
 void PlaneSampler::populate_info_file(std::ostream& fh) const
 {
     const auto write_real_list =
-        [&fh](const std::string& key,
-              const amrex::Vector<amrex::Real>& v) {
+        [&fh](const std::string& key, const amrex::Vector<amrex::Real>& v) {
             fh << "   " << key << ": [";
             for (amrex::Long i = 0; i < v.size(); ++i) {
                 if (i > 0) {
