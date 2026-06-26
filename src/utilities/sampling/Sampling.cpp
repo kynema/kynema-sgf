@@ -444,6 +444,7 @@ void Sampling::write_info_file(const std::string& fname)
         fh << " - index: " << i << '\n';
         fh << "   label: " << m_samplers[i]->label() << '\n';
         fh << "   type: " << m_samplers[i]->sampletype() << '\n';
+        m_samplers[i]->populate_info_file(fh);
     }
 
     fh.close();
