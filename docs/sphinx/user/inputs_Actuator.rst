@@ -409,7 +409,7 @@ Example for ``ActuatorSector``::
 
    **type:** Real number, optional, default = 1.5
 
-   Swept arclength requirement. Swept quadrature is selected automatically so
+   Swept arc length requirement. Swept quadrature is selected automatically so
    that ``epsilon / dl >= epsilon_dl`` over the rotor sweep in the current
    timestep. When the timestep is sufficiently small, each radial station uses
    one swept point and the projection reduces to an actuator-line-like limit.

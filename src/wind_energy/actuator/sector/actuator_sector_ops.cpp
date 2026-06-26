@@ -157,7 +157,7 @@ vs::Tensor orientation_matrix_from_normal(const vs::Vector& normal)
                                                        : vs::Vector::jhat();
     const auto e_r0 = (ref ^ e_normal).unit();
     const auto e_y = (e_normal ^ e_r0).unit();
-    return vs::Tensor(e_r0, e_y, e_normal, true);
+    return {e_r0, e_y, e_normal, true};
 }
 
 vs::Tensor rotation_matrix_from_vector(const vs::Vector& rotation_vector)
