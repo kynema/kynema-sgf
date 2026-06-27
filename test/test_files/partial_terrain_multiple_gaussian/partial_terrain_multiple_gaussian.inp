@@ -1,0 +1,45 @@
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#            SIMULATION STOP            #
+#.......................................#
+time.stop_time               =   -100.0     # Max (simulated) time to evolve
+time.max_step                =   5          # Max number of time steps
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#         TIME STEP COMPUTATION         #
+#.......................................#
+time.fixed_dt         =   0.1         # Use this constant dt if > 0
+time.cfl              =   0.9         # CFL factor
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#            INPUT AND OUTPUT           #
+#.......................................#
+time.plot_interval            =  1        # Steps between plot files
+time.checkpoint_interval      =  -1       # Steps between checkpoint files
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#               PHYSICS                 #
+#.......................................#
+ConstValue.density.value = 1.0
+ConstValue.velocity.value = 1.0 0.0 0.0
+
+incflo.use_godunov = 1
+incflo.diffusion_type = 2
+incflo.do_initial_proj = 0
+incflo.initial_iterations = 0
+transport.viscosity = 1.0e-15
+transport.laminar_prandtl = 0.7
+transport.turbulent_prandtl = 0.3333
+turbulence.model = Laminar
+incflo.physics = FreeStream PartialTerrainDrag
+PartialTerrainDrag.terrain_file = "terrain.amrwind"
+amr.n_cell              =  32 32 32    # Grid cells at coarsest AMR level
+amr.max_level           = 0           # Max AMR level in hierarchy
+geometry.prob_lo        =   0    0  0
+geometry.prob_hi        =   1024 1024 1024
+geometry.is_periodic    =   1   1   0   # Periodicity x y z (0/1)
+
+# Boundary conditions
+zlo.type =   "slip_wall"
+zhi.type =   "slip_wall"
+
+incflo.verbose          =   0          # incflo_level

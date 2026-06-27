@@ -12,10 +12,11 @@ as initial conditions and discretization options.
 
    Specify a string or a list of strings for each type of physics to initialize and simulate.
    Physics is additive and more than one type of physics may be used.
-   Current implemented physics include FreeStream, SyntheticTurbulence, ABL, Actuator, RayleighTaylor, BoussinesqBubble, TaylorGreenVortex, and ScalarAdvection (which is an example of using a passive scalar advection).
+   Current implemented physics include FreeStream, SyntheticTurbulence, ABL, Actuator, RayleighTaylor, BoussinesqBubble, TaylorGreenVortex, ScalarAdvection (which is an example of using a passive scalar advection), and EBDrag (which uses AMReX EB2 to construct geometry and populates the eb_blank field).
    For multiphase simulations, the MultiPhase physics must be specified, and for forcing wave profiles into the domain, the OceanWaves physics must be specified as well.
-   For immersed boundary forcing method TerrainDrag must be specified and the folder should include a terrain file (default name: `terrain.amrwind`, user control is `TerrainDrag.terrain_file`) file.
+   For immersed boundary forcing method TerrainDrag must be specified and the folder should include a terrain file (default name: `terrain.amrwind`, user control is `TerrainDrag.terrain_file`) file. For partial terrain overlap using volume fractions or distance function blanking, PartialTerrainDrag should be specified instead and the folder should include a terrain file (default name: `terrain.amrwind`, user control is `PartialTerrainDrag.terrain_file`) file.
    For including forested regions ForestDrag must be specified and the folder should include a forest file (default name: `forest.amrwind`, user control is `ForestDrag.forest_file`) file.
+   For the EB-based immersed boundary forcing method, ``EBDrag`` must be specified, and AMReX EB2 geometry options must be provided using the ``eb2`` namespace.
 
 .. input_param:: incflo.field_boundaries
 

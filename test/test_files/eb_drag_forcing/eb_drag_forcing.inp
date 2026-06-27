@@ -1,0 +1,106 @@
+# EBDrag, EBDragForcing, and EBDragTempForcing Example
+#
+# This input file demonstrates flow over an embedded boundary (EB) torus
+# within a domain of 4 x 4 x 1 km using EBDrag physics,
+# EBDragForcing momentum source, and EBDragTempForcing temperature source.
+
+# Geometry & Mesh
+geometry.prob_lo             = 0.0 0.0 0.0
+geometry.prob_hi             = 4000.0 4000.0 1000.0
+geometry.is_periodic         = 1 1 0
+
+amr.n_cell                   = 40 40 10
+amr.max_level                = 0
+
+# Simulation Control
+time.stop_time               = 10.0
+time.max_step                = 5
+time.fixed_dt                = 1.0
+time.plot_interval           = 1
+
+# Physics
+incflo.physics               = ABL EBDrag
+incflo.density               = 1.225
+incflo.gravity               = 0.0 0.0 -9.81
+incflo.velocity              = 10.0 0.0 0.0
+incflo.use_godunov           = true
+incflo.godunov_type          = "weno_z"
+incflo.diffusion_type        = 2
+
+# Transport & Turbulence
+transport.model              = ConstTransport
+transport.viscosity          = 0.0
+transport.laminar_prandtl    = 0.7
+transport.turbulent_prandtl  = 0.333
+transport.reference_temperature = 300.0
+
+turbulence.model             = OneEqKsgsM84
+
+# ABL Settings
+ABL.Uperiods                 = 12.0
+ABL.Vperiods                 = 12.0
+ABL.cutoff_height            = 50.0
+ABL.deltaU                   = 1.0
+ABL.deltaV                   = 1.0
+ABL.kappa                    = 0.41
+ABL.normal_direction         = 2
+ABL.perturb_ref_height       = 50.0
+ABL.perturb_velocity         = true
+ABL.perturb_temperature      = false
+ABL.surface_roughness_z0     = 0.1
+ABL.temperature_heights      = 0.0 1000.0
+ABL.temperature_values       = 300.0 300.0
+ABL.wall_shear_stress_type   = local
+ABL.surface_temp_flux        = 0.0
+
+# Boundary Conditions
+zhi.type                     = "slip_wall"
+zhi.temperature_type         = "fixed_gradient"
+zhi.temperature              = 0.0
+zlo.type                     = "wall_model"
+zlo.tke_type                 = "fixed_gradient"
+zlo.tke                      = 0.0
+
+# AMReX EB2 Geometry (Torus)
+# Creates a 3D canonical torus suspended in the center of the domain.
+eb2.geom_type                = torus
+eb2.torus_center             = 2000.0 2000.0 500.0
+eb2.torus_major_radius       = 400.0
+eb2.torus_minor_radius       = 100.0
+eb2.torus_has_fluid_inside   = false
+
+# Momentum Source Terms
+ICNS.source_terms            = BoussinesqBuoyancy CoriolisForcing GeostrophicForcing EBDragForcing
+BoussinesqBuoyancy.reference_temperature    = 300.0
+BoussinesqBuoyancy.thermal_expansion_coeff  = 0.003333
+CoriolisForcing.east_vector  = 1.0 0.0 0.0
+CoriolisForcing.north_vector = 0.0 1.0 0.0
+CoriolisForcing.latitude     = 45.0
+CoriolisForcing.rotational_time_period = 86400.0
+GeostrophicForcing.geostrophic_wind = 10.0 0.0 0.0
+
+# EBDragForcing Settings
+EBDragForcing.drag_coefficient = 10.0
+EBDragForcing.bc_forcing_time_factor = 5.0
+
+# Temperature Source Terms
+Temperature.source_terms     = EBDragTempForcing
+
+# EBDragTempForcing Settings
+# Under default constant soil temperature model:
+EBDragTempForcing.drag_coefficient = 1.0
+EBDragTempForcing.soil_temperature = 295.0
+EBDragTempForcing.bc_forcing_time_factor = 5.0
+
+# Alternatively, to use the Inverse Distance Weighting (IDW) soil temperature model:
+# EBDragTempForcing.use_idw_soil_temp_model = true
+# EBDragTempForcing.idw_x = 1000.0 2000.0 3000.0
+# EBDragTempForcing.idw_y = 1000.0 2000.0 3000.0
+# EBDragTempForcing.idw_z = 200.0 200.0 200.0
+# EBDragTempForcing.idw_temp = 290.0 295.0 290.0
+
+# Or to use the heat-flux-based soil temperature model:
+# EBDragTempForcing.use_heatflux_model = true
+# EBDragTempForcing.surface_heatflux = -10.0
+# EBDragTempForcing.thermal_conductivity = 0.026
+# EBDragTempForcing.boundary_layer_height = 1.0

@@ -17,6 +17,8 @@ target_sources(${kynema_sgf_lib_name}
   VortexDipole.cpp
   BurggrafFlow.cpp
   TerrainDrag.cpp
+  PartialTerrainDrag.cpp
+  EBDrag.cpp
   ActuatorSourceTagging.cpp
   Intermittency.cpp
   ForestDrag.cpp

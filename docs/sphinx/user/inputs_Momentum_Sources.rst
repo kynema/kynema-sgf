@@ -272,6 +272,18 @@ Section: Momentum Sources
    for the lack of resolution. Therefore, this option should remain set to false except in scenarios
    when the form drag is known to be under-resolved.
 
+.. input_param:: EBDragForcing.drag_coefficient
+
+   **type:** Real, optional, default = 10.0
+
+   This value specifies the drag coefficient for the EB-based immersed boundary forcing term.
+
+.. input_param:: EBDragForcing.bc_forcing_time_factor
+
+   **type:** Real, optional, default = 5.0
+
+   This value modifies the time scale of the BC forcing component of EBDragForcing relative to the time step size.
+
 
 The following arguments are influential when ``GravityForcing`` is included in :input_param:`ICNS.source_terms`.
 

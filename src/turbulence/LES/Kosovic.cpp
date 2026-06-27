@@ -81,7 +81,6 @@ void Kosovic<Transport>::update_turbulent_viscosity(
     const amrex::Real Cs_sqr = this->m_Cs * this->m_Cs;
     const amrex::Real monin_obukhov_length = m_monin_obukhov_length;
     const amrex::Real kappa = m_kappa;
-    const amrex::Real surface_roughness_z0 = m_surface_roughness_z0;
     const amrex::Real z0_min = 1.0e-4_rt;
     const amrex::Real dMdz_min = 0.01_rt;
     const amrex::Real locLESTurnOff = m_LESTurnOff;
@@ -92,8 +91,15 @@ void Kosovic<Transport>::update_turbulent_viscosity(
     const amrex::Real tol = constants::TIGHT_TOL;
 
     const auto& geom_vec = repo.mesh().Geom();
+
+    // Check for different terrain/drag representations on the host
     const bool has_terrain =
         this->m_sim.repo().int_field_exists("terrain_blank");
+    const bool has_partial_terrain =
+        this->m_sim.repo().field_exists("partial_terrain_blank");
+    const bool has_eb = this->m_sim.repo().field_exists("eb_blank");
+
+    // Classic TerrainDrag fields
     const auto* m_terrain_blank =
         has_terrain ? &this->m_sim.repo().get_int_field("terrain_blank")
                     : nullptr;
@@ -104,6 +110,28 @@ void Kosovic<Transport>::update_turbulent_viscosity(
         has_terrain ? &this->m_sim.repo().get_field("terrain_height") : nullptr;
     const auto* m_terrain_z0 =
         has_terrain ? &this->m_sim.repo().get_field("terrainz0") : nullptr;
+
+    // PartialTerrainDrag fields
+    const auto* m_partial_terrain_blank =
+        has_partial_terrain
+            ? &this->m_sim.repo().get_field("partial_terrain_blank")
+            : nullptr;
+    const auto* m_partial_terrain_drag =
+        has_partial_terrain
+            ? &this->m_sim.repo().get_field("partial_terrain_drag")
+            : nullptr;
+    const auto* m_partial_terrain_height =
+        has_partial_terrain
+            ? &this->m_sim.repo().get_field("partial_terrain_height")
+            : nullptr;
+    const auto* m_partial_terrain_z0 =
+        has_partial_terrain ? &this->m_sim.repo().get_field("partial_terrainz0")
+                            : nullptr;
+
+    // EBDrag field
+    const auto* m_eb_blank =
+        has_eb ? &this->m_sim.repo().get_field("eb_blank") : nullptr;
+
     // Populate strainrate into the turbulent viscosity arrays to avoid creating
     // a temporary buffer
     fvm::strainrate(mu_turb, vel);
@@ -125,120 +153,415 @@ void Kosovic<Transport>::update_turbulent_viscosity(
         const auto& vel_arrs = vel(lev).const_arrays();
         const auto& gradT_arrs = (*gradT)(lev).const_arrays();
         const auto& divNij_arrs = (this->m_divNij)(lev).arrays();
-        const auto& blank_arrs = has_terrain
-                                     ? (*m_terrain_blank)(lev).const_arrays()
-                                     : amrex::MultiArray4<const int>();
-        const auto& drag_arrs = has_terrain
-                                    ? (*m_terrain_drag)(lev).const_arrays()
-                                    : amrex::MultiArray4<const int>();
-        const auto& height_arrs = has_terrain
-                                      ? (*m_terrain_height)(lev).const_arrays()
-                                      : amrex::MultiArray4<const amrex::Real>();
-        const auto& z0_arrs = has_terrain
-                                  ? (*m_terrain_z0)(lev).const_arrays()
-                                  : amrex::MultiArray4<const amrex::Real>();
+
         const amrex::Real non_neutral_neighbour =
             (m_wall_het_model == "mol")
                 ? MOData::calc_psi_m(
                       1.5_rt * dz / monin_obukhov_length, m_beta_m, m_gamma_m)
                 : 0.0_rt;
         const auto& ref_theta_arrs = (*ref_theta)(lev).const_arrays();
-        amrex::ParallelFor(
-            mu_turb(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
-                const amrex::Real rho = rho_arrs[nbx](i, j, k);
-                amrex::Real x3 = problo[2] + ((k + 0.5_rt) * dz);
-                x3 = (has_terrain)
-                         ? amrex::max<amrex::Real>(
-                               x3 - height_arrs[nbx](i, j, k, 0), 0.5_rt * dz)
-                         : x3;
-                const amrex::Real fmu = std::exp(-x3 / locSwitchLoc);
-                const amrex::Real phiM =
-                    (monin_obukhov_length < 0)
-                        ? std::pow(
-                              1.0_rt - (16.0_rt * x3 / monin_obukhov_length),
-                              -0.25_rt)
-                        : 1.0_rt + (5.0_rt * x3 / monin_obukhov_length);
-                const amrex::Real wall_distance =
-                    (has_terrain)
-                        ? amrex::max<amrex::Real>(
-                              ((k + 1) * dz) - height_arrs[nbx](i, j, k, 0), dz)
-                        : (k + 1) * dz;
-                const amrex::Real ransL =
-                    utils::powi(0.41_rt * wall_distance / phiM, 2);
-                const amrex::Real turnOff = std::exp(-x3 / locLESTurnOff);
-                const amrex::Real viscosityScale =
-                    (locSurfaceFactor *
-                     (std::pow(1.0_rt - fmu, locSurfaceRANSExp) * smag_factor +
-                      std::pow(fmu, locSurfaceRANSExp) * ransL)) +
-                    ((1.0_rt - locSurfaceFactor) * smag_factor);
-                const amrex::Real blankTerrain =
-                    (has_terrain) ? 1 - blank_arrs[nbx](i, j, k, 0) : 1.0_rt;
-                const amrex::Real mut =
-                    mu_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
-                const amrex::Real T0 = ref_theta_arrs[nbx](i, j, k);
-                const amrex::Real stratification_sensor =
-                    -(gradT_arrs[nbx](i, j, k, 0) * gravity[0] +
-                      gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
-                      gradT_arrs[nbx](i, j, k, 2) * gravity[2]) /
-                    T0;
-                amrex::Real stratification = 1.0_rt;
-                amrex::Real non_linear_coeff = 1.0_rt;
 
-                if (stratification_sensor > tol) {
-                    // stable
-                    non_linear_coeff =
-                        (mut - 3.0_rt * stratification_sensor < tol) ? 0.0_rt
-                                                                     : 1.0_rt;
-                    stratification = std::sqrt(
-                        std::max(tol, mut - 3.0_rt * stratification_sensor));
-                } else {
-                    stratification = std::sqrt(mut);
-                }
+        if (has_partial_terrain) {
+            const auto& partial_blank_arrs =
+                (*m_partial_terrain_blank)(lev).const_arrays();
+            const auto& partial_drag_arrs =
+                (*m_partial_terrain_drag)(lev).const_arrays();
+            const auto& partial_height_arrs =
+                (*m_partial_terrain_height)(lev).const_arrays();
+            const auto& partial_z0_arrs =
+                (*m_partial_terrain_z0)(lev).const_arrays();
 
-                mu_arrs[nbx](i, j, k) = rho * viscosityScale * turnOff *
-                                        blankTerrain * stratification;
-                // log-law
-                const amrex::Real ux = vel_arrs[nbx](i, j, k + 1, 0);
-                const amrex::Real uy = vel_arrs[nbx](i, j, k + 1, 1);
-                const amrex::Real m = std::sqrt((ux * ux) + (uy * uy));
-                const amrex::Real local_z0 =
-                    (has_terrain) ? amrex::max<amrex::Real>(
-                                        z0_arrs[nbx](i, j, k, 0), z0_min)
-                                  : surface_roughness_z0;
-                // ustar from neighbor cell above
-                const amrex::Real ustar =
-                    m * kappa /
-                    (std::log(1.5_rt * dz / local_z0) - non_neutral_neighbour);
-                const amrex::Real ux0 = vel_arrs[nbx](i, j, k, 0);
-                const amrex::Real uy0 = vel_arrs[nbx](i, j, k, 1);
-                const amrex::Real m0 = std::sqrt((ux0 * ux0) + (uy0 * uy0));
-                const amrex::Real uxm1 = vel_arrs[nbx](i, j, k - 1, 0);
-                const amrex::Real uym1 = vel_arrs[nbx](i, j, k - 1, 1);
-                const amrex::Real mm1 =
-                    std::sqrt((uxm1 * uxm1) + (uym1 * uym1));
-                const amrex::Real dMdz =
-                    amrex::max<amrex::Real>((m0 - mm1) / dz, dMdz_min);
-                const amrex::Real mut_loglaw =
-                    2.0_rt * ustar * ustar * rho / dMdz;
-                const amrex::Real drag =
-                    (has_terrain) ? drag_arrs[nbx](i, j, k, 0) : 0.0_rt;
-                mu_arrs[nbx](i, j, k) =
-                    (mu_arrs[nbx](i, j, k) * (1.0_rt - drag)) +
-                    (drag * mut_loglaw);
-                const amrex::Real stressScale =
-                    (locSurfaceFactor *
-                     (std::pow(1.0_rt - fmu, locSurfaceRANSExp) * smag_factor *
-                          0.25_rt * locC1 +
-                      std::pow(fmu, locSurfaceRANSExp) * ransL)) +
-                    ((1.0_rt - locSurfaceFactor) * smag_factor * 0.25_rt *
-                     locC1);
-                divNij_arrs[nbx](i, j, k, 0) *= rho * stressScale * turnOff *
-                                                blankTerrain * non_linear_coeff;
-                divNij_arrs[nbx](i, j, k, 1) *= rho * stressScale * turnOff *
-                                                blankTerrain * non_linear_coeff;
-                divNij_arrs[nbx](i, j, k, 2) *= rho * stressScale * turnOff *
-                                                blankTerrain * non_linear_coeff;
-            });
+            amrex::ParallelFor(
+                mu_turb(lev),
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                    const amrex::Real rho = rho_arrs[nbx](i, j, k);
+
+                    // 1. Calculate height coordinate above partial terrain
+                    const amrex::Real terrain_h =
+                        partial_height_arrs[nbx](i, j, k, 0);
+                    const amrex::Real x3 = amrex::max<amrex::Real>(
+                        problo[2] + ((k + 0.5_rt) * dz) - terrain_h,
+                        0.5_rt * dz);
+
+                    const amrex::Real fmu = std::exp(-x3 / locSwitchLoc);
+                    const amrex::Real phiM =
+                        (monin_obukhov_length < 0)
+                            ? std::pow(
+                                  1.0_rt -
+                                      (16.0_rt * x3 / monin_obukhov_length),
+                                  -0.25_rt)
+                            : 1.0_rt + (5.0_rt * x3 / monin_obukhov_length);
+
+                    // 2. Calculate distance to partial terrain wall
+                    const amrex::Real wall_distance =
+                        amrex::max<amrex::Real>(((k + 1) * dz) - terrain_h, dz);
+
+                    const amrex::Real ransL =
+                        utils::powi(0.41_rt * wall_distance / phiM, 2);
+                    const amrex::Real turnOff = std::exp(-x3 / locLESTurnOff);
+                    const amrex::Real viscosityScale =
+                        (locSurfaceFactor *
+                         (std::pow(1.0_rt - fmu, locSurfaceRANSExp) *
+                              smag_factor +
+                          std::pow(fmu, locSurfaceRANSExp) * ransL)) +
+                        ((1.0_rt - locSurfaceFactor) * smag_factor);
+
+                    // 3. Compute blankTerrain fraction
+                    const amrex::Real blankTerrain =
+                        1.0_rt - partial_blank_arrs[nbx](i, j, k, 0);
+
+                    const amrex::Real mut =
+                        mu_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
+                    const amrex::Real T0 = ref_theta_arrs[nbx](i, j, k);
+                    const amrex::Real stratification_sensor =
+                        -(gradT_arrs[nbx](i, j, k, 0) * gravity[0] +
+                          gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
+                          gradT_arrs[nbx](i, j, k, 2) * gravity[2]) /
+                        T0;
+                    amrex::Real stratification = 1.0_rt;
+                    amrex::Real non_linear_coeff = 1.0_rt;
+
+                    if (stratification_sensor > tol) {
+                        non_linear_coeff =
+                            (mut - 3.0_rt * stratification_sensor < tol)
+                                ? 0.0_rt
+                                : 1.0_rt;
+                        stratification = std::sqrt(
+                            std::max(
+                                tol, mut - 3.0_rt * stratification_sensor));
+                    } else {
+                        stratification = std::sqrt(mut);
+                    }
+
+                    mu_arrs[nbx](i, j, k) = rho * viscosityScale * turnOff *
+                                            blankTerrain * stratification;
+
+                    // 4. Compute partial drag fraction
+                    const amrex::Real drag = partial_drag_arrs[nbx](i, j, k, 0);
+
+                    // 5. Compute and apply log-law viscosity if drag is active
+                    if (drag > 0.0_rt) {
+                        const amrex::Real ux = vel_arrs[nbx](i, j, k + 1, 0);
+                        const amrex::Real uy = vel_arrs[nbx](i, j, k + 1, 1);
+                        const amrex::Real m = std::sqrt((ux * ux) + (uy * uy));
+
+                        const amrex::Real local_z0 = amrex::max<amrex::Real>(
+                            partial_z0_arrs[nbx](i, j, k, 0), z0_min);
+
+                        const amrex::Real ustar =
+                            m * kappa /
+                            (std::log(1.5_rt * dz / local_z0) -
+                             non_neutral_neighbour);
+                        const amrex::Real ux0 = vel_arrs[nbx](i, j, k, 0);
+                        const amrex::Real uy0 = vel_arrs[nbx](i, j, k, 1);
+                        const amrex::Real m0 =
+                            std::sqrt((ux0 * ux0) + (uy0 * uy0));
+                        const amrex::Real uxm1 = vel_arrs[nbx](i, j, k - 1, 0);
+                        const amrex::Real uym1 = vel_arrs[nbx](i, j, k - 1, 1);
+                        const amrex::Real mm1 =
+                            std::sqrt((uxm1 * uxm1) + (uym1 * uym1));
+                        const amrex::Real dMdz =
+                            amrex::max<amrex::Real>((m0 - mm1) / dz, dMdz_min);
+                        const amrex::Real mut_loglaw =
+                            2.0_rt * ustar * ustar * rho / dMdz;
+                        mu_arrs[nbx](i, j, k) =
+                            (mu_arrs[nbx](i, j, k) * (1.0_rt - drag)) +
+                            (drag * mut_loglaw);
+                    }
+
+                    // 6. Scale and apply non-linear stress divergence terms
+                    const amrex::Real stressScale =
+                        (locSurfaceFactor *
+                         (std::pow(1.0_rt - fmu, locSurfaceRANSExp) *
+                              smag_factor * 0.25_rt * locC1 +
+                          std::pow(fmu, locSurfaceRANSExp) * ransL)) +
+                        ((1.0_rt - locSurfaceFactor) * smag_factor * 0.25_rt *
+                         locC1);
+                    divNij_arrs[nbx](i, j, k, 0) *= rho * stressScale *
+                                                    turnOff * blankTerrain *
+                                                    non_linear_coeff;
+                    divNij_arrs[nbx](i, j, k, 1) *= rho * stressScale *
+                                                    turnOff * blankTerrain *
+                                                    non_linear_coeff;
+                    divNij_arrs[nbx](i, j, k, 2) *= rho * stressScale *
+                                                    turnOff * blankTerrain *
+                                                    non_linear_coeff;
+                });
+        } else if (has_terrain) {
+            const auto& blank_arrs = (*m_terrain_blank)(lev).const_arrays();
+            const auto& drag_arrs = (*m_terrain_drag)(lev).const_arrays();
+            const auto& height_arrs = (*m_terrain_height)(lev).const_arrays();
+            const auto& z0_arrs = (*m_terrain_z0)(lev).const_arrays();
+
+            amrex::ParallelFor(
+                mu_turb(lev),
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                    const amrex::Real rho = rho_arrs[nbx](i, j, k);
+
+                    // 1. Calculate height coordinate above terrain
+                    const amrex::Real terrain_h = height_arrs[nbx](i, j, k, 0);
+                    const amrex::Real x3 = amrex::max<amrex::Real>(
+                        problo[2] + ((k + 0.5_rt) * dz) - terrain_h,
+                        0.5_rt * dz);
+
+                    const amrex::Real fmu = std::exp(-x3 / locSwitchLoc);
+                    const amrex::Real phiM =
+                        (monin_obukhov_length < 0)
+                            ? std::pow(
+                                  1.0_rt -
+                                      (16.0_rt * x3 / monin_obukhov_length),
+                                  -0.25_rt)
+                            : 1.0_rt + (5.0_rt * x3 / monin_obukhov_length);
+
+                    // 2. Calculate distance to terrain wall
+                    const amrex::Real wall_distance =
+                        amrex::max<amrex::Real>(((k + 1) * dz) - terrain_h, dz);
+
+                    const amrex::Real ransL =
+                        utils::powi(0.41_rt * wall_distance / phiM, 2);
+                    const amrex::Real turnOff = std::exp(-x3 / locLESTurnOff);
+                    const amrex::Real viscosityScale =
+                        (locSurfaceFactor *
+                         (std::pow(1.0_rt - fmu, locSurfaceRANSExp) *
+                              smag_factor +
+                          std::pow(fmu, locSurfaceRANSExp) * ransL)) +
+                        ((1.0_rt - locSurfaceFactor) * smag_factor);
+
+                    // 3. Compute blankTerrain fraction
+                    const amrex::Real blankTerrain =
+                        1.0_rt - blank_arrs[nbx](i, j, k, 0);
+
+                    const amrex::Real mut =
+                        mu_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
+                    const amrex::Real T0 = ref_theta_arrs[nbx](i, j, k);
+                    const amrex::Real stratification_sensor =
+                        -(gradT_arrs[nbx](i, j, k, 0) * gravity[0] +
+                          gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
+                          gradT_arrs[nbx](i, j, k, 2) * gravity[2]) /
+                        T0;
+                    amrex::Real stratification = 1.0_rt;
+                    amrex::Real non_linear_coeff = 1.0_rt;
+
+                    if (stratification_sensor > tol) {
+                        non_linear_coeff =
+                            (mut - 3.0_rt * stratification_sensor < tol)
+                                ? 0.0_rt
+                                : 1.0_rt;
+                        stratification = std::sqrt(
+                            std::max(
+                                tol, mut - 3.0_rt * stratification_sensor));
+                    } else {
+                        stratification = std::sqrt(mut);
+                    }
+
+                    mu_arrs[nbx](i, j, k) = rho * viscosityScale * turnOff *
+                                            blankTerrain * stratification;
+
+                    // 4. Compute drag fraction
+                    const amrex::Real drag = drag_arrs[nbx](i, j, k, 0);
+
+                    // 5. Compute and apply log-law viscosity if drag is active
+                    if (drag > 0.0_rt) {
+                        const amrex::Real ux = vel_arrs[nbx](i, j, k + 1, 0);
+                        const amrex::Real uy = vel_arrs[nbx](i, j, k + 1, 1);
+                        const amrex::Real m = std::sqrt((ux * ux) + (uy * uy));
+
+                        const amrex::Real local_z0 = amrex::max<amrex::Real>(
+                            z0_arrs[nbx](i, j, k, 0), z0_min);
+
+                        const amrex::Real ustar =
+                            m * kappa /
+                            (std::log(1.5_rt * dz / local_z0) -
+                             non_neutral_neighbour);
+                        const amrex::Real ux0 = vel_arrs[nbx](i, j, k, 0);
+                        const amrex::Real uy0 = vel_arrs[nbx](i, j, k, 1);
+                        const amrex::Real m0 =
+                            std::sqrt((ux0 * ux0) + (uy0 * uy0));
+                        const amrex::Real uxm1 = vel_arrs[nbx](i, j, k - 1, 0);
+                        const amrex::Real uym1 = vel_arrs[nbx](i, j, k - 1, 1);
+                        const amrex::Real mm1 =
+                            std::sqrt((uxm1 * uxm1) + (uym1 * uym1));
+                        const amrex::Real dMdz =
+                            amrex::max<amrex::Real>((m0 - mm1) / dz, dMdz_min);
+                        const amrex::Real mut_loglaw =
+                            2.0_rt * ustar * ustar * rho / dMdz;
+                        mu_arrs[nbx](i, j, k) =
+                            (mu_arrs[nbx](i, j, k) * (1.0_rt - drag)) +
+                            (drag * mut_loglaw);
+                    }
+
+                    // 6. Scale and apply non-linear stress divergence terms
+                    const amrex::Real stressScale =
+                        (locSurfaceFactor *
+                         (std::pow(1.0_rt - fmu, locSurfaceRANSExp) *
+                              smag_factor * 0.25_rt * locC1 +
+                          std::pow(fmu, locSurfaceRANSExp) * ransL)) +
+                        ((1.0_rt - locSurfaceFactor) * smag_factor * 0.25_rt *
+                         locC1);
+                    divNij_arrs[nbx](i, j, k, 0) *= rho * stressScale *
+                                                    turnOff * blankTerrain *
+                                                    non_linear_coeff;
+                    divNij_arrs[nbx](i, j, k, 1) *= rho * stressScale *
+                                                    turnOff * blankTerrain *
+                                                    non_linear_coeff;
+                    divNij_arrs[nbx](i, j, k, 2) *= rho * stressScale *
+                                                    turnOff * blankTerrain *
+                                                    non_linear_coeff;
+                });
+        } else if (has_eb) {
+            const auto& eb_blank_arrs = (*m_eb_blank)(lev).const_arrays();
+
+            amrex::ParallelFor(
+                mu_turb(lev),
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                    const amrex::Real rho = rho_arrs[nbx](i, j, k);
+
+                    // 1. Calculate height coordinate above flat ground
+                    const amrex::Real x3 = problo[2] + ((k + 0.5_rt) * dz);
+
+                    const amrex::Real fmu = std::exp(-x3 / locSwitchLoc);
+                    const amrex::Real phiM =
+                        (monin_obukhov_length < 0)
+                            ? std::pow(
+                                  1.0_rt -
+                                      (16.0_rt * x3 / monin_obukhov_length),
+                                  -0.25_rt)
+                            : 1.0_rt + (5.0_rt * x3 / monin_obukhov_length);
+
+                    // 2. Calculate distance to flat wall
+                    const amrex::Real wall_distance = (k + 1) * dz;
+
+                    const amrex::Real ransL =
+                        utils::powi(0.41_rt * wall_distance / phiM, 2);
+                    const amrex::Real turnOff = std::exp(-x3 / locLESTurnOff);
+                    const amrex::Real viscosityScale =
+                        (locSurfaceFactor *
+                         (std::pow(1.0_rt - fmu, locSurfaceRANSExp) *
+                              smag_factor +
+                          std::pow(fmu, locSurfaceRANSExp) * ransL)) +
+                        ((1.0_rt - locSurfaceFactor) * smag_factor);
+
+                    // 3. Compute blankTerrain fraction from EB volume fraction
+                    const amrex::Real blankTerrain =
+                        eb_blank_arrs[nbx](i, j, k, 0);
+
+                    const amrex::Real mut =
+                        mu_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
+                    const amrex::Real T0 = ref_theta_arrs[nbx](i, j, k);
+                    const amrex::Real stratification_sensor =
+                        -(gradT_arrs[nbx](i, j, k, 0) * gravity[0] +
+                          gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
+                          gradT_arrs[nbx](i, j, k, 2) * gravity[2]) /
+                        T0;
+                    amrex::Real stratification = 1.0_rt;
+                    amrex::Real non_linear_coeff = 1.0_rt;
+
+                    if (stratification_sensor > tol) {
+                        non_linear_coeff =
+                            (mut - 3.0_rt * stratification_sensor < tol)
+                                ? 0.0_rt
+                                : 1.0_rt;
+                        stratification = std::sqrt(
+                            std::max(
+                                tol, mut - 3.0_rt * stratification_sensor));
+                    } else {
+                        stratification = std::sqrt(mut);
+                    }
+
+                    mu_arrs[nbx](i, j, k) = rho * viscosityScale * turnOff *
+                                            blankTerrain * stratification;
+
+                    // 6. Scale and apply non-linear stress divergence terms
+                    const amrex::Real stressScale =
+                        (locSurfaceFactor *
+                         (std::pow(1.0_rt - fmu, locSurfaceRANSExp) *
+                              smag_factor * 0.25_rt * locC1 +
+                          std::pow(fmu, locSurfaceRANSExp) * ransL)) +
+                        ((1.0_rt - locSurfaceFactor) * smag_factor * 0.25_rt *
+                         locC1);
+                    divNij_arrs[nbx](i, j, k, 0) *= rho * stressScale *
+                                                    turnOff * blankTerrain *
+                                                    non_linear_coeff;
+                    divNij_arrs[nbx](i, j, k, 1) *= rho * stressScale *
+                                                    turnOff * blankTerrain *
+                                                    non_linear_coeff;
+                    divNij_arrs[nbx](i, j, k, 2) *= rho * stressScale *
+                                                    turnOff * blankTerrain *
+                                                    non_linear_coeff;
+                });
+        } else {
+            amrex::ParallelFor(
+                mu_turb(lev),
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                    const amrex::Real rho = rho_arrs[nbx](i, j, k);
+
+                    // 1. Calculate height coordinate above flat ground
+                    const amrex::Real x3 = problo[2] + ((k + 0.5_rt) * dz);
+
+                    const amrex::Real fmu = std::exp(-x3 / locSwitchLoc);
+                    const amrex::Real phiM =
+                        (monin_obukhov_length < 0)
+                            ? std::pow(
+                                  1.0_rt -
+                                      (16.0_rt * x3 / monin_obukhov_length),
+                                  -0.25_rt)
+                            : 1.0_rt + (5.0_rt * x3 / monin_obukhov_length);
+
+                    // 2. Calculate distance to flat wall
+                    const amrex::Real wall_distance = (k + 1) * dz;
+
+                    const amrex::Real ransL =
+                        utils::powi(0.41_rt * wall_distance / phiM, 2);
+                    const amrex::Real turnOff = std::exp(-x3 / locLESTurnOff);
+                    const amrex::Real viscosityScale =
+                        (locSurfaceFactor *
+                         (std::pow(1.0_rt - fmu, locSurfaceRANSExp) *
+                              smag_factor +
+                          std::pow(fmu, locSurfaceRANSExp) * ransL)) +
+                        ((1.0_rt - locSurfaceFactor) * smag_factor);
+
+                    const amrex::Real mut =
+                        mu_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
+                    const amrex::Real T0 = ref_theta_arrs[nbx](i, j, k);
+                    const amrex::Real stratification_sensor =
+                        -(gradT_arrs[nbx](i, j, k, 0) * gravity[0] +
+                          gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
+                          gradT_arrs[nbx](i, j, k, 2) * gravity[2]) /
+                        T0;
+                    amrex::Real stratification = 1.0_rt;
+                    amrex::Real non_linear_coeff = 1.0_rt;
+
+                    if (stratification_sensor > tol) {
+                        non_linear_coeff =
+                            (mut - 3.0_rt * stratification_sensor < tol)
+                                ? 0.0_rt
+                                : 1.0_rt;
+                        stratification = std::sqrt(
+                            std::max(
+                                tol, mut - 3.0_rt * stratification_sensor));
+                    } else {
+                        stratification = std::sqrt(mut);
+                    }
+
+                    mu_arrs[nbx](i, j, k) =
+                        rho * viscosityScale * turnOff * stratification;
+
+                    // 6. Scale and apply non-linear stress divergence terms
+                    const amrex::Real stressScale =
+                        (locSurfaceFactor *
+                         (std::pow(1.0_rt - fmu, locSurfaceRANSExp) *
+                              smag_factor * 0.25_rt * locC1 +
+                          std::pow(fmu, locSurfaceRANSExp) * ransL)) +
+                        ((1.0_rt - locSurfaceFactor) * smag_factor * 0.25_rt *
+                         locC1);
+                    divNij_arrs[nbx](i, j, k, 0) *=
+                        rho * stressScale * turnOff * non_linear_coeff;
+                    divNij_arrs[nbx](i, j, k, 1) *=
+                        rho * stressScale * turnOff * non_linear_coeff;
+                    divNij_arrs[nbx](i, j, k, 2) *=
+                        rho * stressScale * turnOff * non_linear_coeff;
+                });
+        }
     }
     amrex::Gpu::streamSynchronize();
 
