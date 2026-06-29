@@ -180,6 +180,28 @@ Section: Momentum Sources
    This value specifies the coefficient for the forcing term in the immersed boundary forcing method. It is currently
    recommended to use the default value to avoid initial numerical stability. 
 
+.. input_param:: DragForcing.use_conditionals_to_limit_drag
+
+   **type:** Boolean, optional, default = true
+
+   Turns on or off conditional limiting of the drag forcing magnitude to improve numerical robustness,
+   especially for fine vertical resolution.
+
+.. input_param:: DragForcing.max_drag_coefficient
+
+   **type:** Real, optional, default = 1000.0
+
+   Maximum allowed drag coefficient when
+   :input_param:`DragForcing.use_conditionals_to_limit_drag` is enabled (which is on by default).
+   This value caps the effective drag response used in the source term.
+
+.. input_param:: DragForcing.minimum_z0
+
+   **type:** Real, optional, default = 1.0e-4
+
+   Minimum roughness length used in the wall-drag calculations. This value is
+   applied as a lower bound for roughness (``z0``).
+
 .. input_param:: DragForcing.sponge_strength
 
    **type:** Real, optional
