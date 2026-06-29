@@ -365,8 +365,11 @@ void DragForcing::operator()(
                 const amrex::Real uy2r =
                     vel_arrs[nbx](i, j, k + drag_arrs[nbx](i, j, k), 1) -
                     wall_v;
-                const amrex::Real z0 = amrex::max<amrex::Real>(
-                    terrainz0_arrs[nbx](i, j, k), min_z0);
+                amrex::Real z0 = min_z0;
+                if (has_terrainz0 != 0) {
+                    z0 = amrex::max<amrex::Real>(
+                        terrainz0_arrs[nbx](i, j, k), z0);
+                }
                 const amrex::Real ustar = viscous_drag_calculations(
                     Dxz, Dyz, ux1r, uy1r, ux2r, uy2r, z0, dx[2], kappa,
                     non_neutral_neighbour);
