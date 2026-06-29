@@ -195,7 +195,7 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
 
     pp.query("initialize_drag_cells", m_initialize_drag);
     if (m_initialize_drag) {
-        sim.repo().declare_int_field("terrain_drag", 1, 0, 1);
+        sim.repo().declare_int_field("terrain_drag", 1, 1, 1);
         m_sim.io_manager().register_output_int_var("terrain_drag");
     }
     pp.getarr("segment_labels", labels);
