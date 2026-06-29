@@ -4,7 +4,8 @@ Section: ForestDrag
 ~~~~~~~~~~~~~~~~~~~
 
 These parameters are active when ``ForestDrag`` is included in
-:input_param:`incflo.physics`. Two forest representations are supported:
+:input_param:`incflo.physics`, and ``ForestForcing`` is listed as a
+source term in the ICNS (momentum) equation. Two forest representations are supported:
 
 1. A legacy cylinder-based forest file, controlled by ``ForestDrag.forest_file``.
 2. A point-cloud forest description, controlled by ``ForestDrag.point_cloud_files``.
