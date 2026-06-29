@@ -131,4 +131,21 @@ void ProbeSampler::define_netcdf_metadata(
 {}
 #endif
 
+void ProbeSampler::populate_info_file(std::ostream& fh) const
+{
+    const auto write_real_list =
+        [&fh](const std::string& key, const amrex::Vector<amrex::Real>& v) {
+            fh << "   " << key << ": [";
+            for (amrex::Long i = 0; i < v.size(); ++i) {
+                if (i > 0) {
+                    fh << ", ";
+                }
+                fh << v[i];
+            }
+            fh << "]\n";
+        };
+    write_real_list("offset_vector", m_offset_vector);
+    write_real_list("offsets", m_poffsets);
+}
+
 } // namespace kynema_sgf::sampling
