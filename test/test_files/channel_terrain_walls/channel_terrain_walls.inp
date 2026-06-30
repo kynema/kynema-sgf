@@ -46,8 +46,8 @@ ChannelBuilder.zero_velocity_where_blanked = true
 ChannelBuilder.initialize_drag_cells = true
 ChannelBuilder.segment_labels = s1
 ChannelBuilder.s1.type = Trapezoid
-ChannelBuilder.s1.segment_start_point = -0.1 0.25 0.5
-ChannelBuilder.s1.segment_end_point = 0.6 0.25 0.5
+ChannelBuilder.s1.segment_start_point = -0.1 0.25 0.5625
+ChannelBuilder.s1.segment_end_point = 0.6 0.25 0.5625
 ChannelBuilder.s1.top_width = 0.6
 ChannelBuilder.s1.bottom_width = 0.6
 ChannelBuilder.s1.height = 1.0
@@ -64,8 +64,8 @@ amr.max_level           = 0           # Max AMR level in hierarchy
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
 #              GEOMETRY                 #
 #.......................................#
-geometry.prob_lo        =   0.0 0.0 -0.0625  # Lo corner coordinates
-geometry.prob_hi        =   0.5 0.5 1.0625  # Hi corner coordinates 8*pi*3pi*1
+geometry.prob_lo        =   0.0 0.0 0.0    # Lo corner coordinates
+geometry.prob_hi        =   0.5 0.5 1.125  # Hi corner coordinates 8*pi*3pi*1
 geometry.is_periodic    =   1   1  0   # Periodicity x y z (0/1)
 
 # Boundary conditions
