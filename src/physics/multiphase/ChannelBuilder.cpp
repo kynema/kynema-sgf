@@ -564,13 +564,14 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
         auto drag_arrs =
             m_sim.repo().get_int_field("terrain_drag")(level).arrays();
         amrex::ParallelFor(
-            blank_mfab, m_terrain_blank.num_grow() - amrex::IntVect(1),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
-                if ((blank_arrs[nbx](i, j, k, 0) == 0) && (k > 0) &&
+            blank_mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                if ((blank_arrs[nbx](i, j, k, 0) == 0) &&
+                    (k > geom.Domain().smallEnd(2)) &&
                     (blank_arrs[nbx](i, j, k - 1, 0) == 1)) {
                     drag_arrs[nbx](i, j, k, 0) = 1;
                 } else if (
                     (blank_arrs[nbx](i, j, k, 0) == 0) &&
+                    (k < geom.Domain().bigEnd(2)) &&
                     (blank_arrs[nbx](i, j, k + 1, 0) == 1)) {
                     drag_arrs[nbx](i, j, k, 0) = -1;
                 } else {
