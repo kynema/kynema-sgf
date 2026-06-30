@@ -563,15 +563,15 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     if (m_initialize_drag) {
         auto drag_arrs =
             m_sim.repo().get_int_field("terrain_drag")(level).arrays();
+        const int k_dom_min = geom.Domain().smallEnd(2);
+        const int k_dom_max = geom.Domain().bigEnd(2);
         amrex::ParallelFor(
             blank_mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
-                if ((blank_arrs[nbx](i, j, k, 0) == 0) &&
-                    (k > geom.Domain().smallEnd(2)) &&
+                if ((blank_arrs[nbx](i, j, k, 0) == 0) && (k > k_dom_min) &&
                     (blank_arrs[nbx](i, j, k - 1, 0) == 1)) {
                     drag_arrs[nbx](i, j, k, 0) = 1;
                 } else if (
-                    (blank_arrs[nbx](i, j, k, 0) == 0) &&
-                    (k < geom.Domain().bigEnd(2)) &&
+                    (blank_arrs[nbx](i, j, k, 0) == 0) && (k < k_dom_max) &&
                     (blank_arrs[nbx](i, j, k + 1, 0) == 1)) {
                     drag_arrs[nbx](i, j, k, 0) = -1;
                 } else {
