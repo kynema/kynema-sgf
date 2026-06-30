@@ -96,7 +96,8 @@ DragForcing::DragForcing(const CFDSim& sim)
 {
     amrex::ParmParse pp("DragForcing");
     pp.query("drag_coefficient", m_drag_coefficient);
-    pp.query("use_conditionals_to_limit_drag", m_limit_drag);
+    pp.query("use_original_drag_limiter", m_limit_drag);
+    pp.query("use_temporal_drag_limiter", m_limit_drag_temporal);
     pp.query("max_drag_coefficient", m_cd_max);
     pp.query("minimum_z0", m_min_z0);
     pp.query("sponge_strength", m_sponge_strength);
@@ -259,6 +260,7 @@ void DragForcing::operator()(
 
     const auto& dt = m_time.delta_t();
     const int is_laminar = m_is_laminar ? 1 : 0;
+    const bool limit_drag_temporal = m_limit_drag_temporal;
     const amrex::Real time_factor = m_forcing_time_factor;
     const amrex::Real min_z = m_min_z;
     const amrex::Real min_z0 = m_min_z0;
@@ -408,8 +410,13 @@ void DragForcing::operator()(
                                          : (n == 1) ? target_v
                                                     : target_w;
 
+            amrex::Real CdM_m = CdM * m;
+            if (limit_drag_temporal) {
+                CdM_m = amrex::min<amrex::Real>(CdM_m, 1.0_rt / dt);
+            }
+
             src_arrs[nbx](i, j, k, n) -=
-                (CdM * m * (vel_n - target_n) * blank_arrs[nbx](i, j, k));
+                (CdM_m * (vel_n - target_n) * blank_arrs[nbx](i, j, k));
 
             if (has_terrain_drag != 0) {
                 amrex::Real drag_force_n = 0.0_rt;
@@ -418,7 +425,7 @@ void DragForcing::operator()(
                 } else if (n == 1) {
                     drag_force_n = Dyz + bc_forcing_y;
                 } else {
-                    drag_force_n = CdM * m * (uz1 - target_w);
+                    drag_force_n = CdM_m * (uz1 - target_w);
                 }
                 src_arrs[nbx](i, j, k, n) -=
                     drag_force_n * amrex::Math::abs(drag_arrs[nbx](i, j, k));

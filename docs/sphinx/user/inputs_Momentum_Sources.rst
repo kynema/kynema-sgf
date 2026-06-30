@@ -175,24 +175,36 @@ Section: Momentum Sources
 
 .. input_param:: DragForcing.drag_coefficient
 
-   **type:** Real, optional
+   **type:** Real, optional, default = 10.0
 
    This value specifies the coefficient for the forcing term in the immersed boundary forcing method. It is currently
-   recommended to use the default value to avoid initial numerical stability. 
+   recommended to use the default value to avoid initial numerical stability. Despite the name, the drag-related
+   input parameters affect the forcing term in blanked cells (i.e., within terrain) and the vertical velocity component
+   in drag cells (i.e., immediately above or below the terrain). The forcing of lateral velocity components in drag
+   cells are affected by :input_param:`DragForcing.bc_forcing_time_factor` and :input_param:`DragForcing.minimum_z0`.
 
-.. input_param:: DragForcing.use_conditionals_to_limit_drag
+.. input_param:: DragForcing.use_original_drag_limiter
 
    **type:** Boolean, optional, default = true
 
-   Turns on or off conditional limiting of the drag forcing magnitude to improve numerical robustness,
-   especially for fine vertical resolution.
+   Enables or disables the original drag limiter logic used in DragForcing.
+   When enabled, drag magnitude is limited using
+   :input_param:`DragForcing.max_drag_coefficient` as well as other conditionals dependent on
+   the vertical mesh resolution and :input_param:`DragForcing.is_laminar`.
+
+.. input_param:: DragForcing.use_temporal_drag_limiter
+
+   **type:** Boolean, optional, default = false
+
+   Enables a temporal limiter on the drag update so the overall drag coefficient
+   does not exceed :math:`1/\Delta t` within a timestep.
 
 .. input_param:: DragForcing.max_drag_coefficient
 
    **type:** Real, optional, default = 1000.0
 
    Maximum allowed drag coefficient when
-   :input_param:`DragForcing.use_conditionals_to_limit_drag` is enabled (which is on by default).
+   :input_param:`DragForcing.use_original_drag_limiter` is enabled (which is on by default).
    This value caps the effective drag response used in the source term.
 
 .. input_param:: DragForcing.minimum_z0
@@ -204,13 +216,13 @@ Section: Momentum Sources
 
 .. input_param:: DragForcing.sponge_strength
 
-   **type:** Real, optional
+   **type:** Real, optional, default = 1.0
 
    The value of the sponge layer coefficient. It is recommended to use the default value of 1.0.  
 
 .. input_param:: DragForcing.sponge_density
 
-   **type:** Real, optional
+   **type:** Real, optional, default = 1.0
 
    The value of the sponge layer density. It is recommended to use the default value of 1.0.  
 
@@ -271,10 +283,10 @@ Section: Momentum Sources
 
 .. input_param:: DragForcing.is_laminar
 
-   **type:** int, optional
+   **type:** Boolean, optional, default = false
 
-   This term turns off the sponge layer. This term is required for terrain simulations with periodic 
-   boundary conditions. The default value is 0. 
+   Disables the terrain-wall drag contribution associated with the
+   ``terrain_drag`` mask when set to true. Sponge forcing behavior is unchanged by this option.
 
 .. input_param:: DragForcing.wave_model_inviscid_form_drag
 
