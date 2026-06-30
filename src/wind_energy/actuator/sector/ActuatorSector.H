@@ -104,7 +104,7 @@ struct ActuatorSectorData
     //! Required local span resolution, epsilon / dr >= epsilon_dr [-]
     amrex::Real epsilon_dr{1.5_rt};
 
-    //! Required swept arclength resolution, epsilon / dl >= epsilon_dl [-]
+    //! Required swept arc length resolution, epsilon / dl >= epsilon_dl [-]
     amrex::Real epsilon_dl{1.5_rt};
 
     //! Required local chord resolution, chord / dr >= min_chord_dr [-]
@@ -187,7 +187,7 @@ struct ActuatorSector : public ActuatorType
     using MetaType = ActuatorSectorData;
     using DataType = ActDataHolder<ActuatorSector>;
 
-    static std::string identifier() { return "ActuatorSector"; }
+    static std::string identifier() { return "Actuator"; }
 };
 
 } // namespace kynema_sgf::actuator
