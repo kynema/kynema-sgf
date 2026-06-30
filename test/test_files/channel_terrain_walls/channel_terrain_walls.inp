@@ -43,7 +43,7 @@ ChannelFlow.perturb_z_period = 4.0
 
 ChannelBuilder.initialize_velocity = false
 ChannelBuilder.zero_velocity_where_blanked = true
-ChannelBuilder.initialize_drag_cells = true
+#ChannelBuilder.initialize_drag_cells = true
 ChannelBuilder.segment_labels = s1
 ChannelBuilder.s1.type = Trapezoid
 ChannelBuilder.s1.segment_start_point = -0.1 0.25 0.5
