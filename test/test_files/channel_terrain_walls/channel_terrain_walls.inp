@@ -32,7 +32,7 @@ Smagorinsky_coeffs.Cs = 0.1
 
 ICNS.source_terms = BodyForce DragForcing
 DragForcing.use_original_drag_limiter = false
-#DragForcing.use_temporal_drag_limiter = true
+DragForcing.use_temporal_drag_limiter = true
 BodyForce.magnitude = 0.003969 0.0 0.0
 incflo.physics = ChannelFlow ChannelBuilder
 ChannelFlow.re_tau = 180.0
