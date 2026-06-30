@@ -178,6 +178,12 @@ public:
         m_stop_time = -1.0_rt;
     }
 
+    //! Set the initialization time (wall clock)
+    void set_init_time(amrex::Real wall_start) { m_wall_start = wall_start; }
+
+    //! Check if maximum wall clock time has been exceeded
+    [[nodiscard]] bool exceed_max_wall_time() const;
+
     /** Return true if TinyProfiler output should be sent to the log file at
      * this timestep
      */
@@ -199,6 +205,12 @@ private:
 
     //! Max time for simulation
     amrex::Real m_stop_time{-1.0_rt};
+
+    //! Maximum wall clock time in hours. If negative, unlimited.
+    amrex::Real m_max_wall_time{-1.0_rt};
+
+    //! Initialization time (wall clock seconds). Set by incflo.
+    amrex::Real m_wall_start{0.0_rt};
 
     //! Delayed adaptive stepping
     amrex::Real m_delay_time{-1.0_rt};

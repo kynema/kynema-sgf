@@ -338,6 +338,8 @@ void incflo::Evolve()
 
     const auto init_time =
         static_cast<amrex::Real>(amrex::ParallelDescriptor::second());
+    // Set initialization time in SimTime so it can check wall clock limits
+    m_time.set_init_time(init_time);
 
     while (m_time.new_timestep()) {
         const auto time0 =
@@ -391,6 +393,11 @@ void incflo::Evolve()
     amrex::Print() << "\n======================================================"
                       "========================\n"
                    << '\n';
+
+    if (m_time.exceed_max_wall_time()) {
+        amrex::Print() << "Simulation stopped: Maximum wall clock time exceeded"
+                       << '\n';
+    }
 
     // Output at final time
     if (m_time.write_last_plot_file()) {

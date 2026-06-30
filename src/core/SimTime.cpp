@@ -19,6 +19,7 @@ void SimTime::parse_parameters()
     amrex::ParmParse pp("time");
     pp.query("stop_time", m_stop_time);
     pp.query("max_step", m_stop_time_index);
+    pp.query("max_wall_time", m_max_wall_time);
     pp.query("delay_time", m_delay_time);
     pp.query("fixed_dt", m_fixed_dt);
     pp.query("initial_dt", m_initial_dt);
@@ -120,6 +121,10 @@ bool SimTime::new_timestep()
         } else if (m_stop_time_index >= 0) {
             amrex::Print() << "  Run for " << m_stop_time_index << " timesteps"
                            << '\n';
+        }
+        if (m_max_wall_time > 0) {
+            amrex::Print() << "  Max wall clock time: " << m_max_wall_time
+                           << " hours" << '\n';
         }
         if (m_adaptive) {
             amrex::Print() << "  Adaptive timestepping with max. CFL = "
@@ -336,6 +341,10 @@ bool SimTime::continue_simulation() const
         return stop_simulation;
     }
 
+    if (exceed_max_wall_time()) {
+        return stop_simulation;
+    }
+
     return !(stop_simulation);
 }
 
@@ -460,6 +469,17 @@ bool SimTime::output_profiling_info() const
     return (
         (m_profiling_interval > 0) &&
         (m_time_index % m_profiling_interval == 0));
+}
+
+bool SimTime::exceed_max_wall_time() const
+{
+    if (m_max_wall_time <= 0.0_rt) {
+        return false;
+    }
+    auto current_wall_time =
+        static_cast<amrex::Real>(amrex::ParallelDescriptor::second()) - m_wall_start;
+    amrex::ParallelDescriptor::ReduceRealMax(current_wall_time);    
+    return current_wall_time > (m_max_wall_time * 3600.0_rt);
 }
 
 } // namespace kynema_sgf
