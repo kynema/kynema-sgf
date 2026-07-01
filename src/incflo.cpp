@@ -221,6 +221,9 @@ void incflo::InitData()
 
     init_mesh();
     init_kynema_sgf_modules();
+
+    m_time.set_wall_start_time();
+
     prepare_for_time_integration();
 }
 
@@ -391,6 +394,11 @@ void incflo::Evolve()
     amrex::Print() << "\n======================================================"
                       "========================\n"
                    << '\n';
+
+    if (m_time.exceed_max_wall_time()) {
+        amrex::Print() << "Simulation stopped: Maximum wall clock time exceeded"
+                       << '\n';
+    }
 
     // Output at final time
     if (m_time.write_last_plot_file()) {
