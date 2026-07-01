@@ -37,6 +37,8 @@ private:
 
     bool m_global_damping{true};
 
+    amrex::Real m_time_scale{0.5_rt};
+
     amrex::Real m_length_xlo{0.0_rt};
     amrex::Real m_length_xhi{0.0_rt};
     amrex::Real m_length_ylo{0.0_rt};

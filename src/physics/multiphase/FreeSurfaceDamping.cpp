@@ -22,6 +22,8 @@ FreeSurfaceDamping::FreeSurfaceDamping(CFDSim& sim) : m_repo(sim.repo())
 
     pp.query("global_damping", m_global_damping);
 
+    pp.query("time_scale_fraction", m_time_scale);
+
     if (!m_global_damping) {
         pp.get("length_xlo", m_length_xlo);
         pp.get("length_xhi", m_length_xhi);
@@ -33,7 +35,6 @@ FreeSurfaceDamping::FreeSurfaceDamping(CFDSim& sim) : m_repo(sim.repo())
     m_rho1 = mphase.rho1();
     m_rho2 = mphase.rho2();
 
-    // m_geom = sim.mesh().Geom();
     m_time = sim.time();
 }
 
@@ -56,6 +57,7 @@ void FreeSurfaceDamping::post_advance_work()
     const auto l_xhi = m_length_xhi;
     const auto l_ylo = m_length_ylo;
     const auto l_yhi = m_length_yhi;
+    const auto time_scale = m_time_scale;
     const auto rho1 = m_rho1;
     const auto rho2 = m_rho2;
 
@@ -113,7 +115,7 @@ void FreeSurfaceDamping::post_advance_work()
                             ocean_waves::utils::combine_linear(
                                 Gamma, 0.0_rt, vel(i, j, k, 2)) -
                             vel(i, j, k, 2);
-                        vel(i, j, k, 2) += dvel; // time factor?
+                        vel(i, j, k, 2) += dvel * time_scale;
                     }
 
                     // Volume fraction damping
@@ -132,7 +134,7 @@ void FreeSurfaceDamping::post_advance_work()
                             ocean_waves::utils::combine_linear(
                                 Gamma, smooth_vof, volfrac(i, j, k)) -
                             volfrac(i, j, k);
-                        volfrac(i, j, k) += dvof; // time factor?
+                        volfrac(i, j, k) += dvof * time_scale;
 
                         if (amrex::Math::abs(dvof) > constants::EPS) {
                             // Update density based on change in volume fraction
