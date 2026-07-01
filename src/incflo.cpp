@@ -338,8 +338,7 @@ void incflo::Evolve()
 
     const auto init_time =
         static_cast<amrex::Real>(amrex::ParallelDescriptor::second());
-    // Set initialization time in SimTime so it can check wall clock limits
-    m_time.set_init_time(init_time);
+    m_time.set_wall_start_time(init_time);
 
     while (m_time.new_timestep()) {
         const auto time0 =
