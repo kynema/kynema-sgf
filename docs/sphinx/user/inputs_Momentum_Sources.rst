@@ -178,7 +178,7 @@ Section: Momentum Sources
    **type:** Real, optional, default = 10.0
 
    This value specifies the coefficient for the forcing term in the immersed boundary forcing method. It is currently
-   recommended to use the default value to avoid initial numerical stability. Despite the name, the drag-related
+   recommended to use the default value to avoid initial numerical instability. Despite the name, the drag-related
    input parameters affect the forcing term in blanked cells (i.e., within terrain) and the vertical velocity component
    in drag cells (i.e., immediately above or below the terrain). The forcing of lateral velocity components in drag
    cells are affected by :input_param:`DragForcing.bc_forcing_time_factor` and :input_param:`DragForcing.minimum_z0`.
