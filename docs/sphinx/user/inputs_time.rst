@@ -27,6 +27,19 @@ This section also addresses the time-dependent nature of checkpoint files, plot 
    The number of timesteps to run before termination. See also
    :input_param:`time.stop_time`.
 
+.. input_param:: time.max_wall_time
+
+   **type:** Real number, optional, default = -1.0
+
+   The maximum wall clock time (in hours) that the simulation is allowed to run.
+   When the elapsed wall clock time exceeds this limit, the simulation will stop
+   after completing the current timestep. The simulation will stop at whichever
+   comes first: :input_param:`time.stop_time`, :input_param:`time.max_step`, or
+   :input_param:`time.max_wall_time`. This parameter is useful for batch job
+   scheduling systems with strict wall time limits. A checkpoint file is always
+   written when the simulation stops due to wall time limit being exceeded,
+   allowing for easy restart. If this value is negative, there is no wall time limit.
+
 .. input_param:: time.fixed_dt
 
    **type:** Real number
