@@ -10,4 +10,5 @@ target_sources(${kynema_sgf_lib_name}
   RainDrop.cpp
   BreakingWaves.cpp
   ChannelBuilder.cpp
+  FreeSurfaceDamping.cpp
   )
