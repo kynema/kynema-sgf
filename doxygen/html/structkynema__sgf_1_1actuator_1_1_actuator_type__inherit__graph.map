@@ -1,0 +1,25 @@
+<map id="kynema_sgf::actuator::ActuatorType" name="kynema_sgf::actuator::ActuatorType">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,216,168,256"/>
+<area shape="rect" id="Node000002" href="$structkynema__sgf_1_1actuator_1_1_disk_type.html" title=" " alt="" coords="217,69,380,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,206,267,107,270,112,129,210"/>
+<area shape="rect" id="Node000005" href="$structkynema__sgf_1_1actuator_1_1_turbine_type.html" title=" " alt="" coords="217,216,380,256"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="182,233,217,233,217,239,182,239"/>
+<area shape="rect" id="Node000009" href="$structkynema__sgf_1_1actuator_1_1_wing_type.html" title=" " alt="" coords="217,364,380,404"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="129,262,271,362,267,366,126,266"/>
+<area shape="rect" id="Node000003" href="$structkynema__sgf_1_1actuator_1_1_joukowsky.html" title=" " alt="" coords="458,69,621,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="394,87,458,87,458,92,394,92"/>
+<area shape="rect" id="Node000004" href="$structkynema__sgf_1_1actuator_1_1_uniform_ct.html" title=" " alt="" coords="458,5,621,45"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="387,63,463,43,464,48,389,68"/>
+<area shape="rect" id="Node000006" href="$structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html" title=" " alt="" coords="985,159,1195,228"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="370,209,429,193,569,166,680,153,791,152,934,163,985,169,985,175,933,168,791,158,680,158,570,171,430,199,371,214"/>
+<area shape="rect" id="Node000007" href="$structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html" title=" " alt="" coords="957,264,1223,333"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="374,258,430,272,570,297,680,306,791,306,933,303,957,302,957,307,933,308,791,312,679,312,569,302,429,277,372,263"/>
+<area shape="rect" id="Node000008" href="$structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html" title=" " alt="" coords="429,209,649,263"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="394,233,429,233,429,239,394,239"/>
+<area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="663,225,933,205,985,201,985,206,934,211,663,231"/>
+<area shape="poly" id="edge9_Node000008_Node000007" title=" " alt="" coords="634,264,674,273,820,291,957,297,957,302,820,296,673,279,633,270"/>
+<area shape="rect" id="Node000010" href="$structkynema__sgf_1_1actuator_1_1_fixed_wing.html" title=" " alt="" coords="458,428,621,468"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="389,405,464,425,463,431,387,410"/>
+<area shape="rect" id="Node000011" href="$structkynema__sgf_1_1actuator_1_1_flat_plate.html" title=" " alt="" coords="458,364,621,404"/>
+<area shape="poly" id="edge12_Node000009_Node000011" title=" " alt="" coords="394,381,458,381,458,387,394,387"/>
+</map>

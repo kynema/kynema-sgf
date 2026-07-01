@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/external/TurbineExternal.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/external/TurbineExternal.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_turbine_external_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-turbine-external-turbineexternal-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/external/TurbineExternal.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-turbine-external-turbineexternal-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/external/TurbineExternal.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_a80d9316c48aa709b9bc78e2b746db24.html">wind_energy</a></li><li class="navelem"><a href="dir_9dcf803d990c86a52c151efe46b23ed3.html">actuator</a></li><li class="navelem"><a href="dir_0761b4eef8ed7bf1817548a27f87065f.html">turbine</a></li><li class="navelem"><a href="dir_371234d37c121e6264844507a1100215.html">external</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">TurbineExternal.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_turbine_external_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef TURBINEEXTERNAL_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define TURBINEEXTERNAL_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="turbine__types_8_h.html">src/wind_energy/actuator/turbine/turbine_types.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_ext_turb_iface_8_h.html">src/wind_energy/actuator/turbine/external/ExtTurbIface.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_ext_solver_8_h.html">src/core/ExtSolver.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1actuator.html">kynema_sgf::actuator</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> SolverTurbine, <span class="keyword">typename</span> SolverData&gt;</div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html">   14</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html">TurbineExternalData</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_turbine_base_data.html">TurbineBaseData</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html#a5a0175b846a83cbe3aa4509e5e40c4d1">   16</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html#a5a0175b846a83cbe3aa4509e5e40c4d1">density</a>{1.0_rt};</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html#a7b4458684c8410f4dbfba0a75ce14101">   18</a></span>    SolverTurbine <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html#a7b4458684c8410f4dbfba0a75ce14101">ext_data</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html#ab1d5d5bb34adb640b660f71cd4b8dda0">   19</a></span>    <a class="code hl_class" href="classext__turb_1_1_ext_turb_iface.html">::ext_turb::ExtTurbIface&lt;SolverTurbine, SolverData&gt;</a>* <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html#ab1d5d5bb34adb640b660f71cd4b8dda0">ext_ptr</a>{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html#ae467f4dd875e0e97cf4167489f21a0dc">   21</a></span>    MPI_Comm <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html#ae467f4dd875e0e97cf4167489f21a0dc">tcomm</a>{MPI_COMM_NULL};</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>};</div>
+</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> SolverTurbine, <span class="keyword">typename</span> SolverData&gt;</div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html">   25</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html">TurbineFromExtSolver</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_turbine_type.html">TurbineType</a></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#a7f95c908cfd4676ae021468e6de65a6d">   27</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#a7f95c908cfd4676ae021468e6de65a6d">InfoType</a> = <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_turbine_info.html">TurbineInfo</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#a768bad87654ef385502442acd2297783">   28</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#a768bad87654ef385502442acd2297783">GridType</a> = <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_act_grid.html">ActGrid</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#a1791880341a05391435cf25e0389163b">   29</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#a1791880341a05391435cf25e0389163b">MetaType</a> = <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html">TurbineExternalData&lt;SolverTurbine, SolverData&gt;</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#acf6af471cbcd2351185a09413f12b641">   30</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#acf6af471cbcd2351185a09413f12b641">DataType</a> =</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <a class="code hl_class" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html">ActDataHolder&lt;TurbineFromExtSolver&lt;SolverTurbine, SolverData&gt;</a>&gt;;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#a05a7f27556fda35fc53f7d00c90977a0">   33</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#a05a7f27556fda35fc53f7d00c90977a0">identifier</a>()</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceext__turb.html#ac520da0211acd9814d4c5a8c403d99d8">ext_turb::ext_id&lt;SolverTurbine&gt;</a>();</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
+</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>};</div>
+</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>} <span class="comment">// namespace kynema_sgf::actuator</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#endif </span><span class="comment">/* TURBINEEXTERNAL_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_ext_solver_8_h_html"><div class="ttname"><a href="_ext_solver_8_h.html">ExtSolver.H</a></div></div>
+<div class="ttc" id="a_ext_turb_iface_8_h_html"><div class="ttname"><a href="_ext_turb_iface_8_h.html">ExtTurbIface.H</a></div></div>
+<div class="ttc" id="aclassext__turb_1_1_ext_turb_iface_html"><div class="ttname"><a href="classext__turb_1_1_ext_turb_iface.html">ext_turb::ExtTurbIface</a></div><div class="ttdef"><b>Definition</b> ExtTurbIface.H:26</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html">kynema_sgf::actuator::ActDataHolder</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:187</div></div>
+<div class="ttc" id="anamespaceext__turb_html_ac520da0211acd9814d4c5a8c403d99d8"><div class="ttname"><a href="namespaceext__turb.html#ac520da0211acd9814d4c5a8c403d99d8">ext_turb::ext_id</a></div><div class="ttdeci">std::string ext_id()</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html">kynema_sgf::actuator</a></div><div class="ttdef"><b>Definition</b> ActParser.H:6</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_grid_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_grid.html">kynema_sgf::actuator::ActGrid</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:77</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_base_data_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_base_data.html">kynema_sgf::actuator::TurbineBaseData</a></div><div class="ttdef"><b>Definition</b> turbine_types.H:31</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_external_data_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html">kynema_sgf::actuator::TurbineExternalData</a></div><div class="ttdef"><b>Definition</b> TurbineExternal.H:15</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_external_data_html_a5a0175b846a83cbe3aa4509e5e40c4d1"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html#a5a0175b846a83cbe3aa4509e5e40c4d1">kynema_sgf::actuator::TurbineExternalData::density</a></div><div class="ttdeci">amrex::Real density</div><div class="ttdef"><b>Definition</b> TurbineExternal.H:16</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_external_data_html_a7b4458684c8410f4dbfba0a75ce14101"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html#a7b4458684c8410f4dbfba0a75ce14101">kynema_sgf::actuator::TurbineExternalData::ext_data</a></div><div class="ttdeci">SolverTurbine ext_data</div><div class="ttdef"><b>Definition</b> TurbineExternal.H:18</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_external_data_html_ab1d5d5bb34adb640b660f71cd4b8dda0"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html#ab1d5d5bb34adb640b660f71cd4b8dda0">kynema_sgf::actuator::TurbineExternalData::ext_ptr</a></div><div class="ttdeci">::ext_turb::ExtTurbIface&lt; SolverTurbine, SolverData &gt; * ext_ptr</div><div class="ttdef"><b>Definition</b> TurbineExternal.H:19</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_external_data_html_ae467f4dd875e0e97cf4167489f21a0dc"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_external_data.html#ae467f4dd875e0e97cf4167489f21a0dc">kynema_sgf::actuator::TurbineExternalData::tcomm</a></div><div class="ttdeci">MPI_Comm tcomm</div><div class="ttdef"><b>Definition</b> TurbineExternal.H:21</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html">kynema_sgf::actuator::TurbineFromExtSolver</a></div><div class="ttdef"><b>Definition</b> TurbineExternal.H:26</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver_html_a05a7f27556fda35fc53f7d00c90977a0"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#a05a7f27556fda35fc53f7d00c90977a0">kynema_sgf::actuator::TurbineFromExtSolver::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> TurbineExternal.H:33</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver_html_a1791880341a05391435cf25e0389163b"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#a1791880341a05391435cf25e0389163b">kynema_sgf::actuator::TurbineFromExtSolver::MetaType</a></div><div class="ttdeci">TurbineExternalData&lt; SolverTurbine, SolverData &gt; MetaType</div><div class="ttdef"><b>Definition</b> TurbineExternal.H:29</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver_html_a768bad87654ef385502442acd2297783"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#a768bad87654ef385502442acd2297783">kynema_sgf::actuator::TurbineFromExtSolver::GridType</a></div><div class="ttdeci">ActGrid GridType</div><div class="ttdef"><b>Definition</b> TurbineExternal.H:28</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver_html_a7f95c908cfd4676ae021468e6de65a6d"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#a7f95c908cfd4676ae021468e6de65a6d">kynema_sgf::actuator::TurbineFromExtSolver::InfoType</a></div><div class="ttdeci">TurbineInfo InfoType</div><div class="ttdef"><b>Definition</b> TurbineExternal.H:27</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver_html_acf6af471cbcd2351185a09413f12b641"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_from_ext_solver.html#acf6af471cbcd2351185a09413f12b641">kynema_sgf::actuator::TurbineFromExtSolver::DataType</a></div><div class="ttdeci">ActDataHolder&lt; TurbineFromExtSolver&lt; SolverTurbine, SolverData &gt; &gt; DataType</div><div class="ttdef"><b>Definition</b> TurbineExternal.H:30</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_info_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_info.html">kynema_sgf::actuator::TurbineInfo</a></div><div class="ttdef"><b>Definition</b> turbine_types.H:14</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_turbine_type_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_turbine_type.html">kynema_sgf::actuator::TurbineType</a></div><div class="ttdef"><b>Definition</b> turbine_types.H:86</div></div>
+<div class="ttc" id="aturbine__types_8_h_html"><div class="ttname"><a href="turbine__types_8_h.html">turbine_types.H</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,314 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/FLLC.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/FLLC.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_f_l_l_c_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-fllc-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/FLLC.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-fllc-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/FLLC.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_a80d9316c48aa709b9bc78e2b746db24.html">wind_energy</a></li><li class="navelem"><a href="dir_9dcf803d990c86a52c151efe46b23ed3.html">actuator</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">FLLC.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_f_l_l_c_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef FLLC_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define FLLC_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="actuator__types_8_h.html">src/wind_energy/actuator/actuator_types.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_act_parser_8_h.html">src/wind_energy/actuator/ActParser.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1actuator.html">kynema_sgf::actuator</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1actuator.html#ac6af79c2f7390dc5cad6ebe91be75c09a07713f35cdad163003e1ddcbeb41ab35">   13</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespacekynema__sgf_1_1actuator.html#ac6af79c2f7390dc5cad6ebe91be75c09">FLLCType</a> : std::uint8_t { <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1actuator.html#ac6af79c2f7390dc5cad6ebe91be75c09a07713f35cdad163003e1ddcbeb41ab35">ConstantChord</a>, <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1actuator.html#ac6af79c2f7390dc5cad6ebe91be75c09a19c52e472009dc14176e5f3db8d40bca">VariableChord</a> };</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1actuator.html#af3b4310224dc6709f9e8f7bcaee7aa93">   15</a></span><span class="keyword">static</span> std::map&lt;std::string, FLLCType&gt; <a class="code hl_variable" href="namespacekynema__sgf_1_1actuator.html#af3b4310224dc6709f9e8f7bcaee7aa93">FLLCTypeMap</a>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    {<span class="stringliteral">&quot;constant_chord&quot;</span>, <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1actuator.html#ac6af79c2f7390dc5cad6ebe91be75c09a07713f35cdad163003e1ddcbeb41ab35">FLLCType::ConstantChord</a>},</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    {<span class="stringliteral">&quot;variable_chord&quot;</span>, <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1actuator.html#ac6af79c2f7390dc5cad6ebe91be75c09a19c52e472009dc14176e5f3db8d40bca">FLLCType::VariableChord</a>}};</div>
+</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html">   19</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html">FLLCData</a></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// constants</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a3fd77dfb2486485954b495f3cbe5c2c9">   22</a></span>    <a class="code hl_enumeration" href="namespacekynema__sgf_1_1actuator.html#ac6af79c2f7390dc5cad6ebe91be75c09">FLLCType</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a3fd77dfb2486485954b495f3cbe5c2c9">correction_type</a>{<a class="code hl_enumvalue" href="namespacekynema__sgf_1_1actuator.html#ac6af79c2f7390dc5cad6ebe91be75c09a19c52e472009dc14176e5f3db8d40bca">FLLCType::VariableChord</a>};</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a5b9e9b668feef4f2883c08cb193fb2ab">   23</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a5b9e9b668feef4f2883c08cb193fb2ab">epsilon</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#af12998d4c729a6e532a45e13b5724402">   24</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#af12998d4c729a6e532a45e13b5724402">relaxation_factor</a>{0.1_rt};</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a95644287ea507d454881749792e355fe">   25</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a95644287ea507d454881749792e355fe">fllc_start_time</a>{0.0_rt};</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#ad2e6dabeabc6885959d41202d8cc24e0">   26</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#ad2e6dabeabc6885959d41202d8cc24e0">r</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#af2bcd840253d129a66abb4ef8683b5a1">   27</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#af2bcd840253d129a66abb4ef8683b5a1">dr</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a7171aa95e94531720d2c6c17d520e6d7">   28</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a7171aa95e94531720d2c6c17d520e6d7">optimal_epsilon</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">// computed values</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#ab3f2f97302c32b13a4b463be2a28930f">   31</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#ab3f2f97302c32b13a4b463be2a28930f">force_point_velocity</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a895165795e1b7214923be48e550da99d">   32</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a895165795e1b7214923be48e550da99d">les_velocity</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a5c0b1065d582764603a733d702336531">   33</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a5c0b1065d582764603a733d702336531">optimal_velocity</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a9a97bc75b935ed72e897f5539efa3ff8">   34</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a9a97bc75b935ed72e897f5539efa3ff8">correction_velocity</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a7a036e8f1fb30ca9409d1829e79f5976">   35</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a7a036e8f1fb30ca9409d1829e79f5976">lift</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a2fd82b5050f6e7eb29a06f4d7b1b9a05">   36</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a2fd82b5050f6e7eb29a06f4d7b1b9a05">grad_lift</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#ac7a828897e79da294534d55d72d101c6">   37</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#ac7a828897e79da294534d55d72d101c6">initialized</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a671208eed664d302e67885811cafbdfd">   38</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a671208eed664d302e67885811cafbdfd">different_sizes</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#add151bc348606790f0bc48f2b99dcd1f">   39</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#add151bc348606790f0bc48f2b99dcd1f">span_distance_vel</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#af802afce16cf7f48394ea47cf832ca58">   40</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#af802afce16cf7f48394ea47cf832ca58">span_distance_force</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// non-uniform variables</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#aa9a5fda6703d5dd1e27d5bd548dcd816">   43</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#aa9a5fda6703d5dd1e27d5bd548dcd816">nonuniform</a>{<span class="keyword">true</span>};      <span class="comment">// non-uniform flag</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#ab144107e446aff5e04eeacf372347795">   44</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#ab144107e446aff5e04eeacf372347795">eps_dr</a>{1.};     <span class="comment">// the ratio of epsilon to actuator width</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a544d5daa7ddcf308733b77d131cc03d4">   45</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a544d5daa7ddcf308733b77d131cc03d4">nonuniform_r</a>;      <span class="comment">// non-uniform radius</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#af18ef9344c465164ae72f7da04ddb89f">   46</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#af18ef9344c465164ae72f7da04ddb89f">nonuniform_dr</a>;     <span class="comment">// non-uniform spacing</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#affbb80d03e6daa657c4746fb728cfa75">   47</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#affbb80d03e6daa657c4746fb728cfa75">vel_rel</a>;            <span class="comment">// uniform relative velocity</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#aafee8c1ea23751163ed9b245aede3cd7">   48</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#aafee8c1ea23751163ed9b245aede3cd7">nonuniform_vel_rel</a>; <span class="comment">// non-uniform relative velocity</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a645db82060ad55a0e78c455889618799">   49</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a645db82060ad55a0e78c455889618799">nonuniform_optimal_epsilon</a>; <span class="comment">// non-uniform radius</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a92c15c9813e84710ece313e18df2ac2d">   50</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a92c15c9813e84710ece313e18df2ac2d">nonuniform_lift</a>;             <span class="comment">// non-uniform lift</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>};</div>
+</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacekynema__sgf_1_1actuator.html#aa72c2fff079360686784abd54020edf5">fllc_parse</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator_1_1utils.html#a09555b2d7d3bf73e8f36553f7f5aa3ac">utils::ActParser</a>&amp; pp, <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html">FLLCData</a>&amp; data);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacekynema__sgf_1_1actuator.html#a32880c7cd360749c1056ff04b8737ca2">fllc_init</a>(</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html">FLLCData</a>&amp; data, <span class="keyword">const</span> <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_component_view.html">ComponentView</a>&amp; view, amrex::Real eps_chord);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>} <span class="comment">// namespace kynema_sgf::actuator</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#endif </span><span class="comment">/* FLLC */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_act_parser_8_h_html"><div class="ttname"><a href="_act_parser_8_h.html">ActParser.H</a></div></div>
+<div class="ttc" id="aactuator__types_8_h_html"><div class="ttname"><a href="actuator__types_8_h.html">actuator_types.H</a></div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1utils_html_a09555b2d7d3bf73e8f36553f7f5aa3ac"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1utils.html#a09555b2d7d3bf73e8f36553f7f5aa3ac">kynema_sgf::actuator::utils::ActParser</a></div><div class="ttdeci">::kynema_sgf::utils::MultiParser ActParser</div><div class="ttdef"><b>Definition</b> ActParser.H:8</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html">kynema_sgf::actuator</a></div><div class="ttdef"><b>Definition</b> ActParser.H:6</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a05a88c15cb29c1bc8314a1194c882789"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">kynema_sgf::actuator::RealList</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; RealList</div><div class="ttdef"><b>Definition</b> actuator_types.H:63</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a32880c7cd360749c1056ff04b8737ca2"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a32880c7cd360749c1056ff04b8737ca2">kynema_sgf::actuator::fllc_init</a></div><div class="ttdeci">void fllc_init(FLLCData &amp;data, const ComponentView &amp;view, const amrex::Real eps_chord)</div><div class="ttdoc">Initialize FLLC data structure. This should be called at the end of the first ComputeForceOp to ensur...</div><div class="ttdef"><b>Definition</b> FLLC.cpp:9</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a39fef9a9215a0de416e46e1c858a4434"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">kynema_sgf::actuator::VecList</a></div><div class="ttdeci">amrex::Vector&lt; kynema_sgf::vs::Vector &gt; VecList</div><div class="ttdef"><b>Definition</b> actuator_types.H:65</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_aa72c2fff079360686784abd54020edf5"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#aa72c2fff079360686784abd54020edf5">kynema_sgf::actuator::fllc_parse</a></div><div class="ttdeci">void fllc_parse(const utils::ActParser &amp;pp, FLLCData &amp;data)</div><div class="ttdoc">Function to capture common parsing requirements for the filtered lifting line correction.</div><div class="ttdef"><b>Definition</b> FLLC.cpp:113</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_ac6af79c2f7390dc5cad6ebe91be75c09"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#ac6af79c2f7390dc5cad6ebe91be75c09">kynema_sgf::actuator::FLLCType</a></div><div class="ttdeci">FLLCType</div><div class="ttdef"><b>Definition</b> FLLC.H:13</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_ac6af79c2f7390dc5cad6ebe91be75c09a07713f35cdad163003e1ddcbeb41ab35"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#ac6af79c2f7390dc5cad6ebe91be75c09a07713f35cdad163003e1ddcbeb41ab35">kynema_sgf::actuator::FLLCType::ConstantChord</a></div><div class="ttdeci">@ ConstantChord</div><div class="ttdef"><b>Definition</b> FLLC.H:13</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_ac6af79c2f7390dc5cad6ebe91be75c09a19c52e472009dc14176e5f3db8d40bca"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#ac6af79c2f7390dc5cad6ebe91be75c09a19c52e472009dc14176e5f3db8d40bca">kynema_sgf::actuator::FLLCType::VariableChord</a></div><div class="ttdeci">@ VariableChord</div><div class="ttdef"><b>Definition</b> FLLC.H:13</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_af3b4310224dc6709f9e8f7bcaee7aa93"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#af3b4310224dc6709f9e8f7bcaee7aa93">kynema_sgf::actuator::FLLCTypeMap</a></div><div class="ttdeci">static std::map&lt; std::string, FLLCType &gt; FLLCTypeMap</div><div class="ttdef"><b>Definition</b> FLLC.H:15</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_component_view_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_component_view.html">kynema_sgf::actuator::ComponentView</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:129</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html">kynema_sgf::actuator::FLLCData</a></div><div class="ttdef"><b>Definition</b> FLLC.H:20</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_a2fd82b5050f6e7eb29a06f4d7b1b9a05"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a2fd82b5050f6e7eb29a06f4d7b1b9a05">kynema_sgf::actuator::FLLCData::grad_lift</a></div><div class="ttdeci">VecList grad_lift</div><div class="ttdef"><b>Definition</b> FLLC.H:36</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_a3fd77dfb2486485954b495f3cbe5c2c9"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a3fd77dfb2486485954b495f3cbe5c2c9">kynema_sgf::actuator::FLLCData::correction_type</a></div><div class="ttdeci">FLLCType correction_type</div><div class="ttdef"><b>Definition</b> FLLC.H:22</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_a544d5daa7ddcf308733b77d131cc03d4"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a544d5daa7ddcf308733b77d131cc03d4">kynema_sgf::actuator::FLLCData::nonuniform_r</a></div><div class="ttdeci">RealList nonuniform_r</div><div class="ttdef"><b>Definition</b> FLLC.H:45</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_a5b9e9b668feef4f2883c08cb193fb2ab"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a5b9e9b668feef4f2883c08cb193fb2ab">kynema_sgf::actuator::FLLCData::epsilon</a></div><div class="ttdeci">amrex::Real epsilon</div><div class="ttdef"><b>Definition</b> FLLC.H:23</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_a5c0b1065d582764603a733d702336531"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a5c0b1065d582764603a733d702336531">kynema_sgf::actuator::FLLCData::optimal_velocity</a></div><div class="ttdeci">VecList optimal_velocity</div><div class="ttdef"><b>Definition</b> FLLC.H:33</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_a645db82060ad55a0e78c455889618799"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a645db82060ad55a0e78c455889618799">kynema_sgf::actuator::FLLCData::nonuniform_optimal_epsilon</a></div><div class="ttdeci">RealList nonuniform_optimal_epsilon</div><div class="ttdef"><b>Definition</b> FLLC.H:49</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_a671208eed664d302e67885811cafbdfd"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a671208eed664d302e67885811cafbdfd">kynema_sgf::actuator::FLLCData::different_sizes</a></div><div class="ttdeci">bool different_sizes</div><div class="ttdef"><b>Definition</b> FLLC.H:38</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_a7171aa95e94531720d2c6c17d520e6d7"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a7171aa95e94531720d2c6c17d520e6d7">kynema_sgf::actuator::FLLCData::optimal_epsilon</a></div><div class="ttdeci">RealList optimal_epsilon</div><div class="ttdef"><b>Definition</b> FLLC.H:28</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_a7a036e8f1fb30ca9409d1829e79f5976"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a7a036e8f1fb30ca9409d1829e79f5976">kynema_sgf::actuator::FLLCData::lift</a></div><div class="ttdeci">VecList lift</div><div class="ttdef"><b>Definition</b> FLLC.H:35</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_a895165795e1b7214923be48e550da99d"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a895165795e1b7214923be48e550da99d">kynema_sgf::actuator::FLLCData::les_velocity</a></div><div class="ttdeci">VecList les_velocity</div><div class="ttdef"><b>Definition</b> FLLC.H:32</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_a92c15c9813e84710ece313e18df2ac2d"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a92c15c9813e84710ece313e18df2ac2d">kynema_sgf::actuator::FLLCData::nonuniform_lift</a></div><div class="ttdeci">VecList nonuniform_lift</div><div class="ttdef"><b>Definition</b> FLLC.H:50</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_a95644287ea507d454881749792e355fe"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a95644287ea507d454881749792e355fe">kynema_sgf::actuator::FLLCData::fllc_start_time</a></div><div class="ttdeci">amrex::Real fllc_start_time</div><div class="ttdef"><b>Definition</b> FLLC.H:25</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_a9a97bc75b935ed72e897f5539efa3ff8"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#a9a97bc75b935ed72e897f5539efa3ff8">kynema_sgf::actuator::FLLCData::correction_velocity</a></div><div class="ttdeci">VecList correction_velocity</div><div class="ttdef"><b>Definition</b> FLLC.H:34</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_aa9a5fda6703d5dd1e27d5bd548dcd816"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#aa9a5fda6703d5dd1e27d5bd548dcd816">kynema_sgf::actuator::FLLCData::nonuniform</a></div><div class="ttdeci">bool nonuniform</div><div class="ttdef"><b>Definition</b> FLLC.H:43</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_aafee8c1ea23751163ed9b245aede3cd7"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#aafee8c1ea23751163ed9b245aede3cd7">kynema_sgf::actuator::FLLCData::nonuniform_vel_rel</a></div><div class="ttdeci">VecList nonuniform_vel_rel</div><div class="ttdef"><b>Definition</b> FLLC.H:48</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_ab144107e446aff5e04eeacf372347795"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#ab144107e446aff5e04eeacf372347795">kynema_sgf::actuator::FLLCData::eps_dr</a></div><div class="ttdeci">amrex::Real eps_dr</div><div class="ttdef"><b>Definition</b> FLLC.H:44</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_ab3f2f97302c32b13a4b463be2a28930f"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#ab3f2f97302c32b13a4b463be2a28930f">kynema_sgf::actuator::FLLCData::force_point_velocity</a></div><div class="ttdeci">VecList force_point_velocity</div><div class="ttdef"><b>Definition</b> FLLC.H:31</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_ac7a828897e79da294534d55d72d101c6"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#ac7a828897e79da294534d55d72d101c6">kynema_sgf::actuator::FLLCData::initialized</a></div><div class="ttdeci">bool initialized</div><div class="ttdef"><b>Definition</b> FLLC.H:37</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_ad2e6dabeabc6885959d41202d8cc24e0"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#ad2e6dabeabc6885959d41202d8cc24e0">kynema_sgf::actuator::FLLCData::r</a></div><div class="ttdeci">RealList r</div><div class="ttdef"><b>Definition</b> FLLC.H:26</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_add151bc348606790f0bc48f2b99dcd1f"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#add151bc348606790f0bc48f2b99dcd1f">kynema_sgf::actuator::FLLCData::span_distance_vel</a></div><div class="ttdeci">RealList span_distance_vel</div><div class="ttdef"><b>Definition</b> FLLC.H:39</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_af12998d4c729a6e532a45e13b5724402"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#af12998d4c729a6e532a45e13b5724402">kynema_sgf::actuator::FLLCData::relaxation_factor</a></div><div class="ttdeci">amrex::Real relaxation_factor</div><div class="ttdef"><b>Definition</b> FLLC.H:24</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_af18ef9344c465164ae72f7da04ddb89f"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#af18ef9344c465164ae72f7da04ddb89f">kynema_sgf::actuator::FLLCData::nonuniform_dr</a></div><div class="ttdeci">RealList nonuniform_dr</div><div class="ttdef"><b>Definition</b> FLLC.H:46</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_af2bcd840253d129a66abb4ef8683b5a1"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#af2bcd840253d129a66abb4ef8683b5a1">kynema_sgf::actuator::FLLCData::dr</a></div><div class="ttdeci">RealList dr</div><div class="ttdef"><b>Definition</b> FLLC.H:27</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_af802afce16cf7f48394ea47cf832ca58"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#af802afce16cf7f48394ea47cf832ca58">kynema_sgf::actuator::FLLCData::span_distance_force</a></div><div class="ttdeci">RealList span_distance_force</div><div class="ttdef"><b>Definition</b> FLLC.H:40</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_f_l_l_c_data_html_affbb80d03e6daa657c4746fb728cfa75"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html#affbb80d03e6daa657c4746fb728cfa75">kynema_sgf::actuator::FLLCData::vel_rel</a></div><div class="ttdeci">VecList vel_rel</div><div class="ttdef"><b>Definition</b> FLLC.H:47</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

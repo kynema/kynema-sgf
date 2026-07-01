@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/aero/AirfoilTable.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/aero/AirfoilTable.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_airfoil_table_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-aero-airfoiltable-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/aero/AirfoilTable.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-aero-airfoiltable-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/aero/AirfoilTable.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_a80d9316c48aa709b9bc78e2b746db24.html">wind_energy</a></li><li class="navelem"><a href="dir_9dcf803d990c86a52c151efe46b23ed3.html">actuator</a></li><li class="navelem"><a href="dir_a23b95cf0fdfe0a772c2e68c8b023d23.html">aero</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">AirfoilTable.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_airfoil_table_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef AIRFOILTABLE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define AIRFOILTABLE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="actuator__types_8_h.html">src/wind_energy/actuator/actuator_types.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;iosfwd&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1actuator.html">kynema_sgf::actuator</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1actuator_1_1_airfoil_loader.html">AirfoilLoader</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html">   15</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a7e635a27c70b4f1a662e54308312a9c0">AirfoilTable</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a246c54338eab23aed7df50a8d19408de">   18</a></span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_friend" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a246c54338eab23aed7df50a8d19408de">AirfoilLoader</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#aa9828d1a3d7f78a65b49aab51565d40a">   20</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#aa9828d1a3d7f78a65b49aab51565d40a">~AirfoilTable</a>();</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#ac336d85ecd566129ea7e008b48297604">operator()</a>(amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#ab4dee43944405d2a1ab0104c332a0dc4">aoa</a>, amrex::Real&amp; cl, amrex::Real&amp; cd) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#ac336d85ecd566129ea7e008b48297604">operator()</a>(</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#ab4dee43944405d2a1ab0104c332a0dc4">aoa</a>,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        amrex::Real&amp; cl,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        amrex::Real&amp; cd,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        amrex::Real&amp; cm) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="}">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#aa6726c6d5549c5fa6c9bfa906a52fce0">   30</a></span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#aa6726c6d5549c5fa6c9bfa906a52fce0">num_entries</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a47d7eed6ff5f2fec814b0d2cf25b3a72">m_aoa</a>.size());</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    }</div>
+</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#ab4dee43944405d2a1ab0104c332a0dc4">   35</a></span>    [[nodiscard]] <span class="keyword">const</span> <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#ab4dee43944405d2a1ab0104c332a0dc4">aoa</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a47d7eed6ff5f2fec814b0d2cf25b3a72">m_aoa</a>; }</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#ac6944cb35af82df832bc57b3b28ff8f5">   37</a></span>    [[nodiscard]] <span class="keyword">const</span> <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#ac6944cb35af82df832bc57b3b28ff8f5">polars</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a6b28d609468560fad0ae9012e2154b40">m_polar</a>; }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a7e635a27c70b4f1a662e54308312a9c0">AirfoilTable</a>(<span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#aa6726c6d5549c5fa6c9bfa906a52fce0">num_entries</a>);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a09e5e377e7cd4aefdae5f8b3b54e5c9b">convert_aoa_to_radians</a>();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a47d7eed6ff5f2fec814b0d2cf25b3a72">   45</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a47d7eed6ff5f2fec814b0d2cf25b3a72">m_aoa</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a6b28d609468560fad0ae9012e2154b40">   48</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a6b28d609468560fad0ae9012e2154b40">m_polar</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
+</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="};">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_thin_airfoil.html">   51</a></span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1actuator_1_1_thin_airfoil.html">ThinAirfoil</a></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>{</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_thin_airfoil.html#a76eabe2e2952824611f9f6ddb8ec3a49">operator()</a>(amrex::Real aoa, amrex::Real&amp; cl, amrex::Real&amp; cd) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_thin_airfoil.html#ac16e1938e1b9a2e34d739c7ee4c8971e">   56</a></span>    amrex::Real&amp; <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_thin_airfoil.html#ac16e1938e1b9a2e34d739c7ee4c8971e">cd_factor</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_thin_airfoil.html#afcd2d2e6366c61df20c469eefa32d222">m_cd_factor</a>; }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_thin_airfoil.html#afcd2d2e6366c61df20c469eefa32d222">   59</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1actuator_1_1_thin_airfoil.html#afcd2d2e6366c61df20c469eefa32d222">m_cd_factor</a>{0.0_rt};</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>};</div>
+</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="foldopen" id="foldopen00062" data-start="{" data-end="};">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1actuator_1_1_airfoil_loader.html">   62</a></span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1actuator_1_1_airfoil_loader.html">AirfoilLoader</a></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>{</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">static</span> std::unique_ptr&lt;AirfoilTable&gt;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_loader.html#adecb24a1e125ad06584ba2be2929bcc9">load_airfoil</a>(<span class="keyword">const</span> std::string&amp; af_file, <span class="keyword">const</span> std::string&amp; type);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keyword">static</span> std::unique_ptr&lt;AirfoilTable&gt;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_loader.html#a6009010f85b16f95387e281e5b95f5b7">load_text_file</a>(<span class="keyword">const</span> std::string&amp; af_file);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> IStream&gt;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">static</span> std::unique_ptr&lt;AirfoilTable&gt; <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_loader.html#a6009010f85b16f95387e281e5b95f5b7">load_text_file</a>(IStream&amp; affile);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keyword">static</span> std::unique_ptr&lt;AirfoilTable&gt;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_loader.html#acd882a08db2ffadd1f1741c37e00c6c4">load_openfast_airfoil</a>(<span class="keyword">const</span> std::string&amp; af_file);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> IStream&gt;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">static</span> std::unique_ptr&lt;AirfoilTable&gt; <a class="code hl_function" href="classkynema__sgf_1_1actuator_1_1_airfoil_loader.html#acd882a08db2ffadd1f1741c37e00c6c4">load_openfast_airfoil</a>(IStream&amp; affile);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>};</div>
+</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00082" data-start="{" data-end="};">
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_airfoil_traits.html">   82</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_airfoil_traits.html">AirfoilTraits</a></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>{</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_airfoil_traits.html#a6c7afaac1fe868e9755828849b22c12e">   84</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_airfoil_traits.html#a6c7afaac1fe868e9755828849b22c12e">AirfoilLookup</a> = <a class="code hl_class" href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html">AirfoilTable</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>};</div>
+</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>} <span class="comment">// namespace kynema_sgf::actuator</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="preprocessor">#include &quot;<a class="code" href="_airfoil_table_i_8_h.html">src/wind_energy/actuator/aero/AirfoilTableI.H</a>&quot;</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#endif </span><span class="comment">/* AIRFOILTABLE_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_airfoil_table_i_8_h_html"><div class="ttname"><a href="_airfoil_table_i_8_h.html">AirfoilTableI.H</a></div></div>
+<div class="ttc" id="aactuator__types_8_h_html"><div class="ttname"><a href="actuator__types_8_h.html">actuator_types.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_airfoil_loader_html"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_airfoil_loader.html">kynema_sgf::actuator::AirfoilLoader</a></div><div class="ttdef"><b>Definition</b> AirfoilTable.H:63</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_airfoil_loader_html_a6009010f85b16f95387e281e5b95f5b7"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_airfoil_loader.html#a6009010f85b16f95387e281e5b95f5b7">kynema_sgf::actuator::AirfoilLoader::load_text_file</a></div><div class="ttdeci">static std::unique_ptr&lt; AirfoilTable &gt; load_text_file(const std::string &amp;af_file)</div><div class="ttdef"><b>Definition</b> AirfoilTable.cpp:51</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_airfoil_loader_html_acd882a08db2ffadd1f1741c37e00c6c4"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_airfoil_loader.html#acd882a08db2ffadd1f1741c37e00c6c4">kynema_sgf::actuator::AirfoilLoader::load_openfast_airfoil</a></div><div class="ttdeci">static std::unique_ptr&lt; AirfoilTable &gt; load_openfast_airfoil(const std::string &amp;af_file)</div><div class="ttdef"><b>Definition</b> AirfoilTable.cpp:62</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_airfoil_loader_html_adecb24a1e125ad06584ba2be2929bcc9"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_airfoil_loader.html#adecb24a1e125ad06584ba2be2929bcc9">kynema_sgf::actuator::AirfoilLoader::load_airfoil</a></div><div class="ttdeci">static std::unique_ptr&lt; AirfoilTable &gt; load_airfoil(const std::string &amp;af_file, const std::string &amp;type)</div><div class="ttdef"><b>Definition</b> AirfoilTable.cpp:73</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_airfoil_table_html"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html">kynema_sgf::actuator::AirfoilTable</a></div><div class="ttdef"><b>Definition</b> AirfoilTable.H:16</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_airfoil_table_html_a09e5e377e7cd4aefdae5f8b3b54e5c9b"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a09e5e377e7cd4aefdae5f8b3b54e5c9b">kynema_sgf::actuator::AirfoilTable::convert_aoa_to_radians</a></div><div class="ttdeci">void convert_aoa_to_radians()</div><div class="ttdef"><b>Definition</b> AirfoilTable.cpp:43</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_airfoil_table_html_a246c54338eab23aed7df50a8d19408de"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a246c54338eab23aed7df50a8d19408de">kynema_sgf::actuator::AirfoilTable::AirfoilLoader</a></div><div class="ttdeci">friend class AirfoilLoader</div><div class="ttdef"><b>Definition</b> AirfoilTable.H:18</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_airfoil_table_html_a47d7eed6ff5f2fec814b0d2cf25b3a72"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a47d7eed6ff5f2fec814b0d2cf25b3a72">kynema_sgf::actuator::AirfoilTable::m_aoa</a></div><div class="ttdeci">RealList m_aoa</div><div class="ttdoc">Angle of attack.</div><div class="ttdef"><b>Definition</b> AirfoilTable.H:45</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_airfoil_table_html_a6b28d609468560fad0ae9012e2154b40"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a6b28d609468560fad0ae9012e2154b40">kynema_sgf::actuator::AirfoilTable::m_polar</a></div><div class="ttdeci">VecList m_polar</div><div class="ttdoc">Airfoil polars (Cl, Cd, Cm)</div><div class="ttdef"><b>Definition</b> AirfoilTable.H:48</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_airfoil_table_html_a7e635a27c70b4f1a662e54308312a9c0"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#a7e635a27c70b4f1a662e54308312a9c0">kynema_sgf::actuator::AirfoilTable::AirfoilTable</a></div><div class="ttdeci">AirfoilTable(int num_entries)</div><div class="ttdef"><b>Definition</b> AirfoilTable.cpp:8</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_airfoil_table_html_aa6726c6d5549c5fa6c9bfa906a52fce0"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#aa6726c6d5549c5fa6c9bfa906a52fce0">kynema_sgf::actuator::AirfoilTable::num_entries</a></div><div class="ttdeci">int num_entries() const</div><div class="ttdef"><b>Definition</b> AirfoilTable.H:30</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_airfoil_table_html_aa9828d1a3d7f78a65b49aab51565d40a"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#aa9828d1a3d7f78a65b49aab51565d40a">kynema_sgf::actuator::AirfoilTable::~AirfoilTable</a></div><div class="ttdeci">~AirfoilTable()</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_airfoil_table_html_ab4dee43944405d2a1ab0104c332a0dc4"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#ab4dee43944405d2a1ab0104c332a0dc4">kynema_sgf::actuator::AirfoilTable::aoa</a></div><div class="ttdeci">const RealList &amp; aoa() const</div><div class="ttdef"><b>Definition</b> AirfoilTable.H:35</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_airfoil_table_html_ac336d85ecd566129ea7e008b48297604"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#ac336d85ecd566129ea7e008b48297604">kynema_sgf::actuator::AirfoilTable::operator()</a></div><div class="ttdeci">void operator()(amrex::Real aoa, amrex::Real &amp;cl, amrex::Real &amp;cd) const</div><div class="ttdef"><b>Definition</b> AirfoilTable.cpp:14</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_airfoil_table_html_ac6944cb35af82df832bc57b3b28ff8f5"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_airfoil_table.html#ac6944cb35af82df832bc57b3b28ff8f5">kynema_sgf::actuator::AirfoilTable::polars</a></div><div class="ttdeci">const VecList &amp; polars() const</div><div class="ttdef"><b>Definition</b> AirfoilTable.H:37</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_thin_airfoil_html"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_thin_airfoil.html">kynema_sgf::actuator::ThinAirfoil</a></div><div class="ttdef"><b>Definition</b> AirfoilTable.H:52</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_thin_airfoil_html_a76eabe2e2952824611f9f6ddb8ec3a49"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_thin_airfoil.html#a76eabe2e2952824611f9f6ddb8ec3a49">kynema_sgf::actuator::ThinAirfoil::operator()</a></div><div class="ttdeci">void operator()(amrex::Real aoa, amrex::Real &amp;cl, amrex::Real &amp;cd) const</div><div class="ttdef"><b>Definition</b> AirfoilTable.cpp:36</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_thin_airfoil_html_ac16e1938e1b9a2e34d739c7ee4c8971e"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_thin_airfoil.html#ac16e1938e1b9a2e34d739c7ee4c8971e">kynema_sgf::actuator::ThinAirfoil::cd_factor</a></div><div class="ttdeci">amrex::Real &amp; cd_factor()</div><div class="ttdef"><b>Definition</b> AirfoilTable.H:56</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_thin_airfoil_html_afcd2d2e6366c61df20c469eefa32d222"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_thin_airfoil.html#afcd2d2e6366c61df20c469eefa32d222">kynema_sgf::actuator::ThinAirfoil::m_cd_factor</a></div><div class="ttdeci">amrex::Real m_cd_factor</div><div class="ttdef"><b>Definition</b> AirfoilTable.H:59</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html">kynema_sgf::actuator</a></div><div class="ttdef"><b>Definition</b> ActParser.H:6</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a05a88c15cb29c1bc8314a1194c882789"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">kynema_sgf::actuator::RealList</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; RealList</div><div class="ttdef"><b>Definition</b> actuator_types.H:63</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a39fef9a9215a0de416e46e1c858a4434"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">kynema_sgf::actuator::VecList</a></div><div class="ttdeci">amrex::Vector&lt; kynema_sgf::vs::Vector &gt; VecList</div><div class="ttdef"><b>Definition</b> actuator_types.H:65</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_airfoil_traits_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_airfoil_traits.html">kynema_sgf::actuator::AirfoilTraits</a></div><div class="ttdef"><b>Definition</b> AirfoilTable.H:83</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_airfoil_traits_html_a6c7afaac1fe868e9755828849b22c12e"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_airfoil_traits.html#a6c7afaac1fe868e9755828849b22c12e">kynema_sgf::actuator::AirfoilTraits::AirfoilLookup</a></div><div class="ttdeci">AirfoilTable AirfoilLookup</div><div class="ttdef"><b>Definition</b> AirfoilTable.H:84</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

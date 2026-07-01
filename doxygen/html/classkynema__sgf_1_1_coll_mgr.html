@@ -1,0 +1,706 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::CollMgr&amp;lt; Collection, Type, allow_duplicates &amp;gt; Class Template Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::CollMgr&amp;lt; Collection, Type, allow_duplicates &amp;gt; Class Template Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_coll_mgr.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="collmgr-lt-collection-type-allow-duplicates-gt-class-template-reference">
+<h1>CollMgr&amp;lt; Collection, Type, allow_duplicates &amp;gt; Class Template Reference<a class="headerlink" href="#collmgr-lt-collection-type-allow-duplicates-gt-class-template-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::CollMgr&lt; Collection, Type, allow_duplicates &gt; Class Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_coll_mgr.html">CollMgr</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="classkynema__sgf_1_1_coll_mgr-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::CollMgr&lt; Collection, Type, allow_duplicates &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__core.html">Kynema-SGF core</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_coll_mgr_8_h_source.html">CollMgr.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::CollMgr&lt; Collection, Type, allow_duplicates &gt;:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_coll_mgr__inherit__graph.svg" width="100%" height="495"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::CollMgr&lt; Collection, Type, allow_duplicates &gt;:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_coll_mgr__coll__graph.svg" width="328" height="398"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ad9a10ac8495d2b7ac5ab5a153484eb91" id="r_ad9a10ac8495d2b7ac5ab5a153484eb91"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9a10ac8495d2b7ac5ab5a153484eb91">TypePtr</a> = std::unique_ptr&lt;Type&gt;</td></tr>
+<tr class="memitem:ac8acc7ec0f7401f1377a985f580298ae" id="r_ac8acc7ec0f7401f1377a985f580298ae"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a> = amrex::Vector&lt;<a class="el" href="#ad9a10ac8495d2b7ac5ab5a153484eb91">TypePtr</a>&gt;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a31ea0b233fa84d05bcf72b8462af3e96" id="r_a31ea0b233fa84d05bcf72b8462af3e96"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31ea0b233fa84d05bcf72b8462af3e96">~CollMgr</a> ()=default</td></tr>
+<tr class="memitem:a8b28dfff44d5cbcb1b337dfc6db8958b" id="r_a8b28dfff44d5cbcb1b337dfc6db8958b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b28dfff44d5cbcb1b337dfc6db8958b">CollMgr</a> (const <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">CollMgr</a> &amp;)=delete</td></tr>
+<tr class="memitem:a84c37c0fa1c5ac33bc59be730a3bbc4c" id="r_a84c37c0fa1c5ac33bc59be730a3bbc4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html">CollMgr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84c37c0fa1c5ac33bc59be730a3bbc4c">operator=</a> (const <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">CollMgr</a> &amp;)=delete</td></tr>
+<tr class="memitem:ab6ff4d344cb935a2e3b8b14481c9b969" id="r_ab6ff4d344cb935a2e3b8b14481c9b969"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:ab6ff4d344cb935a2e3b8b14481c9b969 template"><td class="memItemLeft" align="right" valign="top">Type &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6ff4d344cb935a2e3b8b14481c9b969">create</a> (const std::string &amp;key, Args &amp;&amp;... args)</td></tr>
+<tr class="memitem:a6ec1cec65c45726d2b2e60763518a6f1" id="r_a6ec1cec65c45726d2b2e60763518a6f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ec1cec65c45726d2b2e60763518a6f1">objects</a> ()</td></tr>
+<tr class="memdesc:a6ec1cec65c45726d2b2e60763518a6f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a vector of the registered objects.  <br /></td></tr>
+<tr class="memitem:acabe07afe85538f949e3ec58c904e6c5" id="r_acabe07afe85538f949e3ec58c904e6c5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acabe07afe85538f949e3ec58c904e6c5">objects</a> () const</td></tr>
+<tr class="memitem:a5c00aeaeb965abce00787074f9e528c8" id="r_a5c00aeaeb965abce00787074f9e528c8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c00aeaeb965abce00787074f9e528c8">contains</a> (const std::string &amp;key) const</td></tr>
+<tr class="memdesc:a5c00aeaeb965abce00787074f9e528c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query if an object exists using the lookup key.  <br /></td></tr>
+<tr class="memitem:ae7f0988e9cfec93e12582048db08cf11" id="r_ae7f0988e9cfec93e12582048db08cf11"><td class="memItemLeft" align="right" valign="top">Type &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7f0988e9cfec93e12582048db08cf11">operator()</a> (const std::string &amp;key)</td></tr>
+<tr class="memdesc:ae7f0988e9cfec93e12582048db08cf11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the object corresponding to a lookup key.  <br /></td></tr>
+<tr class="memitem:acc4e1f1bcb5478aba0fb1ca39697560c" id="r_acc4e1f1bcb5478aba0fb1ca39697560c"><td class="memItemLeft" align="right" valign="top">const Type &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc4e1f1bcb5478aba0fb1ca39697560c">operator()</a> (const std::string &amp;key) const</td></tr>
+<tr class="memitem:aa41b004ad7798069735ce09fa4df80fc" id="r_aa41b004ad7798069735ce09fa4df80fc"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:aa41b004ad7798069735ce09fa4df80fc template"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa41b004ad7798069735ce09fa4df80fc">operator()</a> (const std::string &amp;key)</td></tr>
+<tr class="memdesc:aa41b004ad7798069735ce09fa4df80fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return object for a lookup key cast into its exact class definition.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:aca9f58210b96fbb66c30e72c611e2726" id="r_aca9f58210b96fbb66c30e72c611e2726"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca9f58210b96fbb66c30e72c611e2726">m_obj_vec</a></td></tr>
+<tr class="memdesc:aca9f58210b96fbb66c30e72c611e2726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collection of objects registered so far.  <br /></td></tr>
+<tr class="memitem:a800762c836ebac85d8a49efc79ad6d01" id="r_a800762c836ebac85d8a49efc79ad6d01"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a800762c836ebac85d8a49efc79ad6d01">m_obj_map</a></td></tr>
+<tr class="memdesc:a800762c836ebac85d8a49efc79ad6d01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Key word based lookup.  <br /></td></tr>
+<tr class="memitem:a375b9dd5bf6301df39835bda65e6849c" id="r_a375b9dd5bf6301df39835bda65e6849c"><td class="memItemLeft" align="right" valign="top">friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a0b5191e83dafe9e3faa6a617992749e0" id="r_a0b5191e83dafe9e3faa6a617992749e0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b5191e83dafe9e3faa6a617992749e0">CollMgr</a> ()=default</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt;<br />
+class kynema_sgf::CollMgr&lt; Collection, Type, allow_duplicates &gt;</div><p>Interface to manage objects of sub-classes based on factory registration</p>
+<p>Provides boiler-plate code to register a collection and then query using lookup keywords</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Collection</td><td>Class holding instances of collection (e.g., <a class="el" href="classkynema__sgf_1_1_physics_mgr.html">PhysicsMgr</a>) </td></tr>
+    <tr><td class="paramname">Base</td><td>class of the collection (e.g., <a class="el" href="classkynema__sgf_1_1_physics.html">Physics</a>) </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="ad9a10ac8495d2b7ac5ab5a153484eb91" name="ad9a10ac8495d2b7ac5ab5a153484eb91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9a10ac8495d2b7ac5ab5a153484eb91">&#9670;&#160;</a></span>TypePtr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt;::TypePtr = std::unique_ptr&lt;Type&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac8acc7ec0f7401f1377a985f580298ae" name="ac8acc7ec0f7401f1377a985f580298ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8acc7ec0f7401f1377a985f580298ae">&#9670;&#160;</a></span>TypeVector</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt;::TypeVector = amrex::Vector&lt;<a class="el" href="#ad9a10ac8495d2b7ac5ab5a153484eb91">TypePtr</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a0b5191e83dafe9e3faa6a617992749e0" name="a0b5191e83dafe9e3faa6a617992749e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b5191e83dafe9e3faa6a617992749e0">&#9670;&#160;</a></span>CollMgr() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt;::CollMgr </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a31ea0b233fa84d05bcf72b8462af3e96" name="a31ea0b233fa84d05bcf72b8462af3e96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31ea0b233fa84d05bcf72b8462af3e96">&#9670;&#160;</a></span>~CollMgr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt;::~<a class="el" href="classkynema__sgf_1_1_coll_mgr.html">CollMgr</a> </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8b28dfff44d5cbcb1b337dfc6db8958b" name="a8b28dfff44d5cbcb1b337dfc6db8958b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b28dfff44d5cbcb1b337dfc6db8958b">&#9670;&#160;</a></span>CollMgr() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt;::CollMgr </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a5c00aeaeb965abce00787074f9e528c8" name="a5c00aeaeb965abce00787074f9e528c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c00aeaeb965abce00787074f9e528c8">&#9670;&#160;</a></span>contains()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt;::contains </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Query if an object exists using the lookup key. </p>
+
+</div>
+</div>
+<a id="ab6ff4d344cb935a2e3b8b14481c9b969" name="ab6ff4d344cb935a2e3b8b14481c9b969"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6ff4d344cb935a2e3b8b14481c9b969">&#9670;&#160;</a></span>create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt; </div>
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Type &amp; <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt;::create </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Create a new object and register it in the vector and setup lookup options </p>
+
+</div>
+</div>
+<a id="a6ec1cec65c45726d2b2e60763518a6f1" name="a6ec1cec65c45726d2b2e60763518a6f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ec1cec65c45726d2b2e60763518a6f1">&#9670;&#160;</a></span>objects() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a> &amp; <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt;::objects </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return a vector of the registered objects. </p>
+
+</div>
+</div>
+<a id="acabe07afe85538f949e3ec58c904e6c5" name="acabe07afe85538f949e3ec58c904e6c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acabe07afe85538f949e3ec58c904e6c5">&#9670;&#160;</a></span>objects() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a> &amp; <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt;::objects </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae7f0988e9cfec93e12582048db08cf11" name="ae7f0988e9cfec93e12582048db08cf11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7f0988e9cfec93e12582048db08cf11">&#9670;&#160;</a></span>operator()() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Type &amp; <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the object corresponding to a lookup key. </p>
+
+</div>
+</div>
+<a id="aa41b004ad7798069735ce09fa4df80fc" name="aa41b004ad7798069735ce09fa4df80fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa41b004ad7798069735ce09fa4df80fc">&#9670;&#160;</a></span>operator()() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt; </div>
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T &amp; <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return object for a lookup key cast into its exact class definition. </p>
+
+</div>
+</div>
+<a id="acc4e1f1bcb5478aba0fb1ca39697560c" name="acc4e1f1bcb5478aba0fb1ca39697560c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc4e1f1bcb5478aba0fb1ca39697560c">&#9670;&#160;</a></span>operator()() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const Type &amp; <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a84c37c0fa1c5ac33bc59be730a3bbc4c" name="a84c37c0fa1c5ac33bc59be730a3bbc4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84c37c0fa1c5ac33bc59be730a3bbc4c">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html">CollMgr</a> &amp; <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a375b9dd5bf6301df39835bda65e6849c" name="a375b9dd5bf6301df39835bda65e6849c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a375b9dd5bf6301df39835bda65e6849c">&#9670;&#160;</a></span>Collection</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Collection, typename Type, bool allow_duplicates = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; Collection, Type, allow_duplicates &gt;::Collection</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a800762c836ebac85d8a49efc79ad6d01" name="a800762c836ebac85d8a49efc79ad6d01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a800762c836ebac85d8a49efc79ad6d01">&#9670;&#160;</a></span>m_obj_map</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;std::string, int&gt; <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt;::m_obj_map</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Key word based lookup. </p>
+
+</div>
+</div>
+<a id="aca9f58210b96fbb66c30e72c611e2726" name="aca9f58210b96fbb66c30e72c611e2726"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca9f58210b96fbb66c30e72c611e2726">&#9670;&#160;</a></span>m_obj_vec</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, typename Type, bool allow_duplicates = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a> <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr</a>&lt; <a class="el" href="#a375b9dd5bf6301df39835bda65e6849c">Collection</a>, Type, allow_duplicates &gt;::m_obj_vec</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Collection of objects registered so far. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/core/<a class="el" href="_coll_mgr_8_h_source.html">CollMgr.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

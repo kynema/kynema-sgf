@@ -1,0 +1,452 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Section: ChannelBuilder &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Section: Boundary conditions" href="inputs_Boundary_conditions.html" />
+    <link rel="prev" title="Section: TerrainDrag" href="inputs_terraindrag.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="inputs.html#input-file-reference">Input file reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="inputs_geometry.html">Section: geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_amr.html">Section: AMReX and AMR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_tagging.html">Section: tagging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_time.html">Section: time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_io.html">Section: io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_incflo.html">Section: incflo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_transport.html">Section: transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_turbulence.html">Section: turbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Momentum_Sources.html">Section: Momentum Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Temperature_Sources.html">Section: Temperature Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_TKE_Sources.html">Section: TKE Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL.html">Section: ABL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL_meso_forcing.html">Section: ABLMesoForcing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Actuator.html">Section: Actuator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_multiphase.html">Section: MultiPhase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ocean_waves.html">Section: Ocean Waves</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_SyntheticTurbulence.html">Section: SyntheticTurbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_forest.html">Section: ForestDrag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_terraindrag.html">Section: TerrainDrag</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Section: ChannelBuilder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Boundary_conditions.html">Section: Boundary conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_field_boundaries.html">Section: Field Boundaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_MLMG.html">Section: MLMG options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_post_processing.html">Section: Post-processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Sampling.html">Section: Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Subvolume.html">Section: Subvolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Averaging.html">Section: Averaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_KineticEnergy.html">Section: KineticEnergy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Enstrophy.html">Section: Enstrophy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FieldNorms.html">Section: FieldNorms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+          <li class="breadcrumb-item"><a href="inputs.html">Kynema-SGF inputs file</a></li>
+      <li class="breadcrumb-item active">Section: ChannelBuilder</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/inputs_ChannelBuilder.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-channelbuilder">
+<span id="inputs-channel-builder"></span><h1>Section: ChannelBuilder<a class="headerlink" href="#section-channelbuilder" title="Link to this heading"></a></h1>
+<p>This section is for setting parameters for the channel builder,
+which is a physics module for initializing channel flows with
+different geometries. It can be used in single-phase and multiphase
+contexts. It can be used for closed channels,
+enabling internal flows, or open channels, enabling free surface flows.
+This setup is comprised of defining channel segments.</p>
+<p>The channel builder is exclusively for initializing the flow and
+does not perform any operation during the progression of the simulation.
+The channel builder capability allows for initializing a variety of velocity
+profiles, which can be awkward to replicate as standard boundary conditions
+for a simulation. As a result, the BoundaryPlane field boundary type is
+often best suited for these cases by leveraging the
+<a class="reference internal" href="inputs_field_boundaries.html#input_param-BoundaryPlane.output_and_use_initial_plane"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">BoundaryPlane.output_and_use_initial_plane</span></code></a>
+capability.
+The channel builder is activated by including <cite>ChannelBuilder</cite> in the list
+of physics under <a class="reference internal" href="inputs_incflo.html#input_param-incflo.physics"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">incflo.physics</span></code></a>. Finally, the channel builder
+sets up channels by defining the terrain blank variable. This variable
+must be used in the momentum forcing in order to actually affect the flow.
+Currently, this is done by including the <cite>DragForcing</cite> source term in
+<a class="reference internal" href="inputs_Momentum_Sources.html#input_param-ICNS.source_terms"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ICNS.source_terms</span></code></a>.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.initialize_velocity">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.initialize_velocity</span></span><a class="headerlink" href="#input_param-ChannelBuilder.initialize_velocity" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Bool, optional, default = true</p>
+<p>Controls whether the channel builder initializes the velocity field from
+the segment definitions and velocity profiles.</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the velocity field is first set to zero and then populated in
+cells that are inside channel segments.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the existing velocity field is kept, except where modified by
+<a class="reference internal" href="#input_param-ChannelBuilder.zero_velocity_where_blanked"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ChannelBuilder.zero_velocity_where_blanked</span></code></a>. This is useful
+when the velocity should be initialized with a different physics module,
+but the channel geometry (i.e., the terrain blanking) should still be set up.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.zero_velocity_where_blanked">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.zero_velocity_where_blanked</span></span><a class="headerlink" href="#input_param-ChannelBuilder.zero_velocity_where_blanked" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Bool, optional, default = true</p>
+<p>Applies only when <a class="reference internal" href="#input_param-ChannelBuilder.initialize_velocity"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ChannelBuilder.initialize_velocity</span></code></a> is
+<code class="docutils literal notranslate"><span class="pre">false</span></code>. If enabled, velocity is set to zero in cells marked as terrain
+blanked by the channel geometry. This is useful when preserving a preexisting
+velocity field while still enforcing no flow in blanked cells.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.initialize_drag_cells">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.initialize_drag_cells</span></span><a class="headerlink" href="#input_param-ChannelBuilder.initialize_drag_cells" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Bool, optional, default = false</p>
+<p>If enabled, initializes an integer field named <code class="docutils literal notranslate"><span class="pre">terrain_drag</span></code> based on the
+terrain blanking pattern. Cells above or below blanked terrain are flagged to
+support the wall modeling approach in the DragForcing source term.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.segment_labels">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.segment_labels</span></span><a class="headerlink" href="#input_param-ChannelBuilder.segment_labels" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of strings, required</p>
+<p>After listing the segment labels, the details of each
+channel segment are defined through additional input arguments,
+which describe the geometry and velocity profile of each segment.
+The example segment label used for the input arguments below is <cite>s1</cite>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.segment_start">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.segment_start</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.segment_start" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Vector&lt;Real&gt;, mandatory</p>
+<p>Spatial location of the start of the segment.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.segment_end">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.segment_end</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.segment_end" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Vector&lt;Real&gt;, mandatory</p>
+<p>Spatial location of the end of the segment. The velocity profile
+(specified through other input arguments) is oriented along the
+line from the segment start to the segment end. The cross-sectional
+geometry (i.e., trapezoidal or elliptical) is perpendicular to this line.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.type">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.type</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.type" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = “ellipse”</p>
+<p>The type of each channel segment. Currently implemented types include
+“trapezoid” and “ellipse”. The geometry parameters of a given segment
+depend on the type of that segment.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.horizontal_axis_start">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.horizontal_axis_start</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.horizontal_axis_start" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For an elliptical segment, the length of the horizontal axis of the
+ellipse at the start of the segment.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.horizontal_axis_end">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.horizontal_axis_end</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.horizontal_axis_end" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For an elliptical segment, the length of the horizontal axis of the
+ellipse at the end of the segment.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.vertical_axis_start">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.vertical_axis_start</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.vertical_axis_start" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For an elliptical segment, the length of the vertical axis of the
+ellipse at the start of the segment.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.vertical_axis_end">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.vertical_axis_end</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.vertical_axis_end" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For an elliptical segment, the length of the vertical axis of the
+ellipse at the end of the segment.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.horizontal_axis">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.horizontal_axis</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.horizontal_axis" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For an elliptical segment, if the cross-section does not change
+along the segment, this parameter can be used to specify the length of
+the horizontal axis of the ellipse along the entire segment instead of
+specifying both the start and end values.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.vertical_axis">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.vertical_axis</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.vertical_axis" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For an elliptical segment, if the cross-section does not change
+along the segment, this parameter can be used to specify the length of
+the vertical axis of the ellipse along the entire segment instead of
+specifying both the start and end values.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.diameter_start">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.diameter_start</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.diameter_start" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For an elliptical segment, if the vertical and horizontal axes are the same,
+this parameter can be used to specify the diameter of the ellipse at the segment start.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.diameter_end">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.diameter_end</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.diameter_end" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For an elliptical segment, if the vertical and horizontal axes are the same,
+this parameter can be used to specify the diameter of the ellipse at the segment end.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.diameter">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.diameter</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.diameter" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For an elliptical segment, if the vertical and horizontal axes are the same
+and they do not change along the length of the segment,
+this parameter can be used to specify the diameter of the ellipse. Although
+all of these elliptical parameters are individually optional, at least one
+set of parameters must be provided for an elliptical segment or the code will fail.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.top_width_start">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.top_width_start</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.top_width_start" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For a trapezoidal segment, the top width of the trapezoid
+at the start of the segment.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.top_width_end">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.top_width_end</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.top_width_end" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For a trapezoidal segment, the top width of the trapezoid
+at the end of the segment.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.bottom_width_start">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.bottom_width_start</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.bottom_width_start" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For a trapezoidal segment, the bottom width of the trapezoid
+at the start of the segment.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.bottom_width_end">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.bottom_width_end</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.bottom_width_end" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For a trapezoidal segment, the bottom width of the trapezoid
+at the end of the segment.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.height_start">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.height_start</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.height_start" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For a trapezoidal segment, the height of the trapezoid
+at the start of the segment.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.height_end">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.height_end</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.height_end" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For a trapezoidal segment, the height of the trapezoid
+at the end of the segment.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.top_width">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.top_width</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.top_width" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For a trapezoidal segment, if the cross-section does not change
+along the segment, this parameter can be used to specify the top width
+of the trapezoid along the entire segment instead of specifying both
+the start and end values.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.bottom_width">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.bottom_width</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.bottom_width" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For a trapezoidal segment, if the cross-section does not change
+along the segment, this parameter can be used to specify the bottom width
+of the trapezoid along the entire segment.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.height">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.height</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.height" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional</p>
+<p>For a trapezoidal segment, if the cross-section does not change
+along the segment, this parameter can be used to specify the height
+of the trapezoid along the entire segment.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.velocity_profile">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.velocity_profile</span></span><a class="headerlink" href="#input_param-ChannelBuilder.velocity_profile" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = “uniform”</p>
+<p>The initial velocity profile along the channel segment. Currently implemented
+profiles include “uniform”, “linear”, and “parabolic”. The velocity
+profile is oriented along the line from the segment start to the segment end.
+For elliptical segments, the velocity profile is based on the distance (in any direction) from the
+center of the ellipse, but for trapezoidal segments, only the vertical distance is
+used to determine the velocity profile. For multiphase cases, the velocity profile
+is only applied to the liquid phase, setting the velocity above the
+<a class="reference internal" href="#input_param-ChannelBuilder.water_level"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ChannelBuilder.water_level</span></code></a> to zero.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.s1.flow_speed">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.s1.flow_speed</span></span><a class="headerlink" href="#input_param-ChannelBuilder.s1.flow_speed" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, mandatory</p>
+<p>The flow speed associated with the velocity profile for the segment.
+This is the maximum flow speed of the velocity profile regardless of the type.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.water_level">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.water_level</span></span><a class="headerlink" href="#input_param-ChannelBuilder.water_level" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.</p>
+<p>The water level determines the location of the free surface for
+multiphase channel flows. This setup parameter applies to the entire domain.
+This parameter is not used in single-phase cases.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-ChannelBuilder.land_level">
+<span class="sig-name descname"><span class="pre">ChannelBuilder.land_level</span></span><a class="headerlink" href="#input_param-ChannelBuilder.land_level" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, mandatory when <a class="reference internal" href="#input_param-ChannelBuilder.water_level"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ChannelBuilder.water_level</span></code></a> is specified</p>
+<p>The land level determines where the channel opens up for free surface flows.
+Above this vertical location, no terrain blank is applied, creating an open channel.
+This parameter is not used in single-phase cases.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inputs_terraindrag.html" class="btn btn-neutral float-left" title="Section: TerrainDrag" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inputs_Boundary_conditions.html" class="btn btn-neutral float-right" title="Section: Boundary conditions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

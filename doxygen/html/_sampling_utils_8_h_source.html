@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/SamplingUtils.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/SamplingUtils.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_sampling_utils_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-utilities-sampling-samplingutils-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/SamplingUtils.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-utilities-sampling-samplingutils-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/SamplingUtils.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_d59b7dddc6cfeb8ed243c8310c362d19.html">utilities</a></li><li class="navelem"><a href="dir_1e7ebb5eca46c4b828056407c325055a.html">sampling</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">SamplingUtils.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_sampling_utils_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SAMPLINGUTILS_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SAMPLINGUTILS_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="vector__space_8_h.html">src/core/vs/vector_space.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="tensor__ops_8_h.html">src/utilities/tensor_ops.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;AMReX_Vector.H&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html">kynema_sgf::sampling::sampling_utils</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">// void inject_turbulence_src_terms(</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">//     const std::string&amp; key, const amrex::Vector&lt;std::string&gt;&amp; terms);</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a7c7ec67cdf1c76217dc3a6fa05b5d5b2aa5677d26a42e16ca701ebb0e0f20219c">   23</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a7c7ec67cdf1c76217dc3a6fa05b5d5b2">NormalRule</a> : std::uint8_t { <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a7c7ec67cdf1c76217dc3a6fa05b5d5b2ae2f33497edb409cb56f1a629a45885a8">SIGMA1</a>, <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a7c7ec67cdf1c76217dc3a6fa05b5d5b2a5d84cb93256c8877622a9c9df30ce1a3">SIGMA2</a>, <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a7c7ec67cdf1c76217dc3a6fa05b5d5b2a7f0c8d0b3cc00d507904f71c3dcf7631">SIGMA3</a>, <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a7c7ec67cdf1c76217dc3a6fa05b5d5b2aa5677d26a42e16ca701ebb0e0f20219c">HALFPOWER</a> };</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_function" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a20965c996af5cf0f32889c0171669006">reflect</a>(<a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> line, <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> vec);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_function" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a561265d1acc9fd093b684613836ab850">rotate_euler_vec</a>(<a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> axis, amrex::Real angle, <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> vec);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><a class="code hl_function" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#aca73e632090a443eb3c06c58a7d0fb0c">rotate_euler_vector</a>(<a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&amp; axis, amrex::Real&amp; angle, <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&amp; vec);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_function" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a3ef759e9922946c111b7ba84feb5ef40">rotation</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&amp; angles, <span class="keyword">const</span> <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&amp; data);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_function" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a9376518fe9ca716750f16bf8278fe97c">canon_rotator</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&amp; angles, <span class="keyword">const</span> <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&amp; data);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a> <a class="code hl_function" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a83079b503b7197213ff059876d2313af">unit_projection_matrix</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&amp; a);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a> <a class="code hl_function" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a9ef325c0cf759eab25a2aeac95aa12ba">rotation_matrix</a>(<a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> dst, <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> src);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a> <a class="code hl_function" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a188a9d530bc7c373e6d0a73c5915eb4b">skew_cross</a>(<a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> a, <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> b);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a> <a class="code hl_function" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a0a93b63a79b1d1ff7cd18d9afd979974">scale</a>(<a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a> v, amrex::Real a);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a8a804883d439431bd6e2929451779d77">spherical_cap_quadrature</a>(</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    amrex::Real gammav,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">int</span> ntheta,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    std::vector&lt;amrex::Real&gt; abscissae1D,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    std::vector&lt;amrex::Real&gt; weights1D,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    std::vector&lt;vs::Vector&gt;&amp; rays,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::vector&lt;amrex::Real&gt;&amp; weights);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#ae5213793f99648492d2a6a0c685ae709">spherical_cap_truncated_normal</a>(</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    amrex::Real gammav,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">int</span> ntheta,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_enumeration" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a7c7ec67cdf1c76217dc3a6fa05b5d5b2">NormalRule</a> rule,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    std::vector&lt;vs::Vector&gt;&amp; rays,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    std::vector&lt;amrex::Real&gt;&amp; weights);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>std::pair&lt;std::vector&lt;amrex::Real&gt;, std::vector&lt;amrex::Real&gt;&gt;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><a class="code hl_function" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a0f448f5387b6dfe11accf7d21fee5c58">truncated_normal_rule</a>(<a class="code hl_enumeration" href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a7c7ec67cdf1c76217dc3a6fa05b5d5b2">NormalRule</a> rule);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>} <span class="comment">// namespace kynema_sgf::sampling::sampling_utils</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#endif </span><span class="comment">/* SAMPLINGUTILS_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html">kynema_sgf::sampling::sampling_utils</a></div><div class="ttdef"><b>Definition</b> SamplingUtils.cpp:9</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_a0a93b63a79b1d1ff7cd18d9afd979974"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a0a93b63a79b1d1ff7cd18d9afd979974">kynema_sgf::sampling::sampling_utils::scale</a></div><div class="ttdeci">vs::Tensor scale(vs::Tensor v, amrex::Real a)</div><div class="ttdef"><b>Definition</b> SamplingUtils.cpp:80</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_a0f448f5387b6dfe11accf7d21fee5c58"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a0f448f5387b6dfe11accf7d21fee5c58">kynema_sgf::sampling::sampling_utils::truncated_normal_rule</a></div><div class="ttdeci">std::pair&lt; std::vector&lt; amrex::Real &gt;, std::vector&lt; amrex::Real &gt; &gt; truncated_normal_rule(NormalRule rule)</div><div class="ttdef"><b>Definition</b> SamplingUtils.cpp:156</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_a188a9d530bc7c373e6d0a73c5915eb4b"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a188a9d530bc7c373e6d0a73c5915eb4b">kynema_sgf::sampling::sampling_utils::skew_cross</a></div><div class="ttdeci">vs::Tensor skew_cross(vs::Vector a, vs::Vector b)</div><div class="ttdef"><b>Definition</b> SamplingUtils.cpp:73</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_a20965c996af5cf0f32889c0171669006"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a20965c996af5cf0f32889c0171669006">kynema_sgf::sampling::sampling_utils::reflect</a></div><div class="ttdeci">vs::Vector reflect(vs::Vector line, vs::Vector vec)</div><div class="ttdef"><b>Definition</b> SamplingUtils.cpp:11</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_a3ef759e9922946c111b7ba84feb5ef40"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a3ef759e9922946c111b7ba84feb5ef40">kynema_sgf::sampling::sampling_utils::rotation</a></div><div class="ttdeci">vs::Vector rotation(const vs::Vector &amp;angles, const vs::Vector &amp;data)</div><div class="ttdef"><b>Definition</b> SamplingUtils.cpp:38</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_a561265d1acc9fd093b684613836ab850"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a561265d1acc9fd093b684613836ab850">kynema_sgf::sampling::sampling_utils::rotate_euler_vec</a></div><div class="ttdeci">vs::Vector rotate_euler_vec(vs::Vector axis, amrex::Real angle, vs::Vector vec)</div><div class="ttdef"><b>Definition</b> SamplingUtils.cpp:23</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_a7c7ec67cdf1c76217dc3a6fa05b5d5b2"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a7c7ec67cdf1c76217dc3a6fa05b5d5b2">kynema_sgf::sampling::sampling_utils::NormalRule</a></div><div class="ttdeci">NormalRule</div><div class="ttdef"><b>Definition</b> SamplingUtils.H:23</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_a7c7ec67cdf1c76217dc3a6fa05b5d5b2a5d84cb93256c8877622a9c9df30ce1a3"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a7c7ec67cdf1c76217dc3a6fa05b5d5b2a5d84cb93256c8877622a9c9df30ce1a3">kynema_sgf::sampling::sampling_utils::NormalRule::SIGMA2</a></div><div class="ttdeci">@ SIGMA2</div><div class="ttdef"><b>Definition</b> SamplingUtils.H:23</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_a7c7ec67cdf1c76217dc3a6fa05b5d5b2a7f0c8d0b3cc00d507904f71c3dcf7631"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a7c7ec67cdf1c76217dc3a6fa05b5d5b2a7f0c8d0b3cc00d507904f71c3dcf7631">kynema_sgf::sampling::sampling_utils::NormalRule::SIGMA3</a></div><div class="ttdeci">@ SIGMA3</div><div class="ttdef"><b>Definition</b> SamplingUtils.H:23</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_a7c7ec67cdf1c76217dc3a6fa05b5d5b2aa5677d26a42e16ca701ebb0e0f20219c"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a7c7ec67cdf1c76217dc3a6fa05b5d5b2aa5677d26a42e16ca701ebb0e0f20219c">kynema_sgf::sampling::sampling_utils::NormalRule::HALFPOWER</a></div><div class="ttdeci">@ HALFPOWER</div><div class="ttdef"><b>Definition</b> SamplingUtils.H:23</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_a7c7ec67cdf1c76217dc3a6fa05b5d5b2ae2f33497edb409cb56f1a629a45885a8"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a7c7ec67cdf1c76217dc3a6fa05b5d5b2ae2f33497edb409cb56f1a629a45885a8">kynema_sgf::sampling::sampling_utils::NormalRule::SIGMA1</a></div><div class="ttdeci">@ SIGMA1</div><div class="ttdef"><b>Definition</b> SamplingUtils.H:23</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_a83079b503b7197213ff059876d2313af"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a83079b503b7197213ff059876d2313af">kynema_sgf::sampling::sampling_utils::unit_projection_matrix</a></div><div class="ttdeci">vs::Tensor unit_projection_matrix(const vs::Vector &amp;a)</div><div class="ttdef"><b>Definition</b> SamplingUtils.cpp:53</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_a8a804883d439431bd6e2929451779d77"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a8a804883d439431bd6e2929451779d77">kynema_sgf::sampling::sampling_utils::spherical_cap_quadrature</a></div><div class="ttdeci">void spherical_cap_quadrature(amrex::Real gammav, int ntheta, std::vector&lt; amrex::Real &gt; abscissae1D, std::vector&lt; amrex::Real &gt; weights1D, std::vector&lt; vs::Vector &gt; &amp;rays, std::vector&lt; amrex::Real &gt; &amp;weights)</div><div class="ttdef"><b>Definition</b> SamplingUtils.cpp:89</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_a9376518fe9ca716750f16bf8278fe97c"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a9376518fe9ca716750f16bf8278fe97c">kynema_sgf::sampling::sampling_utils::canon_rotator</a></div><div class="ttdeci">vs::Vector canon_rotator(const vs::Vector &amp;angles, const vs::Vector &amp;data)</div><div class="ttdef"><b>Definition</b> SamplingUtils.cpp:45</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_a9ef325c0cf759eab25a2aeac95aa12ba"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#a9ef325c0cf759eab25a2aeac95aa12ba">kynema_sgf::sampling::sampling_utils::rotation_matrix</a></div><div class="ttdeci">vs::Tensor rotation_matrix(vs::Vector dst, vs::Vector src)</div><div class="ttdef"><b>Definition</b> SamplingUtils.cpp:59</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_aca73e632090a443eb3c06c58a7d0fb0c"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#aca73e632090a443eb3c06c58a7d0fb0c">kynema_sgf::sampling::sampling_utils::rotate_euler_vector</a></div><div class="ttdeci">vs::Vector rotate_euler_vector(vs::Vector &amp;axis, amrex::Real &amp;angle, vs::Vector &amp;vec)</div><div class="ttdef"><b>Definition</b> SamplingUtils.cpp:31</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1sampling_1_1sampling__utils_html_ae5213793f99648492d2a6a0c685ae709"><div class="ttname"><a href="namespacekynema__sgf_1_1sampling_1_1sampling__utils.html#ae5213793f99648492d2a6a0c685ae709">kynema_sgf::sampling::sampling_utils::spherical_cap_truncated_normal</a></div><div class="ttdeci">void spherical_cap_truncated_normal(amrex::Real gammav, int ntheta, NormalRule rule, std::vector&lt; vs::Vector &gt; &amp;rays, std::vector&lt; amrex::Real &gt; &amp;weights)</div><div class="ttdef"><b>Definition</b> SamplingUtils.cpp:136</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1vs_html_a8b5875515cfa717dbeb39c7f4186ce50"><div class="ttname"><a href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">kynema_sgf::vs::Vector</a></div><div class="ttdeci">VectorT&lt; amrex::Real &gt; Vector</div><div class="ttdef"><b>Definition</b> vector.H:145</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1vs_html_a93db93fdfb70125c5abd8a72ac76efd1"><div class="ttname"><a href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">kynema_sgf::vs::Tensor</a></div><div class="ttdeci">TensorT&lt; amrex::Real &gt; Tensor</div><div class="ttdef"><b>Definition</b> tensor.H:158</div></div>
+<div class="ttc" id="atensor__ops_8_h_html"><div class="ttname"><a href="tensor__ops_8_h.html">tensor_ops.H</a></div></div>
+<div class="ttc" id="avector__space_8_h_html"><div class="ttname"><a href="vector__space_8_h.html">vector_space.H</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Section: Field Boundaries &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Section: MLMG options" href="inputs_MLMG.html" />
+    <link rel="prev" title="Section: Boundary conditions" href="inputs_Boundary_conditions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="inputs.html#input-file-reference">Input file reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="inputs_geometry.html">Section: geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_amr.html">Section: AMReX and AMR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_tagging.html">Section: tagging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_time.html">Section: time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_io.html">Section: io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_incflo.html">Section: incflo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_transport.html">Section: transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_turbulence.html">Section: turbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Momentum_Sources.html">Section: Momentum Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Temperature_Sources.html">Section: Temperature Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_TKE_Sources.html">Section: TKE Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL.html">Section: ABL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL_meso_forcing.html">Section: ABLMesoForcing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Actuator.html">Section: Actuator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_multiphase.html">Section: MultiPhase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ocean_waves.html">Section: Ocean Waves</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_SyntheticTurbulence.html">Section: SyntheticTurbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_forest.html">Section: ForestDrag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_terraindrag.html">Section: TerrainDrag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ChannelBuilder.html">Section: ChannelBuilder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Boundary_conditions.html">Section: Boundary conditions</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Section: Field Boundaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_MLMG.html">Section: MLMG options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_post_processing.html">Section: Post-processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Sampling.html">Section: Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Subvolume.html">Section: Subvolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Averaging.html">Section: Averaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_KineticEnergy.html">Section: KineticEnergy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Enstrophy.html">Section: Enstrophy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FieldNorms.html">Section: FieldNorms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+          <li class="breadcrumb-item"><a href="inputs.html">Kynema-SGF inputs file</a></li>
+      <li class="breadcrumb-item active">Section: Field Boundaries</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/inputs_field_boundaries.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-field-boundaries">
+<span id="inputs-field-boundaries"></span><h1>Section: Field Boundaries<a class="headerlink" href="#section-field-boundaries" title="Link to this heading"></a></h1>
+<p>Note that field boundaries must be listed to be activated, as described in <a class="reference internal" href="inputs_incflo.html#input_param-incflo.field_boundaries"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">incflo.field_boundaries</span></code></a>.
+There are exceptions to this, however, due to backwards compatibility (BoundaryPlane and ModulatedPowerLaw field
+boundaries can be activated through legacy ABL input arguments) or necessity (OceanWavesBoundary is automatically
+activated when OceanWaves physics is active).</p>
+<p><strong>BoundaryPlane</strong></p>
+<p>This type of field boundary allows boundary conditions to be specified according to field data contained in planes
+that are read in by the solver. These planes are typically created by a precursor simulation, which is usually periodic,
+in which case the boundary plane utility does not function as a boundary condition but as a plane data output utility.
+Alternatively, the planes can instead be written by tools external to the solver, allowing data from other sources to
+be used to specify boundary conditions. This field boundary does not assume any particular fields for its application
+but instead allows the user to specify variable names.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-BoundaryPlane.io_mode">
+<span class="sig-name descname"><span class="pre">BoundaryPlane.io_mode</span></span><a class="headerlink" href="#input_param-BoundaryPlane.io_mode" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, mandatory</p>
+<p>Mode for input/output of BoundaryPlane field boundary. A value of 0 indicates that boundary planes should
+be written to file(s) during the simulation, and a value of 1 indicates that boundary planes should be read
+from file(s) during the simulation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-BoundaryPlane.file">
+<span class="sig-name descname"><span class="pre">BoundaryPlane.file</span></span><a class="headerlink" href="#input_param-BoundaryPlane.file" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, mandatory</p>
+<p>File name for input/output of BoundaryPlane field boundary. For the native
+output format, this file represents a directory containing plane data, whereas for the netcdf output format,
+this file is a single netcdf file containing all plane data.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-BoundaryPlane.var_names">
+<span class="sig-name descname"><span class="pre">BoundaryPlane.var_names</span></span><a class="headerlink" href="#input_param-BoundaryPlane.var_names" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of strings, mandatory</p>
+<p>List of variable names to read/write for the BoundaryPlane field boundary. The corresponding variables must
+be present in the simulation. In read mode, the BoundaryPlane BC is limited to these variables;
+variables not included in this list will use other BCs according to the input file.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-BoundaryPlane.planes">
+<span class="sig-name descname"><span class="pre">BoundaryPlane.planes</span></span><a class="headerlink" href="#input_param-BoundaryPlane.planes" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of strings, mandatory</p>
+<p>List of plane names, identifying domain boundaries, to read/write for the BoundaryPlane field boundary. The plane
+names must be in the format “xlo”, “xhi”, “ylo”, “yhi”, “zlo”, or “zhi”.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-BoundaryPlane.output_format">
+<span class="sig-name descname"><span class="pre">BoundaryPlane.output_format</span></span><a class="headerlink" href="#input_param-BoundaryPlane.output_format" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = “native”</p>
+<p>Input/output format for BoundaryPlane field boundary. The default “native” format outputs plane data in a directory
+containing files for each variable and plane. This format corresponds to the AMReX plotfile format, enabling direct
+visualization through third-party tools like ParaView. The “netcdf” format outputs plane data in a single netcdf file.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-BoundaryPlane.write_frequency">
+<span class="sig-name descname"><span class="pre">BoundaryPlane.write_frequency</span></span><a class="headerlink" href="#input_param-BoundaryPlane.write_frequency" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 1</p>
+<p>Frequency (actually a time step interval) for writing BoundaryPlane data to file in write mode. This input parameter
+is only relevant to write mode.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-BoundaryPlane.output_start_time">
+<span class="sig-name descname"><span class="pre">BoundaryPlane.output_start_time</span></span><a class="headerlink" href="#input_param-BoundaryPlane.output_start_time" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.0</p>
+<p>Time at which to start writing BoundaryPlane data to file in write mode.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-BoundaryPlane.output_and_use_initial_plane">
+<span class="sig-name descname"><span class="pre">BoundaryPlane.output_and_use_initial_plane</span></span><a class="headerlink" href="#input_param-BoundaryPlane.output_and_use_initial_plane" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = false</p>
+<p>This flag controls whether to output the initial plane at the start of the simulation and use it as the
+boundary plane for the duration of the simulation. If true, this flag implies that the boundary plane is static.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-BoundaryPlane.is_static">
+<span class="sig-name descname"><span class="pre">BoundaryPlane.is_static</span></span><a class="headerlink" href="#input_param-BoundaryPlane.is_static" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = false</p>
+<p>This flag controls whether the boundary plane is static or dynamic. If true, the same plane will be used
+for the duration of the simulation. If false, new planes will be read in as time progresses, updating the boundary
+conditions according to the available data. Note that this input parameter is only relevant to read mode.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-BoundaryPlane.fluid_phase">
+<span class="sig-name descname"><span class="pre">BoundaryPlane.fluid_phase</span></span><a class="headerlink" href="#input_param-BoundaryPlane.fluid_phase" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = “both”</p>
+<p>This input parameter controls which fluid phase(s) the BoundaryPlane field boundary is applied to when in read mode.
+Valid options are “liquid” (or “water” or “1”), “gas” (or “air” or “2”), and “both” (or “agnostic” or “0”).
+This capability works by checking the vof value within the boundary and only using parts of the boundary plane where
+the specified phase is present. As a result, the vof variable must be present for this capability, which
+means the MultiPhase physics class must be active.</p>
+</dd></dl>
+
+<p><strong>ModulatedPowerLaw</strong></p>
+<p>This type of field boundary applies a modulated power law profile for velocity
+and a linear profile for temperature. The velocity profile can change direction
+according to a constant rate, and the temperature profile can incorporate randomness
+via a Gaussian distribution. This field boundary is typically used for ABL inflow
+conditions, but it can be used independently of the ABL physics class. However,
+it does require that velocity and temperature fields are present in the simulation
+and automatically applies to all inflow boundary conditions of those fields,
+and it does rely on the input arguments <a class="reference internal" href="inputs_ABL.html#input_param-ABL.temperature_heights"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABL.temperature_heights</span></code></a>
+and <a class="reference internal" href="inputs_ABL.html#input_param-ABL.temperature_values"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">ABL.temperature_values</span></code></a> to specify the reference linear temperature profile.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-MPL.wind_speed">
+<span class="sig-name descname"><span class="pre">MPL.wind_speed</span></span><a class="headerlink" href="#input_param-MPL.wind_speed" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 8.0</p>
+<p>Reference wind speed for ModulatedPowerLaw field boundary.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-MPL.wind_direction">
+<span class="sig-name descname"><span class="pre">MPL.wind_direction</span></span><a class="headerlink" href="#input_param-MPL.wind_direction" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 270.0</p>
+<p>Wind direction in degrees for ModulatedPowerLaw field boundary. The angle is measured clockwise from the north, so a value of 270 corresponds to a westerly wind.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-MPL.zref">
+<span class="sig-name descname"><span class="pre">MPL.zref</span></span><a class="headerlink" href="#input_param-MPL.zref" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 90.0</p>
+<p>Reference height for ModulatedPowerLaw field boundary.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-MPL.shear_exp">
+<span class="sig-name descname"><span class="pre">MPL.shear_exp</span></span><a class="headerlink" href="#input_param-MPL.shear_exp" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.1</p>
+<p>Shear exponent for ModulatedPowerLaw field boundary.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-MPL.umax_factor">
+<span class="sig-name descname"><span class="pre">MPL.umax_factor</span></span><a class="headerlink" href="#input_param-MPL.umax_factor" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1.2</p>
+<p>Maximum velocity factor for ModulatedPowerLaw field boundary.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-MPL.bulk_velocity_factor">
+<span class="sig-name descname"><span class="pre">MPL.bulk_velocity_factor</span></span><a class="headerlink" href="#input_param-MPL.bulk_velocity_factor" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 15.0</p>
+<p>Bulk velocity variable for ModulatedPowerLaw field boundary.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-MPL.shearlayer_height">
+<span class="sig-name descname"><span class="pre">MPL.shearlayer_height</span></span><a class="headerlink" href="#input_param-MPL.shearlayer_height" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 600.0</p>
+<p>Shear layer height for ModulatedPowerLaw field boundary.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-MPL.shearlayer_smear_thickness">
+<span class="sig-name descname"><span class="pre">MPL.shearlayer_smear_thickness</span></span><a class="headerlink" href="#input_param-MPL.shearlayer_smear_thickness" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 30.0</p>
+<p>Shear layer smear thickness for ModulatedPowerLaw field boundary.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-MPL.degrees_per_second">
+<span class="sig-name descname"><span class="pre">MPL.degrees_per_second</span></span><a class="headerlink" href="#input_param-MPL.degrees_per_second" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.02</p>
+<p>Rate at which to change the wind direction in degrees per second for ModulatedPowerLaw field boundary.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-MPL.start_time">
+<span class="sig-name descname"><span class="pre">MPL.start_time</span></span><a class="headerlink" href="#input_param-MPL.start_time" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.0</p>
+<p>Time at which to start applying the rate of change in wind direction for ModulatedPowerLaw field boundary.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-MPL.end_time">
+<span class="sig-name descname"><span class="pre">MPL.end_time</span></span><a class="headerlink" href="#input_param-MPL.end_time" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = very large number</p>
+<p>Time at which to end applying the rate of change in wind direction for ModulatedPowerLaw field boundary.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-MPL.delta_t">
+<span class="sig-name descname"><span class="pre">MPL.delta_t</span></span><a class="headerlink" href="#input_param-MPL.delta_t" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.8</p>
+<p>Time scale to use when applying randomness to the temperature inflow of ModulatedPowerLaw field boundary.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-MPL.theta_cutoff_height">
+<span class="sig-name descname"><span class="pre">MPL.theta_cutoff_height</span></span><a class="headerlink" href="#input_param-MPL.theta_cutoff_height" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 250.0</p>
+<p>Height below which to apply randomness to the temperature inflow of ModulatedPowerLaw field boundary.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-MPL.theta_gauss_mean">
+<span class="sig-name descname"><span class="pre">MPL.theta_gauss_mean</span></span><a class="headerlink" href="#input_param-MPL.theta_gauss_mean" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.0</p>
+<p>Mean of the Gaussian distribution to use when applying randomness to the temperature inflow of ModulatedPowerLaw field boundary.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-MPL.theta_gauss_var">
+<span class="sig-name descname"><span class="pre">MPL.theta_gauss_var</span></span><a class="headerlink" href="#input_param-MPL.theta_gauss_var" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1.0</p>
+<p>Variance of the Gaussian distribution to use when applying randomness to the temperature inflow of ModulatedPowerLaw field boundary.</p>
+</dd></dl>
+
+<p><strong>OceanWavesBoundary</strong></p>
+<p>This type of field boundary applies wave profiles for velocity,
+volume fraction, and density according to the <a class="reference internal" href="inputs_ocean_waves.html#inputs-ocean-waves"><span class="std std-ref">OceanWaves</span></a> physics class.
+This field is automatically activated when OceanWaves physics is active,
+and it relies on fields generated by that physics class, so no specific
+input parameters are attributed to this field boundary. In multiphase
+simulations, i.e., when the <a class="reference internal" href="inputs_multiphase.html#inputs-multiphase"><span class="std std-ref">MultiPhase</span></a> physics class is active, the
+OceanWavesBoundary field boundary applies to all inflow or wave generation boundaries.
+At these boundaries, the vof field is populated according to the target wave profile,
+and the density field is populated according to the vof field and the specified densities of the two phases.
+The velocity field is populated according to the target wave profile as well, but only within the liquid phase.
+Whatever other boundary conditions in the input file remain active in the gas phase.
+In single phase simulations, i.e., when the MultiPhase physics class is not active and
+the waves are intended to be represented as moving terrain, there is no vof field and the density field does
+not need to be modified. Therefore, only the velocity within the waves is populated in the boundary condition.
+Finally, to avoid conflicts between the OceanWavesBoundary field boundary and the BoundaryPlane field boundary,
+the presence of the latter automatically deactivates the former.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inputs_Boundary_conditions.html" class="btn btn-neutral float-left" title="Section: Boundary conditions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inputs_MLMG.html" class="btn btn-neutral float-right" title="Section: MLMG options" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

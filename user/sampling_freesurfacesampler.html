@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FreeSurfaceSampler &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Compressing field output files" href="compression.html" />
+    <link rel="prev" title="Sampling" href="sampling.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="sampling.html">Sampling</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">FreeSurfaceSampler</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="post_processing_examples.html#simple-outputs">Simple Outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+          <li class="breadcrumb-item"><a href="post_processing_examples.html">Post-processing Examples</a></li>
+          <li class="breadcrumb-item"><a href="sampling.html">Sampling</a></li>
+      <li class="breadcrumb-item active">FreeSurfaceSampler</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/sampling_freesurfacesampler.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="freesurfacesampler">
+<span id="inputs-sampling-freesurface-sampler"></span><h1>FreeSurfaceSampler<a class="headerlink" href="#freesurfacesampler" title="Link to this heading"></a></h1>
+<p>These examples plot the evolution of the liquid-gas interface as a liquid column
+collapses and flows into the rest of the domain, and they show the velocity
+magnitude (in color) as a function of interface position. At each instant plotted,
+the shading of the line color represents the progression of time. Below, the scripts
+for processing the data in each available format (<code class="docutils literal notranslate"><span class="pre">native</span></code>, <code class="docutils literal notranslate"><span class="pre">netcdf</span></code>, and <code class="docutils literal notranslate"><span class="pre">ascii</span></code>)
+are shown, and these scripts are also available in the <code class="docutils literal notranslate"><span class="pre">tools</span></code> directory.</p>
+<p>Note that the data accesses in the native and ascii examples can be applied to
+other sampler types because the format is identical. However, the NetCDF format
+can vary depending on the sampler type, and further detail is provided in that example.</p>
+<p>The three examples will generate the same plot, shown here:</p>
+<a class="reference internal image-reference" href="../_images/plot_sampling_freesurface.pdf"><img alt="../_images/plot_sampling_freesurface.pdf" src="../_images/plot_sampling_freesurface.pdf" style="width: 300pt;" />
+</a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="native-format-dam-break-example">
+<h2>Native format: dam break example<a class="headerlink" href="#native-format-dam-break-example" title="Link to this heading"></a></h2>
+<p>To generate the data required to replicate this example, run the simulation contained in
+test/test_files/dam_break_godunov with the sampling format set to “native” and the sampling
+frequency (actually an interval) set to 30.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">KYNEMA_SGF_PATH</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">KYNEMA_SGF_PATH</span><span class="o">+</span><span class="s1">&#39;/tools/&#39;</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">amrex_particle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">amrex_particle</span><span class="w"> </span><span class="kn">import</span> <span class="n">AmrexParticleFile</span>
+
+<span class="n">loc_dir</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+<span class="n">pp_dir</span> <span class="o">=</span> <span class="n">loc_dir</span> <span class="o">+</span> <span class="s2">&quot;/post_processing&quot;</span>
+
+<span class="n">pfile</span> <span class="o">=</span> <span class="n">AmrexParticleFile</span><span class="p">(</span><span class="n">loc_dir</span><span class="p">)</span>
+
+<span class="n">nt</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">out_int</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">base_color</span> <span class="o">=</span> <span class="mf">0.8</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nt</span><span class="p">):</span>
+    <span class="n">pt</span> <span class="o">=</span> <span class="n">pfile</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">out_int</span><span class="p">,</span> <span class="n">root_dir</span> <span class="o">=</span> <span class="n">pp_dir</span><span class="p">)</span>
+    <span class="n">pt</span><span class="o">.</span><span class="n">parse_header</span><span class="p">()</span>
+    <span class="n">pt</span><span class="o">.</span><span class="n">load_binary_data</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">df</span>
+    <span class="n">x_oo</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">xco</span>
+    <span class="n">z_oo</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">zco</span>
+    <span class="n">u_oo</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">velocityx</span>
+    <span class="n">v_oo</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">velocityy</span>
+    <span class="n">w_oo</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">velocityz</span>
+    <span class="c1"># Reorder arrays</span>
+    <span class="n">ind_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">x_oo</span><span class="p">)</span> 
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">x_oo</span><span class="p">))</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">x_oo</span><span class="p">))</span>
+    <span class="n">Vmag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">x_oo</span><span class="p">))</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">x_oo</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ind_0</span><span class="p">)):</span> 
+        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="n">x_oo</span><span class="p">[</span><span class="n">ind_0</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+        <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="n">z_oo</span><span class="p">[</span><span class="n">ind_0</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+        <span class="n">Vmag</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">u_oo</span><span class="p">[</span><span class="n">ind_0</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">v_oo</span><span class="p">[</span><span class="n">ind_0</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">w_oo</span><span class="p">[</span><span class="n">ind_0</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="c1"># When interface is not present, z location is set to zlo</span>
+        <span class="n">flag</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1e-8</span> <span class="k">else</span> <span class="mf">0.</span>
+    <span class="c1"># Shorten arrays (exclude points where interface not detected)</span>
+    <span class="n">nvalid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">flag</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="n">xshort</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">nvalid</span><span class="p">]</span>
+    <span class="n">zshort</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">nvalid</span><span class="p">]</span>
+    <span class="n">vshort</span> <span class="o">=</span> <span class="n">Vmag</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">nvalid</span><span class="p">]</span>
+
+    <span class="n">color</span> <span class="o">=</span> <span class="n">base_color</span> <span class="o">-</span> <span class="p">(</span><span class="n">base_color</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">nt</span><span class="p">)</span>
+    <span class="n">cstr</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xshort</span><span class="p">,</span><span class="n">zshort</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">cstr</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xshort</span><span class="p">,</span><span class="n">zshort</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">vshort</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mf">2.</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$z$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;plot_sampling_native.pdf&#39;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;pdf&#39;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="netcdf-format-dam-break-example">
+<h2>NetCDF format: dam break example<a class="headerlink" href="#netcdf-format-dam-break-example" title="Link to this heading"></a></h2>
+<p>To generate the data required to replicate this example, run the simulation contained in
+test/test_files/dam_break_godunov with the sampling format set to “netcdf” (Kynema-SGF must
+also be compiled with NetCDF) and the sampling frequency (actually an interval) set to 30.</p>
+<p>Because the FreeSurfaceSampler tracks the interface location, the sample points change position
+with time, and these changing positions are output as the “points” field. However, samplers that
+do not have moving sample locations do not have the “points” field in the NetCDF dataset. For
+static samplers, the locations are provided solely through the variable “coordinates”, which represents
+the initial positions of the sampler points. Otherwise, the data accesses in this example can be
+applied to other sampler types.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ncdf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">loc_dir</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+<span class="n">pp_dir</span> <span class="o">=</span> <span class="n">loc_dir</span> <span class="o">+</span> <span class="s2">&quot;/post_processing&quot;</span>
+
+<span class="n">nt</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">out_int</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SamplingFile</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Interface to Sampling NetCDF file&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sampling_file</span> <span class="o">=</span> <span class="s2">&quot;sampling.nc&quot;</span><span class="p">,</span> <span class="n">group_name</span> <span class="o">=</span> <span class="s2">&quot;s1&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            stats_file (path): Absolute path to the NetCDF file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sampling_file</span> <span class="o">=</span> <span class="n">sampling_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sampling</span> <span class="o">=</span> <span class="n">ncdf</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sampling_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sampling</span><span class="p">[</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="n">group_name</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;points&quot;</span><span class="p">][:,:,:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_velocityx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;velocityx&quot;</span><span class="p">][:,:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_velocityy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;velocityy&quot;</span><span class="p">][:,:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_velocityz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;velocityz&quot;</span><span class="p">][:,:]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">locations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_points</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">vmag</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_velocityx</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">_velocityy</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">_velocityz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">base_color</span> <span class="o">=</span> <span class="mf">0.8</span>
+
+<span class="n">sampl</span> <span class="o">=</span> <span class="n">SamplingFile</span><span class="p">(</span><span class="n">sampling_file</span><span class="o">=</span><span class="n">pp_dir</span><span class="o">+</span><span class="s2">&quot;/sampling00000.nc&quot;</span><span class="p">,</span> \
+                    <span class="n">group_name</span> <span class="o">=</span> <span class="s2">&quot;fs&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nt</span><span class="p">):</span>
+    <span class="n">x_oo</span><span class="o">=</span><span class="n">sampl</span><span class="o">.</span><span class="n">locations</span><span class="p">[</span><span class="n">n</span><span class="p">,:,:]</span>
+    <span class="n">Vmag_oo</span> <span class="o">=</span> <span class="n">sampl</span><span class="o">.</span><span class="n">vmag</span><span class="p">[</span><span class="n">n</span><span class="p">,:]</span>
+
+    <span class="c1"># Reorder arrays</span>
+    <span class="n">ind_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">x_oo</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span> 
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">x_oo</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">x_oo</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">Vmag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">x_oo</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">x_oo</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ind_0</span><span class="p">)):</span> 
+        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="n">x_oo</span><span class="p">[</span><span class="n">ind_0</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="n">x_oo</span><span class="p">[</span><span class="n">ind_0</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">Vmag</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Vmag_oo</span><span class="p">[</span><span class="n">ind_0</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+        <span class="c1"># When interface is not present, z location is set to 0</span>
+        <span class="n">flag</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1e-8</span> <span class="k">else</span> <span class="mf">0.</span>
+    <span class="c1"># Shorten arrays (exclude points where interface not detected)</span>
+    <span class="n">nvalid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">flag</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="n">xshort</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">nvalid</span><span class="p">]</span>
+    <span class="n">zshort</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">nvalid</span><span class="p">]</span>
+    <span class="n">vshort</span> <span class="o">=</span> <span class="n">Vmag</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">nvalid</span><span class="p">]</span>
+
+    <span class="n">color</span> <span class="o">=</span> <span class="n">base_color</span> <span class="o">-</span> <span class="p">(</span><span class="n">base_color</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">nt</span><span class="p">)</span>
+    <span class="n">cstr</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xshort</span><span class="p">,</span><span class="n">zshort</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">cstr</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xshort</span><span class="p">,</span><span class="n">zshort</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">vshort</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mf">2.</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$z$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;plot_sampling_netcdf.pdf&#39;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;pdf&#39;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="ascii-format-dam-break-example">
+<h2>ASCII format: dam break example<a class="headerlink" href="#ascii-format-dam-break-example" title="Link to this heading"></a></h2>
+<p>To generate the data required to replicate this example, run the simulation contained in
+test/test_files/dam_break_godunov with the sampling format set to “ascii” and the sampling
+frequency (actually an interval) set to 30.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">loc_dir</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+<span class="n">pp_dir</span> <span class="o">=</span> <span class="n">loc_dir</span> <span class="o">+</span> <span class="s2">&quot;/post_processing&quot;</span>
+
+<span class="n">nt</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">out_int</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">base_color</span> <span class="o">=</span> <span class="mf">0.8</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nt</span><span class="p">):</span>
+    <span class="n">x_oo</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">pp_dir</span><span class="o">+</span><span class="s2">&quot;/sampling&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">out_int</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;.txt&quot;</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="n">skip_header</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="c1"># Reorder array</span>
+    <span class="n">ind_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">x_oo</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span> 
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">x_oo</span><span class="p">))</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">x_oo</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ind_0</span><span class="p">)):</span> 
+        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">=</span> <span class="n">x_oo</span><span class="p">[</span><span class="n">ind_0</span><span class="p">[</span><span class="n">i</span><span class="p">],:]</span>
+        <span class="c1"># When interface is not present, z location is set to zlo</span>
+        <span class="n">flag</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1e-8</span> <span class="k">else</span> <span class="mf">0.</span>
+  
+    <span class="c1"># Shorten arrays (exclude points where interface not detected)</span>
+    <span class="n">nvalid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">flag</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="c1"># Columns are position (3), id, cpu, ints of struct (uid, sid, nid), field components</span>
+    <span class="n">xshort</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">nvalid</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">zshort</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">nvalid</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">vshort</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">nvalid</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">nvalid</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">nvalid</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">color</span> <span class="o">=</span> <span class="n">base_color</span> <span class="o">-</span> <span class="p">(</span><span class="n">base_color</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">nt</span><span class="p">)</span>
+    <span class="n">cstr</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xshort</span><span class="p">,</span><span class="n">zshort</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">cstr</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xshort</span><span class="p">,</span><span class="n">zshort</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">vshort</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;jet&quot;</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mf">2.</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$z$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;plot_sampling_ascii.pdf&#39;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;pdf&#39;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sampling.html" class="btn btn-neutral float-left" title="Sampling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="compression.html" class="btn btn-neutral float-right" title="Compressing field output files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
