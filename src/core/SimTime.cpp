@@ -477,8 +477,9 @@ bool SimTime::exceed_max_wall_time() const
         return false;
     }
     auto current_wall_time =
-        static_cast<amrex::Real>(amrex::ParallelDescriptor::second()) - m_wall_start;
-    amrex::ParallelDescriptor::ReduceRealMax(current_wall_time);    
+        static_cast<amrex::Real>(amrex::ParallelDescriptor::second()) -
+        m_wall_start;
+    amrex::ParallelDescriptor::ReduceRealMax(current_wall_time);
     return current_wall_time > (m_max_wall_time * 3600.0_rt);
 }
 
