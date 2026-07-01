@@ -109,6 +109,7 @@ volume_sampling2.output_format       = native
 volume_sampling2.fields              = temperature
 volume_sampling2.int_fields          = mask_cell
 volume_sampling2.derived_fields      = q_criterion_nondim
+volume_sampling2.interpolation_order = 0
 volume_sampling2.labels              = volume1
 volume_sampling2.volume1.type        = VolumeSampler
 volume_sampling2.volume1.lo          = 20.0 20.0 20.0
@@ -144,6 +145,7 @@ plane_sampling.plane2.origin        = 0.0 0.0 500.0
 plane_sampling.plane2.num_points    = 10 10
 plane_sampling.plane2.offset_vector = 0.0 0.0 1.0
 plane_sampling.plane2.offsets       = 0.0 499.0
+plane_sampling.plane2.snap_to_cell_center = true
 
 plane_sampling.plane3.type          = PlaneSampler
 plane_sampling.plane3.axis1         = 400.0 0.0 0.0

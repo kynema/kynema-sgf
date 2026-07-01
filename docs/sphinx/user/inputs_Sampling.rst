@@ -10,6 +10,21 @@ For more information on specifying
 when sampled data is output to a file, see the :ref:`post-processing
 inputs <inputs_post_processing>`
 
+.. input_param:: sampling.interpolation_order
+
+   **type:** Integer, optional, default = 1
+
+   Controls interpolation behavior for sampled fields:
+
+   ``0``
+      Nearest-neighbor sampling. Returns the value at the nearest data point
+      (cell center, face center, or node) to each sampling location. This mode
+      does not require ghost cells on sampled fields.
+
+   ``1``
+      Linear interpolation (default). Interpolates values to the sampling
+      location using a linear reconstruction.
+
 .. input_param:: sampling.output_format
 
    **type:** String, optional, default = "native"
@@ -97,6 +112,9 @@ The ``LineSampler`` allows the user to sample the flow-field along a line
 defined by ``start`` and ``end`` coordinates with ``num_points`` equidistant
 nodes.
 
+Optional input ``snap_to_cell_center = true`` snaps each sampled point to the
+nearest cell center on the finest available level before sampling.
+
 Example::
 
   sampling.line1.type       = LineSampler
@@ -136,6 +154,9 @@ and is divided into equally spaced nodes defined by the two entries in
 sampled by specifying the ``offset_vector`` vector along which the planes are
 offset for as many planes as there are entries in the ``offset`` array.
 
+Optional input ``snap_to_cell_center = true`` snaps each sampled point to the
+nearest cell center on the finest available level before sampling.
+
 Example::
 
   sampling.plane1.type          = PlaneSampler
@@ -160,6 +181,9 @@ Sampling at arbitrary locations
 The ``ProbeSampler`` allows the user to sample the flow field at arbitrary
 locations read from a text file (default: ``probe_locations.txt``).
 
+Optional input ``snap_to_cell_center = true`` snaps each sampled point to the
+nearest cell center on the finest available level before sampling.
+
 Example::
 
   sampling.probe1.type = ProbeSampler
@@ -178,6 +202,9 @@ Sampling on a volume
 The ``VolumeSampler`` samples a 3D volume that starts at ``lo`` and
 extends to ``hi``. The resolution in all directions is specified by
 ``num_points``.
+
+Optional input ``snap_to_cell_center = true`` snaps each sampled point to the
+nearest cell center on the finest available level before sampling.
 
 Example::
 

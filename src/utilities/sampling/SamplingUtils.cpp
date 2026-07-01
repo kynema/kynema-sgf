@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cmath>
 
 #include "SamplingUtils.H"
 #include "AMReX_ParmParse.H"
@@ -7,6 +8,20 @@
 using namespace amrex::literals;
 
 namespace kynema_sgf::sampling::sampling_utils {
+
+amrex::Real snap_to_nearest_cell_center(
+    const amrex::Geometry& geom, const int dir, const amrex::Real x)
+{
+    const auto& plo = geom.ProbLoArray();
+    const auto& dx = geom.CellSizeArray();
+    const auto& dxi = geom.InvCellSizeArray();
+    const auto& dom = geom.Domain();
+
+    int idx = static_cast<int>(std::lround((x - plo[dir]) * dxi[dir] - 0.5_rt));
+    idx = std::max(dom.smallEnd(dir), std::min(dom.bigEnd(dir), idx));
+
+    return plo[dir] + (static_cast<amrex::Real>(idx) + 0.5_rt) * dx[dir];
+}
 
 vs::Vector reflect(vs::Vector line, vs::Vector vec)
 {
