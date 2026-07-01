@@ -221,6 +221,10 @@ void incflo::InitData()
 
     init_mesh();
     init_kynema_sgf_modules();
+
+    // Set wall start time before initial pressure iterations
+    m_time.set_wall_start_time();
+
     prepare_for_time_integration();
 }
 
@@ -335,10 +339,6 @@ void incflo::post_advance_work()
 void incflo::Evolve()
 {
     BL_PROFILE("kynema-sgf::incflo::Evolve()");
-
-    const auto init_time =
-        static_cast<amrex::Real>(amrex::ParallelDescriptor::second());
-    m_time.set_wall_start_time(init_time);
 
     while (m_time.new_timestep()) {
         const auto time0 =

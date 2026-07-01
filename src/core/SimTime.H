@@ -178,11 +178,8 @@ public:
         m_stop_time = -1.0_rt;
     }
 
-    //! Set the wall clock start time
-    void set_wall_start_time(amrex::Real wall_start)
-    {
-        m_wall_start = wall_start;
-    }
+    //! Set the wall clock start time (captures current wall time)
+    void set_wall_start_time();
 
     //! Check if maximum wall clock time has been exceeded
     [[nodiscard]] bool exceed_max_wall_time() const;

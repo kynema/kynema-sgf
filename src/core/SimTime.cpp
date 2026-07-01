@@ -471,6 +471,12 @@ bool SimTime::output_profiling_info() const
         (m_time_index % m_profiling_interval == 0));
 }
 
+void SimTime::set_wall_start_time()
+{
+    m_wall_start =
+        static_cast<amrex::Real>(amrex::ParallelDescriptor::second());
+}
+
 bool SimTime::exceed_max_wall_time() const
 {
     if (m_max_wall_time <= 0.0_rt) {
