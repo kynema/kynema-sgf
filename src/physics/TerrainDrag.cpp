@@ -34,6 +34,13 @@ TerrainDrag::TerrainDrag(CFDSim& sim)
         amrex::ParmParse pp(identifier());
         pp.query("terrain_file", m_terrain_file);
         pp.query("roughness_file", m_roughness_file);
+        pp.query("uniform_roughness", m_uniform_z0);
+        if (pp.contains("uniform_roughness") && pp.contains("roughness_file")) {
+            amrex::Print()
+                << "Warning: Both uniform_roughness and roughness_file are "
+                   "specified. Roughness file values will override uniform "
+                   "roughness provided.\n";
+        }
     } else {
         m_wave_volume_fraction = &m_repo.get_field(m_wave_volume_fraction_name);
         m_wave_negative_elevation =
@@ -143,6 +150,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
     auto levelheight = terrain_height.arrays();
     auto levelDamping = damping.arrays();
 
+    const auto uniform_z0 = m_uniform_z0;
     amrex::ParallelFor(
         blanking, m_terrain_blank.num_grow(),
         [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
@@ -156,13 +164,13 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 static_cast<int>((z <= terrainHt) && (z > prob_lo[2]));
             levelheight[nbx](i, j, k, 0) = terrainHt;
 
-            amrex::Real roughz0 = 0.1_rt;
             if (xrough_size > 0) {
-                roughz0 = interp::bilinear(
+                levelz0[nbx](i, j, k, 0) = interp::bilinear(
                     xrough_ptr, xrough_ptr + xrough_size, yrough_ptr,
                     yrough_ptr + yrough_size, z0rough_ptr, x, y);
+            } else {
+                levelz0[nbx](i, j, k, 0) = uniform_z0;
             }
-            levelz0[nbx](i, j, k, 0) = roughz0;
         });
     amrex::Gpu::streamSynchronize();
     amrex::ParallelFor(
@@ -170,6 +178,10 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
             if ((levelBlanking[nbx](i, j, k, 0) == 0) && (k > 0) &&
                 (levelBlanking[nbx](i, j, k - 1, 0) == 1)) {
                 levelDrag[nbx](i, j, k, 0) = 1;
+            } else if (
+                (levelBlanking[nbx](i, j, k, 0) == 0) &&
+                (levelBlanking[nbx](i, j, k + 1, 0) == 1)) {
+                levelDrag[nbx](i, j, k, 0) = -1;
             } else {
                 levelDrag[nbx](i, j, k, 0) = 0;
             }
