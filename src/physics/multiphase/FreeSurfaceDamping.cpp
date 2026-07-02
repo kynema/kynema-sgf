@@ -13,7 +13,8 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-FreeSurfaceDamping::FreeSurfaceDamping(CFDSim& sim) : m_repo(sim.repo())
+FreeSurfaceDamping::FreeSurfaceDamping(CFDSim& sim)
+    : m_repo(sim.repo()), m_time(sim.time())
 {
     amrex::ParmParse pp(identifier());
 
@@ -34,8 +35,6 @@ FreeSurfaceDamping::FreeSurfaceDamping(CFDSim& sim) : m_repo(sim.repo())
     const auto& mphase = sim.physics_manager().get<MultiPhase>();
     m_rho1 = mphase.rho1();
     m_rho2 = mphase.rho2();
-
-    m_time = sim.time();
 }
 
 FreeSurfaceDamping::~FreeSurfaceDamping() = default;

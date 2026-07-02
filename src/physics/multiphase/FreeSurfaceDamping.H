@@ -47,7 +47,7 @@ private:
     amrex::Real m_rho1;
     amrex::Real m_rho2;
     amrex::Geometry m_geom;
-    SimTime m_time;
+    const SimTime& m_time;
 };
 
 } // namespace kynema_sgf
