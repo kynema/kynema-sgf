@@ -24,6 +24,10 @@ FreeSurfaceDamping::FreeSurfaceDamping(CFDSim& sim)
     pp.query("global_damping", m_global_damping);
 
     pp.query("time_scale_fraction", m_time_scale);
+    if (m_time_scale < 0.0_rt || m_time_scale > 1.0_rt) {
+        amrex::Abort(
+            "FreeSurfaceDamping.time_scale_fraction must be in [0, 1].");
+    }
 
     if (!m_global_damping) {
         pp.get("length_xlo", m_length_xlo);
