@@ -188,6 +188,16 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
         amrex::ParmParse pp_incflo("incflo");
         pp_incflo.get("density", m_rho_init);
     }
+    pp.query("initialize_velocity", m_initialize_velocity);
+    if (!m_initialize_velocity) {
+        pp.query("zero_velocity_where_blanked", m_zero_blanked_velocity);
+    }
+
+    pp.query("initialize_drag_cells", m_initialize_drag);
+    if (m_initialize_drag) {
+        sim.repo().declare_int_field("terrain_drag", 1, 1, 1);
+        m_sim.io_manager().register_output_int_var("terrain_drag");
+    }
     pp.getarr("segment_labels", labels);
 
     amrex::Vector<ChannelSegmentType> h_type;
@@ -287,8 +297,12 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
                 ". Only 'uniform', 'linear', and 'parabolic' are supported.");
         }
         amrex::Real flow_speed = 0.0_rt;
-        pp1.get("flow_speed", flow_speed);
-        h_flow_speed.emplace_back(flow_speed);
+        if (m_initialize_velocity) {
+            pp1.get("flow_speed", flow_speed);
+            h_flow_speed.emplace_back(flow_speed);
+        } else {
+            h_flow_speed.resize(h_type.size(), flow_speed);
+        }
     }
 
     const int nseg = static_cast<int>(h_type.size());
@@ -367,13 +381,16 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     const ChannelVelocityProfile* velocity_profile_ptr =
         m_velocity_profile.data();
     const amrex::Real* flow_speed_ptr = m_flow_speed.data();
+    const bool initialize_velocity = m_initialize_velocity;
     const bool multiphase = m_is_multiphase;
     const amrex::Real land_level = m_land_level;
     const amrex::Real water_level = m_water_level;
 
     amrex::MultiFab* levelset_lev{nullptr};
     // Set all velocity to 0 for the sake of blanked cells
-    velocity.setVal(0.0_rt);
+    if (initialize_velocity) {
+        velocity.setVal(0.0_rt);
+    }
     // Set density in single-phase case
     if (!multiphase) {
         m_repo.get_field("density").setVal(m_rho_init);
@@ -480,9 +497,11 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
                                 // Above water level means 0 velocity
                                 speed_factor = 0.0_rt;
                             }
-                            vel_arrs[nbx](i, j, k, 0) = uloc * speed_factor;
-                            vel_arrs[nbx](i, j, k, 1) = vloc * speed_factor;
-                            vel_arrs[nbx](i, j, k, 2) = wloc * speed_factor;
+                            if (initialize_velocity) {
+                                vel_arrs[nbx](i, j, k, 0) = uloc * speed_factor;
+                                vel_arrs[nbx](i, j, k, 1) = vloc * speed_factor;
+                                vel_arrs[nbx](i, j, k, 2) = wloc * speed_factor;
+                            }
                         }
                     } else if (seg_type == ChannelSegmentType::Trapezoid) {
                         const bool inside_channel_segment =
@@ -519,9 +538,11 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
                                 // Above water level means 0 velocity
                                 speed_factor = 0.0_rt;
                             }
-                            vel_arrs[nbx](i, j, k, 0) = uloc * speed_factor;
-                            vel_arrs[nbx](i, j, k, 1) = vloc * speed_factor;
-                            vel_arrs[nbx](i, j, k, 2) = wloc * speed_factor;
+                            if (initialize_velocity) {
+                                vel_arrs[nbx](i, j, k, 0) = uloc * speed_factor;
+                                vel_arrs[nbx](i, j, k, 1) = vloc * speed_factor;
+                                vel_arrs[nbx](i, j, k, 2) = wloc * speed_factor;
+                            }
                         }
                     }
                 }
@@ -538,6 +559,39 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
             blank_arrs[nbx](i, j, k) = static_cast<int>(outside_channel);
         });
     amrex::Gpu::streamSynchronize();
+
+    if (m_initialize_drag) {
+        auto drag_arrs =
+            m_sim.repo().get_int_field("terrain_drag")(level).arrays();
+        const int k_dom_min = geom.Domain().smallEnd(2);
+        const int k_dom_max = geom.Domain().bigEnd(2);
+        amrex::ParallelFor(
+            blank_mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                if ((blank_arrs[nbx](i, j, k, 0) == 0) && (k > k_dom_min) &&
+                    (blank_arrs[nbx](i, j, k - 1, 0) == 1)) {
+                    drag_arrs[nbx](i, j, k, 0) = 1;
+                } else if (
+                    (blank_arrs[nbx](i, j, k, 0) == 0) && (k < k_dom_max) &&
+                    (blank_arrs[nbx](i, j, k + 1, 0) == 1)) {
+                    drag_arrs[nbx](i, j, k, 0) = -1;
+                } else {
+                    drag_arrs[nbx](i, j, k, 0) = 0;
+                }
+            });
+    }
+
+    if (!initialize_velocity && m_zero_blanked_velocity) {
+        // If not initializing velocity, set velocity to 0 in blanked cells
+        amrex::ParallelFor(
+            blank_mfab, m_terrain_blank.num_grow(),
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                if (blank_arrs[nbx](i, j, k) == 1) {
+                    vel_arrs[nbx](i, j, k, 0) = 0.0_rt;
+                    vel_arrs[nbx](i, j, k, 1) = 0.0_rt;
+                    vel_arrs[nbx](i, j, k, 2) = 0.0_rt;
+                }
+            });
+    }
 
     // Do not set "drag" cells until improving drag forcing to handle different
     // directions (i.e., not just above terrain)
