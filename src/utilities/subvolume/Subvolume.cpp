@@ -230,7 +230,7 @@ void Subvolume::output_actions()
                     out_arr(i, j, k, n) = src_arr(ii, jj, kk, n);
                 });
         }
-        
+
         // Ensure GPU kernels complete before accessing data
         amrex::Gpu::streamSynchronize();
 
