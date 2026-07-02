@@ -12,7 +12,7 @@ as initial conditions and discretization options.
 
    Specify a string or a list of strings for each type of physics to initialize and simulate.
    Physics is additive and more than one type of physics may be used.
-   Current implemented physics include FreeStream, SyntheticTurbulence, ABL, Actuator, RayleighTaylor, BoussinesqBubble, TaylorGreenVortex, and ScalarAdvection (which is an example of using a passive scalar advection).
+   Current implemented physics include FreeStream, SyntheticTurbulence, ABL, Actuator, RayleighTaylor, BoussinesqBubble, TaylorGreenVortex, and ScalarAdvection (which is an example of using a passive scalar advection) among others.
    For multiphase simulations, the MultiPhase physics must be specified, and for forcing wave profiles into the domain, the OceanWaves physics must be specified as well.
    For immersed boundary forcing method, :ref:`TerrainDrag <inputs_terraindrag>` or :ref:`ChannelBuilder <inputs_channel_builder>` can be used.
    For representing forested regions :ref:`ForestDrag <inputs_forestdrag>` must be specified, which has two file-based approaches to parameterize forest drag models.
