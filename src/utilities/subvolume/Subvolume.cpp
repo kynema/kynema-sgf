@@ -175,6 +175,10 @@ void Subvolume::output_actions()
         amrex::MultiFab mf_sv(ba_out, dm, n_out, 0);
         amrex::MultiFab mf_src(ba_src, dm, n_out, 0);
 
+        // Initialize device memory to prevent access to garbage values
+        mf_sv.setVal(0.0_rt);
+        mf_src.setVal(0.0_rt);
+
         amrex::MultiFab mf_all_samelev(
             m_sim.mesh().boxArray(lev), m_sim.mesh().DistributionMap(lev),
             n_out, 0);
@@ -201,6 +205,9 @@ void Subvolume::output_actions()
 
         mf_src.ParallelCopy(mf_all_samelev, 0, 0, n_out, 0, 0);
 
+        // Ensure ParallelCopy data is available on GPU before kernel access
+        amrex::Gpu::streamSynchronize();
+
         for (amrex::MFIter mfi(mf_sv); mfi.isValid(); ++mfi) {
             const amrex::Box& out_box = mfi.validbox();
             const amrex::Box& out_fab_box = mf_sv[mfi].box();
@@ -223,6 +230,9 @@ void Subvolume::output_actions()
                     out_arr(i, j, k, n) = src_arr(ii, jj, kk, n);
                 });
         }
+
+        // Ensure GPU kernels complete before accessing data
+        amrex::Gpu::streamSynchronize();
 
         std::string sv_label = name + "_" + sv->label();
         std::string subvol_filename =
