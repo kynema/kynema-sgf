@@ -85,7 +85,7 @@ void FreeSurfaceDamping::post_advance_work()
                 auto volfrac = volfrac_arrs[nbx];
 
                 // Initialize Gamma as 0, turning damping it on globally
-                Gamma = 0.0_rt;
+                amrex::Real Gamma = 0.0_rt;
 
                 if (!global_damping) {
                     // If not global, get gamma for each possible direction
