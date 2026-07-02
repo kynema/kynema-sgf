@@ -46,7 +46,6 @@ private:
 
     amrex::Real m_rho1;
     amrex::Real m_rho2;
-    amrex::Geometry m_geom;
     const SimTime& m_time;
 };
 
