@@ -84,22 +84,36 @@ void FreeSurfaceDamping::post_advance_work()
                 auto rho = rho_arrs[nbx];
                 auto volfrac = volfrac_arrs[nbx];
 
-                // Get gamma for each possible direction
-                const amrex::Real Gamma_xlo =
-                    ocean_waves::utils::gamma_generate(x - problo[0], l_xlo);
-                const amrex::Real Gamma_xhi = ocean_waves::utils::gamma_absorb(
-                    x - (probhi[0] - l_xhi), l_xhi, 1.0_rt);
-                const amrex::Real Gamma_ylo =
-                    ocean_waves::utils::gamma_generate(y - problo[1], l_ylo);
-                const amrex::Real Gamma_yhi = ocean_waves::utils::gamma_absorb(
-                    y - (probhi[1] - l_yhi), l_yhi, 1.0_rt);
+                // Initialize Gamma as 0, turning damping it on globally
+                Gamma = 0.0_rt;
 
-                amrex::Real Gamma = amrex::min<amrex::Real>(
-                    amrex::min<amrex::Real>(Gamma_xhi, Gamma_xlo),
-                    amrex::min<amrex::Real>(Gamma_yhi, Gamma_ylo));
+                if (!global_damping) {
+                    // If not global, get gamma for each possible direction
+                    const amrex::Real Gamma_xlo =
+                        l_xlo > constants::EPS
+                            ? ocean_waves::utils::gamma_generate(
+                                  x - problo[0], l_xlo)
+                            : 1.0_rt;
+                    const amrex::Real Gamma_xhi =
+                        l_xhi > constants::EPS
+                            ? ocean_waves::utils::gamma_absorb(
+                                  x - (probhi[0] - l_xhi), l_xhi, 1.0_rt)
+                            : 1.0_rt;
+                    const amrex::Real Gamma_ylo =
+                        l_ylo > constants::EPS
+                            ? ocean_waves::utils::gamma_generate(
+                                  y - problo[1], l_ylo)
+                            : 1.0_rt;
+                    const amrex::Real Gamma_yhi =
+                        l_yhi > constants::EPS
+                            ? ocean_waves::utils::gamma_absorb(
+                                  y - (probhi[1] - l_yhi), l_yhi, 1.0_rt)
+                            : 1.0_rt;
 
-                // Never skip if global damping is enabled
-                Gamma = global_damping ? 0.0_rt : Gamma;
+                    Gamma = amrex::min<amrex::Real>(
+                        amrex::min<amrex::Real>(Gamma_xhi, Gamma_xlo),
+                        amrex::min<amrex::Real>(Gamma_yhi, Gamma_ylo));
+                }
 
                 // Skip if Gamma is close enough to 1
                 bool outside_zones = Gamma + constants::EPS >= 1.0_rt;
