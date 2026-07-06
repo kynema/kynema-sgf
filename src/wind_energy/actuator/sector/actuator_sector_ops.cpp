@@ -601,6 +601,7 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
     // First compute blade-section loads at the midpoint sample locations. The
     // force here is per unit span [m^3/s^2] in kinematic units and is converted
     // to section force later by multiplying by dr.
+    const amrex::Real spin_sign = (meta.omega >= 0.0_rt) ? 1.0_rt : -1.0_rt;
     for (int ib = 0; ib < meta.num_blades; ++ib) {
         const amrex::Real phase = ::kynema_sgf::utils::two_pi() *
                                   static_cast<amrex::Real>(ib) /
@@ -624,12 +625,14 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
             const amrex::Real vnormal = rel_wind & e_normal;
             const auto vplane = e_theta * vtheta + e_normal * vnormal;
             const amrex::Real vmag = vs::mag(vplane);
-            // AoA is measured in the local tangential-normal blade plane. The
-            // negative tangential component corresponds to the blade seeing
-            // incoming relative wind from the direction opposite rotation.
+            // AoA is measured in the local tangential-normal blade plane using
+            // a rotation-aware tangential direction. This keeps a mirrored
+            // propeller (negative omega and negative twist) aerodynamically
+            // equivalent to the positive-rotation propeller, while preserving
+            // opposite tangential force for torque cancellation.
             const amrex::Real raw_aoa =
-                std::atan2(vnormal, -vtheta) +
-                ::kynema_sgf::utils::radians(meta.twist[ir]);
+                std::atan2(vnormal, -spin_sign * vtheta) +
+                spin_sign * ::kynema_sgf::utils::radians(meta.twist[ir]);
             const amrex::Real aoa =
                 std::remainder(raw_aoa, ::kynema_sgf::utils::two_pi());
 
@@ -644,7 +647,7 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
                 (vmag > std::numeric_limits<amrex::Real>::epsilon())
                     ? vplane.unit()
                     : e_theta;
-            const auto lift_dir = (drag_dir ^ e_r).unit();
+            const auto lift_dir = spin_sign * (drag_dir ^ e_r).unit();
             const auto force_on_fluid =
                 -((lift_dir * lift) + (drag_dir * drag));
             const amrex::Real ftheta = force_on_fluid & e_theta;

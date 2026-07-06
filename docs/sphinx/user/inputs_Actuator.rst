@@ -414,6 +414,22 @@ Example for ``ActuatorSector``::
    timestep. When the timestep is sufficiently small, each radial station uses
    one swept point and the projection reduces to an actuator-line-like limit.
 
+   .. note::
+
+      The actuator-sector model is intended to permit larger timesteps than a
+      conventional actuator-line representation of a rotating blade. The swept
+      forcing sector is set by the CFD timestep, ``delta_theta = omega * dt``,
+      so increasing ``dt`` increases the azimuthal sector covered during each
+      force update.
+
+      In practice, the timestep is still limited by the CFD stability
+      constraint. Users may often run sector-model cases with a larger CFL
+      number than an actuator-line case, but the final timestep will depend on
+      the mesh spacing, resolved and induced velocities, solver settings, and
+      boundary conditions. If the CFD timestep becomes small, for example after
+      grid refinement, the swept sector narrows and the model naturally
+      approaches the actuator-line limit.
+
 .. input_param:: Actuator.ActuatorSector.min_chord_dr
 
    **type:** Real number, optional, default = 2.0
