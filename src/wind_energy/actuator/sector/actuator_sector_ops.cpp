@@ -550,7 +550,12 @@ void InitDataOp<ActuatorSector, ActSrcSector>::operator()(
     auto& meta = data.meta();
     auto& grid = data.grid();
     sector::build_radial_grid(meta);
-    sector::build_gaussian_table(meta);
+    if (amrex::toLower(meta.gaussian_type) == "table") {
+        sector::build_gaussian_table(meta);
+    } else {
+        meta.gaussian_table_nintervals = 0;
+        meta.gaussian_table.clear();
+    }
     meta.aflookup =
         AirfoilLoader::load_airfoil(meta.airfoil_file, meta.airfoil_type);
 
