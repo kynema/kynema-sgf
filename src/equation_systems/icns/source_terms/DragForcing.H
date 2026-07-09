@@ -55,6 +55,8 @@ private:
     amrex::Real m_sponge_distance_south{0.0_rt};
     amrex::Real m_sponge_distance_north{0.0_rt};
     amrex::Real m_min_z{0.1_rt};
+    amrex::Real m_min_z0{1.0e-4_rt};
+    amrex::Real m_cd_max{1000.0_rt};
     bool m_sponge_west{false};
     bool m_sponge_east{false};
     bool m_sponge_south{false};
@@ -62,6 +64,8 @@ private:
     bool m_is_laminar{false};
     bool m_terrain_is_waves{false};
     bool m_apply_MOSD{false};
+    bool m_limit_drag{true};
+    bool m_limit_drag_temporal{false};
     std::string m_wall_het_model{"none"};
     amrex::Real m_monin_obukhov_length{constants::LARGE_NUM};
     amrex::Real m_kappa{0.41_rt};

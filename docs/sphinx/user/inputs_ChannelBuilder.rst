@@ -25,6 +25,37 @@ must be used in the momentum forcing in order to actually affect the flow.
 Currently, this is done by including the `DragForcing` source term in
 :input_param:`ICNS.source_terms`.
 
+.. input_param:: ChannelBuilder.initialize_velocity
+
+   **type:** Bool, optional, default = true
+
+   Controls whether the channel builder initializes the velocity field from
+   the segment definitions and velocity profiles.
+
+   - If ``true``, the velocity field is first set to zero and then populated in
+     cells that are inside channel segments.
+   - If ``false``, the existing velocity field is kept, except where modified by
+     :input_param:`ChannelBuilder.zero_velocity_where_blanked`. This is useful
+     when the velocity should be initialized with a different physics module,
+     but the channel geometry (i.e., the terrain blanking) should still be set up.
+
+.. input_param:: ChannelBuilder.zero_velocity_where_blanked
+
+   **type:** Bool, optional, default = true
+
+   Applies only when :input_param:`ChannelBuilder.initialize_velocity` is
+   ``false``. If enabled, velocity is set to zero in cells marked as terrain
+   blanked by the channel geometry. This is useful when preserving a preexisting
+   velocity field while still enforcing no flow in blanked cells.
+
+.. input_param:: ChannelBuilder.initialize_drag_cells
+
+   **type:** Bool, optional, default = false
+
+   If enabled, initializes an integer field named ``terrain_drag`` based on the
+   terrain blanking pattern. Cells above or below blanked terrain are flagged to
+   support the wall modeling approach in the DragForcing source term. 
+
 .. input_param:: ChannelBuilder.segment_labels
 
    **type:** List of strings, required
