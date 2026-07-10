@@ -14,8 +14,10 @@ as initial conditions and discretization options.
    Physics is additive and more than one type of physics may be used.
    Current implemented physics include FreeStream, SyntheticTurbulence, ABL, Actuator, RayleighTaylor, BoussinesqBubble, TaylorGreenVortex, and ScalarAdvection (which is an example of using a passive scalar advection).
    For multiphase simulations, the MultiPhase physics must be specified, and for forcing wave profiles into the domain, the OceanWaves physics must be specified as well.
-   For immersed boundary forcing method TerrainDrag must be specified and the folder should include a terrain file (default name: `terrain.amrwind`, user control is `TerrainDrag.terrain_file`) file.
-   For including forested regions ForestDrag must be specified and the folder should include a forest file (default name: `forest.amrwind`, user control is `ForestDrag.forest_file`) file.
+   For immersed boundary forcing method, :ref:`TerrainDrag <inputs_terraindrag>` or :ref:`ChannelBuilder <inputs_channel_builder>` can be used.
+   For representing forested regions :ref:`ForestDrag <inputs_forestdrag>` must be specified, which has two file-based approaches to parameterize forest drag models.
+   Many physics modules work in conjunction with source terms, such as in the :ref:`momentum equation <inputs_Momentum_Sources>` or the :ref:`temperature equation <inputs_Temperature_Sources>`.
+   In these cases, the physics module sets up or continually updates fields in the domain while the source term performs calculations based on those fields to impact the governing equations active in the simulation. 
 
 .. input_param:: incflo.field_boundaries
 

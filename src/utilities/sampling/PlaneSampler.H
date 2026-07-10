@@ -63,6 +63,8 @@ public:
     void
     populate_netcdf_metadata(const ncutils::NCGroup& /*unused*/) const override;
 
+    void populate_info_file(std::ostream& fh) const override;
+
     //! Name of this sampling object
     [[nodiscard]] std::string label() const override { return m_label; }
     std::string& label() override { return m_label; }

@@ -61,7 +61,7 @@ protected:
     amrex::Vector<int> m_chunk_size_vec;
 
     int m_lev_for_sub{0};
-    int m_verbose{0};
+    int m_verbose{1};
 
     bool m_chunk_size_present{false};
 

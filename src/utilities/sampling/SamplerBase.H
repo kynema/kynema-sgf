@@ -6,6 +6,7 @@
 #include "src/utilities/ncutils/nc_interface.H"
 #include "src/utilities/constants.H"
 #include "AMReX_REAL.H"
+#include <ostream>
 
 using namespace amrex::literals;
 
@@ -146,6 +147,9 @@ public:
     virtual void output_netcdf_data(
         const ncutils::NCGroup& /*unused*/, const size_t /*unused*/) const
     {}
+
+    //! Populate sampler-specific YAML keys to the native/ascii info file.
+    virtual void populate_info_file(std::ostream& /*unused*/) const {}
 };
 
 } // namespace sampling

@@ -99,9 +99,14 @@ void initialize_volume_fractions(
 void init_lvs(
     const int dir, const amrex::Real deltax, kynema_sgf::Field& levelset)
 {
+    // Use fabbox() so ghost cells (including domain ghosts) are filled with
+    // the analytical profile.  growntilebox() only covers ghosts owned by
+    // this tile and leaves domain ghosts uninitialized, which produces
+    // NaN/garbage stencil values in youngs_finite_difference_normal and
+    // triggers FPEs in levelset_to_vof at boundary cells.
     run_algorithm(levelset, [&](const int lev, const amrex::MFIter& mfi) {
         auto levelset_arr = levelset(lev).array(mfi);
-        const auto& bx = mfi.growntilebox();
+        const auto& bx = mfi.fabbox();
         initialize_levelset(dir, deltax, bx, levelset_arr);
     });
 }

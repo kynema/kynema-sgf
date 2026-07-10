@@ -1,7 +1,9 @@
 #include <numbers>
+#include <limits>
 #include "src/physics/multiphase/MultiPhase.H"
 #include "src/equation_systems/vof/volume_fractions.H"
 #include "src/physics/multiphase/hydrostatic_ops.H"
+#include "src/boundary_conditions/BCInterface.H"
 #include "src/CFDSim.H"
 #include "src/fvm/filter.H"
 #include "src/core/field_ops.H"
@@ -43,6 +45,9 @@ MultiPhase::MultiPhase(CFDSim& sim)
         auto& levelset_eqn =
             sim.pde_manager().register_transport_pde("Levelset");
         m_levelset = &(levelset_eqn.fields().field);
+        BCScalar bc_ls(*m_levelset);
+        bc_ls(0.0_rt);
+        m_levelset->fillpatch(sim.time().current_time());
     } else {
         amrex::Print() << "Please select an interface capturing model between "
                           "VOF and Levelset: defaulting to VOF "
@@ -439,7 +444,19 @@ void MultiPhase::levelset2vof()
                 mx = std::abs(mx / 32.0_rt);
                 my = std::abs(my / 32.0_rt);
                 mz = std::abs(mz / 32.0_rt);
-                const amrex::Real normL1 = (mx + my + mz);
+                const amrex::Real norm_raw = (mx + my + mz);
+                if (norm_raw <= std::numeric_limits<amrex::Real>::epsilon()) {
+                    const amrex::Real phi_ijk = phi_arrs[nbx](i, j, k);
+                    if (phi_ijk < -eps) {
+                        volfrac_arrs[nbx](i, j, k) = 0.0_rt;
+                    } else if (phi_ijk > eps) {
+                        volfrac_arrs[nbx](i, j, k) = 1.0_rt;
+                    } else {
+                        volfrac_arrs[nbx](i, j, k) = 0.5_rt;
+                    }
+                    return;
+                }
+                const amrex::Real normL1 = norm_raw;
                 mx = mx / normL1;
                 my = my / normL1;
                 mz = mz / normL1;
@@ -516,7 +533,19 @@ void MultiPhase::levelset2vof(
                 mx = std::abs(mx / 32.0_rt);
                 my = std::abs(my / 32.0_rt);
                 mz = std::abs(mz / 32.0_rt);
-                const amrex::Real normL1 = (mx + my + mz);
+                const amrex::Real norm_raw = (mx + my + mz);
+                if (norm_raw <= std::numeric_limits<amrex::Real>::epsilon()) {
+                    const amrex::Real phi_ijk = phi_arrs[nbx](i, j, k);
+                    if (phi_ijk < -eps) {
+                        volfrac_arrs[nbx](i, j, k) = 0.0_rt;
+                    } else if (phi_ijk > eps) {
+                        volfrac_arrs[nbx](i, j, k) = 1.0_rt;
+                    } else {
+                        volfrac_arrs[nbx](i, j, k) = 0.5_rt;
+                    }
+                    return;
+                }
+                const amrex::Real normL1 = norm_raw;
                 mx = mx / normL1;
                 my = my / normL1;
                 mz = mz / normL1;

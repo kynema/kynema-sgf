@@ -1,0 +1,92 @@
+# Ref: Kirkil et.al."Implementation and Evaluation of Dynamic Subfilter-Scale Stress Models for Large-Eddy Simulation Using WRF", MWR, 2012.
+# Geometry
+geometry.prob_lo                            = 0.0 0.0 0.0
+geometry.prob_hi                            = 2048 2048 1024
+geometry.is_periodic                        = 1 1 0
+# Grid
+amr.n_cell                                  = 64 64 32
+amr.max_level                               = 0
+# Simulation control parameters
+time.stop_time                              = 3600
+time.max_step                               = 10
+time.fixed_dt                               = 1.0
+time.cfl                                    = 0.9895
+time.init_shrink                            = 0.1
+time.regrid_interval                        = -1
+time.plot_interval                          = 86400
+time.checkpoint_interval                    = 14400
+# incflo
+incflo.physics                              = ABL ForestDrag
+incflo.density                              = 1.225
+incflo.gravity                              = 0.  0. -9.81  # Gravitational force (3D)
+incflo.velocity                             = 10.0 0.0 0.0
+incflo.verbose                              = 0
+incflo.initial_iterations                   = 8
+incflo.do_initial_proj                      = true
+incflo.constant_density                     = true
+incflo.use_godunov                          = true
+incflo.godunov_type                         = "weno_z"
+incflo.diffusion_type                       = 2
+# ForestDrag point-cloud inputs
+ForestDrag.point_cloud_files         = forest_pc_1.dat forest_pc_2.dat
+ForestDrag.coefficients_of_drag      = 0.2 0.1
+ForestDrag.point_neighbors           = 4
+ForestDrag.point_interp_eps          = 1.0e-6
+# transport equation parameters
+transport.model                             = ConstTransport
+transport.viscosity                         = 0.0
+transport.laminar_prandtl                   = 0.7
+transport.turbulent_prandtl                 = 0.333
+transport.reference_temperature             = 300.
+transport.thermal_expansion_coefficient     = 0.003333
+# turbulence equation parameters
+turbulence.model                            = Kosovic
+# Changes the length scale from filter width to kappa * z /phiM and blends with LES length scale using
+# an exponential function
+Kosovic.surfaceRANS                         = true
+# A power coefficient of two for the exponential term gave best result
+Kosovic.surfaceRANSExp                      = 2
+# Writing the non-linear terms for check
+Kosovic.writeTerms                          = false
+# Height at which the length scale switches from RANS to LES. Recommended location is 1.5 dz
+Kosovic.switchLoc                           = 48
+# Reference Monin-Obukhov length for the RANS length scale at surface.
+# Can be replaced with the computed length scale in the code. However, adds code complications.
+Kosovic.monin_obukhov_length                = -1e30
+# Experimental feature to turn off the LES model and use the numerical dissipation as a sub-grid scale model
+# Initial results showed a value of 100 m improved the results by 3-5% for neutral stratification when dx<16 m
+Kosovic.LESOff                              = 100
+# Atmospheric boundary layer
+ABL.Uperiods                                = 12.0
+ABL.Vperiods                                = 12.0
+ABL.cutoff_height                           = 50.0
+ABL.deltaU                                  = 1.0
+ABL.deltaV                                  = 1.0
+ABL.kappa                                   = .41
+ABL.normal_direction                        = 2
+ABL.perturb_ref_height                      = 50.0
+ABL.perturb_velocity                        = true
+ABL.perturb_temperature                     = false
+ABL.stats_output_format                     = native
+ABL.surface_roughness_z0                    = 0.1
+ABL.temperature_heights                     = 0  800  900 1800 2700
+ABL.temperature_values                      = 300 300 308 311 314
+ABL.wall_shear_stress_type                  = local
+ABL.surface_temp_flux                       = 0.0
+# Source
+ICNS.source_terms                           = BoussinesqBuoyancy CoriolisForcing GeostrophicForcing RayleighDamping NonLinearSGSTerm ForestForcing
+CoriolisForcing.east_vector                 = 1.0 0.0 0.0
+CoriolisForcing.north_vector                = 0.0 1.0 0.0
+CoriolisForcing.latitude                    = 90.0
+CoriolisForcing.rotational_time_period      = 125663.706143592
+GeostrophicForcing.geostrophic_wind         = 10 0.0 0.0
+RayleighDamping.reference_velocity          = 10 0.0 0.0
+RayleighDamping.length_sloped_damping       = 150
+RayleighDamping.length_complete_damping     = 50
+RayleighDamping.time_scale                  = 9.0
+# BC
+zhi.type                                    = "slip_wall"
+zhi.temperature_type                        = "fixed_gradient"
+zhi.temperature                             = 0.003
+zlo.type                                    = "wall_model"
+# Hypre
