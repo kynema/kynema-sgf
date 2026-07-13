@@ -95,11 +95,11 @@ void incflo::init_mesh()
             amrex::Print() << "Grid summary: " << '\n';
             print_grid_summary_with_total(*this, finest_level);
 
-            amrex::Print() << "Cell aspect ratio (dy/dx  dz/dx  dz/dy): ";
+            amrex::Print() << "Cell aspect ratio (dy/dx  dx/dz  dy/dz): ";
             auto dx = m_sim.mesh().Geom(0).CellSize(0);
             auto dy = m_sim.mesh().Geom(0).CellSize(1);
             auto dz = m_sim.mesh().Geom(0).CellSize(2);
-            amrex::Print() << dy / dx << "  " << dz / dx << "  " << dz / dy
+            amrex::Print() << dy / dx << "  " << dx / dz << "  " << dy / dz
                            << "\n\n";
         }
     } else {
@@ -120,11 +120,11 @@ void incflo::init_mesh()
             amrex::Print() << "Grid summary: " << '\n';
             print_grid_summary_with_total(*this, finest_level);
 
-            amrex::Print() << "Cell aspect ratio (dy/dx  dz/dx  dz/dy): ";
+            amrex::Print() << "Cell aspect ratio (dy/dx  dx/dz  dy/dz): ";
             auto dx = m_sim.mesh().Geom(0).CellSize(0);
             auto dy = m_sim.mesh().Geom(0).CellSize(1);
             auto dz = m_sim.mesh().Geom(0).CellSize(2);
-            amrex::Print() << dy / dx << "  " << dz / dx << "  " << dz / dy
+            amrex::Print() << dy / dx << "  " << dx / dz << "  " << dy / dz
                            << "\n\n";
         }
     }
