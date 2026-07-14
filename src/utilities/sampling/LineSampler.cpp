@@ -75,6 +75,7 @@ void LineSampler::sampling_locations(
     const int lev = 0;
     const auto& dxinv = m_sim.mesh().Geom(lev).InvCellSizeArray();
     const auto& plo = m_sim.mesh().Geom(lev).ProbLoArray();
+    const auto& fine_geom = m_sim.mesh().Geom(m_sim.mesh().finestLevel());
     const amrex::Real ndiv = amrex::max(m_npts - 1, 1);
     amrex::Array<amrex::Real, AMREX_SPACEDIM> dx;
 
@@ -88,8 +89,6 @@ void LineSampler::sampling_locations(
             m_start[2] + (i * dx[2]))};
 
         if (m_snap_to_cell_center) {
-            const auto& fine_geom =
-                m_sim.mesh().Geom(m_sim.mesh().finestLevel());
             for (int d = 0; d < AMREX_SPACEDIM; ++d) {
                 loc[d] = sampling_utils::snap_to_nearest_cell_center(
                     fine_geom, d, loc[d]);

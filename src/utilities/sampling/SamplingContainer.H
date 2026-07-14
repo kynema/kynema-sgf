@@ -144,8 +144,9 @@ public:
      *  \param dx Cell size array
      *  \param offset Offsets for cell/node/face fields
      */
-    /** Nearest-cell-center sampling: no interpolation, picks the closest
-     *  data point in the field for each particle.
+    /** Nearest-neighbor sampling: no interpolation, picks the closest
+     *  data point in the field (cell/face center or node, depending on field
+     *  location) for each particle.
      */
     template <typename FType>
     void sample_field_nearest(
