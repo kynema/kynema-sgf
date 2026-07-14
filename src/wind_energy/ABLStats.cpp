@@ -51,7 +51,7 @@ void ABLStats::post_init_actions()
     // Get the actual max level (replace -1 and cap high values)
     int finestLevel = m_sim.repo().mesh().finestLevel();
     if (m_max_level >= 0) {
-        m_max_level = std::min(m_max_level, finestLevel);
+        m_max_level = amrex::min<int>(m_max_level, finestLevel);
     } else {
         m_max_level = finestLevel;
     }
