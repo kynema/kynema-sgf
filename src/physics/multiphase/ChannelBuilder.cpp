@@ -174,7 +174,6 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
 
     m_sim.io_manager().register_output_int_var("terrain_blank");
 
-    m_terrain_blank.setVal(0);
     amrex::Vector<std::string> labels;
     amrex::ParmParse pp(identifier());
     m_is_multiphase = pp.contains("water_level");
@@ -389,11 +388,11 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     amrex::MultiFab* levelset_lev{nullptr};
     // Set all velocity to 0 for the sake of blanked cells
     if (initialize_velocity) {
-        velocity.setVal(0.0_rt);
+        velocity(level).setVal(0.0_rt);
     }
     // Set density in single-phase case
     if (!multiphase) {
-        m_repo.get_field("density").setVal(m_rho_init);
+        m_repo.get_field("density")(level).setVal(m_rho_init);
     } else {
         levelset_lev = &(m_repo.get_field("levelset")(level));
     }
