@@ -47,9 +47,7 @@ void init_field(kynema_sgf::Field& fld)
 //! density field for the "chunk1" style subvolume (single dx applied
 //! uniformly, expected = dx_sv * (i + j + k) + offset).
 amrex::Real max_error_chunk1(
-    amrex::MultiFab& mf_out,
-    const amrex::Real dx_sv,
-    const amrex::Real dx_dom)
+    amrex::MultiFab& mf_out, const amrex::Real dx_sv, const amrex::Real dx_dom)
 {
     amrex::ReduceOps<amrex::ReduceOpMax> reduce_op;
     amrex::ReduceData<amrex::Real> reduce_data(reduce_op);
