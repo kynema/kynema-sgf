@@ -35,18 +35,22 @@ ChannelFlow::ChannelFlow(CFDSim& sim)
         pp.query("flow_direction", m_mean_vel_dir);
         pp.query("normal_direction", m_norm_dir);
         pp.query("error_log_file", m_output_fname);
+        pp.query("perturb_velocity", m_perturb_vel);
+        pp.query("perturb_y_period", m_perturb_y_period);
+        pp.query("perturb_z_period", m_perturb_z_period);
+        pp.query("perturb_factor", m_perturb_fac);
 
         if (m_laminar) {
             pp.query("Mean_Velocity", m_mean_vel);
             pp.query("half_channel", m_half);
+            if (m_perturb_vel) {
+                // Assumes DNS when m_laminar and m_perturb_vel are both true
+                pp.query("re_tau", m_re_tau);
+            }
         } else {
             pp.query("re_tau", m_re_tau);
             pp.query("tke0", m_tke0);
             pp.query("sdr0", m_sdr0);
-            pp.query("perturb_velocity", m_perturb_vel);
-            pp.query("perturb_y_period", m_perturb_y_period);
-            pp.query("perturb_z_period", m_perturb_z_period);
-            pp.query("perturb_factor", m_perturb_fac);
             pp.query(
                 "analytical_smagorinsky_test", m_analytical_smagorinsky_test);
             if (m_analytical_smagorinsky_test) {
@@ -145,7 +149,8 @@ void ChannelFlow::initialize_fields(
     const auto y_perturb = m_perturb_y_period * 2.0_rt * pi / lengths[1];
     const auto z_perturb = m_perturb_z_period * 2.0_rt * pi / lengths[2];
 
-    if (!m_laminar) {
+    if (!m_laminar || (m_laminar && m_perturb_vel)) {
+        // Non-laminar case or "laminar" DNS with perturbations
         if (m_analytical_smagorinsky_test) {
             auto coeffs = m_sim.turbulence_model().model_coeffs();
             const auto Cs = coeffs["Cs"];

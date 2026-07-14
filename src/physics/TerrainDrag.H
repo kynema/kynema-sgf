@@ -63,6 +63,7 @@ private:
     std::string m_roughness_file{"terrain.roughness"};
 
     //! Roughness fields
+    amrex::Real m_uniform_z0{0.1_rt};
     Field& m_terrainz0;
     Field& m_terrain_height;
     Field& m_terrain_damping;

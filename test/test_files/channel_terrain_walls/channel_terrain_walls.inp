@@ -1,0 +1,73 @@
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#            SIMULATION STOP            #
+#.......................................#
+time.stop_time               = 100.00     # Max (simulated) time to evolve
+time.max_step                = -1000       # Max number of time steps
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#         TIME STEP COMPUTATION         #
+#.......................................#
+time.fixed_dt         =   -0.01       # Use this constant dt if > 0
+time.cfl              =   0.95        # CFL factor
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#            INPUT AND OUTPUT           #
+#.......................................#
+time.plot_interval            =  100       # Steps between plot files
+time.checkpoint_interval      =  100       # Steps between checkpoint files
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#               PHYSICS                 #
+#.......................................#
+incflo.density        = 1.0             # Reference density
+incflo.use_godunov    = 1
+incflo.diffusion_type = 0
+incflo.godunov_type = "weno_z"
+incflo.do_initial_proj = true
+incflo.initial_iterations = 3
+
+transport.viscosity = 3.5e-3
+turbulence.model = Smagorinsky
+Smagorinsky_coeffs.Cs = 0.1
+
+ICNS.source_terms = BodyForce DragForcing
+DragForcing.use_original_drag_limiter = false
+DragForcing.use_temporal_drag_limiter = true
+BodyForce.magnitude = 0.003969 0.0 0.0
+incflo.physics = ChannelFlow ChannelBuilder
+ChannelFlow.re_tau = 180.0
+ChannelFlow.normal_direction = 2
+ChannelFlow.perturb_velocity = true
+ChannelFlow.perturb_y_period = 0.0
+ChannelFlow.perturb_z_period = 4.0
+
+ChannelBuilder.initialize_velocity = false
+ChannelBuilder.zero_velocity_where_blanked = true
+ChannelBuilder.initialize_drag_cells = true
+ChannelBuilder.segment_labels = s1
+ChannelBuilder.s1.type = Trapezoid
+ChannelBuilder.s1.segment_start_point = -0.1 0.25 0.5625
+ChannelBuilder.s1.segment_end_point = 0.6 0.25 0.5625
+ChannelBuilder.s1.top_width = 0.6
+ChannelBuilder.s1.bottom_width = 0.6
+ChannelBuilder.s1.height = 1.0
+
+io.output_default_variables = 1
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#        ADAPTIVE MESH REFINEMENT       #
+#.......................................#
+amr.n_cell              = 16 16 36     # Grid cells at coarsest AMRlevel
+amr.blocking_factor     = 4
+amr.max_level           = 0           # Max AMR level in hierarchy
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#              GEOMETRY                 #
+#.......................................#
+geometry.prob_lo        =   0.0 0.0 0.0    # Lo corner coordinates
+geometry.prob_hi        =   0.5 0.5 1.125  # Hi corner coordinates 8*pi*3pi*1
+geometry.is_periodic    =   1   1  0   # Periodicity x y z (0/1)
+
+# Boundary conditions
+zlo.type = "slip_wall"
+zhi.type = "slip_wall"
