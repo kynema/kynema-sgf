@@ -1,5 +1,6 @@
 #include <limits>
 #include "src/utilities/sampling/PlaneSampler.H"
+#include "src/utilities/sampling/SamplingUtils.H"
 #include "src/CFDSim.H"
 #include "src/utilities/index_operations.H"
 #include "AMReX_ParmParse.H"
@@ -21,6 +22,7 @@ void PlaneSampler::initialize(const std::string& key)
     pp.getarr("axis2", m_axis2);
     pp.getarr("origin", m_origin);
     pp.getarr("num_points", m_npts_dir);
+    pp.query("snap_to_cell_center", m_snap_to_cell_center);
     AMREX_ALWAYS_ASSERT(static_cast<int>(m_axis1.size()) == AMREX_SPACEDIM);
     AMREX_ALWAYS_ASSERT(static_cast<int>(m_axis2.size()) == AMREX_SPACEDIM);
     AMREX_ALWAYS_ASSERT(static_cast<int>(m_origin.size()) == AMREX_SPACEDIM);
@@ -147,6 +149,7 @@ void PlaneSampler::sampling_locations(
     const int lev = 0;
     const auto& dxinv = m_sim.mesh().Geom(lev).InvCellSizeArray();
     const auto& plo = m_sim.mesh().Geom(lev).ProbLoArray();
+    const auto& fine_geom = m_sim.mesh().Geom(m_sim.mesh().finestLevel());
     for (int k = 0; k < nplanes; ++k) {
         for (int j = 0; j < m_npts_dir[1]; ++j) {
             for (int i = 0; i < m_npts_dir[0]; ++i) {
@@ -155,6 +158,14 @@ void PlaneSampler::sampling_locations(
                     loc[d] = m_origin[d] + (dx[d] * i) + (dy[d] * j) +
                              (m_poffsets[k] * m_offset_vector[d]);
                 }
+
+                if (m_snap_to_cell_center) {
+                    for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+                        loc[d] = sampling_utils::snap_to_nearest_cell_center(
+                            fine_geom, d, loc[d]);
+                    }
+                }
+
                 if (utils::contains(box, loc, plo, dxinv)) {
                     sample_locs.push_back(loc, idx);
                 }

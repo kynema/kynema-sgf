@@ -157,9 +157,10 @@ void SamplingContainer::interpolate_derived_fields(
     for (int lev = 0; lev < nlevels; ++lev) {
         for (ParIterType pti(*this, lev); pti.isValid(); ++pti) {
             const auto farr = (*outfield)(lev).const_array(pti);
+            const bool use_nearest = (m_interpolation_order == 0);
             interpolate(
                 pti, farr, lev, outfield->field_location(),
-                outfield->num_comp(), scomp);
+                outfield->num_comp(), scomp, use_nearest);
         }
     }
 }

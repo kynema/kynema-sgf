@@ -177,6 +177,9 @@ private:
     // Sample initial condition for interpolation consistency
     bool m_restart_sample{false};
 
+    // Interpolation order for sampling: 0 = nearest-neighbor, 1 = linear
+    int m_interpolation_order{1};
+
     // number of field components
     int m_ncomp{0};
 

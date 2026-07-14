@@ -1,4 +1,5 @@
 #include <numbers>
+#include <cmath>
 #include "ks_test_utils/MeshTest.H"
 #include "src/utilities/sampling/Sampling.H"
 #include "src/utilities/sampling/SamplingContainer.H"
@@ -83,15 +84,16 @@ public:
     {}
 
     bool write_flag{false};
+    std::vector<amrex::Real> sampled_values;
 
 protected:
     void prepare_netcdf_file() override {}
     void process_output() override
     {
         // Test buffer populate for GPU runs
-        std::vector<amrex::Real> buf(
+        sampled_values.assign(
             num_total_particles() * var_names().size(), 0.0_rt);
-        sampling_container().populate_buffer(buf);
+        sampling_container().populate_buffer(sampled_values);
 
         write_flag = true;
     }
@@ -295,6 +297,83 @@ TEST_F(SamplingTest, sampling_timing)
     EXPECT_TRUE(probes.write_flag);
 }
 
+TEST_F(SamplingTest, interpolation_order)
+{
+    initialize_mesh();
+
+    auto& repo = sim().repo();
+    auto& rho = repo.declare_field("density", 1, 2);
+    init_field(rho);
+
+    const amrex::Real x = 10.2_rt;
+    const amrex::Real y = 20.3_rt;
+    const amrex::Real z = 30.4_rt;
+
+    {
+        amrex::ParmParse pp("sampling_interp");
+        pp.add("output_interval", 1);
+        pp.addarr("labels", amrex::Vector<std::string>{"line1"});
+        pp.addarr("fields", amrex::Vector<std::string>{"density"});
+        pp.add("interpolation_order", 1);
+    }
+    {
+        amrex::ParmParse pp("sampling_interp.line1");
+        pp.add("type", std::string("LineSampler"));
+        pp.add("num_points", 1);
+        pp.addarr("start", amrex::Vector<amrex::Real>{x, y, z});
+        pp.addarr("end", amrex::Vector<amrex::Real>{x, y, z});
+    }
+
+    SamplingImpl interp(sim(), "sampling_interp");
+    interp.initialize();
+    interp.output_actions();
+
+    ASSERT_EQ(interp.sampled_values.size(), 1);
+    const amrex::Real interp_val = interp.sampled_values[0];
+
+    {
+        amrex::ParmParse pp("sampling_nearest");
+        pp.add("output_interval", 1);
+        pp.addarr("labels", amrex::Vector<std::string>{"line1"});
+        pp.addarr("fields", amrex::Vector<std::string>{"density"});
+        pp.add("interpolation_order", 0);
+    }
+    {
+        amrex::ParmParse pp("sampling_nearest.line1");
+        pp.add("type", std::string("LineSampler"));
+        pp.add("num_points", 1);
+        pp.addarr("start", amrex::Vector<amrex::Real>{x, y, z});
+        pp.addarr("end", amrex::Vector<amrex::Real>{x, y, z});
+    }
+
+    SamplingImpl nearest(sim(), "sampling_nearest");
+    nearest.initialize();
+    nearest.output_actions();
+
+    ASSERT_EQ(nearest.sampled_values.size(), 1);
+    const amrex::Real nearest_val = nearest.sampled_values[0];
+
+    const auto& geom = mesh().Geom(0);
+    const auto& plo = geom.ProbLoArray();
+    const auto& dx = geom.CellSizeArray();
+    const auto& dxi = geom.InvCellSizeArray();
+    const int i = static_cast<int>(std::round((x - plo[0]) * dxi[0] - 0.5_rt));
+    const int j = static_cast<int>(std::round((y - plo[1]) * dxi[1] - 0.5_rt));
+    const int k = static_cast<int>(std::round((z - plo[2]) * dxi[2] - 0.5_rt));
+    const amrex::Real xcc =
+        plo[0] + (static_cast<amrex::Real>(i) + 0.5_rt) * dx[0];
+    const amrex::Real ycc =
+        plo[1] + (static_cast<amrex::Real>(j) + 0.5_rt) * dx[1];
+    const amrex::Real zcc =
+        plo[2] + (static_cast<amrex::Real>(k) + 0.5_rt) * dx[2];
+
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt;
+    EXPECT_NEAR(interp_val, x + y + z, tol);
+    EXPECT_NEAR(nearest_val, xcc + ycc + zcc, tol);
+    EXPECT_GT(amrex::Math::abs(nearest_val - interp_val), 1.0_rt);
+}
+
 TEST_F(SamplingTest, probe_sampler)
 {
     initialize_mesh();
@@ -384,6 +463,117 @@ TEST_F(SamplingTest, volume_sampler)
     volume.sampling_locations(sample_locs);
 
     ASSERT_EQ(sample_locs.locations().size(), 3 * 5 * 5);
+}
+
+TEST_F(SamplingTest, snap_to_cell_center)
+{
+    initialize_mesh();
+
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e5_rt;
+    const auto& geom = mesh().Geom(mesh().finestLevel());
+    const auto& dx = geom.CellSizeArray();
+    const auto& plo = geom.ProbLoArray();
+
+    const auto is_cell_center = [&](const amrex::Real x, const int d) {
+        const amrex::Real idx = (x - plo[d]) / dx[d] - 0.5_rt;
+        return amrex::Math::abs(idx - std::round(idx)) < tol;
+    };
+
+    // Line sampler
+    {
+        amrex::ParmParse pp("line_snap");
+        pp.add("num_points", 3);
+        pp.addarr("start", amrex::Vector<amrex::Real>{1.1_rt, 1.9_rt, 2.2_rt});
+        pp.addarr("end", amrex::Vector<amrex::Real>{9.1_rt, 5.9_rt, 6.2_rt});
+        pp.add("snap_to_cell_center", true);
+    }
+
+    kynema_sgf::sampling::LineSampler line_snap(sim());
+    line_snap.initialize("line_snap");
+    kynema_sgf::sampling::SampleLocType line_locs;
+    line_snap.sampling_locations(line_locs);
+    ASSERT_EQ(line_locs.locations().size(), 3);
+    for (const auto& loc : line_locs.locations()) {
+        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+            EXPECT_TRUE(is_cell_center(loc[d], d));
+        }
+    }
+
+    // Plane sampler
+    {
+        amrex::ParmParse pp("plane_snap");
+        pp.addarr("axis1", amrex::Vector<amrex::Real>{0.0_rt, 5.0_rt, 0.0_rt});
+        pp.addarr("axis2", amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 5.0_rt});
+        pp.addarr("origin", amrex::Vector<amrex::Real>{1.1_rt, 1.9_rt, 2.2_rt});
+        pp.addarr("num_points", amrex::Vector<int>{3, 3});
+        pp.addarr("offsets", amrex::Vector<amrex::Real>{2.0_rt});
+        pp.addarr(
+            "offset_vector",
+            amrex::Vector<amrex::Real>{1.0_rt, 0.0_rt, 0.0_rt});
+        pp.add("snap_to_cell_center", true);
+    }
+
+    kynema_sgf::sampling::PlaneSampler plane_snap(sim());
+    plane_snap.initialize("plane_snap");
+    kynema_sgf::sampling::SampleLocType plane_locs;
+    plane_snap.sampling_locations(plane_locs);
+    ASSERT_EQ(plane_locs.locations().size(), 3 * 3);
+    for (const auto& loc : plane_locs.locations()) {
+        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+            EXPECT_TRUE(is_cell_center(loc[d], d));
+        }
+    }
+
+    // Probe sampler
+    std::string fname = "probes_snap.txt";
+    write_probe_sampler_file(fname);
+    {
+        amrex::ParmParse pp("probe_snap");
+        pp.add("probe_location_file", fname);
+        pp.add("snap_to_cell_center", true);
+    }
+
+    kynema_sgf::sampling::ProbeSampler probe_snap(sim());
+    probe_snap.initialize("probe_snap");
+    kynema_sgf::sampling::SampleLocType probe_locs;
+    probe_snap.sampling_locations(probe_locs);
+    ASSERT_EQ(probe_locs.locations().size(), 3);
+    for (const auto& loc : probe_locs.locations()) {
+        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+            EXPECT_TRUE(is_cell_center(loc[d], d));
+        }
+    }
+
+    const char* fname_char = fname.c_str();
+    {
+        std::ifstream f(fname_char);
+        if (f.good()) {
+            remove(fname_char);
+        }
+        std::ifstream ff(fname_char);
+        EXPECT_FALSE(ff.good());
+    }
+
+    // Volume sampler
+    {
+        amrex::ParmParse pp("volume_snap");
+        pp.addarr("hi", amrex::Vector<amrex::Real>{9.1_rt, 9.1_rt, 9.1_rt});
+        pp.addarr("lo", amrex::Vector<amrex::Real>{1.1_rt, 1.9_rt, 2.2_rt});
+        pp.addarr("num_points", amrex::Vector<int>{3, 3, 3});
+        pp.add("snap_to_cell_center", true);
+    }
+
+    kynema_sgf::sampling::VolumeSampler volume_snap(sim());
+    volume_snap.initialize("volume_snap");
+    kynema_sgf::sampling::SampleLocType volume_locs;
+    volume_snap.sampling_locations(volume_locs);
+    ASSERT_EQ(volume_locs.locations().size(), 3 * 3 * 3);
+    for (const auto& loc : volume_locs.locations()) {
+        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+            EXPECT_TRUE(is_cell_center(loc[d], d));
+        }
+    }
 }
 
 TEST_F(SamplingTest, spinner_sampler)
