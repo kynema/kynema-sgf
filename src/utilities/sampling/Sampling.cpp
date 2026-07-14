@@ -52,6 +52,12 @@ void Sampling::initialize()
         pp.queryarr("derived_fields", derived_field_names);
         pp.query("output_format", m_out_fmt);
         pp.query("restart_sample", m_restart_sample);
+        pp.query("interpolation_order", m_interpolation_order);
+        ioutils::assert_with_message(
+            m_interpolation_order == 0 || m_interpolation_order == 1,
+            m_label +
+                ".interpolation_order must be 0 (nearest-neighbor) or "
+                "1 (linear interpolation)");
         populate_output_parameters(pp);
     }
 
@@ -153,6 +159,8 @@ void Sampling::update_container()
     m_scontainer = std::make_unique<SamplingContainer>(m_sim.mesh());
 
     m_scontainer->setup_container(m_ncomp + m_nicomp + m_ndcomp);
+
+    m_scontainer->set_interpolation_order(m_interpolation_order);
 
     m_scontainer->initialize_particles(m_samplers);
 

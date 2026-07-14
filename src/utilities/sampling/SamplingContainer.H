@@ -86,6 +86,13 @@ public:
     void initialize_particles(
         const amrex::Vector<std::unique_ptr<SamplerBase>>& /*samplers*/);
 
+    //! Interpolation order for sampling: 0 = nearest-neighbor, 1 = linear
+    void set_interpolation_order(const int order)
+    {
+        AMREX_ALWAYS_ASSERT(order == 0 || order == 1);
+        m_interpolation_order = order;
+    }
+
     //! Perform field interpolation to sampling locations
     template <typename FType>
     void interpolate_fields(const amrex::Vector<FType>& fields, const int scomp)
@@ -98,11 +105,15 @@ public:
             for (ParIterType pti(*this, lev); pti.isValid(); ++pti) {
                 int scomp_curr = scomp;
                 for (const auto* fld : fields) {
-                    AMREX_ALWAYS_ASSERT(fld->num_grow() > amrex::IntVect{0});
+                    const bool use_nearest = (m_interpolation_order == 0);
+                    if (!use_nearest) {
+                        AMREX_ALWAYS_ASSERT(
+                            fld->num_grow() > amrex::IntVect{0});
+                    }
                     const auto farr = (*fld)(lev).const_array(pti);
                     interpolate(
                         pti, farr, lev, fld->field_location(), fld->num_comp(),
-                        scomp_curr);
+                        scomp_curr, use_nearest);
 
                     scomp_curr += fld->num_comp();
                 }
@@ -133,6 +144,45 @@ public:
      *  \param dx Cell size array
      *  \param offset Offsets for cell/node/face fields
      */
+    /** Nearest-neighbor sampling: no interpolation, picks the closest
+     *  data point in the field (cell/face center or node, depending on field
+     *  location) for each particle.
+     */
+    template <typename FType>
+    void sample_field_nearest(
+        const int np,
+        const int ic,
+        SamplingContainer::ParticleVector& pvec,
+        SamplingContainer::RealVector& pavec,
+        const FType& farr,
+        const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>& problo,
+        const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>& dxi,
+        const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>& dx,
+        const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>& offset)
+    {
+        BL_PROFILE("kynema-sgf::SamplingContainer::sample_nearest_impl");
+
+        auto* pstruct = pvec.data();
+        auto* parr = pavec.data();
+
+        amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(int ip) {
+            auto& p = pstruct[ip];
+            const amrex::Real x =
+                (p.pos(0) - problo[0] - offset[0] * dx[0]) * dxi[0];
+            const amrex::Real y =
+                (p.pos(1) - problo[1] - offset[1] * dx[1]) * dxi[1];
+            const amrex::Real z =
+                (p.pos(2) - problo[2] - offset[2] * dx[2]) * dxi[2];
+
+            // Round to the nearest data point index
+            const int i = static_cast<int>(std::round(x));
+            const int j = static_cast<int>(std::round(y));
+            const int k = static_cast<int>(std::round(z));
+
+            parr[ip] = farr(i, j, k, ic);
+        });
+    }
+
     template <typename FType>
     void sample_field(
         const int np,
@@ -194,7 +244,8 @@ private:
         const int lev,
         const FieldLoc floc,
         const int ncomp,
-        const int scomp)
+        const int scomp,
+        const bool use_nearest = false)
     {
         const auto& geom = m_mesh.Geom(lev);
         const auto dx = geom.CellSizeArray();
@@ -203,44 +254,34 @@ private:
         const int np = pti.numParticles();
         auto& pvec = pti.GetArrayOfStructs()();
         int fidx = scomp;
+
+        // Determine the stagger offset for this field location
+        amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> offset{};
+        switch (floc) {
+        case FieldLoc::NODE:
+            offset = {0.0_rt, 0.0_rt, 0.0_rt};
+            break;
+        case FieldLoc::CELL:
+            offset = {0.5_rt, 0.5_rt, 0.5_rt};
+            break;
+        case FieldLoc::XFACE:
+            offset = {0.0_rt, 0.5_rt, 0.5_rt};
+            break;
+        case FieldLoc::YFACE:
+            offset = {0.5_rt, 0.0_rt, 0.5_rt};
+            break;
+        case FieldLoc::ZFACE:
+            offset = {0.5_rt, 0.5_rt, 0.0_rt};
+            break;
+        }
+
         for (int ic = 0; ic < ncomp; ++ic) {
             auto& parr = pti.GetStructOfArrays().GetRealData(fidx++);
-
-            switch (floc) {
-            case FieldLoc::NODE: {
-                amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> offset{
-                    0.0_rt, 0.0_rt, 0.0_rt};
+            if (use_nearest) {
+                sample_field_nearest(
+                    np, ic, pvec, parr, farr, plo, dxi, dx, offset);
+            } else {
                 sample_field(np, ic, pvec, parr, farr, plo, dxi, dx, offset);
-                break;
-            }
-
-            case FieldLoc::CELL: {
-                amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> offset{
-                    0.5_rt, 0.5_rt, 0.5_rt};
-                sample_field(np, ic, pvec, parr, farr, plo, dxi, dx, offset);
-                break;
-            }
-
-            case FieldLoc::XFACE: {
-                amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> offset{
-                    0.0_rt, 0.5_rt, 0.5_rt};
-                sample_field(np, ic, pvec, parr, farr, plo, dxi, dx, offset);
-                break;
-            }
-
-            case FieldLoc::YFACE: {
-                amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> offset{
-                    0.5_rt, 0.0_rt, 0.5_rt};
-                sample_field(np, ic, pvec, parr, farr, plo, dxi, dx, offset);
-                break;
-            }
-
-            case FieldLoc::ZFACE: {
-                amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> offset{
-                    0.5_rt, 0.5_rt, 0.0_rt};
-                sample_field(np, ic, pvec, parr, farr, plo, dxi, dx, offset);
-                break;
-            }
             }
         }
     }
@@ -248,6 +289,9 @@ private:
     const amrex::AmrCore& m_mesh;
 
     long m_total_particles{0};
+
+    //! Interpolation order for sampling: 0 = nearest-neighbor, 1 = linear
+    int m_interpolation_order{1};
 };
 
 } // namespace sampling
