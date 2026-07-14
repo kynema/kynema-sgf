@@ -83,7 +83,7 @@ struct FastTurbine : public ext_turb::ExternalTurbine
 
     int num_vel_pts_blade() const override { return num_blade_elem; }
 
-#if OPENFAST_VERSION_MAJOR != 4
+#if OPENFAST_VERSION_MAJOR < 4
     exw_fast::SC_DX_InputType to_sc;
     exw_fast::SC_DX_OutputType from_sc;
 #endif
@@ -97,7 +97,7 @@ struct FastSolverData
     int m_num_sc_inputs{0};
     int m_num_sc_outputs{0};
 
-#if OPENFAST_VERSION_MAJOR == 4
+#if OPENFAST_VERSION_MAJOR >= 4
     int m_inflow_type{2};
 #endif
 
