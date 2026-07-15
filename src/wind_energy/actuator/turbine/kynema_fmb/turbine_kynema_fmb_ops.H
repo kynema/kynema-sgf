@@ -21,10 +21,12 @@ struct ReadInputsOp<TurbineKynemaFMB, SrcTrait>
         // Always need an input file, will use a restart file if included
 
         pp.get("kynema_fmb_input_file", tf.input_file);
-        pp.query("kynema_fmb_restart_file", tf.checkpoint_file);
+        pp.query("kynema_fmb_restart_step", tf.checkpoint_file);
 
         std::string sim_mode = "init";
         if (!tf.checkpoint_file.empty()) {
+            int checkpoint_step = std::stoi(tf.checkpoint_file);
+            tf.checkpoint_file = exw_kynema::checkpoint_filename(checkpoint_step, tf.tlabel);
             sim_mode = "restart";
             AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
                 amrex::FileSystem::Exists(tf.checkpoint_file),

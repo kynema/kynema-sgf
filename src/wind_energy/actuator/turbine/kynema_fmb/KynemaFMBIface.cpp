@@ -720,11 +720,8 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::
     auto& fi = *m_turbine_data[tid];
 
     // Write the checkpoint file
-    std::stringstream idx_str;
-    idx_str << std::setfill('0') << std::setw(5)
-            << fi.time_index / fi.num_substeps;
     fi.interface->WriteCheckpointFile(
-        "kynema_fmb_" + fi.tlabel + "_" + idx_str.str() + ".chk");
+        checkpoint_filename(fi.time_index / fi.num_substeps, fi.tlabel));
 }
 
 template <>

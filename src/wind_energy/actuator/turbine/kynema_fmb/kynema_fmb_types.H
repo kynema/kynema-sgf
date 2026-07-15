@@ -8,6 +8,17 @@
 
 using namespace amrex::literals;
 
+namespace exw_kynema {
+
+static std::string checkpoint_filename(int time_index, std::string turbine_name)
+{
+    std::stringstream idx_str;
+    idx_str << "kynema_fmb_" << std::setfill('0') << std::setw(5) << time_index
+            << "_" << turbine_name << ".chk";
+    return idx_str.str();
+}
+}
+
 namespace ext_turb {
 
 /** Representation of a turbine for exchanging data with Kynema-FMB
