@@ -1,0 +1,3 @@
+FILE = ../act_kynema_fmb_alm/act_kynema_fmb_alm.inp
+io.restart_file = ../act_kynema_fmb_alm/chk00003
+Actuator.TurbineKynemaFMBLine.kynema_fmb_checkpoint_step = 3
