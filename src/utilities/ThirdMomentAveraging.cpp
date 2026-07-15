@@ -171,7 +171,7 @@ void ThirdMomentAveraging::compute_average(const IndexSelector& idxOp)
     const auto& mesh = m_plane_average1.field().repo().mesh();
     int finestLevel = mesh.finestLevel();
     if (max_lev >= 0) {
-        finestLevel = std::min(max_lev, finestLevel);
+        finestLevel = amrex::min<int>(max_lev, finestLevel);
     }
     const auto dir = m_plane_average1.axis();
     const bool no_ghost =

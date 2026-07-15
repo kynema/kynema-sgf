@@ -6,6 +6,7 @@
 #include "AMReX_MFIter.H"
 #include "AMReX_PlotFileUtil.H"
 #include "AMReX_REAL.H"
+#include "AMReX_Reduce.H"
 
 using namespace amrex::literals;
 
@@ -39,6 +40,71 @@ void init_field(kynema_sgf::Field& fld)
             });
     }
     amrex::Gpu::streamSynchronize();
+}
+
+//! Free function (NOT a class method) so the extended device lambda inside
+//! it is legal under nvcc's rules. Checks that mf_out matches the expected
+//! density field for the "chunk1" style subvolume (single dx applied
+//! uniformly, expected = dx_sv * (i + j + k) + offset).
+amrex::Real max_error_chunk1(
+    amrex::MultiFab& mf_out, const amrex::Real dx_sv, const amrex::Real dx_dom)
+{
+    amrex::ReduceOps<amrex::ReduceOpMax> reduce_op;
+    amrex::ReduceData<amrex::Real> reduce_data(reduce_op);
+    using ReduceTuple = typename decltype(reduce_data)::Type;
+
+    const amrex::Real offset = 3.0_rt * 0.5_rt * dx_dom;
+
+    for (amrex::MFIter mfi(mf_out); mfi.isValid(); ++mfi) {
+        const amrex::Box& bx = mfi.validbox();
+        const auto arr = mf_out.const_array(mfi);
+
+        reduce_op.eval(
+            bx, reduce_data,
+            [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept -> ReduceTuple {
+                const amrex::Real expected =
+                    dx_sv * static_cast<amrex::Real>(i + j + k) + offset;
+                return {amrex::Math::abs(arr(i, j, k) - expected)};
+            });
+    }
+
+    amrex::Real max_err = amrex::get<0>(reduce_data.value(reduce_op));
+    amrex::ParallelDescriptor::ReduceRealMax(max_err);
+    return max_err;
+}
+
+//! Free function for the "chunk2" style subvolume (separate dx/dy/dz).
+amrex::Real max_error_chunk2(
+    amrex::MultiFab& mf_out,
+    const amrex::Real dx_sv,
+    const amrex::Real dy_sv,
+    const amrex::Real dz_sv,
+    const amrex::Real dx_dom)
+{
+    amrex::ReduceOps<amrex::ReduceOpMax> reduce_op;
+    amrex::ReduceData<amrex::Real> reduce_data(reduce_op);
+    using ReduceTuple = typename decltype(reduce_data)::Type;
+
+    const amrex::Real offset = 3.0_rt * 0.5_rt * dx_dom;
+
+    for (amrex::MFIter mfi(mf_out); mfi.isValid(); ++mfi) {
+        const amrex::Box& bx = mfi.validbox();
+        const auto arr = mf_out.const_array(mfi);
+
+        reduce_op.eval(
+            bx, reduce_data,
+            [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept -> ReduceTuple {
+                const amrex::Real expected =
+                    dx_sv * static_cast<amrex::Real>(i) +
+                    dy_sv * static_cast<amrex::Real>(j) +
+                    dz_sv * static_cast<amrex::Real>(k) + offset;
+                return {amrex::Math::abs(arr(i, j, k) - expected)};
+            });
+    }
+
+    amrex::Real max_err = amrex::get<0>(reduce_data.value(reduce_op));
+    amrex::ParallelDescriptor::ReduceRealMax(max_err);
+    return max_err;
 }
 
 class SubvolumeTest : public MeshTest
@@ -104,7 +170,6 @@ TEST_F(SubvolumeTest, rectangular_subvolume_output)
     subvol.output_actions();
 
     {
-
         const std::filesystem::path header_path(
             "post_processing/subvolume_chunk100000/Header");
         EXPECT_TRUE(std::filesystem::exists(header_path));
@@ -116,32 +181,16 @@ TEST_F(SubvolumeTest, rectangular_subvolume_output)
         EXPECT_EQ(pf.varNames()[0], "density");
 
         auto mf_out = pf.get(0, "density");
-        for (amrex::MFIter mfi(mf_out); mfi.isValid(); ++mfi) {
-            const auto bx = mfi.validbox();
-            const auto arr = mf_out.const_array(mfi);
-            const auto lo = amrex::lbound(bx);
-            const auto hi = amrex::ubound(bx);
+        const amrex::Real dx_sv = 4.0_rt;
+        const amrex::Real dx_dom = 128.0_rt / 32.0_rt;
+        const amrex::Real tol =
+            std::numeric_limits<amrex::Real>::epsilon() * 1.0e3_rt;
 
-            for (int k = lo.z; k <= hi.z; ++k) {
-                for (int j = lo.y; j <= hi.y; ++j) {
-                    for (int i = lo.x; i <= hi.x; ++i) {
-                        const amrex::Real dx_sv = 4.0_rt;
-                        const amrex::Real dx_dom = 128.0_rt / 32.0_rt;
-                        const amrex::Real expected =
-                            dx_sv * static_cast<amrex::Real>(i + j + k) +
-                            3.0_rt * 0.5_rt * dx_dom;
-                        EXPECT_NEAR(
-                            arr(i, j, k), expected,
-                            std::numeric_limits<amrex::Real>::epsilon() *
-                                1.0e3_rt);
-                    }
-                }
-            }
-        }
+        const amrex::Real max_err = max_error_chunk1(mf_out, dx_sv, dx_dom);
+        EXPECT_LE(max_err, tol);
     }
 
     {
-
         const std::filesystem::path header_path(
             "post_processing/subvolume_chunk200000/Header");
         EXPECT_TRUE(std::filesystem::exists(header_path));
@@ -153,32 +202,16 @@ TEST_F(SubvolumeTest, rectangular_subvolume_output)
         EXPECT_EQ(pf.varNames()[0], "density");
 
         auto mf_out = pf.get(0, "density");
-        for (amrex::MFIter mfi(mf_out); mfi.isValid(); ++mfi) {
-            const auto bx = mfi.validbox();
-            const auto arr = mf_out.const_array(mfi);
-            const auto lo = amrex::lbound(bx);
-            const auto hi = amrex::ubound(bx);
+        const amrex::Real dx_sv = 8.0_rt;
+        const amrex::Real dy_sv = 16.0_rt;
+        const amrex::Real dz_sv = 12.0_rt;
+        const amrex::Real dx_dom = 128.0_rt / 32.0_rt;
+        const amrex::Real tol =
+            std::numeric_limits<amrex::Real>::epsilon() * 1.0e3_rt;
 
-            for (int k = lo.z; k <= hi.z; ++k) {
-                for (int j = lo.y; j <= hi.y; ++j) {
-                    for (int i = lo.x; i <= hi.x; ++i) {
-                        const amrex::Real dx_sv = 8.0_rt;
-                        const amrex::Real dy_sv = 16.0_rt;
-                        const amrex::Real dz_sv = 12.0_rt;
-                        const amrex::Real dx_dom = 128.0_rt / 32.0_rt;
-                        const amrex::Real expected =
-                            dx_sv * static_cast<amrex::Real>(i) +
-                            dy_sv * static_cast<amrex::Real>(j) +
-                            dz_sv * static_cast<amrex::Real>(k) +
-                            3.0_rt * 0.5_rt * dx_dom;
-                        EXPECT_NEAR(
-                            arr(i, j, k), expected,
-                            std::numeric_limits<amrex::Real>::epsilon() *
-                                1.0e3_rt);
-                    }
-                }
-            }
-        }
+        const amrex::Real max_err =
+            max_error_chunk2(mf_out, dx_sv, dy_sv, dz_sv, dx_dom);
+        EXPECT_LE(max_err, tol);
     }
 
     std::error_code ec;
