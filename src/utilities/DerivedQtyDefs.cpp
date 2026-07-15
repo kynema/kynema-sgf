@@ -135,6 +135,7 @@ void MaskTerrain::operator()(ScratchField& fld, const int scomp) const
     const int ncomp = num_comp();
     const int dstcomp = scomp;
     const int nlevels = fld.repo().num_active_levels();
+    const amrex::Real nan = std::numeric_limits<amrex::Real>::quiet_NaN();
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& arrs = fld(lev).arrays();
         const auto& blank_arrs = (*m_blank)(lev).const_arrays();
@@ -142,13 +143,11 @@ void MaskTerrain::operator()(ScratchField& fld, const int scomp) const
             fld(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 if (blank_arrs[nbx](i, j, k, 0) == 1) {
                     for (int n = 0; n < ncomp; ++n) {
-                        arrs[nbx](i, j, k, dstcomp + n) =
-                            std::numeric_limits<amrex::Real>::quiet_NaN();
+                        arrs[nbx](i, j, k, dstcomp + n) = nan;
                     }
                 }
             });
     }
-    amrex::Gpu::streamSynchronize();
 }
 
 FieldComponents::FieldComponents(
