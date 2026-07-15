@@ -43,6 +43,7 @@ struct ActuatorSectorData
 
     //! Rotor spin angular speed [rad/s]
     amrex::Real omega{0.0_rt};
+    bool user_omega{false};
 
     //! Initial rotor hub center in the CFD frame [m]
     vs::Vector center0{0.0_rt, 0.0_rt, 0.0_rt};
@@ -178,6 +179,14 @@ struct ActuatorSectorData
 
     //! Integrated torque about the rotor normal [m^5/s^2]
     amrex::Real torque{0.0_rt};
+
+    //! Integrated density-normalized force applied to the fluid in the CFD
+    //! frame [m^4/s^2]
+    vs::Vector integrated_force{0.0_rt, 0.0_rt, 0.0_rt};
+
+    //! Integrated density-normalized moment applied to the fluid about the
+    //! rotor hub [m^5/s^2]
+    vs::Vector integrated_moment{0.0_rt, 0.0_rt, 0.0_rt};
 };
 
 struct ActuatorSector : public ActuatorType

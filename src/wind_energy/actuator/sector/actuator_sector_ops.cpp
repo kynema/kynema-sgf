@@ -255,6 +255,38 @@ void update_midpoint_sample_points(ActuatorSector::DataType& data)
     }
 }
 
+void set_placement(
+    ActuatorSector::DataType& data,
+    const vs::Vector& center,
+    const vs::Vector& rotor_normal,
+    const vs::Vector& translation_velocity)
+{
+    auto& meta = data.meta();
+    meta.center0 = center;
+    meta.center = center;
+    meta.rotor_normal = rotor_normal;
+    meta.translation_velocity = translation_velocity;
+    meta.rotor_angular_velocity = vs::Vector::zero();
+    meta.user_rotor_angular_velocity = true;
+
+    const amrex::Real max_eps = local_epsilon(meta, max_interp_chord(meta));
+    const amrex::Real search_radius =
+        meta.rotor_radius + meta.support_radius_over_epsilon * max_eps;
+    if (vs::mag(translation_velocity) >
+        std::numeric_limits<amrex::Real>::epsilon()) {
+        const auto& geom = data.sim().mesh().Geom(0);
+        const auto plo = geom.ProbLoArray();
+        const auto phi = geom.ProbHiArray();
+        data.info().bound_box =
+            amrex::RealBox(plo[0], plo[1], plo[2], phi[0], phi[1], phi[2]);
+    } else {
+        data.info().bound_box = amrex::RealBox(
+            center.x() - search_radius, center.y() - search_radius,
+            center.z() - search_radius, center.x() + search_radius,
+            center.y() + search_radius, center.z() + search_radius);
+    }
+}
+
 void build_gaussian_table(ActuatorSectorData& meta)
 {
     if (meta.gaussian_table_error <= 0.0_rt) {
@@ -425,7 +457,15 @@ void ReadInputsOp<ActuatorSector, ActSrcSector>::operator()(
 {
     auto& meta = data.meta();
     pp.get("rotor_diameter", meta.rotor_diameter);
-    pp.get("omega", meta.omega);
+    if (meta.user_omega) {
+        if (pp.contains("omega")) {
+            amrex::Abort(
+                "ActuatorSector omega was set by its owning model and must "
+                "not also be specified in the shared sector inputs");
+        }
+    } else {
+        pp.get("omega", meta.omega);
+    }
     pp.get("airfoil_table", meta.airfoil_file);
     pp.query("airfoil_type", meta.airfoil_type);
     pp.query("num_blades", meta.num_blades);
@@ -602,6 +642,8 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
     VecList force_theta_normal(nvel, vs::Vector::zero());
     meta.thrust = 0.0_rt;
     meta.torque = 0.0_rt;
+    meta.integrated_force = vs::Vector::zero();
+    meta.integrated_moment = vs::Vector::zero();
 
     // First compute blade-section loads at the midpoint sample locations. The
     // force here is per unit span [m^3/s^2] in kinematic units and is converted
@@ -720,6 +762,10 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
                     meta.dr[ir] / static_cast<amrex::Real>(ntheta);
                 grid.force[iq] = wt * ((e_theta * force_theta_normal[ip].x()) +
                                        (e_normal * force_theta_normal[ip].y()));
+                meta.integrated_force = meta.integrated_force + grid.force[iq];
+                meta.integrated_moment =
+                    meta.integrated_moment +
+                    ((grid.pos[iq] - meta.center) ^ grid.force[iq]);
                 grid.epsilon[iq] = vs::Vector::one() * meta.epsilon_profile[ir];
                 ++iq;
             }
