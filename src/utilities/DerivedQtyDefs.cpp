@@ -1,3 +1,5 @@
+#include <limits>
+
 #include "src/utilities/DerivedQtyDefs.H"
 #include "src/core/field_ops.H"
 #include "src/fvm/fvm.H"
@@ -109,6 +111,44 @@ void Laplacian::operator()(ScratchField& fld, const int scomp) const
     AMREX_ASSERT(m_phi->num_grow() > amrex::IntVect(0));
     auto lapphi = fld.subview(scomp, num_comp());
     fvm::laplacian(lapphi, *m_phi);
+}
+
+MaskTerrain::MaskTerrain(
+    const FieldRepo& repo, const std::vector<std::string>& args)
+{
+    AMREX_ALWAYS_ASSERT(args.size() == 1U);
+    m_phi = &repo.get_field(args[0]);
+    if (!repo.int_field_exists("terrain_blank")) {
+        amrex::Abort(
+            "mask_terrain requires the terrain_blank int field; enable a "
+            "physics module that declares it (e.g. TerrainDrag or "
+            "ChannelBuilder).");
+    }
+    m_blank = &repo.get_int_field("terrain_blank");
+}
+
+void MaskTerrain::operator()(ScratchField& fld, const int scomp) const
+{
+    AMREX_ASSERT(fld.num_comp() >= (scomp + num_comp()));
+    field_ops::copy(fld, *m_phi, 0, scomp, num_comp(), 0);
+
+    const int ncomp = num_comp();
+    const int dstcomp = scomp;
+    const int nlevels = fld.repo().num_active_levels();
+    for (int lev = 0; lev < nlevels; ++lev) {
+        const auto& arrs = fld(lev).arrays();
+        const auto& blank_arrs = (*m_blank)(lev).const_arrays();
+        amrex::ParallelFor(
+            fld(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                if (blank_arrs[nbx](i, j, k, 0) == 1) {
+                    for (int n = 0; n < ncomp; ++n) {
+                        arrs[nbx](i, j, k, dstcomp + n) =
+                            std::numeric_limits<amrex::Real>::quiet_NaN();
+                    }
+                }
+            });
+    }
+    amrex::Gpu::streamSynchronize();
 }
 
 FieldComponents::FieldComponents(
