@@ -721,7 +721,8 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::
 
     // Write the checkpoint file
     fi.interface->WriteCheckpointFile(
-        checkpoint_filename(fi.time_index / fi.num_substeps, fi.tlabel));
+        exw_kynema::checkpoint_filename(
+            fi.time_index / fi.num_substeps, fi.tlabel));
 }
 
 template <>
