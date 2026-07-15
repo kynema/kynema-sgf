@@ -16,10 +16,10 @@ struct ReadInputsOp<TurbineKynemaFMB, SrcTrait>
     operator()(TurbineKynemaFMB::DataType& data, const utils::ActParser& pp)
     {
         auto& tf = data.meta().ext_data;
-        
+
         // Avoid using directly specified "modes"
         // Always need an input file, will use a restart file if included
-        
+
         pp.get("kynema_fmb_input_file", tf.input_file);
         pp.query("kynema_fmb_restart_file", tf.checkpoint_file);
 
@@ -27,9 +27,10 @@ struct ReadInputsOp<TurbineKynemaFMB, SrcTrait>
         if (!tf.checkpoint_file.empty()) {
             sim_mode = "restart";
             AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-            amrex::FileSystem::Exists(tf.checkpoint_file),
-            "turbine_kynema_fmb_ops: Cannot find Kynema-FMB checkpoint file: " +
-                tf.checkpoint_file);
+                amrex::FileSystem::Exists(tf.checkpoint_file),
+                "turbine_kynema_fmb_ops: Cannot find Kynema-FMB checkpoint "
+                "file: " +
+                    tf.checkpoint_file);
         }
         if (sim_mode == "init") {
             tf.sim_mode = ::ext_turb::SimMode::init;

@@ -823,7 +823,8 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_replay_turbine(
     KynemaFMBTurbine& fi)
 {
     // Code should never reach here
-    amrex::Abort("KynemaFMBIface: replaying Kynema-FMB turbine is not implemented");
+    amrex::Abort(
+        "KynemaFMBIface: replaying Kynema-FMB turbine is not implemented");
 }
 
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
