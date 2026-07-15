@@ -16,27 +16,27 @@ struct ReadInputsOp<TurbineKynemaFMB, SrcTrait>
     operator()(TurbineKynemaFMB::DataType& data, const utils::ActParser& pp)
     {
         auto& tf = data.meta().ext_data;
-        // Only one mode available for now
-        const std::string sim_mode{"init"};
+        
+        // Avoid using directly specified "modes"
+        // Always need an input file, will use a restart file if included
+        
+        pp.get("kynema_fmb_input_file", tf.input_file);
+        pp.query("kynema_fmb_restart_file", tf.checkpoint_file);
 
+        std::string sim_mode = "init";
+        if (!tf.checkpoint_file.empty()) {
+            sim_mode = "restart";
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            amrex::FileSystem::Exists(tf.checkpoint_file),
+            "turbine_kynema_fmb_ops: Cannot find Kynema-FMB checkpoint file: " +
+                tf.checkpoint_file);
+        }
         if (sim_mode == "init") {
             tf.sim_mode = ::ext_turb::SimMode::init;
             amrex::Print() << "Initializing turbine:" << tf.tlabel << std::endl;
-        } else if (sim_mode == "replay") {
-            tf.sim_mode = ::ext_turb::SimMode::replay;
-            amrex::Print() << "Replaying turbine:" << tf.tlabel << std::endl;
-        } else if (sim_mode == "restart") {
+        } else {
             tf.sim_mode = ::ext_turb::SimMode::restart;
             amrex::Print() << "Restarting turbine:" << tf.tlabel << std::endl;
-        } else {
-            amrex::Abort(
-                "Actuator: Invalid Kynema simulation mode: " + sim_mode);
-        }
-
-        if (tf.sim_mode == ::ext_turb::SimMode::restart) {
-            pp.get("kynema_fmb_restart_file", tf.checkpoint_file);
-        } else {
-            pp.get("kynema_fmb_input_file", tf.input_file);
         }
 
         AMREX_ALWAYS_ASSERT_WITH_MESSAGE(

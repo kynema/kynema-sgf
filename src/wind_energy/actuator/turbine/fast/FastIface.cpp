@@ -197,7 +197,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::prepare_netcdf_file(
     amrex::ignore_unused(fi);
     amrex::OutStream()
         << "WARNING: FastIface: NetCDF support was not enabled during compile "
-           "time. FastIface cannot support restart."
+           "time. FastIface cannot support legacy replay capability."
         << std::endl;
 #endif
 }
