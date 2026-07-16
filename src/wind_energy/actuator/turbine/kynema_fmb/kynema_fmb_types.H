@@ -17,7 +17,7 @@ static std::string checkpoint_filename(int time_index, std::string turbine_name)
             << "_" << turbine_name << ".chk";
     return idx_str.str();
 }
-}
+} // namespace exw_kynema
 
 namespace ext_turb {
 
