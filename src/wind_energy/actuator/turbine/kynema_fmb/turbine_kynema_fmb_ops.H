@@ -15,6 +15,8 @@ struct ReadInputsOp<TurbineKynemaFMB, SrcTrait>
     void
     operator()(TurbineKynemaFMB::DataType& data, const utils::ActParser& pp)
     {
+        read_ops<TurbineKynemaFMB::DataType>(data, pp);
+
         auto& tf = data.meta().ext_data;
 
         // Avoid using directly specified "modes"
@@ -40,10 +42,11 @@ struct ReadInputsOp<TurbineKynemaFMB, SrcTrait>
         }
         if (sim_mode == "init") {
             tf.sim_mode = ::ext_turb::SimMode::init;
-            amrex::Print() << "Initializing turbine:" << tf.tlabel << std::endl;
+            amrex::Print() << "Initializing turbine: " << tf.tlabel
+                           << std::endl;
         } else {
             tf.sim_mode = ::ext_turb::SimMode::restart;
-            amrex::Print() << "Restarting turbine:" << tf.tlabel << std::endl;
+            amrex::Print() << "Restarting turbine: " << tf.tlabel << std::endl;
         }
 
         AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
@@ -72,8 +75,6 @@ struct ReadInputsOp<TurbineKynemaFMB, SrcTrait>
                 tower_ref_axis["z"]["values"].as<std::vector<amrex::Real>>();
             data.info().hub_height = z_values[z_values.size() - 1];
         }
-
-        read_ops<TurbineKynemaFMB::DataType>(data, pp);
 
         // Do Kynema-SGF inputs specific to kynema_fmb turbine
         tf.fluid_density = data.meta().density;
