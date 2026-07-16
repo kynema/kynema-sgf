@@ -31,8 +31,8 @@ void make_component_views(datatype& data)
     const int num_blades = tdata.num_blades;
     const int num_pts_blade = tdata.num_pts_blade;
     const int num_vel_pts_blade = tdata.num_vel_pts_blade;
-    const int offset = tdata.ext_data.offset_force;
-    const int offset_vel = tdata.ext_data.offset_velocity;
+    const int offset = tdata.ext_data->offset_force();
+    const int offset_vel = tdata.ext_data->offset_velocity();
 
     for (int ib = 0; ib < num_blades; ++ib) {
         ComponentView cv;
