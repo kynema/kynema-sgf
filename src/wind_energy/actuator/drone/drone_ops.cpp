@@ -127,7 +127,8 @@ void ReadInputsOp<Drone, ActSrcDrone>::operator()(
         for (int i = 0; i < meta.num_rotors; ++i) {
             const auto value = amrex::toLower(mirror_inputs[i]);
             if ((value != "true") && (value != "false")) {
-                input_error(label, "mirror_blades values must be true or false");
+                input_error(
+                    label, "mirror_blades values must be true or false");
             }
             meta.mirror_blades[i] = (value == "true");
         }

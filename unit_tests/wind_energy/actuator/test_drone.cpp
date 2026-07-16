@@ -86,9 +86,8 @@ protected:
             "translation_velocity",
             amrex::Vector<amrex::Real>{0.1_rt, -0.2_rt, 0.3_rt});
         pp_i.addarr(
-            "rotor_omegas",
-            amrex::Vector<amrex::Real>{
-                2500.0_rt, -2500.0_rt, 2500.0_rt, -2500.0_rt});
+            "rotor_omegas", amrex::Vector<amrex::Real>{
+                                2500.0_rt, -2500.0_rt, 2500.0_rt, -2500.0_rt});
         pp_i.addarr(
             "mirror_blades",
             amrex::Vector<std::string>{"false", "true", "false", "true"});
@@ -115,8 +114,7 @@ protected:
             pp_r.add("omega", (i % 2 == 0) ? 2500.0_rt : -2500.0_rt);
             if (i % 2 != 0) {
                 pp_r.addarr(
-                    "twist",
-                    amrex::Vector<amrex::Real>{-12.0_rt, -4.0_rt});
+                    "twist", amrex::Vector<amrex::Real>{-12.0_rt, -4.0_rt});
             }
             pp_r.addarr("center", centers[i]);
             pp_r.addarr(
@@ -291,7 +289,8 @@ TEST_F(DroneActuatorTest, matches_equivalent_standalone_sectors)
     remove(m_airfoil_file.c_str());
 }
 
-TEST_F(DroneActuatorTest, counter_rotating_rotors_have_same_axial_force_direction)
+TEST_F(
+    DroneActuatorTest, counter_rotating_rotors_have_same_axial_force_direction)
 {
     namespace act = kynema_sgf::actuator;
 
