@@ -25,8 +25,12 @@ struct ReadInputsOp<TurbineKynemaFMB, SrcTrait>
 
         std::string sim_mode = "init";
         if (!tf.checkpoint_file.empty()) {
+            std::string checkpoint_dir = ".";
+            pp.query("kynema_fmb_restart_directory", checkpoint_dir);
             int checkpoint_step = std::stoi(tf.checkpoint_file);
-            tf.checkpoint_file = exw_kynema::checkpoint_filename(checkpoint_step, tf.tlabel);
+            tf.checkpoint_file =
+                checkpoint_dir + "/" +
+                exw_kynema::checkpoint_filename(checkpoint_step, tf.tlabel);
             sim_mode = "restart";
             AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
                 amrex::FileSystem::Exists(tf.checkpoint_file),
