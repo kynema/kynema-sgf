@@ -31,14 +31,14 @@ void make_component_views(datatype& data)
     const int num_blades = tdata.num_blades;
     const int num_pts_blade = tdata.num_pts_blade;
     const int num_vel_pts_blade = tdata.num_vel_pts_blade;
+    const int offset = tdata.ext_data.offset_force;
+    const int offset_vel = tdata.ext_data.offset_velocity;
 
     for (int ib = 0; ib < num_blades; ++ib) {
         ComponentView cv;
 
-        // This might be another problem! for Kynema vs OpenFAST
-        // Only relevant for disks, I think. Would need to adjust start_vel
-        const auto start = ib * num_pts_blade + 1;
-        const auto start_vel = ib * num_vel_pts_blade;
+        const auto start = ib * num_pts_blade + offset;
+        const auto start_vel = ib * num_vel_pts_blade + offset_vel;
         // clang-format off
             cv.pos = ::kynema_sgf::utils::slice(
                 grid.pos, start, num_pts_blade);
@@ -62,7 +62,7 @@ void make_component_views(datatype& data)
     }
     if (tdata.num_pts_tower > 0) {
         const int num_pts_tower = tdata.num_pts_tower;
-        const int ntwr_start = num_blades * num_pts_blade + 1;
+        const int ntwr_start = num_blades * num_pts_blade + offset;
         auto& cv = tdata.tower;
 
         cv.pos =

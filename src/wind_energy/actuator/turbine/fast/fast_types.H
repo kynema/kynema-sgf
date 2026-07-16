@@ -92,6 +92,8 @@ struct FastTurbine : public ext_turb::ExternalTurbine
 struct FastSolverData
 {
     std::string output_dir{"fast_velocity_data"};
+    int m_offset_force{1};
+    int m_offset_velocity{0};
 
     int m_num_sc_inputs{0};
     int m_num_sc_outputs{0};
