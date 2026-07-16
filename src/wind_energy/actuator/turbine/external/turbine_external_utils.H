@@ -31,13 +31,12 @@ void make_component_views(datatype& data)
     const int num_blades = tdata.num_blades;
     const int num_pts_blade = tdata.num_pts_blade;
     const int num_vel_pts_blade = tdata.num_vel_pts_blade;
-    const int offset = tdata.ext_ptr->offset_force_points();
-    const int offset_vel = tdata.ext_ptr->offset_velocity_points();
+    const int offset_vel = tdata.velocity_points_offset;
 
     for (int ib = 0; ib < num_blades; ++ib) {
         ComponentView cv;
 
-        const auto start = ib * num_pts_blade + offset;
+        const auto start = ib * num_pts_blade + 1;
         const auto start_vel = ib * num_vel_pts_blade + offset_vel;
         // clang-format off
             cv.pos = ::kynema_sgf::utils::slice(
@@ -62,7 +61,7 @@ void make_component_views(datatype& data)
     }
     if (tdata.num_pts_tower > 0) {
         const int num_pts_tower = tdata.num_pts_tower;
-        const int ntwr_start = num_blades * num_pts_blade + offset;
+        const int ntwr_start = num_blades * num_pts_blade + 1;
         auto& cv = tdata.tower;
 
         cv.pos =

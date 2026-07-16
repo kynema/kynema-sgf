@@ -103,7 +103,7 @@ void init_data_op(datatype& data)
     amrex::ParallelDescriptor::Comm_dup(
         amrex::ParallelDescriptor::Communicator(), tdata.tcomm);
 
-    amrex::Array<int, 5> sz_info = {0, 0, 0, 0, 0};
+    amrex::Array<int, 6> sz_info = {0, 0, 0, 0, 0, 0};
     if (info.is_root_proc) {
         tdata.ext_ptr->init_turbine(tdata.ext_data.tid_local);
 
@@ -113,6 +113,7 @@ void init_data_op(datatype& data)
         sz_info[2] = tf.length_fluid_velocity(0);
         sz_info[3] = tf.num_pts_tower;
         sz_info[4] = tf.num_vel_pts_blade();
+        sz_info[5] = tdata.ext_ptr->offset_velocity_points();
     }
 
     // Broadcast data to everyone
@@ -127,6 +128,7 @@ void init_data_op(datatype& data)
         data.grid().resize(sz_info[1], sz_info[2]);
         tdata.chord.resize(sz_info[1]);
         tdata.num_pts_tower = sz_info[3];
+        tdata.velocity_points_offset = sz_info[5];
     }
 
     tdata.vel_rel.assign(sz_info[1], vs::Vector::zero());

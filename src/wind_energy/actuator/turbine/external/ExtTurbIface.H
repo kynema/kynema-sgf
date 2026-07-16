@@ -41,12 +41,6 @@ public:
         return static_cast<int>(m_turbine_data.size());
     }
 
-    // Offset index required to get to first points on blade
-    int offset_force_points() const
-    {
-        return m_solver_data.m_offset_force;
-    }
-
     int offset_velocity_points() const
     {
         return m_solver_data.m_offset_velocity;
