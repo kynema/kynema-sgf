@@ -190,7 +190,8 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                         (mut - 3.0_rt * stratification_sensor < tol) ? 0.0_rt
                                                                      : 1.0_rt;
                     stratification = std::sqrt(
-                        std::max(tol, mut - 3.0_rt * stratification_sensor));
+                        amrex::max<amrex::Real>(
+                            tol, mut - 3.0_rt * stratification_sensor));
                 } else {
                     stratification = std::sqrt(mut);
                 }

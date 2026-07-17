@@ -18,7 +18,8 @@ amrex::Real snap_to_nearest_cell_center(
     const auto& dom = geom.Domain();
 
     int idx = static_cast<int>(std::lround((x - plo[dir]) * dxi[dir] - 0.5_rt));
-    idx = std::max(dom.smallEnd(dir), std::min(dom.bigEnd(dir), idx));
+    idx = amrex::max<int>(
+        dom.smallEnd(dir), amrex::min<int>(dom.bigEnd(dir), idx));
 
     return plo[dir] + (static_cast<amrex::Real>(idx) + 0.5_rt) * dx[dir];
 }

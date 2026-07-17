@@ -33,7 +33,7 @@ FPlaneAveraging<FType>::FPlaneAveraging(
 
     int finestLevel = mesh.maxLevel();
     if (m_max_level >= 0) {
-        finestLevel = std::min(m_max_level, finestLevel);
+        finestLevel = amrex::min<int>(m_max_level, finestLevel);
     }
     const amrex::IntVect dom_lo_vec(geom[finestLevel].Domain().smallEnd());
     const amrex::IntVect dom_hi_vec(geom[finestLevel].Domain().bigEnd());
@@ -245,7 +245,7 @@ void FPlaneAveraging<FType>::compute_averages(const IndexSelector& idxOp)
     const auto& mesh = m_field.repo().mesh();
     int finestLevel = mesh.finestLevel();
     if (m_max_level >= 0) {
-        finestLevel = std::min(m_max_level, finestLevel);
+        finestLevel = amrex::min<int>(m_max_level, finestLevel);
     }
     const auto dir = m_axis;
     const bool no_ghost = (m_field.num_grow()[dir] == 0);
@@ -557,7 +557,7 @@ void VelPlaneAveraging::compute_hvelmag_averages(const IndexSelector& idxOp)
 
     int finestLevel = mesh.finestLevel();
     if (m_max_level >= 0) {
-        finestLevel = std::min(m_max_level, finestLevel);
+        finestLevel = amrex::min<int>(m_max_level, finestLevel);
     }
 
     for (int lev = 0; lev <= finestLevel; ++lev) {

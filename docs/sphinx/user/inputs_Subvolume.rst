@@ -41,7 +41,16 @@ The prefix is the label set in ``incflo.post_processing``. For example
 
    **type:** List of strings, optional, default is empty
 
-   Specify which derived field arrays should be output within the selected subvolume
+   Specify which derived field arrays should be output within the selected subvolume (e.g. mag_vorticity, mask_terrain(velocity)). 
+
+   The ``mask_terrain(<field>)`` derived field copies ``<field>`` and overwrites
+   every cell inside the terrain body (where ``terrain_blank == 1``) with ``NaN``,
+   producing a plot variable named ``<field>_masked``. For example,
+   ``mask_terrain(velocity)`` outputs ``velocity_masked``. It requires the
+   ``terrain_blank`` int field, which is provided by physics modules such as
+   ``TerrainDrag`` or ``ChannelBuilder``. The subvolume output copies derived
+   values directly into the output (no interpolation), so the ``NaN`` cells are
+   written to the plotfile unchanged.
 
 .. input_param:: subvol1.output_rename
 
