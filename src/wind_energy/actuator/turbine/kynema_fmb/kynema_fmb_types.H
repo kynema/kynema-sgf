@@ -230,7 +230,7 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
         return length_force(dir);
     }
 
-    int length_force(int dir) const override
+    int length_force(int /*dir*/) const override
     {
         unsigned int n_sect{1};
         for (unsigned int n = 0; n < interface->Aerodynamics().bodies.size();

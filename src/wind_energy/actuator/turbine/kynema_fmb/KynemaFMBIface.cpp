@@ -828,7 +828,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 template <>
 void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_replay_turbine(
-    KynemaFMBTurbine& fi)
+    KynemaFMBTurbine& /*fi*/)
 {
     // Code should never reach here
     amrex::Abort(
