@@ -30,6 +30,7 @@ struct ReadInputsOp<TurbineKynemaFMB, SrcTrait>
             std::string checkpoint_dir = ".";
             pp.query("kynema_fmb_restart_directory", checkpoint_dir);
             int checkpoint_step = std::stoi(tf.checkpoint_file);
+            tf.time_step = checkpoint_step;
             tf.checkpoint_file =
                 checkpoint_dir + "/" +
                 exw_kynema::checkpoint_filename(checkpoint_step, tf.tlabel);

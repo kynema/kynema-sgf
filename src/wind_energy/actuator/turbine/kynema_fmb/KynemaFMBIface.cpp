@@ -780,6 +780,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
         exw_kynema::build_controller(
             builder, fi.controller_shared_lib_path, fi.controller_input_file,
             fi.tlabel);
+        // Should this enable checkpoint reading if it is a restart?
     }
 
     // Create output
@@ -789,7 +790,6 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
     if (!fi.checkpoint_file.empty()) {
         builder.Turbine().SetRestartFilePath(fi.checkpoint_file);
     }
-    // Do I need to read the restart time as well?
 
     fi.interface = std::make_unique<kynema_fmb::interfaces::TurbineInterface>(
         builder.Solution().Input(), builder.Turbine().Input(),
@@ -812,6 +812,12 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
         amrex::Abort(
             "KynemaFMBIFace: Kynema-FMB timestep is not an integral "
             "multiple of CFD timestep");
+    }
+
+    // Offset time index if restarting from a checkpoint file
+    if (!fi.checkpoint_file.empty()) {
+        fi.time_step *= fi.num_substeps;
+        fi.interface->GetHostState().time_step = fi.time_step;
     }
 
     fi.allocate_buffers();
