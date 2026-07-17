@@ -116,7 +116,7 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
                                 .qqr_motion_map[node_index(n)][iq];
                 }
             }
-            const int idx = n * 9;
+            idx = n * 9;
             buffer_ori[idx + 0] =
                 q[0] * q[0] + q[1] * q[1] - q[2] * q[2] - q[3] * q[3];
             buffer_ori[idx + 1] = 2. * (q[1] * q[2] - q[0] * q[3]);
