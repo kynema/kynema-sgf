@@ -25,7 +25,7 @@ class CFDSim;
  *
  *  This class provides an API that can be used by concrete implementations to
  *  tag cells that must be refined based on a pre-defined criteria. The criteria
- *  can be a heuristic determined from the solution (e.g., vorticity magntiude
+ *  can be a heuristic determined from the solution (e.g., vorticity magnitude
  *  or gradients), or some user defined criteria (e.g., static, nested
  * refinements).
  */
