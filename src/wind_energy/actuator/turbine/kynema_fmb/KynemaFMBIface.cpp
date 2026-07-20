@@ -780,7 +780,8 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
         exw_kynema::build_controller(
             builder, fi.controller_shared_lib_path, fi.controller_input_file,
             fi.tlabel);
-        // Should this enable checkpoint reading if it is a restart?
+        // Should this enable controller checkpoint reading if it is a restart?
+        // TODO? No Kynema-FMB examples to reference for this
     }
 
     // Create output
