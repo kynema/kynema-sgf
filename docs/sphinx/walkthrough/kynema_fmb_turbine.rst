@@ -16,7 +16,7 @@ This setup differs from the precursor-driven turbine walkthrough in a few import
 * ``Actuator.type`` is set to ``TurbineKynemaFMBLine``, which couples the Kynema-SGF actuator forcing to a Kynema-FMB turbine model.
 * The turbine geometry and structural properties are not described directly in the Kynema-SGF input file. Instead, they are read from the WindIO YAML file specified by ``Actuator.TurbineKynemaFMBLine.kynema_fmb_input_file``.
 * The actuator discretization still needs to be provided in the Kynema-SGF input file. In this example that includes the blade and tower structural node counts, the number of aerodynamic force points, the Gaussian widths ``epsilon`` and ``epsilon_tower``, and the turbine base locations.
-* The turbine solver time step ``Actuator.TurbineKynemaFMBLine.dt`` must divide the Kynema-SGF time step exactly. In this case ``time.fixed_dt = 0.02`` and ``dt = 0.005``, so Kynema-FMB advances four substeps per flow solve.
+* The turbine solver time step ``Actuator.TurbineKynemaFMBLine.dt`` must divide the Kynema-SGF time step exactly. In this case ``time.fixed_dt = 0.02`` and ``dt = 0.005``, so Kynema-FMB advances four sub-steps per flow solve.
 * The checkpoint interval matters for both solvers. Kynema-SGF writes its usual AMR checkpoints with ``io.check_file`` and ``time.checkpoint_interval``, while the Kynema-FMB interface also writes a turbine checkpoint for each turbine at each Kynema-SGF checkpoint.
 
 The turbine-specific lines in the example are:

@@ -46,7 +46,7 @@ Example for ``TurbineKynemaFMBLine``::
 For a disk-based run, set ``Actuator.type = TurbineKynemaFMBDisk`` and replace the parameter prefix accordingly.
 
 Per-turbine placement
-"""""""""""""""""""
+"""""""""""""""""""""
 
 .. input_param:: Actuator.WTG01.base_position
 
@@ -55,7 +55,7 @@ Per-turbine placement
    Base position of the turbine in the global coordinate system. Replace ``WTG01`` with each entry listed in ``Actuator.labels``.
 
 Kynema-FMB turbine setup and coupling
-"""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.kynema_fmb_input_file
 
@@ -145,10 +145,10 @@ Kynema-FMB turbine setup and coupling
 
    **type:** Real, optional, default = same as Kynema-SGF time step
 
-   Kynema-FMB time step size. It must divide the Kynema-SGF time step so that the coupled solver can take an integer number of Kynema-FMB substeps per CFD time step.
+   Kynema-FMB time step size. It must divide the Kynema-SGF time step so that the coupled solver can take an integer number of Kynema-FMB sub-steps per CFD time step.
 
 Actuator forcing and output controls
-"""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.epsilon
 
@@ -229,7 +229,7 @@ Actuator forcing and output controls
    Frequency, in Kynema-SGF time steps, for writing the actuator NetCDF output produced by Kynema-SGF. Kynema-FMB's own turbine output is written separately every Kynema-SGF time step.
 
 Restart and controller options
-"""""""""""""""""""""""""
+""""""""""""""""""""""""""""""
 
 For a full coupled restart, these turbine-specific settings are used together with the standard Kynema-SGF flow restart input ``io.restart_file``.
 
@@ -258,7 +258,7 @@ For a full coupled restart, these turbine-specific settings are used together wi
    Path to the controller input file. When this value is provided, Kynema-SGF creates the Kynema-FMB controller interface and expects the shared library path to be set as well.
 
 Kynema-FMB solver options
-"""""""""""""""""""""""
+"""""""""""""""""""""""""
 
 .. input_param:: KynemaFMB.abs_err_tol
 
