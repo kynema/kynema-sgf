@@ -29,15 +29,15 @@ Example:
 
 .. input_param:: FreeSurfaceDamping.volume_fraction_damping
 
-   **type:** Boolean, optional, default = true
+   **type:** Boolean, optional, default = false
 
-   When enabled, the module smooths the volume fraction field using a local
-   horizontal 3x3 average before relaxing it toward the current state. If the
+   When enabled, the module relaxes the current volume fraction field toward 
+   a smoother distribution using a local horizontal 3x3 average. If the
    volume fraction changes, the density field is updated consistently.
 
 .. input_param:: FreeSurfaceDamping.global_damping
 
-   **type:** Boolean, optional, default = true
+   **type:** Boolean, optional, default = false
 
    When enabled, damping is applied throughout the domain. When disabled,
    damping is restricted to boundary zones whose widths are specified by the
@@ -47,11 +47,11 @@ Example:
 
 .. input_param:: FreeSurfaceDamping.time_scale_fraction
 
-   **type:** Real, optional, default = 0.5
+   **type:** Real, optional, default = 1.0
 
    Fraction of the computed damping update to apply on each call to the
    method. Smaller values make the damping act more gradually. This parameter
-   should not exceed 1.
+   should not exceed 1 or be less than 0.
 
 .. input_param:: FreeSurfaceDamping.length_xlo
 
