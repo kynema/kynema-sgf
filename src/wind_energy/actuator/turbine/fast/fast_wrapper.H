@@ -1,7 +1,7 @@
 #ifndef FAST_WRAPPER_H
 #define FAST_WRAPPER_H
 
-namespace exw_fast {
+namespace sgf_fast {
 
 #ifdef KYNEMA_SGF_USE_OPENFAST
 extern "C" {
@@ -11,7 +11,7 @@ extern "C" {
 using namespace amrex::literals;
 }
 
-extern void exw_fast_output_redirect(char*);
+extern void sgf_fast_output_redirect(char*);
 
 constexpr int fast_strlen() { return INTERFACE_STRING_LENGTH; }
 
@@ -25,7 +25,7 @@ constexpr int fast_strlen() { return INTERFACE_STRING_LENGTH; }
 
 constexpr int fast_strlen() { return 1025; }
 
-void exw_fast_output_redirect(char* /*unused*/) {}
+void sgf_fast_output_redirect(char* /*unused*/) {}
 
 void FAST_AllocateTurbines(int* /*unused*/, int* /*unused*/, char* /*unused*/)
 {}
@@ -164,6 +164,6 @@ using OfInputType = OpFM_InputType;
 using OfOutputType = OpFM_OutputType;
 #endif
 
-} // namespace exw_fast
+} // namespace sgf_fast
 
 #endif /* FAST_WRAPPER_H */

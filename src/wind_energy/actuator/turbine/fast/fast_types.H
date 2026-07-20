@@ -21,8 +21,8 @@ struct FastTurbine : public ext_turb::ExternalTurbine
     //! Node cluster type for the chord
     int chord_cluster_type{0};
 
-    exw_fast::OfInputType to_cfd;
-    exw_fast::OfOutputType from_cfd;
+    sgf_fast::OfInputType to_cfd;
+    sgf_fast::OfOutputType from_cfd;
 
     float* position_at_vel(int dir) const override
     {
@@ -84,8 +84,8 @@ struct FastTurbine : public ext_turb::ExternalTurbine
     int num_vel_pts_blade() const override { return num_blade_elem; }
 
 #if OPENFAST_VERSION_MAJOR < 4
-    exw_fast::SC_DX_InputType to_sc;
-    exw_fast::SC_DX_OutputType from_sc;
+    sgf_fast::SC_DX_InputType to_sc;
+    sgf_fast::SC_DX_OutputType from_sc;
 #endif
 };
 

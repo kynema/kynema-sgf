@@ -16,7 +16,7 @@
 
 using namespace amrex::literals;
 
-using namespace exw_fast;
+using namespace sgf_fast;
 
 namespace ext_turb {
 namespace {
