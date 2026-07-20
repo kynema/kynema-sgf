@@ -57,6 +57,7 @@ incflo.post_processing = sampling
 sampling.labels = volume1
 sampling.fields = velocity
 sampling.int_fields = terrain_blank
+sampling.derived_fields = mask_terrain(velocity)
 sampling.volume1.type        = VolumeSampler
 sampling.volume1.hi        = 600 600 200
 sampling.volume1.lo      =  400 400 0.0

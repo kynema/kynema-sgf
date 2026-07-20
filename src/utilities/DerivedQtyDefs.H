@@ -134,6 +134,26 @@ private:
     const Field* m_phi;
 };
 
+struct MaskTerrain : public DerivedQty::Register<MaskTerrain>
+{
+    static std::string identifier() { return "mask_terrain"; }
+
+    MaskTerrain(const FieldRepo& repo, const std::vector<std::string>& args);
+
+    [[nodiscard]] std::string name() const override
+    {
+        return m_phi->name() + "_masked";
+    }
+
+    [[nodiscard]] int num_comp() const override { return m_phi->num_comp(); }
+
+    void operator()(ScratchField& fld, int scomp = 0) const override;
+
+private:
+    const Field* m_phi;
+    const IntField* m_blank;
+};
+
 struct FieldComponents : public DerivedQty::Register<FieldComponents>
 {
     static std::string identifier() { return "components"; }
