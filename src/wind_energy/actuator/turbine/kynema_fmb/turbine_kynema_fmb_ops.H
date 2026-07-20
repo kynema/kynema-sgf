@@ -33,7 +33,7 @@ struct ReadInputsOp<TurbineKynemaFMB, SrcTrait>
             tf.time_index = checkpoint_step;
             tf.checkpoint_file =
                 checkpoint_dir + "/" +
-                exw_kynema::checkpoint_filename(checkpoint_step, tf.tlabel);
+                sgf_fmb::checkpoint_filename(checkpoint_step, tf.tlabel);
             sim_mode = "restart";
             AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
                 amrex::FileSystem::Exists(tf.checkpoint_file),
