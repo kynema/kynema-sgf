@@ -276,7 +276,7 @@ Kynema-FMB solver options
 
    **type:** Int, optional, default = 12
 
-   Maximum number of nonlinear iterations used by the Kynema-FMB solver per substep.
+   Maximum number of nonlinear iterations used by the Kynema-FMB solver per sub-step.
 
 .. input_param:: KynemaFMB.damping_factor
 
