@@ -457,7 +457,7 @@ void build_controller(
                                   .SetLibraryPath(controller_shared_lib_path)
                                   .SetFunctionName(controller_function_name)
                                   .SetInputFilePath(controller_input_file)
-                                  .SetControllerInput(controller_output_file);
+                                  .SetOutputFilePath(controller_output_file);
 }
 
 void update_turbine(::ext_turb::KynemaFMBTurbine& fi, bool advance)
@@ -716,7 +716,13 @@ template <>
 void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::
     write_turbine_checkpoint(int& tid)
 {
-    // write checkpoint
+    BL_PROFILE("kynema-sgf::KynemaFMBIface::write_turbine_checkpoint");
+    auto& fi = *m_turbine_data[tid];
+
+    // Write the checkpoint file
+    fi.interface->WriteCheckpointFile(
+        exw_kynema::checkpoint_filename(
+            fi.time_index / fi.num_substeps, fi.tlabel));
 }
 
 template <>
@@ -774,10 +780,17 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
         exw_kynema::build_controller(
             builder, fi.controller_shared_lib_path, fi.controller_input_file,
             fi.tlabel);
+        // Should this enable controller checkpoint reading if it is a restart?
+        // TODO? No Kynema-FMB examples to reference for this
     }
 
     // Create output
     builder.Outputs().SetOutputFilePath("kynema_fmb_" + fi.tlabel);
+
+    // Create checkpoint file
+    if (!fi.checkpoint_file.empty()) {
+        builder.Turbine().SetRestartFilePath(fi.checkpoint_file);
+    }
 
     fi.interface = std::make_unique<kynema_fmb::interfaces::TurbineInterface>(
         builder.Solution().Input(), builder.Turbine().Input(),
@@ -802,6 +815,12 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
             "multiple of CFD timestep");
     }
 
+    // Offset time index if restarting from a checkpoint file
+    if (!fi.checkpoint_file.empty()) {
+        fi.time_index *= fi.num_substeps;
+        fi.interface->SetTimeStepIndex(fi.time_index);
+    }
+
     fi.allocate_buffers();
     ::exw_kynema::update_turbine(fi, false);
 }
@@ -810,10 +829,11 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 template <>
 void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_replay_turbine(
-    KynemaFMBTurbine& fi)
+    KynemaFMBTurbine& /*fi*/)
 {
-
-    // Do we even do this???
+    // Code should never reach here
+    amrex::Abort(
+        "KynemaFMBIface: replaying Kynema-FMB turbine is not implemented");
 }
 
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
@@ -823,25 +843,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_restart_turbine(
 {
     BL_PROFILE("kynema-sgf::KynemaFMBIface::restart_turbine");
 
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-        amrex::FileSystem::Exists(fi.checkpoint_file + ".chkp"),
-        "KynemaFMBIface: Cannot find Kynema-FMB checkpoint file: " +
-            fi.checkpoint_file);
-
-    // Determine the number of substeps for Kynema per CFD timestep
-    fi.num_substeps = static_cast<int>(std::floor(fi.dt_cfd / fi.dt_ext));
-
-    AMREX_ALWAYS_ASSERT(fi.num_substeps > 0);
-    // Check that the time step sizes are consistent and Kynema advances at an
-    // integral multiple of CFD timestep
-    amrex::Real dt_err =
-        fi.dt_cfd / (static_cast<amrex::Real>(fi.num_substeps) * fi.dt_ext) -
-        1.0_rt;
-    if (dt_err > 1.0e-4_rt) {
-        amrex::Abort(
-            "KynemaFMBIFace: Kynema timestep is not an integral "
-            "multiple of CFD timestep");
-    }
+    ext_init_turbine(fi);
 }
 
 template class ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>;

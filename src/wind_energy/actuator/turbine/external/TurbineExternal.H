@@ -14,6 +14,7 @@ template <typename SolverTurbine, typename SolverData>
 struct TurbineExternalData : public TurbineBaseData
 {
     amrex::Real density{1.0_rt};
+    int velocity_points_offset;
 
     SolverTurbine ext_data;
     ::ext_turb::ExtTurbIface<SolverTurbine, SolverData>* ext_ptr{nullptr};

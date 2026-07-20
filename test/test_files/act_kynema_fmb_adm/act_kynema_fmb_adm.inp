@@ -1,0 +1,19 @@
+FILE = ../act_kynema_fmb_alm/act_kynema_fmb_alm.inp
+
+Actuator.type                            = TurbineKynemaFMBDisk     
+Actuator.TurbineKynemaFMBDisk.epsilon       = 5.0 5.0 5.0   
+Actuator.TurbineKynemaFMBDisk.epsilon_tower = 5.0 5.0 5.0         
+Actuator.TurbineKynemaFMBDisk.fllc          = false     
+Actuator.TurbineKynemaFMBDisk.kynema_fmb_input_file  = ../act_kynema_fmb_alm/NREL-5MW-aero.yaml
+Actuator.TurbineKynemaFMBDisk.num_struct_nodes_blade = 11
+Actuator.TurbineKynemaFMBDisk.num_struct_nodes_tower = 11
+Actuator.TurbineKynemaFMBDisk.num_points_blade       = 64
+Actuator.TurbineKynemaFMBDisk.num_points_tower       = 7
+Actuator.TurbineKynemaFMBDisk.rot_speed_rpm          = 12.1
+Actuator.TurbineKynemaFMBDisk.dt                     = 0.005
+Actuator.TurbineKynemaFMBDisk.fllc                   = false
+Actuator.TurbineKynemaFMBDisk.density                = 1.225
+Actuator.TurbineKynemaFMBDisk.nacelle_drag_coeff     = 1.0                 
+Actuator.TurbineKynemaFMBDisk.nacelle_area           = 8.0                 
+Actuator.TurbineKynemaFMBDisk.output_frequency       = 1                   
+Actuator.TurbineKynemaFMBDisk.num_blades             = 3

@@ -8,6 +8,17 @@
 
 using namespace amrex::literals;
 
+namespace exw_kynema {
+
+static std::string checkpoint_filename(int time_index, std::string turbine_name)
+{
+    std::stringstream idx_str;
+    idx_str << "kynema_fmb_" << std::setfill('0') << std::setw(5) << time_index
+            << "_" << turbine_name << ".chk";
+    return idx_str.str();
+}
+} // namespace exw_kynema
+
 namespace ext_turb {
 
 /** Representation of a turbine for exchanging data with Kynema-FMB
@@ -105,7 +116,7 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
                                 .qqr_motion_map[node_index(n)][iq];
                 }
             }
-            const int idx = n * 9;
+            idx = n * 9;
             buffer_ori[idx + 0] =
                 q[0] * q[0] + q[1] * q[1] - q[2] * q[2] - q[3] * q[3];
             buffer_ori[idx + 1] = 2. * (q[1] * q[2] - q[0] * q[3]);
@@ -219,7 +230,7 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
         return length_force(dir);
     }
 
-    int length_force(int dir) const override
+    int length_force(int /*dir*/) const override
     {
         unsigned int n_sect{1};
         for (unsigned int n = 0; n < interface->Aerodynamics().bodies.size();
@@ -271,6 +282,7 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
 struct KynemaFMBSolverData
 {
     std::string output_dir{"kynema_fmb_velocity_data"};
+    int m_offset_velocity{1};
 
     amrex::Real damping_factor{0.0_rt};
     int nl_iter_max{12};
