@@ -8,7 +8,7 @@
 
 using namespace amrex::literals;
 
-namespace exw_kynema {
+namespace sgf_fmb {
 
 static std::string checkpoint_filename(int time_index, std::string turbine_name)
 {
@@ -17,7 +17,7 @@ static std::string checkpoint_filename(int time_index, std::string turbine_name)
             << "_" << turbine_name << ".chk";
     return idx_str.str();
 }
-} // namespace exw_kynema
+} // namespace sgf_fmb
 
 namespace ext_turb {
 
