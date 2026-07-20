@@ -817,7 +817,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
     // Offset time index if restarting from a checkpoint file
     if (!fi.checkpoint_file.empty()) {
         fi.time_index *= fi.num_substeps;
-        // fi.interface->SetTimeStepIndex(fi.time_index);
+        fi.interface->SetTimeStepIndex(fi.time_index);
     }
 
     fi.allocate_buffers();
