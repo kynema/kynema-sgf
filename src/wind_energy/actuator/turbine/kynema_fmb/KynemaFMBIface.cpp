@@ -16,7 +16,7 @@
 
 using namespace amrex::literals;
 
-namespace exw_kynema {
+namespace sgf_fmb {
 void build_turbine(
     kynema_fmb::interfaces::TurbineInterfaceBuilder& builder,
     const YAML::Node wio,
@@ -502,7 +502,7 @@ void update_turbine(::ext_turb::KynemaFMBTurbine& fi, bool advance)
         fi.populate_buffers();
     }
 }
-} // namespace exw_kynema
+} // namespace sgf_fmb
 
 namespace ext_turb {
 
@@ -561,7 +561,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::init_solution(
 
     auto& fi = *m_turbine_data[local_id];
 
-    ::exw_kynema::update_turbine(fi, false);
+    ::sgf_fmb::update_turbine(fi, false);
 
     fi.is_solution0 = false;
 }
@@ -709,7 +709,7 @@ template <>
 void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::do_turbine_step(
     KynemaFMBTurbine& fi)
 {
-    ::exw_kynema::update_turbine(fi, true);
+    ::sgf_fmb::update_turbine(fi, true);
 }
 
 template <>
@@ -721,7 +721,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::
 
     // Write the checkpoint file
     fi.interface->WriteCheckpointFile(
-        exw_kynema::checkpoint_filename(
+        sgf_fmb::checkpoint_filename(
             fi.time_index / fi.num_substeps, fi.tlabel));
 }
 
@@ -748,13 +748,13 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
     const YAML::Node wio = YAML::LoadFile(fi.input_file);
 
     // Builds turbine, including blades, nacelle, and tower
-    exw_kynema::build_turbine(
+    sgf_fmb::build_turbine(
         builder, wio, fi.num_blades, fi.num_blade_elem, fi.num_tower_elem,
         fi.rotational_speed, fi.generator_power, fi.wind_speed, fi.yaw,
         fi.generator_efficiency);
 
     auto n_aero_sections =
-        exw_kynema::build_aero(builder, wio, (fi.num_pts_tower != 0));
+        sgf_fmb::build_aero(builder, wio, (fi.num_pts_tower != 0));
 
     if (n_aero_sections[0] != fi.num_pts_blade) {
         amrex::Abort(
@@ -777,7 +777,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
     }
 
     if (fi.controller_input_file.size() > 0) {
-        exw_kynema::build_controller(
+        sgf_fmb::build_controller(
             builder, fi.controller_shared_lib_path, fi.controller_input_file,
             fi.tlabel);
         // Should this enable controller checkpoint reading if it is a restart?
@@ -822,7 +822,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
     }
 
     fi.allocate_buffers();
-    ::exw_kynema::update_turbine(fi, false);
+    ::sgf_fmb::update_turbine(fi, false);
 }
 
 // cppcheck-suppress constParameterReference
