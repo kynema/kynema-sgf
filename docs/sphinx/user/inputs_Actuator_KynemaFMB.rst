@@ -45,14 +45,18 @@ Example for ``TurbineKynemaFMBLine``::
 
 For a disk-based run, set ``Actuator.type = TurbineKynemaFMBDisk`` and replace the parameter prefix accordingly.
 
+If the individual turbines (e.g. ``T0`` and ``T1``) differ in any other details, the input arguments can
+be specified using the turbine labels (e.g. ``Actuator.T0.nacelle_area``, ``Actuator.T1.nacelle_area``)
+instead of the turbine type prefix, which assigns the value to all turbines of that type.
+
 Per-turbine placement
 """""""""""""""""""""
 
-.. input_param:: Actuator.WTG01.base_position
+.. input_param:: Actuator.T0.base_position
 
    **type:** List of 3 real numbers, required
 
-   Base position of the turbine in the global coordinate system. Replace ``WTG01`` with each entry listed in ``Actuator.labels``.
+   Base position of the turbine in the global coordinate system. Replace ``T0`` with each entry listed in ``Actuator.labels``.
 
 Kynema-FMB turbine setup and coupling
 """""""""""""""""""""""""""""""""""""
@@ -85,7 +89,7 @@ Kynema-FMB turbine setup and coupling
 
    **type:** Int, required
 
-   Number of aerodynamic tower sections used by the actuator representation. Set this to ``0`` to disable tower aerodynamics. If nonzero, it must match the tower aerodynamic discretization available in the Kynema-FMB input.
+   Number of aerodynamic tower sections used by the actuator representation. Set this to ``0`` to disable tower aerodynamics. If nonzero, it must match the tower discretization available in the Kynema-FMB input.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.num_blades
 
@@ -97,7 +101,7 @@ Kynema-FMB turbine setup and coupling
 
    **type:** Real, required
 
-   Fluid density used to non-dimensionalize the forces exchanged with Kynema-FMB.
+   Fluid density used to non-dimensionalize the forces exchanged with Kynema-FMB. This should match the density in the Kynema-SGF simulation.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.rot_speed_rpm
 
@@ -115,13 +119,13 @@ Kynema-FMB turbine setup and coupling
 
    **type:** Real, optional, default = 0
 
-   Initial generator power passed to Kynema-FMB.
+   Initial generator power (in W) passed to Kynema-FMB.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.hub_wind_vector_init
 
    **type:** List of 3 real numbers, optional, default = 0 0 0
 
-   Initial wind vector seen by the turbine hub. Kynema-SGF converts this vector to a speed magnitude and passes it to Kynema-FMB for initialization.
+   Initial wind vector seen by the turbine hub. Kynema-SGF converts this vector to a speed magnitude and passes it to Kynema-FMB for the sake of the controller.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.yaw_deg
 
@@ -140,6 +144,18 @@ Kynema-FMB turbine setup and coupling
    **type:** Real, optional, default = 1
 
    Generator efficiency passed to Kynema-FMB.
+
+.. input_param:: Actuator.TurbineKynemaFMBLine.controller_shared_library_path
+
+   **type:** String, optional, default = empty
+
+   Path to the controller shared library passed to Kynema-FMB. This is typically a ROSCO dynamic library.
+
+.. input_param:: Actuator.TurbineKynemaFMBLine.controller_input_file
+
+   **type:** String, optional, default = empty
+
+   Path to the controller input file. When this value is provided, Kynema-SGF creates the Kynema-FMB controller interface and expects the shared library path to be set as well.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.dt
 
@@ -214,7 +230,7 @@ Actuator forcing and output controls
 
    **type:** Real, optional, default = 0
 
-   Nacelle drag coefficient used to model nacelle forcing.
+   Nacelle drag coefficient used to model nacelle drag.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.nacelle_area
 
@@ -245,18 +261,6 @@ For a full coupled restart, these turbine-specific settings are used together wi
 
    Directory containing the Kynema-FMB checkpoint files referenced by ``kynema_fmb_restart_step``.
 
-.. input_param:: Actuator.TurbineKynemaFMBLine.controller_shared_library_path
-
-   **type:** String, optional, default = empty
-
-   Path to the controller shared library passed to Kynema-FMB. This is typically a ROSCO dynamic library.
-
-.. input_param:: Actuator.TurbineKynemaFMBLine.controller_input_file
-
-   **type:** String, optional, default = empty
-
-   Path to the controller input file. When this value is provided, Kynema-SGF creates the Kynema-FMB controller interface and expects the shared library path to be set as well.
-
 Kynema-FMB solver options
 """""""""""""""""""""""""
 
@@ -282,4 +286,5 @@ Kynema-FMB solver options
 
    **type:** Real, optional, default = 0
 
-   Numerical damping factor forwarded to the Kynema-FMB solver.
+   Numerical damping factor forwarded to the Kynema-FMB solver, which is applied in its temporal scheme.
+   Counterintuitively, 0 corresponds to full damping and 1 corresponds to no damping.
