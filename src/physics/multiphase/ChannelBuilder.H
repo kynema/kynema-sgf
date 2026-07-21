@@ -114,6 +114,7 @@ private:
     bool m_initialize_velocity{true};
     bool m_zero_blanked_velocity{true};
     bool m_initialize_drag{false};
+    bool m_terrain_fields_only{false};
     amrex::Real m_rho_init{1.0_rt};
     amrex::Real m_water_level{0.0_rt};
     amrex::Real m_land_level{0.0_rt};
