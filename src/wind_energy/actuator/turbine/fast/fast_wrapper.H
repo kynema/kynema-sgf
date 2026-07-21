@@ -44,7 +44,7 @@ void FAST_HubPosition(
     char* /*unused*/)
 {}
 
-#if OPENFAST_VERSION_MAJOR == 4
+#if OPENFAST_VERSION_MAJOR >= 4
 struct ExtInfw_InputType_t
 {};
 
@@ -152,7 +152,7 @@ void FAST_OpFM_Restart(
 
 #endif
 
-#if OPENFAST_VERSION_MAJOR == 4
+#if OPENFAST_VERSION_MAJOR >= 4
 static constexpr auto& FAST_Solution0 = FAST_CFD_Solution0;
 static constexpr auto& FAST_Step = FAST_CFD_Step;
 using OfInputType = ExtInfw_InputType_t;
