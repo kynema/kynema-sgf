@@ -20,29 +20,59 @@ namespace kynema_sgf {
 
 namespace tagging {
 
+/** Enumeration for tagging operation types */
+enum class TaggingOperator {
+    AND,
+    OR,
+    AND_NOT,
+    OR_NOT
+};
+
+/** Convert string to TaggingOperator enum
+ *  \param op_str The operator string (case-insensitive)
+ *  \return The corresponding TaggingOperator enum value
+ *  \throw Calls amrex::Abort if the string is invalid
+ */
+static TaggingOperator string_to_operator(const std::string& op_str)
+{
+    std::string op = amrex::toLower(op_str);
+    if (op == "and") {
+        return TaggingOperator::AND;
+    } else if (op == "or") {
+        return TaggingOperator::OR;
+    } else if (op == "and_not") {
+        return TaggingOperator::AND_NOT;
+    } else if (op == "or_not") {
+        return TaggingOperator::OR_NOT;
+    } else {
+        amrex::Abort("Invalid operator for tagging criteria: " + op_str +
+                     ". Must be one of: and, or, and_not, or_not.");
+        // Unreachable, but avoids compiler warning
+        return TaggingOperator::AND;
+    }
+}
+
 static amrex::TagBox::TagVal tag_val(
     const bool previous_val,
     const bool current_val,
-    const std::string& op)
+    const TaggingOperator& op)
 {
-    if (op == "and") {
+    switch (op) {
+    case TaggingOperator::AND:
         return (previous_val && current_val) ? amrex::TagBox::SET
                                              : amrex::TagBox::CLEAR;
-    } else if (op == "or") {
+    case TaggingOperator::OR:
         return (previous_val || current_val) ? amrex::TagBox::SET
                                              : amrex::TagBox::CLEAR;
-    } else if (op == "and_not") {
+    case TaggingOperator::AND_NOT:
         return (previous_val && !current_val) ? amrex::TagBox::SET
                                               : amrex::TagBox::CLEAR;
-    } else if (op == "or_not") {
+    case TaggingOperator::OR_NOT:
         return (previous_val || !current_val) ? amrex::TagBox::SET
                                               : amrex::TagBox::CLEAR;
-    } else {
-        amrex::Abort("Invalid operator for tagging criteria: " + op +
-                     ". Must be one of: and, or, and_not, or_not.");
-        // Unreachable, but avoids compiler warning
-        return amrex::TagBox::CLEAR;
     }
+    // Unreachable, but avoids compiler warning
+    return amrex::TagBox::CLEAR;
 }
 
 } // namespace tagging
@@ -63,7 +93,15 @@ class RefinementCriteria : public Factory<RefinementCriteria, CFDSim&>
 public:
     static std::string base_identifier() { return "RefinementCriteria"; }
 
-    std::string tag_operator() { return "equal"; }
+    tagging::TaggingOperator tag_operator() const
+    {
+        return m_tag_operator;
+    }
+
+    void tag_operator(const tagging::TaggingOperator& op)
+    {
+        m_tag_operator = op;
+    }
 
     RefinementCriteria() = default;
 
@@ -79,6 +117,9 @@ public:
      */
     virtual void operator()(
         int level, amrex::TagBoxArray& tags, amrex::Real time, int ngrow) = 0;
+
+private:
+    tagging::TaggingOperator m_tag_operator;
 };
 
 /** A collection of refinement criteria instances that are active during a
