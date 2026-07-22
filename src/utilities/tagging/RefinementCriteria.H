@@ -18,6 +18,33 @@
 
 namespace kynema_sgf {
 
+namespace tagging {
+
+amrex::TagBox::TagVal tag_val(
+    const bool previous_val,
+    const bool current_val,
+    const std::string& op)
+{
+    if (op == "and") {
+        return (previous_val && current_val) ? amrex::TagBox::SET
+                                             : amrex::TagBox::CLEAR;
+    } else if (op == "or") {
+        return (previous_val || current_val) ? amrex::TagBox::SET
+                                             : amrex::TagBox::CLEAR;
+    } else if (op == "and_not") {
+        return (previous_val && !current_val) ? amrex::TagBox::SET
+                                              : amrex::TagBox::CLEAR;
+    } else if (op == "or_not") {
+        return (previous_val || !current_val) ? amrex::TagBox::SET
+                                              : amrex::TagBox::CLEAR;
+    } else {
+        amrex::Abort("Invalid operator for tagging criteria: " + op +
+                     ". Must be one of: and, or, and_not, or_not.");
+    }
+}
+
+} // namespace tagging
+
 class CFDSim;
 
 /** Abstract interface for tagging cells for refinement
@@ -33,6 +60,8 @@ class RefinementCriteria : public Factory<RefinementCriteria, CFDSim&>
 {
 public:
     static std::string base_identifier() { return "RefinementCriteria"; }
+
+    std::string tag_operator() { return "equal"; }
 
     RefinementCriteria() = default;
 

@@ -25,6 +25,16 @@ void RefineCriteriaManager::initialize()
 
         auto obj = RefinementCriteria::create(stype, m_sim);
         obj->initialize(key);
+        
+        std::string op{obj->tag_operator()};
+        pp.query("operator", op);
+        op = amrex::toLower(op);
+        obj->tag_operator() = op;
+        if (op != "and" && op != "or" && op != "and_not" && op != "or_not") {
+            amrex::Abort(
+                "Invalid operator for tagging criteria: " + lbl +
+                ". Must be one of: and, or, and_not, or_not.");
+        }
         m_refiners.emplace_back(std::move(obj));
     }
 }
