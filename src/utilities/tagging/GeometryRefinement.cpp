@@ -62,6 +62,19 @@ void GeometryRefinement::operator()(
             const auto& bxa = utils::realbox_to_box(gg->bound_box(), geom);
             const auto& bxi = bx & bxa;
             if (bxi.isEmpty()) {
+                // Operators OR and AND_NOT will not be affected by an empty box
+                // Operators AND and OR_NOT require modification of tag array
+                if (tag_operator() == tagging::TaggingOperator::AND)
+                    // Because entire box is false, set all tags to false
+                    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                        tag(i, j, k) = amrex::TagBox::CLEAR;
+                    });
+                else if (tag_operator() == tagging::TaggingOperator::OR_NOT) {
+                    // Because entire box is false, set all tags to true
+                    amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                        tag(i, j, k) = amrex::TagBox::SET;
+                    });
+                }
                 continue;
             }
 
