@@ -54,6 +54,8 @@ Each section must contain the keyword ``type`` that is one of the refinement typ
 
 The parameters for the subsections are determined by the type of refinement being performed.
 
+.. _inputs_static_refinement:
+
 Refinement using Cartesian boxes
 ````````````````````````````````
 
@@ -72,51 +74,6 @@ Example::
    The text file that contains a list of bounding boxes used to perform
    refinement at various levels.
 
-Refinement using field error criteria
-`````````````````````````````````````
-
-Example::
-
-  tagging.f1.type = FieldRefinement
-  tagging.f1.field_name = density
-  tagging.f1.grad_error = 0.1. 0.1 0.1
-  tagging.f1.box_lo = 10.0 10.0 10.0
-  tagging.f1.box_hi = 20.0 20.0 20.0
-
-.. input_param:: tagging.FieldRefinement.field_name
-
-   **type:** String, required
-
-   The name of the field used to tag cells
-
-.. input_param:: tagging.FieldRefinement.field_error
-
-   **type:** Vector<Real>, optional
-
-   List of field error values at each level. The user must specify a value for
-   each level desired.
-
-.. input_param:: tagging.FieldRefinement.grad_error
-
-   **type:** Vector<Real>, optional
-
-   List of gradient error values at each level. The user must specify a value for
-   each level desired.
-
-.. input_param:: tagging.FieldRefinement.box_lo
-
-   **type:** Vector<Real>, optional
-
-   List of the low corner values for a bounding box where the tagging
-   will be active. By default the bounding box will span the entire domain.
-
-.. input_param:: tagging.FieldRefinement.box_hi
-
-   **type:** Vector<Real>, optional
-
-   List of the high corner values for a bounding box where the tagging
-   will be active. By default the bounding box will span the entire domain.
-
 Refinement using geometry
 `````````````````````````
 
@@ -124,6 +81,7 @@ This section controls refinement using pre-defined geometric shapes. Currently,
 two options are supported: 1. ``box`` -- refines the region inside a hexahedral
 block, 2. ``cylinder`` -- refines the region inside a cylindrical block, and
 3. ``udf`` -- refines along an analytical function depending on time and spatial coordinate.
+With the exception of the ``udf`` able to describe temporal variations, geometry-based refinement is static.
 
 .. input_param:: tagging.GeometryRefinement.shapes
 
@@ -131,7 +89,7 @@ block, 2. ``cylinder`` -- refines the region inside a cylindrical block, and
 
    Names of the input subsections that define specific geometries for refinement.
 
-.. input_param:: tagging.GeoemtryRefinement.level
+.. input_param:: tagging.GeometryRefinement.level
 
    **type:**  Integer, optional, default: -1
 
@@ -257,6 +215,51 @@ are ``t``, ``x``, ``y``, and ``z``.
    List of the high corner values for a bounding box where the tagging
    will be active. By default the bounding box will span the entire domain.
 
+Refinement using field error criteria
+`````````````````````````````````````
+
+Example::
+
+  tagging.f1.type = FieldRefinement
+  tagging.f1.field_name = density
+  tagging.f1.grad_error = 0.1. 0.1 0.1
+  tagging.f1.box_lo = 10.0 10.0 10.0
+  tagging.f1.box_hi = 20.0 20.0 20.0
+
+.. input_param:: tagging.FieldRefinement.field_name
+
+   **type:** String, required
+
+   The name of the field used to tag cells
+
+.. input_param:: tagging.FieldRefinement.field_error
+
+   **type:** Vector<Real>, optional
+
+   List of field error values at each level. The user must specify a value for
+   each level desired.
+
+.. input_param:: tagging.FieldRefinement.grad_error
+
+   **type:** Vector<Real>, optional
+
+   List of gradient error values at each level. The user must specify a value for
+   each level desired.
+
+.. input_param:: tagging.FieldRefinement.box_lo
+
+   **type:** Vector<Real>, optional
+
+   List of the low corner values for a bounding box where the tagging
+   will be active. By default the bounding box will span the entire domain.
+
+.. input_param:: tagging.FieldRefinement.box_hi
+
+   **type:** Vector<Real>, optional
+
+   List of the high corner values for a bounding box where the tagging
+   will be active. By default the bounding box will span the entire domain.
+
 
 Refinement using Q-Criterion
 `````````````````````````````````````
@@ -286,8 +289,6 @@ Example::
    If the absolute value of Q-criterion exceeds this value
    the cell is tagged for refinement.
    The user must specify a value for each level desired.
-
-.. _inputs_static_refinement:
 
 Combining refinement criteria with logical operators
 ````````````````````````````````````````````````````
