@@ -22,7 +22,7 @@ void RefineCriteriaManager::initialize()
         amrex::ParmParse pp(key);
         std::string stype;
         pp.get("type", stype);
-        
+
         std::string op_str = "or";
         pp.query("operator", op_str);
         tagging::TaggingOperator op = tagging::string_to_operator(op_str);

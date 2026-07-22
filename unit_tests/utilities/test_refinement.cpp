@@ -181,8 +181,8 @@ TEST_F(NestRefineTest, bbox_limits)
 
 TEST(RefinementTaggingLogic, string_to_operator)
 {
-    using kynema_sgf::tagging::TaggingOperator;
     using kynema_sgf::tagging::string_to_operator;
+    using kynema_sgf::tagging::TaggingOperator;
 
     EXPECT_EQ(string_to_operator("and"), TaggingOperator::AND);
     EXPECT_EQ(string_to_operator("OR"), TaggingOperator::OR);
@@ -192,8 +192,8 @@ TEST(RefinementTaggingLogic, string_to_operator)
 
 TEST(RefinementTaggingLogic, tag_val_truth_table)
 {
-    using kynema_sgf::tagging::TaggingOperator;
     using kynema_sgf::tagging::tag_val;
+    using kynema_sgf::tagging::TaggingOperator;
 
     auto is_set = [](amrex::TagBox::TagVal val) {
         return val == amrex::TagBox::SET;
@@ -233,7 +233,8 @@ TEST_F(NestRefineTest, manager_parses_operator_per_label)
 
     {
         amrex::ParmParse pp("tagging");
-        amrex::Vector<std::string> labels{{"t_and", "t_or", "t_and_not", "t_or_not"}};
+        amrex::Vector<std::string> labels{
+            {"t_and", "t_or", "t_and_not", "t_or_not"}};
         pp.addarr("labels", labels);
     }
     {
