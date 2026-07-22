@@ -28,7 +28,7 @@ enum class TaggingOperator { AND, OR, AND_NOT, OR_NOT };
  *  \return The corresponding TaggingOperator enum value
  *  \throw Calls amrex::Abort if the string is invalid
  */
-static TaggingOperator string_to_operator(const std::string& op_str)
+static inline TaggingOperator string_to_operator(const std::string& op_str)
 {
     std::string op = amrex::toLower(op_str);
     if (op == "and") {
@@ -48,7 +48,7 @@ static TaggingOperator string_to_operator(const std::string& op_str)
     }
 }
 
-static amrex::TagBox::TagVal tag_val(
+static inline amrex::TagBox::TagVal tag_val(
     const bool previous_val, const bool current_val, const TaggingOperator& op)
 {
     switch (op) {
