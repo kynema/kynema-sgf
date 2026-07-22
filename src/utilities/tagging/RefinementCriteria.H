@@ -40,6 +40,8 @@ amrex::TagBox::TagVal tag_val(
     } else {
         amrex::Abort("Invalid operator for tagging criteria: " + op +
                      ". Must be one of: and, or, and_not, or_not.");
+        // Unreachable, but avoids compiler warning
+        return amrex::TagBox::CLEAR;
     }
 }
 
