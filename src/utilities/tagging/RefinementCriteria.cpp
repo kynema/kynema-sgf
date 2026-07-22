@@ -25,7 +25,7 @@ void RefineCriteriaManager::initialize()
 
         auto obj = RefinementCriteria::create(stype, m_sim);
         obj->initialize(key);
-        
+
         std::string op_str = "or";
         pp.query("operator", op_str);
         tagging::TaggingOperator op = tagging::string_to_operator(op_str);

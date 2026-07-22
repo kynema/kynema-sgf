@@ -128,11 +128,12 @@ void CurvatureRefinement::operator()(
             const auto curv_min = amrex::min<amrex::Real>(
                 curv_val, std::cbrt(idx[0] * idx[1] * idx[2]));
 
-            const auto previous_tag = (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
+            const auto previous_tag =
+                (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
             const auto current_tag = (curv_mag > curv_min);
 
-            tag_arrs[nbx](i, j, k) = tagging::tag_val(
-                previous_tag, current_tag, op);
+            tag_arrs[nbx](i, j, k) =
+                tagging::tag_val(previous_tag, current_tag, op);
         });
 }
 

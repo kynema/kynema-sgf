@@ -48,8 +48,7 @@ void UDFRefiner::operator()(
             current_tag = true;
         }
         const auto previous_tag = (tag(i, j, k) == amrex::TagBox::SET);
-        tag(i, j, k) = tagging::tag_val(
-            previous_tag, current_tag, op);
+        tag(i, j, k) = tagging::tag_val(previous_tag, current_tag, op);
     });
 }
 

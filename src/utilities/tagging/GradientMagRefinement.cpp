@@ -80,9 +80,10 @@ void GradientMagRefinement::operator()(
             if (grad_mag > gradmag_val) {
                 current_tag = true;
             }
-            const auto previous_tag = (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
-            tag_arrs[nbx](i, j, k) = tagging::tag_val(
-                previous_tag, current_tag, op);
+            const auto previous_tag =
+                (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
+            tag_arrs[nbx](i, j, k) =
+                tagging::tag_val(previous_tag, current_tag, op);
         });
 }
 

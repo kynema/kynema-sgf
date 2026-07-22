@@ -168,9 +168,7 @@ void BoxRefiner::operator()(
         const auto previous_tag = (tag(i, j, k) == amrex::TagBox::SET);
         const auto current_tag = inside;
 
-        tag(i, j, k) = tagging::tag_val(
-            previous_tag, current_tag, op);
-
+        tag(i, j, k) = tagging::tag_val(previous_tag, current_tag, op);
     });
 }
 

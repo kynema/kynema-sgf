@@ -99,11 +99,12 @@ void VorticityMagRefinement::operator()(
                 utils::powi(uy - vx, 2) + utils::powi(vz - wy, 2) +
                 utils::powi(wx - uz, 2));
 
-            const auto previous_tag = (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
+            const auto previous_tag =
+                (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
             const auto current_tag = (vort > vort_val);
 
-            tag_arrs[nbx](i, j, k) = tagging::tag_val(
-                previous_tag, current_tag, op);
+            tag_arrs[nbx](i, j, k) =
+                tagging::tag_val(previous_tag, current_tag, op);
         });
 }
 
