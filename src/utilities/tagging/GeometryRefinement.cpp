@@ -65,7 +65,7 @@ void GeometryRefinement::operator()(
                 continue;
             }
 
-            (*gg)(bx, geom, tag);
+            (*gg)(bx, geom, tag, tag_operator());
         }
     }
 }

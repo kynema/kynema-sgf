@@ -51,6 +51,7 @@ public:
         const auto& prob_lo = geom.ProbLoArray();
         const auto& dx = geom.CellSizeArray();
         const auto tagging_box = m_tagging_box;
+        const auto op = tag_operator();
 
         const auto& tag_arrs = tags.arrays();
         const auto& farrs = mfab.const_arrays();
@@ -63,10 +64,15 @@ public:
                         prob_lo[1] + ((j + 0.5_rt) * dx[1]),
                         prob_lo[2] + ((k + 0.5_rt) * dx[2]))};
 
+                    bool current_tag = false;
                     if ((farrs[nbx](i, j, k) > fld_err) &&
                         (tagging_box.contains(coord))) {
-                        tag_arrs[nbx](i, j, k) = amrex::TagBox::SET;
+                        current_tag = true;
                     }
+                    const auto previous_tag = (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
+
+                    tag_arrs[nbx](i, j, k) = tagging::tag_val(
+                        previous_tag, current_tag, op);
                 });
         }
 
@@ -93,10 +99,16 @@ public:
                     const auto ax = amrex::max<amrex::Real>(axp, axm);
                     const auto ay = amrex::max<amrex::Real>(ayp, aym);
                     const auto az = amrex::max<amrex::Real>(azp, azm);
+
+                    bool current_tag = false;
                     if ((amrex::max<amrex::Real>(ax, ay, az) >= gerr) &&
                         (tagging_box.contains(coord))) {
-                        tag_arrs[nbx](i, j, k) = amrex::TagBox::SET;
+                        current_tag = true;
                     }
+
+                    const auto previous_tag = (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
+                    tag_arrs[nbx](i, j, k) = tagging::tag_val(
+                        previous_tag, current_tag, op);
                 });
         }
     }

@@ -30,7 +30,8 @@ UDFRefiner::UDFRefiner(const CFDSim& sim, const std::string& key)
 void UDFRefiner::operator()(
     const amrex::Box& bx,
     const amrex::Geometry& geom,
-    const amrex::Array4<amrex::TagBox::TagType>& tag) const
+    const amrex::Array4<amrex::TagBox::TagType>& tag,
+    const tagging::TaggingOperator& op) const
 {
     const auto& problo = geom.ProbLoArray();
     const auto& dx = geom.CellSizeArray();
@@ -42,9 +43,13 @@ void UDFRefiner::operator()(
         const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
         const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
         const auto val = udf_func(time, x, y, z);
+        bool current_tag = false;
         if (static_cast<bool>(val)) {
-            tag(i, j, k) = amrex::TagBox::SET;
+            current_tag = true;
         }
+        const auto previous_tag = (tag(i, j, k) == amrex::TagBox::SET);
+        tag(i, j, k) = tagging::tag_val(
+            previous_tag, current_tag, op);
     });
 }
 

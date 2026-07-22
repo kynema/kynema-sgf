@@ -56,7 +56,8 @@ CylinderRefiner::CylinderRefiner(
 void CylinderRefiner::operator()(
     const amrex::Box& bx,
     const amrex::Geometry& geom,
-    const amrex::Array4<amrex::TagBox::TagType>& tag) const
+    const amrex::Array4<amrex::TagBox::TagType>& tag,
+    const tagging::TaggingOperator& op) const
 {
     const auto axis = m_end - m_start;
     const auto start = m_start;
@@ -78,15 +79,21 @@ void CylinderRefiner::operator()(
         // Component along the cylinder axis
         const amrex::Real daxis = pvec & axis;
 
+        bool current_tag = false;
         // Check if the point lies in between the cylinder extents along axis
         if ((daxis >= 0) && (daxis <= magax)) {
             const amrex::Real d2 = (pvec & pvec) - ((daxis * daxis) / magax);
 
             // Check if the cell center lies within the radius specified
             if ((d2 <= outer) && (d2 >= inner)) {
-                tag(i, j, k) = amrex::TagBox::SET;
+                current_tag = true;
             }
         }
+
+        const auto previous_tag = (tag(i, j, k) == amrex::TagBox::SET);
+
+        tag(i, j, k) = tagging::tag_val(
+            previous_tag, current_tag, op);
     });
 }
 

@@ -33,6 +33,7 @@ void OversetRefinement::operator()(
 
     const auto& ibarrs = ibfab.const_arrays();
     const auto& tag_arrs = tags.arrays();
+    const auto op = tag_operator();
 
     amrex::ParallelFor(
         ibfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
@@ -51,11 +52,15 @@ void OversetRefinement::operator()(
             const int ax = amrex::max(axp, axm);
             const int ay = amrex::max(ayp, aym);
             const int az = amrex::max(azp, azm);
+            bool current_tag = false;
             if (amrex::max(ax, ay, az) > 1 ||
                 (tag_fringe && ibarrs[nbx](i, j, k) == -1) ||
                 (tag_hole && ibarrs[nbx](i, j, k) == 0)) {
-                tag_arrs[nbx](i, j, k) = amrex::TagBox::SET;
+                current_tag = true;
             }
+            const auto previous_tag = (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
+            tag_arrs[nbx](i, j, k) = tagging::tag_val(
+                previous_tag, current_tag, op);
         });
 }
 

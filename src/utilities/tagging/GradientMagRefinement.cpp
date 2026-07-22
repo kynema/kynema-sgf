@@ -59,6 +59,7 @@ void GradientMagRefinement::operator()(
     const auto& tag_arrs = tags.arrays();
     const auto& farrs = mfab.const_arrays();
     const auto gradmag_val = m_gradmag_value[level];
+    const auto op = tag_operator();
 
     amrex::ParallelFor(
         mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
@@ -75,9 +76,13 @@ void GradientMagRefinement::operator()(
                 idx[2];
 
             const auto grad_mag = sqrt((gx * gx) + (gy * gy) + (gz * gz));
+            bool current_tag = false;
             if (grad_mag > gradmag_val) {
-                tag_arrs[nbx](i, j, k) = amrex::TagBox::SET;
+                current_tag = true;
             }
+            const auto previous_tag = (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
+            tag_arrs[nbx](i, j, k) = tagging::tag_val(
+                previous_tag, current_tag, op);
         });
 }
 
