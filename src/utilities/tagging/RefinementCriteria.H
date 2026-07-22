@@ -20,7 +20,7 @@ namespace kynema_sgf {
 
 namespace tagging {
 
-amrex::TagBox::TagVal tag_val(
+static amrex::TagBox::TagVal tag_val(
     const bool previous_val,
     const bool current_val,
     const std::string& op)
