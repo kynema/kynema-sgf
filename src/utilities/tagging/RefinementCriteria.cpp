@@ -22,14 +22,14 @@ void RefineCriteriaManager::initialize()
         amrex::ParmParse pp(key);
         std::string stype;
         pp.get("type", stype);
-
-        auto obj = RefinementCriteria::create(stype, m_sim);
-        obj->initialize(key);
-
+        
         std::string op_str = "or";
         pp.query("operator", op_str);
         tagging::TaggingOperator op = tagging::string_to_operator(op_str);
+
+        auto obj = RefinementCriteria::create(stype, m_sim);
         obj->tag_operator(op);
+        obj->initialize(key);
         m_refiners.emplace_back(std::move(obj));
     }
 }
