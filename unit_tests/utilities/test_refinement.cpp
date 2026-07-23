@@ -18,6 +18,44 @@ using namespace amrex::literals;
 
 namespace kynema_sgf_tests {
 
+namespace {
+
+class DummyOperatorRefinement
+    : public kynema_sgf::RefinementCriteria::Register<DummyOperatorRefinement>
+{
+public:
+    static std::string identifier() { return "DummyOperatorRefinement"; }
+
+    explicit DummyOperatorRefinement(kynema_sgf::CFDSim& /*sim*/) {}
+
+    static void reset_seen_ops() { s_seen_ops.clear(); }
+
+    static const amrex::Vector<kynema_sgf::tagging::TaggingOperator>& seen_ops()
+    {
+        return s_seen_ops;
+    }
+
+    void initialize(const std::string& /*key*/) override
+    {
+        s_seen_ops.push_back(tag_operator());
+    }
+
+    void operator()(
+        int /*level*/,
+        amrex::TagBoxArray& /*tags*/,
+        amrex::Real /*time*/,
+        int /*ngrow*/) override
+    {}
+
+private:
+    static amrex::Vector<kynema_sgf::tagging::TaggingOperator> s_seen_ops;
+};
+
+amrex::Vector<kynema_sgf::tagging::TaggingOperator>
+    DummyOperatorRefinement::s_seen_ops;
+
+} // namespace
+
 //! Custom test fixture for Cartesian Box refinement
 class NestRefineTest : public MeshTest
 {
@@ -139,6 +177,96 @@ TEST_F(NestRefineTest, bbox_limits)
     EXPECT_EQ(bx.smallEnd(), domain.smallEnd());
     auto big_end = domain.bigEnd();
     EXPECT_EQ(bx.bigEnd(), big_end.diagShift(1));
+}
+
+TEST(RefinementTaggingLogic, string_to_operator)
+{
+    using kynema_sgf::tagging::string_to_operator;
+    using kynema_sgf::tagging::TaggingOperator;
+
+    EXPECT_EQ(string_to_operator("and"), TaggingOperator::AND);
+    EXPECT_EQ(string_to_operator("OR"), TaggingOperator::OR);
+    EXPECT_EQ(string_to_operator("And_Not"), TaggingOperator::AND_NOT);
+    EXPECT_EQ(string_to_operator("or_not"), TaggingOperator::OR_NOT);
+}
+
+TEST(RefinementTaggingLogic, tag_val_truth_table)
+{
+    using kynema_sgf::tagging::tag_val;
+    using kynema_sgf::tagging::TaggingOperator;
+
+    auto is_set = [](amrex::TagBox::TagVal val) {
+        return val == amrex::TagBox::SET;
+    };
+
+    // and
+    EXPECT_FALSE(is_set(tag_val(false, false, TaggingOperator::AND)));
+    EXPECT_FALSE(is_set(tag_val(false, true, TaggingOperator::AND)));
+    EXPECT_FALSE(is_set(tag_val(true, false, TaggingOperator::AND)));
+    EXPECT_TRUE(is_set(tag_val(true, true, TaggingOperator::AND)));
+
+    // or
+    EXPECT_FALSE(is_set(tag_val(false, false, TaggingOperator::OR)));
+    EXPECT_TRUE(is_set(tag_val(false, true, TaggingOperator::OR)));
+    EXPECT_TRUE(is_set(tag_val(true, false, TaggingOperator::OR)));
+    EXPECT_TRUE(is_set(tag_val(true, true, TaggingOperator::OR)));
+
+    // and_not
+    EXPECT_FALSE(is_set(tag_val(false, false, TaggingOperator::AND_NOT)));
+    EXPECT_FALSE(is_set(tag_val(false, true, TaggingOperator::AND_NOT)));
+    EXPECT_TRUE(is_set(tag_val(true, false, TaggingOperator::AND_NOT)));
+    EXPECT_FALSE(is_set(tag_val(true, true, TaggingOperator::AND_NOT)));
+
+    // or_not
+    EXPECT_TRUE(is_set(tag_val(false, false, TaggingOperator::OR_NOT)));
+    EXPECT_FALSE(is_set(tag_val(false, true, TaggingOperator::OR_NOT)));
+    EXPECT_TRUE(is_set(tag_val(true, false, TaggingOperator::OR_NOT)));
+    EXPECT_TRUE(is_set(tag_val(true, true, TaggingOperator::OR_NOT)));
+}
+
+TEST_F(NestRefineTest, manager_parses_operator_per_label)
+{
+    setup_refinement_inputs();
+    create_mesh_instance<RefineMesh>();
+
+    DummyOperatorRefinement::reset_seen_ops();
+
+    {
+        amrex::ParmParse pp("tagging");
+        amrex::Vector<std::string> labels{
+            {"t_and", "t_or", "t_and_not", "t_or_not"}};
+        pp.addarr("labels", labels);
+    }
+    {
+        amrex::ParmParse pp("tagging.t_and");
+        pp.add("type", (std::string) "DummyOperatorRefinement");
+        pp.add("operator", (std::string) "and");
+    }
+    {
+        amrex::ParmParse pp("tagging.t_or");
+        pp.add("type", (std::string) "DummyOperatorRefinement");
+        pp.add("operator", (std::string) "OR");
+    }
+    {
+        amrex::ParmParse pp("tagging.t_and_not");
+        pp.add("type", (std::string) "DummyOperatorRefinement");
+        pp.add("operator", (std::string) "and_not");
+    }
+    {
+        amrex::ParmParse pp("tagging.t_or_not");
+        pp.add("type", (std::string) "DummyOperatorRefinement");
+        pp.add("operator", (std::string) "Or_Not");
+    }
+
+    kynema_sgf::RefineCriteriaManager manager(sim());
+    manager.initialize();
+
+    const auto& ops = DummyOperatorRefinement::seen_ops();
+    ASSERT_EQ(ops.size(), 4U);
+    EXPECT_EQ(ops[0], kynema_sgf::tagging::TaggingOperator::AND);
+    EXPECT_EQ(ops[1], kynema_sgf::tagging::TaggingOperator::OR);
+    EXPECT_EQ(ops[2], kynema_sgf::tagging::TaggingOperator::AND_NOT);
+    EXPECT_EQ(ops[3], kynema_sgf::tagging::TaggingOperator::OR_NOT);
 }
 
 } // namespace kynema_sgf_tests

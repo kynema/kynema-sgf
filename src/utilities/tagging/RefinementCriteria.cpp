@@ -23,7 +23,12 @@ void RefineCriteriaManager::initialize()
         std::string stype;
         pp.get("type", stype);
 
+        std::string op_str = "or";
+        pp.query("operator", op_str);
+        tagging::TaggingOperator op = tagging::string_to_operator(op_str);
+
         auto obj = RefinementCriteria::create(stype, m_sim);
+        obj->tag_operator(op);
         obj->initialize(key);
         m_refiners.emplace_back(std::move(obj));
     }
