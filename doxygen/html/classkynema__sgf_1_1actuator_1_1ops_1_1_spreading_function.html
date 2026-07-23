@@ -1,0 +1,566 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::actuator::ops::SpreadingFunction&amp;lt; T &amp;gt; Class Template Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::actuator::ops::SpreadingFunction&amp;lt; T &amp;gt; Class Template Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="spreadingfunction-lt-t-gt-class-template-reference">
+<h1>SpreadingFunction&amp;lt; T &amp;gt; Class Template Reference<a class="headerlink" href="#spreadingfunction-lt-t-gt-class-template-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::actuator::ops::SpreadingFunction&lt; T &gt; Class Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1actuator.html">actuator</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1actuator_1_1ops.html">ops</a></li><li class="navelem"><a href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.html">SpreadingFunction</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::actuator::ops::SpreadingFunction&lt; T &gt; Class Template Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>A collection of spreading functions This class allows for polymorphic spreading functions. The concept is based on Impossibly Fast C++ Delegates proposed here: <a href="https://www.codeproject.com/Articles/11015/The-Impossibly-Fast-C-Delegates">https://www.codeproject.com/Articles/11015/The-Impossibly-Fast-C-Delegates</a>.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="disk__spreading_8_h_source.html">disk_spreading.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::actuator::ops::SpreadingFunction&lt; T &gt;:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function__inherit__graph.svg" width="288" height="176"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a521b814697b60a9d660153609145ba15" id="r_a521b814697b60a9d660153609145ba15"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a521b814697b60a9d660153609145ba15">OwnerType</a> = T</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a833eb6f18316746933a98329e6add9bd" id="r_a833eb6f18316746933a98329e6add9bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a833eb6f18316746933a98329e6add9bd">operator()</a> (const T &amp;actObj, const int lev, const amrex::MFIter &amp;mfi, const amrex::Geometry &amp;geom)</td></tr>
+<tr class="memitem:a0a9864b7608e44f47a4a44df81370d21" id="r_a0a9864b7608e44f47a4a44df81370d21"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a9864b7608e44f47a4a44df81370d21">SpreadingFunction</a> (const <a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.html">SpreadingFunction</a> &amp;)=delete</td></tr>
+<tr class="memitem:ae89d38ab60f8c4f803756563a6a912f0" id="r_ae89d38ab60f8c4f803756563a6a912f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae89d38ab60f8c4f803756563a6a912f0">operator=</a> (const <a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.html">SpreadingFunction</a> &amp;)=delete</td></tr>
+<tr class="memitem:ad4550cf19d8258f0694f8f6e205b635f" id="r_ad4550cf19d8258f0694f8f6e205b635f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4550cf19d8258f0694f8f6e205b635f">uniform_gaussian_spreading</a> (const T &amp;actObj, const int lev, const amrex::MFIter &amp;mfi, const amrex::Geometry &amp;geom)</td></tr>
+<tr class="memitem:a094c431f91eb4ca841471bfcd4efbca1" id="r_a094c431f91eb4ca841471bfcd4efbca1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a094c431f91eb4ca841471bfcd4efbca1">linear_basis_spreading</a> (const T &amp;actObj, const int lev, const amrex::MFIter &amp;mfi, const amrex::Geometry &amp;geom)</td></tr>
+<tr class="memitem:ac69fb3ae071479b700db8c6f1fd1cf0d" id="r_ac69fb3ae071479b700db8c6f1fd1cf0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac69fb3ae071479b700db8c6f1fd1cf0d">linear_basis_in_theta</a> (const T &amp;actObj, const int lev, const amrex::MFIter &amp;mfi, const amrex::Geometry &amp;geom)</td></tr>
+<tr class="memitem:a31f39bd2adb2fefdc0f0eaf84a671ae3" id="r_a31f39bd2adb2fefdc0f0eaf84a671ae3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31f39bd2adb2fefdc0f0eaf84a671ae3">SpreadingFunction</a> ()</td></tr>
+<tr class="memitem:a8958015e8f9c78d7147681c4480ed866" id="r_a8958015e8f9c78d7147681c4480ed866"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8958015e8f9c78d7147681c4480ed866">initialize</a> (const std::string &amp;key)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a9b2f45fc1dd00f74a2fd32c5911a90c4" id="r_a9b2f45fc1dd00f74a2fd32c5911a90c4"><td class="memItemLeft" align="right" valign="top">void(SpreadingFunction::*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b2f45fc1dd00f74a2fd32c5911a90c4">m_function</a> )(const T &amp;actObj, const int, const amrex::MFIter &amp;, const amrex::Geometry &amp;)</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
+class kynema_sgf::actuator::ops::SpreadingFunction&lt; T &gt;</div><p>A collection of spreading functions This class allows for polymorphic spreading functions. The concept is based on Impossibly Fast C++ Delegates proposed here: <a href="https://www.codeproject.com/Articles/11015/The-Impossibly-Fast-C-Delegates">https://www.codeproject.com/Articles/11015/The-Impossibly-Fast-C-Delegates</a>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="a521b814697b60a9d660153609145ba15" name="a521b814697b60a9d660153609145ba15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a521b814697b60a9d660153609145ba15">&#9670;&#160;</a></span>OwnerType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.html">kynema_sgf::actuator::ops::SpreadingFunction</a>&lt; T &gt;::OwnerType = T</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a0a9864b7608e44f47a4a44df81370d21" name="a0a9864b7608e44f47a4a44df81370d21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a9864b7608e44f47a4a44df81370d21">&#9670;&#160;</a></span>SpreadingFunction() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.html">kynema_sgf::actuator::ops::SpreadingFunction</a>&lt; T &gt;::SpreadingFunction </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.html">SpreadingFunction</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a31f39bd2adb2fefdc0f0eaf84a671ae3" name="a31f39bd2adb2fefdc0f0eaf84a671ae3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31f39bd2adb2fefdc0f0eaf84a671ae3">&#9670;&#160;</a></span>SpreadingFunction() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.html">kynema_sgf::actuator::ops::SpreadingFunction</a>&lt; T &gt;::SpreadingFunction </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a8958015e8f9c78d7147681c4480ed866" name="a8958015e8f9c78d7147681c4480ed866"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8958015e8f9c78d7147681c4480ed866">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.html">kynema_sgf::actuator::ops::SpreadingFunction</a>&lt; T &gt;::initialize </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac69fb3ae071479b700db8c6f1fd1cf0d" name="ac69fb3ae071479b700db8c6f1fd1cf0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac69fb3ae071479b700db8c6f1fd1cf0d">&#9670;&#160;</a></span>linear_basis_in_theta()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.html">kynema_sgf::actuator::ops::SpreadingFunction</a>&lt; T &gt;::linear_basis_in_theta </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>actObj</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::MFIter &amp;</td>          <td class="paramname"><span class="paramname"><em>mfi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a094c431f91eb4ca841471bfcd4efbca1" name="a094c431f91eb4ca841471bfcd4efbca1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a094c431f91eb4ca841471bfcd4efbca1">&#9670;&#160;</a></span>linear_basis_spreading()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.html">kynema_sgf::actuator::ops::SpreadingFunction</a>&lt; T &gt;::linear_basis_spreading </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>actObj</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::MFIter &amp;</td>          <td class="paramname"><span class="paramname"><em>mfi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a833eb6f18316746933a98329e6add9bd" name="a833eb6f18316746933a98329e6add9bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a833eb6f18316746933a98329e6add9bd">&#9670;&#160;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.html">kynema_sgf::actuator::ops::SpreadingFunction</a>&lt; T &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>actObj</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::MFIter &amp;</td>          <td class="paramname"><span class="paramname"><em>mfi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae89d38ab60f8c4f803756563a6a912f0" name="ae89d38ab60f8c4f803756563a6a912f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae89d38ab60f8c4f803756563a6a912f0">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.html">kynema_sgf::actuator::ops::SpreadingFunction</a>&lt; T &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.html">SpreadingFunction</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad4550cf19d8258f0694f8f6e205b635f" name="ad4550cf19d8258f0694f8f6e205b635f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4550cf19d8258f0694f8f6e205b635f">&#9670;&#160;</a></span>uniform_gaussian_spreading()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.html">kynema_sgf::actuator::ops::SpreadingFunction</a>&lt; T &gt;::uniform_gaussian_spreading </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>actObj</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::MFIter &amp;</td>          <td class="paramname"><span class="paramname"><em>mfi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a9b2f45fc1dd00f74a2fd32c5911a90c4" name="a9b2f45fc1dd00f74a2fd32c5911a90c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b2f45fc1dd00f74a2fd32c5911a90c4">&#9670;&#160;</a></span>m_function</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void(SpreadingFunction::* <a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_spreading_function.html">kynema_sgf::actuator::ops::SpreadingFunction</a>&lt; T &gt;::m_function) (const T &amp;actObj, const int, const amrex::MFIter &amp;, const amrex::Geometry &amp;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/disk/<a class="el" href="disk__spreading_8_h_source.html">disk_spreading.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

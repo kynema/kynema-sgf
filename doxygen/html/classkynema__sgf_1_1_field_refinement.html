@@ -1,0 +1,626 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::FieldRefinement Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::FieldRefinement Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_field_refinement.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fieldrefinement-class-reference">
+<h1>FieldRefinement Class Reference<a class="headerlink" href="#fieldrefinement-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::FieldRefinement Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_field_refinement.html">FieldRefinement</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_field_refinement-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::FieldRefinement Class Reference<div class="ingroups"><a class="el" href="group__utilities.html">Utilities</a> &raquo; <a class="el" href="group__amr__utils.html">Mesh refinement</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_field_refinement_8_h_source.html">FieldRefinement.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::FieldRefinement:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_field_refinement__inherit__graph.svg" width="231" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::FieldRefinement:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_field_refinement__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a747ad0f52b36124fdc72705c71ac3049" id="r_a747ad0f52b36124fdc72705c71ac3049"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a747ad0f52b36124fdc72705c71ac3049">FieldRefinement</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a9076c01c9fbabc3afda4f71e363ed6df" id="r_a9076c01c9fbabc3afda4f71e363ed6df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9076c01c9fbabc3afda4f71e363ed6df">~FieldRefinement</a> () override=default</td></tr>
+<tr class="memitem:a46c0868622888de5ff8b8cf0b3c5a07b" id="r_a46c0868622888de5ff8b8cf0b3c5a07b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46c0868622888de5ff8b8cf0b3c5a07b">initialize</a> (const std::string &amp;key) override</td></tr>
+<tr class="memdesc:a46c0868622888de5ff8b8cf0b3c5a07b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read input file and initialize boxarray used to refine each level.  <br /></td></tr>
+<tr class="memitem:a752be232357997f55f54257e80fd43aa" id="r_a752be232357997f55f54257e80fd43aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a752be232357997f55f54257e80fd43aa">operator()</a> (int level, amrex::TagBoxArray &amp;tags, amrex::Real time, int ngrow) override</td></tr>
+<tr class="memitem:aa4235a2fa72df5e6913a974208682a19" id="r_aa4235a2fa72df5e6913a974208682a19"><td class="memTemplParams" colspan="2">template&lt;typename MF&gt; </td></tr>
+<tr class="memitem:aa4235a2fa72df5e6913a974208682a19 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4235a2fa72df5e6913a974208682a19">tag</a> (const int level, amrex::TagBoxArray &amp;tags, const MF &amp;mfab)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a7639dee68cb473c528cb2996217f4216" id="r_a7639dee68cb473c528cb2996217f4216"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7639dee68cb473c528cb2996217f4216">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a5b4b58488adae5cb3488180fc55ed48b" id="r_a5b4b58488adae5cb3488180fc55ed48b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b4b58488adae5cb3488180fc55ed48b">m_sim</a></td></tr>
+<tr class="memitem:ab8fdb4f62622955b0cfb7ba0498c1ac5" id="r_ab8fdb4f62622955b0cfb7ba0498c1ac5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8fdb4f62622955b0cfb7ba0498c1ac5">m_field</a> {nullptr}</td></tr>
+<tr class="memitem:a55f5c30c241851f55c81fc32772a8ee0" id="r_a55f5c30c241851f55c81fc32772a8ee0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_int_field.html">IntField</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55f5c30c241851f55c81fc32772a8ee0">m_int_field</a> {nullptr}</td></tr>
+<tr class="memitem:a25b04be973ba69df0bc1c4eab979dd09" id="r_a25b04be973ba69df0bc1c4eab979dd09"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25b04be973ba69df0bc1c4eab979dd09">m_field_error</a></td></tr>
+<tr class="memitem:aa700534e9f9f4bf80d0507fa799501a9" id="r_aa700534e9f9f4bf80d0507fa799501a9"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa700534e9f9f4bf80d0507fa799501a9">m_grad_error</a></td></tr>
+<tr class="memitem:af74da2c98b7b6f157fb0198d4142a388" id="r_af74da2c98b7b6f157fb0198d4142a388"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af74da2c98b7b6f157fb0198d4142a388">m_max_lev_field</a> {-1}</td></tr>
+<tr class="memitem:aa91e3c3c23c5d741df059402b22b594f" id="r_aa91e3c3c23c5d741df059402b22b594f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa91e3c3c23c5d741df059402b22b594f">m_max_lev_grad</a> {-1}</td></tr>
+<tr class="memitem:a25536edc764b907c2c01a8b51e4a3fc3" id="r_a25536edc764b907c2c01a8b51e4a3fc3"><td class="memItemLeft" align="right" valign="top">amrex::RealBox&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25536edc764b907c2c01a8b51e4a3fc3">m_tagging_box</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>AMR refinement using a given field (e.g., density)</p>
+<div class="fragment"><div class="line"><a class="code hl_namespace" href="namespacekynema__sgf_1_1tagging.html">tagging</a>.labels = t1</div>
+<div class="line"><a class="code hl_namespace" href="namespacekynema__sgf_1_1tagging.html">tagging</a>/t1.type = <a class="code hl_function" href="#a747ad0f52b36124fdc72705c71ac3049">FieldRefinement</a></div>
+<div class="line"><a class="code hl_namespace" href="namespacekynema__sgf_1_1tagging.html">tagging</a>/t1.field_name = density</div>
+<div class="line"><span class="preprocessor"># Tagging based on field value</span></div>
+<div class="line"><span class="preprocessor"># tagging/t1.field_error = 10.0_rt 10.0_rt</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor"># Tagging based on local gradient</span></div>
+<div class="line"><a class="code hl_namespace" href="namespacekynema__sgf_1_1tagging.html">tagging</a>/t1.grad_error = 0.1_rt 0.1_rt 0.1_rt</div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_refinement_html_a747ad0f52b36124fdc72705c71ac3049"><div class="ttname"><a href="#a747ad0f52b36124fdc72705c71ac3049">kynema_sgf::FieldRefinement::FieldRefinement</a></div><div class="ttdeci">FieldRefinement(const CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> FieldRefinement.cpp:12</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1tagging_html"><div class="ttname"><a href="namespacekynema__sgf_1_1tagging.html">kynema_sgf::tagging</a></div><div class="ttdef"><b>Definition</b> BoxRefiner.cpp:9</div></div>
+</div><!-- fragment --> </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a747ad0f52b36124fdc72705c71ac3049" name="a747ad0f52b36124fdc72705c71ac3049"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a747ad0f52b36124fdc72705c71ac3049">&#9670;&#160;</a></span>FieldRefinement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::FieldRefinement::FieldRefinement </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9076c01c9fbabc3afda4f71e363ed6df" name="a9076c01c9fbabc3afda4f71e363ed6df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9076c01c9fbabc3afda4f71e363ed6df">&#9670;&#160;</a></span>~FieldRefinement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::FieldRefinement::~FieldRefinement </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a7639dee68cb473c528cb2996217f4216" name="a7639dee68cb473c528cb2996217f4216"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7639dee68cb473c528cb2996217f4216">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::FieldRefinement::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a46c0868622888de5ff8b8cf0b3c5a07b" name="a46c0868622888de5ff8b8cf0b3c5a07b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46c0868622888de5ff8b8cf0b3c5a07b">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::FieldRefinement::initialize </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read input file and initialize boxarray used to refine each level. </p>
+
+</div>
+</div>
+<a id="a752be232357997f55f54257e80fd43aa" name="a752be232357997f55f54257e80fd43aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a752be232357997f55f54257e80fd43aa">&#9670;&#160;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::FieldRefinement::operator() </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::TagBoxArray &amp;</td>          <td class="paramname"><span class="paramname"><em>tags</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ngrow</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa4235a2fa72df5e6913a974208682a19" name="aa4235a2fa72df5e6913a974208682a19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4235a2fa72df5e6913a974208682a19">&#9670;&#160;</a></span>tag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MF&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::FieldRefinement::tag </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::TagBoxArray &amp;</td>          <td class="paramname"><span class="paramname"><em>tags</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const MF &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="ab8fdb4f62622955b0cfb7ba0498c1ac5" name="ab8fdb4f62622955b0cfb7ba0498c1ac5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8fdb4f62622955b0cfb7ba0498c1ac5">&#9670;&#160;</a></span>m_field</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>* kynema_sgf::FieldRefinement::m_field {nullptr}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a25b04be973ba69df0bc1c4eab979dd09" name="a25b04be973ba69df0bc1c4eab979dd09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25b04be973ba69df0bc1c4eab979dd09">&#9670;&#160;</a></span>m_field_error</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::FieldRefinement::m_field_error</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa700534e9f9f4bf80d0507fa799501a9" name="aa700534e9f9f4bf80d0507fa799501a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa700534e9f9f4bf80d0507fa799501a9">&#9670;&#160;</a></span>m_grad_error</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::FieldRefinement::m_grad_error</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a55f5c30c241851f55c81fc32772a8ee0" name="a55f5c30c241851f55c81fc32772a8ee0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55f5c30c241851f55c81fc32772a8ee0">&#9670;&#160;</a></span>m_int_field</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_int_field.html">IntField</a>* kynema_sgf::FieldRefinement::m_int_field {nullptr}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af74da2c98b7b6f157fb0198d4142a388" name="af74da2c98b7b6f157fb0198d4142a388"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af74da2c98b7b6f157fb0198d4142a388">&#9670;&#160;</a></span>m_max_lev_field</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::FieldRefinement::m_max_lev_field {-1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa91e3c3c23c5d741df059402b22b594f" name="aa91e3c3c23c5d741df059402b22b594f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa91e3c3c23c5d741df059402b22b594f">&#9670;&#160;</a></span>m_max_lev_grad</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::FieldRefinement::m_max_lev_grad {-1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b4b58488adae5cb3488180fc55ed48b" name="a5b4b58488adae5cb3488180fc55ed48b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b4b58488adae5cb3488180fc55ed48b">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::FieldRefinement::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a25536edc764b907c2c01a8b51e4a3fc3" name="a25536edc764b907c2c01a8b51e4a3fc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25536edc764b907c2c01a8b51e4a3fc3">&#9670;&#160;</a></span>m_tagging_box</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::RealBox kynema_sgf::FieldRefinement::m_tagging_box</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/tagging/<a class="el" href="_field_refinement_8_h_source.html">FieldRefinement.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/tagging/<a class="el" href="_field_refinement_8cpp.html">FieldRefinement.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

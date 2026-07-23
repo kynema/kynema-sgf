@@ -1,0 +1,413 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/sector/ActuatorSector.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/sector/ActuatorSector.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_actuator_sector_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-sector-actuatorsector-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/sector/ActuatorSector.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-sector-actuatorsector-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/sector/ActuatorSector.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_a80d9316c48aa709b9bc78e2b746db24.html">wind_energy</a></li><li class="navelem"><a href="dir_9dcf803d990c86a52c151efe46b23ed3.html">actuator</a></li><li class="navelem"><a href="dir_465e0a39040de1b874886f7b36789bde.html">sector</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">ActuatorSector.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_actuator_sector_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef ACTUATORSECTOR_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define ACTUATORSECTOR_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="actuator__types_8_h.html">src/wind_energy/actuator/actuator_types.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_airfoil_table_8_h.html">src/wind_energy/actuator/aero/AirfoilTable.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1actuator.html">kynema_sgf::actuator</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span></div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="};">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html">   27</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html">ActuatorSectorData</a></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a35305eaeb85b5f7f9b987c890f6d1376">   30</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a35305eaeb85b5f7f9b987c890f6d1376">num_blades</a>{2};</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#afb2305a96b9480f09e2bee967829c4f1">   33</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#afb2305a96b9480f09e2bee967829c4f1">rotor_diameter</a>{1.0_rt};</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a98b2d7fd84e015e9076a818c87642ef0">   36</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a98b2d7fd84e015e9076a818c87642ef0">rotor_radius</a>{0.5_rt};</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a01872a7ef94daa28a432b3bde056d892">   39</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a01872a7ef94daa28a432b3bde056d892">root_radius_fraction</a>{0.18_rt};</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a1de4775834784679f2ff3e00ee59321a">   42</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a1de4775834784679f2ff3e00ee59321a">root_radius</a>{0.09_rt};</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#ac4c1eab06f752294864d17b2e57029ae">   45</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#ac4c1eab06f752294864d17b2e57029ae">omega</a>{0.0_rt};</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aef982546b2457a19ee48bdffd974ddc8">   48</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aef982546b2457a19ee48bdffd974ddc8">center0</a>{0.0_rt, 0.0_rt, 0.0_rt};</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aceac51bbddfafdd1917a122857ee5725">   51</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aceac51bbddfafdd1917a122857ee5725">center</a>{0.0_rt, 0.0_rt, 0.0_rt};</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a618f316e95d7ec861b4eb6aab20527f4">   54</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a618f316e95d7ec861b4eb6aab20527f4">translation_velocity</a>{0.0_rt, 0.0_rt, 0.0_rt};</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a97f5588255467bd1b27583fb7a52da54">   57</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a97f5588255467bd1b27583fb7a52da54">rotor_normal</a>{1.0_rt, 0.0_rt, 0.0_rt};</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a096cb39d1ca275ca3da096b86cc499c5">   60</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a096cb39d1ca275ca3da096b86cc499c5">rotor_rotation_degrees_per_revolution</a>{0.0_rt, 0.0_rt, 0.0_rt};</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#ad489563295f7c99f533fa66598575692">   63</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#ad489563295f7c99f533fa66598575692">rotor_angular_velocity</a>{0.0_rt, 0.0_rt, 0.0_rt};</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a0565407c3c1e5894f1646cac7e018461">   66</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a0565407c3c1e5894f1646cac7e018461">user_rotor_angular_velocity</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aea604b8b185e12fa55c7db5d9d52dff8">   69</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aea604b8b185e12fa55c7db5d9d52dff8">azimuth</a>{0.0_rt};</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a8462d9deeae8f427112476847c91671a">   72</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a8462d9deeae8f427112476847c91671a">delta_azimuth</a>{0.0_rt};</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a24a7a23b82d27a1639f194ca7c19c4ed">   75</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a24a7a23b82d27a1639f194ca7c19c4ed">span_locs</a>{0.0_rt, 1.0_rt};</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a5640838892807b14d4bb28830bbd8c28">   78</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a5640838892807b14d4bb28830bbd8c28">chord_inp</a>{1.0_rt, 1.0_rt};</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a5c13e22cc6d493039e8a853c6262ff23">   81</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a5c13e22cc6d493039e8a853c6262ff23">twist_inp</a>{0.0_rt, 0.0_rt};</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a534af26e76a7cc3c0fd585a6433e12d3">   84</a></span>    std::string <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a534af26e76a7cc3c0fd585a6433e12d3">airfoil_file</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#add24456e211cc727a75ab5bcae4ce62b">   87</a></span>    std::string <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#add24456e211cc727a75ab5bcae4ce62b">airfoil_type</a>{<span class="stringliteral">&quot;openfast&quot;</span>};</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#afcc9e578787324144809a63dbdeef5b3">   90</a></span>    std::unique_ptr&lt;AirfoilTable&gt; <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#afcc9e578787324144809a63dbdeef5b3">aflookup</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aea7ae29ee434699b579e4bc7945b3ccb">   93</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aea7ae29ee434699b579e4bc7945b3ccb">epsilon</a>{0.0_rt};</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a42c1edbfc9530d9a2f96414536801507">   96</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a42c1edbfc9530d9a2f96414536801507">user_epsilon</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a3fcd2791106903bb879f9fc65524c14a">   99</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a3fcd2791106903bb879f9fc65524c14a">epsilon_chord</a>{0.0_rt};</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aecee9aca6e8d957873efb33f4afffc9e">  102</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aecee9aca6e8d957873efb33f4afffc9e">epsilon_min</a>{0.0_rt};</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aee4fba2646f97572fec26de56270cd82">  105</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aee4fba2646f97572fec26de56270cd82">epsilon_dr</a>{1.5_rt};</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a47bc57c2482fa0b1cccd6518ec100f5f">  108</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a47bc57c2482fa0b1cccd6518ec100f5f">epsilon_dl</a>{1.5_rt};</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a66691ecac0be715da682cc5d79b9ae7c">  111</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a66691ecac0be715da682cc5d79b9ae7c">min_chord_dr</a>{2.0_rt};</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a9df8fe65c00ae0063f562cbf5d57faf7">  114</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a9df8fe65c00ae0063f562cbf5d57faf7">support_radius_over_epsilon</a>{3.0_rt};</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a7f0865e2eb74464ebdd1a9bd2aba4581">  117</a></span>    std::string <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a7f0865e2eb74464ebdd1a9bd2aba4581">radial_quadrature</a>{<span class="stringliteral">&quot;midpoint&quot;</span>};</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#ae6583a808086a278e4019e5f12228ddd">  120</a></span>    std::string <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#ae6583a808086a278e4019e5f12228ddd">swept_quadrature</a>{<span class="stringliteral">&quot;midpoint&quot;</span>};</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#ab9bea446a152235b50ede2ceb8088de1">  123</a></span>    std::string <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#ab9bea446a152235b50ede2ceb8088de1">gaussian_type</a>{<span class="stringliteral">&quot;direct&quot;</span>};</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aca1b4bf05745641b569d14c30cf4a368">  126</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aca1b4bf05745641b569d14c30cf4a368">gaussian_table_error</a>{1.0e-4_rt};</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a37a1b882591893cc43f2cd1754d14f99">  129</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a37a1b882591893cc43f2cd1754d14f99">gaussian_table_nintervals</a>{0};</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#af576e8a751179b37b1af12fbf3f5b7d5">  132</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#af576e8a751179b37b1af12fbf3f5b7d5">gaussian_table</a>;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#afb4e9433ebf740ede4282b2ac4e1192f">  135</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#afb4e9433ebf740ede4282b2ac4e1192f">radius</a>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aec8db51a99597d3abb197f5b4f3bcb14">  138</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aec8db51a99597d3abb197f5b4f3bcb14">dr</a>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a6a61a38ee692e0845b5af2ceb0a822ca">  141</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a6a61a38ee692e0845b5af2ceb0a822ca">chord</a>;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a2ee7a9cf8097a6a3b93296bc7cbaf99b">  144</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a2ee7a9cf8097a6a3b93296bc7cbaf99b">twist</a>;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a2a8c01bc714d795c7bf1aab76ad8d5a8">  147</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a2a8c01bc714d795c7bf1aab76ad8d5a8">epsilon_profile</a>;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a96430686ed93027d376d1c614f15e740">  150</a></span>    amrex::Vector&lt;int&gt; <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a96430686ed93027d376d1c614f15e740">theta_counts</a>;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a818b7256906f7026c0493d1edee14dd3">  153</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a818b7256906f7026c0493d1edee14dd3">vel_rel</a>;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a265cce2ae9e27747856a26584eeb3de9">  157</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a265cce2ae9e27747856a26584eeb3de9">blade_force</a>;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a7fc5d9ac505defea080895c5dea3bd2a">  161</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a7fc5d9ac505defea080895c5dea3bd2a">blade_force_theta</a>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a9234a45609506a52519b2ea1918fccd3">  165</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a9234a45609506a52519b2ea1918fccd3">blade_force_normal</a>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a7ee91d513b0aa29190e1cd6971bdc1c9">  168</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a7ee91d513b0aa29190e1cd6971bdc1c9">aoa</a>;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a40855353cfa152ab3a1d73c8aef3a793">  171</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a40855353cfa152ab3a1d73c8aef3a793">cl</a>;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#ad7b0ccc5373d564be73a7d6d6946c69c">  174</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#ad7b0ccc5373d564be73a7d6d6946c69c">cd</a>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a946edbd5cd48b34760c9ca9a37b6dfbc">  177</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a946edbd5cd48b34760c9ca9a37b6dfbc">thrust</a>{0.0_rt};</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#abe7c51d9fa05ffafe661a0b2953a69c4">  180</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#abe7c51d9fa05ffafe661a0b2953a69c4">torque</a>{0.0_rt};</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>};</div>
+</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="foldopen" id="foldopen00183" data-start="{" data-end="};">
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html">  183</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html">ActuatorSector</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_actuator_type.html">ActuatorType</a></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>{</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#a59a95118cefc53e709dfeacc36bb005c">  185</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#a59a95118cefc53e709dfeacc36bb005c">InfoType</a> = <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_act_info.html">ActInfo</a>;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#a063efffe704eea59c2ecf7b02fab758e">  186</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#a063efffe704eea59c2ecf7b02fab758e">GridType</a> = <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_act_grid.html">ActGrid</a>;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#a04822ba5fe5173f9f6b68c349ea75790">  187</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#a04822ba5fe5173f9f6b68c349ea75790">MetaType</a> = <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html">ActuatorSectorData</a>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#ae4d22749034a9865c12f99cf8cdb668d">  188</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#ae4d22749034a9865c12f99cf8cdb668d">DataType</a> = <a class="code hl_class" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html">ActDataHolder&lt;ActuatorSector&gt;</a>;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#abe1fa7f06405c8e614a40bb44f3d4f13">  190</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#abe1fa7f06405c8e614a40bb44f3d4f13">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Actuator&quot;</span>; }</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>};</div>
+</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>} <span class="comment">// namespace kynema_sgf::actuator</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="preprocessor">#endif </span><span class="comment">/* ACTUATORSECTOR_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_airfoil_table_8_h_html"><div class="ttname"><a href="_airfoil_table_8_h.html">AirfoilTable.H</a></div></div>
+<div class="ttc" id="aactuator__types_8_h_html"><div class="ttname"><a href="actuator__types_8_h.html">actuator_types.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html">kynema_sgf::actuator::ActDataHolder</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:205</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html">kynema_sgf::actuator</a></div><div class="ttdef"><b>Definition</b> ActParser.H:6</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a05a88c15cb29c1bc8314a1194c882789"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">kynema_sgf::actuator::RealList</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; RealList</div><div class="ttdef"><b>Definition</b> actuator_types.H:81</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a39fef9a9215a0de416e46e1c858a4434"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">kynema_sgf::actuator::VecList</a></div><div class="ttdeci">amrex::Vector&lt; kynema_sgf::vs::Vector &gt; VecList</div><div class="ttdef"><b>Definition</b> actuator_types.H:83</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1vs_html_a8b5875515cfa717dbeb39c7f4186ce50"><div class="ttname"><a href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">kynema_sgf::vs::Vector</a></div><div class="ttdeci">VectorT&lt; amrex::Real &gt; Vector</div><div class="ttdef"><b>Definition</b> vector.H:145</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_grid_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_grid.html">kynema_sgf::actuator::ActGrid</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:95</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_info_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_info.html">kynema_sgf::actuator::ActInfo</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:165</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html">kynema_sgf::actuator::ActuatorSectorData</a></div><div class="ttdef"><b>Definition</b> ActuatorSector.H:28</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a01872a7ef94daa28a432b3bde056d892"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a01872a7ef94daa28a432b3bde056d892">kynema_sgf::actuator::ActuatorSectorData::root_radius_fraction</a></div><div class="ttdeci">amrex::Real root_radius_fraction</div><div class="ttdoc">Inboard cutoff as a fraction of rotor radius [-].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:39</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a0565407c3c1e5894f1646cac7e018461"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a0565407c3c1e5894f1646cac7e018461">kynema_sgf::actuator::ActuatorSectorData::user_rotor_angular_velocity</a></div><div class="ttdeci">bool user_rotor_angular_velocity</div><div class="ttdoc">True when rotor_angular_velocity was explicitly supplied by the user.</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:66</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a096cb39d1ca275ca3da096b86cc499c5"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a096cb39d1ca275ca3da096b86cc499c5">kynema_sgf::actuator::ActuatorSectorData::rotor_rotation_degrees_per_revolution</a></div><div class="ttdeci">vs::Vector rotor_rotation_degrees_per_revolution</div><div class="ttdoc">Rotor-frame rotation rate specified per blade revolution [deg/rev].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:60</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a1de4775834784679f2ff3e00ee59321a"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a1de4775834784679f2ff3e00ee59321a">kynema_sgf::actuator::ActuatorSectorData::root_radius</a></div><div class="ttdeci">amrex::Real root_radius</div><div class="ttdoc">Inboard cutoff radius [m].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:42</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a24a7a23b82d27a1639f194ca7c19c4ed"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a24a7a23b82d27a1639f194ca7c19c4ed">kynema_sgf::actuator::ActuatorSectorData::span_locs</a></div><div class="ttdeci">RealList span_locs</div><div class="ttdoc">Non-dimensional locations for chord/twist interpolation [-].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:75</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a265cce2ae9e27747856a26584eeb3de9"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a265cce2ae9e27747856a26584eeb3de9">kynema_sgf::actuator::ActuatorSectorData::blade_force</a></div><div class="ttdeci">VecList blade_force</div><div class="ttdoc">Force on fluid at midpoint blade stations in fixed-frame coordinates before multiplication by radial ...</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:157</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a2a8c01bc714d795c7bf1aab76ad8d5a8"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a2a8c01bc714d795c7bf1aab76ad8d5a8">kynema_sgf::actuator::ActuatorSectorData::epsilon_profile</a></div><div class="ttdeci">RealList epsilon_profile</div><div class="ttdoc">Local Gaussian width at radial stations [m].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:147</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a2ee7a9cf8097a6a3b93296bc7cbaf99b"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a2ee7a9cf8097a6a3b93296bc7cbaf99b">kynema_sgf::actuator::ActuatorSectorData::twist</a></div><div class="ttdeci">RealList twist</div><div class="ttdoc">Local twist at radial stations [deg].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:144</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a35305eaeb85b5f7f9b987c890f6d1376"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a35305eaeb85b5f7f9b987c890f6d1376">kynema_sgf::actuator::ActuatorSectorData::num_blades</a></div><div class="ttdeci">int num_blades</div><div class="ttdoc">Number of rotor blades [-].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:30</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a37a1b882591893cc43f2cd1754d14f99"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a37a1b882591893cc43f2cd1754d14f99">kynema_sgf::actuator::ActuatorSectorData::gaussian_table_nintervals</a></div><div class="ttdeci">int gaussian_table_nintervals</div><div class="ttdoc">Number of interpolation intervals in the Gaussian table [-].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:129</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a3fcd2791106903bb879f9fc65524c14a"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a3fcd2791106903bb879f9fc65524c14a">kynema_sgf::actuator::ActuatorSectorData::epsilon_chord</a></div><div class="ttdeci">amrex::Real epsilon_chord</div><div class="ttdoc">Gaussian width divided by local chord [-].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:99</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a40855353cfa152ab3a1d73c8aef3a793"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a40855353cfa152ab3a1d73c8aef3a793">kynema_sgf::actuator::ActuatorSectorData::cl</a></div><div class="ttdeci">RealList cl</div><div class="ttdoc">Lift coefficient at midpoint blade stations [-].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:171</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a42c1edbfc9530d9a2f96414536801507"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a42c1edbfc9530d9a2f96414536801507">kynema_sgf::actuator::ActuatorSectorData::user_epsilon</a></div><div class="ttdeci">bool user_epsilon</div><div class="ttdoc">True when epsilon was explicitly supplied by the user.</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:96</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a47bc57c2482fa0b1cccd6518ec100f5f"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a47bc57c2482fa0b1cccd6518ec100f5f">kynema_sgf::actuator::ActuatorSectorData::epsilon_dl</a></div><div class="ttdeci">amrex::Real epsilon_dl</div><div class="ttdoc">Required swept arc length resolution, epsilon / dl &gt;= epsilon_dl [-].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:108</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a534af26e76a7cc3c0fd585a6433e12d3"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a534af26e76a7cc3c0fd585a6433e12d3">kynema_sgf::actuator::ActuatorSectorData::airfoil_file</a></div><div class="ttdeci">std::string airfoil_file</div><div class="ttdoc">Airfoil table filename.</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:84</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a5640838892807b14d4bb28830bbd8c28"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a5640838892807b14d4bb28830bbd8c28">kynema_sgf::actuator::ActuatorSectorData::chord_inp</a></div><div class="ttdeci">RealList chord_inp</div><div class="ttdoc">Input chord distribution at span_locs [m].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:78</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a5c13e22cc6d493039e8a853c6262ff23"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a5c13e22cc6d493039e8a853c6262ff23">kynema_sgf::actuator::ActuatorSectorData::twist_inp</a></div><div class="ttdeci">RealList twist_inp</div><div class="ttdoc">Input twist distribution at span_locs [deg].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:81</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a618f316e95d7ec861b4eb6aab20527f4"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a618f316e95d7ec861b4eb6aab20527f4">kynema_sgf::actuator::ActuatorSectorData::translation_velocity</a></div><div class="ttdeci">vs::Vector translation_velocity</div><div class="ttdoc">Constant drone/body translation velocity in the CFD frame [m/s].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:54</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a66691ecac0be715da682cc5d79b9ae7c"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a66691ecac0be715da682cc5d79b9ae7c">kynema_sgf::actuator::ActuatorSectorData::min_chord_dr</a></div><div class="ttdeci">amrex::Real min_chord_dr</div><div class="ttdoc">Required local chord resolution, chord / dr &gt;= min_chord_dr [-].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:111</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a6a61a38ee692e0845b5af2ceb0a822ca"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a6a61a38ee692e0845b5af2ceb0a822ca">kynema_sgf::actuator::ActuatorSectorData::chord</a></div><div class="ttdeci">RealList chord</div><div class="ttdoc">Local chord at radial stations [m].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:141</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a7ee91d513b0aa29190e1cd6971bdc1c9"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a7ee91d513b0aa29190e1cd6971bdc1c9">kynema_sgf::actuator::ActuatorSectorData::aoa</a></div><div class="ttdeci">RealList aoa</div><div class="ttdoc">Angle of attack at midpoint blade stations [deg].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:168</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a7f0865e2eb74464ebdd1a9bd2aba4581"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a7f0865e2eb74464ebdd1a9bd2aba4581">kynema_sgf::actuator::ActuatorSectorData::radial_quadrature</a></div><div class="ttdeci">std::string radial_quadrature</div><div class="ttdoc">Span quadrature rule. Initial implementation supports midpoint.</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:117</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a7fc5d9ac505defea080895c5dea3bd2a"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a7fc5d9ac505defea080895c5dea3bd2a">kynema_sgf::actuator::ActuatorSectorData::blade_force_theta</a></div><div class="ttdeci">RealList blade_force_theta</div><div class="ttdoc">Force on fluid along local tangential direction at blade stations before multiplication by radial qua...</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:161</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a818b7256906f7026c0493d1edee14dd3"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a818b7256906f7026c0493d1edee14dd3">kynema_sgf::actuator::ActuatorSectorData::vel_rel</a></div><div class="ttdeci">VecList vel_rel</div><div class="ttdoc">Relative velocity in the local blade-section plane [m/s].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:153</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a8462d9deeae8f427112476847c91671a"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a8462d9deeae8f427112476847c91671a">kynema_sgf::actuator::ActuatorSectorData::delta_azimuth</a></div><div class="ttdeci">amrex::Real delta_azimuth</div><div class="ttdoc">Blade azimuth swept over the current timestep [rad].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:72</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a9234a45609506a52519b2ea1918fccd3"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a9234a45609506a52519b2ea1918fccd3">kynema_sgf::actuator::ActuatorSectorData::blade_force_normal</a></div><div class="ttdeci">RealList blade_force_normal</div><div class="ttdoc">Force on fluid along local rotor normal at blade stations before multiplication by radial quadrature ...</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:165</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a946edbd5cd48b34760c9ca9a37b6dfbc"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a946edbd5cd48b34760c9ca9a37b6dfbc">kynema_sgf::actuator::ActuatorSectorData::thrust</a></div><div class="ttdeci">amrex::Real thrust</div><div class="ttdoc">Integrated force component along the rotor normal [m^4/s^2].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:177</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a96430686ed93027d376d1c614f15e740"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a96430686ed93027d376d1c614f15e740">kynema_sgf::actuator::ActuatorSectorData::theta_counts</a></div><div class="ttdeci">amrex::Vector&lt; int &gt; theta_counts</div><div class="ttdoc">Number of swept quadrature samples at each radial station [-].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:150</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a97f5588255467bd1b27583fb7a52da54"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a97f5588255467bd1b27583fb7a52da54">kynema_sgf::actuator::ActuatorSectorData::rotor_normal</a></div><div class="ttdeci">vs::Vector rotor_normal</div><div class="ttdoc">Initial rotor normal direction in the CFD frame [-].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:57</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a98b2d7fd84e015e9076a818c87642ef0"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a98b2d7fd84e015e9076a818c87642ef0">kynema_sgf::actuator::ActuatorSectorData::rotor_radius</a></div><div class="ttdeci">amrex::Real rotor_radius</div><div class="ttdoc">Rotor radius [m].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:36</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_a9df8fe65c00ae0063f562cbf5d57faf7"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#a9df8fe65c00ae0063f562cbf5d57faf7">kynema_sgf::actuator::ActuatorSectorData::support_radius_over_epsilon</a></div><div class="ttdeci">amrex::Real support_radius_over_epsilon</div><div class="ttdoc">Compact Gaussian support radius divided by epsilon [-].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:114</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_ab9bea446a152235b50ede2ceb8088de1"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#ab9bea446a152235b50ede2ceb8088de1">kynema_sgf::actuator::ActuatorSectorData::gaussian_type</a></div><div class="ttdeci">std::string gaussian_type</div><div class="ttdoc">Gaussian evaluation mode: direct or table.</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:123</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_abe7c51d9fa05ffafe661a0b2953a69c4"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#abe7c51d9fa05ffafe661a0b2953a69c4">kynema_sgf::actuator::ActuatorSectorData::torque</a></div><div class="ttdeci">amrex::Real torque</div><div class="ttdoc">Integrated torque about the rotor normal [m^5/s^2].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:180</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_ac4c1eab06f752294864d17b2e57029ae"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#ac4c1eab06f752294864d17b2e57029ae">kynema_sgf::actuator::ActuatorSectorData::omega</a></div><div class="ttdeci">amrex::Real omega</div><div class="ttdoc">Rotor spin angular speed [rad/s].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:45</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_aca1b4bf05745641b569d14c30cf4a368"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aca1b4bf05745641b569d14c30cf4a368">kynema_sgf::actuator::ActuatorSectorData::gaussian_table_error</a></div><div class="ttdeci">amrex::Real gaussian_table_error</div><div class="ttdoc">Maximum interpolation error for the Gaussian exp(-r^2) table [-].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:126</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_aceac51bbddfafdd1917a122857ee5725"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aceac51bbddfafdd1917a122857ee5725">kynema_sgf::actuator::ActuatorSectorData::center</a></div><div class="ttdeci">vs::Vector center</div><div class="ttdoc">Rotor hub center at the current force-evaluation midpoint [m].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:51</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_ad489563295f7c99f533fa66598575692"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#ad489563295f7c99f533fa66598575692">kynema_sgf::actuator::ActuatorSectorData::rotor_angular_velocity</a></div><div class="ttdeci">vs::Vector rotor_angular_velocity</div><div class="ttdoc">Rotor-frame angular velocity in the CFD frame [rad/s].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:63</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_ad7b0ccc5373d564be73a7d6d6946c69c"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#ad7b0ccc5373d564be73a7d6d6946c69c">kynema_sgf::actuator::ActuatorSectorData::cd</a></div><div class="ttdeci">RealList cd</div><div class="ttdoc">Drag coefficient at midpoint blade stations [-].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:174</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_add24456e211cc727a75ab5bcae4ce62b"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#add24456e211cc727a75ab5bcae4ce62b">kynema_sgf::actuator::ActuatorSectorData::airfoil_type</a></div><div class="ttdeci">std::string airfoil_type</div><div class="ttdoc">Airfoil table format, e.g., openfast.</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:87</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_ae6583a808086a278e4019e5f12228ddd"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#ae6583a808086a278e4019e5f12228ddd">kynema_sgf::actuator::ActuatorSectorData::swept_quadrature</a></div><div class="ttdeci">std::string swept_quadrature</div><div class="ttdoc">Swept quadrature rule. Initial implementation supports midpoint.</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:120</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_aea604b8b185e12fa55c7db5d9d52dff8"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aea604b8b185e12fa55c7db5d9d52dff8">kynema_sgf::actuator::ActuatorSectorData::azimuth</a></div><div class="ttdeci">amrex::Real azimuth</div><div class="ttdoc">Rotor azimuth at the current force-evaluation midpoint [rad].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:69</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_aea7ae29ee434699b579e4bc7945b3ccb"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aea7ae29ee434699b579e4bc7945b3ccb">kynema_sgf::actuator::ActuatorSectorData::epsilon</a></div><div class="ttdeci">amrex::Real epsilon</div><div class="ttdoc">Fixed Gaussian width [m].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:93</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_aec8db51a99597d3abb197f5b4f3bcb14"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aec8db51a99597d3abb197f5b4f3bcb14">kynema_sgf::actuator::ActuatorSectorData::dr</a></div><div class="ttdeci">RealList dr</div><div class="ttdoc">Radial quadrature weights [m].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:138</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_aecee9aca6e8d957873efb33f4afffc9e"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aecee9aca6e8d957873efb33f4afffc9e">kynema_sgf::actuator::ActuatorSectorData::epsilon_min</a></div><div class="ttdeci">amrex::Real epsilon_min</div><div class="ttdoc">Minimum Gaussian width when using epsilon_chord [m].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:102</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_aee4fba2646f97572fec26de56270cd82"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aee4fba2646f97572fec26de56270cd82">kynema_sgf::actuator::ActuatorSectorData::epsilon_dr</a></div><div class="ttdeci">amrex::Real epsilon_dr</div><div class="ttdoc">Required local span resolution, epsilon / dr &gt;= epsilon_dr [-].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:105</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_aef982546b2457a19ee48bdffd974ddc8"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#aef982546b2457a19ee48bdffd974ddc8">kynema_sgf::actuator::ActuatorSectorData::center0</a></div><div class="ttdeci">vs::Vector center0</div><div class="ttdoc">Initial rotor hub center in the CFD frame [m].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:48</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_af576e8a751179b37b1af12fbf3f5b7d5"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#af576e8a751179b37b1af12fbf3f5b7d5">kynema_sgf::actuator::ActuatorSectorData::gaussian_table</a></div><div class="ttdeci">RealList gaussian_table</div><div class="ttdoc">Host-side table for exp(-r^2), r normalized by epsilon [-].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:132</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_afb2305a96b9480f09e2bee967829c4f1"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#afb2305a96b9480f09e2bee967829c4f1">kynema_sgf::actuator::ActuatorSectorData::rotor_diameter</a></div><div class="ttdeci">amrex::Real rotor_diameter</div><div class="ttdoc">Rotor diameter [m].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:33</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_afb4e9433ebf740ede4282b2ac4e1192f"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#afb4e9433ebf740ede4282b2ac4e1192f">kynema_sgf::actuator::ActuatorSectorData::radius</a></div><div class="ttdeci">RealList radius</div><div class="ttdoc">Radial blade station locations [m].</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:135</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_data_html_afcc9e578787324144809a63dbdeef5b3"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector_data.html#afcc9e578787324144809a63dbdeef5b3">kynema_sgf::actuator::ActuatorSectorData::aflookup</a></div><div class="ttdeci">std::unique_ptr&lt; AirfoilTable &gt; aflookup</div><div class="ttdoc">Sectional airfoil lookup table, returning Cl/Cd as a function of AoA.</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:90</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html">kynema_sgf::actuator::ActuatorSector</a></div><div class="ttdef"><b>Definition</b> ActuatorSector.H:184</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_html_a04822ba5fe5173f9f6b68c349ea75790"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#a04822ba5fe5173f9f6b68c349ea75790">kynema_sgf::actuator::ActuatorSector::MetaType</a></div><div class="ttdeci">ActuatorSectorData MetaType</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:187</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_html_a063efffe704eea59c2ecf7b02fab758e"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#a063efffe704eea59c2ecf7b02fab758e">kynema_sgf::actuator::ActuatorSector::GridType</a></div><div class="ttdeci">ActGrid GridType</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:186</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_html_a59a95118cefc53e709dfeacc36bb005c"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#a59a95118cefc53e709dfeacc36bb005c">kynema_sgf::actuator::ActuatorSector::InfoType</a></div><div class="ttdeci">ActInfo InfoType</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:185</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_html_abe1fa7f06405c8e614a40bb44f3d4f13"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#abe1fa7f06405c8e614a40bb44f3d4f13">kynema_sgf::actuator::ActuatorSector::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:190</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_html_ae4d22749034a9865c12f99cf8cdb668d"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#ae4d22749034a9865c12f99cf8cdb668d">kynema_sgf::actuator::ActuatorSector::DataType</a></div><div class="ttdeci">ActDataHolder&lt; ActuatorSector &gt; DataType</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:188</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_type_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_type.html">kynema_sgf::actuator::ActuatorType</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:27</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

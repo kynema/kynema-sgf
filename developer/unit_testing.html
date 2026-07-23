@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit testing &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Regression testing" href="regression_testing.html" />
+    <link rel="prev" title="File Members" href="../doxygen/html/globals_defs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../doxygen/html/index.html">Kynema-SGF API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Unit testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#running-unit-tests">Running unit tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-unit-test-concepts">Basic unit test concepts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#assertions">Assertions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests-and-test-fixtures">Tests and Test Fixtures</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#unit-testing-in-kynema-sgf">Unit testing in Kynema-SGF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#unit-test-scaffolding">Unit test scaffolding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-unit-tests">Example unit tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="regression_testing.html">Regression testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="verification.html">Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coding_guidelines.html">Coding Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer Documentation</a></li>
+      <li class="breadcrumb-item active">Unit testing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/developer/unit_testing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="unit-testing">
+<span id="dev-unit-tests"></span><h1>Unit testing<a class="headerlink" href="#unit-testing" title="Link to this heading"></a></h1>
+<p>Kynema-SGF uses <a class="reference external" href="https://github.com/google/googletest/blob/master/googletest/docs/primer.md">GoogleTest</a>
+to provide unit-testing capabilities for the source code. Unit tests are built
+by default when compiling Kynema-SGF using CMake and can be run using the
+<strong class="program">kynema_sgf_unit_tests</strong> executable — see <a class="reference internal" href="../user/build.html#build"><span class="std std-ref">Compiling Kynema-SGF</span></a> for details of
+building Kynema-SGF with CMake. This section documents the process of running the
+unit tests, the unit test scaffolding facilities available within Kynema-SGF unit
+testing infrastructure, and a brief overview of the process of creating new unit
+tests.</p>
+<section id="running-unit-tests">
+<h2>Running unit tests<a class="headerlink" href="#running-unit-tests" title="Link to this heading"></a></h2>
+<p>To run the unit test suite, simply execute the <strong class="program">kynema_sgf_unit_tests</strong>
+executable at the command prompt. This will execute all the unit tests and print
+a summary of the success/failure status for each tests. The executable will also
+print a summary of the total number of passed, failed, and skipped tests at the
+end of execution. Additional arguments can be used to control the behavior of
+execution of unit tests, .e.g., to run a single test or a subset of tests.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Show<span class="w"> </span><span class="nb">command</span><span class="w"> </span>line<span class="w"> </span>arguments<span class="w"> </span>and<span class="w"> </span>brief<span class="w"> </span><span class="nb">help</span>
+<span class="go">./kynema_sgf_unit_tests -h</span>
+
+<span class="gp"># </span>List<span class="w"> </span>available<span class="w"> </span>tests
+<span class="go">./kynema_sgf_unit_tests --gtest_list_tests</span>
+
+<span class="gp"># </span>Run<span class="w"> </span>a<span class="w"> </span>single<span class="w"> </span><span class="nb">test</span>
+<span class="go">./kynema_sgf_unit_tests --gtest_filter=&quot;ABLTest.abl_forcing&quot;</span>
+
+<span class="gp"># </span>Run<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span>belonging<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span><span class="nb">test</span><span class="w"> </span>suite
+<span class="go">./kynema_sgf_unit_tests --gtest_filter=&quot;ABLTest.*&quot;</span>
+
+<span class="gp"># </span>Run<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span>beginning<span class="w"> </span>with<span class="w"> </span>keyword
+<span class="go">./kynema_sgf_unit_tests --gtest_filter=&quot;*.*field*&quot;</span>
+
+<span class="gp"># </span>Run<span class="w"> </span>all<span class="w"> </span>tests<span class="w"> </span>except<span class="w"> </span><span class="k">for</span><span class="w"> </span>those<span class="w"> </span><span class="k">in</span><span class="w"> </span>ABLTest<span class="w"> </span>suite
+<span class="go">./kynema_sgf_unit_tests --gtest_filter=&quot;-ABLTest.*&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="basic-unit-test-concepts">
+<h2>Basic unit test concepts<a class="headerlink" href="#basic-unit-test-concepts" title="Link to this heading"></a></h2>
+<p>This section provides a quick overview of basic unit testing concepts for
+beginners. We recommend reading at least <a class="reference external" href="https://github.com/google/googletest/blob/master/googletest/docs/primer.md">GoogleTest Primer docs</a>
+to get a better understanding of unit test concepts and how to use GoogleTest to
+create new unit tests. More advanced use cases can be found in <a class="reference external" href="https://github.com/google/googletest/blob/master/googletest/docs/advanced.md">GoogleTest
+advanced docs</a>.
+Unit tests small functions that test a specific aspect of the code. These tests
+are organized into <em>test suites</em> that group different tests by category. For
+example, all tests related to the definition of <em>fields</em> and <em>field repository</em>
+is organized in the test suite <code class="docutils literal notranslate"><span class="pre">FieldRepoTest</span></code>. To run just this subset of tests use:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Run<span class="w"> </span>only<span class="w"> </span>tests<span class="w"> </span>related<span class="w"> </span>to<span class="w"> </span>field<span class="w"> </span>repository
+<span class="go">./kynema_sgf_unit_tests --gtest_filter=&quot;FieldRepoTest.*&quot;</span>
+</pre></div>
+</div>
+<section id="assertions">
+<h3>Assertions<a class="headerlink" href="#assertions" title="Link to this heading"></a></h3>
+<p>Within a test, we check for expected behavior using <a class="reference external" href="https://github.com/google/googletest/blob/master/googletest/docs/primer.md#assertions">*assertions*</a>
+that test for different conditions. For example, if we were writing a function
+<code class="docutils literal notranslate"><span class="pre">square</span></code> that took one argument, a real number, and returned the square of the
+input value, we would write a unit test as shown below:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//! Return the square of the number</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">TEST</span><span class="p">(</span><span class="n">TestSquare</span><span class="p">,</span><span class="w"> </span><span class="n">test_square</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="mi">16</span><span class="p">);</span>
+<span class="w">    </span><span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Check negative numbers too</span>
+<span class="w">    </span><span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="mi">-4</span><span class="p">),</span><span class="w"> </span><span class="mi">16</span><span class="p">);</span>
+<span class="w">    </span><span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="mi">-5</span><span class="p">),</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the above example, <code class="docutils literal notranslate"><span class="pre">EXPECT_EQ</span></code> is an assertion provided by GoogleTest that
+allows us to check that the two arguments are equal. We use this to test that
+the output of the function matches expected values. Unit tests can be used to
+check other expected behaviors of the function rather than just its correctness.
+For example, consider a function <code class="docutils literal notranslate"><span class="pre">square_root</span></code> that
+computes the square root of a given real number, but is supposed to throw a
+runtime error if it encounters a negative number. Unit tests allow us to test
+both cases: 1. the function produces the correct results for positive numbers
+and, 2. it throws an error for negative numbers. The following code shows this example</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//! Return the square root of a number</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">square_root</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">&quot;Square root requires a positive number&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">TEST</span><span class="p">(</span><span class="n">TestSquareRoot</span><span class="p">,</span><span class="w"> </span><span class="n">test_sqrt</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">EXPECT_NEAR</span><span class="p">(</span><span class="n">square_root</span><span class="p">(</span><span class="mf">4.0</span><span class="p">),</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0e-12</span><span class="p">);</span>
+<span class="w">    </span><span class="n">EXPECT_NEAR</span><span class="p">(</span><span class="n">square_root</span><span class="p">(</span><span class="mf">16.0</span><span class="p">),</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0e-12</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Check sqrt(2) to a lower tolerance (1.0e-3)</span>
+<span class="w">    </span><span class="n">EXPECT_NEAR</span><span class="p">(</span><span class="n">square_root</span><span class="p">(</span><span class="mf">2.0</span><span class="p">),</span><span class="w"> </span><span class="mf">1.41421356237</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0e-3</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Check that negative number creates runtime error</span>
+<span class="w">    </span><span class="n">EXPECT_THROW</span><span class="p">(</span><span class="n">square_root</span><span class="p">(</span><span class="mf">-2.0</span><span class="p">),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="tests-and-test-fixtures">
+<h3>Tests and Test Fixtures<a class="headerlink" href="#tests-and-test-fixtures" title="Link to this heading"></a></h3>
+<p>GoogleTest supports two types of tests: simple tests, and tests that require
+fixtures. Simple tests are tests that test standalone functions that require no
+additional data structures for its execution – see <a class="reference external" href="https://github.com/google/googletest/blob/master/googletest/docs/primer.md#simple-tests">GoogleTest Simple Test docs</a>.
+Test fixtures, on the other hand, allow you to group all necessary data in a
+custom test class that can be reused for multiple tests. Defining a new simple
+test requires the use of <code class="docutils literal notranslate"><span class="pre">TEST()</span></code> macro, and defining a new test with a
+fixture requires the use of <code class="docutils literal notranslate"><span class="pre">TEST_F()</span></code> macro. In Kynema-SGF, we use test
+fixtures extensively to perform actions like creating a mesh and generating some
+test fields that will be used to perform the tests.</p>
+</section>
+</section>
+<section id="unit-testing-in-kynema-sgf">
+<h2>Unit testing in Kynema-SGF<a class="headerlink" href="#unit-testing-in-kynema-sgf" title="Link to this heading"></a></h2>
+<p>Unit test files are in <code class="file docutils literal notranslate"><span class="pre">kynema-sgf/unit_tests</span></code> directory. All unit test code
+is written within the <code class="docutils literal notranslate"><span class="pre">kynema_sgf_tests</span></code> namespace. This section describes the
+scaffolding available to create unit tests and provides a few examples of unit
+tests to help developers write new ones.</p>
+<section id="unit-test-scaffolding">
+<h3>Unit test scaffolding<a class="headerlink" href="#unit-test-scaffolding" title="Link to this heading"></a></h3>
+<p>While unit testing simple functions is straightforward, performing unit tests on
+CFD applications is more complicated. Most often this will require the creation
+of a test mesh, generating field data structures that will be used to set up and
+run the test. This is also complicated by the fact that AMReX creates several
+global data structures, e.g., Geometry and ParmParse, that must be properly
+reset between each test to ensure a clean environment for each test. Kynema-SGF
+provides a few classes that provide the necessary scaffolding to quickly setup
+and run tests.</p>
+<p>Within the <code class="file docutils literal notranslate"><span class="pre">kynema-sgf/unit_tests</span></code> directory, the scaffolding utilities
+related to testing are in <code class="file docutils literal notranslate"><span class="pre">ks_test_utils</span></code> directory. This section provides
+a brief overview of the core classes and their purpose.</p>
+<section id="pp-utils-parmparse-utilities">
+<h4><code class="docutils literal notranslate"><span class="pre">pp_utils</span></code> - ParmParse utilities<a class="headerlink" href="#pp-utils-parmparse-utilities" title="Link to this heading"></a></h4>
+<p>Classes written in Kynema-SGF often require user inputs that are generally read in
+from input files through <cite>amrex::ParmParse</cite> (see <a class="reference external" href="https://amrex-codes.github.io/amrex/docs_html/Basics.html#parmparse">docs</a>).
+<code class="docutils literal notranslate"><span class="pre">pp_utils</span></code> are a set of functions that create skeleton input data that are
+used by various classes during initialization. For example, it populates the
+problem domain, mesh sizes, etc. so that <cite>amrex::AmrMesh</cite> can be
+initialized properly.</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16kynema_sgf_tests19default_mesh_inputsEv">
+<span id="_CPPv3N16kynema_sgf_tests19default_mesh_inputsEv"></span><span id="_CPPv2N16kynema_sgf_tests19default_mesh_inputsEv"></span><span id="kynema_sgf_tests::default_mesh_inputs"></span><span class="sig-name descname"><span class="n"><span class="pre">default_mesh_inputs</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16kynema_sgf_tests19default_mesh_inputsEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Populates ParmParse data structure with all the necessary inputs to create an
+AMRMesh instance.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16kynema_sgf_tests19default_time_inputsEv">
+<span id="_CPPv3N16kynema_sgf_tests19default_time_inputsEv"></span><span id="_CPPv2N16kynema_sgf_tests19default_time_inputsEv"></span><span id="kynema_sgf_tests::default_time_inputs"></span><span class="sig-name descname"><span class="n"><span class="pre">default_time_inputs</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16kynema_sgf_tests19default_time_inputsEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Populates ParmParse data structure with necessary inputs for <cite>kynema_sgf::SimTime</cite>.</p>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N16kynema_sgf_tests12AmrexTestEnvE">
+<span id="_CPPv3N16kynema_sgf_tests12AmrexTestEnvE"></span><span id="_CPPv2N16kynema_sgf_tests12AmrexTestEnvE"></span><span id="kynema_sgf_tests::AmrexTestEnv"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AmrexTestEnv</span></span></span><a class="headerlink" href="#_CPPv4N16kynema_sgf_tests12AmrexTestEnvE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<p><a class="reference internal" href="#_CPPv4N16kynema_sgf_tests12AmrexTestEnvE" title="kynema_sgf_tests::AmrexTestEnv"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AmrexTestEnv</span></code></a> is a subclass of <code class="docutils literal notranslate"><span class="pre">::testing::Environment</span></code> that provides
+global setup and teardown actions. This classes is registered with the
+GoogleTest environment and is responsible for calling <code class="docutils literal notranslate"><span class="pre">amrex::Initialize()</span></code>
+and <code class="docutils literal notranslate"><span class="pre">amrex::Finalize()</span></code> at appropriate times. It also customizes the AMReX
+setup by changing a few defaults:</p>
+<ul class="simple">
+<li><p>Disables AMReX’s default <code class="docutils literal notranslate"><span class="pre">signal_handling</span></code> behavior and restores standard
+C++ exception handling. This is necessary for <code class="docutils literal notranslate"><span class="pre">EXPECT_THROW</span></code> type assertions
+to function properly.</p></li>
+<li><p>Sets the verbosity such that no messages are printed from AMReX library during
+the execution of unit tests.</p></li>
+<li><p>Calling <code class="docutils literal notranslate"><span class="pre">ParmParse::Finalize()</span></code> immediately after <code class="docutils literal notranslate"><span class="pre">amrex::Initialize()</span></code> so
+that each test can begin with a clean parameter environment.</p></li>
+</ul>
+<p>The last two actions can be overridden by the user for specific invocations of
+the unit test executable by providing additional command line arguments. For
+example, to set the verbosity:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./kynema_sgf_unit_tests amrex.verbose=1</span>
+</pre></div>
+</div>
+<p>And to keep parameters provided in the command line for use with tests:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./kynema_sgf_unit_tests utest.keep_parameters=1</span>
+</pre></div>
+</div>
+<p>In normal development workflow, users will almost never have to interact with
+AmrexTestEnv directly.</p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N16kynema_sgf_tests9AmrexTestE">
+<span id="_CPPv3N16kynema_sgf_tests9AmrexTestE"></span><span id="_CPPv2N16kynema_sgf_tests9AmrexTestE"></span><span id="kynema_sgf_tests::AmrexTest"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AmrexTest</span></span></span><a class="headerlink" href="#_CPPv4N16kynema_sgf_tests9AmrexTestE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<p><a class="reference internal" href="#_CPPv4N16kynema_sgf_tests9AmrexTestE" title="kynema_sgf_tests::AmrexTest"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AmrexTest</span></code></a> is a test fixture is derived from <code class="docutils literal notranslate"><span class="pre">::testing::Test</span></code> and is
+the base class for all the other test fixtures used within Kynema-SGF unit testing
+infrastructure. It provides setup and teardown actions that call
+<code class="docutils literal notranslate"><span class="pre">ParmParse::Initialize()</span></code> and <code class="docutils literal notranslate"><span class="pre">ParmParse::Finalize()</span></code> actions respectively
+to create a clean inputs table environment for each test. The setup/teardown
+actions are called before and after a <code class="docutils literal notranslate"><span class="pre">TEST_F()</span></code> body is executed. This
+fixture does not create a mesh or related data structures, and can be used as a
+base fixture for tests that do not require any underlying mesh description.</p>
+<p>The following example, taken from one of the unit tests in Kynema-SGF, shows usage
+of this test fixture:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// All unit tests are created within the `kynema_sgf_tests` namespace</span>
+<span class="linenos"> 2</span><span class="k">namespace</span><span class="w"> </span><span class="nn">kynema_sgf_tests</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="c1">// Anonymous namespace to declare utility functions used within this file</span>
+<span class="linenos"> 5</span><span class="k">namespace</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="c1">// Helper function to populate ParmParse with all the necessary inputs used by</span>
+<span class="linenos"> 8</span><span class="c1">// SimTime class.</span>
+<span class="linenos"> 9</span><span class="kt">void</span><span class="w"> </span><span class="nf">build_simtime_params</span><span class="p">()</span>
+<span class="linenos">10</span><span class="p">{</span>
+<span class="linenos">11</span><span class="w">    </span><span class="n">amrex</span><span class="o">::</span><span class="n">ParmParse</span><span class="w"> </span><span class="n">pp</span><span class="p">(</span><span class="s">&quot;time&quot;</span><span class="p">);</span>
+<span class="linenos">12</span><span class="w">    </span><span class="n">pp</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;stop_time&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">);</span>
+<span class="linenos">13</span><span class="w">    </span><span class="n">pp</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;max_step&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="linenos">14</span><span class="w">    </span><span class="n">pp</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;fixed_dt&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.1</span><span class="p">);</span>
+<span class="linenos">15</span><span class="w">    </span><span class="n">pp</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;init_shrink&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span>
+<span class="linenos">16</span><span class="w">    </span><span class="n">pp</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;cfl&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.45</span><span class="p">);</span>
+<span class="linenos">17</span><span class="w">    </span><span class="n">pp</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;verbose&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
+<span class="linenos">18</span><span class="w">    </span><span class="n">pp</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;regrid_interval&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="linenos">19</span><span class="w">    </span><span class="n">pp</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;plot_interval&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">20</span><span class="w">    </span><span class="n">pp</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;checkpoint_interval&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos">21</span><span class="p">}</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="c1">// Create unique namespace for this test fixture. This is useful to group tests</span>
+<span class="linenos">26</span><span class="c1">// related to SimTime object for filtering during execution.</span>
+<span class="linenos">27</span><span class="k">class</span><span class="w"> </span><span class="nc">SimTimeTest</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">AmrexTest</span><span class="w"> </span><span class="p">{};</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="c1">// This is an example of a unit test that tests SimTime behavior with the</span>
+<span class="linenos">30</span><span class="c1">// AmrexTest test fixture</span>
+<span class="linenos">31</span><span class="n">TEST_F</span><span class="p">(</span><span class="n">SimTimeTest</span><span class="p">,</span><span class="w"> </span><span class="n">fixed_dt_loop</span><span class="p">)</span>
+<span class="linenos">32</span><span class="p">{</span>
+<span class="linenos">33</span><span class="w">    </span><span class="c1">// Call helper function to populate the defaults</span>
+<span class="linenos">34</span><span class="w">    </span><span class="n">build_simtime_params</span><span class="p">();</span>
+<span class="linenos">35</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">36</span><span class="w">        </span><span class="c1">// Override defaults to switch to fixed timestep</span>
+<span class="linenos">37</span><span class="w">        </span><span class="n">amrex</span><span class="o">::</span><span class="n">ParmParse</span><span class="w"> </span><span class="n">pp</span><span class="p">(</span><span class="s">&quot;time&quot;</span><span class="p">);</span>
+<span class="linenos">38</span><span class="w">        </span><span class="n">pp</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;fixed_dt&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">);</span>
+<span class="linenos">39</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="w">    </span><span class="c1">// Create the object that is being tested</span>
+<span class="linenos">42</span><span class="w">    </span><span class="n">kynema_sgf</span><span class="o">::</span><span class="n">SimTime</span><span class="w"> </span><span class="n">time</span><span class="p">;</span>
+<span class="linenos">43</span><span class="w">    </span><span class="n">time</span><span class="p">.</span><span class="n">parse_parameters</span><span class="p">();</span>
+<span class="linenos">44</span>
+<span class="linenos">45</span><span class="w">    </span><span class="c1">// Perform tests</span>
+<span class="linenos">46</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">47</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">regrid_counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">48</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">plot_counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">49</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">chkpt_counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">50</span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">new_timestep</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">51</span><span class="w">        </span><span class="n">time</span><span class="p">.</span><span class="n">set_current_cfl</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span>
+<span class="linenos">52</span><span class="w">        </span><span class="o">++</span><span class="n">counter</span><span class="p">;</span>
+<span class="linenos">53</span>
+<span class="linenos">54</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">write_plot_file</span><span class="p">())</span><span class="w"> </span><span class="o">++</span><span class="n">plot_counter</span><span class="p">;</span>
+<span class="linenos">55</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">write_checkpoint</span><span class="p">())</span><span class="w"> </span><span class="o">++</span><span class="n">chkpt_counter</span><span class="p">;</span>
+<span class="linenos">56</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">do_regrid</span><span class="p">())</span><span class="w"> </span><span class="o">++</span><span class="n">regrid_counter</span><span class="p">;</span>
+<span class="linenos">57</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">58</span><span class="w">    </span><span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">counter</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="linenos">59</span><span class="w">    </span><span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">plot_counter</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="linenos">60</span><span class="w">    </span><span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">chkpt_counter</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<span class="linenos">61</span><span class="w">    </span><span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">regrid_counter</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="linenos">62</span>
+<span class="linenos">63</span><span class="w">    </span><span class="n">EXPECT_FALSE</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">write_last_checkpoint</span><span class="p">());</span>
+<span class="linenos">64</span><span class="w">    </span><span class="n">EXPECT_FALSE</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">write_last_plot_file</span><span class="p">());</span>
+<span class="linenos">65</span><span class="p">}</span>
+<span class="linenos">66</span>
+<span class="linenos">67</span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace kynema_sgf_tests</span>
+</pre></div>
+</div>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N16kynema_sgf_tests11AmrTestMeshE">
+<span id="_CPPv3N16kynema_sgf_tests11AmrTestMeshE"></span><span id="_CPPv2N16kynema_sgf_tests11AmrTestMeshE"></span><span id="kynema_sgf_tests::AmrTestMesh"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AmrTestMesh</span></span></span><a class="headerlink" href="#_CPPv4N16kynema_sgf_tests11AmrTestMeshE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<p><a class="reference internal" href="#_CPPv4N16kynema_sgf_tests11AmrTestMeshE" title="kynema_sgf_tests::AmrTestMesh"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AmrTestMesh</span></code></a> is a concrete implementation of <cite>amrex::AmrCore</cite>
+that creates an AMR mesh that can be used with unit testing. In addition to
+implementing the basic level data creation methods and refinement routines
+<code class="docutils literal notranslate"><span class="pre">ErrorEst</span></code>, it also creates an <cite>kynema_sgf::FieldRepo</cite> instance for
+creating and manipulating fields from within unit tests. <a class="reference internal" href="#_CPPv4N16kynema_sgf_tests11AmrTestMeshE" title="kynema_sgf_tests::AmrTestMesh"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AmrTestMesh</span></code></a> is
+never directly created within unit tests, instead it is created on-demand
+through the test fixture <a class="reference internal" href="#_CPPv4N16kynema_sgf_tests8MeshTestE" title="kynema_sgf_tests::MeshTest"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MeshTest</span></code></a> described next.</p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N16kynema_sgf_tests8MeshTestE">
+<span id="_CPPv3N16kynema_sgf_tests8MeshTestE"></span><span id="_CPPv2N16kynema_sgf_tests8MeshTestE"></span><span id="kynema_sgf_tests::MeshTest"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MeshTest</span></span></span><a class="headerlink" href="#_CPPv4N16kynema_sgf_tests8MeshTestE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<p><a class="reference internal" href="#_CPPv4N16kynema_sgf_tests8MeshTestE" title="kynema_sgf_tests::MeshTest"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MeshTest</span></code></a> is the base test fixture for any test that requires a mesh and
+associated field data that will be used by the test. In addition to performing
+setup/teardown actions described in <a class="reference internal" href="#_CPPv4N16kynema_sgf_tests9AmrexTestE" title="kynema_sgf_tests::AmrexTest"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AmrexTest</span></code></a>, it also resets the
+default <cite>amrex::Geometry</cite> static data so that different tests can run on
+different problem domains prescribed by the test fixture.</p>
+<p>Almost all unit tests within Kynema-SGF use <a class="reference internal" href="#_CPPv4N16kynema_sgf_tests8MeshTestE" title="kynema_sgf_tests::MeshTest"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MeshTest</span></code></a> as their base test
+fixture. In order to allow grouping tests in logical test suites. The following
+example shows the basic usage of this test fixture.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cm">/** Example showing the use of MeshTest test fixture in Kynema-SGF unit tests</span>
+<span class="linenos"> 2</span><span class="cm"> *</span>
+<span class="linenos"> 3</span><span class="cm"> */</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1">// Kynema-SGF unit test namespace</span>
+<span class="linenos"> 6</span><span class="k">namespace</span><span class="w"> </span><span class="nn">kynema_sgf_tests</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1">// Create a unique name for this test suite (for grouping and filtering)</span>
+<span class="linenos"> 9</span><span class="k">class</span><span class="w"> </span><span class="nc">DemoTest</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MeshTest</span>
+<span class="linenos">10</span><span class="p">{};</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">TEST_F</span><span class="p">(</span><span class="n">DemoTest</span><span class="p">,</span><span class="w"> </span><span class="n">test_demo_meshtest</span><span class="p">)</span>
+<span class="linenos">13</span><span class="p">{</span>
+<span class="linenos">14</span><span class="w">    </span><span class="c1">// Before performing any actions the mesh has to be initialized</span>
+<span class="linenos">15</span><span class="w">    </span><span class="n">initialize_mesh</span><span class="p">();</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="w">    </span><span class="c1">// Now all data structures are ready for use by the test</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="w">    </span><span class="c1">// Access the kynema_sgf::CFDSim object</span>
+<span class="linenos">20</span><span class="w">    </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">sim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sim</span><span class="p">();</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="w">    </span><span class="c1">// Access the simulation time object</span>
+<span class="linenos">23</span><span class="w">    </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sim</span><span class="p">.</span><span class="n">time</span><span class="p">();</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="w">    </span><span class="c1">// Access the field repository object</span>
+<span class="linenos">26</span><span class="w">    </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">repo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sim</span><span class="p">.</span><span class="n">repo</span><span class="p">();</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="w">    </span><span class="c1">// Access the mesh itself</span>
+<span class="linenos">29</span><span class="w">    </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">mesh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sim</span><span class="p">.</span><span class="n">mesh</span><span class="p">();</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="w">    </span><span class="c1">//</span>
+<span class="linenos">32</span><span class="w">    </span><span class="c1">// Perform tests with data</span>
+<span class="linenos">33</span><span class="w">    </span><span class="c1">//</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="w">    </span><span class="c1">// By default, field repository must be empty</span>
+<span class="linenos">36</span><span class="w">    </span><span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">repo</span><span class="p">.</span><span class="n">num_fields</span><span class="p">(),</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos">37</span><span class="p">}</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace kynema_sgf_tests</span>
+</pre></div>
+</div>
+<p>The next example shows a more advanced use case where the user can override
+defaults before creating the mesh.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">TEST_F</span><span class="p">(</span><span class="n">DemoTest</span><span class="p">,</span><span class="w"> </span><span class="n">test_meshtest_advanced</span><span class="p">)</span>
+<span class="linenos"> 2</span><span class="p">{</span>
+<span class="linenos"> 3</span><span class="w">    </span><span class="c1">// This test shows a more advanced example to create intermediate data</span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="c1">// before generating mesh</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="c1">// 1. populate the default parameters</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="n">populate_parameters</span><span class="p">();</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="c1">// 2. Change default mesh resolution</span>
+<span class="linenos">10</span><span class="w">    </span><span class="n">amrex</span><span class="o">::</span><span class="n">Vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ncell</span><span class="p">{{</span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">}};</span>
+<span class="linenos">11</span><span class="w">    </span><span class="n">pp</span><span class="p">.</span><span class="n">addarr</span><span class="p">(</span><span class="s">&quot;ncell&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ncell</span><span class="p">);</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="w">    </span><span class="c1">// 3. Create the mesh instance</span>
+<span class="linenos">14</span><span class="w">    </span><span class="n">create_mesh_instance</span><span class="p">();</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="w">    </span><span class="c1">// 4. Declare additional fields</span>
+<span class="linenos">17</span><span class="w">    </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">repo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sim</span><span class="p">().</span><span class="n">repo</span><span class="p">();</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="w">    </span><span class="n">repo</span><span class="p">.</span><span class="n">declare_cc_field</span><span class="p">(</span><span class="s">&quot;velocity&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos">20</span><span class="w">    </span><span class="n">repo</span><span class="p">.</span><span class="n">declare_cc_field</span><span class="p">(</span><span class="s">&quot;density&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">21</span><span class="w">    </span><span class="n">repo</span><span class="p">.</span><span class="n">declare_nd_field</span><span class="p">(</span><span class="s">&quot;pressure&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">    </span><span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">repo</span><span class="p">.</span><span class="n">num_fields</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="w">    </span><span class="c1">// 5. Create the mesh structure</span>
+<span class="linenos">26</span><span class="w">    </span><span class="n">initialize_mesh</span><span class="p">();</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="w">    </span><span class="c1">// Check that there is at least 1 level</span>
+<span class="linenos">29</span><span class="w">    </span><span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">repo</span><span class="p">.</span><span class="n">num_active_levels</span><span class="p">(),</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">30</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Methods defined by <a class="reference internal" href="#_CPPv4N16kynema_sgf_tests8MeshTestE" title="kynema_sgf_tests::MeshTest"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MeshTest</span></code></a></p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16kynema_sgf_tests8MeshTest15initialize_meshEv">
+<span id="_CPPv3N16kynema_sgf_tests8MeshTest15initialize_meshEv"></span><span id="_CPPv2N16kynema_sgf_tests8MeshTest15initialize_meshEv"></span><span id="kynema_sgf_tests::MeshTest::initialize_mesh"></span><span class="sig-name descname"><span class="n"><span class="pre">initialize_mesh</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16kynema_sgf_tests8MeshTest15initialize_meshEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<p>A test must call <a class="reference internal" href="#_CPPv4N16kynema_sgf_tests8MeshTest15initialize_meshEv" title="kynema_sgf_tests::MeshTest::initialize_mesh"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">initialize_mesh()</span></code></a> before performing any tests that
+require a mesh or associated fields. Behind the scenes,
+<a class="reference internal" href="#_CPPv4N16kynema_sgf_tests8MeshTest15initialize_meshEv" title="kynema_sgf_tests::MeshTest::initialize_mesh"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">initialize_mesh()</span></code></a> performs several actions. It calls
+<a class="reference internal" href="#_CPPv4N16kynema_sgf_tests8MeshTest19populate_parametersEv" title="kynema_sgf_tests::MeshTest::populate_parameters"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">populate_parameters()</span></code></a>, creates a mesh instance, creates levels from
+scratch. After a call to this function, the mesh is ready for use.</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16kynema_sgf_tests8MeshTest19populate_parametersEv">
+<span id="_CPPv3N16kynema_sgf_tests8MeshTest19populate_parametersEv"></span><span id="_CPPv2N16kynema_sgf_tests8MeshTest19populate_parametersEv"></span><span id="kynema_sgf_tests::MeshTest::populate_parameters"></span><span class="sig-name descname"><span class="n"><span class="pre">populate_parameters</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16kynema_sgf_tests8MeshTest19populate_parametersEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Populate default parameters necessary for creating an AMRMesh and
+<cite>kynema_sgf::SimTime</cite> objects.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16kynema_sgf_tests8MeshTest20create_mesh_instanceEv">
+<span id="_CPPv3N16kynema_sgf_tests8MeshTest20create_mesh_instanceEv"></span><span id="_CPPv2N16kynema_sgf_tests8MeshTest20create_mesh_instanceEv"></span><span id="kynema_sgf_tests::MeshTest::create_mesh_instance"></span><span class="sig-name descname"><span class="n"><span class="pre">create_mesh_instance</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16kynema_sgf_tests8MeshTest20create_mesh_instanceEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Create a new AMRMesh instance. This doesn’t create the level data from
+scratch yet. That is deferred until <a class="reference internal" href="#_CPPv4N16kynema_sgf_tests8MeshTest15initialize_meshEv" title="kynema_sgf_tests::MeshTest::initialize_mesh"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">initialize_mesh()</span></code></a> is called.</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="example-unit-tests">
+<h3>Example unit tests<a class="headerlink" href="#example-unit-tests" title="Link to this heading"></a></h3>
+<p>Following are a list of unit tests available within Kynema-SGF repository that can
+be used as starting points for users to write new tests:</p>
+<p><a class="reference external" href="https://github.com/Kynema/kynema-sgf/blob/development/unit_tests/core/test_simtime.cpp">test_simtime.cpp</a></p>
+<blockquote>
+<div><p>Simple unit test example that tests the behavior of
+<cite>kynema_sgf::SimTime</cite>. This test only relies on <a class="reference internal" href="#_CPPv4N16kynema_sgf_tests9AmrexTestE" title="kynema_sgf_tests::AmrexTest"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AmrexTest</span></code></a> and
+does not require a mesh.</p>
+</div></blockquote>
+<p><a class="reference external" href="https://github.com/Kynema/kynema-sgf/blob/development/unit_tests/wind_energy/test_abl_init.cpp">test_abl_init.cpp</a></p>
+<blockquote>
+<div><p>This is an example that uses <a class="reference internal" href="#_CPPv4N16kynema_sgf_tests8MeshTestE" title="kynema_sgf_tests::MeshTest"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MeshTest</span></code></a> to generate a test mesh and
+test the ABL initial conditions generator algorithms.</p>
+</div></blockquote>
+<p><a class="reference external" href="https://github.com/Kynema/kynema-sgf/blob/development/unit_tests/utilities/test_refinement.cpp">test_refinement.cpp</a></p>
+<blockquote>
+<div><p>This is an advanced example that test the user-defined nested mesh refinement
+algorithm by creating a test fixture that is capable of adaptive mesh
+refinement based on the criteria.</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../doxygen/html/globals_defs.html" class="btn btn-neutral float-left" title="File Members" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="regression_testing.html" class="btn btn-neutral float-right" title="Regression testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

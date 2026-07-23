@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ABLMesoscaleForcing.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ABLMesoscaleForcing.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_a_b_l_mesoscale_forcing_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-ablmesoscaleforcing-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ABLMesoscaleForcing.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-ablmesoscaleforcing-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ABLMesoscaleForcing.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_a80d9316c48aa709b9bc78e2b746db24.html">wind_energy</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">ABLMesoscaleForcing.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_a_b_l_mesoscale_forcing_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef ABLMESOSCALEFORCING_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define ABLMESOSCALEFORCING_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;AMReX_Array.H&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;AMReX_Vector.H&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html">   14</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a77163b3c0e0b645e1b616a05c09c97a1">ABLMesoscaleForcing</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a77163b3c0e0b645e1b616a05c09c97a1">ABLMesoscaleForcing</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim, <span class="keyword">const</span> std::string&amp; identifier);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#ae20fdb3aea4f46dc87a095057cb17402">indirect_forcing_init</a>();</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a3e2f743109dce0118416c73f49bfcd0c">invert_mat</a>(</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">const</span> amrex::Array2D&lt;amrex::Real, 0, 3, 0, 3&gt;&amp; m,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        amrex::Array2D&lt;amrex::Real, 0, 3, 0, 3&gt;&amp; im);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#ad2e8157c0d45112137ae2fd436b0c4ec">   27</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#ad2e8157c0d45112137ae2fd436b0c4ec">m_time</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a454aeb424de7ee50217c202584985d54">   28</a></span>    <span class="keyword">const</span> amrex::AmrCore&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a454aeb424de7ee50217c202584985d54">m_mesh</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a975c53dab6ba434d50ec819aceba667a">   30</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a975c53dab6ba434d50ec819aceba667a">m_idx_time</a>{0};</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a175cbf9be5d1058af31bc34b40c2c9c3">   31</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a175cbf9be5d1058af31bc34b40c2c9c3">m_axis</a>{2};</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">// inputs</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a0ff337175b16528324ec392cc4649341">   34</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a0ff337175b16528324ec392cc4649341">m_forcing_scheme</a>;</div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a561abccc9599a8fab22e5c6640d45a41">   35</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a561abccc9599a8fab22e5c6640d45a41">m_gain_coeff</a>{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        0.2_rt};            <span class="comment">// relaxation factor for all forcing schemes</span></div>
+</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a6b6ee50a26c96f82679f20bfa0fb67a4">   37</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a6b6ee50a26c96f82679f20bfa0fb67a4">m_debug</a>{<span class="keyword">false</span>};    <span class="comment">// print out profiles for debugging</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a36fafdc6e09214f32a920daddf7a7ea6">   38</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a36fafdc6e09214f32a920daddf7a7ea6">m_tendency</a>{<span class="keyword">false</span>}; <span class="comment">// check if tendency forcing</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment">// planar averaging heights</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a459015150946d41937043e3ece92cd6e">   41</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a459015150946d41937043e3ece92cd6e">m_zht</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a67ba09ffd7eb78badf0ce01fe56a68a4">   42</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a67ba09ffd7eb78badf0ce01fe56a68a4">m_nht</a>{0}; <span class="comment">// set by derived ABLMesoForcing[Mom|Temp] class</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">//</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">// regression vars for indirect forcing</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="comment">//</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// int m_ind_polyOrder;</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a5811cc432af165ddb6cde728cf9b9f2a">   48</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a5811cc432af165ddb6cde728cf9b9f2a">m_norm_zmax</a> = 0;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a71228cf021273f6e48364fb3d4734c19">   49</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a71228cf021273f6e48364fb3d4734c19">m_scaleFact</a> =</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        1.0e-3_rt; <span class="comment">// to improve conditioning of regression matrix</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#adc2a010da868bc4254a7db95db9fcb1e">   52</a></span>    amrex::Array2D&lt;amrex::Real, 0, 3, 0, 3&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#adc2a010da868bc4254a7db95db9fcb1e">m_im_zTz</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// - regression weighting profile inputs (these may be constant or the</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="comment">// instantaneous value, if forcing_transition is specified)</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a1dec6788eb6f205f0a54585c457e19f7">   56</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a1dec6788eb6f205f0a54585c457e19f7">m_forcing_transition</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a380cdccfd689e7fc3566201a2ccb4a40">   57</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a380cdccfd689e7fc3566201a2ccb4a40">m_transition_height</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#af7c4d2f60a8733b639bea041a349d944">   58</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#af7c4d2f60a8733b639bea041a349d944">m_update_transition_height</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#afe91f7a90ebe5eb5936ca8acca165942">   59</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#afe91f7a90ebe5eb5936ca8acca165942">m_transition_thickness</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a18c00adbd49535d04481ef882aabd755">   61</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a18c00adbd49535d04481ef882aabd755">m_weighting_heights</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a0564d06e162295e8d28527591f9f4c6e">   62</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a0564d06e162295e8d28527591f9f4c6e">m_weighting_values</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a261bbbbf41febc3221f176c86f686fb1">   63</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a261bbbbf41febc3221f176c86f686fb1">m_user_specified_weighting</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="comment">// - W(z) at planar averaging heights, for regression</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a90c9557ba9994a6fc69be5644b5b465f">   66</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a90c9557ba9994a6fc69be5644b5b465f">m_W</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">// - blending heights (constant over time if the transition height is also</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">// constant)</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#ac0b141bd6e37611d94c837e094fabaaa">   70</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#ac0b141bd6e37611d94c837e094fabaaa">m_blending_heights</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#ad29bfb4f7c65d89ab790942ad299fa1d">   71</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#ad29bfb4f7c65d89ab790942ad299fa1d">m_blending_values</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// - weights at planar averaging heights, for blending indirect-direct</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// forcing profiles</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#af80aa53f1a10fe0c1ccee82ebb64f923">   75</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#af80aa53f1a10fe0c1ccee82ebb64f923">m_blend</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="comment">//</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">// weighting profile manipulation</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">//</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a806c88c6022921f4f0d09457e8c473f6">set_transition_weighting</a>(); <span class="comment">// will override weighting profile</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#ae12c401155b109f74d2b903949c80399">update_weights</a>(); <span class="comment">// interpolate current profile to planar averaging heights</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="comment">//</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// forcing profile manipulation</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="comment">//</span></div>
+<div class="foldopen" id="foldopen00087" data-start="{" data-end="}">
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a1212648400127e4c597ee64c294bf22a">   87</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a1212648400127e4c597ee64c294bf22a">have_forcing_transition</a>()</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordflow">return</span> (amrex::toLower(<a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a1dec6788eb6f205f0a54585c457e19f7">m_forcing_transition</a>) != <span class="stringliteral">&quot;none&quot;</span>);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    }</div>
+</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="foldopen" id="foldopen00092" data-start="{" data-end="}">
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a07dd74a3fbcd86c55aa9c5dc1347a78c">   92</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a07dd74a3fbcd86c55aa9c5dc1347a78c">forcing_to_constant</a>()</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="comment">// - check if m_forcing_transition ends with &quot;Constant&quot;</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a1dec6788eb6f205f0a54585c457e19f7">m_forcing_transition</a>.length() &lt; 8) {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">return</span> (<a class="code hl_variable" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a1dec6788eb6f205f0a54585c457e19f7">m_forcing_transition</a>.ends_with(<span class="stringliteral">&quot;Constant&quot;</span>));</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
+</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="comment">// - slope varies linearly from the actual gradient of the forcing profile</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// at m_transition_height</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="comment">//   to 0 at (m_transition_height + m_transition_thicnkess)</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a151e9ecf53c1cd03381d47f3c44520df">constant_forcing_transition</a>(amrex::Vector&lt;amrex::Real&gt;&amp; error);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="comment">// - blend between a lower and upper forcing profile; the blending fraction</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="comment">// is assumed to be</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">//   equal to W(z), but this is not a requirement; W=1 and W=0 correspond to</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="comment">//   the lower and upper profiles, respectively</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a64d50ee8604effbead4fa3648a0ef4c6">blend_forcings</a>(</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keyword">const</span> amrex::Vector&lt;amrex::Real&gt;&amp; lower,</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keyword">const</span> amrex::Vector&lt;amrex::Real&gt;&amp; upper,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        amrex::Vector&lt;amrex::Real&gt;&amp; error);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>};</div>
+</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a0564d06e162295e8d28527591f9f4c6e"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a0564d06e162295e8d28527591f9f4c6e">kynema_sgf::ABLMesoscaleForcing::m_weighting_values</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_weighting_values</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:62</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a07dd74a3fbcd86c55aa9c5dc1347a78c"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a07dd74a3fbcd86c55aa9c5dc1347a78c">kynema_sgf::ABLMesoscaleForcing::forcing_to_constant</a></div><div class="ttdeci">bool forcing_to_constant()</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:92</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a0ff337175b16528324ec392cc4649341"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a0ff337175b16528324ec392cc4649341">kynema_sgf::ABLMesoscaleForcing::m_forcing_scheme</a></div><div class="ttdeci">std::string m_forcing_scheme</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:34</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a1212648400127e4c597ee64c294bf22a"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a1212648400127e4c597ee64c294bf22a">kynema_sgf::ABLMesoscaleForcing::have_forcing_transition</a></div><div class="ttdeci">bool have_forcing_transition()</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:87</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a151e9ecf53c1cd03381d47f3c44520df"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a151e9ecf53c1cd03381d47f3c44520df">kynema_sgf::ABLMesoscaleForcing::constant_forcing_transition</a></div><div class="ttdeci">void constant_forcing_transition(amrex::Vector&lt; amrex::Real &gt; &amp;error)</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.cpp:230</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a175cbf9be5d1058af31bc34b40c2c9c3"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a175cbf9be5d1058af31bc34b40c2c9c3">kynema_sgf::ABLMesoscaleForcing::m_axis</a></div><div class="ttdeci">int m_axis</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:31</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a18c00adbd49535d04481ef882aabd755"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a18c00adbd49535d04481ef882aabd755">kynema_sgf::ABLMesoscaleForcing::m_weighting_heights</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_weighting_heights</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:61</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a1dec6788eb6f205f0a54585c457e19f7"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a1dec6788eb6f205f0a54585c457e19f7">kynema_sgf::ABLMesoscaleForcing::m_forcing_transition</a></div><div class="ttdeci">std::string m_forcing_transition</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:56</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a261bbbbf41febc3221f176c86f686fb1"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a261bbbbf41febc3221f176c86f686fb1">kynema_sgf::ABLMesoscaleForcing::m_user_specified_weighting</a></div><div class="ttdeci">bool m_user_specified_weighting</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:63</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a36fafdc6e09214f32a920daddf7a7ea6"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a36fafdc6e09214f32a920daddf7a7ea6">kynema_sgf::ABLMesoscaleForcing::m_tendency</a></div><div class="ttdeci">bool m_tendency</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:38</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a380cdccfd689e7fc3566201a2ccb4a40"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a380cdccfd689e7fc3566201a2ccb4a40">kynema_sgf::ABLMesoscaleForcing::m_transition_height</a></div><div class="ttdeci">amrex::Real m_transition_height</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:57</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a3e2f743109dce0118416c73f49bfcd0c"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a3e2f743109dce0118416c73f49bfcd0c">kynema_sgf::ABLMesoscaleForcing::invert_mat</a></div><div class="ttdeci">static void invert_mat(const amrex::Array2D&lt; amrex::Real, 0, 3, 0, 3 &gt; &amp;m, amrex::Array2D&lt; amrex::Real, 0, 3, 0, 3 &gt; &amp;im)</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.cpp:173</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a454aeb424de7ee50217c202584985d54"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a454aeb424de7ee50217c202584985d54">kynema_sgf::ABLMesoscaleForcing::m_mesh</a></div><div class="ttdeci">const amrex::AmrCore &amp; m_mesh</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:28</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a459015150946d41937043e3ece92cd6e"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a459015150946d41937043e3ece92cd6e">kynema_sgf::ABLMesoscaleForcing::m_zht</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_zht</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:41</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a561abccc9599a8fab22e5c6640d45a41"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a561abccc9599a8fab22e5c6640d45a41">kynema_sgf::ABLMesoscaleForcing::m_gain_coeff</a></div><div class="ttdeci">amrex::Real m_gain_coeff</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:35</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a5811cc432af165ddb6cde728cf9b9f2a"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a5811cc432af165ddb6cde728cf9b9f2a">kynema_sgf::ABLMesoscaleForcing::m_norm_zmax</a></div><div class="ttdeci">int m_norm_zmax</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:48</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a64d50ee8604effbead4fa3648a0ef4c6"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a64d50ee8604effbead4fa3648a0ef4c6">kynema_sgf::ABLMesoscaleForcing::blend_forcings</a></div><div class="ttdeci">void blend_forcings(const amrex::Vector&lt; amrex::Real &gt; &amp;lower, const amrex::Vector&lt; amrex::Real &gt; &amp;upper, amrex::Vector&lt; amrex::Real &gt; &amp;error)</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.cpp:286</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a67ba09ffd7eb78badf0ce01fe56a68a4"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a67ba09ffd7eb78badf0ce01fe56a68a4">kynema_sgf::ABLMesoscaleForcing::m_nht</a></div><div class="ttdeci">int m_nht</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:42</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a6b6ee50a26c96f82679f20bfa0fb67a4"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a6b6ee50a26c96f82679f20bfa0fb67a4">kynema_sgf::ABLMesoscaleForcing::m_debug</a></div><div class="ttdeci">bool m_debug</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:37</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a71228cf021273f6e48364fb3d4734c19"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a71228cf021273f6e48364fb3d4734c19">kynema_sgf::ABLMesoscaleForcing::m_scaleFact</a></div><div class="ttdeci">amrex::Real m_scaleFact</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:49</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a77163b3c0e0b645e1b616a05c09c97a1"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a77163b3c0e0b645e1b616a05c09c97a1">kynema_sgf::ABLMesoscaleForcing::ABLMesoscaleForcing</a></div><div class="ttdeci">ABLMesoscaleForcing(const CFDSim &amp;sim, const std::string &amp;identifier)</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.cpp:14</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a806c88c6022921f4f0d09457e8c473f6"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a806c88c6022921f4f0d09457e8c473f6">kynema_sgf::ABLMesoscaleForcing::set_transition_weighting</a></div><div class="ttdeci">void set_transition_weighting()</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.cpp:88</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a90c9557ba9994a6fc69be5644b5b465f"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a90c9557ba9994a6fc69be5644b5b465f">kynema_sgf::ABLMesoscaleForcing::m_W</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_W</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:66</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_a975c53dab6ba434d50ec819aceba667a"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#a975c53dab6ba434d50ec819aceba667a">kynema_sgf::ABLMesoscaleForcing::m_idx_time</a></div><div class="ttdeci">int m_idx_time</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:30</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_ac0b141bd6e37611d94c837e094fabaaa"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#ac0b141bd6e37611d94c837e094fabaaa">kynema_sgf::ABLMesoscaleForcing::m_blending_heights</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_blending_heights</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:70</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_ad29bfb4f7c65d89ab790942ad299fa1d"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#ad29bfb4f7c65d89ab790942ad299fa1d">kynema_sgf::ABLMesoscaleForcing::m_blending_values</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_blending_values</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:71</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_ad2e8157c0d45112137ae2fd436b0c4ec"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#ad2e8157c0d45112137ae2fd436b0c4ec">kynema_sgf::ABLMesoscaleForcing::m_time</a></div><div class="ttdeci">const SimTime &amp; m_time</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:27</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_adc2a010da868bc4254a7db95db9fcb1e"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#adc2a010da868bc4254a7db95db9fcb1e">kynema_sgf::ABLMesoscaleForcing::m_im_zTz</a></div><div class="ttdeci">amrex::Array2D&lt; amrex::Real, 0, 3, 0, 3 &gt; m_im_zTz</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:52</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_ae12c401155b109f74d2b903949c80399"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#ae12c401155b109f74d2b903949c80399">kynema_sgf::ABLMesoscaleForcing::update_weights</a></div><div class="ttdeci">void update_weights()</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.cpp:110</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_ae20fdb3aea4f46dc87a095057cb17402"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#ae20fdb3aea4f46dc87a095057cb17402">kynema_sgf::ABLMesoscaleForcing::indirect_forcing_init</a></div><div class="ttdeci">void indirect_forcing_init()</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.cpp:129</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_af7c4d2f60a8733b639bea041a349d944"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#af7c4d2f60a8733b639bea041a349d944">kynema_sgf::ABLMesoscaleForcing::m_update_transition_height</a></div><div class="ttdeci">bool m_update_transition_height</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:58</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_af80aa53f1a10fe0c1ccee82ebb64f923"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#af80aa53f1a10fe0c1ccee82ebb64f923">kynema_sgf::ABLMesoscaleForcing::m_blend</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_blend</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:75</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_a_b_l_mesoscale_forcing_html_afe91f7a90ebe5eb5936ca8acca165942"><div class="ttname"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_forcing.html#afe91f7a90ebe5eb5936ca8acca165942">kynema_sgf::ABLMesoscaleForcing::m_transition_thickness</a></div><div class="ttdeci">amrex::Real m_transition_thickness</div><div class="ttdef"><b>Definition</b> ABLMesoscaleForcing.H:59</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a></div><div class="ttdef"><b>Definition</b> SimTime.H:33</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

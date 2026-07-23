@@ -1,0 +1,1251 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: Field operations &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: Field operations</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/group__field__ops.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="field-operations">
+<h1>Field operations<a class="headerlink" href="#field-operations" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: Field operations</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">Field operations <div class="ingroups"><a class="el" href="group__core.html">Kynema-SGF core</a> &raquo; <a class="el" href="group__fields.html">Field management</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Collaboration diagram for Field operations:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__field__ops.svg" width="330" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga9fd09fa1607e4df9cb669ad9ce8ccc65" id="r_ga9fd09fa1607e4df9cb669ad9ce8ccc65"><td class="memTemplParams" colspan="2">template&lt;typename T1, typename T2&gt; </td></tr>
+<tr class="memitem:ga9fd09fa1607e4df9cb669ad9ce8ccc65 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga9fd09fa1607e4df9cb669ad9ce8ccc65">kynema_sgf::field_ops::add</a> (T1 &amp;dst, const T2 &amp;src, int srccomp, int dstcomp, int numcomp, const amrex::IntVect &amp;nghost)</td></tr>
+<tr class="memitem:ga8ab181375e85d0e0f1b7a3732803d6dc" id="r_ga8ab181375e85d0e0f1b7a3732803d6dc"><td class="memTemplParams" colspan="2">template&lt;typename T1, typename T2&gt; </td></tr>
+<tr class="memitem:ga8ab181375e85d0e0f1b7a3732803d6dc template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga8ab181375e85d0e0f1b7a3732803d6dc">kynema_sgf::field_ops::add</a> (T1 &amp;dst, const T2 &amp;src, int srccomp, int dstcomp, int numcomp, int nghost)</td></tr>
+<tr class="memitem:ga6a13172a3a3e21dce7b7a89b82c30327" id="r_ga6a13172a3a3e21dce7b7a89b82c30327"><td class="memTemplParams" colspan="2">template&lt;typename T1, typename T2&gt; </td></tr>
+<tr class="memitem:ga6a13172a3a3e21dce7b7a89b82c30327 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga6a13172a3a3e21dce7b7a89b82c30327">kynema_sgf::field_ops::divide</a> (T1 &amp;dst, const T2 &amp;src, const int srccomp, const int dstcomp, const int ncomp_src, const int ncomp_dst, const amrex::IntVect &amp;nghost)</td></tr>
+<tr class="memitem:ga9c8a61c1708bb473353c456e67ad212c" id="r_ga9c8a61c1708bb473353c456e67ad212c"><td class="memTemplParams" colspan="2">template&lt;typename T1, typename T2&gt; </td></tr>
+<tr class="memitem:ga9c8a61c1708bb473353c456e67ad212c template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga9c8a61c1708bb473353c456e67ad212c">kynema_sgf::field_ops::divide</a> (T1 &amp;dst, const T2 &amp;src, const int srccomp, const int dstcomp, const int ncomp_src, const int ncomp_dst, const int nghost)</td></tr>
+<tr class="memitem:ga0dc61187f784c242736521fb4a96afd5" id="r_ga0dc61187f784c242736521fb4a96afd5"><td class="memTemplParams" colspan="2">template&lt;typename T1, typename T2&gt; </td></tr>
+<tr class="memitem:ga0dc61187f784c242736521fb4a96afd5 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga0dc61187f784c242736521fb4a96afd5">kynema_sgf::field_ops::copy</a> (T1 &amp;dst, const T2 &amp;src, const int srccomp, const int dstcomp, const int numcomp, const amrex::IntVect &amp;nghost)</td></tr>
+<tr class="memitem:gae36868e9f0fb64e4e398812deec15720" id="r_gae36868e9f0fb64e4e398812deec15720"><td class="memTemplParams" colspan="2">template&lt;typename T1, typename T2&gt; </td></tr>
+<tr class="memitem:gae36868e9f0fb64e4e398812deec15720 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gae36868e9f0fb64e4e398812deec15720">kynema_sgf::field_ops::copy</a> (T1 &amp;dst, const T2 &amp;src, int srccomp, int dstcomp, int numcomp, int nghost)</td></tr>
+<tr class="memitem:ga2571a940da58382a2dd40ab592d9de20" id="r_ga2571a940da58382a2dd40ab592d9de20"><td class="memTemplParams" colspan="2">template&lt;typename T1, typename T2&gt; </td></tr>
+<tr class="memitem:ga2571a940da58382a2dd40ab592d9de20 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga2571a940da58382a2dd40ab592d9de20">kynema_sgf::field_ops::saxpy</a> (T1 &amp;dst, const amrex::Real a, const T2 &amp;src, const int srccomp, const int dstcomp, const int numcomp, const amrex::IntVect &amp;nghost)</td></tr>
+<tr class="memitem:ga51369c7b226a293fb91581d110f9bbab" id="r_ga51369c7b226a293fb91581d110f9bbab"><td class="memTemplParams" colspan="2">template&lt;typename T1, typename T2&gt; </td></tr>
+<tr class="memitem:ga51369c7b226a293fb91581d110f9bbab template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga51369c7b226a293fb91581d110f9bbab">kynema_sgf::field_ops::saxpy</a> (T1 &amp;dst, const amrex::Real a, const T2 &amp;src, const int srccomp, const int dstcomp, const int numcomp, const int nghost)</td></tr>
+<tr class="memitem:ga008944d97eb1dddebb965f10e3897e3c" id="r_ga008944d97eb1dddebb965f10e3897e3c"><td class="memTemplParams" colspan="2">template&lt;typename T1, typename T2&gt; </td></tr>
+<tr class="memitem:ga008944d97eb1dddebb965f10e3897e3c template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga008944d97eb1dddebb965f10e3897e3c">kynema_sgf::field_ops::xpay</a> (T1 &amp;dst, const amrex::Real a, const T2 &amp;src, const int srccomp, const int dstcomp, const int numcomp, const amrex::IntVect &amp;nghost)</td></tr>
+<tr class="memitem:ga8a429f0fe98ec4046fe99abfa0ed59a1" id="r_ga8a429f0fe98ec4046fe99abfa0ed59a1"><td class="memTemplParams" colspan="2">template&lt;typename T1, typename T2&gt; </td></tr>
+<tr class="memitem:ga8a429f0fe98ec4046fe99abfa0ed59a1 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga8a429f0fe98ec4046fe99abfa0ed59a1">kynema_sgf::field_ops::xpay</a> (T1 &amp;dst, const amrex::Real a, const T2 &amp;src, const int srccomp, const int dstcomp, const int numcomp, const int nghost)</td></tr>
+<tr class="memitem:gaadf2a0461348e11fef018f92b73036f0" id="r_gaadf2a0461348e11fef018f92b73036f0"><td class="memTemplParams" colspan="2">template&lt;typename T1, typename T2, typename T3&gt; </td></tr>
+<tr class="memitem:gaadf2a0461348e11fef018f92b73036f0 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaadf2a0461348e11fef018f92b73036f0">kynema_sgf::field_ops::lincomb</a> (T1 &amp;dst, const amrex::Real a, const T2 &amp;x, const int xcomp, const amrex::Real b, const T3 &amp;y, const int ycomp, const int dstcomp, const int numcomp, const amrex::IntVect &amp;nghost)</td></tr>
+<tr class="memitem:ga1f28b01ee3e7893471afb51ceeb10c72" id="r_ga1f28b01ee3e7893471afb51ceeb10c72"><td class="memTemplParams" colspan="2">template&lt;typename T1, typename T2, typename T3&gt; </td></tr>
+<tr class="memitem:ga1f28b01ee3e7893471afb51ceeb10c72 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1f28b01ee3e7893471afb51ceeb10c72">kynema_sgf::field_ops::lincomb</a> (T1 &amp;dst, const amrex::Real a, const T2 &amp;x, const int xcomp, const amrex::Real b, const T3 &amp;y, const int ycomp, const int dstcomp, const int numcomp, const int nghost)</td></tr>
+<tr class="memitem:ga964d15cd55a291c6d278e45d14f7d179" id="r_ga964d15cd55a291c6d278e45d14f7d179"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:ga964d15cd55a291c6d278e45d14f7d179 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga964d15cd55a291c6d278e45d14f7d179">kynema_sgf::field_ops::lower_bound</a> (FType &amp;field, const amrex::Real min_value, const int icomp=0)</td></tr>
+<tr class="memitem:gafa4af06ce1b216eb595dc470b5451c90" id="r_gafa4af06ce1b216eb595dc470b5451c90"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:gafa4af06ce1b216eb595dc470b5451c90 template"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gafa4af06ce1b216eb595dc470b5451c90">kynema_sgf::field_ops::global_max_magnitude</a> (FType &amp;field)</td></tr>
+<tr class="memitem:ga7b9841e40867d50df2ffdae8d7822954" id="r_ga7b9841e40867d50df2ffdae8d7822954"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:ga7b9841e40867d50df2ffdae8d7822954 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga7b9841e40867d50df2ffdae8d7822954">kynema_sgf::field_ops::normalize</a> (FType &amp;field)</td></tr>
+<tr class="memitem:gaa125e6a2b581cbf96626116e9e34771e" id="r_gaa125e6a2b581cbf96626116e9e34771e"><td class="memItemLeft" align="right" valign="top">AMREX_INLINE amrex::IndexType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaa125e6a2b581cbf96626116e9e34771e">kynema_sgf::field_impl::index_type</a> (const <a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a> floc)</td></tr>
+<tr class="memitem:ga54e999fda9a37707476e986c6c6dd4a7" id="r_ga54e999fda9a37707476e986c6c6dd4a7"><td class="memItemLeft" align="right" valign="top">AMREX_INLINE std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga54e999fda9a37707476e986c6c6dd4a7">kynema_sgf::field_impl::field_name_with_state</a> (const std::string &amp;fname, const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate)</td></tr>
+<tr class="memitem:ga6e986bc0bffb691eb1cb642e45c830db" id="r_ga6e986bc0bffb691eb1cb642e45c830db"><td class="memItemLeft" align="right" valign="top">AMREX_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga6e986bc0bffb691eb1cb642e45c830db">kynema_sgf::field_impl::is_valid_field_name</a> (const std::string &amp;name)</td></tr>
+<tr class="memitem:ga861c95ed005acf6adee1cfaad13a4812" id="r_ga861c95ed005acf6adee1cfaad13a4812"><td class="memItemLeft" align="right" valign="top">AMREX_INLINE amrex::Interpolater *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga861c95ed005acf6adee1cfaad13a4812">kynema_sgf::field_impl::get_interpolation_operator</a> (const <a class="el" href="group__fields.html#ga7a6cb530fb551873a19ab6954617782e">FieldInterpolator</a> itype)</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<p>Operators for manipulating fields and computing derived quantities.</p>
+<p>This group documents functions that provide various operations defined on the field. These operations can be grouped into two major categories: simple linear algebra operations (e.g., saxpy), and discretization operators such as gradient, laplacian computations. </p>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="ga9fd09fa1607e4df9cb669ad9ce8ccc65" name="ga9fd09fa1607e4df9cb669ad9ce8ccc65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9fd09fa1607e4df9cb669ad9ce8ccc65">&#9670;&#160;</a></span>add() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_ops::add </td>
+          <td>(</td>
+          <td class="paramtype">T1 &amp;</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T2 &amp;</td>          <td class="paramname"><span class="paramname"><em>src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>srccomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dstcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>numcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Add two fields \(y = x + y\)</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+    <tr><td class="paramname">T2</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> that is updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> to be added </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">srccomp</td><td>Starting component index of source field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dstcomp</td><td>Starting component index of destination field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numcomp</td><td>Number of components to be updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nghost</td><td>Number of ghost cells to be updated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga8ab181375e85d0e0f1b7a3732803d6dc" name="ga8ab181375e85d0e0f1b7a3732803d6dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8ab181375e85d0e0f1b7a3732803d6dc">&#9670;&#160;</a></span>add() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_ops::add </td>
+          <td>(</td>
+          <td class="paramtype">T1 &amp;</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T2 &amp;</td>          <td class="paramname"><span class="paramname"><em>src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>srccomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dstcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>numcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Add two fields \(y = x + y\)</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+    <tr><td class="paramname">T2</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> that is updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> to be added </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">srccomp</td><td>Starting component index of source field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dstcomp</td><td>Starting component index of destination field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numcomp</td><td>Number of components to be updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nghost</td><td>Number of ghost cells to be updated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga0dc61187f784c242736521fb4a96afd5" name="ga0dc61187f784c242736521fb4a96afd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0dc61187f784c242736521fb4a96afd5">&#9670;&#160;</a></span>copy() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_ops::copy </td>
+          <td>(</td>
+          <td class="paramtype">T1 &amp;</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T2 &amp;</td>          <td class="paramname"><span class="paramname"><em>src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>srccomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>dstcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>numcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Copy source field to destination field</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+    <tr><td class="paramname">T2</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> that is updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> to be added </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">srccomp</td><td>Starting component index of source field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dstcomp</td><td>Starting component index of destination field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numcomp</td><td>Number of components to be updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nghost</td><td>Number of ghost cells to be updated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gae36868e9f0fb64e4e398812deec15720" name="gae36868e9f0fb64e4e398812deec15720"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae36868e9f0fb64e4e398812deec15720">&#9670;&#160;</a></span>copy() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_ops::copy </td>
+          <td>(</td>
+          <td class="paramtype">T1 &amp;</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T2 &amp;</td>          <td class="paramname"><span class="paramname"><em>src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>srccomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dstcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>numcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Copy source field to destination field</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+    <tr><td class="paramname">T2</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> that is updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> to be added </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">srccomp</td><td>Starting component index of source field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dstcomp</td><td>Starting component index of destination field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numcomp</td><td>Number of components to be updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nghost</td><td>Number of ghost cells to be updated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga6a13172a3a3e21dce7b7a89b82c30327" name="ga6a13172a3a3e21dce7b7a89b82c30327"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6a13172a3a3e21dce7b7a89b82c30327">&#9670;&#160;</a></span>divide() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_ops::divide </td>
+          <td>(</td>
+          <td class="paramtype">T1 &amp;</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T2 &amp;</td>          <td class="paramname"><span class="paramname"><em>src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>srccomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>dstcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ncomp_src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ncomp_dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Divide two fields \(y = y / x\)</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+    <tr><td class="paramname">T2</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> that is updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> to be divisor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">srccomp</td><td>Starting component index of source field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dstcomp</td><td>Starting component index of destination field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ncomp_src</td><td>Number of components to divide by </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ncomp_dst</td><td>Number of components to be divided </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nghost</td><td>Number of ghost cells to be updated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga9c8a61c1708bb473353c456e67ad212c" name="ga9c8a61c1708bb473353c456e67ad212c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9c8a61c1708bb473353c456e67ad212c">&#9670;&#160;</a></span>divide() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_ops::divide </td>
+          <td>(</td>
+          <td class="paramtype">T1 &amp;</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T2 &amp;</td>          <td class="paramname"><span class="paramname"><em>src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>srccomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>dstcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ncomp_src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ncomp_dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Divide two fields \(y = y / x\)</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+    <tr><td class="paramname">T2</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> that is updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> to be divisor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">srccomp</td><td>Starting component index of source field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dstcomp</td><td>Starting component index of destination field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ncomp_src</td><td>Number of components to divide by </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ncomp_dst</td><td>Number of components to be divided </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nghost</td><td>Number of ghost cells to be updated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga54e999fda9a37707476e986c6c6dd4a7" name="ga54e999fda9a37707476e986c6c6dd4a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga54e999fda9a37707476e986c6c6dd4a7">&#9670;&#160;</a></span>field_name_with_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_INLINE std::string kynema_sgf::field_impl::field_name_with_state </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>fname</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given a base field name and a state, return a unique string that identifies this state in the field repository. </p>
+
+</div>
+</div>
+<a id="ga861c95ed005acf6adee1cfaad13a4812" name="ga861c95ed005acf6adee1cfaad13a4812"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga861c95ed005acf6adee1cfaad13a4812">&#9670;&#160;</a></span>get_interpolation_operator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_INLINE amrex::Interpolater * kynema_sgf::field_impl::get_interpolation_operator </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__fields.html#ga7a6cb530fb551873a19ab6954617782e">FieldInterpolator</a></td>          <td class="paramname"><span class="paramname"><em>itype</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Return an AMReX coarse-to-fine field interpolation object based on <a class="el" href="group__fields.html#ga7a6cb530fb551873a19ab6954617782e" title="Coarse-to-fine field interpolation options.">kynema_sgf::FieldInterpolator</a> </p>
+
+</div>
+</div>
+<a id="gafa4af06ce1b216eb595dc470b5451c90" name="gafa4af06ce1b216eb595dc470b5451c90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafa4af06ce1b216eb595dc470b5451c90">&#9670;&#160;</a></span>global_max_magnitude()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::field_ops::global_max_magnitude </td>
+          <td>(</td>
+          <td class="paramtype">FType &amp;</td>          <td class="paramname"><span class="paramname"><em>field</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Computes the global maximum of a field from all levels</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">field</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> for global maximum magnitude </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaa125e6a2b581cbf96626116e9e34771e" name="gaa125e6a2b581cbf96626116e9e34771e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa125e6a2b581cbf96626116e9e34771e">&#9670;&#160;</a></span>index_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_INLINE amrex::IndexType kynema_sgf::field_impl::index_type </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a></td>          <td class="paramname"><span class="paramname"><em>floc</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Convert <a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">kynema_sgf::FieldLoc</a> to index type for use with AMReX objects. </p>
+
+</div>
+</div>
+<a id="ga6e986bc0bffb691eb1cb642e45c830db" name="ga6e986bc0bffb691eb1cb642e45c830db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6e986bc0bffb691eb1cb642e45c830db">&#9670;&#160;</a></span>is_valid_field_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_INLINE bool kynema_sgf::field_impl::is_valid_field_name </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Check if the field is not a reserved field name</p>
+<p>In <a class="el" href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a>, field with states are stored using suffixes that create a unique string to identify different states. This function checks if the user specified field name matches any of those reserved suffixes.</p>
+<p>. </p><dl class="section return"><dt>Returns</dt><dd>True if the field is not a reserved field name </dd></dl>
+
+</div>
+</div>
+<a id="gaadf2a0461348e11fef018f92b73036f0" name="gaadf2a0461348e11fef018f92b73036f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaadf2a0461348e11fef018f92b73036f0">&#9670;&#160;</a></span>lincomb() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2, typename T3&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_ops::lincomb </td>
+          <td>(</td>
+          <td class="paramtype">T1 &amp;</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T2 &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>xcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>b</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T3 &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ycomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>dstcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>numcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Perform operation \(z = a x + b y\)</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+    <tr><td class="paramname">T2</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> that is updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> to be added </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">xcomp</td><td>Starting component index of <span class="tt">x</span> field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>Coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">y</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> to be added </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ycomp</td><td>Starting component index of <span class="tt">y</span> field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dstcomp</td><td>Starting component index of destination field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numcomp</td><td>Number of components to be updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nghost</td><td>Number of ghost cells to be updated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga1f28b01ee3e7893471afb51ceeb10c72" name="ga1f28b01ee3e7893471afb51ceeb10c72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1f28b01ee3e7893471afb51ceeb10c72">&#9670;&#160;</a></span>lincomb() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2, typename T3&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_ops::lincomb </td>
+          <td>(</td>
+          <td class="paramtype">T1 &amp;</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T2 &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>xcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>b</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T3 &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ycomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>dstcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>numcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Perform operation \(z = a x + b y\)</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+    <tr><td class="paramname">T2</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> that is updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> to be added </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">xcomp</td><td>Starting component index of <span class="tt">x</span> field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>Coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">y</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> to be added </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ycomp</td><td>Starting component index of <span class="tt">y</span> field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dstcomp</td><td>Starting component index of destination field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numcomp</td><td>Number of components to be updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nghost</td><td>Number of ghost cells to be updated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga964d15cd55a291c6d278e45d14f7d179" name="ga964d15cd55a291c6d278e45d14f7d179"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga964d15cd55a291c6d278e45d14f7d179">&#9670;&#160;</a></span>lower_bound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_ops::lower_bound </td>
+          <td>(</td>
+          <td class="paramtype">FType &amp;</td>          <td class="paramname"><span class="paramname"><em>field</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>min_value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>icomp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set the lower bound for a given scalar field</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">field</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> that will be clipped </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">min_value</td><td>Minimum value for a given field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">icomp</td><td>Component to set the minimum bound </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga7b9841e40867d50df2ffdae8d7822954" name="ga7b9841e40867d50df2ffdae8d7822954"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7b9841e40867d50df2ffdae8d7822954">&#9670;&#160;</a></span>normalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_ops::normalize </td>
+          <td>(</td>
+          <td class="paramtype">FType &amp;</td>          <td class="paramname"><span class="paramname"><em>field</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Normalizes a field using its magnitude</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">field</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> that needs to be normalized </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga2571a940da58382a2dd40ab592d9de20" name="ga2571a940da58382a2dd40ab592d9de20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2571a940da58382a2dd40ab592d9de20">&#9670;&#160;</a></span>saxpy() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_ops::saxpy </td>
+          <td>(</td>
+          <td class="paramtype">T1 &amp;</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T2 &amp;</td>          <td class="paramname"><span class="paramname"><em>src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>srccomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>dstcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>numcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Perform operation \(y = a x + y\)</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+    <tr><td class="paramname">T2</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> that is updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> to be added </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">srccomp</td><td>Starting component index of source field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dstcomp</td><td>Starting component index of destination field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numcomp</td><td>Number of components to be updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nghost</td><td>Number of ghost cells to be updated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga51369c7b226a293fb91581d110f9bbab" name="ga51369c7b226a293fb91581d110f9bbab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga51369c7b226a293fb91581d110f9bbab">&#9670;&#160;</a></span>saxpy() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_ops::saxpy </td>
+          <td>(</td>
+          <td class="paramtype">T1 &amp;</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T2 &amp;</td>          <td class="paramname"><span class="paramname"><em>src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>srccomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>dstcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>numcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Perform operation \(y = a x + y\)</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+    <tr><td class="paramname">T2</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> that is updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> to be added </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">srccomp</td><td>Starting component index of source field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dstcomp</td><td>Starting component index of destination field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numcomp</td><td>Number of components to be updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nghost</td><td>Number of ghost cells to be updated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga008944d97eb1dddebb965f10e3897e3c" name="ga008944d97eb1dddebb965f10e3897e3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga008944d97eb1dddebb965f10e3897e3c">&#9670;&#160;</a></span>xpay() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_ops::xpay </td>
+          <td>(</td>
+          <td class="paramtype">T1 &amp;</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T2 &amp;</td>          <td class="paramname"><span class="paramname"><em>src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>srccomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>dstcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>numcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Perform operation \(y = x + a y\)</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+    <tr><td class="paramname">T2</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> that is updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> to be added </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">srccomp</td><td>Starting component index of source field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dstcomp</td><td>Starting component index of destination field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numcomp</td><td>Number of components to be updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nghost</td><td>Number of ghost cells to be updated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga8a429f0fe98ec4046fe99abfa0ed59a1" name="ga8a429f0fe98ec4046fe99abfa0ed59a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8a429f0fe98ec4046fe99abfa0ed59a1">&#9670;&#160;</a></span>xpay() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::field_ops::xpay </td>
+          <td>(</td>
+          <td class="paramtype">T1 &amp;</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T2 &amp;</td>          <td class="paramname"><span class="paramname"><em>src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>srccomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>dstcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>numcomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Perform operation \(y = x + a y\)</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+    <tr><td class="paramname">T2</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> or <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> that is updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Coefficient </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> to be added </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">srccomp</td><td>Starting component index of source field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dstcomp</td><td>Starting component index of destination field </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numcomp</td><td>Number of components to be updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nghost</td><td>Number of ghost cells to be updated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/FreeSurfaceDamping.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/FreeSurfaceDamping.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_free_surface_damping_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-physics-multiphase-freesurfacedamping-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/FreeSurfaceDamping.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-physics-multiphase-freesurfacedamping-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/FreeSurfaceDamping.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_ddcea0517a7b80a55be019748a9389a4.html">physics</a></li><li class="navelem"><a href="dir_ea84defc78a3d6a93c5f3fc502908131.html">multiphase</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">FreeSurfaceDamping.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_free_surface_damping_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef FREE_SURFACE_DAMPING_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define FREE_SURFACE_DAMPING_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_physics_8_h.html">src/core/Physics.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_field_repo_8_h.html">src/core/FieldRepo.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_sim_time_8_h.html">src/core/SimTime.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;AMReX_Geometry.H&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html">   11</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_free_surface_damping.html#ad67e0850273d61f41acbfa9d8d20cc41">FreeSurfaceDamping</a> : <span class="keyword">public</span> Physics::Register&lt;FreeSurfaceDamping&gt;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#a6ebfbf1cdd1bcc460bc9557355557989">   14</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1_free_surface_damping.html#a6ebfbf1cdd1bcc460bc9557355557989">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;FreeSurfaceDamping&quot;</span>; }</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1_free_surface_damping.html#ad67e0850273d61f41acbfa9d8d20cc41">FreeSurfaceDamping</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <span class="comment">/*sim*/</span>);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#a478d0ceb75da560dd760c928acbe65c8">   18</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_free_surface_damping.html#a478d0ceb75da560dd760c928acbe65c8">~FreeSurfaceDamping</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="}">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#a0ec85b2b7fa3ba737782140973e386eb">   21</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_free_surface_damping.html#a0ec85b2b7fa3ba737782140973e386eb">initialize_fields</a>(<span class="keywordtype">int</span> <span class="comment">/*level*/</span>, <span class="keyword">const</span> amrex::Geometry&amp; <span class="comment">/*geom*/</span>)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    };</div>
+</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#affe6090dc5912d6e64478dc3d658bf07">   24</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_free_surface_damping.html#affe6090dc5912d6e64478dc3d658bf07">post_init_actions</a>()<span class="keyword"> override </span>{};</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#a0f412bb2aade741dfbb1daf034b669ca">   26</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_free_surface_damping.html#a0f412bb2aade741dfbb1daf034b669ca">post_regrid_actions</a>()<span class="keyword"> override </span>{};</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#a8a48d8895613d6b12418dbe60a98f1be">   28</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_free_surface_damping.html#a8a48d8895613d6b12418dbe60a98f1be">pre_advance_work</a>()<span class="keyword"> override </span>{};</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_free_surface_damping.html#a0ceb6c043400019846f8a1ea4619b5b4">post_advance_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#a240d1cc713b80b388a4079df875e896b">   33</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_free_surface_damping.html#a240d1cc713b80b388a4079df875e896b">m_repo</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#a8a110efa89d3dd264dbd0bb025d868f1">   35</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_free_surface_damping.html#a8a110efa89d3dd264dbd0bb025d868f1">m_vertical_velocity_damping</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#aaad12395fb1236e1ee8414699855f39a">   36</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_free_surface_damping.html#aaad12395fb1236e1ee8414699855f39a">m_volume_fraction_damping</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#a5183c195a438b1e11726ff609054f84c">   38</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_free_surface_damping.html#a5183c195a438b1e11726ff609054f84c">m_global_damping</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#ada4816acdd6599810807fbf2400a6709">   40</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_free_surface_damping.html#ada4816acdd6599810807fbf2400a6709">m_time_scale</a>{1.0_rt};</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#aa32b5a0f488065f09f44ba40726637c6">   42</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_free_surface_damping.html#aa32b5a0f488065f09f44ba40726637c6">m_length_xlo</a>{0.0_rt};</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#abddced8e031b714988b320a44e17576b">   43</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_free_surface_damping.html#abddced8e031b714988b320a44e17576b">m_length_xhi</a>{0.0_rt};</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#a7820feab9662a94ecfe7313736d86118">   44</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_free_surface_damping.html#a7820feab9662a94ecfe7313736d86118">m_length_ylo</a>{0.0_rt};</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#a26508965d446f658044c76f7ec9d8c21">   45</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_free_surface_damping.html#a26508965d446f658044c76f7ec9d8c21">m_length_yhi</a>{0.0_rt};</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#a28787a349604a9386095b87a8765162a">   47</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_free_surface_damping.html#a28787a349604a9386095b87a8765162a">m_rho1</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#aa0f6f88a7cc1b9d432abb5716303edf6">   48</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_free_surface_damping.html#aa0f6f88a7cc1b9d432abb5716303edf6">m_rho2</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_free_surface_damping.html#a45f4b633437d57c2741081f59c4b5302">   49</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_free_surface_damping.html#a45f4b633437d57c2741081f59c4b5302">m_time</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>};</div>
+</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif </span><span class="comment">/* FREE_SURFACE_DAMPING_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_field_repo_8_h_html"><div class="ttname"><a href="_field_repo_8_h.html">FieldRepo.H</a></div></div>
+<div class="ttc" id="a_physics_8_h_html"><div class="ttname"><a href="_physics_8_h.html">Physics.H</a></div></div>
+<div class="ttc" id="a_sim_time_8_h_html"><div class="ttname"><a href="_sim_time_8_h.html">SimTime.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_repo_html"><div class="ttname"><a href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a></div><div class="ttdef"><b>Definition</b> FieldRepo.H:86</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_a0ceb6c043400019846f8a1ea4619b5b4"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#a0ceb6c043400019846f8a1ea4619b5b4">kynema_sgf::FreeSurfaceDamping::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.cpp:46</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_a0ec85b2b7fa3ba737782140973e386eb"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#a0ec85b2b7fa3ba737782140973e386eb">kynema_sgf::FreeSurfaceDamping::initialize_fields</a></div><div class="ttdeci">void initialize_fields(int, const amrex::Geometry &amp;) override</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:21</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_a0f412bb2aade741dfbb1daf034b669ca"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#a0f412bb2aade741dfbb1daf034b669ca">kynema_sgf::FreeSurfaceDamping::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:26</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_a240d1cc713b80b388a4079df875e896b"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#a240d1cc713b80b388a4079df875e896b">kynema_sgf::FreeSurfaceDamping::m_repo</a></div><div class="ttdeci">FieldRepo &amp; m_repo</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_a26508965d446f658044c76f7ec9d8c21"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#a26508965d446f658044c76f7ec9d8c21">kynema_sgf::FreeSurfaceDamping::m_length_yhi</a></div><div class="ttdeci">amrex::Real m_length_yhi</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:45</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_a28787a349604a9386095b87a8765162a"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#a28787a349604a9386095b87a8765162a">kynema_sgf::FreeSurfaceDamping::m_rho1</a></div><div class="ttdeci">amrex::Real m_rho1</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:47</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_a45f4b633437d57c2741081f59c4b5302"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#a45f4b633437d57c2741081f59c4b5302">kynema_sgf::FreeSurfaceDamping::m_time</a></div><div class="ttdeci">const SimTime &amp; m_time</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:49</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_a478d0ceb75da560dd760c928acbe65c8"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#a478d0ceb75da560dd760c928acbe65c8">kynema_sgf::FreeSurfaceDamping::~FreeSurfaceDamping</a></div><div class="ttdeci">~FreeSurfaceDamping() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_a5183c195a438b1e11726ff609054f84c"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#a5183c195a438b1e11726ff609054f84c">kynema_sgf::FreeSurfaceDamping::m_global_damping</a></div><div class="ttdeci">bool m_global_damping</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:38</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_a6ebfbf1cdd1bcc460bc9557355557989"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#a6ebfbf1cdd1bcc460bc9557355557989">kynema_sgf::FreeSurfaceDamping::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:14</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_a7820feab9662a94ecfe7313736d86118"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#a7820feab9662a94ecfe7313736d86118">kynema_sgf::FreeSurfaceDamping::m_length_ylo</a></div><div class="ttdeci">amrex::Real m_length_ylo</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:44</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_a8a110efa89d3dd264dbd0bb025d868f1"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#a8a110efa89d3dd264dbd0bb025d868f1">kynema_sgf::FreeSurfaceDamping::m_vertical_velocity_damping</a></div><div class="ttdeci">bool m_vertical_velocity_damping</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:35</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_a8a48d8895613d6b12418dbe60a98f1be"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#a8a48d8895613d6b12418dbe60a98f1be">kynema_sgf::FreeSurfaceDamping::pre_advance_work</a></div><div class="ttdeci">void pre_advance_work() override</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:28</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_aa0f6f88a7cc1b9d432abb5716303edf6"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#aa0f6f88a7cc1b9d432abb5716303edf6">kynema_sgf::FreeSurfaceDamping::m_rho2</a></div><div class="ttdeci">amrex::Real m_rho2</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:48</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_aa32b5a0f488065f09f44ba40726637c6"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#aa32b5a0f488065f09f44ba40726637c6">kynema_sgf::FreeSurfaceDamping::m_length_xlo</a></div><div class="ttdeci">amrex::Real m_length_xlo</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:42</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_aaad12395fb1236e1ee8414699855f39a"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#aaad12395fb1236e1ee8414699855f39a">kynema_sgf::FreeSurfaceDamping::m_volume_fraction_damping</a></div><div class="ttdeci">bool m_volume_fraction_damping</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:36</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_abddced8e031b714988b320a44e17576b"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#abddced8e031b714988b320a44e17576b">kynema_sgf::FreeSurfaceDamping::m_length_xhi</a></div><div class="ttdeci">amrex::Real m_length_xhi</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:43</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_ad67e0850273d61f41acbfa9d8d20cc41"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#ad67e0850273d61f41acbfa9d8d20cc41">kynema_sgf::FreeSurfaceDamping::FreeSurfaceDamping</a></div><div class="ttdeci">FreeSurfaceDamping(CFDSim &amp;)</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.cpp:16</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_ada4816acdd6599810807fbf2400a6709"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#ada4816acdd6599810807fbf2400a6709">kynema_sgf::FreeSurfaceDamping::m_time_scale</a></div><div class="ttdeci">amrex::Real m_time_scale</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:40</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_free_surface_damping_html_affe6090dc5912d6e64478dc3d658bf07"><div class="ttname"><a href="classkynema__sgf_1_1_free_surface_damping.html#affe6090dc5912d6e64478dc3d658bf07">kynema_sgf::FreeSurfaceDamping::post_init_actions</a></div><div class="ttdeci">void post_init_actions() override</div><div class="ttdef"><b>Definition</b> FreeSurfaceDamping.H:24</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a></div><div class="ttdef"><b>Definition</b> SimTime.H:33</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

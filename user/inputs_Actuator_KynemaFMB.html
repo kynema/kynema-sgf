@@ -1,0 +1,485 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actuator-Based Kynema-FMB Coupling &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Section: MultiPhase" href="inputs_multiphase.html" />
+    <link rel="prev" title="Section: Actuator" href="inputs_Actuator.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="inputs.html#input-file-reference">Input file reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="inputs_geometry.html">Section: geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_amr.html">Section: AMReX and AMR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_tagging.html">Section: tagging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_time.html">Section: time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_io.html">Section: io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_incflo.html">Section: incflo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_transport.html">Section: transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_turbulence.html">Section: turbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Momentum_Sources.html">Section: Momentum Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Temperature_Sources.html">Section: Temperature Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_TKE_Sources.html">Section: TKE Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL.html">Section: ABL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL_meso_forcing.html">Section: ABLMesoForcing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Actuator.html">Section: Actuator</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Actuator-Based Kynema-FMB Coupling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_multiphase.html">Section: MultiPhase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FreeSurfaceDamping.html">Section: FreeSurfaceDamping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ocean_waves.html">Section: Ocean Waves</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_SyntheticTurbulence.html">Section: SyntheticTurbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_forest.html">Section: ForestDrag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_terraindrag.html">Section: TerrainDrag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ChannelBuilder.html">Section: ChannelBuilder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Boundary_conditions.html">Section: Boundary conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_field_boundaries.html">Section: Field Boundaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_MLMG.html">Section: MLMG options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_post_processing.html">Section: Post-processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Sampling.html">Section: Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Subvolume.html">Section: Subvolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Averaging.html">Section: Averaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_KineticEnergy.html">Section: KineticEnergy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Enstrophy.html">Section: Enstrophy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FieldNorms.html">Section: FieldNorms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+          <li class="breadcrumb-item"><a href="inputs.html">Kynema-SGF inputs file</a></li>
+      <li class="breadcrumb-item active">Actuator-Based Kynema-FMB Coupling</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/inputs_Actuator_KynemaFMB.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="actuator-based-kynema-fmb-coupling">
+<span id="inputs-actuator-kynema-fmb"></span><h1>Actuator-Based Kynema-FMB Coupling<a class="headerlink" href="#actuator-based-kynema-fmb-coupling" title="Link to this heading"></a></h1>
+<p>Kynema-SGF supports actuator-based coupling to Kynema-FMB through two actuator types:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TurbineKynemaFMBLine</span></code> for the actuator-line representation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TurbineKynemaFMBDisk</span></code> for the actuator-disk representation</p></li>
+</ul>
+<p>Both types share the same Kynema-FMB turbine parser and therefore accept the same input arguments. Unless noted otherwise, every input documented below with the prefix <code class="docutils literal notranslate"><span class="pre">Actuator.TurbineKynemaFMBLine</span></code> is also accepted with the prefix <code class="docutils literal notranslate"><span class="pre">Actuator.TurbineKynemaFMBDisk</span></code> when <code class="docutils literal notranslate"><span class="pre">Actuator.type</span> <span class="pre">=</span> <span class="pre">TurbineKynemaFMBDisk</span></code>.</p>
+<p>These coupled turbine types require a Kynema-SGF build with Kynema-FMB support enabled. They also require <code class="docutils literal notranslate"><span class="pre">Actuator</span></code> in <code class="docutils literal notranslate"><span class="pre">incflo.physics</span></code> and typically require <code class="docutils literal notranslate"><span class="pre">ActuatorForcing</span></code> in <code class="docutils literal notranslate"><span class="pre">ICNS.source_terms</span></code>.</p>
+<p>Unlike the OpenFAST-coupled turbine models, the rotor diameter and hub height are read from the WindIO file referenced by <code class="docutils literal notranslate"><span class="pre">kynema_fmb_input_file</span></code>. They are not separate Kynema-SGF user inputs for these actuator types.</p>
+<p>Example for <code class="docutils literal notranslate"><span class="pre">TurbineKynemaFMBLine</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">incflo</span><span class="o">.</span><span class="n">physics</span> <span class="o">=</span> <span class="n">FreeStream</span> <span class="n">Actuator</span>
+<span class="n">ICNS</span><span class="o">.</span><span class="n">source_terms</span> <span class="o">=</span> <span class="n">ActuatorForcing</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">T0</span> <span class="n">T1</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">TurbineKynemaFMBLine</span>
+
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">kynema_fmb_input_file</span> <span class="o">=</span> <span class="n">NREL</span><span class="o">-</span><span class="mi">5</span><span class="n">MW</span><span class="o">-</span><span class="n">aero</span><span class="o">.</span><span class="n">yaml</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">num_struct_nodes_blade</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">num_struct_nodes_tower</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">num_points_blade</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">num_points_tower</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">num_blades</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">epsilon_tower</span> <span class="o">=</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">fllc</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">rot_speed_rpm</span> <span class="o">=</span> <span class="mf">12.1</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.005</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">density</span> <span class="o">=</span> <span class="mf">1.225</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">nacelle_drag_coeff</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">nacelle_area</span> <span class="o">=</span> <span class="mf">8.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">output_frequency</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">base_position</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">-</span><span class="mf">250.0</span> <span class="o">-</span><span class="mf">90.0</span>
+<span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">base_position</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">250.0</span> <span class="o">-</span><span class="mf">90.0</span>
+
+<span class="n">KynemaFMB</span><span class="o">.</span><span class="n">abs_err_tol</span> <span class="o">=</span> <span class="mf">1e-6</span>
+<span class="n">KynemaFMB</span><span class="o">.</span><span class="n">rel_err_tol</span> <span class="o">=</span> <span class="mf">1e-4</span>
+</pre></div>
+</div>
+<p>For a disk-based run, set <code class="docutils literal notranslate"><span class="pre">Actuator.type</span> <span class="pre">=</span> <span class="pre">TurbineKynemaFMBDisk</span></code> and replace the parameter prefix accordingly.</p>
+<p>If the individual turbines (e.g. <code class="docutils literal notranslate"><span class="pre">T0</span></code> and <code class="docutils literal notranslate"><span class="pre">T1</span></code>) differ in any other details, the input arguments can
+be specified using the turbine labels (e.g. <code class="docutils literal notranslate"><span class="pre">Actuator.T0.nacelle_area</span></code>, <code class="docutils literal notranslate"><span class="pre">Actuator.T1.nacelle_area</span></code>)
+instead of the turbine type prefix, which assigns the value to all turbines of that type.</p>
+<section id="per-turbine-placement">
+<h2>Per-turbine placement<a class="headerlink" href="#per-turbine-placement" title="Link to this heading"></a></h2>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.T0.base_position">
+<span class="sig-name descname"><span class="pre">Actuator.T0.base_position</span></span><a class="headerlink" href="#input_param-Actuator.T0.base_position" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of 3 real numbers, required</p>
+<p>Base position of the turbine in the global coordinate system. Replace <code class="docutils literal notranslate"><span class="pre">T0</span></code> with each entry listed in <code class="docutils literal notranslate"><span class="pre">Actuator.labels</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="kynema-fmb-turbine-setup-and-coupling">
+<h2>Kynema-FMB turbine setup and coupling<a class="headerlink" href="#kynema-fmb-turbine-setup-and-coupling" title="Link to this heading"></a></h2>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.kynema_fmb_input_file">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.kynema_fmb_input_file</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.kynema_fmb_input_file" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, required</p>
+<p>Path to the Kynema-FMB input file in WindIO format. Kynema-SGF reads the rotor diameter and hub height from this file and forwards the structural, aerodynamic, and mass-property data to Kynema-FMB.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.num_struct_nodes_blade">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.num_struct_nodes_blade</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.num_struct_nodes_blade" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, required</p>
+<p>Number of structural nodes used by Kynema-FMB for each blade.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.num_struct_nodes_tower">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.num_struct_nodes_tower</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.num_struct_nodes_tower" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, required</p>
+<p>Number of structural nodes used by Kynema-FMB for the tower.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.num_points_blade">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.num_points_blade</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.num_points_blade" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, required</p>
+<p>Number of aerodynamic sections per blade used by the actuator representation. This must match the number of aerodynamic sections available in the Kynema-FMB input.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.num_points_tower">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.num_points_tower</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.num_points_tower" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, required</p>
+<p>Number of aerodynamic tower sections used by the actuator representation. Set this to <code class="docutils literal notranslate"><span class="pre">0</span></code> to disable tower aerodynamics. If nonzero, it must match the tower discretization available in the Kynema-FMB input.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.num_blades">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.num_blades</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.num_blades" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, optional, default = 3</p>
+<p>Number of blades in the actuator representation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.density">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.density</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.density" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, required</p>
+<p>Fluid density used to non-dimensionalize the forces exchanged with Kynema-FMB. This should match the density in the Kynema-SGF simulation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.rot_speed_rpm">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.rot_speed_rpm</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.rot_speed_rpm" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0</p>
+<p>Initial rotor speed in RPM. This parameter is ignored when <a class="reference internal" href="#input_param-Actuator.TurbineKynemaFMBLine.rot_speed_radps"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">Actuator.TurbineKynemaFMBLine.rot_speed_radps</span></code></a> is present.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.rot_speed_radps">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.rot_speed_radps</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.rot_speed_radps" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0</p>
+<p>Initial rotor speed in radians per second. If present, it overrides <a class="reference internal" href="#input_param-Actuator.TurbineKynemaFMBLine.rot_speed_rpm"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">Actuator.TurbineKynemaFMBLine.rot_speed_rpm</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.generator_power_init">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.generator_power_init</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.generator_power_init" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0</p>
+<p>Initial generator power (in W) passed to Kynema-FMB.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.hub_wind_vector_init">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.hub_wind_vector_init</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.hub_wind_vector_init" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of 3 real numbers, optional, default = 0 0 0</p>
+<p>Initial wind vector seen by the turbine hub. Kynema-SGF converts this vector to a speed magnitude and passes it to Kynema-FMB for the sake of the controller.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.yaw_deg">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.yaw_deg</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.yaw_deg" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0</p>
+<p>Initial nacelle yaw angle in degrees. This parameter is ignored when <a class="reference internal" href="#input_param-Actuator.TurbineKynemaFMBLine.yaw_rad"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">Actuator.TurbineKynemaFMBLine.yaw_rad</span></code></a> is present.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.yaw_rad">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.yaw_rad</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.yaw_rad" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0</p>
+<p>Initial nacelle yaw angle in radians. If present, it overrides <a class="reference internal" href="#input_param-Actuator.TurbineKynemaFMBLine.yaw_deg"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">Actuator.TurbineKynemaFMBLine.yaw_deg</span></code></a>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.generator_efficiency">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.generator_efficiency</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.generator_efficiency" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1</p>
+<p>Generator efficiency passed to Kynema-FMB.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.controller_shared_library_path">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.controller_shared_library_path</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.controller_shared_library_path" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = empty</p>
+<p>Path to the controller shared library passed to Kynema-FMB. This is typically a ROSCO dynamic library.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.controller_input_file">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.controller_input_file</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.controller_input_file" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = empty</p>
+<p>Path to the controller input file. When this value is provided, Kynema-SGF creates the Kynema-FMB controller interface and expects the shared library path to be set as well.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.dt">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.dt</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.dt" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = same as Kynema-SGF time step</p>
+<p>Kynema-FMB time step size. It must divide the Kynema-SGF time step so that the coupled solver can take an integer number of Kynema-FMB sub-steps per CFD time step.</p>
+</dd></dl>
+
+</section>
+<section id="actuator-forcing-and-output-controls">
+<h2>Actuator forcing and output controls<a class="headerlink" href="#actuator-forcing-and-output-controls" title="Link to this heading"></a></h2>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.epsilon">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.epsilon</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.epsilon" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of 3 real numbers, conditionally required</p>
+<p>Gaussian smearing width for the blade force projection. Kynema-SGF requires at least one of <code class="docutils literal notranslate"><span class="pre">epsilon</span></code> or <code class="docutils literal notranslate"><span class="pre">epsilon_chord</span></code> for turbine actuator simulations. When FLLC is enabled, both <code class="docutils literal notranslate"><span class="pre">epsilon</span></code> and <code class="docutils literal notranslate"><span class="pre">epsilon_chord</span></code> are required.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.epsilon_chord">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.epsilon_chord</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.epsilon_chord" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of 3 real numbers, optional</p>
+<p>Non-dimensional <code class="docutils literal notranslate"><span class="pre">epsilon</span> <span class="pre">/</span> <span class="pre">chord</span></code> values used to compute a blade-force smearing width from the local chord. Kynema-SGF uses the maximum of the direct <code class="docutils literal notranslate"><span class="pre">epsilon</span></code> value and the chord-based value when both are provided.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.epsilon_min">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.epsilon_min</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.epsilon_min" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of 3 real numbers, optional</p>
+<p>Minimum value allowed when chord-based epsilon values are used.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.epsilon_tower">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.epsilon_tower</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.epsilon_tower" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> List of 3 real numbers, optional</p>
+<p>Gaussian smearing width for tower forces.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.fllc">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.fllc</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.fllc" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Bool, optional, default = false</p>
+<p>Enables the filtered lifting line correction for the blade loading.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.fllc_type">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.fllc_type</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.fllc_type" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = <code class="docutils literal notranslate"><span class="pre">variable_chord</span></code></p>
+<p>Selects the FLLC formulation. Supported values are <code class="docutils literal notranslate"><span class="pre">constant_chord</span></code> and <code class="docutils literal notranslate"><span class="pre">variable_chord</span></code>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.fllc_relaxation_factor">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.fllc_relaxation_factor</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.fllc_relaxation_factor" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.1</p>
+<p>Relaxation factor applied to the FLLC velocity update.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.fllc_start_time">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.fllc_start_time</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.fllc_start_time" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0</p>
+<p>Simulation time at which the FLLC correction becomes active.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.fllc_nonuniform">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.fllc_nonuniform</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.fllc_nonuniform" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Bool, optional, default = true</p>
+<p>Enables the non-uniform radial point distribution used by the FLLC implementation.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.fllc_epsilon_dr_ratio">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.fllc_epsilon_dr_ratio</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.fllc_epsilon_dr_ratio" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1</p>
+<p>Target ratio of epsilon to actuator-point spacing used when building the non-uniform FLLC point distribution.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.nacelle_drag_coeff">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.nacelle_drag_coeff</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.nacelle_drag_coeff" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0</p>
+<p>Nacelle drag coefficient used to model nacelle drag.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.nacelle_area">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.nacelle_area</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.nacelle_area" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0</p>
+<p>Frontal area of the nacelle used together with <code class="docutils literal notranslate"><span class="pre">nacelle_drag_coeff</span></code>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.output_frequency">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.output_frequency</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.output_frequency" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, optional, default = 10</p>
+<p>Frequency, in Kynema-SGF time steps, for writing the actuator NetCDF output produced by Kynema-SGF. Kynema-FMB’s own turbine output is written separately every Kynema-SGF time step.</p>
+</dd></dl>
+
+</section>
+<section id="restart-and-controller-options">
+<h2>Restart and controller options<a class="headerlink" href="#restart-and-controller-options" title="Link to this heading"></a></h2>
+<p>For a full coupled restart, these turbine-specific settings are used together with the standard Kynema-SGF flow restart input <code class="docutils literal notranslate"><span class="pre">io.restart_file</span></code>.</p>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.kynema_fmb_restart_step">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.kynema_fmb_restart_step</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.kynema_fmb_restart_step" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, optional</p>
+<p>External restart step for Kynema-FMB. When this value is present, Kynema-SGF switches the turbine to restart mode and constructs a per-turbine checkpoint filename of the form <code class="docutils literal notranslate"><span class="pre">kynema_fmb_00003_&lt;label&gt;.chk</span></code>.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-Actuator.TurbineKynemaFMBLine.kynema_fmb_restart_directory">
+<span class="sig-name descname"><span class="pre">Actuator.TurbineKynemaFMBLine.kynema_fmb_restart_directory</span></span><a class="headerlink" href="#input_param-Actuator.TurbineKynemaFMBLine.kynema_fmb_restart_directory" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = <code class="docutils literal notranslate"><span class="pre">.</span></code></p>
+<p>Directory containing the Kynema-FMB checkpoint files referenced by <code class="docutils literal notranslate"><span class="pre">kynema_fmb_restart_step</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="kynema-fmb-solver-options">
+<h2>Kynema-FMB solver options<a class="headerlink" href="#kynema-fmb-solver-options" title="Link to this heading"></a></h2>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-KynemaFMB.abs_err_tol">
+<span class="sig-name descname"><span class="pre">KynemaFMB.abs_err_tol</span></span><a class="headerlink" href="#input_param-KynemaFMB.abs_err_tol" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1e-5</p>
+<p>Absolute error tolerance used by the Kynema-FMB nonlinear solver.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-KynemaFMB.rel_err_tol">
+<span class="sig-name descname"><span class="pre">KynemaFMB.rel_err_tol</span></span><a class="headerlink" href="#input_param-KynemaFMB.rel_err_tol" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 1e-4</p>
+<p>Relative error tolerance used by the Kynema-FMB nonlinear solver.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-KynemaFMB.max_nonlinear_iterations">
+<span class="sig-name descname"><span class="pre">KynemaFMB.max_nonlinear_iterations</span></span><a class="headerlink" href="#input_param-KynemaFMB.max_nonlinear_iterations" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Int, optional, default = 12</p>
+<p>Maximum number of nonlinear iterations used by the Kynema-FMB solver per sub-step.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-KynemaFMB.damping_factor">
+<span class="sig-name descname"><span class="pre">KynemaFMB.damping_factor</span></span><a class="headerlink" href="#input_param-KynemaFMB.damping_factor" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0</p>
+<p>Numerical damping factor forwarded to the Kynema-FMB solver, which is applied in its temporal scheme.
+Counterintuitively, 0 corresponds to full damping and 1 corresponds to no damping.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inputs_Actuator.html" class="btn btn-neutral float-left" title="Section: Actuator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inputs_multiphase.html" class="btn btn-neutral float-right" title="Section: MultiPhase" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,703 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::SloshingTank Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::SloshingTank Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_sloshing_tank.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sloshingtank-class-reference">
+<h1>SloshingTank Class Reference<a class="headerlink" href="#sloshingtank-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::SloshingTank Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_sloshing_tank.html">SloshingTank</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_sloshing_tank-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::SloshingTank Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_sloshing_tank_8_h_source.html">SloshingTank.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::SloshingTank:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_sloshing_tank__inherit__graph.svg" width="204" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::SloshingTank:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_sloshing_tank__coll__graph.svg" width="100%" height="576"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a9e5ec5652dbcb3a869f4eca85f4eb4b2" id="r_a9e5ec5652dbcb3a869f4eca85f4eb4b2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e5ec5652dbcb3a869f4eca85f4eb4b2">SloshingTank</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a6f76ee60b72043880a3fcd5b38f91ef7" id="r_a6f76ee60b72043880a3fcd5b38f91ef7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f76ee60b72043880a3fcd5b38f91ef7">~SloshingTank</a> () override=default</td></tr>
+<tr class="memitem:a3b3e65fbefefbcd3e441c5c1525ade46" id="r_a3b3e65fbefefbcd3e441c5c1525ade46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b3e65fbefefbcd3e441c5c1525ade46">initialize_fields</a> (int level, const amrex::Geometry &amp;geom) override</td></tr>
+<tr class="memdesc:a3b3e65fbefefbcd3e441c5c1525ade46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the levelset and velocity fields for Sloshing Tank simulations.  <br /></td></tr>
+<tr class="memitem:a8ced67cc210eb7226b9812186337d4d9" id="r_a8ced67cc210eb7226b9812186337d4d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ced67cc210eb7226b9812186337d4d9">post_init_actions</a> () override</td></tr>
+<tr class="memitem:a4d248fb8464b01d27d96b471426e2169" id="r_a4d248fb8464b01d27d96b471426e2169"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d248fb8464b01d27d96b471426e2169">post_regrid_actions</a> () override</td></tr>
+<tr class="memitem:a84c513f0faaed02eaee279345ad81f40" id="r_a84c513f0faaed02eaee279345ad81f40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84c513f0faaed02eaee279345ad81f40">pre_advance_work</a> () override</td></tr>
+<tr class="memitem:a09cda72207535a46186465222642a5dc" id="r_a09cda72207535a46186465222642a5dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09cda72207535a46186465222642a5dc">post_advance_work</a> () override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aa2e5e9a9a250e56d3946649226975f49" id="r_aa2e5e9a9a250e56d3946649226975f49"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2e5e9a9a250e56d3946649226975f49">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ae79e132f84c6e302d5e26f3877af5579" id="r_ae79e132f84c6e302d5e26f3877af5579"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae79e132f84c6e302d5e26f3877af5579">m_velocity</a></td></tr>
+<tr class="memitem:abc71392b47f0b5989442e968795d4f72" id="r_abc71392b47f0b5989442e968795d4f72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc71392b47f0b5989442e968795d4f72">m_levelset</a></td></tr>
+<tr class="memitem:a2d65f17fc19fe084fddef0df7ff84a9a" id="r_a2d65f17fc19fe084fddef0df7ff84a9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d65f17fc19fe084fddef0df7ff84a9a">m_pressure</a></td></tr>
+<tr class="memitem:ab9815c6d2d1aeea8ceabb6a11dfb783d" id="r_ab9815c6d2d1aeea8ceabb6a11dfb783d"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9815c6d2d1aeea8ceabb6a11dfb783d">m_amplitude</a> {0.1_rt}</td></tr>
+<tr class="memdesc:ab9815c6d2d1aeea8ceabb6a11dfb783d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial free surface amplitude magnitude.  <br /></td></tr>
+<tr class="memitem:a8f81db1fa04de3390cdf1e4e10dacbcf" id="r_a8f81db1fa04de3390cdf1e4e10dacbcf"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f81db1fa04de3390cdf1e4e10dacbcf">m_kappa</a> {0.25_rt}</td></tr>
+<tr class="memdesc:a8f81db1fa04de3390cdf1e4e10dacbcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peak enhancement factor.  <br /></td></tr>
+<tr class="memitem:a0d7c3a909639d0b5d5ec790705fc62a3" id="r_a0d7c3a909639d0b5d5ec790705fc62a3"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d7c3a909639d0b5d5ec790705fc62a3">m_waterlevel</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a0d7c3a909639d0b5d5ec790705fc62a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial zero-level free-surface water depth.  <br /></td></tr>
+<tr class="memitem:a588cf3c0fcfe6007e97ec4ccfd98e881" id="r_a588cf3c0fcfe6007e97ec4ccfd98e881"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a588cf3c0fcfe6007e97ec4ccfd98e881">m_init_p</a> {false}</td></tr>
+<tr class="memitem:a928069a62fb7200113228f4b3adcd9f1" id="r_a928069a62fb7200113228f4b3adcd9f1"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a928069a62fb7200113228f4b3adcd9f1">m_rho1</a> {1000.}</td></tr>
+<tr class="memdesc:a928069a62fb7200113228f4b3adcd9f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stuff to get from <a class="el" href="classkynema__sgf_1_1_multi_phase.html">MultiPhase</a> physics.  <br /></td></tr>
+<tr class="memitem:ace429115126afa3ab02652656f02cca5" id="r_ace429115126afa3ab02652656f02cca5"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace429115126afa3ab02652656f02cca5">m_rho2</a> {1.}</td></tr>
+<tr class="memitem:a4b1ce4756c07f66e25dc1e6f9d9db68d" id="r_a4b1ce4756c07f66e25dc1e6f9d9db68d"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b1ce4756c07f66e25dc1e6f9d9db68d">m_gravity</a> {0.0_rt, 0.0_rt, -9.81_rt}</td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a9e5ec5652dbcb3a869f4eca85f4eb4b2" name="a9e5ec5652dbcb3a869f4eca85f4eb4b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e5ec5652dbcb3a869f4eca85f4eb4b2">&#9670;&#160;</a></span>SloshingTank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::SloshingTank::SloshingTank </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6f76ee60b72043880a3fcd5b38f91ef7" name="a6f76ee60b72043880a3fcd5b38f91ef7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f76ee60b72043880a3fcd5b38f91ef7">&#9670;&#160;</a></span>~SloshingTank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::SloshingTank::~SloshingTank </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="aa2e5e9a9a250e56d3946649226975f49" name="aa2e5e9a9a250e56d3946649226975f49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2e5e9a9a250e56d3946649226975f49">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::SloshingTank::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3b3e65fbefefbcd3e441c5c1525ade46" name="a3b3e65fbefefbcd3e441c5c1525ade46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b3e65fbefefbcd3e441c5c1525ade46">&#9670;&#160;</a></span>initialize_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SloshingTank::initialize_fields </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize the levelset and velocity fields for Sloshing Tank simulations. </p>
+<p>Initialize the velocity and levelset fields at the beginning of the simulation. </p>
+
+</div>
+</div>
+<a id="a09cda72207535a46186465222642a5dc" name="a09cda72207535a46186465222642a5dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09cda72207535a46186465222642a5dc">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SloshingTank::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8ced67cc210eb7226b9812186337d4d9" name="a8ced67cc210eb7226b9812186337d4d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ced67cc210eb7226b9812186337d4d9">&#9670;&#160;</a></span>post_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SloshingTank::post_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4d248fb8464b01d27d96b471426e2169" name="a4d248fb8464b01d27d96b471426e2169"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d248fb8464b01d27d96b471426e2169">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SloshingTank::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a84c513f0faaed02eaee279345ad81f40" name="a84c513f0faaed02eaee279345ad81f40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84c513f0faaed02eaee279345ad81f40">&#9670;&#160;</a></span>pre_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SloshingTank::pre_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="ab9815c6d2d1aeea8ceabb6a11dfb783d" name="ab9815c6d2d1aeea8ceabb6a11dfb783d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9815c6d2d1aeea8ceabb6a11dfb783d">&#9670;&#160;</a></span>m_amplitude</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SloshingTank::m_amplitude {0.1_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial free surface amplitude magnitude. </p>
+
+</div>
+</div>
+<a id="a4b1ce4756c07f66e25dc1e6f9d9db68d" name="a4b1ce4756c07f66e25dc1e6f9d9db68d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b1ce4756c07f66e25dc1e6f9d9db68d">&#9670;&#160;</a></span>m_gravity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::SloshingTank::m_gravity {0.0_rt, 0.0_rt, -9.81_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a588cf3c0fcfe6007e97ec4ccfd98e881" name="a588cf3c0fcfe6007e97ec4ccfd98e881"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a588cf3c0fcfe6007e97ec4ccfd98e881">&#9670;&#160;</a></span>m_init_p</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::SloshingTank::m_init_p {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8f81db1fa04de3390cdf1e4e10dacbcf" name="a8f81db1fa04de3390cdf1e4e10dacbcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f81db1fa04de3390cdf1e4e10dacbcf">&#9670;&#160;</a></span>m_kappa</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SloshingTank::m_kappa {0.25_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Peak enhancement factor. </p>
+
+</div>
+</div>
+<a id="abc71392b47f0b5989442e968795d4f72" name="abc71392b47f0b5989442e968795d4f72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc71392b47f0b5989442e968795d4f72">&#9670;&#160;</a></span>m_levelset</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::SloshingTank::m_levelset</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2d65f17fc19fe084fddef0df7ff84a9a" name="a2d65f17fc19fe084fddef0df7ff84a9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d65f17fc19fe084fddef0df7ff84a9a">&#9670;&#160;</a></span>m_pressure</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::SloshingTank::m_pressure</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a928069a62fb7200113228f4b3adcd9f1" name="a928069a62fb7200113228f4b3adcd9f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a928069a62fb7200113228f4b3adcd9f1">&#9670;&#160;</a></span>m_rho1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SloshingTank::m_rho1 {1000.}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stuff to get from <a class="el" href="classkynema__sgf_1_1_multi_phase.html">MultiPhase</a> physics. </p>
+
+</div>
+</div>
+<a id="ace429115126afa3ab02652656f02cca5" name="ace429115126afa3ab02652656f02cca5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace429115126afa3ab02652656f02cca5">&#9670;&#160;</a></span>m_rho2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SloshingTank::m_rho2 {1.}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae79e132f84c6e302d5e26f3877af5579" name="ae79e132f84c6e302d5e26f3877af5579"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae79e132f84c6e302d5e26f3877af5579">&#9670;&#160;</a></span>m_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::SloshingTank::m_velocity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0d7c3a909639d0b5d5ec790705fc62a3" name="a0d7c3a909639d0b5d5ec790705fc62a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d7c3a909639d0b5d5ec790705fc62a3">&#9670;&#160;</a></span>m_waterlevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SloshingTank::m_waterlevel {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial zero-level free-surface water depth. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/<a class="el" href="_sloshing_tank_8_h_source.html">SloshingTank.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/<a class="el" href="_sloshing_tank_8cpp.html">SloshingTank.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

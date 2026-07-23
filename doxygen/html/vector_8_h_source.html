@@ -1,0 +1,419 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/core/vs/vector.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/core/vs/vector.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/vector_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-core-vs-vector-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/core/vs/vector.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-core-vs-vector-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/core/vs/vector.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_b275fe914c86728e4bacb4b0e2726274.html">core</a></li><li class="navelem"><a href="dir_fc945c94a5ae0dce70579cb289df740b.html">vs</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">vector.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="vector_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef VS_VECTOR_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define VS_VECTOR_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;AMReX_Gpu.H&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="vstraits_8_h.html">src/core/vs/vstraits.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1vs.html">kynema_sgf::vs</a> {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html">   12</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT</a></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">   14</a></span>    amrex::GpuArray&lt;T, 3&gt; <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a> = {Traits::zero(), Traits::zero(), Traits::zero()};</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#acb78dd0e10f8a4ea0d6131aa6b834dbc">   17</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#acb78dd0e10f8a4ea0d6131aa6b834dbc">ncomp</a> = 3;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af6cff2817e1027327cd7783437e3311a">   18</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af6cff2817e1027327cd7783437e3311a">size_type</a> = int;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a8d9d5158657cf3f48e05d7820edbac02">   19</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a8d9d5158657cf3f48e05d7820edbac02">value_type</a> = T;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a5662c60b53cc11501a48ff63cda466ba">   20</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a5662c60b53cc11501a48ff63cda466ba">reference</a> = T&amp;;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a245f7d0e159372a813a0680bcfddb04c">   21</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a245f7d0e159372a813a0680bcfddb04c">iterator</a> = T*;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#ae39d3b3c9b8a915d346fd220fc28c461">   22</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1vs_1_1_vector_t.html#ae39d3b3c9b8a915d346fd220fc28c461">const_iterator</a> = <span class="keyword">const</span> T*;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a070adf730034886a6ce323d5a2e43775">   23</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a070adf730034886a6ce323d5a2e43775">Traits</a> = <a class="code hl_struct" href="structkynema__sgf_1_1vs_1_1_d_traits.html">DTraits&lt;T&gt;</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a8a9f908937c5fe150ae8c2f72708c36b">   24</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a8a9f908937c5fe150ae8c2f72708c36b">VType</a> = <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">   27</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE</div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="}">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af333e7a48ce217262269a74772b51fb0">   32</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af333e7a48ce217262269a74772b51fb0">VectorT</a>(<span class="keyword">const</span> T&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a431b59c29891ba64ca543fc5ae856709">x</a>, <span class="keyword">const</span> T&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a0d06ac2392d6915bfecc555d209f57b0">y</a>, <span class="keyword">const</span> T&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a304fe382d9da763567beb3611b792523">z</a>)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        : <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a>{<a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a431b59c29891ba64ca543fc5ae856709">x</a>, <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a0d06ac2392d6915bfecc555d209f57b0">y</a>, <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a304fe382d9da763567beb3611b792523">z</a>}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    {}</div>
+</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#ab9d08255c5aecd4155ad72caba5a443b">   36</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#ab9d08255c5aecd4155ad72caba5a443b">~VectorT</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aea0f8b687ff7247104c4ed4c3548562c">   37</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aea0f8b687ff7247104c4ed4c3548562c">VectorT</a>(<span class="keyword">const</span> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT</a>&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a34f08d065f70ddff204d2d80059f9f53">   38</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a34f08d065f70ddff204d2d80059f9f53">VectorT</a>(<a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT</a>&amp;&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a3d93928ea05a8a3679468b48560168d7">   39</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT</a>&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a3d93928ea05a8a3679468b48560168d7">operator=</a>(<span class="keyword">const</span> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT</a>&amp;) &amp; = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a6ef2b903dc54c2cbfb8b99fdd880a56f">   40</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT</a>&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a6ef2b903dc54c2cbfb8b99fdd880a56f">operator=</a>(<span class="keyword">const</span> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT</a>&amp;) &amp;&amp; = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a8a9e173b653bdd462ae05dc761167733">   41</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT</a>&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a8a9e173b653bdd462ae05dc761167733">operator=</a>(<a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT</a>&amp;&amp;) &amp; = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a1615509caa2a0d6b171994d7be272ae4">   42</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT</a>&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a1615509caa2a0d6b171994d7be272ae4">operator=</a>(<a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT</a>&amp;&amp;) &amp;&amp; = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">   45</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <span class="keyword">static</span> <span class="keyword">constexpr</span> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">zero</a>()</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a>{Traits::zero(), Traits::zero(), Traits::zero()};</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
+</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="}">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#adcb42ef30f1684df1590f58ce08ed5f7">   50</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <span class="keyword">static</span> <span class="keyword">constexpr</span> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#adcb42ef30f1684df1590f58ce08ed5f7">one</a>()</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a>{Traits::one(), Traits::one(), Traits::one()};</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    }</div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <span class="keyword">static</span> <span class="keyword">constexpr</span> <a class="code hl_struct" href="structkynema__sgf_1_1vs_1_1_vector_t.html">VectorT&lt;T&gt;</a></div>
+<div class="foldopen" id="foldopen00060" data-start="{" data-end="}">
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af64c944b831f9197afe4e7ce7664151f">   60</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af64c944b831f9197afe4e7ce7664151f">ihat</a>(<span class="keyword">const</span> T&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a431b59c29891ba64ca543fc5ae856709">x</a> = Traits::one())</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a>{<a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a431b59c29891ba64ca543fc5ae856709">x</a>, Traits::zero(), Traits::zero()};</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <span class="keyword">static</span> <span class="keyword">constexpr</span> <a class="code hl_struct" href="structkynema__sgf_1_1vs_1_1_vector_t.html">VectorT&lt;T&gt;</a></div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="}">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#adae2860d1fe2daa351f590d281b7cc88">   70</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#adae2860d1fe2daa351f590d281b7cc88">jhat</a>(<span class="keyword">const</span> T&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a0d06ac2392d6915bfecc555d209f57b0">y</a> = Traits::one())</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a>{Traits::zero(), <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a0d06ac2392d6915bfecc555d209f57b0">y</a>, Traits::zero()};</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    }</div>
+</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <span class="keyword">static</span> <span class="keyword">constexpr</span> <a class="code hl_struct" href="structkynema__sgf_1_1vs_1_1_vector_t.html">VectorT&lt;T&gt;</a></div>
+<div class="foldopen" id="foldopen00080" data-start="{" data-end="}">
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a4928a843f8dd28e9406684a7cfcaa394">   80</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a4928a843f8dd28e9406684a7cfcaa394">khat</a>(<span class="keyword">const</span> T&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a304fe382d9da763567beb3611b792523">z</a> = Traits::one())</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a>{Traits::zero(), Traits::zero(), <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a304fe382d9da763567beb3611b792523">z</a>};</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
+</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af57213732862f605c98d4e57e1e57e1c">   86</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a>&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af57213732862f605c98d4e57e1e57e1c">normalize</a>();</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aade61e77b37ac7e59c0931a07a84bc5b">   89</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aade61e77b37ac7e59c0931a07a84bc5b">sqrt</a>(<span class="keyword">const</span> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT</a>&amp;);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span></div>
+<div class="foldopen" id="foldopen00092" data-start="{" data-end="}">
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aaa5218da38dbcd5c14857e43b2753a0d">   92</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aaa5218da38dbcd5c14857e43b2753a0d">unit</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a>(*this).<a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af57213732862f605c98d4e57e1e57e1c">normalize</a>();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    }</div>
+</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a431b59c29891ba64ca543fc5ae856709">   97</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a431b59c29891ba64ca543fc5ae856709">x</a>() &amp; { <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a>[0]; }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a0d06ac2392d6915bfecc555d209f57b0">   98</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a0d06ac2392d6915bfecc555d209f57b0">y</a>() &amp; { <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a>[1]; }</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a304fe382d9da763567beb3611b792523">   99</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a304fe382d9da763567beb3611b792523">z</a>() &amp; { <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a>[2]; }</div>
+<div class="foldopen" id="foldopen00100" data-start="{" data-end="}">
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a89d16216c7734833ec17a43bc62a362b">  100</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <span class="keyword">const</span> T&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a89d16216c7734833ec17a43bc62a362b">x</a>() const&amp;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a>[0];</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    }</div>
+</div>
+<div class="foldopen" id="foldopen00104" data-start="{" data-end="}">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a35acbe92deb00db3fc3dcb617027a076">  104</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <span class="keyword">const</span> T&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a35acbe92deb00db3fc3dcb617027a076">y</a>() const&amp;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    {</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a>[1];</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    }</div>
+</div>
+<div class="foldopen" id="foldopen00108" data-start="{" data-end="}">
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a25d00a3cf745683af9e25e6f4fcf9e0e">  108</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <span class="keyword">const</span> T&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a25d00a3cf745683af9e25e6f4fcf9e0e">z</a>() const&amp;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a>[2];</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
+</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a75ff64045f6dba0a2ecafb7376ed5d89">  113</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a75ff64045f6dba0a2ecafb7376ed5d89">operator-</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af2221a4b07077196fb51abb64f38b110">  115</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af2221a4b07077196fb51abb64f38b110">operator*=</a>(T val);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#acaecc07242718c326b290486ca2aa653">  118</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#acaecc07242718c326b290486ca2aa653">operator*=</a>(<span class="keyword">const</span> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a>&amp; valvec);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a29062b2f8bb0a899d1f199ef1d39189c">  120</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">VectorT&lt;T&gt;</a> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a29062b2f8bb0a899d1f199ef1d39189c">operator/=</a>(T val);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="foldopen" id="foldopen00122" data-start="{" data-end="}">
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a75d4ebf6d6fb3f719b4c8d80e1802b3f">  122</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T&amp; <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a75d4ebf6d6fb3f719b4c8d80e1802b3f">operator[]</a>(<a class="code hl_typedef" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af6cff2817e1027327cd7783437e3311a">size_type</a> pos) &amp;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a>[pos];</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    }</div>
+</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <span class="keyword">const</span> T&amp;</div>
+<div class="foldopen" id="foldopen00127" data-start="{" data-end="}">
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aaccd1426fbe13bd403cf10bf515fbc78">  127</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aaccd1426fbe13bd403cf10bf515fbc78">operator[]</a>(<a class="code hl_typedef" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af6cff2817e1027327cd7783437e3311a">size_type</a> pos) <span class="keyword">const</span>&amp;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    {</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a>[pos];</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    }</div>
+</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a1a9291155d8a9b68b2311b8c0ed925c7">  132</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T* <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a1a9291155d8a9b68b2311b8c0ed925c7">data</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a>.data(); }</div>
+<div class="foldopen" id="foldopen00133" data-start="{" data-end="}">
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a249d8491cae5c5f8a0c9af687bec358f">  133</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <span class="keyword">const</span> T* <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a249d8491cae5c5f8a0c9af687bec358f">data</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a>.data();</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    }</div>
+</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a450940d8dd2dbe490a1b134a54d6fb54">  138</a></span>    <a class="code hl_typedef" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a245f7d0e159372a813a0680bcfddb04c">iterator</a> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a450940d8dd2dbe490a1b134a54d6fb54">begin</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a>.begin(); }</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af0eafe64f86b0005fffb399395ff526c">  139</a></span>    <a class="code hl_typedef" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a245f7d0e159372a813a0680bcfddb04c">iterator</a> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af0eafe64f86b0005fffb399395ff526c">end</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a>.end(); }</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a62a9945b0057fc789dcbd82db57825ee">  140</a></span>    [[nodiscard]] <a class="code hl_typedef" href="structkynema__sgf_1_1vs_1_1_vector_t.html#ae39d3b3c9b8a915d346fd220fc28c461">const_iterator</a> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a62a9945b0057fc789dcbd82db57825ee">cbegin</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a>.cbegin(); }</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#ae6a94e650b5aa41f28a49e37570c10d7">  141</a></span>    [[nodiscard]] <a class="code hl_typedef" href="structkynema__sgf_1_1vs_1_1_vector_t.html#ae39d3b3c9b8a915d346fd220fc28c461">const_iterator</a> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#ae6a94e650b5aa41f28a49e37570c10d7">cend</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">vv</a>.cend(); }</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af6117c1234f288d0614755b241055acf">  142</a></span>    [[nodiscard]] <a class="code hl_typedef" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af6cff2817e1027327cd7783437e3311a">size_type</a> <a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#af6117c1234f288d0614755b241055acf">size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1vs_1_1_vector_t.html#acb78dd0e10f8a4ea0d6131aa6b834dbc">ncomp</a>; }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>};</div>
+</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">  145</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">Vector</a> = <a class="code hl_struct" href="structkynema__sgf_1_1vs_1_1_vector_t.html">VectorT&lt;amrex::Real&gt;</a>;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>} <span class="comment">// namespace kynema_sgf::vs</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="preprocessor">#include &quot;<a class="code" href="vector_i_8_h.html">src/core/vs/vectorI.H</a>&quot;</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="preprocessor">#endif </span><span class="comment">/* VS_VECTOR_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1vs_html"><div class="ttname"><a href="namespacekynema__sgf_1_1vs.html">kynema_sgf::vs</a></div><div class="ttdef"><b>Definition</b> tensor.H:8</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1vs_html_a8b5875515cfa717dbeb39c7f4186ce50"><div class="ttname"><a href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">kynema_sgf::vs::Vector</a></div><div class="ttdeci">VectorT&lt; amrex::Real &gt; Vector</div><div class="ttdef"><b>Definition</b> vector.H:145</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_d_traits_html"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_d_traits.html">kynema_sgf::vs::DTraits</a></div><div class="ttdef"><b>Definition</b> vstraits.H:10</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html">kynema_sgf::vs::VectorT</a></div><div class="ttdef"><b>Definition</b> vector.H:13</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a070adf730034886a6ce323d5a2e43775"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a070adf730034886a6ce323d5a2e43775">kynema_sgf::vs::VectorT::Traits</a></div><div class="ttdeci">DTraits&lt; T &gt; Traits</div><div class="ttdef"><b>Definition</b> vector.H:23</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a0d06ac2392d6915bfecc555d209f57b0"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a0d06ac2392d6915bfecc555d209f57b0">kynema_sgf::vs::VectorT&lt; amrex::Real &gt;::y</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real &amp; y() &amp;</div><div class="ttdef"><b>Definition</b> vector.H:98</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a1615509caa2a0d6b171994d7be272ae4"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a1615509caa2a0d6b171994d7be272ae4">kynema_sgf::vs::VectorT::operator=</a></div><div class="ttdeci">VectorT &amp; operator=(VectorT &amp;&amp;) &amp;&amp;=delete</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a1a9291155d8a9b68b2311b8c0ed925c7"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a1a9291155d8a9b68b2311b8c0ed925c7">kynema_sgf::vs::VectorT::data</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T * data()</div><div class="ttdef"><b>Definition</b> vector.H:132</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a245f7d0e159372a813a0680bcfddb04c"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a245f7d0e159372a813a0680bcfddb04c">kynema_sgf::vs::VectorT::iterator</a></div><div class="ttdeci">T * iterator</div><div class="ttdef"><b>Definition</b> vector.H:21</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a249d8491cae5c5f8a0c9af687bec358f"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a249d8491cae5c5f8a0c9af687bec358f">kynema_sgf::vs::VectorT::data</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T * data() const</div><div class="ttdef"><b>Definition</b> vector.H:133</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a25d00a3cf745683af9e25e6f4fcf9e0e"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a25d00a3cf745683af9e25e6f4fcf9e0e">kynema_sgf::vs::VectorT::z</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T &amp; z() const &amp;</div><div class="ttdef"><b>Definition</b> vector.H:108</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a29062b2f8bb0a899d1f199ef1d39189c"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a29062b2f8bb0a899d1f199ef1d39189c">kynema_sgf::vs::VectorT::operator/=</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT&lt; T &gt; operator/=(T val)</div><div class="ttdef"><b>Definition</b> vectorI.H:39</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a304fe382d9da763567beb3611b792523"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a304fe382d9da763567beb3611b792523">kynema_sgf::vs::VectorT&lt; amrex::Real &gt;::z</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real &amp; z() &amp;</div><div class="ttdef"><b>Definition</b> vector.H:99</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a34f08d065f70ddff204d2d80059f9f53"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a34f08d065f70ddff204d2d80059f9f53">kynema_sgf::vs::VectorT::VectorT</a></div><div class="ttdeci">VectorT(VectorT &amp;&amp;)=default</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a35acbe92deb00db3fc3dcb617027a076"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a35acbe92deb00db3fc3dcb617027a076">kynema_sgf::vs::VectorT::y</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T &amp; y() const &amp;</div><div class="ttdef"><b>Definition</b> vector.H:104</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a3d93928ea05a8a3679468b48560168d7"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a3d93928ea05a8a3679468b48560168d7">kynema_sgf::vs::VectorT::operator=</a></div><div class="ttdeci">VectorT &amp; operator=(const VectorT &amp;) &amp;=default</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a431b59c29891ba64ca543fc5ae856709"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a431b59c29891ba64ca543fc5ae856709">kynema_sgf::vs::VectorT&lt; amrex::Real &gt;::x</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real &amp; x() &amp;</div><div class="ttdef"><b>Definition</b> vector.H:97</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a450940d8dd2dbe490a1b134a54d6fb54"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a450940d8dd2dbe490a1b134a54d6fb54">kynema_sgf::vs::VectorT::begin</a></div><div class="ttdeci">iterator begin()</div><div class="ttdef"><b>Definition</b> vector.H:138</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a4928a843f8dd28e9406684a7cfcaa394"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a4928a843f8dd28e9406684a7cfcaa394">kynema_sgf::vs::VectorT::khat</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE static AMREX_FORCE_INLINE constexpr VectorT&lt; T &gt; khat(const T &amp;z=Traits::one())</div><div class="ttdef"><b>Definition</b> vector.H:80</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a5662c60b53cc11501a48ff63cda466ba"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a5662c60b53cc11501a48ff63cda466ba">kynema_sgf::vs::VectorT::reference</a></div><div class="ttdeci">T &amp; reference</div><div class="ttdef"><b>Definition</b> vector.H:20</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a62a9945b0057fc789dcbd82db57825ee"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a62a9945b0057fc789dcbd82db57825ee">kynema_sgf::vs::VectorT::cbegin</a></div><div class="ttdeci">const_iterator cbegin() const</div><div class="ttdef"><b>Definition</b> vector.H:140</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a6ef2b903dc54c2cbfb8b99fdd880a56f"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a6ef2b903dc54c2cbfb8b99fdd880a56f">kynema_sgf::vs::VectorT::operator=</a></div><div class="ttdeci">VectorT &amp; operator=(const VectorT &amp;) &amp;&amp;=delete</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a75d4ebf6d6fb3f719b4c8d80e1802b3f"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a75d4ebf6d6fb3f719b4c8d80e1802b3f">kynema_sgf::vs::VectorT::operator[]</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T &amp; operator[](size_type pos) &amp;</div><div class="ttdef"><b>Definition</b> vector.H:122</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a75ff64045f6dba0a2ecafb7376ed5d89"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a75ff64045f6dba0a2ecafb7376ed5d89">kynema_sgf::vs::VectorT::operator-</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT&lt; T &gt; operator-() const</div><div class="ttdef"><b>Definition</b> vectorI.H:12</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a83be9b675e3eae3acc2a4c9e9fedfd99"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a83be9b675e3eae3acc2a4c9e9fedfd99">kynema_sgf::vs::VectorT::VectorT</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT()=default</div><div class="ttdoc">Construct a default vector, all components set to zero.</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a89d16216c7734833ec17a43bc62a362b"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a89d16216c7734833ec17a43bc62a362b">kynema_sgf::vs::VectorT::x</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T &amp; x() const &amp;</div><div class="ttdef"><b>Definition</b> vector.H:100</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a8a9e173b653bdd462ae05dc761167733"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a8a9e173b653bdd462ae05dc761167733">kynema_sgf::vs::VectorT::operator=</a></div><div class="ttdeci">VectorT &amp; operator=(VectorT &amp;&amp;) &amp;=default</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a8a9f908937c5fe150ae8c2f72708c36b"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a8a9f908937c5fe150ae8c2f72708c36b">kynema_sgf::vs::VectorT::VType</a></div><div class="ttdeci">VectorT&lt; T &gt; VType</div><div class="ttdef"><b>Definition</b> vector.H:24</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a8d9d5158657cf3f48e05d7820edbac02"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a8d9d5158657cf3f48e05d7820edbac02">kynema_sgf::vs::VectorT::value_type</a></div><div class="ttdeci">T value_type</div><div class="ttdef"><b>Definition</b> vector.H:19</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a96a88495bac0075a2f204b73f067a827"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">kynema_sgf::vs::VectorT::zero</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE static AMREX_FORCE_INLINE constexpr VectorT&lt; T &gt; zero()</div><div class="ttdoc">Zero vector.</div><div class="ttdef"><b>Definition</b> vector.H:45</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_aa52023105ff46628da879e0871ff6509"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#aa52023105ff46628da879e0871ff6509">kynema_sgf::vs::VectorT&lt; amrex::Real &gt;::vv</a></div><div class="ttdeci">amrex::GpuArray&lt; amrex::Real, 3 &gt; vv</div><div class="ttdef"><b>Definition</b> vector.H:14</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_aaa5218da38dbcd5c14857e43b2753a0d"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#aaa5218da38dbcd5c14857e43b2753a0d">kynema_sgf::vs::VectorT::unit</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT&lt; T &gt; unit() const</div><div class="ttdoc">Return the unit vector parallel to this vector.</div><div class="ttdef"><b>Definition</b> vector.H:92</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_aaccd1426fbe13bd403cf10bf515fbc78"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#aaccd1426fbe13bd403cf10bf515fbc78">kynema_sgf::vs::VectorT::operator[]</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE const T &amp; operator[](size_type pos) const &amp;</div><div class="ttdef"><b>Definition</b> vector.H:127</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_aade61e77b37ac7e59c0931a07a84bc5b"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#aade61e77b37ac7e59c0931a07a84bc5b">kynema_sgf::vs::VectorT::sqrt</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT&lt; T &gt; sqrt(const VectorT &amp;)</div><div class="ttdoc">Sqrt of each component.</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_ab9d08255c5aecd4155ad72caba5a443b"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#ab9d08255c5aecd4155ad72caba5a443b">kynema_sgf::vs::VectorT::~VectorT</a></div><div class="ttdeci">~VectorT()=default</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_acaecc07242718c326b290486ca2aa653"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#acaecc07242718c326b290486ca2aa653">kynema_sgf::vs::VectorT::operator*=</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT&lt; T &gt; operator*=(const VectorT&lt; T &gt; &amp;valvec)</div><div class="ttdef"><b>Definition</b> vectorI.H:29</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_acb78dd0e10f8a4ea0d6131aa6b834dbc"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#acb78dd0e10f8a4ea0d6131aa6b834dbc">kynema_sgf::vs::VectorT&lt; amrex::Real &gt;::ncomp</a></div><div class="ttdeci">static constexpr int ncomp</div><div class="ttdef"><b>Definition</b> vector.H:17</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_adae2860d1fe2daa351f590d281b7cc88"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#adae2860d1fe2daa351f590d281b7cc88">kynema_sgf::vs::VectorT::jhat</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE static AMREX_FORCE_INLINE constexpr VectorT&lt; T &gt; jhat(const T &amp;y=Traits::one())</div><div class="ttdef"><b>Definition</b> vector.H:70</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_adcb42ef30f1684df1590f58ce08ed5f7"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#adcb42ef30f1684df1590f58ce08ed5f7">kynema_sgf::vs::VectorT::one</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE static AMREX_FORCE_INLINE constexpr VectorT&lt; T &gt; one()</div><div class="ttdef"><b>Definition</b> vector.H:50</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_ae39d3b3c9b8a915d346fd220fc28c461"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#ae39d3b3c9b8a915d346fd220fc28c461">kynema_sgf::vs::VectorT::const_iterator</a></div><div class="ttdeci">const T * const_iterator</div><div class="ttdef"><b>Definition</b> vector.H:22</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_ae6a94e650b5aa41f28a49e37570c10d7"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#ae6a94e650b5aa41f28a49e37570c10d7">kynema_sgf::vs::VectorT::cend</a></div><div class="ttdeci">const_iterator cend() const</div><div class="ttdef"><b>Definition</b> vector.H:141</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_aea0f8b687ff7247104c4ed4c3548562c"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#aea0f8b687ff7247104c4ed4c3548562c">kynema_sgf::vs::VectorT::VectorT</a></div><div class="ttdeci">VectorT(const VectorT &amp;)=default</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_af0eafe64f86b0005fffb399395ff526c"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#af0eafe64f86b0005fffb399395ff526c">kynema_sgf::vs::VectorT::end</a></div><div class="ttdeci">iterator end()</div><div class="ttdef"><b>Definition</b> vector.H:139</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_af2221a4b07077196fb51abb64f38b110"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#af2221a4b07077196fb51abb64f38b110">kynema_sgf::vs::VectorT::operator*=</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT&lt; T &gt; operator*=(T val)</div><div class="ttdef"><b>Definition</b> vectorI.H:19</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_af333e7a48ce217262269a74772b51fb0"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#af333e7a48ce217262269a74772b51fb0">kynema_sgf::vs::VectorT::VectorT</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT(const T &amp;x, const T &amp;y, const T &amp;z)</div><div class="ttdef"><b>Definition</b> vector.H:32</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_af57213732862f605c98d4e57e1e57e1c"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#af57213732862f605c98d4e57e1e57e1c">kynema_sgf::vs::VectorT::normalize</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE VectorT&lt; T &gt; &amp; normalize()</div><div class="ttdoc">Normalize the vector to unit vector.</div><div class="ttdef"><b>Definition</b> vectorI.H:126</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_af6117c1234f288d0614755b241055acf"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#af6117c1234f288d0614755b241055acf">kynema_sgf::vs::VectorT::size</a></div><div class="ttdeci">size_type size() const</div><div class="ttdef"><b>Definition</b> vector.H:142</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_af64c944b831f9197afe4e7ce7664151f"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#af64c944b831f9197afe4e7ce7664151f">kynema_sgf::vs::VectorT::ihat</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE static AMREX_FORCE_INLINE constexpr VectorT&lt; T &gt; ihat(const T &amp;x=Traits::one())</div><div class="ttdef"><b>Definition</b> vector.H:60</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_af6cff2817e1027327cd7783437e3311a"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#af6cff2817e1027327cd7783437e3311a">kynema_sgf::vs::VectorT::size_type</a></div><div class="ttdeci">int size_type</div><div class="ttdef"><b>Definition</b> vector.H:18</div></div>
+<div class="ttc" id="avector_i_8_h_html"><div class="ttname"><a href="vector_i_8_h.html">vectorI.H</a></div></div>
+<div class="ttc" id="avstraits_8_h_html"><div class="ttname"><a href="vstraits_8_h.html">vstraits.H</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
