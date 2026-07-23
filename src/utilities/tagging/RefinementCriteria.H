@@ -21,7 +21,7 @@ namespace kynema_sgf {
 namespace tagging {
 
 /** Enumeration for tagging operation types */
-enum class TaggingOperator { AND, OR, AND_NOT, OR_NOT };
+enum class TaggingOperator : std::uint8_t { AND, OR, AND_NOT, OR_NOT };
 
 /** Convert string to TaggingOperator enum
  *  \param op_str The operator string (case-insensitive)
@@ -90,7 +90,10 @@ class RefinementCriteria : public Factory<RefinementCriteria, CFDSim&>
 public:
     static std::string base_identifier() { return "RefinementCriteria"; }
 
-    tagging::TaggingOperator tag_operator() const { return m_tag_operator; }
+    [[nodiscard]] tagging::TaggingOperator tag_operator() const
+    {
+        return m_tag_operator;
+    }
 
     void tag_operator(const tagging::TaggingOperator& op)
     {
