@@ -34,19 +34,21 @@ string_to_operator(const std::string& op_str)
     std::string op = amrex::toLower(op_str);
     if (op == "and") {
         return TaggingOperator::AND;
-    } else if (op == "or") {
-        return TaggingOperator::OR;
-    } else if (op == "and_not") {
-        return TaggingOperator::AND_NOT;
-    } else if (op == "or_not") {
-        return TaggingOperator::OR_NOT;
-    } else {
-        amrex::Abort(
-            "Invalid operator for tagging criteria: " + op_str +
-            ". Must be one of: and, or, and_not, or_not.");
-        // Unreachable, but avoids compiler warning
-        return TaggingOperator::AND;
     }
+    if (op == "or") {
+        return TaggingOperator::OR;
+    }
+    if (op == "and_not") {
+        return TaggingOperator::AND_NOT;
+    }
+    if (op == "or_not") {
+        return TaggingOperator::OR_NOT;
+    }
+    amrex::Abort(
+        "Invalid operator for tagging criteria: " + op_str +
+        ". Must be one of: and, or, and_not, or_not.");
+    // Unreachable, but avoids compiler warning
+    return TaggingOperator::AND;
 }
 
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::TagBox::TagVal tag_val(
