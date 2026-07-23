@@ -21,22 +21,25 @@ string_to_blending_function_type(const std::string& op_str)
     std::string op = amrex::toLower(op_str);
     if (op == "linear") {
         return BlendingFunctionType::Linear;
-    } else if (op == "quadratic") {
+    }
+    if (op == "quadratic") {
         return BlendingFunctionType::Quadratic;
-    } else if (op == "exponential") {
+    }
+    if (op == "exponential") {
         return BlendingFunctionType::Exponential;
-    } else if (op == "cosine") {
-        return BlendingFunctionType::Cosine;
-    } else {
-        amrex::Abort(
-            "Invalid blending function type: " + op_str +
-            ". Must be one of: linear, quadratic, exponential, cosine.");
-        // Unreachable, but avoids compiler warning
+    }
+    if (op == "cosine") {
         return BlendingFunctionType::Cosine;
     }
+    amrex::Abort(
+        "Invalid blending function type: " + op_str +
+        ". Must be one of: linear, quadratic, exponential, cosine.");
+    // Unreachable, but avoids compiler warning
+    return BlendingFunctionType::Cosine;
 }
 
-AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real blending_function(amrex::Real position_nondim, BlendingFunctionType function_type)
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real blending_function(
+    amrex::Real position_nondim, BlendingFunctionType function_type)
 {
     switch (function_type) {
     case BlendingFunctionType::Linear:
@@ -44,11 +47,13 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real blending_function(amrex::Re
     case BlendingFunctionType::Quadratic:
         return 1.0_rt - position_nondim * position_nondim;
     case BlendingFunctionType::Exponential: // exponential difference and ratio
-        return 1.0_rt - (std::expm1(std::pow(position_nondim, 3.5_rt)) / std::expm1(1.0_rt));
+        return 1.0_rt - (std::expm1(std::pow(position_nondim, 3.5_rt)) /
+                         std::expm1(1.0_rt));
     case BlendingFunctionType::Cosine:
     default:
-        return 0.5_rt + 0.5_rt * std::cos(
-                                      std::numbers::pi_v<amrex::Real> * position_nondim);
+        return 0.5_rt +
+               0.5_rt *
+                   std::cos(std::numbers::pi_v<amrex::Real> * position_nondim);
     }
 }
 
@@ -58,8 +63,11 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real damping_calc(
     amrex::Real blending_fraction,
     BlendingFunctionType function_type)
 {
-    const amrex::Real length_full_damp = layer_thickness * (1.0_rt - blending_fraction);
-    const amrex::Real blend_position_nondim = (distance_from_boundary - length_full_damp) / (layer_thickness * blending_fraction);
+    const amrex::Real length_full_damp =
+        layer_thickness * (1.0_rt - blending_fraction);
+    const amrex::Real blend_position_nondim =
+        (distance_from_boundary - length_full_damp) /
+        (layer_thickness * blending_fraction);
     if (blend_position_nondim <= 0.0_rt) {
         return 1.0_rt;
     } else if (blend_position_nondim <= 1.0_rt) {
