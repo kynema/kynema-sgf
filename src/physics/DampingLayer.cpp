@@ -14,9 +14,8 @@ namespace kynema_sgf::damping_layer {
 
 DampingLayer::DampingLayer(CFDSim& sim) : m_repo(sim.repo()), m_mesh(sim.mesh())
 {
-    amrex::Vector<std::string> labels;
     amrex::ParmParse pp(identifier());
-    pp.getarr("fields", labels);
+    pp.getarr("fields", m_field_names);
 
     amrex::Vector<amrex::Array<amrex::Real, 6>> layers_thickness;
     amrex::Vector<amrex::Array<amrex::Real, 6>> layers_blending_fraction;
@@ -24,7 +23,7 @@ DampingLayer::DampingLayer(CFDSim& sim) : m_repo(sim.repo()), m_mesh(sim.mesh())
     amrex::Vector<amrex::Array<BlendingFunctionType, 6>>
         layers_blending_function_type;
 
-    for (const auto& lbl : labels) {
+    for (const auto& lbl : m_field_names) {
         const std::string key = identifier() + "." + lbl;
 
         amrex::Array<amrex::Real, 6> bc_thickness;
@@ -79,14 +78,10 @@ DampingLayer::DampingLayer(CFDSim& sim) : m_repo(sim.repo()), m_mesh(sim.mesh())
     }
 
     const int nfields = static_cast<int>(layers_thickness.size());
-    m_field_names.resize(nfields);
     m_layers_thickness.resize(nfields);
     m_layers_blending_fraction.resize(nfields);
     m_layers_min_height.resize(nfields);
     m_layers_blending_function_type.resize(nfields);
-    amrex::Gpu::copy(
-        amrex::Gpu::hostToDevice, labels.begin(), labels.end(),
-        m_field_names.begin());
     amrex::Gpu::copy(
         amrex::Gpu::hostToDevice, layers_thickness.begin(),
         layers_thickness.end(), m_layers_thickness.begin());
@@ -150,7 +145,7 @@ void DampingLayer::initialize_fields(int level, const amrex::Geometry& geom)
                     bc_blending_function_type[bc_idx];
 
                 auto& damping_layer_mfab = (*damping_layer_ptr)(level);
-                auto& damping_layer_arrs = damping_layer_mfab.arrays();
+                auto damping_layer_arrs = damping_layer_mfab.arrays();
 
                 amrex::ParallelFor(
                     damping_layer_mfab,

@@ -1,6 +1,7 @@
 #ifndef DAMPINGLAYER_H
 #define DAMPINGLAYER_H
 
+#include <numbers>
 #include "src/core/Physics.H"
 #include "src/core/Field.H"
 #include "src/CFDSim.H"
@@ -99,14 +100,14 @@ public:
     void post_advance_work() override {}
 
 private:
-    const FieldRepo& m_repo;
+    FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
 
-    const amrex::Vector<const std::string> m_bc_names = {"xlo", "xhi", "ylo",
-                                                         "yhi", "zlo", "zhi"};
+    const amrex::Vector<std::string> m_bc_names = {"xlo", "xhi", "ylo",
+                                                   "yhi", "zlo", "zhi"};
 
     //! Quantities for constructing damping layers
-    amrex::Gpu::DeviceVector<std::string> m_field_names;
+    amrex::Vector<std::string> m_field_names;
     amrex::Gpu::DeviceVector<amrex::Array<amrex::Real, 6>> m_layers_thickness;
     amrex::Gpu::DeviceVector<amrex::Array<amrex::Real, 6>>
         m_layers_blending_fraction;
