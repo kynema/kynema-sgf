@@ -72,8 +72,12 @@ void TimeTable::read(
 
 RealList TimeTable::row(const int index) const
 {
-    AMREX_ALWAYS_ASSERT(index >= 0 && index < static_cast<int>(m_time.size()));
-    const auto begin = m_values.begin() + index * m_num_values;
+    AMREX_ALWAYS_ASSERT(index >= 0);
+    const auto row_index = static_cast<decltype(m_time.size())>(index);
+    AMREX_ALWAYS_ASSERT(row_index < m_time.size());
+    const auto offset = static_cast<RealList::difference_type>(row_index) *
+                        static_cast<RealList::difference_type>(m_num_values);
+    const auto begin = m_values.begin() + offset;
     return RealList(begin, begin + m_num_values);
 }
 
