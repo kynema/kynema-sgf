@@ -1,9 +1,9 @@
 #include "src/wind_energy/actuator/drone/Drone.H"
 #include "src/wind_energy/actuator/drone/drone_ops.H"
 #include "src/wind_energy/actuator/ActuatorModel.H"
+#include "src/utilities/trig_ops.H"
 
 #include <cmath>
-#include <numbers>
 
 namespace kynema_sgf::actuator {
 
@@ -15,6 +15,7 @@ namespace drone {
 
 vs::Tensor body_rotation(const vs::Vector& angles)
 {
+    // Apply intrinsic body x, then y, then z rotations to body-frame vectors.
     return vs::zrot(angles.z()) & vs::yrot(angles.y()) & vs::xrot(angles.x());
 }
 
@@ -32,10 +33,12 @@ VecList
 rotor_body_offsets(const RealList& lengths, const RealList& angles_degrees)
 {
     AMREX_ALWAYS_ASSERT(lengths.size() == angles_degrees.size());
+    // Arms lie in the body x-y plane; rigid-body motion maps these fixed
+    // offsets into the CFD frame at runtime.
     VecList offsets(lengths.size());
     for (int i = 0; i < static_cast<int>(lengths.size()); ++i) {
         const amrex::Real angle =
-            angles_degrees[i] * std::numbers::pi_v<amrex::Real> / 180.0_rt;
+            ::kynema_sgf::utils::radians(angles_degrees[i]);
         offsets[i] = {
             lengths[i] * std::cos(angle), lengths[i] * std::sin(angle), 0.0_rt};
     }

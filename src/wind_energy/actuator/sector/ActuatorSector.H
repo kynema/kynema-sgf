@@ -3,6 +3,8 @@
 
 #include "src/wind_energy/actuator/actuator_types.H"
 #include "src/wind_energy/actuator/aero/AirfoilTable.H"
+#include "src/wind_energy/actuator/motion/RigidBodyMotion.H"
+#include "src/wind_energy/actuator/motion/RotorMotion.H"
 
 #include <memory>
 #include <string>
@@ -26,6 +28,18 @@ namespace kynema_sgf::actuator {
  */
 struct ActuatorSectorData
 {
+    //! Prescribed rigid-body motion shared with an owning Drone when present
+    std::shared_ptr<motion::RigidBodyMotion> body_motion;
+
+    //! Prescribed rotor-speed motion shared with an owning Drone when present
+    std::shared_ptr<motion::RotorMotion> rotor_motion;
+
+    //! Rotor index within rotor_motion
+    int rotor_index{0};
+
+    //! Hub offset from the rigid-body center in body coordinates [m]
+    vs::Vector body_offset{vs::Vector::zero()};
+
     //! Number of rotor blades [-]
     int num_blades{2};
 

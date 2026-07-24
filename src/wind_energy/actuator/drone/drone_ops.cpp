@@ -44,11 +44,29 @@ void ReadInputsOp<Drone, ActSrcDrone>::operator()(
     if (meta.num_rotors <= 0) {
         input_error(label, "num_rotors must be positive");
     }
-    pp.get("center", meta.center);
+    if (!pp.contains("position_timetable")) {
+        pp.get("center", meta.center);
+    }
     pp.query("translation_velocity", meta.translation_velocity);
     pp.query("body_orientation_degrees", meta.body_orientation_degrees);
+    if (pp.contains("orientation_timetable") &&
+        pp.contains("body_orientation_degrees")) {
+        input_error(
+            label,
+            "body_orientation_degrees cannot be combined with "
+            "orientation_timetable");
+    }
     meta.body_orientation = drone::body_rotation(meta.body_orientation_degrees);
+    // All child sectors share these histories, keeping the rigid-body pose and
+    // rotor clocks synchronized across the composite actuator.
+    meta.body_motion = std::make_shared<motion::RigidBodyMotion>();
+    meta.body_motion->read_inputs(
+        pp, meta.center, meta.body_orientation, "angular_velocity");
+    meta.rotor_motion = std::make_shared<motion::RotorMotion>();
+    meta.rotor_motion->read_drone_inputs(pp, meta.num_rotors);
 
+    // Instance inputs take precedence over Drone defaults; a scalar arm length
+    // expands to every rotor while the list permits asymmetric layouts.
     const auto& instance = pp.params();
     const auto& defaults = pp.default_params();
     const bool instance_length = instance.contains("arm_length");
@@ -81,6 +99,8 @@ void ReadInputsOp<Drone, ActSrcDrone>::operator()(
         input_error(label, "all arm lengths must be positive");
     }
 
+    // Explicit angles describe irregular layouts. Otherwise phase rotates a
+    // uniformly spaced layout about the body z axis.
     const bool instance_angles = instance.contains("arm_angles_degrees");
     const bool instance_phase = instance.contains("arm_phase_degrees");
     if (instance_angles && instance_phase) {
@@ -112,11 +132,6 @@ void ReadInputsOp<Drone, ActSrcDrone>::operator()(
     }
     validate_distinct_angles(label, meta.arm_angles_degrees);
 
-    pp.getarr("rotor_omegas", meta.rotor_omegas);
-    if (static_cast<int>(meta.rotor_omegas.size()) != meta.num_rotors) {
-        input_error(label, "rotor_omegas must contain num_rotors values");
-    }
-
     meta.mirror_blades.assign(meta.num_rotors, false);
     if (pp.contains("mirror_blades")) {
         amrex::Vector<std::string> mirror_inputs;
@@ -136,7 +151,6 @@ void ReadInputsOp<Drone, ActSrcDrone>::operator()(
 
     const auto offsets =
         drone::rotor_body_offsets(meta.arm_lengths, meta.arm_angles_degrees);
-    const auto rotor_normal = meta.body_orientation & vs::Vector::khat();
     meta.rotors.reserve(meta.num_rotors);
     for (int i = 0; i < meta.num_rotors; ++i) {
         const std::string rotor_label = label + ".R" + std::to_string(i + 1);
@@ -148,22 +162,34 @@ void ReadInputsOp<Drone, ActSrcDrone>::operator()(
         // instance namespaces for both drone geometry and sector aerodynamics;
         // each reader simply ignores inputs outside its responsibility.
         utils::ActParser sector_pp("Actuator.Drone", "Actuator." + label);
-        rotor->data.meta().omega = meta.rotor_omegas[i];
-        rotor->data.meta().user_omega = true;
+        auto& rotor_meta = rotor->data.meta();
+        rotor_meta.body_motion = meta.body_motion;
+        rotor_meta.rotor_motion = meta.rotor_motion;
+        rotor_meta.rotor_index = i;
+        rotor_meta.body_offset = offsets[i];
+        rotor_meta.omega = meta.rotor_motion->omega(i, 0.0_rt);
+        rotor_meta.user_omega = true;
         ReadInputsOp<ActuatorSector, ActSrcSector>()(rotor->data, sector_pp);
         if (meta.mirror_blades[i]) {
+            // Mirroring the blade geometry reverses twist without introducing
+            // a separate rotation-direction convention.
             for (auto& twist : rotor->data.meta().twist_inp) {
                 twist = -twist;
             }
         }
         const auto rotor_center =
-            meta.center + (meta.body_orientation & rotor->body_offset);
+            meta.body_motion->position(0.0_rt) +
+            (meta.body_motion->orientation(0.0_rt) & rotor->body_offset);
+        const auto initial_normal =
+            meta.body_motion->orientation(0.0_rt) & vs::Vector::khat();
         sector::set_placement(
-            rotor->data, rotor_center, rotor_normal, meta.translation_velocity);
+            rotor->data, rotor_center, initial_normal,
+            meta.body_motion->translation_velocity(0.0_rt));
         rotor->output.read_io_options(sector_pp);
         meta.rotors.emplace_back(std::move(rotor));
     }
 
+    // The composite search region is the union of its child-sector regions.
     amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> lo;
     amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> hi;
     for (int n = 0; n < AMREX_SPACEDIM; ++n) {
@@ -225,8 +251,7 @@ void ComputeForceOp<Drone, ActSrcDrone>::operator()(Drone::DataType& data)
     const auto& time = data.sim().time();
     const amrex::Real midpoint_time =
         time.current_time() + 0.5_rt * sector::timestep_width(data.sim());
-    const auto drone_center =
-        meta.center + meta.translation_velocity * midpoint_time;
+    const auto drone_center = meta.body_motion->position(midpoint_time);
     meta.total_force = vs::Vector::zero();
     meta.total_moment = vs::Vector::zero();
     for (auto& rotor : meta.rotors) {

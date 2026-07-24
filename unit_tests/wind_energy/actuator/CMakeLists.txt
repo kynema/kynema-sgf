@@ -5,6 +5,7 @@ target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
   test_airfoil.cpp
   test_actuator_free_functions.cpp
   test_actuator_sector.cpp
+  test_actuator_motion.cpp
   test_drone.cpp
   test_disk_uniform_ct.cpp
   test_FLLC.cpp

@@ -4,12 +4,15 @@
 #include "src/wind_energy/actuator/actuator_types.H"
 #include "src/wind_energy/actuator/sector/ActuatorSector.H"
 #include "src/wind_energy/actuator/sector/actuator_sector_ops.H"
+#include "src/wind_energy/actuator/motion/RigidBodyMotion.H"
+#include "src/wind_energy/actuator/motion/RotorMotion.H"
 
 #include <memory>
 #include <string>
 
 namespace kynema_sgf::actuator {
 
+//! One child actuator sector and its fixed offset in the drone body frame
 struct DroneRotor
 {
     using SectorData = ActuatorSector::DataType;
@@ -22,6 +25,7 @@ struct DroneRotor
     vs::Vector body_offset{vs::Vector::zero()};
 };
 
+//! Composite actuator that gives all child rotors one rigid-body motion
 struct DroneData
 {
     int num_rotors{0};
@@ -33,7 +37,8 @@ struct DroneData
     vs::Vector translation_velocity{vs::Vector::zero()};
     vs::Vector body_orientation_degrees{vs::Vector::zero()};
     vs::Tensor body_orientation{vs::Tensor::identity()};
-    RealList rotor_omegas;
+    std::shared_ptr<motion::RigidBodyMotion> body_motion;
+    std::shared_ptr<motion::RotorMotion> rotor_motion;
     amrex::Vector<int> mirror_blades;
     vs::Vector total_force{vs::Vector::zero()};
     vs::Vector total_moment{vs::Vector::zero()};

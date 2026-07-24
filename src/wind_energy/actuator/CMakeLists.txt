@@ -8,6 +8,7 @@ target_sources(${kynema_sgf_lib_name}
   )
 
 add_subdirectory(aero)
+add_subdirectory(motion)
 add_subdirectory(wing)
 add_subdirectory(sector)
 add_subdirectory(drone)
