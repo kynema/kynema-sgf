@@ -26,8 +26,11 @@ turbines as actuator disks and actuator line models.
 
    This string identifies the type of actuator to use. The ones currently
    supported are: ``UniformCtDisk``, ``JoukowskyDisk``, ``TurbineFastLine``,
-   ``TurbineFastDisk``, ``TurbineKynemaLine``, and
-   ``FixedWingLine``.
+   ``TurbineFastDisk``, ``TurbineKynemaLine``, ``TurbineKynemaFMBLine``,
+   ``TurbineKynemaFMBDisk``, ``FixedWingLine``, and ``ActuatorSector``.
+
+   The Kynema-FMB coupled actuator turbine types are documented in the
+   dedicated reference page :doc:`inputs_Actuator_KynemaFMB`.
 
 It is recommended to group common parameters across actuators using the ``Actuator.[type].[param]``. For example::
 
@@ -271,6 +274,249 @@ Example for ``FixedWingLine``::
    By default, the actuator force is computed and applied in every coordinate direction.
    This input allows actuator force coordinate directions to be deactivated by specifying a 0.0 in
    for the x, y, or z component of this vector.
+
+ActuatorSector
+""""""""""""""
+
+The ``ActuatorSector`` model represents rotating blades by computing blade
+loads at the midpoint blade locations and sweeping those loads through the time
+step during Gaussian projection. If the time step is small enough, the adaptive
+swept quadrature uses one point per radial station and the model naturally
+reduces to an actuator-line-like projection.
+
+Example for ``ActuatorSector``::
+
+   incflo.physics = FreeStream Actuator
+   ICNS.source_terms = ActuatorForcing
+   Actuator.labels = R1
+   Actuator.type = ActuatorSector
+   Actuator.ActuatorSector.rotor_diameter = 0.10
+   Actuator.ActuatorSector.root_radius_fraction = 0.18
+   Actuator.ActuatorSector.num_blades = 2
+   Actuator.ActuatorSector.omega = 2500.0
+   Actuator.ActuatorSector.center = 0.0 0.0 0.0
+   Actuator.ActuatorSector.translation_velocity = 0.0 0.0 0.0
+   Actuator.ActuatorSector.rotor_normal = 1.0 0.0 0.0
+   Actuator.ActuatorSector.rotor_rotation_degrees_per_revolution = 0.0 2.0 0.0
+   Actuator.ActuatorSector.epsilon_chord = 0.5
+   Actuator.ActuatorSector.epsilon_dr = 1.5
+   Actuator.ActuatorSector.epsilon_dl = 1.5
+   Actuator.ActuatorSector.min_chord_dr = 2.0
+   Actuator.ActuatorSector.span_locs = 0.0 1.0
+   Actuator.ActuatorSector.chord = 0.01 0.006
+   Actuator.ActuatorSector.twist = 12.0 4.0
+   Actuator.ActuatorSector.airfoil_table = airfoil.txt
+   Actuator.ActuatorSector.airfoil_type = openfast
+   Actuator.ActuatorSector.gaussian_type = table
+   Actuator.ActuatorSector.gaussian_table_error = 1.0e-4
+   Actuator.ActuatorSector.output_frequency = 1
+
+.. input_param:: Actuator.ActuatorSector.rotor_diameter
+
+   **type:** Real number, mandatory
+
+   Rotor diameter in meters.
+
+.. input_param:: Actuator.ActuatorSector.root_radius_fraction
+
+   **type:** Real number, optional, default = 0.18
+
+   Inboard cutoff radius divided by rotor radius. The generated radial grid
+   covers ``root_radius_fraction * rotor_radius <= r <= rotor_radius``.
+
+.. input_param:: Actuator.ActuatorSector.num_blades
+
+   **type:** int, optional, default = 2
+
+   Number of rotor blades.
+
+.. input_param:: Actuator.ActuatorSector.omega
+
+   **type:** Real number, mandatory
+
+   Rotor angular speed in rad/s. Positive values follow the clockwise-positive
+   blade convention used by the actuator-sector theory.
+
+.. input_param:: Actuator.ActuatorSector.center
+
+   **type:** List of 3 real numbers, optional, default = 0.0 0.0 0.0
+
+   Initial rotor hub center in meters in the CFD frame.
+
+.. input_param:: Actuator.ActuatorSector.translation_velocity
+
+   **type:** List of 3 real numbers, optional, default = 0.0 0.0 0.0
+
+   Prescribed drone/body translational velocity in m/s in the CFD frame.
+
+.. input_param:: Actuator.ActuatorSector.rotor_normal
+
+   **type:** List of 3 real numbers, optional, default = 1.0 0.0 0.0
+
+   Initial rotor-axis normal direction in the fixed frame. The vector is
+   normalized internally and must be nonzero. The default places the rotor disk
+   in the fixed-frame y-z plane, with the rotor normal pointing along +x.
+
+.. input_param:: Actuator.ActuatorSector.rotor_rotation_degrees_per_revolution
+
+   **type:** List of 3 real numbers, optional, default = 0.0 0.0 0.0
+
+   Prescribed rotor-frame/body rotation rate in fixed-frame XYZ degrees per
+   blade revolution. This is converted to ``rotor_angular_velocity``
+   internally using ``omega``. For example, the vector ``0.0 2.0 0.0``
+   rotates the rotor normal about fixed-frame y by two degrees per blade
+   revolution.
+
+.. input_param:: Actuator.ActuatorSector.rotor_angular_velocity
+
+   **type:** List of 3 real numbers, optional
+
+   Rotor-frame/body angular velocity in rad/s in the CFD frame. If specified,
+   this overrides ``rotor_rotation_degrees_per_revolution``.
+
+.. input_param:: Actuator.ActuatorSector.epsilon
+
+   **type:** Real number, optional
+
+   Fixed Gaussian width in meters. At least one of ``epsilon`` or
+   ``epsilon_chord`` must be specified. When ``epsilon`` is specified, the same
+   constant width is used at every radial station. If both ``epsilon`` and
+   ``epsilon_chord`` are specified, ``epsilon`` takes precedence and a warning
+   is printed.
+
+.. input_param:: Actuator.ActuatorSector.epsilon_chord
+
+   **type:** Real number, optional
+
+   Gaussian width divided by local chord. At least one of ``epsilon`` or
+   ``epsilon_chord`` must be specified. When ``epsilon_chord`` is used, the
+   local Gaussian width is ``max(epsilon_min, epsilon_chord * chord)``.
+
+.. input_param:: Actuator.ActuatorSector.epsilon_min
+
+   **type:** Real number, optional, default = 0.0
+
+   Minimum Gaussian width in meters when using ``epsilon_chord``. This value is
+   ignored when constant ``epsilon`` is specified.
+
+.. input_param:: Actuator.ActuatorSector.epsilon_dr
+
+   **type:** Real number, optional, default = 1.5
+
+   Radial grid requirement. The radial grid is built automatically so that
+   ``epsilon / dr >= epsilon_dr``. Users do not specify the number of radial
+   stations directly; it is derived from the local smoothing width, chord, and
+   rotor radius.
+
+.. input_param:: Actuator.ActuatorSector.epsilon_dl
+
+   **type:** Real number, optional, default = 1.5
+
+   Swept arc length requirement. Swept quadrature is selected automatically so
+   that ``epsilon / dl >= epsilon_dl`` over the rotor sweep in the current
+   timestep. When the timestep is sufficiently small, each radial station uses
+   one swept point and the projection reduces to an actuator-line-like limit.
+
+   .. note::
+
+      The actuator-sector model is intended to permit larger timesteps than a
+      conventional actuator-line representation of a rotating blade. The swept
+      forcing sector is set by the CFD timestep, ``delta_theta = omega * dt``,
+      so increasing ``dt`` increases the azimuthal sector covered during each
+      force update.
+
+      In practice, the timestep is still limited by the CFD stability
+      constraint. Users may often run sector-model cases with a larger CFL
+      number than an actuator-line case, but the final timestep will depend on
+      the mesh spacing, resolved and induced velocities, solver settings, and
+      boundary conditions. If the CFD timestep becomes small, for example after
+      grid refinement, the swept sector narrows and the model naturally
+      approaches the actuator-line limit.
+
+.. input_param:: Actuator.ActuatorSector.min_chord_dr
+
+   **type:** Real number, optional, default = 2.0
+
+   Additional radial grid requirement. The radial grid also satisfies
+   ``chord / dr >= min_chord_dr``.
+
+.. input_param:: Actuator.ActuatorSector.span_locs
+
+   **type:** List of real numbers, optional, default = 0.0 1.0
+
+   Non-dimensional radial locations for chord and twist interpolation.
+
+.. input_param:: Actuator.ActuatorSector.chord
+
+   **type:** List of real numbers, optional, default = 1.0 1.0
+
+   Chord distribution in meters at ``span_locs``.
+
+.. input_param:: Actuator.ActuatorSector.twist
+
+   **type:** List of real numbers, optional, default = 0.0 0.0
+
+   Twist distribution in degrees at ``span_locs``.
+
+.. input_param:: Actuator.ActuatorSector.airfoil_table
+
+   **type:** String, mandatory
+
+   Airfoil lookup table. The same loader as ``FixedWingLine`` is used.
+
+.. input_param:: Actuator.ActuatorSector.airfoil_type
+
+   **type:** String, optional, default = ``openfast``
+
+   Airfoil lookup table format. The currently supported options are the same as
+   for ``FixedWingLine``.
+
+.. input_param:: Actuator.ActuatorSector.support_radius_over_epsilon
+
+   **type:** Real number, optional, default = 3.0
+
+   Compact Gaussian support radius divided by the local Gaussian width. Force
+   contributions are ignored outside this radius.
+
+.. input_param:: Actuator.ActuatorSector.radial_quadrature
+
+   **type:** String, optional, default = ``midpoint``
+
+   Radial quadrature rule used to place blade-section force points. The current
+   implementation supports ``midpoint``.
+
+.. input_param:: Actuator.ActuatorSector.swept_quadrature
+
+   **type:** String, optional, default = ``midpoint``
+
+   Swept-sector quadrature rule used to distribute the blade-section force
+   through the timestep. The current implementation supports ``midpoint``.
+
+.. input_param:: Actuator.ActuatorSector.gaussian_type
+
+   **type:** String, optional, default = ``direct``
+
+   Gaussian evaluation mode. Valid options are ``direct`` and ``table``. The
+   table mode interpolates the normalized ``exp(-r^2)`` kernel.
+
+.. input_param:: Actuator.ActuatorSector.gaussian_table_error
+
+   **type:** Real number, optional, default = ``1.0e-4``
+
+   Maximum absolute interpolation error for the tabulated ``exp(-x)`` Gaussian
+   kernel, where ``x = (r / epsilon)^2``. The code derives the number of table
+   intervals from the linear interpolation error bound over
+   ``0 <= x <= support_radius_over_epsilon^2``.
+
+.. input_param:: Actuator.ActuatorSector.output_frequency
+
+   **type:** int, optional, default = 1
+
+   Blade-load NetCDF output interval in timesteps. The output is written under
+   ``post_processing/actuatorXXXXX/<label>.nc`` and includes the blade radial
+   grid, section loads, integrated thrust and torque, local relative velocity
+   components ``vel_rel_theta`` and ``vel_rel_normal``, angle of attack, and
+   airfoil coefficients.
 
 
 TurbineFastLine

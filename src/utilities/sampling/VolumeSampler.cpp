@@ -1,6 +1,7 @@
 #include <limits>
 
 #include "src/utilities/sampling/VolumeSampler.H"
+#include "src/utilities/sampling/SamplingUtils.H"
 #include "src/CFDSim.H"
 #include "src/utilities/index_operations.H"
 #include "AMReX_ParmParse.H"
@@ -18,6 +19,7 @@ void VolumeSampler::initialize(const std::string& key)
     pp.getarr("hi", m_hi);
     pp.getarr("lo", m_lo);
     pp.getarr("num_points", m_npts_dir);
+    pp.query("snap_to_cell_center", m_snap_to_cell_center);
     check_bounds();
     AMREX_ALWAYS_ASSERT(static_cast<int>(m_hi.size()) == AMREX_SPACEDIM);
     AMREX_ALWAYS_ASSERT(static_cast<int>(m_lo.size()) == AMREX_SPACEDIM);
@@ -85,6 +87,7 @@ void VolumeSampler::sampling_locations(
     const int lev = 0;
     const auto& dxinv = m_sim.mesh().Geom(lev).InvCellSizeArray();
     const auto& plo = m_sim.mesh().Geom(lev).ProbLoArray();
+    const auto& fine_geom = m_sim.mesh().Geom(m_sim.mesh().finestLevel());
     const amrex::Array<amrex::Real, AMREX_SPACEDIM> dx = {
         (m_hi[0] - m_lo[0]) / m_npts_dir[0],
         (m_hi[1] - m_lo[1]) / m_npts_dir[1],
@@ -94,9 +97,17 @@ void VolumeSampler::sampling_locations(
     for (int k = 0; k < m_npts_dir[2]; ++k) {
         for (int j = 0; j < m_npts_dir[1]; ++j) {
             for (int i = 0; i < m_npts_dir[0]; ++i) {
-                const amrex::RealVect loc = {AMREX_D_DECL(
+                amrex::RealVect loc = {AMREX_D_DECL(
                     m_lo[0] + (dx[0] * i), m_lo[1] + (dx[1] * j),
                     m_lo[2] + (dx[2] * k))};
+
+                if (m_snap_to_cell_center) {
+                    for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+                        loc[d] = sampling_utils::snap_to_nearest_cell_center(
+                            fine_geom, d, loc[d]);
+                    }
+                }
+
                 if (utils::contains(box, loc, plo, dxinv)) {
                     sample_locs.push_back(loc, idx);
                 }

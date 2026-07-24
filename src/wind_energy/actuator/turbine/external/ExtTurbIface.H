@@ -41,6 +41,11 @@ public:
         return static_cast<int>(m_turbine_data.size());
     }
 
+    int offset_velocity_points() const
+    {
+        return m_solver_data.m_offset_velocity;
+    }
+
     /* -- Specific to each type of external turbine -- */
 
     ~ExtTurbIface() override;

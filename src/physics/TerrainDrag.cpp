@@ -291,7 +291,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 vertical_coeff = term * term;
             }
             levelDamping[nbx](i, j, k, 0) =
-                std::min<amrex::Real>(
+                amrex::min<amrex::Real>(
                     vertical_coeff + levelDamping[nbx](i, j, k, 0), 1.0_rt) /
                 horizontal_tau;
         });

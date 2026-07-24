@@ -1,5 +1,5 @@
-#include <AMReX_Orientation.H>
-
+#include "AMReX_Orientation.H"
+#include "AMReX_Gpu.H"
 #include "src/equation_systems/tke/source_terms/KransAxell.H"
 #include "src/CFDSim.H"
 #include "src/turbulence/TurbulenceModel.H"
@@ -92,6 +92,7 @@ void KransAxell::operator()(
         m_ref_theta_scratch = m_sim.repo().create_scratch_field(1, 0);
     }
     m_transport.ref_theta_fill(lev, (*m_ref_theta_scratch)(lev));
+    amrex::Gpu::streamSynchronize();
 
     const auto& geom = m_mesh.Geom(lev);
     const auto& problo = geom.ProbLoArray();
@@ -329,6 +330,7 @@ void KransAxell::operator()(
                 });
         }
     }
+    amrex::Gpu::streamSynchronize();
 }
 
 } // namespace kynema_sgf::pde::tke

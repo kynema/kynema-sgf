@@ -16,7 +16,7 @@
 
 using namespace amrex::literals;
 
-using namespace exw_fast;
+using namespace sgf_fast;
 
 namespace ext_turb {
 namespace {
@@ -197,7 +197,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::prepare_netcdf_file(
     amrex::ignore_unused(fi);
     amrex::OutStream()
         << "WARNING: FastIface: NetCDF support was not enabled during compile "
-           "time. FastIface cannot support restart."
+           "time. FastIface cannot support legacy replay capability."
         << std::endl;
 #endif
 }
@@ -295,7 +295,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_init_turbine(
     amrex::Array<char, fast_strlen()> inp_file;
     copy_filename(fi.input_file, inp_file.begin());
 
-#if OPENFAST_VERSION_MAJOR == 4
+#if OPENFAST_VERSION_MAJOR >= 4
     char out_file[fast_strlen()];
     fast_func(
         FAST_ExtInfw_Init, &fi.tid_local, &fi.stop_time, inp_file.begin(),
@@ -414,7 +414,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_restart_turbine(
     amrex::Array<char, fast_strlen()> chkpt_file;
     copy_filename(fi.checkpoint_file, chkpt_file.begin());
 
-#if OPENFAST_VERSION_MAJOR == 4
+#if OPENFAST_VERSION_MAJOR >= 4
     fast_func(
         FAST_ExtInfw_Restart, &fi.tid_local, chkpt_file.begin(), &abort_lev,
         &fi.dt_ext, &fi.num_blades, &fi.num_blade_elem, &fi.num_tower_elem,

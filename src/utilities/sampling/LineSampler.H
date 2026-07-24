@@ -78,6 +78,7 @@ protected:
     std::string m_label;
     int m_id{-1};
     int m_npts{0};
+    bool m_snap_to_cell_center{false};
 };
 
 } // namespace kynema_sgf::sampling
