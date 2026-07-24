@@ -292,7 +292,7 @@ position history supplies the complete position.
 
 Similarly, orientation must be specified using no more than one of a constant
 angular velocity, ``angular_velocity_timetable``, and
-``orientation_timetable``. Angular velocities are expressed in the global CFD
+``orientation_timetable``. Angular velocities are expressed in the global
 frame; this is currently the only supported angular-velocity frame.
 
 For example, a position history has three coordinates in meters::
@@ -307,7 +307,7 @@ The recommended orientation format is roll, pitch, and yaw in degrees::
    0.0  0.0 0.0  0.0
    1.0  0.0 5.0 10.0
 
-These angles define the body-to-CFD rotation
+These angles define the body-to-global rotation
 ``Rz(yaw) Ry(pitch) Rx(roll)``. A quaternion history is also supported using
 scalar-first ``W X Y Z`` unit quaternions. Input quaternions are normalized
 before they are interpolated. Both orientation formats are interpolated with
@@ -317,7 +317,7 @@ quaternion spherical linear interpolation.
 
    **type:** String, optional
 
-   File containing ``Time X Y Z``, where position is in meters in the CFD
+   File containing ``Time X Y Z``, where position is in meters in the global
    frame.
 
 .. input_param:: Actuator.ActuatorSector.velocity_timetable
@@ -325,7 +325,7 @@ quaternion spherical linear interpolation.
    **type:** String, optional
 
    File containing ``Time U V W``, where translational velocity is in m/s in
-   the CFD frame. ``center`` is required and supplies the initial position.
+   the global frame. ``center`` is required and supplies the initial position.
 
 .. input_param:: Actuator.ActuatorSector.orientation_timetable
 
@@ -346,7 +346,7 @@ quaternion spherical linear interpolation.
    **type:** String, optional
 
    File containing ``Time OmegaX OmegaY OmegaZ``, where angular velocity is in
-   rad/s in the global CFD frame.
+   rad/s in the global frame.
 
 .. input_param:: Actuator.ActuatorSector.angular_velocity_frame
 
@@ -446,13 +446,13 @@ Example for ``ActuatorSector``::
 
    **type:** List of 3 real numbers, optional, default = 0.0 0.0 0.0
 
-   Initial rotor hub center in meters in the CFD frame.
+   Initial rotor hub center in meters in the global frame.
 
 .. input_param:: Actuator.ActuatorSector.translation_velocity
 
    **type:** List of 3 real numbers, optional, default = 0.0 0.0 0.0
 
-   Prescribed drone/body translational velocity in m/s in the CFD frame.
+   Prescribed drone/body translational velocity in m/s in the global frame.
 
 .. input_param:: Actuator.ActuatorSector.rotor_normal
 
@@ -476,7 +476,7 @@ Example for ``ActuatorSector``::
 
    **type:** List of 3 real numbers, optional
 
-   Rotor-frame/body angular velocity in rad/s in the CFD frame. If specified,
+   Rotor-frame/body angular velocity in rad/s in the global frame. If specified,
    this overrides ``rotor_rotation_degrees_per_revolution``.
 
 .. input_param:: Actuator.ActuatorSector.epsilon
@@ -731,7 +731,7 @@ rotate the complete pattern without changing its relative geometry::
 
    **type:** List of 3 real numbers, conditionally mandatory
 
-   Initial body-center position in meters in the CFD frame. It is required
+   Initial body-center position in meters in the global frame. It is required
    unless ``position_timetable`` supplies the complete position history, and
    cannot be combined with that history.
 
@@ -739,7 +739,7 @@ rotate the complete pattern without changing its relative geometry::
 
    **type:** List of 3 real numbers, optional, default = 0.0 0.0 0.0
 
-   Initial body-to-CFD roll, pitch, and yaw angles in degrees. The rotations
+   Initial body-to-global roll, pitch, and yaw angles in degrees. The rotations
    are composed as ``Rz(yaw) Ry(pitch) Rx(roll)``. This input cannot be combined
    with ``orientation_timetable``.
 
@@ -747,14 +747,15 @@ rotate the complete pattern without changing its relative geometry::
 
    **type:** List of 3 real numbers, optional, default = 0.0 0.0 0.0
 
-   Constant body translational velocity in m/s in the CFD frame. This input is
-   mutually exclusive with ``position_timetable`` and ``velocity_timetable``.
+   Constant body translational velocity in m/s in the global frame. This input
+   is mutually exclusive with ``position_timetable`` and
+   ``velocity_timetable``.
 
 .. input_param:: Actuator.Drone.angular_velocity
 
    **type:** List of 3 real numbers, optional, default = 0.0 0.0 0.0
 
-   Constant body angular velocity in rad/s in the global CFD frame. This input
+   Constant body angular velocity in rad/s in the global frame. This input
    is mutually exclusive with ``orientation_timetable`` and
    ``angular_velocity_timetable``.
 
@@ -776,7 +777,8 @@ rotate the complete pattern without changing its relative geometry::
 
 .. input_param:: Actuator.Drone.mirror_blades
 
-   **type:** List of booleans, optional, default = ``false`` for every rotor
+   **type:** List of Boolean values, optional, default = ``false`` for every
+   rotor
 
    One value per rotor. A mirrored rotor reverses the sign of its blade twist.
    This permits geometrically paired counter-rotating propellers without a
@@ -795,7 +797,7 @@ their units and defaults.
 
 At ``output_frequency``, the Drone writes the standard actuator NetCDF file
 ``<label>.nc``. The ``force`` and ``moment`` variables contain the total
-aerodynamic load acting on the vehicle in CFD-frame coordinates. These loads
+aerodynamic load acting on the vehicle in global-frame coordinates. These loads
 are equal and opposite to the force applied to the fluid, and the moment is
 taken about the instantaneous drone center. Within the Drone group, the
 ``R1``, ``R2``, and subsequent rotor subgroups contain the same blade-load
