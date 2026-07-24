@@ -3,6 +3,8 @@
 
 #include "src/wind_energy/actuator/actuator_types.H"
 #include "src/wind_energy/actuator/aero/AirfoilTable.H"
+#include "src/wind_energy/actuator/motion/RigidBodyMotion.H"
+#include "src/wind_energy/actuator/motion/RotorMotion.H"
 
 #include <memory>
 #include <string>
@@ -26,6 +28,18 @@ namespace kynema_sgf::actuator {
  */
 struct ActuatorSectorData
 {
+    //! Prescribed rigid-body motion shared with an owning Drone when present
+    std::shared_ptr<motion::RigidBodyMotion> body_motion;
+
+    //! Prescribed rotor-speed motion shared with an owning Drone when present
+    std::shared_ptr<motion::RotorMotion> rotor_motion;
+
+    //! Rotor index within rotor_motion
+    int rotor_index{0};
+
+    //! Hub offset from the rigid-body center in body coordinates [m]
+    vs::Vector body_offset{vs::Vector::zero()};
+
     //! Number of rotor blades [-]
     int num_blades{2};
 
@@ -43,6 +57,7 @@ struct ActuatorSectorData
 
     //! Rotor spin angular speed [rad/s]
     amrex::Real omega{0.0_rt};
+    bool user_omega{false};
 
     //! Initial rotor hub center in the CFD frame [m]
     vs::Vector center0{0.0_rt, 0.0_rt, 0.0_rt};
@@ -178,6 +193,14 @@ struct ActuatorSectorData
 
     //! Integrated torque about the rotor normal [m^5/s^2]
     amrex::Real torque{0.0_rt};
+
+    //! Integrated density-normalized force applied to the fluid in the CFD
+    //! frame [m^4/s^2]
+    vs::Vector integrated_force{0.0_rt, 0.0_rt, 0.0_rt};
+
+    //! Integrated density-normalized moment applied to the fluid about the
+    //! rotor hub [m^5/s^2]
+    vs::Vector integrated_moment{0.0_rt, 0.0_rt, 0.0_rt};
 };
 
 struct ActuatorSector : public ActuatorType

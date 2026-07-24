@@ -222,14 +222,16 @@ void update_midpoint_sample_points(ActuatorSector::DataType& data)
     // convention used elsewhere in the code. The resulting sampled velocity is
     // then used by ComputeForceOp for this step.
     const amrex::Real tmid = 0.5_rt * (time.current_time() + time.new_time());
-    const amrex::Real dt = timestep_width(data.sim());
-    meta.center = meta.center0 + meta.translation_velocity * tmid;
-    meta.azimuth = meta.omega * tmid;
-    meta.delta_azimuth = meta.omega * dt;
-
-    const auto orientation = orientation_at_time(
-        tmid, orientation_matrix_from_normal(meta.rotor_normal),
-        meta.rotor_angular_velocity);
+    const auto orientation = meta.body_motion->orientation(tmid);
+    meta.center =
+        meta.body_motion->position(tmid) + (orientation & meta.body_offset);
+    meta.translation_velocity = meta.body_motion->translation_velocity(tmid);
+    meta.rotor_angular_velocity = meta.body_motion->angular_velocity(tmid);
+    meta.omega = meta.rotor_motion->omega(meta.rotor_index, tmid);
+    meta.azimuth = meta.rotor_motion->azimuth(meta.rotor_index, tmid);
+    meta.delta_azimuth =
+        meta.rotor_motion->azimuth(meta.rotor_index, time.new_time()) -
+        meta.rotor_motion->azimuth(meta.rotor_index, time.current_time());
 
     const int nr = static_cast<int>(meta.radius.size());
     const int nvel = meta.num_blades * nr;
@@ -252,6 +254,39 @@ void update_midpoint_sample_points(ActuatorSector::DataType& data)
                 meta.azimuth + phase, orientation, e_r, e_theta, e_normal);
             grid.vel_pos[ip] = meta.center + e_r * meta.radius[ir];
         }
+    }
+}
+
+void set_placement(
+    ActuatorSector::DataType& data,
+    const vs::Vector& center,
+    const vs::Vector& rotor_normal,
+    const vs::Vector& translation_velocity)
+{
+    auto& meta = data.meta();
+    meta.center0 = center;
+    meta.center = center;
+    meta.rotor_normal = rotor_normal;
+    meta.translation_velocity = translation_velocity;
+    meta.rotor_angular_velocity = vs::Vector::zero();
+    meta.user_rotor_angular_velocity = true;
+
+    const amrex::Real max_eps = local_epsilon(meta, max_interp_chord(meta));
+    const amrex::Real search_radius =
+        meta.rotor_radius + meta.support_radius_over_epsilon * max_eps;
+    if ((meta.body_motion && meta.body_motion->moves()) ||
+        vs::mag(translation_velocity) >
+            std::numeric_limits<amrex::Real>::epsilon()) {
+        const auto& geom = data.sim().mesh().Geom(0);
+        const auto plo = geom.ProbLoArray();
+        const auto phi = geom.ProbHiArray();
+        data.info().bound_box =
+            amrex::RealBox(plo[0], plo[1], plo[2], phi[0], phi[1], phi[2]);
+    } else {
+        data.info().bound_box = amrex::RealBox(
+            center.x() - search_radius, center.y() - search_radius,
+            center.z() - search_radius, center.x() + search_radius,
+            center.y() + search_radius, center.z() + search_radius);
     }
 }
 
@@ -279,31 +314,19 @@ void build_gaussian_table(ActuatorSectorData& meta)
     }
 }
 
-void prepare_netcdf_file(
-    const std::string& ncfile,
-    const ActuatorSectorData& meta,
-    const ActInfo& info)
+void prepare_netcdf_group(
+    const ncutils::NCGroup& parent,
+    const std::string& group_name,
+    const ActuatorSectorData& meta)
 {
 #ifdef KYNEMA_SGF_USE_NETCDF
-    if (info.root_proc != amrex::ParallelDescriptor::MyProc()) {
-        return;
-    }
-
-    auto ncf = ncutils::NCFile::create(ncfile, NC_CLOBBER | NC_NETCDF4);
     const std::string nt_name = "num_time_steps";
     const std::string nb_name = "num_blades";
     const std::string nr_name = "num_radial_stations";
     const std::vector<std::string> tbr{nt_name, nb_name, nr_name};
     const std::vector<std::string> tbr_vec{nt_name, nb_name, nr_name, "ndim"};
 
-    ncf.enter_def_mode();
-    ncf.put_attr("title", "Kynema-SGF actuator-sector blade-load output");
-    ncf.put_attr("version", ioutils::kynema_sgf_version());
-    ncf.put_attr("created_on", ioutils::timestamp());
-    ncf.def_dim(nt_name, NC_UNLIMITED);
-    ncf.def_dim("ndim", AMREX_SPACEDIM);
-
-    auto grp = ncf.def_group(info.label);
+    auto grp = parent.def_group(group_name);
     grp.put_attr("force_units", "kinematic force per span: m^3 s^-2");
     grp.put_attr("section_force_units", "kinematic force: m^4 s^-2");
     grp.put_attr(
@@ -340,38 +363,69 @@ void prepare_netcdf_file(
         .put_attr("description", "relative velocity along rotor normal");
     grp.var("vel_rel_theta").put_attr("units", "m s^-1");
     grp.var("vel_rel_normal").put_attr("units", "m s^-1");
-    ncf.exit_def_mode();
+#else
+    amrex::ignore_unused(parent, group_name, meta);
+#endif
+}
 
+void write_netcdf_group_metadata(
+    const ncutils::NCGroup& parent,
+    const std::string& group_name,
+    const ActuatorSectorData& meta)
+{
+#ifdef KYNEMA_SGF_USE_NETCDF
+    auto grp = parent.group(group_name);
     const size_t nr = static_cast<size_t>(meta.radius.size());
     grp.var("radius").put(meta.radius.data(), {0}, {nr});
     grp.var("dr").put(meta.dr.data(), {0}, {nr});
     grp.var("chord").put(meta.chord.data(), {0}, {nr});
     grp.var("twist").put(meta.twist.data(), {0}, {nr});
     grp.var("epsilon").put(meta.epsilon_profile.data(), {0}, {nr});
-    ncf.close();
 #else
-    amrex::ignore_unused(ncfile, meta, info);
+    amrex::ignore_unused(parent, group_name, meta);
 #endif
 }
 
-void write_netcdf(
+void prepare_netcdf_file(
     const std::string& ncfile,
     const ActuatorSectorData& meta,
-    const ActInfo& info,
-    const ActGrid& grid,
-    const amrex::Real time,
-    const int time_index)
+    const ActInfo& info)
 {
 #ifdef KYNEMA_SGF_USE_NETCDF
     if (info.root_proc != amrex::ParallelDescriptor::MyProc()) {
         return;
     }
 
-    auto ncf = ncutils::NCFile::open(ncfile, NC_WRITE);
-    const size_t nt = ncf.dim("num_time_steps").len();
+    auto ncf = ncutils::NCFile::create(ncfile, NC_CLOBBER | NC_NETCDF4);
+    ncf.enter_def_mode();
+    ncf.put_attr("title", "Kynema-SGF actuator-sector blade-load output");
+    ncf.put_attr("version", ioutils::kynema_sgf_version());
+    ncf.put_attr("created_on", ioutils::timestamp());
+    ncf.def_dim("num_time_steps", NC_UNLIMITED);
+    ncf.def_dim("ndim", AMREX_SPACEDIM);
+    prepare_netcdf_group(ncf, info.label, meta);
+    ncf.exit_def_mode();
+    write_netcdf_group_metadata(ncf, info.label, meta);
+    ncf.close();
+#else
+    amrex::ignore_unused(ncfile, meta, info);
+#endif
+}
+
+void write_netcdf_group(
+    const ncutils::NCGroup& parent,
+    const std::string& group_name,
+    const ActuatorSectorData& meta,
+    const ActGrid& grid,
+    const amrex::Real time,
+    const int time_index,
+    const std::size_t time_record)
+{
+#ifdef KYNEMA_SGF_USE_NETCDF
+    const size_t nt = time_record;
     const size_t nb = static_cast<size_t>(meta.num_blades);
     const size_t nr = meta.radius.size();
-    auto grp = ncf.group(info.label);
+    auto grp = parent.group(group_name);
 
     grp.var("time").put(&time, {nt}, {1});
     grp.var("time_index").put(&time_index, {nt}, {1});
@@ -410,6 +464,28 @@ void write_netcdf(
     grp.var("aoa").put(meta.aoa.data(), {nt, 0, 0}, {1, nb, nr});
     grp.var("cl").put(meta.cl.data(), {nt, 0, 0}, {1, nb, nr});
     grp.var("cd").put(meta.cd.data(), {nt, 0, 0}, {1, nb, nr});
+#else
+    amrex::ignore_unused(
+        parent, group_name, meta, grid, time, time_index, time_record);
+#endif
+}
+
+void write_netcdf(
+    const std::string& ncfile,
+    const ActuatorSectorData& meta,
+    const ActInfo& info,
+    const ActGrid& grid,
+    const amrex::Real time,
+    const int time_index)
+{
+#ifdef KYNEMA_SGF_USE_NETCDF
+    if (info.root_proc != amrex::ParallelDescriptor::MyProc()) {
+        return;
+    }
+
+    auto ncf = ncutils::NCFile::open(ncfile, NC_WRITE);
+    const size_t nt = ncf.dim("num_time_steps").len();
+    write_netcdf_group(ncf, info.label, meta, grid, time, time_index, nt);
     ncf.close();
 #else
     amrex::ignore_unused(ncfile, meta, info, grid, time, time_index);
@@ -425,7 +501,15 @@ void ReadInputsOp<ActuatorSector, ActSrcSector>::operator()(
 {
     auto& meta = data.meta();
     pp.get("rotor_diameter", meta.rotor_diameter);
-    pp.get("omega", meta.omega);
+    if (meta.user_omega) {
+        if (pp.contains("omega")) {
+            amrex::Abort(
+                "ActuatorSector omega was set by its owning model and must "
+                "not also be specified in the shared sector inputs");
+        }
+    } else if (!pp.contains("rotor_speed_timetable")) {
+        pp.get("omega", meta.omega);
+    }
     pp.get("airfoil_table", meta.airfoil_file);
     pp.query("airfoil_type", meta.airfoil_type);
     pp.query("num_blades", meta.num_blades);
@@ -433,6 +517,10 @@ void ReadInputsOp<ActuatorSector, ActSrcSector>::operator()(
     pp.query("center", meta.center0);
     pp.query("translation_velocity", meta.translation_velocity);
     pp.query("rotor_normal", meta.rotor_normal);
+    if (pp.contains("orientation_timetable") && pp.contains("rotor_normal")) {
+        amrex::Abort(
+            "rotor_normal cannot be combined with orientation_timetable");
+    }
     if (pp.contains("rotor_orientation") && !pp.contains("rotor_normal")) {
         amrex::Print()
             << "WARNING: ActuatorSector input 'rotor_orientation' is "
@@ -456,6 +544,15 @@ void ReadInputsOp<ActuatorSector, ActSrcSector>::operator()(
     }
     if (pp.contains("rotor_angular_velocity")) {
         pp.get("rotor_angular_velocity", meta.rotor_angular_velocity);
+        meta.user_rotor_angular_velocity = true;
+    }
+    if (pp.contains("angular_velocity")) {
+        if (pp.contains("rotor_angular_velocity")) {
+            amrex::Abort(
+                "angular_velocity and rotor_angular_velocity are mutually "
+                "exclusive");
+        }
+        pp.get("angular_velocity", meta.rotor_angular_velocity);
         meta.user_rotor_angular_velocity = true;
     }
     pp.queryarr("span_locs", meta.span_locs);
@@ -515,6 +612,23 @@ void ReadInputsOp<ActuatorSector, ActSrcSector>::operator()(
             meta.rotor_rotation_degrees_per_revolution;
     }
 
+    // Standalone sectors own their histories. Drone sectors arrive with shared
+    // histories already injected so every rotor uses the same body motion.
+    if (!meta.body_motion) {
+        meta.body_motion = std::make_shared<motion::RigidBodyMotion>();
+        const std::string angular_velocity_key = pp.contains("angular_velocity")
+                                                     ? "angular_velocity"
+                                                     : "rotor_angular_velocity";
+        meta.body_motion->read_inputs(
+            pp, meta.center0,
+            sector::orientation_matrix_from_normal(meta.rotor_normal),
+            angular_velocity_key, meta.rotor_angular_velocity);
+    }
+    if (!meta.rotor_motion) {
+        meta.rotor_motion = std::make_shared<motion::RotorMotion>();
+        meta.rotor_motion->read_sector_inputs(pp, meta.omega, meta.user_omega);
+    }
+
     const amrex::Real max_eps =
         sector::local_epsilon(meta, sector::max_interp_chord(meta));
     const amrex::Real search_radius =
@@ -524,11 +638,14 @@ void ReadInputsOp<ActuatorSector, ActSrcSector>::operator()(
     const auto phi = geom.ProbHiArray();
     const auto& c = meta.center0;
 
-    const bool moves = vs::mag(meta.translation_velocity) >
-                       std::numeric_limits<amrex::Real>::epsilon();
+    const bool moves = (meta.body_motion && meta.body_motion->moves()) ||
+                       vs::mag(meta.translation_velocity) >
+                           std::numeric_limits<amrex::Real>::epsilon();
     const bool rotates = vs::mag(meta.rotor_angular_velocity) >
                          std::numeric_limits<amrex::Real>::epsilon();
     if (moves || rotates) {
+        // A prescribed trajectory is not generally bounded by its initial
+        // placement, so retain the actuator throughout the computational box.
         data.info().bound_box = amrex::RealBox(
             moves ? plo[0] : c.x() - search_radius,
             moves ? plo[1] : c.y() - search_radius,
@@ -590,18 +707,24 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
     const amrex::Real t0 = time.current_time();
     const amrex::Real dt = sector::timestep_width(data.sim());
     const amrex::Real tmid = t0 + 0.5_rt * dt;
-    const amrex::Real start_theta = meta.omega * t0;
-    const amrex::Real dtheta = meta.omega * dt;
-    const auto initial_orientation =
-        sector::orientation_matrix_from_normal(meta.rotor_normal);
-    const auto mid_orientation = sector::orientation_at_time(
-        tmid, initial_orientation, meta.rotor_angular_velocity);
+    // Aerodynamic loads use the same midpoint pose as the CFD velocity samples.
+    const amrex::Real mid_theta =
+        meta.rotor_motion->azimuth(meta.rotor_index, tmid);
+    const auto mid_orientation = meta.body_motion->orientation(tmid);
+    const auto body_position = meta.body_motion->position(tmid);
+    const auto body_velocity = meta.body_motion->translation_velocity(tmid);
+    const auto body_angular_velocity = meta.body_motion->angular_velocity(tmid);
+    const auto hub_offset = mid_orientation & meta.body_offset;
+    meta.center = body_position + hub_offset;
+    meta.omega = meta.rotor_motion->omega(meta.rotor_index, tmid);
 
     const int nr = static_cast<int>(meta.radius.size());
     const int nvel = meta.num_blades * nr;
     VecList force_theta_normal(nvel, vs::Vector::zero());
     meta.thrust = 0.0_rt;
     meta.torque = 0.0_rt;
+    meta.integrated_force = vs::Vector::zero();
+    meta.integrated_moment = vs::Vector::zero();
 
     // First compute blade-section loads at the midpoint sample locations. The
     // force here is per unit span [m^3/s^2] in kinematic units and is converted
@@ -617,14 +740,15 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
             vs::Vector e_theta;
             vs::Vector e_normal;
             sector::blade_basis(
-                start_theta + 0.5_rt * dtheta + phase, mid_orientation, e_r,
-                e_theta, e_normal);
+                mid_theta + phase, mid_orientation, e_r, e_theta, e_normal);
 
             const auto rel_pos = e_r * meta.radius[ir];
-            const auto frame_vel = meta.rotor_angular_velocity ^ rel_pos;
+            // Rigid-body rotation acts about the drone center, so the lever arm
+            // includes both the rotor hub offset and blade-section radius.
+            const auto frame_vel =
+                body_angular_velocity ^ (hub_offset + rel_pos);
             const auto spin_vel = e_theta * (meta.omega * meta.radius[ir]);
-            const auto blade_vel =
-                meta.translation_velocity + frame_vel + spin_vel;
+            const auto blade_vel = body_velocity + frame_vel + spin_vel;
             const auto rel_wind = grid.vel[ip] - blade_vel;
             const amrex::Real vtheta = rel_wind & e_theta;
             const amrex::Real vnormal = rel_wind & e_normal;
@@ -676,11 +800,13 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
     // theta_counts is one and the sector naturally reduces to actuator-line
     // behavior.
     int nforce = 0;
+    const amrex::Real body_swept_speed =
+        vs::mag(body_velocity) +
+        vs::mag(body_angular_velocity) *
+            (vs::mag(meta.body_offset) + meta.rotor_radius);
     for (int ir = 0; ir < nr; ++ir) {
         const amrex::Real swept_speed =
-            vs::mag(meta.translation_velocity) +
-            std::abs(meta.omega) * meta.radius[ir] +
-            vs::mag(meta.rotor_angular_velocity) * meta.radius[ir];
+            body_swept_speed + std::abs(meta.omega) * meta.radius[ir];
         const int ntheta = amrex::max(
             1, static_cast<int>(std::ceil(
                    swept_speed * dt * meta.epsilon_dl /
@@ -705,21 +831,28 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
                 const amrex::Real xi = (static_cast<amrex::Real>(it) + 0.5_rt) /
                                        static_cast<amrex::Real>(ntheta);
                 const amrex::Real t = t0 + xi * dt;
-                const amrex::Real theta = start_theta + xi * dtheta + phase;
-                const auto orientation = sector::orientation_at_time(
-                    t, initial_orientation, meta.rotor_angular_velocity);
+                // Re-evaluate the prescribed pose and azimuth at every swept
+                // quadrature time rather than approximating the trajectory.
+                const amrex::Real theta =
+                    meta.rotor_motion->azimuth(meta.rotor_index, t) + phase;
+                const auto orientation = meta.body_motion->orientation(t);
+                const auto rotor_center = meta.body_motion->position(t) +
+                                          (orientation & meta.body_offset);
                 vs::Vector e_r;
                 vs::Vector e_theta;
                 vs::Vector e_normal;
                 sector::blade_basis(theta, orientation, e_r, e_theta, e_normal);
-                grid.pos[iq] = meta.center0 + meta.translation_velocity * t +
-                               e_r * meta.radius[ir];
+                grid.pos[iq] = rotor_center + e_r * meta.radius[ir];
                 // Split the radial section force uniformly across the swept
                 // quadrature points so the integrated force remains unchanged.
                 const amrex::Real wt =
                     meta.dr[ir] / static_cast<amrex::Real>(ntheta);
                 grid.force[iq] = wt * ((e_theta * force_theta_normal[ip].x()) +
                                        (e_normal * force_theta_normal[ip].y()));
+                meta.integrated_force = meta.integrated_force + grid.force[iq];
+                meta.integrated_moment =
+                    meta.integrated_moment +
+                    ((grid.pos[iq] - rotor_center) ^ grid.force[iq]);
                 grid.epsilon[iq] = vs::Vector::one() * meta.epsilon_profile[ir];
                 ++iq;
             }

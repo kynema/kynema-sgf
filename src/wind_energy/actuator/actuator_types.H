@@ -78,6 +78,16 @@ struct ActSrcSector : ActSrcType
     static constexpr bool is_sector = true;
 };
 
+/** Composite source representation used by a drone containing sector rotors. */
+struct ActSrcDrone : ActSrcType
+{
+    static std::string identifier() { return ""; }
+
+    static constexpr bool is_line = false;
+    static constexpr bool is_disk = false;
+    static constexpr bool is_sector = false;
+};
+
 using RealList = amrex::Vector<amrex::Real>;
 using RealSlice = ::kynema_sgf::utils::Slice<amrex::Real>;
 using VecList = amrex::Vector<kynema_sgf::vs::Vector>;
