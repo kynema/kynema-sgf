@@ -144,9 +144,14 @@ inline Quaternion slerp(Quaternion a, Quaternion b, const amrex::Real fraction)
     a = normalized(a);
     b = normalized(b);
     amrex::Real cosine = dot(a, b);
-    if (cosine < 0.0_rt) {
+    // At exactly 180 degrees the interpolation path is not unique. Ignore a
+    // roundoff-sized negative dot product so equivalent RPY and quaternion
+    // inputs choose the same path.
+    if (cosine < -constants::EPS) {
         b = {-b.w, -b.x, -b.y, -b.z};
         cosine = -cosine;
+    } else if (cosine < 0.0_rt) {
+        cosine = 0.0_rt;
     }
     // Scale the near-parallel cutoff with the configured Real precision.
     if (cosine > 1.0_rt - std::sqrt(constants::EPS)) {
