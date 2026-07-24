@@ -75,7 +75,16 @@ inputs <inputs_post_processing>`
 
    **type:** List of one or more strings
 
-   List of CFD simulation derived fields to sample and output (e.g. mag_vorticity)
+   List of CFD simulation derived fields to sample and output (e.g. mag_vorticity, mask_terrain(velocity))
+
+   The ``mask_terrain(<field>)`` derived field copies ``<field>`` and overwrites
+   every cell inside the terrain body (where ``terrain_blank == 1``) with ``NaN``,
+   producing a plot variable named ``<field>_masked``. For example,
+   ``mask_terrain(velocity)`` outputs ``velocity_masked``. It requires the
+   ``terrain_blank`` int field, which is provided by physics modules such as
+   ``TerrainDrag`` or ``ChannelBuilder``. Note that because sampling interpolates
+   field values to the probe locations, any probe whose interpolation stencil
+   touches a masked (``NaN``) cell will itself return ``NaN``.
 
 AMReX particle binary format
 ````````````````````````````

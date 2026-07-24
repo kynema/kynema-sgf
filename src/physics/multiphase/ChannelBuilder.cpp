@@ -360,6 +360,12 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
             "multiphase channel builder");
     }
 
+    // Modify flags if only terrain fields are being initialized (after regrid)
+    if (m_terrain_fields_only) {
+        m_initialize_velocity = false;
+        m_zero_blanked_velocity = false;
+    }
+
     const auto& dx = geom.CellSizeArray();
     const auto& prob_lo = geom.ProbLoArray();
     auto& velocity = m_repo.get_field("velocity");
@@ -392,7 +398,9 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     }
     // Set density in single-phase case
     if (!multiphase) {
-        m_repo.get_field("density")(level).setVal(m_rho_init);
+        if (!m_terrain_fields_only) {
+            m_repo.get_field("density")(level).setVal(m_rho_init);
+        }
     } else {
         levelset_lev = &(m_repo.get_field("levelset")(level));
     }
@@ -551,6 +559,9 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
             if (multiphase) {
                 // Set levelset field so vof can be initialized
                 phi_arrs[nbx](i, j, k) = water_level - z;
+                // Levelset field only gets converted to vof at initialization,
+                // so this does not matter for post_regrid actions
+
                 // Above land level means unblanked
                 outside_channel = (z > land_level) ? false : outside_channel;
             }
@@ -592,14 +603,12 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
             });
     }
 
-    // Do not set "drag" cells until improving drag forcing to handle different
-    // directions (i.e., not just above terrain)
-
-    // Same goes for roughness
+    // Roughness field is untouched, stick with uniform roughness only
 }
 
 void ChannelBuilder::post_regrid_actions()
 {
+    m_terrain_fields_only = true;
     const int nlevels = m_sim.repo().num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
         initialize_fields(lev, m_sim.repo().mesh().Geom(lev));

@@ -101,7 +101,9 @@ documentation provided here might not work with older releases.
    inputs_ABL.rst
    inputs_ABL_meso_forcing.rst
    inputs_Actuator.rst
+   inputs_Actuator_KynemaFMB.rst
    inputs_multiphase.rst
+   inputs_FreeSurfaceDamping.rst
    inputs_ocean_waves.rst
    inputs_SyntheticTurbulence.rst
    inputs_forest.rst

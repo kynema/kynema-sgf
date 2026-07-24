@@ -414,6 +414,8 @@ endif()
 
 if(KYNEMA_SGF_ENABLE_KYNEMA_FMB)
   add_test_re(act_kynema_fmb_alm)
+  add_test_re(act_kynema_fmb_adm)
+  add_test_red(act_kynema_fmb_alm_restart act_kynema_fmb_alm)
 endif()
 
 if(KYNEMA_SGF_ENABLE_FFT)
