@@ -98,6 +98,7 @@ DragForcing::DragForcing(const CFDSim& sim)
     pp.query("drag_coefficient", m_drag_coefficient);
     pp.query("use_original_drag_limiter", m_limit_drag);
     pp.query("use_temporal_drag_limiter", m_limit_drag_temporal);
+    pp.query("use_temporal_drag_implementation", m_do_drag_temporal);
     pp.query("max_drag_coefficient", m_cd_max);
     pp.query("minimum_z0", m_min_z0);
     pp.query("sponge_strength", m_sponge_strength);
@@ -261,6 +262,7 @@ void DragForcing::operator()(
     const auto& dt = m_time.delta_t();
     const int is_laminar = m_is_laminar ? 1 : 0;
     const bool limit_drag_temporal = m_limit_drag_temporal;
+    const bool do_drag_temporal = m_do_drag_temporal;
     const amrex::Real time_factor = m_forcing_time_factor;
     const amrex::Real min_z = m_min_z;
     const amrex::Real min_z0 = m_min_z0;
@@ -413,6 +415,9 @@ void DragForcing::operator()(
             amrex::Real CdM_m = CdM * m;
             if (limit_drag_temporal) {
                 CdM_m = amrex::min<amrex::Real>(CdM_m, 1.0_rt / dt);
+            }
+            if (do_drag_temporal) {
+                CdM_m = 1.0_rt / (time_factor * dt);
             }
 
             src_arrs[nbx](i, j, k, n) -=
