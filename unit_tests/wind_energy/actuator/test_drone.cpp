@@ -4,11 +4,13 @@
 #include "src/wind_energy/actuator/ActuatorContainer.H"
 #include "src/wind_energy/actuator/ActuatorModel.H"
 #include "src/utilities/constants.H"
+#include "src/utilities/ncutils/nc_interface.H"
 #include "ks_test_utils/MeshTest.H"
 
 #include "gtest/gtest.h"
 
 #include <cmath>
+#include <filesystem>
 #include <fstream>
 
 #include "AMReX_REAL.H"
@@ -80,7 +82,7 @@ protected:
             amrex::Vector<amrex::Real>{0.075_rt, 0.075_rt, 0.075_rt, 0.075_rt});
         pp_i.addarr(
             "arm_angles_degrees",
-            amrex::Vector<amrex::Real>{45.0_rt, 135.0_rt, 225.0_rt, 315.0_rt});
+            amrex::Vector<amrex::Real>{0.0_rt, 90.0_rt, 180.0_rt, 270.0_rt});
         pp_i.addarr(
             "center", amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 0.0_rt});
         pp_i.addarr(
@@ -322,6 +324,45 @@ TEST_F(
 
     remove(m_airfoil_file.c_str());
 }
+
+#ifdef KYNEMA_SGF_USE_NETCDF
+TEST_F(DroneActuatorTest, writes_rotors_as_nested_netcdf_groups)
+{
+    namespace act = kynema_sgf::actuator;
+
+    write_airfoil();
+    initialize_domain();
+    populate_inputs();
+
+    act::ActModel<act::Drone, act::ActSrcDrone> drone(sim(), "D1", 0);
+    drone.read_inputs(act::utils::ActParser("Actuator.Drone", "Actuator.D1"));
+    drone.init_actuator_source();
+    drone.prepare_outputs(".");
+    drone.write_outputs();
+
+    auto ncf = ncutils::NCFile::open("D1.nc");
+    EXPECT_EQ(ncf.dim("num_time_steps").len(), 1U);
+    ASSERT_TRUE(ncf.has_group("D1"));
+    auto drone_group = ncf.group("D1");
+    EXPECT_TRUE(drone_group.has_var("force"));
+    EXPECT_TRUE(drone_group.has_var("moment"));
+    for (int i = 0; i < 4; ++i) {
+        const std::string rotor_name = "R" + std::to_string(i + 1);
+        ASSERT_TRUE(drone_group.has_group(rotor_name));
+        auto rotor_group = drone_group.group(rotor_name);
+        EXPECT_TRUE(rotor_group.has_var("thrust"));
+        EXPECT_TRUE(rotor_group.has_var("torque"));
+        EXPECT_TRUE(rotor_group.has_var("blade_force"));
+        EXPECT_TRUE(rotor_group.has_var("aoa"));
+        EXPECT_EQ(rotor_group.var("time").shape().front(), 1U);
+    }
+    ncf.close();
+
+    EXPECT_FALSE(std::filesystem::exists("D1.R1.nc"));
+    remove("D1.nc");
+    remove(m_airfoil_file.c_str());
+}
+#endif
 
 } // namespace
 } // namespace kynema_sgf_tests

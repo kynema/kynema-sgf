@@ -27,7 +27,7 @@ turbines as actuator disks and actuator line models.
    This string identifies the type of actuator to use. The ones currently
    supported are: ``UniformCtDisk``, ``JoukowskyDisk``, ``TurbineFastLine``,
    ``TurbineFastDisk``, ``TurbineKynemaLine``, ``FixedWingLine``, and
-   ``ActuatorSector``.
+   ``ActuatorSector``, and ``Drone``.
 
 It is recommended to group common parameters across actuators using the ``Actuator.[type].[param]``. For example::
 
@@ -272,6 +272,111 @@ Example for ``FixedWingLine``::
    This input allows actuator force coordinate directions to be deactivated by specifying a 0.0 in
    for the x, y, or z component of this vector.
 
+Prescribed actuator motion
+""""""""""""""""""""""""""
+
+``ActuatorSector`` and ``Drone`` support constant or time-dependent rigid-body
+motion. Timetable files are whitespace-delimited text files. The first line is
+a header and each subsequent line begins with time in seconds. Times must be
+strictly increasing. Values are linearly interpolated; velocity histories are
+integrated with the corresponding piecewise-linear, trapezoidal rule.
+
+Translation must be specified using no more than one of
+``translation_velocity``, ``velocity_timetable``, and ``position_timetable``.
+When a velocity source is used, ``center`` is the position at time zero.
+``center`` must not be combined with ``position_timetable`` because the
+position history supplies the complete position.
+
+Similarly, orientation must be specified using no more than one of a constant
+angular velocity, ``angular_velocity_timetable``, and
+``orientation_timetable``. Angular velocities are expressed in the global CFD
+frame; this is currently the only supported angular-velocity frame.
+
+For example, a position history has three coordinates in meters::
+
+   Time X Y Z
+   0.0  0.0 0.0 1.0
+   1.0  0.0 0.0 2.0
+
+The recommended orientation format is roll, pitch, and yaw in degrees::
+
+   Time Roll Pitch Yaw
+   0.0  0.0 0.0  0.0
+   1.0  0.0 5.0 10.0
+
+These angles define the body-to-CFD rotation
+``Rz(yaw) Ry(pitch) Rx(roll)``. A quaternion history is also supported using
+scalar-first ``W X Y Z`` unit quaternions. Input quaternions are normalized
+before they are interpolated. Both orientation formats are interpolated with
+quaternion spherical linear interpolation.
+
+.. input_param:: Actuator.ActuatorSector.position_timetable
+
+   **type:** String, optional
+
+   File containing ``Time X Y Z``, where position is in meters in the CFD
+   frame.
+
+.. input_param:: Actuator.ActuatorSector.velocity_timetable
+
+   **type:** String, optional
+
+   File containing ``Time U V W``, where translational velocity is in m/s in
+   the CFD frame. ``center`` is required and supplies the initial position.
+
+.. input_param:: Actuator.ActuatorSector.orientation_timetable
+
+   **type:** String, optional
+
+   File containing either ``Time Roll Pitch Yaw`` in degrees or
+   ``Time W X Y Z``, as selected by ``orientation_format``.
+
+.. input_param:: Actuator.ActuatorSector.orientation_format
+
+   **type:** String, optional, default = ``roll_pitch_yaw``
+
+   Format of ``orientation_timetable``. Valid values are
+   ``roll_pitch_yaw`` and ``quaternion``.
+
+.. input_param:: Actuator.ActuatorSector.angular_velocity_timetable
+
+   **type:** String, optional
+
+   File containing ``Time OmegaX OmegaY OmegaZ``, where angular velocity is in
+   rad/s in the global CFD frame.
+
+.. input_param:: Actuator.ActuatorSector.angular_velocity_frame
+
+   **type:** String, optional, default = ``global``
+
+   Coordinate frame for constant and tabulated body angular velocity. Only
+   ``global`` is currently supported.
+
+.. input_param:: Actuator.ActuatorSector.rotor_speed_timetable
+
+   **type:** String, optional
+
+   Rotor-speed history in rad/s. For ``ActuatorSector`` the file contains
+   ``Time Omega`` and replaces ``omega``. For ``Drone`` it contains one
+   angular-speed column per rotor and replaces ``rotor_omegas``. Rotor azimuth
+   is obtained by integrating this history.
+
+.. input_param:: Actuator.ActuatorSector.initial_azimuth_degrees
+
+   **type:** Real number, optional, default = 0.0
+
+   Initial blade azimuth in degrees. A Drone accepts either one value shared by
+   every rotor or ``num_rotors`` values.
+
+.. input_param:: Actuator.ActuatorSector.timetable_extrapolation
+
+   **type:** String, optional, default = ``hold``
+
+   Behavior outside a timetable's time range. ``hold`` holds the nearest
+   endpoint value and prints a warning the first time each bound is crossed.
+   ``error`` terminates the simulation instead.
+
+
 ActuatorSector
 """"""""""""""
 
@@ -514,6 +619,185 @@ Example for ``ActuatorSector``::
    grid, section loads, integrated thrust and torque, local relative velocity
    components ``vel_rel_theta`` and ``vel_rel_normal``, angle of attack, and
    airfoil coefficients.
+
+
+Drone
+"""""
+
+The ``Drone`` actuator is a rigid-body composite of ``ActuatorSector`` rotors.
+All rotors share the drone position and orientation, while each rotor retains
+its own signed speed, azimuth, hub location, and blade-mirroring choice. Rotor
+aerodynamic and force-projection inputs use the ``Actuator.Drone`` namespace
+and are passed directly to every child sector.
+
+The drone center is the origin of its body frame. Arms lie in the body x-y
+plane, and each rotor axis initially points along body +z. Viewed from body +z,
+positive arm angles proceed from body +x toward body +y::
+
+                         body +y
+                            ^
+                            |
+                       R2   |   R1
+                          \ | /
+             body -x <-----+-----> body +x
+                          / | \
+                       R3   |   R4
+                            |
+
+                         body +z: out of page
+
+The sketch shows a four-rotor X layout with ``arm_phase_degrees = 45``.
+``R1`` is placed at the phase angle and subsequent rotors are placed at
+increasing, uniformly spaced angles. A positive arm angle therefore denotes a
+counterclockwise geometric placement in this view; it does not specify rotor
+spin direction.
+
+Example for a stationary X-layout quadcopter::
+
+   incflo.physics = FreeStream Actuator
+   ICNS.source_terms = ActuatorForcing
+   Actuator.labels = Q1
+   Actuator.Q1.type = Drone
+
+   Actuator.Drone.num_rotors = 4
+   Actuator.Drone.arm_length = 0.075
+   Actuator.Drone.arm_phase_degrees = 45.0
+   Actuator.Drone.rotor_omegas = 2500.0 -2500.0 2500.0 -2500.0
+   Actuator.Drone.initial_azimuth_degrees = 0.0 90.0 180.0 270.0
+   Actuator.Drone.mirror_blades = false true false true
+
+   Actuator.Q1.center = 0.0 0.0 1.0
+   Actuator.Q1.body_orientation_degrees = 0.0 0.0 0.0
+
+   Actuator.Drone.rotor_diameter = 0.10
+   Actuator.Drone.root_radius_fraction = 0.18
+   Actuator.Drone.num_blades = 2
+   Actuator.Drone.epsilon_chord = 0.5
+   Actuator.Drone.epsilon_dr = 1.5
+   Actuator.Drone.epsilon_dl = 1.5
+   Actuator.Drone.min_chord_dr = 2.0
+   Actuator.Drone.span_locs = 0.0 1.0
+   Actuator.Drone.chord = 0.01 0.006
+   Actuator.Drone.twist = 12.0 4.0
+   Actuator.Drone.airfoil_table = airfoil.txt
+   Actuator.Drone.airfoil_type = openfast
+
+For unequal arm lengths, replace the scalar with one value per rotor::
+
+   Actuator.Drone.arm_length = 0.075 0.080 0.075 0.080
+
+For an irregular layout, provide one base angle per rotor. The phase can then
+rotate the complete pattern without changing its relative geometry::
+
+   Actuator.Drone.arm_angles_degrees = 0.0 90.0 190.0 295.0
+   Actuator.Drone.arm_phase_degrees = 20.0
+
+.. input_param:: Actuator.Drone.num_rotors
+
+   **type:** int, mandatory
+
+   Number of rotors. The value must be positive.
+
+.. input_param:: Actuator.Drone.arm_length
+
+   **type:** Real number or list of real numbers, mandatory
+
+   Body-center to rotor-hub distance in meters. One value is applied to every
+   rotor. Alternatively, provide exactly ``num_rotors`` positive values in
+   rotor order.
+
+.. input_param:: Actuator.Drone.arm_phase_degrees
+
+   **type:** Real number, optional, default = 0.0
+
+   Body-frame angle of the first rotor, measured in degrees from body +x toward
+   body +y when the default uniform pattern is used. More generally, this
+   value is added to every base angle in ``arm_angles_degrees``, rotating the
+   complete arm pattern without changing the relative angles.
+
+.. input_param:: Actuator.Drone.arm_angles_degrees
+
+   **type:** List of real numbers, optional
+
+   Base body-frame arm angles in degrees. The list must contain ``num_rotors``
+   distinct angles. If omitted, the base pattern is uniformly spaced at
+   ``0, 360 / num_rotors, ...``. ``arm_phase_degrees`` is added to every base
+   angle.
+
+.. input_param:: Actuator.Drone.center
+
+   **type:** List of 3 real numbers, conditionally mandatory
+
+   Initial body-center position in meters in the CFD frame. It is required
+   unless ``position_timetable`` supplies the complete position history, and
+   cannot be combined with that history.
+
+.. input_param:: Actuator.Drone.body_orientation_degrees
+
+   **type:** List of 3 real numbers, optional, default = 0.0 0.0 0.0
+
+   Initial body-to-CFD roll, pitch, and yaw angles in degrees. The rotations
+   are composed as ``Rz(yaw) Ry(pitch) Rx(roll)``. This input cannot be combined
+   with ``orientation_timetable``.
+
+.. input_param:: Actuator.Drone.translation_velocity
+
+   **type:** List of 3 real numbers, optional, default = 0.0 0.0 0.0
+
+   Constant body translational velocity in m/s in the CFD frame. This input is
+   mutually exclusive with ``position_timetable`` and ``velocity_timetable``.
+
+.. input_param:: Actuator.Drone.angular_velocity
+
+   **type:** List of 3 real numbers, optional, default = 0.0 0.0 0.0
+
+   Constant body angular velocity in rad/s in the global CFD frame. This input
+   is mutually exclusive with ``orientation_timetable`` and
+   ``angular_velocity_timetable``.
+
+.. input_param:: Actuator.Drone.rotor_omegas
+
+   **type:** List of real numbers, conditionally mandatory
+
+   Signed rotor angular speeds in rad/s, with exactly one value per rotor.
+   Specify exactly one of ``rotor_omegas`` and ``rotor_speed_timetable``.
+   Positive values follow the clockwise-positive blade convention used by
+   ``ActuatorSector``.
+
+.. input_param:: Actuator.Drone.initial_azimuth_degrees
+
+   **type:** Real number or list of real numbers, optional, default = 0.0
+
+   Initial blade azimuth in degrees. One value is applied to every rotor, or
+   exactly ``num_rotors`` values may be supplied.
+
+.. input_param:: Actuator.Drone.mirror_blades
+
+   **type:** List of booleans, optional, default = ``false`` for every rotor
+
+   One value per rotor. A mirrored rotor reverses the sign of its blade twist.
+   This permits geometrically paired counter-rotating propellers without a
+   separate rotation-direction input.
+
+The Drone accepts the prescribed-motion parameters described above using
+either the ``Actuator.Drone`` defaults or the individual
+``Actuator.<label>`` namespace. In addition, the following
+``ActuatorSector`` inputs are shared by all rotors:
+``rotor_diameter``, ``root_radius_fraction``, ``num_blades``, ``epsilon``,
+``epsilon_chord``, ``epsilon_min``, ``epsilon_dr``, ``epsilon_dl``,
+``min_chord_dr``, ``span_locs``, ``chord``, ``twist``, ``airfoil_table``,
+``airfoil_type``, quadrature options, Gaussian options, and
+``output_frequency``. See the ``ActuatorSector`` parameter descriptions for
+their units and defaults.
+
+At ``output_frequency``, the Drone writes the standard actuator NetCDF file
+``<label>.nc``. The ``force`` and ``moment`` variables contain the total
+aerodynamic load acting on the vehicle in CFD-frame coordinates. These loads
+are equal and opposite to the force applied to the fluid, and the moment is
+taken about the instantaneous drone center. Within the Drone group, the
+``R1``, ``R2``, and subsequent rotor subgroups contain the same blade-load
+variables as a standalone ``ActuatorSector`` output. All Drone and rotor data
+are therefore contained in the single ``<label>.nc`` file.
 
 
 TurbineFastLine

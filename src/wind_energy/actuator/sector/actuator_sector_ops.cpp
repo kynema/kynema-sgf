@@ -314,31 +314,19 @@ void build_gaussian_table(ActuatorSectorData& meta)
     }
 }
 
-void prepare_netcdf_file(
-    const std::string& ncfile,
-    const ActuatorSectorData& meta,
-    const ActInfo& info)
+void prepare_netcdf_group(
+    const ncutils::NCGroup& parent,
+    const std::string& group_name,
+    const ActuatorSectorData& meta)
 {
 #ifdef KYNEMA_SGF_USE_NETCDF
-    if (info.root_proc != amrex::ParallelDescriptor::MyProc()) {
-        return;
-    }
-
-    auto ncf = ncutils::NCFile::create(ncfile, NC_CLOBBER | NC_NETCDF4);
     const std::string nt_name = "num_time_steps";
     const std::string nb_name = "num_blades";
     const std::string nr_name = "num_radial_stations";
     const std::vector<std::string> tbr{nt_name, nb_name, nr_name};
     const std::vector<std::string> tbr_vec{nt_name, nb_name, nr_name, "ndim"};
 
-    ncf.enter_def_mode();
-    ncf.put_attr("title", "Kynema-SGF actuator-sector blade-load output");
-    ncf.put_attr("version", ioutils::kynema_sgf_version());
-    ncf.put_attr("created_on", ioutils::timestamp());
-    ncf.def_dim(nt_name, NC_UNLIMITED);
-    ncf.def_dim("ndim", AMREX_SPACEDIM);
-
-    auto grp = ncf.def_group(info.label);
+    auto grp = parent.def_group(group_name);
     grp.put_attr("force_units", "kinematic force per span: m^3 s^-2");
     grp.put_attr("section_force_units", "kinematic force: m^4 s^-2");
     grp.put_attr(
@@ -375,38 +363,69 @@ void prepare_netcdf_file(
         .put_attr("description", "relative velocity along rotor normal");
     grp.var("vel_rel_theta").put_attr("units", "m s^-1");
     grp.var("vel_rel_normal").put_attr("units", "m s^-1");
-    ncf.exit_def_mode();
+#else
+    amrex::ignore_unused(parent, group_name, meta);
+#endif
+}
 
+void write_netcdf_group_metadata(
+    const ncutils::NCGroup& parent,
+    const std::string& group_name,
+    const ActuatorSectorData& meta)
+{
+#ifdef KYNEMA_SGF_USE_NETCDF
+    auto grp = parent.group(group_name);
     const size_t nr = static_cast<size_t>(meta.radius.size());
     grp.var("radius").put(meta.radius.data(), {0}, {nr});
     grp.var("dr").put(meta.dr.data(), {0}, {nr});
     grp.var("chord").put(meta.chord.data(), {0}, {nr});
     grp.var("twist").put(meta.twist.data(), {0}, {nr});
     grp.var("epsilon").put(meta.epsilon_profile.data(), {0}, {nr});
-    ncf.close();
 #else
-    amrex::ignore_unused(ncfile, meta, info);
+    amrex::ignore_unused(parent, group_name, meta);
 #endif
 }
 
-void write_netcdf(
+void prepare_netcdf_file(
     const std::string& ncfile,
     const ActuatorSectorData& meta,
-    const ActInfo& info,
-    const ActGrid& grid,
-    const amrex::Real time,
-    const int time_index)
+    const ActInfo& info)
 {
 #ifdef KYNEMA_SGF_USE_NETCDF
     if (info.root_proc != amrex::ParallelDescriptor::MyProc()) {
         return;
     }
 
-    auto ncf = ncutils::NCFile::open(ncfile, NC_WRITE);
-    const size_t nt = ncf.dim("num_time_steps").len();
+    auto ncf = ncutils::NCFile::create(ncfile, NC_CLOBBER | NC_NETCDF4);
+    ncf.enter_def_mode();
+    ncf.put_attr("title", "Kynema-SGF actuator-sector blade-load output");
+    ncf.put_attr("version", ioutils::kynema_sgf_version());
+    ncf.put_attr("created_on", ioutils::timestamp());
+    ncf.def_dim("num_time_steps", NC_UNLIMITED);
+    ncf.def_dim("ndim", AMREX_SPACEDIM);
+    prepare_netcdf_group(ncf, info.label, meta);
+    ncf.exit_def_mode();
+    write_netcdf_group_metadata(ncf, info.label, meta);
+    ncf.close();
+#else
+    amrex::ignore_unused(ncfile, meta, info);
+#endif
+}
+
+void write_netcdf_group(
+    const ncutils::NCGroup& parent,
+    const std::string& group_name,
+    const ActuatorSectorData& meta,
+    const ActGrid& grid,
+    const amrex::Real time,
+    const int time_index,
+    const std::size_t time_record)
+{
+#ifdef KYNEMA_SGF_USE_NETCDF
+    const size_t nt = time_record;
     const size_t nb = static_cast<size_t>(meta.num_blades);
     const size_t nr = meta.radius.size();
-    auto grp = ncf.group(info.label);
+    auto grp = parent.group(group_name);
 
     grp.var("time").put(&time, {nt}, {1});
     grp.var("time_index").put(&time_index, {nt}, {1});
@@ -445,6 +464,28 @@ void write_netcdf(
     grp.var("aoa").put(meta.aoa.data(), {nt, 0, 0}, {1, nb, nr});
     grp.var("cl").put(meta.cl.data(), {nt, 0, 0}, {1, nb, nr});
     grp.var("cd").put(meta.cd.data(), {nt, 0, 0}, {1, nb, nr});
+#else
+    amrex::ignore_unused(
+        parent, group_name, meta, grid, time, time_index, time_record);
+#endif
+}
+
+void write_netcdf(
+    const std::string& ncfile,
+    const ActuatorSectorData& meta,
+    const ActInfo& info,
+    const ActGrid& grid,
+    const amrex::Real time,
+    const int time_index)
+{
+#ifdef KYNEMA_SGF_USE_NETCDF
+    if (info.root_proc != amrex::ParallelDescriptor::MyProc()) {
+        return;
+    }
+
+    auto ncf = ncutils::NCFile::open(ncfile, NC_WRITE);
+    const size_t nt = ncf.dim("num_time_steps").len();
+    write_netcdf_group(ncf, info.label, meta, grid, time, time_index, nt);
     ncf.close();
 #else
     amrex::ignore_unused(ncfile, meta, info, grid, time, time_index);

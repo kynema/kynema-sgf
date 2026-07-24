@@ -49,7 +49,7 @@ struct ProcessOutputsOp<Drone, ActSrcDrone>
 
 private:
     Drone::DataType& m_data;
-    std::string m_filename;
+    std::string m_nc_filename;
     int m_output_frequency{1};
 };
 

@@ -2,10 +2,11 @@
 
 #include "src/CFDSim.H"
 #include "src/utilities/constants.H"
+#include "src/utilities/io_utils.H"
+#include "src/utilities/ncutils/nc_interface.H"
 
 #include <algorithm>
 #include <cmath>
-#include <fstream>
 #include <limits>
 
 #include "AMReX_Print.H"
@@ -30,6 +31,79 @@ void validate_distinct_angles(const std::string& label, const RealList& angles)
             }
         }
     }
+}
+
+void prepare_netcdf_file(
+    const std::string& filename, const Drone::DataType& data)
+{
+#ifdef KYNEMA_SGF_USE_NETCDF
+    auto ncf = ncutils::NCFile::create(filename, NC_CLOBBER | NC_NETCDF4);
+    const std::string nt_name{"num_time_steps"};
+
+    ncf.enter_def_mode();
+    ncf.put_attr("title", "Kynema-SGF Drone actuator-load output");
+    ncf.put_attr("version", ioutils::kynema_sgf_version());
+    ncf.put_attr("created_on", ioutils::timestamp());
+    ncf.def_dim(nt_name, NC_UNLIMITED);
+    ncf.def_dim("ndim", AMREX_SPACEDIM);
+
+    auto grp = ncf.def_group(data.info().label);
+    grp.def_var("time", NC_DOUBLE, {nt_name});
+    grp.def_var("time_index", NC_INT, {nt_name});
+    grp.def_var("force", NC_DOUBLE, {nt_name, "ndim"});
+    grp.def_var("moment", NC_DOUBLE, {nt_name, "ndim"});
+    grp.var("force").put_attr(
+        "description",
+        "total density-normalized aerodynamic force acting on the vehicle");
+    grp.var("force").put_attr("units", "m^4 s^-2");
+    grp.var("moment").put_attr(
+        "description",
+        "total density-normalized aerodynamic moment about the drone center");
+    grp.var("moment").put_attr("units", "m^5 s^-2");
+    for (int i = 0; i < static_cast<int>(data.meta().rotors.size()); ++i) {
+        sector::prepare_netcdf_group(
+            grp, "R" + std::to_string(i + 1),
+            data.meta().rotors[i]->data.meta());
+    }
+    ncf.exit_def_mode();
+    for (int i = 0; i < static_cast<int>(data.meta().rotors.size()); ++i) {
+        sector::write_netcdf_group_metadata(
+            grp, "R" + std::to_string(i + 1),
+            data.meta().rotors[i]->data.meta());
+    }
+    ncf.close();
+#else
+    amrex::ignore_unused(filename, data);
+#endif
+}
+
+void write_netcdf(
+    const std::string& filename,
+    const Drone::DataType& data,
+    const amrex::Real time,
+    const int time_index)
+{
+#ifdef KYNEMA_SGF_USE_NETCDF
+    auto ncf = ncutils::NCFile::open(filename, NC_WRITE);
+    const size_t nt = ncf.dim("num_time_steps").len();
+    auto grp = ncf.group(data.info().label);
+    const auto& force = data.meta().total_force;
+    const auto& moment = data.meta().total_moment;
+
+    grp.var("time").put(&time, {nt}, {1});
+    grp.var("time_index").put(&time_index, {nt}, {1});
+    grp.var("force").put(force.data(), {nt, 0}, {1, AMREX_SPACEDIM});
+    grp.var("moment").put(moment.data(), {nt, 0}, {1, AMREX_SPACEDIM});
+    for (int i = 0; i < static_cast<int>(data.meta().rotors.size()); ++i) {
+        const auto& rotor = data.meta().rotors[i]->data;
+        sector::write_netcdf_group(
+            grp, "R" + std::to_string(i + 1), rotor.meta(), rotor.grid(), time,
+            time_index, nt);
+    }
+    ncf.close();
+#else
+    amrex::ignore_unused(filename, data, time, time_index);
+#endif
 }
 
 } // namespace
@@ -86,37 +160,21 @@ void ReadInputsOp<Drone, ActSrcDrone>::operator()(
         input_error(label, "all arm lengths must be positive");
     }
 
-    // Explicit angles describe irregular layouts. Otherwise phase rotates a
-    // uniformly spaced layout about the body z axis.
-    const auto& instance = pp.params();
-    const auto& defaults = pp.default_params();
-    const bool instance_angles = instance.contains("arm_angles_degrees");
-    const bool instance_phase = instance.contains("arm_phase_degrees");
-    const bool instance_layout = instance_angles || instance_phase;
-    const bool conflicting_layout =
-        (instance_angles && instance_phase) ||
-        (!instance_layout && defaults.contains("arm_angles_degrees") &&
-         defaults.contains("arm_phase_degrees"));
-    if (conflicting_layout) {
-        input_error(
-            label,
-            "arm_angles_degrees and arm_phase_degrees are mutually exclusive");
-    }
-    if (instance_angles) {
-        pp.getarr("arm_angles_degrees", meta.arm_angles_degrees);
-    } else if (instance_phase) {
-        pp.get("arm_phase_degrees", meta.arm_phase_degrees);
-        meta.arm_angles_degrees =
-            drone::uniform_arm_angles(meta.num_rotors, meta.arm_phase_degrees);
-    } else if (defaults.contains("arm_angles_degrees")) {
+    // Explicit angles define the base arm pattern. If they are omitted, use a
+    // uniform pattern. Phase then rotates the complete pattern in the body
+    // x-y plane without changing its relative geometry.
+    if (pp.contains("arm_angles_degrees")) {
         pp.getarr("arm_angles_degrees", meta.arm_angles_degrees);
     } else {
-        pp.query("arm_phase_degrees", meta.arm_phase_degrees);
         meta.arm_angles_degrees =
-            drone::uniform_arm_angles(meta.num_rotors, meta.arm_phase_degrees);
+            drone::uniform_arm_angles(meta.num_rotors, 0.0_rt);
     }
     if (static_cast<int>(meta.arm_angles_degrees.size()) != meta.num_rotors) {
         input_error(label, "arm_angles_degrees must contain num_rotors values");
+    }
+    pp.query("arm_phase_degrees", meta.arm_phase_degrees);
+    for (auto& angle : meta.arm_angles_degrees) {
+        angle += meta.arm_phase_degrees;
     }
     validate_distinct_angles(label, meta.arm_angles_degrees);
 
@@ -257,12 +315,8 @@ void ComputeForceOp<Drone, ActSrcDrone>::operator()(Drone::DataType& data)
 void ProcessOutputsOp<Drone, ActSrcDrone>::prepare_outputs(
     const std::string& out_dir)
 {
-    m_filename = out_dir + "/" + m_data.info().label + "_loads.csv";
-    std::ofstream stream(m_filename);
-    stream << "time,force_x,force_y,force_z,moment_x,moment_y,moment_z\n";
-    for (auto& rotor : m_data.meta().rotors) {
-        rotor->output.prepare_outputs(out_dir);
-    }
+    m_nc_filename = out_dir + "/" + m_data.info().label + ".nc";
+    prepare_netcdf_file(m_nc_filename, m_data);
 }
 
 void ProcessOutputsOp<Drone, ActSrcDrone>::write_outputs()
@@ -270,15 +324,7 @@ void ProcessOutputsOp<Drone, ActSrcDrone>::write_outputs()
     const auto& time = m_data.sim().time();
     if ((m_output_frequency > 0) &&
         (time.time_index() % m_output_frequency == 0)) {
-        const auto& force = m_data.meta().total_force;
-        const auto& moment = m_data.meta().total_moment;
-        std::ofstream stream(m_filename, std::ios::app);
-        stream << time.new_time() << ',' << force.x() << ',' << force.y() << ','
-               << force.z() << ',' << moment.x() << ',' << moment.y() << ','
-               << moment.z() << '\n';
-    }
-    for (auto& rotor : m_data.meta().rotors) {
-        rotor->output.write_outputs();
+        write_netcdf(m_nc_filename, m_data, time.new_time(), time.time_index());
     }
 }
 
