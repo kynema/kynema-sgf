@@ -11,28 +11,23 @@ namespace kynema_sgf::actuator::motion {
 void RotorMotion::read_initial_azimuths(
     const utils::ActParser& pp, const int num_rotors)
 {
-    const bool shared = pp.contains("initial_azimuth_degrees");
-    const bool individual = pp.contains("initial_azimuths_degrees");
-    if (shared && individual) {
-        amrex::Abort(
-            "initial_azimuth_degrees and initial_azimuths_degrees are mutually "
-            "exclusive");
-    }
     m_initial_azimuths.assign(num_rotors, 0.0_rt);
-    if (shared) {
-        amrex::Real value = 0.0_rt;
-        pp.get("initial_azimuth_degrees", value);
-        m_initial_azimuths.assign(
-            num_rotors, ::kynema_sgf::utils::radians(value));
-    } else if (individual) {
-        pp.getarr("initial_azimuths_degrees", m_initial_azimuths);
-        if (static_cast<int>(m_initial_azimuths.size()) != num_rotors) {
-            amrex::Abort(
-                "initial_azimuths_degrees must contain num_rotors values");
+    if (pp.contains("initial_azimuth_degrees")) {
+        RealList input_azimuths;
+        pp.getarr("initial_azimuth_degrees", input_azimuths);
+        if (input_azimuths.size() == 1) {
+            const auto initial_azimuth = input_azimuths.front();
+            input_azimuths.assign(num_rotors, initial_azimuth);
         }
-        for (auto& value : m_initial_azimuths) {
+        if (static_cast<int>(input_azimuths.size()) != num_rotors) {
+            amrex::Abort(
+                "initial_azimuth_degrees must contain either one value or "
+                "num_rotors values");
+        }
+        for (auto& value : input_azimuths) {
             value = ::kynema_sgf::utils::radians(value);
         }
+        m_initial_azimuths = input_azimuths;
     }
 }
 

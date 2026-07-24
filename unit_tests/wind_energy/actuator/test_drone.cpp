@@ -20,6 +20,7 @@ namespace {
 
 using kynema_sgf::actuator::drone::rotor_body_offsets;
 using kynema_sgf::actuator::drone::uniform_arm_angles;
+constexpr amrex::Real test_tol = kynema_sgf::constants::TIGHT_TOL;
 
 class DroneActuatorTest : public MeshTest
 {
@@ -75,7 +76,7 @@ protected:
         amrex::ParmParse pp_i("Actuator.D1");
         pp_i.add("type", std::string("Drone"));
         pp_i.addarr(
-            "arm_lengths",
+            "arm_length",
             amrex::Vector<amrex::Real>{0.075_rt, 0.075_rt, 0.075_rt, 0.075_rt});
         pp_i.addarr(
             "arm_angles_degrees",
@@ -153,12 +154,12 @@ TEST(DroneGeometry, plus_layout)
         rotor_body_offsets({2.0_rt, 2.0_rt, 2.0_rt, 2.0_rt}, angles);
 
     ASSERT_EQ(offsets.size(), 4U);
-    EXPECT_NEAR(offsets[0].x(), 2.0_rt, 1.0e-14_rt);
-    EXPECT_NEAR(offsets[0].y(), 0.0_rt, 1.0e-14_rt);
-    EXPECT_NEAR(offsets[1].x(), 0.0_rt, 1.0e-14_rt);
-    EXPECT_NEAR(offsets[1].y(), 2.0_rt, 1.0e-14_rt);
-    EXPECT_NEAR(offsets[2].x(), -2.0_rt, 1.0e-14_rt);
-    EXPECT_NEAR(offsets[3].y(), -2.0_rt, 1.0e-14_rt);
+    EXPECT_NEAR(offsets[0].x(), 2.0_rt, test_tol);
+    EXPECT_NEAR(offsets[0].y(), 0.0_rt, test_tol);
+    EXPECT_NEAR(offsets[1].x(), 0.0_rt, test_tol);
+    EXPECT_NEAR(offsets[1].y(), 2.0_rt, test_tol);
+    EXPECT_NEAR(offsets[2].x(), -2.0_rt, test_tol);
+    EXPECT_NEAR(offsets[3].y(), -2.0_rt, test_tol);
 }
 
 TEST(DroneGeometry, unequal_irregular_arms)
@@ -167,10 +168,10 @@ TEST(DroneGeometry, unequal_irregular_arms)
     const kynema_sgf::actuator::RealList angles{0.0_rt, 90.0_rt, 225.0_rt};
     const auto offsets = rotor_body_offsets(lengths, angles);
 
-    EXPECT_NEAR(offsets[0].x(), 1.0_rt, 1.0e-14_rt);
-    EXPECT_NEAR(offsets[1].y(), 2.0_rt, 1.0e-14_rt);
-    EXPECT_NEAR(offsets[2].x(), -3.0_rt / std::sqrt(2.0_rt), 1.0e-14_rt);
-    EXPECT_NEAR(offsets[2].y(), -3.0_rt / std::sqrt(2.0_rt), 1.0e-14_rt);
+    EXPECT_NEAR(offsets[0].x(), 1.0_rt, test_tol);
+    EXPECT_NEAR(offsets[1].y(), 2.0_rt, test_tol);
+    EXPECT_NEAR(offsets[2].x(), -3.0_rt / std::sqrt(2.0_rt), test_tol);
+    EXPECT_NEAR(offsets[2].y(), -3.0_rt / std::sqrt(2.0_rt), test_tol);
 }
 
 TEST(DroneGeometry, body_orientation_defaults_to_identity)
@@ -179,9 +180,9 @@ TEST(DroneGeometry, body_orientation_defaults_to_identity)
         kynema_sgf::vs::Vector::zero());
     const auto value =
         rotation & kynema_sgf::vs::Vector{1.0_rt, 2.0_rt, 3.0_rt};
-    EXPECT_NEAR(value.x(), 1.0_rt, 1.0e-14_rt);
-    EXPECT_NEAR(value.y(), 2.0_rt, 1.0e-14_rt);
-    EXPECT_NEAR(value.z(), 3.0_rt, 1.0e-14_rt);
+    EXPECT_NEAR(value.x(), 1.0_rt, test_tol);
+    EXPECT_NEAR(value.y(), 2.0_rt, test_tol);
+    EXPECT_NEAR(value.z(), 3.0_rt, test_tol);
 }
 
 TEST_F(DroneActuatorTest, composite_lifecycle)
@@ -199,10 +200,10 @@ TEST_F(DroneActuatorTest, composite_lifecycle)
     ASSERT_EQ(drone->meta().rotors.size(), 4U);
     EXPECT_NEAR(
         drone->meta().rotors[0]->data.meta().center.x(),
-        0.075_rt / std::sqrt(2.0_rt), 1.0e-14_rt);
+        0.075_rt / std::sqrt(2.0_rt), test_tol);
     EXPECT_NEAR(
         drone->meta().rotors[0]->data.meta().center.y(),
-        0.075_rt / std::sqrt(2.0_rt), 1.0e-14_rt);
+        0.075_rt / std::sqrt(2.0_rt), test_tol);
 
     actuator.post_init_actions();
     actuator.pre_advance_work();

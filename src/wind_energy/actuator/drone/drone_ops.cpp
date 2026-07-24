@@ -65,33 +65,20 @@ void ReadInputsOp<Drone, ActSrcDrone>::operator()(
     meta.rotor_motion = std::make_shared<motion::RotorMotion>();
     meta.rotor_motion->read_drone_inputs(pp, meta.num_rotors);
 
-    // Instance inputs take precedence over Drone defaults; a scalar arm length
-    // expands to every rotor while the list permits asymmetric layouts.
-    const auto& instance = pp.params();
-    const auto& defaults = pp.default_params();
-    const bool instance_length = instance.contains("arm_length");
-    const bool instance_lengths = instance.contains("arm_lengths");
-    if (instance_length && instance_lengths) {
-        input_error(label, "specify arm_length or arm_lengths, not both");
+    // One arm length applies to every rotor; num_rotors values permit an
+    // asymmetric layout. MultiParser preserves instance-over-default priority.
+    if (!pp.contains("arm_length")) {
+        input_error(label, "arm_length is required");
     }
-    if (instance_lengths) {
-        pp.getarr("arm_lengths", meta.arm_lengths);
-    } else if (instance_length) {
-        pp.get("arm_length", meta.arm_length);
-        meta.arm_lengths.assign(meta.num_rotors, meta.arm_length);
-    } else if (
-        defaults.contains("arm_lengths") && defaults.contains("arm_length")) {
-        input_error(label, "specify arm_length or arm_lengths, not both");
-    } else if (defaults.contains("arm_lengths")) {
-        pp.getarr("arm_lengths", meta.arm_lengths);
-    } else if (defaults.contains("arm_length")) {
-        pp.get("arm_length", meta.arm_length);
-        meta.arm_lengths.assign(meta.num_rotors, meta.arm_length);
-    } else {
-        input_error(label, "arm_length or arm_lengths is required");
+    pp.getarr("arm_length", meta.arm_lengths);
+    if (meta.arm_lengths.size() == 1) {
+        const auto arm_length = meta.arm_lengths.front();
+        meta.arm_lengths.assign(meta.num_rotors, arm_length);
     }
     if (static_cast<int>(meta.arm_lengths.size()) != meta.num_rotors) {
-        input_error(label, "arm_lengths must contain num_rotors values");
+        input_error(
+            label,
+            "arm_length must contain either one value or num_rotors values");
     }
     if (std::ranges::any_of(meta.arm_lengths, [](const amrex::Real length) {
             return length <= 0.0_rt;
@@ -101,9 +88,16 @@ void ReadInputsOp<Drone, ActSrcDrone>::operator()(
 
     // Explicit angles describe irregular layouts. Otherwise phase rotates a
     // uniformly spaced layout about the body z axis.
+    const auto& instance = pp.params();
+    const auto& defaults = pp.default_params();
     const bool instance_angles = instance.contains("arm_angles_degrees");
     const bool instance_phase = instance.contains("arm_phase_degrees");
-    if (instance_angles && instance_phase) {
+    const bool instance_layout = instance_angles || instance_phase;
+    const bool conflicting_layout =
+        (instance_angles && instance_phase) ||
+        (!instance_layout && defaults.contains("arm_angles_degrees") &&
+         defaults.contains("arm_phase_degrees"));
+    if (conflicting_layout) {
         input_error(
             label,
             "arm_angles_degrees and arm_phase_degrees are mutually exclusive");
@@ -114,12 +108,6 @@ void ReadInputsOp<Drone, ActSrcDrone>::operator()(
         pp.get("arm_phase_degrees", meta.arm_phase_degrees);
         meta.arm_angles_degrees =
             drone::uniform_arm_angles(meta.num_rotors, meta.arm_phase_degrees);
-    } else if (
-        defaults.contains("arm_angles_degrees") &&
-        defaults.contains("arm_phase_degrees")) {
-        input_error(
-            label,
-            "arm_angles_degrees and arm_phase_degrees are mutually exclusive");
     } else if (defaults.contains("arm_angles_degrees")) {
         pp.getarr("arm_angles_degrees", meta.arm_angles_degrees);
     } else {

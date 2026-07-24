@@ -29,7 +29,6 @@ struct DroneRotor
 struct DroneData
 {
     int num_rotors{0};
-    amrex::Real arm_length{0.0_rt};
     RealList arm_lengths;
     RealList arm_angles_degrees;
     amrex::Real arm_phase_degrees{0.0_rt};

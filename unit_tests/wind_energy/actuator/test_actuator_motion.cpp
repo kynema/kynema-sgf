@@ -21,6 +21,7 @@ using kynema_sgf::actuator::motion::RigidBodyMotion;
 using kynema_sgf::actuator::motion::RotorMotion;
 using kynema_sgf::actuator::motion::TimeTable;
 using kynema_sgf::actuator::utils::ActParser;
+constexpr amrex::Real test_tol = kynema_sgf::constants::TIGHT_TOL;
 
 void write_table(const std::string& filename, const std::string& contents)
 {
@@ -35,11 +36,11 @@ TEST(ActuatorMotion, timetable_interpolation_derivative_and_integral)
 
     TimeTable table;
     table.read(filename, 1);
-    EXPECT_NEAR(table.value(1.0_rt)[0], 1.0_rt, 1.0e-14_rt);
-    EXPECT_NEAR(table.derivative(1.0_rt)[0], 1.0_rt, 1.0e-14_rt);
-    EXPECT_NEAR(table.integral(1.0_rt)[0], 0.5_rt, 1.0e-14_rt);
-    EXPECT_NEAR(table.value(3.0_rt)[0], 2.0_rt, 1.0e-14_rt);
-    EXPECT_NEAR(table.integral(3.0_rt)[0], 4.0_rt, 1.0e-14_rt);
+    EXPECT_NEAR(table.value(1.0_rt)[0], 1.0_rt, test_tol);
+    EXPECT_NEAR(table.derivative(1.0_rt)[0], 1.0_rt, test_tol);
+    EXPECT_NEAR(table.integral(1.0_rt)[0], 0.5_rt, test_tol);
+    EXPECT_NEAR(table.value(3.0_rt)[0], 2.0_rt, test_tol);
+    EXPECT_NEAR(table.integral(3.0_rt)[0], 4.0_rt, test_tol);
 
     std::remove(filename.c_str());
 }
@@ -131,8 +132,8 @@ TEST(ActuatorMotion, velocity_history_integrates_position)
     motion.read_inputs(
         ActParser("UnusedVelocityDefaults", "MotionVelocity"),
         {1.0_rt, 0.0_rt, 0.0_rt}, kynema_sgf::vs::Tensor::identity());
-    EXPECT_NEAR(motion.position(1.0_rt).x(), 1.5_rt, 1.0e-14_rt);
-    EXPECT_NEAR(motion.translation_velocity(1.0_rt).x(), 1.0_rt, 1.0e-14_rt);
+    EXPECT_NEAR(motion.position(1.0_rt).x(), 1.5_rt, test_tol);
+    EXPECT_NEAR(motion.translation_velocity(1.0_rt).x(), 1.0_rt, test_tol);
 
     std::remove(filename.c_str());
 }
@@ -170,16 +171,16 @@ TEST(ActuatorMotion, rotor_speed_integrates_azimuth_and_holds_rate)
     motion.read_drone_inputs(
         ActParser("UnusedRotorDefaults", "RotorHistory"), 2);
 
-    EXPECT_NEAR(motion.omega(0, 1.0_rt), 1.0_rt, 1.0e-14_rt);
+    EXPECT_NEAR(motion.omega(0, 1.0_rt), 1.0_rt, test_tol);
     EXPECT_NEAR(
         motion.azimuth(0, 1.0_rt),
-        0.5_rt + 0.5_rt * std::numbers::pi_v<amrex::Real>, 1.0e-14_rt);
+        0.5_rt + 0.5_rt * std::numbers::pi_v<amrex::Real>, test_tol);
     EXPECT_NEAR(
         motion.azimuth(0, 3.0_rt),
-        4.0_rt + 0.5_rt * std::numbers::pi_v<amrex::Real>, 1.0e-14_rt);
+        4.0_rt + 0.5_rt * std::numbers::pi_v<amrex::Real>, test_tol);
     EXPECT_NEAR(
         motion.azimuth(1, 3.0_rt),
-        -4.0_rt + 0.5_rt * std::numbers::pi_v<amrex::Real>, 1.0e-14_rt);
+        -4.0_rt + 0.5_rt * std::numbers::pi_v<amrex::Real>, test_tol);
 
     std::remove(filename.c_str());
 }
@@ -189,14 +190,14 @@ TEST(ActuatorMotion, per_rotor_initial_azimuths)
     amrex::ParmParse pp("RotorInitialAzimuths");
     pp.addarr("rotor_omegas", amrex::Vector<amrex::Real>{1.0_rt, -1.0_rt});
     pp.addarr(
-        "initial_azimuths_degrees",
+        "initial_azimuth_degrees",
         amrex::Vector<amrex::Real>{0.0_rt, 180.0_rt});
     RotorMotion motion;
     motion.read_drone_inputs(
         ActParser("UnusedAzimuthDefaults", "RotorInitialAzimuths"), 2);
-    EXPECT_NEAR(motion.azimuth(0, 0.0_rt), 0.0_rt, 1.0e-14_rt);
+    EXPECT_NEAR(motion.azimuth(0, 0.0_rt), 0.0_rt, test_tol);
     EXPECT_NEAR(
-        motion.azimuth(1, 0.0_rt), std::numbers::pi_v<amrex::Real>, 1.0e-14_rt);
+        motion.azimuth(1, 0.0_rt), std::numbers::pi_v<amrex::Real>, test_tol);
 }
 
 } // namespace
