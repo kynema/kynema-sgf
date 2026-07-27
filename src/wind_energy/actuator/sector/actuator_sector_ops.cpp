@@ -800,13 +800,13 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
     // theta_counts is one and the sector naturally reduces to actuator-line
     // behavior.
     int nforce = 0;
-    const amrex::Real body_swept_speed =
-        vs::mag(body_velocity) +
-        vs::mag(body_angular_velocity) *
-            (vs::mag(meta.body_offset) + meta.rotor_radius);
+    const amrex::Real body_translation_speed = vs::mag(body_velocity);
+    const amrex::Real body_angular_speed = vs::mag(body_angular_velocity);
+    const amrex::Real hub_offset_distance = vs::mag(meta.body_offset);
     for (int ir = 0; ir < nr; ++ir) {
         const amrex::Real swept_speed =
-            body_swept_speed + std::abs(meta.omega) * meta.radius[ir];
+            body_translation_speed + std::abs(meta.omega) * meta.radius[ir] +
+            body_angular_speed * (hub_offset_distance + meta.radius[ir]);
         const int ntheta = amrex::max(
             1, static_cast<int>(std::ceil(
                    swept_speed * dt * meta.epsilon_dl /

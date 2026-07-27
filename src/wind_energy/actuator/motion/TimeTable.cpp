@@ -78,7 +78,7 @@ RealList TimeTable::row(const int index) const
     const auto offset = static_cast<RealList::difference_type>(row_index) *
                         static_cast<RealList::difference_type>(m_num_values);
     const auto begin = m_values.begin() + offset;
-    return RealList(begin, begin + m_num_values);
+    return {begin, begin + m_num_values};
 }
 
 void TimeTable::warn_hold(const amrex::Real time) const
