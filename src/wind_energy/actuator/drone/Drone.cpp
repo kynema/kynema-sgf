@@ -13,10 +13,12 @@ DroneRotor::DroneRotor(CFDSim& sim, const std::string& label, const int id)
 
 namespace drone {
 
-vs::Tensor body_rotation(const vs::Vector& angles)
+vs::Tensor body_rotation(const vs::Vector& roll_pitch_yaw_degrees)
 {
     // Apply intrinsic body x, then y, then z rotations to body-frame vectors.
-    return vs::zrot(angles.z()) & vs::yrot(angles.y()) & vs::xrot(angles.x());
+    return vs::zrot(roll_pitch_yaw_degrees.z()) &
+           vs::yrot(roll_pitch_yaw_degrees.y()) &
+           vs::xrot(roll_pitch_yaw_degrees.x());
 }
 
 RealList uniform_arm_angles(const int num_rotors, const amrex::Real phase)

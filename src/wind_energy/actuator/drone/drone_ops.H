@@ -9,31 +9,31 @@ namespace kynema_sgf::actuator::ops {
 template <>
 struct ReadInputsOp<Drone, ActSrcDrone>
 {
-    void operator()(Drone::DataType&, const utils::ActParser&);
+    void operator()(Drone::DataType& data, const utils::ActParser& pp);
 };
 
 template <>
 struct InitDataOp<Drone, ActSrcDrone>
 {
-    void operator()(Drone::DataType&);
+    void operator()(Drone::DataType& data);
 };
 
 template <>
 struct UpdatePosOp<Drone, ActSrcDrone>
 {
-    void operator()(Drone::DataType&);
+    void operator()(Drone::DataType& data);
 };
 
 template <>
 struct UpdateVelOp<Drone, ActSrcDrone>
 {
-    void operator()(Drone::DataType&);
+    void operator()(Drone::DataType& data);
 };
 
 template <>
 struct ComputeForceOp<Drone, ActSrcDrone>
 {
-    void operator()(Drone::DataType&);
+    void operator()(Drone::DataType& data);
 };
 
 template <>
@@ -60,7 +60,8 @@ public:
     explicit ActSrcOp(Drone::DataType& data) : m_data(data) {}
     void initialize();
     void setup_op();
-    void operator()(int, const amrex::MFIter&, const amrex::Geometry&);
+    void
+    operator()(int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom);
 
 private:
     Drone::DataType& m_data;

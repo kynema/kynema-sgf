@@ -178,7 +178,7 @@ void ReadInputsOp<Drone, ActSrcDrone>::operator()(
     }
     validate_distinct_angles(label, meta.arm_angles_degrees);
 
-    meta.mirror_blades.assign(meta.num_rotors, false);
+    meta.mirror_blades.assign(meta.num_rotors, 0);
     if (pp.contains("mirror_blades")) {
         amrex::Vector<std::string> mirror_inputs;
         pp.getarr("mirror_blades", mirror_inputs);
@@ -191,7 +191,7 @@ void ReadInputsOp<Drone, ActSrcDrone>::operator()(
                 input_error(
                     label, "mirror_blades values must be true or false");
             }
-            meta.mirror_blades[i] = (value == "true");
+            meta.mirror_blades[i] = (value == "true") ? 1 : 0;
         }
     }
 
@@ -216,7 +216,7 @@ void ReadInputsOp<Drone, ActSrcDrone>::operator()(
         rotor_meta.omega = meta.rotor_motion->omega(i, 0.0_rt);
         rotor_meta.user_omega = true;
         ReadInputsOp<ActuatorSector, ActSrcSector>()(rotor->data, sector_pp);
-        if (meta.mirror_blades[i]) {
+        if (meta.mirror_blades[i] != 0) {
             // Mirroring the blade geometry reverses twist without introducing
             // a separate rotation-direction convention.
             for (auto& twist : rotor->data.meta().twist_inp) {

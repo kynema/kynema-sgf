@@ -111,7 +111,7 @@ TEST(ActuatorMotion, roll_pitch_yaw_and_quaternion_histories_match)
     for (const amrex::Real time : {0.0_rt, 0.25_rt, 0.5_rt, 1.0_rt}) {
         const auto rpy = rpy_motion.orientation(time);
         const auto quaternion = quaternion_motion.orientation(time);
-        for (int n = 0; n < vs::Tensor::ncomp; ++n) {
+        for (int n = 0; n < kynema_sgf::vs::Tensor::ncomp; ++n) {
             EXPECT_NEAR(rpy[n], quaternion[n], tol);
         }
     }
