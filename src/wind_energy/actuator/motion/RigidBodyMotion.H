@@ -5,6 +5,8 @@
 #include "src/wind_energy/actuator/ActParser.H"
 #include "src/wind_energy/actuator/motion/TimeTable.H"
 
+#include <cstdint>
+
 namespace kynema_sgf::actuator::motion {
 
 /** Prescribed translation and orientation of a rigid body.
@@ -30,7 +32,7 @@ public:
     [[nodiscard]] bool moves() const;
 
 private:
-    enum class OrientationFormat { RollPitchYaw, Quaternion };
+    enum class OrientationFormat : std::uint8_t { RollPitchYaw, Quaternion };
 
     [[nodiscard]] vs::Quaternion orientation_quaternion(int row) const;
 

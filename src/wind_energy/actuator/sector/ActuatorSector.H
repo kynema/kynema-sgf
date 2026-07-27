@@ -26,6 +26,8 @@ namespace kynema_sgf::actuator {
  *      e_r = (cos(theta), -sin(theta), 0)
  *      e_theta = (-sin(theta), -cos(theta), 0)
  */
+// Fields are grouped by purpose instead of minimizing structure padding.
+// NOLINTNEXTLINE(clang-analyzer-optin.performance.Padding)
 struct ActuatorSectorData
 {
     //! Prescribed rigid-body motion shared with an owning Drone when present

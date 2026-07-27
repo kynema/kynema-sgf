@@ -223,13 +223,13 @@ void ReadInputsOp<Drone, ActSrcDrone>::operator()(
                 twist = -twist;
             }
         }
-        const auto rotor_center =
+        const auto center =
             meta.body_motion->position(0.0_rt) +
             (meta.body_motion->orientation(0.0_rt) & rotor->body_offset);
-        const auto initial_normal =
+        const auto rotor_normal =
             meta.body_motion->orientation(0.0_rt) & vs::Vector::khat();
         sector::set_placement(
-            rotor->data, rotor_center, initial_normal,
+            rotor->data, center, rotor_normal,
             meta.body_motion->translation_velocity(0.0_rt));
         rotor->output.read_io_options(sector_pp);
         meta.rotors.emplace_back(std::move(rotor));
