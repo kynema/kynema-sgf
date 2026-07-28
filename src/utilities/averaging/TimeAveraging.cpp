@@ -61,7 +61,37 @@ void TimeAveraging::pre_init_actions()
     }
 }
 
-void TimeAveraging::initialize() {}
+void TimeAveraging::initialize()
+{
+    const auto& time = m_sim.time();
+    const auto cur_time = time.new_time();
+    
+    // Initialize accumulated averaging time interval
+    if (m_start_time > 0.0_rt) {
+        m_accumulated_avg_time_interval = amrex::max(0.0_rt, cur_time - m_start_time);
+    } else {
+        m_accumulated_avg_time_interval = 0.0_rt;
+    }
+    
+    // If restarting from a checkpoint with time before averaging start time,
+    // initialize averaging fields to zero
+    if (time.time_index() > 0 && cur_time <= m_start_time) {
+        auto& repo = m_sim.repo();
+        const int nlevels = repo.num_active_levels();
+        
+        for (const auto& avg : m_averages) {
+            const auto& avg_field_name = avg->average_field_name();
+            if (repo.field_exists(avg_field_name)) {
+                auto& field = repo.get_field(avg_field_name);
+                for (int lev = 0; lev < nlevels; ++lev) {
+                    field(lev).setVal(0.0_rt);
+                }
+                amrex::Print() << "\nInitializing " << avg_field_name
+                               << " to zero (restart time <= averaging start time)\n";
+            }
+        }
+    }
+}
 
 const std::string& TimeAveraging::add_averaging(
     const std::string& field_name, const std::string& avg_type)
@@ -86,8 +116,6 @@ void TimeAveraging::post_advance_work()
     const auto cur_time = time.new_time();
     const auto cur_dt = time.delta_t();
 
-    m_accumulated_avg_time_interval += cur_dt;
-
     // Check the following:
     //   1. if we are phase averaging (i.e., only accumulating the average at a
     //   certain frequency), check to see if we are on a time step in which
@@ -105,11 +133,35 @@ void TimeAveraging::post_advance_work()
     const bool do_avg =
         (((cur_time >= m_start_time) && (cur_time < m_stop_time)) &&
          do_phase_avg);
+    
+    static bool first_call = true;
+    if (first_call && cur_time >= m_start_time - 1.0e-4) {
+        amrex::Print() << "TimeAveraging::post_advance_work first check: "
+                       << "cur_time=" << cur_time << ", start_time=" << m_start_time
+                       << ", stop_time=" << m_stop_time << ", do_avg=" << do_avg << "\n";
+        first_call = false;
+    }
+
     if (!do_avg) {
         return;
     }
 
+    // Only accumulate time when averaging is active
+    m_accumulated_avg_time_interval += cur_dt;
+
     const amrex::Real elapsed_time = (cur_time - m_start_time);
+    
+    static bool first_avg_call = true;
+    if (first_avg_call) {
+        amrex::Print() << "DEBUG: First averaging call:\n"
+                       << "  m_accumulated_avg_time_interval=" << m_accumulated_avg_time_interval << "\n"
+                       << "  m_filter=" << m_filter << "\n"
+                       << "  m_time_interval=" << m_time_interval << "\n"
+                       << "  elapsed_time=" << elapsed_time << "\n"
+                       << "  cur_dt=" << cur_dt << "\n";
+        first_avg_call = false;
+    }
+    
     for (const auto& avg : m_averages) {
         (*avg)(time, m_filter, m_accumulated_avg_time_interval, elapsed_time);
     }

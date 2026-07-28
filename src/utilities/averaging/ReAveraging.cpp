@@ -19,6 +19,12 @@ ReAveraging::ReAveraging(
           1,
           m_field.field_location()))
 {
+    //// Initialize averaging field to zero
+    //const int nlevels = m_average.repo().num_active_levels();
+    //for (int lev = 0; lev < nlevels; ++lev) {
+    //    m_average(lev).setVal(0.0_rt);
+    //}
+    
     // Register default fillpatch operations
     m_average.set_default_fillpatch_bc(sim.time());
     // Do coarse/fine interpolations upon regrid
@@ -44,6 +50,14 @@ void ReAveraging::operator()(
         amrex::max(amrex::min(filter_width, elapsed_time), avg_time_interval);
     const amrex::Real factor =
         amrex::max<amrex::Real>(filter - avg_time_interval, 0.0_rt);
+
+    if (elapsed_time < 1.0e-6_rt) {
+        amrex::Print() << "ReAveraging::operator() first call for " << m_average.name()
+                       << ": elapsed_time=" << elapsed_time
+                       << ", filter=" << filter
+                       << ", factor=" << factor
+                       << ", avg_time_interval=" << avg_time_interval << "\n";
+    }
 
     const int ncomp = m_field.num_comp();
     const int nlevels = m_field.repo().num_active_levels();
