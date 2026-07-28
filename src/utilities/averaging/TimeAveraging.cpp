@@ -75,7 +75,7 @@ void TimeAveraging::initialize()
     
     // If restarting from a checkpoint with time before averaging start time,
     // initialize averaging fields to zero
-    if (time.time_index() > 0 && cur_time <= m_start_time) {
+    if (time.time_index() > 0 && cur_time < m_start_time) {
         auto& repo = m_sim.repo();
         const int nlevels = repo.num_active_levels();
         

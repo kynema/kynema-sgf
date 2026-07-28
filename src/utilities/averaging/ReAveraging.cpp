@@ -19,12 +19,6 @@ ReAveraging::ReAveraging(
           1,
           m_field.field_location()))
 {
-    //// Initialize averaging field to zero
-    //const int nlevels = m_average.repo().num_active_levels();
-    //for (int lev = 0; lev < nlevels; ++lev) {
-    //    m_average(lev).setVal(0.0_rt);
-    //}
-    
     // Register default fillpatch operations
     m_average.set_default_fillpatch_bc(sim.time());
     // Do coarse/fine interpolations upon regrid
