@@ -70,6 +70,21 @@ class ActSrcOp;
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct ProcessOutputsOp;
 
+/** Return rotor geometries used by actuator-following mesh refinement.
+ *
+ * The default implementation returns no geometries. Actuator types that
+ * support actuator-following refinement specialize this operation.
+ */
+template <typename ActTrait, typename SrcTrait, typename = void>
+struct RefinementGeometryOp
+{
+    [[nodiscard]] amrex::Vector<ActuatorRefinementGeometry> operator()(
+        const typename ActTrait::DataType& /*data*/, amrex::Real /*time*/) const
+    {
+        return {};
+    }
+};
+
 /** Determine the list of processes (MPI ranks) that is expected to be
  *  influenced by this actuator source.
  *

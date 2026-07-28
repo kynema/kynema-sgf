@@ -59,6 +59,9 @@ void build_gaussian_table(ActuatorSectorData& meta);
 
 amrex::Real timestep_width(const CFDSim& sim);
 
+ActuatorRefinementGeometry refinement_geometry(
+    const ActuatorSectorData& meta, const std::string& label, amrex::Real time);
+
 void prepare_netcdf_file(
     const std::string& ncfile,
     const ActuatorSectorData& meta,
@@ -111,6 +114,13 @@ template <>
 struct InitDataOp<ActuatorSector, ActSrcSector>
 {
     void operator()(ActuatorSector::DataType& data);
+};
+
+template <>
+struct RefinementGeometryOp<ActuatorSector, ActSrcSector>
+{
+    [[nodiscard]] amrex::Vector<ActuatorRefinementGeometry>
+    operator()(const ActuatorSector::DataType& data, amrex::Real time) const;
 };
 
 template <>

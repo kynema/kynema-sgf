@@ -6,8 +6,10 @@
 #include "src/wind_energy/actuator/ActParser.H"
 #include "src/wind_energy/actuator/sector/ActuatorSector.H"
 #include "src/wind_energy/actuator/sector/actuator_sector_ops.H"
+#include "src/utilities/tagging/ActuatorRefinement.H"
 
 #include <fstream>
+#include <limits>
 
 #include "AMReX_REAL.H"
 
@@ -134,6 +136,26 @@ protected:
     void prepare_outputs() override {}
 };
 
+class ActuatorSectorRefinementTest : public ActuatorSectorTest
+{
+public:
+    void populate_parameters() override
+    {
+        ActuatorSectorTest::populate_parameters();
+        amrex::ParmParse pp("amr");
+        pp.remove("max_level");
+        pp.add("max_level", 1);
+    }
+
+    void create_mesh_instance() override
+    {
+        if (!m_mesh) {
+            reset_prob_domain();
+            m_mesh = std::make_unique<RefineMesh>();
+        }
+    }
+};
+
 } // namespace
 
 TEST_F(ActuatorSectorTest, act_model_init)
@@ -163,6 +185,18 @@ TEST_F(ActuatorSectorTest, act_model_init)
     EXPECT_EQ(meta.gaussian_table.size(), meta.gaussian_table_nintervals + 1);
     EXPECT_EQ(sector.num_velocity_points(), 2 * meta.radius.size());
 
+    const auto refinement = sector.refinement_geometries(0.5_rt);
+    ASSERT_EQ(refinement.size(), 1U);
+    EXPECT_EQ(refinement[0].label, "R1");
+    EXPECT_NEAR(refinement[0].center.x(), 0.0_rt, 1.0e-14_rt);
+    EXPECT_NEAR(refinement[0].center.y(), 0.0_rt, 1.0e-14_rt);
+    EXPECT_NEAR(refinement[0].center.z(), 0.5_rt, 1.0e-14_rt);
+    EXPECT_NEAR(refinement[0].normal.x(), 1.0_rt, 1.0e-14_rt);
+    EXPECT_NEAR(refinement[0].normal.y(), 0.0_rt, 1.0e-14_rt);
+    EXPECT_NEAR(refinement[0].normal.z(), 0.0_rt, 1.0e-14_rt);
+    EXPECT_NEAR(refinement[0].rotor_radius, 0.05_rt, 1.0e-14_rt);
+    EXPECT_NEAR(refinement[0].epsilon_max, 0.0025_rt, 1.0e-14_rt);
+
     remove_file(m_afname);
 }
 
@@ -176,6 +210,54 @@ TEST_F(ActuatorSectorTest, actuator_lifecycle)
     act.pre_init_actions();
     act.post_init_actions();
     act.pre_advance_work();
+
+    remove_file(m_afname);
+}
+
+TEST_F(ActuatorSectorRefinementTest, asymmetric_actuator_refinement)
+{
+    write_airfoil_file(m_afname);
+    initialize_domain();
+    populate_actuator_inputs();
+
+    auto& physics = sim().physics_manager().create("Actuator", sim());
+    auto& actuator = dynamic_cast<::kynema_sgf::actuator::Actuator&>(physics);
+    actuator.pre_init_actions();
+
+    amrex::ParmParse pp("tagging.rotor_tracking");
+    pp.addarr("actuator_labels", amrex::Vector<std::string>{"R1"});
+    pp.add("min_level", 0);
+    pp.add("max_level", 0);
+    pp.add("radial_padding_epsilon", 0.0_rt);
+    pp.add("forward_padding_diameter", 0.8_rt);
+    pp.add("backward_padding_diameter", 0.3_rt);
+
+    auto refiner =
+        ::kynema_sgf::RefinementCriteria::create("ActuatorRefinement", sim());
+    refiner->initialize("tagging.rotor_tracking");
+
+    const auto& field = sim().repo().get_field("velocity")(0);
+    amrex::TagBoxArray tags(field.boxArray(), field.DistributionMap());
+    tags.setVal(amrex::TagBox::CLEAR);
+    (*refiner)(0, tags, 0.0_rt, 0);
+    amrex::Gpu::streamSynchronize();
+
+    amrex::Gpu::PinnedVector<amrex::IntVect> tagged_cells;
+    tags.collate(tagged_cells);
+    ASSERT_EQ(tagged_cells.size(), 48U);
+
+    const auto& geom = sim().mesh().Geom(0);
+    const auto& problo = geom.ProbLoArray();
+    const auto& dx = geom.CellSizeArray();
+    amrex::Real xmin = std::numeric_limits<amrex::Real>::max();
+    amrex::Real xmax = std::numeric_limits<amrex::Real>::lowest();
+    for (const auto& cell : tagged_cells) {
+        const amrex::Real x = problo[0] + (cell[0] + 0.5_rt) * dx[0];
+        xmin = amrex::min(xmin, x);
+        xmax = amrex::max(xmax, x);
+    }
+    EXPECT_NEAR(xmin, -0.0125_rt, 1.0e-14_rt);
+    EXPECT_NEAR(xmax, 0.0625_rt, 1.0e-14_rt);
 
     remove_file(m_afname);
 }

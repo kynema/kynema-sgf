@@ -207,6 +207,28 @@ TEST_F(DroneActuatorTest, composite_lifecycle)
         drone->meta().rotors[0]->data.meta().center.y(),
         0.075_rt / std::sqrt(2.0_rt), test_tol);
 
+    const auto refinement_at_zero = drone->refinement_geometries(0.0_rt);
+    const auto refinement_at_one = drone->refinement_geometries(1.0_rt);
+    ASSERT_EQ(refinement_at_zero.size(), 4U);
+    ASSERT_EQ(refinement_at_one.size(), 4U);
+    for (int i = 0; i < 4; ++i) {
+        EXPECT_EQ(refinement_at_zero[i].label, "D1.R" + std::to_string(i + 1));
+        EXPECT_NEAR(refinement_at_zero[i].rotor_radius, 0.025_rt, test_tol);
+        EXPECT_NEAR(refinement_at_zero[i].epsilon_max, 0.005_rt, test_tol);
+        EXPECT_NEAR(refinement_at_zero[i].normal.x(), 0.0_rt, test_tol);
+        EXPECT_NEAR(refinement_at_zero[i].normal.y(), 0.0_rt, test_tol);
+        EXPECT_NEAR(refinement_at_zero[i].normal.z(), 1.0_rt, test_tol);
+        EXPECT_NEAR(
+            refinement_at_one[i].center.x() - refinement_at_zero[i].center.x(),
+            0.1_rt, test_tol);
+        EXPECT_NEAR(
+            refinement_at_one[i].center.y() - refinement_at_zero[i].center.y(),
+            -0.2_rt, test_tol);
+        EXPECT_NEAR(
+            refinement_at_one[i].center.z() - refinement_at_zero[i].center.z(),
+            0.3_rt, test_tol);
+    }
+
     actuator.post_init_actions();
     actuator.pre_advance_work();
 

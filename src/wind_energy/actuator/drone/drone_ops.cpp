@@ -108,6 +108,20 @@ void write_netcdf(
 
 } // namespace
 
+amrex::Vector<ActuatorRefinementGeometry>
+RefinementGeometryOp<Drone, ActSrcDrone>::operator()(
+    const Drone::DataType& data, const amrex::Real time) const
+{
+    amrex::Vector<ActuatorRefinementGeometry> geometries;
+    geometries.reserve(data.meta().rotors.size());
+    for (const auto& rotor : data.meta().rotors) {
+        geometries.emplace_back(
+            sector::refinement_geometry(
+                rotor->data.meta(), rotor->data.info().label, time));
+    }
+    return geometries;
+}
+
 void ReadInputsOp<Drone, ActSrcDrone>::operator()(
     Drone::DataType& data, const utils::ActParser& pp)
 {

@@ -63,6 +63,9 @@ public:
     virtual void prepare_outputs(const std::string&) = 0;
 
     virtual void write_outputs() = 0;
+
+    [[nodiscard]] virtual amrex::Vector<ActuatorRefinementGeometry>
+    refinement_geometries(amrex::Real time) const = 0;
 };
 
 /** Concrete implementation of the ActuatorModel for different actuator types.
@@ -178,6 +181,12 @@ public:
     }
 
     void write_outputs() override { m_out_op.write_outputs(); }
+
+    [[nodiscard]] amrex::Vector<ActuatorRefinementGeometry>
+    refinement_geometries(const amrex::Real time) const override
+    {
+        return ops::RefinementGeometryOp<ActTrait, SrcTrait>()(m_data, time);
+    }
 
     void init_actuator_source() override
     {
