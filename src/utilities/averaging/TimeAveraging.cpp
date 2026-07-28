@@ -61,37 +61,7 @@ void TimeAveraging::pre_init_actions()
     }
 }
 
-void TimeAveraging::initialize()
-{
-    const auto& time = m_sim.time();
-    const auto cur_time = time.new_time();
-    
-    // Initialize accumulated averaging time interval
-    if (m_start_time > 0.0_rt) {
-        m_accumulated_avg_time_interval = amrex::max(0.0_rt, cur_time - m_start_time);
-    } else {
-        m_accumulated_avg_time_interval = 0.0_rt;
-    }
-    
-    // If restarting from a checkpoint with time before averaging start time,
-    // initialize averaging fields to zero
-    if (time.time_index() > 0 && cur_time < m_start_time) {
-        auto& repo = m_sim.repo();
-        const int nlevels = repo.num_active_levels();
-        
-        for (const auto& avg : m_averages) {
-            const auto& avg_field_name = avg->average_field_name();
-            if (repo.field_exists(avg_field_name)) {
-                auto& field = repo.get_field(avg_field_name);
-                for (int lev = 0; lev < nlevels; ++lev) {
-                    field(lev).setVal(0.0_rt);
-                }
-                amrex::Print() << "\nInitializing " << avg_field_name
-                               << " to zero (restart time <= averaging start time)\n";
-            }
-        }
-    }
-}
+void TimeAveraging::initialize() {}
 
 const std::string& TimeAveraging::add_averaging(
     const std::string& field_name, const std::string& avg_type)
@@ -142,7 +112,8 @@ void TimeAveraging::post_advance_work()
         first_call = false;
     }
 
-    if (!do_avg) {
+    if (!do_avg || (cur_dt <= 0.0_rt)) {
+        // Don't avg during restart or outside of averaging time period
         return;
     }
 
