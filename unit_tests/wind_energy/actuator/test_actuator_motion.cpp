@@ -29,6 +29,18 @@ void write_table(const std::string& filename, const std::string& contents)
     stream << contents;
 }
 
+TEST(ActuatorMotion, quaternion_normalization)
+{
+    kynema_sgf::vs::Quaternion quaternion{2.0_rt, 0.0_rt, 0.0_rt, 0.0_rt};
+    const auto normalized = quaternion.normalized();
+
+    EXPECT_NEAR(quaternion.w, 2.0_rt, test_tol);
+    EXPECT_NEAR(normalized.w, 1.0_rt, test_tol);
+
+    quaternion.normalize();
+    EXPECT_NEAR(quaternion.w, 1.0_rt, test_tol);
+}
+
 TEST(ActuatorMotion, timetable_interpolation_derivative_and_integral)
 {
     const std::string filename{"motion_scalar_table.txt"};
