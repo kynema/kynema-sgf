@@ -3,6 +3,7 @@
 #include "src/CFDSim.H"
 #include "src/core/Field.H"
 #include "src/core/gpu_utils.H"
+#include "src/utilities/constants.H"
 #include "src/utilities/io_utils.H"
 #include "src/utilities/linear_interpolation.H"
 #include "src/utilities/ncutils/nc_interface.H"
@@ -10,7 +11,6 @@
 
 #include <algorithm>
 #include <cmath>
-#include <limits>
 #include <numbers>
 
 #include "AMReX_Print.H"
@@ -148,7 +148,7 @@ vs::Tensor rotation_matrix_from_euler_degrees(const vs::Vector& angles)
 vs::Tensor orientation_matrix_from_normal(const vs::Vector& normal)
 {
     const amrex::Real normal_mag = vs::mag(normal);
-    if (normal_mag <= std::numeric_limits<amrex::Real>::epsilon()) {
+    if (normal_mag <= constants::EPS) {
         amrex::Abort("ActuatorSector: rotor_normal must be nonzero");
     }
 
@@ -163,7 +163,7 @@ vs::Tensor orientation_matrix_from_normal(const vs::Vector& normal)
 vs::Tensor rotation_matrix_from_vector(const vs::Vector& rotation_vector)
 {
     const amrex::Real angle = vs::mag(rotation_vector);
-    if (angle <= std::numeric_limits<amrex::Real>::epsilon()) {
+    if (angle <= constants::EPS) {
         return vs::Tensor::identity();
     }
     return vs::quaternion(
@@ -275,8 +275,7 @@ void set_placement(
     const amrex::Real search_radius =
         meta.rotor_radius + meta.support_radius_over_epsilon * max_eps;
     if ((meta.body_motion && meta.body_motion->moves()) ||
-        vs::mag(translation_velocity) >
-            std::numeric_limits<amrex::Real>::epsilon()) {
+        vs::mag(translation_velocity) > constants::EPS) {
         const auto& geom = data.sim().mesh().Geom(0);
         const auto plo = geom.ProbLoArray();
         const auto phi = geom.ProbHiArray();
@@ -639,10 +638,8 @@ void ReadInputsOp<ActuatorSector, ActSrcSector>::operator()(
     const auto& c = meta.center0;
 
     const bool moves = (meta.body_motion && meta.body_motion->moves()) ||
-                       vs::mag(meta.translation_velocity) >
-                           std::numeric_limits<amrex::Real>::epsilon();
-    const bool rotates = vs::mag(meta.rotor_angular_velocity) >
-                         std::numeric_limits<amrex::Real>::epsilon();
+                       vs::mag(meta.translation_velocity) > constants::EPS;
+    const bool rotates = vs::mag(meta.rotor_angular_velocity) > constants::EPS;
     if (moves || rotates) {
         // A prescribed trajectory is not generally bounded by its initial
         // placement, so retain the actuator throughout the computational box.
@@ -773,9 +770,7 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
             const amrex::Real lift = qval * cl;
             const amrex::Real drag = qval * cd;
             const auto drag_dir =
-                (vmag > std::numeric_limits<amrex::Real>::epsilon())
-                    ? vplane.unit()
-                    : e_theta;
+                (vmag > constants::EPS) ? vplane.unit() : e_theta;
             const auto lift_dir = spin_sign * (drag_dir ^ e_r).unit();
             const auto force_on_fluid =
                 -((lift_dir * lift) + (drag_dir * drag));

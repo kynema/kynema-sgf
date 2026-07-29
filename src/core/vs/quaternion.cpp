@@ -3,7 +3,6 @@
 
 #include <algorithm>
 #include <cmath>
-#include <limits>
 
 namespace kynema_sgf::vs {
 
@@ -12,7 +11,7 @@ using namespace amrex::literals;
 Quaternion& Quaternion::normalize()
 {
     const amrex::Real norm = std::sqrt(w * w + x * x + y * y + z * z);
-    if (norm <= std::numeric_limits<amrex::Real>::epsilon()) {
+    if (norm <= constants::EPS) {
         amrex::Abort("Cannot normalize a zero quaternion");
     }
     w /= norm;

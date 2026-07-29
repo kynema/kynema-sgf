@@ -1,11 +1,11 @@
 #include "src/wind_energy/actuator/motion/RigidBodyMotion.H"
 
 #include "src/core/vs/quaternion.H"
+#include "src/utilities/constants.H"
 #include "src/wind_energy/actuator/sector/actuator_sector_ops.H"
 
 #include <algorithm>
 #include <cmath>
-#include <limits>
 
 #include "AMReX.H"
 
@@ -225,7 +225,7 @@ vs::Vector RigidBodyMotion::angular_velocity(const amrex::Real time) const
         const amrex::Real half_angle =
             std::acos(std::clamp(relative.w, -1.0_rt, 1.0_rt));
         const amrex::Real sine = std::sin(half_angle);
-        if (std::abs(sine) <= std::numeric_limits<amrex::Real>::epsilon()) {
+        if (std::abs(sine) <= constants::EPS) {
             return vs::Vector::zero();
         }
         const amrex::Real scale =
