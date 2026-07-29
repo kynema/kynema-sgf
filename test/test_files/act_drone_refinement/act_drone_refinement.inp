@@ -1,0 +1,91 @@
+# Moving four-rotor drone with actuator-following refinement. This regression
+# exercises actuator geometry, two AMR refinement levels, regridding, force
+# projection, and adaptive time stepping together.
+
+time.max_step = 6
+time.initial_dt = 2.5e-4
+time.max_dt_growth = 1.0
+time.cfl = 0.8
+time.use_force_cfl = false
+time.plot_interval = -1
+time.checkpoint_interval = -1
+time.regrid_interval = 1
+
+io.outputs = actuator_src_term velocity
+
+# A deliberately coarse base mesh; both finer levels are restricted to the
+# moving rotor-force regions.
+geometry.prob_lo = -0.2 -0.2 -0.2
+geometry.prob_hi =  0.2  0.2  0.2
+geometry.is_periodic = 0 0 0
+amr.n_cell = 16 16 16
+amr.max_level = 2
+amr.blocking_factor = 8
+amr.max_grid_size = 32
+amr.n_error_buf = 1
+
+tagging.labels = rotor_tracking
+tagging.rotor_tracking.type = ActuatorRefinement
+tagging.rotor_tracking.actuator_labels = D1
+tagging.rotor_tracking.radial_padding_epsilon = 3.0
+tagging.rotor_tracking.axial_padding_diameter = 0.5
+
+ConstValue.density.value = 1.0
+ConstValue.velocity.value = 0.0 0.0 0.0
+
+incflo.use_godunov = 1
+incflo.diffusion_type = 2
+incflo.do_initial_proj = 1
+incflo.initial_iterations = 1
+transport.viscosity = 1.0e-5
+transport.laminar_prandtl = 0.7
+transport.turbulent_prandtl = 0.3333
+turbulence.model = Laminar
+
+incflo.physics = FreeStream Actuator
+ICNS.source_terms = ActuatorForcing
+
+Actuator.labels = D1
+Actuator.D1.type = Drone
+
+Actuator.Drone.num_rotors = 4
+Actuator.Drone.arm_length = 0.07071067811865475
+Actuator.Drone.arm_phase_degrees = 45.0
+Actuator.Drone.rotor_omegas = 2500.0 -2500.0 2500.0 -2500.0
+Actuator.Drone.mirror_blades = false true false true
+Actuator.Drone.initial_azimuth_degrees = 0.0 90.0 180.0 270.0
+
+Actuator.Drone.rotor_diameter = 0.08
+Actuator.Drone.root_radius_fraction = 0.18
+Actuator.Drone.num_blades = 2
+
+# Translate across the mesh so the refinement geometry is reevaluated during
+# each regrid. The short regression remains comfortably inside the domain.
+Actuator.D1.center = -0.03 0.0 0.0
+Actuator.D1.translation_velocity = 1.0 0.0 0.0
+
+Actuator.Drone.epsilon_chord = 0.5
+Actuator.Drone.epsilon_min = 0.0125
+Actuator.Drone.epsilon_dr = 1.5
+Actuator.Drone.epsilon_dl = 1.5
+Actuator.Drone.min_chord_dr = 2.0
+
+Actuator.Drone.span_locs = 0.0 1.0
+Actuator.Drone.chord = 0.008 0.005
+Actuator.Drone.twist = 12.0 4.0
+Actuator.Drone.airfoil_table = ../act_fixed_wing/DU21_A17.txt
+Actuator.Drone.airfoil_type = openfast
+
+Actuator.Drone.gaussian_type = table
+Actuator.Drone.gaussian_table_error = 1.0e-4
+Actuator.Drone.output_frequency = -1
+
+xlo.type = "pressure_outflow"
+xhi.type = "pressure_outflow"
+ylo.type = "slip_wall"
+yhi.type = "slip_wall"
+zlo.type = "slip_wall"
+zhi.type = "slip_wall"
+
+incflo.verbose = 0
+nodal_proj.verbose = 0
