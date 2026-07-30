@@ -66,6 +66,7 @@ private:
     bool m_apply_MOSD{false};
     bool m_limit_drag{true};
     bool m_limit_drag_temporal{false};
+    bool m_do_drag_temporal{false};
     std::string m_wall_het_model{"none"};
     amrex::Real m_monin_obukhov_length{constants::LARGE_NUM};
     amrex::Real m_kappa{0.41_rt};
