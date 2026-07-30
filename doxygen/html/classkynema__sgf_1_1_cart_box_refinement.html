@@ -1,0 +1,551 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::CartBoxRefinement Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::CartBoxRefinement Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_cart_box_refinement.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cartboxrefinement-class-reference">
+<h1>CartBoxRefinement Class Reference<a class="headerlink" href="#cartboxrefinement-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::CartBoxRefinement Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_cart_box_refinement.html">CartBoxRefinement</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_cart_box_refinement-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::CartBoxRefinement Class Reference<div class="ingroups"><a class="el" href="group__utilities.html">Utilities</a> &raquo; <a class="el" href="group__amr__utils.html">Mesh refinement</a> &#124; <a class="el" href="group__physics.html">Physics models</a> &raquo; <a class="el" href="group__wind.html">Wind energy modeling</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_cart_box_refinement_8_h_source.html">CartBoxRefinement.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::CartBoxRefinement:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_cart_box_refinement__inherit__graph.svg" width="252" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::CartBoxRefinement:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_cart_box_refinement__coll__graph.svg" width="252" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ab805f8fc06d53125622e9038096b91e0" id="r_ab805f8fc06d53125622e9038096b91e0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab805f8fc06d53125622e9038096b91e0">CartBoxRefinement</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a6e84539de41681fce8a9cab83b2449a2" id="r_a6e84539de41681fce8a9cab83b2449a2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e84539de41681fce8a9cab83b2449a2">~CartBoxRefinement</a> () override=default</td></tr>
+<tr class="memitem:a524f6167aa50ecd7889dba1c62062608" id="r_a524f6167aa50ecd7889dba1c62062608"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a524f6167aa50ecd7889dba1c62062608">initialize</a> (const std::string &amp;key) override</td></tr>
+<tr class="memdesc:a524f6167aa50ecd7889dba1c62062608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read input file and initialize boxarray used to refine each level.  <br /></td></tr>
+<tr class="memitem:a1254f8dc69ac19529d30fcfe3ee5bb93" id="r_a1254f8dc69ac19529d30fcfe3ee5bb93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1254f8dc69ac19529d30fcfe3ee5bb93">operator()</a> (int level, amrex::TagBoxArray &amp;tags, amrex::Real time, int ngrow) override</td></tr>
+<tr class="memitem:a2cbe6598bcfcc1f3e8b4c9ab30d92791" id="r_a2cbe6598bcfcc1f3e8b4c9ab30d92791"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2cbe6598bcfcc1f3e8b4c9ab30d92791">read_inputs</a> (const amrex::AmrCore &amp;, std::istream &amp;)</td></tr>
+<tr class="memdesc:a2cbe6598bcfcc1f3e8b4c9ab30d92791"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to process inputs.  <br /></td></tr>
+<tr class="memitem:a905721a700c00ad319f297904581fea3" id="r_a905721a700c00ad319f297904581fea3"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; amrex::BoxArray &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a905721a700c00ad319f297904581fea3">boxarray_vec</a> () const</td></tr>
+<tr class="memdesc:a905721a700c00ad319f297904581fea3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of boxarrays that define refinement zones at each level.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aad7cd18c6a9061cfb41da7f94510e4f7" id="r_aad7cd18c6a9061cfb41da7f94510e4f7"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad7cd18c6a9061cfb41da7f94510e4f7">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a2050b2e4ea37448fd2f84127bddddd4e" id="r_a2050b2e4ea37448fd2f84127bddddd4e"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2050b2e4ea37448fd2f84127bddddd4e">m_mesh</a></td></tr>
+<tr class="memitem:a734611dcf7d0fd8d4dd2b844d1ba5a1d" id="r_a734611dcf7d0fd8d4dd2b844d1ba5a1d"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Vector&lt; amrex::RealBox &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a734611dcf7d0fd8d4dd2b844d1ba5a1d">m_real_boxes</a></td></tr>
+<tr class="memdesc:a734611dcf7d0fd8d4dd2b844d1ba5a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Domain bounding boxes where refinement is performed at each level.  <br /></td></tr>
+<tr class="memitem:a7eaaa2309720f2a902ca063fac529e62" id="r_a7eaaa2309720f2a902ca063fac529e62"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::BoxArray &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7eaaa2309720f2a902ca063fac529e62">m_boxarrays</a></td></tr>
+<tr class="memdesc:a7eaaa2309720f2a902ca063fac529e62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boxarrays for each level in AMR hierarchy.  <br /></td></tr>
+<tr class="memitem:af46fe9a258f164f090d1f8647c886142" id="r_af46fe9a258f164f090d1f8647c886142"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af46fe9a258f164f090d1f8647c886142">m_nlevels</a> {-1}</td></tr>
+<tr class="memdesc:af46fe9a258f164f090d1f8647c886142"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of levels of fixed nested refinement.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Static refinement with Cartesian-aligned bounding boxes</p>
+<p>Implements tagging functionality for nested refinement of meshes using bounding box specifications. This class only allows nested refinement of regions that are aligned with the coordinate directons. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ab805f8fc06d53125622e9038096b91e0" name="ab805f8fc06d53125622e9038096b91e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab805f8fc06d53125622e9038096b91e0">&#9670;&#160;</a></span>CartBoxRefinement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::CartBoxRefinement::CartBoxRefinement </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6e84539de41681fce8a9cab83b2449a2" name="a6e84539de41681fce8a9cab83b2449a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e84539de41681fce8a9cab83b2449a2">&#9670;&#160;</a></span>~CartBoxRefinement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::CartBoxRefinement::~CartBoxRefinement </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a905721a700c00ad319f297904581fea3" name="a905721a700c00ad319f297904581fea3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a905721a700c00ad319f297904581fea3">&#9670;&#160;</a></span>boxarray_vec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::Vector&lt; amrex::BoxArray &gt; &amp; kynema_sgf::CartBoxRefinement::boxarray_vec </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vector of boxarrays that define refinement zones at each level. </p>
+
+</div>
+</div>
+<a id="aad7cd18c6a9061cfb41da7f94510e4f7" name="aad7cd18c6a9061cfb41da7f94510e4f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad7cd18c6a9061cfb41da7f94510e4f7">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::CartBoxRefinement::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a524f6167aa50ecd7889dba1c62062608" name="a524f6167aa50ecd7889dba1c62062608"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a524f6167aa50ecd7889dba1c62062608">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::CartBoxRefinement::initialize </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read input file and initialize boxarray used to refine each level. </p>
+
+</div>
+</div>
+<a id="a1254f8dc69ac19529d30fcfe3ee5bb93" name="a1254f8dc69ac19529d30fcfe3ee5bb93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1254f8dc69ac19529d30fcfe3ee5bb93">&#9670;&#160;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::CartBoxRefinement::operator() </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::TagBoxArray &amp;</td>          <td class="paramname"><span class="paramname"><em>tags</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ngrow</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2cbe6598bcfcc1f3e8b4c9ab30d92791" name="a2cbe6598bcfcc1f3e8b4c9ab30d92791"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cbe6598bcfcc1f3e8b4c9ab30d92791">&#9670;&#160;</a></span>read_inputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::CartBoxRefinement::read_inputs </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::AmrCore &amp;</td>          <td class="paramname"><span class="paramname"><em>mesh</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::istream &amp;</td>          <td class="paramname"><span class="paramname"><em>ifh</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Helper function to process inputs. </p>
+<p>Created separate from initialize to allow unit testing </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a7eaaa2309720f2a902ca063fac529e62" name="a7eaaa2309720f2a902ca063fac529e62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eaaa2309720f2a902ca063fac529e62">&#9670;&#160;</a></span>m_boxarrays</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::BoxArray&gt; kynema_sgf::CartBoxRefinement::m_boxarrays</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Boxarrays for each level in AMR hierarchy. </p>
+
+</div>
+</div>
+<a id="a2050b2e4ea37448fd2f84127bddddd4e" name="a2050b2e4ea37448fd2f84127bddddd4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2050b2e4ea37448fd2f84127bddddd4e">&#9670;&#160;</a></span>m_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::AmrCore&amp; kynema_sgf::CartBoxRefinement::m_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af46fe9a258f164f090d1f8647c886142" name="af46fe9a258f164f090d1f8647c886142"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af46fe9a258f164f090d1f8647c886142">&#9670;&#160;</a></span>m_nlevels</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::CartBoxRefinement::m_nlevels {-1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of levels of fixed nested refinement. </p>
+
+</div>
+</div>
+<a id="a734611dcf7d0fd8d4dd2b844d1ba5a1d" name="a734611dcf7d0fd8d4dd2b844d1ba5a1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a734611dcf7d0fd8d4dd2b844d1ba5a1d">&#9670;&#160;</a></span>m_real_boxes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Vector&lt;amrex::RealBox&gt; &gt; kynema_sgf::CartBoxRefinement::m_real_boxes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Domain bounding boxes where refinement is performed at each level. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/tagging/<a class="el" href="_cart_box_refinement_8_h_source.html">CartBoxRefinement.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/tagging/<a class="el" href="_cart_box_refinement_8cpp.html">CartBoxRefinement.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

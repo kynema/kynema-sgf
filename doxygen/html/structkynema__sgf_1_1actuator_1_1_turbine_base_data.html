@@ -1,0 +1,557 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::actuator::TurbineBaseData Struct Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::actuator::TurbineBaseData Struct Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/structkynema__sgf_1_1actuator_1_1_turbine_base_data.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="turbinebasedata-struct-reference">
+<h1>TurbineBaseData Struct Reference<a class="headerlink" href="#turbinebasedata-struct-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::actuator::TurbineBaseData Struct Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1actuator.html">actuator</a></li><li class="navelem"><a href="structkynema__sgf_1_1actuator_1_1_turbine_base_data.html">TurbineBaseData</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structkynema__sgf_1_1actuator_1_1_turbine_base_data-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::actuator::TurbineBaseData Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="turbine__types_8_h_source.html">turbine_types.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::actuator::TurbineBaseData:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="structkynema__sgf_1_1actuator_1_1_turbine_base_data__inherit__graph.svg" width="231" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::actuator::TurbineBaseData:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="structkynema__sgf_1_1actuator_1_1_turbine_base_data__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a1a8efdcc986c1f31aa2afff0dd342af5" id="r_a1a8efdcc986c1f31aa2afff0dd342af5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a8efdcc986c1f31aa2afff0dd342af5">solver_name</a> {&quot;Internal&quot;}</td></tr>
+<tr class="memdesc:a1a8efdcc986c1f31aa2afff0dd342af5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier string for turbine solver type.  <br /></td></tr>
+<tr class="memitem:a9435a1fead1f3c950715ed45fafb26fd" id="r_a9435a1fead1f3c950715ed45fafb26fd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9435a1fead1f3c950715ed45fafb26fd">num_blades</a> {3}</td></tr>
+<tr class="memdesc:a9435a1fead1f3c950715ed45fafb26fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of blades.  <br /></td></tr>
+<tr class="memitem:a79ce2b9401f442146091b1835d1e037b" id="r_a79ce2b9401f442146091b1835d1e037b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79ce2b9401f442146091b1835d1e037b">num_pts_blade</a></td></tr>
+<tr class="memdesc:a79ce2b9401f442146091b1835d1e037b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of actuator nodes per blade.  <br /></td></tr>
+<tr class="memitem:adaa4ccb77fccafb3d56668d6e2bc8782" id="r_adaa4ccb77fccafb3d56668d6e2bc8782"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adaa4ccb77fccafb3d56668d6e2bc8782">num_vel_pts_blade</a></td></tr>
+<tr class="memdesc:adaa4ccb77fccafb3d56668d6e2bc8782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of velocity nodes per blade.  <br /></td></tr>
+<tr class="memitem:a886013f57a013fc58bc05620232fc82c" id="r_a886013f57a013fc58bc05620232fc82c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a886013f57a013fc58bc05620232fc82c">num_pts_tower</a></td></tr>
+<tr class="memdesc:a886013f57a013fc58bc05620232fc82c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of actuator nodes for tower.  <br /></td></tr>
+<tr class="memitem:a755e1c4061f66fd088dd996c8f9a6674" id="r_a755e1c4061f66fd088dd996c8f9a6674"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a755e1c4061f66fd088dd996c8f9a6674">chord</a></td></tr>
+<tr class="memitem:a3b4ea1e8c468ccc04ab3b143e2f1dde1" id="r_a3b4ea1e8c468ccc04ab3b143e2f1dde1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b4ea1e8c468ccc04ab3b143e2f1dde1">vel_rel</a></td></tr>
+<tr class="memitem:a7db72114a7559faccb4234b4ea6c2cf3" id="r_a7db72114a7559faccb4234b4ea6c2cf3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7db72114a7559faccb4234b4ea6c2cf3">rot_center</a></td></tr>
+<tr class="memdesc:a7db72114a7559faccb4234b4ea6c2cf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Center of rotation for the rotor.  <br /></td></tr>
+<tr class="memitem:af2d7352731c07f3aad5cb0f0d726df5e" id="r_af2d7352731c07f3aad5cb0f0d726df5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2d7352731c07f3aad5cb0f0d726df5e">rotor_frame</a></td></tr>
+<tr class="memitem:a6bad9dcf71128a8157f30ccd9ab2e566" id="r_a6bad9dcf71128a8157f30ccd9ab2e566"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bad9dcf71128a8157f30ccd9ab2e566">eps_inp</a></td></tr>
+<tr class="memdesc:a6bad9dcf71128a8157f30ccd9ab2e566"><td class="mdescLeft">&#160;</td><td class="mdescRight">General epsilon provided.  <br /></td></tr>
+<tr class="memitem:aeee9a217a755e8eedad4edb92d064c3a" id="r_aeee9a217a755e8eedad4edb92d064c3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeee9a217a755e8eedad4edb92d064c3a">eps_chord</a></td></tr>
+<tr class="memdesc:aeee9a217a755e8eedad4edb92d064c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gaussian smearing factor for the blade.  <br /></td></tr>
+<tr class="memitem:a35754f5755567ddb939c49dba749fb0c" id="r_a35754f5755567ddb939c49dba749fb0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35754f5755567ddb939c49dba749fb0c">eps_min</a></td></tr>
+<tr class="memdesc:a35754f5755567ddb939c49dba749fb0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum epsilon when using chord based epsilon.  <br /></td></tr>
+<tr class="memitem:a095d0c18aaee54399d36d17a9eda5827" id="r_a095d0c18aaee54399d36d17a9eda5827"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a095d0c18aaee54399d36d17a9eda5827">eps_tower</a></td></tr>
+<tr class="memdesc:a095d0c18aaee54399d36d17a9eda5827"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gaussian smearing factor for tower.  <br /></td></tr>
+<tr class="memitem:ab44ce7f1eec32d5d640c3726bcfc2dd9" id="r_ab44ce7f1eec32d5d640c3726bcfc2dd9"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab44ce7f1eec32d5d640c3726bcfc2dd9">nacelle_cd</a> {0.0_rt}</td></tr>
+<tr class="memdesc:ab44ce7f1eec32d5d640c3726bcfc2dd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drag coefficient for nacelle.  <br /></td></tr>
+<tr class="memitem:adc85d7e8ec8607f66ec2f2236933584a" id="r_adc85d7e8ec8607f66ec2f2236933584a"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc85d7e8ec8607f66ec2f2236933584a">nacelle_area</a> {0.0_rt}</td></tr>
+<tr class="memdesc:adc85d7e8ec8607f66ec2f2236933584a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wetted surface area for nacelle.  <br /></td></tr>
+<tr class="memitem:a28df6aba0516663fa3c84472a3e6ad5e" id="r_a28df6aba0516663fa3c84472a3e6ad5e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structkynema__sgf_1_1actuator_1_1_component_view.html">ComponentView</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28df6aba0516663fa3c84472a3e6ad5e">blades</a></td></tr>
+<tr class="memitem:af1d6f0635f59b06ac152748ac01657c8" id="r_af1d6f0635f59b06ac152748ac01657c8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html">FLLCData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1d6f0635f59b06ac152748ac01657c8">fllc</a></td></tr>
+<tr class="memitem:a03c534892d03dcaf56532d890500717e" id="r_a03c534892d03dcaf56532d890500717e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1actuator_1_1_component_view.html">ComponentView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03c534892d03dcaf56532d890500717e">tower</a></td></tr>
+<tr class="memitem:a3ff4984fd971cdf3ad85da63541e4386" id="r_a3ff4984fd971cdf3ad85da63541e4386"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1actuator_1_1_component_view.html">ComponentView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ff4984fd971cdf3ad85da63541e4386">hub</a></td></tr>
+</table>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a28df6aba0516663fa3c84472a3e6ad5e" name="a28df6aba0516663fa3c84472a3e6ad5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28df6aba0516663fa3c84472a3e6ad5e">&#9670;&#160;</a></span>blades</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="structkynema__sgf_1_1actuator_1_1_component_view.html">ComponentView</a>&gt; kynema_sgf::actuator::TurbineBaseData::blades</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a755e1c4061f66fd088dd996c8f9a6674" name="a755e1c4061f66fd088dd996c8f9a6674"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a755e1c4061f66fd088dd996c8f9a6674">&#9670;&#160;</a></span>chord</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> kynema_sgf::actuator::TurbineBaseData::chord</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeee9a217a755e8eedad4edb92d064c3a" name="aeee9a217a755e8eedad4edb92d064c3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeee9a217a755e8eedad4edb92d064c3a">&#9670;&#160;</a></span>eps_chord</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::TurbineBaseData::eps_chord</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gaussian smearing factor for the blade. </p>
+
+</div>
+</div>
+<a id="a6bad9dcf71128a8157f30ccd9ab2e566" name="a6bad9dcf71128a8157f30ccd9ab2e566"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bad9dcf71128a8157f30ccd9ab2e566">&#9670;&#160;</a></span>eps_inp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::TurbineBaseData::eps_inp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>General epsilon provided. </p>
+
+</div>
+</div>
+<a id="a35754f5755567ddb939c49dba749fb0c" name="a35754f5755567ddb939c49dba749fb0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35754f5755567ddb939c49dba749fb0c">&#9670;&#160;</a></span>eps_min</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::TurbineBaseData::eps_min</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimum epsilon when using chord based epsilon. </p>
+
+</div>
+</div>
+<a id="a095d0c18aaee54399d36d17a9eda5827" name="a095d0c18aaee54399d36d17a9eda5827"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a095d0c18aaee54399d36d17a9eda5827">&#9670;&#160;</a></span>eps_tower</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::TurbineBaseData::eps_tower</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gaussian smearing factor for tower. </p>
+
+</div>
+</div>
+<a id="af1d6f0635f59b06ac152748ac01657c8" name="af1d6f0635f59b06ac152748ac01657c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1d6f0635f59b06ac152748ac01657c8">&#9670;&#160;</a></span>fllc</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="structkynema__sgf_1_1actuator_1_1_f_l_l_c_data.html">FLLCData</a>&gt; kynema_sgf::actuator::TurbineBaseData::fllc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3ff4984fd971cdf3ad85da63541e4386" name="a3ff4984fd971cdf3ad85da63541e4386"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ff4984fd971cdf3ad85da63541e4386">&#9670;&#160;</a></span>hub</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1actuator_1_1_component_view.html">ComponentView</a> kynema_sgf::actuator::TurbineBaseData::hub</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adc85d7e8ec8607f66ec2f2236933584a" name="adc85d7e8ec8607f66ec2f2236933584a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc85d7e8ec8607f66ec2f2236933584a">&#9670;&#160;</a></span>nacelle_area</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::actuator::TurbineBaseData::nacelle_area {0.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wetted surface area for nacelle. </p>
+
+</div>
+</div>
+<a id="ab44ce7f1eec32d5d640c3726bcfc2dd9" name="ab44ce7f1eec32d5d640c3726bcfc2dd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab44ce7f1eec32d5d640c3726bcfc2dd9">&#9670;&#160;</a></span>nacelle_cd</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::actuator::TurbineBaseData::nacelle_cd {0.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Drag coefficient for nacelle. </p>
+
+</div>
+</div>
+<a id="a9435a1fead1f3c950715ed45fafb26fd" name="a9435a1fead1f3c950715ed45fafb26fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9435a1fead1f3c950715ed45fafb26fd">&#9670;&#160;</a></span>num_blades</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::TurbineBaseData::num_blades {3}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of blades. </p>
+
+</div>
+</div>
+<a id="a79ce2b9401f442146091b1835d1e037b" name="a79ce2b9401f442146091b1835d1e037b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79ce2b9401f442146091b1835d1e037b">&#9670;&#160;</a></span>num_pts_blade</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::TurbineBaseData::num_pts_blade</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of actuator nodes per blade. </p>
+
+</div>
+</div>
+<a id="a886013f57a013fc58bc05620232fc82c" name="a886013f57a013fc58bc05620232fc82c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a886013f57a013fc58bc05620232fc82c">&#9670;&#160;</a></span>num_pts_tower</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::TurbineBaseData::num_pts_tower</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of actuator nodes for tower. </p>
+
+</div>
+</div>
+<a id="adaa4ccb77fccafb3d56668d6e2bc8782" name="adaa4ccb77fccafb3d56668d6e2bc8782"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaa4ccb77fccafb3d56668d6e2bc8782">&#9670;&#160;</a></span>num_vel_pts_blade</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::TurbineBaseData::num_vel_pts_blade</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of velocity nodes per blade. </p>
+
+</div>
+</div>
+<a id="a7db72114a7559faccb4234b4ea6c2cf3" name="a7db72114a7559faccb4234b4ea6c2cf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7db72114a7559faccb4234b4ea6c2cf3">&#9670;&#160;</a></span>rot_center</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::TurbineBaseData::rot_center</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Center of rotation for the rotor. </p>
+
+</div>
+</div>
+<a id="af2d7352731c07f3aad5cb0f0d726df5e" name="af2d7352731c07f3aad5cb0f0d726df5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2d7352731c07f3aad5cb0f0d726df5e">&#9670;&#160;</a></span>rotor_frame</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a> kynema_sgf::actuator::TurbineBaseData::rotor_frame</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Reference frame for the rotor plane</p>
+<p>x - Pointing downwind along shaft/rotation axis y - lateral direction z - normal direction (pointing mostly along z-direction) </p>
+
+</div>
+</div>
+<a id="a1a8efdcc986c1f31aa2afff0dd342af5" name="a1a8efdcc986c1f31aa2afff0dd342af5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a8efdcc986c1f31aa2afff0dd342af5">&#9670;&#160;</a></span>solver_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::actuator::TurbineBaseData::solver_name {&quot;Internal&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Identifier string for turbine solver type. </p>
+
+</div>
+</div>
+<a id="a03c534892d03dcaf56532d890500717e" name="a03c534892d03dcaf56532d890500717e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03c534892d03dcaf56532d890500717e">&#9670;&#160;</a></span>tower</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1actuator_1_1_component_view.html">ComponentView</a> kynema_sgf::actuator::TurbineBaseData::tower</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3b4ea1e8c468ccc04ab3b143e2f1dde1" name="a3b4ea1e8c468ccc04ab3b143e2f1dde1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b4ea1e8c468ccc04ab3b143e2f1dde1">&#9670;&#160;</a></span>vel_rel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a> kynema_sgf::actuator::TurbineBaseData::vel_rel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/turbine/<a class="el" href="turbine__types_8_h_source.html">turbine_types.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

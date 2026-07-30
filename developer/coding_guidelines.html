@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coding Guidelines &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="How to Cite Kynema-SGF" href="../references.html" />
+    <link rel="prev" title="Verification" href="verification.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../doxygen/html/index.html">Kynema-SGF API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_testing.html">Regression testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="verification.html">Verification</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Coding Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#style-guide-recommendations">Style Guide/Recommendations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sample-c-code">Sample C++ code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer Documentation</a></li>
+      <li class="breadcrumb-item active">Coding Guidelines</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/developer/coding_guidelines.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coding-guidelines">
+<h1>Coding Guidelines<a class="headerlink" href="#coding-guidelines" title="Link to this heading"></a></h1>
+<p>This section presents an incomplete list of coding guidelines currently used to
+develop Kynema-SGF code. As is the case with rules, it might not apply to all
+circumstances. Please use your best judgment when trying to comply with the
+rules and break them if necessary, but be ready to convince the rest of the
+team.</p>
+<p><strong>Use modern C++</strong></p>
+<blockquote>
+<div><p>Traditionally, AMReX based solvers have used C++ for managing data structures
+but Fortran for computational kernels. However, Kynema-SGF is purely written in
+C++. One of the primary drivers for this choice is our desire to target
+next-generation Exascale systems that require targeting GPUs through CUDA,
+HIP, and other offloading paradigms. Support for languages other than C/C++
+is not very mature for these architectures.</p>
+<p>Consult <a class="reference external" href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines">ISO C++ Core Guidelines</a> for best
+practices when coding in C++.</p>
+</div></blockquote>
+<p><strong>Write code targeting heterogeneous architectures</strong></p>
+<blockquote>
+<div><p>All code must be written in a way such that it can run on GPUs without
+errors. Please consult the <a class="reference external" href="https://amrex-codes.github.io/amrex/docs_html/GPU_Chapter.html">GPU section</a> in AMReX
+documentation to learn the correct data structures and looping paradigms to
+use when targeting heterogeneous architectures.</p>
+</div></blockquote>
+<p><strong>Unit and regression tests</strong></p>
+<blockquote>
+<div><p>Code modifications must not break existing unit tests or regression tests. If
+a change is known to break current behavior, e.g., a bug fix or an
+enhancement, the tests must be updated to account for this change and any
+necessary updates to documentation must be made to document this.</p>
+<p>New features must be accompanied with the necessary suite of unit and
+regression tests as appropriate. There should be at least one test that
+exercises the feature to catch issue early on. New features must also be
+documented in the user and theory manual.</p>
+</div></blockquote>
+<p><strong>Pull-request based workflow</strong></p>
+<blockquote>
+<div><p>All updates must be submitted as <a class="reference external" href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/proposing-changes-to-your-work-with-pull-requests">pull-requests</a>
+on the public GitHub repository. Pull requests will be reviewed by core
+developers and must also pass all Continuous Integration checks before it is
+merged into mainline source tree.</p>
+<p>If a pull-requests fails during nightly tests after it is merged with the
+mainline code base, it will be reverted and a new pull request should be
+submitted with appropriate fixes.</p>
+</div></blockquote>
+<section id="style-guide-recommendations">
+<h2>Style Guide/Recommendations<a class="headerlink" href="#style-guide-recommendations" title="Link to this heading"></a></h2>
+<p>This section documents the preferred style for formatting source code within
+Kynema-SGF. While the guidelines presented in the previous section are based on
+technical and quality assurance reasons, the formatting style is largely a
+matter of individual taste and there is no hard and fast rule. However, to
+ensure consistency in a codebase used by a large team, we provide some
+guidelines here.</p>
+<p>Kynema-SGF comes with a <code class="file docutils literal notranslate"><span class="pre">.clang-format</span></code> definition that can be used with
+<a class="reference external" href="https://clang.llvm.org/docs/ClangFormat.html">Clang format</a> to automatically
+reformat source code to be consistent with the rest of the codebase. Many source
+code editors come with Clang format integration that allows you to reformat code
+from within your text editor. Please consult the Clang format documentation, or
+your editor’s documentation to setup clang-format integration. However, please
+be careful that you only use Clang format on code you’ve written modified and
+not on code that has not been written by you.</p>
+<p>Other Kynema-SGF specific conventions:</p>
+<ol class="arabic simple">
+<li><p>All Kynema-SGF specific code must be within <code class="docutils literal notranslate"><span class="pre">kynema_sgf</span></code> namespace. Code for
+unit tests must be in <code class="docutils literal notranslate"><span class="pre">kynema_sgf_tests</span></code> namespace.</p></li>
+<li><p>Following AMReX convention, header files will use a <code class="docutils literal notranslate"><span class="pre">.H</span></code> extension and C++
+source files will use a <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> extension.</p></li>
+<li><p>Use <a class="reference external" href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a> almost
+everywhere, i.e., for variables, namespaces, function and method names.
+Exceptions include when overriding AMReX class methods in inherited classes.</p></li>
+<li><p>Use <a class="reference external" href="https://en.wikipedia.org/wiki/Camel_case">CamelCase</a> for class names.
+Capitalize the first letter of the first word in the compound name also.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">m_</span></code> prefix for class instance variables. No prefix for class methods.</p></li>
+<li><p>Keep logic in functions short. Always use descriptive names for function
+names and variables that provide the reader with clues as to what the
+function does.</p></li>
+</ol>
+<section id="sample-c-code">
+<h3>Sample C++ code<a class="headerlink" href="#sample-c-code" title="Link to this heading"></a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#ifndef CFDSIM_H</span>
+<span class="linenos"> 2</span><span class="cp">#define CFDSIM_H</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AMReX_AmrCore.H&quot;</span>
+<span class="linenos"> 5</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SimTime.H&quot;</span>
+<span class="linenos"> 6</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;FieldRepo.H&quot;</span>
+<span class="linenos"> 7</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;PDEBase.H&quot;</span>
+<span class="linenos"> 8</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Physics.H&quot;</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="k">namespace</span><span class="w"> </span><span class="nn">kynema_sgf</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="c1">// Forward declaration if necessary</span>
+<span class="linenos">13</span><span class="k">namespace</span><span class="w"> </span><span class="nn">turbulence</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">14</span><span class="k">class</span><span class="w"> </span><span class="nc">TurbulenceModel</span><span class="p">;</span>
+<span class="linenos">15</span><span class="p">}</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="cm">/** Data structures for a CFD simulation</span>
+<span class="linenos">18</span><span class="cm"> *</span>
+<span class="linenos">19</span><span class="cm"> *  CFDSim is a thin wrapper that holds all the necessary objects for a CFD</span>
+<span class="linenos">20</span><span class="cm"> *  simulation. The key data members within this object are:</span>
+<span class="linenos">21</span><span class="cm"> *</span>
+<span class="linenos">22</span><span class="cm"> *  - mesh (amrex::AmrCore) The AMR mesh hierarchy data structure</span>
+<span class="linenos">23</span><span class="cm"> *  - time (SimTime)        The time object</span>
+<span class="linenos">24</span><span class="cm"> *  - repo (FieldRepo)      The field repository</span>
+<span class="linenos">25</span><span class="cm"> *  - pde_manager (PDEMgr)  PDE manager interface</span>
+<span class="linenos">26</span><span class="cm"> *  - physics_manager       List of physics active in this simulation</span>
+<span class="linenos">27</span><span class="cm"> *  - turbulence_model      Reference to the turbulence model</span>
+<span class="linenos">28</span><span class="cm"> */</span>
+<span class="linenos">29</span><span class="k">class</span><span class="w"> </span><span class="nc">CFDSim</span>
+<span class="linenos">30</span><span class="p">{</span>
+<span class="linenos">31</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">32</span><span class="w">    </span><span class="n">CFDSim</span><span class="p">(</span><span class="n">amrex</span><span class="o">::</span><span class="n">AmrCore</span><span class="o">&amp;</span><span class="w"> </span><span class="n">mesh</span><span class="p">);</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span><span class="w">    </span><span class="o">~</span><span class="n">CFDSim</span><span class="p">();</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span><span class="w">    </span><span class="c1">//! Return the AMR mesh hierarchy</span>
+<span class="linenos">37</span><span class="w">    </span><span class="n">amrex</span><span class="o">::</span><span class="n">AmrCore</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">mesh</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_mesh</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">38</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">amrex</span><span class="o">::</span><span class="n">AmrCore</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">mesh</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_mesh</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span><span class="w">    </span><span class="c1">//! Return simulation time control</span>
+<span class="linenos">41</span><span class="w">    </span><span class="n">SimTime</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">time</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_time</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">42</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">SimTime</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">time</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_time</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span><span class="w">    </span><span class="c1">//! Return the field repository</span>
+<span class="linenos">45</span><span class="w">    </span><span class="n">FieldRepo</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">repo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_repo</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">46</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">FieldRepo</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">repo</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_repo</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">47</span>
+<span class="linenos">48</span><span class="w">    </span><span class="c1">//! Return the PDE manager instance</span>
+<span class="linenos">49</span><span class="w">    </span><span class="n">pde</span><span class="o">::</span><span class="n">PDEMgr</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">pde_manager</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_pde_mgr</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">50</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">pde</span><span class="o">::</span><span class="n">PDEMgr</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">pde_manager</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_pde_mgr</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">51</span>
+<span class="linenos">52</span><span class="w">    </span><span class="c1">//! Return the physics manager instance</span>
+<span class="linenos">53</span><span class="w">    </span><span class="n">PhysicsMgr</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">physics_manager</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_physics_mgr</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">54</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">PhysicsMgr</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">physics_manager</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_physics_mgr</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span><span class="w">    </span><span class="c1">//! Return a vector of physics instances active in this simulation</span>
+<span class="linenos">57</span><span class="w">    </span><span class="n">PhysicsMgr</span><span class="o">::</span><span class="n">TypeVector</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">physics</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_physics_mgr</span><span class="p">.</span><span class="n">objects</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">58</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">PhysicsMgr</span><span class="o">::</span><span class="n">TypeVector</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">physics</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_physics_mgr</span><span class="p">.</span><span class="n">objects</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">59</span>
+<span class="linenos">60</span><span class="w">    </span><span class="c1">//! Return the turbulence model instance used in this simulation</span>
+<span class="linenos">61</span><span class="w">    </span><span class="n">turbulence</span><span class="o">::</span><span class="n">TurbulenceModel</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">turbulence_model</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">m_turbulence</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">62</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">turbulence</span><span class="o">::</span><span class="n">TurbulenceModel</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">turbulence_model</span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<span class="linenos">63</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">m_turbulence</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos">64</span>
+<span class="linenos">65</span><span class="w">    </span><span class="c1">//! Initialize the turbulence model after reading necessary inputs</span>
+<span class="linenos">66</span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">create_turbulence_model</span><span class="p">();</span>
+<span class="linenos">67</span>
+<span class="linenos">68</span><span class="w">    </span><span class="c1">//! Initialize the different physics models based on user inputs</span>
+<span class="linenos">69</span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">init_physics</span><span class="p">();</span>
+<span class="linenos">70</span>
+<span class="linenos">71</span><span class="k">private</span><span class="o">:</span>
+<span class="linenos">72</span><span class="w">    </span><span class="n">amrex</span><span class="o">::</span><span class="n">AmrCore</span><span class="o">&amp;</span><span class="w"> </span><span class="n">m_mesh</span><span class="p">;</span>
+<span class="linenos">73</span>
+<span class="linenos">74</span><span class="w">    </span><span class="n">SimTime</span><span class="w"> </span><span class="n">m_time</span><span class="p">;</span>
+<span class="linenos">75</span>
+<span class="linenos">76</span><span class="w">    </span><span class="n">FieldRepo</span><span class="w"> </span><span class="n">m_repo</span><span class="p">;</span>
+<span class="linenos">77</span>
+<span class="linenos">78</span><span class="w">    </span><span class="n">pde</span><span class="o">::</span><span class="n">PDEMgr</span><span class="w"> </span><span class="n">m_pde_mgr</span><span class="p">;</span>
+<span class="linenos">79</span>
+<span class="linenos">80</span><span class="w">    </span><span class="n">PhysicsMgr</span><span class="w"> </span><span class="n">m_physics_mgr</span><span class="p">;</span>
+<span class="linenos">81</span>
+<span class="linenos">82</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">turbulence</span><span class="o">::</span><span class="n">TurbulenceModel</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_turbulence</span><span class="p">;</span>
+<span class="linenos">83</span><span class="p">};</span>
+<span class="linenos">84</span>
+<span class="linenos">85</span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace kynema_sgf</span>
+<span class="linenos">86</span>
+<span class="linenos">87</span><span class="cp">#endif </span><span class="cm">/* CFDSIM_H */</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="verification.html" class="btn btn-neutral float-left" title="Verification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../references.html" class="btn btn-neutral float-right" title="How to Cite Kynema-SGF" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

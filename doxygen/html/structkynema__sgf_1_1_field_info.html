@@ -1,0 +1,627 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::FieldInfo Struct Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::FieldInfo Struct Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/structkynema__sgf_1_1_field_info.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fieldinfo-struct-reference">
+<h1>FieldInfo Struct Reference<a class="headerlink" href="#fieldinfo-struct-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::FieldInfo Struct Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="structkynema__sgf_1_1_field_info.html">FieldInfo</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="structkynema__sgf_1_1_field_info-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::FieldInfo Struct Reference<div class="ingroups"><a class="el" href="group__core.html">Kynema-SGF core</a> &raquo; <a class="el" href="group__fields.html">Field management</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_field_8_h_source.html">Field.H</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::FieldInfo:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="structkynema__sgf_1_1_field_info__coll__graph.svg" width="595" height="374"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a6f294d20d80fe386b2bf095484d588f7" id="r_a6f294d20d80fe386b2bf095484d588f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f294d20d80fe386b2bf095484d588f7">FieldInfo</a> (std::string basename, int ncomp, int ngrow, int nstates, <a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a> floc)</td></tr>
+<tr class="memitem:a90ea4cecbea9a98dc222d35d6c1d6abf" id="r_a90ea4cecbea9a98dc222d35d6c1d6abf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90ea4cecbea9a98dc222d35d6c1d6abf">~FieldInfo</a> ()</td></tr>
+<tr class="memitem:a371b2be1070c95d093099555f0544382" id="r_a371b2be1070c95d093099555f0544382"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a371b2be1070c95d093099555f0544382">bc_initialized</a> ()</td></tr>
+<tr class="memdesc:a371b2be1070c95d093099555f0544382"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check indicating whether BCs are being set to sane values.  <br /></td></tr>
+<tr class="memitem:a743446c39950c0aae582931395f91f5f" id="r_a743446c39950c0aae582931395f91f5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a743446c39950c0aae582931395f91f5f">copy_bc_to_device</a> ()</td></tr>
+<tr class="memdesc:a743446c39950c0aae582931395f91f5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy the <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> information to device data structures.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a0bc92b846e00e3c275a31c5a41288d25" id="r_a0bc92b846e00e3c275a31c5a41288d25"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bc92b846e00e3c275a31c5a41288d25">m_basename</a></td></tr>
+<tr class="memdesc:a0bc92b846e00e3c275a31c5a41288d25"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> name without state information.  <br /></td></tr>
+<tr class="memitem:a2aecdc466af5b787874c2f1c8ada261e" id="r_a2aecdc466af5b787874c2f1c8ada261e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2aecdc466af5b787874c2f1c8ada261e">m_ncomp</a></td></tr>
+<tr class="memdesc:a2aecdc466af5b787874c2f1c8ada261e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of components (Scalar = 1, Vector = 2, etc.)  <br /></td></tr>
+<tr class="memitem:a7b38d8c4ba9e4412cd3f33b2547f0cd9" id="r_a7b38d8c4ba9e4412cd3f33b2547f0cd9"><td class="memItemLeft" align="right" valign="top">amrex::IntVect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b38d8c4ba9e4412cd3f33b2547f0cd9">m_ngrow</a></td></tr>
+<tr class="memdesc:a7b38d8c4ba9e4412cd3f33b2547f0cd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ghost cells.  <br /></td></tr>
+<tr class="memitem:ac10844746cce7e392cfe5c126cff3dc7" id="r_ac10844746cce7e392cfe5c126cff3dc7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac10844746cce7e392cfe5c126cff3dc7">m_nstates</a></td></tr>
+<tr class="memdesc:ac10844746cce7e392cfe5c126cff3dc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of states available for this field.  <br /></td></tr>
+<tr class="memitem:ac3eee5027ec962217c170aa3b96167b6" id="r_ac3eee5027ec962217c170aa3b96167b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3eee5027ec962217c170aa3b96167b6">m_floc</a></td></tr>
+<tr class="memdesc:ac3eee5027ec962217c170aa3b96167b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cell, node, face centered field type.  <br /></td></tr>
+<tr class="memitem:aa1dc115534f751d431a7217fe841eb6e" id="r_aa1dc115534f751d431a7217fe841eb6e"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1dc115534f751d431a7217fe841eb6e">m_states</a></td></tr>
+<tr class="memdesc:aa1dc115534f751d431a7217fe841eb6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector holding references to available states for this field.  <br /></td></tr>
+<tr class="memitem:aa841bba05b9ea499b64220e75cfd04ce" id="r_aa841bba05b9ea499b64220e75cfd04ce"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops_base.html">FieldFillPatchOpsBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa841bba05b9ea499b64220e75cfd04ce">m_fillpatch_op</a></td></tr>
+<tr class="memdesc:aa841bba05b9ea499b64220e75cfd04ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that handles filling patch and physics <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> data for this field.  <br /></td></tr>
+<tr class="memitem:a5e598832ab64102602b506b8ce1e29c3" id="r_a5e598832ab64102602b506b8ce1e29c3"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_field_b_c_iface.html">FieldBCIface</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e598832ab64102602b506b8ce1e29c3">m_bc_func</a></td></tr>
+<tr class="memdesc:a5e598832ab64102602b506b8ce1e29c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom boundary condition actions for this field.  <br /></td></tr>
+<tr class="memitem:a0ee92108b39904d11428a0dda87904d1" id="r_a0ee92108b39904d11428a0dda87904d1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ee92108b39904d11428a0dda87904d1">m_bc_copied_to_device</a> {false}</td></tr>
+<tr class="memdesc:a0ee92108b39904d11428a0dda87904d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether BCs have been initialized and copied to device.  <br /></td></tr>
+<tr id="pub-attribs-0" class="groupHeader"><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ad132991e3a1fb0a54e851c02ef08aaef" id="r_ad132991e3a1fb0a54e851c02ef08aaef"><td class="memItemLeft" align="right" valign="top">amrex::GpuArray&lt; <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a>, AMREX_SPACEDIM *2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad132991e3a1fb0a54e851c02ef08aaef">m_bc_type</a></td></tr>
+<tr class="memitem:aef2fcf315be6a74b6feaf67f2a0b1d95" id="r_aef2fcf315be6a74b6feaf67f2a0b1d95"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Vector&lt; amrex::Real &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef2fcf315be6a74b6feaf67f2a0b1d95">m_bc_values</a></td></tr>
+<tr class="memitem:afeeed79381c36102c69fb19c7b725f7c" id="r_afeeed79381c36102c69fb19c7b725f7c"><td class="memItemLeft" align="right" valign="top">amrex::GpuArray&lt; const amrex::Real *, AMREX_SPACEDIM *2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afeeed79381c36102c69fb19c7b725f7c">m_bc_values_d</a></td></tr>
+<tr class="memitem:abbe691666b57c71bd6f10ea9a20771c3" id="r_abbe691666b57c71bd6f10ea9a20771c3"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbe691666b57c71bd6f10ea9a20771c3">m_bc_values_dview</a></td></tr>
+<tr class="memitem:a2398e16a25941da0a7dd4541983da54e" id="r_a2398e16a25941da0a7dd4541983da54e"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::BCRec &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2398e16a25941da0a7dd4541983da54e">m_bcrec</a></td></tr>
+<tr class="memitem:a730dcd27a471e3474d05a98a00019571" id="r_a730dcd27a471e3474d05a98a00019571"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; amrex::BCRec &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a730dcd27a471e3474d05a98a00019571">m_bcrec_d</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:acd24d1ac50fb217e472cff2ef030556b" id="r_acd24d1ac50fb217e472cff2ef030556b"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd24d1ac50fb217e472cff2ef030556b">max_field_states</a> = 5</td></tr>
+<tr class="memdesc:acd24d1ac50fb217e472cff2ef030556b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of states allowed for a field.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Information common to a field that has multiple states </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a6f294d20d80fe386b2bf095484d588f7" name="a6f294d20d80fe386b2bf095484d588f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f294d20d80fe386b2bf095484d588f7">&#9670;&#160;</a></span>FieldInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::FieldInfo::FieldInfo </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>basename</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ncomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ngrow</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nstates</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a></td>          <td class="paramname"><span class="paramname"><em>floc</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a90ea4cecbea9a98dc222d35d6c1d6abf" name="a90ea4cecbea9a98dc222d35d6c1d6abf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90ea4cecbea9a98dc222d35d6c1d6abf">&#9670;&#160;</a></span>~FieldInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::FieldInfo::~FieldInfo </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a371b2be1070c95d093099555f0544382" name="a371b2be1070c95d093099555f0544382"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a371b2be1070c95d093099555f0544382">&#9670;&#160;</a></span>bc_initialized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::FieldInfo::bc_initialized </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check indicating whether BCs are being set to sane values. </p>
+
+</div>
+</div>
+<a id="a743446c39950c0aae582931395f91f5f" name="a743446c39950c0aae582931395f91f5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a743446c39950c0aae582931395f91f5f">&#9670;&#160;</a></span>copy_bc_to_device()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::FieldInfo::copy_bc_to_device </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy the <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> information to device data structures. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a0bc92b846e00e3c275a31c5a41288d25" name="a0bc92b846e00e3c275a31c5a41288d25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bc92b846e00e3c275a31c5a41288d25">&#9670;&#160;</a></span>m_basename</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::FieldInfo::m_basename</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> name without state information. </p>
+
+</div>
+</div>
+<a id="a0ee92108b39904d11428a0dda87904d1" name="a0ee92108b39904d11428a0dda87904d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ee92108b39904d11428a0dda87904d1">&#9670;&#160;</a></span>m_bc_copied_to_device</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::FieldInfo::m_bc_copied_to_device {false}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flag indicating whether BCs have been initialized and copied to device. </p>
+
+</div>
+</div>
+<a id="a5e598832ab64102602b506b8ce1e29c3" name="a5e598832ab64102602b506b8ce1e29c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e598832ab64102602b506b8ce1e29c3">&#9670;&#160;</a></span>m_bc_func</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1_field_b_c_iface.html">FieldBCIface</a>&gt; &gt; kynema_sgf::FieldInfo::m_bc_func</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Custom boundary condition actions for this field. </p>
+
+</div>
+</div>
+<a id="ad132991e3a1fb0a54e851c02ef08aaef" name="ad132991e3a1fb0a54e851c02ef08aaef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad132991e3a1fb0a54e851c02ef08aaef">&#9670;&#160;</a></span>m_bc_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::GpuArray&lt;<a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a>, AMREX_SPACEDIM * 2&gt; kynema_sgf::FieldInfo::m_bc_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Boundary condition data </p>
+
+</div>
+</div>
+<a id="aef2fcf315be6a74b6feaf67f2a0b1d95" name="aef2fcf315be6a74b6feaf67f2a0b1d95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef2fcf315be6a74b6feaf67f2a0b1d95">&#9670;&#160;</a></span>m_bc_values</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Vector&lt;amrex::Real&gt; &gt; kynema_sgf::FieldInfo::m_bc_values</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afeeed79381c36102c69fb19c7b725f7c" name="afeeed79381c36102c69fb19c7b725f7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afeeed79381c36102c69fb19c7b725f7c">&#9670;&#160;</a></span>m_bc_values_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::GpuArray&lt;const amrex::Real*, AMREX_SPACEDIM * 2&gt; kynema_sgf::FieldInfo::m_bc_values_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abbe691666b57c71bd6f10ea9a20771c3" name="abbe691666b57c71bd6f10ea9a20771c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbe691666b57c71bd6f10ea9a20771c3">&#9670;&#160;</a></span>m_bc_values_dview</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;amrex::Real&gt; kynema_sgf::FieldInfo::m_bc_values_dview</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2398e16a25941da0a7dd4541983da54e" name="a2398e16a25941da0a7dd4541983da54e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2398e16a25941da0a7dd4541983da54e">&#9670;&#160;</a></span>m_bcrec</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::BCRec&gt; kynema_sgf::FieldInfo::m_bcrec</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a730dcd27a471e3474d05a98a00019571" name="a730dcd27a471e3474d05a98a00019571"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a730dcd27a471e3474d05a98a00019571">&#9670;&#160;</a></span>m_bcrec_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;amrex::BCRec&gt; kynema_sgf::FieldInfo::m_bcrec_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa841bba05b9ea499b64220e75cfd04ce" name="aa841bba05b9ea499b64220e75cfd04ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa841bba05b9ea499b64220e75cfd04ce">&#9670;&#160;</a></span>m_fillpatch_op</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1_field_fill_patch_ops_base.html">FieldFillPatchOpsBase</a>&gt; kynema_sgf::FieldInfo::m_fillpatch_op</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function that handles filling patch and physics <a class="el" href="incflo__enums_8_h.html#a682a1815cce6afdf9ccb32fedc064292">BC</a> data for this field. </p>
+
+</div>
+</div>
+<a id="ac3eee5027ec962217c170aa3b96167b6" name="ac3eee5027ec962217c170aa3b96167b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3eee5027ec962217c170aa3b96167b6">&#9670;&#160;</a></span>m_floc</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a> kynema_sgf::FieldInfo::m_floc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cell, node, face centered field type. </p>
+
+</div>
+</div>
+<a id="a2aecdc466af5b787874c2f1c8ada261e" name="a2aecdc466af5b787874c2f1c8ada261e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2aecdc466af5b787874c2f1c8ada261e">&#9670;&#160;</a></span>m_ncomp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::FieldInfo::m_ncomp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of components (Scalar = 1, Vector = 2, etc.) </p>
+
+</div>
+</div>
+<a id="a7b38d8c4ba9e4412cd3f33b2547f0cd9" name="a7b38d8c4ba9e4412cd3f33b2547f0cd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b38d8c4ba9e4412cd3f33b2547f0cd9">&#9670;&#160;</a></span>m_ngrow</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::IntVect kynema_sgf::FieldInfo::m_ngrow</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ghost cells. </p>
+
+</div>
+</div>
+<a id="ac10844746cce7e392cfe5c126cff3dc7" name="ac10844746cce7e392cfe5c126cff3dc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac10844746cce7e392cfe5c126cff3dc7">&#9670;&#160;</a></span>m_nstates</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::FieldInfo::m_nstates</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of states available for this field. </p>
+
+</div>
+</div>
+<a id="aa1dc115534f751d431a7217fe841eb6e" name="aa1dc115534f751d431a7217fe841eb6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1dc115534f751d431a7217fe841eb6e">&#9670;&#160;</a></span>m_states</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;<a class="el" href="classkynema__sgf_1_1_field.html">Field</a>*&gt; kynema_sgf::FieldInfo::m_states</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vector holding references to available states for this field. </p>
+
+</div>
+</div>
+<a id="acd24d1ac50fb217e472cff2ef030556b" name="acd24d1ac50fb217e472cff2ef030556b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd24d1ac50fb217e472cff2ef030556b">&#9670;&#160;</a></span>max_field_states</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::FieldInfo::max_field_states = 5</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Maximum number of states allowed for a field. </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/core/<a class="el" href="_field_8_h_source.html">Field.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/core/<a class="el" href="_field_8cpp.html">Field.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

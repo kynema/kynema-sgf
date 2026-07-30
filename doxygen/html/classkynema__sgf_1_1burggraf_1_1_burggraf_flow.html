@@ -1,0 +1,742 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::burggraf::BurggrafFlow Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::burggraf::BurggrafFlow Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1burggraf_1_1_burggraf_flow.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="burggrafflow-class-reference">
+<h1>BurggrafFlow Class Reference<a class="headerlink" href="#burggrafflow-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::burggraf::BurggrafFlow Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1burggraf.html">burggraf</a></li><li class="navelem"><a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow.html">BurggrafFlow</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1burggraf_1_1_burggraf_flow-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::burggraf::BurggrafFlow Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_burggraf_flow_8_h_source.html">BurggrafFlow.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::burggraf::BurggrafFlow:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1burggraf_1_1_burggraf_flow__inherit__graph.svg" width="174" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::burggraf::BurggrafFlow:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1burggraf_1_1_burggraf_flow__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ae62dcbe89d7595c38a2320c574ab11ef" id="r_ae62dcbe89d7595c38a2320c574ab11ef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae62dcbe89d7595c38a2320c574ab11ef">BurggrafFlow</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a90a0baf41d9aca1b78fb1a74b49d9c93" id="r_a90a0baf41d9aca1b78fb1a74b49d9c93"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90a0baf41d9aca1b78fb1a74b49d9c93">~BurggrafFlow</a> () override=default</td></tr>
+<tr class="memitem:ad14815e071ed0dfd4f5b7c5977859eee" id="r_ad14815e071ed0dfd4f5b7c5977859eee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad14815e071ed0dfd4f5b7c5977859eee">initialize_fields</a> (int level, const amrex::Geometry &amp;geom) override</td></tr>
+<tr class="memitem:a435497fe07d012132f216846768771db" id="r_a435497fe07d012132f216846768771db"><td class="memTemplParams" colspan="2">template&lt;typename <a class="el" href="structkynema__sgf_1_1_factory_1_1_register.html#ae14171979850a3421c4794e501775f20">T</a>&gt; </td></tr>
+<tr class="memitem:a435497fe07d012132f216846768771db template"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a435497fe07d012132f216846768771db">compute_error</a> (const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;)</td></tr>
+<tr class="memitem:a35772c174b3574b5132cb4de037275f7" id="r_a35772c174b3574b5132cb4de037275f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35772c174b3574b5132cb4de037275f7">apply_lid_boundary_condition</a> ()</td></tr>
+<tr class="memitem:ae90be54da192565877ed5ccd43397584" id="r_ae90be54da192565877ed5ccd43397584"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae90be54da192565877ed5ccd43397584">post_init_actions</a> () override</td></tr>
+<tr class="memitem:aa884a62419dbc8447a7c2ff2ace7258a" id="r_aa884a62419dbc8447a7c2ff2ace7258a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa884a62419dbc8447a7c2ff2ace7258a">post_regrid_actions</a> () override</td></tr>
+<tr class="memitem:add87deefcfc078b853020efd1a9a4cf8" id="r_add87deefcfc078b853020efd1a9a4cf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add87deefcfc078b853020efd1a9a4cf8">pre_advance_work</a> () override</td></tr>
+<tr class="memitem:af14193c6ff7a63f476f321f3f2b605ef" id="r_af14193c6ff7a63f476f321f3f2b605ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af14193c6ff7a63f476f321f3f2b605ef">post_advance_work</a> () override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a3ab4389d69874aaa2012a03bbb9f45b1" id="r_a3ab4389d69874aaa2012a03bbb9f45b1"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ab4389d69874aaa2012a03bbb9f45b1">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ad444a15fcede77312a450f43b4dec8c9" id="r_ad444a15fcede77312a450f43b4dec8c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad444a15fcede77312a450f43b4dec8c9">output_error</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a00afcb4c6ef2674f3ff8b16aca602f89" id="r_a00afcb4c6ef2674f3ff8b16aca602f89"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00afcb4c6ef2674f3ff8b16aca602f89">m_time</a></td></tr>
+<tr class="memitem:a9dd05c8c3d8d472a87ffc1d3de7a6588" id="r_a9dd05c8c3d8d472a87ffc1d3de7a6588"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9dd05c8c3d8d472a87ffc1d3de7a6588">m_repo</a></td></tr>
+<tr class="memitem:a801bb6530e2a566ee08b91cf914d4b6f" id="r_a801bb6530e2a566ee08b91cf914d4b6f"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a801bb6530e2a566ee08b91cf914d4b6f">m_mesh</a></td></tr>
+<tr class="memitem:a417d76993bec6c8a6a2ede803c81b58b" id="r_a417d76993bec6c8a6a2ede803c81b58b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a417d76993bec6c8a6a2ede803c81b58b">m_velocity</a></td></tr>
+<tr class="memitem:aace75da928311796567de6f6d3ba79b4" id="r_aace75da928311796567de6f6d3ba79b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aace75da928311796567de6f6d3ba79b4">m_density</a></td></tr>
+<tr class="memitem:a5ffdbb8c8b3eddfb3da5116215eb76f3" id="r_a5ffdbb8c8b3eddfb3da5116215eb76f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ffdbb8c8b3eddfb3da5116215eb76f3">m_source</a></td></tr>
+<tr class="memitem:a6fc60806ae8fda0722b92c07206ecc8a" id="r_a6fc60806ae8fda0722b92c07206ecc8a"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fc60806ae8fda0722b92c07206ecc8a">m_rho</a> {1.0_rt}</td></tr>
+<tr class="memdesc:a6fc60806ae8fda0722b92c07206ecc8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">initial density value  <br /></td></tr>
+<tr class="memitem:ab1a3cf3af015ff54ccedea279039ca99" id="r_ab1a3cf3af015ff54ccedea279039ca99"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1a3cf3af015ff54ccedea279039ca99">m_w</a> {18}</td></tr>
+<tr class="memdesc:ab1a3cf3af015ff54ccedea279039ca99"><td class="mdescLeft">&#160;</td><td class="mdescRight">output precision  <br /></td></tr>
+<tr class="memitem:a058d192b40e645baace0bc8eb8bc4f00" id="r_a058d192b40e645baace0bc8eb8bc4f00"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a058d192b40e645baace0bc8eb8bc4f00">m_output_fname</a> {&quot;burggraf.log&quot;}</td></tr>
+<tr class="memdesc:a058d192b40e645baace0bc8eb8bc4f00"><td class="mdescLeft">&#160;</td><td class="mdescRight">error log file  <br /></td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae62dcbe89d7595c38a2320c574ab11ef" name="ae62dcbe89d7595c38a2320c574ab11ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae62dcbe89d7595c38a2320c574ab11ef">&#9670;&#160;</a></span>BurggrafFlow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::burggraf::BurggrafFlow::BurggrafFlow </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a90a0baf41d9aca1b78fb1a74b49d9c93" name="a90a0baf41d9aca1b78fb1a74b49d9c93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90a0baf41d9aca1b78fb1a74b49d9c93">&#9670;&#160;</a></span>~BurggrafFlow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::burggraf::BurggrafFlow::~BurggrafFlow </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a35772c174b3574b5132cb4de037275f7" name="a35772c174b3574b5132cb4de037275f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35772c174b3574b5132cb4de037275f7">&#9670;&#160;</a></span>apply_lid_boundary_condition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::burggraf::BurggrafFlow::apply_lid_boundary_condition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a435497fe07d012132f216846768771db" name="a435497fe07d012132f216846768771db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a435497fe07d012132f216846768771db">&#9670;&#160;</a></span>compute_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="structkynema__sgf_1_1_factory_1_1_register.html#ae14171979850a3421c4794e501775f20">T</a>&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::burggraf::BurggrafFlow::compute_error </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>field</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3ab4389d69874aaa2012a03bbb9f45b1" name="a3ab4389d69874aaa2012a03bbb9f45b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ab4389d69874aaa2012a03bbb9f45b1">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::burggraf::BurggrafFlow::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad14815e071ed0dfd4f5b7c5977859eee" name="ad14815e071ed0dfd4f5b7c5977859eee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad14815e071ed0dfd4f5b7c5977859eee">&#9670;&#160;</a></span>initialize_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::burggraf::BurggrafFlow::initialize_fields </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad444a15fcede77312a450f43b4dec8c9" name="ad444a15fcede77312a450f43b4dec8c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad444a15fcede77312a450f43b4dec8c9">&#9670;&#160;</a></span>output_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::burggraf::BurggrafFlow::output_error </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af14193c6ff7a63f476f321f3f2b605ef" name="af14193c6ff7a63f476f321f3f2b605ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af14193c6ff7a63f476f321f3f2b605ef">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::burggraf::BurggrafFlow::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae90be54da192565877ed5ccd43397584" name="ae90be54da192565877ed5ccd43397584"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae90be54da192565877ed5ccd43397584">&#9670;&#160;</a></span>post_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::burggraf::BurggrafFlow::post_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa884a62419dbc8447a7c2ff2ace7258a" name="aa884a62419dbc8447a7c2ff2ace7258a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa884a62419dbc8447a7c2ff2ace7258a">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::burggraf::BurggrafFlow::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="add87deefcfc078b853020efd1a9a4cf8" name="add87deefcfc078b853020efd1a9a4cf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add87deefcfc078b853020efd1a9a4cf8">&#9670;&#160;</a></span>pre_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::burggraf::BurggrafFlow::pre_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="aace75da928311796567de6f6d3ba79b4" name="aace75da928311796567de6f6d3ba79b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aace75da928311796567de6f6d3ba79b4">&#9670;&#160;</a></span>m_density</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::burggraf::BurggrafFlow::m_density</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a801bb6530e2a566ee08b91cf914d4b6f" name="a801bb6530e2a566ee08b91cf914d4b6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a801bb6530e2a566ee08b91cf914d4b6f">&#9670;&#160;</a></span>m_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::AmrCore&amp; kynema_sgf::burggraf::BurggrafFlow::m_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a058d192b40e645baace0bc8eb8bc4f00" name="a058d192b40e645baace0bc8eb8bc4f00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a058d192b40e645baace0bc8eb8bc4f00">&#9670;&#160;</a></span>m_output_fname</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::burggraf::BurggrafFlow::m_output_fname {&quot;burggraf.log&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>error log file </p>
+
+</div>
+</div>
+<a id="a9dd05c8c3d8d472a87ffc1d3de7a6588" name="a9dd05c8c3d8d472a87ffc1d3de7a6588"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dd05c8c3d8d472a87ffc1d3de7a6588">&#9670;&#160;</a></span>m_repo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; kynema_sgf::burggraf::BurggrafFlow::m_repo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6fc60806ae8fda0722b92c07206ecc8a" name="a6fc60806ae8fda0722b92c07206ecc8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fc60806ae8fda0722b92c07206ecc8a">&#9670;&#160;</a></span>m_rho</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::burggraf::BurggrafFlow::m_rho {1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>initial density value </p>
+
+</div>
+</div>
+<a id="a5ffdbb8c8b3eddfb3da5116215eb76f3" name="a5ffdbb8c8b3eddfb3da5116215eb76f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ffdbb8c8b3eddfb3da5116215eb76f3">&#9670;&#160;</a></span>m_source</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::burggraf::BurggrafFlow::m_source</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a00afcb4c6ef2674f3ff8b16aca602f89" name="a00afcb4c6ef2674f3ff8b16aca602f89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00afcb4c6ef2674f3ff8b16aca602f89">&#9670;&#160;</a></span>m_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a>&amp; kynema_sgf::burggraf::BurggrafFlow::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a417d76993bec6c8a6a2ede803c81b58b" name="a417d76993bec6c8a6a2ede803c81b58b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a417d76993bec6c8a6a2ede803c81b58b">&#9670;&#160;</a></span>m_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::burggraf::BurggrafFlow::m_velocity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab1a3cf3af015ff54ccedea279039ca99" name="ab1a3cf3af015ff54ccedea279039ca99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1a3cf3af015ff54ccedea279039ca99">&#9670;&#160;</a></span>m_w</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int kynema_sgf::burggraf::BurggrafFlow::m_w {18}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>output precision </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/<a class="el" href="_burggraf_flow_8_h_source.html">BurggrafFlow.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/<a class="el" href="_burggraf_flow_8cpp.html">BurggrafFlow.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

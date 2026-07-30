@@ -1,0 +1,49 @@
+<map id="kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;" name="kynema_sgf::pde::AdvectionOp&lt; PDE, fvm::Godunov, typename std::enable_if_t&lt; std::is_base_of_v&lt; ScalarTransport, PDE &gt; &gt; &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="2573,365,2853,449"/>
+<area shape="rect" id="Node000002" href="$structkynema__sgf_1_1pde_1_1_p_d_e_fields.html" title=" " alt="" coords="2083,394,2287,419"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2300,404,2573,404,2573,409,2300,409"/>
+<area shape="rect" id="Node000003" href="$classkynema__sgf_1_1_field_repo.html" title=" " alt="" coords="1421,371,1593,397"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1585,396,1624,401,1742,409,1834,410,2045,405,2082,405,2082,410,2045,411,1834,415,1742,415,1624,407,1584,402"/>
+<area shape="rect" id="Node000010" href="$classkynema__sgf_1_1_field.html" title=" " alt="" coords="1781,279,1920,305"/>
+<area shape="poly" id="edge10_Node000010_Node000003" title=" " alt="" coords="1606,394,1670,393,1702,388,1732,380,1765,365,1794,344,1837,303,1840,307,1797,348,1768,369,1734,385,1703,394,1670,398,1607,400"/>
+<area shape="rect" id="Node000018" href="$classkynema__sgf_1_1_scratch_field.html" title=" " alt="" coords="1757,230,1944,255"/>
+<area shape="poly" id="edge24_Node000018_Node000003" title=" " alt="" coords="1560,364,1643,332,1689,310,1732,286,1743,275,1756,264,1783,253,1786,258,1759,269,1747,279,1735,290,1691,315,1645,337,1562,369"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="998,364,1161,404"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1174,381,1421,381,1421,387,1174,387"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="618,287,705,313"/>
+<area shape="poly" id="edge27_Node000001_Node000005" title=" " alt="" coords="688,320,751,372,844,434,898,463,956,486,1017,502,1078,508,2186,508,2289,502,2392,488,2489,468,2575,446,2577,451,2490,473,2392,493,2289,508,2186,513,1078,513,1016,507,955,491,896,468,841,439,748,376,684,324"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="711,315,793,339,899,359,998,373,997,378,899,364,791,344,709,320"/>
+<area shape="poly" id="edge11_Node000010_Node000005" title=" " alt="" coords="718,297,1389,296,1781,291,1781,296,1389,301,718,303"/>
+<area shape="rect" id="Node000012" href="$structkynema__sgf_1_1_field_info.html" title=" " alt="" coords="997,186,1161,211"/>
+<area shape="poly" id="edge14_Node000012_Node000005" title=" " alt="" coords="691,278,737,252,791,229,844,216,897,207,997,198,997,203,898,212,845,221,793,235,740,257,694,282"/>
+<area shape="poly" id="edge25_Node000018_Node000005" title=" " alt="" coords="718,289,792,280,1067,261,1339,249,1757,241,1757,246,1339,255,1067,267,792,285,719,294"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="146,280,285,320"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="298,297,618,297,618,303,298,303"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="585,496,737,536"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="738,489,1014,401,1016,407,739,494"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="196,503,235,529"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="249,513,585,513,585,519,249,519"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="5,189,44,214"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="37,226,68,290,91,324,120,353,145,365,189,382,314,421,586,494,584,499,313,426,187,387,143,370,117,357,87,327,63,293,32,228"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="137,74,294,99"/>
+<area shape="poly" id="edge18_Node000015_Node000009" title=" " alt="" coords="43,176,75,141,117,110,147,97,149,102,120,114,79,145,47,179"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="355,182,512,207"/>
+<area shape="poly" id="edge20_Node000016_Node000009" title=" " alt="" coords="58,198,354,193,354,199,58,203"/>
+<area shape="poly" id="edge21_Node000001_Node000010" title=" " alt="" coords="1933,279,1989,276,2046,277,2187,295,2329,318,2574,370,2573,375,2328,324,2186,300,2045,283,1989,281,1934,284"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="1875,313,1916,349,1942,366,1969,380,2025,397,2083,404,2082,409,2024,402,1967,385,1939,371,1913,353,1872,317"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="1413,169,1600,209"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="1584,211,1758,264,1803,277,1801,282,1757,269,1583,216"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="1175,194,1413,189,1413,194,1175,199"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="555,71,768,111"/>
+<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="782,86,878,95,927,105,974,120,1002,134,1028,151,1067,184,1063,188,1025,155,1000,138,972,125,926,111,877,100,782,91"/>
+<area shape="rect" id="Node000014" href="$classkynema__sgf_1_1_field_fill_patch_ops_base.html" title=" " alt="" coords="119,124,312,164"/>
+<area shape="poly" id="edge16_Node000013_Node000014" title=" " alt="" coords="326,137,425,130,530,117,579,108,580,113,531,123,426,135,326,142"/>
+<area shape="poly" id="edge17_Node000013_Node000015" title=" " alt="" coords="308,86,336,87,555,88,555,93,336,92,308,92"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="2091,115,2278,155"/>
+<area shape="poly" id="edge26_Node000017_Node000015" title=" " alt="" coords="260,66,335,44,426,30,497,24,660,25,1852,25,1895,28,1937,35,2020,57,2092,86,2148,112,2146,117,2090,90,2018,62,1936,40,1894,33,1852,31,660,31,497,30,426,35,337,49,261,71"/>
+<area shape="poly" id="edge19_Node000011_Node000016" title=" " alt="" coords="525,187,792,175,1185,164,1287,160,1332,160,1390,164,1413,167,1413,172,1389,169,1332,165,1288,166,1185,169,792,180,526,192"/>
+<area shape="poly" id="edge22_Node000001_Node000017" title=" " alt="" coords="2292,149,2353,163,2420,182,2487,208,2551,240,2590,268,2625,300,2682,363,2678,366,2622,303,2586,272,2548,245,2485,213,2418,188,2352,168,2291,154"/>
+<area shape="poly" id="edge23_Node000017_Node000018" title=" " alt="" coords="1903,223,2121,152,2122,157,1905,228"/>
+<area shape="rect" id="Node000019" href="$structkynema__sgf_1_1pde_1_1_advection_op.html" title=" " alt="" coords="2069,593,2300,633"/>
+<area shape="poly" id="edge28_Node000001_Node000019" title=" " alt="" coords="2287,633,2348,640,2415,640,2484,631,2517,622,2548,610,2573,595,2596,577,2636,535,2668,489,2691,447,2695,450,2672,492,2640,538,2599,581,2576,599,2551,614,2518,627,2485,637,2416,646,2348,645,2286,638"/>
+</map>

@@ -1,0 +1,654 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::diagnostics Namespace Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::diagnostics Namespace Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/namespacekynema__sgf_1_1diagnostics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="diagnostics-namespace-reference">
+<h1>diagnostics Namespace Reference<a class="headerlink" href="#diagnostics-namespace-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::diagnostics Namespace Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1diagnostics.html">diagnostics</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::diagnostics Namespace Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a8cb51ccbbcf2e635ccce1b28490cb346" id="r_a8cb51ccbbcf2e635ccce1b28490cb346"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cb51ccbbcf2e635ccce1b28490cb346">make_mask_addend</a> (amrex::MultiFab &amp;mfab, const amrex::MultiFab &amp;mfab_mask, amrex::Real mask_val, amrex::Real set_val)</td></tr>
+<tr class="memitem:a3e48f5ad6f0c14ce140e50eb679bd18f" id="r_a3e48f5ad6f0c14ce140e50eb679bd18f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e48f5ad6f0c14ce140e50eb679bd18f">get_field_extrema</a> (amrex::Real &amp;field_max_val, amrex::Real &amp;field_min_val, const <a class="el" href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a> &amp;field, int comp, int ncomp, int nghost)</td></tr>
+<tr class="memitem:a26967b327be7db52c2f26f7e5f2cc12b" id="r_a26967b327be7db52c2f26f7e5f2cc12b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26967b327be7db52c2f26f7e5f2cc12b">get_field_extrema</a> (amrex::Real &amp;field_max_val, amrex::Real &amp;field_min_val, const <a class="el" href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a> &amp;field, const <a class="el" href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a> &amp;field_mask, amrex::Real mask_val, int comp, int ncomp, int nghost)</td></tr>
+<tr class="memitem:a9e0fead1e48f476b29dc60d2dcd7a6eb" id="r_a9e0fead1e48f476b29dc60d2dcd7a6eb"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e0fead1e48f476b29dc60d2dcd7a6eb">get_vel_max</a> (const amrex::MultiFab &amp;vel, const amrex::iMultiFab &amp;level_mask, int vdir, amrex::Real factor)</td></tr>
+<tr class="memitem:a811ec746e63d275e2cdf38fcfdef2818" id="r_a811ec746e63d275e2cdf38fcfdef2818"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a811ec746e63d275e2cdf38fcfdef2818">get_vel_max</a> (const amrex::MultiFab &amp;vel, const amrex::iMultiFab &amp;level_mask, int vdir)</td></tr>
+<tr class="memitem:aaca39ea5358ee8d1ce283e54aef17c28" id="r_aaca39ea5358ee8d1ce283e54aef17c28"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaca39ea5358ee8d1ce283e54aef17c28">get_vel_min</a> (const amrex::MultiFab &amp;vel, const amrex::iMultiFab &amp;level_mask, int vdir)</td></tr>
+<tr class="memitem:a1d2edf6fa9d133154012c6eabe316fcb" id="r_a1d2edf6fa9d133154012c6eabe316fcb"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d2edf6fa9d133154012c6eabe316fcb">get_vel_loc</a> (const amrex::MultiFab &amp;vel, const amrex::iMultiFab &amp;level_mask, int vdir, int ldir, amrex::Real vel_max, amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; problo, amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; dx)</td></tr>
+<tr class="memitem:ab4a2d59059065799105fd240f5a22b27" id="r_ab4a2d59059065799105fd240f5a22b27"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4a2d59059065799105fd240f5a22b27">get_macvel_max</a> (const amrex::MultiFab &amp;vel, const amrex::iMultiFab &amp;level_mask, int vdir, amrex::Real factor)</td></tr>
+<tr class="memitem:ad5bad618cf32eb0313dde4ef3c74e5ce" id="r_ad5bad618cf32eb0313dde4ef3c74e5ce"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5bad618cf32eb0313dde4ef3c74e5ce">get_macvel_max</a> (const amrex::MultiFab &amp;vel, const amrex::iMultiFab &amp;level_mask, int vdir)</td></tr>
+<tr class="memitem:aa29e3bc9db1239f70894140ab1346b9d" id="r_aa29e3bc9db1239f70894140ab1346b9d"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa29e3bc9db1239f70894140ab1346b9d">get_macvel_min</a> (const amrex::MultiFab &amp;vel, const amrex::iMultiFab &amp;level_mask, int vdir)</td></tr>
+<tr class="memitem:a541620da60bcf6b65262dbacbc8c5772" id="r_a541620da60bcf6b65262dbacbc8c5772"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a541620da60bcf6b65262dbacbc8c5772">get_macvel_loc</a> (const amrex::MultiFab &amp;macvel, const amrex::iMultiFab &amp;level_mask, int vdir, int ldir, amrex::Real vel_max, amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; problo, amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; dx)</td></tr>
+<tr class="memitem:aecb9b011d7cdc1a3aa26c7ec792d29d3" id="r_aecb9b011d7cdc1a3aa26c7ec792d29d3"><td class="memItemLeft" align="right" valign="top">amrex::Array&lt; amrex::Real, 24 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecb9b011d7cdc1a3aa26c7ec792d29d3">PrintMaxVelLocations</a> (const <a class="el" href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a> &amp;repo, const std::string &amp;header)</td></tr>
+<tr class="memitem:ab46c3671acba9d83241c14351888e2dc" id="r_ab46c3671acba9d83241c14351888e2dc"><td class="memItemLeft" align="right" valign="top">amrex::Array&lt; amrex::Real, 24 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab46c3671acba9d83241c14351888e2dc">PrintMaxMACVelLocations</a> (const <a class="el" href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a> &amp;repo, const std::string &amp;header)</td></tr>
+</table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a26967b327be7db52c2f26f7e5f2cc12b" name="a26967b327be7db52c2f26f7e5f2cc12b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26967b327be7db52c2f26f7e5f2cc12b">&#9670;&#160;</a></span>get_field_extrema() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::diagnostics::get_field_extrema </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>field_max_val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>field_min_val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>field</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>field_mask</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>mask_val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>comp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ncomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e48f5ad6f0c14ce140e50eb679bd18f" name="a3e48f5ad6f0c14ce140e50eb679bd18f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e48f5ad6f0c14ce140e50eb679bd18f">&#9670;&#160;</a></span>get_field_extrema() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::diagnostics::get_field_extrema </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>field_max_val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>field_min_val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>field</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>comp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ncomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nghost</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a541620da60bcf6b65262dbacbc8c5772" name="a541620da60bcf6b65262dbacbc8c5772"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a541620da60bcf6b65262dbacbc8c5772">&#9670;&#160;</a></span>get_macvel_loc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::diagnostics::get_macvel_loc </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>macvel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::iMultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>level_mask</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>vdir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ldir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>vel_max</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt;</td>          <td class="paramname"><span class="paramname"><em>problo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt;</td>          <td class="paramname"><span class="paramname"><em>dx</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad5bad618cf32eb0313dde4ef3c74e5ce" name="ad5bad618cf32eb0313dde4ef3c74e5ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5bad618cf32eb0313dde4ef3c74e5ce">&#9670;&#160;</a></span>get_macvel_max() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::diagnostics::get_macvel_max </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::iMultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>level_mask</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>vdir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4a2d59059065799105fd240f5a22b27" name="ab4a2d59059065799105fd240f5a22b27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4a2d59059065799105fd240f5a22b27">&#9670;&#160;</a></span>get_macvel_max() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::diagnostics::get_macvel_max </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::iMultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>level_mask</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>vdir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>factor</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa29e3bc9db1239f70894140ab1346b9d" name="aa29e3bc9db1239f70894140ab1346b9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa29e3bc9db1239f70894140ab1346b9d">&#9670;&#160;</a></span>get_macvel_min()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::diagnostics::get_macvel_min </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::iMultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>level_mask</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>vdir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1d2edf6fa9d133154012c6eabe316fcb" name="a1d2edf6fa9d133154012c6eabe316fcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d2edf6fa9d133154012c6eabe316fcb">&#9670;&#160;</a></span>get_vel_loc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::diagnostics::get_vel_loc </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::iMultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>level_mask</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>vdir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ldir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>vel_max</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt;</td>          <td class="paramname"><span class="paramname"><em>problo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt;</td>          <td class="paramname"><span class="paramname"><em>dx</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a811ec746e63d275e2cdf38fcfdef2818" name="a811ec746e63d275e2cdf38fcfdef2818"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a811ec746e63d275e2cdf38fcfdef2818">&#9670;&#160;</a></span>get_vel_max() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::diagnostics::get_vel_max </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::iMultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>level_mask</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>vdir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9e0fead1e48f476b29dc60d2dcd7a6eb" name="a9e0fead1e48f476b29dc60d2dcd7a6eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e0fead1e48f476b29dc60d2dcd7a6eb">&#9670;&#160;</a></span>get_vel_max() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::diagnostics::get_vel_max </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::iMultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>level_mask</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>vdir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>factor</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaca39ea5358ee8d1ce283e54aef17c28" name="aaca39ea5358ee8d1ce283e54aef17c28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaca39ea5358ee8d1ce283e54aef17c28">&#9670;&#160;</a></span>get_vel_min()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::diagnostics::get_vel_min </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::iMultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>level_mask</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>vdir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8cb51ccbbcf2e635ccce1b28490cb346" name="a8cb51ccbbcf2e635ccce1b28490cb346"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cb51ccbbcf2e635ccce1b28490cb346">&#9670;&#160;</a></span>make_mask_addend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::diagnostics::make_mask_addend </td>
+          <td>(</td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab_mask</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>mask_val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>set_val</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab46c3671acba9d83241c14351888e2dc" name="ab46c3671acba9d83241c14351888e2dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab46c3671acba9d83241c14351888e2dc">&#9670;&#160;</a></span>PrintMaxMACVelLocations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Array&lt; amrex::Real, 24 &gt; kynema_sgf::diagnostics::PrintMaxMACVelLocations </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>repo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>header</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aecb9b011d7cdc1a3aa26c7ec792d29d3" name="aecb9b011d7cdc1a3aa26c7ec792d29d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecb9b011d7cdc1a3aa26c7ec792d29d3">&#9670;&#160;</a></span>PrintMaxVelLocations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Array&lt; amrex::Real, 24 &gt; kynema_sgf::diagnostics::PrintMaxVelLocations </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>repo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>header</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

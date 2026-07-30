@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/DamBreak.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/DamBreak.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_dam_break_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-physics-multiphase-dambreak-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/DamBreak.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-physics-multiphase-dambreak-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/DamBreak.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_ddcea0517a7b80a55be019748a9389a4.html">physics</a></li><li class="navelem"><a href="dir_ea84defc78a3d6a93c5f3fc502908131.html">multiphase</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">DamBreak.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_dam_break_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef DAMBREAK_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define DAMBREAK_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_physics_8_h.html">src/core/Physics.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_field_8_h.html">src/core/Field.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_dam_break.html">   17</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_dam_break.html#adfe40127cba9c8676eb86ef85f5555a8">DamBreak</a> : <span class="keyword">public</span> Physics::Register&lt;DamBreak&gt;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_dam_break.html#a899ca76aa44f27e6fc7ba34b49248da3">   20</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1_dam_break.html#a899ca76aa44f27e6fc7ba34b49248da3">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;DamBreak&quot;</span>; }</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1_dam_break.html#adfe40127cba9c8676eb86ef85f5555a8">DamBreak</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_dam_break.html#a58cbd389450c1f482f38c14da73500c2">   24</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_dam_break.html#a58cbd389450c1f482f38c14da73500c2">~DamBreak</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_dam_break.html#aa77d043727463d088930bc7ab7fc3c3e">initialize_fields</a>(<span class="keywordtype">int</span> level, <span class="keyword">const</span> amrex::Geometry&amp; geom) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_dam_break.html#a9183271f25e3edb8d695644394ccc319">   30</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_dam_break.html#a9183271f25e3edb8d695644394ccc319">post_init_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_dam_break.html#a7df030ee9927fa14a706a17b9e7c6662">   32</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_dam_break.html#a7df030ee9927fa14a706a17b9e7c6662">post_regrid_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_dam_break.html#a9bd87da95ce1a27c26b2ea041f7d3f2d">   34</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_dam_break.html#a9bd87da95ce1a27c26b2ea041f7d3f2d">pre_advance_work</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_dam_break.html#ab08ebcb010497239cd5a19419008ecf4">   36</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_dam_break.html#ab08ebcb010497239cd5a19419008ecf4">post_advance_work</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_dam_break.html#abfec3753cfe57b0fdafe4838f9c541a4">   39</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_dam_break.html#abfec3753cfe57b0fdafe4838f9c541a4">m_sim</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_dam_break.html#af92cc67a760aa13181f00feea18c96c6">   41</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_dam_break.html#af92cc67a760aa13181f00feea18c96c6">m_velocity</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_dam_break.html#afe8cdf3af9bd71c52ec09f4672d8e8d1">   42</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_dam_break.html#afe8cdf3af9bd71c52ec09f4672d8e8d1">m_levelset</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_dam_break.html#ab388ddb20075a2ca367b4aa658ef34c5">   43</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_dam_break.html#ab388ddb20075a2ca367b4aa658ef34c5">m_density</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_dam_break.html#ab25d241668386fdf28bbaeb2cda870ae">   46</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_dam_break.html#ab25d241668386fdf28bbaeb2cda870ae">m_loc</a>{0.0_rt, 0.0_rt, 0.0_rt};</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_dam_break.html#a57a1c806f316f45679753e06b522b77d">   49</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_dam_break.html#a57a1c806f316f45679753e06b522b77d">m_width</a>{0.1_rt};</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_dam_break.html#a2ada99a24f107796ae2c84f033752f6e">   52</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_dam_break.html#a2ada99a24f107796ae2c84f033752f6e">m_height</a>{0.25_rt};</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#endif </span><span class="comment">/* DamBreak_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_field_8_h_html"><div class="ttname"><a href="_field_8_h.html">Field.H</a></div></div>
+<div class="ttc" id="a_physics_8_h_html"><div class="ttname"><a href="_physics_8_h.html">Physics.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_dam_break_html_a2ada99a24f107796ae2c84f033752f6e"><div class="ttname"><a href="classkynema__sgf_1_1_dam_break.html#a2ada99a24f107796ae2c84f033752f6e">kynema_sgf::DamBreak::m_height</a></div><div class="ttdeci">amrex::Real m_height</div><div class="ttdoc">dam height value</div><div class="ttdef"><b>Definition</b> DamBreak.H:52</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_dam_break_html_a57a1c806f316f45679753e06b522b77d"><div class="ttname"><a href="classkynema__sgf_1_1_dam_break.html#a57a1c806f316f45679753e06b522b77d">kynema_sgf::DamBreak::m_width</a></div><div class="ttdeci">amrex::Real m_width</div><div class="ttdoc">dam width value</div><div class="ttdef"><b>Definition</b> DamBreak.H:49</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_dam_break_html_a58cbd389450c1f482f38c14da73500c2"><div class="ttname"><a href="classkynema__sgf_1_1_dam_break.html#a58cbd389450c1f482f38c14da73500c2">kynema_sgf::DamBreak::~DamBreak</a></div><div class="ttdeci">~DamBreak() override=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_dam_break_html_a7df030ee9927fa14a706a17b9e7c6662"><div class="ttname"><a href="classkynema__sgf_1_1_dam_break.html#a7df030ee9927fa14a706a17b9e7c6662">kynema_sgf::DamBreak::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdef"><b>Definition</b> DamBreak.H:32</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_dam_break_html_a899ca76aa44f27e6fc7ba34b49248da3"><div class="ttname"><a href="classkynema__sgf_1_1_dam_break.html#a899ca76aa44f27e6fc7ba34b49248da3">kynema_sgf::DamBreak::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> DamBreak.H:20</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_dam_break_html_a9183271f25e3edb8d695644394ccc319"><div class="ttname"><a href="classkynema__sgf_1_1_dam_break.html#a9183271f25e3edb8d695644394ccc319">kynema_sgf::DamBreak::post_init_actions</a></div><div class="ttdeci">void post_init_actions() override</div><div class="ttdef"><b>Definition</b> DamBreak.H:30</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_dam_break_html_a9bd87da95ce1a27c26b2ea041f7d3f2d"><div class="ttname"><a href="classkynema__sgf_1_1_dam_break.html#a9bd87da95ce1a27c26b2ea041f7d3f2d">kynema_sgf::DamBreak::pre_advance_work</a></div><div class="ttdeci">void pre_advance_work() override</div><div class="ttdef"><b>Definition</b> DamBreak.H:34</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_dam_break_html_aa77d043727463d088930bc7ab7fc3c3e"><div class="ttname"><a href="classkynema__sgf_1_1_dam_break.html#aa77d043727463d088930bc7ab7fc3c3e">kynema_sgf::DamBreak::initialize_fields</a></div><div class="ttdeci">void initialize_fields(int level, const amrex::Geometry &amp;geom) override</div><div class="ttdoc">Initialize the levelset and velocity fields for Dam Break simulations.</div><div class="ttdef"><b>Definition</b> DamBreak.cpp:31</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_dam_break_html_ab08ebcb010497239cd5a19419008ecf4"><div class="ttname"><a href="classkynema__sgf_1_1_dam_break.html#ab08ebcb010497239cd5a19419008ecf4">kynema_sgf::DamBreak::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> DamBreak.H:36</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_dam_break_html_ab25d241668386fdf28bbaeb2cda870ae"><div class="ttname"><a href="classkynema__sgf_1_1_dam_break.html#ab25d241668386fdf28bbaeb2cda870ae">kynema_sgf::DamBreak::m_loc</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_loc</div><div class="ttdoc">Initial DamBreak location.</div><div class="ttdef"><b>Definition</b> DamBreak.H:46</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_dam_break_html_ab388ddb20075a2ca367b4aa658ef34c5"><div class="ttname"><a href="classkynema__sgf_1_1_dam_break.html#ab388ddb20075a2ca367b4aa658ef34c5">kynema_sgf::DamBreak::m_density</a></div><div class="ttdeci">Field &amp; m_density</div><div class="ttdef"><b>Definition</b> DamBreak.H:43</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_dam_break_html_abfec3753cfe57b0fdafe4838f9c541a4"><div class="ttname"><a href="classkynema__sgf_1_1_dam_break.html#abfec3753cfe57b0fdafe4838f9c541a4">kynema_sgf::DamBreak::m_sim</a></div><div class="ttdeci">const CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> DamBreak.H:39</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_dam_break_html_adfe40127cba9c8676eb86ef85f5555a8"><div class="ttname"><a href="classkynema__sgf_1_1_dam_break.html#adfe40127cba9c8676eb86ef85f5555a8">kynema_sgf::DamBreak::DamBreak</a></div><div class="ttdeci">DamBreak(CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> DamBreak.cpp:14</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_dam_break_html_af92cc67a760aa13181f00feea18c96c6"><div class="ttname"><a href="classkynema__sgf_1_1_dam_break.html#af92cc67a760aa13181f00feea18c96c6">kynema_sgf::DamBreak::m_velocity</a></div><div class="ttdeci">Field &amp; m_velocity</div><div class="ttdef"><b>Definition</b> DamBreak.H:41</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_dam_break_html_afe8cdf3af9bd71c52ec09f4672d8e8d1"><div class="ttname"><a href="classkynema__sgf_1_1_dam_break.html#afe8cdf3af9bd71c52ec09f4672d8e8d1">kynema_sgf::DamBreak::m_levelset</a></div><div class="ttdeci">Field &amp; m_levelset</div><div class="ttdef"><b>Definition</b> DamBreak.H:42</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

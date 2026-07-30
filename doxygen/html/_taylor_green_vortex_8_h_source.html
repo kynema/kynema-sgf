@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/TaylorGreenVortex.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/TaylorGreenVortex.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_taylor_green_vortex_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-physics-taylorgreenvortex-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/TaylorGreenVortex.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-physics-taylorgreenvortex-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/TaylorGreenVortex.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_ddcea0517a7b80a55be019748a9389a4.html">physics</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">TaylorGreenVortex.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_taylor_green_vortex_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef TAYLORGREENVORTEX_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define TAYLORGREENVORTEX_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_physics_8_h.html">src/core/Physics.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_field_8_h.html">src/core/Field.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span></div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_taylor_green_vortex.html">   15</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_taylor_green_vortex.html#a0dbd948358df252a89bd1ca25eaf36e4">TaylorGreenVortex</a> : <span class="keyword">public</span> Physics::Register&lt;TaylorGreenVortex&gt;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_taylor_green_vortex.html#a4584db3d7bce5c9cab3ff26b8ab9d420">   18</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1_taylor_green_vortex.html#a4584db3d7bce5c9cab3ff26b8ab9d420">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;TaylorGreenVortex&quot;</span>; }</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1_taylor_green_vortex.html#a0dbd948358df252a89bd1ca25eaf36e4">TaylorGreenVortex</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_taylor_green_vortex.html#ab93502e28e13403acf72f7181e6db6e7">   22</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_taylor_green_vortex.html#ab93502e28e13403acf72f7181e6db6e7">~TaylorGreenVortex</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_taylor_green_vortex.html#acf646a3f6248cc8feaece938918b03af">initialize_fields</a>(<span class="keywordtype">int</span> level, <span class="keyword">const</span> amrex::Geometry&amp; geom) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_taylor_green_vortex.html#a5b6ab73afdd82c032f794ae4fab12b69">   27</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_taylor_green_vortex.html#a5b6ab73afdd82c032f794ae4fab12b69">post_init_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_taylor_green_vortex.html#a4a476cd94cedf572e5df091ea93dd9cc">   29</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_taylor_green_vortex.html#a4a476cd94cedf572e5df091ea93dd9cc">post_regrid_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_taylor_green_vortex.html#a455d577ff5698575cd8843403725a13b">   31</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_taylor_green_vortex.html#a455d577ff5698575cd8843403725a13b">pre_advance_work</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_taylor_green_vortex.html#af209baf1600e94d532e858c0f47a83ea">   33</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_taylor_green_vortex.html#af209baf1600e94d532e858c0f47a83ea">post_advance_work</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_taylor_green_vortex.html#a6a454a480f6b3ba14c1bc1801b5e6ef2">   36</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_taylor_green_vortex.html#a6a454a480f6b3ba14c1bc1801b5e6ef2">m_velocity</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_taylor_green_vortex.html#aae51b90373f0cc7a5b676ac5cd1966c4">   37</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_taylor_green_vortex.html#aae51b90373f0cc7a5b676ac5cd1966c4">m_density</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_taylor_green_vortex.html#a29a79e5b4ad372c4ec8bd6bd9ff7a6d2">   40</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_taylor_green_vortex.html#a29a79e5b4ad372c4ec8bd6bd9ff7a6d2">m_rho</a>{1.0_rt};</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>};</div>
+</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif </span><span class="comment">/* TaylorGreenVortex_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_field_8_h_html"><div class="ttname"><a href="_field_8_h.html">Field.H</a></div></div>
+<div class="ttc" id="a_physics_8_h_html"><div class="ttname"><a href="_physics_8_h.html">Physics.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_taylor_green_vortex_html_a0dbd948358df252a89bd1ca25eaf36e4"><div class="ttname"><a href="classkynema__sgf_1_1_taylor_green_vortex.html#a0dbd948358df252a89bd1ca25eaf36e4">kynema_sgf::TaylorGreenVortex::TaylorGreenVortex</a></div><div class="ttdeci">TaylorGreenVortex(const CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> TaylorGreenVortex.cpp:11</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_taylor_green_vortex_html_a29a79e5b4ad372c4ec8bd6bd9ff7a6d2"><div class="ttname"><a href="classkynema__sgf_1_1_taylor_green_vortex.html#a29a79e5b4ad372c4ec8bd6bd9ff7a6d2">kynema_sgf::TaylorGreenVortex::m_rho</a></div><div class="ttdeci">amrex::Real m_rho</div><div class="ttdoc">initial density value</div><div class="ttdef"><b>Definition</b> TaylorGreenVortex.H:40</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_taylor_green_vortex_html_a455d577ff5698575cd8843403725a13b"><div class="ttname"><a href="classkynema__sgf_1_1_taylor_green_vortex.html#a455d577ff5698575cd8843403725a13b">kynema_sgf::TaylorGreenVortex::pre_advance_work</a></div><div class="ttdeci">void pre_advance_work() override</div><div class="ttdef"><b>Definition</b> TaylorGreenVortex.H:31</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_taylor_green_vortex_html_a4584db3d7bce5c9cab3ff26b8ab9d420"><div class="ttname"><a href="classkynema__sgf_1_1_taylor_green_vortex.html#a4584db3d7bce5c9cab3ff26b8ab9d420">kynema_sgf::TaylorGreenVortex::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> TaylorGreenVortex.H:18</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_taylor_green_vortex_html_a4a476cd94cedf572e5df091ea93dd9cc"><div class="ttname"><a href="classkynema__sgf_1_1_taylor_green_vortex.html#a4a476cd94cedf572e5df091ea93dd9cc">kynema_sgf::TaylorGreenVortex::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdef"><b>Definition</b> TaylorGreenVortex.H:29</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_taylor_green_vortex_html_a5b6ab73afdd82c032f794ae4fab12b69"><div class="ttname"><a href="classkynema__sgf_1_1_taylor_green_vortex.html#a5b6ab73afdd82c032f794ae4fab12b69">kynema_sgf::TaylorGreenVortex::post_init_actions</a></div><div class="ttdeci">void post_init_actions() override</div><div class="ttdef"><b>Definition</b> TaylorGreenVortex.H:27</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_taylor_green_vortex_html_a6a454a480f6b3ba14c1bc1801b5e6ef2"><div class="ttname"><a href="classkynema__sgf_1_1_taylor_green_vortex.html#a6a454a480f6b3ba14c1bc1801b5e6ef2">kynema_sgf::TaylorGreenVortex::m_velocity</a></div><div class="ttdeci">Field &amp; m_velocity</div><div class="ttdef"><b>Definition</b> TaylorGreenVortex.H:36</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_taylor_green_vortex_html_aae51b90373f0cc7a5b676ac5cd1966c4"><div class="ttname"><a href="classkynema__sgf_1_1_taylor_green_vortex.html#aae51b90373f0cc7a5b676ac5cd1966c4">kynema_sgf::TaylorGreenVortex::m_density</a></div><div class="ttdeci">Field &amp; m_density</div><div class="ttdef"><b>Definition</b> TaylorGreenVortex.H:37</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_taylor_green_vortex_html_ab93502e28e13403acf72f7181e6db6e7"><div class="ttname"><a href="classkynema__sgf_1_1_taylor_green_vortex.html#ab93502e28e13403acf72f7181e6db6e7">kynema_sgf::TaylorGreenVortex::~TaylorGreenVortex</a></div><div class="ttdeci">~TaylorGreenVortex() override=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_taylor_green_vortex_html_acf646a3f6248cc8feaece938918b03af"><div class="ttname"><a href="classkynema__sgf_1_1_taylor_green_vortex.html#acf646a3f6248cc8feaece938918b03af">kynema_sgf::TaylorGreenVortex::initialize_fields</a></div><div class="ttdeci">void initialize_fields(int level, const amrex::Geometry &amp;geom) override</div><div class="ttdoc">Initialize the temperature and velocity fields for BoussinesqBubble simulations.</div><div class="ttdef"><b>Definition</b> TaylorGreenVortex.cpp:22</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_taylor_green_vortex_html_af209baf1600e94d532e858c0f47a83ea"><div class="ttname"><a href="classkynema__sgf_1_1_taylor_green_vortex.html#af209baf1600e94d532e858c0f47a83ea">kynema_sgf::TaylorGreenVortex::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> TaylorGreenVortex.H:33</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

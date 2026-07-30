@@ -1,0 +1,559 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::Factory&amp;lt; Base, Args &amp;gt; Struct Template Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::Factory&amp;lt; Base, Args &amp;gt; Struct Template Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/structkynema__sgf_1_1_factory.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="factory-lt-base-args-gt-struct-template-reference">
+<h1>Factory&amp;lt; Base, Args &amp;gt; Struct Template Reference<a class="headerlink" href="#factory-lt-base-args-gt-struct-template-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::Factory&lt; Base, Args &gt; Struct Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="structkynema__sgf_1_1_factory.html">Factory</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
+<a href="structkynema__sgf_1_1_factory-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::Factory&lt; Base, Args &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__core.html">Kynema-SGF core</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_factory_8_h_source.html">Factory.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::Factory&lt; Base, Args &gt;:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="structkynema__sgf_1_1_factory__inherit__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:Register" id="r_Register"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory_1_1_register.html">Register</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to handle registration of subclass for runtime selection.  <a href="structkynema__sgf_1_1_factory_1_1_register.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ac34efe50a093c87b829083168775bc5f" id="r_ac34efe50a093c87b829083168775bc5f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac34efe50a093c87b829083168775bc5f">~Factory</a> ()=default</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aa73d3b8dc6633292bb32e05d3b8e7120" id="r_aa73d3b8dc6633292bb32e05d3b8e7120"><td class="memItemLeft" align="right" valign="top">static std::unique_ptr&lt; <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa73d3b8dc6633292bb32e05d3b8e7120">create</a> (const std::string &amp;key, Args... args)</td></tr>
+<tr class="memitem:a5e56671505c53a0862e25adeddea669f" id="r_a5e56671505c53a0862e25adeddea669f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e56671505c53a0862e25adeddea669f">print</a> (std::ostream &amp;os)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a3f41ef21adfa37f9abb5c8cc52769974" id="r_a3f41ef21adfa37f9abb5c8cc52769974"><td class="memItemLeft" align="right" valign="top">friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-types" class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:ad4844ccc0b2eb06a705c467d7014f328" id="r_ad4844ccc0b2eb06a705c467d7014f328"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4844ccc0b2eb06a705c467d7014f328">CreatorFunc</a> = std::unique_ptr&lt;<a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>&gt; (*)(Args...)</td></tr>
+<tr class="memitem:a9a29af04e17323cb17609683294f60d2" id="r_a9a29af04e17323cb17609683294f60d2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a29af04e17323cb17609683294f60d2">LookupTable</a> = std::unordered_map&lt;std::string, <a class="el" href="#ad4844ccc0b2eb06a705c467d7014f328">CreatorFunc</a>&gt;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a91304216d59ae6834fc0da187ec512c6" id="r_a91304216d59ae6834fc0da187ec512c6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91304216d59ae6834fc0da187ec512c6">Factory</a> ()=default</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-static-methods" class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:a6238659811a5ebb945f0e6c6970ba6c8" id="r_a6238659811a5ebb945f0e6c6970ba6c8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6238659811a5ebb945f0e6c6970ba6c8">key_exists_or_error</a> (const std::string &amp;key)</td></tr>
+<tr class="memdesc:a6238659811a5ebb945f0e6c6970ba6c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the keyword exists in table or print diagnostic message and abort.  <br /></td></tr>
+<tr class="memitem:ae7815f9acf81229d168802b8d4c2a6c1" id="r_ae7815f9acf81229d168802b8d4c2a6c1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="#a9a29af04e17323cb17609683294f60d2">LookupTable</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7815f9acf81229d168802b8d4c2a6c1">table</a> ()</td></tr>
+<tr class="memdesc:ae7815f9acf81229d168802b8d4c2a6c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup table containing all registered instances.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, class... Args&gt;<br />
+struct kynema_sgf::Factory&lt; Base, Args &gt;</div><p>Runtime selection of options based on string keyword lookup</p>
+<p><a class="el" href="structkynema__sgf_1_1_factory.html">Factory</a> provides an automated way to register subclasses that can be instantiated during runtime using string based lookups. The facility mimics the runTimeSelectionTable in OpenFOAM and the current structure is adapted from <a href="http://www.nirfriedman.com/2018/04/29/unforgettable-factory/">http://www.nirfriedman.com/2018/04/29/unforgettable-factory/</a></p>
+<p>The usage is described using the following example from code. We would like to support creation of a turbulence model based on user inputs that are read from a file. We will create a base class TurbulenceModel that defines the API for the turbulence model and how it interacts with the rest of the code. Then new models, e.g., Smagorinsky, k-Omega SST/SAS, etc., are added as subclasses to this instance.</p>
+<div class="fragment"><div class="line"> <span class="comment">// Create a base class that can be used to register and create instances</span></div>
+<div class="line"> <span class="comment">//</span></div>
+<div class="line"> <span class="comment">// The template arguments are the classname for CRTP and types of additional</span></div>
+<div class="line"> <span class="comment">// arguments to be passed to the constructor of the object</span></div>
+<div class="line"> <span class="keyword">class </span>TurbulenceModel : <span class="keyword">public</span> <a class="code hl_function" href="#a91304216d59ae6834fc0da187ec512c6">Factory</a>&lt;TurbulenceModel, const CFDSim&amp;&gt;</div>
+<div class="line"> {</div>
+<div class="line">      <span class="comment">// Define a base identifier string for debugging purposes</span></div>
+<div class="line">      <span class="keyword">static</span> <span class="keyword">const</span> std::string base_identifier() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;TurbulenceModel&quot;</span>;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Define API as appropriate here</span></div>
+<div class="line"> };</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Define a subclass</span></div>
+<div class="line"> <span class="comment">// Instead of using the base class we use Base::Register to allow</span></div>
+<div class="line">registration <span class="keyword">class </span>Smagorinsky : <span class="keyword">public</span></div>
+<div class="line">TurbulenceModel::Register&lt;Smagorinsky&gt;</div>
+<div class="line"> {</div>
+<div class="line">      <span class="comment">// This is the keyword that is used to lookup and create this instance</span></div>
+<div class="line">      <span class="keyword">static</span> <span class="keyword">const</span> std::string identifier() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Smagorinsky&quot;</span>; }</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Model implementation here</span></div>
+<div class="line"> };</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// To create a turbulence model instance</span></div>
+<div class="line"> <span class="keyword">auto</span> sim = CFDSim(mesh);</div>
+<div class="line"> <span class="comment">// tmodel is a std::unique_ptr&lt;TurbulenceModel&gt; instance</span></div>
+<div class="line"> <span class="keyword">auto</span> tmodel = TurbulenceModel::create(<span class="stringliteral">&quot;Smagorinsky&quot;</span>, sim);</div>
+<div class="ttc" id="astructkynema__sgf_1_1_factory_html_a91304216d59ae6834fc0da187ec512c6"><div class="ttname"><a href="#a91304216d59ae6834fc0da187ec512c6">kynema_sgf::Factory::Factory</a></div><div class="ttdeci">Factory()=default</div></div>
+</div><!-- fragment --><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Base</td><td>base class (e.g., <a class="el" href="classkynema__sgf_1_1_physics.html">Physics</a>) </td></tr>
+    <tr><td class="paramname">Args</td><td>Arguments types to be passed to the constructor during instantiation </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="ad4844ccc0b2eb06a705c467d7014f328" name="ad4844ccc0b2eb06a705c467d7014f328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4844ccc0b2eb06a705c467d7014f328">&#9670;&#160;</a></span>CreatorFunc</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory</a>&lt; <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, Args &gt;::CreatorFunc = std::unique_ptr&lt;<a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>&gt; (*)(Args...)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9a29af04e17323cb17609683294f60d2" name="a9a29af04e17323cb17609683294f60d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a29af04e17323cb17609683294f60d2">&#9670;&#160;</a></span>LookupTable</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory</a>&lt; <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, Args &gt;::LookupTable = std::unordered_map&lt;std::string, <a class="el" href="#ad4844ccc0b2eb06a705c467d7014f328">CreatorFunc</a>&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ac34efe50a093c87b829083168775bc5f" name="ac34efe50a093c87b829083168775bc5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac34efe50a093c87b829083168775bc5f">&#9670;&#160;</a></span>~Factory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory</a>&lt; <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, Args &gt;::~<a class="el" href="structkynema__sgf_1_1_factory.html">Factory</a> </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a91304216d59ae6834fc0da187ec512c6" name="a91304216d59ae6834fc0da187ec512c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91304216d59ae6834fc0da187ec512c6">&#9670;&#160;</a></span>Factory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory</a>&lt; <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, Args &gt;::Factory </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="aa73d3b8dc6633292bb32e05d3b8e7120" name="aa73d3b8dc6633292bb32e05d3b8e7120"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa73d3b8dc6633292bb32e05d3b8e7120">&#9670;&#160;</a></span>create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a> &gt; <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory</a>&lt; <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, Args &gt;::create </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Create an instance of the concrete subclass based on the runtime keyword</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Unique identifier used to lookup subclass instance </td></tr>
+    <tr><td class="paramname">args</td><td>Arguments to the constructor of the subclass </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6238659811a5ebb945f0e6c6970ba6c8" name="a6238659811a5ebb945f0e6c6970ba6c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6238659811a5ebb945f0e6c6970ba6c8">&#9670;&#160;</a></span>key_exists_or_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory</a>&lt; <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, Args &gt;::key_exists_or_error </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the keyword exists in table or print diagnostic message and abort. </p>
+
+</div>
+</div>
+<a id="a5e56671505c53a0862e25adeddea669f" name="a5e56671505c53a0862e25adeddea669f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e56671505c53a0862e25adeddea669f">&#9670;&#160;</a></span>print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory</a>&lt; <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, Args &gt;::print </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>os</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Print a list of the valid subclasses registered to this base instance</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>Valid output stream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae7815f9acf81229d168802b8d4c2a6c1" name="ae7815f9acf81229d168802b8d4c2a6c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7815f9acf81229d168802b8d4c2a6c1">&#9670;&#160;</a></span>table()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a9a29af04e17323cb17609683294f60d2">LookupTable</a> &amp; <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory</a>&lt; <a class="el" href="#a3f41ef21adfa37f9abb5c8cc52769974">Base</a>, Args &gt;::table </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lookup table containing all registered instances. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a3f41ef21adfa37f9abb5c8cc52769974" name="a3f41ef21adfa37f9abb5c8cc52769974"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f41ef21adfa37f9abb5c8cc52769974">&#9670;&#160;</a></span>Base</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Base, class... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">friend <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory</a>&lt; Base, Args &gt;::Base</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/core/<a class="el" href="_factory_8_h_source.html">Factory.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

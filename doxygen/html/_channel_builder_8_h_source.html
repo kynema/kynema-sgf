@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/ChannelBuilder.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/ChannelBuilder.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_channel_builder_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-physics-multiphase-channelbuilder-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/ChannelBuilder.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-physics-multiphase-channelbuilder-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/ChannelBuilder.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_ddcea0517a7b80a55be019748a9389a4.html">physics</a></li><li class="navelem"><a href="dir_ea84defc78a3d6a93c5f3fc502908131.html">multiphase</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">ChannelBuilder.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_channel_builder_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef CHANNELBUILDER_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define CHANNELBUILDER_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_physics_8_h.html">src/core/Physics.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_field_8_h.html">src/core/Field.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;AMReX_Gpu.H&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1channelbuilder.html">kynema_sgf::channelbuilder</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1channelbuilder.html#a984b0757f032376e418a7781e787ac67">   11</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespacekynema__sgf_1_1channelbuilder.html#a984b0757f032376e418a7781e787ac67">ChannelSegmentType</a> : std::uint8_t { <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1channelbuilder.html#a984b0757f032376e418a7781e787ac67a119518c2134c46108179369f0ce81fa2">Ellipse</a>, <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1channelbuilder.html#a984b0757f032376e418a7781e787ac67a7e7dd435b4cc7ba2b020d5a97856dc80">Trapezoid</a> };</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1channelbuilder.html#a6454f4ca7b57e6c7a2d6139e3fe1a1f3">   13</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespacekynema__sgf_1_1channelbuilder.html#a6454f4ca7b57e6c7a2d6139e3fe1a1f3">ChannelVelocityProfile</a> : std::uint8_t { <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1channelbuilder.html#a6454f4ca7b57e6c7a2d6139e3fe1a1f3af19516d11f2946f894070e92fcb56b6d">Uniform</a>, <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1channelbuilder.html#a6454f4ca7b57e6c7a2d6139e3fe1a1f3a32a843da6ea40ab3b17a3421ccdf671b">Linear</a>, <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1channelbuilder.html#a6454f4ca7b57e6c7a2d6139e3fe1a1f3a49aa9675a92a9829bf26742941c9ab00">Parabolic</a> };</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>[[nodiscard]] AMREX_GPU_HOST_DEVICE <span class="keywordtype">bool</span> <a class="code hl_function" href="namespacekynema__sgf_1_1channelbuilder.html#a46a27e7e28c9db83238fc39c86fb1794">trapezoid</a>(</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">const</span> amrex::Real&amp; top,</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">const</span> amrex::Real&amp; bottom,</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">const</span> amrex::Real&amp; height,</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">const</span> amrex::Real&amp; hcoord,</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">const</span> amrex::Real&amp; vcoord);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>[[nodiscard]] AMREX_GPU_HOST_DEVICE <span class="keywordtype">bool</span> <a class="code hl_function" href="namespacekynema__sgf_1_1channelbuilder.html#a86dd7bbba21a6e153fdda64890807f8d">ellipse</a>(</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">const</span> amrex::Real&amp; ax_horz,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">const</span> amrex::Real&amp; ax_vert,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">const</span> amrex::Real&amp; hcoord,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">const</span> amrex::Real&amp; vcoord);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>[[nodiscard]] AMREX_GPU_HOST_DEVICE <span class="keywordtype">bool</span> <a class="code hl_function" href="namespacekynema__sgf_1_1channelbuilder.html#a0a4946f9f1b38b99beb04445028721db">is_point_within_planes</a>(</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">const</span> amrex::Real&amp; x,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">const</span> amrex::Real&amp; y,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">const</span> amrex::Real&amp; z,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">const</span> amrex::Real&amp; start_x,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">const</span> amrex::Real&amp; start_y,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">const</span> amrex::Real&amp; start_z,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">const</span> amrex::Real&amp; end_x,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">const</span> amrex::Real&amp; end_y,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">const</span> amrex::Real&amp; end_z);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>[[nodiscard]] AMREX_GPU_HOST_DEVICE amrex::GpuArray&lt;amrex::Real, 3&gt;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><a class="code hl_function" href="namespacekynema__sgf_1_1channelbuilder.html#a04658912519a8912f8f46c00d1e747aa">get_local_dimensions</a>(</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">const</span> amrex::Real&amp; x,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">const</span> amrex::Real&amp; y,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">const</span> amrex::Real&amp; z,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">const</span> amrex::Real&amp; start_x,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">const</span> amrex::Real&amp; start_y,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">const</span> amrex::Real&amp; start_z,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">const</span> amrex::Real&amp; end_x,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">const</span> amrex::Real&amp; end_y,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">const</span> amrex::Real&amp; end_z,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">const</span> amrex::Real&amp; dim0_s,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">const</span> amrex::Real&amp; dim1_s,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">const</span> amrex::Real&amp; dim2_s,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">const</span> amrex::Real&amp; dim0_e,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">const</span> amrex::Real&amp; dim1_e,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">const</span> amrex::Real&amp; dim2_e);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>[[nodiscard]] AMREX_GPU_HOST_DEVICE amrex::GpuArray&lt;amrex::Real, 3&gt;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><a class="code hl_function" href="namespacekynema__sgf_1_1channelbuilder.html#aa33c22374fdaf6f8c3bd4932a293f936">transform_to_local_coordinates</a>(</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">bool</span> do_translation,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">bool</span> is_active,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">const</span> amrex::Real&amp; x,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">const</span> amrex::Real&amp; y,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">const</span> amrex::Real&amp; z,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">const</span> amrex::Real&amp; start_x,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keyword">const</span> amrex::Real&amp; start_y,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keyword">const</span> amrex::Real&amp; start_z,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">const</span> amrex::Real&amp; end_x,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keyword">const</span> amrex::Real&amp; end_y,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">const</span> amrex::Real&amp; end_z);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="foldopen" id="foldopen00084" data-start="{" data-end="};">
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html">   84</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a70784bd3ee77a3b9bdd55cb967187c1e">ChannelBuilder</a> : <span class="keyword">public</span> Physics::Register&lt;ChannelBuilder&gt;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>{</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ae35207caab3830f0ecb9c157e920e21a">   87</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ae35207caab3830f0ecb9c157e920e21a">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;ChannelBuilder&quot;</span>; }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a70784bd3ee77a3b9bdd55cb967187c1e">ChannelBuilder</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ae584172735c036a752037ad306513dd4">   91</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ae584172735c036a752037ad306513dd4">~ChannelBuilder</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a0c0f7613c957a356f0e7d6adf4a20ad8">initialize_fields</a>(<span class="keywordtype">int</span> level, <span class="keyword">const</span> amrex::Geometry&amp; geom) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a23ed895cbd23bf0a255e54ee78303fed">   95</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a23ed895cbd23bf0a255e54ee78303fed">pre_init_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a6377ce0d5269ea1ddc89a9b542149604">   97</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a6377ce0d5269ea1ddc89a9b542149604">post_init_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a17a3dae1e3c8c6ad350ffb801cf1ec3c">post_regrid_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a3fe05624c187090341eeaf6bab276d55">  101</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a3fe05624c187090341eeaf6bab276d55">pre_advance_work</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a5b1023e8c04d38b82345f385f73bc5c1">  103</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a5b1023e8c04d38b82345f385f73bc5c1">post_advance_work</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a582e617f6b60318d63bd577f371d9276">  106</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a582e617f6b60318d63bd577f371d9276">m_sim</a>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a0f62b904e34d0986d0b50967227968e8">  107</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a0f62b904e34d0986d0b50967227968e8">m_repo</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a6e12c7eb96a592f0c4d114a5160523f3">  108</a></span>    <span class="keyword">const</span> amrex::AmrCore&amp; <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a6e12c7eb96a592f0c4d114a5160523f3">m_mesh</a>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ae2a79f7a9e31795d8b9e7f6452d1e728">  111</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_int_field.html">IntField</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ae2a79f7a9e31795d8b9e7f6452d1e728">m_terrain_blank</a>;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ab52a3e669f38bed52074a628d07c4db4">  113</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ab52a3e669f38bed52074a628d07c4db4">m_is_multiphase</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a81b457215b882aa0ad15e467fa751961">  114</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a81b457215b882aa0ad15e467fa751961">m_initialize_velocity</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a9ae355bc02dcdbe0b490c92f7e4d7c2f">  115</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a9ae355bc02dcdbe0b490c92f7e4d7c2f">m_zero_blanked_velocity</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a30800681df23ab5bb0be86e1b7e14d85">  116</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a30800681df23ab5bb0be86e1b7e14d85">m_initialize_drag</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a8f6dc20b0f61d525bc2d804ade94fbbd">  117</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a8f6dc20b0f61d525bc2d804ade94fbbd">m_terrain_fields_only</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a2e4f8172fc935bfddb6ccd70197aba9f">  118</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a2e4f8172fc935bfddb6ccd70197aba9f">m_rho_init</a>{1.0_rt};</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#aab31aeca3ca4a0996ac3d468a3ac3f31">  119</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#aab31aeca3ca4a0996ac3d468a3ac3f31">m_water_level</a>{0.0_rt};</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a0d5bf9279b0221d6ad5a4e0056ddd1f0">  120</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a0d5bf9279b0221d6ad5a4e0056ddd1f0">m_land_level</a>{0.0_rt};</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#addf9c77c87b2bee8186abe6fb6b39508">  123</a></span>    amrex::Gpu::DeviceVector&lt;ChannelSegmentType&gt; <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#addf9c77c87b2bee8186abe6fb6b39508">m_type</a>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ab3c64600ae54e76c1680446abf1405ac">  124</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ab3c64600ae54e76c1680446abf1405ac">m_dim0_s</a>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a25e094abfee60a8ad9141ee0ad7e9073">  125</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a25e094abfee60a8ad9141ee0ad7e9073">m_dim1_s</a>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#afa44e548c5f92bc93263189dcbd55679">  126</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#afa44e548c5f92bc93263189dcbd55679">m_dim2_s</a>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ade8e9b6cc6aca15c7b41bea41f0e5da4">  127</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ade8e9b6cc6aca15c7b41bea41f0e5da4">m_dim0_e</a>;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a40f87018ca99e686a9b45dfb7b25bc01">  128</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a40f87018ca99e686a9b45dfb7b25bc01">m_dim1_e</a>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a29bf0187bdc9afb6456c8633fe9e6e8b">  129</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a29bf0187bdc9afb6456c8633fe9e6e8b">m_dim2_e</a>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ad5c4a893c0c43292f3668306b9d37279">  130</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Array&lt;amrex::Real, 3&gt;&gt; <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ad5c4a893c0c43292f3668306b9d37279">m_segment_start</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a8be91090534d0a1af1027dc28f3eca20">  131</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Array&lt;amrex::Real, 3&gt;&gt; <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a8be91090534d0a1af1027dc28f3eca20">m_segment_end</a>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a5c72e3c46c7affb6f8e607b481327939">  134</a></span>    amrex::Gpu::DeviceVector&lt;ChannelVelocityProfile&gt; <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a5c72e3c46c7affb6f8e607b481327939">m_velocity_profile</a>;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ab2bd150145b4300e1e346cc61d707414">  135</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ab2bd150145b4300e1e346cc61d707414">m_flow_speed</a>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>};</div>
+</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>} <span class="comment">// namespace kynema_sgf::channelbuilder</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_field_8_h_html"><div class="ttname"><a href="_field_8_h.html">Field.H</a></div></div>
+<div class="ttc" id="a_physics_8_h_html"><div class="ttname"><a href="_physics_8_h.html">Physics.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_repo_html"><div class="ttname"><a href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a></div><div class="ttdef"><b>Definition</b> FieldRepo.H:86</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_int_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_int_field.html">kynema_sgf::IntField</a></div><div class="ttdef"><b>Definition</b> IntField.H:20</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a0c0f7613c957a356f0e7d6adf4a20ad8"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a0c0f7613c957a356f0e7d6adf4a20ad8">kynema_sgf::channelbuilder::ChannelBuilder::initialize_fields</a></div><div class="ttdeci">void initialize_fields(int level, const amrex::Geometry &amp;geom) override</div><div class="ttdef"><b>Definition</b> ChannelBuilder.cpp:354</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a0d5bf9279b0221d6ad5a4e0056ddd1f0"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a0d5bf9279b0221d6ad5a4e0056ddd1f0">kynema_sgf::channelbuilder::ChannelBuilder::m_land_level</a></div><div class="ttdeci">amrex::Real m_land_level</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:120</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a0f62b904e34d0986d0b50967227968e8"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a0f62b904e34d0986d0b50967227968e8">kynema_sgf::channelbuilder::ChannelBuilder::m_repo</a></div><div class="ttdeci">const FieldRepo &amp; m_repo</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:107</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a17a3dae1e3c8c6ad350ffb801cf1ec3c"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a17a3dae1e3c8c6ad350ffb801cf1ec3c">kynema_sgf::channelbuilder::ChannelBuilder::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdef"><b>Definition</b> ChannelBuilder.cpp:609</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a23ed895cbd23bf0a255e54ee78303fed"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a23ed895cbd23bf0a255e54ee78303fed">kynema_sgf::channelbuilder::ChannelBuilder::pre_init_actions</a></div><div class="ttdeci">void pre_init_actions() override</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:95</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a25e094abfee60a8ad9141ee0ad7e9073"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a25e094abfee60a8ad9141ee0ad7e9073">kynema_sgf::channelbuilder::ChannelBuilder::m_dim1_s</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_dim1_s</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:125</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a29bf0187bdc9afb6456c8633fe9e6e8b"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a29bf0187bdc9afb6456c8633fe9e6e8b">kynema_sgf::channelbuilder::ChannelBuilder::m_dim2_e</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_dim2_e</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:129</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a2e4f8172fc935bfddb6ccd70197aba9f"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a2e4f8172fc935bfddb6ccd70197aba9f">kynema_sgf::channelbuilder::ChannelBuilder::m_rho_init</a></div><div class="ttdeci">amrex::Real m_rho_init</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:118</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a30800681df23ab5bb0be86e1b7e14d85"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a30800681df23ab5bb0be86e1b7e14d85">kynema_sgf::channelbuilder::ChannelBuilder::m_initialize_drag</a></div><div class="ttdeci">bool m_initialize_drag</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:116</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a3fe05624c187090341eeaf6bab276d55"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a3fe05624c187090341eeaf6bab276d55">kynema_sgf::channelbuilder::ChannelBuilder::pre_advance_work</a></div><div class="ttdeci">void pre_advance_work() override</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:101</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a40f87018ca99e686a9b45dfb7b25bc01"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a40f87018ca99e686a9b45dfb7b25bc01">kynema_sgf::channelbuilder::ChannelBuilder::m_dim1_e</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_dim1_e</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:128</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a582e617f6b60318d63bd577f371d9276"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a582e617f6b60318d63bd577f371d9276">kynema_sgf::channelbuilder::ChannelBuilder::m_sim</a></div><div class="ttdeci">CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:106</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a5b1023e8c04d38b82345f385f73bc5c1"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a5b1023e8c04d38b82345f385f73bc5c1">kynema_sgf::channelbuilder::ChannelBuilder::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:103</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a5c72e3c46c7affb6f8e607b481327939"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a5c72e3c46c7affb6f8e607b481327939">kynema_sgf::channelbuilder::ChannelBuilder::m_velocity_profile</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; ChannelVelocityProfile &gt; m_velocity_profile</div><div class="ttdoc">Quantities for setting velocity in channels.</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:134</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a6377ce0d5269ea1ddc89a9b542149604"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a6377ce0d5269ea1ddc89a9b542149604">kynema_sgf::channelbuilder::ChannelBuilder::post_init_actions</a></div><div class="ttdeci">void post_init_actions() override</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:97</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a6e12c7eb96a592f0c4d114a5160523f3"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a6e12c7eb96a592f0c4d114a5160523f3">kynema_sgf::channelbuilder::ChannelBuilder::m_mesh</a></div><div class="ttdeci">const amrex::AmrCore &amp; m_mesh</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:108</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a70784bd3ee77a3b9bdd55cb967187c1e"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a70784bd3ee77a3b9bdd55cb967187c1e">kynema_sgf::channelbuilder::ChannelBuilder::ChannelBuilder</a></div><div class="ttdeci">ChannelBuilder(CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> ChannelBuilder.cpp:168</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a81b457215b882aa0ad15e467fa751961"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a81b457215b882aa0ad15e467fa751961">kynema_sgf::channelbuilder::ChannelBuilder::m_initialize_velocity</a></div><div class="ttdeci">bool m_initialize_velocity</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:114</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a8be91090534d0a1af1027dc28f3eca20"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a8be91090534d0a1af1027dc28f3eca20">kynema_sgf::channelbuilder::ChannelBuilder::m_segment_end</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Array&lt; amrex::Real, 3 &gt; &gt; m_segment_end</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:131</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a8f6dc20b0f61d525bc2d804ade94fbbd"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a8f6dc20b0f61d525bc2d804ade94fbbd">kynema_sgf::channelbuilder::ChannelBuilder::m_terrain_fields_only</a></div><div class="ttdeci">bool m_terrain_fields_only</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:117</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_a9ae355bc02dcdbe0b490c92f7e4d7c2f"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#a9ae355bc02dcdbe0b490c92f7e4d7c2f">kynema_sgf::channelbuilder::ChannelBuilder::m_zero_blanked_velocity</a></div><div class="ttdeci">bool m_zero_blanked_velocity</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:115</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_aab31aeca3ca4a0996ac3d468a3ac3f31"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#aab31aeca3ca4a0996ac3d468a3ac3f31">kynema_sgf::channelbuilder::ChannelBuilder::m_water_level</a></div><div class="ttdeci">amrex::Real m_water_level</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:119</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_ab2bd150145b4300e1e346cc61d707414"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ab2bd150145b4300e1e346cc61d707414">kynema_sgf::channelbuilder::ChannelBuilder::m_flow_speed</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_flow_speed</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:135</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_ab3c64600ae54e76c1680446abf1405ac"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ab3c64600ae54e76c1680446abf1405ac">kynema_sgf::channelbuilder::ChannelBuilder::m_dim0_s</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_dim0_s</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:124</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_ab52a3e669f38bed52074a628d07c4db4"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ab52a3e669f38bed52074a628d07c4db4">kynema_sgf::channelbuilder::ChannelBuilder::m_is_multiphase</a></div><div class="ttdeci">bool m_is_multiphase</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:113</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_ad5c4a893c0c43292f3668306b9d37279"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ad5c4a893c0c43292f3668306b9d37279">kynema_sgf::channelbuilder::ChannelBuilder::m_segment_start</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Array&lt; amrex::Real, 3 &gt; &gt; m_segment_start</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:130</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_addf9c77c87b2bee8186abe6fb6b39508"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#addf9c77c87b2bee8186abe6fb6b39508">kynema_sgf::channelbuilder::ChannelBuilder::m_type</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; ChannelSegmentType &gt; m_type</div><div class="ttdoc">Quantities for constructing channels.</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:123</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_ade8e9b6cc6aca15c7b41bea41f0e5da4"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ade8e9b6cc6aca15c7b41bea41f0e5da4">kynema_sgf::channelbuilder::ChannelBuilder::m_dim0_e</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_dim0_e</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:127</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_ae2a79f7a9e31795d8b9e7f6452d1e728"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ae2a79f7a9e31795d8b9e7f6452d1e728">kynema_sgf::channelbuilder::ChannelBuilder::m_terrain_blank</a></div><div class="ttdeci">IntField &amp; m_terrain_blank</div><div class="ttdoc">Blanking field for terrain or buildings.</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:111</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_ae35207caab3830f0ecb9c157e920e21a"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ae35207caab3830f0ecb9c157e920e21a">kynema_sgf::channelbuilder::ChannelBuilder::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:87</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_ae584172735c036a752037ad306513dd4"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#ae584172735c036a752037ad306513dd4">kynema_sgf::channelbuilder::ChannelBuilder::~ChannelBuilder</a></div><div class="ttdeci">~ChannelBuilder() override=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1channelbuilder_1_1_channel_builder_html_afa44e548c5f92bc93263189dcbd55679"><div class="ttname"><a href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html#afa44e548c5f92bc93263189dcbd55679">kynema_sgf::channelbuilder::ChannelBuilder::m_dim2_s</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; m_dim2_s</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:126</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1channelbuilder_html"><div class="ttname"><a href="namespacekynema__sgf_1_1channelbuilder.html">kynema_sgf::channelbuilder</a></div><div class="ttdef"><b>Definition</b> ChannelBuilder.cpp:14</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1channelbuilder_html_a04658912519a8912f8f46c00d1e747aa"><div class="ttname"><a href="namespacekynema__sgf_1_1channelbuilder.html#a04658912519a8912f8f46c00d1e747aa">kynema_sgf::channelbuilder::get_local_dimensions</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE amrex::GpuArray&lt; amrex::Real, 3 &gt; get_local_dimensions(const amrex::Real &amp;x, const amrex::Real &amp;y, const amrex::Real &amp;z, const amrex::Real &amp;start_x, const amrex::Real &amp;start_y, const amrex::Real &amp;start_z, const amrex::Real &amp;end_x, const amrex::Real &amp;end_y, const amrex::Real &amp;end_z, const amrex::Real &amp;dim0_s, const amrex::Real &amp;dim1_s, const amrex::Real &amp;dim2_s, const amrex::Real &amp;dim0_e, const amrex::Real &amp;dim1_e, const amrex::Real &amp;dim2_e)</div><div class="ttdef"><b>Definition</b> ChannelBuilder.cpp:68</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1channelbuilder_html_a0a4946f9f1b38b99beb04445028721db"><div class="ttname"><a href="namespacekynema__sgf_1_1channelbuilder.html#a0a4946f9f1b38b99beb04445028721db">kynema_sgf::channelbuilder::is_point_within_planes</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE bool is_point_within_planes(const amrex::Real &amp;x, const amrex::Real &amp;y, const amrex::Real &amp;z, const amrex::Real &amp;start_x, const amrex::Real &amp;start_y, const amrex::Real &amp;start_z, const amrex::Real &amp;end_x, const amrex::Real &amp;end_y, const amrex::Real &amp;end_z)</div><div class="ttdef"><b>Definition</b> ChannelBuilder.cpp:42</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1channelbuilder_html_a46a27e7e28c9db83238fc39c86fb1794"><div class="ttname"><a href="namespacekynema__sgf_1_1channelbuilder.html#a46a27e7e28c9db83238fc39c86fb1794">kynema_sgf::channelbuilder::trapezoid</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE bool trapezoid(const amrex::Real &amp;top, const amrex::Real &amp;bottom, const amrex::Real &amp;height, const amrex::Real &amp;hcoord, const amrex::Real &amp;vcoord)</div><div class="ttdef"><b>Definition</b> ChannelBuilder.cpp:16</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1channelbuilder_html_a6454f4ca7b57e6c7a2d6139e3fe1a1f3"><div class="ttname"><a href="namespacekynema__sgf_1_1channelbuilder.html#a6454f4ca7b57e6c7a2d6139e3fe1a1f3">kynema_sgf::channelbuilder::ChannelVelocityProfile</a></div><div class="ttdeci">ChannelVelocityProfile</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:13</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1channelbuilder_html_a6454f4ca7b57e6c7a2d6139e3fe1a1f3a32a843da6ea40ab3b17a3421ccdf671b"><div class="ttname"><a href="namespacekynema__sgf_1_1channelbuilder.html#a6454f4ca7b57e6c7a2d6139e3fe1a1f3a32a843da6ea40ab3b17a3421ccdf671b">kynema_sgf::channelbuilder::ChannelVelocityProfile::Linear</a></div><div class="ttdeci">@ Linear</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:13</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1channelbuilder_html_a6454f4ca7b57e6c7a2d6139e3fe1a1f3a49aa9675a92a9829bf26742941c9ab00"><div class="ttname"><a href="namespacekynema__sgf_1_1channelbuilder.html#a6454f4ca7b57e6c7a2d6139e3fe1a1f3a49aa9675a92a9829bf26742941c9ab00">kynema_sgf::channelbuilder::ChannelVelocityProfile::Parabolic</a></div><div class="ttdeci">@ Parabolic</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:13</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1channelbuilder_html_a6454f4ca7b57e6c7a2d6139e3fe1a1f3af19516d11f2946f894070e92fcb56b6d"><div class="ttname"><a href="namespacekynema__sgf_1_1channelbuilder.html#a6454f4ca7b57e6c7a2d6139e3fe1a1f3af19516d11f2946f894070e92fcb56b6d">kynema_sgf::channelbuilder::ChannelVelocityProfile::Uniform</a></div><div class="ttdeci">@ Uniform</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:13</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1channelbuilder_html_a86dd7bbba21a6e153fdda64890807f8d"><div class="ttname"><a href="namespacekynema__sgf_1_1channelbuilder.html#a86dd7bbba21a6e153fdda64890807f8d">kynema_sgf::channelbuilder::ellipse</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE bool ellipse(const amrex::Real &amp;ax_horz, const amrex::Real &amp;ax_vert, const amrex::Real &amp;hcoord, const amrex::Real &amp;vcoord)</div><div class="ttdef"><b>Definition</b> ChannelBuilder.cpp:30</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1channelbuilder_html_a984b0757f032376e418a7781e787ac67"><div class="ttname"><a href="namespacekynema__sgf_1_1channelbuilder.html#a984b0757f032376e418a7781e787ac67">kynema_sgf::channelbuilder::ChannelSegmentType</a></div><div class="ttdeci">ChannelSegmentType</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:11</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1channelbuilder_html_a984b0757f032376e418a7781e787ac67a119518c2134c46108179369f0ce81fa2"><div class="ttname"><a href="namespacekynema__sgf_1_1channelbuilder.html#a984b0757f032376e418a7781e787ac67a119518c2134c46108179369f0ce81fa2">kynema_sgf::channelbuilder::ChannelSegmentType::Ellipse</a></div><div class="ttdeci">@ Ellipse</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:11</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1channelbuilder_html_a984b0757f032376e418a7781e787ac67a7e7dd435b4cc7ba2b020d5a97856dc80"><div class="ttname"><a href="namespacekynema__sgf_1_1channelbuilder.html#a984b0757f032376e418a7781e787ac67a7e7dd435b4cc7ba2b020d5a97856dc80">kynema_sgf::channelbuilder::ChannelSegmentType::Trapezoid</a></div><div class="ttdeci">@ Trapezoid</div><div class="ttdef"><b>Definition</b> ChannelBuilder.H:11</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1channelbuilder_html_aa33c22374fdaf6f8c3bd4932a293f936"><div class="ttname"><a href="namespacekynema__sgf_1_1channelbuilder.html#aa33c22374fdaf6f8c3bd4932a293f936">kynema_sgf::channelbuilder::transform_to_local_coordinates</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE amrex::GpuArray&lt; amrex::Real, 3 &gt; transform_to_local_coordinates(bool do_translation, bool is_active, const amrex::Real &amp;x, const amrex::Real &amp;y, const amrex::Real &amp;z, const amrex::Real &amp;start_x, const amrex::Real &amp;start_y, const amrex::Real &amp;start_z, const amrex::Real &amp;end_x, const amrex::Real &amp;end_y, const amrex::Real &amp;end_z)</div><div class="ttdef"><b>Definition</b> ChannelBuilder.cpp:111</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,887 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::actuator::ActModel&amp;lt; ActTrait, SrcTrait &amp;gt; Class Template Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::actuator::ActModel&amp;lt; ActTrait, SrcTrait &amp;gt; Class Template Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1actuator_1_1_act_model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="actmodel-lt-acttrait-srctrait-gt-class-template-reference">
+<h1>ActModel&amp;lt; ActTrait, SrcTrait &amp;gt; Class Template Reference<a class="headerlink" href="#actmodel-lt-acttrait-srctrait-gt-class-template-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::actuator::ActModel&lt; ActTrait, SrcTrait &gt; Class Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1actuator.html">actuator</a></li><li class="navelem"><a href="classkynema__sgf_1_1actuator_1_1_act_model.html">ActModel</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1actuator_1_1_act_model-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::actuator::ActModel&lt; ActTrait, SrcTrait &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__physics.html">Physics models</a> &raquo; <a class="el" href="group__wind.html">Wind energy modeling</a> &raquo; <a class="el" href="group__actuator.html">Actuator source terms</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_actuator_model_8_h_source.html">ActuatorModel.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::actuator::ActModel&lt; ActTrait, SrcTrait &gt;:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1actuator_1_1_act_model__inherit__graph.svg" width="190" height="168"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::actuator::ActModel&lt; ActTrait, SrcTrait &gt;:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1actuator_1_1_act_model__coll__graph.svg" width="100%" height="579"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a7d7a9dd130d879122c9f7f765da69ac0" id="r_a7d7a9dd130d879122c9f7f765da69ac0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d7a9dd130d879122c9f7f765da69ac0">ActModel</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim, const std::string &amp;<a class="el" href="#aa00fa3540316b1a534d512e0fc69c920">label</a>, const int <a class="el" href="#aba6721f266d54389208905bbb05b85c3">id</a>)</td></tr>
+<tr class="memitem:aa00fa3540316b1a534d512e0fc69c920" id="r_aa00fa3540316b1a534d512e0fc69c920"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa00fa3540316b1a534d512e0fc69c920">label</a> () const override</td></tr>
+<tr class="memdesc:aa00fa3540316b1a534d512e0fc69c920"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the unique identifier (name) for this instance.  <br /></td></tr>
+<tr class="memitem:aba6721f266d54389208905bbb05b85c3" id="r_aba6721f266d54389208905bbb05b85c3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba6721f266d54389208905bbb05b85c3">id</a> () const override</td></tr>
+<tr class="memdesc:aba6721f266d54389208905bbb05b85c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the unique tag (integer ID) for this instance.  <br /></td></tr>
+<tr class="memitem:a4173bb009adcae2b52dc6b4804c597c3" id="r_a4173bb009adcae2b52dc6b4804c597c3"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structkynema__sgf_1_1actuator_1_1_act_info.html">ActInfo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4173bb009adcae2b52dc6b4804c597c3">info</a> () const override</td></tr>
+<tr class="memdesc:a4173bb009adcae2b52dc6b4804c597c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the core info object for this actuator instance.  <br /></td></tr>
+<tr class="memitem:a21565b701828bd2fe85c4ac1518f3bc6" id="r_a21565b701828bd2fe85c4ac1518f3bc6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1actuator_1_1_act_info.html">ActInfo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21565b701828bd2fe85c4ac1518f3bc6">info</a> () override</td></tr>
+<tr class="memdesc:a21565b701828bd2fe85c4ac1518f3bc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the core info object for this actuator instance.  <br /></td></tr>
+<tr class="memitem:a07568de4451b95c3868abd11e2d3db53" id="r_a07568de4451b95c3868abd11e2d3db53"><td class="memItemLeft" align="right" valign="top">const auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07568de4451b95c3868abd11e2d3db53">meta</a> () const</td></tr>
+<tr class="memdesc:a07568de4451b95c3868abd11e2d3db53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the meta info object for this actuator instance.  <br /></td></tr>
+<tr class="memitem:a92b28d732df1c535880b1aa633ee83c5" id="r_a92b28d732df1c535880b1aa633ee83c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92b28d732df1c535880b1aa633ee83c5">read_inputs</a> (const <a class="el" href="namespacekynema__sgf_1_1actuator_1_1utils.html#a09555b2d7d3bf73e8f36553f7f5aa3ac">utils::ActParser</a> &amp;pp) override</td></tr>
+<tr class="memitem:a6b08b16f3c2a781c2619a5e5ae822efd" id="r_a6b08b16f3c2a781c2619a5e5ae822efd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b08b16f3c2a781c2619a5e5ae822efd">determine_influenced_procs</a> () override</td></tr>
+<tr class="memitem:a2f821cd931877846fb911cab65c816dc" id="r_a2f821cd931877846fb911cab65c816dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f821cd931877846fb911cab65c816dc">determine_root_proc</a> (amrex::Vector&lt; int &gt; &amp;act_proc_count) override</td></tr>
+<tr class="memitem:a4929d06b10e3b2f62aab4a95a9cd3c72" id="r_a4929d06b10e3b2f62aab4a95a9cd3c72"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4929d06b10e3b2f62aab4a95a9cd3c72">num_velocity_points</a> () const override</td></tr>
+<tr class="memitem:a4f1a2c8381d0c42b075da602ef0970c2" id="r_a4f1a2c8381d0c42b075da602ef0970c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f1a2c8381d0c42b075da602ef0970c2">update_positions</a> (<a class="el" href="namespacekynema__sgf_1_1actuator.html#a87a5ed49fe383c7bf1adeb4538ef7e45">VecSlice</a> &amp;pos) override</td></tr>
+<tr class="memitem:a93d1253e85bc99c95a762de9b7201743" id="r_a93d1253e85bc99c95a762de9b7201743"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93d1253e85bc99c95a762de9b7201743">update_fields</a> (const <a class="el" href="namespacekynema__sgf_1_1actuator.html#a87a5ed49fe383c7bf1adeb4538ef7e45">VecSlice</a> &amp;vel, const <a class="el" href="namespacekynema__sgf_1_1actuator.html#aabf768b1ed1ea7cb05893357d50d54ac">RealSlice</a> &amp;density) override</td></tr>
+<tr class="memitem:a7096c521b03e5acfe602334a73c3618a" id="r_a7096c521b03e5acfe602334a73c3618a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7096c521b03e5acfe602334a73c3618a">compute_forces</a> () override</td></tr>
+<tr class="memitem:a1333ebc1eb442a156c309e90a744aaca" id="r_a1333ebc1eb442a156c309e90a744aaca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1333ebc1eb442a156c309e90a744aaca">compute_source_term</a> (const int lev, const amrex::MFIter &amp;mfi, const amrex::Geometry &amp;geom) override</td></tr>
+<tr class="memitem:aafa3e620ef6caecbe01e759cdf1903e0" id="r_aafa3e620ef6caecbe01e759cdf1903e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafa3e620ef6caecbe01e759cdf1903e0">prepare_outputs</a> (const std::string &amp;out_dir) override</td></tr>
+<tr class="memitem:a9c7f3edf6354d1851300082c2ed2cc06" id="r_a9c7f3edf6354d1851300082c2ed2cc06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c7f3edf6354d1851300082c2ed2cc06">write_outputs</a> () override</td></tr>
+<tr class="memitem:a38b7f8bf1c1a39463830c4d1ade93c27" id="r_a38b7f8bf1c1a39463830c4d1ade93c27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38b7f8bf1c1a39463830c4d1ade93c27">init_actuator_source</a> () override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a25b81e3374c0ee148dc653b0d0db97b8" id="r_a25b81e3374c0ee148dc653b0d0db97b8"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25b81e3374c0ee148dc653b0d0db97b8">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a1c7106b52b1b4cfe15c4f9d842797c41" id="r_a1c7106b52b1b4cfe15c4f9d842797c41"><td class="memItemLeft" align="right" valign="top">ActTrait::DataType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c7106b52b1b4cfe15c4f9d842797c41">m_data</a></td></tr>
+<tr class="memdesc:a1c7106b52b1b4cfe15c4f9d842797c41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instance that holds all data related to a particular actuator type.  <br /></td></tr>
+<tr class="memitem:a405c350dfdceb369559cc12828ff36a4" id="r_a405c350dfdceb369559cc12828ff36a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_act_src_op.html">ops::ActSrcOp</a>&lt; ActTrait, SrcTrait &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a405c350dfdceb369559cc12828ff36a4">m_src_op</a></td></tr>
+<tr class="memdesc:a405c350dfdceb369559cc12828ff36a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Source computation operator.  <br /></td></tr>
+<tr class="memitem:a997020b24dc1fbcef7fdfdfa1a6dce49" id="r_a997020b24dc1fbcef7fdfdfa1a6dce49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op.html">ops::ProcessOutputsOp</a>&lt; ActTrait, SrcTrait &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a997020b24dc1fbcef7fdfdfa1a6dce49">m_out_op</a></td></tr>
+<tr class="memdesc:a997020b24dc1fbcef7fdfdfa1a6dce49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs processor.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt;<br />
+class kynema_sgf::actuator::ActModel&lt; ActTrait, SrcTrait &gt;</div><p>Concrete implementation of the <a class="el" href="classkynema__sgf_1_1actuator_1_1_actuator_model.html">ActuatorModel</a> for different actuator types.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ActTrait</td><td>An actuator type trait that defines the behavior of the different actions (initialization, velocity sampling, force computation, and momentum source term computations) that are executed by the <a class="el" href="classkynema__sgf_1_1actuator_1_1_actuator_model.html">ActuatorModel</a> class through the kynema_sgf::Actuator physics driver class.</td></tr>
+    <tr><td class="paramname">SrcTrait</td><td>A source type trait that defines how the forcing term is computed, e.g., if the turbine rotor is represented as a line or a disk. For most cases, like the fixed wing case, this will just be line, therefore, it is set as default for convenience. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7d7a9dd130d879122c9f7f765da69ac0" name="a7d7a9dd130d879122c9f7f765da69ac0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d7a9dd130d879122c9f7f765da69ac0">&#9670;&#160;</a></span>ActModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::ActModel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>label</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>id</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sim</td><td>CFD simulation environment instance </td></tr>
+    <tr><td class="paramname">label</td><td>Unique string identifier for this instance </td></tr>
+    <tr><td class="paramname">id</td><td>Unique integer tag for this instance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a7096c521b03e5acfe602334a73c3618a" name="a7096c521b03e5acfe602334a73c3618a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7096c521b03e5acfe602334a73c3618a">&#9670;&#160;</a></span>compute_forces()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::compute_forces </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1333ebc1eb442a156c309e90a744aaca" name="a1333ebc1eb442a156c309e90a744aaca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1333ebc1eb442a156c309e90a744aaca">&#9670;&#160;</a></span>compute_source_term()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::compute_source_term </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::MFIter &amp;</td>          <td class="paramname"><span class="paramname"><em>mfi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6b08b16f3c2a781c2619a5e5ae822efd" name="a6b08b16f3c2a781c2619a5e5ae822efd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b08b16f3c2a781c2619a5e5ae822efd">&#9670;&#160;</a></span>determine_influenced_procs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::determine_influenced_procs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2f821cd931877846fb911cab65c816dc" name="a2f821cd931877846fb911cab65c816dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f821cd931877846fb911cab65c816dc">&#9670;&#160;</a></span>determine_root_proc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::determine_root_proc </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>act_proc_count</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aba6721f266d54389208905bbb05b85c3" name="aba6721f266d54389208905bbb05b85c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba6721f266d54389208905bbb05b85c3">&#9670;&#160;</a></span>id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::id </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the unique tag (integer ID) for this instance. </p>
+
+</div>
+</div>
+<a id="a25b81e3374c0ee148dc653b0d0db97b8" name="a25b81e3374c0ee148dc653b0d0db97b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25b81e3374c0ee148dc653b0d0db97b8">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4173bb009adcae2b52dc6b4804c597c3" name="a4173bb009adcae2b52dc6b4804c597c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4173bb009adcae2b52dc6b4804c597c3">&#9670;&#160;</a></span>info() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structkynema__sgf_1_1actuator_1_1_act_info.html">ActInfo</a> &amp; <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::info </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the core info object for this actuator instance. </p>
+
+</div>
+</div>
+<a id="a21565b701828bd2fe85c4ac1518f3bc6" name="a21565b701828bd2fe85c4ac1518f3bc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21565b701828bd2fe85c4ac1518f3bc6">&#9670;&#160;</a></span>info() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1actuator_1_1_act_info.html">ActInfo</a> &amp; <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::info </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the core info object for this actuator instance. </p>
+
+</div>
+</div>
+<a id="a38b7f8bf1c1a39463830c4d1ade93c27" name="a38b7f8bf1c1a39463830c4d1ade93c27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38b7f8bf1c1a39463830c4d1ade93c27">&#9670;&#160;</a></span>init_actuator_source()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::init_actuator_source </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa00fa3540316b1a534d512e0fc69c920" name="aa00fa3540316b1a534d512e0fc69c920"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa00fa3540316b1a534d512e0fc69c920">&#9670;&#160;</a></span>label()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::label </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the unique identifier (name) for this instance. </p>
+
+</div>
+</div>
+<a id="a07568de4451b95c3868abd11e2d3db53" name="a07568de4451b95c3868abd11e2d3db53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07568de4451b95c3868abd11e2d3db53">&#9670;&#160;</a></span>meta()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const auto &amp; <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::meta </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the meta info object for this actuator instance. </p>
+
+</div>
+</div>
+<a id="a4929d06b10e3b2f62aab4a95a9cd3c72" name="a4929d06b10e3b2f62aab4a95a9cd3c72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4929d06b10e3b2f62aab4a95a9cd3c72">&#9670;&#160;</a></span>num_velocity_points()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::num_velocity_points </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aafa3e620ef6caecbe01e759cdf1903e0" name="aafa3e620ef6caecbe01e759cdf1903e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafa3e620ef6caecbe01e759cdf1903e0">&#9670;&#160;</a></span>prepare_outputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::prepare_outputs </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>out_dir</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a92b28d732df1c535880b1aa633ee83c5" name="a92b28d732df1c535880b1aa633ee83c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92b28d732df1c535880b1aa633ee83c5">&#9670;&#160;</a></span>read_inputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::read_inputs </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacekynema__sgf_1_1actuator_1_1utils.html#a09555b2d7d3bf73e8f36553f7f5aa3ac">utils::ActParser</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>pp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a93d1253e85bc99c95a762de9b7201743" name="a93d1253e85bc99c95a762de9b7201743"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93d1253e85bc99c95a762de9b7201743">&#9670;&#160;</a></span>update_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::update_fields </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacekynema__sgf_1_1actuator.html#a87a5ed49fe383c7bf1adeb4538ef7e45">VecSlice</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacekynema__sgf_1_1actuator.html#aabf768b1ed1ea7cb05893357d50d54ac">RealSlice</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>density</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4f1a2c8381d0c42b075da602ef0970c2" name="a4f1a2c8381d0c42b075da602ef0970c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f1a2c8381d0c42b075da602ef0970c2">&#9670;&#160;</a></span>update_positions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::update_positions </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a87a5ed49fe383c7bf1adeb4538ef7e45">VecSlice</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>pos</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9c7f3edf6354d1851300082c2ed2cc06" name="a9c7f3edf6354d1851300082c2ed2cc06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c7f3edf6354d1851300082c2ed2cc06">&#9670;&#160;</a></span>write_outputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::write_outputs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a1c7106b52b1b4cfe15c4f9d842797c41" name="a1c7106b52b1b4cfe15c4f9d842797c41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c7106b52b1b4cfe15c4f9d842797c41">&#9670;&#160;</a></span>m_data</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActTrait::DataType <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::m_data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Instance that holds all data related to a particular actuator type. </p>
+
+</div>
+</div>
+<a id="a997020b24dc1fbcef7fdfdfa1a6dce49" name="a997020b24dc1fbcef7fdfdfa1a6dce49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a997020b24dc1fbcef7fdfdfa1a6dce49">&#9670;&#160;</a></span>m_out_op</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op.html">ops::ProcessOutputsOp</a>&lt;ActTrait, SrcTrait&gt; <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::m_out_op</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Outputs processor. </p>
+
+</div>
+</div>
+<a id="a405c350dfdceb369559cc12828ff36a4" name="a405c350dfdceb369559cc12828ff36a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a405c350dfdceb369559cc12828ff36a4">&#9670;&#160;</a></span>m_src_op</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ActTrait, typename SrcTrait = ActSrcLine&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1actuator_1_1ops_1_1_act_src_op.html">ops::ActSrcOp</a>&lt;ActTrait, SrcTrait&gt; <a class="el" href="classkynema__sgf_1_1actuator_1_1_act_model.html">kynema_sgf::actuator::ActModel</a>&lt; ActTrait, SrcTrait &gt;::m_src_op</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Source computation operator. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/<a class="el" href="_actuator_model_8_h_source.html">ActuatorModel.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,707 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::pde::DiffSolverIface&amp;lt; LinOp &amp;gt; Class Template Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::pde::DiffSolverIface&amp;lt; LinOp &amp;gt; Class Template Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1pde_1_1_diff_solver_iface.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="diffsolveriface-lt-linop-gt-class-template-reference">
+<h1>DiffSolverIface&amp;lt; LinOp &amp;gt; Class Template Reference<a class="headerlink" href="#diffsolveriface-lt-linop-gt-class-template-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::pde::DiffSolverIface&lt; LinOp &gt; Class Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1pde.html">pde</a></li><li class="navelem"><a href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">DiffSolverIface</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classkynema__sgf_1_1pde_1_1_diff_solver_iface-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::pde::DiffSolverIface&lt; LinOp &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__eqsys.html">Equation Systems</a> &raquo; <a class="el" href="group__pdeop.html">PDE Operators</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_diffusion_ops_8_h_source.html">DiffusionOps.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::pde::DiffSolverIface&lt; LinOp &gt;:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1pde_1_1_diff_solver_iface__inherit__graph.svg" width="100%" height="504"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::pde::DiffSolverIface&lt; LinOp &gt;:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1pde_1_1_diff_solver_iface__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:abee6945eafbb27d81bf1ed7b2d1e2775" id="r_abee6945eafbb27d81bf1ed7b2d1e2775"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abee6945eafbb27d81bf1ed7b2d1e2775">DiffSolverIface</a> (<a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a> &amp;fields, bool has_overset, bool mesh_mapping, const std::string &amp;prefix=&quot;diffusion&quot;)</td></tr>
+<tr class="memitem:acddfcde6eedfb61effc9c56bd62653e3" id="r_acddfcde6eedfb61effc9c56bd62653e3"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acddfcde6eedfb61effc9c56bd62653e3">~DiffSolverIface</a> ()=default</td></tr>
+<tr class="memitem:ad3d87936becf8ddf8aa8cd3474ee2553" id="r_ad3d87936becf8ddf8aa8cd3474ee2553"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3d87936becf8ddf8aa8cd3474ee2553">linsys_solve</a> (amrex::Real dt)</td></tr>
+<tr class="memitem:ae7308a43b8e1815817cc314fa4c6b752" id="r_ae7308a43b8e1815817cc314fa4c6b752"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7308a43b8e1815817cc314fa4c6b752">linsys_solve_impl</a> ()</td></tr>
+<tr class="memitem:abb42bd77453a49ccf3f873c0582a7726" id="r_abb42bd77453a49ccf3f873c0582a7726"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb42bd77453a49ccf3f873c0582a7726">set_acoeffs</a> (LinOp &amp;linop, <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate)</td></tr>
+<tr class="memitem:a35234e52a9d7271883b453254e4cf2d9" id="r_a35234e52a9d7271883b453254e4cf2d9"><td class="memTemplParams" colspan="2">template&lt;typename L&gt; </td></tr>
+<tr class="memitem:a35234e52a9d7271883b453254e4cf2d9 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35234e52a9d7271883b453254e4cf2d9">set_bcoeffs</a> (L &amp;linop, std::enable_if_t&lt; std::is_same_v&lt; L, amrex::MLTensorOp &gt; &gt; *=nullptr)</td></tr>
+<tr class="memitem:a795c6dc3c26b3249859cc1c132965be9" id="r_a795c6dc3c26b3249859cc1c132965be9"><td class="memTemplParams" colspan="2">template&lt;typename L&gt; </td></tr>
+<tr class="memitem:a795c6dc3c26b3249859cc1c132965be9 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a795c6dc3c26b3249859cc1c132965be9">set_bcoeffs</a> (L &amp;linop, std::enable_if_t&lt; std::is_same_v&lt; L, amrex::MLABecLaplacian &gt; &gt; *=nullptr)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a00422c534bb8a7e0b448d19a2b518719" id="r_a00422c534bb8a7e0b448d19a2b518719"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00422c534bb8a7e0b448d19a2b518719">setup_operator</a> (LinOp &amp;linop, amrex::Real alpha, amrex::Real beta, <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate)</td></tr>
+<tr class="memdesc:a00422c534bb8a7e0b448d19a2b518719"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the linear operator (e.g., setup BCs, etc.)  <br /></td></tr>
+<tr class="memitem:a1bac8806873aff8565b969a0ce829c85" id="r_a1bac8806873aff8565b969a0ce829c85"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1bac8806873aff8565b969a0ce829c85">setup_solver</a> (amrex::MLMG &amp;mlmg)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a7aa4049b2658a5105a2ac9dbe8714364" id="r_a7aa4049b2658a5105a2ac9dbe8714364"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7aa4049b2658a5105a2ac9dbe8714364">m_pdefields</a></td></tr>
+<tr class="memitem:ac10f70d4876534dad41de61315e05323" id="r_ac10f70d4876534dad41de61315e05323"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac10f70d4876534dad41de61315e05323">m_density</a></td></tr>
+<tr class="memitem:a5b787f81cc0ce2a522c09873dfe8d651" id="r_a5b787f81cc0ce2a522c09873dfe8d651"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1_m_l_m_g_options.html">MLMGOptions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b787f81cc0ce2a522c09873dfe8d651">m_options</a></td></tr>
+<tr class="memitem:a7fc8090d4ae8343f6116839d7b845d9a" id="r_a7fc8090d4ae8343f6116839d7b845d9a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7fc8090d4ae8343f6116839d7b845d9a">m_mesh_mapping</a> {false}</td></tr>
+<tr class="memitem:a125971b207e29d82167952bb920a5f2b" id="r_a125971b207e29d82167952bb920a5f2b"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; LinOp &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a125971b207e29d82167952bb920a5f2b">m_solver</a></td></tr>
+<tr class="memitem:a67f02599ea5a002770200f038c69c29e" id="r_a67f02599ea5a002770200f038c69c29e"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; LinOp &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67f02599ea5a002770200f038c69c29e">m_applier</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename LinOp&gt;<br />
+class kynema_sgf::pde::DiffSolverIface&lt; LinOp &gt;</div><p>Base class for all diffusion operators</p>
+<p>This class provides the common operations for an implicit solution of a convection-diffusion equation within Kynema-SGF.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">LinOp</td><td>The linear operator (see <a href="https://amrex-codes.github.io/amrex/docs_html/LinearSolvers.html">AMREeX docs</a>) </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="abee6945eafbb27d81bf1ed7b2d1e2775" name="abee6945eafbb27d81bf1ed7b2d1e2775"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abee6945eafbb27d81bf1ed7b2d1e2775">&#9670;&#160;</a></span>DiffSolverIface()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LinOp&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">kynema_sgf::pde::DiffSolverIface</a>&lt; LinOp &gt;::DiffSolverIface </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fields</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>has_overset</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>mesh_mapping</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>prefix</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;diffusion&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acddfcde6eedfb61effc9c56bd62653e3" name="acddfcde6eedfb61effc9c56bd62653e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acddfcde6eedfb61effc9c56bd62653e3">&#9670;&#160;</a></span>~DiffSolverIface()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LinOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">kynema_sgf::pde::DiffSolverIface</a>&lt; LinOp &gt;::~<a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">DiffSolverIface</a> </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="ad3d87936becf8ddf8aa8cd3474ee2553" name="ad3d87936becf8ddf8aa8cd3474ee2553"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3d87936becf8ddf8aa8cd3474ee2553">&#9670;&#160;</a></span>linsys_solve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LinOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">kynema_sgf::pde::DiffSolverIface</a>&lt; LinOp &gt;::linsys_solve </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implicit solve and update of a linear system</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>timestep size </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae7308a43b8e1815817cc314fa4c6b752" name="ae7308a43b8e1815817cc314fa4c6b752"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7308a43b8e1815817cc314fa4c6b752">&#9670;&#160;</a></span>linsys_solve_impl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LinOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">kynema_sgf::pde::DiffSolverIface</a>&lt; LinOp &gt;::linsys_solve_impl </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abb42bd77453a49ccf3f873c0582a7726" name="abb42bd77453a49ccf3f873c0582a7726"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb42bd77453a49ccf3f873c0582a7726">&#9670;&#160;</a></span>set_acoeffs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LinOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">kynema_sgf::pde::DiffSolverIface</a>&lt; LinOp &gt;::set_acoeffs </td>
+          <td>(</td>
+          <td class="paramtype">LinOp &amp;</td>          <td class="paramname"><span class="paramname"><em>linop</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="structkynema__sgf_1_1pde_1_1_diffusion_op_3_01_s_d_r_00_01_scheme_01_4.html#a7cc1096882766555d3364a8fa5f5d598">kynema_sgf::pde::DiffusionOp&lt; SDR, Scheme &gt;</a>, and <a class="el" href="structkynema__sgf_1_1pde_1_1_diffusion_op_3_01_t_k_e_00_01_scheme_01_4.html#ad909a53639265715c727d0da4c0598c1">kynema_sgf::pde::DiffusionOp&lt; TKE, Scheme &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a795c6dc3c26b3249859cc1c132965be9" name="a795c6dc3c26b3249859cc1c132965be9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a795c6dc3c26b3249859cc1c132965be9">&#9670;&#160;</a></span>set_bcoeffs() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LinOp&gt; </div>
+<div class="memtemplate">
+template&lt;typename L&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">kynema_sgf::pde::DiffSolverIface</a>&lt; LinOp &gt;::set_bcoeffs </td>
+          <td>(</td>
+          <td class="paramtype">L &amp;</td>          <td class="paramname"><span class="paramname"><em>linop</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::enable_if_t&lt; std::is_same_v&lt; L, amrex::MLABecLaplacian &gt; &gt; *</td>          <td class="paramname"><span class="paramname"><em></em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a35234e52a9d7271883b453254e4cf2d9" name="a35234e52a9d7271883b453254e4cf2d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35234e52a9d7271883b453254e4cf2d9">&#9670;&#160;</a></span>set_bcoeffs() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LinOp&gt; </div>
+<div class="memtemplate">
+template&lt;typename L&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">kynema_sgf::pde::DiffSolverIface</a>&lt; LinOp &gt;::set_bcoeffs </td>
+          <td>(</td>
+          <td class="paramtype">L &amp;</td>          <td class="paramname"><span class="paramname"><em>linop</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::enable_if_t&lt; std::is_same_v&lt; L, amrex::MLTensorOp &gt; &gt; *</td>          <td class="paramname"><span class="paramname"><em></em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a00422c534bb8a7e0b448d19a2b518719" name="a00422c534bb8a7e0b448d19a2b518719"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00422c534bb8a7e0b448d19a2b518719">&#9670;&#160;</a></span>setup_operator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LinOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">kynema_sgf::pde::DiffSolverIface</a>&lt; LinOp &gt;::setup_operator </td>
+          <td>(</td>
+          <td class="paramtype">LinOp &amp;</td>          <td class="paramname"><span class="paramname"><em>linop</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>alpha</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>beta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets up the linear operator (e.g., setup BCs, etc.) </p>
+
+</div>
+</div>
+<a id="a1bac8806873aff8565b969a0ce829c85" name="a1bac8806873aff8565b969a0ce829c85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bac8806873aff8565b969a0ce829c85">&#9670;&#160;</a></span>setup_solver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LinOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">kynema_sgf::pde::DiffSolverIface</a>&lt; LinOp &gt;::setup_solver </td>
+          <td>(</td>
+          <td class="paramtype">amrex::MLMG &amp;</td>          <td class="paramname"><span class="paramname"><em>mlmg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a67f02599ea5a002770200f038c69c29e" name="a67f02599ea5a002770200f038c69c29e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67f02599ea5a002770200f038c69c29e">&#9670;&#160;</a></span>m_applier</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LinOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;LinOp&gt; <a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">kynema_sgf::pde::DiffSolverIface</a>&lt; LinOp &gt;::m_applier</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac10f70d4876534dad41de61315e05323" name="ac10f70d4876534dad41de61315e05323"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac10f70d4876534dad41de61315e05323">&#9670;&#160;</a></span>m_density</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LinOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">kynema_sgf::pde::DiffSolverIface</a>&lt; LinOp &gt;::m_density</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7fc8090d4ae8343f6116839d7b845d9a" name="a7fc8090d4ae8343f6116839d7b845d9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fc8090d4ae8343f6116839d7b845d9a">&#9670;&#160;</a></span>m_mesh_mapping</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LinOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">kynema_sgf::pde::DiffSolverIface</a>&lt; LinOp &gt;::m_mesh_mapping {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b787f81cc0ce2a522c09873dfe8d651" name="a5b787f81cc0ce2a522c09873dfe8d651"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b787f81cc0ce2a522c09873dfe8d651">&#9670;&#160;</a></span>m_options</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LinOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1_m_l_m_g_options.html">MLMGOptions</a> <a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">kynema_sgf::pde::DiffSolverIface</a>&lt; LinOp &gt;::m_options</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7aa4049b2658a5105a2ac9dbe8714364" name="a7aa4049b2658a5105a2ac9dbe8714364"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aa4049b2658a5105a2ac9dbe8714364">&#9670;&#160;</a></span>m_pdefields</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LinOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1pde_1_1_p_d_e_fields.html">PDEFields</a>&amp; <a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">kynema_sgf::pde::DiffSolverIface</a>&lt; LinOp &gt;::m_pdefields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a125971b207e29d82167952bb920a5f2b" name="a125971b207e29d82167952bb920a5f2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a125971b207e29d82167952bb920a5f2b">&#9670;&#160;</a></span>m_solver</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LinOp&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;LinOp&gt; <a class="el" href="classkynema__sgf_1_1pde_1_1_diff_solver_iface.html">kynema_sgf::pde::DiffSolverIface</a>&lt; LinOp &gt;::m_solver</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/<a class="el" href="_diffusion_ops_8_h_source.html">DiffusionOps.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/equation_systems/<a class="el" href="_diffusion_ops_8cpp.html">DiffusionOps.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

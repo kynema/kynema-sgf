@@ -1,0 +1,1384 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::sampling::FreeSurfaceSampler Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::sampling::FreeSurfaceSampler Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1sampling_1_1_free_surface_sampler.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="freesurfacesampler-class-reference">
+<h1>FreeSurfaceSampler Class Reference<a class="headerlink" href="#freesurfacesampler-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::sampling::FreeSurfaceSampler Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1sampling.html">sampling</a></li><li class="navelem"><a href="classkynema__sgf_1_1sampling_1_1_free_surface_sampler.html">FreeSurfaceSampler</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1sampling_1_1_free_surface_sampler-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::sampling::FreeSurfaceSampler Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_free_surface_sampler_8_h_source.html">FreeSurfaceSampler.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::sampling::FreeSurfaceSampler:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1sampling_1_1_free_surface_sampler__inherit__graph.svg" width="194" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::sampling::FreeSurfaceSampler:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1sampling_1_1_free_surface_sampler__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a3e34f90068b04a39b98b9d2b7e33f34f" id="r_a3e34f90068b04a39b98b9d2b7e33f34f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e34f90068b04a39b98b9d2b7e33f34f">FreeSurfaceSampler</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;)</td></tr>
+<tr class="memitem:ae7eaa666e50fc8b8a973b38cc1757265" id="r_ae7eaa666e50fc8b8a973b38cc1757265"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7eaa666e50fc8b8a973b38cc1757265">~FreeSurfaceSampler</a> () override</td></tr>
+<tr class="memitem:ab379f1c562227fbe003002042d25b449" id="r_ab379f1c562227fbe003002042d25b449"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab379f1c562227fbe003002042d25b449">initialize</a> (const std::string &amp;key) override</td></tr>
+<tr class="memdesc:ab379f1c562227fbe003002042d25b449"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read user inputs and create mesh-based information for locating interface.  <br /></td></tr>
+<tr class="memitem:ac9181e49603347879cec6b7cf28ea455" id="r_ac9181e49603347879cec6b7cf28ea455"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac9181e49603347879cec6b7cf28ea455">check_bounds</a> () override</td></tr>
+<tr class="memdesc:ac9181e49603347879cec6b7cf28ea455"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check and fix the bounds of the sampler so the probes are in the domain.  <br /></td></tr>
+<tr class="memitem:aae70276831a571b16754e461639eaa0a" id="r_aae70276831a571b16754e461639eaa0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae70276831a571b16754e461639eaa0a">sampling_locations</a> (<a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;) const override</td></tr>
+<tr class="memdesc:aae70276831a571b16754e461639eaa0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populate and return a vector of probe locations to be sampled.  <br /></td></tr>
+<tr class="memitem:a9b3ab7fb14ef1f7cfb9f7d32ca471f0b" id="r_a9b3ab7fb14ef1f7cfb9f7d32ca471f0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b3ab7fb14ef1f7cfb9f7d32ca471f0b">sampling_locations</a> (<a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;, const amrex::Box &amp;) const override</td></tr>
+<tr class="memdesc:a9b3ab7fb14ef1f7cfb9f7d32ca471f0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populate the vector with coordinates of the sampling locations inside a box.  <br /></td></tr>
+<tr class="memitem:a8c338e69497f4e181a2047fe26ed1ce1" id="r_a8c338e69497f4e181a2047fe26ed1ce1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c338e69497f4e181a2047fe26ed1ce1">output_locations</a> (<a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;sample_locs) const override</td></tr>
+<tr class="memitem:ad1e894e1ec5e2095c43cf2c16a3824a3" id="r_ad1e894e1ec5e2095c43cf2c16a3824a3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1e894e1ec5e2095c43cf2c16a3824a3">update_sampling_locations</a> () override</td></tr>
+<tr class="memdesc:ad1e894e1ec5e2095c43cf2c16a3824a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find heights associated with 2D sample locations.  <br /></td></tr>
+<tr class="memitem:a8e78dce1c15e65e2ba34a67b3ab37780" id="r_a8e78dce1c15e65e2ba34a67b3ab37780"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e78dce1c15e65e2ba34a67b3ab37780">post_regrid_actions</a> () override</td></tr>
+<tr class="memdesc:a8e78dce1c15e65e2ba34a67b3ab37780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redo some of the initialization work when the grid changes.  <br /></td></tr>
+<tr class="memitem:aa518ac17c2eccb53afcf8875eac25857" id="r_aa518ac17c2eccb53afcf8875eac25857"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa518ac17c2eccb53afcf8875eac25857">define_netcdf_metadata</a> (const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;) const override</td></tr>
+<tr class="memitem:ac4e7396621bbd84be0dbbc5ec40dbfb0" id="r_ac4e7396621bbd84be0dbbc5ec40dbfb0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4e7396621bbd84be0dbbc5ec40dbfb0">populate_netcdf_metadata</a> (const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;) const override</td></tr>
+<tr class="memitem:a6d5aa24e25db0b050b90f0e90c0f25b4" id="r_a6d5aa24e25db0b050b90f0e90c0f25b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d5aa24e25db0b050b90f0e90c0f25b4">output_netcdf_data</a> (const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;, size_t) const override</td></tr>
+<tr class="memitem:a07604dce2975488ca2a995f47e9edbca" id="r_a07604dce2975488ca2a995f47e9edbca"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07604dce2975488ca2a995f47e9edbca">label</a> () const override</td></tr>
+<tr class="memdesc:a07604dce2975488ca2a995f47e9edbca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of this sampling object.  <br /></td></tr>
+<tr class="memitem:ad420e28fd0fa9bf13d0519351d7c3202" id="r_ad420e28fd0fa9bf13d0519351d7c3202"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad420e28fd0fa9bf13d0519351d7c3202">label</a> () override</td></tr>
+<tr class="memitem:ab2888b248c93c90f9bfbe1aa61f34982" id="r_ab2888b248c93c90f9bfbe1aa61f34982"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2888b248c93c90f9bfbe1aa61f34982">sampletype</a> () const override</td></tr>
+<tr class="memdesc:ab2888b248c93c90f9bfbe1aa61f34982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of this sampling object.  <br /></td></tr>
+<tr class="memitem:a2de0698654146e60a6fefd03691bd295" id="r_a2de0698654146e60a6fefd03691bd295"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2de0698654146e60a6fefd03691bd295">id</a> () const override</td></tr>
+<tr class="memdesc:a2de0698654146e60a6fefd03691bd295"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for this set of probe locations.  <br /></td></tr>
+<tr class="memitem:aba12018141647a70606ed86e6f1c6d62" id="r_aba12018141647a70606ed86e6f1c6d62"><td class="memItemLeft" align="right" valign="top">int &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba12018141647a70606ed86e6f1c6d62">id</a> () override</td></tr>
+<tr class="memitem:af532d214729d180ad9857bed81b897ef" id="r_af532d214729d180ad9857bed81b897ef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af532d214729d180ad9857bed81b897ef">num_gridpoints</a> () const</td></tr>
+<tr class="memdesc:af532d214729d180ad9857bed81b897ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output functions for private variables Number of 2D grid points.  <br /></td></tr>
+<tr class="memitem:a18ad8f71a734dcc313654cad0598912e" id="r_a18ad8f71a734dcc313654cad0598912e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18ad8f71a734dcc313654cad0598912e">num_instances</a> () const</td></tr>
+<tr class="memdesc:a18ad8f71a734dcc313654cad0598912e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of instances.  <br /></td></tr>
+<tr class="memitem:a621c2d25d8c20131e43dce7a972ad283" id="r_a621c2d25d8c20131e43dce7a972ad283"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a621c2d25d8c20131e43dce7a972ad283">num_points</a> () const override</td></tr>
+<tr class="memdesc:a621c2d25d8c20131e43dce7a972ad283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of points, total.  <br /></td></tr>
+<tr class="memitem:acad032b306dcdae7ebc899391de2abcd" id="r_acad032b306dcdae7ebc899391de2abcd"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acad032b306dcdae7ebc899391de2abcd">num_output_points</a> () const override</td></tr>
+<tr class="memitem:a233d09930979486e2f49abb26c8ef92f" id="r_a233d09930979486e2f49abb26c8ef92f"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Array&lt; amrex::Real, 2 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a233d09930979486e2f49abb26c8ef92f">grid_locations</a> () const</td></tr>
+<tr class="memdesc:a233d09930979486e2f49abb26c8ef92f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locations.  <br /></td></tr>
+<tr class="memitem:aa9ab26e23d2cddfc1b788787a1ed8162" id="r_aa9ab26e23d2cddfc1b788787a1ed8162"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9ab26e23d2cddfc1b788787a1ed8162">heights</a> () const</td></tr>
+<tr class="memdesc:aa9ab26e23d2cddfc1b788787a1ed8162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs (heights)  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ae40a42e24c825c6058da1676b3bdf5b1" id="r_ae40a42e24c825c6058da1676b3bdf5b1"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae40a42e24c825c6058da1676b3bdf5b1">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a1fa7dab9c4d4fb2a15250f70e709e951" id="r_a1fa7dab9c4d4fb2a15250f70e709e951"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1fa7dab9c4d4fb2a15250f70e709e951">m_sim</a></td></tr>
+<tr class="memitem:a506c79edfa879224f116683c829df645" id="r_a506c79edfa879224f116683c829df645"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a506c79edfa879224f116683c829df645">m_vof</a> {nullptr}</td></tr>
+<tr class="memdesc:a506c79edfa879224f116683c829df645"><td class="mdescLeft">&#160;</td><td class="mdescRight">reference to VOF  <br /></td></tr>
+<tr class="memitem:a4a4ec2e50feba12ceddf22917d3694c1" id="r_a4a4ec2e50feba12ceddf22917d3694c1"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a4ec2e50feba12ceddf22917d3694c1">m_vof_str</a> {&quot;vof&quot;}</td></tr>
+<tr class="memitem:a34be3e8f5f0d46bef0125729b4a01af4" id="r_a34be3e8f5f0d46bef0125729b4a01af4"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34be3e8f5f0d46bef0125729b4a01af4">m_npts_dir</a></td></tr>
+<tr class="memdesc:a34be3e8f5f0d46bef0125729b4a01af4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number or points on 2D grid in each direction.  <br /></td></tr>
+<tr class="memitem:a3aa77b3b63cc6e575684506ceca9a9a2" id="r_a3aa77b3b63cc6e575684506ceca9a9a2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3aa77b3b63cc6e575684506ceca9a9a2">m_npts</a> {0}</td></tr>
+<tr class="memitem:afb5b1739b9e7f5eed52f1613ef4221de" id="r_afb5b1739b9e7f5eed52f1613ef4221de"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb5b1739b9e7f5eed52f1613ef4221de">m_ninst</a> {1}</td></tr>
+<tr class="memdesc:afb5b1739b9e7f5eed52f1613ef4221de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of instances (possible sampling points per location, like in the case of a breaking wave)  <br /></td></tr>
+<tr class="memitem:a769d2f20356393fc77a9e93d9ab24109" id="r_a769d2f20356393fc77a9e93d9ab24109"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a769d2f20356393fc77a9e93d9ab24109">m_coorddir</a> {2}</td></tr>
+<tr class="memdesc:a769d2f20356393fc77a9e93d9ab24109"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coordinate direction to search along, default is z (this also determines the meaning of start and end points)  <br /></td></tr>
+<tr class="memitem:a0fe256fec6533fea31906e824f0d3989" id="r_a0fe256fec6533fea31906e824f0d3989"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fe256fec6533fea31906e824f0d3989">m_gc0</a> = 0</td></tr>
+<tr class="memdesc:a0fe256fec6533fea31906e824f0d3989"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grid coordinates, determined as a function of m_coorddir.  <br /></td></tr>
+<tr class="memitem:aebc4308b1de6a190da26545bccb019f2" id="r_aebc4308b1de6a190da26545bccb019f2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebc4308b1de6a190da26545bccb019f2">m_gc1</a> = 1</td></tr>
+<tr class="memitem:aa711a602bdc5dfa26ead21f3a833dd3d" id="r_aa711a602bdc5dfa26ead21f3a833dd3d"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa711a602bdc5dfa26ead21f3a833dd3d">m_start</a></td></tr>
+<tr class="memdesc:aa711a602bdc5dfa26ead21f3a833dd3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameters to set up plane.  <br /></td></tr>
+<tr class="memitem:a0240028dfac4e9974860feaec9cfbce6" id="r_a0240028dfac4e9974860feaec9cfbce6"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0240028dfac4e9974860feaec9cfbce6">m_end</a></td></tr>
+<tr class="memitem:a37dbb30f53d6f80c084a119a550fb1b7" id="r_a37dbb30f53d6f80c084a119a550fb1b7"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Array&lt; amrex::Real, 2 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37dbb30f53d6f80c084a119a550fb1b7">m_grid_locs</a></td></tr>
+<tr class="memdesc:a37dbb30f53d6f80c084a119a550fb1b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locations of points in 2D grid.  <br /></td></tr>
+<tr class="memitem:a23538de282e26992e9ca13983086f175" id="r_a23538de282e26992e9ca13983086f175"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23538de282e26992e9ca13983086f175">m_out</a></td></tr>
+<tr class="memdesc:a23538de282e26992e9ca13983086f175"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output coordinate.  <br /></td></tr>
+<tr class="memitem:a262e69b32f497142bf984121a5a058a8" id="r_a262e69b32f497142bf984121a5a058a8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a262e69b32f497142bf984121a5a058a8">m_use_linear</a> {false}</td></tr>
+<tr class="memdesc:a262e69b32f497142bf984121a5a058a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to use linear interpolation for surface finding in part of domain.  <br /></td></tr>
+<tr class="memitem:ac051e28d4259996717da6acf1750656a" id="r_ac051e28d4259996717da6acf1750656a"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac051e28d4259996717da6acf1750656a">m_lx_linear</a> {0.}</td></tr>
+<tr class="memdesc:ac051e28d4259996717da6acf1750656a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameter for optional linear interpolation.  <br /></td></tr>
+<tr class="memitem:a7b7e07c21b8c1e3cdeeff954d49bc3c4" id="r_a7b7e07c21b8c1e3cdeeff954d49bc3c4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b7e07c21b8c1e3cdeeff954d49bc3c4">m_ncomp</a> {1}</td></tr>
+<tr class="memdesc:a7b7e07c21b8c1e3cdeeff954d49bc3c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max number of sample points found in a single cell.  <br /></td></tr>
+<tr class="memitem:a97114e50b5c003f60a44b6ab9857471f" id="r_a97114e50b5c003f60a44b6ab9857471f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97114e50b5c003f60a44b6ab9857471f">m_ncmax</a> {8}</td></tr>
+<tr class="memdesc:a97114e50b5c003f60a44b6ab9857471f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max number of sample points allowed in a single cell.  <br /></td></tr>
+<tr class="memitem:aa5291a7bb522cc9d8d164b33b6faac00" id="r_aa5291a7bb522cc9d8d164b33b6faac00"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5291a7bb522cc9d8d164b33b6faac00">m_label</a></td></tr>
+<tr class="memitem:ad2a192ffe379020f5bd37e0615b7fc17" id="r_ad2a192ffe379020f5bd37e0615b7fc17"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2a192ffe379020f5bd37e0615b7fc17">m_id</a> {-1}</td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a3e34f90068b04a39b98b9d2b7e33f34f" name="a3e34f90068b04a39b98b9d2b7e33f34f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e34f90068b04a39b98b9d2b7e33f34f">&#9670;&#160;</a></span>FreeSurfaceSampler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::sampling::FreeSurfaceSampler::FreeSurfaceSampler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae7eaa666e50fc8b8a973b38cc1757265" name="ae7eaa666e50fc8b8a973b38cc1757265"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7eaa666e50fc8b8a973b38cc1757265">&#9670;&#160;</a></span>~FreeSurfaceSampler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::sampling::FreeSurfaceSampler::~FreeSurfaceSampler </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="ac9181e49603347879cec6b7cf28ea455" name="ac9181e49603347879cec6b7cf28ea455"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9181e49603347879cec6b7cf28ea455">&#9670;&#160;</a></span>check_bounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::FreeSurfaceSampler::check_bounds </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check and fix the bounds of the sampler so the probes are in the domain. </p>
+
+</div>
+</div>
+<a id="aa518ac17c2eccb53afcf8875eac25857" name="aa518ac17c2eccb53afcf8875eac25857"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa518ac17c2eccb53afcf8875eac25857">&#9670;&#160;</a></span>define_netcdf_metadata()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::FreeSurfaceSampler::define_netcdf_metadata </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>grp</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a233d09930979486e2f49abb26c8ef92f" name="a233d09930979486e2f49abb26c8ef92f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a233d09930979486e2f49abb26c8ef92f">&#9670;&#160;</a></span>grid_locations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt; amrex::Array&lt; amrex::Real, 2 &gt; &gt; kynema_sgf::sampling::FreeSurfaceSampler::grid_locations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Locations. </p>
+
+</div>
+</div>
+<a id="aa9ab26e23d2cddfc1b788787a1ed8162" name="aa9ab26e23d2cddfc1b788787a1ed8162"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9ab26e23d2cddfc1b788787a1ed8162">&#9670;&#160;</a></span>heights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt; amrex::Real &gt; kynema_sgf::sampling::FreeSurfaceSampler::heights </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Outputs (heights) </p>
+
+</div>
+</div>
+<a id="a2de0698654146e60a6fefd03691bd295" name="a2de0698654146e60a6fefd03691bd295"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2de0698654146e60a6fefd03691bd295">&#9670;&#160;</a></span>id() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::FreeSurfaceSampler::id </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unique identifier for this set of probe locations. </p>
+
+</div>
+</div>
+<a id="aba12018141647a70606ed86e6f1c6d62" name="aba12018141647a70606ed86e6f1c6d62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba12018141647a70606ed86e6f1c6d62">&#9670;&#160;</a></span>id() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int &amp; kynema_sgf::sampling::FreeSurfaceSampler::id </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae40a42e24c825c6058da1676b3bdf5b1" name="ae40a42e24c825c6058da1676b3bdf5b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae40a42e24c825c6058da1676b3bdf5b1">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::sampling::FreeSurfaceSampler::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab379f1c562227fbe003002042d25b449" name="ab379f1c562227fbe003002042d25b449"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab379f1c562227fbe003002042d25b449">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::FreeSurfaceSampler::initialize </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read user inputs and create mesh-based information for locating interface. </p>
+
+</div>
+</div>
+<a id="a07604dce2975488ca2a995f47e9edbca" name="a07604dce2975488ca2a995f47e9edbca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07604dce2975488ca2a995f47e9edbca">&#9670;&#160;</a></span>label() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::sampling::FreeSurfaceSampler::label </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Name of this sampling object. </p>
+
+</div>
+</div>
+<a id="ad420e28fd0fa9bf13d0519351d7c3202" name="ad420e28fd0fa9bf13d0519351d7c3202"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad420e28fd0fa9bf13d0519351d7c3202">&#9670;&#160;</a></span>label() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string &amp; kynema_sgf::sampling::FreeSurfaceSampler::label </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af532d214729d180ad9857bed81b897ef" name="af532d214729d180ad9857bed81b897ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af532d214729d180ad9857bed81b897ef">&#9670;&#160;</a></span>num_gridpoints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::FreeSurfaceSampler::num_gridpoints </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Output functions for private variables Number of 2D grid points. </p>
+
+</div>
+</div>
+<a id="a18ad8f71a734dcc313654cad0598912e" name="a18ad8f71a734dcc313654cad0598912e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18ad8f71a734dcc313654cad0598912e">&#9670;&#160;</a></span>num_instances()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::FreeSurfaceSampler::num_instances </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of instances. </p>
+
+</div>
+</div>
+<a id="acad032b306dcdae7ebc899391de2abcd" name="acad032b306dcdae7ebc899391de2abcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acad032b306dcdae7ebc899391de2abcd">&#9670;&#160;</a></span>num_output_points()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::FreeSurfaceSampler::num_output_points </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a621c2d25d8c20131e43dce7a972ad283" name="a621c2d25d8c20131e43dce7a972ad283"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a621c2d25d8c20131e43dce7a972ad283">&#9670;&#160;</a></span>num_points()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long kynema_sgf::sampling::FreeSurfaceSampler::num_points </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of points, total. </p>
+
+</div>
+</div>
+<a id="a8c338e69497f4e181a2047fe26ed1ce1" name="a8c338e69497f4e181a2047fe26ed1ce1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c338e69497f4e181a2047fe26ed1ce1">&#9670;&#160;</a></span>output_locations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::FreeSurfaceSampler::output_locations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sample_locs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6d5aa24e25db0b050b90f0e90c0f25b4" name="a6d5aa24e25db0b050b90f0e90c0f25b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d5aa24e25db0b050b90f0e90c0f25b4">&#9670;&#160;</a></span>output_netcdf_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::FreeSurfaceSampler::output_netcdf_data </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>grp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>nt</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac4e7396621bbd84be0dbbc5ec40dbfb0" name="ac4e7396621bbd84be0dbbc5ec40dbfb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4e7396621bbd84be0dbbc5ec40dbfb0">&#9670;&#160;</a></span>populate_netcdf_metadata()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::FreeSurfaceSampler::populate_netcdf_metadata </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classncutils_1_1_n_c_group.html">ncutils::NCGroup</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8e78dce1c15e65e2ba34a67b3ab37780" name="a8e78dce1c15e65e2ba34a67b3ab37780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e78dce1c15e65e2ba34a67b3ab37780">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::FreeSurfaceSampler::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Redo some of the initialization work when the grid changes. </p>
+
+</div>
+</div>
+<a id="ab2888b248c93c90f9bfbe1aa61f34982" name="ab2888b248c93c90f9bfbe1aa61f34982"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2888b248c93c90f9bfbe1aa61f34982">&#9670;&#160;</a></span>sampletype()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::sampling::FreeSurfaceSampler::sampletype </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Type of this sampling object. </p>
+
+</div>
+</div>
+<a id="aae70276831a571b16754e461639eaa0a" name="aae70276831a571b16754e461639eaa0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae70276831a571b16754e461639eaa0a">&#9670;&#160;</a></span>sampling_locations() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::FreeSurfaceSampler::sampling_locations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sample_locs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Populate and return a vector of probe locations to be sampled. </p>
+
+</div>
+</div>
+<a id="a9b3ab7fb14ef1f7cfb9f7d32ca471f0b" name="a9b3ab7fb14ef1f7cfb9f7d32ca471f0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b3ab7fb14ef1f7cfb9f7d32ca471f0b">&#9670;&#160;</a></span>sampling_locations() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::sampling::FreeSurfaceSampler::sampling_locations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structkynema__sgf_1_1sampling_1_1_sample_loc_type.html">SampleLocType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sample_locs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Box &amp;</td>          <td class="paramname"><span class="paramname"><em>box</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Populate the vector with coordinates of the sampling locations inside a box. </p>
+
+</div>
+</div>
+<a id="ad1e894e1ec5e2095c43cf2c16a3824a3" name="ad1e894e1ec5e2095c43cf2c16a3824a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1e894e1ec5e2095c43cf2c16a3824a3">&#9670;&#160;</a></span>update_sampling_locations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::sampling::FreeSurfaceSampler::update_sampling_locations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Find heights associated with 2D sample locations. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a769d2f20356393fc77a9e93d9ab24109" name="a769d2f20356393fc77a9e93d9ab24109"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a769d2f20356393fc77a9e93d9ab24109">&#9670;&#160;</a></span>m_coorddir</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::FreeSurfaceSampler::m_coorddir {2}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Coordinate direction to search along, default is z (this also determines the meaning of start and end points) </p>
+
+</div>
+</div>
+<a id="a0240028dfac4e9974860feaec9cfbce6" name="a0240028dfac4e9974860feaec9cfbce6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0240028dfac4e9974860feaec9cfbce6">&#9670;&#160;</a></span>m_end</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::sampling::FreeSurfaceSampler::m_end</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0fe256fec6533fea31906e824f0d3989" name="a0fe256fec6533fea31906e824f0d3989"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fe256fec6533fea31906e824f0d3989">&#9670;&#160;</a></span>m_gc0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::FreeSurfaceSampler::m_gc0 = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Grid coordinates, determined as a function of m_coorddir. </p>
+
+</div>
+</div>
+<a id="aebc4308b1de6a190da26545bccb019f2" name="aebc4308b1de6a190da26545bccb019f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebc4308b1de6a190da26545bccb019f2">&#9670;&#160;</a></span>m_gc1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::FreeSurfaceSampler::m_gc1 = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a37dbb30f53d6f80c084a119a550fb1b7" name="a37dbb30f53d6f80c084a119a550fb1b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37dbb30f53d6f80c084a119a550fb1b7">&#9670;&#160;</a></span>m_grid_locs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Array&lt;amrex::Real, 2&gt; &gt; kynema_sgf::sampling::FreeSurfaceSampler::m_grid_locs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Locations of points in 2D grid. </p>
+
+</div>
+</div>
+<a id="ad2a192ffe379020f5bd37e0615b7fc17" name="ad2a192ffe379020f5bd37e0615b7fc17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2a192ffe379020f5bd37e0615b7fc17">&#9670;&#160;</a></span>m_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::FreeSurfaceSampler::m_id {-1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa5291a7bb522cc9d8d164b33b6faac00" name="aa5291a7bb522cc9d8d164b33b6faac00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5291a7bb522cc9d8d164b33b6faac00">&#9670;&#160;</a></span>m_label</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::sampling::FreeSurfaceSampler::m_label</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac051e28d4259996717da6acf1750656a" name="ac051e28d4259996717da6acf1750656a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac051e28d4259996717da6acf1750656a">&#9670;&#160;</a></span>m_lx_linear</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::sampling::FreeSurfaceSampler::m_lx_linear {0.}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Parameter for optional linear interpolation. </p>
+
+</div>
+</div>
+<a id="a97114e50b5c003f60a44b6ab9857471f" name="a97114e50b5c003f60a44b6ab9857471f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97114e50b5c003f60a44b6ab9857471f">&#9670;&#160;</a></span>m_ncmax</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::FreeSurfaceSampler::m_ncmax {8}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Max number of sample points allowed in a single cell. </p>
+
+</div>
+</div>
+<a id="a7b7e07c21b8c1e3cdeeff954d49bc3c4" name="a7b7e07c21b8c1e3cdeeff954d49bc3c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b7e07c21b8c1e3cdeeff954d49bc3c4">&#9670;&#160;</a></span>m_ncomp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::FreeSurfaceSampler::m_ncomp {1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Max number of sample points found in a single cell. </p>
+
+</div>
+</div>
+<a id="afb5b1739b9e7f5eed52f1613ef4221de" name="afb5b1739b9e7f5eed52f1613ef4221de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb5b1739b9e7f5eed52f1613ef4221de">&#9670;&#160;</a></span>m_ninst</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::FreeSurfaceSampler::m_ninst {1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of instances (possible sampling points per location, like in the case of a breaking wave) </p>
+
+</div>
+</div>
+<a id="a3aa77b3b63cc6e575684506ceca9a9a2" name="a3aa77b3b63cc6e575684506ceca9a9a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3aa77b3b63cc6e575684506ceca9a9a2">&#9670;&#160;</a></span>m_npts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::sampling::FreeSurfaceSampler::m_npts {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a34be3e8f5f0d46bef0125729b4a01af4" name="a34be3e8f5f0d46bef0125729b4a01af4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34be3e8f5f0d46bef0125729b4a01af4">&#9670;&#160;</a></span>m_npts_dir</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;int&gt; kynema_sgf::sampling::FreeSurfaceSampler::m_npts_dir</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number or points on 2D grid in each direction. </p>
+
+</div>
+</div>
+<a id="a23538de282e26992e9ca13983086f175" name="a23538de282e26992e9ca13983086f175"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23538de282e26992e9ca13983086f175">&#9670;&#160;</a></span>m_out</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::sampling::FreeSurfaceSampler::m_out</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Output coordinate. </p>
+
+</div>
+</div>
+<a id="a1fa7dab9c4d4fb2a15250f70e709e951" name="a1fa7dab9c4d4fb2a15250f70e709e951"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fa7dab9c4d4fb2a15250f70e709e951">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::sampling::FreeSurfaceSampler::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa711a602bdc5dfa26ead21f3a833dd3d" name="aa711a602bdc5dfa26ead21f3a833dd3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa711a602bdc5dfa26ead21f3a833dd3d">&#9670;&#160;</a></span>m_start</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::sampling::FreeSurfaceSampler::m_start</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Parameters to set up plane. </p>
+
+</div>
+</div>
+<a id="a262e69b32f497142bf984121a5a058a8" name="a262e69b32f497142bf984121a5a058a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a262e69b32f497142bf984121a5a058a8">&#9670;&#160;</a></span>m_use_linear</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::sampling::FreeSurfaceSampler::m_use_linear {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag to use linear interpolation for surface finding in part of domain. </p>
+
+</div>
+</div>
+<a id="a506c79edfa879224f116683c829df645" name="a506c79edfa879224f116683c829df645"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a506c79edfa879224f116683c829df645">&#9670;&#160;</a></span>m_vof</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a>* kynema_sgf::sampling::FreeSurfaceSampler::m_vof {nullptr}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>reference to VOF </p>
+
+</div>
+</div>
+<a id="a4a4ec2e50feba12ceddf22917d3694c1" name="a4a4ec2e50feba12ceddf22917d3694c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a4ec2e50feba12ceddf22917d3694c1">&#9670;&#160;</a></span>m_vof_str</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::sampling::FreeSurfaceSampler::m_vof_str {&quot;vof&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/<a class="el" href="_free_surface_sampler_8_h_source.html">FreeSurfaceSampler.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/sampling/<a class="el" href="_free_surface_sampler_8cpp.html">FreeSurfaceSampler.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

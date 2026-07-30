@@ -1,0 +1,209 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Documentation &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Documentation" href="documentation.html" />
+    <link rel="prev" title="Mapping definition" href="../theory/mapping.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../doxygen/html/index.html">Kynema-SGF API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_testing.html">Regression testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="verification.html">Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coding_guidelines.html">Coding Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/developer/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="developer-documentation">
+<span id="dev-docs"></span><h1>Developer Documentation<a class="headerlink" href="#developer-documentation" title="Link to this heading"></a></h1>
+<p>This section is meant for potential developers who are interested in modifying
+and extending the Kynema-SGF source code for their own use cases.</p>
+<p>Kynema-SGF is built on top of <a class="reference external" href="https://amrex-codes.github.io/amrex/docs_html/">AMReX library</a>. Users are strongly
+recommended to read through the AMReX documentation and understand the basic
+AMReX concepts before jumping into the Kynema-SGF source code.</p>
+<p>The <a class="reference external" href="https://amrex-codes.github.io/amrex/docs_html/Basics_Chapter.html">Basics section</a> provides a
+thorough overview of the basic data structures and ways to interact with these
+structures. The <a class="reference external" href="https://amrex-codes.github.io/amrex/docs_html/GPU_Chapter.html">GPU section</a> provides an
+overview of the AMReX GPU strategy and the higher-level functions (e.g.,
+<code class="docutils literal notranslate"><span class="pre">parallel-for</span></code> abstractions) available to write GPU-ready code within
+Kynema-SGF. The <a class="reference external" href="https://amrex-codes.github.io/amrex/docs_html/LinearSolvers_Chapter.html">Linear Solvers section</a>
+provides an overview of the multi-level multigrid (MLMG) solvers used to solve
+the various linear systems within Kynema-SGF.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html#manual">Manual</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation.html#writing-documentation">Writing documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html#source-code-documentation">Source code documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html#building-documentation">Building documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation.html#build">Build</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../doxygen/html/index.html">Kynema-SGF API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unit_testing.html">Unit testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html#running-unit-tests">Running unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html#basic-unit-test-concepts">Basic unit test concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="unit_testing.html#assertions">Assertions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit_testing.html#tests-and-test-fixtures">Tests and Test Fixtures</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html#unit-testing-in-kynema-sgf">Unit testing in Kynema-SGF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="unit_testing.html#unit-test-scaffolding">Unit test scaffolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unit_testing.html#example-unit-tests">Example unit tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="regression_testing.html">Regression testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="regression_testing.html#enabling-and-running-regression-tests">Enabling and running regression tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_testing.html#testing-against-gold-files">Testing against gold files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="regression_testing.html#example-output-for-a-failed-test">Example output for a failed test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="regression_testing.html#test-file-organization">Test file organization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="regression_testing.html#creating-new-regression-tests">Creating new regression tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regression_testing.html#test-outputs-and-troubleshooting">Test outputs and troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="verification.html">Verification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="verification.html#building-and-linking-masa">Building and linking MASA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="verification.html#building-masa-from-source">Building MASA from source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="verification.html#building-masa-using-spack">Building MASA using Spack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="verification.html#linking-masa-to-kynema-sgf">Linking MASA to Kynema-SGF</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="verification.html#performing-the-mms-verification">Performing the MMS verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="verification.html#convecting-taylor-vortex-ctv">Convecting Taylor Vortex (CTV)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="verification.html#ekman-spiral">Ekman spiral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="verification.html#channel-flow-laminar-quasi-2d-with-different-bcs">Channel flow (laminar, quasi-2D) with different BCs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="verification.html#burggraf-flow-lid-driven-cavity-with-body-force">Burggraf flow: lid-driven cavity with body force</a></li>
+<li class="toctree-l2"><a class="reference internal" href="verification.html#channel-flow-with-smagorinsky-les">Channel flow with Smagorinsky LES</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="verification.html#parameter-values-for-testing">Parameter values for testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="verification.html#test-results">Test results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="coding_guidelines.html">Coding Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="coding_guidelines.html#style-guide-recommendations">Style Guide/Recommendations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="coding_guidelines.html#sample-c-code">Sample C++ code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../theory/mapping.html" class="btn btn-neutral float-left" title="Mapping definition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="documentation.html" class="btn btn-neutral float-right" title="Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
