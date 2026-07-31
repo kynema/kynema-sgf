@@ -66,6 +66,9 @@ public:
 
     [[nodiscard]] virtual amrex::Vector<ActuatorRefinementGeometry>
     refinement_geometries(amrex::Real time) const = 0;
+
+    [[nodiscard]] virtual std::optional<motion::RigidTransform>
+    reference_frame(amrex::Real time) const = 0;
 };
 
 /** Concrete implementation of the ActuatorModel for different actuator types.
@@ -186,6 +189,12 @@ public:
     refinement_geometries(const amrex::Real time) const override
     {
         return ops::RefinementGeometryOp<ActTrait, SrcTrait>()(m_data, time);
+    }
+
+    [[nodiscard]] std::optional<motion::RigidTransform>
+    reference_frame(const amrex::Real time) const override
+    {
+        return ops::ReferenceFrameOp<ActTrait, SrcTrait>()(m_data, time);
     }
 
     void init_actuator_source() override

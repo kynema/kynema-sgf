@@ -714,6 +714,19 @@ RefinementGeometryOp<ActuatorSector, ActSrcSector>::operator()(
     return {sector::refinement_geometry(data.meta(), data.info().label, time)};
 }
 
+std::optional<motion::RigidTransform>
+ReferenceFrameOp<ActuatorSector, ActSrcSector>::operator()(
+    const ActuatorSector::DataType& data, const amrex::Real time) const
+{
+    const auto& motion = data.meta().body_motion;
+    if (motion == nullptr) {
+        return std::nullopt;
+    }
+    auto pose = motion->pose(time);
+    pose.position = pose.apply_point(data.meta().body_offset);
+    return pose;
+}
+
 void UpdatePosOp<ActuatorSector, ActSrcSector>::operator()(
     ActuatorSector::DataType& data)
 {

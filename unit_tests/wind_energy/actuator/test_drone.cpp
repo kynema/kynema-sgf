@@ -3,6 +3,7 @@
 #include "src/wind_energy/actuator/Actuator.H"
 #include "src/wind_energy/actuator/ActuatorContainer.H"
 #include "src/wind_energy/actuator/ActuatorModel.H"
+#include "src/utilities/sampling/MovingPlaneSampler.H"
 #include "src/utilities/constants.H"
 #include "src/utilities/ncutils/nc_interface.H"
 #include "ks_test_utils/MeshTest.H"
@@ -209,6 +210,14 @@ TEST_F(DroneActuatorTest, composite_lifecycle)
 
     const auto refinement_at_zero = drone->refinement_geometries(0.0_rt);
     const auto refinement_at_one = drone->refinement_geometries(1.0_rt);
+    const auto frame_at_zero = drone->reference_frame(0.0_rt);
+    const auto frame_at_one = drone->reference_frame(1.0_rt);
+    ASSERT_TRUE(frame_at_zero.has_value());
+    ASSERT_TRUE(frame_at_one.has_value());
+    EXPECT_NEAR(frame_at_zero->position.x(), 0.0_rt, test_tol);
+    EXPECT_NEAR(frame_at_one->position.x(), 0.1_rt, test_tol);
+    EXPECT_NEAR(frame_at_one->position.y(), -0.2_rt, test_tol);
+    EXPECT_NEAR(frame_at_one->position.z(), 0.3_rt, test_tol);
     ASSERT_EQ(refinement_at_zero.size(), 4U);
     ASSERT_EQ(refinement_at_one.size(), 4U);
     for (int i = 0; i < 4; ++i) {
@@ -231,6 +240,66 @@ TEST_F(DroneActuatorTest, composite_lifecycle)
 
     actuator.post_init_actions();
     actuator.pre_advance_work();
+
+    remove(m_airfoil_file.c_str());
+}
+
+TEST_F(DroneActuatorTest, actuator_attached_plane)
+{
+    write_airfoil();
+    initialize_domain();
+    populate_inputs();
+
+    amrex::ParmParse pp_drone("Actuator.D1");
+    pp_drone.addarr(
+        "body_orientation_degrees",
+        amrex::Vector<amrex::Real>{10.0_rt, 20.0_rt, 30.0_rt});
+
+    auto& physics = sim().physics_manager().create("Actuator", sim());
+    auto& actuator =
+        dynamic_cast<kynema_sgf::actuator::Actuator&>(physics);
+    actuator.pre_init_actions();
+    const auto& model = actuator.get_act_bylabel("D1");
+    const auto frame = model.reference_frame(0.0_rt);
+    ASSERT_TRUE(frame.has_value());
+
+    amrex::ParmParse pp_plane("drone_plane");
+    pp_plane.add("actuator_label", std::string("D1"));
+    pp_plane.addarr(
+        "origin",
+        amrex::Vector<amrex::Real>{-0.01_rt, 0.02_rt, 0.0_rt});
+    pp_plane.addarr(
+        "axis1",
+        amrex::Vector<amrex::Real>{0.04_rt, 0.0_rt, 0.0_rt});
+    pp_plane.addarr(
+        "axis2",
+        amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 0.06_rt});
+    pp_plane.addarr("num_points", amrex::Vector<int>{2, 3});
+    pp_plane.addarr(
+        "offsets",
+        amrex::Vector<amrex::Real>{-0.01_rt, 0.02_rt});
+    pp_plane.addarr(
+        "offset_vector",
+        amrex::Vector<amrex::Real>{0.0_rt, -1.0_rt, 0.0_rt});
+
+    kynema_sgf::sampling::MovingPlaneSampler plane(sim());
+    plane.initialize("drone_plane");
+    kynema_sgf::sampling::SampleLocType locations;
+    plane.sampling_locations(locations);
+    ASSERT_EQ(locations.locations().size(), 12U);
+
+    const auto local_first =
+        kynema_sgf::vs::Vector{0.01_rt, 0.02_rt, 0.03_rt} -
+        0.02_rt * kynema_sgf::vs::Vector::ihat() -
+        0.03_rt * kynema_sgf::vs::Vector::khat() +
+        0.01_rt * kynema_sgf::vs::Vector::jhat();
+    const auto expected_first = frame->apply_point(local_first);
+    EXPECT_NEAR(
+        locations.locations()[0][0], expected_first.x(), test_tol);
+    EXPECT_NEAR(
+        locations.locations()[0][1], expected_first.y(), test_tol);
+    EXPECT_NEAR(
+        locations.locations()[0][2], expected_first.z(), test_tol);
 
     remove(m_airfoil_file.c_str());
 }

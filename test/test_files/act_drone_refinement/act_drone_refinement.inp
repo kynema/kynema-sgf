@@ -80,6 +80,23 @@ Actuator.Drone.gaussian_type = table
 Actuator.Drone.gaussian_table_error = 1.0e-4
 Actuator.Drone.output_frequency = -1
 
+# A body-frame plane that exercises actuator-linked translation and sampling
+# particle redistribution together with the moving refinement hierarchy.
+incflo.post_processing = drone_sampling
+drone_sampling.type = Sampling
+drone_sampling.output_interval = 1
+drone_sampling.output_format = native
+drone_sampling.fields = velocity actuator_src_term
+drone_sampling.labels = body_plane
+drone_sampling.body_plane.type = MovingPlaneSampler
+drone_sampling.body_plane.actuator_label = D1
+drone_sampling.body_plane.origin = -0.06 -0.06 0.0
+drone_sampling.body_plane.axis1 = 0.12 0.0 0.0
+drone_sampling.body_plane.axis2 = 0.0 0.12 0.0
+drone_sampling.body_plane.num_points = 9 9
+drone_sampling.body_plane.offset_vector = 0.0 0.0 1.0
+drone_sampling.body_plane.offsets = -0.04 0.0 0.04
+
 xlo.type = "pressure_outflow"
 xhi.type = "pressure_outflow"
 ylo.type = "slip_wall"

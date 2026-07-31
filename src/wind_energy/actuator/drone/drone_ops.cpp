@@ -122,6 +122,17 @@ RefinementGeometryOp<Drone, ActSrcDrone>::operator()(
     return geometries;
 }
 
+std::optional<motion::RigidTransform>
+ReferenceFrameOp<Drone, ActSrcDrone>::operator()(
+    const Drone::DataType& data, const amrex::Real time) const
+{
+    const auto& motion = data.meta().body_motion;
+    if (motion == nullptr) {
+        return std::nullopt;
+    }
+    return motion->pose(time);
+}
+
 void ReadInputsOp<Drone, ActSrcDrone>::operator()(
     Drone::DataType& data, const utils::ActParser& pp)
 {

@@ -3,7 +3,10 @@
 
 #include "src/wind_energy/actuator/actuator_types.H"
 #include "src/wind_energy/actuator/ActParser.H"
+#include "src/wind_energy/actuator/motion/RigidTransform.H"
 #include "AMReX_Vector.H"
+
+#include <optional>
 
 namespace kynema_sgf::actuator::ops {
 
@@ -82,6 +85,22 @@ struct RefinementGeometryOp
         const typename ActTrait::DataType& /*data*/, amrex::Real /*time*/) const
     {
         return {};
+    }
+};
+
+/** Return the rigid reference frame for actuator-attached utilities.
+ *
+ * The default implementation reports that an actuator does not provide a
+ * reference frame. Actuator types with a meaningful rigid-body frame
+ * specialize this operation.
+ */
+template <typename ActTrait, typename SrcTrait, typename = void>
+struct ReferenceFrameOp
+{
+    [[nodiscard]] std::optional<motion::RigidTransform> operator()(
+        const typename ActTrait::DataType& /*data*/, amrex::Real /*time*/) const
+    {
+        return std::nullopt;
     }
 };
 

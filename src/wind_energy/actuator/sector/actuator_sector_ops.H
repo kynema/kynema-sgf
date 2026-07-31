@@ -124,6 +124,13 @@ struct RefinementGeometryOp<ActuatorSector, ActSrcSector>
 };
 
 template <>
+struct ReferenceFrameOp<ActuatorSector, ActSrcSector>
+{
+    [[nodiscard]] std::optional<motion::RigidTransform> operator()(
+        const ActuatorSector::DataType& data, amrex::Real time) const;
+};
+
+template <>
 struct UpdatePosOp<ActuatorSector, ActSrcSector>
 {
     void operator()(ActuatorSector::DataType& data);
