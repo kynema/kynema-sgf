@@ -104,13 +104,19 @@ void TimeAveraging::post_advance_work()
         (((cur_time >= m_start_time) && (cur_time < m_stop_time)) &&
          do_phase_avg);
 
+    const bool in_avg_period = (cur_time >= m_start_time) &&
+                               (cur_time < m_stop_time) && (cur_dt > 0.0_rt);
+
+    // Accumulate time on every in-period step so that phase-averaging
+    // intervals spanning multiple timesteps are counted correctly
+    if (in_avg_period) {
+        m_accumulated_avg_time_interval += cur_dt;
+    }
+
     if (!do_avg || (cur_dt <= 0.0_rt)) {
         // Don't avg during restart or outside of averaging time period
         return;
     }
-
-    // Only accumulate time when averaging is active
-    m_accumulated_avg_time_interval += cur_dt;
 
     const amrex::Real elapsed_time = (cur_time - m_start_time);
 
