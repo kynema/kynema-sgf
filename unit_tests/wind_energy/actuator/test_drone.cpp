@@ -256,8 +256,7 @@ TEST_F(DroneActuatorTest, actuator_attached_plane)
         amrex::Vector<amrex::Real>{10.0_rt, 20.0_rt, 30.0_rt});
 
     auto& physics = sim().physics_manager().create("Actuator", sim());
-    auto& actuator =
-        dynamic_cast<kynema_sgf::actuator::Actuator&>(physics);
+    auto& actuator = dynamic_cast<kynema_sgf::actuator::Actuator&>(physics);
     actuator.pre_init_actions();
     const auto& model = actuator.get_act_bylabel("D1");
     const auto frame = model.reference_frame(0.0_rt);
@@ -266,21 +265,15 @@ TEST_F(DroneActuatorTest, actuator_attached_plane)
     amrex::ParmParse pp_plane("drone_plane");
     pp_plane.add("actuator_label", std::string("D1"));
     pp_plane.addarr(
-        "origin",
-        amrex::Vector<amrex::Real>{-0.01_rt, 0.02_rt, 0.0_rt});
+        "origin", amrex::Vector<amrex::Real>{-0.01_rt, 0.02_rt, 0.0_rt});
     pp_plane.addarr(
-        "axis1",
-        amrex::Vector<amrex::Real>{0.04_rt, 0.0_rt, 0.0_rt});
+        "axis1", amrex::Vector<amrex::Real>{0.04_rt, 0.0_rt, 0.0_rt});
     pp_plane.addarr(
-        "axis2",
-        amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 0.06_rt});
+        "axis2", amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, 0.06_rt});
     pp_plane.addarr("num_points", amrex::Vector<int>{2, 3});
+    pp_plane.addarr("offsets", amrex::Vector<amrex::Real>{-0.01_rt, 0.02_rt});
     pp_plane.addarr(
-        "offsets",
-        amrex::Vector<amrex::Real>{-0.01_rt, 0.02_rt});
-    pp_plane.addarr(
-        "offset_vector",
-        amrex::Vector<amrex::Real>{0.0_rt, -1.0_rt, 0.0_rt});
+        "offset_vector", amrex::Vector<amrex::Real>{0.0_rt, -1.0_rt, 0.0_rt});
 
     kynema_sgf::sampling::MovingPlaneSampler plane(sim());
     plane.initialize("drone_plane");
@@ -288,18 +281,14 @@ TEST_F(DroneActuatorTest, actuator_attached_plane)
     plane.sampling_locations(locations);
     ASSERT_EQ(locations.locations().size(), 12U);
 
-    const auto local_first =
-        kynema_sgf::vs::Vector{0.01_rt, 0.02_rt, 0.03_rt} -
-        0.02_rt * kynema_sgf::vs::Vector::ihat() -
-        0.03_rt * kynema_sgf::vs::Vector::khat() +
-        0.01_rt * kynema_sgf::vs::Vector::jhat();
+    const auto local_first = kynema_sgf::vs::Vector{0.01_rt, 0.02_rt, 0.03_rt} -
+                             0.02_rt * kynema_sgf::vs::Vector::ihat() -
+                             0.03_rt * kynema_sgf::vs::Vector::khat() +
+                             0.01_rt * kynema_sgf::vs::Vector::jhat();
     const auto expected_first = frame->apply_point(local_first);
-    EXPECT_NEAR(
-        locations.locations()[0][0], expected_first.x(), test_tol);
-    EXPECT_NEAR(
-        locations.locations()[0][1], expected_first.y(), test_tol);
-    EXPECT_NEAR(
-        locations.locations()[0][2], expected_first.z(), test_tol);
+    EXPECT_NEAR(locations.locations()[0][0], expected_first.x(), test_tol);
+    EXPECT_NEAR(locations.locations()[0][1], expected_first.y(), test_tol);
+    EXPECT_NEAR(locations.locations()[0][2], expected_first.z(), test_tol);
 
     remove(m_airfoil_file.c_str());
 }

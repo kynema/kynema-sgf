@@ -34,8 +34,7 @@ bool changed(
 
 } // namespace
 
-MovingPlaneSampler::MovingPlaneSampler(const CFDSim& sim) : PlaneSampler(sim)
-{}
+MovingPlaneSampler::MovingPlaneSampler(const CFDSim& sim) : PlaneSampler(sim) {}
 
 void MovingPlaneSampler::initialize(const std::string& key)
 {
@@ -48,8 +47,7 @@ void MovingPlaneSampler::initialize(const std::string& key)
         amrex::Abort(key + " requires Actuator in incflo.physics");
     }
 
-    const auto& actuators =
-        m_sim.physics_manager().get<actuator::Actuator>();
+    const auto& actuators = m_sim.physics_manager().get<actuator::Actuator>();
     const auto& model = actuators.get_act_bylabel(m_actuator_label);
     if (model.label() != m_actuator_label) {
         amrex::Abort(
@@ -85,8 +83,7 @@ bool MovingPlaneSampler::update_geometry(const amrex::Real time)
         values(frame->apply_vector(vector(m_reference.offset_vector)));
     const bool geometry_changed =
         changed(origin, m_origin) || changed(axis1, m_axis1) ||
-        changed(axis2, m_axis2) ||
-        changed(offset_vector, m_offset_vector);
+        changed(axis2, m_axis2) || changed(offset_vector, m_offset_vector);
 
     m_origin = std::move(origin);
     m_axis1 = std::move(axis1);
@@ -108,8 +105,7 @@ void MovingPlaneSampler::define_netcdf_metadata(
     PlaneSampler::define_netcdf_metadata(grp);
     grp.put_attr("sampling_type", identifier());
     grp.put_attr("actuator_label", m_actuator_label);
-    grp.def_var(
-        "points", NC_DOUBLE, {"num_time_steps", "num_points", "ndim"});
+    grp.def_var("points", NC_DOUBLE, {"num_time_steps", "num_points", "ndim"});
 }
 
 void MovingPlaneSampler::output_netcdf_data(

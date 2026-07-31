@@ -26,10 +26,9 @@ public:
         return identifier();
     }
 
+    void define_netcdf_metadata(const ncutils::NCGroup& grp) const override;
     void
-    define_netcdf_metadata(const ncutils::NCGroup& grp) const override;
-    void output_netcdf_data(
-        const ncutils::NCGroup& grp, size_t nt) const override;
+    output_netcdf_data(const ncutils::NCGroup& grp, size_t nt) const override;
     void populate_info_file(std::ostream& fh) const override;
 
 private:
