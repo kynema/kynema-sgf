@@ -45,14 +45,6 @@ void ReAveraging::operator()(
     const amrex::Real factor =
         amrex::max<amrex::Real>(filter - avg_time_interval, 0.0_rt);
 
-    if (elapsed_time < 1.0e-6_rt) {
-        amrex::Print() << "ReAveraging::operator() first call for " << m_average.name()
-                       << ": elapsed_time=" << elapsed_time
-                       << ", filter=" << filter
-                       << ", factor=" << factor
-                       << ", avg_time_interval=" << avg_time_interval << "\n";
-    }
-
     const int ncomp = m_field.num_comp();
     const int nlevels = m_field.repo().num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
