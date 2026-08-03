@@ -257,6 +257,134 @@ are ``t``, ``x``, ``y``, and ``z``.
    List of the high corner values for a bounding box where the tagging
    will be active. By default the bounding box will span the entire domain.
 
+Actuator-following refinement
+```````````````````````````
+
+``ActuatorRefinement`` maintains rotor-aligned cylindrical refinement regions
+around selected actuator models. A selected ``ActuatorSector`` contributes one
+cylinder. A selected ``Drone`` contributes one cylinder for each child rotor;
+overlapping cylinders are combined by the normal AMR tagging operation.
+
+The cylinder center and axis follow the prescribed rotor-hub position and
+rotor normal. ``forward`` always means the positive rotor-normal direction and
+``backward`` means the negative direction. These names are geometric and do
+not imply upstream or downstream.
+
+For example, the following applies one configuration to every rotor belonging
+to drones ``Q1`` and ``Q2``::
+
+  tagging.labels = rotor_tracking
+  tagging.rotor_tracking.type = ActuatorRefinement
+  tagging.rotor_tracking.actuator_labels = Q1 Q2
+  tagging.rotor_tracking.min_level = 0
+  tagging.rotor_tracking.max_level = 1
+  tagging.rotor_tracking.radial_padding_epsilon = 3.0
+  tagging.rotor_tracking.forward_padding_diameter = 1.0
+  tagging.rotor_tracking.backward_padding_diameter = 0.5
+
+``min_level`` and ``max_level`` identify levels on which cells are tagged, so
+``max_level`` must be less than ``amr.max_level``.
+
+.. input_param:: tagging.ActuatorRefinement.actuator_labels
+
+   **type:** List of strings, mandatory
+
+   Top-level labels from ``Actuator.labels``. Each label must identify an
+   ``ActuatorSector`` or ``Drone``. Selecting a drone automatically selects all
+   child rotors.
+
+.. input_param:: tagging.ActuatorRefinement.min_level
+
+   **type:** Integer, optional, default = 0
+
+   Lowest mesh level on which this criterion tags cells.
+
+.. input_param:: tagging.ActuatorRefinement.max_level
+
+   **type:** Integer, optional, default = ``amr.max_level - 1``
+
+   Highest mesh level on which this criterion tags cells.
+
+.. input_param:: tagging.ActuatorRefinement.radial_padding_epsilon
+
+   **type:** Real number, optional, default = 3.0
+
+   Additional cylinder radius as a multiple of the rotor's maximum Gaussian
+   width. The total radius also includes the physical rotor radius.
+
+.. input_param:: tagging.ActuatorRefinement.radial_padding
+
+   **type:** Real number, optional, default = 0.0
+
+   Additional cylinder radius in meters.
+
+.. input_param:: tagging.ActuatorRefinement.axial_padding_epsilon
+
+   **type:** Real number, optional, default = 3.0
+
+   Cylinder extent on both sides of the rotor plane as a multiple of maximum
+   Gaussian width. A side-specific epsilon input overrides this value on that
+   side.
+
+.. input_param:: tagging.ActuatorRefinement.axial_padding_diameter
+
+   **type:** Real number, optional
+
+   Cylinder extent on both sides of the rotor plane in rotor-diameter units. A
+   side-specific diameter input overrides this value on that side.
+
+.. input_param:: tagging.ActuatorRefinement.axial_padding
+
+   **type:** Real number, optional, default = 0.0
+
+   Cylinder extent in meters on both sides of the rotor plane. A side-specific
+   absolute input overrides this value on that side.
+
+.. input_param:: tagging.ActuatorRefinement.forward_padding_epsilon
+
+   **type:** Real number, optional
+
+   Forward extent as a multiple of maximum Gaussian width. If omitted,
+   ``axial_padding_epsilon`` is used.
+
+.. input_param:: tagging.ActuatorRefinement.backward_padding_epsilon
+
+   **type:** Real number, optional
+
+   Backward extent as a multiple of maximum Gaussian width. If omitted,
+   ``axial_padding_epsilon`` is used.
+
+.. input_param:: tagging.ActuatorRefinement.forward_padding_diameter
+
+   **type:** Real number, optional
+
+   Forward extent in rotor-diameter units. If omitted,
+   ``axial_padding_diameter`` is used.
+
+.. input_param:: tagging.ActuatorRefinement.backward_padding_diameter
+
+   **type:** Real number, optional
+
+   Backward extent in rotor-diameter units. If omitted,
+   ``axial_padding_diameter`` is used.
+
+.. input_param:: tagging.ActuatorRefinement.forward_padding
+
+   **type:** Real number, optional
+
+   Forward extent in meters. If omitted, ``axial_padding`` is used.
+
+.. input_param:: tagging.ActuatorRefinement.backward_padding
+
+   **type:** Real number, optional
+
+   Backward extent in meters. If omitted, ``axial_padding`` is used.
+
+Axial epsilon, diameter, and absolute inputs are mutually exclusive. Specify
+only one unit family for a refinement criterion. Within that family, a shared
+``axial_padding_*`` value can be combined with forward and backward overrides.
+If no axial input is supplied, both sides default to ``3 epsilon``.
+
 
 Refinement using Q-Criterion
 `````````````````````````````````````
@@ -308,4 +436,3 @@ in that an external file species the refinement regions.
    
    Static refinement with Cartesian-aligned bounding boxes input file name. 
    
-

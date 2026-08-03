@@ -9,6 +9,7 @@ target_sources(${kynema_sgf_lib_name} PRIVATE
   VorticityMagRefinement.cpp
   OversetRefinement.cpp
   GeometryRefinement.cpp
+  ActuatorRefinement.cpp
 
   # Geometry based refinement options
   BoxRefiner.cpp

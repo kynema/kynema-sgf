@@ -214,34 +214,6 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE Tensor zrot(const amrex::Real angle)
                   0.0_rt, 0.0_rt, 0.0_rt, 1.0_rt};
 }
 
-AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE Tensor
-quaternion(const Vector& axis, const amrex::Real angle)
-{
-    const amrex::Real ang = -1.0_rt * utils::radians(angle);
-    const amrex::Real cval = std::cos(0.5_rt * ang);
-    const amrex::Real sval = std::sin(0.5_rt * ang);
-    const auto vmag = mag(axis);
-    const amrex::Real q0 = cval;
-    const amrex::Real q1 = sval * axis.x() / vmag;
-    const amrex::Real q2 = sval * axis.y() / vmag;
-    const amrex::Real q3 = sval * axis.z() / vmag;
-
-    Tensor t;
-    t.xx() = (q0 * q0) + (q1 * q1) - (q2 * q2) - (q3 * q3);
-    t.xy() = 2.0_rt * (q1 * q2 - q0 * q3);
-    t.xz() = 2.0_rt * (q0 * q2 + q1 * q3);
-
-    t.yx() = 2.0_rt * (q1 * q2 + q0 * q3);
-    t.yy() = (q0 * q0) - (q1 * q1) + (q2 * q2) - (q3 * q3);
-    t.yz() = 2.0_rt * (q2 * q3 - q0 * q1);
-
-    t.zx() = 2.0_rt * (q1 * q3 - q0 * q2);
-    t.zy() = 2.0_rt * (q0 * q1 + q2 * q3);
-    t.zz() = (q0 * q0) - (q1 * q1) - (q2 * q2) + (q3 * q3);
-
-    return t;
-}
-
 } // namespace kynema_sgf::vs
 
 #endif /* VS_TENSORI_H */

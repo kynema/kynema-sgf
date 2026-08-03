@@ -78,6 +78,16 @@ struct ActSrcSector : ActSrcType
     static constexpr bool is_sector = true;
 };
 
+/** Composite source representation used by a drone containing sector rotors. */
+struct ActSrcDrone : ActSrcType
+{
+    static std::string identifier() { return ""; }
+
+    static constexpr bool is_line = false;
+    static constexpr bool is_disk = false;
+    static constexpr bool is_sector = false;
+};
+
 using RealList = amrex::Vector<amrex::Real>;
 using RealSlice = ::kynema_sgf::utils::Slice<amrex::Real>;
 using VecList = amrex::Vector<kynema_sgf::vs::Vector>;
@@ -86,6 +96,16 @@ using TensorList = amrex::Vector<kynema_sgf::vs::Tensor>;
 using TensorSlice = ::kynema_sgf::utils::Slice<kynema_sgf::vs::Tensor>;
 using DeviceVecList = amrex::Gpu::DeviceVector<kynema_sgf::vs::Vector>;
 using DeviceTensorList = amrex::Gpu::DeviceVector<kynema_sgf::vs::Tensor>;
+
+/** Rotor geometry exposed to actuator-following mesh refinement. */
+struct ActuatorRefinementGeometry
+{
+    std::string label;
+    vs::Vector center{vs::Vector::zero()};
+    vs::Vector normal{vs::Vector::khat()};
+    amrex::Real rotor_radius{0.0_rt};
+    amrex::Real epsilon_max{0.0_rt};
+};
 
 /** Actuator data at each node for an actuator component.
  *

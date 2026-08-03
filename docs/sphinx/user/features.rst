@@ -76,6 +76,8 @@ Flow physics
 
    * Actuator turbine representations: Joukowsky disks, uniform disks, actuator line [:ref:`doc <turbine_models>`, :ref:`inp <inputs_actuator>`]
 
+   * Prescribed-motion rotor and multi-rotor Drone actuator representations [:ref:`inp <inputs_actuator>`]
+
    * Coupling with OpenFAST
 
    * Coupling with Nalu-Wind for blade resolved simulations
@@ -164,4 +166,3 @@ High performance computing
    * native AMReX solvers such as MLMG [:ref:`inp <inputs_mlmg>`]
 
    * hypre
-

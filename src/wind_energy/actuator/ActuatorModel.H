@@ -63,6 +63,12 @@ public:
     virtual void prepare_outputs(const std::string&) = 0;
 
     virtual void write_outputs() = 0;
+
+    [[nodiscard]] virtual amrex::Vector<ActuatorRefinementGeometry>
+    refinement_geometries(amrex::Real time) const = 0;
+
+    [[nodiscard]] virtual std::optional<motion::RigidTransform>
+    reference_frame(amrex::Real time) const = 0;
 };
 
 /** Concrete implementation of the ActuatorModel for different actuator types.
@@ -125,6 +131,9 @@ public:
     //! Return the meta info object for this actuator instance
     [[nodiscard]] const auto& meta() const { return m_data.meta(); }
 
+    //! Return the actuator grid for inspection and diagnostics
+    [[nodiscard]] const auto& grid() const { return m_data.grid(); }
+
     void read_inputs(const utils::ActParser& pp) override
     {
         ops::ReadInputsOp<ActTrait, SrcTrait>()(m_data, pp);
@@ -175,6 +184,18 @@ public:
     }
 
     void write_outputs() override { m_out_op.write_outputs(); }
+
+    [[nodiscard]] amrex::Vector<ActuatorRefinementGeometry>
+    refinement_geometries(const amrex::Real time) const override
+    {
+        return ops::RefinementGeometryOp<ActTrait, SrcTrait>()(m_data, time);
+    }
+
+    [[nodiscard]] std::optional<motion::RigidTransform>
+    reference_frame(const amrex::Real time) const override
+    {
+        return ops::ReferenceFrameOp<ActTrait, SrcTrait>()(m_data, time);
+    }
 
     void init_actuator_source() override
     {
