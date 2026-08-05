@@ -227,7 +227,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 const amrex::Real term = std::sin(
                     std::numbers::pi_v<amrex::Real> * 0.5_rt *
                     (x - damping_east_start) /
-                    (damping_east_end - damping_east_start));
+                    (damping_east_end - damping_east_start + 1e-15_rt));
                 horizontal_coeff_east = term * term;
             }
             if (x > damping_west_start) {
@@ -238,7 +238,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 const amrex::Real term = std::sin(
                     std::numbers::pi_v<amrex::Real> * 0.5_rt *
                     (x - damping_west_start) /
-                    (damping_west_end - damping_west_start));
+                    (damping_west_end - damping_west_start + 1e-15_rt));
                 horizontal_coeff_west = term * term;
             }
             if (y < damping_north_start) {
@@ -249,7 +249,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 const amrex::Real term = std::sin(
                     std::numbers::pi_v<amrex::Real> * 0.5_rt *
                     (y - damping_north_start) /
-                    (damping_north_end - damping_north_start));
+                    (damping_north_end - damping_north_start + 1e-15_rt));
                 horizontal_coeff_north = term * term;
             }
             if (y > damping_south_start) {
@@ -260,7 +260,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 const amrex::Real term = std::sin(
                     std::numbers::pi_v<amrex::Real> * 0.5_rt *
                     (y - damping_south_start) /
-                    (damping_south_end - damping_south_start));
+                    (damping_south_end - damping_south_start + 1e-15_rt));
                 horizontal_coeff_south = term * term;
             }
             if (z <= horizontal_abl_height) {
@@ -271,7 +271,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 const amrex::Real term = std::sin(
                     std::numbers::pi_v<amrex::Real> * 0.5_rt *
                     (z - horizontal_abl_height) /
-                    (z_sloped - horizontal_abl_height));
+                    (z_sloped - horizontal_abl_height + 1e-15_rt));
                 vertical_coeff = term * term;
             }
             levelDamping[nbx](i, j, k, 0) =
