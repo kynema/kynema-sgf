@@ -90,6 +90,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
     const amrex::Real locSurfaceFactor = m_surfaceFactor;
     const amrex::Real locC1 = m_C1;
     const amrex::Real tol = constants::TIGHT_TOL;
+    const amrex::Real stable_ramp_half_width = 10.0_rt * constants::TIGHT_TOL;
 
     const auto& geom_vec = repo.mesh().Geom();
     const bool has_terrain =
@@ -181,19 +182,24 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                       gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
                       gradT_arrs[nbx](i, j, k, 2) * gravity[2]) /
                     T0;
-                amrex::Real stratification = 1.0_rt;
+                // Clamp stable stratification continuously so tiny round-off
+                // changes do not flip the turbulence response discontinuously.
+                const amrex::Real stable_sensor =
+                    amrex::max<amrex::Real>(stratification_sensor, 0.0_rt);
+                const amrex::Real stratification_argument =
+                    mut - 3.0_rt * stable_sensor;
+                const amrex::Real stratification = std::sqrt(
+                    amrex::max<amrex::Real>(tol, stratification_argument));
                 amrex::Real non_linear_coeff = 1.0_rt;
-
-                if (stratification_sensor > tol) {
-                    // stable
-                    non_linear_coeff =
-                        (mut - 3.0_rt * stratification_sensor < tol) ? 0.0_rt
-                                                                     : 1.0_rt;
-                    stratification = std::sqrt(
-                        amrex::max<amrex::Real>(
-                            tol, mut - 3.0_rt * stratification_sensor));
-                } else {
-                    stratification = std::sqrt(mut);
+                if (stable_sensor > 0.0_rt) {
+                    // Use a narrow ramp around the stable cutoff based on
+                    // TIGHT_TOL so CUDA round-off does not toggle Nij on/off.
+                    const amrex::Real ramp_argument =
+                        (stratification_argument - tol + stable_ramp_half_width) /
+                        (2.0_rt * stable_ramp_half_width);
+                    non_linear_coeff = amrex::min<amrex::Real>(
+                        1.0_rt,
+                        amrex::max<amrex::Real>(0.0_rt, ramp_argument));
                 }
 
                 mu_arrs[nbx](i, j, k) = rho * viscosityScale * turnOff *
@@ -212,13 +218,20 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                     (std::log(1.5_rt * dz / local_z0) - non_neutral_neighbour);
                 const amrex::Real ux0 = vel_arrs[nbx](i, j, k, 0);
                 const amrex::Real uy0 = vel_arrs[nbx](i, j, k, 1);
-                const amrex::Real m0 = std::sqrt((ux0 * ux0) + (uy0 * uy0));
+                const amrex::Real m0_sqr = (ux0 * ux0) + (uy0 * uy0);
+                const amrex::Real m0 = std::sqrt(m0_sqr);
                 const amrex::Real uxm1 = vel_arrs[nbx](i, j, k - 1, 0);
                 const amrex::Real uym1 = vel_arrs[nbx](i, j, k - 1, 1);
-                const amrex::Real mm1 =
-                    std::sqrt((uxm1 * uxm1) + (uym1 * uym1));
+                const amrex::Real mm1_sqr = (uxm1 * uxm1) + (uym1 * uym1);
+                const amrex::Real mm1 = std::sqrt(mm1_sqr);
+                // Recast m0 - mm1 to avoid subtracting two nearly equal square
+                // roots, which amplifies round-off in terrain log-law cells.
+                const amrex::Real dM_numerator = m0_sqr - mm1_sqr;
+                const amrex::Real dM_denominator =
+                    amrex::max<amrex::Real>(m0 + mm1, constants::EPS);
                 const amrex::Real dMdz =
-                    amrex::max<amrex::Real>((m0 - mm1) / dz, dMdz_min);
+                    amrex::max<amrex::Real>(
+                        (dM_numerator / dM_denominator) / dz, dMdz_min);
                 const amrex::Real mut_loglaw =
                     2.0_rt * ustar * ustar * rho / dMdz;
                 const amrex::Real drag =
