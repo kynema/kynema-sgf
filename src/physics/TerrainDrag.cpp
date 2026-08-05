@@ -346,8 +346,6 @@ void TerrainDrag::convert_waves_to_terrain_fields()
 
         const auto negative_wave_elevation =
             (*m_wave_negative_elevation)(level).const_arrays();
-        const auto wave_vol_frac =
-            (*m_wave_volume_fraction)(level).const_arrays();
 
         // Get terrain blanking from ocean waves fields
         amrex::ParallelFor(
