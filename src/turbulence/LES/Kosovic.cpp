@@ -91,6 +91,9 @@ void Kosovic<Transport>::update_turbulent_viscosity(
     const amrex::Real locC1 = m_C1;
     const amrex::Real tol = constants::TIGHT_TOL;
     const amrex::Real stable_ramp_half_width = 10.0_rt * constants::TIGHT_TOL;
+    // Capture EPS as a local so it can be used in device code; referencing the
+    // namespace-scope static constexpr directly in the lambda fails under CUDA.
+    const amrex::Real loc_eps = constants::EPS;
 
     const auto& geom_vec = repo.mesh().Geom();
     const bool has_terrain =
@@ -228,7 +231,7 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                 // roots, which amplifies round-off in terrain log-law cells.
                 const amrex::Real dM_numerator = m0_sqr - mm1_sqr;
                 const amrex::Real dM_denominator =
-                    amrex::max<amrex::Real>(m0 + mm1, constants::EPS);
+                    amrex::max<amrex::Real>(m0 + mm1, loc_eps);
                 const amrex::Real dMdz = amrex::max<amrex::Real>(
                     (dM_numerator / dM_denominator) / dz, dMdz_min);
                 const amrex::Real mut_loglaw =
