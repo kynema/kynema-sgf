@@ -345,14 +345,7 @@ void DragForcing::operator()(
             if (has_terrain_drag != 0 &&
                 amrex::Math::abs(drag_arrs[nbx](i, j, k)) == 1 &&
                 (is_laminar == 0)) {
-                int k_off = -1;
-                if (is_waves != 0) {
-                    const amrex::Real cell_length_2D =
-                        std::sqrt((dx[0] * dx[0]) + (dx[2] * dx[2]));
-                    if (target_lvs_arrs[nbx](i, j, k) + cell_length_2D >= 0) {
-                        k_off = 0;
-                    }
-                }
+                const int k_off = (is_waves != 0) ? 0 : -1;
                 const amrex::Real wall_u =
                     (is_waves == 0) ? 0.0_rt
                                     : target_vel_arrs[nbx](i, j, k + k_off, 0);
