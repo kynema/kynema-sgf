@@ -195,11 +195,11 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                     // Use a narrow ramp around the stable cutoff based on
                     // TIGHT_TOL so CUDA round-off does not toggle Nij on/off.
                     const amrex::Real ramp_argument =
-                        (stratification_argument - tol + stable_ramp_half_width) /
+                        (stratification_argument - tol +
+                         stable_ramp_half_width) /
                         (2.0_rt * stable_ramp_half_width);
                     non_linear_coeff = amrex::min<amrex::Real>(
-                        1.0_rt,
-                        amrex::max<amrex::Real>(0.0_rt, ramp_argument));
+                        1.0_rt, amrex::max<amrex::Real>(0.0_rt, ramp_argument));
                 }
 
                 mu_arrs[nbx](i, j, k) = rho * viscosityScale * turnOff *
@@ -229,9 +229,8 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                 const amrex::Real dM_numerator = m0_sqr - mm1_sqr;
                 const amrex::Real dM_denominator =
                     amrex::max<amrex::Real>(m0 + mm1, constants::EPS);
-                const amrex::Real dMdz =
-                    amrex::max<amrex::Real>(
-                        (dM_numerator / dM_denominator) / dz, dMdz_min);
+                const amrex::Real dMdz = amrex::max<amrex::Real>(
+                    (dM_numerator / dM_denominator) / dz, dMdz_min);
                 const amrex::Real mut_loglaw =
                     2.0_rt * ustar * ustar * rho / dMdz;
                 const amrex::Real drag =
