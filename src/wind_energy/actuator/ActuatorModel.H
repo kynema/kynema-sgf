@@ -125,6 +125,9 @@ public:
     //! Return the meta info object for this actuator instance
     [[nodiscard]] const auto& meta() const { return m_data.meta(); }
 
+    //! Return the actuator grid for inspection and diagnostics
+    [[nodiscard]] const auto& grid() const { return m_data.grid(); }
+
     void read_inputs(const utils::ActParser& pp) override
     {
         ops::ReadInputsOp<ActTrait, SrcTrait>()(m_data, pp);

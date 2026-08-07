@@ -6,9 +6,14 @@
 #include "src/wind_energy/actuator/actuator_utils.H"
 #include "src/core/FieldRepo.H"
 
+#include <cstddef>
 #include <cmath>
 #include <numbers>
 #include <string>
+
+namespace ncutils {
+class NCGroup;
+}
 
 namespace kynema_sgf::actuator::sector {
 
@@ -43,6 +48,13 @@ void blade_basis(
 
 void update_midpoint_sample_points(ActuatorSector::DataType& data);
 
+//! Set the initial placement and prescribed translation of a mounted rotor.
+void set_placement(
+    ActuatorSector::DataType& data,
+    const vs::Vector& center,
+    const vs::Vector& rotor_normal,
+    const vs::Vector& translation_velocity);
+
 void build_gaussian_table(ActuatorSectorData& meta);
 
 amrex::Real timestep_width(const CFDSim& sim);
@@ -52,6 +64,16 @@ void prepare_netcdf_file(
     const ActuatorSectorData& meta,
     const ActInfo& info);
 
+void prepare_netcdf_group(
+    const ncutils::NCGroup& parent,
+    const std::string& group_name,
+    const ActuatorSectorData& meta);
+
+void write_netcdf_group_metadata(
+    const ncutils::NCGroup& parent,
+    const std::string& group_name,
+    const ActuatorSectorData& meta);
+
 void write_netcdf(
     const std::string& ncfile,
     const ActuatorSectorData& meta,
@@ -59,6 +81,15 @@ void write_netcdf(
     const ActGrid& grid,
     amrex::Real time,
     int time_index);
+
+void write_netcdf_group(
+    const ncutils::NCGroup& parent,
+    const std::string& group_name,
+    const ActuatorSectorData& meta,
+    const ActGrid& grid,
+    amrex::Real time,
+    int time_index,
+    std::size_t time_record);
 
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real gaussian_norm_3d()
 {

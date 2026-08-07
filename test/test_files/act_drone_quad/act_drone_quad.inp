@@ -1,0 +1,83 @@
+# Time controls
+time.max_step = 4
+time.fixed_dt = 1.7453292519943296e-4  # 25 deg rotor sweep per step [s]
+time.use_force_cfl = false
+time.plot_interval = -1
+time.checkpoint_interval = -1
+
+# Domain extents are Cartesian coordinates [m].
+geometry.prob_lo = -0.1 -0.2 -0.2
+geometry.prob_hi = 0.2 0.2 0.2
+geometry.is_periodic = 0 0 0
+amr.n_cell = 48 64 64
+amr.max_level = 0
+amr.max_grid_size = 16
+
+# Constant initial/background fields: density [kg/m^3], velocity [m/s].
+ConstValue.density.value = 1.0
+ConstValue.velocity.value = 1.0 0.0 0.0
+
+incflo.use_godunov = 1
+incflo.diffusion_type = 2
+incflo.do_initial_proj = 1
+incflo.initial_iterations = 3
+transport.viscosity = 1.0e-5
+transport.laminar_prandtl = 0.7
+transport.turbulent_prandtl = 0.3333
+turbulence.model = Laminar
+
+incflo.physics = FreeStream Actuator
+ICNS.source_terms = ActuatorForcing
+
+Actuator.labels = D1
+Actuator.D1.type = Drone
+
+# Shared drone layout and actuator-sector rotor definition. The arm length is
+# the body-center to rotor-hub distance. A 45-degree phase creates an X layout.
+Actuator.Drone.num_rotors = 4
+Actuator.Drone.arm_length = 0.10606601717798213
+Actuator.Drone.arm_phase_degrees = 45.0
+Actuator.Drone.rotor_omegas = 2500.0 -2500.0 2500.0 -2500.0
+Actuator.Drone.mirror_blades = false true false true
+
+Actuator.Drone.rotor_diameter = 0.10
+Actuator.Drone.root_radius_fraction = 0.18
+Actuator.Drone.num_blades = 2
+
+# Rotate the default body xy rotor plane into the CFD yz plane. This maps the
+# body +z rotor normal to CFD +x and reproduces act_sector_quad placement.
+Actuator.D1.center = 0.0 0.0 0.0
+Actuator.D1.body_orientation_degrees = -90.0 0.0 -90.0
+
+# Actuator-sector Gaussian width and generated sector grid
+Actuator.Drone.epsilon_chord = 0.5
+Actuator.Drone.epsilon_dr = 1.5
+Actuator.Drone.epsilon_dl = 1.5
+Actuator.Drone.min_chord_dr = 2.0
+
+# Actuator-sector blade section inputs
+Actuator.Drone.span_locs = 0.0 1.0
+Actuator.Drone.chord = 0.01 0.006
+Actuator.Drone.twist = 12.0 4.0
+Actuator.Drone.airfoil_table = ../act_fixed_wing/DU21_A17.txt
+Actuator.Drone.airfoil_type = openfast
+
+# Actuator-sector force projection and output
+Actuator.Drone.gaussian_type = table
+Actuator.Drone.gaussian_table_error = 1.0e-4
+Actuator.Drone.output_frequency = 1
+
+# Boundary conditions: +x inflow, +x pressure outflow, transverse slip walls.
+xlo.type = "mass_inflow"
+xlo.density = 1.0
+xlo.velocity = 1.0 0.0 0.0
+xhi.type = "pressure_outflow"
+
+ylo.type = "slip_wall"
+yhi.type = "slip_wall"
+
+zlo.type = "slip_wall"
+zhi.type = "slip_wall"
+
+incflo.verbose = 0
+nodal_proj.verbose = 0

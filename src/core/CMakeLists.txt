@@ -10,4 +10,5 @@ target_sources(${kynema_sgf_lib_name}
   ViewField.cpp
   MLMGOptions.cpp
   MeshMap.cpp
+  vs/quaternion.cpp
   )
