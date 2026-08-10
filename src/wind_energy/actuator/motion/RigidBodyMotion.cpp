@@ -8,6 +8,7 @@
 #include <cmath>
 
 #include "AMReX.H"
+#include "AMReX_Print.H"
 
 using namespace amrex::literals;
 
@@ -129,6 +130,7 @@ void RigidBodyMotion::read_inputs(
             amrex::Abort(
                 "orientation_format must be roll_pitch_yaw or quaternion");
         }
+        warn_ambiguous_orientation_intervals(filename);
     } else if (has_angular_table) {
         std::string filename;
         pp.get("angular_velocity_timetable", filename);
@@ -168,6 +170,27 @@ vs::Quaternion RigidBodyMotion::orientation_quaternion(const int row) const
             .normalized();
     }
     return vs::from_roll_pitch_yaw({values[0], values[1], values[2]});
+}
+
+void RigidBodyMotion::warn_ambiguous_orientation_intervals(
+    const std::string& filename) const
+{
+    const auto& times = m_orientation_table.times();
+    for (int upper = 1; upper < static_cast<int>(times.size()); ++upper) {
+        const auto lower_orientation = orientation_quaternion(upper - 1);
+        const auto upper_orientation = orientation_quaternion(upper);
+        if (std::abs(vs::dot(lower_orientation, upper_orientation)) <=
+            constants::TIGHT_TOL) {
+            amrex::Print()
+                << "WARNING: Consecutive orientations in actuator motion "
+                   "timetable '"
+                << filename << "' at times " << times[upper - 1] << " and "
+                << times[upper]
+                << " are approximately 180 degrees apart. The interpolation "
+                   "direction is ambiguous; add an intermediate orientation "
+                   "to prescribe the rotation direction.\n";
+        }
+    }
 }
 
 vs::Tensor RigidBodyMotion::orientation(const amrex::Real time) const

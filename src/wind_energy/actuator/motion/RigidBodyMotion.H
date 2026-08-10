@@ -35,6 +35,8 @@ private:
     enum class OrientationFormat : std::uint8_t { RollPitchYaw, Quaternion };
 
     [[nodiscard]] vs::Quaternion orientation_quaternion(int row) const;
+    void
+    warn_ambiguous_orientation_intervals(const std::string& filename) const;
 
     vs::Vector m_initial_position{vs::Vector::zero()};
     vs::Vector m_constant_velocity{vs::Vector::zero()};

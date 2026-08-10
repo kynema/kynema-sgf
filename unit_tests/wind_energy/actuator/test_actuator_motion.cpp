@@ -41,6 +41,19 @@ TEST(ActuatorMotion, quaternion_normalization)
     EXPECT_NEAR(quaternion.w, 1.0_rt, test_tol);
 }
 
+TEST(ActuatorMotion, slerp_flips_any_negative_dot_product)
+{
+    const kynema_sgf::vs::Quaternion start{};
+    const amrex::Real negative_w = -0.5_rt * kynema_sgf::constants::EPS;
+    const kynema_sgf::vs::Quaternion end{
+        negative_w, 0.0_rt, 0.0_rt,
+        std::sqrt(1.0_rt - negative_w * negative_w)};
+
+    ASSERT_LT(kynema_sgf::vs::dot(start, end), 0.0_rt);
+    const auto midpoint = kynema_sgf::vs::slerp(start, end, 0.5_rt);
+    EXPECT_LT(midpoint.z, 0.0_rt);
+}
+
 TEST(ActuatorMotion, timetable_interpolation_derivative_and_integral)
 {
     const std::string filename{"motion_scalar_table.txt"};
@@ -73,7 +86,9 @@ TEST(ActuatorMotion, position_and_quaternion_histories)
     const std::string position_file{"motion_position_table.txt"};
     const std::string orientation_file{"motion_orientation_table.txt"};
     write_table(position_file, "Time X Y Z\n0 0 0 0\n1 2 0 0\n");
-    write_table(orientation_file, "Time Qw Qx Qy Qz\n0 1 0 0 0\n1 0 0 0 1\n");
+    write_table(
+        orientation_file,
+        "Time Qw Qx Qy Qz\n0 1 0 0 0\n1 0.5 0 0 0.8660254037844386\n");
 
     amrex::ParmParse pp("MotionHistory");
     pp.add("position_timetable", position_file);
@@ -90,11 +105,31 @@ TEST(ActuatorMotion, position_and_quaternion_histories)
         motion.orientation(0.5_rt) & kynema_sgf::vs::Vector::ihat();
     EXPECT_NEAR(position.x(), 1.0_rt, tol);
     EXPECT_NEAR(velocity.x(), 2.0_rt, tol);
-    EXPECT_NEAR(rotated.x(), 0.0_rt, tol);
-    EXPECT_NEAR(rotated.y(), 1.0_rt, tol);
+    EXPECT_NEAR(rotated.x(), 0.5_rt, tol);
+    EXPECT_NEAR(rotated.y(), std::sqrt(3.0_rt) / 2.0_rt, tol);
 
     std::remove(position_file.c_str());
     std::remove(orientation_file.c_str());
+}
+
+TEST(ActuatorMotion, orientation_history_warns_for_ambiguous_interval)
+{
+    const std::string filename{"motion_ambiguous_orientation_table.txt"};
+    write_table(filename, "Time Qw Qx Qy Qz\n0 1 0 0 0\n1 0 0 0 1\n");
+
+    amrex::ParmParse pp("MotionAmbiguousOrientation");
+    pp.add("orientation_timetable", filename);
+    pp.add("orientation_format", "quaternion");
+    RigidBodyMotion motion;
+    testing::internal::CaptureStdout();
+    motion.read_inputs(
+        ActParser("UnusedMotionDefaults", "MotionAmbiguousOrientation"),
+        kynema_sgf::vs::Vector::zero(), kynema_sgf::vs::Tensor::identity());
+    const auto warning = testing::internal::GetCapturedStdout();
+
+    EXPECT_NE(
+        warning.find("approximately 180 degrees apart"), std::string::npos);
+    std::remove(filename.c_str());
 }
 
 TEST(ActuatorMotion, roll_pitch_yaw_and_quaternion_histories_match)
@@ -102,8 +137,10 @@ TEST(ActuatorMotion, roll_pitch_yaw_and_quaternion_histories_match)
     constexpr amrex::Real tol = kynema_sgf::constants::TIGHT_TOL;
     const std::string rpy_file{"motion_rpy_table.txt"};
     const std::string quaternion_file{"motion_quaternion_table.txt"};
-    write_table(rpy_file, "Time Roll Pitch Yaw\n0 0 0 0\n1 0 0 -180\n");
-    write_table(quaternion_file, "Time Qw Qx Qy Qz\n0 1 0 0 0\n1 0 0 0 1\n");
+    write_table(rpy_file, "Time Roll Pitch Yaw\n0 0 0 0\n1 0 0 -120\n");
+    write_table(
+        quaternion_file,
+        "Time Qw Qx Qy Qz\n0 1 0 0 0\n1 0.5 0 0 0.8660254037844386\n");
 
     amrex::ParmParse rpy_pp("MotionRpy");
     rpy_pp.add("orientation_timetable", rpy_file);
