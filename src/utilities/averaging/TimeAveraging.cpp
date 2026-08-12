@@ -86,8 +86,6 @@ void TimeAveraging::post_advance_work()
     const auto cur_time = time.new_time();
     const auto cur_dt = time.delta_t();
 
-    m_accumulated_avg_time_interval += cur_dt;
-
     // Check the following:
     //   1. if we are phase averaging (i.e., only accumulating the average at a
     //   certain frequency), check to see if we are on a time step in which
@@ -105,11 +103,23 @@ void TimeAveraging::post_advance_work()
     const bool do_avg =
         (((cur_time >= m_start_time) && (cur_time < m_stop_time)) &&
          do_phase_avg);
-    if (!do_avg) {
+
+    const bool in_avg_period = (cur_time >= m_start_time) &&
+                               (cur_time < m_stop_time) && (cur_dt > 0.0_rt);
+
+    // Accumulate time on every in-period step so that phase-averaging
+    // intervals spanning multiple timesteps are counted correctly
+    if (in_avg_period) {
+        m_accumulated_avg_time_interval += cur_dt;
+    }
+
+    if (!do_avg || (cur_dt <= 0.0_rt)) {
+        // Don't avg during restart or outside of averaging time period
         return;
     }
 
     const amrex::Real elapsed_time = (cur_time - m_start_time);
+
     for (const auto& avg : m_averages) {
         (*avg)(time, m_filter, m_accumulated_avg_time_interval, elapsed_time);
     }
