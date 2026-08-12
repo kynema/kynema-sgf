@@ -26,7 +26,7 @@ turbines as actuator disks and actuator line models.
 
    This string identifies the type of actuator to use. The ones currently
    supported are: ``UniformCtDisk``, ``JoukowskyDisk``, ``TurbineFastLine``,
-   ``TurbineFastDisk``, ``TurbineKynemaLine``, ``FixedWingLine``,
+   ``TurbineFastDisk``, ``TurbineKynemaFMBLine``, ``TurbineKynemaFMBDisk``, ``FixedWingLine``,
    ``ActuatorSector``, and ``Drone``.
 
    The Kynema-FMB coupled actuator turbine types are documented in the
