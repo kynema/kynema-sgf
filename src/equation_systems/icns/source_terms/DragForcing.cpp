@@ -260,7 +260,7 @@ void DragForcing::operator()(
 
     const auto& dt = m_time.delta_t();
     const int is_laminar = m_is_laminar ? 1 : 0;
-    const bool limit_drag_temporal = m_limit_drag_temporal;
+    const int limit_drag_temporal = m_limit_drag_temporal ? 1 : 0;
     const amrex::Real time_factor = m_forcing_time_factor;
     const amrex::Real min_z = m_min_z;
     const amrex::Real min_z0 = m_min_z0;
@@ -411,7 +411,7 @@ void DragForcing::operator()(
                                                     : target_w;
 
             amrex::Real CdM_m = CdM * m;
-            if (limit_drag_temporal) {
+            if (limit_drag_temporal != 0) {
                 CdM_m = amrex::min<amrex::Real>(CdM_m, 1.0_rt / dt);
             }
 
