@@ -29,9 +29,8 @@ enum class TaggingOperator : std::uint8_t { AND, OR, AND_NOT, OR_NOT };
  *  \throw Calls amrex::Abort if the string is invalid
  */
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE TaggingOperator
-string_to_operator(const std::string& op_str)
+string_to_operator(const std::string& op)
 {
-    std::string op = amrex::toLower(op_str);
     if (op == "and") {
         return TaggingOperator::AND;
     }
@@ -45,7 +44,7 @@ string_to_operator(const std::string& op_str)
         return TaggingOperator::OR_NOT;
     }
     amrex::Abort(
-        "Invalid operator for tagging criteria: " + op_str +
+        "Invalid operator for tagging criteria: " + op +
         ". Must be one of: and, or, and_not, or_not.");
     // Unreachable, but avoids compiler warning
     return TaggingOperator::AND;
