@@ -24,7 +24,7 @@ namespace tagging {
 enum class TaggingOperator : std::uint8_t { AND, OR, AND_NOT, OR_NOT };
 
 /** Convert string to TaggingOperator enum
- *  \param op_str The operator string (case-insensitive)
+ *  \param op The operator string (case-sensitive), needs lowercase
  *  \return The corresponding TaggingOperator enum value
  *  \throw Calls amrex::Abort if the string is invalid
  */
@@ -115,7 +115,7 @@ public:
         int level, amrex::TagBoxArray& tags, amrex::Real time, int ngrow) = 0;
 
 private:
-tagging::TaggingOperator m_tag_operator{tagging::TaggingOperator::OR};
+    tagging::TaggingOperator m_tag_operator{tagging::TaggingOperator::OR};
 };
 
 /** A collection of refinement criteria instances that are active during a
