@@ -169,8 +169,6 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
     : m_sim(sim), m_repo(sim.repo()), m_mesh(sim.mesh())
 {
 
-    m_sim.io_manager().register_output_int_var("terrain_blank");
-
     amrex::Vector<std::string> labels;
     amrex::ParmParse pp(identifier());
     pp.query("initialize_terrain", m_initialize_terrain);
