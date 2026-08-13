@@ -116,7 +116,7 @@ public:
         int level, amrex::TagBoxArray& tags, amrex::Real time, int ngrow) = 0;
 
 private:
-    tagging::TaggingOperator m_tag_operator;
+tagging::TaggingOperator m_tag_operator{tagging::TaggingOperator::OR};
 };
 
 /** A collection of refinement criteria instances that are active during a

@@ -222,7 +222,7 @@ Example::
 
   tagging.f1.type = FieldRefinement
   tagging.f1.field_name = density
-  tagging.f1.grad_error = 0.1. 0.1 0.1
+  tagging.f1.grad_error = 0.1 0.1 0.1
   tagging.f1.box_lo = 10.0 10.0 10.0
   tagging.f1.box_hi = 20.0 20.0 20.0
 
@@ -309,6 +309,8 @@ Combining refinement criteria with logical operators
 ``and_not``        Keep cells tagged where previous is tagged and current is not tagged
 ``or_not``         Tag cells where previous is tagged or current is not tagged
 ================== ====================================================================
+
+   Note: Some refinement criteria may restrict supported operators (e.g., ``CartBoxRefinement`` currently only supports ``or``).
 
    In this context, previous refers to the tag state resulting from all criteria applied
    before the current one.
