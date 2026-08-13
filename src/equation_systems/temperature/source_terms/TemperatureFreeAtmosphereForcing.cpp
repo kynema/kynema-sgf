@@ -174,6 +174,7 @@ void TemperatureFreeAtmosphereForcing::operator()(
                     (temperature(i, j, k) - sponge_density * ref_temp);
             });
     }
+    amrex::Gpu::streamSynchronize();
 }
 
 } // namespace kynema_sgf::pde::temperature

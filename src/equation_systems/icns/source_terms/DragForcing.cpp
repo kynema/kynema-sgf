@@ -446,6 +446,7 @@ void DragForcing::operator()(
                 src_arrs[nbx](i, j, k, 2) -= damping_arrs[nbx](i, j, k) * uz1;
             }
         });
+    amrex::Gpu::streamSynchronize();
 }
 
 } // namespace kynema_sgf::pde::icns

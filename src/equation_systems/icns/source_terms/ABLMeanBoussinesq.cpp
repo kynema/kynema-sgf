@@ -3,6 +3,7 @@
 #include "src/core/FieldUtils.H"
 #include "src/wind_energy/ABL.H"
 #include "src/utilities/linear_interpolation.H"
+#include "AMReX_Gpu.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 
@@ -95,6 +96,7 @@ void ABLMeanBoussinesq::operator()(
 
     m_transport.beta_fill(lev, (*m_beta_scratch)(lev));
     m_transport.ref_theta_fill(lev, (*m_ref_theta_scratch)(lev));
+    amrex::Gpu::streamSynchronize();
 
     const auto& problo = m_mesh.Geom(lev).ProbLoArray();
     const auto& dx = m_mesh.Geom(lev).CellSizeArray();
@@ -123,6 +125,7 @@ void ABLMeanBoussinesq::operator()(
             const amrex::Real fac = beta_arrs[nbx](i, j, k) * (temp - T0);
             src_arrs[nbx](i, j, k, n) += gravity[n] * fac;
         });
+    amrex::Gpu::streamSynchronize();
 }
 
 void ABLMeanBoussinesq::mean_temperature_init(const FieldPlaneAveraging& tavg)

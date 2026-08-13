@@ -160,5 +160,6 @@ using Tensor = TensorT<amrex::Real>;
 } // namespace kynema_sgf::vs
 
 #include "src/core/vs/tensorI.H"
+#include "src/core/vs/quaternion.H"
 
 #endif /* VS_TENSOR_H */
