@@ -25,7 +25,7 @@ must be used in the momentum forcing in order to actually affect the flow.
 Currently, this is done by including the `DragForcing` source term in
 :input_param:`ICNS.source_terms`.
 
-.. input_param:: ChannelBuilder.initialize_velocity
+.. input_param:: ChannelBuilder.initialize_terrain
 
    **type:** Bool, optional, default = true
 
