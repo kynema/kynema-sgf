@@ -173,7 +173,7 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
     amrex::ParmParse pp(identifier());
     pp.query("initialize_terrain", m_initialize_terrain);
     if (m_initialize_terrain) {
-        sim.repo().declare_int_field("terrain_blank", 1, 1, 1);
+        m_sim.repo().declare_int_field("terrain_blank", 1, 1, 1);
         m_sim.io_manager().register_output_int_var("terrain_blank");
     }
     m_is_multiphase = pp.contains("water_level");
@@ -194,7 +194,7 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
 
     pp.query("initialize_drag_cells", m_initialize_drag);
     if (m_initialize_drag) {
-        sim.repo().declare_int_field("terrain_drag", 1, 1, 1);
+        m_sim.repo().declare_int_field("terrain_drag", 1, 1, 1);
         m_sim.io_manager().register_output_int_var("terrain_drag");
     }
     pp.getarr("segment_labels", labels);
@@ -370,7 +370,7 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     const auto& prob_lo = geom.ProbLoArray();
     auto& velocity = m_repo.get_field("velocity");
     auto vel_arrs = velocity(level).arrays();
-    auto& terrain_blank = m_repo.get_field("terrain_blank");
+    auto& terrain_blank = m_repo.get_int_field("terrain_blank");
     auto& blank_mfab = terrain_blank(level);
     auto blank_arrs = blank_mfab.arrays();
 
