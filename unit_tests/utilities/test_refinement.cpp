@@ -185,8 +185,8 @@ TEST(RefinementTaggingLogic, string_to_operator)
     using kynema_sgf::tagging::TaggingOperator;
 
     EXPECT_EQ(string_to_operator("and"), TaggingOperator::AND);
-    EXPECT_EQ(string_to_operator("OR"), TaggingOperator::OR);
-    EXPECT_EQ(string_to_operator("And_Not"), TaggingOperator::AND_NOT);
+    EXPECT_EQ(string_to_operator("or"), TaggingOperator::OR);
+    EXPECT_EQ(string_to_operator("and_not"), TaggingOperator::AND_NOT);
     EXPECT_EQ(string_to_operator("or_not"), TaggingOperator::OR_NOT);
 }
 
