@@ -81,7 +81,7 @@ This section controls refinement using pre-defined geometric shapes. Currently,
 two options are supported: 1. ``box`` -- refines the region inside a hexahedral
 block, 2. ``cylinder`` -- refines the region inside a cylindrical block, and
 3. ``udf`` -- refines along an analytical function depending on time and spatial coordinate.
-With the exception of the ``udf`` able to describe temporal variations, geometry-based refinement is static.
+With the exception of the ``udf`` able to prescribe temporal variations, geometry-based refinement is static.
 
 .. input_param:: tagging.GeometryRefinement.shapes
 
