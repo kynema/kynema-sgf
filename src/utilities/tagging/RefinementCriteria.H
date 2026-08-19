@@ -28,8 +28,7 @@ enum class TaggingOperator : std::uint8_t { AND, OR, AND_NOT, OR_NOT };
  *  \return The corresponding TaggingOperator enum value
  *  \throw Calls amrex::Abort if the string is invalid
  */
-TaggingOperator
-string_to_operator(const std::string& op)
+TaggingOperator string_to_operator(const std::string& op)
 {
     if (op == "and") {
         return TaggingOperator::AND;
