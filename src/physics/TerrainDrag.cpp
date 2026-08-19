@@ -346,8 +346,6 @@ void TerrainDrag::convert_waves_to_terrain_fields()
 
         const auto negative_wave_elevation =
             (*m_wave_negative_elevation)(level).const_arrays();
-        const auto wave_vol_frac =
-            (*m_wave_volume_fraction)(level).const_arrays();
 
         // Get terrain blanking from ocean waves fields
         amrex::ParallelFor(
@@ -355,7 +353,7 @@ void TerrainDrag::convert_waves_to_terrain_fields()
             [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
                 levelBlanking[nbx](i, j, k, 0) = static_cast<int>(
-                    (wave_vol_frac[nbx](i, j, k) >= 0.5_rt) &&
+                    (negative_wave_elevation[nbx](i, j, k) <= 0.0_rt) &&
                     (z > prob_lo[2]));
                 levelHeight[nbx](i, j, k, 0) =
                     -negative_wave_elevation[nbx](i, j, k);
