@@ -17,6 +17,7 @@ add_subdirectory(ocean_waves)
 add_subdirectory(projection)
 add_subdirectory(boundary_conditions)
 add_subdirectory(eos_models)
+add_subdirectory(physics)
 
 if(KYNEMA_SGF_ENABLE_MASA)
   add_subdirectory(mms)

@@ -97,6 +97,7 @@ documentation provided here might not work with older releases.
    inputs_turbulence.rst
    inputs_Momentum_Sources.rst
    inputs_Temperature_Sources.rst
+   inputs_DampingLayer.rst
    inputs_TKE_Sources.rst
    inputs_ABL.rst
    inputs_ABL_meso_forcing.rst

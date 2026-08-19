@@ -307,6 +307,16 @@ Section: Momentum Sources
    when the form drag is known to be under-resolved.
 
 
+The following arguments are used when ``DampingLayerSource`` is included in
+:input_param:`ICNS.source_terms`.
+
+   See :ref:`inputs_damping_layer` for the full list of
+   ``DampingLayer.velocity.<boundary>.*`` options, including
+   ``target_type`` modes (``constant``, ``profile``, ``function``, ``field``),
+   component filtering with ``damped_components``, and blending controls from
+   the DampingLayer physics module.
+
+
 The following arguments are influential when ``GravityForcing`` is included in :input_param:`ICNS.source_terms`.
 
    .. input_param:: ICNS.use_perturb_pressure
